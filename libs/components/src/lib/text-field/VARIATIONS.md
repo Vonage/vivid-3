@@ -103,6 +103,13 @@ To add custom icons or to postfix icons, use the [slots](/components/text-field/
 ></vwc-text-field>
 ```
 
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
+
 ## Scale
 
 The `scale` attribute controls the Text Field input element display size.

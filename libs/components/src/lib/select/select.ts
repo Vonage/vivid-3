@@ -45,7 +45,7 @@ export type SelectSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @public
  * @component select
  * @slot - Default slot.
- * @slot icon - Slot to add an icon to the select control.
+ * @slot icon - The preferred way to add an icon to the select control.
  * @slot meta - Slot to add meta content to the select control.
  * @slot helper-text - Describes how to use the select. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} input - Fires a custom 'input' event when the value updates

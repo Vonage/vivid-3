@@ -99,19 +99,18 @@ Use the `icon` slot add custom icons. If set, the icon attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name                     | Type                                                           | Description                                                       |
-| ------------------------ | -------------------------------------------------------------- | ----------------------------------------------------------------- |
-| **appearance**           | `ghost` (default), `filled`, `outlined`                        | Sets the appearance                                               |
-| **action**               | `HTMLButtonElement`                                            | A read-only HTML button element that represents the left button.  |
-| **connotation**          | `accent` (default), `cta`, `announcement`, `success`, `alert`  | Sets the connotation                                              |
-| **disabled**             | `boolean`                                                      | Sets the disabled state                                           |
-| **icon**                 | `string`                                                       | Icon for the primary action                                       |
-| **indicator**            | `HTMLButtonElement`                                            | A read-only HTML button element that represents the right button. |
-| **indicator-aria-label** | `string`                                                       | Accessible label for the secondary action                         |
-| **icon**                 | `string`                                                       | Icon for the primary action                                       |
-| **shape**                | `rounded` (default), `pill`                                    | Sets the shape                                                    |
-| **size**                 | `normal` (default), `super-condensed`, `condensed`, `expanded` | Sets the size                                                     |
-| **split-indicator**      | `string`                                                       | Icon for the secondary action                                     |
+| Name                                   | Type                                                           | Description                                                       |
+| -------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------- |
+| **appearance**                         | `ghost` (default), `filled`, `outlined`                        | Sets the appearance                                               |
+| **action**                             | `HTMLButtonElement`                                            | A read-only HTML button element that represents the left button.  |
+| **connotation**                        | `accent` (default), `cta`, `announcement`, `success`, `alert`  | Sets the connotation                                              |
+| **disabled**                           | `boolean`                                                      | Sets the disabled state                                           |
+| _(deprecated as of 05/25)_<br>**icon** | `string`                                                       | Icon for the primary action                                       |
+| **indicator**                          | `HTMLButtonElement`                                            | A read-only HTML button element that represents the right button. |
+| **indicator-aria-label**               | `string`                                                       | Accessible label for the secondary action                         |
+| **shape**                              | `rounded` (default), `pill`                                    | Sets the shape                                                    |
+| **size**                               | `normal` (default), `super-condensed`, `condensed`, `expanded` | Sets the size                                                     |
+| **split-indicator**                    | `string`                                                       | Icon for the secondary action                                     |
 
 </div>
 

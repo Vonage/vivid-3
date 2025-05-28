@@ -34,8 +34,8 @@ function addButtonsHandlers() {
 	codePenButtons.forEach((btn) => btn.addEventListener('click', openCodePen));
 }
 
-function updateiFrameCode(idx) {
-	const { view, iframe } = samplesEditors.get(idx);
+function updateiFrameCode(id) {
+	const { view, iframe } = samplesEditors.get(id);
 
 	const placeholder = iframe.contentDocument.querySelector('#_target');
 	const updatedCode = view.state.doc.toString().trim();
@@ -54,15 +54,15 @@ function addSamplesEditors() {
 	codeBlocks.forEach((cbd) => {
 		const code = cbd.textContent.trim();
 		cbd.innerHTML = '';
-		const idx = +cbd.dataset.index;
+		const id = cbd.dataset.exampleId;
 
-		const iframe = document.querySelector(`#iframe-sample-${idx}`);
+		const iframe = document.querySelector(`#iframe-sample-${id}`);
 		const view = new EditorView({
 			doc: code,
 			extensions: [
-				keymap.of([{ key: 'Ctrl-Enter', run: () => updateiFrameCode(idx) }]),
+				keymap.of([{ key: 'Ctrl-Enter', run: () => updateiFrameCode(id) }]),
 				theme.of(EditorView.theme({})),
-				EditorView.updateListener.of(sampleChanged(idx)),
+				EditorView.updateListener.of(sampleChanged(id)),
 				minimalSetup,
 				bracketMatching(),
 				html(),
@@ -72,7 +72,7 @@ function addSamplesEditors() {
 			root: window.document,
 		});
 
-		samplesEditors.set(idx, {
+		samplesEditors.set(id, {
 			view,
 			iframe,
 		});
@@ -81,20 +81,20 @@ function addSamplesEditors() {
 	setEditorsTheme();
 }
 
-function sampleChanged(idx) {
+function sampleChanged(id) {
 	let debounceID;
 
 	return (v) => {
 		if (!v.docChanged) return;
 
 		clearTimeout(debounceID);
-		debounceID = setTimeout(() => updateiFrameCode(idx), 500);
+		debounceID = setTimeout(() => updateiFrameCode(id), 500);
 	};
 }
 
 function codeCopyButtonClick(event) {
 	const button = event.target;
-	const { view } = samplesEditors.get(+button.dataset.index);
+	const { view } = samplesEditors.get(button.dataset.exampleId);
 
 	navigator.clipboard
 		.writeText(view.state.doc.toString().trim())
@@ -116,7 +116,7 @@ let codePenForm = null;
 
 function openCodePen(event) {
 	const button = event.target;
-	const { view } = samplesEditors.get(+button.dataset.index);
+	const { view } = samplesEditors.get(button.dataset.exampleId);
 
 	const codePenPayload = JSON.stringify({
 		html: `<div class="vvd-root">\n${view.state.doc.toString().trim()}\n</div>`,
@@ -174,7 +174,7 @@ function addLocaleSwitcher() {
 
 function switchLocale(event) {
 	const select = event.target;
-	const { iframe } = samplesEditors.get(+select.dataset.index);
+	const { iframe } = samplesEditors.get(select.dataset.exampleId);
 
 	iframe.contentWindow.setLocale(locales[select.value]);
 	iframe.contentWindow.document.documentElement.lang = select.value;

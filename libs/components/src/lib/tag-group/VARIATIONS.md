@@ -74,15 +74,22 @@ The `shape` attribute sets Tag's shape.
 
 ## Icon
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery/), which is displayed on the leading side of the Tag.
-
-Custom icons can be provided using the [icon slot](/components/tag-and-tag-group/code/#icon-slot).
+Icons can be provided using the [icon slot](/components/tag-and-tag-group/code/#icon-slot) or `icon`_(deprecated)_ attribute from the [icon library](/icons/icons-gallery/) to display an icon on the leading side of the Tag.
 
 ```html preview
 <vwc-tag-group>
-	<vwc-tag label="Tag with icon" icon="pin-line"></vwc-tag>
+	<vwc-tag label="Tag with icon">
+		<vwc-icon slot="icon" name="pin-line"></vwc-icon>
+	</vwc-tag>
 </vwc-tag-group>
 ```
+
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ## Disabled
 

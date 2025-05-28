@@ -201,5 +201,10 @@ const jaJP: Locale = {
 		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
 			`残り${total}文字`,
 	},
+	dataGrid: {
+		cell: {
+			selected: '選択済み',
+		},
+	},
 };
 export default jaJP;
