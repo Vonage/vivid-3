@@ -1,20 +1,18 @@
-interface ElementConstructor {
-	new (...args: any): HTMLElement;
-}
+import type { ElementConstructor } from './dom-traversal-types';
 
 /**
  * Retrieves all nested child elements of a specified type from a given HTMLElement.
  *
  * @param {HTMLElement} element - The root element to search within.
- * @param {T} constructor - The constructor function of the element type to filter by.
+ * @param {ElementConstructor} constructor - The constructor function of the element type to filter by.
  *
  * @example
  * ```
  * class DataGrid extends VividElement {
  *
- * 	getCells(): DataGridCell[] {
- * 	  return nestedChildrenOfType(this, DataGridCell);
- * 	}
+ * 	 getCells(): DataGridCell[] {
+ * 	   return nestedChildrenOfType(this, DataGridCell);
+ * 	 }
  * }
  * ```
  */
