@@ -122,7 +122,7 @@ describe('data grid integration tests', () => {
 						<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
 						data1
 						</vwc-data-grid-cell>
-						<vwc-data-grid-cell aria-sort="none" cell-type="columnheader">
+						<vwc-data-grid-cell aria-sort="none" cell-type="columnheader" id="thiscell">
 						data2
 						</vwc-data-grid-cell>
 					</vwc-data-grid-row>
@@ -139,6 +139,7 @@ describe('data grid integration tests', () => {
 				expect(spy).toHaveBeenCalledTimes(1);
 				expect(spy.mock.calls[0][0].detail).toEqual({
 					columnDataKey: 'data2',
+					ariaSort: 'none',
 					sortDirection: 'none',
 				});
 			});

@@ -20,7 +20,7 @@ import {
 } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { nestedChildrenOfType } from '../../shared/utils/nested-children-of-type';
-import { directChildrenOfType } from '../../shared/utils/children-of-type';
+import { directChildrenOfType } from '../../shared/utils/direct-children-of-type';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridRow } from './data-grid-row';
 import { DataGridRowTypes, GenerateHeaderOptions } from './data-grid.options';

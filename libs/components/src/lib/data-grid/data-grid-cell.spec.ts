@@ -312,7 +312,8 @@ describe('vwc-data-grid-cell', () => {
 			expect(ariaSelectedAttribute).toEqual(false);
 		});
 
-		it('should reflect true value in aria-selected attribute', async () => {
+		it('should reflect true value in aria-selected attribute if cell is selectable', async () => {
+			element.selectable = true;
 			element.selected = true;
 			await elementUpdated(element);
 
@@ -321,7 +322,8 @@ describe('vwc-data-grid-cell', () => {
 			expect(ariaSelectedAttribute).toEqual('true');
 		});
 
-		it('should reflect false value in aria-selected attribute', async () => {
+		it('should reflect false value in aria-selected attribute if cell is selectable', async () => {
+			element.selectable = true;
 			element.selected = true;
 			await elementUpdated(element);
 
@@ -563,6 +565,7 @@ describe('vwc-data-grid-cell', () => {
 				expect(onSortSpy).toHaveBeenCalledTimes(1);
 				expect(onSortSpy.mock.calls[0][0].detail).toEqual({
 					columnDataKey: 'Name',
+					ariaSort: 'none',
 					sortDirection: 'none',
 				});
 			});
@@ -575,6 +578,7 @@ describe('vwc-data-grid-cell', () => {
 					expect(onSortSpy).toHaveBeenCalledTimes(1);
 					expect(onSortSpy.mock.calls[0][0].detail).toEqual({
 						columnDataKey: 'Name',
+						ariaSort: 'none',
 						sortDirection: 'none',
 					});
 				}
@@ -593,9 +597,11 @@ describe('vwc-data-grid-cell', () => {
 
 			it('should fire "sort" event when clicked with data key from config', async function () {
 				element.click();
+
 				expect(onSortSpy).toHaveBeenCalledTimes(1);
 				expect(onSortSpy.mock.calls[0][0].detail).toEqual({
 					columnDataKey: 'Not Name',
+					ariaSort: 'ascending',
 					sortDirection: 'ascending',
 				});
 			});
