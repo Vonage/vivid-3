@@ -200,6 +200,11 @@ const enGB: Locale = {
 		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
 			`You have ${total} characters remaining`,
 	},
+	dataGrid: {
+		cell: {
+			selected: 'Selected',
+		},
+	},
 };
 
 export default enGB;
