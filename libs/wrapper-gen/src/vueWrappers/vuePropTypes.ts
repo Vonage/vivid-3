@@ -52,7 +52,6 @@ const toVuePropType = (type: TypeRef) => {
 		case 'void':
 			return 'null as unknown'; // will pass any validation
 		default:
-			console.log(type);
 			throw new Error(`Unknown type ${type}`);
 	}
 };
