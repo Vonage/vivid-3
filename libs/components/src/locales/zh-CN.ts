@@ -186,6 +186,7 @@ const zhCN: Locale = {
 		underline: '下划线',
 		strikethrough: '删除线',
 		monospace: '等宽字体',
+		dragAndDropFilesHere: '将文件拖放到此处',
 	},
 	button: {
 		pendingLabel: '加载中',
@@ -193,6 +194,17 @@ const zhCN: Locale = {
 	feedbackMessage: {
 		errorIconText: '错误:',
 		successIconText: '成功:',
+	},
+	charCount: {
+		charactersLimitMessage: /* istanbul ignore next */ (limit: number) =>
+			`您最多可以输入 ${limit} 个字符`,
+		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
+			`您还剩 ${total} 个字符`,
+	},
+	dataGrid: {
+		cell: {
+			selected: '已选择',
+		},
 	},
 };
 

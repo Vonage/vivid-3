@@ -186,6 +186,7 @@ const jaJP: Locale = {
 		underline: '下線',
 		strikethrough: '取り消し線',
 		monospace: '等幅',
+		dragAndDropFilesHere: 'ここにファイルをドラッグ＆ドロップ',
 	},
 	button: {
 		pendingLabel: '読み込み中',
@@ -193,6 +194,17 @@ const jaJP: Locale = {
 	feedbackMessage: {
 		errorIconText: 'エラー:',
 		successIconText: '成功:',
+	},
+	charCount: {
+		charactersLimitMessage: /* istanbul ignore next */ (limit: number) =>
+			`最大${limit}文字まで入力できます`,
+		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
+			`残り${total}文字`,
+	},
+	dataGrid: {
+		cell: {
+			selected: '選択済み',
+		},
 	},
 };
 export default jaJP;

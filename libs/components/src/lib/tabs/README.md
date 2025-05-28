@@ -102,11 +102,12 @@ In the example below, a Button is provided that adds a new Tab when clicked.
 	<vwc-tab-panel>Tab Panel two</vwc-tab-panel>
 	<vwc-button
 		slot="action-items"
-		icon="plus-line"
 		shape="pill"
 		size="condensed"
 		onclick="addTab()"
-	></vwc-button>
+	>
+		<vwc-icon slot="icon" name="plus-line"></vwc-icon>
+	</vwc-button>
 </vwc-tabs>
 
 <script>
@@ -131,9 +132,15 @@ When using Tabs inside flex structure, setting `--tabs-block-size: 100%` with `f
 ```html preview full 500px
 <div class="wrapper flex">
 	<vwc-tabs scrollable-panel class="tabs">
-		<vwc-tab icon="chat-line" label="Comments"></vwc-tab>
-		<vwc-tab icon="playlist-line" label="Playlist"></vwc-tab>
-		<vwc-tab icon="star-line" label="Favourites"></vwc-tab>
+		<vwc-tab label="Comments">
+			<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+		</vwc-tab>
+		<vwc-tab label="Playlist">
+			<vwc-icon slot="icon" name="playlist-line"></vwc-icon>
+		</vwc-tab>
+		<vwc-tab label="Favourites">
+			<vwc-icon slot="icon" name="star-line"></vwc-icon>
+		</vwc-tab>
 		<vwc-tab-panel>
 			<vwc-empty-state
 				icon="error-solid"
@@ -239,14 +246,14 @@ Use the CSS part `tab-panel` to provide custom styling to the Tab Panel componen
 
 <div class="table-wrapper">
 
-| Name              | Type                         | Description                                                                                                     |
-| ----------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| **disabled**      | `boolean`                    | Sets the disabled state                                                                                         |
-| **icon**          | Enum: `[icon-name]`          | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names |
-| **icon-trailing** | `boolean`                    | Places the icon after the label text                                                                            |
-| **label**         | `string`                     | Sets the label text                                                                                             |
-| **removable**     | `boolean`                    | Adds a close button                                                                                             |
-| **shape**         | `rounded` (default), `sharp` | Shape of the background when hovered                                                                            |
+| Name                                   | Type                         | Description                                                                                                     |
+| -------------------------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **disabled**                           | `boolean`                    | Sets the disabled state                                                                                         |
+| _(deprecated as of 05/25)_<br>**icon** | Enum: `[icon-name]`          | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names |
+| **icon-trailing**                      | `boolean`                    | Places the icon after the label text                                                                            |
+| **label**                              | `string`                     | Sets the label text                                                                                             |
+| **removable**                          | `boolean`                    | Adds a close button                                                                                             |
+| **shape**                              | `rounded` (default), `sharp` | Shape of the background when hovered                                                                            |
 
 </div>
 

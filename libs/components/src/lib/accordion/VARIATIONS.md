@@ -13,7 +13,8 @@ Use the `heading` attribute on **Accordion Item** to set the heading text.
 </vwc-accordion>
 ```
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 
     To ensure [accessible heading levels](/components/accordion/accessibility/#heading-levels) use the [`heading-level` attribute](/components/accordion/code/#heading-level).
 
@@ -93,6 +94,13 @@ To add custom icons, use the [icon slot](/components/accordion/code/#icon-slot).
 	</vwc-accordion-item>
 </vwc-accordion>
 ```
+
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ### Icon Trailing
 

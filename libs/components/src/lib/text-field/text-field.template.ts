@@ -40,23 +40,15 @@ const getStateClasses = ({
 		[`size-${scale}`, Boolean(scale)]
 	);
 
-/**
- *
- */
-function renderCharCount() {
-	return html<TextField>`
-		<span class="char-count"
-			>${(x) => (x.value ? x.value.length : 0)} / ${(x) => x.maxlength}</span
-		>
-	`;
-}
-
 export const TextfieldTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<TextField>`
 		<div class="base ${getStateClasses}">
-			${when((x) => x.charCount && x.maxlength, renderCharCount())}
+			${when(
+				(x) => x.charCount && x.maxlength,
+				(x) => x._getCharCountTemplate(context)
+			)}
 			<slot class="label" name="_label"></slot>
 			${renderInLightDOM(html<TextField>`
 				${when(
@@ -105,7 +97,8 @@ export const TextfieldTemplate = (context: VividElementDefinitionContext) => {
 							autocomplete="${(x) => x.autoComplete}"
 							type="${(x) => x.type}"
 							inputmode="${(x) => x.inputMode}"
-							aria-describedby="${(x) => x._feedbackDescribedBy}"
+							aria-describedby="${(x) => x._feedbackDescribedBy} ${(x) =>
+								x.charCount && x.maxlength ? x._charCountDescribedBy : null}"
 							value="${(x) => x.initialValue}"
 							${delegateAria()}
 							${ref('control')}

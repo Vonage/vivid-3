@@ -580,10 +580,4 @@ describe('menuBar', () => {
 			});
 		});
 	});
-
-	describe('locale', () => {
-		it('should replace tooltip strings with locale values', async () => {
-			setLocale(deDE);
-		});
-	});
 });

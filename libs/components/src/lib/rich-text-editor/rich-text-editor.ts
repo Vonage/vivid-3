@@ -1,5 +1,6 @@
 import { attr, DOM, nullableNumberConverter } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { Localized } from '../../shared/patterns';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
 export type RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES =
@@ -19,6 +20,12 @@ export interface RichTextEditorSelection {
 	end?: number;
 }
 
+export interface RichTextEditorInlineImageProps {
+	file: File;
+	position?: number;
+	alt?: string;
+}
+
 export const RichTextEditorTextBlocks = {
 	title: 'h2',
 	subtitle: 'h3',
@@ -31,7 +38,7 @@ export type RichTextEditorTextBlocks = keyof typeof RichTextEditorTextBlocks;
  * @public
  * @component rich-text-editor
  */
-export class RichTextEditor extends VividElement {
+export class RichTextEditor extends Localized(VividElement) {
 	/**
 	 * Indicates the rich text editor's value.
 	 *
@@ -181,5 +188,18 @@ export class RichTextEditor extends VividElement {
 				this.#editorWrapperElement.getBoundingClientRect().height +
 				additionalPixels;
 		});
+	}
+
+	async addInlineImage(imageProps: {
+		file: File;
+		position?: number;
+		alt?: string;
+	}) {
+		try {
+			await this.#editor!.addInlineImage(imageProps);
+		} catch (e: any) {
+			// eslint-disable-next-line no-console
+			console.warn(e.message);
+		}
 	}
 }

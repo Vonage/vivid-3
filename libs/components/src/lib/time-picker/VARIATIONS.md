@@ -4,7 +4,8 @@
 
 The `label` attribute provides a short description of the purpose of the Time Picker.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 <p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
@@ -72,7 +73,8 @@ Use the `minutes-step` attribute to configure the step between minutes in the Ti
 
 Use the `seconds-step` attribute to configure the step between seconds in the Time Picker.
 
-<vwc-note icon="info-line" connotation="information">
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 
 If not set, the Time Picker will not display seconds.
 

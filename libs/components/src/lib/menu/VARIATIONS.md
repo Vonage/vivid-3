@@ -32,7 +32,8 @@ The `placement` attribute controls the position of the Menu relative to its anch
 </div>
 ```
 
-<vwc-note connotation="warning" icon="warning-line" headline="Bottom Placement at Viewport side">
+<vwc-note connotation="warning" headline="Bottom Placement at Viewport side">
+	<vwc-icon name="warning-line" slot="icon"></vwc-icon>
 
 When the menu anchor is placed close to the start/end of the viewport, `placement` of `bottom` or `top` will not present well due to lack of space.
 
