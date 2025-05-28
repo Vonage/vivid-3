@@ -17,6 +17,7 @@ import type { DateTimePickerLocale } from '../../lib/date-time-picker/locale';
 import type { RichTextEditorLocale } from '../../lib/rich-text-editor/locale';
 import type { ButtonLocale } from '../../lib/button/locale';
 import type { FeedbackMessageLocale } from '../feedback/locale';
+import type { CharCountLocale } from '../patterns/char-count/locale';
 
 export interface Locale {
 	lang: string;
@@ -42,4 +43,5 @@ export interface Locale {
 	richTextEditor: RichTextEditorLocale;
 	button: ButtonLocale;
 	feedbackMessage: FeedbackMessageLocale;
+	charCount: CharCountLocale;
 }

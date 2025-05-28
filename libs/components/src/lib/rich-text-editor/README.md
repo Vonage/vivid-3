@@ -307,6 +307,45 @@ Set a component in the `attachments` slot to show them inside the editor area.
 
 ## Events
 
+### file-drop
+
+```html preview 250px
+<vwc-layout gutters="small" column-basis="block" row-spacing="small">
+	<vwc-rich-text-editor>
+		<vwc-menubar
+			slot="menu-bar"
+			menu-items="textBlock textSize divider textDecoration divider"
+		></vwc-menubar>
+	</vwc-rich-text-editor>
+</vwc-layout>
+<script>
+	const rteComponent = document.querySelector('vwc-rich-text-editor');
+	async function waitForEditorReady() {
+		await new Promise((res) => {
+			const interval = setInterval(() => {
+				if (!rteComponent.value) return;
+				clearInterval(interval);
+				res();
+			});
+		});
+	}
+
+	async function start() {
+		await waitForEditorReady();
+		rteComponent.addEventListener('file-drop', (event) => {
+			console.log(event.detail);
+			rteComponent.addInlineImage({
+				file: event.detail[0],
+				position: 3,
+				alt: 'this is a test inline image',
+			});
+		});
+	}
+
+	start();
+</script>
+```
+
 <div class="table-wrapper">
 
 | Name                  | Type                     | Bubbles | Composed | Description                                                                          |
@@ -321,11 +360,12 @@ Set a component in the `attachments` slot to show them inside the editor area.
 
 <div class="table-wrapper">
 
-| Name                       | Returns | Description                                                                                                                                                                                             |
-| -------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **setTextBlock**           |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection                                                                                                |
-| **setSelectionDecoration** |         | Accepts a decoration type (`bold`, `italic`, `underline`, `strikethrough` and `monospace`) and applies it to the current selection in the editor. If the decoration type is invalid, it logs a warning. |
-| **setSelectionTextSize**   |         | Accepts a text size (`extra-large`, `large`, `normal`, or `small`) and applies it to the current selection in the editor.                                                                               |
-| **scrollToAttachments**    |         | Accepts `pixelsAddition` which defaults to 0 and scrolls to the top of the attachments area plus the `pixelsAddition` value.                                                                            |
+| Name                       | Returns | Description                                                                                                                                                                                                                                                                      |
+| -------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **setTextBlock**           |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection                                                                                                                                                                         |
+| **setSelectionDecoration** |         | Accepts a decoration type (`bold`, `italic`, `underline`, `strikethrough` and `monospace`) and applies it to the current selection in the editor. If the decoration type is invalid, it logs a warning.                                                                          |
+| **setSelectionTextSize**   |         | Accepts a text size (`extra-large`, `large`, `normal`, or `small`) and applies it to the current selection in the editor.                                                                                                                                                        |
+| **scrollToAttachments**    |         | Accepts `pixelsAddition` which defaults to 0 and scrolls to the top of the attachments area plus the `pixelsAddition` value.                                                                                                                                                     |
+| **addInlineImage**         |         | Accepts an object with `file: File`, optional `position?: number`, and optional `alt?: string`. Inserts an inline image at the given position or at the current marker position if not provided. If `alt` is not provided, it defaults to `inline image from file ${file.name}`. |
 
 </div>

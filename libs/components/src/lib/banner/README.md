@@ -189,12 +189,12 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name            | Description                                                                                      |
-| --------------- | ------------------------------------------------------------------------------------------------ |
-| **text**        | `string`                                                                                         |
-| **connotation** | Enum\_:<br/>`information` (default) <br/>`announcement`<br/>`success`<br/>`warning` <br/>`alert` |
-| **icon**        | Enum\_:<br/>`[icon-name]`                                                                        |
-| **removable**   | `boolean`                                                                                        |
+| Name                                   | Description                                                                                      |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **text**                               | `string`                                                                                         |
+| **connotation**                        | Enum\_:<br/>`information` (default) <br/>`announcement`<br/>`success`<br/>`warning` <br/>`alert` |
+| _(deprecated as of 05/25)_<br>**icon** | Enum\_:<br/>`[icon-name]`                                                                        |
+| **removable**                          | `boolean`                                                                                        |
 
 </div>
 

@@ -1014,4 +1014,73 @@ describe('ProseMirrorFacade', () => {
 			);
 		});
 	});
+
+	describe('addInlineImage', () => {
+		beforeEach(async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+		});
+
+		function createImageFile() {
+			return new File(['dummy'], 'test.png', { type: 'image/png' });
+		}
+
+		it('should throw if view is not initiated', async () => {
+			const image = createImageFile();
+			await expect(
+				facadeInstance.addInlineImage({ file: image })
+			).rejects.toThrow(
+				'ProseMirror was not initiated. Please use the `init` method first.'
+			);
+		});
+
+		it('should insert an image at the current selection if position is not provided', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent('<p>abc</p>');
+			facadeInstance.selection({ start: 3, end: 3 });
+			const image = createImageFile();
+
+			await facadeInstance.addInlineImage({ file: image });
+
+			const output = getOutputElement(element).innerHTML;
+			const img = getOutputElement(element).querySelector('img');
+			const expected = /^<p>ab<img[^>]+>c<\/p>$/;
+			expect(output).toMatch(expected);
+			expect(img?.src).toContain('data:image/png;base64');
+		});
+
+		it('should insert an image at the given position', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent('<p>a b</p>');
+			const image = createImageFile();
+
+			await facadeInstance.addInlineImage({ file: image, position: 3 });
+
+			const output = getOutputElement(element).innerHTML;
+			const expected = /^<p>a <img[^>]+>b<\/p>$/;
+			expect(output).toMatch(expected);
+		});
+
+		it('should insert the image with custom alt attribute', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent('<p>abc</p>');
+			const image = createImageFile();
+
+			await facadeInstance.addInlineImage({ file: image, alt: 'custom alt' });
+
+			const img = getOutputElement(element).querySelector('img');
+			expect(img?.alt).toBe('custom alt');
+		});
+
+		it('should insert the image with default alt attribute if not provided', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent('<p>abc</p>');
+			const image = createImageFile();
+
+			await facadeInstance.addInlineImage({ file: image });
+
+			const img = getOutputElement(element).querySelector('img');
+			expect(img?.alt).toBe('inline image from file test.png');
+		});
+	});
 });

@@ -194,6 +194,12 @@ const enUS: Locale = {
 		errorIconText: 'Error:',
 		successIconText: 'Success:',
 	},
+	charCount: {
+		charactersLimitMessage: /* istanbul ignore next */ (limit: number) =>
+			`You can enter up to ${limit} characters`,
+		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
+			`You have ${total} characters remaining`,
+	},
 };
 
 export default enUS;

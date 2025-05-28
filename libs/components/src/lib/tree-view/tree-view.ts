@@ -1,6 +1,5 @@
 import { attr, DOM, observable } from '@microsoft/fast-element';
 import {
-	// getDisplayedNodes,
 	isHTMLElement,
 	keyArrowDown,
 	keyArrowLeft,
@@ -293,9 +292,8 @@ export class TreeView extends HostSemantics(VividElement) {
 	private setItems = (): void => {
 		// force single selection
 		// defaults to first one found
-		const selectedItem: HTMLElement | null = this.treeView.querySelector(
-			"[aria-selected='true']"
-		);
+		const selectedItem: HTMLElement | null =
+			this.treeView.querySelector('[selected]');
 		this.currentSelected = selectedItem;
 
 		// invalidate the current focused item if it is no longer valid
