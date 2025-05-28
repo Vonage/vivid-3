@@ -49,7 +49,7 @@ export type BadgeSize = ExtractFromEnum<Size, Size.Normal | Size.Expanded>;
 /**
  * @public
  * @component badge
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  */
 export class Badge extends AffixIconWithTrailing(VividElement) {
 	/**
