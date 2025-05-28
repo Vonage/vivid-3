@@ -13,6 +13,7 @@ export const DividerTemplate = html<Divider>` <span
 	class="${getClasses}"
 	${delegateAria({
 		role: (x) => x.role || DividerRole.separator,
+		ariaHidden: true,
 		ariaOrientation: getAriaOrientation,
 	})}
 ></span>`;
