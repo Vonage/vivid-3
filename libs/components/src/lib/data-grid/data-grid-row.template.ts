@@ -1,6 +1,7 @@
-import { children, elements, html, slotted } from '@microsoft/fast-element';
+import { children, html, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { isHTMLElement } from '../../shared/utils/is-html-element';
 import { DataGridCell } from './data-grid-cell';
 import type { DataGridRow } from './data-grid-row';
 
@@ -41,9 +42,8 @@ export const DataGridRowTemplate = (context: VividElementDefinitionContext) => {
 			:defaultHeaderCellItemTemplate="${headerCellItemTemplate}"
 			${children({
 				property: 'cellElements',
-				filter: elements(
-					'[role="cell"],[role="gridcell"],[role="columnheader"],[role="rowheader"]'
-				),
+				filter: (element: Node) =>
+					isHTMLElement(element) && element instanceof DataGridCell,
 			})}
 		>
 			<div

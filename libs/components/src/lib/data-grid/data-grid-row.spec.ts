@@ -147,7 +147,7 @@ describe('vwc-data-grid-row', () => {
 
 	describe('keyboard events', () => {
 		it('should move focus on arrow keys', async () => {
-			const dataGridCellTagName = 'button';
+			const dataGridCellTagName = 'vwc-data-grid-cell';
 			element.columnDefinitions = [
 				{ columnDataKey: 'name' },
 				{ columnDataKey: 'age' },
@@ -220,7 +220,7 @@ describe('vwc-data-grid-row', () => {
 		});
 
 		it('should move focus edges on home or end keys press', async () => {
-			const dataGridCellTagName = 'button';
+			const dataGridCellTagName = 'vwc-data-grid-cell';
 			element.columnDefinitions = [
 				{ columnDataKey: 'name' },
 				{ columnDataKey: 'age' },

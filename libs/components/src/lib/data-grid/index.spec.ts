@@ -201,7 +201,7 @@ describe('data grid integration tests', () => {
 					element.selectionMode = selectionMode;
 					await elementUpdated(element);
 					const allNoneHeaderCells = Array.from(
-						element.querySelectorAll('[role="gridcell"]')
+						element.querySelectorAll('[cell-type="gridcell"]')
 					);
 					const allNoneHeaderCellsSelectable = allNoneHeaderCells.every(
 						(cell) => cell.getAttribute('aria-selected') === 'false'
@@ -218,7 +218,7 @@ describe('data grid integration tests', () => {
 				await elementUpdated(element);
 
 				const allNonHeaderCells = Array.from(
-					element.querySelectorAll('[role="gridcell"]')
+					element.querySelectorAll('[cell-type="gridcell"]')
 				);
 				const allNonHeaderCellsNotSelectable = allNonHeaderCells.every(
 					(cell) => !cell.hasAttribute('aria-selected')
@@ -234,7 +234,7 @@ describe('data grid integration tests', () => {
 				await elementUpdated(element);
 
 				const allNonHeaderRows = Array.from(
-					element.querySelectorAll('[role="row"]')
+					element.querySelectorAll('[row-type="row"]')
 				);
 				const allNonHeaderRowsNotSelectable = allNonHeaderRows.every(
 					(row) => !row.hasAttribute('aria-selected')
@@ -427,7 +427,7 @@ describe('data grid integration tests', () => {
 				await elementUpdated(element);
 
 				const allNoneHeaderRows = Array.from(
-					element.querySelectorAll('[role="row"]')
+					element.querySelectorAll('[row-type="row"]')
 				);
 
 				const allNonHeaderRowsNotSelectable = allNoneHeaderRows.every(
@@ -444,7 +444,7 @@ describe('data grid integration tests', () => {
 				await elementUpdated(element);
 
 				const allNonHeaderCells = Array.from(
-					element.querySelectorAll('[role="gridcell"]')
+					element.querySelectorAll('[cell-type="gridcell"]')
 				);
 				const allNonHeaderCellsNotSelectable = allNonHeaderCells.every(
 					(cell) => !cell.hasAttribute('aria-selected')
@@ -460,7 +460,7 @@ describe('data grid integration tests', () => {
 				async function (selectionMode: DataGridSelectionMode) {
 					element.selectionMode = selectionMode;
 					await elementUpdated(element);
-					const allNonHeaderRows = element.querySelectorAll('[role="row"]');
+					const allNonHeaderRows = element.querySelectorAll('[row-type="row"]');
 					const allNonHeaderRowsHaveSelectedFalse = Array.from(
 						allNonHeaderRows
 					).every((row) => {

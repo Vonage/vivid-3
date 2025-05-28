@@ -584,18 +584,16 @@ export class DataGrid extends VividElement {
 			0,
 			Math.min(this.rowElements.length - 1, rowIndex)
 		);
-		const focusRow: Element = this.rowElements[focusRowIndex];
+		const focusRow = this.rowElements[focusRowIndex];
 
-		const cells: NodeListOf<Element> = focusRow.querySelectorAll(
-			'[role="cell"], [role="gridcell"], [role="columnheader"], [role="rowheader"]'
-		);
+		const cells = directChildrenOfType(focusRow, DataGridCell);
 
 		const focusColumnIndex = Math.max(
 			0,
 			Math.min(cells.length - 1, columnIndex)
 		);
 
-		const focusTarget: HTMLElement = cells[focusColumnIndex] as HTMLElement;
+		const focusTarget = cells[focusColumnIndex];
 
 		if (
 			scrollIntoView &&

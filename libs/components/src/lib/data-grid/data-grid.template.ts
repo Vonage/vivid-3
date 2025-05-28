@@ -1,11 +1,11 @@
 import {
 	children,
-	elements,
 	ExecutionContext,
 	html,
 	slotted,
 } from '@microsoft/fast-element';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { isHTMLElement } from '../../shared/utils/is-html-element';
 import { DataGridRow } from './data-grid-row';
 import type { DataGrid } from './data-grid';
 import { DataGridSelectionMode } from './data-grid';
@@ -66,7 +66,8 @@ export const DataGridTemplate = (context: VividElementDefinitionContext) => {
 			:defaultRowItemTemplate="${rowItemTemplate}"
 			${children({
 				property: 'rowElements',
-				filter: elements('[role=row]'),
+				filter: (element: Node) =>
+					isHTMLElement(element) && element instanceof DataGridRow,
 			})}
 		>
 			<div class="base">
