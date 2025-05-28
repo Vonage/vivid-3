@@ -188,6 +188,7 @@ const deDE: Locale = {
 		underline: 'Unterstrichen',
 		strikethrough: 'Durchgestrichen',
 		monospace: 'Monospace',
+		dragAndDropFilesHere: 'Dateien hierher ziehen & ablegen',
 	},
 	button: {
 		pendingLabel: 'Laden...',

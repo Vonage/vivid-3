@@ -1,5 +1,6 @@
 import { attr, DOM, nullableNumberConverter } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { Localized } from '../../shared/patterns';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
 export type RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES =
@@ -37,7 +38,7 @@ export type RichTextEditorTextBlocks = keyof typeof RichTextEditorTextBlocks;
  * @public
  * @component rich-text-editor
  */
-export class RichTextEditor extends VividElement {
+export class RichTextEditor extends Localized(VividElement) {
 	/**
 	 * Indicates the rich text editor's value.
 	 *
