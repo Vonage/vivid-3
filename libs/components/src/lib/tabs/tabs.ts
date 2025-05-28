@@ -240,7 +240,9 @@ export class Tabs extends VividElement {
 
 			const isActiveTab = tab.id === this.activeid;
 
-			tab.setAttribute('aria-selected', isActiveTab ? 'true' : 'false');
+			isActiveTab
+				? tab.setAttribute('selected', '')
+				: tab.removeAttribute('selected');
 			tab.setAttribute('aria-controls', panel.id);
 			tab.setAttribute('tabindex', isActiveTab ? '0' : '-1');
 			if (isActiveTab && this.connotation) {

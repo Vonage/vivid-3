@@ -67,19 +67,19 @@ export class Tab extends HostSemantics(
 	@attr label?: string;
 
 	/**
-	 * Indicates the tab's label.
+	 * Adds a close button
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: label
+	 * HTML Attribute: removable
 	 */
 	@attr({ mode: 'boolean' }) removable = false;
 
 	@attr({ mode: 'fromView' }) override tabIndex: number =
 		'-1' as unknown as number;
 
-	@attr({ attribute: 'aria-selected' }) override ariaSelected: string | null =
-		null;
+	@attr({ attribute: 'selected', mode: 'boolean' })
+	selected = false;
 
 	_handleCloseClick(e: Event) {
 		e.stopImmediatePropagation();
