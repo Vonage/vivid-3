@@ -44,7 +44,7 @@ const shadeOrder = Array.from(
 }, {});
 const getShadeOrder = (shade) => shadeOrder[shade] ?? 999;
 
-module.exports = function (exampleCode, options) {
+module.exports = function ({ code: exampleCode, options, url }) {
 	// Component name is given like this: variables-preview[component-name]
 	const componentName = options
 		.find((c) => c.includes('variables-preview'))
@@ -77,7 +77,12 @@ module.exports = function (exampleCode, options) {
 			output += `
 					<vwc-tab label='${connotation}'></vwc-tab>
 					<vwc-tab-panel>
-						${createCodeExample(exampleCodeWithStyle, options, connotationProperties)}
+						${createCodeExample({
+							code: exampleCodeWithStyle,
+							options,
+							cssProperties: connotationProperties,
+							url,
+						})}
 					</vwc-tab-panel>
 				`;
 		}
@@ -97,7 +102,12 @@ module.exports = function (exampleCode, options) {
 		});
 		const exampleCodeWithStyle =
 			renderVariablesStylesheet(cssProperties) + exampleCode;
-		return createCodeExample(exampleCodeWithStyle, options, cssProperties);
+		return createCodeExample({
+			code: exampleCodeWithStyle,
+			options,
+			cssProperties,
+			url,
+		});
 	}
 };
 

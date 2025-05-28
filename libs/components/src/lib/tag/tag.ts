@@ -35,7 +35,7 @@ export type TagShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
 /**
  * @public
  * @component tag
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  * @event {CustomEvent<undefined>} selected-change - Fires when the selected state changes
  * @event {CustomEvent<undefined>} removed - Fires when the tag is removed
  */

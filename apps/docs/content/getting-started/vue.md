@@ -41,7 +41,8 @@ Add the NPM package to your repository:
 
 Use the `vividVue` plugin to initialize the library.
 
-<vwc-note connotation="warning" icon="warning-line">
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
 
     The import name `vivid3` has been deprecated. While it is still available for now, it will be removed in a future release.
     Please update your imports to use the new name: <code>vividVue</code>.

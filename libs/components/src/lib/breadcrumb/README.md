@@ -65,9 +65,9 @@ registerBreadcrumbItem('your-prefix');
 
 <div class="table-wrapper">
 
-| Name     | Type     | Description                      |
-| -------- | -------- | -------------------------------- |
-| **text** | `string` | Sets the **bradcrumn-item** text |
-| **href** | `string` | Sets the **bradcrumn-item** href |
+| Name     | Type     | Description                       |
+| -------- | -------- | --------------------------------- |
+| **text** | `string` | Sets the **breadcrumb-item** text |
+| **href** | `string` | Sets the **breadcrumb-item** href |
 
 </div>

@@ -41,7 +41,6 @@ components.add('VMenu', null);
 components.add('VTextField', null);
 components.add('VDialog', null);
 components.add('VSlider', null);
-components.add('VTextAnchor', null);
 components.add('VSplitButton', null);
 components.add('VNumberField', null);
 components.add('VNavDisclosure', null);

@@ -27,7 +27,7 @@ export type FABSize = ExtractFromEnum<
 /**
  * @public
  * @component fab
- * @slot icon - Slot to add an icon to fab.
+ * @slot icon - The preferred way to add an icon to the component.
  */
 export class Fab extends AffixIconWithTrailing(VividFoundationButton) {
 	/**

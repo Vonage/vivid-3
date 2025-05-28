@@ -4,8 +4,9 @@
 
 The `label` attribute provides a short description of the purpose of the Text Field.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
-<p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
+	<p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
 ```html preview
@@ -30,7 +31,8 @@ To add HTML to the helper text, use the [helper-text slot](/components/text-fiel
 
 The `placeholder` attribute provides an example of the type of input the user needs to enter.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 	<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
 </vwc-note>
 
@@ -103,6 +105,13 @@ To add custom icons or to postfix icons, use the [slots](/components/text-field/
 ></vwc-text-field>
 ```
 
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
+
 ## Scale
 
 The `scale` attribute controls the Text Field input element display size.
@@ -122,7 +131,8 @@ Use `condensed` in situations when space is limited, for example, inside a Data 
 </style>
 ```
 
-<vwc-note connotation="information" icon="info-line" headline="Scale instead of Size">
+<vwc-note connotation="information" headline="Scale instead of Size">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 	<p>The reason for using <code>scale</code> for form elements and not <code>size</code> (as used in other components such as Button), is that <code>size</code> is a HTML attribute that can be used on <code>input</code> elements (and also Text Field) to control the width of the input.</p>
 </vwc-note>
 

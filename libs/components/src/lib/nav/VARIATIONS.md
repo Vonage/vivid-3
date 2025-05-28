@@ -33,19 +33,34 @@ Custom icons can be provided using the [icon slot](/components/navigation/code/#
 
 ```html preview 250px
 <vwc-nav>
-	<vwc-nav-item icon="profile" text="Account" href="#"></vwc-nav-item>
-	<vwc-nav-item icon="inbox-line" text="Inbox" href="#"></vwc-nav-item>
-	<vwc-nav-disclosure icon="design-tools-line" label="Tools" open>
-		<vwc-nav-item icon="edit-line" text="Edit" href="#"></vwc-nav-item>
+	<vwc-nav-item text="Account" href="#">
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
+	</vwc-nav-item>
+	<vwc-nav-item text="Inbox" href="#">
+		<vwc-icon slot="icon" name="inbox-line"></vwc-icon>
+	</vwc-nav-item>
+	<vwc-nav-disclosure label="Tools" open>
+		<vwc-icon slot="icon" name="design-tools-line"></vwc-icon>
+		<vwc-nav-item text="Edit" href="#">
+			<vwc-icon slot="icon" name="edit-line"></vwc-icon>
+		</vwc-nav-item>
 	</vwc-nav-disclosure>
 </vwc-nav>
 ```
+
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ### Icon Only
 
 If the `text` is omitted, the **`Nav Item`** will be displayed as an icon-only Nav Item.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 
 When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
 
@@ -53,14 +68,18 @@ When an element has no visible text, provide an accessible name using the <nobr>
 
 ```html preview 250px
 <vwc-nav>
-	<vwc-nav-item href="#" icon="profile" aria-label="Account"></vwc-nav-item>
-	<vwc-nav-item href="#" icon="inbox-line" aria-label="Inbox"></vwc-nav-item>
-	<vwc-nav-item
-		href="#"
-		icon="design-tools-line"
-		aria-label="Tools"
-	></vwc-nav-item>
-	<vwc-nav-item href="#" icon="edit-line" aria-label="Edit"></vwc-nav-item>
+	<vwc-nav-item href="#" aria-label="Account">
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
+	</vwc-nav-item>
+	<vwc-nav-item href="#" aria-label="Inbox">
+		<vwc-icon slot="icon" name="inbox-line"></vwc-icon>
+	</vwc-nav-item>
+	<vwc-nav-item href="#" aria-label="Tools">
+		<vwc-icon slot="icon" name="design-tools-line"></vwc-icon>
+	</vwc-nav-item>
+	<vwc-nav-item href="#" aria-label="Edit">
+		<vwc-icon slot="icon" name="edit-line"></vwc-icon>
+	</vwc-nav-item>
 </vwc-nav>
 ```
 
@@ -75,24 +94,22 @@ The default appearance is `ghost`. Below it is set to `ghost-light`.
 		appearance="ghost-light"
 		open
 		href="#"
-		icon="gear-line"
 		label="Settings"
 		aria-current="true"
 	>
+		<vwc-icon slot="icon" name="gear-line"></vwc-icon>
 		<vwc-nav-item
 			appearance="ghost-light"
 			href="#"
 			aria-current="page"
-			icon="edit-line"
 			text="Ghost Light"
-		></vwc-nav-item>
+		>
+			<vwc-icon slot="icon" name="edit-line"></vwc-icon>
+		</vwc-nav-item>
 	</vwc-nav-disclosure>
-	<vwc-nav-item
-		appearance="ghost-light"
-		href="#"
-		icon="profile"
-		text="Account"
-	></vwc-nav-item>
+	<vwc-nav-item appearance="ghost-light" href="#" text="Account">
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
+	</vwc-nav-item>
 </vwc-nav>
 ```
 
@@ -108,26 +125,28 @@ The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure**
 			appearance="ghost-light"
 			open
 			href="#"
-			icon="gear-line"
 			label="Settings"
 			aria-current="true"
 		>
+			<vwc-icon slot="icon" name="gear-line"></vwc-icon>
 			<vwc-nav-item
 				connotation="accent"
 				appearance="ghost-light"
 				href="#"
 				aria-current="page"
-				icon="edit-line"
 				text="Cta connotation"
-			></vwc-nav-item>
+			>
+				<vwc-icon slot="icon" name="edit-line"></vwc-icon>
+			</vwc-nav-item>
 		</vwc-nav-disclosure>
 		<vwc-nav-item
 			connotation="accent"
 			appearance="ghost-light"
 			href="#"
-			icon="profile"
 			text="Account"
-		></vwc-nav-item>
+		>
+			<vwc-icon slot="icon" name="profile"></vwc-icon>
+		</vwc-nav-item>
 	</vwc-nav>
 	<vwc-nav class="navigation">
 		<vwc-nav-disclosure
@@ -135,26 +154,28 @@ The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure**
 			appearance="ghost-light"
 			open
 			href="#"
-			icon="gear-line"
 			label="Settings"
 			aria-current="true"
 		>
+			<vwc-icon slot="icon" name="gear-line"></vwc-icon>
 			<vwc-nav-item
 				connotation="cta"
 				appearance="ghost-light"
 				href="#"
 				aria-current="page"
-				icon="edit-line"
 				text="Accent connotation"
-			></vwc-nav-item>
+			>
+				<vwc-icon slot="icon" name="edit-line"></vwc-icon>
+			</vwc-nav-item>
 		</vwc-nav-disclosure>
 		<vwc-nav-item
 			connotation="cta"
 			appearance="ghost-light"
 			href="#"
-			icon="profile"
 			text="Account"
-		></vwc-nav-item>
+		>
+			<vwc-icon slot="icon" name="profile"></vwc-icon>
+		</vwc-nav-item>
 	</vwc-nav>
 </div>
 

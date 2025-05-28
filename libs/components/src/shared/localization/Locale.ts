@@ -18,6 +18,7 @@ import type { RichTextEditorLocale } from '../../lib/rich-text-editor/locale';
 import type { ButtonLocale } from '../../lib/button/locale';
 import type { FeedbackMessageLocale } from '../feedback/locale';
 import type { CharCountLocale } from '../patterns/char-count/locale';
+import type { DataGridLocale } from '../../lib/data-grid/locale';
 
 export interface Locale {
 	lang: string;
@@ -44,4 +45,5 @@ export interface Locale {
 	button: ButtonLocale;
 	feedbackMessage: FeedbackMessageLocale;
 	charCount: CharCountLocale;
+	dataGrid: DataGridLocale;
 }

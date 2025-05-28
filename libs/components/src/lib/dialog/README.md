@@ -42,7 +42,8 @@ registerDialog('your-prefix');
 </vwc-tab-panel>
 </vwc-tabs>
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+	<vwc-icon name="info-line" slot="icon"></vwc-icon>
 	<p>The dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)"><code>native dialog</code></a> element.</p>
 </vwc-note>
 
@@ -50,7 +51,8 @@ registerDialog('your-prefix');
 
 Use the `modal` attribute to set the dialog as Modal
 
-<vwc-note connotation="information" icon="info-line" headline="Dialogs can be modal or non-modal">
+<vwc-note connotation="information" headline="Dialogs can be modal or non-modal">
+	<vwc-icon name="info-line" slot="icon"></vwc-icon>
 <ul>
 <li>Modal dialogs prevent users from interacting with the rest of the application until the dialog is closed and render a backdrop behind the dialog.</li>
 <li>Non-modal dialogs allow users to interact with the rest of the application while the dialog is open.</li>
@@ -130,8 +132,9 @@ Sets or returns whether a dialog should be open or not.
 
 ## Dismiss
 
-<vwc-note connotation="warning" icon="warning-line" headline="Add dismiss options with caution">
-<p>When using this attribute, ensure that the dialog can be closed by other means.</p>
+<vwc-note connotation="warning" headline="Add dismiss options with caution">
+	<vwc-icon name="warning-line" slot="icon"></vwc-icon>
+	<p>When using this attribute, ensure that the dialog can be closed by other means.</p>
 </vwc-note>
 
 ### No-light-dismiss
@@ -271,8 +274,9 @@ Use the slot if a colored icon is needed or an icon with different dimensions.
 
 Use the `body` slot in order to add custom HTML to the dialog.
 
-<vwc-note connotation="information" icon="info-line" headline="body slot with top border">
-<p>When using body slot with a <code>subtitle</code> in the header, a separator will be added between the two.</p>
+<vwc-note connotation="information" headline="body slot with top border">
+	<vwc-icon name="info-line" slot="icon"></vwc-icon>
+	<p>When using body slot with a <code>subtitle</code> in the header, a separator will be added between the two.</p>
 </vwc-note>
 
 ```html preview 440px
@@ -361,7 +365,8 @@ Use the `action-items` slot to add action items to the bottom of the dialog.
 
 Use the `footer` slot in order to add additional content to the bottom of the dialog.
 
-<vwc-note connotation="information" icon="info-line" headline="Using Both Footer And Action-Items Slots">
+<vwc-note connotation="information"  headline="Using Both Footer And Action-Items Slots">
+	<vwc-icon name="info-line" slot="icon"></vwc-icon>
 <p>When used in combination with <code>action-items</code> slot, the <code>footer</code> content will appear to the left of the action items.
 </p>
 </vwc-note>
@@ -396,7 +401,8 @@ Use the main slot to fully override a Dialog's predefined template with your own
 
 Use `--dialog-z-index` for a different `z-index `value than 1.
 
-<vwc-note connotation="information" icon="info-line" headline="Dialog z-index">
+<vwc-note connotation="information"  headline="Dialog z-index">
+	<vwc-icon name="info-line" slot="icon"></vwc-icon>
 <p><code>z-index</code> will affect only id the Dialog is not <code>modal</code>.
 </p>
 </vwc-note>
@@ -407,7 +413,8 @@ The dialog has default `--dialog-min-inline-size` and `--dialog-max-inline-size`
 
 Setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-size` will set a definitive width to the dialog.
 
-<vwc-note connotation="information" icon="info-line" headline="Dialog in Mobile">
+<vwc-note connotation="information"  headline="Dialog in Mobile">
+	<vwc-icon name="info-line" slot="icon"></vwc-icon>
 <p>When setting a new value for <code>--dialog-min-inline-size</code> and <code>--dialog-max-inline-size</code> take in consideration if different values are needed for mobile.
 </p>
 </vwc-note>
