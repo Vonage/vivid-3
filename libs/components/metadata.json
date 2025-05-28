@@ -5119,7 +5119,7 @@
 				{
 					"name": "value",
 					"description": "The value of the progress",
-					"type": "boolean",
+					"type": "number",
 					"attributeName": "value",
 					"propertyName": "value"
 				}
@@ -5983,9 +5983,10 @@
 				},
 				{
 					"name": "disabled",
-					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
+					"description": "The disabled state of the listbox.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
