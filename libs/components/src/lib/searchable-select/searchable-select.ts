@@ -50,7 +50,7 @@ const isFormAssociatedTryingToSetFormValue = (
  * @public
  * @component searchable-select
  * @slot - Holds the available options.
- * @slot icon - Slot to add an icon to the control.
+ * @slot icon - The preferred way to add an icon to the control.
  * @slot meta - Slot to add meta content to the control.
  * @slot helper-text - Describes how to use the component. Alternative to the `helper-text` attribute.
  * @slot no-options - Message that appears when no options are available.

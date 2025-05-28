@@ -27,7 +27,7 @@ const defaultConnotation = (
  * @public
  * @component banner
  * @slot action-items - Add action items to banner using this slot.
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  */
 export class Banner extends AffixIcon(Localized(DelegatesAria(VividElement))) {
 	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel:
