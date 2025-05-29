@@ -38,7 +38,7 @@ The `connotation` attribute to convey the Note's purpose through it's color.
 	<vwc-icon slot="icon" name="check-circle-line"></vwc-icon>
 </vwc-note>
 <vwc-note connotation="warning" headline="Warning Note">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 </vwc-note>
 <vwc-note connotation="information" headline="Information Note">
 	<vwc-icon slot="icon" name="info-line"></vwc-icon>

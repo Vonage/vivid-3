@@ -1,14 +1,12 @@
 import { attr, observable } from '@microsoft/fast-element';
-import { Anchor } from '../../shared/foundation/anchor/anchor';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import { Linkable } from '../../shared/patterns/linkable';
 
 /**
  * @public
  * @component breadcrumb-item
  */
-export class BreadcrumbItem extends DelegatesAria(VividElement) {
+export class BreadcrumbItem extends Linkable(VividElement) {
 	@attr text?: string;
 
 	/**
@@ -17,6 +15,3 @@ export class BreadcrumbItem extends DelegatesAria(VividElement) {
 	@observable
 	separator = true;
 }
-
-export interface BreadcrumbItem extends Anchor {}
-applyMixins(BreadcrumbItem, Anchor);

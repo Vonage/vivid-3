@@ -44,6 +44,14 @@ registerDivider('your-prefix');
 
 ## Role
 
+<vwc-note connotation="warning" icon="warning-line">
+
+    The `role` attribute in the divider component will be deprecated.
+
+    According to accessibility review - dividers shall not be announced by screen readers.
+
+</vwc-note>
+
 The `role` attribute to express the semantic value of the divider. If it is being use purely for decorative purposes, set it to `presentation`.
 
 See the [Decorative Divider](/components/divider/use-cases/#decorative-divider) use case.

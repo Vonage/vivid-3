@@ -117,7 +117,7 @@ The `icon` attribute displays an icon from the icon library](/icons/icons-galler
 The preferred way to add icons is to use the [icon slot](/components/banner/code/#icon-slot).
 
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 

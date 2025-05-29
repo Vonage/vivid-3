@@ -15,7 +15,7 @@ The Menu Item can be given extra context using the `text-secondary` attribute.
 <vwc-note connotation="information">
 	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
-To improve readability, **avoid long text and multiple lines** where possible.
+    To improve readability, **avoid long text and multiple lines** where possible.
 
 </vwc-note>
 
@@ -36,7 +36,7 @@ View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
 <!-- Uncomment when Icon slot is implemented
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
@@ -51,6 +51,13 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 ## Role
 
+<vwc-note connotation="warning" icon="warning-line">
+
+    Even though `menuitemradio` and `menuitemcheckbox` roles are valid roles documented in WAI-ARIA 1.2, they are not read properly by the screen readers.
+    Therefore it is recommended to use `checkbox` role instead of `menuitemcheckbox` and `radio` role instead of `menuitemradio` role.
+
+</vwc-note>
+
 The `role` attribute sets the role.
 The default value is `menuitem`. See the [API Reference](/component/menu/code/#menu-item) for all possibile values.
 
@@ -59,17 +66,11 @@ The default value is `menuitem`. See the [API Reference](/component/menu/code/#m
 	<vwc-menu-item role="menuitem" text="menuitem 1"></vwc-menu-item>
 	<vwc-menu-item role="menuitem" text="menuitem 2"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item
-		role="menuitemcheckbox"
-		text="menuitemcheckbox 1"
-	></vwc-menu-item>
-	<vwc-menu-item
-		role="menuitemcheckbox"
-		text="menuitemcheckbox 2"
-	></vwc-menu-item>
+	<vwc-menu-item role="checkbox" text="menuitemcheckbox 1"></vwc-menu-item>
+	<vwc-menu-item role="checkbox" text="menuitemcheckbox 2"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item role="menuitemradio" text="menuitemradio 1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemradio" text="menuitemradio 2"></vwc-menu-item>
+	<vwc-menu-item role="radio" text="menuitemradio 1"></vwc-menu-item>
+	<vwc-menu-item role="radio" text="menuitemradio 2"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
 	<a
 		role="menuitem"
@@ -88,7 +89,7 @@ The default value is `menuitem`. See the [API Reference](/component/menu/code/#m
 
 ### Check Trailing
 
-When the `role` attribute is set to `menuitemcheckbox` or `menuitemradio`, the `check-trailing` attribute places the checkbox / radio indicator at the end of the Menu Item.
+When the `role` attribute is set to `menuitemcheckbox`, `menuitemradio`, `checkbox` or `radio` the `check-trailing` attribute places the checkbox / radio indicator at the end of the Menu Item.
 
 <vwc-note connotation="information">
 	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
@@ -100,36 +101,24 @@ If the `icon` attribute is present, the indicator will be trailing by default.
 ```html preview 280px
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item
-		role="menuitemcheckbox"
+		role="checkbox"
 		text="Checkbox 1"
 		check-trailing
 	></vwc-menu-item>
 	<vwc-menu-item
-		role="menuitemcheckbox"
+		role="checkbox"
 		text="Checkbox 2"
 		check-trailing
 	></vwc-menu-item>
 	<vwc-menu-item
 		icon="image-line"
-		role="menuitemcheckbox"
+		role="checkbox"
 		text="Checkbox 3"
 	></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item
-		role="menuitemradio"
-		text="Radio 1"
-		check-trailing
-	></vwc-menu-item>
-	<vwc-menu-item
-		role="menuitemradio"
-		text="Radio 2"
-		check-trailing
-	></vwc-menu-item>
-	<vwc-menu-item
-		icon="image-line"
-		role="menuitemradio"
-		text="Radio 3"
-	></vwc-menu-item>
+	<vwc-menu-item role="radio" text="Radio 1" check-trailing></vwc-menu-item>
+	<vwc-menu-item role="radio" text="Radio 2" check-trailing></vwc-menu-item>
+	<vwc-menu-item icon="image-line" role="radio" text="Radio 3"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -142,30 +131,30 @@ In the example below it is set to `tick-only` (default is `normal`).
 ```html preview 250px
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item
-		role="menuitemcheckbox"
+		role="checkbox"
 		text="Checkbox 1"
 		check-appearance="tick-only"
 		checked
 	></vwc-menu-item>
 	<vwc-menu-item
-		role="menuitemcheckbox"
+		role="checkbox"
 		text="Checkbox 2"
 		check-appearance="tick-only"
 		checked
 	></vwc-menu-item>
 	<vwc-menu-item
-		role="menuitemcheckbox"
+		role="checkbox"
 		text="Checkbox 3"
 		check-appearance="tick-only"
 	></vwc-menu-item>
 	<vwc-divider></vwc-divider>
 	<vwc-menu-item
-		role="menuitemradio"
+		role="radio"
 		text="Radio 1"
 		check-appearance="tick-only"
 	></vwc-menu-item>
 	<vwc-menu-item
-		role="menuitemradio"
+		role="radio"
 		text="Radio 2"
 		check-appearance="tick-only"
 		checked
@@ -181,13 +170,13 @@ When the `role` attribute is set to `menuitemcheckbox` or `menuitemradio`, the `
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item
 		checked
-		role="menuitemcheckbox"
+		role="checkbox"
 		text="Checked Checkbox Menu Item"
 	></vwc-menu-item>
 	<vwc-divider></vwc-divider>
 	<vwc-menu-item
 		checked
-		role="menuitemradio"
+		role="radio"
 		text="Checked Radio Menu Item"
 	></vwc-menu-item>
 </vwc-menu>
@@ -200,13 +189,13 @@ The `connotation` attribute controls the checked color.
 ```html preview 110px
 <vwc-menu open aria-label="Example menu" style="--menu-block-size: auto;">
 	<vwc-menu-item
-		role="menuitemcheckbox"
+		role="checkbox"
 		checked
 		text="Accent (default)"
 	></vwc-menu-item>
 	<vwc-menu-item
 		connotation="cta"
-		role="menuitemcheckbox"
+		role="checkbox"
 		checked
 		text="CTA"
 	></vwc-menu-item>

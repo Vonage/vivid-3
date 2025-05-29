@@ -27,20 +27,33 @@ const EXISTING_COMPONENTS = new Set(
 
 const OUTPUT_PATH = 'dist/apps/docs/frames';
 
-let exampleIndex = 0;
+let exampleIndexes = new Map();
+function nextExampleIndex(forUrl) {
+	const newIndex = (exampleIndexes.get(forUrl) ?? 0) + 1;
+	exampleIndexes.set(forUrl, newIndex);
+	return newIndex;
+}
+function getExampleId(forUrl) {
+	// e.g. '/components/dialog/use-cases/' -> 'components-dialog-use-cases'
+	const name = forUrl
+		.substring(1, forUrl.length - 1)
+		.replace(/[^a-zA-Z0-9]/g, '-');
+
+	return `${name}-${nextExampleIndex(forUrl)}`;
+}
 function resetExampleIndex() {
-	exampleIndex = 0;
+	exampleIndexes.clear();
 }
 
-function createCodeExample(code, options, cssProperties) {
+function createCodeExample({ code, options, cssProperties, url }) {
 	code = replaceVividImports(code);
 
-	const index = exampleIndex++;
-	const src = createiFrameContent(code, options, index);
-	return renderiFrame(index, src, code, options, cssProperties);
+	const id = getExampleId(url);
+	const src = createiFrameContent(code, options, id);
+	return renderiFrame(id, src, code, options, cssProperties);
 }
 
-const renderiFrame = (index, src, content, classList, variableToShow) => {
+const renderiFrame = (id, src, content, classList, variableToShow) => {
 	const vwcUsages = content.match(/vwc-[\w-]+/g) ?? [];
 	const uniqueComponentNames = [
 		...new Set(vwcUsages.map((name) => name.replace('vwc-', ''))),
@@ -57,7 +70,7 @@ const renderiFrame = (index, src, content, classList, variableToShow) => {
 
 	const localeSwitcher = classList.includes('locale-switcher')
 		? `
-		<vwc-select id="selectLocale${index}" class="cbd-locale-switcher" icon="globe-line" aria-label="Locale" data-index="${index}" slot="main"></vwc-select>`
+		<vwc-select id="selectLocale${id}" class="cbd-locale-switcher" icon="globe-line" aria-label="Locale" data-example-id="${id}" slot="main"></vwc-select>`
 		: '';
 
 	const toolbar = !classList.includes('example')
@@ -65,13 +78,13 @@ const renderiFrame = (index, src, content, classList, variableToShow) => {
 				<div>${localeSwitcher}</div>
 				<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
 					<vwc-tooltip text="Edit on CodePen" placement="top">
-						<vwc-button slot="anchor" id="buttonCPen${index}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-index="${index}" data-deps="${deps}"></vwc-button>
+						<vwc-button slot="anchor" id="buttonCPen${id}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-example-id="${id}" data-deps="${deps}"></vwc-button>
 					</vwc-tooltip>
 					<vwc-tooltip text="Edit code" placement="top">
-						<vwc-button slot="anchor" id="buttonEdit${index}" connotation="cta" aria-label="Edit source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
+						<vwc-button slot="anchor" id="buttonEdit${id}" connotation="cta" aria-label="Edit source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${id}" onclick="codeBlockButtonClick(this)"></vwc-button>
 					</vwc-tooltip>
 					<vwc-tooltip text="Copy code" placement="top">
-						<vwc-button slot="anchor" slot="anchor" id="buttonCopy${index}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
+						<vwc-button slot="anchor" slot="anchor" id="buttonCopy${id}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-example-id="${id}"></vwc-button>
 					</vwc-tooltip>
 				</vwc-action-group>
 			</div>`
@@ -81,11 +94,11 @@ const renderiFrame = (index, src, content, classList, variableToShow) => {
 	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: auto" data-pagefind-ignore>
 	    ${variableTable}
 		<vwc-card elevation="0">
-			<iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
+			<iframe id="iframe-sample-${id}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
 			${toolbar}
 			<details class="${CBD_DETAILS}" slot="main">
 				<summary></summary>
-				<div class="cbd-live-sample" data-index="${index}" role="region">
+				<div class="cbd-live-sample" data-example-id="${id}" role="region">
 					<pre>${_.escape(
 						'<!-- Feel free to edit the code below. The live preview will update as you make changes. -->\n' +
 							content
@@ -96,7 +109,7 @@ const renderiFrame = (index, src, content, classList, variableToShow) => {
 	</div>`;
 };
 
-const createiFrameContent = (code, classList, index) => {
+const createiFrameContent = (code, classList, id) => {
 	let numberWithPx = '';
 	for (const item of classList) {
 		const match = item.match(/\d+px/);
@@ -121,7 +134,7 @@ const createiFrameContent = (code, classList, index) => {
 		fs.mkdirSync(OUTPUT_PATH, { recursive: true });
 	}
 
-	const filePath = `${OUTPUT_PATH}/${CBD_CODE_BLOCK}-${index}.html`;
+	const filePath = `${OUTPUT_PATH}/${id}.html`;
 	fs.writeFileSync(filePath, document);
 	return filePath.substring(OUTPUT_PATH.indexOf('docs' + path.sep) + 4);
 };
