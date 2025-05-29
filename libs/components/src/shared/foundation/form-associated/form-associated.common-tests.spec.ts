@@ -567,7 +567,7 @@ export const checkableFormAssociatedCommonTests = () => {
 		await DOM.nextUpdate();
 		test(false);
 	});
-	it('should align the `checked` property and `current-checked` attribute with `currentChecked` property changes', async () => {
+	it('should align the `checked` property and `currentChecked` attribute with `current-checked` attribute changes', async () => {
 		const { connect, element } = await setup<Checkable>(
 			'checkable-form-associated'
 		);
@@ -586,6 +586,38 @@ export const checkableFormAssociatedCommonTests = () => {
 		element.setAttribute('current-checked', 'false');
 		await DOM.nextUpdate();
 		test(false);
+	});
+
+	describe('currentChecked property', () => {
+		it('should reflect the `checked` property', async () => {
+			const { connect, element } = await setup<Checkable>(
+				'checkable-form-associated'
+			);
+			await connect();
+			await DOM.nextUpdate();
+
+			element.checked = true;
+			expect(element.currentChecked).toBe(true);
+
+			element.currentChecked = false;
+			expect(element.checked).toBe(false);
+		});
+	});
+
+	describe('checkedAttribute property', () => {
+		it('should reflect the `defaultChecked` property', async () => {
+			const { connect, element } = await setup<Checkable>(
+				'checkable-form-associated'
+			);
+			await connect();
+			await DOM.nextUpdate();
+
+			element.defaultChecked = true;
+			expect(element.checkedAttribute).toBe(true);
+
+			element.checkedAttribute = false;
+			expect(element.defaultChecked).toBe(false);
+		});
 	});
 
 	describe("when the owning form's reset() method is invoked", () => {

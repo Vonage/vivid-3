@@ -260,7 +260,6 @@ export class Combobox extends WithFeedback(AffixIcon(FormAssociated(Listbox))) {
 	 * @internal
 	 */
 	override valueChanged(prev: string, next: string) {
-		let nextValue = next;
 		if (this.$fastController.isConnected && this.options) {
 			const selectedIndex = this.options.findIndex(
 				(el) => el.text.toLowerCase() === next.toLowerCase()
@@ -273,13 +272,6 @@ export class Combobox extends WithFeedback(AffixIcon(FormAssociated(Listbox))) {
 				prevSelectedValue !== nextSelectedValue
 					? selectedIndex
 					: this.selectedIndex;
-
-			nextValue = this.firstSelectedOption?.text || next;
-		}
-
-		if (next !== nextValue) {
-			this.value = nextValue;
-			return;
 		}
 
 		super.valueChanged(prev, next);
