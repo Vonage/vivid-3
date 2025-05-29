@@ -19,11 +19,7 @@ registerDataGrid('your-prefix');
 ```
 
 <vwc-note connotation="information">
-<<<<<<< HEAD
 	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
-=======
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
->>>>>>> main
 
 Data Grid Row and Data Grid Cell sub-components are registered automatically in the same function.
 
@@ -236,11 +232,7 @@ Use the `rowsData` property to provide the component with the data (an `array` o
 If not used in conjuction with [column defintions](#columndefinitions) (`title`), text displayed in the column headers will be the data keys of the object.
 
 <vwc-note connotation="warning">
-<<<<<<< HEAD
 	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
-=======
-	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
->>>>>>> main
 
 The `rowsData` property provides an alternative way to populate the data grid with content.
 

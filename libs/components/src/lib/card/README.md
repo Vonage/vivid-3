@@ -90,12 +90,10 @@ Setting the `clickable-card` attribute switches the card wrapper to a `<button>`
 ```
 
 <vwc-note connotation="warning" headline="Do not nest any interactive elements within clickable cards">
-<<<<<<< HEAD
 	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
-=======
-	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
->>>>>>> main
+
 The HTML specification does not allow one interactive element to be nested within another. Therefore, you should not use any links or buttons inside slots when using the `href` or `clickable-card` attributes.
+
 </vwc-note>
 
 ## Slots
