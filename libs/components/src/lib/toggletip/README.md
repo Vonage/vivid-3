@@ -111,7 +111,7 @@ Use default slot to add content to the Toggletip.
 Toggletips need to be anchored to an element. Place the anchor element inside the `anchor` slot of the Toggletip.
 
 <vwc-note connotation="warning">
-<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 The anchor element must be clickable and in most cases, will be a button displaying an information glyph as in the example below.
 

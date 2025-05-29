@@ -90,7 +90,7 @@ Setting the `clickable-card` attribute switches the card wrapper to a `<button>`
 ```
 
 <vwc-note connotation="warning" headline="Do not nest any interactive elements within clickable cards">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 The HTML specification does not allow one interactive element to be nested within another. Therefore, you should not use any links or buttons inside slots when using the `href` or `clickable-card` attributes.
 </vwc-note>
 
@@ -171,7 +171,13 @@ By default - items inside footer slot are aligned to the end.
 	headline="Card with Footer Slot"
 	subtitle="Extra text below the card headline"
 >
-	<vwc-button slot="footer" shape="pill" label="Action" appearance="outlined">
+	<vwc-button
+		slot="footer"
+		shape="pill"
+		label="Action"
+		appearance="outlined"
+		icon-trailing
+	>
 		<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
 	</vwc-button>
 </vwc-card>

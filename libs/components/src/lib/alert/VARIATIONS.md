@@ -23,7 +23,7 @@ Use the `headline` attribute to add a headline to the Alert.
 Use the `connotation` attribute to change the Alert's icon and icon color.
 
 <vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
 Each connotation comes with a default icon (that you can override with the `icon` attribute).
 
@@ -54,21 +54,9 @@ Each connotation comes with a default icon (that you can override with the `icon
 
 ### Icon
 
-Use the [icon slot](/components/alert/code/#icon) to add custom icons.
-Use the `icon`_(deprecated)_ attribute to add an icon from the [icon library](/icons/icons-gallery/) to the Alert.
+The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery) and takes precedence over the connotation's icon, if any.
 
-<vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
-
-Setting this attribute takes precedence over the connotation's icon, if any.
-
-</vwc-note>
-
-```html preview 100px
-<vwc-alert text="Some important information for you" open>
-	<vwc-icon slot="icon" name="megaphone-solid"></vwc-icon>
-</vwc-alert>
-```
+The preferred way to add icons is to use the [icon slot](/components/alert/code/#icon-slot).
 
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
 	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
@@ -76,6 +64,14 @@ Setting this attribute takes precedence over the connotation's icon, if any.
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
 </vwc-note>
+
+```html preview 100px
+<vwc-alert
+	text="Some important information for you"
+	open
+	icon="megaphone-solid"
+></vwc-alert>
+```
 
 ### Placement
 

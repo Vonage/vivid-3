@@ -132,9 +132,16 @@ The `size` attribute controls the size of the badge.
 
 ## Icon
 
-Custom icons can be provided using the [icon slot](/components/badge/code/#icon-slot). It can be displayed on the leading (default) or trailing side (`icon-trailing`) of the badge.
+The `icon` attribute displays an icon from the icon library](/icons/icons-gallery/), which can be displayed on the leading (default) or trailing side (`icon-trailing`) of the badge.
 
-The `icon`_(deprecated)_ attribute displays an icon from the [icon library](/icons/icons-gallery/),
+The preferred way to add icons is to use the [icon slot](/components/badge/code/#icon-slot).
+
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ```html preview
 <vwc-badge appearance="filled" text="icon leading (default)" shape="pill">
@@ -145,13 +152,6 @@ The `icon`_(deprecated)_ attribute displays an icon from the [icon library](/ico
 </vwc-badge>
 ```
 
-<vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
-
-The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
-
-</vwc-note>
-
 ### Icon Only
 
 If the `label` is omitted, the badge will be displayed as an _icon-only_ badge.
@@ -159,12 +159,12 @@ If the `label` is omitted, the badge will be displayed as an _icon-only_ badge.
 <vwc-note connotation="information" headline="Accessibility Tip">
 	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 
-When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
+When an element has no visible text, provide an accessible name using the <nobr><code>label</code></nobr> attribute of the Icon component. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
 
 </vwc-note>
 
 ```html preview
-<vwc-badge aria-label="checked" appearance="filled">
-	<vwc-icon slot="icon" name="check-line"></vwc-icon>
+<vwc-badge appearance="filled">
+	<vwc-icon slot="icon" name="check-line" label="Checked"></vwc-icon>
 </vwc-badge>
 ```

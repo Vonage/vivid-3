@@ -25,25 +25,21 @@ Read more about [vwc-tree-view](/components/tree-view/).
 Use [icon slot](/components/tree-item/#icon-1) or `icon`_(deprecated)_ attribute to set an icon to the tree item.
 Check out the [vivid icons gallery](/icons/icons-gallery/) for a list of available icons.
 
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the tree item's purpose.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-tree-view>
-	<vwc-tree-item text="Tree Item">
-		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
-	</vwc-tree-item>
-</vwc-tree-view>
-```
-
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
 	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
 
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
 </vwc-note>
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-tree-view>
+	<vwc-tree-item text="Tree Item" icon="chat-line"></vwc-tree-item>
+</vwc-tree-view>
+```
 
 ### Selected
 

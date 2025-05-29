@@ -13,7 +13,7 @@ The `text` attribute sets the text content.
 The Menu Item can be given extra context using the `text-secondary` attribute.
 
 <vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
 To improve readability, **avoid long text and multiple lines** where possible.
 
@@ -34,18 +34,20 @@ The `icon` attribute sets an icon.
 
 View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
-```html preview 100px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item icon="file-pdf-line" text="Export to PDF"></vwc-menu-item>
-</vwc-menu>
-```
-
+<!-- Uncomment when Icon slot is implemented
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
 	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
 
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
 </vwc-note>
+-->
+
+```html preview 100px
+<vwc-menu open aria-label="Example menu">
+	<vwc-menu-item icon="file-pdf-line" text="Export to PDF"></vwc-menu-item>
+</vwc-menu>
+```
 
 ## Role
 
@@ -89,7 +91,7 @@ The default value is `menuitem`. See the [API Reference](/component/menu/code/#m
 When the `role` attribute is set to `menuitemcheckbox` or `menuitemradio`, the `check-trailing` attribute places the checkbox / radio indicator at the end of the Menu Item.
 
 <vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
 If the `icon` attribute is present, the indicator will be trailing by default.
 

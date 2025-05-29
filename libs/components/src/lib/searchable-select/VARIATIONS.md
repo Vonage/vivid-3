@@ -97,23 +97,24 @@ The `success-text` attribute provides a custom success message. Any current erro
 
 ## Icon
 
-To add icons, use the `icon` [slot](/components/searchable-select/code/#icon-slot) provided or `icon`_(deprecated)_ attribute from the [icon library](/icons/icons-gallery). It prefixes the Searchable Select element.
+The `icon` attribute can set to display an icon from the [icon library](/icons/icons-gallery/) on the component.
+
+The preferred way to add icons is to use the [icon slot](/components/searchable-select/code/#icon-slot).
+
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ```html preview 230px
-<vwc-searchable-select label="Country">
-	<vwc-icon name="globe-line" slot="icon"></vwc-icon>
+<vwc-searchable-select label="Country" icon="globe-line">
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
 	<vwc-option value="AL" text="Albania"></vwc-option>
 	<vwc-option value="DZ" text="Algeria"></vwc-option>
 </vwc-searchable-select>
 ```
-
-<vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
-
-The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
-
-</vwc-note>
 
 ## Shape
 
