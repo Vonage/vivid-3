@@ -45,6 +45,7 @@ export const TabTemplate = (context: VividElementDefinitionContext) => {
 	return html<Tab>`
 		<template
 			slot="tab"
+			?active="${(x) => x.active}"
 			${applyHostSemantics({
 				role: 'tab',
 				ariaDisabled: (x) => x.disabled,

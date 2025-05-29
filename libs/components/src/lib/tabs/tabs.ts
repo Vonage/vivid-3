@@ -14,6 +14,7 @@ import {
 import type { Connotation } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { Tab } from '../tab/tab';
 
 export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
 
@@ -239,10 +240,9 @@ export class Tabs extends VividElement {
 			const panel = this.tabpanels[index];
 
 			const isActiveTab = tab.id === this.activeid;
-
-			isActiveTab
-				? tab.setAttribute('active', '')
-				: tab.removeAttribute('active');
+			if (tab instanceof Tab) {
+				isActiveTab ? (tab.active = true) : (tab.active = false);
+			}
 			tab.setAttribute('aria-controls', panel.id);
 			tab.setAttribute('tabindex', isActiveTab ? '0' : '-1');
 			if (isActiveTab && this.connotation) {

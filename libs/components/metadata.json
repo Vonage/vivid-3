@@ -6840,12 +6840,6 @@
 					"propertyName": "removable"
 				},
 				{
-					"name": "selected",
-					"type": "boolean",
-					"attributeName": "selected",
-					"propertyName": "selected"
-				},
-				{
 					"name": "shape",
 					"description": "The shape the tab should have.",
 					"type": "'rounded' | 'sharp'",

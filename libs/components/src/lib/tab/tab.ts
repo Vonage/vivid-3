@@ -1,4 +1,4 @@
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
 import type { Connotation, Shape } from '../enums.js';
@@ -81,8 +81,7 @@ export class Tab extends HostSemantics(
 	/**
 	 * @internal
 	 */
-	@attr({ mode: 'boolean' })
-	active = false;
+	@observable active = false;
 
 	_handleCloseClick(e: Event) {
 		e.stopImmediatePropagation();
