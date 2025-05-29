@@ -10,10 +10,10 @@ import {
 	itShouldDisplayErrorTextFeedback,
 	itShouldDisplayHelperTextFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
+import type { ElementWithErrorText } from '../../shared/patterns';
 import { RadioGroup } from './radio-group';
 import '../radio';
 import '.';
-import type { ElementWithErrorText } from '../../shared/patterns';
 
 const COMPONENT_TAG = 'vwc-radio-group';
 
