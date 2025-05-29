@@ -4,13 +4,13 @@ import {
 	errorText,
 	type ErrorText,
 	type FormElement,
-	FormElementHelperText,
 	formElements,
 	FormElementSuccessText,
 } from '../../shared/patterns';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { WithFeedback } from '../../shared/feedback/mixins';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedCheckbox } from './checkbox.form-associated';
 
 export const keySpace: ' ' = ' ' as const;
@@ -36,7 +36,9 @@ export type CheckboxConnotation = ExtractFromEnum<
  */
 @errorText
 @formElements
-export class Checkbox extends DelegatesAria(FormAssociatedCheckbox) {
+export class Checkbox extends WithFeedback(
+	DelegatesAria(FormAssociatedCheckbox)
+) {
 	@attr({ attribute: 'tabindex' }) tabindex: string | null = null;
 
 	/**
@@ -161,11 +163,6 @@ export class Checkbox extends DelegatesAria(FormAssociatedCheckbox) {
 
 export interface Checkbox
 	extends FormElement,
-		FormElementHelperText,
 		ErrorText,
 		FormElementSuccessText {}
-applyMixinsWithObservables(
-	Checkbox,
-	FormElementHelperText,
-	FormElementSuccessText
-);
+applyMixins(Checkbox, FormElementSuccessText);

@@ -27,8 +27,6 @@
 	@include appearance.appearance;
 
 	& {
-		#{variables.$badge-block-size}: #{size.$vvd-size-ultra-condensed};
-
 		display: inline-flex;
 		box-sizing: border-box;
 		align-items: center;
@@ -44,10 +42,18 @@
 		vertical-align: middle;
 	}
 
+	/* Size */
+	&:not(.size-expanded) {
+		#{variables.$badge-block-size}: #{size.$vvd-size-ultra-condensed};
+	}
+	&.size-expanded {
+		#{variables.$badge-block-size}: #{size.$vvd-size-super-condensed};
+	}
+
+	/* Icon */
 	&:not(.icon-only) {
 		max-inline-size: 100%;
 	}
-
 	&.icon-only {
 		contain: size;
 		padding-inline: 0;
@@ -61,6 +67,14 @@
 			inline-size: var(#{variables.$badge-block-size});
 		}
 	}
+
+	/* Shape */
+	&:not(.shape-pill) {
+		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+	}
+	&.shape-pill {
+		border-radius: #{border-radius-variables.$border-radius-semi-expanded};
+	}
 }
 
 .text {
@@ -68,15 +82,6 @@
 	max-inline-size: 100%;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-}
-
-/* Shape */
-
-.base:not(.shape-pill) {
-	border-radius: #{border-radius-variables.$border-radius-semi-condensed};
-}
-.base.shape-pill {
-	border-radius: #{border-radius-variables.$border-radius-semi-expanded};
 }
 
 /* Icon */

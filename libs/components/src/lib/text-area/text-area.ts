@@ -7,14 +7,14 @@ import {
 	errorText,
 	type ErrorText,
 	type FormElement,
-	FormElementCharCount,
-	FormElementHelperText,
 	formElements,
 	FormElementSuccessText,
+	WithCharCount,
 } from '../../shared/patterns';
 import { Reflector } from '../../shared/utils/Reflector';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import { WithFeedback } from '../../shared/feedback/mixins';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedTextArea } from './text-area.form-associated';
 
 export type TextAreaWrap = 'hard' | 'soft' | 'off';
@@ -60,7 +60,9 @@ export type TextAreaResize = typeof TextAreaResize[keyof typeof TextAreaResize];
  */
 @errorText
 @formElements
-export class TextArea extends DelegatesAria(FormAssociatedTextArea) {
+export class TextArea extends WithFeedback(
+	WithCharCount(DelegatesAria(FormAssociatedTextArea))
+) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 * @public
@@ -146,8 +148,8 @@ export class TextArea extends DelegatesAria(FormAssociatedTextArea) {
 	 * HTMLAttribute: maxlength
 	 */
 	@attr({ converter: nullableNumberConverter })
-	// @ts-expect-error Type is incorrectly non-optional
-	maxlength: number;
+	override maxlength!: number;
+
 	/**
 	 * @internal
 	 */
@@ -254,6 +256,16 @@ export class TextArea extends DelegatesAria(FormAssociatedTextArea) {
 	/**
 	 * @internal
 	 */
+	override valueChanged(previous: string, next: string) {
+		super.valueChanged(previous, next);
+		if (this.charCount && this.maxlength) {
+			this._updateCharCountRemaining();
+		}
+	}
+
+	/**
+	 * @internal
+	 */
 	handleTextInput = (): void => {
 		this.value = this.control.value;
 	};
@@ -290,6 +302,7 @@ export class TextArea extends DelegatesAria(FormAssociatedTextArea) {
 		super.connectedCallback();
 		this.#reflectToTextArea = new Reflector(this, this.control);
 		this.#reflectToTextArea.property('value', 'value', true);
+		this._renderCharCountRemaining();
 	}
 
 	override disconnectedCallback() {
@@ -301,12 +314,5 @@ export class TextArea extends DelegatesAria(FormAssociatedTextArea) {
 export interface TextArea
 	extends FormElement,
 		ErrorText,
-		FormElementCharCount,
-		FormElementHelperText,
 		FormElementSuccessText {}
-applyMixinsWithObservables(
-	TextArea,
-	FormElementCharCount,
-	FormElementHelperText,
-	FormElementSuccessText
-);
+applyMixins(TextArea, FormElementSuccessText);

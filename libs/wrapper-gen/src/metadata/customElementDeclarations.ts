@@ -323,13 +323,6 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			type: { text: 'string' },
 		},
 	],
-	FormElementHelperText: [
-		{
-			name: 'helper-text',
-			description: 'The helper text for the form element.',
-			type: { text: 'string' },
-		},
-	],
 	FormElementSuccessText: [
 		{
 			name: 'success-text',
@@ -337,101 +330,11 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			type: { text: 'string' },
 		},
 	],
-	FormElementCharCount: [
-		{
-			name: 'char-count',
-			description: 'Whether to show the character count.',
-			type: { text: 'boolean' },
-		},
-	],
 	ErrorText: [
 		{
 			name: 'error-text',
 			description: 'The error text for the form element.',
 			type: { text: 'string' },
-		},
-	],
-	Anchor: [
-		{
-			name: 'download',
-			description:
-				'The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'download',
-		},
-		{
-			name: 'href',
-			description:
-				'Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'href',
-		},
-		{
-			name: 'hreflang',
-			description:
-				'Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'hreflang',
-		},
-		{
-			name: 'ping',
-			description:
-				'See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'ping',
-		},
-		{
-			name: 'referrerpolicy',
-			description:
-				'See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'referrerpolicy',
-		},
-		{
-			name: 'rel',
-			description:
-				'See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'rel',
-		},
-		{
-			name: 'target',
-			description:
-				'See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: "'_self' | '_blank' | '_parent' | '_top'",
-			},
-			fieldName: 'target',
-		},
-		{
-			name: 'type',
-			description:
-				'See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'type',
-		},
-		{
-			name: 'aria-expanded',
-			description:
-				'See https://www.w3.org/WAI/PF/aria/roles#link for more information',
-			type: {
-				text: "'true' | 'false' | string | null",
-			},
-			fieldName: 'ariaExpanded',
 		},
 	],
 	DelegatesARIATextbox: [],

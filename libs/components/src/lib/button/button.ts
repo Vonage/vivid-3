@@ -1,8 +1,12 @@
 import { attr } from '@microsoft/fast-element';
 import type { Appearance, Connotation, Shape, Size } from '../enums.js';
-import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { VividFoundationButton } from '../../shared/foundation/button/button.js';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import {
+	AffixIconWithTrailing,
+	Linkable,
+	Localized,
+} from '../../shared/patterns';
 
 /**
  * Types of button connotation.
@@ -52,9 +56,11 @@ export type ButtonSize = ExtractFromEnum<
 /**
  * @public
  * @component button
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  */
-export class Button extends AffixIconWithTrailing(VividFoundationButton) {
+export class Button extends AffixIconWithTrailing(
+	Localized(Linkable(VividFoundationButton))
+) {
 	/**
 	 * Specifies extra information about the button. This information is typically used by browsers to display a tooltip.
 	 */
@@ -162,69 +168,6 @@ export class Button extends AffixIconWithTrailing(VividFoundationButton) {
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;
-
-	/**
-	 * Indicates the button's href.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: href
-	 */
-	@attr href?: string;
-
-	/**
-	 * Indicates the button's download.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: download
-	 */
-	@attr download?: string;
-
-	/**
-	 * Indicates the button's hreflang.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: hreflang
-	 */
-	@attr hreflang?: string;
-
-	/**
-	 * Indicates the button's ping.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: ping
-	 */
-	@attr ping?: string;
-
-	/**
-	 * Indicates the button's referrerpolicy.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: referrerpolicy
-	 */
-	@attr referrerpolicy?: string;
-
-	/**
-	 * Indicates the button's rel.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: rel
-	 */
-	@attr rel?: string;
-
-	/**
-	 * Indicates the target's rel.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: target
-	 */
-	@attr target?: '_self' | '_blank' | '_parent' | '_top';
 
 	constructor() {
 		super();

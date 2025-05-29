@@ -39,16 +39,26 @@ Add the NPM package to your repository:
 <vwc-tab label="Vue 3"></vwc-tab>
 <vwc-tab-panel>
 
-Use the `vivid3` plugin to initialize the library.
+Use the `vividVue` plugin to initialize the library.
+
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+    The import name `vivid3` has been deprecated. While it is still available for now, it will be removed in a future release.
+    Please update your imports to use the new name: <code>vividVue</code>.
+
+    Make sure to update all relevant imports in your codebase.
+
+</vwc-note>
 
 ```ts
 // main.ts
 import { createApp } from 'vue';
-import { vivid3 } from '@vonage/vivid-vue';
+import { vividVue } from '@vonage/vivid-vue';
 import App from './App.vue';
 
 createApp(App)
-	.use(vivid3, {
+	.use(vividVue, {
 		font: 'spezia',
 		customComponentPrefix: 'my-app',
 	})
@@ -78,11 +88,11 @@ See the [list of styles that come with Vivid](/guides/styles/) for more informat
 ```ts
 // main.ts
 import { createApp } from 'vue';
-import { optionalStyles, vivid3 } from '@vonage/vivid-vue';
+import { optionalStyles, vividVue } from '@vonage/vivid-vue';
 import App from './App.vue';
 
 createApp(App)
-	.use(vivid3, {
+	.use(vividVue, {
 		styles: [
 			optionalStyles.theme,
 			optionalStyles.typography,

@@ -132,12 +132,12 @@ Use the `action-items` slot to add action items to the Empty State.
 
 <div class="table-wrapper">
 
-| Name                | Type                                                                          | Description                                                                                                                             |
-| ------------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| **icon**            | Enum: `[icon-name]`                                                           | A decorative icon the Empty State should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **icon-decoration** | Enum:`filled` (default), `outlined`                                           | option to a new design for the icon circle                                                                                              |
-| **headline**        | `string`                                                                      | An optional headline for the empty state.                                                                                               |
-| **connotation**     | Enum: `accent` (default), `cta`, `success`, `alert`, `information`, `warning` | The connotation the button should have.                                                                                                 |
+| Name                             | Type                                                                          | Description                                                                                                                             |
+| -------------------------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **icon**                         | Enum: `[icon-name]`                                                           | A decorative icon the Empty State should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **headline**                     | `string`                                                                      | An optional headline for the empty state.                                                                                               |
+| **connotation**                  | Enum: `accent` (default), `cta`, `success`, `alert`, `information`, `warning` | The connotation the button should have.                                                                                                 |
+| **icon-decoration** (deprecated) | Enum:`filled` (default), `outlined`                                           | Has no effect on the component                                                                                                          |
 
 </div>
 

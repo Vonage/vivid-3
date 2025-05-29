@@ -60,6 +60,7 @@
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: var(#{variables.$button-line-clamp}, 1);
 		max-inline-size: 100%;
+		text-align: start;
 	}
 
 	&:not(.icon-only) {
@@ -268,7 +269,7 @@ slot[name='icon'] {
 	}
 }
 
-:host(:not([icon])) .pending {
+.pending-no-icon {
 	position: absolute;
 
 	& + .text {
@@ -280,4 +281,14 @@ slot[name='icon'] {
 	.pending {
 		order: 1;
 	}
+}
+
+.sr-only {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
 }

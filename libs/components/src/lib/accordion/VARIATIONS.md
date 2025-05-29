@@ -2,6 +2,13 @@
 
 Use the `heading` attribute on **Accordion Item** to set the heading text.
 
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
+
+    To ensure [accessible heading levels](/components/accordion/accessibility/#heading-levels) use the [`heading-level` attribute](/components/accordion/code/#heading-level).
+
+</vwc-note>
+
 ```html preview 250px
 <vwc-accordion>
 	<vwc-accordion-item heading="Accordion item 1">
@@ -12,12 +19,6 @@ Use the `heading` attribute on **Accordion Item** to set the heading text.
 	</vwc-accordion-item>
 </vwc-accordion>
 ```
-
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
-
-    To ensure [accessible heading levels](/components/accordion/accessibility/#heading-levels) use the [`heading-level` attribute](/components/accordion/code/#heading-level).
-
-</vwc-note>
 
 ## Expand Mode
 
@@ -81,7 +82,14 @@ Use the `expanded` attribute on **Accordion Item** to set it's open state.
 
 The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the **Accordion Item**'s heading.
 
-To add custom icons, use the [icon slot](/components/accordion/code/#icon-slot).
+The preferred way to add icons is to use the [icon slot](/components/accordion/code/#icon-slot).
+
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ```html preview 200px
 <vwc-accordion>
@@ -103,10 +111,10 @@ Use the `icon-trailing` attribute to postfix the icon in place of the **Accordio
 	<vwc-accordion-item
 		class="accordion-item"
 		icon-trailing
-		icon="minus-line"
 		heading="Accordion item 1"
 		expanded
 	>
+		<vwc-icon slot="icon" name="minus-line"></vwc-icon>
 		This is the first item's accordion body.
 	</vwc-accordion-item>
 	<vwc-accordion-item

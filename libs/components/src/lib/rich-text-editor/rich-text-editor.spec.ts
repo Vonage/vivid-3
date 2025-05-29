@@ -1,8 +1,11 @@
 import type { Mock, MockInstance } from 'vitest';
+import deDE from '@vonage/vivid/locales/de-DE';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { setLocale } from '../../shared/localization';
 import { ProseMirrorFacade as EditorFacade } from './facades/vivid-prose-mirror.facade';
 import {
 	RichTextEditor,
+	type RichTextEditorInlineImageProps,
 	type RichTextEditorSelection,
 } from './rich-text-editor';
 import '.';
@@ -10,6 +13,10 @@ import '.';
 const COMPONENT_TAG = 'vwc-rich-text-editor';
 
 describe('vwc-rich-text-editor', () => {
+	function getEditorElement() {
+		return element.shadowRoot?.querySelector('#editor') as HTMLElement;
+	}
+
 	function getOutputElement(): HTMLElement {
 		return element.shadowRoot!.querySelector(
 			'[contenteditable="true"]'
@@ -62,6 +69,99 @@ describe('vwc-rich-text-editor', () => {
 		it('should allow being created via createElement', () => {
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
+
+		it('should set drag-over class when user drags something over the editor area', async () => {
+			const editor = getEditorElement();
+
+			const dragEnterEvent = new Event('dragenter', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			editor.dispatchEvent(dragEnterEvent);
+			await elementUpdated(element);
+
+			expect(editor.classList.contains('drag-over')).toBe(true);
+		});
+
+		it('should remove drag-over class when user exits the drag area', async () => {
+			const editor = getEditorElement();
+
+			const dragEnterEvent = new Event('dragenter', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const dragLeaveEvent = new Event('dragleave', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			editor.dispatchEvent(dragEnterEvent);
+			editor.dispatchEvent(dragLeaveEvent);
+			await elementUpdated(element);
+
+			expect(editor.classList.contains('drag-over')).toBe(false);
+		});
+
+		it('should remove drag-over class when user drops the file', async () => {
+			const editor = getEditorElement();
+
+			const dragEnterEvent = new Event('dragenter', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const dropEvent = new Event('drop', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			(dropEvent as any).dataTransfer = {};
+			editor.dispatchEvent(dragEnterEvent);
+			editor.dispatchEvent(dropEvent);
+			await elementUpdated(element);
+
+			expect(editor.classList.contains('drag-over')).toBe(false);
+		});
+
+		it('should leave drag-over class when user drag-leaves to a child element', async () => {
+			const editor = getEditorElement();
+
+			const dragEnterEvent = new Event('dragenter', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const dragLeaveEvent = new Event('dragleave', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const child = editor.children[0];
+			Object.defineProperty(dragLeaveEvent, 'relatedTarget', {
+				value: child,
+			});
+
+			editor.dispatchEvent(dragEnterEvent);
+			editor.dispatchEvent(dragLeaveEvent);
+			await elementUpdated(element);
+
+			expect(editor.classList.contains('drag-over')).toBe(true);
+		});
+
+		it('should replace drag and drop string with locale values', async () => {
+			const dragOverlay = getEditorElement().querySelector(
+				'.drag-overlay'
+			) as HTMLElement;
+
+			setLocale(deDE);
+			await elementUpdated(element);
+
+			expect(dragOverlay.textContent?.trim()).toBe(
+				deDE.richTextEditor.dragAndDropFilesHere
+			);
+		});
 	});
 
 	describe('value', () => {
@@ -72,7 +172,7 @@ describe('vwc-rich-text-editor', () => {
 
 		it('should init as empty paragraph', async () => {
 			const div = document.createElement('div');
-			div.innerHTML = element.value;
+			div.innerHTML = element.value as string;
 			expect(div.textContent).toBe('');
 		});
 
@@ -638,6 +738,160 @@ describe('vwc-rich-text-editor', () => {
 				?.getAttribute('data-placeholder');
 			div.remove();
 			expect(newElementPlaceholderText).toBe(text);
+		});
+	});
+
+	describe('attachments slot', () => {
+		it('should default with class "hidden" to attachments wrapper if no slotted items', async () => {
+			expect(
+				element.shadowRoot
+					?.querySelector('#attachments-wrapper')
+					?.classList.contains('hidden')
+			).toBe(true);
+		});
+
+		it('should remove class "hidden" from attachments wrapper if slotted items exist', async () => {
+			const div = document.createElement('div');
+			div.slot = 'attachments';
+			element.appendChild(div);
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot
+					?.querySelector('#attachments-wrapper')
+					?.classList.contains('hidden')
+			).toBe(false);
+		});
+
+		it('should add class "hidden" from attachments wrapper if slotted items are removed', async () => {
+			const div = document.createElement('div');
+			div.slot = 'attachments';
+			element.appendChild(div);
+			div.remove();
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot
+					?.querySelector('#attachments-wrapper')
+					?.classList.contains('hidden')
+			).toBe(true);
+		});
+	});
+
+	describe('scrollToAttachments()', () => {
+		let editorBoundsSpy: MockInstance<() => DOMRect>,
+			editableAreaBoundsSpy: MockInstance<() => DOMRect>;
+
+		beforeEach(async () => {
+			const editableAreaElement = getOutputElement();
+			const editorElement = getEditorElement();
+
+			editorBoundsSpy = vi
+				.spyOn(editorElement, 'getBoundingClientRect')
+				.mockReturnValue({
+					height: 30,
+				} as DOMRect);
+			editableAreaBoundsSpy = vi
+				.spyOn(editableAreaElement, 'getBoundingClientRect')
+				.mockReturnValue({
+					height: 200,
+				} as DOMRect);
+		});
+
+		afterEach(() => {
+			editorBoundsSpy.mockRestore();
+			editableAreaBoundsSpy.mockRestore();
+		});
+
+		it('should allow consumer to set the editor scrolTop to where the attachments element is visible', async () => {
+			const editorElement = getEditorElement();
+			element.scrollToAttachments();
+			await elementUpdated(element);
+
+			expect(editorElement.scrollTop).toBe(170);
+		});
+
+		it('should set the scrollTop value async', async () => {
+			const editorElement = getEditorElement();
+
+			element.scrollToAttachments();
+			const scrollTopValueAfterMethodCall = editorElement.scrollTop;
+			await elementUpdated(element);
+			const scrollTopValueAfterAsyncQueue = editorElement.scrollTop;
+
+			expect(scrollTopValueAfterMethodCall).toBe(0);
+			expect(scrollTopValueAfterAsyncQueue).toBe(170);
+		});
+
+		it('should set the scrollTop with additional pixels when given in parameters', async () => {
+			const editorElement = getEditorElement();
+			element.scrollToAttachments(10);
+			await elementUpdated(element);
+
+			expect(editorElement.scrollTop).toBe(180);
+		});
+	});
+
+	describe('file-drop event', () => {
+		const FILES = [
+			new File(['file-content'], 'test.txt', { type: 'text/plain' }),
+		];
+		function createDropEvent(files = FILES) {
+			const dataTransfer = {
+				files,
+				types: ['Files'],
+				getData: () => '',
+			} as unknown as DataTransfer;
+
+			const dropEvent = new Event('drop', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			(dropEvent as any).dataTransfer = dataTransfer;
+
+			return dropEvent;
+		}
+
+		it('should fire "file-drop" event when file is dropped file drop and process files', async () => {
+			const editor = getEditorElement();
+			const spy = vi.fn();
+			element.addEventListener('file-drop', spy);
+			const dropEvent = createDropEvent(FILES);
+
+			editor.dispatchEvent(dropEvent);
+
+			expect(spy.mock.calls[0][0].detail).toEqual(FILES);
+		});
+	});
+
+	describe('addInlineImage()', () => {
+		it('should gracefully fail if facade fails', async () => {
+			const input = {
+				file: {},
+				position: 5,
+				alt: 'alt text',
+			} as RichTextEditorInlineImageProps;
+
+			vi.spyOn(EditorFacade.prototype, 'addInlineImage').mockRejectedValueOnce({
+				message: 'Error',
+			});
+			const consoleWarnSpy = vi.spyOn(console, 'warn');
+
+			await expect(element.addInlineImage(input)).resolves.toBeUndefined();
+			expect(consoleWarnSpy).toHaveBeenCalledWith('Error');
+		});
+
+		it('should call facade addInlineImage with given parameters', async () => {
+			const input = {
+				file: {},
+				position: 5,
+				alt: 'alt text',
+			} as RichTextEditorInlineImageProps;
+			const editorFacadeAddInlineImageSpy = vi
+				.spyOn(EditorFacade.prototype, 'addInlineImage')
+				.mockResolvedValueOnce(undefined);
+			await element.addInlineImage(input);
+
+			expect(editorFacadeAddInlineImageSpy).toHaveBeenCalledWith(input);
 		});
 	});
 });

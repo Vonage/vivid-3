@@ -1,4 +1,4 @@
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
 import type { Connotation, Shape } from '../enums.js';
@@ -26,7 +26,7 @@ export type TabShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Sharp>;
 /**
  * @public
  * @component tab
- * @slot icon - Slot to add an icon to tab.
+ * @slot icon - The preferred way to add an icon to the component.
  */
 export class Tab extends HostSemantics(
 	AffixIconWithTrailing(Localized(VividElement))
@@ -67,19 +67,21 @@ export class Tab extends HostSemantics(
 	@attr label?: string;
 
 	/**
-	 * Indicates the tab's label.
+	 * Adds a close button
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: label
+	 * HTML Attribute: removable
 	 */
 	@attr({ mode: 'boolean' }) removable = false;
 
 	@attr({ mode: 'fromView' }) override tabIndex: number =
 		'-1' as unknown as number;
 
-	@attr({ attribute: 'aria-selected' }) override ariaSelected: string | null =
-		null;
+	/**
+	 * @internal
+	 */
+	@observable active = false;
 
 	_handleCloseClick(e: Event) {
 		e.stopImmediatePropagation();

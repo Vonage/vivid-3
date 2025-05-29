@@ -59,9 +59,8 @@ export class EmptyState extends VividElement {
 	@attr icon?: string;
 
 	/**
-	 * option to a new design for the icon circle
 	 *
-	 * @public
+	 * @deprecated The icon circle is now the default and only style
 	 * HTML Attribute: icon-decoration
 	 */
 	@attr({ attribute: 'icon-decoration' })

@@ -1,6 +1,5 @@
 import { html, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { getFeedbackTemplate } from '../../shared/patterns';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { delegateAria } from '../../shared/aria/delegates-aria';
@@ -34,6 +33,7 @@ export const CheckboxTemplate = (context: VividElementDefinitionContext) => {
 	return html`<template>
 		<div
 			class="${getClasses}"
+			aria-describedby="${(x) => x._feedbackDescribedBy}"
 			${delegateAria({
 				role: 'checkbox',
 				ariaChecked: (x) => (x.indeterminate ? 'mixed' : x.checked),
@@ -60,6 +60,6 @@ export const CheckboxTemplate = (context: VividElementDefinitionContext) => {
 				>${(x) => x.label}<slot ${slotted('slottedContent')}></slot
 			></label>`}
 		</div>
-		${getFeedbackTemplate(context)}
+		${(x) => x._getFeedbackTemplate(context)}
 	</template>`;
 };

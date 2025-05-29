@@ -4,7 +4,8 @@
 
 The `label` attribute provides a short description of the purpose of the Select.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 <p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
@@ -48,7 +49,8 @@ To add HTML to the helper text, use the [helper-text slot](/components/select/co
 
 The `placeholder` attribute provides some text to be displayed when no option has been selected.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 	<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
 </vwc-note>
 
@@ -148,55 +150,30 @@ The `success-text` attribute provides a custom success message. Any current erro
 
 ## Icon
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Select element.
+The `icon` attribute can set to display an icon from the [icon library](/icons/icons-gallery/) on the component.
 
-To add custom icons, use the `icon` [slot](/components/select/code/#icon-slot) provided.
+The preferred way to add icons is to use the [icon slot](/components/select/code/#icon-slot).
+
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ```html preview 270px
-<vwc-select
-	label="Country code"
-	icon="flag-united-states"
-	class="country-code"
-	id="country-code"
->
-	<vwc-option
-		value="1"
-		text="United States"
-		label="+1"
-		icon="flag-united-states"
-	></vwc-option>
-	<vwc-option
-		value="44"
-		text="United Kingdom"
-		label="+44"
-		icon="flag-united-kingdom"
-	></vwc-option>
-	<vwc-option
-		value="49"
-		text="Germany"
-		label="+49"
-		icon="flag-germany"
-	></vwc-option>
-	<vwc-option
-		value="355"
-		text="Albania"
-		label="+355"
-		icon="flag-albania"
-	></vwc-option>
+<vwc-select label="Results per page" class="results" icon="filter-line">
+	<vwc-option value="25" text="25 per page"></vwc-option>
+	<vwc-option value="50" text="50 per page"></vwc-option>
+	<vwc-option value="75" text="75 per page"></vwc-option>
+	<vwc-option value="100" text="100 per page"></vwc-option>
 </vwc-select>
 
 <style>
-	.country-code {
-		inline-size: 120px;
+	.results {
+		inline-size: 190px;
 	}
 </style>
-
-<script>
-	const select = document.getElementById('country-code');
-	select?.addEventListener('change', (e) => {
-		select.icon = select.selectedOptions[0].icon;
-	});
-</script>
 ```
 
 ## Scale
@@ -233,7 +210,8 @@ Use `condensed` in situations when space is limited, for example, inside a Data 
 </style>
 ```
 
-<vwc-note connotation="information" icon="info-line" headline="Scale instead of Size">
+<vwc-note connotation="information" headline="Scale instead of Size">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 	<p>The reason for using <code>scale</code> for form elements and not <code>size</code> (as used in other components such as Button), is that <code>size</code> is a HTML attribute that can be used on <code>input</code> elements (and also Text Field) to control the width of the input.</p>
 </vwc-note>
 

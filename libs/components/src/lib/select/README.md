@@ -92,15 +92,23 @@ Also, see [the Grid Select example](/components/data-grid/#select-in-a-grid)).
 		<vwc-select
 			fixed-dropdown
 			aria-label="Country code"
-			icon="flag-united-states"
 			appearance="ghost"
 			class="country-code"
 			id="country-code"
 		>
-			<vwc-option value="1" text="+1" icon="flag-united-states"></vwc-option>
-			<vwc-option value="44" text="+44" icon="flag-united-kingdom"></vwc-option>
-			<vwc-option value="49" text="+49" icon="flag-germany"></vwc-option>
-			<vwc-option value="355" text="+355" icon="flag-albania"></vwc-option>
+			<vwc-icon slot="icon" name="flag-united-states"></vwc-icon>
+			<vwc-option value="1" text="+1">
+				<vwc-icon slot="icon" name="flag-united-states"></vwc-icon>
+			</vwc-option>
+			<vwc-option value="44" text="+44">
+				<vwc-icon slot="icon" name="flag-united-kingdom"></vwc-icon>
+			</vwc-option>
+			<vwc-option value="49" text="+49">
+				<vwc-icon slot="icon" name="flag-germany"></vwc-icon>
+			</vwc-option>
+			<vwc-option value="355" text="+355">
+				<vwc-icon slot="icon" name="flag-albania"></vwc-icon>
+			</vwc-option>
 		</vwc-select>
 		<vwc-divider orientation="vertical"></vwc-divider>
 		<vwc-text-field
@@ -129,6 +137,15 @@ Also, see [the Grid Select example](/components/data-grid/#select-in-a-grid)).
 
 The `open` attribute allows the Select to be opened programmatically.
 
+<vwc-note connotation="warning" headline="Stacking Context">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
+
+Select component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements. If needed a `z-index` value can be set on the host.
+
+</vwc-note>
+
 ```html preview 270px
 <vwc-select open label="Title" placeholder="Select an option">
 	<vwc-option value="mr" text="Mr"></vwc-option>
@@ -137,16 +154,6 @@ The `open` attribute allows the Select to be opened programmatically.
 	<vwc-option value="ms" text="Ms"></vwc-option>
 </vwc-select>
 ```
-
-<br /><br />
-
-<vwc-note connotation="warning" icon="warning-line" headline="Stacking Context">
-
-Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
-
-Select component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements. If needed a `z-index` value can be set on the host.
-
-</vwc-note>
 
 ## Slots
 
@@ -262,21 +269,21 @@ Use `--select-height` to customize the `max-height` of the dropdown.
 
 <div class="table-wrapper">
 
-| Name               | Type                            | Description                                                                                                                 |
-| ------------------ | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **appearance**     | `fieldset` (default), `ghost`   | Sets the element's appearance                                                                                               |
-| **disabled**       | `boolean`                       | Sets the element's disabled state. A disabled element will not be included during form submission.                          |
-| **error-text**     | `string`                        | Sets the element's error text                                                                                               |
-| **fixed-dropdown** | `boolean`                       | Sets the position strategy of the dropdown to fixed                                                                         |
-| **helper-text**    | `string`                        | Sets the element's helper text                                                                                              |
-| **icon**           | _Enum_:<br/>`[icon-name]`       | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **label**          | `string`                        | Sets the element's label                                                                                                    |
-| **multiple**       | `boolean`                       | Sets the element to allow multiple selections                                                                               |
-| **open**           | `boolean`                       | Sets the element's menu to be open                                                                                          |
-| **placeholder**    | `string`                        | Sets the text to be displayed when no option is selected                                                                    |
-| **scale**          | `normal` (default), `condensed` | Sets the display size of the input element                                                                                  |
-| **shape**          | `rounded` (default), `pill`     | Sets the shape of the select element                                                                                        |
-| **success-text**   | `string`                        | Sets the element's success text                                                                                             |
+| Name                                   | Type                            | Description                                                                                                                 |
+| -------------------------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **appearance**                         | `fieldset` (default), `ghost`   | Sets the element's appearance                                                                                               |
+| **disabled**                           | `boolean`                       | Sets the element's disabled state. A disabled element will not be included during form submission.                          |
+| **error-text**                         | `string`                        | Sets the element's error text                                                                                               |
+| **fixed-dropdown**                     | `boolean`                       | Sets the position strategy of the dropdown to fixed                                                                         |
+| **helper-text**                        | `string`                        | Sets the element's helper text                                                                                              |
+| _(deprecated as of 05/25)_<br>**icon** | _Enum_:<br/>`[icon-name]`       | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **label**                              | `string`                        | Sets the element's label                                                                                                    |
+| **multiple**                           | `boolean`                       | Sets the element to allow multiple selections                                                                               |
+| **open**                               | `boolean`                       | Sets the element's menu to be open                                                                                          |
+| **placeholder**                        | `string`                        | Sets the text to be displayed when no option is selected                                                                    |
+| **scale**                              | `normal` (default), `condensed` | Sets the display size of the input element                                                                                  |
+| **shape**                              | `rounded` (default), `pill`     | Sets the shape of the select element                                                                                        |
+| **success-text**                       | `string`                        | Sets the element's success text                                                                                             |
 
 </div>
 

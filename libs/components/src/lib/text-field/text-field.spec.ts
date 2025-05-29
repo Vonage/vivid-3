@@ -8,6 +8,12 @@ import {
 import { Icon } from '../icon/icon';
 import { Size } from '../enums';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
+import {
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplaySuccessTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { TextField, TextFieldType } from './text-field';
 import '.';
 
@@ -143,39 +149,79 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('char-count', function () {
-		it('should render char-count if attribute char-count and max-length are set', async function () {
+		beforeEach(() => {
 			element.charCount = true;
+			vi.useFakeTimers();
+		});
+
+		afterEach(() => vi.useRealTimers());
+
+		it('should render char-count if attribute char-count and max-length are set', async function () {
 			element.maxlength = 20;
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.char-count')).toBeTruthy();
 		});
 
 		it('should remove char count if max-length is not set', async function () {
-			element.charCount = true;
 			element.toggleAttribute('max-length', false);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.char-count')).toBeNull();
 		});
 
 		it('should render count with 0 if value is not set', async function () {
-			element.charCount = true;
 			element.maxlength = 20;
-			const expectedString = '0 / 20';
+
 			await elementUpdated(element);
+
+			const expectedString = '0 / 20';
+			const expectedDescription = 'You can enter up to 20 characters';
+
 			expect(
-				element.shadowRoot?.querySelector('.char-count')?.textContent?.trim()
+				element.shadowRoot
+					?.querySelector('.char-count>span:first-of-type')
+					?.textContent?.trim()
 			).toEqual(expectedString);
+			expect(
+				element.shadowRoot
+					?.querySelector('.char-count #char-count-description')
+					?.textContent?.trim()
+			).toEqual(expectedDescription);
 		});
 
 		it('should render count according to value and max', async function () {
-			element.charCount = true;
 			element.maxlength = 20;
 			element.value = '12345';
-			const expectedString = '5 / 20';
+
 			await elementUpdated(element);
+			const expectedString = '5 / 20';
+
 			expect(
-				element.shadowRoot?.querySelector('.char-count')?.textContent?.trim()
+				element.shadowRoot
+					?.querySelector('.char-count>span')
+					?.textContent?.trim()
 			).toEqual(expectedString);
+		});
+
+		it('should update screen reader text with debounce', async function () {
+			element.maxlength = 20;
+			element.value = '12345';
+
+			await elementUpdated(element);
+
+			const spyClearTimeout = vi.spyOn(globalThis, 'clearTimeout');
+
+			element._updateCharCountRemaining();
+			vi.advanceTimersByTime(1000);
+
+			const expectedMessage = 'You have 15 characters remaining';
+			expect(
+				element.shadowRoot
+					?.querySelector('.char-count #char-count-remaining')
+					?.textContent?.trim()
+			).toEqual(expectedMessage);
+
+			expect(spyClearTimeout).toHaveBeenCalled();
+			spyClearTimeout.mockRestore();
 		});
 	});
 
@@ -513,48 +559,10 @@ describe('vwc-text-field', () => {
 
 	describe('errorText', function () {
 		const forcedErrorMessage = 'BAD!';
-
-		it('should force the input in custom error mode', async function () {
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			expect(element.validationMessage).toBe(forcedErrorMessage);
-			expect(element.validity.valid).toBeFalsy();
-		});
-
 		it('should add the error class', async function () {
 			element.errorText = forcedErrorMessage;
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('error')).toEqual(true);
-		});
-
-		it('should display the given error message', async function () {
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			const errorElement = element.shadowRoot?.querySelector('.error-message');
-			expect(errorElement).toBeDefined();
-		});
-
-		it('should replace/restore the current error state, if any, when set/removed', async function () {
-			element.pattern = '123';
-			element.value = 'abc';
-			setToBlurred();
-			await elementUpdated(element);
-
-			const originalValidationMessage = element.validationMessage;
-
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			const validationMessageWithErrorText = element.validationMessage;
-
-			element.errorText = '';
-			await elementUpdated(element);
-			const validationMessageAfterErrorTextRemove = element.validationMessage;
-
-			expect(originalValidationMessage).not.toBe('');
-			expect(validationMessageWithErrorText).toBe(forcedErrorMessage);
-			expect(validationMessageAfterErrorTextRemove).toBe(
-				originalValidationMessage
-			);
 		});
 	});
 
@@ -667,65 +675,6 @@ describe('vwc-text-field', () => {
 		});
 	});
 
-	describe('accessible helper text', function () {
-		function getAccessibleDescription() {
-			const describedBy = element
-				.querySelector('input[slot="_control"]')!
-				.getAttribute('aria-describedby');
-			const describedByTarget = element.querySelector(
-				`#${describedBy}`
-			) as HTMLElement;
-			return describedByTarget.innerText.trim();
-		}
-
-		it('should use helperText value as the accessible description', async () => {
-			element.helperText = 'Helper text';
-			await elementUpdated(element);
-			await elementUpdated(element);
-			await elementUpdated(element);
-
-			expect(getAccessibleDescription()).toBe('Helper text');
-		});
-
-		it('should use slotted helper-text as the accessible description, joining text from multiple slotted elements', async () => {
-			const slotted1 = document.createElement('div');
-			slotted1.slot = 'helper-text';
-			slotted1.innerText = 'slotted1';
-			const slotted2 = document.createElement('div');
-			slotted2.slot = 'helper-text';
-			slotted2.innerText = 'slotted2';
-
-			element.appendChild(slotted1);
-			element.appendChild(slotted2);
-			await elementUpdated(element);
-
-			expect(getAccessibleDescription()).toBe('slotted1 slotted2');
-		});
-
-		it('should update its accessible description when slotted helper-text changes', async () => {
-			const slotted = document.createElement('div');
-			slotted.slot = 'helper-text';
-			slotted.innerText = 'initial';
-			element.appendChild(slotted);
-			await elementUpdated(element);
-
-			slotted.innerText = 'updated';
-			await elementUpdated(element);
-
-			expect(getAccessibleDescription()).toBe('updated');
-		});
-
-		it('should handle setting helper text while unconnected', () => {
-			const unconnectedElement = document.createElement(
-				COMPONENT_TAG
-			) as TextField;
-
-			expect(
-				() => (unconnectedElement.helperText = 'Helper text')
-			).not.toThrow();
-		});
-	});
-
 	describe('in environments without adoptedStyleSheets', () => {
 		const adoptedStyleSheetsDescriptor = Object.getOwnPropertyDescriptor(
 			document,
@@ -760,6 +709,25 @@ describe('vwc-text-field', () => {
 			// eslint-disable-next-line compat/compat
 			expect(document.adoptedStyleSheets.length).toBe(1);
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldDisplayHelperTextFeedback(
+			() => element,
+			() => getInput()
+		);
+		itShouldDisplaySuccessTextFeedback(
+			() => element,
+			() => getInput()
+		);
+		itShouldDisplayErrorTextFeedback(
+			() => element,
+			() => getInput()
+		);
+		itShouldDisplayValidationErrorFeedback(
+			() => element,
+			() => getInput()
+		);
 	});
 
 	describe('ARIA delegation', function () {

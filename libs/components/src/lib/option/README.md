@@ -56,36 +56,20 @@ The `label` attribute can be used xsto display different text in the parent elem
 In the example below, the international dialing code (`label`) is displayed when selected, but the country name (`text`) is used in the option list.
 
 ```html preview 270px
-<vwc-select
-	label="Country code"
-	icon="flag-united-states"
-	class="country-code"
-	id="country-code"
->
-	<vwc-option
-		label="+1"
-		value="1"
-		text="United States"
-		icon="flag-united-states"
-	></vwc-option>
-	<vwc-option
-		label="+44"
-		value="44"
-		text="United Kingdom"
-		icon="flag-united-kingdom"
-	></vwc-option>
-	<vwc-option
-		label="+49"
-		value="49"
-		text="Germany"
-		icon="flag-germany"
-	></vwc-option>
-	<vwc-option
-		label="+355"
-		value="355"
-		text="Albania"
-		icon="flag-albania"
-	></vwc-option>
+<vwc-select label="Country code" class="country-code" id="country-code">
+	<vwc-icon slot="icon" name="flag-united-states"></vwc-icon>
+	<vwc-option label="+1" value="1" text="United States">
+		<vwc-icon slot="tag-icon" name="flag-united-states"></vwc-icon>
+	</vwc-option>
+	<vwc-option label="+44" value="44" text="United Kingdom">
+		<vwc-icon slot="tag-icon" name="flag-united-kingdom"></vwc-icon>
+	</vwc-option>
+	<vwc-option label="+49" value="49" text="Germany">
+		<vwc-icon slot="tag-icon" name="flag-germany"></vwc-icon>
+	</vwc-option>
+	<vwc-option label="+355" value="355" text="Albania">
+		<vwc-icon slot="tag-icon" name="flag-albania"></vwc-icon>
+	</vwc-option>
 </vwc-select>
 
 <script>
@@ -116,6 +100,7 @@ If set, the `icon` attribute is ignored.
 			slot="icon"
 			name="check-circle-solid"
 			connotation="success"
+			label="Selected"
 		></vwc-icon>
 	</vwc-option>
 </div>
@@ -145,16 +130,16 @@ If the option is represented as a tag in a [Searchable Select](/components/searc
 
 <div class="table-wrapper">
 
-| Name               | Type                      | Description                                                                                                                 |
-| ------------------ | ------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **disabled**       | `boolean`                 | Sets the option to be disabled                                                                                              |
-| **icon**           | _Enum_:<br/>`[icon-name]` | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **label**          | `string`                  | Text to be displayed instead of `text` when the option is selected                                                          |
-| **selected**       | `boolean`                 | Sets the option to be selected                                                                                              |
-| **text**           | `string`                  | Sets the option's text                                                                                                      |
-| **value**          | `string`                  | Value to be submited as part of the form data                                                                               |
-| **matchedText**    | `string`                  | Text to highlighted as matching a search query                                                                              |
-| **tagConnotation** | `accent` (default), `cta` | When displayed as a tag, the connotation of the tag                                                                         |
+| Name                                   | Type                      | Description                                                                                                                 |
+| -------------------------------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **disabled**                           | `boolean`                 | Sets the option to be disabled                                                                                              |
+| _(deprecated as of 05/25)_<br>**icon** | _Enum_:<br/>`[icon-name]` | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **label**                              | `string`                  | Text to be displayed instead of `text` when the option is selected                                                          |
+| **selected**                           | `boolean`                 | Sets the option to be selected                                                                                              |
+| **text**                               | `string`                  | Sets the option's text                                                                                                      |
+| **value**                              | `string`                  | Value to be submited as part of the form data                                                                               |
+| **matchedText**                        | `string`                  | Text to highlighted as matching a search query                                                                              |
+| **tagConnotation**                     | `accent` (default), `cta` | When displayed as a tag, the connotation of the tag                                                                         |
 
 </div>
 

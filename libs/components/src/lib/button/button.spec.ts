@@ -150,7 +150,7 @@ describe('vwc-button', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector('.control');
+			const control = element.shadowRoot?.querySelector('.control .text');
 			expect(control?.textContent?.trim()).toEqual(label);
 		});
 	});
@@ -370,7 +370,6 @@ describe('vwc-button', () => {
 					'ariaHidden',
 					'ariaInvalid',
 					'ariaKeyShortcuts',
-					'ariaLabel',
 					'ariaLive',
 					'ariaPressed',
 					'ariaRelevant',
@@ -383,6 +382,29 @@ describe('vwc-button', () => {
 			beforeEach(async () => {
 				element.href = '#';
 				await elementUpdated(element);
+			});
+
+			it('should render a button with href attribute as anchor element', async function () {
+				expect(getControlElement(element)?.tagName).toEqual('A');
+			});
+
+			describe.each([
+				'href',
+				'hreflang',
+				'download',
+				'ping',
+				'referrerpolicy',
+				'rel',
+				'target',
+			] as const)('%s attribute', (attribute) => {
+				it('should be forwarded to the anchor element', async () => {
+					const text = 'link';
+					await setProperty(element, attribute, text);
+
+					expect(
+						element.shadowRoot?.querySelector('a')?.getAttribute(attribute)
+					).toEqual(text);
+				});
 			});
 
 			itShouldDelegateAriaAttributes(
@@ -398,7 +420,6 @@ describe('vwc-button', () => {
 					'ariaHidden',
 					'ariaInvalid',
 					'ariaKeyShortcuts',
-					'ariaLabel',
 					'ariaLive',
 					'ariaRelevant',
 					'ariaRoleDescription',

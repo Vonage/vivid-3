@@ -1,6 +1,8 @@
 import { configureAxe } from 'vitest-axe';
 
-export const elementUpdated = async (element: Element | HTMLElement) => {
+export const elementUpdated = async <T extends Element | HTMLElement>(
+	element: T
+) => {
 	return new Promise((resolve) =>
 		requestAnimationFrame(() => resolve(element))
 	);
@@ -53,3 +55,4 @@ export const axe = configureAxe({
 export * from './form-association';
 export * from './delegatesFocusPolyfill';
 export * from './active-element';
+export * from './shadow-roots';

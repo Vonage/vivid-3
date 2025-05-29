@@ -2,9 +2,13 @@
 
 ```html preview
 <vwc-action-group appearance="fieldset">
-	<vwc-button icon="transfer-line"></vwc-button>
+	<vwc-button>
+		<vwc-icon slot="icon" name="transfer-line"></vwc-icon>
+	</vwc-button>
 	<vwc-divider orientation="vertical"></vwc-divider>
-	<vwc-button icon="compose-line"></vwc-button>
+	<vwc-button>
+		<vwc-icon slot="icon" name="compose-line"></vwc-icon>
+	</vwc-button>
 </vwc-action-group>
 ```
 

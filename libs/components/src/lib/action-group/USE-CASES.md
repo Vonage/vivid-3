@@ -4,9 +4,13 @@ Use [Divider](/components/divider/) for adding separator between the action elem
 
 ```html preview
 <vwc-action-group appearance="fieldset">
-	<vwc-button icon="reply-line"></vwc-button>
+	<vwc-button aria-label="Reply">
+		<vwc-icon slot="icon" name="reply-line"></vwc-icon>
+	</vwc-button>
 	<vwc-divider orientation="vertical"></vwc-divider>
-	<vwc-button icon="compose-line"></vwc-button>
+	<vwc-button aria-label="New message">
+		<vwc-icon slot="icon" name="compose-line"></vwc-icon>
+	</vwc-button>
 </vwc-action-group>
 ```
 
@@ -14,23 +18,20 @@ Use [Divider](/components/divider/) for adding separator between the action elem
 
 ```html preview
 <vwc-action-group role="region" aria-label="Text Alignment">
-	<vwc-button
-		icon="align-left-line"
-		aria-label="Text Align Left"
-		onclick="onClick(event)"
-	></vwc-button>
+	<vwc-button aria-label="Text Align Left" onclick="onClick(event)">
+		<vwc-icon slot="icon" name="align-left-line"></vwc-icon>
+	</vwc-button>
 	<vwc-button
 		aria-pressed="true"
-		icon="align-center-line"
 		aria-label="Text Align Center"
 		appearance="filled"
 		onclick="onClick(event)"
-	></vwc-button>
-	<vwc-button
-		icon="align-right-line"
-		aria-label="Text Align Right"
-		onclick="onClick(event)"
-	></vwc-button>
+	>
+		<vwc-icon slot="icon" name="align-center-line"></vwc-icon>
+	</vwc-button>
+	<vwc-button aria-label="Text Align Right" onclick="onClick(event)">
+		<vwc-icon slot="icon" name="align-right-line"></vwc-icon>
+	</vwc-button>
 </vwc-action-group>
 
 <script>
@@ -48,20 +49,17 @@ Use [Divider](/components/divider/) for adding separator between the action elem
 
 ```html preview
 <vwc-action-group shape="pill">
-	<vwc-button
-		label="Action"
-		appearance="ghost"
-		icon="chevron-down-solid"
-		icon-trailing
-		shape="pill"
-	></vwc-button>
+	<vwc-button label="Action" appearance="ghost" icon-trailing shape="pill">
+		<vwc-icon slot="icon" name="chevron-down-solid"></vwc-icon>
+	</vwc-button>
 	<vwc-divider orientation="vertical"></vwc-divider>
 	<vwc-text-field
-		icon="search-line"
 		placeholder="Search..."
 		appearance="ghost"
 		shape="pill"
 		style="min-width: 160px;"
-	></vwc-text-field>
+	>
+		<vwc-icon slot="icon" name="search-line"></vwc-icon>
+	</vwc-text-field>
 </vwc-action-group>
 ```

@@ -188,6 +188,25 @@ const deDE: Locale = {
 		underline: 'Unterstrichen',
 		strikethrough: 'Durchgestrichen',
 		monospace: 'Monospace',
+		dragAndDropFilesHere: 'Dateien hierher ziehen & ablegen',
+	},
+	button: {
+		pendingLabel: 'Laden...',
+	},
+	feedbackMessage: {
+		errorIconText: 'Fehler:',
+		successIconText: 'Erfolg:',
+	},
+	charCount: {
+		charactersLimitMessage: /* istanbul ignore next */ (limit: number) =>
+			`Sie können bis zu ${limit} Zeichen eingeben`,
+		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
+			`Du hast noch ${total} Zeichen übrig`,
+	},
+	dataGrid: {
+		cell: {
+			selected: 'Ausgewählt',
+		},
 	},
 };
 

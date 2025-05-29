@@ -15,6 +15,11 @@ import {
 import { setLocale } from '../../shared/localization';
 import type { Button } from '../button/button';
 import { Size } from '../enums';
+import {
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { FilePicker } from './file-picker';
 
 const COMPONENT_TAG = 'vwc-file-picker';
@@ -60,9 +65,6 @@ describe('vwc-file-picker', () => {
 
 	afterEach(() => {
 		element.remove();
-	});
-
-	afterAll(() => {
 		setLocale(enUS);
 	});
 
@@ -602,6 +604,12 @@ describe('vwc-file-picker', () => {
 		}
 	);
 
+	describe('feedback messages', () => {
+		itShouldDisplayHelperTextFeedback(() => element);
+		itShouldDisplayErrorTextFeedback(() => element);
+		itShouldDisplayValidationErrorFeedback(() => element);
+	});
+
 	describe('ARIA delegation', () => {
 		itShouldDelegateAriaAttributes(
 			() => element,
@@ -637,7 +645,7 @@ describe('form associated vwc-file-picker', function () {
 
 	function getFormAssociatedErrorMessage(element: FilePicker) {
 		return element.shadowRoot
-			?.querySelector('.message.error-message')
+			?.querySelector('vwc-feedback-message')
 			?.textContent?.trim();
 	}
 
@@ -690,7 +698,7 @@ describe('form associated vwc-file-picker', function () {
 		await elementUpdated(element);
 
 		// Check that validation message is cleared
-		expect(element.proxy.validationMessage).toBe('');
+		expect(getFormAssociatedErrorMessage(element)).toBe('');
 		expect(submitHandler).toHaveBeenCalledTimes(1);
 	});
 

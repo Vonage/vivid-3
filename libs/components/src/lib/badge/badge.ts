@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
-import type { Appearance, Connotation, Shape } from '../enums.js';
+import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 
@@ -40,9 +40,16 @@ export type BadgeAppearance = ExtractFromEnum<
 export type BadgeShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
+ * Types of badge size.
+ *
+ * @public
+ */
+export type BadgeSize = ExtractFromEnum<Size, Size.Normal | Size.Expanded>;
+
+/**
  * @public
  * @component badge
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  */
 export class Badge extends AffixIconWithTrailing(VividElement) {
 	/**
@@ -62,6 +69,15 @@ export class Badge extends AffixIconWithTrailing(VividElement) {
 	 * HTML Attribute: shape
 	 */
 	@attr shape?: BadgeShape;
+
+	/**
+	 * The size the badge should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
+	@attr size?: BadgeSize;
 
 	/**
 	 * The appearance the badge should have.

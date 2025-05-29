@@ -42,6 +42,60 @@ registerCard('your-prefix');
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Clickable Cards
+
+Card component supports two **clickable** modes:
+
+### Card as a Link
+
+Use the `href` attribute to change the card wrapper to a link. When doing so, all of the native attributes of [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) are supported, including `target`.
+
+```html preview
+<vwc-card
+	headline="Vivid Card as a Link"
+	subtitle="Clicking on this card will navigate you to the documentation homepage"
+	href="https://vivid.deno.dev"
+	target="_blank"
+>
+</vwc-card>
+```
+
+<vwc-note connotation="information" headline="Usage With Vue Router">
+	<vwc-icon slot="icon" name="vue-color"></vwc-icon>
+
+See [Client-Side Navigation](/getting-started/vue/#client-side-navigation) for more information on how to integrate with Vue Router.
+
+</vwc-note>
+
+### Card as a Button
+
+Setting the `clickable-card` attribute switches the card wrapper to a `<button>`, allowing you to trigger programmatic actions e.g. using the `click` event.
+
+```html preview
+<vwc-card
+	headline="Vivid Card as a Button"
+	subtitle="Clicking on this card will trigger displaying its headline as an alert"
+	type="button"
+	clickable-card
+	onclick="onClick(event)"
+>
+</vwc-card>
+
+<script>
+	function onClick(event) {
+		const headline = event.currentTarget.headline;
+		alert(headline);
+	}
+</script>
+```
+
+<vwc-note connotation="warning" headline="Do not nest any interactive elements within clickable cards">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+The HTML specification does not allow one interactive element to be nested within another. Therefore, you should not use any links or buttons inside slots when using the `href` or `clickable-card` attributes.
+
+</vwc-note>
+
 ## Slots
 
 ### Graphic Slot
@@ -98,12 +152,9 @@ The meta slot is for action content in the card header.
 >
 	<div slot="meta">
 		<vwc-menu aria-label="Card options" placement="bottom-start" trigger="auto">
-			<vwc-button
-				slot="anchor"
-				icon="more-vertical-line"
-				aria-label="Open menu"
-				appearance="outlined"
-			></vwc-button>
+			<vwc-button slot="anchor" aria-label="Open menu" appearance="outlined">
+				<vwc-icon slot="icon" name="more-vertical-line"></vwc-icon>
+			</vwc-button>
 			<vwc-menu-item text="save card"></vwc-menu-item>
 			<vwc-menu-item text="remove card"></vwc-menu-item>
 		</vwc-menu>
@@ -124,11 +175,13 @@ By default - items inside footer slot are aligned to the end.
 >
 	<vwc-button
 		slot="footer"
-		icon="arrow-bold-right-line"
 		shape="pill"
 		label="Action"
 		appearance="outlined"
-	></vwc-button>
+		icon-trailing
+	>
+		<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
+	</vwc-button>
 </vwc-card>
 ```
 
@@ -192,14 +245,39 @@ The number of lines is controlled by css variable `--subtitle-line-clamp`.
 
 <div class="table-wrapper">
 
-| Name           | Type                                      | Description                   |
-| -------------- | ----------------------------------------- | ----------------------------- |
-| **appearance** | `elevated` (default), `outlined`, `ghost` | Sets the element's appearance |
-| **elevation**  | `2`, `4` (default), `8`, `12`, `16`, `24` | Sets the element's elevation  |
-| **headline**   | `string`                                  | Sets the element's headline   |
-| **icon**       | `string`                                  | Sets the element's icon       |
-| **subtitle**   | `string`                                  | Sets the element's subtitle   |
-| **text**       | `string`                                  | Sets the element's text       |
+| Name               | Type                                                      | Description                                          |
+| ------------------ | --------------------------------------------------------- | ---------------------------------------------------- |
+| **appearance**     | `elevated` (default), `outlined`, `ghost`                 | Sets the element's appearance.                       |
+| **elevation**      | `2`, `4` (default), `8`, `12`, `16`, `24`                 | Sets the element's elevation.                        |
+| **headline**       | `string`                                                  | Sets the element's headline.                         |
+| **icon**           | `string`                                                  | Sets the element's icon.                             |
+| **subtitle**       | `string`                                                  | Sets the element's subtitle.                         |
+| **text**           | `string`                                                  | Sets the element's text.                             |
+| **clickable-card** | `boolean`                                                 | Indicates whether card should be a `<button>`.       |
+| **href**           | `string`                                                  | Sets the element's href, changes card tag to `<a>` . |
+| **download**       | `string`                                                  | Sets the element's download.                         |
+| **hreflang**       | `string`                                                  | Sets the element's hreflang.                         |
+| **ping**           | `string`                                                  | Sets the element's ping.                             |
+| **referrerpolicy** | `string`                                                  | Sets the element's referrerpolicy.                   |
+| **rel**            | `string`                                                  | Sets the element's rel.                              |
+| **target**         | _Enum_:<br/>`_self`<br/>`_blank`<br/>`_parent`<br/>`_top` | Sets the target's rel.                               |
+
+</div>
+
+### Events
+
+The following events are available when the `clickable-card` attribute is set:
+
+<div class="table-wrapper">
+
+| Name        | Event Type      | Description                                                                                                                                                |
+| ----------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **click**   | `MouseEvent`    | Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element. |
+| **focus**   | `FocusEvent`    | Fires when the element receives focus.                                                                                                                     |
+| **blur**    | `FocusEvent`    | Fires when the element loses focus.                                                                                                                        |
+| **keydown** | `KeyboardEvent` | Fires when a key is pressed.                                                                                                                               |
+| **keyup**   | `KeyboardEvent` | Fires when a key is released.                                                                                                                              |
+| **input**   | `Event`         | Fires when the value of an element has been changed.                                                                                                       |
 
 </div>
 

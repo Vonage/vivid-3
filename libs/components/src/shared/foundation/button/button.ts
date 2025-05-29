@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
-import { attr } from '@microsoft/fast-element';
+import { attr, DOM } from '@microsoft/fast-element';
 import { DelegatesAria } from '../../aria/delegates-aria';
 import { FormAssociatedButton } from './button.form-associated';
 
@@ -160,6 +160,12 @@ export class VividFoundationButton extends DelegatesAria(FormAssociatedButton) {
 
 		this.proxy.setAttribute('type', this.type);
 		this.handleUnsupportedDelegatesFocus();
+
+		if (this.autofocus) {
+			DOM.queueUpdate(() => {
+				this.focus();
+			});
+		}
 
 		const elements = Array.from(this.control.children) as HTMLSpanElement[];
 		if (elements) {

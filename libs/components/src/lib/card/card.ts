@@ -1,11 +1,11 @@
 import { attr, observable } from '@microsoft/fast-element';
-
-import type { Appearance } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { Linkable } from '../../shared/patterns/linkable';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import type { Appearance } from '../enums.js';
 
 /**
- * Types of avatar appearance.
+ * Types of card appearance.
  *
  * @public
  */
@@ -23,7 +23,8 @@ export type CardAppearance = ExtractFromEnum<
  * @slot footer - The footer slot is for content in the card footer.
  * @slot main - Assign nodes to main slot to fully override a card's predefined flow and style with your own.
  */
-export class Card extends VividElement {
+
+export class Card extends Linkable(VividElement) {
 	/**
 	 * The appearance the card should have.
 	 *
@@ -70,6 +71,17 @@ export class Card extends VividElement {
 	 * @public
 	 */
 	@attr elevation?: 0 | 2 | 4 | 8 | 12 | 16 | 24;
+
+	/**
+	 * Indicates whether card should be a clickable <button> element.
+	 *
+	 * @public
+	 */
+	@attr({
+		mode: 'boolean',
+		attribute: 'clickable-card',
+	})
+	clickableCard = false;
 
 	/**
 	 *

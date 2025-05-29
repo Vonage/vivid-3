@@ -15,6 +15,10 @@ import type { SearchableSelectLocale } from '../../lib/searchable-select/locale'
 import type { PickerFieldLocale } from '../picker-field/locale';
 import type { DateTimePickerLocale } from '../../lib/date-time-picker/locale';
 import type { RichTextEditorLocale } from '../../lib/rich-text-editor/locale';
+import type { ButtonLocale } from '../../lib/button/locale';
+import type { FeedbackMessageLocale } from '../feedback/locale';
+import type { CharCountLocale } from '../patterns/char-count/locale';
+import type { DataGridLocale } from '../../lib/data-grid/locale';
 
 export interface Locale {
 	lang: string;
@@ -38,4 +42,8 @@ export interface Locale {
 	tab: TabLocale;
 	searchableSelect: SearchableSelectLocale;
 	richTextEditor: RichTextEditorLocale;
+	button: ButtonLocale;
+	feedbackMessage: FeedbackMessageLocale;
+	charCount: CharCountLocale;
+	dataGrid: DataGridLocale;
 }

@@ -341,7 +341,8 @@
 
 ## Icons
 
-<vwc-note connotation="information" headline="Figma file" icon="info-solid">
+<vwc-note connotation="information" headline="Figma file">
+	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
 
 The [icon-only button](/link/to/figma) is a separate component in Figma.
 
@@ -361,27 +362,24 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 <div class="container">
 	<vwc-action-group role="region" aria-label="Text Alignment">
 		<vwc-tooltip text="Left align" placement="bottom-start">
-			<vwc-button
-				icon="align-left-line"
-				onclick="onClick(event)"
-				slot="anchor"
-			></vwc-button>
+			<vwc-button onclick="onClick(event)" slot="anchor">
+				<vwc-icon slot="icon" name="align-left-line"></vwc-icon>
+			</vwc-button>
 		</vwc-tooltip>
 		<vwc-tooltip text="Center">
 			<vwc-button
 				aria-pressed="true"
 				slot="anchor"
-				icon="align-center-line"
 				appearance="filled"
 				onclick="onClick(event)"
-			></vwc-button>
+			>
+				<vwc-icon slot="icon" name="align-center-line"></vwc-icon>
+			</vwc-button>
 		</vwc-tooltip>
 		<vwc-tooltip text="Right align" placement="bottom-end">
-			<vwc-button
-				icon="align-right-line"
-				onclick="onClick(event)"
-				slot="anchor"
-			></vwc-button>
+			<vwc-button onclick="onClick(event)" slot="anchor">
+				<vwc-icon slot="icon" name="align-right-line"></vwc-icon>
+			</vwc-button>
 		</vwc-tooltip>
 	</vwc-action-group>
 </div>
@@ -412,12 +410,12 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 
 ```html preview center example 72px
 <div class="container">
-	<vwc-button icon="export-line" label="Export"></vwc-button>
-	<vwc-button
-		icon="chevron-right-line"
-		label="Continue"
-		icon-trailing
-	></vwc-button>
+	<vwc-button label="Export">
+		<vwc-icon slot="icon" name="export-line"></vwc-icon>
+	</vwc-button>
+	<vwc-button label="Continue" icon-trailing>
+		<vwc-icon slot="icon" name="chevron-right-line"></vwc-icon>
+	</vwc-button>
 </div>
 
 <style>
@@ -434,8 +432,12 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 
 ```html preview center example 72px
 <div class="container">
-	<vwc-button icon="chevron-right-line" label="See comments"></vwc-button>
-	<vwc-button icon="save-line" label="Save" icon-trailing></vwc-button>
+	<vwc-button label="See comments">
+		<vwc-icon slot="icon" name="chevron-right-line"></vwc-icon>
+	</vwc-button>
+	<vwc-button label="Save" icon-trailing>
+		<vwc-icon slot="icon" name="save-line"></vwc-icon>
+	</vwc-button>
 </div>
 
 <style>
@@ -481,19 +483,17 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 		<vwc-data-grid-row>
 			<vwc-data-grid-cell>Joe</vwc-data-grid-cell>
 			<vwc-data-grid-cell class="controls">
+				<vwc-button appearance="outlined" size="condensed" aria-label="Edit">
+					<vwc-icon slot="icon" name="edit-line"></vwc-icon>
+				</vwc-button>
 				<vwc-button
 					appearance="outlined"
 					size="condensed"
-					icon="edit-line"
-					aria-label="Edit"
-				></vwc-button>
-				<vwc-button
-					appearance="outlined"
-					size="condensed"
-					icon="delete-line"
 					aria-label="Delete"
 					connotation="alert"
-				></vwc-button>
+				>
+					<vwc-icon slot="icon" name="delete-line"></vwc-icon>
+				</vwc-button>
 			</vwc-data-grid-cell>
 		</vwc-data-grid-row>
 	</vwc-data-grid>
@@ -553,10 +553,10 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 <vwc-dialog
 	open
 	headline="Delete appointment"
-	icon="delete-line"
 	icon-placement="side"
 	class="dialog"
 >
+	<vwc-icon slot="icon" name="delete-line"></vwc-icon>
 	<div slot="body">Are you sure you want to delete this appointment?</div>
 	<vwc-button
 		size="condensed"
@@ -590,7 +590,9 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 ```html preview example 110px
 <vwc-action-group>
 	<vwc-tooltip text="Undo" placement="bottom-start">
-		<vwc-button icon="reply-line" slot="anchor" size="condensed"></vwc-button>
+		<vwc-button slot="anchor" size="condensed">
+			<vwc slot="icon" name="reply-line"></vwc-icon>
+		</vwc-button>
 	</vwc-tooltip>
 	<vwc-button label="Copy" size="condensed"></vwc-button>
 	<vwc-button label="Paste" size="condensed"></vwc-button>
@@ -612,7 +614,9 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 ```html preview example 110px
 <div class="container">
 	<vwc-tooltip text="Undo" placement="bottom-start">
-		<vwc-button icon="reply-line" slot="anchor" size="condensed"></vwc-button>
+		<vwc-button slot="anchor" size="condensed">
+			<vwc slot="icon" name="reply-line"></vwc-icon>
+		</vwc-button>
 	</vwc-tooltip>
 	<vwc-button label="Copy" size="condensed"></vwc-button>
 	<vwc-button label="Paste" size="condensed"></vwc-button>
@@ -632,7 +636,8 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 
 ## Disabled
 
-<vwc-note connotation="warning" icon="warning-line" headline="Disabled buttons should be used with caution">
+<vwc-note connotation="warning" headline="Disabled buttons should be used with caution">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 Try to use [progressive disclosure](https://www.nngroup.com/articles/progressive-disclosure/) instead of disabled buttons.
 

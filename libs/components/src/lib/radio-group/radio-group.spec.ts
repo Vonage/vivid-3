@@ -2,9 +2,14 @@ import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
+	getControlElement,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
 import type { Radio } from '../radio/radio';
+import {
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { RadioGroup } from './radio-group';
 import '../radio';
 import '.';
@@ -41,8 +46,11 @@ describe('vwc-radio-group', () => {
 			expect(element.readOnly).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
 			expect(element.label).toBeUndefined();
+			expect(element.helperText).toBeUndefined();
+			expect(element.errorText).toBeUndefined();
 			expect(element.orientation).toEqual('horizontal');
 			expect(element.getAttribute('value')).toBeNull();
+			expect(element.slottedRadioButtons.length).toEqual(3);
 		});
 
 		it('should allow being created via createElement', () => {
@@ -58,14 +66,49 @@ describe('vwc-radio-group', () => {
 			expect(radios[1].getAttribute('tabindex')).toBe('-1');
 			expect(radios[2].getAttribute('tabindex')).toBe('-1');
 		});
+
+		it('should use fieldset with proper legend description', async () => {
+			element.label = 'test label';
+			await elementUpdated(element);
+			const fieldset = element.shadowRoot?.querySelector('fieldset');
+			const legend = fieldset?.querySelector('legend');
+
+			expect(fieldset).toBeTruthy();
+			expect(legend).toBeTruthy();
+		});
 	});
 
 	describe('label', () => {
 		it('should display a label when given one', async () => {
 			element.label = 'testlabel';
 			await elementUpdated(element);
-			const label = element.shadowRoot?.querySelector('label');
+			const label = element.shadowRoot?.getElementById('label');
 			expect(label?.textContent).toBe(element.label);
+		});
+	});
+
+	describe('error-text', () => {
+		it('should set the error-text on all slotted radio buttons', async () => {
+			element.errorText = 'error text';
+			await elementUpdated(element);
+			element.appendChild(document.createElement('vwc-radio'));
+			await elementUpdated(element);
+
+			expect(radios.every((r) => r.errorText === 'error text')).toBe(true);
+		});
+
+		it('should set aria-invalid on the control element to true when error-text is set', async () => {
+			element.errorText = '';
+			await elementUpdated(element);
+			expect(getControlElement(element)!.getAttribute('aria-invalid')).toBe(
+				'false'
+			);
+
+			element.errorText = 'test error text';
+			await elementUpdated(element);
+			expect(getControlElement(element)!.getAttribute('aria-invalid')).toBe(
+				'true'
+			);
 		});
 	});
 
@@ -111,6 +154,36 @@ describe('vwc-radio-group', () => {
 			`);
 			expect(
 				radios.every((r) => r.getAttribute('disabled') === '')
+			).toBeTruthy();
+		});
+	});
+
+	describe('required', () => {
+		it('should set all radio buttons it contains to required when set to required', async () => {
+			element.setAttribute('required', '');
+			await elementUpdated(element);
+			expect(
+				radios.every((r) => r.getAttribute('required') === '')
+			).toBeTruthy();
+		});
+
+		it('should remove required from all radio buttons it contains when required is removed', async () => {
+			element.setAttribute('required', '');
+			element.removeAttribute('required');
+			await elementUpdated(element);
+			expect(radios.every((r) => !r.hasAttribute('required'))).toBeTruthy();
+		});
+
+		it('should set required on all radio buttons it contains if required is initially set', async () => {
+			await setupFixture(`
+				<${COMPONENT_TAG} required>
+					<vwc-radio value="0" label="one"></vwc-radio>
+					<vwc-radio value="1" label="two"></vwc-radio>
+					<vwc-radio value="2" label="three"></vwc-radio>
+				</${COMPONENT_TAG}>
+			`);
+			expect(
+				radios.every((r) => r.getAttribute('required') === '')
 			).toBeTruthy();
 		});
 	});
@@ -446,11 +519,15 @@ describe('vwc-radio-group', () => {
 		it('should behave as a radio group in a form', async () => {
 			const form = document.createElement('form');
 			form.onsubmit = () => false;
+			element.parentElement!.replaceChildren(form);
 			form.appendChild(element);
-			document.body.replaceChildren(form);
 
 			element.name = 'chosenValue';
 			radios[2].checked = true;
+
+			radios[0].dispatchEvent(
+				new Event('invalid', { bubbles: true, composed: true })
+			);
 
 			const submitPromise = listenToFormSubmission(form);
 			form.requestSubmit();
@@ -458,5 +535,10 @@ describe('vwc-radio-group', () => {
 
 			expect(result.get(element.name)).toEqual('2');
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldDisplayHelperTextFeedback(() => element);
+		itShouldDisplayErrorTextFeedback(() => element);
 	});
 });

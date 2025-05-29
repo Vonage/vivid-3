@@ -38,7 +38,7 @@ const appendStyle = (css: string) => {
 	document.head.append(styleElement);
 };
 
-export const vivid3: Plugin<VividConfiguration> = {
+export const vividVue: Plugin<VividConfiguration> = {
 	install(app: App, options: VividConfiguration) {
 		const addRootClassTo = options.addRootClassTo ?? 'root';
 		switch (addRootClassTo) {
@@ -104,5 +104,10 @@ export const vivid3: Plugin<VividConfiguration> = {
 		}
 	},
 };
+
+/**
+ * @deprecated Use vividVue instead.
+ */
+export const vivid3 = vividVue;
 
 export * from './styles';

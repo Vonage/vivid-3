@@ -7,6 +7,12 @@ import {
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
+import {
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplaySuccessTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { TextArea } from './text-area';
 import '.';
 
@@ -35,7 +41,7 @@ describe('vwc-text-area', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-area', async () => {
-			expect(element.charCount).toBe(undefined);
+			expect(element.charCount).toBe(false);
 			expect(element.cols).toBe(20);
 			expect(element.dirtyValue).toBe(false);
 			expect(element.disabled).toBe(false);
@@ -83,39 +89,79 @@ describe('vwc-text-area', () => {
 	});
 
 	describe('char-count', function () {
-		it('should render char-count if attribute char-count and max-length are set', async function () {
+		beforeEach(() => {
 			element.charCount = true;
+			vi.useFakeTimers();
+		});
+
+		afterEach(() => vi.useRealTimers());
+
+		it('should render char-count if attribute char-count and max-length are set', async function () {
 			element.maxlength = 20;
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.char-count')).toBeTruthy();
 		});
 
 		it('should remove char count if max-length is not set', async function () {
-			element.charCount = true;
 			element.toggleAttribute('max-length', false);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.char-count')).toBeNull();
 		});
 
 		it('should render count with 0 if value is not set', async function () {
-			element.charCount = true;
 			element.maxlength = 20;
-			const expectedString = '0 / 20';
+
 			await elementUpdated(element);
+
+			const expectedString = '0 / 20';
+			const expectedDescription = 'You can enter up to 20 characters';
+
 			expect(
-				element.shadowRoot?.querySelector('.char-count')?.textContent?.trim()
+				element.shadowRoot
+					?.querySelector('.char-count>span:first-of-type')
+					?.textContent?.trim()
 			).toEqual(expectedString);
+			expect(
+				element.shadowRoot
+					?.querySelector('.char-count #char-count-description')
+					?.textContent?.trim()
+			).toEqual(expectedDescription);
 		});
 
 		it('should render count according to value and max', async function () {
-			element.charCount = true;
 			element.maxlength = 20;
 			element.value = '12345';
-			const expectedString = '5 / 20';
+
 			await elementUpdated(element);
+			const expectedString = '5 / 20';
+
 			expect(
-				element.shadowRoot?.querySelector('.char-count')?.textContent?.trim()
+				element.shadowRoot
+					?.querySelector('.char-count>span')
+					?.textContent?.trim()
 			).toEqual(expectedString);
+		});
+
+		it('should update screen reader text with debounce', async function () {
+			element.maxlength = 20;
+			element.value = '12345';
+
+			await elementUpdated(element);
+
+			const spyClearTimeout = vi.spyOn(globalThis, 'clearTimeout');
+
+			element._updateCharCountRemaining();
+			vi.advanceTimersByTime(1000);
+
+			const expectedMessage = 'You have 15 characters remaining';
+			expect(
+				element.shadowRoot
+					?.querySelector('.char-count #char-count-remaining')
+					?.textContent?.trim()
+			).toEqual(expectedMessage);
+
+			expect(spyClearTimeout).toHaveBeenCalled();
+			spyClearTimeout.mockRestore();
 		});
 	});
 
@@ -407,6 +453,13 @@ describe('vwc-text-area', () => {
 
 			expect(getTextarea().select).toHaveBeenCalled();
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldDisplayHelperTextFeedback(() => element);
+		itShouldDisplaySuccessTextFeedback(() => element);
+		itShouldDisplayErrorTextFeedback(() => element);
+		itShouldDisplayValidationErrorFeedback(() => element);
 	});
 
 	describe('ARIA delegation', function () {

@@ -166,7 +166,10 @@
 			"methods": [],
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -370,7 +373,10 @@
 					"name": "action-items",
 					"description": "Add action items to the Alert using this slot."
 				},
-				{ "name": "icon", "description": "Add an icon to the component." },
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				},
 				{ "name": "main", "description": "The main content of the Alert." }
 			]
 		},
@@ -627,6 +633,13 @@
 					"propertyName": "shape"
 				},
 				{
+					"name": "size",
+					"description": "The size the badge should have.",
+					"type": "'normal' | 'expanded'",
+					"attributeName": "size",
+					"propertyName": "size"
+				},
+				{
 					"name": "text",
 					"description": "Indicates the badge's text.",
 					"type": "string",
@@ -669,7 +682,10 @@
 			"vueModels": [],
 			"methods": [],
 			"slots": [
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -762,7 +778,10 @@
 					"name": "action-items",
 					"description": "Add action items to banner using this slot."
 				},
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -816,57 +835,50 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaExpanded",
-					"description": "See https://www.w3.org/WAI/PF/aria/roles#link for more information",
-					"type": "'true' | 'false' | string",
-					"attributeName": "aria-expanded",
-					"propertyName": "ariaExpanded"
-				},
-				{
 					"name": "download",
-					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "download",
 					"propertyName": "download"
 				},
 				{
 					"name": "href",
-					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "href",
 					"propertyName": "href"
 				},
 				{
 					"name": "hreflang",
-					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "hreflang",
 					"propertyName": "hreflang"
 				},
 				{
 					"name": "ping",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "ping",
 					"propertyName": "ping"
 				},
 				{
 					"name": "referrerpolicy",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "referrerpolicy",
 					"propertyName": "referrerpolicy"
 				},
 				{
 					"name": "rel",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "rel",
 					"propertyName": "rel"
 				},
 				{
 					"name": "target",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "'_self' | '_blank' | '_parent' | '_top'",
 					"attributeName": "target",
 					"propertyName": "target"
@@ -879,7 +891,7 @@
 				},
 				{
 					"name": "type",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "type",
 					"propertyName": "type"
@@ -964,7 +976,7 @@
 				},
 				{
 					"name": "download",
-					"description": "Indicates the button's download.",
+					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "download",
 					"propertyName": "download"
@@ -1020,14 +1032,14 @@
 				},
 				{
 					"name": "href",
-					"description": "Indicates the button's href.",
+					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "href",
 					"propertyName": "href"
 				},
 				{
 					"name": "hreflang",
-					"description": "Indicates the button's hreflang.",
+					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "hreflang",
 					"propertyName": "hreflang"
@@ -1075,21 +1087,21 @@
 				},
 				{
 					"name": "ping",
-					"description": "Indicates the button's ping.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "ping",
 					"propertyName": "ping"
 				},
 				{
 					"name": "referrerpolicy",
-					"description": "Indicates the button's referrerpolicy.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "referrerpolicy",
 					"propertyName": "referrerpolicy"
 				},
 				{
 					"name": "rel",
-					"description": "Indicates the button's rel.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "rel",
 					"propertyName": "rel"
@@ -1123,7 +1135,7 @@
 				},
 				{
 					"name": "target",
-					"description": "Indicates the target's rel.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "'_self' | '_blank' | '_parent' | '_top'",
 					"attributeName": "target",
 					"propertyName": "target"
@@ -1137,7 +1149,7 @@
 				},
 				{
 					"name": "type",
-					"description": "The button type.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "'submit' | 'reset' | 'button'",
 					"attributeName": "type",
 					"propertyName": "type"
@@ -1192,7 +1204,10 @@
 				}
 			],
 			"slots": [
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -1418,6 +1433,20 @@
 					"propertyName": "appearance"
 				},
 				{
+					"name": "clickableCard",
+					"description": "Indicates whether card should be a clickable <button> element.",
+					"type": "boolean",
+					"attributeName": "clickable-card",
+					"propertyName": "clickableCard"
+				},
+				{
+					"name": "download",
+					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "download",
+					"propertyName": "download"
+				},
+				{
 					"name": "elevation",
 					"description": "card elevation dp",
 					"type": "0 | 2 | 4 | 8 | 12 | 16 | 24",
@@ -1432,11 +1461,46 @@
 					"propertyName": "headline"
 				},
 				{
+					"name": "href",
+					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "href",
+					"propertyName": "href"
+				},
+				{
+					"name": "hreflang",
+					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "hreflang",
+					"propertyName": "hreflang"
+				},
+				{
 					"name": "icon",
 					"description": "card header icon\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
 					"attributeName": "icon",
 					"propertyName": "icon"
+				},
+				{
+					"name": "ping",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "ping",
+					"propertyName": "ping"
+				},
+				{
+					"name": "referrerpolicy",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "referrerpolicy",
+					"propertyName": "referrerpolicy"
+				},
+				{
+					"name": "rel",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "rel",
+					"propertyName": "rel"
 				},
 				{
 					"name": "subtitle",
@@ -1446,11 +1510,25 @@
 					"propertyName": "subtitle"
 				},
 				{
+					"name": "target",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "'_self' | '_blank' | '_parent' | '_top'",
+					"attributeName": "target",
+					"propertyName": "target"
+				},
+				{
 					"name": "text",
 					"description": "the text of the card sub-heading\naccepts string",
 					"type": "string",
 					"attributeName": "text",
 					"propertyName": "text"
+				},
+				{
+					"name": "type",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "type",
+					"propertyName": "type"
 				}
 			],
 			"events": [
@@ -1552,9 +1630,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "indeterminate",
@@ -1716,9 +1795,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -1880,7 +1960,7 @@
 				},
 				{
 					"name": "icon",
-					"description": "Slot to add an icon to the combobox control."
+					"description": "The preferred way to add an icon to the combobox control."
 				},
 				{
 					"name": "meta",
@@ -2210,6 +2290,13 @@
 					"attributeName": "error-text"
 				},
 				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
+				},
+				{
 					"name": "initialValue",
 					"description": "The initial value of the date-picker.",
 					"type": "string",
@@ -2341,6 +2428,13 @@
 					"description": "The error text for the form element.",
 					"type": "string",
 					"attributeName": "error-text"
+				},
+				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialEnd",
@@ -2513,6 +2607,13 @@
 					"attributeName": "error-text"
 				},
 				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
+				},
+				{
 					"name": "initialValue",
 					"description": "The initial value of the date-picker.",
 					"type": "string",
@@ -2669,6 +2770,13 @@
 			"description": "Base class for dial-pad",
 			"props": [
 				{
+					"name": "autofocus",
+					"description": "Indicates that this element should get focus after the page finishes loading.",
+					"type": "boolean",
+					"attributeName": "autofocus",
+					"propertyName": "autofocus"
+				},
+				{
 					"name": "callActive",
 					"description": "Indicates the active state of the dial-pad.",
 					"type": "boolean",
@@ -2805,6 +2913,12 @@
 				}
 			],
 			"methods": [
+				{
+					"name": "focus",
+					"description": "Moves focus into the diapl-pad.",
+					"args": [],
+					"returnType": "void"
+				},
 				{
 					"name": "valueChanged",
 					"args": [
@@ -3002,7 +3116,7 @@
 				},
 				{
 					"name": "role",
-					"description": "The role of the element.",
+					"description": "The role of the element. This property will be removed",
 					"type": "'separator' | 'presentation'",
 					"attributeName": "role",
 					"propertyName": "role"
@@ -3074,7 +3188,6 @@
 				},
 				{
 					"name": "iconDecoration",
-					"description": "option to a new design for the icon circle",
 					"type": "'outlined' | 'filled'",
 					"attributeName": "icon-decoration",
 					"propertyName": "iconDecoration"
@@ -3302,7 +3415,10 @@
 				}
 			],
 			"slots": [
-				{ "name": "icon", "description": "Slot to add an icon to fab." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -3340,9 +3456,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialValue",
@@ -3617,6 +3734,13 @@
 					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
+				},
+				{
+					"name": "label",
+					"description": "Provides a (screen reader only) descriptive label for the icon.",
+					"type": "string",
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "name",
@@ -3939,7 +4063,7 @@
 				{
 					"name": "role",
 					"description": "The role of the element.",
-					"type": "'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'presentation'",
+					"type": "'menuitem' | 'menuitemcheckbox' | 'checkbox' | 'menuitemradio' | 'radio' | 'presentation'",
 					"attributeName": "role",
 					"propertyName": "role"
 				},
@@ -3966,7 +4090,7 @@
 				},
 				{
 					"name": "change",
-					"description": "Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked",
+					"description": "Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `checkbox`, `menuitemradio`, `radio`, or `menuitem` is invoked",
 					"type": "CustomEvent<undefined>"
 				},
 				{
@@ -4150,7 +4274,10 @@
 			"methods": [],
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
-				{ "name": "icon", "description": "Add an icon to the component." },
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				},
 				{
 					"name": "meta",
 					"description": "A slot to add additional content to the nav disclosure."
@@ -4166,42 +4293,35 @@
 			"props": [
 				{
 					"name": "appearance",
-					"description": "The appearance Text-Anchor should have.",
+					"description": "Sets the nav item's appearance",
 					"type": "'ghost' | 'ghost-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaExpanded",
-					"description": "See https://www.w3.org/WAI/PF/aria/roles#link for more information",
-					"type": "'true' | 'false' | string",
-					"attributeName": "aria-expanded",
-					"propertyName": "ariaExpanded"
-				},
-				{
 					"name": "connotation",
-					"description": "The connotation Text-Anchor should have.",
+					"description": "Sets the connotation color of the selected nav item",
 					"type": "'accent' | 'cta'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
 				{
 					"name": "download",
-					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "download",
 					"propertyName": "download"
 				},
 				{
 					"name": "href",
-					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "href",
 					"propertyName": "href"
 				},
 				{
 					"name": "hreflang",
-					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "hreflang",
 					"propertyName": "hreflang"
@@ -4215,42 +4335,42 @@
 				},
 				{
 					"name": "ping",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "ping",
 					"propertyName": "ping"
 				},
 				{
 					"name": "referrerpolicy",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "referrerpolicy",
 					"propertyName": "referrerpolicy"
 				},
 				{
 					"name": "rel",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "rel",
 					"propertyName": "rel"
 				},
 				{
 					"name": "target",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "'_self' | '_blank' | '_parent' | '_top'",
 					"attributeName": "target",
 					"propertyName": "target"
 				},
 				{
 					"name": "text",
-					"description": "Indicates the text anchor's text.",
+					"description": "Text of the nav item",
 					"type": "string",
 					"attributeName": "text",
 					"propertyName": "text"
 				},
 				{
 					"name": "type",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "type",
 					"propertyName": "type"
@@ -4289,11 +4409,12 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{ "name": "getBodyTemplate", "args": [], "returnType": "unknown" }
-			],
+			"methods": [],
 			"slots": [
-				{ "name": "icon", "description": "Add an icon to the component." },
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				},
 				{
 					"name": "meta",
 					"description": "A slot to add additional content to the nav item."
@@ -4367,7 +4488,10 @@
 					"name": "default",
 					"description": "Any slotted content will appear below the headline."
 				},
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -4397,12 +4521,6 @@
 					"propertyName": "autofocus"
 				},
 				{
-					"name": "charCount",
-					"description": "Whether to show the character count.",
-					"type": "boolean",
-					"attributeName": "char-count"
-				},
-				{
 					"name": "decrementButtonAriaLabel",
 					"type": "string",
 					"attributeName": "decrement-button-aria-label",
@@ -4422,9 +4540,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -4752,7 +4871,10 @@
 				{ "name": "initialValueChanged", "args": [], "returnType": "void" }
 			],
 			"slots": [
-				{ "name": "icon", "description": "Slot to add an icon to the option." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -5079,6 +5201,12 @@
 					"attributeName": "disabled"
 				},
 				{
+					"name": "errorText",
+					"description": "The error text for the form element.",
+					"type": "string",
+					"attributeName": "error-text"
+				},
+				{
 					"name": "initialValue",
 					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
@@ -5087,10 +5215,9 @@
 				},
 				{
 					"name": "label",
-					"description": "Indicates the radio's label.",
+					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label",
-					"propertyName": "label"
+					"attributeName": "label"
 				},
 				{
 					"name": "name",
@@ -5176,8 +5303,21 @@
 					"propertyName": "disabled"
 				},
 				{
+					"name": "errorText",
+					"type": "string",
+					"attributeName": "error-text",
+					"propertyName": "errorText"
+				},
+				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
+				},
+				{
 					"name": "label",
-					"description": "Indicates the group's label.",
+					"description": "The label for the radio group",
 					"type": "string",
 					"attributeName": "label",
 					"propertyName": "label"
@@ -5202,6 +5342,13 @@
 					"type": "boolean",
 					"attributeName": "readonly",
 					"propertyName": "readOnly"
+				},
+				{
+					"name": "required",
+					"description": "When true, the radio group and all its radio buttons will be required",
+					"type": "boolean",
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "value",
@@ -5257,7 +5404,13 @@
 				}
 			],
 			"methods": [{ "name": "nameChanged", "args": [], "returnType": "void" }],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [
+				{ "name": "default", "description": "Default slot." },
+				{
+					"name": "helper-text",
+					"description": "Describes how to use the text-field. Alternative to the `helper-text` attribute."
+				}
+			]
 		},
 		{
 			"name": "range-slider",
@@ -5522,8 +5675,23 @@
 			],
 			"vueModels": [],
 			"methods": [
+				{
+					"name": "addInlineImage",
+					"args": [
+						{
+							"name": "imageProps",
+							"type": "{\n\t\tfile: File;\n\t\tposition?: number;\n\t\talt?: string;\n\t}"
+						}
+					],
+					"returnType": "unknown"
+				},
 				{ "name": "focus", "args": [], "returnType": "unknown" },
 				{ "name": "placeholderChanged", "args": [], "returnType": "unknown" },
+				{
+					"name": "scrollToAttachments",
+					"args": [{ "name": "additionalPixels", "type": "unknown" }],
+					"returnType": "unknown"
+				},
 				{ "name": "selectionEndChanged", "args": [], "returnType": "unknown" },
 				{
 					"name": "selectionStartChanged",
@@ -5601,9 +5769,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -5778,7 +5947,7 @@
 				},
 				{
 					"name": "icon",
-					"description": "Slot to add an icon to the control."
+					"description": "The preferred way to add an icon to the control."
 				},
 				{
 					"name": "loading-options",
@@ -5833,9 +6002,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -6007,7 +6177,7 @@
 				},
 				{
 					"name": "icon",
-					"description": "Slot to add an icon to the select control."
+					"description": "The preferred way to add an icon to the select control."
 				},
 				{
 					"name": "meta",
@@ -6031,7 +6201,6 @@
 				},
 				{
 					"name": "clickable",
-					"description": "DEPRECATED: Replaced by the clickable-box prop",
 					"type": "boolean",
 					"attributeName": "clickable",
 					"propertyName": "clickable"
@@ -6492,7 +6661,10 @@
 			"methods": [],
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -6626,12 +6798,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaSelected",
-					"type": "string",
-					"attributeName": "aria-selected",
-					"propertyName": "ariaSelected"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the tab should have.",
 					"type": "'accent' | 'cta'",
@@ -6668,7 +6834,7 @@
 				},
 				{
 					"name": "removable",
-					"description": "Indicates the tab's label.",
+					"description": "Adds a close button",
 					"type": "boolean",
 					"attributeName": "removable",
 					"propertyName": "removable"
@@ -6733,7 +6899,10 @@
 				}
 			],
 			"slots": [
-				{ "name": "icon", "description": "Slot to add an icon to tab." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -7008,7 +7177,10 @@
 				{ "name": "remove", "args": [], "returnType": "void" }
 			],
 			"slots": [
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -7072,9 +7244,10 @@
 				},
 				{
 					"name": "charCount",
-					"description": "Whether to show the character count.",
+					"description": "Use in combination with `maxlength` to display a character count.",
 					"type": "boolean",
-					"attributeName": "char-count"
+					"attributeName": "char-count",
+					"propertyName": "charCount"
 				},
 				{
 					"name": "cols",
@@ -7104,9 +7277,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialValue",
@@ -7305,9 +7479,10 @@
 				},
 				{
 					"name": "charCount",
-					"description": "Whether to show the character count.",
+					"description": "Use in combination with `maxlength` to display a character count.",
 					"type": "boolean",
-					"attributeName": "char-count"
+					"attributeName": "char-count",
+					"propertyName": "charCount"
 				},
 				{
 					"name": "disabled",
@@ -7323,9 +7498,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -7556,6 +7732,13 @@
 					"description": "The error text for the form element.",
 					"type": "string",
 					"attributeName": "error-text"
+				},
+				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialValue",
@@ -7946,7 +8129,10 @@
 				{ "name": "selectedChanged", "args": [], "returnType": "void" }
 			],
 			"slots": [
-				{ "name": "icon", "description": "Add an icon to the component." },
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				},
 				{ "name": "item", "description": "To specify a child tree item." }
 			]
 		},

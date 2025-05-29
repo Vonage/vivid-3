@@ -46,7 +46,8 @@ registerTimePicker('your-prefix');
 
 By default, the Time Picker adapts to either 12-hour or 24-hour format based on the configured locale. Use the locale switcher in the example below to see this in action. Read more on [localization in Vivid](/guides/localization/).
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+	<vwc-icon	vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
 You can override this behavior using the [clock attribute](/components/time-picker/#clock).
 

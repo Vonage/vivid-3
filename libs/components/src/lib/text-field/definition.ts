@@ -1,6 +1,8 @@
 import { iconDefinition } from '../icon/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
+import { visuallyHiddenDefinition } from '../visually-hidden/definition';
 import { TextField } from './text-field';
 import styles from './text-field.scss?inline';
 import { TextfieldTemplate as template } from './text-field.template';
@@ -14,7 +16,7 @@ export const textFieldDefinition = defineVividComponent(
 	'text-field',
 	TextField,
 	template,
-	[iconDefinition],
+	[iconDefinition, feedbackMessageDefinition, visuallyHiddenDefinition],
 	{
 		styles,
 		shadowOptions: {

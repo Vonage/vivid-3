@@ -46,7 +46,7 @@ registerBadge('your-prefix');
 ### Icon
 
 Use the `icon` slot to customise icons.  
-If set, the icon attribute is ignored.
+If set, the icon _(deprecated)_ attribute is ignored.
 
 ```html preview
 <vwc-badge text="with icon slot" appearance="filled">
@@ -64,14 +64,15 @@ If set, the icon attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name              | Description                                                                                        | Description                  |
-| ----------------- | -------------------------------------------------------------------------------------------------- | ---------------------------- |
-| **text**          | `string`                                                                                           | Sets a text on the badge     |
-| **connotation**   | Enum\_:<br/>`accent` (default), `announcement`,`alert`, `cta`, `success`, `warning`, `information` | Sets the badge connotation   |
-| **icon**          | Enum\_:<br/>`[icon-name]`                                                                          | Sets the element's icon      |
-| **icon-trailing** | `string`                                                                                           | Sets icon as trailing        |
-| **appearance**    | Enum\_:<br/>`filled` (default), `duotone`, `subtle`, `subtle-light`                                | Sets the badge appearance    |
-| **shape**         | Enum\_:<br/>`rounded` (default), `pill`                                                            | Sets the badge border-radius |
+| Name                                   | Description                                                                                        | Description                  |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------- |
+| **text**                               | `string`                                                                                           | Sets a text on the badge     |
+| **connotation**                        | Enum\_:<br/>`accent` (default), `announcement`,`alert`, `cta`, `success`, `warning`, `information` | Sets the badge connotation   |
+| _(deprecated as of 05/25)_<br>**icon** | Enum\_:<br/>`[icon-name]`                                                                          | Sets the element's icon      |
+| **icon-trailing**                      | `string`                                                                                           | Sets icon as trailing        |
+| **appearance**                         | Enum\_:<br/>`filled` (default), `duotone`, `subtle`, `subtle-light`                                | Sets the badge appearance    |
+| **shape**                              | Enum\_:<br/>`rounded` (default), `pill`                                                            | Sets the badge border-radius |
+| **size**                               | Enum\_:<br/>`normal` (default), `expanded`                                                         | Sets the badge size          |
 
 </div>
 
