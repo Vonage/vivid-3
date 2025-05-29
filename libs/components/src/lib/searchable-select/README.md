@@ -69,7 +69,7 @@ For a single select, you can control the selected value by setting the `value` a
 For multiple select, you can control the selected values by setting the `values` property.
 
 <vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
 Web components (as with all HTML elements) can only accept strings as their attributes. `values` requires an array, so it has to be set programmatically.
 
@@ -206,7 +206,7 @@ Set the `icon` slot to show an icon at the start of the input.
 If set, the `icon`_(deprecated)_ attribute is ignored.
 
 ```html preview 230px
-<vwc-searchable-select label="Country">
+<vwc-searchable-select label="Country" multiple>
 	<vwc-icon
 		slot="icon"
 		name="check-circle-solid"
@@ -217,13 +217,6 @@ If set, the `icon`_(deprecated)_ attribute is ignored.
 	<vwc-option value="DZ" text="Algeria" selected></vwc-option>
 </vwc-searchable-select>
 ```
-
-<vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
-
-The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
-
-</vwc-note>
 
 ### Meta
 

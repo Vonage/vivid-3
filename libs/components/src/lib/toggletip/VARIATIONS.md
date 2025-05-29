@@ -17,6 +17,11 @@ The `headline` attributes sets the Toggletip headline.
 
 The `placement` attribute sets the default placement of the Toggletip around its anchor element.
 
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+	<p>The Tooggletip will attempt to position itself where the <code>placement</code> attribute dictates (or the default of <code>bottom</code> if not set). If it is unable to do so, because of lack of available space on the screen, it will reposition itself to the most appropriate alternative placement.</p>
+</vwc-note>
+
 ```html preview center 400px
 <div class="grid">
 	<vwc-toggletip placement="top-start" class="grid-col-2">
@@ -111,11 +116,6 @@ The `placement` attribute sets the default placement of the Toggletip around its
 	}
 </style>
 ```
-
-<vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
-	<p>The Tooggletip will attempt to position itself where the <code>placement</code> attribute dictates (or the default of <code>bottom</code> if not set). If it is unable to do so, because of lack of available space on the screen, it will reposition itself to the most appropriate alternative placement.</p>
-</vwc-note>
 
 ## Alternate
 

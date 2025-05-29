@@ -2,6 +2,11 @@
 
 The `text` attribute sets the text content of the Tooltip.
 
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+	<p>The Tooltip itself never receives focus and is not in the tabbing order, so a tooltip can not contain interactive elements like links, inputs, or buttons.</p>
+</vwc-note>
+
 ```html preview center 150px
 <vwc-tooltip text="I'm a tooltip">
 	<vwc-button slot="anchor" shape="pill" appearance="filled">
@@ -10,14 +15,14 @@ The `text` attribute sets the text content of the Tooltip.
 </vwc-tooltip>
 ```
 
-<vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
-	<p>The Tooltip itself never receives focus and is not in the tabbing order, so a tooltip can not contain interactive elements like links, inputs, or buttons.</p>
-</vwc-note>
-
 ## Placement
 
 The `placement` attribute sets the default placement of the Tooltip around its anchor element.
+
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+	<p>The Tooltip will attempt to position itself where the <code>placement</code> attribute dictates (or the default of <code>bottom</code> if not set). If it is unable to do so, because of lack of available space on the screen, it will reposition itself to the most appropriate alternative placement.</p>
+</vwc-note>
 
 ```html preview center 400px
 <div class="grid">
@@ -102,8 +107,3 @@ The `placement` attribute sets the default placement of the Tooltip around its a
 	}
 </style>
 ```
-
-<vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
-	<p>The Tooltip will attempt to position itself where the <code>placement</code> attribute dictates (or the default of <code>bottom</code> if not set). If it is unable to do so, because of lack of available space on the screen, it will reposition itself to the most appropriate alternative placement.</p>
-</vwc-note>

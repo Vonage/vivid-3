@@ -59,7 +59,7 @@
 <docs-do>
 
 ```html preview example
-<vwc-banner text="Operation Successful!" connotation="success"> ></vwc-banner>
+<vwc-banner text="User details updated" connotation="success"> ></vwc-banner>
 ```
 
 </docs-do>
@@ -67,7 +67,7 @@
 <docs-do dont>
 
 ```html preview example
-<vwc-banner text="Operation Successful!" connotation="information">
+<vwc-banner text="User details updated" connotation="information">
 	></vwc-banner
 >
 ```
