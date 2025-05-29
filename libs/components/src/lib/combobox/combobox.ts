@@ -14,7 +14,8 @@ import type { ListboxOption } from '../option/option';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithFeedback } from '../../shared/feedback/mixins';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { FormAssociatedCombobox } from './combobox.form-associated';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
 
 /**
@@ -48,14 +49,7 @@ export type ComboboxSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  */
 @errorText
 @formElements
-export class Combobox extends WithFeedback(AffixIcon(FormAssociatedCombobox)) {
-	/**
-	 * The internal value property.
-	 *
-	 * @internal
-	 */
-	private _value = '';
-
+export class Combobox extends WithFeedback(AffixIcon(FormAssociated(Listbox))) {
 	/**
 	 * The autocomplete attribute.
 	 *
@@ -263,18 +257,10 @@ export class Combobox extends WithFeedback(AffixIcon(FormAssociatedCombobox)) {
 	}
 
 	/**
-	 * The value property.
-	 *
-	 * @public
+	 * @internal
 	 */
-	override get value() {
-		Observable.track(this, 'value');
-		return this._value;
-	}
-
-	override set value(next: string) {
-		const prev = `${this._value}`;
-
+	override valueChanged(prev: string, next: string) {
+		let nextValue = next;
 		if (this.$fastController.isConnected && this.options) {
 			const selectedIndex = this.options.findIndex(
 				(el) => el.text.toLowerCase() === next.toLowerCase()
@@ -288,14 +274,15 @@ export class Combobox extends WithFeedback(AffixIcon(FormAssociatedCombobox)) {
 					? selectedIndex
 					: this.selectedIndex;
 
-			next = this.firstSelectedOption?.text || next;
+			nextValue = this.firstSelectedOption?.text || next;
 		}
 
-		if (prev !== next) {
-			this._value = next;
-			super.valueChanged(prev, next);
-			Observable.notify(this, 'value');
+		if (next !== nextValue) {
+			this.value = nextValue;
+			return;
 		}
+
+		super.valueChanged(prev, next);
 	}
 
 	/**
@@ -645,6 +632,11 @@ export class Combobox extends WithFeedback(AffixIcon(FormAssociatedCombobox)) {
 			});
 		}
 	}
+
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
 
 	/**
 	 * Synchronize the form-associated proxy and update the value property of the element.

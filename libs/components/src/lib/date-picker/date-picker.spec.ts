@@ -34,7 +34,7 @@ describe('vwc-date-picker', () => {
 	const getDialogTitle = () => titleAction.textContent!.trim();
 
 	function typeIntoTextField(text: string) {
-		textField.currentValue = text;
+		textField.value = text;
 		textField.dispatchEvent(new InputEvent('input'));
 		textField.dispatchEvent(new InputEvent('change'));
 		textField.dispatchEvent(new Event('blur'));
@@ -119,14 +119,14 @@ describe('vwc-date-picker', () => {
 			element.value = '2021-01-21';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('01/21/2021');
+			expect(textField.value).toBe('01/21/2021');
 		});
 
 		it('should ignore an invalid value', async () => {
 			element.value = 'x';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('');
+			expect(textField.value).toBe('');
 		});
 
 		it('should update value when a user enters a valid date into the text field', async () => {
@@ -160,7 +160,7 @@ describe('vwc-date-picker', () => {
 			element.value = '';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('');
+			expect(textField.value).toBe('');
 		});
 	});
 
@@ -352,7 +352,7 @@ describe('vwc-date-picker', () => {
 			element.value = '2021-01-21';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('21.01.2021');
+			expect(textField.value).toBe('21.01.2021');
 		});
 
 		it('should update the text field when the locale changes', async () => {
@@ -362,7 +362,7 @@ describe('vwc-date-picker', () => {
 			setLocale(deDE);
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('21.01.2021');
+			expect(textField.value).toBe('21.01.2021');
 		});
 	});
 });
