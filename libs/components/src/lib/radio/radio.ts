@@ -248,6 +248,9 @@ export class Radio extends WithErrorText(
 		}
 	};
 
+	/**
+	 * @internal
+	 */
 	override validate(anchor?: HTMLElement): void {
 		super.validate(anchor);
 
