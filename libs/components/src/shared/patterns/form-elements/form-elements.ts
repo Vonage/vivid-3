@@ -1,47 +1,44 @@
 import { attr, observable } from '@microsoft/fast-element';
+import type { Constructor, MixinType } from '../../utils/mixins';
+import type { VividElement } from '../../foundation/vivid-element/vivid-element';
+import type { FormAssociatedElement } from '../../foundation/form-associated/form-associated';
 
-export interface FormElement {
-	errorValidationMessage: string;
-	label: string;
-	userValid: boolean;
-	dirtyValue: boolean;
-}
-
-export interface FormElementSuccessText {
-	successText?: string;
-}
-
-export interface ErrorText {
-	errorText: string;
-}
-
-export class FormElementSuccessText {
-	@attr({ attribute: 'success-text' }) successText?: string;
-}
-
-export function formElements<
-	T extends { new (...args: any[]): Record<string, any> }
->(constructor: T) {
-	class FormElement extends constructor {
+/**
+ * Determines when to show the error message for form associated elements.
+ */
+export const FormElement = <T extends Constructor<FormAssociatedElement>>(
+	Base: T
+) => {
+	class FormElementElement extends Base {
+		/**
+		 * The label for the form element.
+		 */
 		@attr label?: string;
 
 		/**
 		 * Will hold the error message that should currently be visible in the UI.
 		 * Note: Cannot be a getter because this.validationMessage is not observable
+		 * @internal
 		 */
 		@observable errorValidationMessage = '';
 
+		/**
+		 * @internal
+		 */
 		forceErrorDisplay = false;
+		/**
+		 * @internal
+		 */
 		hasBeenTouched = false;
 
 		constructor(...args: any[]) {
 			super(...args);
-			(this as unknown as HTMLElement).addEventListener('blur', () => {
+			this.addEventListener('blur', () => {
 				this.hasBeenTouched = true;
 				this.forceErrorDisplay = false;
 				this.validate();
 			});
-			(this as unknown as HTMLElement).addEventListener('focus', () => {
+			this.addEventListener('focus', () => {
 				this.hasBeenTouched = false;
 			});
 			this.addEventListener('invalid', () => {
@@ -49,7 +46,10 @@ export function formElements<
 			});
 		}
 
-		connectedCallback() {
+		/**
+		 * @internal
+		 */
+		override connectedCallback() {
 			super.connectedCallback();
 			this.proxy.addEventListener('invalid', this.#handleInvalidEvent);
 		}
@@ -59,12 +59,18 @@ export function formElements<
 			this.validate();
 		};
 
-		disconnectedCallback() {
+		/**
+		 * @internal
+		 */
+		override disconnectedCallback() {
 			super.disconnectedCallback();
 			this.proxy.removeEventListener('invalid', this.#handleInvalidEvent);
 		}
 
-		formResetCallback() {
+		/**
+		 * @internal
+		 */
+		override formResetCallback() {
 			this.forceErrorDisplay = false;
 
 			super.formResetCallback();
@@ -74,7 +80,10 @@ export function formElements<
 			this.validate();
 		}
 
-		validate() {
+		/**
+		 * @internal
+		 */
+		override validate() {
 			super.validate();
 
 			const shouldShowValidationError =
@@ -86,14 +95,50 @@ export function formElements<
 		}
 	}
 
-	return FormElement;
-}
+	return FormElementElement;
+};
 
-export function errorText<
-	T extends { new (...args: any[]): Record<string, any> }
->(constructor: T) {
-	class ErrorText extends constructor {
+export type FormElementElement = MixinType<typeof FormElement>;
+
+/**
+ * Mixin for elements that can display a success text.
+ */
+export const WithSuccessText = <T extends Constructor<VividElement>>(
+	Base: T
+) => {
+	class ElementWithSuccessText extends Base {
+		/**
+		 * Provides a custom success message. Any current error state will be overridden.
+		 * @public
+		 * @remarks
+		 * HTML Attribute: success-text
+		 */
+		@attr({ attribute: 'success-text' }) successText?: string;
+	}
+
+	return ElementWithSuccessText;
+};
+
+export type ElementWithSuccessText = MixinType<typeof WithSuccessText>;
+
+/**
+ * Mixin for elements that can display error text.
+ */
+export const WithErrorText = <T extends Constructor<FormElementElement>>(
+	Base: T
+) => {
+	class ElementWithErrorText extends Base {
+		/**
+		 * Provides a custom error message. Any current error state will be overridden.
+		 * @public
+		 * @remarks
+		 * HTML Attribute: error-text
+		 */
 		@attr({ attribute: 'error-text' }) errorText?: string;
+
+		/**
+		 * @internal
+		 */
 		errorTextChanged(_: string, newErrorText: string | undefined) {
 			if (newErrorText) {
 				this.#forceCustomError(newErrorText);
@@ -103,29 +148,36 @@ export function errorText<
 		}
 
 		#blockValidateCalls = false;
+		#originalValidateFn: () => void;
 
 		constructor(...args: any[]) {
 			super(...args);
-			this._validate = this.validate;
+			this.#originalValidateFn = this.validate;
 			this.validate = () => {
-				if (!this.#blockValidateCalls) this._validate();
+				if (!this.#blockValidateCalls) this.#originalValidateFn();
 			};
 		}
 
 		#forceCustomError(errorMessage: string) {
-			this.setValidity({ customError: true }, errorMessage, this.control);
+			this.setValidity(
+				{ customError: true },
+				errorMessage,
+				(this as any).control
+			);
 			this.errorValidationMessage = errorMessage;
 
 			this.#blockValidateCalls = true;
 		}
 
 		#clearCustomErrorAndRevalidate() {
-			this.setValidity({}, '', this.control);
+			this.setValidity({}, '', (this as any).control);
 			this.#blockValidateCalls = false;
 
 			this.validate();
 		}
 	}
 
-	return ErrorText;
-}
+	return ElementWithErrorText;
+};
+
+export type ElementWithErrorText = MixinType<typeof WithErrorText>;

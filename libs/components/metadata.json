@@ -1640,9 +1640,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "helperText",
@@ -1668,7 +1669,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "name",
@@ -1693,9 +1695,10 @@
 				},
 				{
 					"name": "successText",
-					"description": "The success text for the form element.",
+					"description": "Provides a custom success message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "success-text"
+					"attributeName": "success-text",
+					"propertyName": "successText"
 				},
 				{
 					"name": "tabindex",
@@ -1812,9 +1815,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "fixedDropdown",
@@ -1848,7 +1852,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "name",
@@ -1901,9 +1906,10 @@
 				},
 				{
 					"name": "successText",
-					"description": "The success text for the form element.",
+					"description": "Provides a custom success message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "success-text"
+					"attributeName": "success-text",
+					"propertyName": "successText"
 				},
 				{
 					"name": "value",
@@ -2330,9 +2336,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "helperText",
@@ -2352,7 +2359,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "max",
@@ -2486,9 +2494,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "helperText",
@@ -2522,7 +2531,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "max",
@@ -2679,9 +2689,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "helperText",
@@ -2701,7 +2712,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "max",
@@ -3551,9 +3563,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "fileTooBigError",
@@ -3587,7 +3600,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "maxFileSize",
@@ -4657,9 +4671,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "helperText",
@@ -4692,7 +4707,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "list",
@@ -4786,9 +4802,10 @@
 				},
 				{
 					"name": "successText",
-					"description": "The success text for the form element.",
+					"description": "Provides a custom success message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "success-text"
+					"attributeName": "success-text",
+					"propertyName": "successText"
 				},
 				{
 					"name": "value",
@@ -5340,9 +5357,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "initialValue",
@@ -5355,7 +5373,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "name",
@@ -5631,7 +5650,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "markers",
@@ -5919,9 +5939,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "externalTags",
@@ -5967,7 +5988,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "loading",
@@ -6034,9 +6056,10 @@
 				},
 				{
 					"name": "successText",
-					"description": "The success text for the form element.",
+					"description": "Provides a custom success message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "success-text"
+					"attributeName": "success-text",
+					"propertyName": "successText"
 				},
 				{
 					"name": "value",
@@ -6173,9 +6196,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "fixedDropdown",
@@ -6216,7 +6240,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "multiple",
@@ -6269,9 +6294,10 @@
 				},
 				{
 					"name": "successText",
-					"description": "The success text for the form element.",
+					"description": "Provides a custom success message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "success-text"
+					"attributeName": "success-text",
+					"propertyName": "successText"
 				},
 				{
 					"name": "value",
@@ -7494,9 +7520,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "form",
@@ -7523,7 +7550,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "list",
@@ -7597,9 +7625,10 @@
 				},
 				{
 					"name": "successText",
-					"description": "The success text for the form element.",
+					"description": "Provides a custom success message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "success-text"
+					"attributeName": "success-text",
+					"propertyName": "successText"
 				},
 				{
 					"name": "value",
@@ -7736,9 +7765,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "helperText",
@@ -7772,7 +7802,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "list",
@@ -7859,9 +7890,10 @@
 				},
 				{
 					"name": "successText",
-					"description": "The success text for the form element.",
+					"description": "Provides a custom success message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "success-text"
+					"attributeName": "success-text",
+					"propertyName": "successText"
 				},
 				{
 					"name": "type",
@@ -7988,9 +8020,10 @@
 				},
 				{
 					"name": "errorText",
-					"description": "The error text for the form element.",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
 					"type": "string",
-					"attributeName": "error-text"
+					"attributeName": "error-text",
+					"propertyName": "errorText"
 				},
 				{
 					"name": "helperText",
@@ -8010,7 +8043,8 @@
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label"
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "max",

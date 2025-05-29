@@ -13,6 +13,7 @@ import {
 import { RadioGroup } from './radio-group';
 import '../radio';
 import '.';
+import type { ElementWithErrorText } from '../../shared/patterns';
 
 const COMPONENT_TAG = 'vwc-radio-group';
 
@@ -539,6 +540,8 @@ describe('vwc-radio-group', () => {
 
 	describe('feedback messages', () => {
 		itShouldDisplayHelperTextFeedback(() => element);
-		itShouldDisplayErrorTextFeedback(() => element);
+		itShouldDisplayErrorTextFeedback(
+			() => element as RadioGroup & ElementWithErrorText
+		);
 	});
 });

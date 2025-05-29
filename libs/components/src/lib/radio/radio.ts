@@ -8,12 +8,7 @@ import { keySpace } from '@microsoft/fast-web-utilities';
 import type { VividComponentDefinition } from '../../shared/design-system/defineVividComponent.js';
 import type { Connotation } from '../enums.js';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
-import {
-	errorText,
-	type ErrorText,
-	type FormElement,
-	formElements,
-} from '../../shared/patterns';
+import { FormElement, WithErrorText } from '../../shared/patterns';
 import { CheckableFormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { RadioGroup } from '../radio-group/radio-group.js';
@@ -55,9 +50,9 @@ export type RadioOptions = VividComponentDefinition & {
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value changes
  * @component radio
  */
-@formElements
-@errorText
-export class Radio extends CheckableFormAssociated(VividElement) {
+export class Radio extends WithErrorText(
+	FormElement(CheckableFormAssociated(VividElement))
+) {
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
 	/**
@@ -253,7 +248,7 @@ export class Radio extends CheckableFormAssociated(VividElement) {
 		}
 	};
 
-	override validate = (anchor?: HTMLElement): void => {
+	override validate(anchor?: HTMLElement): void {
 		super.validate(anchor);
 
 		if (this.proxy) {
@@ -265,7 +260,5 @@ export class Radio extends CheckableFormAssociated(VividElement) {
 				this.#syncSiblingsRequiredValidationStatus();
 			}
 		}
-	};
+	}
 }
-
-export interface Radio extends ErrorText, FormElement {}
