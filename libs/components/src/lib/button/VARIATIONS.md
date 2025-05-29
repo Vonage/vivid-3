@@ -10,6 +10,11 @@ The `label` attribute controls button's label text.
 
 The `appearance` attribute controls the style of button displayed.
 
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+	<p>The <code>outlined-light</code> and <code>ghost-light</code> appearances are the same as <code>outlined</code> and <code>ghost</code> except their background colours have opacity when hovered.</p>
+</vwc-note>
+
 ```html preview 72px
 <div class="container">
 	<vwc-button appearance="filled" label="Filled"></vwc-button>
@@ -26,11 +31,6 @@ The `appearance` attribute controls the style of button displayed.
 	}
 </style>
 ```
-
-<vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
-	<p>The <code>outlined-light</code> and <code>ghost-light</code> appearances are the same as <code>outlined</code> and <code>ghost</code> except their background colours have opacity when hovered.</p>
-</vwc-note>
 
 ## Connotation
 
@@ -170,18 +170,30 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 
 ## Icon
 
-Icons can be provided using the [icon slot](/components/button/code/#icon-slot). It can be displayed on the leading (default) or trailing side (`icon-trailing`) of the button.
+The `icon` attribute displays an icon from the icon library](/icons/icons-gallery/), which can be displayed on the leading (default) or trailing side (`icon-trailing`) of the badge.
 
-The `icon`_(deprecated)_ attribute displays an icon from the [icon library](/icons/icons-gallery/).
+The preferred way to add icons is to use the [icon slot](/components/badge/code/#icon-slot).
+
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ```html preview 72px
 <div class="container">
-	<vwc-button appearance="outlined" label="Copy document">
-		<vwc-icon name="copy-line" slot="icon"></vwc-icon>
-	</vwc-button>
-	<vwc-button appearance="outlined" label="Continue" icon-trailing>
-		<vwc-icon name="chevron-right-line" slot="icon"></vwc-icon>
-	</vwc-button>
+	<vwc-button
+		appearance="outlined"
+		label="Copy document"
+		icon="copy-line"
+	></vwc-button>
+	<vwc-button
+		appearance="outlined"
+		label="Continue"
+		icon="chevron-right-line"
+		icon-trailing
+	></vwc-button>
 </div>
 
 <style>
@@ -191,13 +203,6 @@ The `icon`_(deprecated)_ attribute displays an icon from the [icon library](/ico
 	}
 </style>
 ```
-
-<vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
-
-The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
-
-</vwc-note>
 
 ### Icon Only
 
@@ -370,6 +375,11 @@ Do not use this attribute to indicate a selected or pressed state.
 
 When the button is used to trigger a menu / dropdown, you can set `dropdown-indicator` to add a chevron to the button.
 
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+	<p>When setting <code>dropdown-indicator</code> the Button's content alignment changes from center to start. You can change it back to center using <code>--button-content-alignment</code> CSS variable </p>
+</vwc-note>
+
 ```html preview 220px
 <vwc-menu trigger="auto" auto-dismiss placement="bottom-start">
 	<vwc-button
@@ -383,8 +393,3 @@ When the button is used to trigger a menu / dropdown, you can set `dropdown-indi
 	<vwc-menu-item icon="delete-line" text="Archive"></vwc-menu-item>
 </vwc-menu>
 ```
-
-<vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
-	<p>When setting <code>dropdown-indicator</code> the Button's content alignment changes from center to start. You can change it back to center using <code>--button-content-alignment</code> CSS variable </p>
-</vwc-note>

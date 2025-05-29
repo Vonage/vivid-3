@@ -60,6 +60,7 @@
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: var(#{variables.$button-line-clamp}, 1);
 		max-inline-size: 100%;
+		text-align: start;
 	}
 
 	&:not(.icon-only) {
