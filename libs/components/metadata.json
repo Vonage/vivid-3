@@ -6798,12 +6798,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaSelected",
-					"type": "string",
-					"attributeName": "aria-selected",
-					"propertyName": "ariaSelected"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the tab should have.",
 					"type": "'accent' | 'cta'",
@@ -6840,10 +6834,16 @@
 				},
 				{
 					"name": "removable",
-					"description": "Indicates the tab's label.",
+					"description": "Adds a close button",
 					"type": "boolean",
 					"attributeName": "removable",
 					"propertyName": "removable"
+				},
+				{
+					"name": "selected",
+					"type": "boolean",
+					"attributeName": "selected",
+					"propertyName": "selected"
 				},
 				{
 					"name": "shape",
