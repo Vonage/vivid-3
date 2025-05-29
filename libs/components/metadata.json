@@ -972,7 +972,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "download",
@@ -1060,7 +1061,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -1076,7 +1077,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "pending",
@@ -1110,7 +1112,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "shape",
@@ -1156,7 +1159,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -1196,6 +1199,18 @@
 			],
 			"vueModels": [],
 			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
 				{
 					"name": "validate",
 					"description": "{@inheritDoc (FormAssociated:interface).validate}",
@@ -1597,7 +1612,7 @@
 			"props": [
 				{
 					"name": "checked",
-					"description": "The current checkedness of the element. This property serves as a mechanism\nto set the `checked` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's checkedness\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current checkedness of the element.",
 					"type": "boolean",
 					"attributeName": "current-checked",
 					"propertyName": "checked"
@@ -1611,7 +1626,7 @@
 				},
 				{
 					"name": "defaultChecked",
-					"description": "Provides the default checkedness of the input element",
+					"description": "The default checkedness of the element. This value sets the `checked` property\nonly when the `checked` property has not been explicitly set.",
 					"type": "boolean",
 					"attributeName": "checked",
 					"propertyName": "defaultChecked"
@@ -1620,7 +1635,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
@@ -1643,7 +1659,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -1658,7 +1674,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "readonly",
@@ -1671,7 +1688,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "successText",
@@ -1687,7 +1705,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -1739,7 +1757,19 @@
 				}
 			],
 			"methods": [
-				{ "name": "ariaCheckedChanged", "args": [], "returnType": "unknown" }
+				{ "name": "ariaCheckedChanged", "args": [], "returnType": "unknown" },
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				}
 			],
 			"slots": [
 				{
@@ -1775,7 +1805,7 @@
 				},
 				{
 					"name": "disabled",
-					"description": "The disabled state of the listbox.",
+					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
 					"attributeName": "disabled",
 					"propertyName": "disabled"
@@ -1809,7 +1839,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -1824,7 +1854,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "open",
@@ -1851,7 +1882,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "scale",
@@ -1875,7 +1907,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -1928,10 +1960,22 @@
 			],
 			"methods": [
 				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
 					"name": "filterOptions",
 					"description": "Filter available options by text value.",
 					"args": [],
 					"returnType": "void"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
 				},
 				{
 					"name": "selectFirstOption",
@@ -2281,7 +2325,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
@@ -2298,7 +2343,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the date-picker.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -2327,7 +2372,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "readonly",
@@ -2340,14 +2386,15 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "value",
-					"description": "The current value of the date-picker.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
-					"propertyName": "currentValue"
+					"propertyName": "value"
 				}
 			],
 			"events": [
@@ -2395,7 +2442,20 @@
 					"valueMapping": "event.currentTarget.value"
 				}
 			],
-			"methods": [],
+			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				}
+			],
 			"slots": [
 				{
 					"name": "helper-text",
@@ -2414,7 +2474,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "end",
@@ -2452,7 +2513,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the date-picker.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -2481,7 +2542,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "readonly",
@@ -2494,7 +2556,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "start",
@@ -2505,10 +2568,10 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the date-picker.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
-					"propertyName": "currentValue"
+					"propertyName": "value"
 				}
 			],
 			"events": [
@@ -2572,7 +2635,20 @@
 					"valueMapping": "event.currentTarget.start"
 				}
 			],
-			"methods": [],
+			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				}
+			],
 			"slots": [
 				{
 					"name": "helper-text",
@@ -2598,7 +2674,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
@@ -2615,7 +2692,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the date-picker.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -2679,7 +2756,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "readonly",
@@ -2692,7 +2770,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "secondsStep",
@@ -2703,10 +2782,10 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the date-picker.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
-					"propertyName": "currentValue"
+					"propertyName": "value"
 				}
 			],
 			"events": [
@@ -2754,7 +2833,20 @@
 					"valueMapping": "event.currentTarget.value"
 				}
 			],
-			"methods": [],
+			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				}
+			],
 			"slots": [
 				{
 					"name": "helper-text",
@@ -3267,7 +3359,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "form",
@@ -3327,7 +3420,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -3343,13 +3436,15 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "size",
@@ -3367,7 +3462,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -3408,6 +3503,18 @@
 			"vueModels": [],
 			"methods": [
 				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
 					"name": "validate",
 					"description": "{@inheritDoc (FormAssociated:interface).validate}",
 					"args": [],
@@ -3439,7 +3546,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
@@ -3463,7 +3571,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -3506,13 +3614,15 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "singleFile",
@@ -3530,7 +3640,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -3582,6 +3692,12 @@
 						{ "name": "newValue", "type": "string" }
 					],
 					"returnType": "void"
+				},
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
 				},
 				{
 					"name": "fileTooBigErrorChanged",
@@ -3637,6 +3753,12 @@
 					"description": "Removes all files from the File Picker.",
 					"args": [],
 					"returnType": "unknown"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
 				},
 				{ "name": "singleFileChanged", "args": [], "returnType": "unknown" },
 				{
@@ -4530,7 +4652,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
@@ -4560,7 +4683,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -4610,7 +4733,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "placeholder",
@@ -4630,7 +4754,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "scale",
@@ -4667,7 +4792,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -4719,6 +4844,18 @@
 				}
 			],
 			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
 				{
 					"name": "select",
 					"description": "Selects all the text in the number field",
@@ -5119,7 +5256,7 @@
 				{
 					"name": "value",
 					"description": "The value of the progress",
-					"type": "boolean",
+					"type": "number",
 					"attributeName": "value",
 					"propertyName": "value"
 				}
@@ -5175,7 +5312,7 @@
 				},
 				{
 					"name": "checked",
-					"description": "The current checkedness of the element. This property serves as a mechanism\nto set the `checked` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's checkedness\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current checkedness of the element.",
 					"type": "boolean",
 					"attributeName": "current-checked",
 					"propertyName": "checked"
@@ -5189,7 +5326,7 @@
 				},
 				{
 					"name": "defaultChecked",
-					"description": "Provides the default checkedness of the input element",
+					"description": "The default checkedness of the element. This value sets the `checked` property\nonly when the `checked` property has not been explicitly set.",
 					"type": "boolean",
 					"attributeName": "checked",
 					"propertyName": "defaultChecked"
@@ -5198,7 +5335,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
@@ -5208,7 +5346,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -5221,7 +5359,7 @@
 				},
 				{
 					"name": "name",
-					"description": "The name of the radio. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefname | name attribute for more info.",
+					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
 					"attributeName": "name",
 					"propertyName": "name"
@@ -5237,11 +5375,12 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -5285,7 +5424,20 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [],
+			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				}
+			],
 			"slots": []
 		},
 		{
@@ -5444,7 +5596,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "end",
@@ -5469,7 +5622,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -5505,7 +5658,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "orientation",
@@ -5525,7 +5679,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "start",
@@ -5543,7 +5698,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -5611,7 +5766,19 @@
 				}
 			],
 			"methods": [
-				{ "name": "formResetCallback", "args": [], "returnType": "unknown" }
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{ "name": "formResetCallback", "args": [], "returnType": "unknown" },
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				}
 			],
 			"slots": []
 		},
@@ -5747,7 +5914,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
@@ -5790,7 +5958,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -5830,7 +5998,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "open",
@@ -5854,7 +6023,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "shape",
@@ -5870,7 +6040,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -5938,7 +6108,20 @@
 					"valueMapping": "event.currentTarget.values"
 				}
 			],
-			"methods": [],
+			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				}
+			],
 			"slots": [
 				{ "name": "default", "description": "Holds the available options." },
 				{
@@ -5985,7 +6168,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
@@ -6023,7 +6207,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -6045,7 +6229,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "open",
@@ -6065,7 +6250,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "scale",
@@ -6089,7 +6275,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -6141,8 +6327,20 @@
 				}
 			],
 			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
 				{ "name": "formResetCallback", "args": [], "returnType": "unknown" },
 				{ "name": "labelChanged", "args": [], "returnType": "unknown" },
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
 				{
 					"name": "selectFirstOption",
 					"description": "Moves focus to the first selectable option.",
@@ -6389,11 +6587,12 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -6430,7 +6629,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "orientation",
@@ -6457,7 +6657,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "step",
@@ -6468,7 +6669,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -6521,6 +6722,12 @@
 			],
 			"methods": [
 				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
 					"name": "decrement",
 					"description": "Decrement the value by the step",
 					"args": [],
@@ -6531,6 +6738,12 @@
 					"description": "Increment the value by the step",
 					"args": [],
 					"returnType": "void"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
 				},
 				{
 					"name": "setThumbPositionForOrientation",
@@ -6676,7 +6889,7 @@
 			"props": [
 				{
 					"name": "checked",
-					"description": "The current checkedness of the element. This property serves as a mechanism\nto set the `checked` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's checkedness\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current checkedness of the element.",
 					"type": "boolean",
 					"attributeName": "current-checked",
 					"propertyName": "checked"
@@ -6690,7 +6903,7 @@
 				},
 				{
 					"name": "defaultChecked",
-					"description": "Provides the default checkedness of the input element",
+					"description": "The default checkedness of the element. This value sets the `checked` property\nonly when the `checked` property has not been explicitly set.",
 					"type": "boolean",
 					"attributeName": "checked",
 					"propertyName": "defaultChecked"
@@ -6699,11 +6912,12 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -6719,7 +6933,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "readonly",
@@ -6732,11 +6947,12 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -6787,7 +7003,20 @@
 					"valueMapping": "event.currentTarget.checked"
 				}
 			],
-			"methods": [],
+			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				}
+			],
 			"slots": []
 		},
 		{
@@ -7260,7 +7489,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
@@ -7284,7 +7514,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -7318,7 +7548,7 @@
 				},
 				{
 					"name": "name",
-					"description": "The name of the element.",
+					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
 					"attributeName": "name",
 					"propertyName": "name"
@@ -7341,7 +7571,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "resize",
@@ -7372,7 +7603,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -7432,6 +7663,18 @@
 			],
 			"methods": [
 				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
 					"name": "select",
 					"description": "Selects all the text in the text area",
 					"args": [],
@@ -7488,7 +7731,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
@@ -7512,7 +7756,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -7555,7 +7799,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "pattern",
@@ -7582,7 +7827,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "scale",
@@ -7626,7 +7872,7 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the element. This property serves as a mechanism\nto set the `value` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's value\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
@@ -7678,7 +7924,19 @@
 				}
 			],
 			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
 				{ "name": "focus", "args": [], "returnType": "unknown" },
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
 				{
 					"name": "select",
 					"description": "Selects all the text in the text field",
@@ -7725,7 +7983,8 @@
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
-					"attributeName": "disabled"
+					"attributeName": "disabled",
+					"propertyName": "disabled"
 				},
 				{
 					"name": "errorText",
@@ -7742,7 +8001,7 @@
 				},
 				{
 					"name": "initialValue",
-					"description": "The initial value of the date-picker.",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
 					"attributeName": "value",
 					"propertyName": "initialValue"
@@ -7778,7 +8037,8 @@
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
-					"attributeName": "name"
+					"attributeName": "name",
+					"propertyName": "name"
 				},
 				{
 					"name": "readonly",
@@ -7791,7 +8051,8 @@
 					"name": "required",
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "secondsStep",
@@ -7802,10 +8063,10 @@
 				},
 				{
 					"name": "value",
-					"description": "The current value of the date-picker.",
+					"description": "The current value of the element.",
 					"type": "string",
 					"attributeName": "current-value",
-					"propertyName": "currentValue"
+					"propertyName": "value"
 				}
 			],
 			"events": [
@@ -7853,7 +8114,20 @@
 					"valueMapping": "event.currentTarget.value"
 				}
 			],
-			"methods": [],
+			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				}
+			],
 			"slots": [
 				{
 					"name": "helper-text",

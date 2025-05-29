@@ -17,7 +17,7 @@ import {
 } from '../../../lib/option/option';
 import { VividElement } from '../vivid-element/vivid-element';
 
-export abstract class Listbox extends VividElement {
+export class Listbox extends VividElement {
 	/**
 	 * The internal unfiltered list of selectable options.
 	 *

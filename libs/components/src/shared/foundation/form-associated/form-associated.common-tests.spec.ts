@@ -1,5 +1,6 @@
-import { customElement, DOM, FASTElement, html } from '@microsoft/fast-element';
+import { customElement, DOM, html } from '@microsoft/fast-element';
 import { fixture } from '../test-utilities/fixture';
+import { VividElement } from '../vivid-element/vivid-element';
 import { CheckableFormAssociated, FormAssociated } from './form-associated';
 
 // As the ElementInternals polyfill will apply to a whole test suite, we define common tests in this suite and then
@@ -11,89 +12,73 @@ const template = html` <slot></slot> `;
 	name: 'test-element',
 	template,
 })
-export class TestElement extends FormAssociated(
-	class extends FASTElement {
-		proxy = document.createElement('input');
+export class TestElement extends FormAssociated(VividElement) {
+	override proxy = document.createElement('input');
 
-		constructor() {
-			super();
+	constructor() {
+		super();
 
-			this.proxy.setAttribute('type', 'text');
-		}
+		this.proxy.setAttribute('type', 'text');
 	}
-) {}
-
-export interface TestElement extends FormAssociated {}
+}
 
 @customElement({
 	name: 'custom-initial-value',
 	template,
 })
-export class CustomInitialValue extends FormAssociated(
-	class extends FASTElement {
-		proxy = document.createElement('input');
+export class CustomInitialValue extends FormAssociated(VividElement) {
+	override proxy = document.createElement('input');
 
-		constructor() {
-			super();
+	constructor() {
+		super();
 
-			this.proxy.setAttribute('type', 'text');
-		}
-
-		initialValue = 'foobar';
+		this.proxy.setAttribute('type', 'text');
 	}
-) {}
 
-export interface CustomInitialValue extends FormAssociated {}
+	override initialValue = 'foobar';
+}
 
 @customElement({
 	name: 'validate-test',
 	template,
 })
-export class ValidateTest extends FormAssociated(
-	class extends FASTElement {
-		proxy = document.createElement('input');
-		control = document.createElement('input');
+export class ValidateTest extends FormAssociated(VividElement) {
+	override proxy = document.createElement('input');
+	control = document.createElement('input');
 
-		constructor() {
-			super();
+	constructor() {
+		super();
 
-			this.proxy.setAttribute('type', 'text');
-			(this as any).setValidity = vi.fn();
-			Object.defineProperty(this.proxy, 'validationMessage', {
-				value: 'proxy validation message',
-			});
-			Object.defineProperty(this.control, 'validationMessage', {
-				value: 'control validation message',
-			});
-		}
+		this.proxy.setAttribute('type', 'text');
+		(this as any).setValidity = vi.fn();
+		Object.defineProperty(this.proxy, 'validationMessage', {
+			value: 'proxy validation message',
+		});
+		Object.defineProperty(this.control, 'validationMessage', {
+			value: 'control validation message',
+		});
 	}
-) {}
-
-export interface ValidateTest extends FormAssociated {}
+}
 
 @customElement({
 	name: 'checkable-form-associated',
 	template,
 })
-export class Checkable extends CheckableFormAssociated(
-	class extends FASTElement {
-		proxy = document.createElement('input');
+export class Checkable extends CheckableFormAssociated(VividElement) {
+	override proxy = document.createElement('input');
 
-		constructor() {
-			super();
+	constructor() {
+		super();
 
-			this.proxy.setAttribute('type', 'checkbox');
-		}
+		this.proxy.setAttribute('type', 'checkbox');
 	}
-) {}
+}
 
 export async function setup<T = TestElement>(el = 'test-element') {
 	const { connect, disconnect, element, parent } = await fixture<T>(el);
 
 	return { connect, disconnect, element, parent };
 }
-
-export interface Checkable extends CheckableFormAssociated {}
 
 export const formAssociatedCommonTests = () => {
 	describe('construction and connection:', () => {
@@ -582,7 +567,7 @@ export const checkableFormAssociatedCommonTests = () => {
 		await DOM.nextUpdate();
 		test(false);
 	});
-	it('should align the `checked` property and `current-checked` attribute with `currentChecked` property changes', async () => {
+	it('should align the `checked` property and `currentChecked` attribute with `current-checked` attribute changes', async () => {
 		const { connect, element } = await setup<Checkable>(
 			'checkable-form-associated'
 		);
@@ -601,6 +586,38 @@ export const checkableFormAssociatedCommonTests = () => {
 		element.setAttribute('current-checked', 'false');
 		await DOM.nextUpdate();
 		test(false);
+	});
+
+	describe('currentChecked property', () => {
+		it('should reflect the `checked` property', async () => {
+			const { connect, element } = await setup<Checkable>(
+				'checkable-form-associated'
+			);
+			await connect();
+			await DOM.nextUpdate();
+
+			element.checked = true;
+			expect(element.currentChecked).toBe(true);
+
+			element.currentChecked = false;
+			expect(element.checked).toBe(false);
+		});
+	});
+
+	describe('checkedAttribute property', () => {
+		it('should reflect the `defaultChecked` property', async () => {
+			const { connect, element } = await setup<Checkable>(
+				'checkable-form-associated'
+			);
+			await connect();
+			await DOM.nextUpdate();
+
+			element.defaultChecked = true;
+			expect(element.checkedAttribute).toBe(true);
+
+			element.checkedAttribute = false;
+			expect(element.defaultChecked).toBe(false);
+		});
 	});
 
 	describe("when the owning form's reset() method is invoked", () => {

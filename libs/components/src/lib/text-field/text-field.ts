@@ -20,7 +20,8 @@ import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithLightDOMFeedback } from '../../shared/feedback/mixins';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { FormAssociatedTextField } from './text-field.form-associated';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export type TextFieldAppearance = ExtractFromEnum<
 	Appearance,
@@ -133,8 +134,13 @@ const installSafariWorkaroundStyleIfNeeded = (
 @errorText
 @formElements
 export class TextField extends WithLightDOMFeedback(
-	AffixIcon(WithCharCount(DelegatesAria(FormAssociatedTextField)))
+	AffixIcon(WithCharCount(DelegatesAria(FormAssociated(VividElement))))
 ) {
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
+
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 * @public

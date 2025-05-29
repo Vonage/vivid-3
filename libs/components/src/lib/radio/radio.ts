@@ -14,7 +14,9 @@ import {
 	type FormElement,
 	formElements,
 } from '../../shared/patterns';
-import { FormAssociatedRadio } from './radio.form-associated';
+import { CheckableFormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { RadioGroup } from '../radio-group/radio-group.js';
 
 /**
  * Types of Checkbox connotation.
@@ -55,7 +57,7 @@ export type RadioOptions = VividComponentDefinition & {
  */
 @formElements
 @errorText
-export class Radio extends FormAssociatedRadio {
+export class Radio extends CheckableFormAssociated(VividElement) {
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
 	/**
@@ -83,12 +85,6 @@ export class Radio extends FormAssociatedRadio {
 			this.proxy.readOnly = this.readOnly;
 		}
 	}
-
-	/**
-	 * The name of the radio. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefname | name attribute} for more info.
-	 */
-	@attr
-	override name!: string;
 
 	/**
 	 * The element's value to be included in form submission when checked.
@@ -123,15 +119,18 @@ export class Radio extends FormAssociatedRadio {
 		super();
 		this.proxy.setAttribute('type', 'radio');
 		this.proxy.setAttribute('name', this.name);
+
+		// Since defaultCheckedChanged has been overridden, we need to initialize checked ourselves:
+		this.checked = this.defaultChecked;
+		this.dirtyChecked = false;
 	}
 
 	/**
 	 * @internal
 	 */
 	override nameChanged(previous: string, next: string): void {
-		if (super.nameChanged) {
-			super.nameChanged(previous, next);
-		}
+		super.nameChanged(previous, next);
+
 		next !== null
 			? this.proxy.setAttribute('name', this.name)
 			: this.proxy.removeAttribute('name');
@@ -154,7 +153,7 @@ export class Radio extends FormAssociatedRadio {
 			}
 		}
 
-		if (this.checkedAttribute) {
+		if (this.defaultChecked) {
 			if (!this.dirtyChecked) {
 				// Setting this.checked will cause us to enter a dirty state,
 				// but if we are clean when defaultChecked is changed, we want to stay
@@ -197,6 +196,76 @@ export class Radio extends FormAssociatedRadio {
 			this.checked = true;
 		}
 	}
+
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
+
+	get #radioSiblings(): Radio[] {
+		const siblings = this.parentElement?.querySelectorAll(
+			`${this.tagName.toLocaleLowerCase()}[name="${this.name}"]`
+		);
+		if (siblings) {
+			return Array.from(siblings) as unknown as Radio[];
+		}
+		return [];
+	}
+
+	get #radioGroup(): RadioGroup | null {
+		const parentGroup = this.closest(
+			`${this.tagName.toLocaleLowerCase()}-group[name="${this.name}"]`
+		) as RadioGroup;
+
+		if (parentGroup) {
+			return parentGroup;
+		}
+
+		return null;
+	}
+
+	#validateValueMissingWithSiblings = (): void => {
+		const siblings = this.#radioSiblings;
+		const group = this.#radioGroup;
+
+		if (siblings && siblings.length > 1) {
+			const isSiblingChecked = siblings.some((x: Radio) => x.checked);
+			if (isSiblingChecked) {
+				this.setValidity({ valueMissing: false });
+				this.errorValidationMessage = '';
+				if (group) group.errorValidationMessage = '';
+			}
+		}
+	};
+
+	#syncSiblingsRequiredValidationStatus = (): void => {
+		if (this.elementInternals && !this.validity.valueMissing) {
+			const siblings = this.#radioSiblings;
+			const group = this.#radioGroup;
+
+			if (siblings && siblings.length > 1) {
+				siblings.forEach((x: Radio) => {
+					x.elementInternals!.setValidity({ valueMissing: false });
+					x.errorValidationMessage = '';
+					if (group) group.errorValidationMessage = '';
+				});
+			}
+		}
+	};
+
+	override validate = (anchor?: HTMLElement): void => {
+		super.validate(anchor);
+
+		if (this.proxy) {
+			this.errorValidationMessage = this.validationMessage || '';
+
+			if (this.validity.valueMissing) {
+				this.#validateValueMissingWithSiblings();
+			} else {
+				this.#syncSiblingsRequiredValidationStatus();
+			}
+		}
+	};
 }
 
 export interface Radio extends ErrorText, FormElement {}
