@@ -78,8 +78,11 @@ export class Tab extends HostSemantics(
 	@attr({ mode: 'fromView' }) override tabIndex: number =
 		'-1' as unknown as number;
 
-	@attr({ attribute: 'selected', mode: 'boolean' })
-	selected = false;
+	/**
+	 * @internal
+	 */
+	@attr({ mode: 'boolean' })
+	active = false;
 
 	_handleCloseClick(e: Event) {
 		e.stopImmediatePropagation();

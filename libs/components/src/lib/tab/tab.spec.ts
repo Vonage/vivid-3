@@ -21,7 +21,7 @@ describe('vwc-tab', () => {
 			expect(element.disabled).toBeFalsy();
 			expect(element.connotation).toBeFalsy();
 			expect(element.shape).toBeFalsy();
-			expect(element.selected).toBeFalsy();
+			expect(element.active).toBeFalsy();
 			expect(element.ariaSelected).toBe('false');
 		});
 
@@ -132,10 +132,10 @@ describe('vwc-tab', () => {
 		});
 	});
 
-	describe('selected', function () {
+	describe('selected/active', function () {
 		it('should set connotation class on base if true', async () => {
 			element.connotation = Connotation.CTA;
-			element.selected = true;
+			element.active = true;
 			await elementUpdated(element);
 			expect(
 				getBaseElement(element).classList.contains(
@@ -146,7 +146,7 @@ describe('vwc-tab', () => {
 
 		it('should remove connotation class on base if false', async () => {
 			element.connotation = Connotation.CTA;
-			element.selected = false;
+			element.active = false;
 			await elementUpdated(element);
 			expect(
 				getBaseElement(element).classList.contains(
