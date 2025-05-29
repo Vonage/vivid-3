@@ -1,7 +1,7 @@
 ## Usage
 
 <vwc-note connotation="information">
-	<vwc-icon name="info-line" slot="icon label="Note:"></vwc-icon>
+	<vwc-icon name="info-line" slot="icon" label="Note:"></vwc-icon>
 	<p>Dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)"><code>native dialog</code></a> element.</p>
 </vwc-note>
 
