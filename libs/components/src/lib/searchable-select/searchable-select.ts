@@ -8,19 +8,16 @@ import {
 import { Appearance, Shape } from '../enums';
 import {
 	AffixIconWithTrailing,
-	type ErrorText,
-	errorText,
-	type FormElement,
-	formElements,
-	FormElementSuccessText,
+	FormElement,
 	Localized,
+	WithErrorText,
+	WithSuccessText,
 } from '../../shared/patterns';
 import type { ListboxOption } from '../option/option';
 import { scrollIntoView } from '../../shared/utils/scrollIntoView';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { WithFeedback } from '../../shared/feedback/mixins';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import type { OptionTag } from './option-tag';
@@ -63,10 +60,16 @@ const isFormAssociatedTryingToSetFormValue = (
  * @vueModel modelValue value input `event.currentTarget.value`
  * @vueModel values values input `event.currentTarget.values`
  */
-@errorText
-@formElements
 export class SearchableSelect extends WithFeedback(
-	DelegatesAria(AffixIconWithTrailing(Localized(FormAssociated(VividElement))))
+	WithErrorText(
+		WithSuccessText(
+			FormElement(
+				DelegatesAria(
+					AffixIconWithTrailing(Localized(FormAssociated(VividElement)))
+				)
+			)
+		)
+	)
 ) {
 	/**
 	 * @public
@@ -1205,9 +1208,3 @@ export class SearchableSelect extends WithFeedback(
 		return true;
 	}
 }
-
-export interface SearchableSelect
-	extends FormElement,
-		ErrorText,
-		FormElementSuccessText {}
-applyMixins(SearchableSelect, FormElementSuccessText);

@@ -1,10 +1,4 @@
 import { attr, DOM, type ValueConverter } from '@microsoft/fast-element';
-import {
-	type ErrorText,
-	errorText,
-	type FormElement,
-	formElements,
-} from '../../shared/patterns';
 import { PickerField } from '../../shared/picker-field/picker-field';
 import { SingleValuePicker } from '../../shared/picker-field/mixins/single-value-picker';
 import { TimeSelectionPicker } from '../../shared/picker-field/mixins/time-selection-picker';
@@ -35,8 +29,6 @@ export const ValidTimeFilter: ValueConverter = {
  * @event {CustomEvent<undefined>} change - Emitted when the time is changed by the user.
  * @vueModel modelValue value input `event.currentTarget.value`
  */
-@errorText
-@formElements
 export class TimePicker extends TimeSelectionPicker(
 	SingleValuePicker(PickerField)
 ) {
@@ -215,5 +207,3 @@ export class TimePicker extends TimeSelectionPicker(
 		return null;
 	}
 }
-
-export interface TimePicker extends ErrorText, FormElement {}

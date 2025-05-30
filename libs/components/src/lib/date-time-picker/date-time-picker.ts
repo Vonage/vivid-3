@@ -1,11 +1,5 @@
 import { attr, type ValueConverter } from '@microsoft/fast-element';
 import {
-	errorText,
-	type ErrorText,
-	type FormElement,
-	formElements,
-} from '../../shared/patterns';
-import {
 	type DateTimeStr,
 	extractDatePart,
 	extractTimePart,
@@ -54,8 +48,6 @@ const ValidDateTimeFilter: ValueConverter = {
  * @event {CustomEvent<undefined>} change - Emitted when the date is changed by the user.
  * @vueModel modelValue value input `event.currentTarget.value`
  */
-@errorText
-@formElements
 export class DateTimePicker extends TimeSelectionPicker(
 	SingleDatePickerMixin(SingleValuePicker(CalendarPicker(PickerField)))
 ) {
@@ -328,5 +320,3 @@ export class DateTimePicker extends TimeSelectionPicker(
 		return this.locale.dateTimePicker.chooseDateTimeLabel;
 	}
 }
-
-export interface DateTimePicker extends ErrorText, FormElement {}

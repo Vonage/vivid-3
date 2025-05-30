@@ -4,12 +4,7 @@ import { fixture } from '@vivid-nx/shared';
 import { customElement } from '@microsoft/fast-element';
 import { FormAssociated } from '../../foundation/form-associated/form-associated';
 import { VividElement } from '../../foundation/vivid-element/vivid-element';
-import {
-	type ErrorText,
-	errorText,
-	type FormElement,
-	formElements,
-} from './form-elements';
+import { FormElement, WithErrorText } from './form-elements';
 
 const VALIDATION_MESSAGE = 'Validation Message';
 
@@ -25,16 +20,13 @@ describe('Form Elements', function () {
 		}
 
 		@customElement('form-elements-class')
-		@formElements
-		class FormElementsClass extends FormAssociated(VividElement) {
+		class FormElementsClass extends FormElement(FormAssociated(VividElement)) {
 			override proxy = document.createElement('input');
 
 			override get validationMessage() {
 				return VALIDATION_MESSAGE;
 			}
 		}
-
-		interface FormElementsClass extends FormElement {}
 
 		let instance: FormElementsClass;
 
@@ -115,26 +107,18 @@ describe('Form Elements', function () {
 			instance.dirtyValue = true;
 		}
 
-		const baseValidate = vi.fn().mockReturnValue(5);
-
-		@customElement('error-text-class')
-		@errorText
-		@formElements
-		class ErrorTextClass extends FormAssociated(VividElement) {
+		class BaseClass extends FormAssociated(VividElement) {
 			override proxy = document.createElement('input');
 
 			override get validationMessage() {
 				return VALIDATION_MESSAGE;
 			}
-
-			override validate() {
-				return baseValidate();
-			}
-
-			override setValidity = vi.fn();
 		}
+		BaseClass.prototype.setValidity = vi.fn();
+		BaseClass.prototype.validate = vi.fn();
 
-		interface ErrorTextClass extends ErrorText, FormElement {}
+		@customElement('error-text-class')
+		class ErrorTextClass extends WithErrorText(FormElement(BaseClass)) {}
 
 		let instance: ErrorTextClass;
 
@@ -166,7 +150,7 @@ describe('Form Elements', function () {
 			instance.errorText = 'Error message';
 			instance.validate();
 
-			expect(baseValidate).not.toHaveBeenCalled();
+			expect(BaseClass.prototype.validate).not.toHaveBeenCalled();
 		});
 
 		it('should restore validity and errorValidationMessage when errorText is cleared', async () => {
@@ -175,7 +159,11 @@ describe('Form Elements', function () {
 
 			instance.errorText = '';
 
-			expect(instance.setValidity).toHaveBeenLastCalledWith({}, '', undefined);
+			expect(BaseClass.prototype.setValidity).toHaveBeenLastCalledWith(
+				expect.objectContaining({}),
+				'',
+				undefined
+			);
 			expect(instance.errorValidationMessage).toEqual(VALIDATION_MESSAGE);
 		});
 
@@ -185,7 +173,7 @@ describe('Form Elements', function () {
 
 			instance.validate();
 
-			expect(baseValidate).toHaveBeenCalled();
+			expect(BaseClass.prototype.validate).toHaveBeenCalled();
 		});
 	});
 });

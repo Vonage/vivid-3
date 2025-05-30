@@ -4,17 +4,14 @@ import {
 	observable,
 } from '@microsoft/fast-element';
 import {
-	errorText,
-	type ErrorText,
-	type FormElement,
-	formElements,
-	FormElementSuccessText,
+	FormElement,
 	WithCharCount,
+	WithErrorText,
+	WithSuccessText,
 } from '../../shared/patterns';
 import { Reflector } from '../../shared/utils/Reflector';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { WithFeedback } from '../../shared/feedback/mixins';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 
@@ -59,10 +56,12 @@ export type TextAreaResize = typeof TextAreaResize[keyof typeof TextAreaResize];
  * @event {CustomEvent<undefined>} change - Emits a custom 'change' event when the textarea emits a change event
  * @vueModel modelValue value input `event.currentTarget.value`
  */
-@errorText
-@formElements
 export class TextArea extends WithFeedback(
-	WithCharCount(DelegatesAria(FormAssociated(VividElement)))
+	WithCharCount(
+		WithErrorText(
+			WithSuccessText(FormElement(DelegatesAria(FormAssociated(VividElement))))
+		)
+	)
 ) {
 	/**
 	 * @internal
@@ -306,9 +305,3 @@ export class TextArea extends WithFeedback(
 		this.#reflectToTextArea!.destroy();
 	}
 }
-
-export interface TextArea
-	extends FormElement,
-		ErrorText,
-		FormElementSuccessText {}
-applyMixins(TextArea, FormElementSuccessText);

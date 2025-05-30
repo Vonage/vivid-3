@@ -931,14 +931,14 @@ describe('vwc-searchable-select', () => {
 						width: currentWrapperWidth,
 					} as any;
 				}
-				if (this.label.startsWith('option')) {
-					const index = parseInt(this.label.split(' ')[1]);
+				if (this.label!.startsWith('option')) {
+					const index = parseInt(this.label!.split(' ')[1]);
 					return {
 						width: tagsWidths[index],
 					} as any;
 				}
 				return {
-					width: parseInt(this.label) * 10,
+					width: parseInt(this.label!) * 10,
 				} as any;
 			});
 			await setUpFixture(`
