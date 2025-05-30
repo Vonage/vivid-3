@@ -1,9 +1,9 @@
 import { attr } from '@microsoft/fast-element';
-import { AffixIcon } from '../../shared/patterns/affix';
-import { Linkable } from '../../shared/patterns/linkable';
+import { AffixIcon, Linkable } from '../../shared/patterns';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { Appearance, Connotation } from '../enums';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { replaces } from '../../shared/deprecation/replaced-props';
 
 /**
  * Types of nav item connotation.
@@ -61,4 +61,18 @@ export class NavItem extends AffixIcon(Linkable(VividElement)) {
 	 * HTML Attribute: appearance
 	 */
 	@attr appearance?: NavItemAppearance;
+
+	/**
+	 * Sets the nav item as a current
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: current
+	 */
+	@replaces<boolean>({
+		deprecatedPropertyName: 'ariaCurrent',
+		fromDeprecated: (v) => v,
+	})
+	@attr({ attribute: 'current', mode: 'boolean' })
+	current = false;
 }

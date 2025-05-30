@@ -27,7 +27,7 @@
 			map.merge(
 				appearance.$state-aspect-selectors,
 				(
-					selected: '[aria-current]',
+					selected: '.current',
 				)
 			)
 		)
@@ -56,7 +56,7 @@
 		vertical-align: middle;
 	}
 
-	&[aria-current] {
+	&.current {
 		color: var(#{appearance.get-appearance-token(text)});
 
 		@supports not (
@@ -64,18 +64,18 @@
 		) {
 			background-color: var(#{connotation.get-connotation-token(primary)});
 		}
+		:host(:where([open])) & {
+			#{focus-variables.$focus-stroke-gap-color}: transparent;
+		}
 	}
 
-	&:not([aria-current]) {
+	&:not(.current) {
 		color: var(#{constants.$vvd-color-canvas-text});
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 
 	&:focus-visible {
 		@include focus.focus;
-	}
-	:host(:where([aria-current='true'][open])) &,
-	:host(:not([aria-current='true'])) & {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 
 	@supports (user-select: none) {

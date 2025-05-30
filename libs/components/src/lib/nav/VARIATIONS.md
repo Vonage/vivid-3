@@ -95,15 +95,10 @@ The default appearance is `ghost`. Below it is set to `ghost-light`.
 		open
 		href="#"
 		label="Settings"
-		aria-current="true"
+		current
 	>
 		<vwc-icon slot="icon" name="gear-line"></vwc-icon>
-		<vwc-nav-item
-			appearance="ghost-light"
-			href="#"
-			aria-current="page"
-			text="Ghost Light"
-		>
+		<vwc-nav-item appearance="ghost-light" href="#" text="Ghost Light" current>
 			<vwc-icon slot="icon" name="edit-line"></vwc-icon>
 		</vwc-nav-item>
 	</vwc-nav-disclosure>
@@ -126,15 +121,15 @@ The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure**
 			open
 			href="#"
 			label="Settings"
-			aria-current="true"
+			current
 		>
 			<vwc-icon slot="icon" name="gear-line"></vwc-icon>
 			<vwc-nav-item
 				connotation="accent"
 				appearance="ghost-light"
 				href="#"
-				aria-current="page"
 				text="Cta connotation"
+				current
 			>
 				<vwc-icon slot="icon" name="edit-line"></vwc-icon>
 			</vwc-nav-item>
@@ -155,15 +150,15 @@ The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure**
 			open
 			href="#"
 			label="Settings"
-			aria-current="true"
+			current
 		>
 			<vwc-icon slot="icon" name="gear-line"></vwc-icon>
 			<vwc-nav-item
 				connotation="cta"
 				appearance="ghost-light"
 				href="#"
-				aria-current="page"
 				text="Accent connotation"
+				current
 			>
 				<vwc-icon slot="icon" name="edit-line"></vwc-icon>
 			</vwc-nav-item>

@@ -64,18 +64,25 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 </vwc-note>
 
-### Aria Current
+### Current
 
 - Type: `boolean`
 - Default: `false`
 
-Within a set of pagination links, set a nav item `aria-current` value to _page_ to indicate the currently active link.
+Within a set of pagination links, set a nav item `current` value to indicate the currently active link.
 
 ```html preview
 <vwc-nav>
-	<vwc-nav-item href="#" text="Account" aria-current="page"></vwc-nav-item>
+	<vwc-nav-item href="#" text="Account" current></vwc-nav-item>
 </vwc-nav>
 ```
+
+<vwc-note connotation="warning" headline="Deprecated Prop: aria-current">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `aria-current` prop is deprecated (as of 05/25) and directly replaced with `current`. `aria-current` is still functional in the component, but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ### Appearance
 
@@ -89,12 +96,7 @@ Set the `appearance` attribute to change the nav-item's appearance.
 	<vwc-nav-item appearance="ghost-light" href="#" text="Account">
 		<vwc-icon slot="icon" name="profile"></vwc-icon>
 	</vwc-nav-item>
-	<vwc-nav-item
-		appearance="ghost-light"
-		href="#"
-		aria-current="page"
-		text="Settings"
-	>
+	<vwc-nav-item appearance="ghost-light" href="#" text="Settings" current>
 		<vwc-icon slot="icon" name="gear-line"></vwc-icon>
 	</vwc-nav-item>
 </vwc-nav>
@@ -121,8 +123,8 @@ Set the `connotation` attribute to change the nav-item's connotation.
 		appearance="ghost-light"
 		connotation="cta"
 		href="#"
-		aria-current="page"
 		text="Settings"
+		current
 	>
 		<vwc-icon slot="icon" name="gear-line"></vwc-icon>
 	</vwc-nav-item>

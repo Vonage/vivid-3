@@ -9,7 +9,7 @@
 				text="Calls"
 				data-value="Calls"
 				onclick="onClick(this)"
-				aria-current="page"
+				current
 			>
 				<vwc-icon slot="icon" name="call-line"></vwc-icon>
 			</vwc-nav-item>
@@ -59,11 +59,9 @@
 	}
 
 	function onClick(el) {
-		currentNavItem = document.querySelector(
-			'vwc-nav-item[aria-current="page"]'
-		);
-		currentNavItem?.removeAttribute('aria-current');
-		el.setAttribute('aria-current', 'page');
+		currentNavItem = document.querySelector('vwc-nav-item[current]');
+		currentNavItem?.removeAttribute('current');
+		el.setAttribute('current', '');
 	}
 </script>
 
