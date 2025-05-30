@@ -6360,7 +6360,6 @@
 					"returnType": "boolean"
 				},
 				{ "name": "formResetCallback", "args": [], "returnType": "unknown" },
-				{ "name": "labelChanged", "args": [], "returnType": "unknown" },
 				{
 					"name": "reportValidity",
 					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
