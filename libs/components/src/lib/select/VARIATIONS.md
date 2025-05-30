@@ -150,45 +150,31 @@ The `success-text` attribute provides a custom success message. Any current erro
 
 ## Icon
 
-To add icons, use the `icon` [slot](/components/select/code/#icon-slot) provided or `icon`_(deprecated)_ attribute ([icon library](/icons/icons-gallery)). It prefixes the Select element.
+The `icon` attribute can set to display an icon from the [icon library](/icons/icons-gallery/) on the component.
 
-```html preview 270px
-<vwc-select label="Country code" class="country-code" id="country-code">
-	<vwc-icon slot="icon" name="flag-united-states"></vwc-icon>
-	<vwc-option value="1" text="United States" label="+1">
-		<vwc-icon slot="icon" name="flag-united-states"></vwc-icon>
-	</vwc-option>
-	<vwc-option value="44" text="United Kingdom" label="+44">
-		<vwc-icon slot="icon" name="flag-united-kingdom"></vwc-icon>
-	</vwc-option>
-	<vwc-option value="49" text="Germany" label="+49">
-		<vwc-icon slot="icon" name="flag-germany"></vwc-icon>
-	</vwc-option>
-	<vwc-option value="355" text="Albania" label="+355">
-		<vwc-icon slot="icon" name="flag-albania"></vwc-icon>
-	</vwc-option>
-</vwc-select>
-
-<style>
-	.country-code {
-		inline-size: 120px;
-	}
-</style>
-
-<script>
-	const select = document.getElementById('country-code');
-	select?.addEventListener('change', (e) => {
-		select.icon = select.selectedOptions[0].icon;
-	});
-</script>
-```
+The preferred way to add icons is to use the [icon slot](/components/select/code/#icon-slot).
 
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
 </vwc-note>
+
+```html preview 270px
+<vwc-select label="Results per page" class="results" icon="filter-line">
+	<vwc-option value="25" text="25 per page"></vwc-option>
+	<vwc-option value="50" text="50 per page"></vwc-option>
+	<vwc-option value="75" text="75 per page"></vwc-option>
+	<vwc-option value="100" text="100 per page"></vwc-option>
+</vwc-select>
+
+<style>
+	.results {
+		inline-size: 190px;
+	}
+</style>
+```
 
 ## Scale
 

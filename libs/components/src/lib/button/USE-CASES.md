@@ -84,7 +84,7 @@ A button's width can be easily customised by attaching styles to the button comp
 ```
 
 <vwc-note connotation="warning" headline="Use custom width buttons with caution">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 When there is not enough space for the `label` text, the content will be truncated as in the example above.
 

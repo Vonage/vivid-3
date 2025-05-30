@@ -36,21 +36,20 @@ Add a `text` attribute to add text to the card.
 The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Card's headline.  
 To add custom icons or to postfix icons, use the [graphic slot](/components/card/code/#slots).
 
-```html preview
-<vwc-card
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
->
-	<vwc-icon slot="icon" name="chat-line"></vwc-icon>
-</vwc-card>
-```
-
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
 </vwc-note>
+
+```html preview
+<vwc-card
+	headline="Vivid Card Component"
+	subtitle="Extra text below the card headline"
+	icon="chat-line"
+></vwc-card>
+```
 
 ## Appearance
 

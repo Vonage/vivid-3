@@ -205,20 +205,6 @@ describe('vwc-slider', () => {
 		});
 	});
 
-	describe('currentValue', () => {
-		it('should set the value', async () => {
-			element.currentValue = '5';
-
-			expect(element.value).toBe('5');
-		});
-
-		it('should be set by the value', async () => {
-			element.value = '5';
-
-			expect(element.currentValue).toBe('5');
-		});
-	});
-
 	describe('valueAsNumber', () => {
 		it('should return value as a number', () => {
 			element.value = '1';

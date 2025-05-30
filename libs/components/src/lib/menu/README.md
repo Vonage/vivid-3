@@ -138,7 +138,7 @@ The `auto-dismiss` attribute sets it to automatically close when focus is moved 
 The `position-strategy` attribute sets the position strategy. It can be set to `fixed` (default) or `absolute`.
 
 <vwc-note connotation="information" headline="Prefer using the default position strategy (fixed)">
-	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
+	<vwc-icon slot="icon" name="info-solid" label="Note:"></vwc-icon>
 
 In vivid version 4.12.0, popover attribute was added to menu, using the power of <a href="https://developer.mozilla.org/en-US/docs/Glossary/Top_layer">top-layer</a>, eliminating the effect of change in the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block">containing block</a>.
 
@@ -166,13 +166,20 @@ In vivid version 4.12.0, popover attribute was added to menu, using the power of
 ## Anchor
 
 <vwc-note connotation="information" headline="Prefer using the anchot slot">
-	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
+	<vwc-icon slot="icon" name="info-solid" label="Note:"></vwc-icon>
 
 It is recommended use the [`anchor` slot](#anchor-slot-menu) to set the anchor.
 
 </vwc-note>
 
 The `anchor` attribute should be set to the `id` value of the anchor element or pass the anchor element itself.
+
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+**Pay attention to the source order** the components to ensure they can be operated logically using only a keyboard.
+
+</vwc-note>
 
 ```html preview center 200px
 <div style="position: relative">
@@ -198,13 +205,6 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 	menu2.anchor = button2;
 </script>
 ```
-
-<vwc-note connotation="warning">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
-
-**Pay attention to the source order** the components to ensure they can be operated logically using only a keyboard.
-
-</vwc-note>
 
 ## Slots
 
@@ -276,7 +276,7 @@ Use the `--menu-max-inline-size` variable to set the maximum inline size.
 - Default: `max-content`
 
 <vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
+	<vwc-icon slot="icon" name="info-solid" label="Note:"></vwc-icon>
 	<p>When setting a value to the <code>max-inline-size</code> - make sure the Menu is OK in small resolutions as well. </p>
 	<p>In mobile, the <code>max-inline-size</code> is <code>300px</code> by default, but can be changed with the css-variable. </p>
 </vwc-note>

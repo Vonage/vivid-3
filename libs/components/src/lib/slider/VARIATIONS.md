@@ -28,7 +28,7 @@ The `orientation` attribute controls which axis the Slider is aligned.
 Below is an example of vertical alignment.
 
 <vwc-note connotation="information">
-<vwc-icon name="info-line" slot="icon"></vwc-icon>
+<vwc-icon name="info-line" slot="icon" label="Note:"></vwc-icon>
 <p>When used vertically, the Slider fits the height of its container.</p>
 </vwc-note>
 

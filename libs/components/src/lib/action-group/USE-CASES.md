@@ -4,11 +4,11 @@ Use [Divider](/components/divider/) for adding separator between the action elem
 
 ```html preview
 <vwc-action-group appearance="fieldset">
-	<vwc-button>
+	<vwc-button aria-label="Reply">
 		<vwc-icon slot="icon" name="reply-line"></vwc-icon>
 	</vwc-button>
 	<vwc-divider orientation="vertical"></vwc-divider>
-	<vwc-button>
+	<vwc-button aria-label="New message">
 		<vwc-icon slot="icon" name="compose-line"></vwc-icon>
 	</vwc-button>
 </vwc-action-group>

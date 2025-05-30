@@ -26,7 +26,8 @@ import {
 } from '../range-slider/utils/roundToStepValue';
 import { inverseLerp, lerp } from '../range-slider/utils/lerp';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
-import { FormAssociatedSlider } from './slider.form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 
 export type SliderConnotation = Connotation.Accent | Connotation.CTA;
 
@@ -50,7 +51,14 @@ export type SliderMode = typeof SliderMode[keyof typeof SliderMode];
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the slider value changes
  * @vueModel modelValue value change `event.currentTarget.value`
  */
-export class Slider extends Localized(DelegatesAria(FormAssociatedSlider)) {
+export class Slider extends Localized(
+	DelegatesAria(FormAssociated(VividElement))
+) {
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
+
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 *
@@ -138,7 +146,7 @@ export class Slider extends Localized(DelegatesAria(FormAssociatedSlider)) {
 	 * @public
 	 */
 	get valueAsNumber(): number {
-		return parseFloat(super.value);
+		return parseFloat(this.value);
 	}
 
 	set valueAsNumber(next: number) {

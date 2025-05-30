@@ -38,5 +38,6 @@ export default {
 		plugins.cssPropertiesPlugin(),
 		plugins.vividComponentPlugin(),
 		plugins.improvedMixinSupportPlugin(),
+		plugins.improvedAttrSupportPlugin(),
 	],
 };

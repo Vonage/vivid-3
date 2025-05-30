@@ -42,7 +42,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 ```
 
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
@@ -117,7 +117,7 @@ Clicking the close button or pressing the `DELETE` key when focussed on the tab 
 ```
 
 <vwc-note connotation="warning">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 	<p>Triggering the <code>close</code> event does not automatically close the tab and tab panel. This needs to be handled in the consuming application as in the example below.</p>
 	<p>The consuming application must also handle whether the user can close all the tabs or not.</p>
 </vwc-note>

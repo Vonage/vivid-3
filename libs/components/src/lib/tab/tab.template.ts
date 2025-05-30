@@ -11,20 +11,17 @@ import type { Tab } from './tab.js';
 const getClasses = ({
 	connotation,
 	disabled,
-	ariaSelected,
+	active,
 	iconTrailing,
 	shape,
 	removable,
 }: Tab) =>
 	classNames(
 		'base',
-		[
-			`connotation-${connotation}`,
-			Boolean(connotation) && ariaSelected === 'true',
-		],
+		[`connotation-${connotation}`, Boolean(connotation) && Boolean(active)],
 		[`shape-${shape}`, Boolean(shape)],
 		['disabled', Boolean(disabled)],
-		['selected', ariaSelected === 'true'],
+		['selected', Boolean(active)],
 		['icon-trailing', iconTrailing],
 		['removable', removable]
 	);
@@ -48,9 +45,11 @@ export const TabTemplate = (context: VividElementDefinitionContext) => {
 	return html<Tab>`
 		<template
 			slot="tab"
+			?active="${(x) => x.active}"
 			${applyHostSemantics({
 				role: 'tab',
 				ariaDisabled: (x) => x.disabled,
+				ariaSelected: (x) => x.active,
 			})}
 			@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
 		>

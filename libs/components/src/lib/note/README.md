@@ -23,10 +23,10 @@ registerNote('your-prefix');
 </script>
 
 <your-prefix-note
-	headline="Changes Saved Successfully"
+	headline="Changes Saved"
 	connotation="success"
 >
-	<your-prefix-icon slot="icon" name="check-circle"></your-prefix-icon>
+	<your-prefix-icon slot="icon" name="check-circle" label="Success:"></your-prefix-icon>
 	Your changes have been saved successfully. You can now continue working.
 </your-prefix-icon>
 ```
@@ -71,11 +71,12 @@ Set the `icon` slot to show an icon before the note's headline.\
 If set, the `icon`_(deprecated)_ attribute is ignored.
 
 ```html preview
-<vwc-note headline="Note With Icon Slot">
+<vwc-note headline="Task in my todo list">
 	<vwc-icon
 		slot="icon"
 		name="check-circle-solid"
 		connotation="success"
+		label="Done"
 	></vwc-icon>
 </vwc-note>
 ```

@@ -18,7 +18,7 @@ layout: standalone.njk
 				<vwc-icon slot="icon" name="code-line"></vwc-icon>
 			</vwc-button>
 			<vwc-button href="/resources/change-process/" appearance="outlined" label="Request a new feature" size="expanded">
-				<img src="/assets/images/vivid-logo.svg" alt="Vivid Logo" style="width: 24px" slot="icon" />
+				<img src="/assets/images/vivid-logo.svg" alt="" style="width: 24px" slot="icon" />
 			</vwc-button>
 		</div>
 	</div>
@@ -202,7 +202,7 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </linearGradient>
 </defs>
 </svg>
-<vwc-button slot="footer" href="/designs/guidelines/" shape="pill" label="Continue" appearance="outlined">
+<vwc-button slot="footer" href="/designs/guidelines/" shape="pill" label="Continue" appearance="outlined" icon-trailing>
 	<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
 </vwc-button>
 </vwc-card>
@@ -299,7 +299,7 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </linearGradient>
 </defs>
 </svg>
-<vwc-button slot="footer" href="/guides/vivid-2-migration/" shape="pill" label="Continue" appearance="outlined">
+<vwc-button slot="footer" href="/guides/vivid-2-migration/" shape="pill" label="Continue" appearance="outlined" icon-trailing>
 	<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
 </vwc-button>
 </vwc-card>
@@ -410,7 +410,7 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </clipPath>
 </defs>
 </svg>
-<vwc-button slot="footer" href="/icons/icons-gallery/" shape="pill" label="Continue" appearance="outlined">
+<vwc-button slot="footer" href="/icons/icons-gallery/" shape="pill" label="Continue" appearance="outlined" icon-trailing>
 	<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
 </vwc-button>
 </vwc-card>

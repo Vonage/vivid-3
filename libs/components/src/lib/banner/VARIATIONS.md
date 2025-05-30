@@ -10,7 +10,13 @@ The `text` attribute sets the banner's text.
 
 ## Connotation
 
-The `connotation` attribute controls the purpose of the banner, expressed in its colors.
+The `connotation` attribute controls the purpose of the banner, expressed in its colors and icon.
+
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+The Banner icon, if not specifically set, defaults to a connotation-associated icon.
+
+</vwc-note>
 
 ```html preview
 <vwc-banner
@@ -35,29 +41,25 @@ The `connotation` attribute controls the purpose of the banner, expressed in its
 ></vwc-banner>
 ```
 
-<vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
-The Banner icon, if not specifically set, defaults to a connotation-associated icon.
-
-</vwc-note>
-
 ## Icon
 
-To add custom icons or to postfix icons, use the [icon slot](/components/banner/code/#icon-slot).\
-The `icon`_(deprecated)_ attribute displays an icon from the [icon library](/icons/icons-gallery/), which prefixes the Banner's text.
+The `icon` attribute displays an icon from the icon library](/icons/icons-gallery/).
 
-```html preview full
-<vwc-banner text="Banner with icon set by icon attribute">
-	<vwc-icon slot="icon" name="home-line"></vwc-icon>
-</vwc-banner>
-```
+The preferred way to add icons is to use the [icon slot](/components/banner/code/#icon-slot).
 
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
 </vwc-note>
+
+```html preview full
+<vwc-banner
+	text="Banner with icon set by icon attribute"
+	icon="home-line"
+></vwc-banner>
+```
 
 ## Removable
 

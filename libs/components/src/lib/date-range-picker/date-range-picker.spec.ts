@@ -40,7 +40,7 @@ describe('vwc-date-range-picker', () => {
 	const getDialogTitle = () => titleAction.textContent!.trim();
 
 	function typeIntoTextField(text: string) {
-		textField.currentValue = text;
+		textField.value = text;
 		textField.dispatchEvent(new InputEvent('input'));
 		textField.dispatchEvent(new InputEvent('change'));
 		textField.dispatchEvent(new Event('blur'));

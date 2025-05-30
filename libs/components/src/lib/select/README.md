@@ -137,6 +137,15 @@ Also, see [the Grid Select example](/components/data-grid/#select-in-a-grid)).
 
 The `open` attribute allows the Select to be opened programmatically.
 
+<vwc-note connotation="warning" headline="Stacking Context">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
+
+Select component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements. If needed a `z-index` value can be set on the host.
+
+</vwc-note>
+
 ```html preview 270px
 <vwc-select open label="Title" placeholder="Select an option">
 	<vwc-option value="mr" text="Mr"></vwc-option>
@@ -145,17 +154,6 @@ The `open` attribute allows the Select to be opened programmatically.
 	<vwc-option value="ms" text="Ms"></vwc-option>
 </vwc-select>
 ```
-
-<br /><br />
-
-<vwc-note connotation="warning" headline="Stacking Context">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
-
-Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
-
-Select component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements. If needed a `z-index` value can be set on the host.
-
-</vwc-note>
 
 ## Slots
 

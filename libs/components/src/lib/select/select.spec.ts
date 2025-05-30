@@ -842,6 +842,18 @@ describe('vwc-select', () => {
 
 			expect(element.value).toBe('2');
 		});
+
+		it('should reject invalid values', async () => {
+			element.innerHTML = `
+				<vwc-option value="1" text="1"></vwc-option>
+				<vwc-option value="2" text="2"></vwc-option>
+			`;
+			await elementUpdated(element);
+
+			element.value = '3';
+
+			expect(element.value).toBe('');
+		});
 	});
 
 	describe('single select mode', () => {

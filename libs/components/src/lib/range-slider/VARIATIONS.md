@@ -22,7 +22,7 @@ The `orientation` attribute controls which axis the Range Slider is aligned.
 Below is an example of vertical alignment.
 
 <vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 	<p>When used vertically, the range slider fits the height of its container.</p>
 </vwc-note>
 

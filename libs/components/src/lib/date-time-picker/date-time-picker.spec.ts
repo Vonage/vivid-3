@@ -33,7 +33,7 @@ describe('vwc-date-time-picker', () => {
 	const getDialogTitle = () => titleAction.textContent!.trim();
 
 	function typeIntoTextField(text: string) {
-		textField.currentValue = text;
+		textField.value = text;
 		textField.dispatchEvent(new InputEvent('input'));
 		textField.dispatchEvent(new InputEvent('change'));
 		textField.dispatchEvent(new Event('blur'));
@@ -142,14 +142,14 @@ describe('vwc-date-time-picker', () => {
 			element.value = '2021-01-21T12:34:56';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('01/21/2021 12:34 PM');
+			expect(textField.value).toBe('01/21/2021 12:34 PM');
 		});
 
 		it('should ignore an invalid value', async () => {
 			element.value = 'x';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('');
+			expect(textField.value).toBe('');
 		});
 
 		it('should update value when a user enters a valid date time into the text field', async () => {
@@ -173,7 +173,7 @@ describe('vwc-date-time-picker', () => {
 			await elementUpdated(element);
 
 			expect(element.value).toBe('');
-			expect(textField.currentValue).toBe('x');
+			expect(textField.value).toBe('x');
 		});
 
 		it('should clear the text field when value is set to empty string', async () => {
@@ -183,7 +183,7 @@ describe('vwc-date-time-picker', () => {
 			element.value = '';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('');
+			expect(textField.value).toBe('');
 		});
 	});
 
@@ -225,7 +225,7 @@ describe('vwc-date-time-picker', () => {
 				element.value = '2020-02-20T13:45:00';
 				await elementUpdated(element);
 
-				expect(textField.currentValue).toBe('02/20/2020 01:45 PM');
+				expect(textField.value).toBe('02/20/2020 01:45 PM');
 			});
 		});
 
@@ -243,7 +243,7 @@ describe('vwc-date-time-picker', () => {
 				element.value = '2020-02-20T13:45:00';
 				await elementUpdated(element);
 
-				expect(textField.currentValue).toBe('02/20/2020 13:45');
+				expect(textField.value).toBe('02/20/2020 13:45');
 			});
 		});
 
@@ -255,7 +255,7 @@ describe('vwc-date-time-picker', () => {
 			element.clock = '24h';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('02/20/2020 13:45');
+			expect(textField.value).toBe('02/20/2020 13:45');
 		});
 	});
 
@@ -686,7 +686,7 @@ describe('vwc-date-time-picker', () => {
 			element.value = '2021-01-21T13:13:13';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('21.01.2021 13:13');
+			expect(textField.value).toBe('21.01.2021 13:13');
 		});
 
 		it('should update the text field when the locale changes', async () => {
@@ -696,7 +696,7 @@ describe('vwc-date-time-picker', () => {
 			setLocale(deDE);
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('21.01.2021 13:13');
+			expect(textField.value).toBe('21.01.2021 13:13');
 		});
 	});
 });

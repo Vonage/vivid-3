@@ -74,7 +74,7 @@ Use the `minutes-step` attribute to configure the step between minutes in the Ti
 Use the `seconds-step` attribute to configure the step between seconds in the Time Picker.
 
 <vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
 If not set, the Time Picker will not display seconds.
 

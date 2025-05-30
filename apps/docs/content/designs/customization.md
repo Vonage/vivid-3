@@ -87,7 +87,7 @@ Click on "Edit code" to be able to modify the variables.
 
 ```html variables-preview[action-group]
 <vwc-action-group>
-	<vwc-button>
+	<vwc-button aria-label="Undo">
 		<vwc-icon slot="icon" name="reply-line"></vwc-icon>
 	</vwc-button>
 	<vwc-button label="copy"></vwc-button>
@@ -99,7 +99,7 @@ Click on "Edit code" to be able to modify the variables.
 ### Alert
 
 ```html variables-preview[alert] 100px
-<vwc-alert connotation="$CONNOTATION" subtitle="What an important info!!!" open>
+<vwc-alert connotation="$CONNOTATION" text="What an important info!!!" open>
 	<vwc-icon slot="icon" name="megaphone-solid"></vwc-icon>
 </vwc-alert>
 ```

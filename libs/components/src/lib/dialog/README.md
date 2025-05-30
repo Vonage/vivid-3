@@ -1,5 +1,10 @@
 ## Usage
 
+<vwc-note connotation="information">
+	<vwc-icon name="info-line" slot="icon" label="Note:"></vwc-icon>
+	<p>Dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)"><code>native dialog</code></a> element.</p>
+</vwc-note>
+
 <vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
@@ -42,17 +47,12 @@ registerDialog('your-prefix');
 </vwc-tab-panel>
 </vwc-tabs>
 
-<vwc-note connotation="information">
-	<vwc-icon name="info-line" slot="icon"></vwc-icon>
-	<p>The dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)"><code>native dialog</code></a> element.</p>
-</vwc-note>
-
 ## Modal
 
 Use the `modal` attribute to set the dialog as Modal
 
 <vwc-note connotation="information" headline="Dialogs can be modal or non-modal">
-	<vwc-icon name="info-line" slot="icon"></vwc-icon>
+	<vwc-icon name="info-line" slot="icon" label="Note:"></vwc-icon>
 <ul>
 <li>Modal dialogs prevent users from interacting with the rest of the application until the dialog is closed and render a backdrop behind the dialog.</li>
 <li>Non-modal dialogs allow users to interact with the rest of the application while the dialog is open.</li>
@@ -133,7 +133,7 @@ Sets or returns whether a dialog should be open or not.
 ## Dismiss
 
 <vwc-note connotation="warning" headline="Add dismiss options with caution">
-	<vwc-icon name="warning-line" slot="icon"></vwc-icon>
+	<vwc-icon name="warning-line" slot="icon" label="Warning"></vwc-icon>
 	<p>When using this attribute, ensure that the dialog can be closed by other means.</p>
 </vwc-note>
 

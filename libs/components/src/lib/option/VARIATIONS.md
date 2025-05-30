@@ -2,7 +2,7 @@
 
 The `text` attribute set the text to be displayed in the option list item and in the parent element when selected.
 
-The [label attribute](/components/option/code/#label) can be used xsto display different text in the parent element when selected.
+The [label attribute](/components/option/code/#label) can be used to display different text in the parent element when selected.
 
 ```html preview
 <div class="container">

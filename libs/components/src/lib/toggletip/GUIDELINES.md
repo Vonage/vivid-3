@@ -637,7 +637,7 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 ## Disabled
 
 <vwc-note connotation="warning" headline="Disabled buttons should be used with caution">
-<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 Try to use [progressive disclosure](https://www.nngroup.com/articles/progressive-disclosure/) instead of disabled buttons.
 

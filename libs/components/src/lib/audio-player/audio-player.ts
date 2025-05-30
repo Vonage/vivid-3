@@ -232,7 +232,7 @@ export class AudioPlayer extends Localized(VividElement) {
 		this.#currentTimeChanged = true;
 		Observable.notify(this, 'currentTime');
 		const percent = (this.currentTime / this.duration) * 100;
-		this.#sliderEl!.currentValue = percent.toString();
+		this.#sliderEl!.value = percent.toString();
 		if (percent === 100) {
 			this.pause();
 		}

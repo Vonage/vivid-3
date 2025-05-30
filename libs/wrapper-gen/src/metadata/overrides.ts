@@ -22,19 +22,6 @@ export const globalDefinitionOverrides: DefinitionOverride[] = [
 
 export const componentOverrides: ComponentSpecs[] = [
 	[
-		'button',
-		(component) => {
-			const titleProp = component.props.find((p) => p.name === 'title');
-			if (titleProp!.type === 'boolean') {
-				// Workaround for an issue with the CEM analyzer, which will incorrectly mark the title prop as boolean
-				titleProp!.type = 'string';
-			} else {
-				throw new Error('Title prop not found or has incorrect type');
-			}
-		},
-	],
-
-	[
 		'data-grid',
 		(component) => {
 			component.props.push({

@@ -26,11 +26,7 @@ const isFormValueAttribute = (attribute: Attribute): boolean =>
 const propNameForAttribute = (attribute: Attribute): string => {
 	let name = isFormValueAttribute(attribute)
 		? attribute.fieldName ?? '' // Use the field name for value attributes, e.g. 'value' instead of 'currentValue'
-		: kebabToCamel(attribute.name ?? '') || (attribute.fieldName ?? ''); // Otherwise, prefer the attribute name even when different. E.g. 'headingLevel' instead of 'headinglevel'
-
-	if (!name) {
-		throw new Error('Attribute must have a name or a fieldName');
-	}
+		: kebabToCamel(attribute.name); // Otherwise, prefer the attribute name even when different. E.g. 'headingLevel' instead of 'headinglevel'
 
 	// On certain components there is actually a currentValue field for 'current-value' attribute
 	// In this case, we still want to use 'value' as the prop name

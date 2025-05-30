@@ -112,50 +112,57 @@ The `error-text` attribute provides a custom error message. Any current error st
 
 ## Icon
 
-To add icons, use the `icon` [slot](/components/combobox/code/#icon-slot) provided.\
-The `icon`(_deprecated_) attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Combobox element.
+The `icon` attribute displays an icon from the icon library](/icons/icons-gallery/).
 
-```html preview 270px
-<vwc-combobox label="Country code" class="country-code" id="country-code">
-	<vwc-icon
-		slot="icon"
-		id="icon"
-		name="flag-united-states"
-		label="United States +1"
-	></vwc-icon>
-	<vwc-option value="1" text="United States" label="+1">
-		<vwc-icon name="flag-united-states" slot="icon"></vwc-icon>
-	</vwc-option>
-	<vwc-option value="44" text="United Kingdom" label="+44">
-		<vwc-icon name="flag-united-kingdom" slot="icon"></vwc-icon>
-	</vwc-option>
-	<vwc-option value="49" text="Germany" label="+49">
-		<vwc-icon name="flag-germany" slot="icon"></vwc-icon>
-	</vwc-option>
-	<vwc-option value="355" text="Albania" label="+355">
-		<vwc-icon name="flag-albania" slot="icon"></vwc-icon>
-	</vwc-option>
-</vwc-combobox>
-
-<script>
-	const combobox = document.getElementById('country-code');
-	const icon = document.getElementById('icon');
-	combobox?.addEventListener('change', (e) => {
-		icon.name = combobox.selectedOptions[0].icon;
-		icon.label =
-			combobox.selectedOptions[0].text +
-			' ' +
-			combobox.selectedOptions[0].value;
-	});
-</script>
-```
+The preferred way to add icons is to use the [icon slot](/components/banner/code/#icon-slot).
 
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
 </vwc-note>
+
+```html preview 270px
+<vwc-combobox
+	label="Country code"
+	class="country-code"
+	id="country-code"
+	icon="search-line"
+>
+	<vwc-option
+		value="1"
+		text="United States"
+		label="+1"
+		icon="flag-united-states"
+	></vwc-option>
+	<vwc-option
+		value="44"
+		text="United Kingdom"
+		label="+44"
+		icon="flag-united-kingdom"
+	></vwc-option>
+	<vwc-option
+		value="49"
+		text="Germany"
+		label="+49"
+		icon="flag-germany"
+	></vwc-option>
+	<vwc-option
+		value="355"
+		text="Albania"
+		label="+355"
+		icon="flag-albania"
+	></vwc-option>
+</vwc-combobox>
+
+<script>
+	const combobox = document.getElementById('country-code');
+	combobox?.addEventListener('change', (e) => {
+		combobox.icon = combobox.selectedOptions[0].icon;
+	});
+</script>
+```
 
 ## Scale
 

@@ -1,8 +1,9 @@
 import 'element-internals-polyfill';
 
 import { fixture } from '@vivid-nx/shared';
-import { customElement, FASTElement } from '@microsoft/fast-element';
+import { customElement } from '@microsoft/fast-element';
 import { FormAssociated } from '../../foundation/form-associated/form-associated';
+import { VividElement } from '../../foundation/vivid-element/vivid-element';
 import {
 	type ErrorText,
 	errorText,
@@ -23,18 +24,11 @@ describe('Form Elements', function () {
 			instance.dispatchEvent(new Event('blur'));
 		}
 
-		class _FormElementsClass extends FASTElement {}
-
-		// eslint-disable-next-line @typescript-eslint/naming-convention
-		interface _FormElementsClass extends FormAssociated {}
-
-		class FormAssociatedTextField extends FormAssociated(_FormElementsClass) {
-			proxy = document.createElement('input');
-		}
-
 		@customElement('form-elements-class')
 		@formElements
-		class FormElementsClass extends FormAssociatedTextField {
+		class FormElementsClass extends FormAssociated(VividElement) {
+			override proxy = document.createElement('input');
+
 			override get validationMessage() {
 				return VALIDATION_MESSAGE;
 			}
@@ -123,19 +117,12 @@ describe('Form Elements', function () {
 
 		const baseValidate = vi.fn().mockReturnValue(5);
 
-		class _ErrorTextClass extends FASTElement {}
-
-		// eslint-disable-next-line @typescript-eslint/naming-convention
-		interface _ErrorTextClass extends FormAssociated {}
-
-		class FormAssociatedErrorTextClass extends FormAssociated(_ErrorTextClass) {
-			proxy = document.createElement('input');
-		}
-
 		@customElement('error-text-class')
 		@errorText
 		@formElements
-		class ErrorTextClass extends FormAssociatedErrorTextClass {
+		class ErrorTextClass extends FormAssociated(VividElement) {
+			override proxy = document.createElement('input');
+
 			override get validationMessage() {
 				return VALIDATION_MESSAGE;
 			}

@@ -1,12 +1,8 @@
 ## Implementation
 
-### Icon-only Buttons
+### Icon Only Buttons
 
 Use the `aria-label` attribute to provide alternative text for _icon-only_ buttons. This text is read by screen readers and lets the user know the purpose of the button.
-
-### Pending Buttons
-
-When using the button in a [pending](/components/button/#pending) state, provide a label or aria-label to describe what is happening. Eg. 'Loading more search results'.
 
 ## Best Practices
 

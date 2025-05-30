@@ -45,7 +45,7 @@ Set the `value` attribute to set the default value for the number field.
 Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
 
 <vwc-note connotation="information" headline="Values always use decimal separator">
-<vwc-icon slot="icon" name="info-line"></vwc-icon>
+<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 <p>Values always use the period (".") as the decimal separator, regardless of the user's locale.
 </p>
 <p>Only the value on the screen is localized.
@@ -93,6 +93,11 @@ The `success-text` attribute provides a custom success message. Any current erro
 The `scale` attribute controls the Text Field input element display size.
 Use `condensed` in situations when space is limited, for example, inside a Data Grid cell.
 
+<vwc-note connotation="information" headline="Scale instead of Size">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+	<p>The reason for using <code>scale</code> for form elements and not <code>size</code> (as used in other components such as Button), is that <code>size</code> is a HTML attribute that can be used on <code>input</code> elements (and also Number Field) to control the width of the input.</p>
+</vwc-note>
+
 ```html preview
 <div class="container">
 	<vwc-number-field label="Condensed" scale="condensed"></vwc-number-field>
@@ -106,11 +111,6 @@ Use `condensed` in situations when space is limited, for example, inside a Data 
 	}
 </style>
 ```
-
-<vwc-note connotation="information" headline="Scale instead of Size">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
-	<p>The reason for using <code>scale</code> for form elements and not <code>size</code> (as used in other components such as Button), is that <code>size</code> is a HTML attribute that can be used on <code>input</code> elements (and also Number Field) to control the width of the input.</p>
-</vwc-note>
 
 ## Shape
 

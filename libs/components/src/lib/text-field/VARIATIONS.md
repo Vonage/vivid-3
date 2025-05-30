@@ -93,9 +93,16 @@ The `success-text` attribute provides a custom success message. Any current erro
 
 ## Icon
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Text Field's input element.
+The `icon` attribute can set to display an icon from the [icon library](/icons/icons-gallery/) on the component.
 
-To add custom icons or to postfix icons, use the [slots](/components/text-field/code/#slots) provided (`action-items` and `leading-action-items`).
+The preferred way to add icons is to use the [icon slot](/components/text-field/code/#icon-slot).
+
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ```html preview
 <vwc-text-field
@@ -104,13 +111,6 @@ To add custom icons or to postfix icons, use the [slots](/components/text-field/
 	type="search"
 ></vwc-text-field>
 ```
-
-<vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
-
-The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
-
-</vwc-note>
 
 ## Scale
 

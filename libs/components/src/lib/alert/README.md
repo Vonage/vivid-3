@@ -102,8 +102,8 @@ Controls the `position` of the Alert. The default is `fixed`, which will positio
 When set to `static`, placement will have no effect, and the Alert will behave as an element in page flow.
 
 ```html preview
-<vwc-alert strategy="static" text="Alert with position static" open>
-	<vwc-icon slot="icon" name="megaphone-solid"></vwc-icon>
+<vwc-alert strategy="static" text="This Alert has position set to static" open>
+	<vwc-icon slot="icon" name="megaphone-solid" label="Announcement"></vwc-icon>
 </vwc-alert>
 ```
 
@@ -143,13 +143,6 @@ Set the `icon` slot to add an icon to the Alert. If set, the `icon`(_deprecated_
 	<vwc-icon slot="icon" name="megaphone-solid" connotation="cta"></vwc-icon>
 </vwc-alert>
 ```
-
-<vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
-
-The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
-
-</vwc-note>
 
 ## CSS Variables
 

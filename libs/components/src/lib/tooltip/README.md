@@ -86,7 +86,7 @@ It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you ca
 Tooltips need to be anchored to an element. Place the anchor element inside the `anchor` slot of the tooltip.
 
 <vwc-note connotation="warning">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the Tooltip will not be accessible to keyboard or screen reader users.
 

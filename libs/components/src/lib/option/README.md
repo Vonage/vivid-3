@@ -100,6 +100,7 @@ If set, the `icon` attribute is ignored.
 			slot="icon"
 			name="check-circle-solid"
 			connotation="success"
+			label="Selected"
 		></vwc-icon>
 	</vwc-option>
 </div>
