@@ -891,12 +891,6 @@ export class Select extends WithLightDOMFeedback(
 	 */
 	@observable metaSlottedContent?: Node[];
 
-	labelChanged() {
-		if (!this.ariaLabel) {
-			this.ariaLabel = this.label ?? null;
-		}
-	}
-
 	get displayValue(): string {
 		Observable.track(this, 'displayValue');
 
