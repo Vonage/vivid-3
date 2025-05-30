@@ -2,6 +2,7 @@ import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { Menu } from './menu';
 import '.';
 import '../menu-item';
+import '../divider';
 
 const COMPONENT_TAG = 'vwc-menu';
 
@@ -17,8 +18,10 @@ describe('a11y: vwc-menu', () => {
 		element.open = true;
 		element.ariaLabel = 'A11y label';
 		element.innerHTML = `
-      <div role="menuitem" id="id1">Menu Item 1</div>
-      <div role="menuitem" id="id2">Menu Item 2</div>
+      <vwc-menu-item text="Menu Item 1"></vwc-menu-item>
+      <vwc-menu-item control-type="checkbox" text="Menu Item Checkbox"></vwc-menu-item>
+      <vwc-didiver></vwc-didiver>
+      <vwc-menu-item control-type="radio" text="Menu Item Radio"></vwc-menu-item>
     `;
 		await elementUpdated(element);
 	});

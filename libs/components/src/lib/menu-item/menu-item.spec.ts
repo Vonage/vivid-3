@@ -1,5 +1,6 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '.';
+import '../menu';
 import { fireEvent } from '@testing-library/dom';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Connotation } from '@vonage/vivid';
@@ -8,9 +9,8 @@ import {
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { Mock } from 'vitest';
-import { Icon } from '../icon/icon';
+import type { Menu } from '../menu/menu';
 import { MenuItem } from './menu-item';
-import { MenuItemRole } from './definition';
 
 const MENU_TAG = 'vwc-menu';
 const COMPONENT_TAG = 'vwc-menu-item';
@@ -35,9 +35,13 @@ describe('vwc-menu-item', () => {
 	}
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as MenuItem;
+		const menu = fixture(
+			`<${MENU_TAG}>
+					<${COMPONENT_TAG}></${COMPONENT_TAG}>
+			</${MENU_TAG}>`
+		) as Menu;
+		await elementUpdated(menu);
+		element = menu.querySelector(COMPONENT_TAG) as MenuItem;
 	});
 
 	describe('basic', () => {
@@ -46,6 +50,7 @@ describe('vwc-menu-item', () => {
 			expect(element.text).toEqual(undefined);
 			expect(element.textSecondary).toEqual(undefined);
 			expect(element.role).toEqual('menuitem');
+			expect(element.controlType).toBe(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.checked).toBe(false);
 			expect(element.disabled).toBeUndefined();
@@ -73,54 +78,105 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('role', () => {
-		it('should have menuitem role by default', async () => {
-			expect(element.getAttribute('role')).toEqual(MenuItemRole.menuitem);
-		});
-
-		it('should reflect the role property', async () => {
-			const role = MenuItemRole.menuitem;
-			element.role = role;
-			await elementUpdated(element);
-			expect(element.getAttribute('role')).toEqual(role);
-		});
-
-		it('should set trailing class if role=checkbox and icon is set', async function () {
-			const iconName = 'file-pdf-line';
-			element.icon = iconName;
-			element.role = MenuItemRole.menuitemcheckbox;
+		it('should set role to presentation when the menu item is not a direct descendant of a menu and role is menuitem', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			)) as MenuItem;
 			await elementUpdated(element);
 
-			expect(
-				getBaseElement(element).classList.contains('trailing')
-			).toBeTruthy();
+			expect(element.role).toBe('presentation');
 		});
 
-		it('should display icon if role=checkbox and icon is set', async function () {
-			const iconName = 'file-pdf-line';
-			element.icon = iconName;
-			element.role = MenuItemRole.menuitemcheckbox;
-			element.checked = true;
+		it('should retain role when the menu item is not a direct descendant of a menu and role is not menuitem', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} role="menuitemcheckbox"></${COMPONENT_TAG}>`
+			)) as MenuItem;
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(
-				`[name="${iconName}"]`
-			) as Icon;
-			expect(icon).toBeInstanceOf(Icon);
+			expect(element.role).toBe('menuitemcheckbox');
+		});
+
+		it('should set role to menuitem when the menu item is a direct descendant of a menu and role is presentation', async () => {
+			const element = document.createElement('vwc-menu-item');
+			element.role = 'presentation';
+			const menu = fixture(`<${MENU_TAG}></${MENU_TAG}>`) as Menu;
+			menu.appendChild(element);
+			await elementUpdated(element);
+
+			expect(element.role).toBe('menuitem');
+		});
+
+		it('should not prevent default of click events when the menu item is not a direct descendant of a menu', async function () {
+			element = (await fixture(
+				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			)) as MenuItem;
+			await elementUpdated(element);
+
+			const spy = vi.fn();
+			element.addEventListener('click', spy);
+			element.click();
+			const event = spy.mock.calls[0][0];
+			expect(event.defaultPrevented).toBe(false);
+		});
+
+		it('should prevent default of click event if role is not presentation', async function () {
+			const spy = vi.fn();
+			element.addEventListener('click', spy);
+			element.click();
+			const event = spy.mock.calls[0][0];
+			expect(event.defaultPrevented).toBe(true);
+		});
+
+		it('should set controlType to checkbox when role is menuitemcheckbox', async () => {
+			element.role = 'menuitemcheckbox';
+
+			expect(element.controlType).toBe('checkbox');
+		});
+
+		it('should set controlType to checkbox when role is checkbox', async () => {
+			element.role = 'checkbox';
+
+			expect(element.controlType).toBe('checkbox');
+		});
+
+		it('should set controlType to radio when role is menuitemradio', async () => {
+			element.role = 'menuitemradio';
+
+			expect(element.controlType).toBe('radio');
+		});
+
+		it('should set controlType to radio when role is radio', async () => {
+			element.role = 'radio';
+
+			expect(element.controlType).toBe('radio');
+		});
+
+		it('should unset controlType to radio when role is set to menuitem', async () => {
+			element.role = 'menuitemcheckbox';
+			element.role = 'menuitem';
+
+			expect(element.controlType).toBe(undefined);
+		});
+	});
+
+	describe('controlType', () => {
+		it('should set trailing class if controlType=checkbox and icon is set', async function () {
+			element.icon = 'file-pdf-line';
+			element.controlType = 'checkbox';
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('trailing')).toBe(true);
 		});
 
 		it.each([
-			['checkbox-checked-2-line', true, MenuItemRole.menuitemcheckbox],
-			['checkbox-checked-2-line', true, MenuItemRole.checkbox],
-			['checkbox-unchecked-2-line', false, MenuItemRole.menuitemcheckbox],
-			['checkbox-unchecked-2-line', false, MenuItemRole.checkbox],
-			['radio-checked-2-line', true, MenuItemRole.menuitemradio],
-			['radio-checked-2-line', true, MenuItemRole.radio],
-			['radio-unchecked-2-line', false, MenuItemRole.menuitemradio],
-			['radio-unchecked-2-line', false, MenuItemRole.radio],
-		])(
-			'should set a %s icon when checked=%s and role is %s',
-			async (expectedIcon, checked, role) => {
-				element.role = role;
+			['checkbox-checked-2-line', true, 'checkbox'],
+			['checkbox-unchecked-2-line', false, 'checkbox'],
+			['radio-checked-2-line', true, 'radio'],
+			['radio-unchecked-2-line', false, 'radio'],
+		] as const)(
+			'should set a %s icon when checked=%s and controlType is %s',
+			async (expectedIcon, checked, controlType) => {
+				element.controlType = controlType;
 				element.checked = checked;
 				await elementUpdated(element);
 
@@ -129,31 +185,30 @@ describe('vwc-menu-item', () => {
 			}
 		);
 
-		it('should enable default of click event if role is presentation', async function () {
-			const spy = vi.fn();
-			element.addEventListener('click', spy);
-			(element as any).role = MenuItemRole.presentation;
-			await elementUpdated(element);
-			element.click();
-			const event = spy.mock.calls[0][0];
-			expect(event?.defaultPrevented).toEqual(false);
+		it('should set role to menuitemcheckbox when controlType is checkbox', async () => {
+			element.controlType = 'checkbox';
+
+			expect(element.role).toBe('menuitemcheckbox');
 		});
 
-		it('should prevent default of click event if role is not presentation', async function () {
-			const spy = vi.fn();
-			element.addEventListener('click', spy);
-			(element as any).role = MenuItemRole.menuitem;
-			await elementUpdated(element);
-			element.click();
-			const event = spy.mock.calls[0][0];
-			expect(event?.defaultPrevented).toEqual(true);
+		it('should set role to menuitemradio when controlType is radio', async () => {
+			element.controlType = 'radio';
+
+			expect(element.role).toBe('menuitemradio');
+		});
+
+		it('should set role to menuitem when controltype is unset', async () => {
+			element.controlType = 'checkbox';
+			element.controlType = undefined;
+
+			expect(element.role).toBe('menuitem');
 		});
 	});
 
 	describe('check-trailing', () => {
-		it('should set trailing class if role=checkbox', async function () {
+		it('should set trailing class if controlType=checkbox', async function () {
 			element.checkTrailing = true;
-			element.role = MenuItemRole.menuitemcheckbox;
+			element.controlType = 'checkbox';
 			await elementUpdated(element);
 
 			expect(
@@ -164,20 +219,16 @@ describe('vwc-menu-item', () => {
 
 	describe('check-appearance', () => {
 		it.each([
-			['check-line', true, MenuItemRole.menuitemcheckbox],
-			['check-line', true, MenuItemRole.checkbox],
-			['', false, MenuItemRole.menuitemcheckbox],
-			['', false, MenuItemRole.checkbox],
-			['check-line', true, MenuItemRole.menuitemradio],
-			['check-line', true, MenuItemRole.radio],
-			['', false, MenuItemRole.menuitemradio],
-			['', false, MenuItemRole.radio],
-		])(
-			'should set a "%s" icon when checked=%s and role is %s when check-appearance is tick-only',
-			async function (expectedIcon, checked, role) {
+			['check-line', true, 'checkbox'],
+			['', false, 'checkbox'],
+			['check-line', true, 'radio'],
+			['', false, 'radio'],
+		] as const)(
+			'should set a "%s" icon when checked=%s and controlType is %s when check-appearance is tick-only',
+			async function (expectedIcon, checked, controlType) {
 				element.checkedAppearance = 'tick-only';
 				element.checked = checked;
-				element.role = role;
+				element.controlType = controlType;
 				await elementUpdated(element);
 
 				const icon = element.shadowRoot!.querySelector('vwc-icon')!;
@@ -302,39 +353,36 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('checked', () => {
-		describe.each([
-			'menuitemcheckbox',
-			'menuitemradio',
-			'checkbox',
-			'radio',
-		] as const)("when role is '%s'", (role) => {
-			beforeEach(async () => {
-				element.role = role;
-				await elementUpdated(element);
-			});
+		describe.each(['checkbox', 'radio'] as const)(
+			"when controlType is '%s'",
+			(controlType) => {
+				beforeEach(async () => {
+					element.controlType = controlType;
+					await elementUpdated(element);
+				});
 
-			it('should set `aria-checked` to "false" when checked is false', async () => {
-				element.checked = false;
-				await elementUpdated(element);
-				expect(element.getAttribute('aria-checked')).toEqual('false');
-			});
+				it('should set `aria-checked` to "false" when checked is false', async () => {
+					element.checked = false;
+					await elementUpdated(element);
+					expect(element.getAttribute('aria-checked')).toEqual('false');
+				});
 
-			it('should set `aria-checked` to "true" when checked is true', async () => {
-				element.checked = true;
-				await elementUpdated(element);
-				expect(element.getAttribute('aria-checked')).toEqual('true');
-			});
-		});
+				it('should set `aria-checked` to "true" when checked is true', async () => {
+					element.checked = true;
+					await elementUpdated(element);
+					expect(element.getAttribute('aria-checked')).toEqual('true');
+				});
+			}
+		);
 
-		it('should NOT set `aria-checked` attribute when role is menuitem', async () => {
-			element.role = MenuItemRole.menuitem;
+		it('should NOT set `aria-checked` attribute when controlType is not set', async () => {
 			element.checked = true;
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-checked')).toEqual(null);
 		});
 
-		it('should toggle the checked value on click when role is menuitemcheckbox', async () => {
-			element.role = MenuItemRole.menuitemcheckbox;
+		it('should toggle the checked value on click when controlType is checkbox', async () => {
+			element.controlType = 'checkbox';
 			element.click();
 			expect(element.checked).toBe(true);
 
@@ -342,26 +390,8 @@ describe('vwc-menu-item', () => {
 			expect(element.checked).toBe(false);
 		});
 
-		it('should set the checked value to true on click when role is menuitemradio', async () => {
-			element.role = MenuItemRole.menuitemradio;
-			element.click();
-			expect(element.checked).toBe(true);
-
-			element.click();
-			expect(element.checked).toBe(true);
-		});
-
-		it('should toggle the checked value on click when role is checkbox', async () => {
-			element.role = MenuItemRole.checkbox;
-			element.click();
-			expect(element.checked).toBe(true);
-
-			element.click();
-			expect(element.checked).toBe(false);
-		});
-
-		it('should set the checked value to true on click when role is radio', async () => {
-			element.role = MenuItemRole.radio;
+		it('should set the checked value to true on click when controlType is radio', async () => {
+			element.controlType = 'radio';
 			element.click();
 			expect(element.checked).toBe(true);
 
@@ -443,7 +473,6 @@ describe('vwc-menu-item', () => {
 
 		it('should emit a "click" event if arrow left is pressed while expanded', async () => {
 			element.expanded = true;
-			expect(element.expanded).toEqual(true);
 
 			pressKey(keyArrowLeft);
 

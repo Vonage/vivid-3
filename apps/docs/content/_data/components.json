@@ -281,7 +281,6 @@
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/menu/README.md",
 		"accessibility": "./libs/components/src/lib/menu/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/menu/USE-CASES.md",
 		"children": ["Menu Item"]
 	},
 	{
