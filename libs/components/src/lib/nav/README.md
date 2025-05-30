@@ -75,37 +75,35 @@ Use `href` to set the URL that the **Nav Item** links to.
 </vwc-nav>
 ```
 
-## Aria Current
+## Current
 
-### Aria Current (Page)
-
-Use the `aria-current` attribute on **Nav Item** to indicate the currently active link.  
-When setting `aria-current` the value of it is `aria-current="page"`.
+Use the `current` attribute on **Nav Item** to indicate the currently active link.
 
 ```html preview
 <vwc-nav>
-	<vwc-nav-item aria-current href="#" text="Current Nav Item"></vwc-nav-item>
+	<vwc-nav-item href="#" text="Current Nav Item" current></vwc-nav-item>
 	<vwc-nav-item href="#" text="Nav Item"></vwc-nav-item>
 </vwc-nav>
 ```
 
-### Aria Current (True)
-
-Use the `aria-current` attribute on **Nav Disclosure** to indicate the currently active disclosure.  
-Only when the **Nav Disclosure** is closed the `aria-current` will be set.
+Use the `current` attribute on **Nav Disclosure** to indicate the currently active disclosure.  
+Only when the **Nav Disclosure** is closed the `current` will be set.
 
 ```html preview 150px
 <vwc-nav>
-	<vwc-nav-disclosure label="1st level item" aria-current="true">
+	<vwc-nav-disclosure label="1st level item" current>
 		<vwc-icon slot="icon" name="profile"></vwc-icon>
-		<vwc-nav-item
-			href="#"
-			text="2nd level item"
-			aria-current="page"
-		></vwc-nav-item>
+		<vwc-nav-item href="#" text="2nd level item" current></vwc-nav-item>
 	</vwc-nav-disclosure>
 </vwc-nav>
 ```
+
+<vwc-note connotation="warning" headline="Deprecated Prop: aria-current">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `aria-current` prop is deprecated in both **Nav Item** and **Nav Disclosure** (as of 05/25) and directly replaced with `current`. `aria-current` is still functional in the component, but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ## Open
 
@@ -195,15 +193,15 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name             | Type                                                      | Description                                                  |
-| ---------------- | --------------------------------------------------------- | ------------------------------------------------------------ |
-| **appearance**   | _Enum_: `ghost` (default) `ghost-light`                   | Sets the nav item's appearance                               |
-| **aria-current** | `string`                                                  | Sets `aria-current="page"` to indicate the selected nav item |
-| **connotation**  | _Enum_: `accent` (default), `cta`                         | Sets the connotation color of the selected nav item          |
-| **icon**         | _Enum_: `[icon-name]`                                     | Sets the element's icon                                      |
-| **href**         | `string`                                                  | The URL the hyperlink references                             |
-| **target**       | _Enum_:<br/>`_self`<br/>`_blank`<br/>`_parent`<br/>`_top` | The URL the hyperlink opening options                        |
-| **text**         | `string`                                                  | text of the nav item                                         |
+| Name            | Type                                                      | Description                                         |
+| --------------- | --------------------------------------------------------- | --------------------------------------------------- |
+| **appearance**  | _Enum_: `ghost` (default) `ghost-light`                   | Sets the nav item's appearance                      |
+| **current**     | `boolean`                                                 | Indicates the currently active nav item             |
+| **connotation** | _Enum_: `accent` (default), `cta`                         | Sets the connotation color of the selected nav item |
+| **icon**        | _Enum_: `[icon-name]`                                     | Sets the element's icon                             |
+| **href**        | `string`                                                  | The URL the hyperlink references                    |
+| **target**      | _Enum_:<br/>`_self`<br/>`_blank`<br/>`_parent`<br/>`_top` | The URL the hyperlink opening options               |
+| **text**        | `string`                                                  | text of the nav item                                |
 
 </div>
 
@@ -224,14 +222,14 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name             | Type                                    | Description                                                               |
-| ---------------- | --------------------------------------- | ------------------------------------------------------------------------- |
-| **appearance**   | _Enum_: `ghost` (default) `ghost-light` | Sets the nav disclosure's appearance                                      |
-| **aria-current** | `string`                                | Sets `aria-current="true"` to indicate there's a nested selected nav item |
-| **connotation**  | _Enum_: `accent` (default), `cta`       | Sets the connotation color of the selected nav disclosure                 |
-| **icon**         | _Enum_: `[icon-name]`                   | Sets the element's icon                                                   |
-| **label**        | `string`                                | Label of the nav disclosure                                               |
-| **open**         | `boolean`                               | Sets the element open value                                               |
+| Name            | Type                                    | Description                                               |
+| --------------- | --------------------------------------- | --------------------------------------------------------- |
+| **appearance**  | _Enum_: `ghost` (default) `ghost-light` | Sets the nav disclosure's appearance                      |
+| **current**     | `boolean`                               | Indicates there's a nested active nav item                |
+| **connotation** | _Enum_: `accent` (default), `cta`       | Sets the connotation color of the selected nav disclosure |
+| **icon**        | _Enum_: `[icon-name]`                   | Sets the element's icon                                   |
+| **label**       | `string`                                | Label of the nav disclosure                               |
+| **open**        | `boolean`                               | Sets the element open value                               |
 
 </div>
 

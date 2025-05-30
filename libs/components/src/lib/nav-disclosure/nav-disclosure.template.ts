@@ -9,15 +9,17 @@ import type { VividElementDefinitionContext } from '../../shared/design-system/d
 import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { NavDisclosure } from './nav-disclosure';
 
-function getAriaCurrent(ariaCurrent: string | null, open: boolean) {
-	return open ? null : ariaCurrent;
-}
-
-const getClasses = ({ appearance, connotation }: NavDisclosure) =>
+const getClasses = ({
+	appearance,
+	connotation,
+	current,
+	open,
+}: NavDisclosure) =>
 	classNames(
 		'control',
 		[`appearance-${appearance}`, Boolean(appearance)],
-		[`connotation-${connotation}`, Boolean(connotation)]
+		[`connotation-${connotation}`, Boolean(connotation)],
+		['current', Boolean(current) && !open]
 	);
 
 export const NavDisclosureTemplate = (
@@ -30,19 +32,20 @@ export const NavDisclosureTemplate = (
 		x
 	) => x.open}>
 		<summary class="${getClasses}"
-						 aria-controls="disclosure-content"
-						 ${delegateAria({
-								role: 'button',
-								ariaExpanded: (x) => x.open,
-								ariaCurrent: (x) => getAriaCurrent(x.ariaCurrent, x.open),
-							})}
+			aria-controls="disclosure-content"
+			${delegateAria({
+				role: 'button',
+				ariaExpanded: (x) => x.open,
+				ariaCurrent: (x) =>
+					x.open ? null : x.current || x.ariaCurrent ? 'true' : null,
+			})}
 		>
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
 			${(x) => x.label}
 			<slot name="meta"></slot>
 			<${iconTag} class="toggleIcon" name=${(x) =>
 		x.open ? 'chevron-up-solid' : 'chevron-down-solid'}
-									aria-hidden="true"></${iconTag}>
+				aria-hidden="true"></${iconTag}>
 		</summary>
 		<div class="content" id="disclosure-content">
 			<slot></slot>

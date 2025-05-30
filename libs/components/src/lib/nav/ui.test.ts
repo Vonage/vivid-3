@@ -19,7 +19,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 		<div class="wrapper">
 			<vwc-nav>
-				<vwc-nav-item href="#" icon="profile" text="Account" onclick="onClick(this)" aria-current="page" ></vwc-nav-item>
+				<vwc-nav-item href="#" icon="profile" text="Account" onclick="onClick(this)" current></vwc-nav-item>
 				<vwc-nav-item href="#" icon="inbox-line" text="Inbox" onclick="onClick(this)">
 					<vwc-badge slot="meta" text="21" connotation="alert" appearance="subtle" shape="pill"></vwc-badge>
 				</vwc-nav-item>
