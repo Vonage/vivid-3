@@ -1,18 +1,22 @@
 import { html, ViewTemplate } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { directChildrenOfType } from '../../shared/utils/direct-children-of-type';
+import { nestedChildrenOfType } from '../../shared/utils/nested-children-of-type';
 import { DataGrid, DataGridSelectionMode } from './data-grid';
 import '.';
 import { DataGridRow } from './data-grid-row';
+import { DataGridCell } from './data-grid-cell';
 
 const COMPONENT_TAG = 'vwc-data-grid';
 
 Element.prototype.scrollIntoView = vi.fn();
 
 function setMockRows(element: DataGrid) {
-	element.rowElementTag = 'div';
+	element.rowElementTag = 'vwc-data-grid-row';
 	element.rowItemTemplate = html`
-			<${element.rowElementTag} role="row">
-				<button class="first" role="cell"/><button class="second" role="cell"/>
+			<${element.rowElementTag} row-type="row">
+				<vwc-data-grid-cell class="first" cell-type="cell"></vwc-data-grid-cell>
+				<vwc-data-grid-cell class="second" cell-type="cell"></vwc-data-grid-cell>
 			</${element.rowElementTag}>`;
 }
 
@@ -203,7 +207,7 @@ describe('vwc-data-grid', () => {
 
 			element.rowElementTag = rowElementTag;
 			element.rowItemTemplate = html`
-			<${rowElementTag} role="row"></${rowElementTag}>`;
+			<${rowElementTag} row-type="row"></${rowElementTag}>`;
 			element.rowsData = [
 				{ id: '1', name: 'Person 1' },
 				{ id: '2', name: 'Person 2' },
@@ -213,10 +217,10 @@ describe('vwc-data-grid', () => {
 			await elementUpdated(element);
 			await elementUpdated(element);
 
-			const rows = Array.from(element.querySelectorAll('[role="row"]') as any);
-			const allRowsHaveSameGridColumnTemplate = rows.reduce((acc, row: any) => {
-				return acc && row.gridTemplateColumns === '1fr 25px';
-			});
+			const rows = directChildrenOfType(element, DataGridRow);
+			const allRowsHaveSameGridColumnTemplate = rows.every(
+				(row) => row.gridTemplateColumns === '1fr 25px'
+			);
 			expect(allRowsHaveSameGridColumnTemplate).toEqual(true);
 		});
 	});
@@ -239,7 +243,7 @@ describe('vwc-data-grid', () => {
 			const rowElementTag = 'vwc-data-grid-row';
 
 			element.rowElementTag = rowElementTag;
-			element.rowItemTemplate = html`<${rowElementTag} role="row"></${rowElementTag}>`;
+			element.rowItemTemplate = html`<${rowElementTag} row-type="row"></${rowElementTag}>`;
 			const columnDefinitions = [
 				{ columnDataKey: 'id', gridColumn: '3' },
 				{ columnDataKey: 'name', gridColumn: '5' },
@@ -253,7 +257,7 @@ describe('vwc-data-grid', () => {
 			await elementUpdated(element);
 			await elementUpdated(element);
 
-			const rows = element.querySelectorAll('[role="row"]') as any;
+			const rows = directChildrenOfType(element, DataGridRow);
 
 			rows.forEach((row: any, index: number) => {
 				expect(row.columnDefinitions).toEqual(columnDefinitions);
@@ -271,7 +275,7 @@ describe('vwc-data-grid', () => {
 	describe('rowItemTemplate', () => {
 		it('should use the given row template', async () => {
 			const rowTag = 'just-for-test';
-			element.rowItemTemplate = html`<${rowTag} role="row"></${rowTag}>`;
+			element.rowItemTemplate = html`<${rowTag} row-type="row"></${rowTag}>`;
 			element.rowsData = [
 				{ id: '1', name: 'Person 1' },
 				{ id: '2', name: 'Person 2' },
@@ -287,10 +291,11 @@ describe('vwc-data-grid', () => {
 
 	describe('focusRowIndex', () => {
 		it('should set the focused cell', async () => {
-			element.rowElementTag = 'div';
+			element.rowElementTag = 'vwc-data-grid-row';
 			element.rowItemTemplate = html`
-			<${element.rowElementTag} role="row">
-				<button class="first" role="cell"/><button class="second" role="cell"/>
+			<${element.rowElementTag}>
+				<vwc-data-grid-cell class="first" ></vwc-data-grid-cell>
+				<vwc-data-grid-cell class="second"></vwc-data-grid-cell>
 			</${element.rowElementTag}>`;
 			element.generateHeader = 'none';
 			element.rowsData = [
@@ -298,14 +303,16 @@ describe('vwc-data-grid', () => {
 				{ id: '2', name: 'Person 2' },
 			];
 			await elementUpdated(element);
-			const expectedFocsedCell = Array.from(
-				element.querySelectorAll(element.rowElementTag)
-			)
-				.at(-1)
-				?.querySelector('button');
+
 			element.focusRowIndex = 2;
+
+			const expectedFocusedCell = nestedChildrenOfType(
+				element,
+				DataGridCell
+			)[0];
 			await elementUpdated(element);
-			expect(expectedFocsedCell).toEqual(document.activeElement);
+
+			expect(expectedFocusedCell).toEqual(document.activeElement);
 		});
 	});
 
@@ -318,15 +325,17 @@ describe('vwc-data-grid', () => {
 				{ id: '2', name: 'Person 2' },
 			];
 			await elementUpdated(element);
-			const expectedFocsedCell = Array.from(
-				element.querySelectorAll(element.rowElementTag)
-			)
-				.at(-1)
-				?.querySelector('.second');
-			element.focusRowIndex = 2;
-			element.focusColumnIndex = 2;
+
+			const expectedFocusedCell = nestedChildrenOfType(
+				element,
+				DataGridCell
+			).at(-1);
+
+			element.focusRowIndex = 1;
+			element.focusColumnIndex = 1;
 			await elementUpdated(element);
-			expect(expectedFocsedCell).toEqual(document.activeElement);
+
+			expect(expectedFocusedCell).toEqual(document.activeElement);
 		});
 	});
 
@@ -393,10 +402,9 @@ describe('vwc-data-grid', () => {
 				{ id: '2', name: 'Person 2' },
 			];
 			await elementUpdated(element);
-			const expected = Array.from(
-				element.querySelectorAll(element.rowElementTag)
-			);
-			expected.splice(0, 1);
+
+			const expected = directChildrenOfType(element, DataGridRow);
+
 			expect(element.rowElements).toEqual(expected);
 		});
 	});
@@ -413,13 +421,8 @@ describe('vwc-data-grid', () => {
 			await elementUpdated(element);
 			await elementUpdated(element);
 
-			const rows = Array.from(element.querySelectorAll('[role="row"]'));
-			const cells = rows.map(
-				(row) =>
-					Array.from(
-						row.querySelectorAll('[role="columnheader"],[role="gridcell"]')
-					) as HTMLElement[]
-			);
+			const rows = directChildrenOfType(element, DataGridRow);
+			const cells = rows.map((row) => directChildrenOfType(row, DataGridCell));
 
 			for (let i = 0; i < rows.length; i++) {
 				Object.defineProperty(rows[i], 'offsetTop', {

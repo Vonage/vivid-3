@@ -18,6 +18,7 @@ import {
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DataGridRowTypes } from './data-grid.options';
 import type { ColumnDefinition } from './data-grid';
+import type { DataGridCell } from './data-grid-cell';
 
 /**
  * @public
@@ -28,7 +29,7 @@ import type { ColumnDefinition } from './data-grid';
  */
 export class DataGridRow extends VividElement {
 	/**
-	 * String that gets applied to the the css gridTemplateColumns attribute for the row
+	 * String that gets applied to the css gridTemplateColumns attribute for the row
 	 *x
 	 * @public
 	 * @remarks
@@ -148,7 +149,7 @@ export class DataGridRow extends VividElement {
 	 * @internal
 	 */
 	@observable
-	cellElements!: HTMLElement[];
+	cellElements!: DataGridCell[];
 
 	private cellsRepeatBehavior: RepeatBehavior | null = null;
 	private cellsPlaceholder: Node | null = null;
@@ -156,7 +157,7 @@ export class DataGridRow extends VividElement {
 	/**
 	 * @internal
 	 */
-	slottedCellElements!: HTMLElement[];
+	slottedCellElements!: DataGridCell[];
 
 	/**
 	 * @internal
@@ -214,7 +215,7 @@ export class DataGridRow extends VividElement {
 	}
 
 	handleCellFocus(e: Event): void {
-		this.focusColumnIndex = this.cellElements.indexOf(e.target as HTMLElement);
+		this.focusColumnIndex = this.cellElements.indexOf(e.target as DataGridCell);
 		this.$emit('row-focused', this);
 	}
 
@@ -227,7 +228,7 @@ export class DataGridRow extends VividElement {
 			case keyArrowLeft:
 				// focus left one cell
 				newFocusColumnIndex = Math.max(0, this.focusColumnIndex - 1);
-				(this.cellElements[newFocusColumnIndex] as HTMLElement).focus();
+				this.cellElements[newFocusColumnIndex]?.focus();
 				e.preventDefault();
 				break;
 
@@ -237,22 +238,20 @@ export class DataGridRow extends VividElement {
 					this.cellElements.length - 1,
 					this.focusColumnIndex + 1
 				);
-				(this.cellElements[newFocusColumnIndex] as HTMLElement).focus();
+				this.cellElements[newFocusColumnIndex]?.focus();
 				e.preventDefault();
 				break;
 
 			case keyHome:
 				if (!e.ctrlKey) {
-					(this.cellElements[0] as HTMLElement).focus();
+					this.cellElements[0].focus();
 					e.preventDefault();
 				}
 				break;
 			case keyEnd:
 				if (!e.ctrlKey) {
 					// focus last cell of the row
-					(
-						this.cellElements[this.cellElements.length - 1] as HTMLElement
-					).focus();
+					this.cellElements[this.cellElements.length - 1]?.focus();
 					e.preventDefault();
 				}
 				break;
@@ -279,9 +278,49 @@ export class DataGridRow extends VividElement {
 	/**
 	 * Indicates the selected status.
 	 *
+	 * @deprecated
 	 * @public
 	 * HTML Attribute: aria-selected
 	 */
 	@attr({ attribute: 'aria-selected' })
 	override ariaSelected: string | null = null;
+
+	ariaSelectedChanged(_oldValue: string | null, newValue: string | null) {
+		this.selectable = newValue !== null;
+		this.selected = newValue === 'true';
+	}
+
+	/**
+	 *
+	 * @private
+	 */
+	private calculateAriaSelectedValue() {
+		if (this.selectable && this.selected) return 'true';
+
+		if (this.selectable && !this.selected) return 'false';
+
+		return null;
+	}
+
+	/**
+	 * @internal
+	 */
+	@observable
+	selectable = false;
+
+	selectableChanged() {
+		this.ariaSelected = this.calculateAriaSelectedValue();
+	}
+
+	/**
+	 * Reflects selected state of the row
+	 *
+	 * @public
+	 */
+	@attr({ mode: 'boolean' })
+	selected?: boolean = false;
+
+	selectedChanged() {
+		this.ariaSelected = this.calculateAriaSelectedValue();
+	}
 }

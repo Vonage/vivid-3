@@ -122,7 +122,7 @@ describe('data grid integration tests', () => {
 						<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
 						data1
 						</vwc-data-grid-cell>
-						<vwc-data-grid-cell aria-sort="none" cell-type="columnheader">
+						<vwc-data-grid-cell aria-sort="none" cell-type="columnheader" id="thiscell">
 						data2
 						</vwc-data-grid-cell>
 					</vwc-data-grid-row>
@@ -139,6 +139,7 @@ describe('data grid integration tests', () => {
 				expect(spy).toHaveBeenCalledTimes(1);
 				expect(spy.mock.calls[0][0].detail).toEqual({
 					columnDataKey: 'data2',
+					ariaSort: 'none',
 					sortDirection: 'none',
 				});
 			});
@@ -200,7 +201,7 @@ describe('data grid integration tests', () => {
 					element.selectionMode = selectionMode;
 					await elementUpdated(element);
 					const allNoneHeaderCells = Array.from(
-						element.querySelectorAll('[role="gridcell"]')
+						element.querySelectorAll('[cell-type="gridcell"]')
 					);
 					const allNoneHeaderCellsSelectable = allNoneHeaderCells.every(
 						(cell) => cell.getAttribute('aria-selected') === 'false'
@@ -217,7 +218,7 @@ describe('data grid integration tests', () => {
 				await elementUpdated(element);
 
 				const allNonHeaderCells = Array.from(
-					element.querySelectorAll('[role="gridcell"]')
+					element.querySelectorAll('[cell-type="gridcell"]')
 				);
 				const allNonHeaderCellsNotSelectable = allNonHeaderCells.every(
 					(cell) => !cell.hasAttribute('aria-selected')
@@ -233,7 +234,7 @@ describe('data grid integration tests', () => {
 				await elementUpdated(element);
 
 				const allNonHeaderRows = Array.from(
-					element.querySelectorAll('[role="row"]')
+					element.querySelectorAll('[row-type="row"]')
 				);
 				const allNonHeaderRowsNotSelectable = allNonHeaderRows.every(
 					(row) => !row.hasAttribute('aria-selected')
@@ -426,8 +427,9 @@ describe('data grid integration tests', () => {
 				await elementUpdated(element);
 
 				const allNoneHeaderRows = Array.from(
-					element.querySelectorAll('[role="row"]')
+					element.querySelectorAll('[row-type="row"]')
 				);
+
 				const allNonHeaderRowsNotSelectable = allNoneHeaderRows.every(
 					(row) => !row.hasAttribute('aria-selected')
 				);
@@ -442,7 +444,7 @@ describe('data grid integration tests', () => {
 				await elementUpdated(element);
 
 				const allNonHeaderCells = Array.from(
-					element.querySelectorAll('[role="gridcell"]')
+					element.querySelectorAll('[cell-type="gridcell"]')
 				);
 				const allNonHeaderCellsNotSelectable = allNonHeaderCells.every(
 					(cell) => !cell.hasAttribute('aria-selected')
@@ -458,7 +460,7 @@ describe('data grid integration tests', () => {
 				async function (selectionMode: DataGridSelectionMode) {
 					element.selectionMode = selectionMode;
 					await elementUpdated(element);
-					const allNonHeaderRows = element.querySelectorAll('[role="row"]');
+					const allNonHeaderRows = element.querySelectorAll('[row-type="row"]');
 					const allNonHeaderRowsHaveSelectedFalse = Array.from(
 						allNonHeaderRows
 					).every((row) => {
@@ -470,6 +472,7 @@ describe('data grid integration tests', () => {
 
 			it('should set aria-selected="true" on clicked row', async function () {
 				element.selectionMode = DataGridSelectionMode.singleRow;
+				await elementUpdated(element);
 				const cell = getRowCell(1, 0);
 				const row = getRow(1);
 				cell.click();
@@ -479,6 +482,8 @@ describe('data grid integration tests', () => {
 
 			it('should set aria-selected="true" on clicked row and remove from other rows', async function () {
 				element.selectionMode = DataGridSelectionMode.singleRow;
+				await elementUpdated(element);
+
 				const row1 = getRow(1);
 				const cellInRow1 = getRowCell(1, 0);
 				const row2 = getRow(2);
@@ -495,14 +500,17 @@ describe('data grid integration tests', () => {
 
 			it.each(['ctrlKey', 'shiftKey', 'metaKey'])(
 				'should set aria-selected="true" to all clicked rows in "multi-row" state and %s key pressed',
-				function (activeKey) {
+				async function (activeKey) {
 					element.selectionMode = DataGridSelectionMode.multiRow;
+					await elementUpdated(element);
 					const row1 = getRow(1);
 					const cellInRow1 = getRowCell(1, 0);
 					const row2 = getRow(2);
 					const cellInRow2 = getRowCell(2, 0);
 
 					cellInRow1.click();
+					await elementUpdated(element);
+
 					cellInRow2.dispatchEvent(
 						new MouseEvent('click', {
 							[activeKey]: true,
@@ -510,6 +518,7 @@ describe('data grid integration tests', () => {
 							composed: true,
 						})
 					);
+					await elementUpdated(element);
 
 					expect(row1.getAttribute('aria-selected')).toEqual('true');
 					expect(row2.getAttribute('aria-selected')).toEqual('true');

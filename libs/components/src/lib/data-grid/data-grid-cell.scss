@@ -64,7 +64,7 @@
 		#{variables.$data-grid-cell-default-white-space}: normal;
 	}
 
-	:host(:is([aria-selected]):not([cell-type='columnheader'])) & {
+	:host(:is([selected]):not([cell-type='columnheader'])) & {
 		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
 }

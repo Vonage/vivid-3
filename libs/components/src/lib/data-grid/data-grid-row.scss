@@ -39,7 +39,7 @@
 		display: none;
 	}
 
-	:host(:is([aria-selected]):not([row-type*='header'])) & {
+	:host(:is([selected]):not([row-type*='header'])) & {
 		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
 }
