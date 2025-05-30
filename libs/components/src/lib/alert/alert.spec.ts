@@ -8,7 +8,7 @@ import type { Icon } from '../icon/icon';
 import { Connotation } from '../enums';
 import { Button } from '../button/button';
 import type { AlertConnotation } from './alert';
-import { Alert } from './alert';
+import { Alert, CONNOTATION_ICON_MAP } from './alert';
 import '.';
 
 const COMPONENT_TAG = 'vwc-alert';
@@ -174,16 +174,8 @@ describe('vwc-alert', () => {
 		});
 
 		it('should return the connotation icon if connotation is set', function () {
-			const connotationIconMap: Map<AlertConnotation, string> = new Map([
-				[Connotation.Accent, 'megaphone-line'],
-				[Connotation.Information, 'info-line'],
-				[Connotation.Success, 'check-circle-line'],
-				[Connotation.Warning, 'warning-line'],
-				[Connotation.Alert, 'error-line'],
-			]);
-
-			connotationIconMap.forEach((icon, connotation) => {
-				element.connotation = connotation;
+			Object.entries(CONNOTATION_ICON_MAP).forEach(([connotation, icon]) => {
+				element.connotation = connotation as AlertConnotation;
 				expect(element.conditionedIcon).toEqual(icon);
 			});
 		});
@@ -241,16 +233,10 @@ describe('vwc-alert', () => {
 		});
 
 		it('should have the connotation icon if connotation is set', async function () {
-			const connotationIconMap: Map<AlertConnotation, string> = new Map([
-				[Connotation.Accent, 'megaphone-line'],
-				[Connotation.Information, 'info-line'],
-				[Connotation.Success, 'check-circle-line'],
-				[Connotation.Warning, 'warning-line'],
-				[Connotation.Alert, 'error-line'],
-			]);
-
-			for (const [connotation, iconName] of connotationIconMap) {
-				element.connotation = connotation;
+			for (const [connotation, iconName] of Object.entries(
+				CONNOTATION_ICON_MAP
+			)) {
+				element.connotation = connotation as AlertConnotation;
 				await elementUpdated(element);
 				expect(getIcon()?.name).toEqual(iconName);
 			}

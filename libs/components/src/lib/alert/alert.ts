@@ -5,22 +5,16 @@ import { AffixIcon } from '../../shared/patterns/affix';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
-export type AlertConnotation =
-	| Connotation.Accent
-	| Connotation.Information
-	| Connotation.Success
-	| Connotation.Warning
-	| Connotation.Announcement
-	| Connotation.Alert;
+export const CONNOTATION_ICON_MAP = {
+	[Connotation.Accent]: 'megaphone-line',
+	[Connotation.Information]: 'info-line',
+	[Connotation.Success]: 'check-circle-line',
+	[Connotation.Warning]: 'warning-line',
+	[Connotation.Announcement]: 'sparkles-line',
+	[Connotation.Alert]: 'error-line',
+} as const;
 
-const connotationIconMap = new Map([
-	[Connotation.Accent, 'megaphone-line'],
-	[Connotation.Information, 'info-line'],
-	[Connotation.Success, 'check-circle-line'],
-	[Connotation.Warning, 'warning-line'],
-	[Connotation.Announcement, 'sparkles-line'],
-	[Connotation.Alert, 'error-line'],
-]);
+export type AlertConnotation = keyof typeof CONNOTATION_ICON_MAP;
 
 export type AlertPlacement =
 	| 'top'
@@ -160,7 +154,7 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 
 	get conditionedIcon() {
 		return (
-			this.icon || connotationIconMap.get(this.connotation as AlertConnotation)
+			this.icon || (this.connotation && CONNOTATION_ICON_MAP[this.connotation])
 		);
 	}
 

@@ -195,6 +195,15 @@ const enUS: Locale = {
 		errorIconText: 'Error:',
 		successIconText: 'Success:',
 	},
+	connotationAnnoncement: {
+		accentIcon: 'Accent:',
+		alertIcon: 'Alert:',
+		informationIcon: 'Information:',
+		successIcon: 'Success:',
+		warningIcon: 'Warning:',
+		announcementIcon: 'Announcement:',
+		ctaIcon: 'Call to action:',
+	},
 	charCount: {
 		charactersLimitMessage: /* istanbul ignore next */ (limit: number) =>
 			`You can enter up to ${limit} characters`,

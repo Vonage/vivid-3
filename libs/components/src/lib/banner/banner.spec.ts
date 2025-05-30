@@ -3,7 +3,7 @@ import type { Icon } from '../icon/icon';
 import { Button } from '../button/button';
 import { Connotation } from '../enums';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
-import { Banner } from './banner';
+import { Banner, CONNOTATION_ICON_MAP } from './banner';
 import type { BannerConnotation } from './banner';
 import '.';
 
@@ -181,16 +181,10 @@ describe('vwc-banner', () => {
 		});
 
 		it('should set the icon according to set connotation', async function () {
-			const connotationIconMap: Map<BannerConnotation, string> = new Map([
-				[Connotation.Information, 'info-solid'],
-				[Connotation.Announcement, 'megaphone-solid'],
-				[Connotation.Success, 'check-circle-solid'],
-				[Connotation.Warning, 'warning-solid'],
-				[Connotation.Alert, 'error-solid'],
-			]);
-
-			for (const [connotation, iconName] of connotationIconMap) {
-				element.connotation = connotation;
+			for (const [connotation, iconName] of Object.entries(
+				CONNOTATION_ICON_MAP
+			)) {
+				element.connotation = connotation as BannerConnotation;
 
 				await elementUpdated(element);
 
