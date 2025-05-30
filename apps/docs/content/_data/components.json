@@ -292,7 +292,6 @@
 		"hideGuidelines": "false",
 		"code": "./libs/components/src/lib/menu-item/README.md",
 		"accessibility": "./libs/components/src/lib/menu-item/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/menu-item/USE-CASES.md",
 		"parent": "Menu"
 	},
 	{

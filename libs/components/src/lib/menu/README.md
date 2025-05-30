@@ -100,11 +100,11 @@ We will change the default value of `trigger` to `auto` in a future major versio
 	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item role="menuitemcheckbox" text="Option 1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemcheckbox" text="Option 2"></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Option 1"></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Option 2"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item role="menuitemradio" text="Option 1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemradio" text="Option 2"></vwc-menu-item>
+	<vwc-menu-item control-type="radio" text="Option 1"></vwc-menu-item>
+	<vwc-menu-item control-type="radio" text="Option 2"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -210,16 +210,17 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 
 ### Default Slot
 
-The default slot is for the menu items.
+Place menu items and dividers between them in the default slot.
 
-While any DOM content is permissible as a child of the Menu, only **Menu Items** and slotted content with a role of `menuitem`, `menuitemcheckbox`, or `menuitemradio` will receive keyboard support.
+Only Menu Item, Divider and HTML elements with `role` of `menuitem` or `separator` are allowed. They must be direct descendants of the Menu, and cannot be nested inside other elements.
 
+````html preview 200px
 ```html preview 130px
 <vwc-menu open aria-label="Menu example">
 	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
-```
+````
 
 ### Anchor Slot
 

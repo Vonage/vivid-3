@@ -5,13 +5,9 @@ import { defineVividComponent } from '../../shared/design-system/defineVividComp
 import styles from './menu.scss?inline';
 import { Menu } from './menu';
 import { MenuTemplate as template } from './menu.template';
+import { menuName } from './name';
 
 export type { Placement } from '@floating-ui/dom';
-
-/**
- * @internal
- */
-export const menuName = 'menu';
 
 /**
  * @internal

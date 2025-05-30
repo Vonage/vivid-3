@@ -1,7 +1,6 @@
 import { attr, DOM, observable } from '@microsoft/fast-element';
 import type { Placement, Strategy } from '@floating-ui/dom';
 import {
-	isHTMLElement,
 	keyArrowDown,
 	keyArrowUp,
 	keyEnd,
@@ -13,6 +12,26 @@ import type { Popup } from '../popup/popup';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { MenuItemRole } from '../menu-item/menu-item-role';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import { Divider } from '../divider/divider';
+
+/*
+ * Supported menu item children:
+ * All direct children of menu must have role menuitem, menuitemcheckbox, menuitemradio, or separator.
+ * For menuitemcheckbox and menuitemradio, only MenuItem components are supported.
+ * For menuitem or separator, any HTMLElement with the appropriate role is supported.
+ */
+
+const isCheckbox = (el: Element): el is MenuItem =>
+	el instanceof MenuItem && el.controlType === 'checkbox';
+
+const isRadio = (el: Element): el is MenuItem =>
+	el instanceof MenuItem && el.controlType === 'radio';
+
+const isSeparator = (el: Element) =>
+	el instanceof Divider ? true : el.role === 'separator';
+
+const isMenuItemElement = (el: Element): el is HTMLElement =>
+	el instanceof MenuItem ? true : Boolean(el.role && el.role in MenuItemRole);
 
 /**
  * @public
@@ -52,9 +71,6 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	 * defaults to -1
 	 */
 	private focusIndex = -1;
-
-	private static focusableElementRoles: { [key: string]: string } =
-		MenuItemRole;
 
 	/**
 	 * @internal
@@ -148,16 +164,9 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 			this.menuItems.length
 		) {
 			this.collapseExpandedItem();
-			// find our first focusable element
-			const focusIndex: number = this.menuItems.findIndex(
-				this.isFocusableElement
-			);
-			// set the current focus index's tabindex to -1
 			this.menuItems[this.focusIndex].setAttribute('tabindex', '-1');
-			// set the first focusable element tabindex to 0
-			this.menuItems[focusIndex].setAttribute('tabindex', '0');
-			// set the focus index
-			this.focusIndex = focusIndex;
+			this.menuItems[0].setAttribute('tabindex', '0');
+			this.focusIndex = 0;
 		}
 	};
 
@@ -207,7 +216,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		const newItems = this.domChildren();
 
 		this.removeItemListeners();
-		this.menuItems = newItems.filter(this.isMenuItemElement);
+		this.menuItems = newItems.filter(isMenuItemElement);
 
 		// if our focus index is not -1 we have items
 		if (this.menuItems.length) {
@@ -215,6 +224,9 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		}
 
 		this.menuItems.forEach((item: HTMLElement, index: number) => {
+			if (item instanceof MenuItem) {
+				item._isPresentational = false;
+			}
 			item.setAttribute('tabindex', index === 0 ? '0' : '-1');
 			item.addEventListener('expanded-change', this.handleExpandedChanged);
 			item.addEventListener('focus', this.handleItemFocus);
@@ -229,26 +241,6 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 			.filter((child) => !child.hasAttribute('hidden'))
 			.filter((child) => !child.hasAttribute('slot'));
 	}
-
-	/**
-	 * check if the item is a menu item
-	 */
-	private isMenuItemElement = (el: Element): el is HTMLElement => {
-		return (
-			isHTMLElement(el) &&
-			Object.prototype.hasOwnProperty.call(
-				Menu.focusableElementRoles,
-				el.getAttribute('role') as string
-			)
-		);
-	};
-
-	/**
-	 * check if the item is focusable
-	 */
-	private isFocusableElement = (el: Element): el is HTMLElement => {
-		return this.isMenuItemElement(el);
-	};
 
 	private setFocus(focusIndex: number): void {
 		if (this.menuItems === undefined) {
@@ -392,58 +384,38 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	 * @internal
 	 */
 	_onChange(e: Event) {
-		if (this.menuItems === undefined) {
+		if (this.menuItems === undefined || !(e.target instanceof Element)) {
 			return;
 		}
 
-		const clickedOnNonCheckboxMenuItem =
-			e.target instanceof HTMLElement &&
-			(e.target.role === MenuItemRole.menuitem ||
-				e.target.role === MenuItemRole.menuitemradio ||
-				e.target.role === MenuItemRole.radio);
-
-		if (this.#triggerBehaviour === 'auto' && clickedOnNonCheckboxMenuItem) {
+		if (this.#triggerBehaviour === 'auto' && !isCheckbox(e.target)) {
 			this.open = false;
 		}
 
 		const domChildren = this.domChildren();
-		const changedMenuItem = e.target as MenuItem;
-		const changeItemIndex = domChildren.indexOf(changedMenuItem);
+		const targetItemIndex = domChildren.indexOf(e.target);
 
-		if (changeItemIndex === -1) {
+		if (targetItemIndex === -1) {
 			return;
 		}
 
-		if (
-			(changedMenuItem.role === MenuItemRole.menuitemradio ||
-				changedMenuItem.role === MenuItemRole.radio) &&
-			changedMenuItem.checked
-		) {
+		if (isRadio(e.target) && e.target.checked) {
 			// Uncheck all other radio boxes
-			for (let i = changeItemIndex - 1; i >= 0; --i) {
+			for (let i = targetItemIndex - 1; i >= 0; --i) {
 				const item = domChildren[i];
-				const role: string | null = item.getAttribute('role');
-				if (
-					role === MenuItemRole.menuitemradio ||
-					role === MenuItemRole.radio
-				) {
-					(item as MenuItem).checked = false;
+				if (isRadio(item)) {
+					item.checked = false;
 				}
-				if (role === 'separator') {
+				if (isSeparator(item)) {
 					break;
 				}
 			}
-			const maxIndex = domChildren.length - 1;
-			for (let i = changeItemIndex + 1; i <= maxIndex; ++i) {
+			for (let i = targetItemIndex + 1; i <= domChildren.length - 1; ++i) {
 				const item = domChildren[i];
-				const role = item.getAttribute('role');
-				if (
-					role === MenuItemRole.menuitemradio ||
-					role === MenuItemRole.radio
-				) {
-					(item as MenuItem).checked = false;
+				if (isRadio(item)) {
+					item.checked = false;
 				}
-				if (role === 'separator') {
+				if (isSeparator(item)) {
 					break;
 				}
 			}

@@ -1,5 +1,5 @@
-import { html, repeat } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
+import { html, repeat } from '@microsoft/fast-element';
 import type { VividElementDefinitionContext } from '../../../shared/design-system/defineVividComponent';
 import { Button } from '../../button/button.js';
 import { Divider } from '../../divider/divider.js';
@@ -260,7 +260,7 @@ export const MENU_BAR_ITEMS: {
 							html`
 							<${menuItemTag}
 								check-appearance="tick-only"
-								role="menuitemcheckbox"
+								control-type="checkbox"
 								text="${(x) => x.text}"
 								value="${(x) => x.value}"
 								internal-part

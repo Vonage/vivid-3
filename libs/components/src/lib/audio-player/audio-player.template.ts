@@ -180,7 +180,7 @@ export const AudioPlayerTemplate = (context: VividElementDefinitionContext) => {
 				${repeat(
 					(x) => getPlaybackRatesArray(x.playbackRates),
 					html<number>`<${menuItemTag} @click="${handlePlaybackRateClick}"
-																			 role="menuitemradio"
+																			 control-type="radio"
 																			 class="playback-rate"
 																			 text="${(x) => x}"
 																			 check-appearance="tick-only"

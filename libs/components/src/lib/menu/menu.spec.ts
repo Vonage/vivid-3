@@ -17,6 +17,7 @@ import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegat
 import { Menu } from './menu';
 import '.';
 import '../menu-item';
+import '../divider';
 
 const COMPONENT_TAG = 'vwc-menu';
 
@@ -133,12 +134,12 @@ describe('vwc-menu', () => {
 					expect(element.open).toBe(openAfterClickAnchorWhenOpen);
 				});
 
-				it.each(['menuitem', 'menuitemradio'])(
-					`should have open=${openAfterSelectItem} when selecting an item with role %s`,
-					async (role) => {
+				it.each([undefined, 'radio'] as const)(
+					`should have open=${openAfterSelectItem} when selecting a non-checkbox item`,
+					async (controlType) => {
 						element.open = true;
-						const menuItem = document.createElement('div');
-						menuItem.role = role;
+						const menuItem = document.createElement('vwc-menu-item');
+						menuItem.controlType = controlType;
 						element.appendChild(menuItem);
 						await elementUpdated(element);
 
@@ -151,11 +152,11 @@ describe('vwc-menu', () => {
 					}
 				);
 
-				it('should not close when clicking on menu item with role menuitemcheckbox', async () => {
+				it('should not close when clicking on checkbox menu item', async () => {
 					element.open = true;
 
-					const menuItem = document.createElement('div');
-					menuItem.role = 'menuitemcheckbox';
+					const menuItem = document.createElement('vwc-menu-item');
+					menuItem.controlType = 'checkbox';
 					element.appendChild(menuItem);
 					await elementUpdated(element);
 
@@ -402,8 +403,8 @@ describe('vwc-menu', () => {
 				element.querySelector('[tabindex="0"]') as HTMLElement;
 
 			element.innerHTML = `
-				<div role="menuitem" id="id1" text="Menu Item 1"></div>
-				<div role="menuitem" id="id2" text="Menu Item 2"></div>
+				<vwc-menu-item id="id1" text="Menu Item 1"></vwc-menu-item>
+				<vwc-menu-item id="id2" text="Menu Item 2"></vwc-menu-item>
 			`;
 			await elementUpdated(element);
 
@@ -551,7 +552,7 @@ describe('vwc-menu', () => {
 		it('should move focus into the menu once popup is visible and positioned when set to true', async () => {
 			element.anchor = anchor;
 			element.innerHTML = `
-				<div role="menuitem" id="id1">Menu Item 1</div>
+				<vwc-menu-item id="id1">Menu Item 1</vwc-menu-item>
 			`;
 			const menuItem = element.querySelector('#id1') as HTMLElement;
 			await elementUpdated(element);
@@ -647,6 +648,14 @@ describe('vwc-menu', () => {
 
 			expect(baseElementClasses).not.toContain('hide-body');
 		});
+
+		it('should set _isPresentational false on menu item children', async function () {
+			const menuItem = document.createElement('vwc-menu-item');
+			element.appendChild(menuItem);
+			await elementUpdated(element);
+
+			expect(menuItem._isPresentational).toBe(false);
+		});
 	});
 
 	describe('open event', () => {
@@ -696,13 +705,13 @@ describe('vwc-menu', () => {
 	describe('radio items', () => {
 		it('should uncheck other unseparated radiomenuitems when one is checked', async () => {
 			element.innerHTML = `
-				<vwc-menu-item role='menuitemradio' id='id1' checked></vwc-menu-item>
+				<vwc-menu-item control-type='radio' id='id1' checked></vwc-menu-item>
+				<vwc-divider></vwc-divider>
+				<vwc-menu-item control-type='radio' id='id2' checked></vwc-menu-item>
+				<vwc-menu-item control-type='radio' id='id3'></vwc-menu-item>
+				<vwc-menu-item control-type='radio' id='id4' checked></vwc-menu-item>
 				<div role='separator'></div>
-				<vwc-menu-item role='menuitemradio' id='id2' checked></vwc-menu-item>
-				<vwc-menu-item role='menuitemradio' id='id3'></vwc-menu-item>
-				<vwc-menu-item role='menuitemradio' id='id4' checked></vwc-menu-item>
-				<div role='separator'></div>
-				<vwc-menu-item role='menuitemradio' id='id5' checked></vwc-menu-item>
+				<vwc-menu-item control-type='radio' id='id5' checked></vwc-menu-item>
 			`;
 			await elementUpdated(element);
 			const menuItem = (id: string) =>
@@ -718,12 +727,12 @@ describe('vwc-menu', () => {
 		});
 
 		it('should ignore radiomenuitems outside of default slot', async () => {
-			const headerItem = document.createElement('vwc-menu-item') as MenuItem;
-			headerItem.role = 'menuitemradio';
+			const headerItem = document.createElement('vwc-menu-item');
+			headerItem.controlType = 'radio';
 			headerItem.slot = 'header';
 			element.appendChild(headerItem);
-			const item = document.createElement('vwc-menu-item') as MenuItem;
-			item.role = 'menuitemradio';
+			const item = document.createElement('vwc-menu-item');
+			item.controlType = 'radio';
 			item.checked = true;
 			element.appendChild(item);
 			await elementUpdated(element);
