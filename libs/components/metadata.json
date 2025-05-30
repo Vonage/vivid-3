@@ -4213,6 +4213,13 @@
 					"propertyName": "connotation"
 				},
 				{
+					"name": "current",
+					"description": "Sets the nav-disclosure as a current",
+					"type": "boolean",
+					"attributeName": "current",
+					"propertyName": "current"
+				},
+				{
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
@@ -4304,6 +4311,13 @@
 					"type": "'accent' | 'cta'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
+				},
+				{
+					"name": "current",
+					"description": "Sets the nav item as a current",
+					"type": "boolean",
+					"attributeName": "current",
+					"propertyName": "current"
 				},
 				{
 					"name": "download",
