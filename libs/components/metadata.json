@@ -4162,6 +4162,13 @@
 					"propertyName": "connotation"
 				},
 				{
+					"name": "controlType",
+					"description": "Whether the menu item should behave as a checkbox or radio button.",
+					"type": "ControlType",
+					"attributeName": "control-type",
+					"propertyName": "controlType"
+				},
+				{
 					"name": "disabled",
 					"description": "The disabled state of the element.",
 					"type": "boolean",
@@ -4181,13 +4188,6 @@
 					"type": "IconId",
 					"attributeName": "icon",
 					"propertyName": "icon"
-				},
-				{
-					"name": "role",
-					"description": "The role of the element.",
-					"type": "'menuitem' | 'menuitemcheckbox' | 'checkbox' | 'menuitemradio' | 'radio' | 'presentation'",
-					"attributeName": "role",
-					"propertyName": "role"
 				},
 				{
 					"name": "text",
@@ -4212,7 +4212,7 @@
 				},
 				{
 					"name": "change",
-					"description": "Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `checkbox`, `menuitemradio`, `radio`, or `menuitem` is invoked",
+					"description": "Fired when the item is triggered. Does not fire when a submenu is collapsed or expanded.",
 					"type": "CustomEvent<undefined>"
 				},
 				{
@@ -4222,7 +4222,7 @@
 				},
 				{
 					"name": "expanded-change",
-					"description": "Fires a custom 'expanded-change' event when the expanded state changes",
+					"description": "Fired when the expanded state changes.",
 					"type": "CustomEvent<HTMLElement>"
 				},
 				{
