@@ -225,7 +225,7 @@ If set, the `icon` attribute is ignored.
 | Name            | Type                                    | Description                                               |
 | --------------- | --------------------------------------- | --------------------------------------------------------- |
 | **appearance**  | _Enum_: `ghost` (default) `ghost-light` | Sets the nav disclosure's appearance                      |
-| **current**     | `string`                                | Indicates there's a nested active nav item                |
+| **current**     | `boolean`                               | Indicates there's a nested active nav item                |
 | **connotation** | _Enum_: `accent` (default), `cta`       | Sets the connotation color of the selected nav disclosure |
 | **icon**        | _Enum_: `[icon-name]`                   | Sets the element's icon                                   |
 | **label**       | `string`                                | Label of the nav disclosure                               |
