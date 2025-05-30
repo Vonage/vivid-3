@@ -195,6 +195,15 @@ const jaJP: Locale = {
 		errorIconText: 'エラー:',
 		successIconText: '成功:',
 	},
+	connotationAnnoncement: {
+		accentIcon: 'アクセント:',
+		alertIcon: 'アラート:',
+		informationIcon: '情報:',
+		successIcon: '成功:',
+		warningIcon: '警告:',
+		announcementIcon: '発表:',
+		ctaIcon: '行動喚起:',
+	},
 	charCount: {
 		charactersLimitMessage: /* istanbul ignore next */ (limit: number) =>
 			`最大${limit}文字まで入力できます`,

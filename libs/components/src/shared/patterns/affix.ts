@@ -69,7 +69,11 @@ type affixIconTemplateFactoryReturnType = (
 ) => (
 	icon?: string,
 	slottedState?: boolean,
-	ariaHidden?: string
+	ariaHidden?: string,
+	announcement?: {
+		label: string;
+		announceOnUpdate?: boolean;
+	}
 ) => ViewTemplate<AffixIconElement> | null;
 /**
  * The template for the prefixed element.
@@ -83,9 +87,10 @@ export const affixIconTemplateFactory: affixIconTemplateFactoryReturnType = (
 ) => {
 	const iconTag = context.tagFor(Icon);
 	return (
-		icon?: string,
+		icon,
 		slottedState = IconWrapper.Span,
-		ariaHidden = IconAriaHidden.Hidden
+		ariaHidden = IconAriaHidden.Hidden,
+		announcement = { label: '', announceOnUpdate: false }
 	) => {
 		if (!icon && !slottedState) {
 			return html`<slot
@@ -98,14 +103,19 @@ export const affixIconTemplateFactory: affixIconTemplateFactoryReturnType = (
 			return null;
 		}
 
-		const iconTemplate = html`<${iconTag} :name="${() => icon}"></${iconTag}>`;
+		const iconTemplate = html`<${iconTag} :name="${() => icon}" :label="${() =>
+			announcement?.label || undefined}"></${iconTag}>`;
 
-		return slottedState
-			? html`<span class="icon" aria-hidden="${() => ariaHidden}"
-					>${iconTemplate}</span
-			  >`
-			: html`<slot name="icon" aria-hidden="${() => ariaHidden}"
-					>${iconTemplate}</slot
-			  >`;
+		const wrapperTag = slottedState ? 'span' : 'slot';
+
+		return html`<${wrapperTag}
+					class="${() => (slottedState ? 'icon' : undefined)}"
+					:name="${() => (slottedState ? undefined : 'icon')}"
+					aria-hidden="${() => (announcement?.label ? false : ariaHidden)}"
+					:role="${() => (announcement?.announceOnUpdate ? 'status' : undefined)}"
+					:ariaLive="${() => (announcement?.announceOnUpdate ? 'polite' : undefined)}"
+			  >
+					${iconTemplate}
+			  </${wrapperTag}>`;
 	};
 };

@@ -197,6 +197,15 @@ const deDE: Locale = {
 		errorIconText: 'Fehler:',
 		successIconText: 'Erfolg:',
 	},
+	connotationAnnoncement: {
+		accentIcon: 'Akzent:',
+		alertIcon: 'Alarm:',
+		informationIcon: 'Information:',
+		successIcon: 'Erfolg:',
+		warningIcon: 'Warnung:',
+		announcementIcon: 'Bekanntmachung:',
+		ctaIcon: 'Aufruf zum Handeln:',
+	},
 	charCount: {
 		charactersLimitMessage: /* istanbul ignore next */ (limit: number) =>
 			`Sie können bis zu ${limit} Zeichen eingeben`,

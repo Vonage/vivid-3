@@ -3,6 +3,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import {
 	affixIconTemplateFactory,
+	IconAriaHidden,
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { Button } from '../button/button';
@@ -20,10 +21,24 @@ const getControlClasses = ({ open, placement, strategy }: Alert) =>
 		[`strategy-${strategy}`, Boolean(strategy)]
 	);
 
-function renderIcon(context: VividElementDefinitionContext) {
-	const affixIconTemplate = affixIconTemplateFactory(context);
+function renderIcon(c: VividElementDefinitionContext, x: Alert) {
+	const affixIconTemplate = affixIconTemplateFactory(c);
+	const icon = x.conditionedIcon;
 
-	return html`${(x) => affixIconTemplate(x.conditionedIcon, IconWrapper.Slot)}`;
+	const announcement =
+		!x.icon && x.connotation
+			? {
+					label: x.locale.connotationAnnoncement[`${x.connotation}Icon`],
+					announceOnUpdate: true,
+			  }
+			: undefined;
+
+	return affixIconTemplate(
+		icon,
+		IconWrapper.Slot,
+		IconAriaHidden.Hidden,
+		announcement
+	);
 }
 
 function renderDismissButton(buttonTag: string) {
@@ -53,7 +68,7 @@ export const AlertTemplate = (context: VividElementDefinitionContext) => {
 				aria-hidden="${(x) => (x.open ? 'false' : 'true')}"
 				${(x) => (!x.open ? 'hidden' : '')}
 			>
-				${renderIcon(context)}
+				${(x) => renderIcon(context, x)}
 				<div class="alert-text">
 					${when((x) => x.headline, html`<h2 class="headline">${(x) => x.headline}</h2>`)}
 					${when((x) => x.text, html`<div class="main-text">${(x) => x.text}</div>`)}

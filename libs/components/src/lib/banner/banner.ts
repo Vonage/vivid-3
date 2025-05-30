@@ -4,24 +4,19 @@ import { AffixIcon, Localized } from '../../shared/patterns';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
-export type BannerConnotation =
-	| Connotation.Information
-	| Connotation.Announcement
-	| Connotation.Success
-	| Connotation.Warning
-	| Connotation.Alert;
+export const CONNOTATION_ICON_MAP = {
+	[Connotation.Information]: 'info-solid',
+	[Connotation.Announcement]: 'megaphone-solid',
+	[Connotation.Success]: 'check-circle-solid',
+	[Connotation.Warning]: 'warning-solid',
+	[Connotation.Alert]: 'error-solid',
+} as const;
 
-const connotationIconMap = new Map([
-	[Connotation.Information, 'info-solid'],
-	[Connotation.Announcement, 'megaphone-solid'],
-	[Connotation.Success, 'check-circle-solid'],
-	[Connotation.Warning, 'warning-solid'],
-	[Connotation.Alert, 'error-solid'],
-]);
+export type BannerConnotation = keyof typeof CONNOTATION_ICON_MAP;
 
-const defaultConnotation = (
-	connotation: Connotation | undefined = Connotation.Information
-) => connotationIconMap.get(connotation) as Connotation;
+const getConnotationIcon = (
+	connotation: BannerConnotation | undefined = Connotation.Information
+) => CONNOTATION_ICON_MAP[connotation];
 
 /**
  * @public
@@ -40,7 +35,7 @@ export class Banner extends AffixIcon(Localized(DelegatesAria(VividElement))) {
 	@attr() connotation: BannerConnotation | undefined;
 
 	get conditionedIcon() {
-		return this.icon ?? defaultConnotation(this.connotation);
+		return this.icon ?? getConnotationIcon(this.connotation);
 	}
 
 	override connectedCallback() {

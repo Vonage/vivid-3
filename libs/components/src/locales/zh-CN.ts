@@ -195,6 +195,15 @@ const zhCN: Locale = {
 		errorIconText: '错误:',
 		successIconText: '成功:',
 	},
+	connotationAnnoncement: {
+		accentIcon: '口音:',
+		alertIcon: '警报:',
+		informationIcon: '信息:',
+		successIcon: '成功:',
+		warningIcon: '警告:',
+		announcementIcon: '公告:',
+		ctaIcon: '号召性用语:',
+	},
 	charCount: {
 		charactersLimitMessage: /* istanbul ignore next */ (limit: number) =>
 			`您最多可以输入 ${limit} 个字符`,
