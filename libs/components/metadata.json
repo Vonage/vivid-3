@@ -4164,7 +4164,7 @@
 				{
 					"name": "controlType",
 					"description": "Whether the menu item should behave as a checkbox or radio button.",
-					"type": "ControlType",
+					"type": "'checkbox' | 'radio'",
 					"attributeName": "control-type",
 					"propertyName": "controlType"
 				},
@@ -4188,6 +4188,13 @@
 					"type": "IconId",
 					"attributeName": "icon",
 					"propertyName": "icon"
+				},
+				{
+					"name": "role",
+					"description": "The role of the element.",
+					"type": "'menuitem' | 'menuitemcheckbox' | 'checkbox' | 'menuitemradio' | 'radio' | 'presentation'",
+					"attributeName": "role",
+					"propertyName": "role"
 				},
 				{
 					"name": "text",
