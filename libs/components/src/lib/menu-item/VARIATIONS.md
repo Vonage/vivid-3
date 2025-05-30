@@ -72,7 +72,7 @@ When `control-type` is `radio`, only one Menu Item can be checked in the current
 <vwc-note connotation="information">
 	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
-Previously, the `role` attribute was used to set the control type. This is now deprecated (as of 05/25) and replaced with the `control-type` attribute. Using `role` is still functional, but will be removed in a future major release.  
+Previously, the `role` attribute was used to set the control type. This is now deprecated (as of 05/25) and replaced with the `control-type` attribute. Using `role` is still functional, but will be removed in a future major release.
 
 </vwc-note>
 
@@ -105,9 +105,21 @@ If the `icon` attribute is present, the indicator will be trailing by default.
 		text="Checkbox 3"
 	></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item control-type="radio" text="Radio 1" check-trailing></vwc-menu-item>
-	<vwc-menu-item control-type="radio" text="Radio 2" check-trailing></vwc-menu-item>
-	<vwc-menu-item icon="image-line" control-type="radio" text="Radio 3"></vwc-menu-item>
+	<vwc-menu-item
+		control-type="radio"
+		text="Radio 1"
+		check-trailing
+	></vwc-menu-item>
+	<vwc-menu-item
+		control-type="radio"
+		text="Radio 2"
+		check-trailing
+	></vwc-menu-item>
+	<vwc-menu-item
+		icon="image-line"
+		control-type="radio"
+		text="Radio 3"
+	></vwc-menu-item>
 </vwc-menu>
 ```
 

@@ -224,8 +224,8 @@ If you are using a framework, just wrap the menu item in any routing component/d
 <div class="table-wrapper">
 
 | Name                 | Type                            | Description                                                                                                                                |
-|----------------------|---------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **control-type**     | `checkbox`, `radio`             | Whether the menu item should behave as a checkbox or radio button.                                                                                                   |
+| -------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **control-type**     | `checkbox`, `radio`             | Whether the menu item should behave as a checkbox or radio button.                                                                         |
 | **check-appearance** | `normal` (default), `tick-only` | Sets the appearance of the check element                                                                                                   |
 | **checked**          | `boolean`                       | Sets the checked state                                                                                                                     |
 | **check-trailing**   | `boolean`                       | Sets the check element to appear at the end of the Menu Item                                                                               |
@@ -254,7 +254,7 @@ If you are using a framework, just wrap the menu item in any routing component/d
 <div class="table-wrapper">
 
 | Name                | Type                       | Bubbles | Composed | Description                                                                              |
-| ------------------- | -------------------------- | ------- |----------|------------------------------------------------------------------------------------------|
+| ------------------- | -------------------------- | ------- | -------- | ---------------------------------------------------------------------------------------- |
 | **expanded-change** | `CustomEvent<HTMLElement>` | No      | Yes      | Fired when the expanded state changes.                                                   |
 | **change**          | `CustomEvent<undefined>`   | No      | Yes      | Fired when the item is triggered. Does not fire when a submenu is collapsed or expanded. |
 

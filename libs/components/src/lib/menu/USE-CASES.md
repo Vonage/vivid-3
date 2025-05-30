@@ -48,10 +48,7 @@
 		target="_blank"
 		rel="noopener noreferrer"
 	>
-		<vwc-menu-item
-			text="My Addresses"
-			icon="address-book-line"
-		></vwc-menu-item>
+		<vwc-menu-item text="My Addresses" icon="address-book-line"></vwc-menu-item>
 	</a>
 	<a
 		role="menuitem"
@@ -59,10 +56,7 @@
 		target="_blank"
 		rel="noopener noreferrer"
 	>
-		<vwc-menu-item
-			text="My Profile"
-			icon="profile-line"
-		></vwc-menu-item>
+		<vwc-menu-item text="My Profile" icon="profile-line"></vwc-menu-item>
 	</a>
 	<a
 		role="menuitem"
@@ -70,10 +64,7 @@
 		target="_blank"
 		rel="noopener noreferrer"
 	>
-		<vwc-menu-item
-			text="Team"
-			icon="group-line"
-		></vwc-menu-item>
+		<vwc-menu-item text="Team" icon="group-line"></vwc-menu-item>
 	</a>
 	<a
 		role="menuitem"
@@ -81,10 +72,7 @@
 		target="_blank"
 		rel="noopener noreferrer"
 	>
-		<vwc-menu-item
-			text="Logout"
-			icon="quit-line"
-		></vwc-menu-item>
+		<vwc-menu-item text="Logout" icon="quit-line"></vwc-menu-item>
 	</a>
 </vwc-menu>
 ```

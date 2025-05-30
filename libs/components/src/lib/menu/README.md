@@ -210,18 +210,17 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 
 ### Default Slot
 
-Place menu items and dividers between them in the default slot. 
+Place menu items and dividers between them in the default slot.
 
 Only Menu Item, Divider and HTML elements with `role` of `menuitem` or `separator` are allowed. They must be direct descendants of the Menu, and cannot be nested inside other elements.
 
-```html preview 200px
-
+````html preview 200px
 ```html preview 130px
 <vwc-menu open aria-label="Menu example">
 	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
-```
+````
 
 ### Anchor Slot
 
