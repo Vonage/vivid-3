@@ -129,7 +129,7 @@ describe('vwc-nav-disclosure', () => {
 			await elementUpdated(element);
 			expect(element.current).toBe(true);
 			expect(
-				getControlElement(element).classList.contains('current')
+				getControlElement(element).classList.contains('current-closed')
 			).toBeTruthy();
 		});
 
