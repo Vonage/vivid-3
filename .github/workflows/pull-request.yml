@@ -10,6 +10,8 @@ on:
       - converted_to_draft
     branches:
       - '**'
+  merge_group:
+    types: [checks_requested]
 
 concurrency:
   group: ci-tests-${{ github.ref }}-1
