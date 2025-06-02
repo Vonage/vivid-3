@@ -532,10 +532,10 @@ By default, header cells will not wrap text (`nowrap`), while data cells will wr
 
 <div class="table-wrapper">
 
-| Name            | Type                                      | Description                   |
-| --------------- | ----------------------------------------- | ----------------------------- |
-| `aria-selected` | `true`, `false`                           | Selected state of cell        |
-| `aria-sort`     | `ascending`, `decending`, `none`, `other` | Sort state of the header cell |
+| Name             | Type                                      | Description                   |
+|------------------| ----------------------------------------- | ----------------------------- |
+| `selected`       | `true`, `false`                           | Selected state of cell        |
+| `sort-direction` | `ascending`, `decending`, `none`, `other` | Sort state of the header cell |
 
 </div>
 

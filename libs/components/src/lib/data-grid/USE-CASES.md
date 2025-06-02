@@ -39,7 +39,7 @@ In order for the select popup to show correctly in the grid, use the `fixed-drop
 
 ## Sortable Columns
 
-In order for a grid column to show as sortable, use the `aria-sort` attribute on the sortable column header.
+In order for a grid column to show as sortable, use the `sort-drection` attribute on the sortable column header.
 
 Here's an example of sorting when building the grid manually:
 
@@ -49,7 +49,7 @@ Here's an example of sorting when building the grid manually:
 		<vwc-data-grid-cell cell-type="columnheader">
 			Not Sortable
 		</vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader" aria-sort="none">
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="none">
 			Sortable
 		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
