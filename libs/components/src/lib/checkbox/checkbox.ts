@@ -1,17 +1,15 @@
 import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
 import {
-	errorText,
-	type ErrorText,
-	type FormElement,
-	formElements,
-	FormElementSuccessText,
+	FormElement,
+	WithErrorText,
+	WithSuccessText,
 } from '../../shared/patterns';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithFeedback } from '../../shared/feedback/mixins';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { FormAssociatedCheckbox } from './checkbox.form-associated';
+import { CheckableFormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export const keySpace: ' ' = ' ' as const;
 
@@ -34,10 +32,12 @@ export type CheckboxConnotation = ExtractFromEnum<
  * @event {CustomEvent<undefined>} input - Emitted when the checked state changes.
  * @vueModel modelValue checked change `event.currentTarget.checked`
  */
-@errorText
-@formElements
-export class Checkbox extends WithFeedback(
-	DelegatesAria(FormAssociatedCheckbox)
+export class Checkbox extends DelegatesAria(
+	WithFeedback(
+		WithErrorText(
+			WithSuccessText(FormElement(CheckableFormAssociated(VividElement)))
+		)
+	)
 ) {
 	@attr({ attribute: 'tabindex' }) tabindex: string | null = null;
 
@@ -49,6 +49,11 @@ export class Checkbox extends WithFeedback(
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: CheckboxConnotation;
+
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
 
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
@@ -160,9 +165,3 @@ export class Checkbox extends WithFeedback(
 	 */
 	@observable slottedContent?: HTMLElement[];
 }
-
-export interface Checkbox
-	extends FormElement,
-		ErrorText,
-		FormElementSuccessText {}
-applyMixins(Checkbox, FormElementSuccessText);

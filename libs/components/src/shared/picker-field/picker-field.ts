@@ -8,44 +8,26 @@ import {
 import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import { handleEscapeKeyAndStopPropogation } from '../dialog';
-import { Localized, TrappedFocus } from '../patterns';
+import {
+	FormElement,
+	Localized,
+	TrappedFocus,
+	WithErrorText,
+} from '../patterns';
 import { WithFeedback } from '../feedback/mixins';
-import { FormAssociatedPickerField } from './picker-field.form-associated';
+import { FormAssociated } from '../foundation/form-associated/form-associated';
+import { VividElement } from '../foundation/vivid-element/vivid-element';
 
 /**
  * Base class for picker fields. Picker fields consist of a text field with a button that opens a popup that allows
  * picking values.
  */
 export abstract class PickerField extends WithFeedback(
-	TrappedFocus(Localized(FormAssociatedPickerField))
+	WithErrorText(
+		FormElement(TrappedFocus(Localized(FormAssociated(VividElement))))
+	)
 ) {
 	// --- Attributes ---
-
-	/**
-	 * @internal
-	 */
-	abstract label: string;
-
-	/**
-	 * The initial value of the date-picker.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: value
-	 */
-	@attr({ attribute: 'value' })
-	override initialValue!: string;
-
-	/**
-	 * The current value of the date-picker.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: current-value
-	 */
-	@attr({ attribute: 'current-value' })
-	override currentValue!: string;
-
 	/**
 	 * Whether the date-picker is readonly.
 	 * @public
@@ -125,7 +107,7 @@ export abstract class PickerField extends WithFeedback(
 	/**
 	 * @internal
 	 */
-	abstract errorValidationMessage: string;
+	override proxy = document.createElement('input');
 
 	/**
 	 * @internal

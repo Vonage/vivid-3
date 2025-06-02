@@ -2,7 +2,8 @@ import { attr, observable } from '@microsoft/fast-element';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import type { Connotation } from '../enums';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
-import { FormAssociatedSwitch } from './switch.form-associated';
+import { CheckableFormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export type SwitchConnotation =
 	| Connotation.Accent
@@ -17,7 +18,9 @@ export type SwitchConnotation =
  * @event {CustomEvent<undefined>} change - Emits a custom change event when the checked state changes
  * @vueModel modelValue checked change `event.currentTarget.checked`
  */
-export class Switch extends DelegatesAria(FormAssociatedSwitch) {
+export class Switch extends DelegatesAria(
+	CheckableFormAssociated(VividElement)
+) {
 	/**
 	 * Indicates the switch's label.
 	 *
@@ -34,6 +37,11 @@ export class Switch extends DelegatesAria(FormAssociatedSwitch) {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: SwitchConnotation;
+
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
 
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
@@ -83,11 +91,13 @@ export class Switch extends DelegatesAria(FormAssociatedSwitch) {
 	constructor() {
 		super();
 
-		this.defaultChecked = !!this.checkedAttribute;
 		this.checked = this.defaultChecked;
 	}
 
-	private updateForm(): void {
+	/**
+	 * @internal
+	 */
+	override updateForm(): void {
 		const value = this.checked ? this.value : null;
 		this.setFormValue(value, value);
 	}

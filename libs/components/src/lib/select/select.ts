@@ -19,11 +19,9 @@ import {
 } from '@microsoft/fast-web-utilities';
 import {
 	AffixIconWithTrailing,
-	errorText,
-	type ErrorText,
-	type FormElement,
-	formElements,
-	FormElementSuccessText,
+	FormElement,
+	WithErrorText,
+	WithSuccessText,
 } from '../../shared/patterns';
 import type { Appearance, Shape, Size } from '../enums';
 import type { ListboxOption } from '../option/option';
@@ -31,8 +29,7 @@ import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { HostSemantics } from '../../shared/aria/host-semantics';
 import { WithLightDOMFeedback } from '../../shared/feedback/mixins';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { FormAssociatedSelect } from './select.form-associated';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 
 export type SelectAppearance = ExtractFromEnum<
 	Appearance,
@@ -52,11 +49,18 @@ export type SelectSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @event {CustomEvent<HTMLElement>} change - Fires a custom 'change' event when the value updates
  * @vueModel modelValue value input `event.currentTarget.value`
  */
-@errorText
-@formElements
 export class Select extends WithLightDOMFeedback(
-	HostSemantics(AffixIconWithTrailing(FormAssociatedSelect))
+	WithErrorText(
+		WithSuccessText(
+			FormElement(HostSemantics(AffixIconWithTrailing(FormAssociated(Listbox))))
+		)
+	)
 ) {
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('select');
+
 	/**
 	 * The index of the most recently checked option.
 	 *
@@ -411,13 +415,6 @@ export class Select extends WithLightDOMFeedback(
 	private indexWhenOpened!: number;
 
 	/**
-	 * The internal value property.
-	 *
-	 * @internal
-	 */
-	private _value!: string;
-
-	/**
 	 * The component is collapsible when in single-selection mode.
 	 *
 	 * @internal
@@ -436,18 +433,10 @@ export class Select extends WithLightDOMFeedback(
 	control!: HTMLElement;
 
 	/**
-	 * The value property.
-	 *
-	 * @public
+	 * @internal
 	 */
-	override get value() {
-		Observable.track(this, 'value');
-		return this._value;
-	}
-
-	override set value(next: string) {
-		const prev = `${this._value}`;
-
+	override valueChanged(prev: string, next: string) {
+		let nextValue = next;
 		if (this.length) {
 			const selectedIndex = this._options.findIndex((el) => el.value === next);
 			const prevSelectedValue =
@@ -455,19 +444,20 @@ export class Select extends WithLightDOMFeedback(
 			const nextSelectedValue = this._options[selectedIndex]?.value ?? null;
 
 			if (selectedIndex === -1 || prevSelectedValue !== nextSelectedValue) {
-				next = '';
+				nextValue = '';
 				this.selectedIndex = selectedIndex;
 			}
 
-			next = this.firstSelectedOption?.value ?? next;
+			nextValue = this.firstSelectedOption?.value ?? nextValue;
 		}
 
-		if (prev !== next) {
-			this._value = next;
-			super.valueChanged(prev, next);
-			Observable.notify(this, 'value');
-			this.updateDisplayValue();
+		if (next !== nextValue) {
+			this.value = nextValue;
+			return;
 		}
+
+		super.valueChanged(prev, next);
+		this.updateDisplayValue();
 	}
 
 	/**
@@ -901,12 +891,6 @@ export class Select extends WithLightDOMFeedback(
 	 */
 	@observable metaSlottedContent?: Node[];
 
-	labelChanged() {
-		if (!this.ariaLabel) {
-			this.ariaLabel = this.label;
-		}
-	}
-
 	get displayValue(): string {
 		Observable.track(this, 'displayValue');
 
@@ -989,9 +973,3 @@ export class Select extends WithLightDOMFeedback(
 		}
 	}
 }
-
-export interface Select
-	extends FormElement,
-		ErrorText,
-		FormElementSuccessText {}
-applyMixins(Select, FormElementSuccessText);

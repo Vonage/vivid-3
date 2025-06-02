@@ -16,12 +16,9 @@ import {
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import { Connotation } from '../enums';
-import {
-	type FormElement,
-	formElements,
-	Localized,
-} from '../../shared/patterns';
-import { FormAssociatedRangeSlider } from './range-slider.form-associated';
+import { FormElement, Localized } from '../../shared/patterns';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import {
 	defaultToOneConverter,
 	roundToStepValue,
@@ -50,8 +47,9 @@ export type ThumbId = 'start' | 'end';
  * @vueModel start start input:start `event.currentTarget.start`
  * @vueModel end end input:end `event.currentTarget.end`
  */
-@formElements
-export class RangeSlider extends Localized(FormAssociatedRangeSlider) {
+export class RangeSlider extends Localized(
+	FormElement(FormAssociated(VividElement))
+) {
 	// --- Start & end values ---
 
 	#isInternalValueUpdate = false;
@@ -342,6 +340,11 @@ export class RangeSlider extends Localized(FormAssociatedRangeSlider) {
 		parseFloat(value).toLocaleString(this.locale.lang);
 
 	// --- Form handling ---
+
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
 
 	/**
 	 * @internal
@@ -709,5 +712,3 @@ export class RangeSlider extends Localized(FormAssociatedRangeSlider) {
 		this.#unregisterDragListeners();
 	};
 }
-
-export interface RangeSlider extends FormElement {}

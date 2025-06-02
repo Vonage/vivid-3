@@ -8,18 +8,16 @@ import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
-	errorText,
-	type ErrorText,
-	type FormElement,
-	formElements,
-	FormElementSuccessText,
+	FormElement,
 	Localized,
+	WithErrorText,
+	WithSuccessText,
 } from '../../shared/patterns';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithFeedback } from '../../shared/feedback/mixins';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { FormAssociatedNumberField } from './number-field.form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 
 export type NumberFieldAppearance = ExtractFromEnum<
 	Appearance,
@@ -77,11 +75,20 @@ const validNumber = /^-?((\d*\.\d+)|(\d+))$/;
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
  * @vueModel modelValue value input `event.currentTarget.value`
  */
-@errorText
-@formElements
 export class NumberField extends WithFeedback(
-	AffixIcon(Localized(DelegatesAria(FormAssociatedNumberField)))
+	WithErrorText(
+		WithSuccessText(
+			FormElement(
+				AffixIcon(Localized(DelegatesAria(FormAssociated(VividElement))))
+			)
+		)
+	)
 ) {
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
+
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 * @public
@@ -236,7 +243,7 @@ export class NumberField extends WithFeedback(
 	 * @public
 	 */
 	get valueAsNumber(): number {
-		return parseFloat(super.value);
+		return parseFloat(this.value);
 	}
 
 	set valueAsNumber(next: number) {
@@ -420,9 +427,3 @@ export class NumberField extends WithFeedback(
 	@attr shape?: NumberFieldShape;
 	@attr autoComplete?: string;
 }
-
-export interface NumberField
-	extends ErrorText,
-		FormElement,
-		FormElementSuccessText {}
-applyMixins(NumberField, FormElementSuccessText);

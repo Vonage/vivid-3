@@ -4,18 +4,16 @@ import {
 	observable,
 } from '@microsoft/fast-element';
 import {
-	errorText,
-	type ErrorText,
-	type FormElement,
-	formElements,
-	FormElementSuccessText,
+	FormElement,
 	WithCharCount,
+	WithErrorText,
+	WithSuccessText,
 } from '../../shared/patterns';
 import { Reflector } from '../../shared/utils/Reflector';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { WithFeedback } from '../../shared/feedback/mixins';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { FormAssociatedTextArea } from './text-area.form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 
 export type TextAreaWrap = 'hard' | 'soft' | 'off';
 
@@ -58,11 +56,18 @@ export type TextAreaResize = typeof TextAreaResize[keyof typeof TextAreaResize];
  * @event {CustomEvent<undefined>} change - Emits a custom 'change' event when the textarea emits a change event
  * @vueModel modelValue value input `event.currentTarget.value`
  */
-@errorText
-@formElements
 export class TextArea extends WithFeedback(
-	WithCharCount(DelegatesAria(FormAssociatedTextArea))
+	WithCharCount(
+		WithErrorText(
+			WithSuccessText(FormElement(DelegatesAria(FormAssociated(VividElement))))
+		)
+	)
 ) {
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('textarea');
+
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 * @public
@@ -176,16 +181,6 @@ export class TextArea extends WithFeedback(
 			this.proxy.minLength = this.minlength;
 		}
 	}
-
-	/**
-	 * The name of the element.
-	 * @public
-	 * @remarks
-	 * HTML Attribute: name
-	 */
-	@attr
-	// @ts-expect-error Type is incorrectly non-optional
-	name: string;
 
 	/**
 	 * Sets the placeholder value of the element, generally used to provide a hint to the user.
@@ -310,9 +305,3 @@ export class TextArea extends WithFeedback(
 		this.#reflectToTextArea!.destroy();
 	}
 }
-
-export interface TextArea
-	extends FormElement,
-		ErrorText,
-		FormElementSuccessText {}
-applyMixins(TextArea, FormElementSuccessText);
