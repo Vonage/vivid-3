@@ -247,11 +247,9 @@ Click on "Edit code" to be able to modify the variables.
 </vwc-nav>
 <script>
 	function onClick(event) {
-		currentNavItem = document.querySelector(
-			'vwc-nav-item[aria-current="page"]'
-		);
-		currentNavItem?.removeAttribute('aria-current');
-		event.currentTarget.setAttribute('aria-current', 'page');
+		currentNavItem = document.querySelector('vwc-nav-item[current]');
+		currentNavItem?.removeAttribute('current');
+		event.currentTarget.setAttribute('current', '');
 	}
 </script>
 ```
@@ -283,11 +281,9 @@ Click on "Edit code" to be able to modify the variables.
 
 <script>
 	function onClick(event) {
-		currentNavItem = document.querySelector(
-			'vwc-nav-item[aria-current="page"]'
-		);
-		currentNavItem?.removeAttribute('aria-current');
-		event.currentTarget.setAttribute('aria-current', 'page');
+		currentNavItem = document.querySelector('vwc-nav-item[current]');
+		currentNavItem?.removeAttribute('current');
+		event.currentTarget.setAttribute('current', '');
 	}
 </script>
 ```
