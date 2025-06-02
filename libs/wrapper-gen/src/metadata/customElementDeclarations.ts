@@ -106,85 +106,6 @@ const BaseElementDeclaration: Declaration = {
 	customElement: true,
 };
 
-/**
- * Form associated classes like FormAssociatedButton are not exported in the manifest.
- * Instead, we need to provide the declaration here, based on the code:
- * https://github.com/microsoft/fast/blob/master/packages/web-components/fast-foundation/src/form-associated/form-associated.ts
- */
-const getFastFormAssociatedDeclaration = (className: string): Declaration => {
-	const declaration: Declaration = {
-		name: className,
-		kind: 'class',
-		attributes: [
-			{
-				name: 'disabled',
-				description:
-					"Sets the element's disabled state. A disabled element will not be included during form submission.",
-				type: { text: 'boolean' },
-			},
-			{
-				name: 'value',
-				description: `The initial value of the form. This value sets the \`value\` property
-only when the \`value\` property has not been explicitly set.`,
-				type: { text: 'string' },
-				fieldName: 'initialValue',
-			},
-			{
-				name: 'current-value',
-				description: `The current value of the element. This property serves as a mechanism
-to set the \`value\` property through both property assignment and the
-.setAttribute() method. This is useful for setting the field's value
-in UI libraries that bind data through the .setAttribute() API
-and don't support IDL attribute binding.`,
-				type: { text: 'string' },
-				fieldName: 'value',
-			},
-			{
-				name: 'name',
-				description: `The name of the element. This element's value will be surfaced during form submission under the provided name.`,
-				type: { text: 'string' },
-			},
-			{
-				name: 'required',
-				description: `Require the field to be completed prior to form submission.`,
-				type: { text: 'boolean' },
-			},
-		],
-		superclass: {
-			name: 'VividElement',
-		},
-		customElement: true,
-	};
-
-	// Only checkbox, radio and switch differ from the base class
-	if (
-		className === 'FormAssociatedCheckbox' ||
-		className === 'FormAssociatedRadio' ||
-		className === 'FormAssociatedSwitch'
-	) {
-		declaration.attributes!.push(
-			{
-				name: 'checked',
-				description: `Provides the default checkedness of the input element`,
-				type: { text: 'boolean' },
-				fieldName: 'defaultChecked',
-			},
-			{
-				name: 'current-checked',
-				description: `The current checkedness of the element. This property serves as a mechanism
-to set the \`checked\` property through both property assignment and the
-.setAttribute() method. This is useful for setting the field's checkedness
-in UI libraries that bind data through the .setAttribute() API
-and don't support IDL attribute binding.`,
-				type: { text: 'boolean' },
-				fieldName: 'checked',
-			}
-		);
-	}
-
-	return declaration;
-};
-
 // Inherit items that are not already present in the child
 function inheritItems<T>(
 	getName: (item: T) => string,
@@ -239,10 +160,7 @@ const resolveDeclaration = (
 	name: string
 ): Declaration => {
 	let declaration: Declaration;
-	if (name.startsWith('FormAssociated')) {
-		// Form associated classes (FormAssociatedButton etc.) are not exported in the manifest
-		declaration = getFastFormAssociatedDeclaration(name);
-	} else if (name === 'VividElement') {
+	if (name === 'VividElement') {
 		// This is the base class for all elements
 		declaration = BaseElementDeclaration;
 	} else {
@@ -335,89 +253,6 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			name: 'error-text',
 			description: 'The error text for the form element.',
 			type: { text: 'string' },
-		},
-	],
-	Anchor: [
-		{
-			name: 'download',
-			description:
-				'The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'download',
-		},
-		{
-			name: 'href',
-			description:
-				'Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'href',
-		},
-		{
-			name: 'hreflang',
-			description:
-				'Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'hreflang',
-		},
-		{
-			name: 'ping',
-			description:
-				'See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'ping',
-		},
-		{
-			name: 'referrerpolicy',
-			description:
-				'See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'referrerpolicy',
-		},
-		{
-			name: 'rel',
-			description:
-				'See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'rel',
-		},
-		{
-			name: 'target',
-			description:
-				'See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: "'_self' | '_blank' | '_parent' | '_top'",
-			},
-			fieldName: 'target',
-		},
-		{
-			name: 'type',
-			description:
-				'See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.',
-			type: {
-				text: 'string',
-			},
-			fieldName: 'type',
-		},
-		{
-			name: 'aria-expanded',
-			description:
-				'See https://www.w3.org/WAI/PF/aria/roles#link for more information',
-			type: {
-				text: "'true' | 'false' | string | null",
-			},
-			fieldName: 'ariaExpanded',
 		},
 	],
 	DelegatesARIATextbox: [],

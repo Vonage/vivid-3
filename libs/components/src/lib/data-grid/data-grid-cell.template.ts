@@ -2,6 +2,7 @@ import { html, when } from '@microsoft/fast-element';
 import { classNames, keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { VisuallyHidden } from '../visually-hidden/visually-hidden';
 import { DataGridCellRole, DataGridCellSortStates } from './data-grid.options';
 import type { DataGridCell } from './data-grid-cell';
 
@@ -49,6 +50,7 @@ function handleKeyDown<T extends DataGridCell>(x: T, e: KeyboardEvent) {
 export const DataGridCellTemplate = (
 	context: VividElementDefinitionContext
 ) => {
+	const visuallyHiddenTagName = context.tagFor(VisuallyHidden);
 	const getBaseClasses = (x: DataGridCell) =>
 		classNames('base', ['selected', !!x.selected]);
 	return html<DataGridCell>`
@@ -62,6 +64,11 @@ export const DataGridCellTemplate = (
 				class="${getBaseClasses}"
 				role="${(x) => (shouldShowSortIcons(x) ? 'button' : undefined)}"
 			>
+				${(x) =>
+					x.ariaSelected === 'true'
+						? html`<${visuallyHiddenTagName}>${(x) =>
+								x.locale.dataGrid.cell.selected}</${visuallyHiddenTagName}>`
+						: null}
 				<slot></slot>
 				${(_) => renderSortIcons(context)}
 			</div>

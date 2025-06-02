@@ -96,16 +96,12 @@ In the example below Buttons are added to implement a custom funcationality for 
 ```html preview
 <vwc-text-field icon="search" type="search" inputmode="search" label="Search">
 	<div slot="action-items" class="action-items">
-		<vwc-button
-			size="condensed"
-			icon="microphone-2-line"
-			aria-label="Record search query"
-		></vwc-button>
-		<vwc-button
-			size="condensed"
-			icon="close-line"
-			aria-label="Clear field"
-		></vwc-button>
+		<vwc-button size="condensed" aria-label="Record search query">
+			<vwc-icon slot="icon" name="microphone-2-line"></vwc-icon>
+		</vwc-button>
+		<vwc-button size="condensed" aria-label="Clear field">
+			<vwc-icon slot="icon" name="close-line"></vwc-icon>
+		</vwc-button>
 	</div>
 </vwc-text-field>
 

@@ -18,7 +18,8 @@ import { registerDataGrid } from '@vonage/vivid';
 registerDataGrid('your-prefix');
 ```
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
 Data Grid Row and Data Grid Cell sub-components are registered automatically in the same function.
 
@@ -230,7 +231,8 @@ Event details: `{ cell, row, isHeaderCell, columnDataKey }`
 Use the `rowsData` property to provide the component with the data (an `array` or `objects`) to be displayed.
 If not used in conjuction with [column defintions](#columndefinitions) (`title`), text displayed in the column headers will be the data keys of the object.
 
-<vwc-note icon="warning-line" connotation="warning">
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 The `rowsData` property provides an alternative way to populate the data grid with content.
 
@@ -254,6 +256,13 @@ However, we recommend using the [Data Grid Row](#data-grid-row) and [Data Grid C
 
 Use the `columnDefinitions` property to programmatically configure the column headers that are generated when using `rows-data`. See the [ColumnDefinition interface](#data-grid) for more information.
 
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+
+The sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. See the [sorting use case](/components/data-grid/use-cases/#sortable-columns) for more information.
+
+</vwc-note>
+
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
@@ -273,12 +282,6 @@ Use the `columnDefinitions` property to programmatically configure the column he
 	];
 </script>
 ```
-
-<vwc-note connotation="information" icon="info-line">
-
-The sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. See the [sorting use case](/components/data-grid/use-cases/#sortable-columns) for more information.
-
-</vwc-note>
 
 ### Generate Header
 

@@ -67,7 +67,17 @@ function renderIconOrPending(
 			[Size.Normal]: '-5',
 			[Size.Expanded]: '-4',
 		};
-		return html`<span class="icon pending" aria-hidden="true"><${progressTag} size="${progressSize[size]}"></${progressTag}></span>`;
+
+		const getClassName = (x: Button) => {
+			const slottedIconElement = x.querySelector('[slot="icon"]');
+
+			return classNames('icon', 'pending', [
+				'pending-no-icon',
+				!(icon || slottedIconElement),
+			]);
+		};
+
+		return html`<span class="${getClassName}" aria-hidden="true"><${progressTag} size="${progressSize[size]}"></${progressTag}></span>`;
 	} else {
 		const affixIconTemplate = affixIconTemplateFactory(context);
 		return affixIconTemplate(icon, IconWrapper.Slot);
@@ -123,28 +133,15 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 }
 
 function renderAnchorContent(context: VividElementDefinitionContext) {
-	return html`<a
-		class="${getClasses}"
-		download="${(x) => x.download}"
-		href="${(x) => x.href}"
-		hreflang="${(x) => x.hreflang}"
-		ping="${(x) => x.ping}"
-		referrerpolicy="${(x) => x.referrerpolicy}"
-		rel="${(x) => x.rel}"
-		target="${(x) => x.target}"
-		type="${(x) => x.type}"
-		${delegateAria({
+	return html<Button>`${(x) =>
+		x._renderLinkElement(buttonContent(context), getClasses, {
 			ariaLabel: null,
-		})}
-		${ref('control')}
-	>
-		${buttonContent(context)}
-	</a>`;
+		})}`;
 }
 
 export const buttonTemplate = (context: VividElementDefinitionContext) => {
 	return html` <template>
 		${when((x) => !x.href, html<Button>`${renderButtonContent(context)}`)}
-		${when((x) => x.href, html<Button>`${renderAnchorContent(context)}`)}
+		${when((x) => x.href, renderAnchorContent(context))}
 	</template>`;
 };

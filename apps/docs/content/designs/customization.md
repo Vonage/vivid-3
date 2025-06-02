@@ -87,7 +87,9 @@ Click on "Edit code" to be able to modify the variables.
 
 ```html variables-preview[action-group]
 <vwc-action-group>
-	<vwc-button icon="reply-line"></vwc-button>
+	<vwc-button aria-label="Undo">
+		<vwc-icon slot="icon" name="reply-line"></vwc-icon>
+	</vwc-button>
 	<vwc-button label="copy"></vwc-button>
 	<vwc-button label="paste"></vwc-button>
 	<vwc-button label="submit"></vwc-button>
@@ -96,13 +98,10 @@ Click on "Edit code" to be able to modify the variables.
 
 ### Alert
 
-```html variables-preview[alert]
-<vwc-alert
-	connotation="$CONNOTATION"
-	subtitle="What an important info!!!"
-	open
-	icon="megaphone-solid"
-></vwc-alert>
+```html variables-preview[alert] 100px
+<vwc-alert connotation="$CONNOTATION" text="What an important info!!!" open>
+	<vwc-icon slot="icon" name="megaphone-solid"></vwc-icon>
+</vwc-alert>
 ```
 
 ### Avatar
@@ -199,11 +198,9 @@ Click on "Edit code" to be able to modify the variables.
 ### Fab
 
 ```html variables-preview[fab]
-<vwc-fab
-	connotation="$CONNOTATION"
-	icon="cart-line"
-	label="Add to cart"
-></vwc-fab>
+<vwc-fab connotation="$CONNOTATION" label="Add to cart">
+	<vwc-icon slot="icon" name="cart-line"></vwc-icon>
+</vwc-fab>
 ```
 
 ### Menu Item
@@ -298,11 +295,8 @@ Click on "Edit code" to be able to modify the variables.
 ### Note
 
 ```html variables-preview[note]
-<vwc-note
-	connotation="$CONNOTATION"
-	icon="check-circle"
-	headline="Pascal's theological argument"
->
+<vwc-note connotation="$CONNOTATION" headline="Pascal's theological argument">
+	<vwc-icon slot="icon" name="check-circle"></vwc-icon>
 	Pascal argues that a rational person should live as though God exists and seek
 	to believe in God. If God does not actually exist, such a person will have
 	only a finite loss (some pleasures, luxury, etc.), whereas if God does exist,
@@ -315,7 +309,9 @@ Click on "Edit code" to be able to modify the variables.
 
 ```html variables-preview[option]
 <vwc-listbox>
-	<vwc-option text="Option" icon="chat-line"></vwc-option>
+	<vwc-option text="Option">
+		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+	</vwc-option>
 </vwc-listbox>
 ```
 
@@ -446,6 +442,8 @@ Click on "Edit code" to be able to modify the variables.
 
 ```html variables-preview[tree-item]
 <vwc-tree-view>
-	<vwc-tree-item text="Tree Item" icon="chat-line"></vwc-tree-item>
+	<vwc-tree-item text="Tree Item">
+		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+	</vwc-tree-item>
 </vwc-tree-view>
 ```

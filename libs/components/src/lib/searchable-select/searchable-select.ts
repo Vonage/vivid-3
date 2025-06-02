@@ -21,7 +21,8 @@ import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { WithFeedback } from '../../shared/feedback/mixins';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { FormAssociatedSearchableSelect } from './searchable-select.form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import type { OptionTag } from './option-tag';
 
 export type SearchableSelectAppearance = ExtractFromEnum<
@@ -50,7 +51,7 @@ const isFormAssociatedTryingToSetFormValue = (
  * @public
  * @component searchable-select
  * @slot - Holds the available options.
- * @slot icon - Slot to add an icon to the control.
+ * @slot icon - The preferred way to add an icon to the control.
  * @slot meta - Slot to add meta content to the control.
  * @slot helper-text - Describes how to use the component. Alternative to the `helper-text` attribute.
  * @slot no-options - Message that appears when no options are available.
@@ -65,9 +66,7 @@ const isFormAssociatedTryingToSetFormValue = (
 @errorText
 @formElements
 export class SearchableSelect extends WithFeedback(
-	DelegatesAria(
-		AffixIconWithTrailing(Localized(FormAssociatedSearchableSelect))
-	)
+	DelegatesAria(AffixIconWithTrailing(Localized(FormAssociated(VividElement))))
 ) {
 	/**
 	 * @public
@@ -1064,6 +1063,11 @@ export class SearchableSelect extends WithFeedback(
 	}
 
 	// --- Form handling ---
+
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
 
 	#determineInitialValues() {
 		return this.initialValues.length

@@ -17,13 +17,14 @@ The `label` attribute on the **Tab** component provides the Tab with label text.
 
 ## Icon
 
-The `icon` attribute on the **Tab** component displays an icon from the [icon library](/icons/icons-gallery/) on the Tab.
+The `icon` attribute on the **Tab** component can set to display an icon from the [icon library](/icons/icons-gallery/) on the component.
 
-Custom icons can be provided using the [icon slot](/components/tabs/code/#icon-slot).
+The preferred way to add icons is to use the [icon slot](/components/tabs/code/#icon-slot).
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
-When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
 </vwc-note>
 
@@ -44,9 +45,15 @@ The `icon-trailing` attribute on the **Tab** component positions the icon after 
 
 ```html preview full
 <vwc-tabs>
-	<vwc-tab icon-trailing icon="chat-line" label="Comments"></vwc-tab>
-	<vwc-tab icon-trailing icon="playlist-line" label="Playlist"></vwc-tab>
-	<vwc-tab icon-trailing icon="star-line" label="Favourites"></vwc-tab>
+	<vwc-tab icon-trailing label="Comments">
+		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+	</vwc-tab>
+	<vwc-tab icon-trailing label="Playlist">
+		<vwc-icon slot="icon" name="playlist-line"></vwc-icon>
+	</vwc-tab>
+	<vwc-tab icon-trailing label="Favourites">
+		<vwc-icon slot="icon" name="star-line"></vwc-icon>
+	</vwc-tab>
 	<vwc-tab-panel>Comments</vwc-tab-panel>
 	<vwc-tab-panel>Playlist</vwc-tab-panel>
 	<vwc-tab-panel>Favourites</vwc-tab-panel>
@@ -58,6 +65,12 @@ The `icon-trailing` attribute on the **Tab** component positions the icon after 
 The `removable` attribute on the **Tab** component adds a close button to the tab.
 
 Clicking the close button or pressing the `DELETE` key when focussed on the tab will emit the `close` event.
+
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+	<p>Triggering the <code>close</code> event does not automatically close the tab and tab panel. This needs to be handled in the consuming application as in the example below.</p>
+	<p>The consuming application must also handle whether the user can close all the tabs or not.</p>
+</vwc-note>
 
 ```html preview full
 <vwc-tabs>
@@ -87,11 +100,6 @@ Clicking the close button or pressing the `DELETE` key when focussed on the tab 
 </script>
 ```
 
-<vwc-note connotation="warning" icon="warning-line">
-	<p>Triggering the <code>close</code> event does not automatically close the tab and tab panel. This needs to be handled in the consuming application as in the example below.</p>
-	<p>The consuming application must also handle whether the user can close all the tabs or not.</p>
-</vwc-note>
-
 ## Disabled
 
 The `disabled` attribute on the **Tab** component disables the Tab.
@@ -111,6 +119,11 @@ The `disabled` attribute on the **Tab** component disables the Tab.
 
 The `shape` attribute on the **Tab** component controls the style of the background in hover state. It can be `rounded` or `shape`.
 
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+	<p>The <code>shape</code> variations should not be used in the tab set of tabs. The example above is for demonstration purposes only.</p>
+</vwc-note>
+
 ```html preview full
 <vwc-tabs>
 	<vwc-tab shape="rounded" label="Rounded"></vwc-tab>
@@ -119,10 +132,6 @@ The `shape` attribute on the **Tab** component controls the style of the backgro
 	<vwc-tab-panel>Tab Panel two</vwc-tab-panel>
 </vwc-tabs>
 ```
-
-<vwc-note connotation="information" icon="info-line">
-	<p>The <code>shape</code> variations should not be used in the tab set of tabs. The example above is for demonstration purposes only.</p>
-</vwc-note>
 
 ## Orientation
 

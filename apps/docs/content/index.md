@@ -11,10 +11,14 @@ layout: standalone.njk
 		<p class="lede">Build safe, simple and intuitive interfaces using Vonage's design system.
 		<p>Getting started with:</p>
 		<div class="welcome__buttons">
-			<vwc-button label="Vue.js" href="/getting-started/vue/" appearance="outlined" icon="vue-color" size="expanded"></vwc-button>
-			<vwc-button label="Web Components" href="/getting-started/web-components/" appearance="outlined" icon="code-line" size="expanded"></vwc-button>
+			<vwc-button label="Vue.js" href="/getting-started/vue/" appearance="outlined" size="expanded">
+				<vwc-icon slot="icon" name="vue-color"></vwc-icon>
+			</vwc-button>
+			<vwc-button label="Web Components" href="/getting-started/web-components/" appearance="outlined" size="expanded">
+				<vwc-icon slot="icon" name="code-line"></vwc-icon>
+			</vwc-button>
 			<vwc-button href="/resources/change-process/" appearance="outlined" label="Request a new feature" size="expanded">
-				<img src="/assets/images/vivid-logo.svg" alt="Vivid Logo" style="width: 24px" slot="icon" />
+				<img src="/assets/images/vivid-logo.svg" alt="" style="width: 24px" slot="icon" />
 			</vwc-button>
 		</div>
 	</div>
@@ -198,7 +202,9 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </linearGradient>
 </defs>
 </svg>
-<vwc-button slot="footer" href="/designs/guidelines/" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
+<vwc-button slot="footer" href="/designs/guidelines/" shape="pill" label="Continue" appearance="outlined" icon-trailing>
+	<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
+</vwc-button>
 </vwc-card>
 
 <vwc-card headline="Vivid 2 Migration" subtitle="Migration guidelines for a smooth and easy adoption.">
@@ -293,7 +299,9 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </linearGradient>
 </defs>
 </svg>
-<vwc-button slot="footer" href="/guides/vivid-2-migration/" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
+<vwc-button slot="footer" href="/guides/vivid-2-migration/" shape="pill" label="Continue" appearance="outlined" icon-trailing>
+	<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
+</vwc-button>
 </vwc-card>
 
 <vwc-card headline="Icons Gallery" subtitle="Vivid's Icons Gallery contains a wide range of high-quality icons.">
@@ -402,7 +410,9 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </clipPath>
 </defs>
 </svg>
-<vwc-button slot="footer" href="/icons/icons-gallery/" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
+<vwc-button slot="footer" href="/icons/icons-gallery/" shape="pill" label="Continue" appearance="outlined" icon-trailing>
+	<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
+</vwc-button>
 </vwc-card>
 </vwc-layout>
 

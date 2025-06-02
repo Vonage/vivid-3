@@ -2,7 +2,7 @@
 
 The `text` attribute set the text to be displayed in the option list item and in the parent element when selected.
 
-The [label attribute](/components/option/code/#label) can be used xsto display different text in the parent element when selected.
+The [label attribute](/components/option/code/#label) can be used to display different text in the parent element when selected.
 
 ```html preview
 <div class="container">
@@ -34,13 +34,15 @@ The `selected` attribute indicates that the option is selected.
 
 ## Icons
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery/), which is displayed at the start of the option, before the text.
+Icons can be provided using the [icon slot](/components/option/code/#icon-slot). It is displayed at the start of the option, before the text.
 
-Custom icons can be provided using the [icon slot](/components/option/code/#icon-slot).
+The `icon`_(deprecated)_ attribute displays an icon from the [icon library](/icons/icons-gallery/)
 
 ```html preview
 <div class="container">
-	<vwc-option icon="chat-line" text="Option text" value="option1"></vwc-option>
+	<vwc-option text="Option text" value="option1">
+		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+	</vwc-option>
 </div>
 
 <style>

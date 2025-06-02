@@ -60,7 +60,7 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 }
 
 export async function loadPage({ page }: { page: Page }) {
-	await page.goto('http://127.0.0.1:8080/frames/cbd-code-block-0.html');
+	await page.goto('http://127.0.0.1:8080/playground/');
 }
 
 export async function loadTemplate({

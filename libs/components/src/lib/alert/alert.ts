@@ -5,6 +5,15 @@ import { AffixIcon } from '../../shared/patterns/affix';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
+export const CONNOTATION_ICON_MAP = {
+	[Connotation.Accent]: 'megaphone-line',
+	[Connotation.Information]: 'info-line',
+	[Connotation.Success]: 'check-circle-line',
+	[Connotation.Warning]: 'warning-line',
+	[Connotation.Announcement]: 'sparkles-line',
+	[Connotation.Alert]: 'error-line',
+} as const;
+
 export type AlertConnotation =
 	| Connotation.Accent
 	| Connotation.Information
@@ -12,15 +21,6 @@ export type AlertConnotation =
 	| Connotation.Warning
 	| Connotation.Announcement
 	| Connotation.Alert;
-
-const connotationIconMap = new Map([
-	[Connotation.Accent, 'megaphone-line'],
-	[Connotation.Information, 'info-line'],
-	[Connotation.Success, 'check-circle-line'],
-	[Connotation.Warning, 'warning-line'],
-	[Connotation.Announcement, 'sparkles-line'],
-	[Connotation.Alert, 'error-line'],
-]);
 
 export type AlertPlacement =
 	| 'top'
@@ -37,7 +37,7 @@ export type AlertStrategy = 'fixed' | 'static';
  * @component alert
  * @slot main - The main content of the Alert.
  * @slot action-items - Add action items to the Alert using this slot.
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  * @event {CustomEvent<undefined>} open - Fired when the Alert is opened
  * @event {CustomEvent<undefined>} close - Fired when the Alert is closed
  */
@@ -96,7 +96,6 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 
 	/**
 	 * Sets an appropriate icon / icon color for the connotation.
-	 *
 	 * @public
 	 */
 	@attr connotation?: AlertConnotation;
@@ -161,7 +160,7 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 
 	get conditionedIcon() {
 		return (
-			this.icon || connotationIconMap.get(this.connotation as AlertConnotation)
+			this.icon || (this.connotation && CONNOTATION_ICON_MAP[this.connotation])
 		);
 	}
 

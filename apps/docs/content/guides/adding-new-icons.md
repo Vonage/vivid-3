@@ -9,7 +9,8 @@ order: 10
 
 This guide is for designers who want to contribute new icons to the Vivid Icon set.
 
-<vwc-note connotation="announcement" icon="sparkles-line" headline="Before You Begin">
+<vwc-note connotation="announcement" headline="Before You Begin">
+  <vwc-icon slot="icon" name="sparkles-line" label="Note:"></vwc-icon>
 
 Before submitting a new icon, ensure it is not already included in the [Icon Gallery](/icons/icons-gallery/).
 

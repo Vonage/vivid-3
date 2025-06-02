@@ -10,7 +10,8 @@ The `total` attribute sets the total amount of pages. If set to `0` (it's defaul
 
 The `selected-index` attribute sets the currently selected page.
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+  <vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
 The value is zero-indexed. It is set to `0` if total pages is `0`.
 

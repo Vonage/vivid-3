@@ -10,6 +10,11 @@ The `label` attribute controls button's label text.
 
 The `appearance` attribute controls the style of button displayed.
 
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+	<p>The <code>outlined-light</code> and <code>ghost-light</code> appearances are the same as <code>outlined</code> and <code>ghost</code> except their background colours have opacity when hovered.</p>
+</vwc-note>
+
 ```html preview 72px
 <div class="container">
 	<vwc-button appearance="filled" label="Filled"></vwc-button>
@@ -26,10 +31,6 @@ The `appearance` attribute controls the style of button displayed.
 	}
 </style>
 ```
-
-<vwc-note connotation="information" icon="info-line">
-	<p>The <code>outlined-light</code> and <code>ghost-light</code> appearances are the same as <code>outlined</code> and <code>ghost</code> except their background colours have opacity when hovered.</p>
-</vwc-note>
 
 ## Connotation
 
@@ -167,11 +168,18 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 </style>
 ```
 
-## Icons
+## Icon
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery/), which can be displayed on the leading (default) or trailing side (`icon-trailing`) of the button.
+The `icon` attribute displays an icon from the icon library](/icons/icons-gallery/), which can be displayed on the leading (default) or trailing side (`icon-trailing`) of the badge.
 
-Custom icons can be provided using the [icon slot](/components/button/code/#icon-slot).
+The preferred way to add icons is to use the [icon slot](/components/badge/code/#icon-slot).
+
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ```html preview 72px
 <div class="container">
@@ -200,7 +208,8 @@ Custom icons can be provided using the [icon slot](/components/button/code/#icon
 
 If the `label` is omitted, the button will be displayed as an _icon-only_ button.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 
 When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
 
@@ -212,9 +221,10 @@ When an element has no visible text, provide an accessible name using the <nobr>
 		slot="anchor"
 		appearance="filled"
 		connotation="cta"
-		icon="message-sent-line"
 		aria-label="Send Message"
-	></vwc-button>
+	>
+		<vwc-icon name="message-sent-line" slot="icon"></vwc-icon>
+	</vwc-button>
 </vwc-tooltip>
 ```
 
@@ -224,19 +234,12 @@ When using an icon, the `stacked` attribute causes the button to be displayed in
 
 ```html preview
 <div class="container">
-	<vwc-button
-		stacked
-		icon="compose-line"
-		appearance="filled"
-		label="Leading"
-	></vwc-button>
-	<vwc-button
-		stacked
-		icon="compose-line"
-		appearance="filled"
-		label="Trailing"
-		icon-trailing
-	></vwc-button>
+	<vwc-button stacked appearance="filled" label="Leading">
+		<vwc-icon name="compose-line" slot="icon"></vwc-icon>
+	</vwc-button>
+	<vwc-button stacked appearance="filled" label="Trailing" icon-trailing>
+		<vwc-icon name="compose-line" slot="icon"></vwc-icon>
+	</vwc-button>
 </div>
 
 <style>
@@ -299,24 +302,16 @@ The `pending` attribute triggers the pending state, which indicates that the act
 
 ```html preview
 <div class="container">
-	<vwc-button
-		icon="compose-line"
-		appearance="filled"
-		label="Pending"
-		pending
-	></vwc-button>
-	<vwc-button
-		icon="compose-line"
-		appearance="outlined"
-		label="Pending"
-		pending
-	></vwc-button>
-	<vwc-button
-		icon="compose-line"
-		appearance="ghost"
-		label="Pending"
-		pending
-	></vwc-button>
+	<vwc-button appearance="filled" label="Pending" pending>
+		<vwc-icon name="compose-line" slot="icon"></vwc-icon>
+	</vwc-button>
+	<vwc-button appearance="filled" label="Pending" pending></vwc-button>
+	<vwc-button appearance="outlined" label="Pending" pending>
+		<vwc-icon name="compose-line" slot="icon"></vwc-icon>
+	</vwc-button>
+	<vwc-button appearance="ghost" label="Pending" pending>
+		<vwc-icon name="compose-line" slot="icon"></vwc-icon>
+	</vwc-button>
 </div>
 
 <style>
@@ -327,7 +322,8 @@ The `pending` attribute triggers the pending state, which indicates that the act
 </style>
 ```
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 	
 The spinner is not displayed when using the `super-condensed` size.
 
@@ -379,6 +375,11 @@ Do not use this attribute to indicate a selected or pressed state.
 
 When the button is used to trigger a menu / dropdown, you can set `dropdown-indicator` to add a chevron to the button.
 
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+	<p>When setting <code>dropdown-indicator</code> the Button's content alignment changes from center to start. You can change it back to center using <code>--button-content-alignment</code> CSS variable </p>
+</vwc-note>
+
 ```html preview 220px
 <vwc-menu trigger="auto" auto-dismiss placement="bottom-start">
 	<vwc-button
@@ -392,7 +393,3 @@ When the button is used to trigger a menu / dropdown, you can set `dropdown-indi
 	<vwc-menu-item icon="delete-line" text="Archive"></vwc-menu-item>
 </vwc-menu>
 ```
-
-<vwc-note connotation="information" icon="info-line">
-	<p>When setting <code>dropdown-indicator</code> the Button's content alignment changes from center to start. You can change it back to center using <code>--button-content-alignment</code> CSS variable </p>
-</vwc-note>

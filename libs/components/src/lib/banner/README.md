@@ -66,8 +66,8 @@ Set the `icon` slot to show an icon before the banner's text.
 If set, the `icon` attribute is ignored.
 
 ```html preview full
-<vwc-banner text="Banner with icon inside slot-icon">
-	<vwc-icon slot="icon">
+<vwc-banner text="Banner with icon inside slot-icon" connotation="announcement">
+	<vwc-icon slot="icon" label="Vivid News:">
 		<svg
 			width="240"
 			height="160"
@@ -189,12 +189,12 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name            | Description                                                                                      |
-| --------------- | ------------------------------------------------------------------------------------------------ |
-| **text**        | `string`                                                                                         |
-| **connotation** | Enum\_:<br/>`information` (default) <br/>`announcement`<br/>`success`<br/>`warning` <br/>`alert` |
-| **icon**        | Enum\_:<br/>`[icon-name]`                                                                        |
-| **removable**   | `boolean`                                                                                        |
+| Name                                   | Description                                                                                      |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **text**                               | `string`                                                                                         |
+| **connotation**                        | Enum\_:<br/>`information` (default) <br/>`announcement`<br/>`success`<br/>`warning` <br/>`alert` |
+| _(deprecated as of 05/25)_<br>**icon** | Enum\_:<br/>`[icon-name]`                                                                        |
+| **removable**                          | `boolean`                                                                                        |
 
 </div>
 

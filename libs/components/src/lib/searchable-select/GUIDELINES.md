@@ -57,13 +57,9 @@ It's bad for UX and accessibility.<br />[The problem with placeholders](https://
 		<vwc-option value="DZ" text="Algeria"></vwc-option>
 	</vwc-searchable-select>
 	<vwc-toggletip placement="bottom">
-		<vwc-button
-			icon="info-line"
-			slot="anchor"
-			shape="pill"
-			size="condensed"
-			class="tooltip-btn"
-		></vwc-button>
+		<vwc-button slot="anchor" shape="pill" size="condensed" class="tooltip-btn">
+			<vwc-icon slot="icon" name="info-line"></vwc-icon>
+		</vwc-button>
 		Select the countries that your company operates in
 	</vwc-toggletip>
 </div>

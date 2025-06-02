@@ -82,9 +82,9 @@ If no width or height is set on the calendar there will be no scroll, and no sti
 </style>
 ```
 
-<vwc-note connotation="warning" icon="warning-line" headline="Setting Sticky-Mode to all">
+<vwc-note connotation="warning" headline="Setting Sticky-Mode to all">
+	<vwc-icon slot="icon" name="warning-line" label="Warning"></vwc-icon>
 	<p>By default, sticky-mode is set to <code>none</code>. In the next breaking change it will be set to <code>all</code></p>
-	<p></p>
 </vwc-note>
 
 ## CSS Variables

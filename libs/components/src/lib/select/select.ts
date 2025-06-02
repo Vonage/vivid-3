@@ -32,7 +32,7 @@ import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { HostSemantics } from '../../shared/aria/host-semantics';
 import { WithLightDOMFeedback } from '../../shared/feedback/mixins';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { FormAssociatedSelect } from './select.form-associated';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 
 export type SelectAppearance = ExtractFromEnum<
 	Appearance,
@@ -45,7 +45,7 @@ export type SelectSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @public
  * @component select
  * @slot - Default slot.
- * @slot icon - Slot to add an icon to the select control.
+ * @slot icon - The preferred way to add an icon to the select control.
  * @slot meta - Slot to add meta content to the select control.
  * @slot helper-text - Describes how to use the select. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} input - Fires a custom 'input' event when the value updates
@@ -55,8 +55,13 @@ export type SelectSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
 @errorText
 @formElements
 export class Select extends WithLightDOMFeedback(
-	HostSemantics(AffixIconWithTrailing(FormAssociatedSelect))
+	HostSemantics(AffixIconWithTrailing(FormAssociated(Listbox)))
 ) {
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('select');
+
 	/**
 	 * The index of the most recently checked option.
 	 *
@@ -411,13 +416,6 @@ export class Select extends WithLightDOMFeedback(
 	private indexWhenOpened!: number;
 
 	/**
-	 * The internal value property.
-	 *
-	 * @internal
-	 */
-	private _value!: string;
-
-	/**
 	 * The component is collapsible when in single-selection mode.
 	 *
 	 * @internal
@@ -436,18 +434,10 @@ export class Select extends WithLightDOMFeedback(
 	control!: HTMLElement;
 
 	/**
-	 * The value property.
-	 *
-	 * @public
+	 * @internal
 	 */
-	override get value() {
-		Observable.track(this, 'value');
-		return this._value;
-	}
-
-	override set value(next: string) {
-		const prev = `${this._value}`;
-
+	override valueChanged(prev: string, next: string) {
+		let nextValue = next;
 		if (this.length) {
 			const selectedIndex = this._options.findIndex((el) => el.value === next);
 			const prevSelectedValue =
@@ -455,19 +445,20 @@ export class Select extends WithLightDOMFeedback(
 			const nextSelectedValue = this._options[selectedIndex]?.value ?? null;
 
 			if (selectedIndex === -1 || prevSelectedValue !== nextSelectedValue) {
-				next = '';
+				nextValue = '';
 				this.selectedIndex = selectedIndex;
 			}
 
-			next = this.firstSelectedOption?.value ?? next;
+			nextValue = this.firstSelectedOption?.value ?? nextValue;
 		}
 
-		if (prev !== next) {
-			this._value = next;
-			super.valueChanged(prev, next);
-			Observable.notify(this, 'value');
-			this.updateDisplayValue();
+		if (next !== nextValue) {
+			this.value = nextValue;
+			return;
 		}
+
+		super.valueChanged(prev, next);
+		this.updateDisplayValue();
 	}
 
 	/**

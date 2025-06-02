@@ -4,6 +4,14 @@ import { AffixIcon, Localized } from '../../shared/patterns';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
+export const CONNOTATION_ICON_MAP = {
+	[Connotation.Information]: 'info-solid',
+	[Connotation.Announcement]: 'megaphone-solid',
+	[Connotation.Success]: 'check-circle-solid',
+	[Connotation.Warning]: 'warning-solid',
+	[Connotation.Alert]: 'error-solid',
+} as const;
+
 export type BannerConnotation =
 	| Connotation.Information
 	| Connotation.Announcement
@@ -11,23 +19,15 @@ export type BannerConnotation =
 	| Connotation.Warning
 	| Connotation.Alert;
 
-const connotationIconMap = new Map([
-	[Connotation.Information, 'info-solid'],
-	[Connotation.Announcement, 'megaphone-solid'],
-	[Connotation.Success, 'check-circle-solid'],
-	[Connotation.Warning, 'warning-solid'],
-	[Connotation.Alert, 'error-solid'],
-]);
-
-const defaultConnotation = (
-	connotation: Connotation | undefined = Connotation.Information
-) => connotationIconMap.get(connotation) as Connotation;
+const getConnotationIcon = (
+	connotation: BannerConnotation | undefined = Connotation.Information
+) => CONNOTATION_ICON_MAP[connotation];
 
 /**
  * @public
  * @component banner
  * @slot action-items - Add action items to banner using this slot.
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  */
 export class Banner extends AffixIcon(Localized(DelegatesAria(VividElement))) {
 	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel:
@@ -40,7 +40,7 @@ export class Banner extends AffixIcon(Localized(DelegatesAria(VividElement))) {
 	@attr() connotation: BannerConnotation | undefined;
 
 	get conditionedIcon() {
-		return this.icon ?? defaultConnotation(this.connotation);
+		return this.icon ?? getConnotationIcon(this.connotation);
 	}
 
 	override connectedCallback() {

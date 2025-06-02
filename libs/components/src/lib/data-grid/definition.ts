@@ -1,6 +1,7 @@
 import { iconDefinition } from '../icon/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { visuallyHiddenDefinition } from '../visually-hidden/definition';
 import dataGridStyles from './data-grid.scss?inline';
 import dataGridRowStyles from './data-grid-row.scss?inline';
 import dataGridCellStyles from './data-grid-cell.scss?inline';
@@ -18,7 +19,7 @@ export const dataGridCellDefinition = defineVividComponent(
 	'data-grid-cell',
 	DataGridCell,
 	DataGridCellTemplate,
-	[iconDefinition],
+	[iconDefinition, visuallyHiddenDefinition],
 	{
 		styles: dataGridCellStyles,
 	}

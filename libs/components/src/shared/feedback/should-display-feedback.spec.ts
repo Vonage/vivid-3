@@ -5,7 +5,7 @@ import {
 	getResolvedTextContent,
 } from '@vivid-nx/shared';
 import type { ErrorText, FormElementSuccessText } from '../patterns';
-import type { FormAssociated } from '../foundation/form-associated/form-associated';
+import type { FormAssociatedElement } from '../foundation/form-associated/form-associated';
 import type { ElementWithFeedback } from './mixins';
 import type { FeedbackMessage, FeedbackType } from './feedback-message';
 
@@ -114,7 +114,7 @@ export const itShouldDisplayErrorTextFeedback = (
 };
 
 export const itShouldDisplayValidationErrorFeedback = (
-	getElement: () => ElementWithFeedback & ErrorText & FormAssociated,
+	getElement: () => ElementWithFeedback & ErrorText & FormAssociatedElement,
 	getControl = () => getControlElement(getElement())
 ) => {
 	const setValidationError = (error: string) => {

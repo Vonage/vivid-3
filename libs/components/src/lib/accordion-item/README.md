@@ -86,9 +86,15 @@ Add the `icon` attribute to add an icon to the heading.
 - Type: `string`
 - Default: `''`
 
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+</vwc-note>
+
 ```html preview full
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item heading="Accordion item with icon" icon="chat-solid">
+	<vwc-accordion-item heading="Accordion item with icon">
+		<vwc-icon slot="icon" name="chat-solid"></vwc-icon>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
@@ -122,11 +128,8 @@ Use the `size` attribute to set the accordion-item's size.
 
 ```html preview full 230px
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item
-		heading="normal accordion item"
-		meta="meta-data"
-		icon="chat-solid"
-	>
+	<vwc-accordion-item heading="normal accordion item" meta="meta-data">
+		<vwc-icon slot="icon" name="chat-solid"></vwc-icon>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
@@ -136,8 +139,8 @@ Use the `size` attribute to set the accordion-item's size.
 		heading="condensed accordion item"
 		size="condensed"
 		meta="meta-data"
-		icon="chat-solid"
 	>
+		<vwc-icon slot="icon" name="chat-solid"></vwc-icon>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>

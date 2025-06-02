@@ -28,7 +28,8 @@ Which stylesheets you should load will depend on your project's needs.
 - [Spezia Font Kit](#spezia-font-kit)
 - [Vivid 2.x Compatibility](#vivid-2x-compatibility)
 
-<vwc-note headline="Loading Styles" connotation="information" icon="info-line">
+<vwc-note headline="Loading Styles" connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
 How to load styles will depend on your project's setup. You can find more guidance in the [Getting Started guides](/getting-started/web-components/#importing-the-styles-and-fonts).
 

@@ -8,38 +8,36 @@ When placing cards inside Layout component or inside flex parent the cards are s
 		class="card-item"
 		headline="Computer App"
 		subtitle="all about our web app"
-		icon="app-line"
 		text="Neque porro quisquam est qui dolorem ipsum."
 	>
+		<vwc-icon slot="icon" name="app-line"></vwc-icon>
 		<div class="image-wrapper" slot="media">
 			<img
 				src="https://fastly.picsum.photos/id/48/367/267.jpg?hmac=fENUWb0yT2VgcvIXjwzBiAZ6QqdYG4rt2q8gok9VrZ0"
 				alt=""
 			/>
 		</div>
-		<vwc-button
-			slot="meta"
-			appearance="filled"
-			icon="pin-2-line"
-			aria-label="unpin item"
-		></vwc-button>
+		<vwc-button slot="meta" appearance="filled" aria-label="unpin item">
+			<vwc-icon slot="icon" name="pin-2-line"></vwc-icon>
+		</vwc-button>
 		<vwc-button
 			slot="footer"
 			class="learn-more"
-			icon="arrow-bold-right-line"
 			icon-trailing
 			shape="pill"
 			label="Learn More"
 			appearance="outlined"
-		></vwc-button>
+		>
+			<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
+		</vwc-button>
 	</vwc-card>
 	<vwc-card
 		class="card-item"
 		headline="Computer and Books"
 		subtitle="all about the books and the computer"
-		icon="ai-line"
 		text="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
 	>
+		<vwc-icon slot="icon" name="ai-line"></vwc-icon>
 		<div class="image-wrapper" slot="media">
 			<img
 				src="https://fastly.picsum.photos/id/20/367/267.jpg?hmac=h8YwkzRUiuyBhJ-zQTrSCYop1hhNGtW00nITwHy1V4I"
@@ -57,20 +55,21 @@ When placing cards inside Layout component or inside flex parent the cards are s
 		<vwc-button
 			slot="footer"
 			class="learn-more"
-			icon="arrow-bold-right-line"
 			icon-trailing
 			shape="pill"
 			label="Learn More"
 			appearance="outlined"
-		></vwc-button>
+		>
+			<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
+		</vwc-button>
 	</vwc-card>
 	<vwc-card
 		class="card-item"
 		headline="Comunication API"
 		subtitle="all about the comunication"
-		icon="plug-line"
 		text="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. Porro quisquam est qui dolorem ipsum quia dolor."
 	>
+		<vwc-icon slot="icon" name="plug-line"></vwc-icon>
 		<div class="image-wrapper" slot="media">
 			<img
 				src="https://fastly.picsum.photos/id/180/367/267.jpg?hmac=XAmHD3CeF1SZodNhSTtrCVFsSUnlee5bjFyJsrqxyCM"
@@ -88,20 +87,21 @@ When placing cards inside Layout component or inside flex parent the cards are s
 		<vwc-button
 			slot="footer"
 			class="learn-more"
-			icon="arrow-bold-right-line"
 			icon-trailing
 			shape="pill"
 			label="Learn More"
 			appearance="outlined"
-		></vwc-button>
+		>
+			<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
+		</vwc-button>
 	</vwc-card>
 	<vwc-card
 		class="card-item"
 		headline="Computer App"
 		subtitle="all about our web app"
-		icon="app-line"
 		text="Neque porro quisquam est qui dolorem ipsum."
 	>
+		<vwc-icon slot="icon" name="app-line"></vwc-icon>
 		<div class="image-wrapper" slot="media">
 			<img
 				src="https://fastly.picsum.photos/id/48/367/267.jpg?hmac=fENUWb0yT2VgcvIXjwzBiAZ6QqdYG4rt2q8gok9VrZ0"
@@ -119,12 +119,13 @@ When placing cards inside Layout component or inside flex parent the cards are s
 		<vwc-button
 			slot="footer"
 			class="learn-more"
-			icon="arrow-bold-right-line"
 			icon-trailing
 			shape="pill"
 			label="Learn More"
 			appearance="outlined"
-		></vwc-button>
+		>
+			<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
+		</vwc-button>
 	</vwc-card>
 </vwc-layout>
 
@@ -148,7 +149,14 @@ When placing cards inside Layout component or inside flex parent the cards are s
 
 ## Selectable Cards
 
-You can slot a card with `appearance="ghost"` inside selectable box
+You can slot a card with `appearance="ghost"` inside selectable box.
+
+<vwc-note connotation="warning" headline="Do not use clickable cards inside selectable box">
+	 <vwc-icon slot="icon" name="warning-line" label="Warning"></vwc-icon>
+
+You should not use the `href` or `clickable-card` attributes when slotting a card within the selectable box.
+
+</vwc-note>
 
 ```html preview
 <vwc-layout class="card-layout" role="group" aria-label="pick your ios">
@@ -204,9 +212,3 @@ You can slot a card with `appearance="ghost"` inside selectable box
 	}
 </style>
 ```
-
-<vwc-note connotation="warning" icon="warning-line" headline="Do not use clickable cards inside selectable box">
-
-You should not use the `href` or `clickable-card` attributes when slotting a card within the selectable box.
-
-</vwc-note>

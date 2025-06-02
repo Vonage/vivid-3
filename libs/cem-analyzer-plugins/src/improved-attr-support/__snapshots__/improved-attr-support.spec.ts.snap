@@ -1,0 +1,87 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`improvedAttrSupportPlugin > should produce correct results for testcase default 1`] = `
+{
+  "modules": [
+    {
+      "declarations": [
+        {
+          "attributes": [
+            {
+              "default": "''",
+              "fieldName": "noOptions",
+              "name": "noOptions",
+              "type": {
+                "text": "string",
+              },
+            },
+            {
+              "default": "false",
+              "fieldName": "optionsWithoutName",
+              "name": "optionsWithoutName",
+              "type": {
+                "text": "boolean",
+              },
+            },
+            {
+              "default": "false",
+              "fieldName": "optionsWithName",
+              "name": "specified name",
+              "type": {
+                "text": "boolean",
+              },
+            },
+          ],
+          "customElement": true,
+          "description": "",
+          "kind": "class",
+          "members": [
+            {
+              "default": "''",
+              "kind": "field",
+              "name": "noOptions",
+              "type": {
+                "text": "string",
+              },
+            },
+            {
+              "default": "false",
+              "kind": "field",
+              "name": "optionsWithoutName",
+              "type": {
+                "text": "boolean",
+              },
+            },
+            {
+              "default": "false",
+              "kind": "field",
+              "name": "optionsWithName",
+              "type": {
+                "text": "boolean",
+              },
+            },
+          ],
+          "name": "MyComponent",
+          "superclass": {
+            "name": "HTMLElement",
+          },
+        },
+      ],
+      "exports": [
+        {
+          "declaration": {
+            "module": "my-element.js",
+            "name": "MyComponent",
+          },
+          "kind": "js",
+          "name": "MyComponent",
+        },
+      ],
+      "kind": "javascript-module",
+      "path": "my-element.js",
+    },
+  ],
+  "readme": "",
+  "schemaVersion": "1.0.0",
+}
+`;

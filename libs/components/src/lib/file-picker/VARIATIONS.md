@@ -4,18 +4,15 @@
 
 The `label` attribute provides a short description of the purpose of the File Picker.
 
-```html preview
-<vwc-file-picker label="Label">Drag & Drop or click to upload</vwc-file-picker>
-```
-
-<!-- un-comment after VIV-2326 is done
-
-<vwc-note connotation="information" icon="info-line" headline="Accessibility note">
+<vwc-note connotation="information" headline="Accessibility note">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 	<p>If you can not use the visible <code>label</code>, provide it using the <code>aria-label</code> attribute.</p>
 	<p>It will be announced by screen readers so that those users will know the purpose of the Select.</p>
 </vwc-note>
 
--->
+```html preview
+<vwc-file-picker label="Label">Drag & Drop or click to upload</vwc-file-picker>
+```
 
 ### Helper text
 

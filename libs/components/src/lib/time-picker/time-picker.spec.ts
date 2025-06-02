@@ -20,7 +20,7 @@ describe('vwc-time-picker', () => {
 	let inlineTimePicker: InlineTimePicker;
 
 	function typeIntoTextField(text: string) {
-		textField.currentValue = text;
+		textField.value = text;
 		textField.dispatchEvent(new InputEvent('input'));
 		textField.dispatchEvent(new InputEvent('change'));
 		textField.dispatchEvent(new Event('blur'));
@@ -81,7 +81,7 @@ describe('vwc-time-picker', () => {
 			element.value = '13:45:00';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('01:45 PM');
+			expect(textField.value).toBe('01:45 PM');
 		});
 
 		it('should ignore an invalid value', async () => {
@@ -122,7 +122,7 @@ describe('vwc-time-picker', () => {
 			element.value = '';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('');
+			expect(textField.value).toBe('');
 		});
 
 		it('should reflect on the inline-time-picker', async () => {
@@ -176,7 +176,7 @@ describe('vwc-time-picker', () => {
 				element.value = '13:45:00';
 				await elementUpdated(element);
 
-				expect(textField.currentValue).toBe('01:45 PM');
+				expect(textField.value).toBe('01:45 PM');
 			});
 		});
 
@@ -194,7 +194,7 @@ describe('vwc-time-picker', () => {
 				element.value = '13:45:00';
 				await elementUpdated(element);
 
-				expect(textField.currentValue).toBe('13:45');
+				expect(textField.value).toBe('13:45');
 			});
 		});
 
@@ -206,7 +206,7 @@ describe('vwc-time-picker', () => {
 			element.clock = '24h';
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('13:45');
+			expect(textField.value).toBe('13:45');
 		});
 
 		it('should update the text field when the locale is changed', async () => {
@@ -216,7 +216,7 @@ describe('vwc-time-picker', () => {
 			setLocale(enGB);
 			await elementUpdated(element);
 
-			expect(textField.currentValue).toBe('13:45');
+			expect(textField.value).toBe('13:45');
 		});
 	});
 
