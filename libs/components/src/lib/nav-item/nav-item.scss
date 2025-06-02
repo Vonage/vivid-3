@@ -39,7 +39,7 @@
 	text-decoration: none;
 	vertical-align: middle;
 
-	&[aria-current] {
+	&.current {
 		color: var(#{appearance.get-appearance-token(text)});
 
 		@supports not (
@@ -64,7 +64,7 @@
 			map.merge(
 				appearance.$state-aspect-selectors,
 				(
-					selected: '[aria-current]',
+					selected: '.current',
 				)
 			)
 		)
@@ -82,16 +82,13 @@
 		padding-inline: $gutter;
 	}
 
-	&:not([aria-current]) {
+	&:not(.current) {
 		color: var(#{constants.$vvd-color-canvas-text});
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 		&:focus-visible {
 			@include focus.focus;
 		}
-	}
-
-	:host(:not([aria-current='page'])) & {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 }
 
