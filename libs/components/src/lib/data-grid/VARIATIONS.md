@@ -213,7 +213,7 @@ For selection functionality to work correctly, the [`selection-mode` attribute](
 </vwc-data-grid>
 <vwc-data-grid selection-mode="single-cell">
 	<vwc-data-grid-row class="header" row-type="header">
-		<vwc-data-grid-cell cell-type="columnheader"> Data 1 </vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Data 1</vwc-data-grid-cell>
 		<vwc-data-grid-cell cell-type="columnheader">Data 2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
@@ -248,7 +248,7 @@ The sortable feature doesn't actually sort the data, it only changes the visual 
 
 ```html preview
 <vwc-data-grid>
-	<vwc-data-grid-row role="row">
+	<vwc-data-grid-row>
 		<vwc-data-grid-cell cell-type="columnheader" aria-sort="ascending"
 			>Ascending</vwc-data-grid-cell
 		>
