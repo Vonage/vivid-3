@@ -5,6 +5,8 @@ on:
     types: ['opened', 'edited', 'reopened', 'synchronize', 'ready_for_review']
     branches-ignore:
       ['dependabot/npm_and_yarn/**', 'release-please--branches--main--**']
+  merge_group:
+    types: [checks_requested]
 
 jobs:
   lint-pr-title:
