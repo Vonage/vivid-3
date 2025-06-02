@@ -4,6 +4,7 @@ import { AffixIcon } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { replaces } from '../../shared/deprecation/replaced-props';
 
 /**
  * Types of nav-disclosure appearance.
@@ -69,6 +70,21 @@ export class NavDisclosure extends AffixIcon(DelegatesAria(VividElement)) {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+
+	/**
+	 * Indicates there's a nested active nav-item within nav-disclosure
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: current
+	 */
+	@replaces<boolean, string | null>({
+		deprecatedPropertyName: 'ariaCurrent',
+		fromDeprecated: (v) => Boolean(v),
+		toDeprecated: (v) => (v ? 'true' : null),
+	})
+	@attr({ attribute: 'current', mode: 'boolean' })
+	current = false;
 
 	/**
 	 * @internal

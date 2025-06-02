@@ -62,11 +62,11 @@ registerMenuItem('your-prefix');
 
 Use the `meta` slot to add an element (like a badge or an additional icon).
 
-Using this slot it sets the icon, checkbox or radio to be trailing.
+Using this slot sets the icon, checkbox or radio to be trailing.
 
 ```html preview 200px
 <vwc-menu open aria-label="Example menu">
-	<vwc-menu-item text="Available" role="menuitemradio">
+	<vwc-menu-item text="Available" control-type="radio">
 		<vwc-badge
 			slot="meta"
 			appearance="filled"
@@ -76,7 +76,7 @@ Using this slot it sets the icon, checkbox or radio to be trailing.
 			<vwc-icon slot="icon" name="check-solid"></vwc-icon>
 		</vwc-badge>
 	</vwc-menu-item>
-	<vwc-menu-item text="Away" role="menuitemradio">
+	<vwc-menu-item text="Away" control-type="radio">
 		<vwc-badge
 			slot="meta"
 			appearance="filled"
@@ -86,7 +86,7 @@ Using this slot it sets the icon, checkbox or radio to be trailing.
 			<vwc-icon slot="icon" name="clock-line"></vwc-icon>
 		</vwc-badge>
 	</vwc-menu-item>
-	<vwc-menu-item text="Busy" role="menuitemradio" checked>
+	<vwc-menu-item text="Busy" control-type="radio" checked>
 		<vwc-badge slot="meta" appearance="filled" connotation="alert" shape="pill">
 			<vwc-icon slot="icon" name="minus-solid"></vwc-icon>
 		</vwc-badge>
@@ -100,8 +100,8 @@ Use the `trailing-meta` slot to add an element (like a badge or an additional ic
 
 ```html preview 170px
 <vwc-menu open aria-label="Example menu">
-	<vwc-menu-item role="checkbox" text="Checkbox 1"> </vwc-menu-item>
-	<vwc-menu-item role="checkbox" text="Checkbox 2">
+	<vwc-menu-item control-type="checkbox" text="Checkbox 1"> </vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Checkbox 2">
 		<vwc-badge
 			slot="trailing-meta"
 			appearance="subtle"
@@ -187,23 +187,60 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 </vwc-menu>
 ```
 
+## Presentational
+
+If the Menu Item is not a direct descendant of a Menu, it will automatically become presentational. That means it used only for visual purposes and no longer semantically or functionally act as a Menu Item.
+
+You must wrap it in an element with `role="menuitem"` to provide the menu item functionality.
+
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+
+Previously you needed to specify `role="presentation"` in this case. This is no longer necessary as the component will handle it automatically.
+
+</vwc-note>
+
+### Anchored Menu Item
+
+To create a Menu Item that is anchored to a URL do the following:
+
+- Wrap the vwc-menu-item in an anchor tag.
+- Set the role attribute to menuitem on the anchor tag.
+
+If you are using a framework, just wrap the menu item in any routing component/directive as done with the anchor tag.
+
+```html preview 100px
+<vwc-menu open aria-label="Example menu">
+	<a
+		role="menuitem"
+		href="https://www.vonage.com"
+		target="_blank"
+		rel="noopener noreferrer"
+	>
+		<vwc-menu-item text="Go to Vonage" icon="vonage-solid">
+			<vwc-icon name="open-line" slot="trailing-meta" size="-5"></vwc-icon>
+		</vwc-menu-item>
+	</a>
+</vwc-menu>
+```
+
 ## API Reference
 
 ### Properties
 
 <div class="table-wrapper">
 
-| Name                 | Type                                                                                           | Description                                                                                                                                |
-| -------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **check-appearance** | `normal` (default), `tick-only`                                                                | Sets the appearance of the check element                                                                                                   |
-| **checked**          | `boolean`                                                                                      | Sets the checked state                                                                                                                     |
-| **check-trailing**   | `boolean`                                                                                      | Sets the check element to appear at the end of the Menu Item                                                                               |
-| **connotation**      | `accent` (default), `cta`                                                                      | Sets the connotation that appears when checked                                                                                             |
-| **disabled**         | `boolean`                                                                                      | Sets the disabled state                                                                                                                    |
-| **icon**             | _Enum_:<br/>`[icon-name]`                                                                      | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **role**             | `menuitem` (default), `checkbox`, `menuitemcheckbox`, `radio`, `menuitemradio`, `presentation` | Sets the role                                                                                                                              |
-| **secondary-text**   | `string`                                                                                       | Give more context to the text                                                                                                              |
-| **text**             | `string`                                                                                       | Text content                                                                                                                               |
+| Name                 | Type                            | Description                                                                                                                                |
+| -------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **control-type**     | `checkbox`, `radio`             | Whether the menu item should behave as a checkbox or radio button.                                                                         |
+| **check-appearance** | `normal` (default), `tick-only` | Sets the appearance of the check element                                                                                                   |
+| **checked**          | `boolean`                       | Sets the checked state                                                                                                                     |
+| **check-trailing**   | `boolean`                       | Sets the check element to appear at the end of the Menu Item                                                                               |
+| **connotation**      | `accent` (default), `cta`       | Sets the connotation that appears when checked                                                                                             |
+| **disabled**         | `boolean`                       | Sets the disabled state                                                                                                                    |
+| **icon**             | _Enum_:<br/>`[icon-name]`       | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **secondary-text**   | `string`                        | Give more context to the text                                                                                                              |
+| **text**             | `string`                        | Text content                                                                                                                               |
 
 </div>
 
@@ -223,10 +260,9 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 
 <div class="table-wrapper">
 
-| Name                | Type                       | Bubbles | Composed | Description                                                                                                                                              |
-| ------------------- | -------------------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **expanded-change** | `CustomEvent<HTMLElement>` | No      | Yes      | Fires a custom 'expanded-change' event when the expanded state changes                                                                                   |
-| **change**          | `CustomEvent<undefined>`   | No      | Yes      | Fires a custom 'change' event when a non-submenu item with a role of `checkbox`, `menuitemcheckboxe`, `radio`, `menuitemradio`, or `menuitem` is invoked |
-| **click**           | `CustomEvent<undefined>`   | No      | Yes      | Fires a custom 'click' event its `role` is `presentation`                                                                                                |
+| Name                | Type                       | Bubbles | Composed | Description                                                                              |
+| ------------------- | -------------------------- | ------- | -------- | ---------------------------------------------------------------------------------------- |
+| **expanded-change** | `CustomEvent<HTMLElement>` | No      | Yes      | Fired when the expanded state changes.                                                   |
+| **change**          | `CustomEvent<undefined>`   | No      | Yes      | Fired when the item is triggered. Does not fire when a submenu is collapsed or expanded. |
 
 </div>

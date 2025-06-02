@@ -19,6 +19,11 @@ import type { ButtonLocale } from '../../lib/button/locale';
 import type { FeedbackMessageLocale } from '../feedback/locale';
 import type { CharCountLocale } from '../patterns/char-count/locale';
 import type { DataGridLocale } from '../../lib/data-grid/locale';
+import type { Connotation } from '../../lib/enums';
+
+type ConnotationAnnoncementLocale = {
+	[key in Connotation as `${key}Icon`]: string;
+};
 
 export interface Locale {
 	lang: string;
@@ -44,6 +49,7 @@ export interface Locale {
 	richTextEditor: RichTextEditorLocale;
 	button: ButtonLocale;
 	feedbackMessage: FeedbackMessageLocale;
+	connotationAnnoncement: ConnotationAnnoncementLocale;
 	charCount: CharCountLocale;
 	dataGrid: DataGridLocale;
 }

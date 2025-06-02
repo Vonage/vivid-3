@@ -5,12 +5,6 @@ import {
 	isValidDateStr,
 } from '../../shared/datetime/dateStr';
 import {
-	type ErrorText,
-	errorText,
-	type FormElement,
-	formElements,
-} from '../../shared/patterns';
-import {
 	formatPresentationDateRange,
 	formatRange,
 	parsePresentationDateRange,
@@ -40,8 +34,6 @@ function isDefined<T>(value: T | null | undefined): value is T {
  * @vueModel start start input:start `event.currentTarget.start`
  * @vueModel end end input:end `event.currentTarget.end`
  */
-@errorText
-@formElements
 export class DateRangePicker extends MinMaxCalendarPicker(
 	CalendarPicker(PickerField)
 ) {
@@ -510,5 +502,3 @@ export class DateRangePicker extends MinMaxCalendarPicker(
 		return 'calendar-line';
 	}
 }
-
-export interface DateRangePicker extends ErrorText, FormElement {}

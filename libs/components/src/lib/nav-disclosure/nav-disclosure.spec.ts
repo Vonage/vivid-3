@@ -26,7 +26,7 @@ describe('vwc-nav-disclosure', () => {
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.open).toBeFalsy();
-			expect(element.ariaCurrent).toBeFalsy();
+			expect(element.current).toBeFalsy();
 			expect(element.appearance).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
 		});
@@ -115,21 +115,40 @@ describe('vwc-nav-disclosure', () => {
 		});
 	});
 
-	describe('ARIA delegation', () => {
-		itShouldDelegateAriaAttributes(
-			() => element,
-			() => getControlElement(element),
-			['ariaLabel', 'ariaCurrent']
-		);
+	describe('current', () => {
+		it('should properly update aria-current when current attribute is set', async () => {
+			element.current = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).getAttribute('aria-current')).toEqual(
+				'true'
+			);
+		});
+
+		it('should ensure backwards compatibility with aria-current attribute', async () => {
+			element.ariaCurrent = 'true';
+			await elementUpdated(element);
+			expect(element.current).toBe(true);
+			expect(
+				getControlElement(element).classList.contains('current-closed')
+			).toBeTruthy();
+		});
 
 		it('should not delegate aria-current when open', async function () {
 			element.open = true;
-			element.ariaCurrent = 'true';
+			element.current = true;
 			await elementUpdated(element);
 			expect(
 				getControlElement(element).getAttribute('aria-current')
 			).toBeNull();
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getControlElement(element),
+			['ariaLabel']
+		);
 	});
 
 	describe('nav-disclosure appearance', function () {
