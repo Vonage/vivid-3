@@ -1,17 +1,19 @@
 import { attr, DOM, observable } from '@microsoft/fast-element';
-import { Direction, keyEnter, keySpace } from '@microsoft/fast-web-utilities';
+import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import { AffixIcon } from '../../shared/patterns/affix';
-import { Menu } from '../menu/menu';
+import type { Menu } from '../menu/menu';
 import { Connotation } from '../enums';
-import { getDirection } from '../../shared/foundation/utilities/direction';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { replaces } from '../../shared/deprecation/replaced-props';
 import { HostSemantics } from '../../shared/aria/host-semantics';
 import { MenuItemRole } from './menu-item-role';
+
+type ControlType = 'checkbox' | 'radio';
 
 /**
  * Types of fab connotation.
@@ -29,8 +31,8 @@ export type MenuItemConnotation = ExtractFromEnum<
  * @slot meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  * @slot trailing-meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  * @slot submenu - Assign a Menu to the `submenu` slot to add a submenu.
- * @event {CustomEvent<HTMLElement>} expanded-change - Fires a custom 'expanded-change' event when the expanded state changes
- * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `checkbox`, `menuitemradio`, `radio`, or `menuitem` is invoked
+ * @event {CustomEvent<HTMLElement>} expanded-change - Fired when the expanded state changes.
+ * @event {CustomEvent<undefined>} change - Fired when the item is triggered. Does not fire when a submenu is collapsed or expanded.
  * @vueModel modelValue checked change `event.currentTarget.checked`
  */
 export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
@@ -59,13 +61,8 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	 */
 	expandedChanged() {
 		if (this.$fastController.isConnected) {
-			if (this.submenu === undefined) {
-				return;
-			}
-			if (this.expanded === false) {
-				(this.submenu as Menu).collapseExpandedItem();
-			} else {
-				this.currentDirection = getDirection(this);
+			if (this.submenu && !this.expanded) {
+				this.submenu.collapseExpandedItem();
 			}
 			this.$emit('expanded-change', this, { bubbles: false });
 		}
@@ -74,6 +71,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	/**
 	 * The role of the element.
 	 *
+	 * @deprecated Use `control-type` instead for checkbox and radio items. If the menu item is not a direct descendant of a menu, role will default to `presentation`.
 	 * @public
 	 * @remarks
 	 * HTML Attribute: role
@@ -81,6 +79,65 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	@attr
 	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
 	override role: MenuItemRole = MenuItemRole.menuitem;
+
+	/**
+	 * Parent Menu will set this to false if item is a direct descendant.
+	 * @internal
+	 */
+	@observable _isPresentational?: boolean;
+
+	#ensureRoleMatchesPresentational() {
+		if (this._isPresentational) {
+			// Change role only if it wasn't changed from the default value to avoid breaking existing, poorly built, menus
+			if (this.role === 'menuitem') {
+				this.role = 'presentation';
+			}
+		} else if (this.role === 'presentation') {
+			this.role = MenuItemRole.menuitem;
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	_isPresentationalChanged() {
+		if (this.$fastController.isConnected) {
+			this.#ensureRoleMatchesPresentational();
+		}
+	}
+
+	/**
+	 * Whether the menu item should behave as a checkbox or radio button.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: control-type
+	 */
+	@replaces<ControlType | undefined, MenuItemRole>({
+		deprecatedPropertyName: 'role',
+		fromDeprecated: (role) => {
+			switch (role) {
+				case 'menuitemcheckbox':
+					return 'checkbox';
+				case 'menuitemradio':
+					return 'radio';
+				default:
+					return undefined;
+			}
+		},
+		toDeprecated: (controlType) => {
+			switch (controlType) {
+				case 'checkbox':
+					return 'menuitemcheckbox';
+				case 'radio':
+					return 'menuitemradio';
+				default:
+					return 'menuitem';
+			}
+		},
+	})
+	@attr({ attribute: 'control-type' })
+	controlType?: ControlType;
 
 	/**
 	 * The checked value of the element.
@@ -104,66 +161,36 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	/**
 	 * @internal
 	 */
-	@observable
-	hasSubmenu = false;
-
-	/**
-	 * Track current direction to pass to the anchored region
-	 *
-	 * @internal
-	 */
-	@observable
-	currentDirection: Direction = Direction.ltr;
-
-	/**
-	 * @internal
-	 */
-	@observable
-	submenu: Element | undefined;
-
-	private observer: MutationObserver | undefined;
-
-	/**
-	 * @internal
-	 */
 	override connectedCallback(): void {
 		super.connectedCallback();
+
 		DOM.queueUpdate(() => {
-			this.updateSubmenu();
+			// Initialize _isPresentational after waiting for parent menu to set it:
+			this._isPresentational = this._isPresentational ?? true;
+			this.#ensureRoleMatchesPresentational();
 		});
-
-		this.observer = new MutationObserver(this.updateSubmenu);
-	}
-
-	/**
-	 * @internal
-	 */
-	override disconnectedCallback(): void {
-		super.disconnectedCallback();
-		this.submenu = undefined;
-		if (this.observer !== undefined) {
-			this.observer.disconnect();
-			this.observer = undefined;
-		}
 	}
 
 	/**
 	 * @internal
 	 */
 	handleMenuItemClick = (e: MouseEvent): boolean => {
-		if (e.defaultPrevented || this.disabled) {
-			return false;
+		if (this._isSyntheticClickEvent(e)) {
+			// Ignore synthetic events created through keyboard input
+			return true;
 		}
 
 		this.invoke();
-		return false;
+
+		// Do not prevent default when the item is presentational
+		return Boolean(this._isPresentational);
 	};
 
 	/**
 	 * @internal
 	 */
 	handleMouseOver = (_: MouseEvent): boolean => {
-		if (this.disabled || !this.hasSubmenu || this.expanded) {
+		if (this.disabled || !this.submenu || this.expanded) {
 			return false;
 		}
 
@@ -186,30 +213,24 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	};
 
 	private invoke = () => {
-		if (this.disabled) {
+		if (this.disabled || this._isPresentational) {
 			return;
 		}
 
-		switch (this.role) {
-			case MenuItemRole.checkbox:
-			case MenuItemRole.menuitemcheckbox:
+		switch (this.controlType) {
+			case 'checkbox':
 				this.checked = !this.checked;
 				break;
-
-			case MenuItemRole.menuitem:
-				// update submenu
-				this.updateSubmenu();
-				if (this.hasSubmenu) {
+			case 'radio':
+				if (!this.checked) {
+					this.checked = true;
+				}
+				break;
+			default:
+				if (this.submenu) {
 					this.expanded = true;
 				} else {
 					this.$emit('change');
-				}
-				break;
-
-			case MenuItemRole.radio:
-			case MenuItemRole.menuitemradio:
-				if (!this.checked) {
-					this.checked = true;
 				}
 				break;
 		}
@@ -264,22 +285,39 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	 */
 	@observable metaSlottedContent?: HTMLElement[];
 	@observable trailingMetaSlottedContent?: HTMLElement[];
+
 	/**
-	 *
-	 * Submenu slot observer:
-	 *
 	 * @internal
 	 */
 	@observable slottedSubmenu?: Menu[];
-	#submenuArray: Menu[] = [];
 
 	/**
-	 *
-	 *
 	 * @internal
 	 */
-	slottedSubmenuChanged(_oldValue: Menu[], newValue: Menu[]) {
-		this.#submenuArray = newValue;
+	slottedSubmenuChanged() {
+		if (this.submenu) {
+			this.submenu.anchor = this;
+			this.submenu.placement = 'right-start';
+			this.submenu.collapseExpandedItem = () => this.#collapseExpandedItem();
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	get submenu(): Menu | null {
+		if (this.slottedSubmenu?.length) {
+			return this.slottedSubmenu[0];
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	get hasSubmenu() {
+		return this.submenu !== null;
 	}
 
 	constructor() {
@@ -287,25 +325,13 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 		this.addEventListener('expanded-change', this.#expandedChange);
 	}
 
-	private updateSubmenu() {
-		for (const submenu of this.#submenuArray) {
-			this.submenu = submenu as Menu;
-			(this.submenu as Menu).anchor = this as MenuItem;
-			(this.submenu as Menu).placement = 'right-start';
-			(this.submenu as Menu).collapseExpandedItem = () =>
-				this.#collapseExpandedItem();
-		}
-
-		this.hasSubmenu = this.submenu === undefined ? false : true;
-	}
-
 	#collapseExpandedItem() {
 		this.expanded = false;
 	}
 
 	#expandedChange() {
-		if (this.hasSubmenu) {
-			(this.submenu as Menu).open = this.expanded;
+		if (this.submenu) {
+			this.submenu.open = this.expanded;
 		}
 	}
 
@@ -328,7 +354,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 
 			case keyArrowRight:
 				//open/focus on submenu
-				if (this.hasSubmenu) {
+				if (this.submenu) {
 					this.expanded = true;
 					this.#emitSyntheticClick();
 				}

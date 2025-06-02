@@ -84,6 +84,7 @@ export const globalTypeDefs: Record<string, TypeStr> = {
 
 	// Menu item:
 	MenuItemRole: typeFromEnumObj(MenuItemRole),
+	ControlType: "'checkbox' | 'radio'",
 
 	// Selectable box:
 	SelectableBoxControlType: "'checkbox' | 'radio'",

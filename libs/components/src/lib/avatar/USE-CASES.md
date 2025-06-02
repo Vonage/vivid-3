@@ -13,7 +13,7 @@
 	</vwc-button>
 	<vwc-menu-item
 		text="Stone John"
-		role="menuitemradio"
+		control-type="radio"
 		check-appearance="tick-only"
 		text-secondary="236521"
 	>
@@ -21,7 +21,7 @@
 	</vwc-menu-item>
 	<vwc-menu-item
 		text="Stanbrige Peter"
-		role="menuitemradio"
+		control-type="radio"
 		check-appearance="tick-only"
 		text-secondary="963851"
 	>
@@ -29,7 +29,7 @@
 	</vwc-menu-item>
 	<vwc-menu-item
 		text="Kazantzis John"
-		role="menuitemradio"
+		control-type="radio"
 		check-appearance="tick-only"
 		text-secondary="784632"
 	>

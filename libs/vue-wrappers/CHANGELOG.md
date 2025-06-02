@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.25.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.24.0...vivid-vue-v4.25.0) (2025-06-02)
+
+
+### Features
+
+* **menu-item:** replace role with control-type attribute (VIV-2602) ([#2381](https://github.com/Vonage/vivid-3/issues/2381)) ([795c34a](https://github.com/Vonage/vivid-3/commit/795c34a2426345c01c67c1a4c604bb7a289c8b19))
+
 ## [4.24.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.23.0...vivid-vue-v4.24.0) (2025-05-12)
 
 

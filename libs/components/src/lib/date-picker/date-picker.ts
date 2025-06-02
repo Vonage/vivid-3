@@ -1,10 +1,4 @@
 import { volatile } from '@microsoft/fast-element';
-import {
-	type ErrorText,
-	errorText,
-	type FormElement,
-	formElements,
-} from '../../shared/patterns';
 import { type DateStr, isValidDateStr } from '../../shared/datetime/dateStr';
 import {
 	formatPresentationDate,
@@ -26,8 +20,6 @@ import { SingleDatePickerMixin } from '../../shared/picker-field/mixins/single-d
  * @event {CustomEvent<undefined>} change - Emitted when the date is changed by the user.
  * @vueModel modelValue value input `event.currentTarget.value`
  */
-@errorText
-@formElements
 export class DatePicker extends SingleDatePickerMixin(
 	SingleValuePicker(MinMaxCalendarPicker(CalendarPicker(PickerField)))
 ) {
@@ -138,5 +130,3 @@ export class DatePicker extends SingleDatePickerMixin(
 		return 'calendar-line';
 	}
 }
-
-export interface DatePicker extends ErrorText, FormElement {}

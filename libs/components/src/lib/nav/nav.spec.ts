@@ -10,9 +10,9 @@ const COMPONENT_TAG = 'vwc-nav';
 
 describe('vwc-nav', () => {
 	const navItemsTemplate = `
-	<vwc-nav-item href="#" text="Profile"></vwc-nav-item>
-	<vwc-nav-item href="#" text="GitHub" aria-current="page"></vwc-nav-item>
-	<vwc-nav-item href="#" text="lorem ipsum"></vwc-nav-item>
+		<vwc-nav-item href="#" text="Profile"></vwc-nav-item>
+		<vwc-nav-item href="#" text="GitHub" current></vwc-nav-item>
+		<vwc-nav-item href="#" text="lorem ipsum"></vwc-nav-item>
 	`;
 
 	let element: Nav;

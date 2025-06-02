@@ -19,11 +19,9 @@ import {
 } from '@microsoft/fast-web-utilities';
 import {
 	AffixIconWithTrailing,
-	errorText,
-	type ErrorText,
-	type FormElement,
-	formElements,
-	FormElementSuccessText,
+	FormElement,
+	WithErrorText,
+	WithSuccessText,
 } from '../../shared/patterns';
 import type { Appearance, Shape, Size } from '../enums';
 import type { ListboxOption } from '../option/option';
@@ -31,7 +29,6 @@ import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { HostSemantics } from '../../shared/aria/host-semantics';
 import { WithLightDOMFeedback } from '../../shared/feedback/mixins';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 
 export type SelectAppearance = ExtractFromEnum<
@@ -52,10 +49,12 @@ export type SelectSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @event {CustomEvent<HTMLElement>} change - Fires a custom 'change' event when the value updates
  * @vueModel modelValue value input `event.currentTarget.value`
  */
-@errorText
-@formElements
 export class Select extends WithLightDOMFeedback(
-	HostSemantics(AffixIconWithTrailing(FormAssociated(Listbox)))
+	WithErrorText(
+		WithSuccessText(
+			FormElement(HostSemantics(AffixIconWithTrailing(FormAssociated(Listbox))))
+		)
+	)
 ) {
 	/**
 	 * @internal
@@ -892,12 +891,6 @@ export class Select extends WithLightDOMFeedback(
 	 */
 	@observable metaSlottedContent?: Node[];
 
-	labelChanged() {
-		if (!this.ariaLabel) {
-			this.ariaLabel = this.label;
-		}
-	}
-
 	get displayValue(): string {
 		Observable.track(this, 'displayValue');
 
@@ -980,9 +973,3 @@ export class Select extends WithLightDOMFeedback(
 		}
 	}
 }
-
-export interface Select
-	extends FormElement,
-		ErrorText,
-		FormElementSuccessText {}
-applyMixins(Select, FormElementSuccessText);
