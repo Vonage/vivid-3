@@ -19,8 +19,6 @@ import {
 	keyPageUp,
 } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { nestedChildrenOfType } from '../../shared/utils/nested-children-of-type';
-import { directChildrenOfType } from '../../shared/utils/children-of-type';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridRow } from './data-grid-row';
 import { DataGridRowTypes, GenerateHeaderOptions } from './data-grid.options';
@@ -846,8 +844,12 @@ export class DataGrid extends VividElement {
 	};
 
 	private resetSelection = (clear = false) => {
-		const cells = nestedChildrenOfType(this, DataGridCell);
-		const rows = directChildrenOfType(this, DataGridRow);
+		const cells = Array.from(
+			this.querySelectorAll('[role="gridcell"]')
+		) as DataGridCell[];
+		const rows = Array.from(
+			this.querySelectorAll('[role="row"]')
+		) as DataGridRow[];
 
 		if (
 			this.selectionMode === DataGridSelectionMode.singleCell ||

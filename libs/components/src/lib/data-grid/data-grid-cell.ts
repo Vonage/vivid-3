@@ -276,14 +276,6 @@ export class DataGridCell extends VividElement {
 	private updateCellView(): void {
 		this.disconnectCellView();
 
-		if (!this.columnDefinition?.sortable) {
-			this.sortDirection = undefined;
-		} else if (this.columnDefinition.sortDirection) {
-			this.sortDirection = this.columnDefinition.sortDirection;
-		} else {
-			this.sortDirection = DataGridCellSortStates.none;
-		}
-
 		if (this.columnDefinition === null) {
 			return;
 		}
@@ -314,6 +306,14 @@ export class DataGridCell extends VividElement {
 					this.customCellView = defaultCellContentsTemplate.render(this, this);
 				}
 				break;
+		}
+
+		if (!this.columnDefinition?.sortable) {
+			this.sortDirection = undefined;
+		} else if (this.columnDefinition.sortDirection) {
+			this.sortDirection = this.columnDefinition.sortDirection;
+		} else {
+			this.sortDirection = DataGridCellSortStates.none;
 		}
 	}
 
@@ -433,15 +433,11 @@ export class DataGridCell extends VividElement {
 	 */
 	_handleInteraction(): boolean {
 		const isHeaderCell = this.cellType === 'columnheader';
-		const isSortable = isHeaderCell && !!this.sortDirection;
+		const isSortable = isHeaderCell && this.sortDirection !== undefined;
 
 		if (isSortable) {
 			this.$emit('sort', {
 				columnDataKey: this.#getColumnDataKey(),
-				/**
-				 * @deprecated - Please use `sortDirection` property instead.
-				 */
-				ariaSort: this.sortDirection,
 				sortDirection: this.sortDirection,
 			});
 		}

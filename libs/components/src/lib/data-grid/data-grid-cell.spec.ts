@@ -313,6 +313,7 @@ describe('vwc-data-grid-cell', () => {
 		});
 
 		it('should reflect true value in aria-selected attribute', async () => {
+			element.selectable = true;
 			element.selected = true;
 			await elementUpdated(element);
 
@@ -322,6 +323,7 @@ describe('vwc-data-grid-cell', () => {
 		});
 
 		it('should reflect false value in aria-selected attribute', async () => {
+			element.selectable = true;
 			element.selected = true;
 			await elementUpdated(element);
 
