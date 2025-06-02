@@ -6,6 +6,8 @@ order: 3
 
 # Accessibility Resources
 
+PR 2
+
 In this section you’ll find a list of resources about accessibility in design systems and digital products.
 
 ## Web Accessibility Guidelines
