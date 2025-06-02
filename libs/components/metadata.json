@@ -709,7 +709,7 @@
 				},
 				{
 					"name": "connotation",
-					"type": "",
+					"type": "'information' | 'announcement' | 'success' | 'warning' | 'alert'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
