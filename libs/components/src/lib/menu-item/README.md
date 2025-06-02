@@ -193,6 +193,12 @@ If the Menu Item is not a direct descendant of a Menu, it will automatically bec
 
 You must wrap it in an element with `role="menuitem"` to provide the menu item functionality.
 
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+
+Previously you needed to specify `role="presentation"` in this case. This is no longer necessary as the component will handle it automatically.
+
+</vwc-note>
 ### Anchored Menu Item
 
 To create a Menu Item that is anchored to a URL do the following:
