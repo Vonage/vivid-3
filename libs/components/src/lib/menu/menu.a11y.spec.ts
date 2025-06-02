@@ -20,7 +20,7 @@ describe('a11y: vwc-menu', () => {
 		element.innerHTML = `
       <vwc-menu-item text="Menu Item 1"></vwc-menu-item>
       <vwc-menu-item control-type="checkbox" text="Menu Item Checkbox"></vwc-menu-item>
-      <vwc-didiver></vwc-didiver>
+      <vwc-divider></vwc-divider>
       <vwc-menu-item control-type="radio" text="Menu Item Radio"></vwc-menu-item>
     `;
 		await elementUpdated(element);

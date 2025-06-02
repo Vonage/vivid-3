@@ -69,8 +69,8 @@ When `control-type` is `radio`, only one Menu Item can be checked in the current
 </vwc-menu>
 ```
 
-<vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+<vwc-note connotation="warning" headline="Deprecated Prop: role">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 Previously, the `role` attribute was used to set the control type. This is now deprecated (as of 05/25) and replaced with the `control-type` attribute. Using `role` is still functional, but will be removed in a future major release.
 

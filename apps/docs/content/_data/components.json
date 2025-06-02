@@ -289,7 +289,7 @@
 		"description": "An option to appear inside a Menu.",
 		"variations": "./libs/components/src/lib/menu-item/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/menu-item/GUIDELINES.md",
-		"hideGuidelines": "false",
+		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/menu-item/README.md",
 		"accessibility": "./libs/components/src/lib/menu-item/ACCESSIBILITY.md",
 		"parent": "Menu"
