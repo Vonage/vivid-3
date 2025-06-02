@@ -117,10 +117,8 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 		deprecatedPropertyName: 'role',
 		fromDeprecated: (role) => {
 			switch (role) {
-				case 'checkbox':
 				case 'menuitemcheckbox':
 					return 'checkbox';
-				case 'radio':
 				case 'menuitemradio':
 					return 'radio';
 				default:
