@@ -4,11 +4,15 @@ import {
 	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
+
+import { setLocale } from '../../shared/localization';
+import enUS from '../../locales/en-US';
+import deDE from '../../locales/de-DE';
 import type { Icon } from '../icon/icon';
 import { Connotation } from '../enums';
 import { Button } from '../button/button';
 import type { AlertConnotation } from './alert';
-import { Alert } from './alert';
+import { Alert, CONNOTATION_ICON_MAP } from './alert';
 import '.';
 
 const COMPONENT_TAG = 'vwc-alert';
@@ -174,16 +178,8 @@ describe('vwc-alert', () => {
 		});
 
 		it('should return the connotation icon if connotation is set', function () {
-			const connotationIconMap: Map<AlertConnotation, string> = new Map([
-				[Connotation.Accent, 'megaphone-line'],
-				[Connotation.Information, 'info-line'],
-				[Connotation.Success, 'check-circle-line'],
-				[Connotation.Warning, 'warning-line'],
-				[Connotation.Alert, 'error-line'],
-			]);
-
-			connotationIconMap.forEach((icon, connotation) => {
-				element.connotation = connotation;
+			Object.entries(CONNOTATION_ICON_MAP).forEach(([connotation, icon]) => {
+				element.connotation = connotation as AlertConnotation;
 				expect(element.conditionedIcon).toEqual(icon);
 			});
 		});
@@ -217,6 +213,10 @@ describe('vwc-alert', () => {
 	});
 
 	describe('icon', function () {
+		afterEach(() => {
+			setLocale(enUS);
+		});
+
 		const getIcon: () => Icon | null = () =>
 			getBaseElement(element).querySelector('slot[name="icon"] > vwc-icon');
 
@@ -241,18 +241,30 @@ describe('vwc-alert', () => {
 		});
 
 		it('should have the connotation icon if connotation is set', async function () {
-			const connotationIconMap: Map<AlertConnotation, string> = new Map([
-				[Connotation.Accent, 'megaphone-line'],
-				[Connotation.Information, 'info-line'],
-				[Connotation.Success, 'check-circle-line'],
-				[Connotation.Warning, 'warning-line'],
-				[Connotation.Alert, 'error-line'],
-			]);
-
-			for (const [connotation, iconName] of connotationIconMap) {
-				element.connotation = connotation;
+			for (const [connotation, iconName] of Object.entries(
+				CONNOTATION_ICON_MAP
+			)) {
+				element.connotation = connotation as AlertConnotation;
 				await elementUpdated(element);
+
 				expect(getIcon()?.name).toEqual(iconName);
+			}
+		});
+
+		it('should make the connotation icon announced for for screen readers', async function () {
+			setLocale(deDE);
+
+			for (const [connotation] of Object.entries(CONNOTATION_ICON_MAP)) {
+				element.connotation = connotation as AlertConnotation;
+				await elementUpdated(element);
+
+				expect(getIcon()?.parentElement!.ariaLive).toBe('polite');
+
+				expect(getIcon()?.label).toBe(
+					element.locale.connotationAnnoncement[
+						`${connotation as AlertConnotation}Icon`
+					]
+				);
 			}
 		});
 

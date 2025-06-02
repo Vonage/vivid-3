@@ -1,8 +1,7 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { type NavDisclosureConnotation } from '../nav-disclosure/nav-disclosure';
 import { Icon } from '../icon/icon';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
-import { NavItem } from './nav-item';
+import { NavItem, type NavItemConnotation } from './nav-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-nav-item';
@@ -22,6 +21,7 @@ describe('vwc-nav-item', () => {
 			expect(element.icon).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
+			expect(element.current).toBeFalsy();
 		});
 
 		it('should allow being created via createElement', () => {
@@ -88,7 +88,7 @@ describe('vwc-nav-item', () => {
 
 	describe('connotation', function () {
 		it('should set the connotation class on control', async function () {
-			const connotation = 'cta' as NavDisclosureConnotation;
+			const connotation = 'cta' as NavItemConnotation;
 
 			element.connotation = connotation;
 			await elementUpdated(element);
@@ -104,6 +104,25 @@ describe('vwc-nav-item', () => {
 	describe('meta slot', () => {
 		it('should have a meta slot', async () => {
 			expect(element.shadowRoot?.querySelector('slot[name=meta]')).toBeTruthy();
+		});
+	});
+
+	describe('current', () => {
+		it('should properly update aria-current when current attribute is set', async () => {
+			element.current = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).getAttribute('aria-current')).toEqual(
+				'page'
+			);
+		});
+
+		it('should ensure backwards compatibility with aria-current attribute', async () => {
+			element.ariaCurrent = 'page';
+			await elementUpdated(element);
+			expect(element.current).toBe(true);
+			expect(
+				getControlElement(element).classList.contains('current')
+			).toBeTruthy();
 		});
 	});
 

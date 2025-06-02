@@ -10,6 +10,7 @@ import {
 	itShouldDisplayErrorTextFeedback,
 	itShouldDisplayHelperTextFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
+import type { ElementWithErrorText } from '../../shared/patterns';
 import { RadioGroup } from './radio-group';
 import '../radio';
 import '.';
@@ -539,6 +540,8 @@ describe('vwc-radio-group', () => {
 
 	describe('feedback messages', () => {
 		itShouldDisplayHelperTextFeedback(() => element);
-		itShouldDisplayErrorTextFeedback(() => element);
+		itShouldDisplayErrorTextFeedback(
+			() => element as RadioGroup & ElementWithErrorText
+		);
 	});
 });

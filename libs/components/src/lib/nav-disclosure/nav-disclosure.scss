@@ -27,7 +27,7 @@
 			map.merge(
 				appearance.$state-aspect-selectors,
 				(
-					selected: '[aria-current]',
+					selected: '.current-closed',
 				)
 			)
 		)
@@ -56,7 +56,7 @@
 		vertical-align: middle;
 	}
 
-	&[aria-current] {
+	&.current-closed {
 		color: var(#{appearance.get-appearance-token(text)});
 
 		@supports not (
@@ -66,16 +66,13 @@
 		}
 	}
 
-	&:not([aria-current]) {
+	&:not(.current-closed) {
 		color: var(#{constants.$vvd-color-canvas-text});
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 
 	&:focus-visible {
 		@include focus.focus;
-	}
-	:host(:where([aria-current='true'][open])) &,
-	:host(:not([aria-current='true'])) & {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 
 	@supports (user-select: none) {
