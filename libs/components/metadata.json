@@ -4214,7 +4214,7 @@
 				},
 				{
 					"name": "current",
-					"description": "Sets the nav-disclosure as a current",
+					"description": "Indicates there's a nested active nav-item within nav-disclosure",
 					"type": "boolean",
 					"attributeName": "current",
 					"propertyName": "current"
