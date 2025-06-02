@@ -2146,6 +2146,20 @@
 					"type": "string",
 					"attributeName": "grid-column",
 					"propertyName": "gridColumn"
+				},
+				{
+					"name": "selected",
+					"description": "Reflects selected state of the row",
+					"type": "boolean",
+					"attributeName": "selected",
+					"propertyName": "selected"
+				},
+				{
+					"name": "sortDirection",
+					"description": "Sets the sorting direction.",
+					"type": "'none' | 'ascending' | 'descending' | 'other'",
+					"attributeName": "sort-direction",
+					"propertyName": "sortDirection"
 				}
 			],
 			"events": [
@@ -2192,7 +2206,7 @@
 				{
 					"name": "sort",
 					"description": "Event that fires when a sortable column header is clicked",
-					"type": "CustomEvent<{columnDataKey: string, ariaSort: string | null}>"
+					"type": "CustomEvent<{columnDataKey: string, ariaSort: string | null, sortDirection: string | null}>"
 				}
 			],
 			"vueModels": [],
@@ -2201,7 +2215,21 @@
 					"name": "ariaSelectedChanged",
 					"args": [
 						{ "name": "_", "type": "string | null" },
-						{ "name": "selectedState", "type": "string | null" }
+						{ "name": "newValue", "type": "string | null" }
+					],
+					"returnType": "unknown"
+				},
+				{
+					"name": "ariaSortChanged",
+					"args": [
+						{
+							"name": "_oldValue",
+							"type": "'none' | 'ascending' | 'descending' | 'other'"
+						},
+						{
+							"name": "newValue",
+							"type": "'none' | 'ascending' | 'descending' | 'other'"
+						}
 					],
 					"returnType": "unknown"
 				},
@@ -2219,6 +2247,22 @@
 					"name": "handleKeydown",
 					"args": [{ "name": "e", "type": "KeyboardEvent" }],
 					"returnType": "void"
+				},
+				{ "name": "selectableChanged", "args": [], "returnType": "unknown" },
+				{ "name": "selectedChanged", "args": [], "returnType": "unknown" },
+				{
+					"name": "sortDirectionChanged",
+					"args": [
+						{
+							"name": "_oldValue",
+							"type": "'none' | 'ascending' | 'descending' | 'other' | undefined"
+						},
+						{
+							"name": "newValue",
+							"type": "'none' | 'ascending' | 'descending' | 'other' | undefined"
+						}
+					],
+					"returnType": "unknown"
 				}
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }]
@@ -2250,6 +2294,13 @@
 					"type": "'default' | 'header' | 'sticky-header'",
 					"attributeName": "row-type",
 					"propertyName": "rowType"
+				},
+				{
+					"name": "selected",
+					"description": "Reflects selected state of the row",
+					"type": "boolean",
+					"attributeName": "selected",
+					"propertyName": "selected"
 				}
 			],
 			"events": [
@@ -2297,6 +2348,14 @@
 			"vueModels": [],
 			"methods": [
 				{
+					"name": "ariaSelectedChanged",
+					"args": [
+						{ "name": "_oldValue", "type": "string | null" },
+						{ "name": "newValue", "type": "string | null" }
+					],
+					"returnType": "unknown"
+				},
+				{
 					"name": "handleCellFocus",
 					"args": [{ "name": "e", "type": "Event" }],
 					"returnType": "void"
@@ -2310,7 +2369,9 @@
 					"name": "handleKeydown",
 					"args": [{ "name": "e", "type": "KeyboardEvent" }],
 					"returnType": "void"
-				}
+				},
+				{ "name": "selectableChanged", "args": [], "returnType": "unknown" },
+				{ "name": "selectedChanged", "args": [], "returnType": "unknown" }
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }]
 		},
