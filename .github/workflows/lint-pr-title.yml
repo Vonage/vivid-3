@@ -5,12 +5,13 @@ on:
     types: ['opened', 'edited', 'reopened', 'synchronize', 'ready_for_review']
     branches-ignore:
       ['dependabot/npm_and_yarn/**', 'release-please--branches--main--**']
+  # As the workflow is required, it needs to run on merge_groups as well. However, we will skip the actual check as it only works on pull requests.
   merge_group:
     types: [checks_requested]
 
 jobs:
   lint-pr-title:
-    if: ${{ github.event.pull_request.draft == false && github.actor != 'dependabot[bot]' }}
+    if: ${{ github.event_name != 'merge_group' && github.event.pull_request.draft == false && github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - uses: amannn/action-semantic-pull-request@v5
