@@ -32,17 +32,17 @@ export const SecondaryText = SecondaryTextTemplate.bind({});
 const RoleTemplate = () => ({
 	components: { VMenu, VMenuItem, VDivider },
 	template: `<VMenu open>
-    <VMenuItem role="menuitem" text="Menu item 1" />
-    <VMenuItem role="menuitem" text="Menu item 2" />
+    <VMenuItem text="Menu item 1" />
+    <VMenuItem text="Menu item 2" />
     <VDivider />
-    <VMenuItem role="menuitemcheckbox" text="Checkbox 1" />
-    <VMenuItem role="menuitemcheckbox" text="Checkbox 2" />
+    <VMenuItem control-type="checkbox" text="Checkbox 1" />
+    <VMenuItem control-type="checkbox" text="Checkbox 2" />
     <VDivider />
-    <VMenuItem role="menuitemradio" text="Radio 1.1" />
-    <VMenuItem role="menuitemradio" text="Radio 1.2" />
+    <VMenuItem control-type="radio" text="Radio 1.1" />
+    <VMenuItem control-type="radio" text="Radio 1.2" />
     <VDivider />
-    <VMenuItem role="menuitemradio" text="Radio 2.1" />
-    <VMenuItem role="menuitemradio" text="Radio 2.2" />
+    <VMenuItem control-type="radio" text="Radio 2.1" />
+    <VMenuItem control-type="radio" text="Radio 2.2" />
   </VMenu>`,
 });
 export const Role = RoleTemplate.bind({});
@@ -71,7 +71,7 @@ const VModelCheckedTemplate = () => ({
 	},
 	template: `<div>
     <VMenu open>
-      <VMenuItem role="menuitemcheckbox" v-model="value" text="Check me"/>
+      <VMenuItem control-type="checkbox" v-model="value" text="Check me"/>
     </VMenu>
     <div style="margin-left: 300px">
       value: {{ value }} <button @click="value = !value">Toggle</button>
@@ -89,8 +89,8 @@ const VModelRadioTemplate = () => ({
 	},
 	template: `<div>
     <VMenu open>
-      <VMenuItem role="menuitemradio" v-model="valueA" text="Item A"/>
-      <VMenuItem role="menuitemradio" v-model="valueB" text="Item B"/>
+      <VMenuItem control-type="radio" v-model="valueA" text="Item A"/>
+      <VMenuItem control-type="radio" v-model="valueB" text="Item B"/>
     </VMenu>
     <div style="margin-left: 300px">
       <div>valueA: {{ valueA }} <button @click="valueA = !valueA">Toggle</button></div>

@@ -10,8 +10,8 @@ describe('a11y: vwc-menu-item', () => {
 		container = await fixture(
 			`<div role="menu">
 					<${COMPONENT_TAG} text="Menu item"></${COMPONENT_TAG}>
-					<${COMPONENT_TAG} role="menuitemcheckbox" text="Checkbox"></${COMPONENT_TAG}>
-					<${COMPONENT_TAG} role="menuitemradio" text="Radio"></${COMPONENT_TAG}>
+					<${COMPONENT_TAG} control-type="checkbox" text="Checkbox"></${COMPONENT_TAG}>
+					<${COMPONENT_TAG} control-type="radio" text="Radio"></${COMPONENT_TAG}>
 			</div>`
 		);
 	});

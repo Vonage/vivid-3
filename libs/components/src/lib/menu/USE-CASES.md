@@ -19,9 +19,9 @@
 		icon="search"
 		autofocus
 	></vwc-text-field>
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 3"></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Checkbox 1"></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Checkbox 2"></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Checkbox 3"></vwc-menu-item>
 	<vwc-button
 		slot="action-items"
 		appearance="outlined"
@@ -48,11 +48,7 @@
 		target="_blank"
 		rel="noopener noreferrer"
 	>
-		<vwc-menu-item
-			role="presentation"
-			text="My Addresses"
-			icon="address-book-line"
-		></vwc-menu-item>
+		<vwc-menu-item text="My Addresses" icon="address-book-line"></vwc-menu-item>
 	</a>
 	<a
 		role="menuitem"
@@ -60,11 +56,7 @@
 		target="_blank"
 		rel="noopener noreferrer"
 	>
-		<vwc-menu-item
-			role="presentation"
-			text="My Profile"
-			icon="profile-line"
-		></vwc-menu-item>
+		<vwc-menu-item text="My Profile" icon="profile-line"></vwc-menu-item>
 	</a>
 	<a
 		role="menuitem"
@@ -72,11 +64,7 @@
 		target="_blank"
 		rel="noopener noreferrer"
 	>
-		<vwc-menu-item
-			role="presentation"
-			text="Team"
-			icon="group-line"
-		></vwc-menu-item>
+		<vwc-menu-item text="Team" icon="group-line"></vwc-menu-item>
 	</a>
 	<a
 		role="menuitem"
@@ -84,11 +72,7 @@
 		target="_blank"
 		rel="noopener noreferrer"
 	>
-		<vwc-menu-item
-			role="presentation"
-			text="Logout"
-			icon="quit-line"
-		></vwc-menu-item>
+		<vwc-menu-item text="Logout" icon="quit-line"></vwc-menu-item>
 	</a>
 </vwc-menu>
 ```

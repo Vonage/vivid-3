@@ -208,19 +208,18 @@ Click on "Edit code" to be able to modify the variables.
 ```html variables-preview[menu-item] 360px
 <vwc-menu open>
 	<vwc-menu-item
-		role="menuitem"
 		text="Menu item 1"
 		text-secondary="secondary text"
 	></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Checkbox 1"></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Checkbox 2"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemradio" text="Radio 1.2"></vwc-menu-item>
+	<vwc-menu-item control-type="radio" text="Radio 1.1"></vwc-menu-item>
+	<vwc-menu-item control-type="radio" text="Radio 1.2"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item role="menuitemradio" text="Radio 2.1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemradio" text="Radio 2.2"></vwc-menu-item>
+	<vwc-menu-item control-type="radio" text="Radio 2.1"></vwc-menu-item>
+	<vwc-menu-item control-type="radio" text="Radio 2.2"></vwc-menu-item>
 </vwc-menu>
 ```
 

@@ -2,7 +2,7 @@
 	<div style="text-align: center; height: 60px">
 		<span id="anchor-checked" />
 		<VMenu anchor="anchor-checked" open>
-			<VMenuItem role="menuitemcheckbox" checked text="Checked Menu item" />
+			<VMenuItem control-type="checkbox" checked text="Checked Menu item" />
 		</VMenu>
 	</div>
 </template>
