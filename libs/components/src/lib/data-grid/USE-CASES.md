@@ -5,9 +5,7 @@ In order for the select popup to show correctly in the grid, use the `fixed-drop
 ```html preview
 <vwc-data-grid class="data-grid">
 	<vwc-data-grid-row class="header" row-type="header">
-		<vwc-data-grid-cell cell-type="columnheader">
-			data1
-		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader"> data1 </vwc-data-grid-cell>
 		<vwc-data-grid-cell cell-type="columnheader"> data2 </vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>

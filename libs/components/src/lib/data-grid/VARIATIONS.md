@@ -193,7 +193,7 @@ Use the `aria-selected` attribute to indicate that the selected state of the row
 	
 	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
-	For selection functionality to work correctly, the [`selection-mode` attribute](/components/data-grid/#selection-mode) (on Data Grid) must be set to the relevant value.
+    For selection functionality to work correctly, the [`selection-mode` attribute](/components/data-grid/#selection-mode) (on Data Grid) must be set to the relevant value.
 
 </vwc-note>
 
@@ -240,9 +240,9 @@ This will add the right chevron(s) according to the state.
 
 <vwc-note connotation="information">
 
-	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+    <vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
-	The sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. See the [sorting use case](/components/data-grid/use-cases/#sortable-columns) for more information.
+    The sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. See the [sorting use case](/components/data-grid/use-cases/#sortable-columns) for more information.
 
 </vwc-note>
 
