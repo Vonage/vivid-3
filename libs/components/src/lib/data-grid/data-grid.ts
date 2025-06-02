@@ -585,7 +585,7 @@ export class DataGrid extends VividElement {
 		const focusRow: Element = this.rowElements[focusRowIndex];
 
 		const cells: NodeListOf<Element> = focusRow.querySelectorAll(
-			'[role="cell"], [role="gridcell"], [role="columnheader"], [role="rowheader"]'
+			'[role="cell"], [role="gridcell"], [role="columnheader"], [role="rowheader"], [cell-type]'
 		);
 
 		const focusColumnIndex = Math.max(
@@ -845,10 +845,10 @@ export class DataGrid extends VividElement {
 
 	private resetSelection = (clear = false) => {
 		const cells = Array.from(
-			this.querySelectorAll('[role="gridcell"]')
+			this.querySelectorAll('[role="gridcell"], [cell-type]')
 		) as DataGridCell[];
 		const rows = Array.from(
-			this.querySelectorAll('[role="row"]')
+			this.querySelectorAll('[role="row"], [row-type]')
 		) as DataGridRow[];
 
 		if (

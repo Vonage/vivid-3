@@ -42,7 +42,7 @@ export const DataGridRowTemplate = (context: VividElementDefinitionContext) => {
 			${children({
 				property: 'cellElements',
 				filter: elements(
-					'[role="cell"],[role="gridcell"],[role="columnheader"],[role="rowheader"]'
+					'[role="cell"],[role="gridcell"],[role="columnheader"],[role="rowheader"],[cell-type]'
 				),
 			})}
 		>
