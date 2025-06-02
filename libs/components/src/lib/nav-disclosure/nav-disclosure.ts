@@ -72,7 +72,7 @@ export class NavDisclosure extends AffixIcon(DelegatesAria(VividElement)) {
 	@attr({ mode: 'boolean' }) open = false;
 
 	/**
-	 * Sets the nav-disclosure as a current
+	 * Indicates there's a nested active nav-item within nav-disclosure
 	 *
 	 * @public
 	 * @remarks
@@ -81,7 +81,7 @@ export class NavDisclosure extends AffixIcon(DelegatesAria(VividElement)) {
 	@replaces<boolean, string | null>({
 		deprecatedPropertyName: 'ariaCurrent',
 		fromDeprecated: (v) => Boolean(v),
-		toDeprecated: (v) => v ? "true" : null
+		toDeprecated: (v) => (v ? 'true' : null),
 	})
 	@attr({ attribute: 'current', mode: 'boolean' })
 	current = false;

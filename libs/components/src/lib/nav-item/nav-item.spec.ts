@@ -107,7 +107,7 @@ describe('vwc-nav-item', () => {
 		});
 	});
 
-	describe('aria-current', () => {
+	describe('current', () => {
 		it('should properly update aria-current when current attribute is set', async () => {
 			element.current = true;
 			await elementUpdated(element);
@@ -133,6 +133,7 @@ describe('vwc-nav-item', () => {
 			[
 				'ariaAtomic',
 				'ariaBusy',
+				'ariaCurrent',
 				'ariaDisabled',
 				'ariaExpanded',
 				'ariaHasPopup',

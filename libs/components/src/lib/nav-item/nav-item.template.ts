@@ -22,9 +22,6 @@ export const NavItemTemplate = (context: VividElementDefinitionContext) => {
 		x._renderLinkElement(
 			html`${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
 				${(x) => x.text} <slot name="meta"></slot>`,
-			getClasses,
-			{
-				ariaCurrent: x.current || x.ariaCurrent ? 'page' : null,
-			}
+			getClasses
 		)}`;
 };

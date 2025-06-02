@@ -69,9 +69,10 @@ export class NavItem extends AffixIcon(Linkable(VividElement)) {
 	 * @remarks
 	 * HTML Attribute: current
 	 */
-	@replaces<boolean>({
+	@replaces<boolean, string | null>({
 		deprecatedPropertyName: 'ariaCurrent',
-		fromDeprecated: (v) => v,
+		fromDeprecated: (v) => Boolean(v),
+		toDeprecated: (v) => (v ? 'page' : null),
 	})
 	@attr({ attribute: 'current', mode: 'boolean' })
 	current = false;

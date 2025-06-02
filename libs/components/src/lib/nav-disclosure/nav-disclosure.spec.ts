@@ -115,7 +115,7 @@ describe('vwc-nav-disclosure', () => {
 		});
 	});
 
-	describe('aria-current', () => {
+	describe('current', () => {
 		it('should properly update aria-current when current attribute is set', async () => {
 			element.current = true;
 			await elementUpdated(element);
@@ -132,14 +132,6 @@ describe('vwc-nav-disclosure', () => {
 				getControlElement(element).classList.contains('current')
 			).toBeTruthy();
 		});
-	});
-
-	describe('ARIA delegation', () => {
-		itShouldDelegateAriaAttributes(
-			() => element,
-			() => getControlElement(element),
-			['ariaLabel']
-		);
 
 		it('should not delegate aria-current when open', async function () {
 			element.open = true;
@@ -149,6 +141,14 @@ describe('vwc-nav-disclosure', () => {
 				getControlElement(element).getAttribute('aria-current')
 			).toBeNull();
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getControlElement(element),
+			['ariaLabel']
+		);
 	});
 
 	describe('nav-disclosure appearance', function () {
