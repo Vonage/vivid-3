@@ -2,6 +2,7 @@ import { html, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
+	IconAriaHidden,
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { Button } from '../button/button';
@@ -25,15 +26,33 @@ function renderDismissButton(buttonTag: string) {
 	  </${buttonTag}>`;
 }
 
+const renderIcon = (c: VividElementDefinitionContext, x: Banner) => {
+	const affixIconTemplate = affixIconTemplateFactory(c);
+	const icon = x.conditionedIcon;
+	const announcement =
+		!x.icon && x.connotation
+			? {
+					label: x.locale.connotationAnnoncement[`${x.connotation}Icon`],
+					announceOnUpdate: false,
+			  }
+			: undefined;
+
+	return affixIconTemplate(
+		icon,
+		IconWrapper.Slot,
+		IconAriaHidden.Hidden,
+		announcement
+	);
+};
+
 export const BannerTemplate = (context: VividElementDefinitionContext) => {
-	const affixIconTemplate = affixIconTemplateFactory(context);
 	const buttonTag = context.tagFor(Button);
 
 	return html<Banner>`
 		<div class="${getClasses}">
 			<header class="header">
 				<div class="content">
-					${(x) => affixIconTemplate(x.conditionedIcon, IconWrapper.Slot)}
+					${(x) => renderIcon(context, x)}
 					<div
 						class="banner-message"
 						${delegateAria({
