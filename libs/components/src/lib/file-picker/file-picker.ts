@@ -4,13 +4,7 @@ import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { Locale } from '../../shared/localization/Locale';
-import {
-	type ErrorText,
-	errorText,
-	type FormElement,
-	formElements,
-	Localized,
-} from '../../shared/patterns';
+import { FormElement, Localized, WithErrorText } from '../../shared/patterns';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import type { Button } from '../button/button';
 import type { Size } from '../enums';
@@ -52,10 +46,10 @@ const generateFilePreviewTemplate = (
  * @slot helper-text - Describes how to use the file-picker. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Emitted when a file is added or removed.
  */
-@errorText
-@formElements
 export class FilePicker extends WithFeedback(
-	DelegatesAria(Localized(FormAssociated(VividElement)))
+	WithErrorText(
+		FormElement(DelegatesAria(Localized(FormAssociated(VividElement))))
+	)
 ) {
 	#dropzone?: Dropzone;
 
@@ -453,5 +447,3 @@ export class FilePicker extends WithFeedback(
 		this.#dropzone?.removeAllFiles();
 	}
 }
-
-export interface FilePicker extends ErrorText, FormElement {}

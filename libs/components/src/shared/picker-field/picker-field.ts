@@ -8,7 +8,12 @@ import {
 import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import { handleEscapeKeyAndStopPropogation } from '../dialog';
-import { Localized, TrappedFocus } from '../patterns';
+import {
+	FormElement,
+	Localized,
+	TrappedFocus,
+	WithErrorText,
+} from '../patterns';
 import { WithFeedback } from '../feedback/mixins';
 import { FormAssociated } from '../foundation/form-associated/form-associated';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
@@ -18,15 +23,11 @@ import { VividElement } from '../foundation/vivid-element/vivid-element';
  * picking values.
  */
 export abstract class PickerField extends WithFeedback(
-	TrappedFocus(Localized(FormAssociated(VividElement)))
+	WithErrorText(
+		FormElement(TrappedFocus(Localized(FormAssociated(VividElement))))
+	)
 ) {
 	// --- Attributes ---
-
-	/**
-	 * @internal
-	 */
-	abstract label: string;
-
 	/**
 	 * Whether the date-picker is readonly.
 	 * @public
@@ -107,11 +108,6 @@ export abstract class PickerField extends WithFeedback(
 	 * @internal
 	 */
 	override proxy = document.createElement('input');
-
-	/**
-	 * @internal
-	 */
-	abstract errorValidationMessage: string;
 
 	/**
 	 * @internal

@@ -8,18 +8,15 @@ import { memoizeWith } from 'ramda';
 import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
-	type ErrorText,
-	errorText,
-	type FormElement,
-	formElements,
-	FormElementSuccessText,
+	FormElement,
 	WithCharCount,
+	WithErrorText,
+	WithSuccessText,
 } from '../../shared/patterns';
 import { generateRandomId } from '../../shared/utils/randomId';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithLightDOMFeedback } from '../../shared/feedback/mixins';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
@@ -131,10 +128,14 @@ const installSafariWorkaroundStyleIfNeeded = (
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
  * @vueModel modelValue value input `event.currentTarget.value`
  */
-@errorText
-@formElements
 export class TextField extends WithLightDOMFeedback(
-	AffixIcon(WithCharCount(DelegatesAria(FormAssociated(VividElement))))
+	WithCharCount(
+		WithErrorText(
+			WithSuccessText(
+				FormElement(AffixIcon(DelegatesAria(FormAssociated(VividElement))))
+			)
+		)
+	)
 ) {
 	/**
 	 * @internal
@@ -448,9 +449,3 @@ export class TextField extends WithLightDOMFeedback(
 		return this.id || this.#randomId;
 	}
 }
-
-export interface TextField
-	extends ErrorText,
-		FormElement,
-		FormElementSuccessText {}
-applyMixins(TextField, FormElementSuccessText);

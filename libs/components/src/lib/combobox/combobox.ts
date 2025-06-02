@@ -4,16 +4,13 @@ import type { Popup } from '../popup/popup';
 import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
-	errorText,
-	type ErrorText,
-	type FormElement,
-	formElements,
-	FormElementSuccessText,
+	FormElement,
+	WithErrorText,
+	WithSuccessText,
 } from '../../shared/patterns';
 import type { ListboxOption } from '../option/option';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithFeedback } from '../../shared/feedback/mixins';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Listbox } from '../../shared/foundation/listbox/listbox';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
@@ -47,9 +44,11 @@ export type ComboboxSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value updates
  * @vueModel modelValue value change `event.currentTarget.value`
  */
-@errorText
-@formElements
-export class Combobox extends WithFeedback(AffixIcon(FormAssociated(Listbox))) {
+export class Combobox extends WithFeedback(
+	WithErrorText(
+		WithSuccessText(FormElement(AffixIcon(FormAssociated(Listbox))))
+	)
+) {
 	/**
 	 * The autocomplete attribute.
 	 *
@@ -680,10 +679,3 @@ export class Combobox extends WithFeedback(AffixIcon(FormAssociated(Listbox))) {
 		this.control.setSelectionRange(controlValueLength, controlValueLength);
 	}
 }
-
-export interface Combobox
-	extends FormElement,
-		ErrorText,
-		FormElementSuccessText,
-		FormElement {}
-applyMixins(Combobox, FormElementSuccessText);

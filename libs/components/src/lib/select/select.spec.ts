@@ -220,24 +220,6 @@ describe('vwc-select', () => {
 			expect(labelElement).toBeNull();
 		});
 
-		it('should set aria-label on host if aria-label unset', async function () {
-			element.removeAttribute('aria-label');
-			const labelText = 'label';
-			element.label = labelText;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-label')).toEqual(labelText);
-		});
-
-		it('should leave ariaLabel unchanged if aria-label already set', async () => {
-			const ariaLabelText = 'aria-label';
-			element.ariaLabel = ariaLabelText;
-			const labelText = 'label';
-			element.label = labelText;
-
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-label')).toEqual(ariaLabelText);
-		});
-
 		it('should not set for attribute on label element when it is multiple version', async function () {
 			element.multiple = true;
 			element.label = 'label';
@@ -1334,6 +1316,21 @@ describe('vwc-select', () => {
 			await elementUpdated(element);
 			const listbox = getListbox();
 			expect(listbox.getAttribute('aria-labelledby')).toBe('label');
+		});
+
+		it('should default ariaLabel to label', async function () {
+			element.label = 'label';
+			await elementUpdated(element);
+
+			expect(element.ariaLabel).toBe('label');
+		});
+
+		it('should not override a provided ariaLabel with label', async function () {
+			element.ariaLabel = 'ariaLabel';
+			element.label = 'label';
+			await elementUpdated(element);
+
+			expect(element.ariaLabel).toBe('ariaLabel');
 		});
 
 		it('should set aria-label on the listbox of multiple version when label is not present', async () => {
