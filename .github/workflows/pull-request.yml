@@ -60,6 +60,6 @@ jobs:
     secrets: inherit
 
   call-deploy-deno-preview:
-    if: github.event.pull_request.draft == false
+    if: ${{ github.event.pull_request.draft == false && github.event_name != 'merge_group' }}
     needs: build
     uses: ./.github/workflows/_deploy-deno.yml
