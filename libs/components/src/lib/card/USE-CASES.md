@@ -149,7 +149,14 @@ When placing cards inside Layout component or inside flex parent the cards are s
 
 ## Selectable Cards
 
-You can slot a card with `appearance="ghost"` inside selectable box
+You can slot a card with `appearance="ghost"` inside selectable box.
+
+<vwc-note connotation="warning" headline="Do not use clickable cards inside selectable box">
+	 <vwc-icon slot="icon" name="warning-line" label="Warning"></vwc-icon>
+
+You should not use the `href` or `clickable-card` attributes when slotting a card within the selectable box.
+
+</vwc-note>
 
 ```html preview
 <vwc-layout class="card-layout" role="group" aria-label="pick your ios">
@@ -205,10 +212,3 @@ You can slot a card with `appearance="ghost"` inside selectable box
 	}
 </style>
 ```
-
-<vwc-note connotation="warning" headline="Do not use clickable cards inside selectable box">
-	 <vwc-icon slot="icon" name="warning-line"></vwc-icon>
-
-You should not use the `href` or `clickable-card` attributes when slotting a card within the selectable box.
-
-</vwc-note>

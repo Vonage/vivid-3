@@ -1,19 +1,12 @@
-import type { Constructable, FASTElement } from '@microsoft/fast-element';
-import {
-	attr,
-	booleanConverter,
-	DOM,
-	emptyArray,
-	observable,
-} from '@microsoft/fast-element';
+import { attr, DOM, emptyArray } from '@microsoft/fast-element';
 import { keyEnter } from '@microsoft/fast-web-utilities';
+import type { Constructor, MixinType } from '../../utils/mixins';
+import { VividElement } from '../vivid-element/vivid-element';
 
 const proxySlotName = 'form-associated-proxy';
 
 const ElementInternalsKey = 'ElementInternals';
-/**
- * @alpha
- */
+
 export const supportsElementInternals =
 	ElementInternalsKey in window &&
 	'setFormValue' in window[ElementInternalsKey].prototype;
@@ -21,59 +14,7 @@ export const supportsElementInternals =
 const InternalsMap = new WeakMap();
 
 /**
- * Base class for providing Custom Element Form Association.
- *
- * @alpha
- */
-export interface FormAssociated extends Omit<ElementInternals, 'labels'> {
-	dirtyValue: boolean;
-	disabled: boolean;
-	readonly elementInternals: ElementInternals | null;
-	readonly formAssociated: boolean;
-	initialValue: string;
-	readonly labels: ReadonlyArray<Node[]>;
-	name: string;
-	required: boolean;
-	value: string;
-	currentValue: string;
-	attachProxy(): void;
-	detachProxy(): void;
-	disabledChanged?(previous: boolean, next: boolean): void;
-	formDisabledCallback?(disabled: boolean): void;
-	formResetCallback(): void;
-	initialValueChanged?(previous: string, next: string): void;
-	nameChanged?(previous: string, next: string): void;
-	requiredChanged(prev: boolean, next: boolean): void;
-	stopPropagation(e: Event): void;
-
-	/**
-	 * Sets the validity of the custom element. By default this uses the proxy element to determine
-	 * validity, but this can be extended or replaced in implementation.
-	 *
-	 * @param anchor - The anchor element to provide to ElementInternals.setValidity for surfacing the browser's constraint validation UI
-	 */
-	validate(anchor?: HTMLElement): void;
-	valueChanged(previous: string, next: string): void;
-}
-
-/**
- * Base class for providing Custom Element Form Association with checkable features.
- *
- * @alpha
- */
-export interface CheckableFormAssociated extends FormAssociated {
-	currentChecked: boolean;
-	dirtyChecked: boolean;
-	checkedAttribute: boolean;
-	defaultChecked: boolean;
-	defaultCheckedChanged(oldValue: boolean | undefined, newValue: boolean): void;
-	checked: boolean;
-	checkedChanged(oldValue: boolean | undefined, newValue: boolean): void;
-}
-
-/**
- * Avaiable types for the `proxy` property.
- * @alpha
+ * Available types for the `proxy` property.
  */
 export type ProxyElement =
 	| HTMLSelectElement
@@ -81,62 +22,18 @@ export type ProxyElement =
 	| HTMLInputElement;
 
 /**
- * Identifies a class as having a proxy element and optional submethods related
- * to the proxy element.
- *
- * @alpha
+ * Mixin to associate components with a form.
+ * This mixin also provides the `value`/... properties.
  */
-export interface FormAssociatedProxy {
-	proxy: ProxyElement;
-	disabledChanged?(previous: boolean, next: boolean): void;
-	formDisabledCallback?(disabled: boolean): void;
-	formResetCallback?(): void;
-	initialValueChanged?(previous: string, next: string): void;
-	valueChanged?(previous: string, next: string): void;
-	nameChanged?(previous: string, next: string): void;
-}
-
-/**
- * Combined type to describe a Form-associated element.
- *
- * @alpha
- */
-export type FormAssociatedElement = FormAssociated &
-	FASTElement &
-	HTMLElement &
-	FormAssociatedProxy;
-
-/**
- * Combined type to describe a checkable Form-associated element.
- *
- * @alpha
- */
-export type CheckableFormAssociatedElement = FormAssociatedElement &
-	CheckableFormAssociated & { proxy: HTMLInputElement };
-
-/**
- * Combined type to describe a Constructable Form-Associated type.
- *
- * @alpha
- */
-export type ConstructableFormAssociated = Constructable<
-	HTMLElement & FASTElement
->;
-
-/**
- * Base function for providing Custom Element Form Association.
- *
- * @alpha
- */
-export function FormAssociated<T extends ConstructableFormAssociated>(
-	BaseCtor: T
-): T {
-	const C = class extends BaseCtor {
+export const FormAssociated = <T extends Constructor<VividElement>>(
+	Base: T
+) => {
+	class FormAssociatedElement extends Base {
 		/**
 		 * The proxy element - this element serves as the communication layer with the parent form
 		 * when form association is not supported by the browser.
 		 *
-		 * @alpha
+		 * @internal
 		 */
 		proxy!: ProxyElement;
 
@@ -152,8 +49,6 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 
 		/**
 		 * Returns the validity state of the element
-		 *
-		 * @alpha
 		 */
 		get validity(): ValidityState {
 			return this.elementInternals
@@ -164,8 +59,6 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 		/**
 		 * Retrieve a reference to the associated form.
 		 * Returns null if not associated to any form.
-		 *
-		 * @alpha
 		 */
 		get form(): HTMLFormElement | null {
 			return this.elementInternals
@@ -176,8 +69,6 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 		/**
 		 * Retrieve the localized validation message,
 		 * or custom validation message if set.
-		 *
-		 * @alpha
 		 */
 		get validationMessage(): string {
 			return this.elementInternals
@@ -223,27 +114,24 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 
 		/**
 		 * Track whether the value has been changed from the initial value
+		 * @internal
 		 */
 		dirtyValue = false;
 
 		/**
 		 * Stores a reference to the slot element that holds the proxy
 		 * element when it is appended.
+		 * @internal
 		 */
 		proxySlot?: HTMLSlotElement;
 
 		/**
-		 * The value of the element to be associated with the form.
+		 * The current value of the element.
 		 */
-		value!: string;
+		@attr({ attribute: 'current-value' }) value!: string;
 
 		/**
-		 * Invoked when the `value` property changes
-		 *
-		 * @remarks
-		 * If elements extending `FormAssociated` implement a `valueChanged` method
-		 * They must be sure to invoke `super.valueChanged(previous, next)` to ensure
-		 * proper functioning of `FormAssociated`
+		 * @internal
 		 */
 		valueChanged(_previous: string, _next: string) {
 			this.dirtyValue = true;
@@ -252,44 +140,35 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 				this.proxy.value = this.value;
 			}
 
-			this.currentValue = this.value;
-
 			this.setFormValue(this.value);
 			this.validate();
 		}
 
 		/**
-		 * The current value of the element. This property serves as a mechanism
-		 * to set the `value` property through both property assignment and the
-		 * .setAttribute() method. This is useful for setting the field's value
-		 * in UI libraries that bind data through the .setAttribute() API
-		 * and don't support IDL attribute binding.
+		 * @deprecated Use `value` instead.
 		 */
-		currentValue!: string;
-		currentValueChanged() {
-			this.value = this.currentValue;
+		get currentValue() {
+			return this.value;
+		}
+		set currentValue(value: string) {
+			this.value = value;
 		}
 
+		// This should actually be called `defaultValue` in alignment with the HTML spec:
 		/**
-		 * The initial value of the form. This value sets the `value` property
+		 * The default value of the element. This value sets the `value` property
 		 * only when the `value` property has not been explicitly set.
 		 *
 		 * @remarks
 		 * HTML Attribute: value
 		 */
+		@attr({ mode: 'fromView', attribute: 'value' })
 		initialValue: string;
 
 		/**
-		 * Invoked when the `initialValue` property changes
-		 *
-		 * @remarks
-		 * If elements extending `FormAssociated` implement a `initialValueChanged` method
-		 * They must be sure to invoke `super.initialValueChanged(previous, next)` to ensure
-		 * proper functioning of `FormAssociated`
+		 * @internal
 		 */
 		initialValueChanged(_previous: string, _next: string): void {
-			// If the value is clean and the component is connected to the DOM
-			// then set value equal to the attribute value.
 			if (!this.dirtyValue) {
 				this.value = this.initialValue;
 				this.dirtyValue = false;
@@ -302,15 +181,10 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 		 * @remarks
 		 * HTML Attribute: disabled
 		 */
-		disabled = false;
+		@attr({ mode: 'boolean' }) disabled = false;
 
 		/**
-		 * Invoked when the `disabled` property changes
-		 *
-		 * @remarks
-		 * If elements extending `FormAssociated` implement a `disabledChanged` method
-		 * They must be sure to invoke `super.disabledChanged(previous, next)` to ensure
-		 * proper functioning of `FormAssociated`
+		 * @internal
 		 */
 		disabledChanged(_previous: boolean, _next: boolean): void {
 			if (this.proxy instanceof HTMLElement) {
@@ -327,15 +201,10 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 		 * HTML Attribute: name
 		 */
 		//@ts-expect-error: Type is incorrectly non-optional
-		name: string;
+		@attr name: string;
 
 		/**
-		 * Invoked when the `name` property changes
-		 *
-		 * @remarks
-		 * If elements extending `FormAssociated` implement a `nameChanged` method
-		 * They must be sure to invoke `super.nameChanged(previous, next)` to ensure
-		 * proper functioning of `FormAssociated`
+		 * @internal
 		 */
 		nameChanged(_previous: string, _next: string): void {
 			if (this.proxy instanceof HTMLElement) {
@@ -349,15 +218,10 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 		 * @remarks
 		 * HTML Attribute: required
 		 */
-		required: boolean;
+		@attr({ mode: 'boolean' }) required: boolean;
 
 		/**
-		 * Invoked when the `required` property changes
-		 *
-		 * @remarks
-		 * If elements extending `FormAssociated` implement a `requiredChanged` method
-		 * They must be sure to invoke `super.requiredChanged(previous, next)` to ensure
-		 * proper functioning of `FormAssociated`
+		 * @internal
 		 */
 		requiredChanged(_previous: boolean, _next: boolean): void {
 			if (this.proxy instanceof HTMLElement) {
@@ -371,8 +235,9 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 		/**
 		 * The element internals object. Will only exist
 		 * in browsers supporting the attachInternals API
+		 * @internal
 		 */
-		private get elementInternals(): ElementInternals | null {
+		get elementInternals(): ElementInternals | null {
 			if (!supportsElementInternals) {
 				return null;
 			}
@@ -393,8 +258,9 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 		 *
 		 * The proxy implementation should be transparent to
 		 * the app author, so block these events from emitting.
+		 * @internal
 		 */
-		protected proxyEventsToBlock = ['change', 'click'];
+		proxyEventsToBlock = ['change', 'click'];
 
 		constructor(...args: any[]) {
 			super(...args);
@@ -475,6 +341,7 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 		 * @param flags - Validity flags
 		 * @param message - Optional message to supply
 		 * @param anchor - Optional element used by UA to display an interactive validation UI
+		 * @internal
 		 */
 		setValidity(
 			flags: ValidityStateFlags,
@@ -492,20 +359,28 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 		 * Invoked when a connected component's form or fieldset has its disabled
 		 * state changed.
 		 * @param disabled - the disabled value of the form / fieldset
+		 * @internal
 		 */
 		formDisabledCallback(disabled: boolean): void {
 			this.disabled = disabled;
 		}
 
+		/**
+		 * @internal
+		 */
 		formResetCallback(): void {
 			this.value = this.initialValue;
 			this.dirtyValue = false;
 		}
 
-		protected proxyInitialized = false;
+		/**
+		 * @internal
+		 */
+		proxyInitialized = false;
 
 		/**
 		 * Attach the proxy element to the DOM
+		 * @internal
 		 */
 		attachProxy(): void {
 			if (!this.proxyInitialized) {
@@ -541,13 +416,20 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 
 		/**
 		 * Detach the proxy element from the DOM
+		 * @internal
 		 */
 		detachProxy(): void {
 			this.removeChild(this.proxy);
 			this.shadowRoot!.removeChild(this.proxySlot as HTMLSlotElement);
 		}
 
-		/** {@inheritDoc (FormAssociated:interface).validate} */
+		/**
+		 * Sets the validity of the custom element. By default this uses the proxy element to determine
+		 * validity, but this can be extended or replaced in implementation.
+		 *
+		 * @param anchor - The anchor element to provide to ElementInternals.setValidity for surfacing the browser's constraint validation UI
+		 * @internal
+		 */
 		validate(anchor?: HTMLElement): void {
 			if (this.proxy instanceof HTMLElement && this.elementInternals) {
 				const isValid = this.proxy.validity.valid;
@@ -581,6 +463,7 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 		 * Associates the provided value (and optional state) with the parent form.
 		 * @param value - The value to set
 		 * @param state - The state object provided to during session restores and when autofilling.
+		 * @internal
 		 */
 		setFormValue(
 			value: File | string | FormData | null,
@@ -591,7 +474,10 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 			}
 		}
 
-		private _keypressHandler(e: KeyboardEvent): void {
+		/**
+		 * @internal
+		 */
+		_keypressHandler(e: KeyboardEvent): void {
 			switch (e.key) {
 				case keyEnter:
 					if (this.form instanceof HTMLFormElement) {
@@ -608,56 +494,61 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 		/**
 		 * Used to stop propagation of proxy element events
 		 * @param e - Event object
+		 * @internal
 		 */
 		stopPropagation(e: Event): void {
 			e.stopPropagation();
 		}
-	};
+	}
 
-	attr({ mode: 'boolean' })(C.prototype, 'disabled');
-	attr({ mode: 'fromView', attribute: 'value' })(C.prototype, 'initialValue');
-	attr({ attribute: 'current-value' })(C.prototype, 'currentValue');
-	attr(C.prototype, 'name');
-	attr({ mode: 'boolean' })(C.prototype, 'required');
-	observable(C.prototype, 'value');
+	return FormAssociatedElement;
+};
 
-	return C;
-}
+export type FormAssociatedElement = MixinType<typeof FormAssociated>;
 
 /**
- * @alpha
+ * `current-checked` is inexplicably not a boolean attribute, so we need to convert from "true"/"false" to boolean.
  */
-export function CheckableFormAssociated<T extends ConstructableFormAssociated>(
-	BaseCtor: T
-): T {
-	interface C extends FormAssociatedElement {}
-	class C extends FormAssociated(BaseCtor) {}
-	class D extends C {
+const currentCheckedConverter = {
+	fromView(value: any): boolean {
+		if (typeof value === 'string') {
+			return value.toLowerCase() === 'true';
+		}
+		return !!value;
+	},
+	toView(value: boolean): string {
+		return value ? 'true' : 'false';
+	},
+};
+
+/**
+ * Extends FormAssociated to provide `checked`/....
+ */
+export const CheckableFormAssociated = <T extends Constructor<VividElement>>(
+	Base: T
+) => {
+	class CheckableFormAssociatedElement extends FormAssociated(Base) {
 		/**
 		 * Tracks whether the "checked" property has been changed.
 		 * This is necessary to provide consistent behavior with
 		 * normal input checkboxes
+		 * @internal
 		 */
-		protected dirtyChecked = false;
+		dirtyChecked = false;
 
 		/**
-		 * Provides the default checkedness of the input element
-		 * Passed down to proxy
+		 * The default checkedness of the element. This value sets the `checked` property
+		 * only when the `checked` property has not been explicitly set.
 		 *
 		 * @public
 		 * @remarks
 		 * HTML Attribute: checked
 		 */
-		checkedAttribute = false;
-		/**
-		 * @internal
-		 */
-		checkedAttributeChanged(): void {
-			this.defaultChecked = this.checkedAttribute;
-		}
-
-		// @ts-expect-error: Type is incorrectly non-optional
-		defaultChecked: boolean;
+		@attr({
+			attribute: 'checked',
+			mode: 'boolean',
+		})
+		defaultChecked = false;
 
 		/**
 		 * @internal
@@ -673,17 +564,21 @@ export function CheckableFormAssociated<T extends ConstructableFormAssociated>(
 		}
 
 		/**
-		 * The checked state of the control.
+		 * The current checkedness of the element.
 		 *
 		 * @public
 		 */
-		checked = false;
+		@attr({ attribute: 'current-checked', converter: currentCheckedConverter })
+		checked!: boolean;
+
+		/**
+		 * @internal
+		 */
 		checkedChanged(prev: boolean | undefined, _next: boolean): void {
 			if (!this.dirtyChecked) {
 				this.dirtyChecked = true;
 			}
 
-			this.currentChecked = this.checked;
 			this.updateForm();
 
 			if (this.proxy instanceof HTMLInputElement) {
@@ -698,53 +593,50 @@ export function CheckableFormAssociated<T extends ConstructableFormAssociated>(
 		}
 
 		/**
-		 * The current checkedness of the element. This property serves as a mechanism
-		 * to set the `checked` property through both property assignment and the
-		 * .setAttribute() method. This is useful for setting the field's checkedness
-		 * in UI libraries that bind data through the .setAttribute() API
-		 * and don't support IDL attribute binding.
+		 * @deprecated Use `defaultChecked` instead.
 		 */
-		// @ts-expect-error: Type is incorrectly non-optional
-		currentChecked: boolean;
-		currentCheckedChanged(_prev: boolean | undefined, _next: boolean) {
-			this.checked = this.currentChecked;
+		get checkedAttribute() {
+			return this.defaultChecked;
+		}
+		set checkedAttribute(value: boolean) {
+			this.defaultChecked = value;
 		}
 
-		constructor(...args: any[]) {
-			super(args);
-
-			// Re-initialize dirtyChecked because initialization of other values
-			// causes it to become true
-			this.dirtyChecked = false;
+		/**
+		 * @deprecated Use `checked` instead.
+		 */
+		get currentChecked() {
+			return this.checked;
+		}
+		set currentChecked(value: boolean) {
+			this.checked = value;
 		}
 
-		private updateForm(): void {
+		/**
+		 * @internal
+		 */
+		updateForm(): void {
 			const value = this.checked ? this.value : null;
 			this.setFormValue(value, value);
 		}
 
+		/**
+		 * @internal
+		 */
 		override connectedCallback() {
 			super.connectedCallback();
 			this.updateForm();
 		}
 
+		/**
+		 * @internal
+		 */
 		override formResetCallback() {
 			super.formResetCallback();
-			this.checked = !!this.checkedAttribute;
+			this.checked = !!this.defaultChecked;
 			this.dirtyChecked = false;
 		}
 	}
 
-	attr({ attribute: 'checked', mode: 'boolean' })(
-		D.prototype,
-		'checkedAttribute'
-	);
-	attr({ attribute: 'current-checked', converter: booleanConverter })(
-		D.prototype,
-		'currentChecked'
-	);
-	observable(D.prototype, 'defaultChecked');
-	observable(D.prototype, 'checked');
-
-	return D;
-}
+	return CheckableFormAssociatedElement;
+};

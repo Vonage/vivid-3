@@ -21,7 +21,8 @@ import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { WithFeedback } from '../../shared/feedback/mixins';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { FormAssociatedSearchableSelect } from './searchable-select.form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import type { OptionTag } from './option-tag';
 
 export type SearchableSelectAppearance = ExtractFromEnum<
@@ -65,9 +66,7 @@ const isFormAssociatedTryingToSetFormValue = (
 @errorText
 @formElements
 export class SearchableSelect extends WithFeedback(
-	DelegatesAria(
-		AffixIconWithTrailing(Localized(FormAssociatedSearchableSelect))
-	)
+	DelegatesAria(AffixIconWithTrailing(Localized(FormAssociated(VividElement))))
 ) {
 	/**
 	 * @public
@@ -1064,6 +1063,11 @@ export class SearchableSelect extends WithFeedback(
 	}
 
 	// --- Form handling ---
+
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
 
 	#determineInitialValues() {
 		return this.initialValues.length

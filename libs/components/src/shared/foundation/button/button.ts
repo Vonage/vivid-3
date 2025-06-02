@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { attr, DOM } from '@microsoft/fast-element';
 import { DelegatesAria } from '../../aria/delegates-aria';
-import { FormAssociatedButton } from './button.form-associated';
+import { VividElement } from '../vivid-element/vivid-element';
+import { FormAssociated } from '../form-associated/form-associated';
 
 /**
  * A Button Custom HTML Element.
@@ -12,7 +13,9 @@ import { FormAssociatedButton } from './button.form-associated';
  *
  * @public
  */
-export class VividFoundationButton extends DelegatesAria(FormAssociatedButton) {
+export class VividFoundationButton extends DelegatesAria(
+	FormAssociated(VividElement)
+) {
 	/**
 	 * Determines if the element should receive document focus on page load.
 	 *
@@ -23,6 +26,11 @@ export class VividFoundationButton extends DelegatesAria(FormAssociatedButton) {
 	@attr({ mode: 'boolean' })
 	// @ts-expect-error Type is incorrectly non-optional
 	public autofocus: boolean;
+
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
 
 	/**
 	 * The id of a form to associate the element to.

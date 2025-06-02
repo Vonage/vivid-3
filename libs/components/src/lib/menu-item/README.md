@@ -116,6 +116,13 @@ Use the `trailing-meta` slot to add an element (like a badge or an additional ic
 
 Assign a Menu to the `submenu` slot to create a submenu.
 
+<vwc-note headline="Focus Management" connotation="information">
+	<vwc-icon slot="icon" name="info-solid" label="Note:"></vwc-icon>
+
+When the Menu opens or `.focus()` is called, focus moves to the first Menu Item by default. If there is a child with the `autofocus` attribute, it will be focused instead.
+
+</vwc-note>
+
 ```html preview 250px
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item text="Menu item 1">
@@ -151,13 +158,6 @@ Assign a Menu to the `submenu` slot to create a submenu.
 	</vwc-menu-item>
 </vwc-menu>
 ```
-
-<vwc-note headline="Focus Management" connotation="information">
-	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
-
-When the Menu opens or `.focus()` is called, focus moves to the first Menu Item by default. If there is a child with the `autofocus` attribute, it will be focused instead.
-
-</vwc-note>
 
 ## CSS Variables
 
