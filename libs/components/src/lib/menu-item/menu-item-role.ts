@@ -1,15 +1,7 @@
 export const MenuItemRole = {
 	menuitem: 'menuitem',
-	/**
-	 * @deprecated - Use role="checkbox" instead
-	 */
 	menuitemcheckbox: 'menuitemcheckbox',
-	checkbox: 'checkbox',
-	/**
-	 * @deprecated - Use role="radio" instead.
-	 */
 	menuitemradio: 'menuitemradio',
-	radio: 'radio',
 	presentation: 'presentation',
 } as const;
 

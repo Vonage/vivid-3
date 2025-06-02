@@ -133,20 +133,8 @@ describe('vwc-menu-item', () => {
 			expect(element.controlType).toBe('checkbox');
 		});
 
-		it('should set controlType to checkbox when role is checkbox', async () => {
-			element.role = 'checkbox';
-
-			expect(element.controlType).toBe('checkbox');
-		});
-
 		it('should set controlType to radio when role is menuitemradio', async () => {
 			element.role = 'menuitemradio';
-
-			expect(element.controlType).toBe('radio');
-		});
-
-		it('should set controlType to radio when role is radio', async () => {
-			element.role = 'radio';
 
 			expect(element.controlType).toBe('radio');
 		});

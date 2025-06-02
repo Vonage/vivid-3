@@ -4206,7 +4206,7 @@
 				{
 					"name": "role",
 					"description": "The role of the element.",
-					"type": "'menuitem' | 'menuitemcheckbox' | 'checkbox' | 'menuitemradio' | 'radio' | 'presentation'",
+					"type": "'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'presentation'",
 					"attributeName": "role",
 					"propertyName": "role"
 				},
