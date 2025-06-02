@@ -199,6 +199,7 @@ You must wrap it in an element with `role="menuitem"` to provide the menu item f
 Previously you needed to specify `role="presentation"` in this case. This is no longer necessary as the component will handle it automatically.
 
 </vwc-note>
+
 ### Anchored Menu Item
 
 To create a Menu Item that is anchored to a URL do the following:
