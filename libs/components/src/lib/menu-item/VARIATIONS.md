@@ -55,6 +55,13 @@ The `control-type` attribute allows the Menu Item to become checkable and behave
 
 When `control-type` is `radio`, only one Menu Item can be checked in the current section. Sections are separated by Dividers.
 
+<vwc-note connotation="warning" headline="Deprecated Prop: role">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+Previously, the `role` attribute was used to set the control type. This is now deprecated (as of 05/25) and replaced with the `control-type` attribute. Using `role` is still functional, but will be removed in a future major release.
+
+</vwc-note>
+
 ```html preview 330px
 <vwc-menu open aria-label="Formatting">
 	<vwc-menu-item control-type="checkbox" text="Bold"></vwc-menu-item>
@@ -68,13 +75,6 @@ When `control-type` is `radio`, only one Menu Item can be checked in the current
 	<vwc-menu-item text="Clear formatting"></vwc-menu-item>
 </vwc-menu>
 ```
-
-<vwc-note connotation="warning" headline="Deprecated Prop: role">
-	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
-
-Previously, the `role` attribute was used to set the control type. This is now deprecated (as of 05/25) and replaced with the `control-type` attribute. Using `role` is still functional, but will be removed in a future major release.
-
-</vwc-note>
 
 ### Check Trailing
 
