@@ -364,8 +364,6 @@ export class DataGridCell extends Localized(VividElement) {
 		const isHeaderCell = this.cellType === 'columnheader';
 		const isSortable = isHeaderCell && this.ariaSort !== null;
 
-		console.log();
-
 		if (isSortable) {
 			this.$emit('sort', {
 				columnDataKey: this.#getColumnDataKey(),
