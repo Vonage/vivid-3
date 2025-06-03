@@ -163,6 +163,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	 */
 	override connectedCallback(): void {
 		super.connectedCallback();
+		this.setAttribute('vvd-role', this.role);
 
 		DOM.queueUpdate(() => {
 			// Initialize _isPresentational after waiting for parent menu to set it:

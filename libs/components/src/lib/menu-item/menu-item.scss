@@ -63,7 +63,7 @@
 		cursor: pointer;
 	}
 
-	:host(:not([role='presentation']):focus-visible) & {
+	:host(:not([vvd-role='presentation']):focus-visible) & {
 		@include focus.focus;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
