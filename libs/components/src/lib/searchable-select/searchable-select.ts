@@ -13,7 +13,7 @@ import {
 	WithErrorText,
 	WithSuccessText,
 } from '../../shared/patterns';
-import type { ListboxOption } from '../option/option';
+import { ListboxOption } from '../option/option';
 import { scrollIntoView } from '../../shared/utils/scrollIntoView';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
@@ -980,9 +980,9 @@ export class SearchableSelect extends WithFeedback(
 		if (this.disabled) {
 			return;
 		}
-
+		const optionTag = ListboxOption.registeredTagName;
 		const capturedOption = (e.target as HTMLElement).closest(
-			`option,[role=option]`
+			`option, ${optionTag}`
 		) as ListboxOption | null;
 
 		if (capturedOption && !capturedOption.disabled) {

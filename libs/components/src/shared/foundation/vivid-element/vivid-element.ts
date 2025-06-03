@@ -14,4 +14,9 @@ export class VividElement extends AriaMixin(ReplacedPropHandling(FASTElement)) {
 	 * It can be accessed from any Vivid element via `<el>.constructor.VIVID_VERSION`.
 	 */
 	static VIVID_VERSION = __PACKAGE_VERSION__;
+
+	/**
+	 * The tag name under which this component was registered.
+	 */
+	static registeredTagName: string;
 }

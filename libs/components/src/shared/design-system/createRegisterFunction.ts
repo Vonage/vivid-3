@@ -3,6 +3,7 @@ import {
 	FASTElementDefinition,
 	type ViewTemplate,
 } from '@microsoft/fast-element';
+import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import type {
 	TemplateOrResolveFn,
 	VividComponentDefinition,
@@ -50,6 +51,7 @@ export const createRegisterFunction =
 			}
 			registeredTags.add(tag);
 			tagByType.set(type, tag);
+			(type as typeof VividElement).registeredTagName = tag;
 
 			// Register dependencies before the component itself
 			// Order is important when elements are upgraded as the component might rely on its dependencies being registered
