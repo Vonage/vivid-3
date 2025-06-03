@@ -39,6 +39,7 @@ export const createRegisterFunction =
 		) => {
 			const tag = prefixed(componentDefinition.name);
 			let type = componentDefinition.type;
+			(type as typeof VividElement).registeredTagName = tag;
 
 			if (registeredTags.has(tag)) {
 				// Component has already been registered
@@ -51,7 +52,6 @@ export const createRegisterFunction =
 			}
 			registeredTags.add(tag);
 			tagByType.set(type, tag);
-			(type as typeof VividElement).registeredTagName = tag;
 
 			// Register dependencies before the component itself
 			// Order is important when elements are upgraded as the component might rely on its dependencies being registered
