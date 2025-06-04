@@ -62,7 +62,7 @@ Use the `icon` slot or the `icon`_(deprecated)_ attribute to add an icon.
 ```
 
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
-	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
@@ -82,26 +82,29 @@ If label is not applied.
 </vwc-nav>
 ```
 
-### Aria Current
+### Current
 
-- Type: `string` | `undefined`
-- Default: `undefined`
+- Type: `boolean`
+- Default: `false`
 
-Within a set of pagination links, set a nav disclosure `aria-current` value to `"true"` to indicate the currently active disclosure.  
-Only when the navigation disclosure is closed the `aria-current` will be set.
+Within a set of pagination links, set a nav disclosure `current` value to indicate the currently active disclosure.  
+Only when the navigation disclosure is closed the `current` will be set.
 
 ```html preview 150px
 <vwc-nav>
-	<vwc-nav-disclosure label="1st level item" aria-current="true">
+	<vwc-nav-disclosure label="1st level item" current>
 		<vwc-icon slot="icon" name="profile"></vwc-icon>
-		<vwc-nav-item
-			href="#"
-			text="2nd level item"
-			aria-current="page"
-		></vwc-nav-item>
+		<vwc-nav-item href="#" text="2nd level item" current></vwc-nav-item>
 	</vwc-nav-disclosure>
 </vwc-nav>
 ```
+
+<vwc-note connotation="warning" headline="Deprecated Prop: aria-current">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `aria-current` prop is deprecated (as of 05/25) and directly replaced with `current`. `aria-current` is still functional in the component, but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ### Appearance
 
@@ -112,17 +115,13 @@ Set the `appearance` attribute to change the nav disclosure's appearance.
 
 ```html preview 150px
 <vwc-nav>
-	<vwc-nav-disclosure
-		appearance="ghost-light"
-		label="1st level item"
-		aria-current="true"
-	>
+	<vwc-nav-disclosure appearance="ghost-light" label="1st level item" current>
 		<vwc-icon slot="icon" name="profile"></vwc-icon>
 		<vwc-nav-item
 			appearance="ghost-light"
 			href="#"
 			text="2nd level item"
-			aria-current="page"
+			current
 		></vwc-nav-item>
 	</vwc-nav-disclosure>
 </vwc-nav>
@@ -141,7 +140,7 @@ Set the `connotation` attribute to change the nav disclosure's connotation.
 		appearance="ghost-light"
 		connotation="cta"
 		label="1st level item"
-		aria-current="true"
+		current
 	>
 		<vwc-icon slot="icon" name="profile"></vwc-icon>
 		<vwc-nav-item
@@ -149,7 +148,7 @@ Set the `connotation` attribute to change the nav disclosure's connotation.
 			connotation="cta"
 			href="#"
 			text="2nd level item"
-			aria-current="page"
+			current
 		></vwc-nav-item>
 	</vwc-nav-disclosure>
 </vwc-nav>

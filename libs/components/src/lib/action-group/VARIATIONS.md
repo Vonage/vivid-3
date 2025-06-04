@@ -45,7 +45,7 @@ Set the `tight` attribute if no outer padding or gaps between slotted item are n
 	>
 	</vwc-audio-player>
 	<vwc-button size="condensed" aria-label="delete" class="delete">
-		<vwc-icon slot="icon" name="delete-solid	"></vwc-icon>
+		<vwc-icon slot="icon" name="delete-solid"></vwc-icon>
 	</vwc-button>
 </vwc-action-group>
 

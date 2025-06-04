@@ -8,19 +8,17 @@ import { memoizeWith } from 'ramda';
 import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
-	type ErrorText,
-	errorText,
-	type FormElement,
-	formElements,
-	FormElementSuccessText,
+	FormElement,
 	WithCharCount,
+	WithErrorText,
+	WithSuccessText,
 } from '../../shared/patterns';
 import { generateRandomId } from '../../shared/utils/randomId';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithLightDOMFeedback } from '../../shared/feedback/mixins';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { FormAssociatedTextField } from './text-field.form-associated';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export type TextFieldAppearance = ExtractFromEnum<
 	Appearance,
@@ -130,11 +128,20 @@ const installSafariWorkaroundStyleIfNeeded = (
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
  * @vueModel modelValue value input `event.currentTarget.value`
  */
-@errorText
-@formElements
 export class TextField extends WithLightDOMFeedback(
-	AffixIcon(WithCharCount(DelegatesAria(FormAssociatedTextField)))
+	WithCharCount(
+		WithErrorText(
+			WithSuccessText(
+				FormElement(AffixIcon(DelegatesAria(FormAssociated(VividElement))))
+			)
+		)
+	)
 ) {
+	/**
+	 * @internal
+	 */
+	override proxy = document.createElement('input');
+
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 * @public
@@ -442,9 +449,3 @@ export class TextField extends WithLightDOMFeedback(
 		return this.id || this.#randomId;
 	}
 }
-
-export interface TextField
-	extends ErrorText,
-		FormElement,
-		FormElementSuccessText {}
-applyMixins(TextField, FormElementSuccessText);

@@ -14,7 +14,7 @@
 				href="#"
 				text="3rd level item"
 				onclick="onClick(event)"
-				aria-current="page"
+				current
 			></vwc-nav-item>
 			<vwc-nav-item
 				href="#"
@@ -26,11 +26,9 @@
 	<vwc-nav>
 		<script>
 			function onClick(event) {
-				currentNavItem = document.querySelector(
-					'vwc-nav-item[aria-current="page"]'
-				);
-				currentNavItem?.removeAttribute('aria-current');
-				event.currentTarget.setAttribute('aria-current', 'page');
+				currentNavItem = document.querySelector('vwc-nav-item[current]');
+				currentNavItem?.removeAttribute('current');
+				event.currentTarget.setAttribute('current', '');
 			}
 		</script>
 	</vwc-nav>
@@ -56,7 +54,7 @@
 				text="Calls"
 				data-value="Calls"
 				onclick="onClick(this)"
-				aria-current="page"
+				current
 			>
 				<vwc-icon slot="icon" name="call-line"></vwc-icon>
 			</vwc-nav-item>
@@ -88,11 +86,9 @@
 
 <script>
 	function onClick(el) {
-		currentNavItem = document.querySelector(
-			'vwc-nav-item[aria-current="page"]'
-		);
-		currentNavItem?.removeAttribute('aria-current');
-		el.setAttribute('aria-current', 'page');
+		currentNavItem = document.querySelector('vwc-nav-item[current]');
+		currentNavItem?.removeAttribute('current');
+		el.setAttribute('current', '');
 	}
 </script>
 ```

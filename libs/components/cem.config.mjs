@@ -13,6 +13,7 @@ export default {
 		'libs/components/src/shared/aria/**/*.ts',
 		'libs/components/src/shared/feedback/**/*.ts',
 		'libs/components/src/shared/picker-field/**/*.ts',
+		'libs/components/src/shared/deprecation/**/*.ts',
 	],
 	/** Globs to exclude */
 	exclude: [
@@ -38,5 +39,6 @@ export default {
 		plugins.cssPropertiesPlugin(),
 		plugins.vividComponentPlugin(),
 		plugins.improvedMixinSupportPlugin(),
+		plugins.improvedAttrSupportPlugin(),
 	],
 };

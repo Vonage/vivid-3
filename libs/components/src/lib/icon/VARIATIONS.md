@@ -31,6 +31,11 @@ Instead of an icon from the Vivid Icon Library, you can also use a custom SVG im
 
 Use the `size` attribute to select the icon's size from a set of predefined values.
 
+<vwc-note connotation="information" >
+	<vwc-icon name="info-line" slot="icon" label="Note:"></vwc-icon>
+	<p>Icon size will be affected by the <code>--vvd-size-density</code> variable.</p>
+</vwc-note>
+
 ```html preview
 <table>
 	<thead>
@@ -140,11 +145,6 @@ Use the `size` attribute to select the icon's size from a set of predefined valu
 	}
 </style>
 ```
-
-<vwc-note connotation="information" >
-	<vwc-icon name="info-line" slot="icon"></vwc-icon>
-	<p>Icon size will be affected by the <code>--vvd-size-density</code> variable.</p>
-</vwc-note>
 
 ## Connotation
 

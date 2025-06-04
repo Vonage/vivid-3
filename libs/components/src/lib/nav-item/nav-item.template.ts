@@ -7,12 +7,13 @@ import {
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { NavItem } from './nav-item';
 
-const getClasses = ({ text, connotation, appearance }: NavItem) =>
+const getClasses = ({ text, connotation, appearance, current }: NavItem) =>
 	classNames(
 		'control',
 		['icon-only', !text],
 		[`connotation-${connotation}`, Boolean(connotation)],
-		[`appearance-${appearance}`, Boolean(appearance)]
+		[`appearance-${appearance}`, Boolean(appearance)],
+		['current', Boolean(current)]
 	);
 
 export const NavItemTemplate = (context: VividElementDefinitionContext) => {
