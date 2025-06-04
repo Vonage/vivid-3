@@ -326,6 +326,9 @@ export class DataGridRow extends VividElement {
 	@attr({ mode: 'boolean' })
 	selected?: boolean = false;
 
+	/**
+	 * @internal
+	 */
 	selectedChanged() {
 		this.ariaSelected = this._calculateAriaSelectedValue();
 	}
