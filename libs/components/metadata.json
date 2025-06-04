@@ -2219,28 +2219,6 @@
 			"vueModels": [],
 			"methods": [
 				{
-					"name": "ariaSelectedChanged",
-					"args": [
-						{ "name": "_", "type": "string | null" },
-						{ "name": "newValue", "type": "string | null" }
-					],
-					"returnType": "unknown"
-				},
-				{
-					"name": "ariaSortChanged",
-					"args": [
-						{
-							"name": "_oldValue",
-							"type": "'none' | 'ascending' | 'descending' | 'other'"
-						},
-						{
-							"name": "newValue",
-							"type": "'none' | 'ascending' | 'descending' | 'other'"
-						}
-					],
-					"returnType": "unknown"
-				},
-				{
 					"name": "handleFocusin",
 					"args": [{ "name": "_", "type": "FocusEvent" }],
 					"returnType": "void"
@@ -2254,22 +2232,6 @@
 					"name": "handleKeydown",
 					"args": [{ "name": "e", "type": "KeyboardEvent" }],
 					"returnType": "void"
-				},
-				{ "name": "selectableChanged", "args": [], "returnType": "unknown" },
-				{ "name": "selectedChanged", "args": [], "returnType": "unknown" },
-				{
-					"name": "sortDirectionChanged",
-					"args": [
-						{
-							"name": "_oldValue",
-							"type": "'none' | 'ascending' | 'descending' | 'other' | undefined"
-						},
-						{
-							"name": "newValue",
-							"type": "'none' | 'ascending' | 'descending' | 'other' | undefined"
-						}
-					],
-					"returnType": "unknown"
 				}
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }]
@@ -2355,14 +2317,6 @@
 			"vueModels": [],
 			"methods": [
 				{
-					"name": "ariaSelectedChanged",
-					"args": [
-						{ "name": "_oldValue", "type": "string | null" },
-						{ "name": "newValue", "type": "string | null" }
-					],
-					"returnType": "unknown"
-				},
-				{
 					"name": "handleCellFocus",
 					"args": [{ "name": "e", "type": "Event" }],
 					"returnType": "void"
@@ -2377,7 +2331,6 @@
 					"args": [{ "name": "e", "type": "KeyboardEvent" }],
 					"returnType": "void"
 				},
-				{ "name": "selectableChanged", "args": [], "returnType": "unknown" },
 				{ "name": "selectedChanged", "args": [], "returnType": "unknown" }
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }]
