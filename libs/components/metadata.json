@@ -2330,8 +2330,7 @@
 					"name": "handleKeydown",
 					"args": [{ "name": "e", "type": "KeyboardEvent" }],
 					"returnType": "void"
-				},
-				{ "name": "selectedChanged", "args": [], "returnType": "unknown" }
+				}
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }]
 		},
