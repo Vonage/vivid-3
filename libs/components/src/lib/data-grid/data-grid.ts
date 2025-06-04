@@ -729,7 +729,7 @@ export class DataGrid extends VividElement {
 		_oldValue: HTMLElement[],
 		_newValue: HTMLElement[]
 	) {
-		this.resetSelection();
+		this._resetSelection();
 	}
 
 	/**
@@ -757,10 +757,10 @@ export class DataGrid extends VividElement {
 
 	selectionModeChanged(oldValue: DataGridSelectionMode) {
 		if (oldValue === undefined) {
-			DOM.queueUpdate(this.resetSelection);
+			DOM.queueUpdate(this._resetSelection);
 			return;
 		}
-		this.resetSelection(true);
+		this._resetSelection(true);
 	}
 
 	#handleKeypress = (e: KeyboardEvent): void => {
@@ -803,7 +803,7 @@ export class DataGrid extends VividElement {
 			cell.selected = !this.#selectedCells.includes(cell);
 		} else {
 			const cacheTargetSelection = cell.selected;
-			this.resetSelection(true);
+			this._resetSelection(true);
 			cell.selected = !cacheTargetSelection;
 		}
 	};
@@ -822,7 +822,7 @@ export class DataGrid extends VividElement {
 			row.selected = !this.#selectedRows.includes(row);
 		} else {
 			const cacheTargetSelection = row.selected;
-			this.resetSelection(true);
+			this._resetSelection(true);
 			row.selected = !cacheTargetSelection;
 		}
 	};
@@ -843,7 +843,10 @@ export class DataGrid extends VividElement {
 		},
 	};
 
-	private resetSelection = (clear = false) => {
+	/**
+	 * @internal
+	 */
+	private _resetSelection = (clear = false) => {
 		const cells = Array.from(
 			this.querySelectorAll('[role="gridcell"], [cell-type]')
 		) as DataGridCell[];
@@ -856,19 +859,19 @@ export class DataGrid extends VividElement {
 			this.selectionMode === DataGridSelectionMode.multiCell
 		) {
 			for (const cell of cells) {
-				cell.selectable = true;
+				cell._selectable = true;
 				cell.selected = clear ? false : cell.selected || false;
 			}
 
 			for (const row of rows) {
-				row.selectable = false;
+				row._selectable = false;
 				row.selected = false;
 			}
 		}
 
 		if (this.selectionMode === DataGridSelectionMode.none) {
 			for (const element of [...cells, ...rows]) {
-				element.selectable = false;
+				element._selectable = false;
 				element.selected = false;
 			}
 		}
@@ -878,12 +881,12 @@ export class DataGrid extends VividElement {
 			this.selectionMode === DataGridSelectionMode.multiRow
 		) {
 			for (const cell of cells) {
-				cell.selectable = false;
+				cell._selectable = false;
 				cell.selected = false;
 			}
 
 			for (const row of rows) {
-				row.selectable = true;
+				row._selectable = true;
 				row.selected = clear ? false : row.selected || false;
 			}
 		}

@@ -338,9 +338,9 @@ export class DataGridCell extends Localized(VividElement) {
 	 * @private
 	 */
 	private calculateAriaSelectedValue() {
-		if (this.selectable && this.selected) return 'true';
+		if (this._selectable && this.selected) return 'true';
 
-		if (this.selectable && !this.selected) return 'false';
+		if (this._selectable && !this.selected) return 'false';
 
 		return null;
 	}
@@ -349,9 +349,12 @@ export class DataGridCell extends Localized(VividElement) {
 	 * @internal
 	 */
 	@observable
-	selectable = false;
+	_selectable = false;
 
-	selectableChanged() {
+	/**
+	 * @internal
+	 */
+	_selectableChanged() {
 		this.ariaSelected = this.calculateAriaSelectedValue();
 	}
 
@@ -363,6 +366,9 @@ export class DataGridCell extends Localized(VividElement) {
 	@attr({ mode: 'boolean' })
 	selected = false;
 
+	/**
+	 * @internal
+	 */
 	selectedChanged() {
 		this.ariaSelected = this.calculateAriaSelectedValue();
 	}
@@ -377,8 +383,11 @@ export class DataGridCell extends Localized(VividElement) {
 	@attr({ attribute: 'aria-selected', mode: 'fromView' })
 	override ariaSelected: string | null = null;
 
+	/**
+	 * @internal
+	 */
 	ariaSelectedChanged(_: string | null, newValue: string | null) {
-		this.selectable = newValue !== null;
+		this._selectable = newValue !== null;
 		this.selected = newValue === 'true';
 	}
 
@@ -391,6 +400,9 @@ export class DataGridCell extends Localized(VividElement) {
 	 */
 	@attr({ attribute: 'aria-sort' }) override ariaSort: string | null = null;
 
+	/**
+	 * @internal
+	 */
 	ariaSortChanged(
 		_oldValue: DataGridCellSortStates,
 		newValue: DataGridCellSortStates
@@ -411,6 +423,9 @@ export class DataGridCell extends Localized(VividElement) {
 	 */
 	@attr({ attribute: 'sort-direction' }) sortDirection?: DataGridCellSortStates;
 
+	/**
+	 * @internal
+	 */
 	sortDirectionChanged(
 		_oldValue: DataGridCellSortStates | undefined,
 		newValue: DataGridCellSortStates | undefined
