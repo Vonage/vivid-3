@@ -136,6 +136,13 @@ The `icon` attribute displays an icon from the icon library](/icons/icons-galler
 
 The preferred way to add icons is to use the [icon slot](/components/badge/code/#icon-slot).
 
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
+
+This should only be used for [decorative icons](/components/icon/accessibility//#informative-vs-decorative-icons) (as there is no way to provide an accessible label to describe the icon). For [informative icons](/components/icon/accessibility//#informative-vs-decorative-icons), use the [icon slot](/components/badge/code/#icon-slot) and provide an accessible label using the `label` attribute on the [Icon component](/components/icon/code/#label).
+
+</vwc-note>
+
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
 	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
@@ -165,6 +172,10 @@ When an element has no visible text, provide an accessible name using the <nobr>
 
 ```html preview
 <vwc-badge appearance="filled">
-	<vwc-icon slot="icon" name="check-line" label="Checked"></vwc-icon>
+	<vwc-icon
+		slot="icon"
+		name="accessibility-line"
+		label="Checked for accessibility"
+	></vwc-icon>
 </vwc-badge>
 ```
