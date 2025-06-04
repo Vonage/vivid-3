@@ -1637,8 +1637,9 @@
 				},
 				{
 					"name": "indeterminate",
-					"description": "The indeterminate state of the control",
+					"description": "The indeterminate state of the control.",
 					"type": "boolean",
+					"attributeName": "indeterminate",
 					"propertyName": "indeterminate"
 				},
 				{

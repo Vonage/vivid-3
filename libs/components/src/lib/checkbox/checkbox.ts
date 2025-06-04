@@ -82,9 +82,13 @@ export class Checkbox extends WithFeedback(
 	defaultSlottedNodes: Node[] = [];
 
 	/**
-	 * The indeterminate state of the control
+	 * The indeterminate state of the control.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: indeterminate
 	 */
-	@observable
+	@attr({ attribute: 'indeterminate', mode: 'boolean' })
 	indeterminate = false;
 
 	constructor() {
