@@ -58,7 +58,7 @@
 }
 
 /* Separator */
-::slotted([vvd-role='separator']) {
+::slotted([data-vvd-component='divider']) {
 	align-self: stretch;
 	margin-block: 4px;
 }

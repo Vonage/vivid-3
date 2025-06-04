@@ -52,9 +52,4 @@ export class Divider extends DelegatesAria(VividElement) {
 	 */
 	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
 	@attr orientation: Orientation = Orientation.horizontal;
-
-	override connectedCallback() {
-		super.connectedCallback();
-		this.setAttribute('vvd-role', DividerRole.separator);
-	}
 }

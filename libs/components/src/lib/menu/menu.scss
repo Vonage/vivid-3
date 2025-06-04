@@ -32,7 +32,7 @@
 	text-decoration: none;
 }
 
-::slotted(a[vvd-role='menuitem']:focus-visible) {
+::slotted(a[data-vvd-component='menuitem']:focus-visible) {
 	@include focus.focus;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
