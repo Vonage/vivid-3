@@ -4,6 +4,42 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.25.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.24.0...vivid-v4.25.0) (2025-06-02)
+
+
+### Features
+
+* **alert,banner:** Add accessible labels to connotation icons (VIV-2654) ([#2379](https://github.com/Vonage/vivid-3/issues/2379)) ([291d2a7](https://github.com/Vonage/vivid-3/commit/291d2a70b4e40b3ac07cb60f6aa0276649044f3d))
+* **badge:** add size attribute and expanded size (VIV-2642) ([#2352](https://github.com/Vonage/vivid-3/issues/2352)) ([ec7b70d](https://github.com/Vonage/vivid-3/commit/ec7b70d09058fbf4fcde87c0d311d5b1ffa853aa))
+* **card:** Clickable Card (link or button) (VIV-2586) ([#2345](https://github.com/Vonage/vivid-3/issues/2345)) ([07804ea](https://github.com/Vonage/vivid-3/commit/07804ea96014954351decce3e725d7a811090a19))
+* **dial-pad:** adds focus method and autofocus property (VIV-2635)   ([#2342](https://github.com/Vonage/vivid-3/issues/2342)) ([d345a62](https://github.com/Vonage/vivid-3/commit/d345a628454b6644a4b1fcef11c70a690c667da6))
+* **empty-state:** deprecate icon-decoration prop (VIV-2633) ([#2349](https://github.com/Vonage/vivid-3/issues/2349)) ([3da78bb](https://github.com/Vonage/vivid-3/commit/3da78bb64f86a1ff1c91c62445544ca188af3417))
+* **icon:** adds a11y label (VIV-2647) ([#2360](https://github.com/Vonage/vivid-3/issues/2360)) ([06de87b](https://github.com/Vonage/vivid-3/commit/06de87b20cfb070c6d213e413eaa543a7d6d2a78))
+* **menu-item:** replace role with control-type attribute (VIV-2602) ([#2381](https://github.com/Vonage/vivid-3/issues/2381)) ([795c34a](https://github.com/Vonage/vivid-3/commit/795c34a2426345c01c67c1a4c604bb7a289c8b19))
+* **radio-group:** adds helper and error text (VIV-2398) ([#2269](https://github.com/Vonage/vivid-3/issues/2269)) ([06acbc6](https://github.com/Vonage/vivid-3/commit/06acbc639315be1347dbac4540226080a53ae7ff))
+
+
+### Bug Fixes
+
+* **alert:** announce alert's title to SR (VIV-2615) ([#2332](https://github.com/Vonage/vivid-3/issues/2332)) ([38659fb](https://github.com/Vonage/vivid-3/commit/38659fbe3f224c1260459aed9af854d7a5b4b715))
+* **button:** ensure loading state is announced by screen reader (VIV-2620) ([#2338](https://github.com/Vonage/vivid-3/issues/2338)) ([340905c](https://github.com/Vonage/vivid-3/commit/340905c0b3eee1706268d01f0c34f05c0733d766))
+* **button:** fix text alignment when cut off (VIV-2672) ([#2374](https://github.com/Vonage/vivid-3/issues/2374)) ([71c3845](https://github.com/Vonage/vivid-3/commit/71c384579d7b3da941aec43d206b8cf94ed81dc8))
+* **checkbox:** correct error state background (VIV-2646) ([#2365](https://github.com/Vonage/vivid-3/issues/2365)) ([dd9a318](https://github.com/Vonage/vivid-3/commit/dd9a3184b47e9c1aa88c7d68098c2c420299d85c))
+* **components:** fix semantic association with feedback messages and icon alt text (VIV-2630) ([#2351](https://github.com/Vonage/vivid-3/issues/2351)) ([4a2ceee](https://github.com/Vonage/vivid-3/commit/4a2ceee5de35dc9768ae703ba0bbdf5c0301d8e6))
+* **data-grid-cell:** add visually-hidden information when cell is selected (VIV-2623) ([#2366](https://github.com/Vonage/vivid-3/issues/2366)) ([eb00697](https://github.com/Vonage/vivid-3/commit/eb0069784799cc91ec89563ddd9906aa980c2f7c))
+* **dialog:** ensure headline is announced by screen reader (VIV-2622) ([#2347](https://github.com/Vonage/vivid-3/issues/2347)) ([f580ad7](https://github.com/Vonage/vivid-3/commit/f580ad799053a72541974aa6a23791291466e590))
+* **divider:** hide divider from screen readers (VIV-2624) ([#2343](https://github.com/Vonage/vivid-3/issues/2343)) ([9a2a290](https://github.com/Vonage/vivid-3/commit/9a2a290c0b01b9fbd70025efaec092e5faf9646a))
+* **menu-item:** add checkbox and radio roles and deprecate menuitemcheckbox and menuitemradio roles (VIV-2626) ([#2361](https://github.com/Vonage/vivid-3/issues/2361)) ([d58d334](https://github.com/Vonage/vivid-3/commit/d58d334cc14839e526a3cc7a79f67d9b83442e67))
+* **menu-item:** revert role changes (VIV-2626) ([#2384](https://github.com/Vonage/vivid-3/issues/2384)) ([c0747de](https://github.com/Vonage/vivid-3/commit/c0747decc2f4642166b60af8e85b2b1eaf8a0ca9))
+* **nav-item, nav-disclosure:** Replace 'aria-current' with synced 'current' attribute (VIV-2595) ([#2380](https://github.com/Vonage/vivid-3/issues/2380)) ([ca487d3](https://github.com/Vonage/vivid-3/commit/ca487d3f7ce3acfee05758dfd104cba4b14708ea))
+* **radio-group:** add fieldset and legend instead of div and label (VIV-2628) ([#2348](https://github.com/Vonage/vivid-3/issues/2348)) ([1ff787c](https://github.com/Vonage/vivid-3/commit/1ff787c951d68767d5816409aa0e9f3f65bcdd37))
+* **tab:** Replace aria-selected attribute with active (VIV-2597) ([#2373](https://github.com/Vonage/vivid-3/issues/2373)) ([22e93e6](https://github.com/Vonage/vivid-3/commit/22e93e615389675a8ddd634dd5f93d05f9d66384))
+* **tab:** use button instead span in closing icon ([1f8ded4](https://github.com/Vonage/vivid-3/commit/1f8ded42982e84fd9f30bde31b79e0de5c8d54c4))
+* **tab:** use button instead span in closing icon (VIV-2641) ([#2346](https://github.com/Vonage/vivid-3/issues/2346)) ([1f8ded4](https://github.com/Vonage/vivid-3/commit/1f8ded42982e84fd9f30bde31b79e0de5c8d54c4))
+* **text-field, text-area:** properly announce character count with screen readers (VIV-2629) ([#2363](https://github.com/Vonage/vivid-3/issues/2363)) ([1f7df46](https://github.com/Vonage/vivid-3/commit/1f7df466df1a0193d0a2ba55d5ea4c21e023459c))
+* **tooltip, toggletip:** semantic improvements (VIV-2631) ([#2337](https://github.com/Vonage/vivid-3/issues/2337)) ([46f782d](https://github.com/Vonage/vivid-3/commit/46f782d67d9514028c86a140076f35338e666b6d))
+* **tree-view:** Use selected instead of aria-selected to check for selectedness of tree items (VIV-2598) ([#2367](https://github.com/Vonage/vivid-3/issues/2367)) ([382f40e](https://github.com/Vonage/vivid-3/commit/382f40efc1f8fef032be9499bfbb85e1957de4eb))
+
 ## [4.24.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.23.0...vivid-v4.24.0) (2025-05-12)
 
 
