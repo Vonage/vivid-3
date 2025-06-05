@@ -3,16 +3,16 @@ const SD = require('style-dictionary');
 import { buildPath, prefix, selector } from '../common';
 import fontSize from '../transforms/font-size';
 import typographyShorthand from '../transforms/typography-shorthand';
+import { isTypography } from '../filters';
 
 SD.registerTransform(fontSize);
 SD.registerTransform(typographyShorthand);
 
 export default {
 	source: [
-		'./src/typography.json',
-		// '../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/font.tokens.json',
-		// '../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/typography-scale.tokens.json',
-		// '../../../../node_modules/@vonage/vivid-figma-tokens/data/typography.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/font.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/typography-scale.tokens.json',
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/typography.tokens.json',
 	],
 	platforms: {
 		css: {
@@ -30,7 +30,7 @@ export default {
 				{
 					destination: '_typography.tokens.scss',
 					format: 'css/variables',
-					filter: () => true,
+					filter: isTypography,
 					options: {
 						selector,
 					},
