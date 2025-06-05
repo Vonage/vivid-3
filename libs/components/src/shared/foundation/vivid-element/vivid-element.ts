@@ -21,11 +21,6 @@ export class VividElement extends AriaMixin(ReplacedPropHandling(FASTElement)) {
 	static componentName: string;
 
 	/**
-	 * Full tag name under which this component was registered, including prefix
-	 */
-	static registeredTagName: string;
-
-	/**
 	 * Add data-vvd-component attribute with component name globally,
 	 * for referring to the elements in CSS, testing or debugging
 	 */
@@ -33,7 +28,6 @@ export class VividElement extends AriaMixin(ReplacedPropHandling(FASTElement)) {
 		super.connectedCallback();
 
 		const name = (this.constructor as typeof VividElement).componentName;
-		const fallbackName = this.tagName.toLowerCase().replace(/^.*?-/, '');
-		this.setAttribute('data-vvd-component', name ?? fallbackName);
+		this.setAttribute('data-vvd-component', name);
 	}
 }

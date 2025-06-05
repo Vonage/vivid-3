@@ -11,7 +11,7 @@ import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { FormElement, WithErrorText } from '../../shared/patterns';
 import { CheckableFormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { RadioGroup } from '../radio-group/radio-group.js';
+import type { RadioGroup } from '../radio-group/radio-group';
 
 /**
  * Types of Checkbox connotation.
@@ -140,7 +140,8 @@ export class Radio extends WithErrorText(
 		DOM.queueUpdate(this.validate);
 
 		if (
-			this.parentElement!.tagName !== RadioGroup.registeredTagName &&
+			this.parentElement!.getAttribute('data-vvd-component') !==
+				'radio-group' &&
 			this.getAttribute('tabindex') === null
 		) {
 			if (!this.disabled) {
@@ -163,7 +164,7 @@ export class Radio extends WithErrorText(
 
 	private isInsideRadioGroup(): boolean {
 		const parent: HTMLElement | null = (this as HTMLElement).closest(
-			RadioGroup.registeredTagName
+			'[data-vvd-component="radio-group"]'
 		);
 		return parent !== null;
 	}

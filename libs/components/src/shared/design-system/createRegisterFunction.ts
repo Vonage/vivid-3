@@ -39,7 +39,6 @@ export const createRegisterFunction =
 		) => {
 			const tag = prefixed(componentDefinition.name);
 			let type = componentDefinition.type;
-			(type as typeof VividElement).registeredTagName = tag;
 			(type as typeof VividElement).componentName = componentDefinition.name;
 
 			if (registeredTags.has(tag)) {

@@ -337,7 +337,7 @@ export class TreeView extends HostSemantics(VividElement) {
 		return this.slottedTreeItems.some((node: HTMLElement) => {
 			return (
 				isTreeItemElement(node) &&
-				node.querySelector(TreeItem.registeredTagName)
+				node.querySelector("[data-vvd-component='tree-item']")
 			);
 		});
 	}
@@ -354,6 +354,6 @@ export class TreeView extends HostSemantics(VividElement) {
 	};
 
 	private getVisibleNodes(): HTMLElement[] {
-		return getDisplayedNodes(this, TreeItem.registeredTagName);
+		return getDisplayedNodes(this, "[data-vvd-component='tree-item']");
 	}
 }

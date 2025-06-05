@@ -24,7 +24,7 @@ import {
 	WithSuccessText,
 } from '../../shared/patterns';
 import type { Appearance, Shape, Size } from '../enums';
-import { ListboxOption } from '../option/option';
+import type { ListboxOption } from '../option/option';
 import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { HostSemantics } from '../../shared/aria/host-semantics';
@@ -528,9 +528,8 @@ export class Select extends WithLightDOMFeedback(
 			return;
 		}
 
-		const optionTag = ListboxOption.registeredTagName;
 		const clickedOption = (e.target as HTMLElement).closest(
-			`option, ${optionTag}`
+			`option,[role=option],[data-vvd-component=option]`
 		) as ListboxOption;
 
 		if (clickedOption && clickedOption.disabled) {

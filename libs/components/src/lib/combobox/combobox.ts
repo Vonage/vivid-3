@@ -8,7 +8,7 @@ import {
 	WithErrorText,
 	WithSuccessText,
 } from '../../shared/patterns';
-import { ListboxOption } from '../option/option';
+import type { ListboxOption } from '../option/option';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithFeedback } from '../../shared/feedback/mixins';
 import { Listbox } from '../../shared/foundation/listbox/listbox';
@@ -288,9 +288,8 @@ export class Combobox extends WithFeedback(
 		}
 
 		if (this.open) {
-			const optionTag = ListboxOption.registeredTagName;
 			const capturedOption = (e.target as HTMLElement).closest(
-				`option, ${optionTag}`
+				`option,[role=option],[data-vvd-component=option]`
 			) as ListboxOption | null;
 
 			if (!capturedOption || capturedOption.disabled) {
