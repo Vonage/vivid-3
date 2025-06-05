@@ -3,6 +3,7 @@ import {
 	FASTElementDefinition,
 	type ViewTemplate,
 } from '@microsoft/fast-element';
+import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import type {
 	TemplateOrResolveFn,
 	VividComponentDefinition,
@@ -38,6 +39,7 @@ export const createRegisterFunction =
 		) => {
 			const tag = prefixed(componentDefinition.name);
 			let type = componentDefinition.type;
+			(type as typeof VividElement).componentName = componentDefinition.name;
 
 			if (registeredTags.has(tag)) {
 				// Component has already been registered

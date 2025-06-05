@@ -529,7 +529,7 @@ export class Select extends WithLightDOMFeedback(
 		}
 
 		const clickedOption = (e.target as HTMLElement).closest(
-			`option,[role=option]`
+			`option,[role=option],[data-vvd-component=option]`
 		) as ListboxOption;
 
 		if (clickedOption && clickedOption.disabled) {
