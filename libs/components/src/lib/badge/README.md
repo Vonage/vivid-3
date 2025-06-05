@@ -43,14 +43,27 @@ registerBadge('your-prefix');
 
 ## Slots
 
-### Icon
+### Icon Slot
 
-Use the `icon` slot to customise icons.  
-If set, the icon _(deprecated)_ attribute is ignored.
+Use the `icon` slot to provide an icon.
+If set, the `icon` attribute _(deprecated)_ will be ignored.
+
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
+
+For [informative icons](/components/icon/accessibility//#informative-vs-decorative-icons), provide an accessible label using the `label` attribute on the [Icon component](/components/icon/code/#label).
+
+</vwc-note>
 
 ```html preview
-<vwc-badge text="with icon slot" appearance="filled">
+<vwc-badge
+	text="Accessibility testing"
+	appearance="subtle-light"
+	connotation="success"
+	size="expanded"
+>
 	<vwc-icon
+		label="Done:"
 		slot="icon"
 		name="check-circle-solid"
 		connotation="success"
