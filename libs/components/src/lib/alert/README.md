@@ -93,11 +93,9 @@ The default value is `0`, which means the Alert will not close automatically.
 </script>
 ```
 
-## Positioning
+## Position Strategy
 
-### Strategy
-
-Controls the `position` of the Alert. The default is `fixed`, which will position the Alert relative to the viewport.
+The `strategy` attribute controls the position strategy of the Alert. The default is `fixed`, which will position the Alert relative to the viewport.
 
 When set to `static`, placement will have no effect, and the Alert will behave as an element in page flow.
 
@@ -109,7 +107,7 @@ When set to `static`, placement will have no effect, and the Alert will behave a
 
 ## Slots
 
-### Main
+### Main Slot
 
 If you want to add rich content to an Alert, you can use the main slot.
 
@@ -119,7 +117,7 @@ If you want to add rich content to an Alert, you can use the main slot.
 </vwc-alert>
 ```
 
-### Action Items
+### Action Items Slot
 
 You can add action items elements using the `action-items` slot. They will be displayed at the inline-end of the Alert.
 
@@ -134,13 +132,18 @@ You can add action items elements using the `action-items` slot. They will be di
 </vwc-alert>
 ```
 
-### Icon
+### Icon Slot
 
-Set the `icon` slot to add an icon to the Alert. If set, the `icon`(_deprecated_) attribute is ignored.
+Set the `icon` slot to add an icon to the Alert. If set, the `icon` attribute (_deprecated_) is ignored.
 
 ```html preview 100px
 <vwc-alert text="Some important information for you" open>
-	<vwc-icon slot="icon" name="megaphone-solid" connotation="cta"></vwc-icon>
+	<vwc-icon
+		slot="icon"
+		name="megaphone-solid"
+		connotation="cta"
+		label="Announcement:"
+	></vwc-icon>
 </vwc-alert>
 ```
 
