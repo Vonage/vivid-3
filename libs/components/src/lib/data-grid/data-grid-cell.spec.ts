@@ -263,6 +263,9 @@ describe('vwc-data-grid-cell', () => {
 		});
 	});
 
+	/**
+	 * @deprecated
+	 */
 	describe('aria-selected', function () {
 		it('should init without aria-selected', async () => {
 			expect(element.hasAttribute('aria-selected')).toEqual(false);
@@ -323,6 +326,74 @@ describe('vwc-data-grid-cell', () => {
 		});
 	});
 
+	describe('selected', function () {
+		it('should init without selected', async () => {
+			expect(element.selected).toEqual(false);
+		});
+
+		it('should not set aria-selected attribute by default.', async () => {
+			await elementUpdated(element);
+			const ariaSelectedAttribute = element.hasAttribute('aria-selected');
+
+			expect(ariaSelectedAttribute).toEqual(false);
+		});
+
+		it('should reflect true value in aria-selected attribute', async () => {
+			element._selectable = true;
+			element.selected = true;
+			await elementUpdated(element);
+
+			const ariaSelectedAttribute = element.getAttribute('aria-selected');
+
+			expect(ariaSelectedAttribute).toEqual('true');
+		});
+
+		it('should reflect false value in aria-selected attribute', async () => {
+			element._selectable = true;
+			element.selected = true;
+			await elementUpdated(element);
+
+			element.selected = false;
+			await elementUpdated(element);
+
+			const ariaSelectedAttribute = element.getAttribute('aria-selected');
+
+			expect(ariaSelectedAttribute).toEqual('false');
+		});
+
+		it('should set selected class on base when selected true on init', async () => {
+			const newElement = (await fixture(
+				`<${COMPONENT_TAG} selected></${COMPONENT_TAG}>`
+			)) as DataGridCell;
+			await elementUpdated(newElement);
+			expect(
+				getBaseElement(newElement)?.classList.contains('selected')
+			).toBeTruthy();
+		});
+
+		it('should set selected class on base when aria-selected true', async () => {
+			element.setAttribute('selected', '');
+			await elementUpdated(element);
+			expect(
+				getBaseElement(element)?.classList.contains('selected')
+			).toBeTruthy();
+		});
+
+		it('should remove selected class on base when aria-selected is not true', async function () {
+			element.setAttribute('selected', '');
+			await elementUpdated(element);
+
+			element.removeAttribute('selected');
+			await elementUpdated(element);
+			expect(
+				getBaseElement(element)?.classList.contains('selected')
+			).toBeFalsy();
+		});
+	});
+
+	/**
+	 * @deprecated
+	 */
 	describe('aria-sort', () => {
 		beforeEach(function () {
 			element.cellType = 'columnheader';
@@ -400,6 +471,86 @@ describe('vwc-data-grid-cell', () => {
 			};
 			await elementUpdated(element);
 			expect(element.ariaSort).toEqual(null);
+		});
+	});
+
+	describe('sort-direction', () => {
+		beforeEach(function () {
+			element.cellType = 'columnheader';
+			element.sortDirection = 'none';
+		});
+
+		it('should have a button role when sorting is enabled', async function () {
+			element.setAttribute('aria-sort', 'none');
+			await elementUpdated(element);
+			const baseElement = element.shadowRoot?.querySelector('.base');
+
+			expect(baseElement?.role).toEqual('button');
+		});
+
+		it('should show sort-solid icon in the header when "none" is set', async function () {
+			element.sortDirection = 'none';
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
+			expect(sortIcons?.length).toEqual(1);
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-solid');
+		});
+
+		it('should show sort-asc-solid icon when aria-sort is ascending', async function () {
+			element.sortDirection = 'ascending';
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
+			expect(sortIcons?.length).toEqual(1);
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-asc-solid');
+		});
+
+		it('should show sort-desc-solid icon when aria-sort is descending', async function () {
+			element.sortDirection = 'descending';
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
+			expect(sortIcons?.length).toEqual(1);
+			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-desc-solid');
+		});
+
+		it('should remove sorting icons when aria-sort is not set', async function () {
+			element.sortDirection = undefined;
+			await elementUpdated(element);
+			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+
+			expect(sortIcons?.length).toEqual(0);
+		});
+
+		it('should set aria-sort from columnDefinition', async function () {
+			element.columnDefinition = {
+				columnDataKey: 'Name',
+				sortDirection: DataGridCellSortStates.ascending,
+				sortable: true,
+			};
+			await elementUpdated(element);
+			expect(element.sortDirection).toEqual('ascending');
+		});
+
+		it('should revert aria-sort to "none" when columnDefinition.sort is falsy', async function () {
+			element.columnDefinition = {
+				columnDataKey: 'Name',
+				sortDirection: null,
+				sortable: true,
+			};
+			await elementUpdated(element);
+			expect(element.sortDirection).toEqual(DataGridCellSortStates.none);
+		});
+
+		it('should remove aria-sort when sortable is false', async function () {
+			element.columnDefinition = {
+				columnDataKey: 'Name',
+				sortDirection: DataGridCellSortStates.ascending,
+				sortable: false,
+			};
+			await elementUpdated(element);
+			expect(element.sortDirection).toEqual(undefined);
 		});
 	});
 

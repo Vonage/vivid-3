@@ -59,6 +59,8 @@ export const globalTypeDefs: Record<string, TypeStr> = {
 		"'none' | 'single-row' | 'multi-row' | 'single-cell' | 'multi-cell'",
 	DataGridRowTypes: "'default' | 'header' | 'sticky-header'",
 	DataGridCellTypes: "'default' | 'columnheader' | 'rowheader'",
+	DataGridCellSortStates: "'none' | 'ascending' | 'descending' | 'other'",
+
 	// Tooltip:
 	anchorType: 'string | HTMLElement',
 

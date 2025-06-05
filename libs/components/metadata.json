@@ -2153,6 +2153,20 @@
 					"type": "string",
 					"attributeName": "grid-column",
 					"propertyName": "gridColumn"
+				},
+				{
+					"name": "selected",
+					"description": "Reflects selected state of the row",
+					"type": "boolean",
+					"attributeName": "selected",
+					"propertyName": "selected"
+				},
+				{
+					"name": "sortDirection",
+					"description": "Sets the sorting direction.",
+					"type": "'none' | 'ascending' | 'descending' | 'other'",
+					"attributeName": "sort-direction",
+					"propertyName": "sortDirection"
 				}
 			],
 			"events": [
@@ -2199,19 +2213,11 @@
 				{
 					"name": "sort",
 					"description": "Event that fires when a sortable column header is clicked",
-					"type": "CustomEvent<{columnDataKey: string, ariaSort: string | null}>"
+					"type": "CustomEvent<{columnDataKey: string, ariaSort: string | null, sortDirection: string | null}>"
 				}
 			],
 			"vueModels": [],
 			"methods": [
-				{
-					"name": "ariaSelectedChanged",
-					"args": [
-						{ "name": "_", "type": "string | null" },
-						{ "name": "selectedState", "type": "string | null" }
-					],
-					"returnType": "unknown"
-				},
 				{
 					"name": "handleFocusin",
 					"args": [{ "name": "_", "type": "FocusEvent" }],
@@ -2257,6 +2263,13 @@
 					"type": "'default' | 'header' | 'sticky-header'",
 					"attributeName": "row-type",
 					"propertyName": "rowType"
+				},
+				{
+					"name": "selected",
+					"description": "Reflects selected state of the row",
+					"type": "boolean",
+					"attributeName": "selected",
+					"propertyName": "selected"
 				}
 			],
 			"events": [

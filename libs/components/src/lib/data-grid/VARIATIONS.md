@@ -190,16 +190,17 @@ Use the `selection-mode` attribute to specify the how cells or rows can be selec
 Use the `aria-selected` attribute to indicate that the selected state of the row or cell.
 
 <vwc-note connotation="warning">
+	
 	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
-For selection functionality to work correctly, the [`selection-mode` attribute](/components/data-grid/#selection-mode) (on Data Grid) must be set to the relevant value.
+    For selection functionality to work correctly, the [`selection-mode` attribute](/components/data-grid/#selection-mode) (on Data Grid) must be set to the relevant value.
 
 </vwc-note>
 
 ```html preview blocks
 <vwc-data-grid selection-mode="single-row">
 	<vwc-data-grid-row class="header" row-type="header">
-		<vwc-data-grid-cell cell-type="columnheader"> Data 1 </vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Data 1</vwc-data-grid-cell>
 		<vwc-data-grid-cell cell-type="columnheader">Data 2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row aria-selected="true">
@@ -213,7 +214,7 @@ For selection functionality to work correctly, the [`selection-mode` attribute](
 </vwc-data-grid>
 <vwc-data-grid selection-mode="single-cell">
 	<vwc-data-grid-row class="header" row-type="header">
-		<vwc-data-grid-cell cell-type="columnheader"> Data 1 </vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Data 1</vwc-data-grid-cell>
 		<vwc-data-grid-cell cell-type="columnheader">Data 2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
@@ -229,7 +230,7 @@ For selection functionality to work correctly, the [`selection-mode` attribute](
 
 ## Indicate Sort State
 
-Use the `aria-sort` attribute on a `columnheader` cell to indicate the sortable state of a header cell.
+Use the `sort-direction` attribute on a `columnheader` cell to indicate the sortable state of a header cell.
 This will add the right chevron(s) according to the state.
 
 - `ascending` - Items are sorted in ascending order by this column. Will show one chevron pointing up.
@@ -237,28 +238,27 @@ This will add the right chevron(s) according to the state.
 - `none` - There is no defined sort applied to the column. Will show indeterminate state with the two chevrons.
 - `other` - A sorting algorithm other than ascending or descending has been applied. Will show no hint.
 
-For more information regarding `aria-sort` you can reference [the W3C spec](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort).
-
 <vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
-The sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. See the [sorting use case](/components/data-grid/use-cases/#sortable-columns) for more information.
+    <vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+
+    The sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. See the [sorting use case](/components/data-grid/use-cases/#sortable-columns) for more information.
 
 </vwc-note>
 
 ```html preview
 <vwc-data-grid>
-	<vwc-data-grid-row role="row">
-		<vwc-data-grid-cell cell-type="columnheader" aria-sort="ascending"
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="ascending"
 			>Ascending</vwc-data-grid-cell
 		>
-		<vwc-data-grid-cell cell-type="columnheader" aria-sort="descending"
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="descending"
 			>Descending</vwc-data-grid-cell
 		>
-		<vwc-data-grid-cell cell-type="columnheader" aria-sort="none"
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="none"
 			>None</vwc-data-grid-cell
 		>
-		<vwc-data-grid-cell cell-type="columnheader" aria-sort="other"
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="other"
 			>Other</vwc-data-grid-cell
 		>
 	</vwc-data-grid-row>

@@ -279,9 +279,57 @@ export class DataGridRow extends VividElement {
 	/**
 	 * Indicates the selected status.
 	 *
+	 * @deprecated
 	 * @public
 	 * HTML Attribute: aria-selected
 	 */
 	@attr({ attribute: 'aria-selected' })
 	override ariaSelected: string | null = null;
+
+	/**
+	 * @internal
+	 */
+	ariaSelectedChanged(_oldValue: string | null, newValue: string | null) {
+		this._selectable = newValue !== null;
+		this.selected = newValue === 'true';
+	}
+
+	/**
+	 * @internal
+	 */
+	private _calculateAriaSelectedValue() {
+		if (this._selectable && this.selected) return 'true';
+
+		if (this._selectable && !this.selected) return 'false';
+
+		return null;
+	}
+
+	/**
+	 * @internal
+	 */
+	@observable
+	_selectable = false;
+
+	/**
+	 * @internal
+	 */
+	_selectableChanged() {
+		this.ariaSelected = this._calculateAriaSelectedValue();
+	}
+
+	/**
+	 * Reflects selected state of the row
+	 *
+	 * @public
+	 */
+	@attr({ mode: 'boolean' })
+	selected?: boolean = false;
+
+	/**
+	 * @internal
+	 */
+	selectedChanged() {
+		this.ariaSelected = this._calculateAriaSelectedValue();
+	}
 }
