@@ -129,14 +129,28 @@ describe('vwc-accordion-item', () => {
 		});
 	});
 
+	describe('heading', () => {
+		it('should have a heading slot', async () => {
+			expect(
+				element.shadowRoot?.querySelector('slot[name="heading"]')
+			).toBeTruthy();
+		});
+	});
+
 	describe('meta', function () {
-		it('should render meta', async function () {
+		it('should render meta text when meta is set', async function () {
 			const metaText = 'Some meta text';
 			element.meta = metaText;
 			await elementUpdated(element);
 			const metaWrapper = element.shadowRoot?.querySelector('.meta');
 			const actualMetaText = metaWrapper?.textContent?.trim();
 			expect(actualMetaText).toEqual(metaText);
+		});
+
+		it('should have a meta slot', async () => {
+			expect(
+				element.shadowRoot?.querySelector('slot[name="meta"]')
+			).toBeTruthy();
 		});
 	});
 

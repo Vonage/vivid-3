@@ -1,4 +1,8 @@
-import { attr, nullableNumberConverter } from '@microsoft/fast-element';
+import {
+	attr,
+	nullableNumberConverter,
+	observable,
+} from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import type { Size } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -19,6 +23,8 @@ export type AccordionItemSize = ExtractFromEnum<
  * @component accordion-item
  * @slot - Default slot.
  * @slot icon - The preferred way to add an icon to the component.
+ * @slot meta - Used to add additional content to the heading.
+ * @slot heading - Used to add content to the heading.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the button is invoked
  */
 export class AccordionItem extends AffixIconWithTrailing(VividElement) {
@@ -69,6 +75,11 @@ export class AccordionItem extends AffixIconWithTrailing(VividElement) {
 	@attr heading?: string;
 
 	/**
+	 * @internal
+	 */
+	@observable _headingSlottedContent?: HTMLElement[];
+
+	/**
 	 * Indicates whether the accordion-item has indicator
 	 *
 	 * @public
@@ -83,6 +94,11 @@ export class AccordionItem extends AffixIconWithTrailing(VividElement) {
 	 * HTML Attribute: meta
 	 */
 	@attr meta?: string;
+
+	/**
+	 * @internal
+	 */
+	@observable _metaSlottedContent?: HTMLElement[];
 
 	/**
 	 * The size the accordion-item should have.

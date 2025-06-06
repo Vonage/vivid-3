@@ -167,8 +167,16 @@
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
 				{
+					"name": "heading",
+					"description": "Used to add content to the heading."
+				},
+				{
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
+				},
+				{
+					"name": "meta",
+					"description": "Used to add additional content to the heading."
 				}
 			]
 		},

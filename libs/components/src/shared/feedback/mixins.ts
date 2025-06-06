@@ -75,8 +75,10 @@ export const WithFeedback = <T extends Constructor<VividElement>>(Base: T) => {
 				<${feedbackTag} id="feedback" :type="${(x) => x._internalFeedback().type}">
 					${(x) => x._internalFeedback().message}
 				</${feedbackTag}>
-				<${feedbackTag} id="slotted-helper-text-feedback" :type="${(x) =>
-				x._slottedHelperTextFeedbackType()}">
+				<${feedbackTag}
+					id="slotted-helper-text-feedback"
+					:type="${(x) => x._slottedHelperTextFeedbackType()}"
+				>
 					<slot name="helper-text" ${slotted('_helperTextSlottedContent')}></slot>
 				</${feedbackTag}>
 			`;

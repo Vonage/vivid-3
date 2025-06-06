@@ -141,6 +141,13 @@ Use the `closeAll` method on **Accordion** to programatically close all open Acc
 
 ## Slots
 
+<vwc-note connotation="warning" headline="Do not nest any interactive elements within heading content">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+The HTML specification does not allow one interactive element to be nested within another. Therefore, you should not use any links or buttons inside `heading` or `meta` slots.
+
+</vwc-note>
+
 ### Icon Slot
 
 ```html preview 220px
@@ -268,13 +275,56 @@ Use the `closeAll` method on **Accordion** to programatically close all open Acc
 </vwc-accordion>
 ```
 
+### Heading Slot
+
+Use the `heading` slot to add custom content to the Accordion Item's heading, allowing you to apply custom formatting.
+If set, the `heading` attribute is ignored.
+
+```html preview 120px
+<vwc-accordion expand-mode="multi">
+	<vwc-accordion-item heading="Accordion item" expanded>
+		<span slot="heading"
+			>Accordion item <span class="highlight">(slotted)</span></span
+		>
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+	</vwc-accordion-item>
+</vwc-accordion>
+<style>
+	.highlight {
+		color: var(--vvd-color-cta-500);
+	}
+</style>
+```
+
+### Meta Slot
+
+Set the `meta` slot to add additional content to the accordion item's heading.
+If set, the `meta` attribute is ignored.
+
+```html preview 120px
+<vwc-accordion expand-mode="multi">
+	<vwc-accordion-item heading="Accordion item" meta="Meta data" expanded>
+		<span slot="heading"
+			>Accordion item <span class="highlight">(slotted)</span></span
+		>
+		<span slot="meta">Meta data <span class="highlight">(slotted)</span></span>
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+	</vwc-accordion-item>
+</vwc-accordion>
+<style>
+	.highlight {
+		color: var(--vvd-color-cta-500);
+	}
+</style>
+```
+
 ## CSS Variables
 
 ### Meta Data Inline Size
 
 Use the `--accordion-item-meta-inline-size` to control the width of the `meta-data` slot content.
 
-- Derfault: `20%`
+- Default: `20%`
 
 ```html preview 140px
 <vwc-accordion expand-mode="multi" class="accordion">
@@ -325,7 +375,7 @@ Use the `--accordion-item-meta-inline-size` to control the width of the `meta-da
 
 | Name                                   | Type                                   | Description                                                                                                     |
 | -------------------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| **heading**                            | `string`                               | Determines if multiple items or a single item can opened at once                                                |
+| **heading**                            | `string`                               | Sets the text for the heading                                                                                   |
 | **heading-level**                      | `1`, `2` (default), `3`, `4`, `5`, `6` | Determines the heading level                                                                                    |
 | _(deprecated as of 05/25)_<br>**icon** | Enum: `[icon-name]`                    | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names |
 | **expanded**                           | `boolean`                              | Sets the open state                                                                                             |
