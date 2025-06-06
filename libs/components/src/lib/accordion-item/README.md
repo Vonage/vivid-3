@@ -166,6 +166,37 @@ If set, the `icon` attribute is ignored.
 </vwc-accordion>
 ```
 
+## Slots
+
+### Heading Slot
+
+Set the `heading` slot to add content to the accordion item's heading.
+If set, the `heading` attribute is ignored.
+
+```html preview 120px
+<vwc-accordion expand-mode="multi">
+	<vwc-accordion-item heading="Accordion item" expanded>
+		<span slot="heading">Accordion item (slotted)</span>
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+	</vwc-accordion-item>
+</vwc-accordion>
+```
+
+### Meta Slot
+
+Set the `meta` slot to add additional content to the accordion item's heading.
+If set, the `meta` attribute is ignored.
+
+```html preview 120px
+<vwc-accordion expand-mode="multi">
+	<vwc-accordion-item heading="Accordion item" meta="Meta data" expanded>
+		<span slot="heading">Accordion item (slotted)</span>
+		<span slot="meta">Meta(slotted)</span>
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+	</vwc-accordion-item>
+</vwc-accordion>
+```
+
 ## CSS Variables
 
 ### Meta-data Max-inline-size

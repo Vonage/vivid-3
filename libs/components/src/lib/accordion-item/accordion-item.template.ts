@@ -1,4 +1,4 @@
-import { html, ref, when } from '@microsoft/fast-element';
+import { html, ref, slotted, when } from '@microsoft/fast-element';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
@@ -9,7 +9,6 @@ import type { AccordionItem } from './accordion-item.js';
 const header = (context: VividElementDefinitionContext, hTag: string) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	/* eslint-disable @typescript-eslint/indent */
 	return html<AccordionItem>`
 		<${hTag} class="heading-container">
 			<button
@@ -23,9 +22,18 @@ const header = (context: VividElementDefinitionContext, hTag: string) => {
 
 				${(x) => (!x.iconTrailing ? affixIconTemplate(x.icon, IconWrapper.Slot) : null)}
 
-				<span class="heading-content">${(x) => x.heading}</span>
+				<span class="heading-content">
+					<slot name="heading" ${slotted('_headingSlottedContent')}></slot>
+					${when(
+						(x) => x.heading && !x._headingSlottedContent?.length,
+						html`${(x) => x.heading}`
+					)}
+				</span>
 
-				${when((x) => x.meta, html`<span class="meta">${(x) => x.meta}</span>`)}
+				<span class="meta">
+					<slot name="meta" ${slotted('_metaSlottedContent')}></slot>
+					${when((x) => x.meta && !x._metaSlottedContent?.length, html`${(x) => x.meta}`)}
+				</span>
 
 				${(x) => (x.icon && x.iconTrailing ? affixIconTemplate(x.icon) : null)}
 				${(x) =>
