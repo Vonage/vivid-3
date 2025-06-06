@@ -4,6 +4,20 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.26.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.25.0...vivid-v4.26.0) (2025-06-06)
+
+
+### Features
+
+* **accordion:** add heading and meta slots (VIV-2636) ([#2400](https://github.com/Vonage/vivid-3/issues/2400)) ([7c882de](https://github.com/Vonage/vivid-3/commit/7c882de93dcb2f5aebaf8615378da6aca3d1d45f))
+* **checkbox:** make 'indeterminate' as a prop (VIV-2596) ([#2394](https://github.com/Vonage/vivid-3/issues/2394)) ([fee30af](https://github.com/Vonage/vivid-3/commit/fee30aff7e1f0e1da32f4576da89bfc0bb0e74e9))
+
+
+### Bug Fixes
+
+* **components:** Use data-vvd-component instead of role attribute (VIV-2604) ([#2393](https://github.com/Vonage/vivid-3/issues/2393)) ([9334f5f](https://github.com/Vonage/vivid-3/commit/9334f5f3ba956760756a2a389626e566d3dcf304))
+* **slider, range-slider:** remove focus transition (VIV-2690) ([#2397](https://github.com/Vonage/vivid-3/issues/2397)) ([e596b63](https://github.com/Vonage/vivid-3/commit/e596b638df15ffbf09fbbc642659ca05b03af83b))
+
 ## [4.25.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.24.0...vivid-v4.25.0) (2025-06-02)
 
 
