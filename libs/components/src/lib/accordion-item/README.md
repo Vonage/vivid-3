@@ -176,13 +176,17 @@ If set, the `heading` attribute is ignored.
 ```html preview 120px
 <vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="Accordion item" expanded>
-		<span slot="heading">Accordion item <span class="highlight">(slotted)</span></span>
+		<span slot="heading"
+			>Accordion item <span class="highlight">(slotted)</span></span
+		>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
 
 <style>
-  .highlight { color: var(--vvd-color-cta-500); }
+	.highlight {
+		color: var(--vvd-color-cta-500);
+	}
 </style>
 ```
 

@@ -277,16 +277,23 @@ The HTML specification does not allow one interactive element to be nested withi
 
 ### Heading Slot
 
-Set the `heading` slot to add content to the accordion item's heading.
+Use the `heading` slot to add custom content to the Accordion Item's heading, allowing you to apply custom formatting.
 If set, the `heading` attribute is ignored.
 
 ```html preview 120px
 <vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="Accordion item" expanded>
-		<span slot="heading">Accordion item (slotted)</span>
+		<span slot="heading"
+			>Accordion item <span class="highlight">(slotted)</span></span
+		>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
+<style>
+	.highlight {
+		color: var(--vvd-color-cta-500);
+	}
+</style>
 ```
 
 ### Meta Slot
@@ -297,11 +304,18 @@ If set, the `meta` attribute is ignored.
 ```html preview 120px
 <vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="Accordion item" meta="Meta data" expanded>
-		<span slot="heading">Accordion item (slotted)</span>
-		<span slot="meta">Meta data (slotted)</span>
+		<span slot="heading"
+			>Accordion item <span class="highlight">(slotted)</span></span
+		>
+		<span slot="meta">Meta data <span class="highlight">(slotted)</span></span>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
+<style>
+	.highlight {
+		color: var(--vvd-color-cta-500);
+	}
+</style>
 ```
 
 ## CSS Variables
