@@ -170,7 +170,7 @@ If set, the `icon` attribute is ignored.
 
 ### Heading Slot
 
-Set the `heading` slot to add content to the accordion item's heading.
+Use the `heading` slot to add custom content to the Accordion Item's heading, allowing you to apply custom formatting.
 If set, the `heading` attribute is ignored.
 
 ```html preview 120px
