@@ -1,0 +1,290 @@
+{
+  "Heading/Headline": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 66,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Wide Medium"
+    }
+  },
+  "Heading/Subtitle": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 52,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Wide Medium"
+    }
+  },
+  "Heading/Heading 1": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 40,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Wide Medium"
+    }
+  },
+  "Heading/Heading 2": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 32,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Wide Medium"
+    }
+  },
+  "Heading/Heading 3": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 26,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Wide Medium"
+    }
+  },
+  "Heading/Heading 4": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 20,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Wide Medium"
+    }
+  },
+  "Body/Base extended": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 16,
+        "unit": "px"
+      },
+      "lineHeight": 2,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Regular"
+    }
+  },
+  "Body/Base extended bold": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 16,
+        "unit": "px"
+      },
+      "lineHeight": 2,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "SemiBold"
+    }
+  },
+  "Body/Base extended link": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 16,
+        "unit": "px"
+      },
+      "lineHeight": 2,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Regular"
+    }
+  },
+  "Body/Base extended code": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 16,
+        "unit": "px"
+      },
+      "lineHeight": 2,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "SemiMono Regular"
+    }
+  },
+  "Body/Base": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 14,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Regular"
+    }
+  },
+  "Body/Base bold": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 14,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "SemiBold"
+    }
+  },
+  "Body/Base link": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 14,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Regular"
+    }
+  },
+  "Body/Base code": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 14,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "SemiMono Regular"
+    }
+  },
+  "Caption/Base condensed": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 12,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Regular"
+    }
+  },
+  "Caption/Base condensed bold": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 12,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "SemiBold"
+    }
+  },
+  "Caption/Base condensed link": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 12,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "Regular"
+    }
+  },
+  "Caption/Base condensed code": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 12,
+        "unit": "px"
+      },
+      "lineHeight": 1,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": "SemiMono Regular"
+    }
+  }
+}
