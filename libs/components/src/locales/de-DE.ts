@@ -139,7 +139,7 @@ const deDE: Locale = {
 	},
 	dialPad: {
 		inputLabel: 'Telefonnummer',
-		deleteButtonLabel: 'Löschen',
+		deleteButtonLabel: 'Letzte Ziffer löschen',
 		callButtonLabel: 'Anrufen',
 		endCallButtonLabel: 'Anruf beenden',
 		digitOneLabel: '1',

@@ -138,7 +138,7 @@ const enGB: Locale = {
 	},
 	dialPad: {
 		inputLabel: 'Phone number',
-		deleteButtonLabel: 'Delete',
+		deleteButtonLabel: 'Delete last digit',
 		callButtonLabel: 'Call',
 		endCallButtonLabel: 'End call',
 		digitOneLabel: '1',
