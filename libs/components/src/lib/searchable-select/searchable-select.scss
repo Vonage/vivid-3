@@ -129,7 +129,7 @@ input {
 	block-size: 24px;
 	font: var(#{constants.$vvd-typography-base});
 	max-inline-size: 100%;
-	min-inline-size: 100px;
+	min-inline-size: min(100px, 40%);
 	outline: none;
 
 	.contains-only-input &:not(:focus) {
