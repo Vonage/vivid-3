@@ -20,15 +20,7 @@ export const PickerFieldTemplate = (
 			x._onBaseKeyDown(event as KeyboardEvent)}'>
 			<${textFieldTag} id='text-field'
 				${ref('_textFieldEl')}
-				class='${(x) =>
-					classNames(
-						'control',
-						[
-							'has-helper-text',
-							Boolean(x._helperTextSlottedContent?.length || x.helperText),
-						],
-						['has-error-text', Boolean(x.errorValidationMessage)]
-					)}'
+				class='control'
 				label='${(x) => x.label}'
 				helper-text='${(x) => x.helperText}'
 				error-text='${(x) => x.errorValidationMessage}'
@@ -61,6 +53,12 @@ export const PickerFieldTemplate = (
 			<${popupTag}
 				?open='${(x) => x._popupOpen}'
 				:anchor='${(x) => x._textFieldEl}'
+				offset='${(x) =>
+					x._helperTextSlottedContent?.length ||
+					x.helperText ||
+					x.errorValidationMessage
+						? 8
+						: null}'
 				placement='bottom-start'
 				class='popup'>
 				<div class="${() =>

@@ -526,6 +526,57 @@ describe('vwc-popup', () => {
 		});
 	});
 
+	describe('offset', () => {
+		const customOffset = 16;
+		const defaultArrowOffset = 12;
+
+		beforeEach(() => {
+			vi.spyOn(floatingUI, 'computePosition');
+		});
+
+		it('should use offset attribute when computing position', async () => {
+			element.offset = customOffset;
+
+			await setupPopupToOpenWithAnchor();
+			await element.updatePosition();
+
+			expect(floatingUI.computePosition).toHaveBeenCalledWith(
+				expect.anything(),
+				expect.anything(),
+				expect.objectContaining({
+					middleware: expect.arrayContaining([
+						expect.objectContaining({
+							name: 'offset',
+							options: customOffset,
+						}),
+					]),
+				})
+			);
+		});
+
+		it('should combine offset attribute with arrow when both are present', async () => {
+			element.offset = customOffset;
+			element.arrow = true;
+
+			await elementUpdated(element);
+			await setupPopupToOpenWithAnchor();
+			await element.updatePosition();
+
+			expect(floatingUI.computePosition).toHaveBeenCalledWith(
+				expect.anything(),
+				expect.anything(),
+				expect.objectContaining({
+					middleware: expect.arrayContaining([
+						expect.objectContaining({
+							name: 'offset',
+							options: customOffset + defaultArrowOffset,
+						}),
+					]),
+				})
+			);
+		});
+	});
+
 	describe('a11y attributes', () => {
 		it('should set aria-hidden', async () => {
 			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual(
