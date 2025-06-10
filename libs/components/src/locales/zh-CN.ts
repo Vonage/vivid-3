@@ -138,7 +138,7 @@ const zhCN: Locale = {
 	},
 	dialPad: {
 		inputLabel: '电话号码',
-		deleteButtonLabel: '删除',
+		deleteButtonLabel: '删除最后一位数字',
 		callButtonLabel: '称呼',
 		endCallButtonLabel: '结束通话',
 		digitOneLabel: '1',

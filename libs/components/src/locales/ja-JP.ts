@@ -138,7 +138,7 @@ const jaJP: Locale = {
 	},
 	dialPad: {
 		inputLabel: '電話番号',
-		deleteButtonLabel: '消去',
+		deleteButtonLabel: '最後の桁を削除',
 		callButtonLabel: '電話',
 		endCallButtonLabel: '通話終了',
 		digitOneLabel: '1',
