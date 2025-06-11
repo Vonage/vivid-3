@@ -1,4 +1,4 @@
-import { attr } from '@microsoft/fast-element';
+import { attr, DOM } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { Sticky } from '../enums';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
@@ -14,6 +14,19 @@ import {
 	type PredefindKeys,
 } from './helpers/calendar.keyboard-interactions';
 import { getEventContext } from './helpers/calendar.event-context';
+
+const isScrollable = (node: HTMLElement) => {
+	const overflowY = window.getComputedStyle(node).overflowY;
+	const overflowX = window.getComputedStyle(node).overflowX;
+	return {
+		vertical:
+			(overflowY === 'auto' || overflowY === 'scroll') &&
+			node.scrollHeight > node.clientHeight,
+		horizontal:
+			(overflowX === 'auto' || overflowX === 'scroll') &&
+			node.scrollWidth > node.clientWidth,
+	};
+};
 
 export type CalendarSticky = ExtractFromEnum<
 	Sticky,
@@ -182,5 +195,26 @@ export class Calendar extends VividElement {
 		// preventDefault() will be called on the event object by default.
 		// we need to return true from our handler to opt - out of this behavior.
 		return !isArrow;
+	}
+
+	override connectedCallback() {
+		super.connectedCallback();
+		this.initializeScrollPosition();
+	}
+
+	private initializeScrollPosition() {
+		if (!isScrollable(this).vertical) {
+			return;
+		}
+
+		const initialScrollHour = 8;
+		const rowHeight = this.scrollHeight / this._hours;
+		const scrollPosition = rowHeight * (initialScrollHour - 1);
+
+		DOM.queueUpdate(() => {
+			this.scrollTo({
+				top: scrollPosition,
+			});
+		});
 	}
 }
