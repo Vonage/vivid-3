@@ -1,4 +1,6 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { DOM } from '@microsoft/fast-element';
+
 import { Calendar } from './calendar';
 import '.';
 import '../calendar-event';
@@ -238,6 +240,43 @@ describe('vwc-calendar', () => {
 				`.sticky-${stickyMode}`
 			);
 			expect(control).toBeInstanceOf(Element);
+		});
+
+		it('should set the initial scroll position to 8:00 AM', async () => {
+			vi.stubGlobal(
+				'getComputedStyle',
+				() =>
+					({
+						overflowY: 'auto',
+						overflowX: 'scroll',
+					} as CSSStyleDeclaration)
+			);
+
+			document.body.innerHTML;
+			const fragment = document.createElement('div');
+			document.body.appendChild(fragment);
+			const calendarEl = document.createElement(COMPONENT_TAG);
+			calendarEl.stickyMode = 'all';
+
+			// Mocking layout properties
+			vi.spyOn(calendarEl, 'scrollHeight', 'get').mockReturnValue(1206);
+			vi.spyOn(calendarEl, 'clientHeight', 'get').mockReturnValue(550);
+			const scrollToMock = vi.fn();
+			Object.defineProperty(calendarEl, 'scrollTo', { value: scrollToMock });
+
+			fragment.appendChild(calendarEl);
+
+			await DOM.nextUpdate();
+
+			// Calculate row height and scroll position
+			const rowHeight = calendarEl.scrollHeight / calendarEl._hours;
+			const scrollPosition = rowHeight * (8 - 1);
+
+			vi.unstubAllGlobals();
+
+			expect(scrollToMock).toHaveBeenCalledWith({
+				top: scrollPosition,
+			});
 		});
 	});
 
