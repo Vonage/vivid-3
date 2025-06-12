@@ -39,7 +39,7 @@ const header = (context: VividElementDefinitionContext, hTag: string) => {
 				${(x) =>
 					!(x.icon && x.iconTrailing) && !x.noIndicator
 						? affixIconTemplate(
-								x.expanded ? 'chevron-up-solid' : 'chevron-down-solid'
+								x.expanded ? 'chevron-up-line' : 'chevron-down-line'
 						  )
 						: null}
 

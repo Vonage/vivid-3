@@ -44,7 +44,7 @@ export const NavDisclosureTemplate = (
 			${(x) => x.label}
 			<slot name="meta"></slot>
 			<${iconTag} class="toggleIcon" name=${(x) =>
-		x.open ? 'chevron-up-solid' : 'chevron-down-solid'}
+		x.open ? 'chevron-up-line' : 'chevron-down-line'}
 				aria-hidden="true"></${iconTag}>
 		</summary>
 		<div class="content" id="disclosure-content">
