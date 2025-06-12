@@ -455,6 +455,27 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 </style>
 ```
 
+### Inset
+
+When the dialog is not used as a modal, you can overwrite default inset values using `--dialog-inset-inline` and `--dialog-inset-block` variables.
+
+```html preview 250px
+<vwc-dialog
+	class="dialog"
+	icon="info"
+	headline="Headline"
+	subtitle="Subtitle content"
+	open
+></vwc-dialog>
+
+<style>
+	.dialog {
+		--dialog-inset-inline: 50% 0;
+		--dialog-inset-block: 24px 0;
+	}
+</style>
+```
+
 ## API Reference
 
 ### Properties
@@ -464,7 +485,7 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 | Name                          | Type                                  | Description                                                                                                                                 |
 | ----------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | **dismiss-button-aria-label** | `string`                              | Sets a custom aria-label to the close button                                                                                                |
-| **full-width-body**           | `boolean`                             | Sets the element's body to full width (no padding))                                                                                         |
+| **full-width-body**           | `boolean`                             | Sets the element's body to full width (no padding)                                                                                          |
 | **headline**                  | `string`                              | Sets the element's headline                                                                                                                 |
 | **icon**                      | Enum:<br/>`[icon-name]`               | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`'s |
 | **icon-placement**            | Enum:<br/>`[side]` (default), `[top]` | Sets the element's icon placement                                                                                                           |
