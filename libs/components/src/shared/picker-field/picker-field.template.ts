@@ -19,18 +19,18 @@ export const PickerFieldTemplate = (
 		<div class='base' @keydown='${(x, { event }) =>
 			x._onBaseKeyDown(event as KeyboardEvent)}'>
 			<${textFieldTag} id='text-field'
-											 ${ref('_textFieldEl')}
-											 class='control'
-											 label='${(x) => x.label}'
-											 helper-text='${(x) => x.helperText}'
-											 error-text='${(x) => x.errorValidationMessage}'
-											 placeholder='${(x) => x._textFieldPlaceholder}'
-											 size='${(x) => x._textFieldSize}'
-											 current-value='${(x) => x._presentationValue}'
-											 ?disabled='${(x) => x.disabled}'
-											 ?readonly='${(x) => x.readOnly}'
-											 @input='${(x, c) => x._onTextFieldInput(c.event)}'
-											 @change='${(x) => x._onTextFieldChange()}'
+				${ref('_textFieldEl')}
+				class='control'
+				label='${(x) => x.label}'
+				helper-text='${(x) => x.helperText}'
+				error-text='${(x) => x.errorValidationMessage}'
+				placeholder='${(x) => x._textFieldPlaceholder}'
+				size='${(x) => x._textFieldSize}'
+				current-value='${(x) => x._presentationValue}'
+				?disabled='${(x) => x.disabled}'
+				?readonly='${(x) => x.readOnly}'
+				@input='${(x, c) => x._onTextFieldInput(c.event)}'
+				@change='${(x) => x._onTextFieldChange()}'
 			>
 				<slot
 					slot='${(x) =>
@@ -53,6 +53,12 @@ export const PickerFieldTemplate = (
 			<${popupTag}
 				?open='${(x) => x._popupOpen}'
 				:anchor='${(x) => x._textFieldEl}'
+				offset='${(x) =>
+					x._helperTextSlottedContent?.length ||
+					x.helperText ||
+					x.errorValidationMessage
+						? 8
+						: null}'
 				placement='bottom-start'
 				class='popup'>
 				<div class="${() =>
