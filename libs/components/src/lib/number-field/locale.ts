@@ -1,4 +1,5 @@
 export interface NumberFieldLocale {
-	incrementButtonLabel: string;
-	decrementButtonLabel: string;
+	incrementButtonLabel: (step: number) => string;
+	decrementButtonLabel: (step: number) => string;
+	updatedValueAnnouncement: (value: string) => string;
 }

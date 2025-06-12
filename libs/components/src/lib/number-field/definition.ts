@@ -1,9 +1,10 @@
 import { buttonDefinition } from '../button/definition';
 import { dividerDefinition } from '../divider/definition';
-import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { visuallyHiddenDefinition } from '../visually-hidden/definition';
 import { iconDefinition } from '../icon/definition';
-import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './number-field.scss?inline';
 import { NumberField } from './number-field';
 import { NumberFieldTemplate as template } from './number-field.template';
@@ -22,6 +23,7 @@ export const numberFieldDefinition = defineVividComponent(
 		dividerDefinition,
 		iconDefinition,
 		feedbackMessageDefinition,
+		visuallyHiddenDefinition,
 	],
 	{
 		styles,

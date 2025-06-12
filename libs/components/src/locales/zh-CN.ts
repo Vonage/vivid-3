@@ -125,8 +125,12 @@ const zhCN: Locale = {
 		dismissButtonLabel: '关',
 	},
 	numberField: {
-		incrementButtonLabel: '增量',
-		decrementButtonLabel: '递减',
+		incrementButtonLabel: /* istanbul ignore next */ (step: number) =>
+			step === 1 ? '增加价值' : `价值增加 ${step}`,
+		decrementButtonLabel: /* istanbul ignore next */ (step: number) =>
+			step === 1 ? '减少价值' : `值减少 ${step}`,
+		updatedValueAnnouncement: /* istanbul ignore next */ (value: string) =>
+			`更新值：${value}`,
 	},
 	splitButton: {
 		showMoreActionsLabel: '显示更多操作',
