@@ -1,12 +1,13 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
-/tmp
+dist
+tmp
 /out-tsc
+.11ty-vite
 
 # dependencies
-/node_modules
+node_modules
 
 # IDEs and editors
 /.idea
@@ -23,7 +24,7 @@
 # misc
 /.sass-cache
 /connect.lock
-/coverage
+coverage
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
@@ -35,7 +36,9 @@ testem.log
 Thumbs.db
 
 test-results
+blob-results
 *-darwin.png
 
 .nx/cache
 .nx/workspace-data
+.turbo

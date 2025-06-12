@@ -1,5 +1,5 @@
 @use 'config';
-@use '../../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'pkg:@repo/tokens/scss/tokens.constants' as constants;
 @use '../connotation' as connotation;
 
 $states-mapping: (

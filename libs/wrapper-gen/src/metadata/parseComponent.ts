@@ -135,7 +135,6 @@ export const parseComponent = (name: string): ComponentDef => {
 	return {
 		name,
 		className,
-		vividModulePath: declaration._modulePath!,
 		registerFunctionName,
 		description: declaration.description,
 		props,

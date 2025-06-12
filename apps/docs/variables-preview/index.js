@@ -1,7 +1,16 @@
 const {
 	createCodeExample,
 } = require('../code-example-preview/createCodeExample');
-const customElements = require('../../../dist/libs/components-meta/custom-elements.json');
+const fs = require('fs');
+
+const customElementsPath = '../../../libs/components/custom-elements.json';
+
+const customElements = { modules: [] };
+if (fs.existsSync(customElementsPath)) {
+	customElements.push(
+		...JSON.parse(fs.readFileSync(customElementsPath, 'utf-8'))
+	);
+}
 
 const CONNOTATIONS = [
 	'accent',

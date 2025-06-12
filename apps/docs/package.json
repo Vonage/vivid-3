@@ -1,0 +1,33 @@
+{
+	"name": "@repo/docs",
+	"private": true,
+	"scripts": {
+		"prebuild": "rm -rf .11ty-vite dist",
+		"build": "eleventy",
+		"predev": "rm -rf .11ty-vite dist",
+		"dev": "eleventy --serve",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"stylelint": "stylelint 'assets/**/*.{css,scss}'",
+		"stylelint:fix": "stylelint 'assets/**/*.{css,scss}' --fix",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"e2e": "playwright test",
+		"e2e:ui": "playwright test --ui",
+		"e2e:docker": "PW_TEST_CONNECT_WS_ENDPOINT=ws://0.0.0.0:3000/ playwright test",
+		"e2e:docker:ui": "PW_TEST_CONNECT_WS_ENDPOINT=ws://0.0.0.0:3000/ playwright test --ui",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@vonage/vivid": "*",
+		"@repo/consts": "*",
+		"@repo/styles": "*"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "*",
+		"@repo/eslint-config": "*",
+		"@repo/stylelint-config": "*",
+		"@repo/vitest-config": "*",
+		"@repo/shared": "*"
+	}
+}

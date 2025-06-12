@@ -1,4 +1,4 @@
-import { createFormHTML, elementUpdated, fixture } from '@vivid-nx/shared';
+import { createFormHTML, elementUpdated, fixture } from '@repo/shared';
 import { setLocale } from '../../shared/localization';
 import { Popup } from '../popup/popup';
 import { Button } from '../button/button';

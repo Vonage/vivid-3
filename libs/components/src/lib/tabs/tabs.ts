@@ -77,7 +77,7 @@ export class Tabs extends VividElement {
 	 * HTML Attribute: orientation
 	 */
 	@attr
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	orientation: TabsOrientation = TabsOrientation.horizontal;
 	/**
 	 * @internal
@@ -503,6 +503,6 @@ export class Tabs extends VividElement {
 	 * HTML Attribute: activeindicator
 	 */
 	@attr({ mode: 'boolean' })
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	activeindicator = true;
 }

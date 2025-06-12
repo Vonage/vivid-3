@@ -40,7 +40,7 @@ export class Divider extends DelegatesAria(VividElement) {
 	 * @remarks
 	 * HTML Attribute: role
 	 */
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	@attr override role: DividerRole = DividerRole.separator;
 
 	/**
@@ -50,6 +50,6 @@ export class Divider extends DelegatesAria(VividElement) {
 	 * @remarks
 	 * HTML Attribute: orientation
 	 */
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	@attr orientation: Orientation = Orientation.horizontal;
 }

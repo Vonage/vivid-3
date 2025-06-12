@@ -1,22 +1,20 @@
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta,
 	$shades: primary primary-text primary-increment fierce intermediate firm,
 	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset,
 	$states: idle hover checked checkedAndHover disabled readonly,
 	$default: fieldset
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
+@use '@repo/shared/mixins/appearance' as appearance;
+@use '@repo/tokens/scss/size.variables' as size;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
 
 $low-ink-color: --_low-ink-color;
 $size: #{size.$vvd-size-ultra-condensed};

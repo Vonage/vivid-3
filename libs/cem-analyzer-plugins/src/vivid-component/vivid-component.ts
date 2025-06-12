@@ -1,4 +1,4 @@
-import { Plugin } from '@custom-elements-manifest/analyzer';
+import type { Plugin } from '@custom-elements-manifest/analyzer';
 
 type VueModelDef = {
 	name?: string;

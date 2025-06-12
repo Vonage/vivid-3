@@ -1,6 +1,6 @@
 import type { Mock, MockInstance } from 'vitest';
 import deDE from '@vonage/vivid/locales/de-DE';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@repo/shared';
 import { setLocale } from '../../shared/localization';
 import { ProseMirrorFacade as EditorFacade } from './facades/vivid-prose-mirror.facade';
 import {

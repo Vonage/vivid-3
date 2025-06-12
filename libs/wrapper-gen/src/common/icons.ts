@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import { toTypeStr, TypeStr } from './types';
-import { IconsManifest } from '@vonage/vwc-consts';
+import { IconsManifest } from '@repo/consts';
 
 export const fetchIconsManifest = async (url: string): Promise<IconsManifest> =>
 	(await fetch(url)).json();

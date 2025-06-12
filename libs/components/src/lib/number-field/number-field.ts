@@ -171,7 +171,7 @@ export class NumberField extends WithFeedback(
 	 * HTMLAttribute: step
 	 */
 	@attr({ converter: nullableNumberConverter })
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	step = 1;
 
 	stepChanged(_: number, next: number) {

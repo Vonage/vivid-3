@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@repo/shared';
 import {
 	keyArrowDown,
 	keyArrowLeft,
@@ -200,7 +200,7 @@ describe('vwc-tree-view', () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG}>
 					<vwc-tree-item id="item1">
-						<vwc-tree-item id="item1_1"></vwc-tree-item>	
+						<vwc-tree-item id="item1_1"></vwc-tree-item>
 					</vwc-tree-item>
 					<vwc-tree-item id="item2"></vwc-tree-item>
 				</${COMPONENT_TAG}>`

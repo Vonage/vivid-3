@@ -1,21 +1,20 @@
 @use 'sass:map';
 @use 'sass:list';
 @use 'partials/variables' as variables;
-@use '../../../../shared/src/lib/sass/utils' as utils;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/shared/utils' as utils;
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta alert success,
 	$shades: firm,
 	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: ghost,
 	$states: idle disabled,
 	$default: ghost
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use '@repo/shared/mixins/appearance' as appearance;
+@use '@repo/tokens/scss/size.variables' as size;
 
 $size: (
 	-6: calc(size.$vvd-size-normal - size.$vvd-size-super-condensed),

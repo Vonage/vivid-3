@@ -1,9 +1,8 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '@repo/tokens/scss/tokens.constants' as constants;
 @use 'partials/variables' as variables;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
 @use '../../shared/patterns/anchored' as anchored;
 @include anchored.anchored;
 

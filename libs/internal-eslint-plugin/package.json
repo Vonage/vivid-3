@@ -1,0 +1,23 @@
+{
+	"name": "@repo/eslint-plugin-repo",
+	"type": "module",
+	"module": "./index.js",
+	"main": "./index.cjs",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
+		}
+	},
+	"scripts": {
+		"build": "vite build",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "*",
+		"@repo/vitest-config": "*"
+	}
+}

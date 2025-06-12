@@ -1,6 +1,5 @@
-const SD = require('style-dictionary');
-
-import { prefix, buildPath, selector } from '../common';
+import SD from 'style-dictionary';
+import { buildPath, prefix, selector } from '../common';
 import shadowShorthand from '../transforms/shadow-shorthand';
 import { isSource } from '../filters';
 

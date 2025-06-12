@@ -1,6 +1,5 @@
-const SD = require('style-dictionary');
-
-import { prefix, buildPath, selector } from '../common';
+import SD from 'style-dictionary';
+import { buildPath, prefix, selector } from '../common';
 import scssConstants from '../formatters/scss-constants';
 import { isSource } from '../filters';
 

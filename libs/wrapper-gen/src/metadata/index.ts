@@ -2,7 +2,7 @@ import { getPublicComponents } from './customElementDeclarations';
 import { parseComponent } from './parseComponent';
 import { componentOverrides, globalDefinitionOverrides } from './overrides';
 import { Metadata, stableMetadata } from '../common/metadata';
-import { ICONS_MANIFEST_URL } from '@vonage/vwc-consts';
+import { ICONS_MANIFEST_URL } from '@repo/consts';
 
 export async function buildMetadata(): Promise<Metadata> {
 	const publicComponents = getPublicComponents();

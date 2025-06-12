@@ -60,7 +60,7 @@ export class DataGridCell extends Localized(VividElement) {
 	 * HTML Attribute: cell-type
 	 */
 	@attr({ attribute: 'cell-type' })
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	cellType: DataGridCellTypes = DataGridCellTypes.default;
 	/**
 	 * @internal

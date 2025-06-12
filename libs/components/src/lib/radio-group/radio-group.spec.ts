@@ -4,7 +4,7 @@ import {
 	getBaseElement,
 	getControlElement,
 	listenToFormSubmission,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import type { Radio } from '../radio/radio';
 import {
 	itShouldDisplayErrorTextFeedback,

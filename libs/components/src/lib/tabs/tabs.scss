@@ -2,23 +2,21 @@
 @use 'partials/variables' as variables;
 @use '../tab/partials/variables' as tab-variables;
 @use 'partials/mixins' as mixins;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta,
 	$shades: firm,
 	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: ghost,
 	$states: idle,
 	$default: ghost
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
+@use '@repo/shared/mixins/appearance' as appearance;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/mixins/scrollbar' as scrollbar;
 
 :host {
 	display: block;

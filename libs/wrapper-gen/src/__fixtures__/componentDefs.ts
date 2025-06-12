@@ -3,8 +3,6 @@ import { ComponentDef } from '../common/ComponentDef';
 export const minimalComponent: ComponentDef = {
 	name: 'example-component',
 	className: 'ExampleComponent',
-	vividModulePath:
-		'libs/components/src/lib/example-component/example-component.ts',
 	registerFunctionName: 'registerExampleComponent',
 	props: [],
 	events: [],
@@ -16,8 +14,6 @@ export const minimalComponent: ComponentDef = {
 export const exampleComponent: ComponentDef = {
 	name: 'example-component',
 	className: 'ExampleComponent',
-	vividModulePath:
-		'libs/components/src/lib/example-component/example-component.ts',
 	registerFunctionName: 'registerExampleComponent',
 	description: 'This is an example component',
 	props: [

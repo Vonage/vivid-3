@@ -1,6 +1,6 @@
 import {
-	ComponentName,
-	NormalizedComponentTag,
+	type ComponentName,
+	type NormalizedComponentTag,
 	normalizeTag,
 } from './components';
 

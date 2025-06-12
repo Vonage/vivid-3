@@ -1,4 +1,4 @@
-const SD = require('style-dictionary');
+import SD from 'style-dictionary';
 
 import resolveMath from './transforms/resolve-math';
 import publicCssReferences from './transforms/public-css-references';

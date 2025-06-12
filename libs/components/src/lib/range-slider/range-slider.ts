@@ -242,7 +242,7 @@ export class RangeSlider extends Localized(
 	 * @remarks
 	 * HTML Attribute: min
 	 */
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	@attr({ converter: nullableNumberConverter }) min = 0;
 
 	/**
@@ -252,7 +252,7 @@ export class RangeSlider extends Localized(
 	 * @remarks
 	 * HTML Attribute: max
 	 */
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	@attr({ converter: nullableNumberConverter }) max = 10;
 
 	/**
@@ -262,7 +262,7 @@ export class RangeSlider extends Localized(
 	 * @remarks
 	 * HTML Attribute: step
 	 */
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	@attr({ converter: defaultToOneConverter }) step = 1;
 
 	#applyStep(thumb: 'start' | 'end', direction: Direction) {
@@ -281,7 +281,7 @@ export class RangeSlider extends Localized(
 	 * @remarks
 	 * HTML Attribute: orientation
 	 */
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	@attr orientation: Orientation = Orientation.horizontal;
 	/**
 	 * @internal

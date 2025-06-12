@@ -10,33 +10,22 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - uses: actions/setup-node@v3
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - uses: actions/cache@v3
-        id: cache
-        with:
-          path: |
-            node_modules/
-            apps/vue-docs/node_modules/
-            libs/storybook-vue2/node_modules/
-            libs/storybook-vue3/node_modules/
-          key: ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-cache-
+          cache: 'npm'
 
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Build
         run: |
-          npx nx run vue-docs:build --skip-nx-cache
-          cp libs/components/metadata.json dist/metadata.json
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: ./dist
-          include-hidden-files: true
+          npm run build

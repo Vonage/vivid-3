@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@repo/shared';
 import type { Button } from '../button/button';
 import { Shape, Size } from '../enums';
 import '.';

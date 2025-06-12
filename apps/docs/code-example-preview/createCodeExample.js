@@ -25,7 +25,7 @@ const EXISTING_COMPONENTS = new Set(
 	components.map((c) => c.title.toLowerCase().replaceAll(' ', '-'))
 );
 
-const OUTPUT_PATH = 'dist/apps/docs/frames';
+const OUTPUT_PATH = 'dist/frames';
 
 let exampleIndexes = new Map();
 function nextExampleIndex(forUrl) {
@@ -136,7 +136,7 @@ const createiFrameContent = (code, classList, id) => {
 
 	const filePath = `${OUTPUT_PATH}/${id}.html`;
 	fs.writeFileSync(filePath, document);
-	return filePath.substring(OUTPUT_PATH.indexOf('docs' + path.sep) + 4);
+	return `/frames/${id}.html`;
 };
 
 const layout = (code, optionsList) => {

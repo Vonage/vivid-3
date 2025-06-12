@@ -1,18 +1,16 @@
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent,
 	$shades: primary intermediate faint,
 	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset ghost,
 	$states: idle,
 	$default: fieldset
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
+@use '@repo/shared/mixins/appearance' as appearance;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
 
 :host {
 	display: inline-block;

@@ -169,7 +169,7 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	 * HTML Attribute: orientation
 	 */
 	@attr orientation: Orientation | 'horizontal' | 'vertical' =
-		// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+		// eslint-disable-next-line @repo/repo/no-attribute-default-value
 		Orientation.horizontal;
 
 	/**

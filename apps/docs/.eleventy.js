@@ -8,7 +8,6 @@ const fs = require('fs');
 const path = require('path');
 const packageInstallation = require('./shortcodes/packageInstallation');
 const glob = require('glob');
-const { nxViteTsPaths } = require('@nx/vite/plugins/nx-tsconfig-paths.plugin');
 const { spawnSync } = require('child_process');
 const {
 	resetExampleIndex,
@@ -21,10 +20,13 @@ const {
 	navigationFromComponents,
 } = require('./filters/navigationFromComponents');
 const components = require('./content/_data/components.json');
+const { spawn } = require('node:child_process');
+const { NodePackageImporter } = require('sass');
 
-const DOCS_DIR = 'apps/docs';
+const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..');
+const DOCS_DIR = '.';
 const INPUT_DIR = `${DOCS_DIR}/content`;
-const OUTPUT_DIR = 'dist/apps/docs';
+const OUTPUT_DIR = 'dist';
 
 module.exports = function (eleventyConfig) {
 	eleventyConfig.setLibrary('md', markdownLibrary);
@@ -35,7 +37,7 @@ module.exports = function (eleventyConfig) {
 	 * Hack to inject the generated code example frames into the Eleventy results, so that they will be processed by Vite.
 	 */
 	eleventyConfig.on('eleventy.after', async ({ results }) => {
-		const matchedFiles = glob.sync(`dist/apps/docs/frames/*.html`);
+		const matchedFiles = glob.sync(`${OUTPUT_DIR}/frames/*.html`);
 		for (const matchedFile of matchedFiles) {
 			results.push({
 				inputPath: '',
@@ -48,19 +50,18 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(EleventyVitePlugin, {
 		viteOptions: {
-			plugins: [nxViteTsPaths()],
+			build: {
+				emptyOutDir: true,
+			},
 			resolve: {
 				alias: {
-					'/docs': path.resolve('.', 'apps/docs'),
+					'/docs': path.resolve('.'),
 					/**
 					 * While importing @vonage/vivid works fine, it will load too many files in dev mode.
 					 * Therefore, we bundle it into a single file and reference it here.
 					 */
-					'vivid-bundle': path.resolve(
-						'.',
-						'dist/libs/components-bundle/index.js'
-					),
-					'vivid-styles': path.resolve('.', 'dist/libs/styles'),
+					'vivid-bundle': path.resolve('.', 'tmp/components-bundle.js'),
+					'vivid-locales': path.resolve('.', 'tmp/locales-bundle.js'),
 				},
 			},
 			server: {
@@ -71,8 +72,9 @@ module.exports = function (eleventyConfig) {
 			css: {
 				preprocessorOptions: {
 					scss: {
-						// api: 'modern-compiler', not yet supported, instead silence warnings:
-						silenceDeprecations: ['legacy-js-api'],
+						api: 'modern-compiler', // not yet supported, instead silence warnings:
+						// silenceDeprecations: ['legacy-js-api'],
+						importers: [new NodePackageImporter()],
 					},
 				},
 			},
@@ -84,18 +86,30 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
 	eleventyConfig.addPassthroughCopy({
-		'assets/images': 'public/assets/images',
-		'assets/fonts': 'public/assets/fonts',
+		[`${WORKSPACE_ROOT}/assets/images`]: 'public/assets/images',
+		[`${WORKSPACE_ROOT}/assets/fonts`]: 'public/assets/fonts',
 	});
 
-	eleventyConfig.addWatchTarget('libs/components/src/lib/*/README.md');
-	eleventyConfig.addWatchTarget('libs/components/src/lib/*/VARIATIONS.md');
-	eleventyConfig.addWatchTarget('libs/components/src/lib/*/GUIDELINES.md');
-	eleventyConfig.addWatchTarget('libs/components/src/lib/*/ACCESSIBILITY.md');
-	eleventyConfig.addWatchTarget('libs/components/src/lib/*/USE-CASES.md');
-	eleventyConfig.addWatchTarget('libs/eslint-plugin/src/rules/*.md');
-	eleventyConfig.addWatchTarget('docs/');
-	eleventyConfig.addWatchTarget('assets/');
+	eleventyConfig.addWatchTarget(
+		`${WORKSPACE_ROOT}/libs/components/src/lib/*/README.md`
+	);
+	eleventyConfig.addWatchTarget(
+		`${WORKSPACE_ROOT}/libs/components/src/lib/*/VARIATIONS.md`
+	);
+	eleventyConfig.addWatchTarget(
+		`${WORKSPACE_ROOT}/libs/components/src/lib/*/GUIDELINES.md`
+	);
+	eleventyConfig.addWatchTarget(
+		`${WORKSPACE_ROOT}/libs/components/src/lib/*/ACCESSIBILITY.md`
+	);
+	eleventyConfig.addWatchTarget(
+		`${WORKSPACE_ROOT}/libs/components/src/lib/*/USE-CASES.md`
+	);
+	eleventyConfig.addWatchTarget(
+		`${WORKSPACE_ROOT}/libs/eslint-plugin/src/rules/*.md`
+	);
+	eleventyConfig.addWatchTarget(`${WORKSPACE_ROOT}docs/`);
+	eleventyConfig.addWatchTarget(`${WORKSPACE_ROOT}assets/`);
 
 	eleventyConfig.setUseGitIgnore(false);
 
@@ -153,13 +167,75 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.on('eleventy.before', resetExampleIndex);
 
-	eleventyConfig.on('eleventy.after', async ({ dir, runMode }) => {
+	eleventyConfig.on('eleventy.before', async ({ runMode }) => {
 		if (runMode === 'serve') {
-			spawnSync('npx', ['pagefind', '--site', dir.output], {
-				windowsHide: true,
-				stdio: [process.stdin, process.stdout, process.stderr],
-			});
+			spawn(
+				'npx',
+				[
+					'esbuild',
+					'../../libs/components/dist/index.js',
+					'--bundle',
+					'--outfile=tmp/components-bundle.js',
+					'--format=esm',
+					'--watch',
+				],
+				{
+					windowsHide: true,
+					stdio: [process.stdin, process.stdout, process.stderr],
+				}
+			);
+			spawn(
+				'npx',
+				[
+					'esbuild',
+					'assets/scripts/locales-bundle.js',
+					'--bundle',
+					'--outfile=tmp/locales-bundle.js',
+					'--format=esm',
+					'--watch',
+				],
+				{
+					windowsHide: true,
+					stdio: [process.stdin, process.stdout, process.stderr],
+				}
+			);
+		} else {
+			spawnSync(
+				'npx',
+				[
+					'esbuild',
+					'../../libs/components/dist/index.js',
+					'--bundle',
+					'--outfile=tmp/components-bundle.js',
+					'--format=esm',
+				],
+				{
+					windowsHide: true,
+					stdio: [process.stdin, process.stdout, process.stderr],
+				}
+			);
+			spawnSync(
+				'npx',
+				[
+					'esbuild',
+					'assets/scripts/locales-bundle.js',
+					'--bundle',
+					'--outfile=tmp/locales-bundle.js',
+					'--format=esm',
+				],
+				{
+					windowsHide: true,
+					stdio: [process.stdin, process.stdout, process.stderr],
+				}
+			);
 		}
+	});
+
+	eleventyConfig.on('eleventy.after', async ({ dir, runMode }) => {
+		spawnSync('npx', ['pagefind', '--site', dir.output], {
+			windowsHide: true,
+			stdio: [process.stdin, process.stdout, process.stderr],
+		});
 	});
 
 	return {

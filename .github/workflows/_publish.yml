@@ -10,6 +10,10 @@ on:
         required: false
         default: latest
         type: string
+      version:
+        required: false
+        default: ''
+        type: string
     secrets:
       NPM_VVD_VNG_AUTOMATION_TOKEN:
         required: true
@@ -20,16 +24,35 @@ jobs:
   npm-publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
 
-      - name: Download Build
-        uses: actions/download-artifact@v4
-        with:
-          name: build
-          path: dist/
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build
+        run: npx turbo run build
+
+      - name: Set version
+        if: ${{ inputs.version != '' }}
+        working-directory: ${{ inputs.path }}
+        run: |
+          npm version ${{ inputs.version }} --no-git-tag-version
+          echo "Version set to ${{ inputs.version }}"
 
       - name: Check if version is already published
         id: check
@@ -54,13 +77,29 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
+          cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Download Build
-        uses: actions/download-artifact@v4
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
         with:
-          name: build
-          path: dist/
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build
+        run: npx turbo run build
+
+      - name: Set version
+        if: ${{ inputs.version != '' }}
+        working-directory: ${{ inputs.path }}
+        run: |
+          npm version ${{ inputs.version }} --no-git-tag-version
+          echo "Version set to ${{ inputs.version }}"
 
       - name: Check if version is already published
         id: check

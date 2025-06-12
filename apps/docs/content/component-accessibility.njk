@@ -11,4 +11,5 @@ eleventyComputed:
   githubEditLink: "{{ component.accessibility | githubEditLink }}"
 ---
 
-{% renderFile component.accessibility %}
+{% set accessibilityPath = "../../" + component.accessibility %}
+{% renderFile accessibilityPath %}
