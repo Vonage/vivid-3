@@ -2,7 +2,7 @@
 
 <vwc-note connotation="information">
 	<vwc-icon name="info-line" slot="icon" label="Note:"></vwc-icon>
-	<p>Dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)"><code>native dialog</code></a> element.</p>
+	<p>Dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"><code>native dialog</code></a> element.</p>
 </vwc-note>
 
 <vwc-tabs gutters="none">
@@ -252,6 +252,103 @@ Often used to indicate which button the user pressed to close it.
 </script>
 ```
 
+## Scrollable Body
+
+Use the `scrollable-body` property to make only the content area between the header and footer scrollable (instead of a whole dialog).
+
+The dialog has a default `--dialog-body-max-block-size`, you can overwrite it to fit your use case.
+
+```html preview 540px
+<vwc-dialog
+	headline="Keep Your Project Up to Date with Vivid"
+	subtitle="Why Staying Up to Date with Vivid Packages Matters"
+	scrollable-body
+	open
+>
+	<div slot="body">
+		<p>
+			In this article, we’re going to outline the benefits of staying current
+			with Vivid package updates, explain why major upgrades are now
+			straightforward, and provide useful advice for keeping your Vue and React
+			projects up to date.
+		</p>
+		<strong>Ongoing Bug Fixes and Reliability</strong>
+		<p>
+			Every Vivid package update addresses bugs that may impact your product’s
+			stability. For example,
+			<a
+				href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.22.0"
+				target="_blank"
+				>v4.22.0</a
+			>
+			fixed spacing issues in alerts and improved input handling in date & time
+			pickers, while
+			<a
+				href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.17.0"
+				target="_blank"
+				>v4.17.0</a
+			>
+			handled incorrect autofocus behavior of <code>searchable-select</code>.
+			These fixes ensure your application remains reliable and visually
+			consistent, benefiting both developers & end users experience.
+		</p>
+		<strong>Accessibility Tweaks</strong>
+		<p>
+			Vivid updates include accessibility improvements. The
+			<a
+				href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.22.0"
+				target="_blank"
+				>v4.22.0</a
+			>
+			release added <code>aria-checked</code> attributes to menu items, while
+			<a
+				href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.18.0"
+				target="_blank"
+				>v4.18.0</a
+			>
+			fixed <code>radio</code> and <code>radio-group</code> structures to make
+			them work well with screen readers. Such enhancements help your products
+			meet WCAG standards, making your interfaces more inclusive and reducing
+			compliance risks.
+		</p>
+		<strong>New Features and Performance Improvements</strong>
+		<p>
+			Vivid package updates often bring new features and optimizations. The
+			<a
+				href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.18.0"
+				target="_blank"
+				>v4.18.0</a
+			>
+			release introduced a <code>date-time-picker</code> component, and
+			<a
+				href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.20.0"
+				target="_blank"
+				>v4.20.0</a
+			>
+			refined focus styles for a better accessibility and user experience.
+			Performance enhancements are also regularly included: for example,
+			<a
+				href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.5.0"
+				target="_blank"
+				>v4.5.0</a
+			>
+			announced tree-shaking support, allowing unused components to be excluded
+			from your production bundle for faster load times.
+		</p>
+	</div>
+	<vwc-button
+		slot="action-items"
+		appearance="filled"
+		label="Read full article"
+		href="https://vivid.deno.dev/whats-new/why-staying-up-to-date-with-vivid-packages-matters/"
+		target="_blank"
+		icon-trailing
+	>
+		<vwc-icon name="arrow-bold-right-line" slot="icon"></vwc-icon>
+	</vwc-button>
+</vwc-dialog>
+```
+
 ## Slots
 
 ### Graphic Slot
@@ -262,7 +359,7 @@ The `graphic` slot overrides the [icon](/components/dialog/#icons) property.
 Use the slot if a colored icon is needed or an icon with different dimensions.
 
 ```html preview 200px
-<vwc-dialog headline="Dialog With Grapic Slot" open icon-placement="side">
+<vwc-dialog headline="Dialog With Graphic Slot" open icon-placement="side">
 	<img
 		slot="graphic"
 		src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5"
@@ -274,7 +371,7 @@ Use the slot if a colored icon is needed or an icon with different dimensions.
 
 Use the `body` slot in order to add custom HTML to the dialog.
 
-<vwc-note connotation="information" headline="body slot with top border">
+<vwc-note connotation="information" headline="Body slot with top border">
 	<vwc-icon name="info-line" slot="icon"></vwc-icon>
 	<p>When using body slot with a <code>subtitle</code> in the header, a separator will be added between the two.</p>
 </vwc-note>
@@ -399,7 +496,7 @@ Use the main slot to fully override a Dialog's predefined template with your own
 
 ### Z-index
 
-Use `--dialog-z-index` for a different `z-index `value than 1.
+Use `--dialog-z-index` for a different `z-index` value than 1.
 
 <vwc-note connotation="information"  headline="Dialog z-index">
 	<vwc-icon name="info-line" slot="icon"></vwc-icon>
@@ -497,6 +594,7 @@ When the dialog is not used as a modal, you can overwrite default inset values u
 | **open**                      | `boolean`                             | Sets the element's to be opened                                                                                                             |
 | **returnValue**               | `string`                              | Sets the element's to be opened                                                                                                             |
 | **subtitle**                  | `string`                              | Sets the element's return value                                                                                                             |
+| **scrollable-body**           | `boolean`                             | Makes only the element's content area between the header and footer scrollable                                                              |
 
 </div>
 
