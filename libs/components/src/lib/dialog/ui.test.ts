@@ -52,6 +52,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			--dialog-inset-inline: 25% 0;
 			--dialog-inset-block: 0 25%;
 		}
+		.custom-scroll {
+			--dialog-body-max-block-size: 120px;
+		}
 	</style>
 	<div class="grid">
 		<div class="wrapper">
@@ -122,6 +125,19 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				non-dismissible
 				open
 				>
+			</vwc-dialog>
+		</div>
+		<div class="wrapper" style="white-space: nowrap;">
+			<vwc-dialog
+			 	class="custom-scroll"
+				headline="Dialog with scrollable body"
+				scrollable-body
+				open
+				>
+				<div slot="body">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper sollicitudin tempus. Donec vitae libero eu magna tincidunt feugiat. Pellentesque facilisis turpis nibh, a porttitor est feugiat a. Nulla scelerisque et arcu sed gravida. Vestibulum vestibulum sapien vel tempus fermentum. In sed nibh id eros finibus euismod vitae et est. Sed in tortor ac lectus fringilla mattis non at enim. Donec vitae facilisis lacus, ut pharetra augue. </p>
+					<p>Vivamus ornare hendrerit elit et lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse convallis sem vitae magna posuere, et sodales augue placerat. Nulla facilisi. Proin imperdiet dolor a elit rutrum, eu ornare eros tempus. Pellentesque porta volutpat nunc, nec sagittis ligula euismod ut. Ut eros lorem, viverra a ultricies a, convallis lacinia tellus. Duis interdum, tortor sed porttitor dignissim, elit tortor fermentum purus, dictum tincidunt metus dolor ac mi. Vivamus ornare tellus ac rutrum euismod. </p>
+				</div>
 			</vwc-dialog>
 		</div>
 	</div>
