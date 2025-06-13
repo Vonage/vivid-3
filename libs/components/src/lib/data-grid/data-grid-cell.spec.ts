@@ -1,5 +1,5 @@
 import { html } from '@microsoft/fast-element';
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import type { Mock } from 'vitest';
 import { currentLocale } from '../../shared/localization';
 import { DataGridCell } from './data-grid-cell';

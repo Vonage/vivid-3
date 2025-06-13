@@ -16,17 +16,14 @@ Never made an open source contribution before? Wondering how contributions work 
 
 - Building and developing the documentation:
 
-  - Development: `npx nx run docs:serve` or `npm start`
-  - Build: `npx run build docs`
+  - Development: `npm start`
+  - Build: `npx run build`
 
 - Building and developing the components:
 
   - Unit Tests
-    - `npx nx run components:test` to start the tests or `npm test`
-    - `npx nx run components:test --watch` to start the tests in watch mode
-    - `npx nx run components:test --coverage` to start the tests with coverage report (generated in the `coverage` folder)
+    - `npm test`
   - Visual tests: see the [ui-tests documentation](../docs/ui-test/readme.md)
-  - Build: `npx nx run build components`
 
 - Once you are done developing the change, commit your changes with a meaningful commit message.
 

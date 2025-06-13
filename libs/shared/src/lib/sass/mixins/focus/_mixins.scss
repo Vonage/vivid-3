@@ -1,8 +1,9 @@
 @use 'variables' as variables;
-@use '../../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'pkg:@repo/tokens/scss/tokens.constants' as constants;
 
 @mixin focus {
 	$outline-width: 1px;
+
 	box-shadow: 0 0 0 4px
 			color-mix(in srgb, var(#{constants.$vvd-color-cta-500}), transparent 85%),
 		inset 0 0 0 3px var(#{variables.$focus-stroke-gap-color}, currentColor);
@@ -14,7 +15,8 @@
 }
 
 @mixin focus-in-pseudo-element {
-	@include focus();
+	@include focus;
+
 	position: absolute;
 	display: block;
 	border-radius: var(#{variables.$focus-border-radius}, inherit);

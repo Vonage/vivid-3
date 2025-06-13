@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@repo/shared';
 import { CalendarEvent } from './calendar-event';
 import '.';
 

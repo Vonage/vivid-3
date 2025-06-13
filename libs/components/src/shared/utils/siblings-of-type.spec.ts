@@ -1,4 +1,4 @@
-import { fixture } from '@vivid-nx/shared';
+import { fixture } from '@repo/shared';
 import { siblingsOfType } from './siblings-of-type';
 
 describe('siblingsOfType', () => {

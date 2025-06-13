@@ -107,6 +107,7 @@ export default [
 
 ### {{ rule.name }}
 
-{% renderFile rule.markdown %}
+{% assign path = "../../" | append: rule.markdown %}
+{% renderFile path %}
 
 {% endfor %}

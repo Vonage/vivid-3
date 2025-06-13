@@ -1,0 +1,22 @@
+{
+	"name": "@repo/vitest-config",
+	"private": true,
+	"exports": {
+		"./base": {
+			"types": "./dist/node-config.d.ts",
+			"import": "./dist/node-config.mjs",
+			"require": "./dist/node-config.js"
+		},
+		"./ui": {
+			"types": "./dist/jsdom-config.d.ts",
+			"import": "./dist/jsdom-config.mjs",
+			"require": "./dist/jsdom-config.js"
+		}
+	},
+	"scripts": {
+		"build": "vite build"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "*"
+	}
+}

@@ -1,4 +1,4 @@
-import { elementUpdated } from '@vivid-nx/shared';
+import { elementUpdated } from '@repo/shared';
 import { type DelegatesAriaElement } from './delegates-aria';
 import {
 	ariaAttributeName,

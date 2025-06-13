@@ -1,0 +1,10 @@
+{
+	"exports": {
+		"./index": {
+			"sass": "./index/index.scss"
+		},
+		"./*": {
+			"sass": "./*.scss"
+		}
+	}
+}

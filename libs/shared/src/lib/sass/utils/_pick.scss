@@ -3,8 +3,10 @@
 
 @function pick-list($subset, $list) {
 	$new-list: ();
+
 	@each $item in $subset {
 		$n: list.index($list, $item);
+
 		@if $n {
 			$new-item: list.nth($list, $n);
 			$new-list: list.append($new-list, $new-item);
@@ -12,11 +14,13 @@
 			@error 'ERROR: Specified item #{$item} does not exist';
 		}
 	}
+
 	@return $new-list;
 }
 
 @function pick-map($list, $map) {
 	$new-map: ();
+
 	@each $key in $list {
 		@if map.has-key($map, $key) {
 			$value: map.get($map, $key);
@@ -30,5 +34,6 @@
 			@error 'ERROR: Specified index does not exist in the mapping';
 		}
 	}
+
 	@return $new-map;
 }

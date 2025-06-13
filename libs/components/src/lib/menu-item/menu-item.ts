@@ -77,7 +77,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	 * HTML Attribute: role
 	 */
 	@attr
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	override role: MenuItemRole = MenuItemRole.menuitem;
 
 	/**

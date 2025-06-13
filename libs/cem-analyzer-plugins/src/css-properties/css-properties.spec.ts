@@ -12,9 +12,8 @@ describe('cssPropertiesPlugin', () => {
 	it.each(testCases)(
 		`should produce correct results for testcase %s`,
 		async (testCase) => {
-			const moduleFiles = glob.sync(
-				path.join(fixturesPath, testCase, '/**/*.{ts,js}')
-			);
+			const componentsPath = path.join(fixturesPath, testCase, 'components');
+			const moduleFiles = glob.sync(path.join(componentsPath, '/**/*.{ts,js}'));
 			const modules = moduleFiles.map((moduleFile) =>
 				ts.createSourceFile(
 					path.basename(moduleFile),
@@ -23,7 +22,7 @@ describe('cssPropertiesPlugin', () => {
 					true
 				)
 			);
-			process.chdir(path.join(fixturesPath, testCase));
+			process.chdir(componentsPath);
 
 			expect(
 				create({ modules, plugins: [cssPropertiesPlugin()] })

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import { Icon } from '../icon/icon';
 import { ListboxOption } from './option';
 import '.';

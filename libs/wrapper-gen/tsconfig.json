@@ -1,24 +1,16 @@
 {
-	"extends": "../../tsconfig.base.json",
+	"extends": "@repo/typescript-config/tsc.json",
 	"compilerOptions": {
-		"module": "commonjs",
-		"lib": ["ES2021"],
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"strict": true,
-		"noImplicitOverride": true,
-		"noPropertyAccessFromIndexSignature": true,
-		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true
+		"verbatimModuleSyntax": false,
+		"declaration": true,
+
+		"outDir": "dist",
+		"rootDir": "src"
 	},
-	"files": [],
-	"include": [],
+	"include": ["src"],
 	"references": [
 		{
-			"path": "./tsconfig.lib.json"
-		},
-		{
-			"path": "./tsconfig.spec.json"
+			"path": "./tsconfig.tools.json"
 		}
 	]
 }

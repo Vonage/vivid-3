@@ -1,9 +1,6 @@
-// @ts-ignore
-import tokensVivid2CompatCss from '../../../../dist/libs/styles/tokens/vivid-2-compat.css?raw';
-// @ts-ignore
-import coreThemeCss from '../../../../dist/libs/styles/core/theme.css?raw';
-// @ts-ignore
-import coreTypographyCss from '../../../../dist/libs/styles/core/typography.css?raw';
+import tokensVivid2CompatCss from '@repo/styles/tokens/vivid-2-compat.css?raw';
+import coreThemeCss from '@repo/styles/core/theme.css?raw';
+import coreTypographyCss from '@repo/styles/core/typography.css?raw';
 
 export interface Style {
 	name: string;

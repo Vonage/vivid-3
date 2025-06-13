@@ -1,5 +1,20 @@
 {
-	"name": "@vonage/vwc-consts",
-	"version": "0.0.1",
-	"type": "commonjs"
+	"name": "@repo/consts",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "*",
+		"@repo/eslint-config": "*"
+	}
 }

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import { DOM } from '@microsoft/fast-element';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';

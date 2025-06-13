@@ -1,0 +1,47 @@
+{
+	"name": "@repo/shared",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts",
+		"./utils": {
+			"sass": "./src/lib/sass/utils/index.scss"
+		},
+		"./mixins/appearance": {
+			"sass": "./src/lib/sass/mixins/appearance/index.scss"
+		},
+		"./mixins/connotation": {
+			"sass": "./src/lib/sass/mixins/connotation/index.scss"
+		},
+		"./mixins/elevation": {
+			"sass": "./src/lib/sass/mixins/elevation/index.scss"
+		},
+		"./mixins/focus": {
+			"sass": "./src/lib/sass/mixins/focus/index.scss"
+		},
+		"./mixins/scrollbar": {
+			"sass": "./src/lib/sass/mixins/scrollbar/index.scss"
+		},
+		"./*": {
+			"sass": "./src/lib/sass/*.scss"
+		}
+	},
+	"scripts": {
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"stylelint": "stylelint 'src/**/*.{css,scss}'",
+		"stylelint:fix": "stylelint 'src/**/*.{css,scss}' --fix",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@repo/tokens": "*"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "*",
+		"@repo/eslint-config": "*",
+		"@repo/stylelint-config": "*",
+		"@repo/vitest-config": "*"
+	}
+}

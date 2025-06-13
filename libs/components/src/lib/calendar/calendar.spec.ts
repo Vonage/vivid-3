@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@repo/shared';
 import { DOM } from '@microsoft/fast-element';
 
 import { Calendar } from './calendar';

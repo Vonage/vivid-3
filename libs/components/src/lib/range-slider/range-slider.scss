@@ -1,5 +1,5 @@
 @use '../slider/partials/variables' as variables;
-@forward '../slider/slider.scss';
+@forward '../slider/slider';
 
 .control {
 	// Unlike slider, track-start should not be aligned to the start of the track

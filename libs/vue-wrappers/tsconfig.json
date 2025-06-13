@@ -1,19 +1,16 @@
 {
-	"extends": "../../tsconfig.base.json",
+	"extends": "@repo/typescript-config/components.json",
 	"compilerOptions": {
-		"module": "commonjs",
-		"forceConsistentCasingInFileNames": true,
-		"strict": true,
-		"noImplicitOverride": true,
-		"noPropertyAccessFromIndexSignature": true,
-		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true
+		"declaration": true,
+		"verbatimModuleSyntax": false,
+
+		"outDir": "dist",
+		"rootDir": "src"
 	},
-	"files": [],
-	"include": [],
+	"include": ["src"],
 	"references": [
 		{
-			"path": "./tsconfig.lib.json"
+			"path": "./tsconfig.tools.json"
 		}
 	]
 }

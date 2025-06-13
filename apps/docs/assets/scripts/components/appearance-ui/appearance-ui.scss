@@ -1,24 +1,20 @@
-@use '../../../../../../dist/libs/tokens/scss/size.variables' as size;
-@use '../../../../../../libs/shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../../../libs/shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/tokens/scss/size.variables' as size;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta success alert warning information announcement,
 	$shades: faint soft dim pale light primary primary-text primary-increment firm
 		firm-all fierce fierce-primary contrast intermediate,
 	$default: accent
 );
-@use '../../../../../../libs/shared/src/lib/sass/mixins/connotation' as
-	connotation;
-@use '../../../../../../libs/shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: filled ghost ghost-light outlined outlined-light duotone subtle
 		subtle-light fieldset listitem,
 	$states: idle hover active selected checked checkedAndHover selectedAndHover
 		disabled selectedAndDisabled readonly,
 	$default: filled
 );
-@use '../../../../../../libs/shared/src/lib/sass/mixins/appearance' as
-	appearance;
+@use '@repo/shared/mixins/appearance' as appearance;
 
 .wrapper {
 	display: grid;

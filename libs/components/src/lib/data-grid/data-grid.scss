@@ -1,4 +1,4 @@
-@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
+@use '@repo/shared/mixins/scrollbar' as scrollbar;
 
 :host {
 	display: block;

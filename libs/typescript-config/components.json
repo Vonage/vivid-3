@@ -1,0 +1,11 @@
+{
+	"extends": "./_base.json",
+	"compilerOptions": {
+		"useDefineForClassFields": false,
+
+		"module": "esnext",
+		"moduleResolution": "bundler",
+
+		"lib": ["dom", "dom.iterable"]
+	}
+}

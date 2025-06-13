@@ -18,7 +18,7 @@ export type FeedbackType = 'none' | 'helper' | 'error' | 'success';
  * Renders a feedback message of the given type. When type='none', nothing is rendered.
  */
 export class FeedbackMessage extends Localized(VividElement) {
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	@attr type: FeedbackType = 'none';
 }
 

@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"target": "es2022",
+
+		"moduleDetection": "force",
+
+		"esModuleInterop": true,
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"verbatimModuleSyntax": true,
+
+		"strict": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"noImplicitOverride": true,
+		"forceConsistentCasingInFileNames": true,
+
+		"stripInternal": true,
+		"removeComments": true,
+		"skipLibCheck": true,
+
+		"experimentalDecorators": true,
+
+		"lib": ["es2021"],
+		"types": ["vitest/globals"]
+	}
+}

@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@repo/shared';
 import { Progress } from './progress';
 import '.';
 

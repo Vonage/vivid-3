@@ -1,4 +1,4 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'pkg:@repo/tokens/scss/tokens.constants' as constants;
 @use 'partials/variables' as variables;
 
 #{variables.$theme-main-selector},

@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@repo/shared';
 import { Dialog } from './dialog';
 import { setDialogPolyfill } from './dialog.spec';
 import '.';

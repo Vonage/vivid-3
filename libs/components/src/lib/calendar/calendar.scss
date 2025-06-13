@@ -1,8 +1,7 @@
 @use 'partials/variables' as variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/tokens/scss/size.variables' as size;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
 
 :host {
 	display: block;

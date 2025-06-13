@@ -1,17 +1,15 @@
 @use '../popup/partials/variables' as popup-variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '@repo/tokens/scss/tokens.constants' as constants;
 @use '../text-field/partials/variables' as text-field-variables;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset ghost,
 	$states: idle hover disabled readonly error success,
 	$default: fieldset
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '@repo/shared/mixins/appearance' as appearance;
 @use 'partials/variables' as variables;
 @use '../../shared/patterns/chevron' as chevron;
 

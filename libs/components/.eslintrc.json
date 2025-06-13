@@ -1,20 +1,17 @@
 {
-	"ignorePatterns": ["!**/*"],
-	"parserOptions": {
-		"project": "./tsconfig.base.json"
-	},
-	"env": {
-		"browser": true
-	},
-	"plugins": ["@typescript-eslint", "import", "eslint-plugin-tsdoc", "@nx"],
+	"root": true,
 	"extends": [
 		"@microsoft/eslint-config-fast-dna",
 		"plugin:compat/recommended",
-		"../../.eslintrc.json",
+		"@repo/eslint-config/base.js",
 		"prettier"
 	],
+	"env": {
+		"browser": true
+	},
+	"plugins": ["@typescript-eslint", "import", "eslint-plugin-tsdoc"],
 	"rules": {
-		"@nrwl/nx/workspace/no-attribute-default-value": "error",
+		"@repo/repo/no-attribute-default-value": "error",
 		"compat/compat": "error",
 		"@typescript-eslint/explicit-member-accessibility": [
 			"error",
@@ -24,25 +21,5 @@
 		],
 		"@typescript-eslint/no-unsafe-declaration-merging": "off"
 	},
-	"overrides": [
-		{
-			"files": ["*.spec.ts", "*.test.ts"],
-			"rules": {
-				"@nrwl/nx/enforce-module-boundaries": "off"
-			}
-		},
-		{
-			"files": ["package.json"],
-			"parser": "jsonc-eslint-parser",
-			"rules": {
-				"@nx/dependency-checks": [
-					"error",
-					{
-						"checkMissingDependencies": false
-					}
-				],
-				"@typescript-eslint/naming-convention": "off"
-			}
-		}
-	]
+	"overrides": []
 }

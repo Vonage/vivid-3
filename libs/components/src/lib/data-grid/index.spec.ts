@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@repo/shared';
 import type { DataGrid } from './data-grid';
 import { DataGridSelectionMode } from './data-grid';
 import './index';

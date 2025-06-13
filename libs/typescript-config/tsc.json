@@ -1,0 +1,7 @@
+{
+	"extends": "./_base.json",
+	"compilerOptions": {
+		"module": "preserve",
+		"moduleResolution": "bundler"
+	}
+}

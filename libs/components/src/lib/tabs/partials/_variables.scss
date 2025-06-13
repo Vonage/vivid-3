@@ -1,4 +1,4 @@
-@use '../../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use '@repo/tokens/scss/size.variables' as size;
 
 $tabs-active-indicator-stroke-width: --_tabs-active-indicator-stroke-width;
 $tabs-active-indicator-inline-size: --_tabs-active-tab-inline-size;

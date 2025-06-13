@@ -1,24 +1,4 @@
 {
-	"extends": "../../tsconfig.base.json",
-	"compilerOptions": {
-		"module": "commonjs",
-		"forceConsistentCasingInFileNames": true,
-		"strict": true,
-		"noImplicitOverride": true,
-		"noImplicitReturns": true,
-		"noUnusedLocals": true,
-		"noFallthroughCasesInSwitch": true,
-		"esModuleInterop": true,
-		"resolveJsonModule": true
-	},
-	"files": [],
-	"include": [],
-	"references": [
-		{
-			"path": "./tsconfig.lib.json"
-		},
-		{
-			"path": "./tsconfig.spec.json"
-		}
-	]
+	"extends": "@repo/typescript-config/components.json",
+	"include": ["assets/scripts", "*.ts"]
 }

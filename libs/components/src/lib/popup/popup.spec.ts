@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	fixture,
 	getControlElement,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import * as floatingUI from '@floating-ui/dom';
 import type { Mock, MockInstance } from 'vitest';
 import type { ComputePositionReturn } from '@floating-ui/dom';

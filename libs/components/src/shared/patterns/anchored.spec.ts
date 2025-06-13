@@ -1,5 +1,5 @@
 import { customElement } from '@microsoft/fast-element';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@repo/shared';
 import type { Mock, MockInstance } from 'vitest';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { Anchored, anchorSlotTemplateFactory } from './anchored';

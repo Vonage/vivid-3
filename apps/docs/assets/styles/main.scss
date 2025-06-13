@@ -1,5 +1,5 @@
 @forward 'highlight.js/styles/github.css';
-@forward '../../../../dist/libs/styles/core/all.css';
+@forward '@repo/styles/core/all.css';
 @forward 'reset';
 @forward './welcome';
 @forward './footer';

@@ -1,4 +1,4 @@
-import { IconsManifest } from '@vonage/vwc-consts';
+import { IconsManifest } from '@repo/consts';
 
 export const iconsManifestStub: IconsManifest = [
 	{

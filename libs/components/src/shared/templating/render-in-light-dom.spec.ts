@@ -4,7 +4,7 @@ import {
 	html,
 	observable,
 } from '@microsoft/fast-element';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@repo/shared';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { renderInLightDOM } from './render-in-light-dom';
 

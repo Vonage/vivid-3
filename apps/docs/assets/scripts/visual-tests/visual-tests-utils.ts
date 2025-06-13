@@ -4,6 +4,10 @@ import markdownIt from 'markdown-it';
 import { JSDOM } from 'jsdom';
 import type { Page } from '@playwright/test';
 
+const BASE_URL = Boolean(process.env.PW_TEST_CONNECT_WS_ENDPOINT)
+	? 'http://hostmachine:8080/playground/'
+	: 'http://localhost:8080/playground/';
+
 const layout = (function () {
 	const layoutFactorial =
 		(...attrs: string[]) =>
@@ -60,7 +64,7 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 }
 
 export async function loadPage({ page }: { page: Page }) {
-	await page.goto('http://127.0.0.1:8080/playground/');
+	await page.goto(BASE_URL);
 }
 
 export async function loadTemplate({

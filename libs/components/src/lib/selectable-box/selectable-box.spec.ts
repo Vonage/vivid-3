@@ -3,7 +3,7 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { Connotation } from '../enums';
 import { SelectableBox } from './selectable-box';
 import '.';

@@ -1,18 +1,15 @@
 import { createRegisterFunction } from '../../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../../shared/design-system/defineVividComponent';
-import {
-	buttonDefinition,
-	dividerDefinition,
-	listboxOptionDefinition,
-	menuDefinition,
-	menuItemDefinition,
-	selectDefinition,
-	tooltipDefinition,
-} from '../../components';
+import { buttonDefinition } from '../../../lib/button/definition';
+import { dividerDefinition } from '../../divider/definition';
+import { listboxOptionDefinition } from '../../option/definition';
+import { tooltipDefinition } from '../../tooltip/definition';
+import { menuDefinition } from '../../menu/definition';
+import { menuItemDefinition } from '../../menu-item/definition';
+import { selectDefinition } from '../../select/definition';
+import { MenuBarTemplate as template } from './menubar.template';
+import { MenuBar } from './menubar';
 import styles from './menubar.scss?inline';
-
-import { MenuBar } from './menubar.js';
-import { MenuBarTemplate as template } from './menubar.template.js';
 
 export const menuBarDefinition = defineVividComponent(
 	'menubar',

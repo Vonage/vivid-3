@@ -1,7 +1,0 @@
-## First Use Case
-
-Description of first use case.
-
-```html preview
-<vwc-<%= name %>></vwc-<%= name %>>
-```

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { ActionGroup } from './action-group';
 import '.';

@@ -1,5 +1,5 @@
 import { customElement, html } from '@microsoft/fast-element';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@repo/shared';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { ariaAttributeName } from './aria-mixin';
 

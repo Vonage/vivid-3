@@ -6,7 +6,7 @@ import {
 	getBaseElement,
 	listenToFormSubmission,
 	setupDelegatesFocusPolyfill,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import type { Popup } from '../../lib/popup/popup';

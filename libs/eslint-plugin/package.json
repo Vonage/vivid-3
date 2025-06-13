@@ -6,15 +6,28 @@
 	"main": "./index.cjs",
 	"exports": {
 		".": {
-			"types": "./index.d.ts",
-			"import": "./index.js",
-			"require": "./index.cjs"
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
 		}
+	},
+	"scripts": {
+		"build": "vite build",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"eslint-plugin-vue": "^9.0.0"
 	},
 	"peerDependencies": {
 		"eslint": ">=0.8.0"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "*",
+		"@repo/eslint-config": "*",
+		"@repo/vitest-config": "*"
 	}
 }

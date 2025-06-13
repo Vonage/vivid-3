@@ -2,59 +2,45 @@ name: 🧪 Unit Test
 
 on:
   workflow_call:
-    inputs:
-      os:
-        type: string
-        description: Operating System to run the workflow on
-        default: 'ubuntu-latest'
-        required: false
-      report_coverage:
-        required: false
-        type: boolean
-        default: false
 
 jobs:
   test:
     name: 'Unit Tests'
-    runs-on: ${{ inputs.os }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - uses: actions/setup-node@v3
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - uses: actions/cache@v3
-        id: cache
-        with:
-          path: |
-            node_modules/
-            apps/vue-docs/node_modules/
-            libs/storybook-vue2/node_modules/
-            libs/storybook-vue3/node_modules/
-          key: ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-cache-
+          cache: 'npm'
 
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - run: npm run nx run-many -- --target=test --all --coverage --coverageReporters=lcov
-        id: test
-        env:
-          CI: true
+      - name: Test
+        run: npm run test
 
-      - run: node ./tools/coverageMerger.js
-
-      - uses: actions/upload-artifact@v4
-        if: ${{ inputs.report_coverage }}
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
         with:
-          name: coverage
-          path: ./coverage
-          include-hidden-files: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/
+          fail_ci_if_error: true
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          verbose: true
 
       - run: exit 0
         if: ${{ steps.test.outcome == 'success' }}

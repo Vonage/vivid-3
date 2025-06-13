@@ -1,24 +1,22 @@
 @use 'sass:map';
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta,
 	$shades: primary primary-text primary-increment contrast fierce fierce-primary
 		faint firm soft,
 	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: ghost ghost-light,
 	$states: idle hover active selected selectedAndHover,
 	$default: ghost
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
+@use '@repo/shared/mixins/appearance' as appearance;
+@use '@repo/tokens/scss/size.variables' as size;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
 
 .control {
 	@include connotation.connotation(nav-disclosure);

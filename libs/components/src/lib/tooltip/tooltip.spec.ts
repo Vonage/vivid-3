@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	fixture,
 	getControlElement,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { fireEvent } from '@testing-library/dom';
 import type { Button } from '../button/button';
 import { Popup } from '../popup/popup';

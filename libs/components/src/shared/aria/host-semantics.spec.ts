@@ -1,6 +1,6 @@
 import { customElement, html, observable } from '@microsoft/fast-element';
 import { describe } from 'vitest';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@repo/shared';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { applyHostSemantics, HostSemantics } from './host-semantics';
 

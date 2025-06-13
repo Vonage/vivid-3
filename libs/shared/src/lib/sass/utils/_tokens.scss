@@ -1,5 +1,6 @@
 @function get-token-prefix() {
 	$prefix: --vvd;
+
 	@return #{$prefix};
 }
 

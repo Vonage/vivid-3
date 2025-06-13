@@ -1,6 +1,6 @@
 import 'element-internals-polyfill';
 
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@repo/shared';
 import { NumberField } from './number-field';
 import '.';
 

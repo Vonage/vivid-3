@@ -1,5 +1,5 @@
 import { customElement, html } from '@microsoft/fast-element';
-import { fixture, setupDelegatesFocusPolyfill } from '@vivid-nx/shared';
+import { fixture, setupDelegatesFocusPolyfill } from '@repo/shared';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { ignoreEventInFocusTraps, TrappedFocus } from './trapped-focus';
 

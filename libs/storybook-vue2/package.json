@@ -1,5 +1,12 @@
 {
-	"name": "storybook-vue2",
+	"name": "@repo/storybook-vue2",
+	"scripts": {
+		"dev": "storybook dev -p 6002"
+	},
+	"dependencies": {
+		"@repo/styles": "*",
+		"@vonage/vivid-vue": "*"
+	},
 	"devDependencies": {
 		"@storybook/addon-essentials": "^7.0.2",
 		"@storybook/addon-interactions": "^7.0.2",

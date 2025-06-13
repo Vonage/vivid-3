@@ -3,7 +3,7 @@ import {
 	fixture,
 	getBaseElement,
 	setupDelegatesFocusPolyfill,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { Button } from '../../../lib/button/button';
 import type { CalendarPickerElement } from './calendar-picker';
 

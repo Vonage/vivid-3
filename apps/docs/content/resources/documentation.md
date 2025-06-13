@@ -119,7 +119,7 @@ Each component page is split into sub pages (represented in the _tab-like_ navig
 
 Each of these generated sub page files contain example content (markdown) to help our component docs stay consistent. Delete parts you don't need, but maintain the order / format of the ramaining parts.
 
-See the [component generator files](https://github.com/Vonage/vivid-3/tree/main/libs/nx-vivid/src/generators/component/files) for examples of the recommended content & structure of each sub page.
+See the [component generator files](https://github.com/Vonage/vivid-3/tree/main/turbo/generators/component/templates) for examples of the recommended content & structure of each sub page.
 
 ### Configuration
 

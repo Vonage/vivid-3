@@ -3,7 +3,7 @@ import { identity, memoizeWith } from 'ramda';
 import {
 	ICONS_BASE_URL as BASE_URL,
 	ICONS_VERSION as ICON_SET_VERSION,
-} from '@vonage/vwc-consts';
+} from '@repo/consts';
 import type { Connotation } from '../enums';
 import { numberConverter } from '../../shared/utils/numberConverter';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';

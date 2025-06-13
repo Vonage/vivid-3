@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@repo/shared';
 import { Icon } from '../icon/icon';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { NavItem, type NavItemConnotation } from './nav-item';

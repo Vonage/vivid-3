@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@repo/shared';
 import type { AccordionItem } from '../accordion-item/accordion-item';
 import { Accordion } from './accordion';
 import '../accordion-item';

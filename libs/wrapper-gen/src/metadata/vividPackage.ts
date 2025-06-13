@@ -5,7 +5,7 @@ import { kebabToPascal } from '../utils/casing';
  */
 export const getTypescriptDefinitionPath = (originalFilePath: string) =>
 	originalFilePath
-		.replace(/^libs\/components\/src\//, '../../dist/libs/components/')
+		.replace(/^src\//, '../components/dist/')
 		.replace(/\.ts$/, '.d.ts');
 
 /**

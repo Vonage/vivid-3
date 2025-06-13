@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import type { BreadcrumbItem } from '../breadcrumb-item/breadcrumb-item';
 import {
 	allAriaPropertiesExcept,

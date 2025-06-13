@@ -5,11 +5,11 @@ Vitepress site hosting the Vivid Vue examples and API reference.
 ## Previewing the Docs
 
 ```sh
-nx run vue-docs:dev
+"turbo run dev --filter=@repo/vue-docs --filter=@vonage/vivid --filter=@repo/styles"
 ```
 
 ## Building the Docs
 
 ```sh
-nx build vue-docs
+npx turbo run @repo/vue-docs#build
 ```

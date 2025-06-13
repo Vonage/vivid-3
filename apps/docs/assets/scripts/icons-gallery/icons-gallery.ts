@@ -9,12 +9,12 @@ import {
 	volatile,
 } from '@microsoft/fast-element';
 import {
-	IconDefinition,
+	type IconDefinition,
 	ICONS_MANIFEST_URL,
-	IconsManifest,
-	IconTag,
-} from '@vonage/vwc-consts';
-import { Alert } from '../vivid';
+	type IconsManifest,
+	type IconTag,
+} from '@repo/consts';
+import type { Alert } from '../vivid';
 import styles from './icons-gallery.style.scss?inline';
 
 const fetchIcons = async (): Promise<IconsManifest> =>

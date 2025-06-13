@@ -1,5 +1,5 @@
 import { attr, customElement, FASTElement } from '@microsoft/fast-element';
-import type { Appearance } from 'vivid-bundle';
+import type { Appearance } from '@vonage/vivid';
 import { AppearanceUiTemplate } from './appearance-ui.template';
 import styles from './appearance-ui.scss?inline';
 

@@ -11,14 +11,34 @@ jobs:
       contents: read # Needed to clone the repository
 
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v3
         with:
-          name: build
-          path: ./dist
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build docs
+        run: |
+          npx turbo run build '--filter=./apps/*'
+          mv ./apps/vue-docs/dist ./apps/docs/dist/vivid-vue
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: vivid
-          root: dist/apps/docs
+          root: apps/docs/dist
           entrypoint: https://deno.land/std@0.217.0/http/file_server.ts

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@repo/shared';
 import { Elevation } from './elevation';
 import '.';
 

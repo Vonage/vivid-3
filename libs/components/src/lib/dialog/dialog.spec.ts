@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import * as dialogPolyfill from 'dialog-polyfill';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';

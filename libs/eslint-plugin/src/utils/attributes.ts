@@ -1,4 +1,4 @@
-import { Node } from '../types/vue-eslint-parser';
+import type { Node } from '../types/vue-eslint-parser';
 import { kebabToCamel } from './casing';
 
 const normalizeAttributeName = (name: string) => kebabToCamel(name);

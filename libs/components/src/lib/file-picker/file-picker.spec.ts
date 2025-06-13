@@ -4,7 +4,7 @@ import {
 	elementUpdated,
 	fixture,
 	getControlElement,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import '.';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';

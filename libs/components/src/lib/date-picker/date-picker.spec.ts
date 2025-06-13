@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	fixture,
 	setupDelegatesFocusPolyfill,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { setLocale } from '../../shared/localization';

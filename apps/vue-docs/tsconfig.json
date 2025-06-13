@@ -5,5 +5,12 @@
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"allowSyntheticDefaultImports": true
-	}
+	},
+	"include": [
+		"docs/**/*.ts",
+		"docs/.vitepress/*.ts",
+		"docs/**/*.vue",
+		"scripts"
+	],
+	"exclude": ["docs/.vitepress/cache"]
 }
