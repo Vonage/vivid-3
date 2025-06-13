@@ -2,10 +2,13 @@ import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
+	getResolvedTextContent,
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
 import { Button } from '../../../lib/button/button';
 import type { CalendarPickerElement } from './calendar-picker';
+
+const cleanWhitespace = (text: string) => text.replace(/\s+/g, ' ').trim();
 
 /**
  * Common tests for calendar pickers.
@@ -249,6 +252,12 @@ export const calendarPickerSpec = <T extends CalendarPickerElement>(
 			expect(getDateButton('2023-08-10').classList).toContain('current');
 		});
 
+		it('should announce the current date as today', () => {
+			expect(
+				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-10')))
+			).toBe('10 today');
+		});
+
 		it('should switch to the previous month when clicking the previous month button', async () => {
 			getButtonByLabel('Previous month').click();
 			await elementUpdated(element);
@@ -267,6 +276,12 @@ export const calendarPickerSpec = <T extends CalendarPickerElement>(
 			beforeEach(async () => {
 				element._numCalendars = 1;
 				await elementUpdated(element);
+			});
+
+			it('should provide a descriptive accessible name for the change month button', () => {
+				expect(getTitleAction().getAttribute('aria-label')).toBe(
+					'Change month, August 2023 selected'
+				);
 			});
 
 			it('should switch to the previous year when clicking the previous year button', async () => {
@@ -364,12 +379,36 @@ export const calendarPickerSpec = <T extends CalendarPickerElement>(
 			await openMonthView();
 		});
 
+		it('should provide a descriptive accessible name for the title action', () => {
+			expect(getTitleAction().getAttribute('aria-label')).toBe(
+				'Show calendar for August 2023'
+			);
+		});
+
+		it('should announce the current month as current', async () => {
+			expect(
+				cleanWhitespace(getResolvedTextContent(getMonthButton('2023-08')))
+			).toContain('current');
+		});
+
 		it('should highlight the current month', () => {
 			expect(getMonthButton('2023-08').classList).toContain('current');
 		});
 
 		it('should highlight the selected month', async () => {
 			expect(getMonthButton('2023-08').classList).toContain('selected');
+		});
+
+		it('should announce the selected month as selected', async () => {
+			expect(
+				cleanWhitespace(getResolvedTextContent(getMonthButton('2023-08')))
+			).toContain('selected');
+		});
+
+		it('should announce a month as both current and selected when the current month is selected', async () => {
+			expect(
+				cleanWhitespace(getResolvedTextContent(getMonthButton('2023-08')))
+			).toBe('Aug current selected');
 		});
 
 		it('should switch to the previous year when clicking the previous year button', async () => {

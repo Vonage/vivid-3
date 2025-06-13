@@ -67,6 +67,13 @@ const enGB: Locale = {
 		prevMonthLabel: 'Previous month',
 		nextMonthLabel: 'Next month',
 		nextYearLabel: 'Next year',
+		todayLabel: 'today',
+		selectedLabel: 'selected',
+		currentLabel: 'current',
+		changeMonthLabel: /* istanbul ignore next */ (month: string) =>
+			`Change month, ${month} selected`,
+		showCalendarForMonthLabel: /* istanbul ignore next */ (month: string) =>
+			`Show calendar for ${month}`,
 		invalidDateError: 'Please enter a valid date.',
 		invalidDateRangeError: 'Please enter a valid date range.',
 		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>
