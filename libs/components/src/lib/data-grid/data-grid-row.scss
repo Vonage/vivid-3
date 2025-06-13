@@ -14,32 +14,31 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
-.base {
+:host {
 	@include connotation.connotation(data-grid-row);
 	@include appearance.appearance;
 
-	& {
-		display: grid;
-		width: 100%;
-		box-sizing: border-box;
-		color: var(#{constants.$vvd-color-canvas-text});
-	}
-
-	:host([row-type='sticky-header']) & {
-		position: sticky;
-		z-index: 9;
-		top: 0;
-		background: var(
-			#{variables.$data-grid-row-background},
-			var(#{constants.$vvd-color-canvas})
-		);
-	}
-
-	:host([row-type='hidden-header']) & {
-		display: none;
-	}
-
-	:host(:is([selected]):not([row-type*='header'])) & {
-		background-color: var(#{appearance.get-appearance-token(fill)});
-	}
+	display: grid;
+	width: 100%;
+	box-sizing: border-box;
+	color: var(#{constants.$vvd-color-canvas-text});
 }
+
+:host([row-type='sticky-header']) {
+	position: sticky;
+	z-index: 9;
+	top: 0;
+	background: var(
+		#{variables.$data-grid-row-background},
+		var(#{constants.$vvd-color-canvas})
+	);
+}
+
+:host([row-type='hidden-header']) {
+	display: none;
+}
+
+:host(:is([selected]):not([row-type*='header'])) {
+	background-color: var(#{appearance.get-appearance-token(fill)});
+}
+

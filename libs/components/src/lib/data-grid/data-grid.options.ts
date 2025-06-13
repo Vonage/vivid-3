@@ -43,6 +43,7 @@ export const DataGridCellTypes = {
 	default: 'default',
 	columnHeader: 'columnheader',
 	rowHeader: 'rowheader',
+	stickyColumn: 'sticky-column',
 } as const;
 
 /**

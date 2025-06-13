@@ -41,7 +41,7 @@ export * from './progress/definition';
 export * from './radio-group/definition';
 export * from './radio/definition';
 export * from './range-slider/definition';
-export * from './rich-text-editor/definition';
+// export * from './rich-text-editor/definition'; // Excluding just for build
 export * from './searchable-select/definition';
 export * from './select/definition';
 export * from './selectable-box/definition';

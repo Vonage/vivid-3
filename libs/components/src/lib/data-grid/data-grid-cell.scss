@@ -26,6 +26,16 @@
 	outline: none;
 }
 
+:host([cell-type='sticky-column']) {
+	position: sticky;
+	left: 0;
+	z-index: 5;
+	background: var(
+			#{variables.$data-grid-row-background},
+			var(#{constants.$vvd-color-canvas})
+	);
+}
+
 .base {
 	@include connotation.connotation(data-grid-cell);
 	@include appearance.appearance;
