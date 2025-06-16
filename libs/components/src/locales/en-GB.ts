@@ -219,6 +219,12 @@ const enGB: Locale = {
 			selected: 'Selected',
 		},
 	},
+	pagination: {
+		previousPageLabel: 'Go to previous page',
+		nextPageLabel: 'Go to next page',
+		goToPageLabel: /* istanbul ignore next */ (index: number) =>
+			`Go to page ${index}`,
+	},
 };
 
 export default enGB;

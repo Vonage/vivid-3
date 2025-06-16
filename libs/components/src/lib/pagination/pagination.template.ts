@@ -57,22 +57,27 @@ const paginationButtonRenderer = (buttonTag: string) => html` ${when(
 	(value) => value !== '...',
 	html`
 		<${buttonTag} class="vwc-pagination-button"
-									label="${(value) => value}"
-									appearance="${getButtonAppearance}"
-									size="${(_, { parent: x }) => getPaginationSize(x)}"
-									shape="${(_, { parent: x }) => getPaginationShape(x)}"
-									style="inline-size: ${(value) => getPaginationButtonWidth(value)};"
-									tabindex="0"
-									aria-current="${(value, { parent }) =>
-										parent.selectedIndex === Number(value) - 1}"
-									@click="${handleSelection}"
-									@keydown="${handleKeyDown}">
+			label="${(value) => value}"
+			appearance="${getButtonAppearance}"
+			size="${(_, { parent: x }) => getPaginationSize(x)}"
+			shape="${(_, { parent: x }) => getPaginationShape(x)}"
+			style="inline-size: ${(value) => getPaginationButtonWidth(value)};"
+			tabindex="0"
+			aria-label="${(value, { parent: x }) =>
+				x.locale.pagination.goToPageLabel(value)}"
+			aria-current="${(value, { parent }) =>
+				parent.selectedIndex === Number(value) - 1}"
+			@click="${handleSelection}"
+			@keydown="${handleKeyDown}">
 		</${buttonTag}>
 	`
 )}
 ${when(
 	(value) => value === '...',
-	html` <div class="dots size-${(_, { parent: x }) => getPaginationSize(x)}">
+	html` <div
+		class="dots size-${(_, { parent: x }) => getPaginationSize(x)}"
+		aria-hidden="true"
+	>
 		...
 	</div>`
 )}`;
@@ -101,12 +106,13 @@ export const PaginationTemplate = (context: VividElementDefinitionContext) => {
 	return html<Pagination>`
 	<div class="${getClasses}">
 		<${buttonTag} class="prev-button" ${ref('prevButton')}
-									label="${(x) => (!x.navIcons ? 'Previous' : null)}"
-									icon="${(x) => (x.navIcons ? 'chevron-left-line' : null)}"
-									size="${getPaginationSize}"
-									shape="${getPaginationShape}"
-									?disabled="${(x) => x.total === 0 || x.selectedIndex === 0}"
-									@click="${(x) => x.selectedIndex !== undefined && x.selectedIndex--}"
+			label="${(x) => (!x.navIcons ? 'Previous' : null)}"
+			icon="${(x) => (x.navIcons ? 'chevron-left-line' : null)}"
+			size="${getPaginationSize}"
+			shape="${getPaginationShape}"
+			?disabled="${(x) => x.total === 0 || x.selectedIndex === 0}"
+			@click="${(x) => x.selectedIndex !== undefined && x.selectedIndex--}"
+			aria-label="${(x) => x.locale.pagination.previousPageLabel}"
 		></${buttonTag}>
 		<div id="buttons-wrapper" class="buttons-wrapper" ${children({
 			property: 'paginationButtons',
@@ -115,12 +121,13 @@ export const PaginationTemplate = (context: VividElementDefinitionContext) => {
 			${repeat((x) => x.pagesList, paginationButtonTemplate, { positioning: true })}
 		</div>
 		<${buttonTag} class="next-button" ${ref('nextButton')}
-									label="${(x) => (!x.navIcons ? 'Next' : null)}"
-									icon="${(x) => (x.navIcons ? 'chevron-right-line' : null)}"
-									size="${getPaginationSize}"
-									shape="${getPaginationShape}"
-									?disabled="${(x) => x.total === 0 || x.selectedIndex === x.total - 1}"
-									@click="${(x) => x.selectedIndex !== undefined && x.selectedIndex++}"
+			label="${(x) => (!x.navIcons ? 'Next' : null)}"
+			icon="${(x) => (x.navIcons ? 'chevron-right-line' : null)}"
+			size="${getPaginationSize}"
+			shape="${getPaginationShape}"
+			?disabled="${(x) => x.total === 0 || x.selectedIndex === x.total - 1}"
+			@click="${(x) => x.selectedIndex !== undefined && x.selectedIndex++}"
+			aria-label="${(x) => x.locale.pagination.nextPageLabel}"
 		></${buttonTag}>
 </div>`;
 };
