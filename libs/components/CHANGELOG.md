@@ -4,6 +4,29 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.26.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.25.0...vivid-v4.26.0) (2025-06-16)
+
+
+### Features
+
+* **accordion:** add heading and meta slots (VIV-2636) ([#2400](https://github.com/Vonage/vivid-3/issues/2400)) ([7c882de](https://github.com/Vonage/vivid-3/commit/7c882de93dcb2f5aebaf8615378da6aca3d1d45f))
+* **calendar:** Set the default start-time alignment to 8 a.m. (VIV-2219) ([#2404](https://github.com/Vonage/vivid-3/issues/2404)) ([8e38721](https://github.com/Vonage/vivid-3/commit/8e387213d4018356b83eedbc63ec3e638df89e98))
+* **checkbox:** make 'indeterminate' as a prop (VIV-2596) ([#2394](https://github.com/Vonage/vivid-3/issues/2394)) ([fee30af](https://github.com/Vonage/vivid-3/commit/fee30aff7e1f0e1da32f4576da89bfc0bb0e74e9))
+* **dialog:** add inset variables for the non-modal dialog (VIV-2710) ([#2410](https://github.com/Vonage/vivid-3/issues/2410)) ([7f39bf1](https://github.com/Vonage/vivid-3/commit/7f39bf1a212cd220598715ba57023cad5006fcdb))
+* **dialog:** add scrollable-body support to dialog (VIV-2638) ([#2414](https://github.com/Vonage/vivid-3/issues/2414)) ([715b6a5](https://github.com/Vonage/vivid-3/commit/715b6a50f0ce49d1b4334cd140bb4dc7fd39aa86))
+* **time-picker, date-picker, date-range-picker:** add gap between helper-text and popup (VIV-2701) ([#2403](https://github.com/Vonage/vivid-3/issues/2403)) ([48caaed](https://github.com/Vonage/vivid-3/commit/48caaed1447fc96c610d4dcc4905101ab5f09ec5))
+
+
+### Bug Fixes
+
+* **accordion-item, nav-disclosure:** use line icon variant instead of solid (VIV-2705) ([#2406](https://github.com/Vonage/vivid-3/issues/2406)) ([fd85cab](https://github.com/Vonage/vivid-3/commit/fd85cab18d69f783ba465d26fbcb70dfc4d05654))
+* **components:** Use data-vvd-component instead of role attribute (VIV-2604) ([#2393](https://github.com/Vonage/vivid-3/issues/2393)) ([9334f5f](https://github.com/Vonage/vivid-3/commit/9334f5f3ba956760756a2a389626e566d3dcf304))
+* **data-grid:** fix sticky-header row property being overwritten by generate-header (VIV-2714) ([#2412](https://github.com/Vonage/vivid-3/issues/2412)) ([0368476](https://github.com/Vonage/vivid-3/commit/03684766e718ffeb79753fbbb61627dfb525e91d))
+* **dialpad:** Add localized aria-label to delete/backspace button (VIV-2693) ([#2402](https://github.com/Vonage/vivid-3/issues/2402)) ([42cb3bd](https://github.com/Vonage/vivid-3/commit/42cb3bdd373c0f0bfaa9a5d6190135548302c76b))
+* **number-field:** screen reader accessibility fixes (VIV-2694) ([#2405](https://github.com/Vonage/vivid-3/issues/2405)) ([72944ec](https://github.com/Vonage/vivid-3/commit/72944ec666cf03a0e31a5b636dacbe1dc07928cc))
+* **searchable-select:** fix issue with tags being cut-off on smaller width (VIV-2689) ([#2401](https://github.com/Vonage/vivid-3/issues/2401)) ([a4cbd7d](https://github.com/Vonage/vivid-3/commit/a4cbd7dcfbd0d77e8b2f49ba94c05ce602a384df))
+* **slider, range-slider:** remove focus transition (VIV-2690) ([#2397](https://github.com/Vonage/vivid-3/issues/2397)) ([e596b63](https://github.com/Vonage/vivid-3/commit/e596b638df15ffbf09fbbc642659ca05b03af83b))
+
 ## [4.25.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.24.0...vivid-v4.25.0) (2025-06-02)
 
 
