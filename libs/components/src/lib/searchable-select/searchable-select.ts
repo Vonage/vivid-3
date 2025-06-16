@@ -980,9 +980,8 @@ export class SearchableSelect extends WithFeedback(
 		if (this.disabled) {
 			return;
 		}
-
 		const capturedOption = (e.target as HTMLElement).closest(
-			`option,[role=option]`
+			`option,[role=option],[data-vvd-component=option]`
 		) as ListboxOption | null;
 
 		if (capturedOption && !capturedOption.disabled) {

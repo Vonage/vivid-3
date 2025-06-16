@@ -53,23 +53,23 @@ describe('data grid integration tests', () => {
 			beforeEach(async function () {
 				element = (await fixture(
 					`<${COMPONENT_TAG}>
-											<${COMPONENT_TAG}-row role="row" class="header" row-type="header">
-											<${COMPONENT_TAG}-cell cell-type="columnheader" role="columnheader">
-											data1
-											</${COMPONENT_TAG}-cell>
-											<${COMPONENT_TAG}-cell cell-type="columnheader">
-											data2
-											</${COMPONENT_TAG}-cell>
-											</${COMPONENT_TAG}-row>
-											<${COMPONENT_TAG}-row aria-selected="true">
-											<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
-											<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
-											</${COMPONENT_TAG}-row>
-											<${COMPONENT_TAG}-row aria-selected="false">
-											<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
-											<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
-											</${COMPONENT_TAG}-row>
-										</${COMPONENT_TAG}>`
+						<${COMPONENT_TAG}-row role="row">
+							<${COMPONENT_TAG}-cell cell-type="columnheader" role="columnheader">
+							data1
+							</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell cell-type="columnheader">
+							data2
+							</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+						<${COMPONENT_TAG}-row aria-selected="true">
+							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+						<${COMPONENT_TAG}-row aria-selected="false">
+							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+					</${COMPONENT_TAG}>`
 				)) as DataGrid;
 			});
 			it('should set row-type sticky-header on header row when generateHeader is sticky', async function () {
@@ -84,6 +84,34 @@ describe('data grid integration tests', () => {
 				element.generateHeader = 'default';
 				await elementUpdated(element);
 				expect(element.rowElements[0].getAttribute('row-type')).toBe('header');
+			});
+
+			it('should not overwrite header row-type when it is set in the grid template and generateHeader is default', async function () {
+				element = (await fixture(
+					`<${COMPONENT_TAG}>
+						<${COMPONENT_TAG}-row row-type="sticky-header" role="row">
+							<${COMPONENT_TAG}-cell cell-type="columnheader" role="columnheader">
+							data1
+							</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell cell-type="columnheader">
+							data2
+							</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+						<${COMPONENT_TAG}-row>
+							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+						<${COMPONENT_TAG}-row>
+							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+					</${COMPONENT_TAG}>`
+				)) as DataGrid;
+				element.generateHeader = 'default';
+				await elementUpdated(element);
+				expect(element.rowElements[0].getAttribute('row-type')).toBe(
+					'sticky-header'
+				);
 			});
 		});
 	});
@@ -428,6 +456,7 @@ describe('data grid integration tests', () => {
 				const allNoneHeaderRows = Array.from(
 					element.querySelectorAll('[role="row"]')
 				);
+
 				const allNonHeaderRowsNotSelectable = allNoneHeaderRows.every(
 					(row) => !row.hasAttribute('aria-selected')
 				);
@@ -470,6 +499,7 @@ describe('data grid integration tests', () => {
 
 			it('should set aria-selected="true" on clicked row', async function () {
 				element.selectionMode = DataGridSelectionMode.singleRow;
+				await elementUpdated(element);
 				const cell = getRowCell(1, 0);
 				const row = getRow(1);
 				cell.click();
@@ -479,6 +509,8 @@ describe('data grid integration tests', () => {
 
 			it('should set aria-selected="true" on clicked row and remove from other rows', async function () {
 				element.selectionMode = DataGridSelectionMode.singleRow;
+				await elementUpdated(element);
+
 				const row1 = getRow(1);
 				const cellInRow1 = getRowCell(1, 0);
 				const row2 = getRow(2);
@@ -495,14 +527,17 @@ describe('data grid integration tests', () => {
 
 			it.each(['ctrlKey', 'shiftKey', 'metaKey'])(
 				'should set aria-selected="true" to all clicked rows in "multi-row" state and %s key pressed',
-				function (activeKey) {
+				async function (activeKey) {
 					element.selectionMode = DataGridSelectionMode.multiRow;
+					await elementUpdated(element);
 					const row1 = getRow(1);
 					const cellInRow1 = getRowCell(1, 0);
 					const row2 = getRow(2);
 					const cellInRow2 = getRowCell(2, 0);
 
 					cellInRow1.click();
+					await elementUpdated(element);
+
 					cellInRow2.dispatchEvent(
 						new MouseEvent('click', {
 							[activeKey]: true,
@@ -510,6 +545,7 @@ describe('data grid integration tests', () => {
 							composed: true,
 						})
 					);
+					await elementUpdated(element);
 
 					expect(row1.getAttribute('aria-selected')).toEqual('true');
 					expect(row2.getAttribute('aria-selected')).toEqual('true');

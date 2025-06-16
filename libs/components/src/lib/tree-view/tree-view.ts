@@ -335,7 +335,10 @@ export class TreeView extends HostSemantics(VividElement) {
 	 */
 	private checkForNestedItems(): boolean {
 		return this.slottedTreeItems.some((node: HTMLElement) => {
-			return isTreeItemElement(node) && node.querySelector("[role='treeitem']");
+			return (
+				isTreeItemElement(node) &&
+				node.querySelector("[data-vvd-component='tree-item']")
+			);
 		});
 	}
 
@@ -351,6 +354,6 @@ export class TreeView extends HostSemantics(VividElement) {
 	};
 
 	private getVisibleNodes(): HTMLElement[] {
-		return getDisplayedNodes(this, "[role='treeitem']");
+		return getDisplayedNodes(this, "[data-vvd-component='tree-item']");
 	}
 }

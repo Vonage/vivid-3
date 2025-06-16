@@ -60,6 +60,13 @@ As an alternative to the `checked` and `indeterminate` members, you can use the 
 
 [2]: https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaChecked#value
 
+<vwc-note connotation="warning" headline="Deprecated behavior: aria-checked">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+The `aria-checked` prop will no longer set the state (as of 06/25) . It is still functional in the component, but will be updated in a future major release. This will be communicated when it's change becomes a release candidate at the end of the support period.
+
+</vwc-note>
+
 ```html preview
 <vwc-checkbox aria-checked="true"></vwc-checkbox>
 <vwc-checkbox aria-checked="false"></vwc-checkbox>
@@ -117,6 +124,7 @@ The `helper-text` slot allows you to use rich content as the Checkbox's helper t
 | **default-checked** | `boolean`                                                  | Provides the default checkedness of the input element                                                                                                                                                                                                                                                                                 |
 | **checked**         | `boolean`                                                  | The current checkedness of the element. This property serves as a mechanism to set the `checked` property through both property assignment and the .setAttribute() method. This is useful for setting the field's checkedness in UI libraries that bind data through the .setAttribute() API and don't support IDL attribute binding. |
 | **aria-label**      | `string`                                                   |
+| **indeterminate**   | `boolean`                                                  | Indicates whether a checkbox is in an indeterminate state.                                                                                                                                                                                                                                                                            |
 | **connotation**     | _Enum_:<br/>`accent`<br/>`cta`                             | The connotation the checklist should have.                                                                                                                                                                                                                                                                                            |
 | **aria-checked**    | _Enum_:<br/>`true`<br/>`false`<br/>`mixed`<br/>`undefined` | The current checkbox state                                                                                                                                                                                                                                                                                                            |
 | **readonly**        | `boolean`                                                  | When true, the control will be immutable by user interaction. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly HTML attribute for more information.                                                                                                                                                          |

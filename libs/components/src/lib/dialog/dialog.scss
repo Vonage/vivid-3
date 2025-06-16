@@ -37,6 +37,8 @@ $dialog-space-size: 24px;
 
 	&:not(.modal) {
 		z-index: var(#{variables.$dialog-z-index}, 1);
+		inset-block: var(#{variables.$dialog-inset-block}, auto);
+		inset-inline: var(#{variables.$dialog-inset-inline}, 0);
 	}
 
 	&.modal {

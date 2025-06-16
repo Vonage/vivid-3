@@ -125,8 +125,12 @@ const enGB: Locale = {
 		dismissButtonLabel: 'Close',
 	},
 	numberField: {
-		incrementButtonLabel: 'Increment',
-		decrementButtonLabel: 'Decrement',
+		incrementButtonLabel: /* istanbul ignore next */ (step: number) =>
+			step === 1 ? 'Increase value' : `Increase value by ${step}`,
+		decrementButtonLabel: /* istanbul ignore next */ (step: number) =>
+			step === 1 ? 'Decrease value' : `Decrease value by ${step}`,
+		updatedValueAnnouncement: /* istanbul ignore next */ (value: string) =>
+			`Updated value: ${value}`,
 	},
 	splitButton: {
 		showMoreActionsLabel: 'Show more actions',
@@ -138,7 +142,7 @@ const enGB: Locale = {
 	},
 	dialPad: {
 		inputLabel: 'Phone number',
-		deleteButtonLabel: 'Delete',
+		deleteButtonLabel: 'Delete last digit',
 		callButtonLabel: 'Call',
 		endCallButtonLabel: 'End call',
 		digitOneLabel: '1',

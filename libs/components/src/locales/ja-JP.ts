@@ -125,8 +125,12 @@ const jaJP: Locale = {
 		dismissButtonLabel: '閉じる',
 	},
 	numberField: {
-		incrementButtonLabel: '増加',
-		decrementButtonLabel: '減少',
+		incrementButtonLabel: /* istanbul ignore next */ (step: number) =>
+			step === 1 ? '価値を高める' : `値を${step}増加`,
+		decrementButtonLabel: /* istanbul ignore next */ (step: number) =>
+			step === 1 ? '値を下げる' : `値を${step}減らす`,
+		updatedValueAnnouncement: /* istanbul ignore next */ (value: string) =>
+			`更新された値: ${value}`,
 	},
 	splitButton: {
 		showMoreActionsLabel: 'その他の操作を表示',
@@ -138,7 +142,7 @@ const jaJP: Locale = {
 	},
 	dialPad: {
 		inputLabel: '電話番号',
-		deleteButtonLabel: '消去',
+		deleteButtonLabel: '最後の桁を削除',
 		callButtonLabel: '電話',
 		endCallButtonLabel: '通話終了',
 		digitOneLabel: '1',

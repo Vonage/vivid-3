@@ -4,10 +4,8 @@ In order for the select popup to show correctly in the grid, use the `fixed-drop
 
 ```html preview
 <vwc-data-grid class="data-grid">
-	<vwc-data-grid-row role="row" class="header" row-type="header">
-		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
-			data1
-		</vwc-data-grid-cell>
+	<vwc-data-grid-row class="header" row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader"> data1 </vwc-data-grid-cell>
 		<vwc-data-grid-cell cell-type="columnheader"> data2 </vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
@@ -39,7 +37,7 @@ In order for the select popup to show correctly in the grid, use the `fixed-drop
 
 ## Sortable Columns
 
-In order for a grid column to show as sortable, use the `aria-sort` attribute on the sortable column header.
+In order for a grid column to show as sortable, use the `sort-direction` attribute on the sortable column header.
 
 Here's an example of sorting when building the grid manually:
 
@@ -49,7 +47,7 @@ Here's an example of sorting when building the grid manually:
 		<vwc-data-grid-cell cell-type="columnheader">
 			Not Sortable
 		</vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader" aria-sort="none">
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="none">
 			Sortable
 		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
@@ -104,15 +102,17 @@ Here's an example of sorting when building the grid manually:
 
 	renderData();
 
-	grid.addEventListener('sort', (e) => {
-		console.log(e.detail);
-		e.target.ariaSort =
-			e.detail.sortDirection === 'ascending'
-				? 'descending'
-				: e.detail.sortDirection === 'descending'
-				? 'none'
-				: 'ascending';
-		renderData(e.target.ariaSort);
+	grid.addEventListener('sort', (event) => {
+		const { detail, target } = event;
+		console.log(detail);
+		if (detail.sortDirection === 'ascending') {
+			target.sortDirection = 'descending';
+		} else if (e.detail.sortDirection === 'descending') {
+			target.sortDirection = 'none';
+		} else {
+			target.sortDirection = 'ascending';
+		}
+		renderData(e.target.sortDirection);
 	});
 </script>
 ```

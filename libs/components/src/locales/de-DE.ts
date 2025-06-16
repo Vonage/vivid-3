@@ -126,8 +126,12 @@ const deDE: Locale = {
 		dismissButtonLabel: 'Schließen',
 	},
 	numberField: {
-		incrementButtonLabel: 'Erhöhen',
-		decrementButtonLabel: 'Verringern',
+		incrementButtonLabel: /* istanbul ignore next */ (step: number) =>
+			step === 1 ? 'Wert erhöhen' : `Wert um ${step} erhöhen`,
+		decrementButtonLabel: /* istanbul ignore next */ (step: number) =>
+			step === 1 ? 'Wert verringern' : `Wert um ${step} verringern`,
+		updatedValueAnnouncement: /* istanbul ignore next */ (value: string) =>
+			`Aktualisierter Wert: ${value}`,
 	},
 	splitButton: {
 		showMoreActionsLabel: 'Weitere Aktionen anzeigen',
@@ -139,7 +143,7 @@ const deDE: Locale = {
 	},
 	dialPad: {
 		inputLabel: 'Telefonnummer',
-		deleteButtonLabel: 'Löschen',
+		deleteButtonLabel: 'Letzte Ziffer löschen',
 		callButtonLabel: 'Anrufen',
 		endCallButtonLabel: 'Anruf beenden',
 		digitOneLabel: '1',

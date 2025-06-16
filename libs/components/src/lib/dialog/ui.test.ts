@@ -48,6 +48,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		.wrapper {
 			position: relative;
 		}
+		.inset {
+			--dialog-inset-inline: 25% 0;
+			--dialog-inset-block: 0 25%;
+		}
 	</style>
 	<div class="grid">
 		<div class="wrapper">
@@ -110,10 +114,20 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				>
 			</vwc-dialog>
 		</div>
+		<div class="wrapper" style="white-space: nowrap;">
+			<vwc-dialog
+				class="inset"
+				headline="Dialog with inset values"
+				subtitle="This is the content that I want to show "
+				non-dismissible
+				open
+				>
+			</vwc-dialog>
+		</div>
 	</div>
 	`;
 
-	await page.setViewportSize({ width: 1000, height: 800 });
+	await page.setViewportSize({ width: 1000, height: 1200 });
 
 	await loadComponents({
 		page,

@@ -841,12 +841,37 @@ describe('vwc-number-field', () => {
 		describe('add and subtract buttons', () => {
 			it('renders a localized "aria-label" on the add button', async () => {
 				const addButton = element.shadowRoot?.getElementById('add');
-				expect(addButton?.getAttribute('aria-label')).toBe('Increment');
+				expect(addButton?.getAttribute('aria-label')).toBe('Increase value');
+				element.step = 3;
+				await elementUpdated(element);
+				expect(addButton?.getAttribute('aria-label')).toBe(
+					'Increase value by 3'
+				);
 			});
 
 			it('renders a localized "aria-label" on the subtract button', async () => {
 				const subtractButton = element.shadowRoot?.getElementById('subtract');
-				expect(subtractButton?.getAttribute('aria-label')).toBe('Decrement');
+				expect(subtractButton?.getAttribute('aria-label')).toBe(
+					'Decrease value'
+				);
+				element.step = 3;
+				await elementUpdated(element);
+				expect(subtractButton?.getAttribute('aria-label')).toBe(
+					'Decrease value by 3'
+				);
+			});
+
+			it('updates status announcement after clicking the button', async () => {
+				element.value = '5';
+				await elementUpdated(element);
+
+				const addButton = element.shadowRoot?.getElementById('add');
+				addButton?.click();
+				await elementUpdated(element);
+
+				const annoucementEl =
+					element.shadowRoot?.getElementById('value-announcement');
+				expect(annoucementEl?.textContent?.trim()).toBe('Updated value: 6');
 			});
 
 			describe('aria overrides', () => {

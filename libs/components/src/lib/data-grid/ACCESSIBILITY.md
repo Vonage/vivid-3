@@ -1,7 +1,8 @@
 ## Implementation
 
-- Usage of `aria-selected` hints on a selectable element and its selection status.
-- When a cell is sorted but not according to ascending or descending algorithm, use `aria-sort="other"`.
+- Usage of `selected` attribute defines the `aria-selected` value.
+- Similarly, usage of `sort-direction` attribute is reflected in `aria-sort` value.
+- When a cell is sorted but not according to ascending or descending algorithm, use `sort-direction="other"`.
 
 ## Resources
 

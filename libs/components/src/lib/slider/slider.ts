@@ -369,11 +369,11 @@ export class Slider extends Localized(
 		if (this.orientation === Orientation.horizontal) {
 			this.position = this.isDragging
 				? `right: ${percentage}%; transition: none;`
-				: `right: ${percentage}%; transition: all 0.2s ease;`;
+				: `right: ${percentage}%; transition: right 0.2s ease;`;
 		} else {
 			this.position = this.isDragging
 				? `bottom: ${percentage}%; transition: none;`
-				: `bottom: ${percentage}%; transition: all 0.2s ease;`;
+				: `bottom: ${percentage}%; transition: bottom 0.2s ease;`;
 		}
 	}
 

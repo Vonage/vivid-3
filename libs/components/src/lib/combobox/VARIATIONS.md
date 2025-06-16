@@ -47,10 +47,11 @@ To add HTML to the helper text, use the [helper-text slot](/components/combobox/
 
 The `placeholder` attribute provides some text to be displayed when no option has been Combobox.
 
-<vwc-note connotation="information"headline="Accessibility Tip">
-<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
+<vwc-note connotation="information" headline="Accessibility Tip">
+  <vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
+	
+    Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.
 
-<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
 </vwc-note>
 
 ```html preview 270px

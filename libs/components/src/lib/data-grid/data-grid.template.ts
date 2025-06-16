@@ -36,6 +36,13 @@ function setHeaderRow(x: DataGrid) {
 		const headerRow = x.querySelector(
 			'[cell-type="columnheader"]'
 		)?.parentElement;
+		if (
+			x.generateHeader === GenerateHeaderOptions.default &&
+			(headerRow?.getAttribute('row-type') === DataGridRowTypes.header ||
+				headerRow?.getAttribute('row-type') === DataGridRowTypes.stickyHeader)
+		) {
+			return;
+		}
 		if (headerRow) {
 			const rowType =
 				x.generateHeader === GenerateHeaderOptions.sticky

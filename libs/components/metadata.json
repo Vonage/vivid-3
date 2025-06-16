@@ -167,8 +167,16 @@
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
 				{
+					"name": "heading",
+					"description": "Used to add content to the heading."
+				},
+				{
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
+				},
+				{
+					"name": "meta",
+					"description": "Used to add additional content to the heading."
 				}
 			]
 		},
@@ -1654,8 +1662,9 @@
 				},
 				{
 					"name": "indeterminate",
-					"description": "The indeterminate state of the control",
+					"description": "The indeterminate state of the control.",
 					"type": "boolean",
+					"attributeName": "indeterminate",
 					"propertyName": "indeterminate"
 				},
 				{
@@ -2152,6 +2161,20 @@
 					"type": "string",
 					"attributeName": "grid-column",
 					"propertyName": "gridColumn"
+				},
+				{
+					"name": "selected",
+					"description": "Reflects selected state of the row",
+					"type": "boolean",
+					"attributeName": "selected",
+					"propertyName": "selected"
+				},
+				{
+					"name": "sortDirection",
+					"description": "Sets the sorting direction.",
+					"type": "'none' | 'ascending' | 'descending' | 'other'",
+					"attributeName": "sort-direction",
+					"propertyName": "sortDirection"
 				}
 			],
 			"events": [
@@ -2198,19 +2221,11 @@
 				{
 					"name": "sort",
 					"description": "Event that fires when a sortable column header is clicked",
-					"type": "CustomEvent<{columnDataKey: string, ariaSort: string | null}>"
+					"type": "CustomEvent<{columnDataKey: string, ariaSort: string | null, sortDirection: string | null}>"
 				}
 			],
 			"vueModels": [],
 			"methods": [
-				{
-					"name": "ariaSelectedChanged",
-					"args": [
-						{ "name": "_", "type": "string | null" },
-						{ "name": "selectedState", "type": "string | null" }
-					],
-					"returnType": "unknown"
-				},
 				{
 					"name": "handleFocusin",
 					"args": [{ "name": "_", "type": "FocusEvent" }],
@@ -2256,6 +2271,13 @@
 					"type": "'default' | 'header' | 'sticky-header'",
 					"attributeName": "row-type",
 					"propertyName": "rowType"
+				},
+				{
+					"name": "selected",
+					"description": "Reflects selected state of the row",
+					"type": "boolean",
+					"attributeName": "selected",
+					"propertyName": "selected"
 				}
 			],
 			"events": [
@@ -8619,5 +8641,5 @@
 			"slots": [{ "name": "default", "description": "Default slot" }]
 		}
 	],
-	"iconsManifestUrl": "https://icon.resources.vonage.com/v4.6.5/manifest.json"
+	"iconsManifestUrl": "https://icon.resources.vonage.com/v4.6.6/manifest.json"
 }

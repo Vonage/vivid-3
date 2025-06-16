@@ -47,7 +47,7 @@ const defaultHeaderCellContentsTemplate: ViewTemplate<DataGridCell> = html`
  * @public
  * @component data-grid-cell
  * @slot - Default slot.
- * @event {CustomEvent<{columnDataKey: string, ariaSort: string | null}>} sort - Event that fires when a sortable column header is clicked
+ * @event {CustomEvent<{columnDataKey: string, ariaSort: string | null, sortDirection: string | null}>} sort - Event that fires when a sortable column header is clicked
  * @event {CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>} cell-click - Event that fires when a cell is clicked
  * @event {CustomEvent<HTMLElement>} cell-focused - Fires a custom 'cell-focused' event when focus is on the cell or its contents
  */
@@ -139,8 +139,6 @@ export class DataGridCell extends Localized(VividElement) {
 
 		this.updateCellView();
 		this.updateCellStyle();
-
-		this.ariaSelectedChanged(null, this.ariaSelected);
 	}
 
 	/**
@@ -310,6 +308,14 @@ export class DataGridCell extends Localized(VividElement) {
 				}
 				break;
 		}
+
+		if (!this.columnDefinition?.sortable) {
+			this.sortDirection = undefined;
+		} else if (this.columnDefinition.sortDirection) {
+			this.sortDirection = this.columnDefinition.sortDirection;
+		} else {
+			this.sortDirection = DataGridCellSortStates.none;
+		}
 	}
 
 	private disconnectCellView(): void {
@@ -328,8 +334,49 @@ export class DataGridCell extends Localized(VividElement) {
 	};
 
 	/**
+	 *
+	 * @private
+	 */
+	private calculateAriaSelectedValue() {
+		if (this._selectable && this.selected) return 'true';
+
+		if (this._selectable && !this.selected) return 'false';
+
+		return null;
+	}
+
+	/**
+	 * @internal
+	 */
+	@observable
+	_selectable = false;
+
+	/**
+	 * @internal
+	 */
+	_selectableChanged() {
+		this.ariaSelected = this.calculateAriaSelectedValue();
+	}
+
+	/**
+	 * Reflects selected state of the row
+	 *
+	 * @public
+	 */
+	@attr({ mode: 'boolean' })
+	selected = false;
+
+	/**
+	 * @internal
+	 */
+	selectedChanged() {
+		this.ariaSelected = this.calculateAriaSelectedValue();
+	}
+
+	/**
 	 * Indicates the selected status.
 	 *
+	 * @deprecated For setting selected state, please use `selected` property instead.
 	 * @public
 	 * HTML Attribute: aria-selected
 	 */
@@ -337,18 +384,58 @@ export class DataGridCell extends Localized(VividElement) {
 	override ariaSelected: string | null = null;
 
 	/**
+	 * @internal
+	 */
+	ariaSelectedChanged(_: string | null, newValue: string | null) {
+		this._selectable = newValue !== null;
+		this.selected = newValue === 'true';
+	}
+
+	/**
 	 * Indicates the sort status.
 	 *
+	 * @deprecated To set the sorting visual style please use `sortDirection` property.
 	 * @public
 	 * HTML Attribute: aria-sort
 	 */
 	@attr({ attribute: 'aria-sort' }) override ariaSort: string | null = null;
 
-	ariaSelectedChanged(_: string | null, selectedState: string | null) {
-		this.shadowRoot!.querySelector('.base')?.classList.toggle(
-			'selected',
-			selectedState === 'true'
-		);
+	/**
+	 * @internal
+	 */
+	ariaSortChanged(
+		_oldValue: DataGridCellSortStates,
+		newValue: DataGridCellSortStates
+	) {
+		if (newValue === null) {
+			this.sortDirection = undefined;
+			return;
+		}
+
+		this.sortDirection = newValue;
+	}
+
+	/**
+	 * Sets the sorting direction.
+	 *
+	 * @public
+	 * HTML Attribute: sort-direction
+	 */
+	@attr({ attribute: 'sort-direction' }) sortDirection?: DataGridCellSortStates;
+
+	/**
+	 * @internal
+	 */
+	sortDirectionChanged(
+		_oldValue: DataGridCellSortStates | undefined,
+		newValue: DataGridCellSortStates | undefined
+	) {
+		if (newValue === undefined) {
+			this.ariaSort = null;
+			return;
+		}
+
+		this.ariaSort = newValue;
 	}
 
 	#getColumnDataKey() {
@@ -362,12 +449,12 @@ export class DataGridCell extends Localized(VividElement) {
 	 */
 	_handleInteraction(): boolean {
 		const isHeaderCell = this.cellType === 'columnheader';
-		const isSortable = isHeaderCell && this.ariaSort !== null;
+		const isSortable = isHeaderCell && this.sortDirection !== undefined;
 
 		if (isSortable) {
 			this.$emit('sort', {
 				columnDataKey: this.#getColumnDataKey(),
-				sortDirection: this.ariaSort,
+				sortDirection: this.sortDirection,
 			});
 		}
 

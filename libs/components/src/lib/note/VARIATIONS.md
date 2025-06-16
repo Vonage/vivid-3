@@ -29,21 +29,21 @@ The `connotation` attribute to convey the Note's purpose through it's color.
 
 ```html preview blocks
 <vwc-note connotation="accent" headline="Accent Note (default)">
-	<vwc-icon slot="icon" name="megaphone-line"></vwc-icon>
+	<vwc-icon slot="icon" name="megaphone-line" label="Announcement:"></vwc-icon>
 </vwc-note>
 <vwc-note connotation="alert" headline="Alert Note">
-	<vwc-icon slot="icon" name="error-line"></vwc-icon>
+	<vwc-icon slot="icon" name="error-line" label="Alert:"></vwc-icon>
 </vwc-note>
 <vwc-note connotation="success" headline="Success Note">
-	<vwc-icon slot="icon" name="check-circle-line"></vwc-icon>
+	<vwc-icon slot="icon" name="check-circle-line" label="Success"></vwc-icon>
 </vwc-note>
 <vwc-note connotation="warning" headline="Warning Note">
 	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 </vwc-note>
 <vwc-note connotation="information" headline="Information Note">
-	<vwc-icon slot="icon" name="info-line"></vwc-icon>
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 </vwc-note>
 <vwc-note connotation="announcement" headline="Announcement Note">
-	<vwc-icon slot="icon" name="sparkles-line"></vwc-icon>
+	<vwc-icon slot="icon" name="sparkles-line" label="Key Fact:"></vwc-icon>
 </vwc-note>
 ```

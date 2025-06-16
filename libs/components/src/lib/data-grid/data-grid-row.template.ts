@@ -1,4 +1,5 @@
 import { children, elements, html, slotted } from '@microsoft/fast-element';
+import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { DataGridCell } from './data-grid-cell';
 import type { DataGridRow } from './data-grid-row';
@@ -30,6 +31,8 @@ function createHeaderCellItemTemplate(context: VividElementDefinitionContext) {
 export const DataGridRowTemplate = (context: VividElementDefinitionContext) => {
 	const cellItemTemplate = createCellItemTemplate(context);
 	const headerCellItemTemplate = createHeaderCellItemTemplate(context);
+	const getBaseClasses = (x: DataGridRow) =>
+		classNames('base', ['selected', !!x.selected]);
 	return html<DataGridRow>`
 		<template
 			role="row"
@@ -39,12 +42,12 @@ export const DataGridRowTemplate = (context: VividElementDefinitionContext) => {
 			${children({
 				property: 'cellElements',
 				filter: elements(
-					'[role="cell"],[role="gridcell"],[role="columnheader"],[role="rowheader"]'
+					'[role="cell"],[role="gridcell"],[role="columnheader"],[role="rowheader"],[cell-type]'
 				),
 			})}
 		>
 			<div
-				class="base ${(x) => (x.ariaSelected === 'true' ? 'selected' : '')}"
+				class="${getBaseClasses}"
 				style="grid-template-columns: ${(x) => x.gridTemplateColumns};"
 			>
 				<slot ${slotted('slottedCellElements')}></slot>
