@@ -224,7 +224,7 @@ const deDE: Locale = {
 	pagination: {
 		previousPageLabel: 'Zur vorherigen Seite',
 		nextPageLabel: 'Zur nächsten Seite',
-		goToPageLabel: /* istanbul ignore next */ (index: number) =>
+		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
 			`Weiter zu Seite ${index}`,
 	},
 };

@@ -222,7 +222,7 @@ const zhCN: Locale = {
 	pagination: {
 		previousPageLabel: '转至上一页',
 		nextPageLabel: '转至下一页',
-		goToPageLabel: /* istanbul ignore next */ (index: number) =>
+		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
 			`转至第 ${index} 页`,
 	},
 };

@@ -222,7 +222,7 @@ const enGB: Locale = {
 	pagination: {
 		previousPageLabel: 'Go to previous page',
 		nextPageLabel: 'Go to next page',
-		goToPageLabel: /* istanbul ignore next */ (index: number) =>
+		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
 			`Go to page ${index}`,
 	},
 };
