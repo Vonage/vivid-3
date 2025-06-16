@@ -3137,6 +3137,13 @@
 					"propertyName": "open"
 				},
 				{
+					"name": "scrollableBody",
+					"description": "Makes only the element's content area between the header and footer scrollable",
+					"type": "boolean",
+					"attributeName": "scrollable-body",
+					"propertyName": "scrollableBody"
+				},
+				{
 					"name": "subtitle",
 					"type": "string",
 					"attributeName": "subtitle",

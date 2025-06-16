@@ -20,7 +20,6 @@ $dialog-space-size: 24px;
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	background-color: transparent;
 	color: var(#{constants.$vvd-color-canvas-text});
-	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
 	max-inline-size: var(
 		#{variables.$dialog-max-inline-size},
 		var(#{variables.$dialog-default-max-inline-size})
@@ -33,6 +32,13 @@ $dialog-space-size: 24px;
 
 	@media (width >= 600px) {
 		#{variables.$dialog-default-max-inline-size}: 560px;
+	}
+
+	&:not(.scrollable-body) {
+		max-block-size: var(
+			#{variables.$dialog-max-block-size},
+			calc(100vh - 64px)
+		);
 	}
 
 	&:not(.modal) {
@@ -127,6 +133,13 @@ $dialog-space-size: 24px;
 
 	.hide-body & {
 		display: none;
+	}
+
+	.scrollable-body & {
+		overflow: hidden auto;
+		max-block-size: var(#{variables.$dialog-body-max-block-size}, 300px);
+
+		@include scrollbar.scrollbar;
 	}
 }
 
