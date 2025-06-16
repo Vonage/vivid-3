@@ -13,6 +13,7 @@ const getClasses = ({
 	footerSlottedContent,
 	actionItemsSlottedContent,
 	_openedAsModal,
+	scrollableBody,
 }: Dialog) =>
 	classNames(
 		'base',
@@ -22,7 +23,8 @@ const getClasses = ({
 			'hide-footer',
 			!(footerSlottedContent?.length || actionItemsSlottedContent?.length),
 		],
-		['modal', _openedAsModal]
+		['modal', _openedAsModal],
+		['scrollable-body', Boolean(scrollableBody)]
 	);
 
 function icon(iconTag: string) {
