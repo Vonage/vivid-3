@@ -403,14 +403,14 @@ describe('vwc-time-picker', () => {
 			).toBe('Choose time');
 		});
 
-		it('should clear the time and close popup when clicking the clear button', async () => {
+		it('should clear the time and do not close popup when clicking the clear button', async () => {
 			element.value = '12:34:56';
 
 			getButtonByLabel('Clear').click();
 			await elementUpdated(element);
 
 			expect(element.value).toBeFalsy();
-			expect(popup.open).toBe(false);
+			expect(popup.open).toBe(true);
 		});
 	});
 

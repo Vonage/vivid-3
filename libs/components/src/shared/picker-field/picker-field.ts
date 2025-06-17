@@ -292,7 +292,6 @@ export abstract class PickerField extends WithFeedback(
 	 * @internal
 	 */
 	_onClearClick() {
-		this._closePopup();
 		this.$emit('clear-click');
 	}
 }
