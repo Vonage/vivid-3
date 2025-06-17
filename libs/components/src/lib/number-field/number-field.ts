@@ -50,6 +50,10 @@ function makeStep(element: NumberField, direction: number) {
 		: 0;
 
 	element.value = Number(stepUpValue.toFixed(12)).toString();
+	element._updatedValueAnnouncement =
+		element.locale.numberField.updatedValueAnnouncement(
+			element._presentationValue
+		);
 }
 
 const buildNumberPatterns = (decimalSeparator: RegExp) => {
@@ -277,6 +281,12 @@ export class NumberField extends WithFeedback(
 	 * @internal
 	 */
 	@observable _presentationValue = '';
+
+	/**
+	 * Stores localized status for screen reader announcements
+	 * @internal
+	 */
+	@observable _updatedValueAnnouncement = '';
 
 	/**
 	 * @internal

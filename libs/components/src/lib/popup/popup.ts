@@ -1,4 +1,8 @@
-import { attr, observable } from '@microsoft/fast-element';
+import {
+	attr,
+	nullableNumberConverter,
+	observable,
+} from '@microsoft/fast-element';
 import {
 	arrow,
 	autoPlacement,
@@ -63,12 +67,16 @@ export class Popup extends VividElement {
 				},
 			}),
 		];
+		let offsetValue = this.offset ?? 0;
 		if (this.arrow) {
+			offsetValue += 12;
 			middleware = [
-				offset(12),
 				...middleware,
 				arrow({ element: this.arrowEl, padding: 10 }),
 			];
+		}
+		if (offsetValue > 0) {
+			middleware.unshift(offset(offsetValue));
 		}
 		return middleware;
 	}
@@ -165,12 +173,21 @@ export class Popup extends VividElement {
 	}
 
 	/**
-	 * the strategy of the popup
+	 * The strategy of the popup
 	 *
 	 * @public
 	 * HTML Attribute: strategy
 	 */
 	@attr({ mode: 'fromView' }) strategy?: Strategy = 'fixed';
+
+	/**
+	 * Adds offset to the popup
+	 *
+	 * @public
+	 * HTML Attribute: offset
+	 */
+	@attr({ attribute: 'offset', converter: nullableNumberConverter })
+	offset: number | null = null;
 
 	/**
 	 * The element to anchor the popup to.

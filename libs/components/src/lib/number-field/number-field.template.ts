@@ -5,6 +5,7 @@ import { Button } from '../button/button';
 import { Divider } from '../divider/divider';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { delegateAria } from '../../shared/aria/delegates-aria';
+import { VisuallyHidden } from '../visually-hidden/visually-hidden';
 import type { NumberField } from './number-field';
 
 const getStateClasses = ({
@@ -54,40 +55,34 @@ function numberControlButtons(context: VividElementDefinitionContext) {
 	const dividerTag = context.tagFor(Divider);
 
 	return html<NumberField>`
-			<div class="control-buttons"
-			     ?inert="${(x) => x.disabled || x.readOnly}">
-				<${buttonTag} id="subtract" icon="minus-line"
-								?disabled="${(x) => x.disabled || x.readOnly}"
-								aria-label=${(x) =>
-									x.decrementButtonAriaLabel ||
-									x.locale.numberField.decrementButtonLabel}
-					            shape="${setControlButtonShape}"
-								type="button"
-					            size="${(x) =>
-												x.scale === 'condensed'
-													? 'super-condensed'
-													: 'condensed'}"
-								tabindex="${getTabIndex}"
-					            @click="${(x) => x.stepDown()}"></${buttonTag}>
-				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
-				<${buttonTag} id="add" icon="plus-line"
-								?disabled="${(x) => x.disabled || x.readOnly}"
-								aria-label=${(x) =>
-									x.incrementButtonAriaLabel ||
-									x.locale.numberField.incrementButtonLabel}
-					            shape="${setControlButtonShape}"
-								type="button"
-					            size="${(x) =>
-												x.scale === 'condensed'
-													? 'super-condensed'
-													: 'condensed'}"
-								tabindex="${getTabIndex}"
-					            @click="${(x) => x.stepUp()}"></${buttonTag}>
-		    </div>
+		<div class="control-buttons" ?inert="${(x) => x.disabled || x.readOnly}">
+			<${buttonTag} id="subtract" icon="minus-line"
+				?disabled="${(x) => x.disabled || x.readOnly}"
+				aria-label=${(x) =>
+					x.decrementButtonAriaLabel ||
+					x.locale.numberField.decrementButtonLabel(x.step)}
+				shape="${setControlButtonShape}"
+				type="button"
+				size="${(x) => (x.scale === 'condensed' ? 'super-condensed' : 'condensed')}"
+				tabindex="${getTabIndex}"
+				@click="${(x) => x.stepDown()}"></${buttonTag}>
+			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
+			<${buttonTag} id="add" icon="plus-line"
+				?disabled="${(x) => x.disabled || x.readOnly}"
+				aria-label=${(x) =>
+					x.incrementButtonAriaLabel ||
+					x.locale.numberField.incrementButtonLabel(x.step)}
+				shape="${setControlButtonShape}"
+				type="button"
+				size="${(x) => (x.scale === 'condensed' ? 'super-condensed' : 'condensed')}"
+				tabindex="${getTabIndex}"
+				@click="${(x) => x.stepUp()}"></${buttonTag}>
+			</div>
 	`;
 }
 
 export const NumberFieldTemplate = (context: VividElementDefinitionContext) => {
+	const visuallyHiddenTag = context.tagFor(VisuallyHidden);
 	return html<NumberField>`
 		<div class="base ${getStateClasses}">
 			${when((x) => x.label, renderLabel())}
@@ -121,6 +116,8 @@ export const NumberFieldTemplate = (context: VividElementDefinitionContext) => {
 				${() => numberControlButtons(context)}
 			</div>
 			${(x) => x._getFeedbackTemplate(context)}
+			<${visuallyHiddenTag} id="value-announcement" role="status" aria-atomic="true">
+				${(x) => x._updatedValueAnnouncement}</${visuallyHiddenTag}>
 		</div>
 	`;
 };

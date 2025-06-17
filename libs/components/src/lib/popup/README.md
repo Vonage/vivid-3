@@ -181,6 +181,21 @@ Use the `strategy` attribute to set the placement strategy.
 </script>
 ```
 
+### Offset
+
+Use the `offset` attribute to add an extra gap (in `px`) between the popup and the anchor element.
+
+- Type: `number`
+- Default: `null`
+
+```html preview center 150px
+<span id="anchor">⚓️</span>
+<vwc-popup id="popup" offset="12" open>This is a popup.</vwc-popup>
+<script>
+	popup.anchor = anchor;
+</script>
+```
+
 ## CSS Variables
 
 ### Z-Index

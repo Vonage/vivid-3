@@ -168,17 +168,41 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</div>
 		<hr>
 		<div id="auto-placement-vertical-tests" class="wrapper" style="justify-content: flex-start; height: 100px">
-			<div class="square small" style="align-self: flex-end"></div>
+			<div class="square small" style="align-self: center"></div>
 			<vwc-popup>
 				<div class="contentWrapper">
 					vertical auto placement
 				</div>
 			</vwc-popup>
 		</div>
+		<hr>
+		<div class="wrapper" style="height:270px;">
+			<div id="offsetTestAnchor" class="square"></div>
+			<vwc-popup open offset="10" placement="top">
+				<div class="contentWrapper">
+					top
+				</div>
+			</vwc-popup>
+			<vwc-popup open offset="10" placement="left">
+				<div class="contentWrapper">
+					left
+				</div>
+			</vwc-popup>
+			<vwc-popup open offset="10" placement="right">
+				<div class="contentWrapper">
+					right
+				</div>
+			</vwc-popup>
+			<vwc-popup open offset="10" placement="bottom">
+				<div class="contentWrapper">
+					bottom
+				</div>
+			</vwc-popup>
+		</div>
 	</div>
 	`;
 
-	page.setViewportSize({ width: 800, height: 1100 });
+	page.setViewportSize({ width: 800, height: 1300 });
 
 	await loadComponents({
 		page,
@@ -194,6 +218,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		document
 			.querySelectorAll<Popup>('#mainTestAnchor ~ vwc-popup')
 			.forEach((popup: Popup) => (popup.anchor = mainAnchor));
+		const offsetAnchor = document.querySelector(
+			'#offsetTestAnchor'
+		) as HTMLElement;
+		document
+			.querySelectorAll<Popup>('#offsetTestAnchor ~ vwc-popup')
+			.forEach((popup: Popup) => (popup.anchor = offsetAnchor));
 		const indexAnchor = document.querySelector('#anchor-index') as HTMLElement;
 		document
 			.querySelectorAll<Popup>('#anchor-index ~ vwc-popup')

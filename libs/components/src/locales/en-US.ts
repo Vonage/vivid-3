@@ -125,8 +125,12 @@ const enUS: Locale = {
 		dismissButtonLabel: 'Close',
 	},
 	numberField: {
-		incrementButtonLabel: 'Increment',
-		decrementButtonLabel: 'Decrement',
+		incrementButtonLabel: /* istanbul ignore next */ (step: number) =>
+			step === 1 ? 'Increase value' : `Increase value by ${step}`,
+		decrementButtonLabel: /* istanbul ignore next */ (step: number) =>
+			step === 1 ? 'Decrease value' : `Decrease value by ${step}`,
+		updatedValueAnnouncement: /* istanbul ignore next */ (value: string) =>
+			`Updated value: ${value}`,
 	},
 	splitButton: {
 		showMoreActionsLabel: 'Show more actions',

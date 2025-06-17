@@ -97,7 +97,7 @@ describe('vwc-accordion-item', () => {
 			const lastIconWithIconSet = headerLastIcon();
 
 			expect(lastIconWithDefaultIcon.getAttribute('name')).toBe(
-				'chevron-down-solid'
+				'chevron-down-line'
 			);
 			expect(lastIconWithIconSet.getAttribute('name')).toBe('chat-solid');
 		});

@@ -53,23 +53,23 @@ describe('data grid integration tests', () => {
 			beforeEach(async function () {
 				element = (await fixture(
 					`<${COMPONENT_TAG}>
-											<${COMPONENT_TAG}-row role="row" class="header" row-type="header">
-											<${COMPONENT_TAG}-cell cell-type="columnheader" role="columnheader">
-											data1
-											</${COMPONENT_TAG}-cell>
-											<${COMPONENT_TAG}-cell cell-type="columnheader">
-											data2
-											</${COMPONENT_TAG}-cell>
-											</${COMPONENT_TAG}-row>
-											<${COMPONENT_TAG}-row aria-selected="true">
-											<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
-											<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
-											</${COMPONENT_TAG}-row>
-											<${COMPONENT_TAG}-row aria-selected="false">
-											<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
-											<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
-											</${COMPONENT_TAG}-row>
-										</${COMPONENT_TAG}>`
+						<${COMPONENT_TAG}-row role="row">
+							<${COMPONENT_TAG}-cell cell-type="columnheader" role="columnheader">
+							data1
+							</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell cell-type="columnheader">
+							data2
+							</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+						<${COMPONENT_TAG}-row aria-selected="true">
+							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+						<${COMPONENT_TAG}-row aria-selected="false">
+							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+					</${COMPONENT_TAG}>`
 				)) as DataGrid;
 			});
 			it('should set row-type sticky-header on header row when generateHeader is sticky', async function () {
@@ -84,6 +84,34 @@ describe('data grid integration tests', () => {
 				element.generateHeader = 'default';
 				await elementUpdated(element);
 				expect(element.rowElements[0].getAttribute('row-type')).toBe('header');
+			});
+
+			it('should not overwrite header row-type when it is set in the grid template and generateHeader is default', async function () {
+				element = (await fixture(
+					`<${COMPONENT_TAG}>
+						<${COMPONENT_TAG}-row row-type="sticky-header" role="row">
+							<${COMPONENT_TAG}-cell cell-type="columnheader" role="columnheader">
+							data1
+							</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell cell-type="columnheader">
+							data2
+							</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+						<${COMPONENT_TAG}-row>
+							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+						<${COMPONENT_TAG}-row>
+							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
+							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
+						</${COMPONENT_TAG}-row>
+					</${COMPONENT_TAG}>`
+				)) as DataGrid;
+				element.generateHeader = 'default';
+				await elementUpdated(element);
+				expect(element.rowElements[0].getAttribute('row-type')).toBe(
+					'sticky-header'
+				);
 			});
 		});
 	});
