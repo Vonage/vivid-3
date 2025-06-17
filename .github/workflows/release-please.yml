@@ -12,45 +12,60 @@ on:
 
 name: release-please
 jobs:
-  release-please:
+  tag-vivid-vue:
+    # As we've instructed release-please not to create a vivid-vue release for now, we need to create the tag ourselves
+    # This job will check if a tag for the current version of vivid-vue exists, and if not, create it
     runs-on: ubuntu-latest
-    outputs:
-      vivid_release_created: ${{ steps.release.outputs['libs/components--release_created'] }}
-      vivid_release_sha: ${{ steps.release.outputs['libs/components--sha'] }}
-      eslint_plugin_release_created: ${{ steps.release.outputs['libs/eslint-plugin--release_created'] }}
-      eslint_plugin_release_sha: ${{ steps.release.outputs['libs/eslint-plugin--sha'] }}
     steps:
-      - uses: googleapis/release-please-action@v4
-        id: release
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - name: Check tag
+        id: check_tag
+        run: |
+          TAG_NAME=vivid-vue-v$(node -p "require('./libs/vue-wrappers/package.json').version")
+          echo "Vivid-vue tag name: ${TAG_NAME}"
 
-      # As we've instructed release-please not to create a vivid-vue release for now, we need to create the tag ourselves
-      - name: Create Vivid Vue Tag
-        if: ${{ steps.release.outputs['libs/components--release_created'] }}
+          if git show-ref --tags --verify --quiet "refs/tags/${TAG_NAME}"; then
+            echo "Tag ${TAG_NAME} exists"
+          else
+            echo "Tag ${TAG_NAME} does not exist"
+            echo "::set-output name=missing_tag_name::${TAG_NAME}"
+          fi
+      - name: Create Tag
+        if: steps.check_tag.outputs.missing_tag_name
         uses: actions/github-script@v6
         env:
-          VIVID_VERSION: ${{ steps.release.outputs['libs/components--version'] }}
-          VIVID_SHA: ${{ steps.release.outputs['libs/components--sha'] }}
+          TAG_NAME: ${{ steps.check_tag.outputs.missing_tag_name }}
         with:
           script: |
-            const { VIVID_VERSION, VIVID_SHA } = process.env
+            const { TAG_NAME } = process.env
             github.rest.git.createRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                ref: `refs/tags/vivid-vue-v${VIVID_VERSION}`,
-                sha: VIVID_SHA
+                ref: `refs/tags/${TAG_NAME}`,
+                sha: context.sha
             })
+
+  release-please:
+    runs-on: ubuntu-latest
+    needs: tag-vivid-vue
+    outputs:
+      releases_created: ${{ steps.release.outputs.releases_created }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
 
   should-release:
     runs-on: ubuntu-latest
     needs: release-please
     outputs:
       should_release: ${{ steps.should-release.outputs.should_release }}
-      release_sha: ${{ steps.should-release.outputs.release_sha }}
     steps:
       - id: should-release
-        run:
-          echo "::set-output name=should_release::${{ needs.release-please.outputs.vivid_release_created == 'true' || needs.release-please.outputs.eslint_plugin_release_created == 'true' || github.event.inputs.force-release == 'true' }}"
-          echo "::set-output name=release_sha::${{ needs.release-please.outputs.vivid_release_sha || needs.release-please.outputs.eslint_plugin_release_sha || github.event.pull_request.head.sha }}"
+        run: echo "::set-output name=should_release::${{ needs.release-please.outputs.releases_created == 'true' || github.event.inputs.force-release == 'true' }}"
 
   build:
     runs-on: ubuntu-latest
@@ -59,7 +74,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ needs.should-release.outputs.release_sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: actions/setup-node@v3
         with:
