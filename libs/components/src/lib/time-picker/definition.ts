@@ -5,6 +5,7 @@ import { createRegisterFunction } from '../../shared/design-system/createRegiste
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import pickerFieldStyles from '../../shared/picker-field/picker-field.scss?inline';
 import { inlineTimePickerDefinition } from '../../shared/picker-field/mixins/inline-time-picker/definition';
+import { visuallyHiddenDefinition } from '../visually-hidden/definition';
 import { TimePicker } from './time-picker';
 import { TimePickerTemplate as template } from './time-picker.template';
 
@@ -20,6 +21,7 @@ export const timePickerDefinition = defineVividComponent(
 		popupDefinition,
 		buttonDefinition,
 		inlineTimePickerDefinition,
+		visuallyHiddenDefinition,
 	],
 	{
 		styles: pickerFieldStyles,

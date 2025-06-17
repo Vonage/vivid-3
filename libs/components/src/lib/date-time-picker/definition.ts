@@ -7,6 +7,7 @@ import calendarStyles from '../../shared/picker-field/mixins/calendar-picker.scs
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { inlineTimePickerDefinition } from '../../shared/picker-field/mixins/inline-time-picker/definition';
+import { visuallyHiddenDefinition } from '../visually-hidden/definition';
 import styles from './date-time-picker.scss?inline';
 import { DateTimePicker } from './date-time-picker';
 import { DateTimePickerTemplate as template } from './date-time-picker.template';
@@ -24,6 +25,7 @@ export const dateTimePickerDefinition = defineVividComponent(
 		textFieldDefinition,
 		dividerDefinition,
 		inlineTimePickerDefinition,
+		visuallyHiddenDefinition,
 	],
 	{
 		styles: [pickerFieldStyles, calendarStyles, styles],

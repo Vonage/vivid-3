@@ -18,6 +18,11 @@ export interface CalendarPickerLocale {
 	prevMonthLabel: string;
 	nextMonthLabel: string;
 	nextYearLabel: string;
+	todayLabel: string;
+	selectedLabel: string;
+	currentLabel: string;
+	changeMonthLabel: (month: string) => string;
+	showCalendarForMonthLabel: (month: string) => string;
 	invalidDateError: string;
 	invalidDateRangeError: string;
 	startDateAfterMinDateError: (minDate: string) => string;

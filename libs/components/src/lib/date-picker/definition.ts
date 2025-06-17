@@ -6,6 +6,7 @@ import pickerFieldStyles from '../../shared/picker-field/picker-field.scss?inlin
 import calendarStyles from '../../shared/picker-field/mixins/calendar-picker.scss?inline';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { visuallyHiddenDefinition } from '../visually-hidden/definition';
 import { DatePicker } from './date-picker';
 import { DatePickerTemplate as template } from './date-picker.template';
 
@@ -16,7 +17,13 @@ export const datePickerDefinition = defineVividComponent(
 	'date-picker',
 	DatePicker,
 	template,
-	[buttonDefinition, popupDefinition, textFieldDefinition, dividerDefinition],
+	[
+		buttonDefinition,
+		popupDefinition,
+		textFieldDefinition,
+		dividerDefinition,
+		visuallyHiddenDefinition,
+	],
 	{
 		styles: [pickerFieldStyles, calendarStyles],
 		shadowOptions: {
