@@ -416,3 +416,48 @@ Use a control / command key to select multiple rows.
 	];
 </script>
 ```
+
+
+### Sticky columns
+
+```html preview
+
+<style>
+	vwc-data-grid {
+		width: 700px;
+		position: relative
+	}
+
+	vwc-data-grid-row {
+		width: 1200px;
+	}
+</style>
+
+<vwc-data-grid>
+	<vwc-data-grid-row row-type="sticky-header">
+		<vwc-data-grid-cell cell-type="sticky-column">Name</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Last login</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Phone number</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Address</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell cell-type="sticky-column">Smith Bishop</vwc-data-grid-cell>
+		<vwc-data-grid-cell>1/15/2022 01:11</vwc-data-grid-cell>
+		<vwc-data-grid-cell>(480) 376-6360</vwc-data-grid-cell>
+		<vwc-data-grid-cell>4014 Lopez St, Darintown OK 73485</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell cell-type="sticky-column">Yvonne Smith</vwc-data-grid-cell>
+		<vwc-data-grid-cell>6/18/2002 01:32</vwc-data-grid-cell>
+		<vwc-data-grid-cell>(289) 284-1398</vwc-data-grid-cell>
+		<vwc-data-grid-cell>5398 Calvin Pl, Smithtown VA 94989</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell cell-type="sticky-column">Glover Copeland</vwc-data-grid-cell>
+		<vwc-data-grid-cell>8/20/2024 11:04</vwc-data-grid-cell>
+		<vwc-data-grid-cell>(383) 124-4052</vwc-data-grid-cell>
+		<vwc-data-grid-cell>48 Eloise Blvd, Lucilleville FL 22546</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+```
+
