@@ -219,5 +219,11 @@ const jaJP: Locale = {
 			selected: '選択済み',
 		},
 	},
+	pagination: {
+		previousPageLabel: '前のページへ',
+		nextPageLabel: '次のページへ',
+		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
+			`${index}ページへ`,
+	},
 };
 export default jaJP;
