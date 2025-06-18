@@ -597,6 +597,9 @@ export class SearchableSelect extends WithFeedback(
 	})
 	loading = false;
 
+	/**
+	 * @internal
+	 */
 	loadingChanged(_oldValue: boolean, newValue: boolean) {
 		this._changeDescription =
 			this.locale.searchableSelect.loadingOptionsMessage;
