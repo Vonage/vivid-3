@@ -295,7 +295,6 @@ export class SearchableSelect extends WithFeedback(
 	 */
 	_onInputFocus(_: FocusEvent) {
 		this.#updateFilteredOptions();
-		this.open = true;
 	}
 
 	/**
@@ -318,6 +317,9 @@ export class SearchableSelect extends WithFeedback(
 		switch (e.key) {
 			case 'Enter':
 				this.#selectHighlightedOption();
+				if (this._inputValue === '') {
+					this.open = !this.open;
+				}
 				return false;
 
 			case 'Escape':
@@ -595,6 +597,12 @@ export class SearchableSelect extends WithFeedback(
 	})
 	loading = false;
 
+	loadingChanged(_oldValue: boolean, newValue: boolean) {
+		this._changeDescription =
+			this.locale.searchableSelect.loadingOptionsMessage;
+		if (_oldValue && !newValue) this._changeDescription = '';
+	}
+
 	#updateFilteredOptions() {
 		const newFilteredOptions = [];
 
@@ -654,7 +662,8 @@ export class SearchableSelect extends WithFeedback(
 				this.locale.searchableSelect.optionFocusedMessage(
 					highlightedOption.text,
 					this._highlightedOptionIndex + 1,
-					this._filteredEnabledOptions.length
+					this._filteredEnabledOptions.length,
+					highlightedOption.selected
 				);
 		}
 	}
@@ -1040,6 +1049,7 @@ export class SearchableSelect extends WithFeedback(
 	#updateSelectionLimit() {
 		if (
 			!this.multiple ||
+			!this._slottedOptions ||
 			typeof this.maxSelected !== 'number' ||
 			this.maxSelected <= 0
 		) {
