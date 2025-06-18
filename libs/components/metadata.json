@@ -6189,14 +6189,6 @@
 					"returnType": "boolean"
 				},
 				{
-					"name": "loadingChanged",
-					"args": [
-						{ "name": "_oldValue", "type": "boolean" },
-						{ "name": "newValue", "type": "boolean" }
-					],
-					"returnType": "unknown"
-				},
-				{
 					"name": "reportValidity",
 					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
 					"args": [],
