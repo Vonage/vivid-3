@@ -9,7 +9,8 @@ export interface SearchableSelectLocale {
 	optionFocusedMessage: (
 		name: string,
 		position: number,
-		total: number
+		total: number,
+		selected: boolean
 	) => string;
 	maxSelectedMessage: (total: number, limit: number) => string;
 }
