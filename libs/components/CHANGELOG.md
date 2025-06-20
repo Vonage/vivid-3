@@ -4,6 +4,15 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.26.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.26.0...vivid-v4.26.1) (2025-06-20)
+
+
+### Bug Fixes
+
+* **pagination:** accessibility fixes (VIV-2695) ([#2416](https://github.com/Vonage/vivid-3/issues/2416)) ([d63c485](https://github.com/Vonage/vivid-3/commit/d63c4855ff2c39effd1c8a3fa83436c8b706fb73))
+* **picker-field:** modify the clear button functionality to clear the selected value without closing the picker view (VIV-2696)  ([#2418](https://github.com/Vonage/vivid-3/issues/2418)) ([96025df](https://github.com/Vonage/vivid-3/commit/96025df08628ea7519b1a24bc9cfba188a0df14c))
+* **searchable-select:** accessibility fixes (VIV-2697) ([#2422](https://github.com/Vonage/vivid-3/issues/2422)) ([28524cb](https://github.com/Vonage/vivid-3/commit/28524cb8075a7e8f55a8aa71b592b494f056b2ae))
+
 ## [4.26.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.25.0...vivid-v4.26.0) (2025-06-18)
 
 
