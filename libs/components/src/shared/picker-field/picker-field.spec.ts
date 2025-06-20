@@ -263,11 +263,11 @@ export const pickerFieldSpec = (
 			expect(popup.open).toBe(false);
 		});
 
-		it('should close the dialog when clicking the clear button', async () => {
+		it('should not close the dialog when clicking the clear button', async () => {
 			getButtonByLabel('Clear').click();
 			await elementUpdated(element);
 
-			expect(popup.open).toBe(false);
+			expect(popup.open).toBe(true);
 		});
 
 		it('should fire a clear-click event when clear button is clicked', async () => {

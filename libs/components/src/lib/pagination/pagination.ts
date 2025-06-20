@@ -6,8 +6,9 @@ import {
 } from '@microsoft/fast-element';
 import type { Shape, Size } from '../enums';
 import type { Button } from '../button/button';
-import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { Localized } from '../../shared/patterns';
 
 export type PaginationSize = ExtractFromEnum<
 	Size,
@@ -30,7 +31,7 @@ const totalConverter: ValueConverter = {
  * @component pagination
  * @event {CustomEvent<{selectedIndex: number, total: number, oldIndex: number}>} pagination-change - Fires when the page changes.
  */
-export class Pagination extends VividElement {
+export class Pagination extends Localized(VividElement) {
 	/**
 	 * The size the pagination should have.
 	 *

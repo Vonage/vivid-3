@@ -225,6 +225,12 @@ const deDE: Locale = {
 			selected: 'Ausgewählt',
 		},
 	},
+	pagination: {
+		previousPageLabel: 'Zur vorherigen Seite',
+		nextPageLabel: 'Zur nächsten Seite',
+		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
+			`Weiter zu Seite ${index}`,
+	},
 };
 
 export default deDE;
