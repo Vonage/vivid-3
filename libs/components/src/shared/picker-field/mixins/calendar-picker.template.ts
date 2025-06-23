@@ -19,7 +19,7 @@ import type { CalendarPickerElement } from './calendar-picker';
 function renderDialogHeader(context: VividElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
-	return html<Segment, CalendarPickerElement>` <div class="header">
+	return html<Segment, CalendarPickerElement>`<div class="header" tabindex="-1">
 		${when(
 			(x) => x.prevYearButton,
 			html<Segment, CalendarPickerElement>`
@@ -198,7 +198,7 @@ function renderCalendarGrid(context: VividElementDefinitionContext) {
 											tabindex="${(x, c) =>
 												x.date ===
 												c.parentContext.parentContext.parent._tabbableDate
-													? 2
+													? 1
 													: -1}"
 											aria-selected="${(x, c) =>
 												c.parentContext.parentContext.parent._isDateAriaSelected(
@@ -285,7 +285,7 @@ function renderMonthPickerGrid(context: VividElementDefinitionContext) {
 												x.month,
 												c.parentContext.parentContext.parent._tabbableMonth
 											)
-												? 2
+												? 1
 												: -1}"
 										aria-label="${(x) => x.monthName}"
 										aria-selected="${(x, c) =>
