@@ -162,7 +162,7 @@ const enGB: Locale = {
 		dismissButtonLabel: 'Press the DELETE key to close this tab',
 	},
 	searchableSelect: {
-		clearButtonLabel: 'Clear',
+		clearButtonLabel: 'Clear selection',
 		noOptionsMessage: 'No options',
 		noMatchesMessage: 'No options found',
 		loadingOptionsMessage: 'Loading...',
@@ -175,8 +175,12 @@ const enGB: Locale = {
 		optionFocusedMessage: /* istanbul ignore next */ (
 			name: string,
 			position: number,
-			total: number
-		) => `Option ${name} focused, ${position} of ${total}.`,
+			total: number,
+			selected: boolean
+		) =>
+			`Option ${name} focused, ${
+				selected ? 'selected, ' : ''
+			}${position} of ${total}.`,
 		maxSelectedMessage: /* istanbul ignore next */ (
 			total: number,
 			limit: number
