@@ -2,7 +2,7 @@
 
 <vwc-note connotation="information">
 	<vwc-icon name="info-line" slot="icon" label="Note:"></vwc-icon>
-	<p>Dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)"><code>native dialog</code></a> element.</p>
+	<p>Dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"><code>native dialog</code></a> element.</p>
 </vwc-note>
 
 <vwc-tabs gutters="none">
@@ -262,7 +262,7 @@ The `graphic` slot overrides the [icon](/components/dialog/#icons) property.
 Use the slot if a colored icon is needed or an icon with different dimensions.
 
 ```html preview 200px
-<vwc-dialog headline="Dialog With Grapic Slot" open icon-placement="side">
+<vwc-dialog headline="Dialog With Graphic Slot" open icon-placement="side">
 	<img
 		slot="graphic"
 		src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5"
@@ -274,7 +274,7 @@ Use the slot if a colored icon is needed or an icon with different dimensions.
 
 Use the `body` slot in order to add custom HTML to the dialog.
 
-<vwc-note connotation="information" headline="body slot with top border">
+<vwc-note connotation="information" headline="Body slot with top border">
 	<vwc-icon name="info-line" slot="icon"></vwc-icon>
 	<p>When using body slot with a <code>subtitle</code> in the header, a separator will be added between the two.</p>
 </vwc-note>
@@ -399,7 +399,7 @@ Use the main slot to fully override a Dialog's predefined template with your own
 
 ### Z-index
 
-Use `--dialog-z-index` for a different `z-index `value than 1.
+Use `--dialog-z-index` for a different `z-index` value than 1.
 
 <vwc-note connotation="information"  headline="Dialog z-index">
 	<vwc-icon name="info-line" slot="icon"></vwc-icon>
@@ -455,6 +455,27 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 </style>
 ```
 
+### Inset
+
+When the dialog is not used as a modal, you can overwrite default inset values using `--dialog-inset-inline` and `--dialog-inset-block` variables.
+
+```html preview 250px
+<vwc-dialog
+	class="dialog"
+	icon="info"
+	headline="Headline"
+	subtitle="Subtitle content"
+	open
+></vwc-dialog>
+
+<style>
+	.dialog {
+		--dialog-inset-inline: 50% 0;
+		--dialog-inset-block: 24px 0;
+	}
+</style>
+```
+
 ## API Reference
 
 ### Properties
@@ -464,7 +485,7 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 | Name                          | Type                                  | Description                                                                                                                                 |
 | ----------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | **dismiss-button-aria-label** | `string`                              | Sets a custom aria-label to the close button                                                                                                |
-| **full-width-body**           | `boolean`                             | Sets the element's body to full width (no padding))                                                                                         |
+| **full-width-body**           | `boolean`                             | Sets the element's body to full width (no padding)                                                                                          |
 | **headline**                  | `string`                              | Sets the element's headline                                                                                                                 |
 | **icon**                      | Enum:<br/>`[icon-name]`               | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`'s |
 | **icon-placement**            | Enum:<br/>`[side]` (default), `[top]` | Sets the element's icon placement                                                                                                           |
@@ -476,6 +497,7 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 | **open**                      | `boolean`                             | Sets the element's to be opened                                                                                                             |
 | **returnValue**               | `string`                              | Sets the element's to be opened                                                                                                             |
 | **subtitle**                  | `string`                              | Sets the element's return value                                                                                                             |
+| **scrollable-body**           | `boolean`                             | Makes only the element's content area between the header and footer scrollable                                                              |
 
 </div>
 

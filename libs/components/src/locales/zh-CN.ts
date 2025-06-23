@@ -169,7 +169,7 @@ const zhCN: Locale = {
 		dismissButtonLabel: '按 DELETE 键关闭此选项卡',
 	},
 	searchableSelect: {
-		clearButtonLabel: '清除',
+		clearButtonLabel: '清除选择',
 		noOptionsMessage: '没有选项',
 		noMatchesMessage: '未找到选项',
 		loadingOptionsMessage: '加载中...',
@@ -182,8 +182,12 @@ const zhCN: Locale = {
 		optionFocusedMessage: /* istanbul ignore next */ (
 			name: string,
 			position: number,
-			total: number
-		) => `选项 ${name} 已聚焦, ${position} 的 ${total}。`,
+			total: number,
+			selected: boolean
+		) =>
+			`选项 ${name} 已聚焦, ${
+				selected ? '已选择, ' : ''
+			}${position} 的 ${total}。`,
 		maxSelectedMessage: /* istanbul ignore next */ (
 			total: number,
 			limit: number
@@ -225,6 +229,12 @@ const zhCN: Locale = {
 		cell: {
 			selected: '已选择',
 		},
+	},
+	pagination: {
+		previousPageLabel: '转至上一页',
+		nextPageLabel: '转至下一页',
+		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
+			`转至第 ${index} 页`,
 	},
 };
 

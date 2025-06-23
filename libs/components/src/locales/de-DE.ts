@@ -171,7 +171,7 @@ const deDE: Locale = {
 			'Drücken Sie die ENTF-Taste, um diese Registerkarte zu schließen',
 	},
 	searchableSelect: {
-		clearButtonLabel: 'Löschen',
+		clearButtonLabel: 'Auswahl löschen',
 		noOptionsMessage: 'Keine Optionen',
 		noMatchesMessage: 'Keine Optionen gefunden',
 		loadingOptionsMessage: 'Laden...',
@@ -184,8 +184,12 @@ const deDE: Locale = {
 		optionFocusedMessage: /* istanbul ignore next */ (
 			name: string,
 			position: number,
-			total: number
-		) => `Option ${name} fokussiert, ${position} von ${total}.`,
+			total: number,
+			selected: boolean
+		) =>
+			`Option ${name} fokussiert, ${
+				selected ? 'ausgewählt, ' : ''
+			}${position} von ${total}.`,
 		maxSelectedMessage: /* istanbul ignore next */ (
 			total: number,
 			limit: number
@@ -227,6 +231,12 @@ const deDE: Locale = {
 		cell: {
 			selected: 'Ausgewählt',
 		},
+	},
+	pagination: {
+		previousPageLabel: 'Zur vorherigen Seite',
+		nextPageLabel: 'Zur nächsten Seite',
+		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
+			`Weiter zu Seite ${index}`,
 	},
 };
 

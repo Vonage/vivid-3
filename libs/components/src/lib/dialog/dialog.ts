@@ -85,6 +85,14 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 	@attr({ mode: 'boolean' }) modal = false;
 
 	/**
+	 * Makes only the element's content area between the header and footer scrollable
+	 * @remarks
+	 * HTML Attribute: modal
+	 */
+	@attr({ mode: 'boolean', attribute: 'scrollable-body' }) scrollableBody =
+		false;
+
+	/**
 	 * @internal
 	 */
 	modalChanged(_: boolean, newValue: boolean) {
