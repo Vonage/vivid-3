@@ -162,7 +162,7 @@ const jaJP: Locale = {
 		dismissButtonLabel: 'このタブを閉じるにはDELETEキーを押してください',
 	},
 	searchableSelect: {
-		clearButtonLabel: 'クリア',
+		clearButtonLabel: '選択をクリア',
 		noOptionsMessage: 'オプションがありません',
 		noMatchesMessage: 'オプションが見つかりません',
 		loadingOptionsMessage: '読み込み中...',
@@ -175,8 +175,12 @@ const jaJP: Locale = {
 		optionFocusedMessage: /* istanbul ignore next */ (
 			name: string,
 			position: number,
-			total: number
-		) => `オプション ${name} がフォーカスされました。${position}/${total}`,
+			total: number,
+			selected: boolean
+		) =>
+			`オプション ${name} ${
+				selected ? ', 選択, ' : ''
+			} がフォーカスされました。${position}/${total}`,
 		maxSelectedMessage: /* istanbul ignore next */ (
 			total: number,
 			limit: number
