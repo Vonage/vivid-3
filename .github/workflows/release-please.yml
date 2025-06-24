@@ -48,7 +48,7 @@ jobs:
       release_sha: ${{ steps.should-release.outputs.release_sha }}
     steps:
       - id: should-release
-        run:
+        run: |
           echo "::set-output name=should_release::${{ needs.release-please.outputs.vivid_release_created == 'true' || needs.release-please.outputs.eslint_plugin_release_created == 'true' || github.event.inputs.force-release == 'true' }}"
           echo "::set-output name=release_sha::${{ needs.release-please.outputs.vivid_release_sha || needs.release-please.outputs.eslint_plugin_release_sha || github.event.pull_request.head.sha }}"
 
