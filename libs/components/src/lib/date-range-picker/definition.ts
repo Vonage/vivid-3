@@ -6,6 +6,7 @@ import { createRegisterFunction } from '../../shared/design-system/createRegiste
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import pickerFieldStyles from '../../shared/picker-field/picker-field.scss?inline';
 import calendarStyles from '../../shared/picker-field/mixins/calendar-picker.scss?inline';
+import { visuallyHiddenDefinition } from '../visually-hidden/definition';
 import { DateRangePicker } from './date-range-picker';
 import { DateRangePickerTemplate as template } from './date-range-picker.template';
 
@@ -16,7 +17,13 @@ export const dateRangePickerDefinition = defineVividComponent(
 	'date-range-picker',
 	DateRangePicker,
 	template,
-	[buttonDefinition, popupDefinition, textFieldDefinition, dividerDefinition],
+	[
+		buttonDefinition,
+		popupDefinition,
+		textFieldDefinition,
+		dividerDefinition,
+		visuallyHiddenDefinition,
+	],
 	{
 		styles: [pickerFieldStyles, calendarStyles],
 		shadowOptions: {

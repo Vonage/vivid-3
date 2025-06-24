@@ -67,6 +67,13 @@ const zhCN: Locale = {
 		prevMonthLabel: '上个月',
 		nextMonthLabel: '下个月',
 		nextYearLabel: '下一年',
+		todayLabel: '今天',
+		selectedLabel: '已选择',
+		currentLabel: '当前',
+		changeMonthLabel: /* istanbul ignore next */ (month: string) =>
+			`更改月份, ${month}已选择`,
+		showCalendarForMonthLabel: /* istanbul ignore next */ (month: string) =>
+			`显示 ${month} 的日历`,
 		invalidDateError: '请输入有效的日期。',
 		invalidDateRangeError: '请输入有效的日期范围。',
 		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>

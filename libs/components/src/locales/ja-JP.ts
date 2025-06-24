@@ -67,6 +67,13 @@ const jaJP: Locale = {
 		prevMonthLabel: '前月',
 		nextMonthLabel: '次月',
 		nextYearLabel: '翌年',
+		todayLabel: '今日',
+		selectedLabel: '選択済',
+		currentLabel: '現在',
+		changeMonthLabel: /* istanbul ignore next */ (month: string) =>
+			`月を変更, ${month}が選択されています`,
+		showCalendarForMonthLabel: /* istanbul ignore next */ (month: string) =>
+			`${month}のカレンダーを表示`,
 		invalidDateError: '有効な日付を入力してください。',
 		invalidDateRangeError: '有効な日付範囲を入力してください。',
 		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>

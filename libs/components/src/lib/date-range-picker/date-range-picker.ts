@@ -284,7 +284,7 @@ export class DateRangePicker extends MinMaxCalendarPicker(
 	 * @internal
 	 */
 	override _isDateAriaSelected(date: DateStr) {
-		return date === this.start || date === this.end;
+		return this._isDateInSelectedRange(date);
 	}
 
 	/**

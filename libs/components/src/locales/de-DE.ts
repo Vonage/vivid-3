@@ -67,6 +67,13 @@ const deDE: Locale = {
 		prevMonthLabel: 'Vorheriger Monat',
 		nextMonthLabel: 'Nächster Monat',
 		nextYearLabel: 'Nächstes Jahr',
+		todayLabel: 'heute',
+		selectedLabel: 'ausgewählt',
+		currentLabel: 'aktuell',
+		changeMonthLabel: /* istanbul ignore next */ (month: string) =>
+			`Monat ändern, ${month} ausgewählt`,
+		showCalendarForMonthLabel: /* istanbul ignore next */ (month: string) =>
+			`Kalender für ${month} anzeigen`,
 		invalidDateError: 'Bitte geben Sie ein gültiges Datum ein.',
 		invalidDateRangeError: 'Bitte geben Sie einen gültigen Datumsbereich ein.',
 		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>
