@@ -231,6 +231,9 @@ const deDE: Locale = {
 		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
 			`Weiter zu Seite ${index}`,
 	},
+	tag: {
+		remove: 'Entfernen',
+	},
 };
 
 export default deDE;

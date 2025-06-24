@@ -229,6 +229,9 @@ const zhCN: Locale = {
 		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
 			`转至第 ${index} 页`,
 	},
+	tag: {
+		remove: '移除',
+	},
 };
 
 export default zhCN;
