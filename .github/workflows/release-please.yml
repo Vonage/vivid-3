@@ -57,7 +57,8 @@ jobs:
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
     uses: ./.github/workflows/_publish.yml
     with:
-      path: libs/components/dist
+      path: ./libs/components/dist
+      sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
   vivid-vue-publish:
@@ -65,7 +66,8 @@ jobs:
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
     uses: ./.github/workflows/_publish.yml
     with:
-      path: libs/vue-wrappers
+      path: ./libs/vue-wrappers
+      sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
   eslint-plugin-publish:
@@ -73,7 +75,8 @@ jobs:
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
     uses: ./.github/workflows/_publish.yml
     with:
-      path: libs/eslint-plugin
+      path: ./libs/eslint-plugin
+      sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
   deploy-deno:

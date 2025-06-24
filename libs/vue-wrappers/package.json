@@ -9,6 +9,10 @@
 	"main": "./dist/index.cjs",
 	"types": "./dist/index.d.ts",
 	"web-types": "./web-types.json",
+	"files": [
+		"dist",
+		"web-types.json"
+	],
 	"scripts": {
 		"prebuild": "tsx scripts/codegen.ts",
 		"build": "vite build",
@@ -17,7 +21,8 @@
 		"lint:fix": "eslint . --max-warnings=0 --fix",
 		"test": "vitest run",
 		"test:coverage": "vitest run --coverage",
-		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
+		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json",
+		"prepack": "tsx scripts/updateDependencyVersion.ts"
 	},
 	"exports": {
 		".": {
@@ -29,9 +34,10 @@
 	"peerDependencies": {
 		"vue": "^2.7.0 || >=3.0.0"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"@vonage/vivid": "*"
+	},
 	"devDependencies": {
-		"@vonage/vivid": "*",
 		"@repo/wrapper-gen": "*",
 		"@repo/typescript-config": "*",
 		"@repo/eslint-config": "*",

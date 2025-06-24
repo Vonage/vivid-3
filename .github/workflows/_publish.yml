@@ -3,7 +3,12 @@ name: 🚀 Publish
 on:
   workflow_call:
     inputs:
+      sha:
+        description: The revision to build and publish
+        required: true
+        type: string
       path:
+        description: The path to call npm publish on
         required: true
         type: string
       tag:
@@ -11,6 +16,7 @@ on:
         default: latest
         type: string
       version:
+        description: If provided, updates the packages version before publishing.
         required: false
         default: ''
         type: string
@@ -26,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ inputs.sha }}
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
@@ -45,7 +51,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npx turbo run build
+        run: npm run build
 
       - name: Set version
         if: ${{ inputs.version != '' }}
@@ -74,6 +80,10 @@ jobs:
   github-publish:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.sha }}
+
       - uses: actions/setup-node@v3
         with:
           node-version: 20
@@ -92,7 +102,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npx turbo run build
+        run: npm run build
 
       - name: Set version
         if: ${{ inputs.version != '' }}

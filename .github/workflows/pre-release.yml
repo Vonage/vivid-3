@@ -46,16 +46,18 @@ jobs:
     needs: get-version
     uses: ./.github/workflows/_publish.yml
     with:
-      path: libs/components/dist
+      path: ./libs/components/dist
       tag: preview
       version: ${{ needs.get-version.outputs.version }}
+      sha: ${{ github.event.pull_request.head.sha }}
     secrets: inherit
 
   vivid-vue-publish:
     needs: get-version
     uses: ./.github/workflows/_publish.yml
     with:
-      path: libs/vue-wrappers
+      path: ./libs/vue-wrappers
       tag: preview
       version: ${{ needs.get-version.outputs.version }}
+      sha: ${{ github.event.pull_request.head.sha }}
     secrets: inherit
