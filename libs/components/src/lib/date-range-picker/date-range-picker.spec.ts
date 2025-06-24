@@ -1,6 +1,7 @@
 import {
 	elementUpdated,
 	fixture,
+	getResolvedTextContent,
 	setupDelegatesFocusPolyfill,
 } from '@repo/shared';
 import { setLocale } from '../../shared/localization';
@@ -15,6 +16,8 @@ import { calendarPickerSpec } from '../../shared/picker-field/mixins/calendar-pi
 import { DateRangePicker } from './date-range-picker';
 
 const COMPONENT_TAG = 'vwc-date-range-picker';
+
+const cleanWhitespace = (text: string) => text.replace(/\s+/g, ' ').trim();
 
 describe('vwc-date-range-picker', () => {
 	let element: DateRangePicker;
@@ -439,6 +442,32 @@ describe('vwc-date-range-picker', () => {
 					)
 					.every((button) => button.classList.contains('range'))
 			).toBe(true);
+		});
+
+		it('should announce any date in the selected range with as selected', async () => {
+			element.start = '2023-08-11';
+			element.end = '2023-08-13';
+			await elementUpdated(element);
+
+			expect(
+				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-11')))
+			).toBe('11 selected');
+			expect(
+				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-12')))
+			).toBe('12 selected');
+			expect(
+				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-13')))
+			).toBe('13 selected');
+		});
+
+		it('should announce both today and selected labels when today is selected', async () => {
+			element.start = '2023-08-10';
+			element.end = '2023-08-10';
+			await elementUpdated(element);
+
+			expect(
+				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-10')))
+			).toBe('10 today selected');
 		});
 
 		it('should preview the date range when hovering over a date', async () => {

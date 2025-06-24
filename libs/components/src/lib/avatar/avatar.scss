@@ -70,7 +70,7 @@
 		text-transform: uppercase;
 	}
 
-	::slotted(*) {
+	::slotted([slot='graphic']) {
 		block-size: 100%;
 		inline-size: 100%;
 		object-fit: cover;

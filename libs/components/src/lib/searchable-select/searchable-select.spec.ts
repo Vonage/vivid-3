@@ -108,7 +108,7 @@ describe('vwc-searchable-select', () => {
 			.map((option) => option.text);
 
 	const getClearButton = () =>
-		element.shadowRoot!.querySelector('[aria-label="Clear"]') as
+		element.shadowRoot!.querySelector('[aria-label="Clear selection"]') as
 			| Button
 			| undefined;
 
@@ -1094,6 +1094,16 @@ describe('vwc-searchable-select', () => {
 			expect(getProgressRing()!.value).toBe(undefined);
 		});
 
+		it('should update aria-live region text based on loading value', async () => {
+			element.loading = true;
+			await elementUpdated(element);
+			expect(getAriaLiveRegionText()).toBe('Loading...');
+
+			element.loading = false;
+			await elementUpdated(element);
+			expect(getAriaLiveRegionText()).toBe('');
+		});
+
 		it('should display the loading empty state when there are no options to display', async () => {
 			await setUpFixture(`<${COMPONENT_TAG} loading></${COMPONENT_TAG}>`);
 			focusInput();
@@ -1289,8 +1299,9 @@ describe('vwc-searchable-select', () => {
 	});
 
 	describe('popup', () => {
-		it('should open when input is focused', async function () {
+		it('should open on ArrowDown when input is focused', async function () {
 			focusInput();
+			pressKey('ArrowDown');
 			await elementUpdated(element);
 
 			expect(popup.open).toBe(true);
@@ -1321,6 +1332,7 @@ describe('vwc-searchable-select', () => {
 		describe('when popup is open', () => {
 			beforeEach(async () => {
 				focusInput();
+				pressKey('ArrowDown');
 				await elementUpdated(element);
 			});
 
@@ -1353,7 +1365,7 @@ describe('vwc-searchable-select', () => {
 				await elementUpdated(element);
 			});
 
-			it.each(['Escape', 'Enter', 'ArrowLeft', 'Backspace'])(
+			it.each(['Escape', 'ArrowLeft', 'Backspace'])(
 				'should not open popup when pressing %s',
 				async function (key: string) {
 					pressKey(key);
@@ -1372,6 +1384,7 @@ describe('vwc-searchable-select', () => {
 				'PageUp',
 				'PageDown',
 				'A',
+				'Enter',
 			])(
 				'should open popup when pressing any other key (%s)',
 				async function (key: string) {
@@ -1494,148 +1507,51 @@ describe('vwc-searchable-select', () => {
 	});
 
 	describe('visual highlighting', () => {
-		it('should ignore key presses if ctrl is held down', async function () {
+		beforeEach(async () => {
 			focusInput();
-			await elementUpdated(element);
-
-			pressKey('ArrowDown', { ctrlKey: true });
-
-			expect(isOptionVisuallyHighlighted(getOption('Apple'))).toBe(false);
-		});
-
-		it('should ignore key presses if shift is held down', async function () {
-			focusInput();
-			await elementUpdated(element);
-
-			pressKey('ArrowDown', { shiftKey: true });
-
-			expect(isOptionVisuallyHighlighted(getOption('Apple'))).toBe(false);
-		});
-
-		it('should visually highlight the first option when pressing ArrowDown', async function () {
-			focusInput();
-			await elementUpdated(element);
-
 			pressKey('ArrowDown');
+			await elementUpdated(element);
+		});
 
+		it('should ignore key presses if ctrl is held down', function () {
+			pressKey('ArrowDown', { ctrlKey: true });
+			expect(isOptionVisuallyHighlighted(getOption('Apple'))).toBe(false);
+		});
+
+		it('should ignore key presses if shift is held down', function () {
+			pressKey('ArrowDown', { shiftKey: true });
+			expect(isOptionVisuallyHighlighted(getOption('Apple'))).toBe(false);
+		});
+
+		it('should visually highlight the first option when pressing ArrowDown', function () {
+			pressKey('ArrowDown');
 			expect(isOptionVisuallyHighlighted(getOption('Apple'))).toBe(true);
 		});
 
-		it('should visually highlight the first option when pressing Home', async function () {
-			focusInput();
-			await elementUpdated(element);
+		it('should visually highlight the first option when pressing Home', function () {
 			pressKey('ArrowUp');
-
 			pressKey('Home');
 
 			expect(isOptionVisuallyHighlighted(getOption('Apple'))).toBe(true);
 			expect(isOptionVisuallyHighlighted(getOption('Cherry'))).toBe(false);
 		});
 
-		it('should visually highlight the last option when pressing End', async function () {
-			focusInput();
-			await elementUpdated(element);
+		it('should visually highlight the last option when pressing End', function () {
 			pressKey('ArrowDown');
-
 			pressKey('End');
 
 			expect(isOptionVisuallyHighlighted(getOption('Apple'))).toBe(false);
 			expect(isOptionVisuallyHighlighted(getOption('Cherry'))).toBe(true);
 		});
 
-		describe('pagination', () => {
-			beforeEach(async () => {
-				await setUpFixture(`
-				<${COMPONENT_TAG}>
-					${Array.from({ length: 30 })
-						.map(
-							(_, i) =>
-								`<${OPTION_TAG} value="${i}" text="${i}"></${OPTION_TAG}>`
-						)
-						.join('')}
-				</${COMPONENT_TAG}>
-			`);
-			});
-
-			it('should visually highlight the tenth option when pressing PageDown', async function () {
-				focusInput();
-				await elementUpdated(element);
-
-				pressKey('PageDown');
-
-				expect(isOptionVisuallyHighlighted(getOption('9'))).toBe(true);
-			});
-
-			it('should advance visual focus by ten when pressing PageDown', async function () {
-				focusInput();
-				await elementUpdated(element);
-
-				pressKey('PageDown');
-				pressKey('PageDown');
-
-				expect(isOptionVisuallyHighlighted(getOption('9'))).toBe(false);
-				expect(isOptionVisuallyHighlighted(getOption('19'))).toBe(true);
-			});
-
-			it('should stay on last option when pressing PageDown', async function () {
-				focusInput();
-				await elementUpdated(element);
-
-				pressKey('PageDown');
-				pressKey('PageDown');
-				pressKey('PageDown');
-				pressKey('PageDown');
-
-				expect(isOptionVisuallyHighlighted(getOption('29'))).toBe(true);
-			});
-
-			it('should visually highlight the tenth option from the end when pressing PageUp', async function () {
-				focusInput();
-				await elementUpdated(element);
-
-				pressKey('PageUp');
-
-				expect(isOptionVisuallyHighlighted(getOption('20'))).toBe(true);
-			});
-
-			it('should decrease visual focus by ten when pressing PageUp', async function () {
-				focusInput();
-				await elementUpdated(element);
-
-				pressKey('PageUp');
-				pressKey('PageUp');
-
-				expect(isOptionVisuallyHighlighted(getOption('20'))).toBe(false);
-				expect(isOptionVisuallyHighlighted(getOption('10'))).toBe(true);
-			});
-
-			it('should stay on first option when pressing PageUp', async function () {
-				focusInput();
-				await elementUpdated(element);
-
-				pressKey('PageUp');
-				pressKey('PageUp');
-				pressKey('PageUp');
-				pressKey('PageUp');
-
-				expect(isOptionVisuallyHighlighted(getOption('0'))).toBe(true);
-			});
-		});
-
-		it('should select visually highlighted option when pressing enter', async function () {
-			focusInput();
-			await elementUpdated(element);
-
+		it('should select visually highlighted option when pressing enter', function () {
 			pressKey('ArrowDown');
 			pressKey('Enter');
 
 			expect(element.values).toEqual(['apple']);
 		});
 
-		it('should visually highlight the next option when pressing ArrowDown', async function () {
-			focusInput();
-			await elementUpdated(element);
-
+		it('should visually highlight the next option when pressing ArrowDown', function () {
 			pressKey('Home');
 			pressKey('ArrowDown');
 
@@ -1644,9 +1560,6 @@ describe('vwc-searchable-select', () => {
 		});
 
 		it('should stay on the last option when pressing ArrowDown', async function () {
-			focusInput();
-			await elementUpdated(element);
-
 			pressKey('End');
 			pressKey('ArrowDown');
 
@@ -1654,9 +1567,6 @@ describe('vwc-searchable-select', () => {
 		});
 
 		it('should visually highlight the previous option when pressing ArrowUp', async function () {
-			focusInput();
-			await elementUpdated(element);
-
 			pressKey('End');
 			pressKey('ArrowUp');
 
@@ -1665,9 +1575,6 @@ describe('vwc-searchable-select', () => {
 		});
 
 		it('should stay on the first option when pressing ArrowUp', async function () {
-			focusInput();
-			await elementUpdated(element);
-
 			pressKey('Home');
 			pressKey('ArrowUp');
 
@@ -1675,9 +1582,6 @@ describe('vwc-searchable-select', () => {
 		});
 
 		it('should clear highlighted option when filtered options change', async function () {
-			focusInput();
-			await elementUpdated(element);
-
 			pressKey('ArrowDown');
 			typeInput('a');
 
@@ -1688,6 +1592,7 @@ describe('vwc-searchable-select', () => {
 			await setUpFixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`);
 
 			focusInput();
+			pressKey('ArrowDown');
 			await elementUpdated(element);
 
 			expect(() => pressKey('ArrowDown')).not.toThrow();
@@ -1702,12 +1607,76 @@ describe('vwc-searchable-select', () => {
 			`);
 
 			focusInput();
+			pressKey('ArrowDown');
 			await elementUpdated(element);
 
 			pressKey('ArrowDown');
 
 			expect(isOptionVisuallyHighlighted(getOption('Apple'))).toBe(false);
 			expect(isOptionVisuallyHighlighted(getOption('Banana'))).toBe(true);
+		});
+	});
+
+	describe('pagination', () => {
+		beforeEach(async () => {
+			await setUpFixture(`
+				<${COMPONENT_TAG}>
+					${Array.from({ length: 30 })
+						.map(
+							(_, i) =>
+								`<${OPTION_TAG} value="${i}" text="${i}"></${OPTION_TAG}>`
+						)
+						.join('')}
+				</${COMPONENT_TAG}>
+			`);
+
+			focusInput();
+			pressKey('ArrowDown');
+			await elementUpdated(element);
+		});
+
+		it('should visually highlight the tenth option when pressing PageDown', function () {
+			pressKey('PageDown');
+			expect(isOptionVisuallyHighlighted(getOption('9'))).toBe(true);
+		});
+
+		it('should advance visual focus by ten when pressing PageDown', function () {
+			pressKey('PageDown');
+			pressKey('PageDown');
+
+			expect(isOptionVisuallyHighlighted(getOption('9'))).toBe(false);
+			expect(isOptionVisuallyHighlighted(getOption('19'))).toBe(true);
+		});
+
+		it('should stay on last option when pressing PageDown', function () {
+			pressKey('PageDown');
+			pressKey('PageDown');
+			pressKey('PageDown');
+			pressKey('PageDown');
+
+			expect(isOptionVisuallyHighlighted(getOption('29'))).toBe(true);
+		});
+
+		it('should visually highlight the tenth option from the end when pressing PageUp', function () {
+			pressKey('PageUp');
+			expect(isOptionVisuallyHighlighted(getOption('20'))).toBe(true);
+		});
+
+		it('should decrease visual focus by ten when pressing PageUp', function () {
+			pressKey('PageUp');
+			pressKey('PageUp');
+
+			expect(isOptionVisuallyHighlighted(getOption('20'))).toBe(false);
+			expect(isOptionVisuallyHighlighted(getOption('10'))).toBe(true);
+		});
+
+		it('should stay on first option when pressing PageUp', function () {
+			pressKey('PageUp');
+			pressKey('PageUp');
+			pressKey('PageUp');
+			pressKey('PageUp');
+
+			expect(isOptionVisuallyHighlighted(getOption('0'))).toBe(true);
 		});
 	});
 
@@ -2020,6 +1989,7 @@ describe('vwc-searchable-select', () => {
 	describe('a11y attributes', () => {
 		it('should describe the visually highlighted option in an aria-live region', async () => {
 			focusInput();
+			pressKey('ArrowDown');
 			await elementUpdated(element);
 
 			pressKey('ArrowDown');

@@ -1,4 +1,9 @@
-import { createFormHTML, elementUpdated, fixture } from '@repo/shared';
+import {
+	createFormHTML,
+	elementUpdated,
+	fixture,
+	getResolvedTextContent,
+} from '@repo/shared';
 import enGB from '../../locales/en-GB';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
@@ -13,6 +18,8 @@ import { DateTimePicker } from './date-time-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-date-time-picker';
+
+const cleanWhitespace = (text: string) => text.replace(/\s+/g, ' ').trim();
 
 describe('vwc-date-time-picker', () => {
 	let element: DateTimePicker;
@@ -531,6 +538,24 @@ describe('vwc-date-time-picker', () => {
 			await elementUpdated(element);
 
 			expect(getDateButton('2023-08-20').classList).toContain('selected');
+		});
+
+		it('should announce a selected date with the selected label', async () => {
+			element.value = '2023-08-15T12:34:56';
+			await elementUpdated(element);
+
+			expect(
+				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-15')))
+			).toBe('15 selected');
+		});
+
+		it('should announce both today and selected labels when today is selected', async () => {
+			element.value = '2023-08-10T12:34:56';
+			await elementUpdated(element);
+
+			expect(
+				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-10')))
+			).toBe('10 today selected');
 		});
 
 		it('should set value and initialize time to 00:00:00 when clicking on a date and there is no current value', async () => {

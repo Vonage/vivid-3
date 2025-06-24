@@ -181,13 +181,13 @@ function renderFieldset(context: VividElementDefinitionContext) {
 					size="super-condensed"
 					icon="close-line"
 					appearance="ghost-light"
-					tabindex="-1"
+					tabindex="0"
 				></${buttonTag}>`
 			)}
 			<div @mousedown="${() => false}" @click="${(x) => x._onChevronClick()}">
 				${when(
 					(x) => x.loading,
-					html<SearchableSelect>`<${progressRingTag} indeterminate size="-6"></${progressRingTag}>`
+					html<SearchableSelect>`<${progressRingTag} indeterminate size="-6" aria-hidden="true"></${progressRingTag}>`
 				)}
 				${when((x) => !x.loading, chevronTemplate)}
 			</div>

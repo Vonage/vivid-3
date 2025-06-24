@@ -19,6 +19,7 @@ import type { ButtonLocale } from '../../lib/button/locale';
 import type { FeedbackMessageLocale } from '../feedback/locale';
 import type { CharCountLocale } from '../patterns/char-count/locale';
 import type { DataGridLocale } from '../../lib/data-grid/locale';
+import type { PaginationLocale } from '../../lib/pagination/locale';
 import type { Connotation } from '../../lib/enums';
 
 type ConnotationAnnoncementLocale = {
@@ -52,4 +53,5 @@ export interface Locale {
 	connotationAnnoncement: ConnotationAnnoncementLocale;
 	charCount: CharCountLocale;
 	dataGrid: DataGridLocale;
+	pagination: PaginationLocale;
 }

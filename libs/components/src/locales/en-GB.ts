@@ -67,6 +67,13 @@ const enGB: Locale = {
 		prevMonthLabel: 'Previous month',
 		nextMonthLabel: 'Next month',
 		nextYearLabel: 'Next year',
+		todayLabel: 'today',
+		selectedLabel: 'selected',
+		currentLabel: 'current',
+		changeMonthLabel: /* istanbul ignore next */ (month: string) =>
+			`Change month, ${month} selected`,
+		showCalendarForMonthLabel: /* istanbul ignore next */ (month: string) =>
+			`Show calendar for ${month}`,
 		invalidDateError: 'Please enter a valid date.',
 		invalidDateRangeError: 'Please enter a valid date range.',
 		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>
@@ -162,7 +169,7 @@ const enGB: Locale = {
 		dismissButtonLabel: 'Press the DELETE key to close this tab',
 	},
 	searchableSelect: {
-		clearButtonLabel: 'Clear',
+		clearButtonLabel: 'Clear selection',
 		noOptionsMessage: 'No options',
 		noMatchesMessage: 'No options found',
 		loadingOptionsMessage: 'Loading...',
@@ -175,8 +182,12 @@ const enGB: Locale = {
 		optionFocusedMessage: /* istanbul ignore next */ (
 			name: string,
 			position: number,
-			total: number
-		) => `Option ${name} focused, ${position} of ${total}.`,
+			total: number,
+			selected: boolean
+		) =>
+			`Option ${name} focused, ${
+				selected ? 'selected, ' : ''
+			}${position} of ${total}.`,
 		maxSelectedMessage: /* istanbul ignore next */ (
 			total: number,
 			limit: number
@@ -218,6 +229,12 @@ const enGB: Locale = {
 		cell: {
 			selected: 'Selected',
 		},
+	},
+	pagination: {
+		previousPageLabel: 'Go to previous page',
+		nextPageLabel: 'Go to next page',
+		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
+			`Go to page ${index}`,
 	},
 };
 

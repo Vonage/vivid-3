@@ -674,5 +674,28 @@ describe('vwc-pagination', () => {
 			);
 			expect(allButtonsAriaSelectedFalse).toEqual(true);
 		});
+
+		it('should set descriptive aria-labels on the page buttons', async () => {
+			element.total = 10;
+			await elementUpdated(element);
+			const buttons = element.shadowRoot?.querySelectorAll(
+				'.vwc-pagination-button'
+			);
+			expect(buttons?.item(1)?.getAttribute('aria-label')).toEqual(
+				'Go to page 2'
+			);
+			expect(buttons?.item(2)?.getAttribute('aria-label')).toEqual(
+				'Go to page 3'
+			);
+		});
+
+		it('should set descriptive aria-labels on the prev/next buttons', async function () {
+			const prevButton = element.shadowRoot?.querySelector('.prev-button');
+			const nextButton = element.shadowRoot?.querySelector('.next-button');
+			expect(prevButton?.getAttribute('aria-label')).toEqual(
+				'Go to previous page'
+			);
+			expect(nextButton?.getAttribute('aria-label')).toEqual('Go to next page');
+		});
 	});
 });
