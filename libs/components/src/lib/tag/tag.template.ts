@@ -31,12 +31,12 @@ const getClasses = ({
 
 function renderDismissButton(iconTag: string) {
 	return html<Tag>`
-	<button
+	<span
 		class="dismiss-button"
 		aria-label="${(x) => `${x.label} - ${x.locale.tag.remove}`}"
 		@click="${(x) => x.remove()}">
 		<${iconTag} name="close-line"></${iconTag}>
-	</button>`;
+	</span>`;
 }
 
 export const tagTemplate = (context: VividElementDefinitionContext) => {

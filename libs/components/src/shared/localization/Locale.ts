@@ -20,7 +20,7 @@ import type { FeedbackMessageLocale } from '../feedback/locale';
 import type { CharCountLocale } from '../patterns/char-count/locale';
 import type { DataGridLocale } from '../../lib/data-grid/locale';
 import type { PaginationLocale } from '../../lib/pagination/locale';
-import type { TagLocale } from '../../lib/tag/tag.locale';
+import type { TagLocale } from '../../lib/tag/locale';
 import type { Connotation } from '../../lib/enums';
 
 type ConnotationAnnoncementLocale = {

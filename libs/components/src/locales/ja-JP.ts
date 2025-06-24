@@ -230,7 +230,7 @@ const jaJP: Locale = {
 			`${index}ページへ`,
 	},
 	tag: {
-		remove: '削除する',
+		remove: /* istanbul ignore next */ (label: string) => `削除する ${label}`,
 	},
 };
 export default jaJP;

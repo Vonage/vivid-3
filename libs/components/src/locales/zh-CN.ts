@@ -230,7 +230,7 @@ const zhCN: Locale = {
 			`转至第 ${index} 页`,
 	},
 	tag: {
-		remove: '移除',
+		remove: /* istanbul ignore next */ (label: string) => `移除 ${label}`,
 	},
 };
 

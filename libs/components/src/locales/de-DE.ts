@@ -232,7 +232,7 @@ const deDE: Locale = {
 			`Weiter zu Seite ${index}`,
 	},
 	tag: {
-		remove: 'Entfernen',
+		remove: /* istanbul ignore next */ (label: string) => `Entfernen ${label}`,
 	},
 };
 

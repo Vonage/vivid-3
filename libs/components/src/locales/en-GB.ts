@@ -230,7 +230,7 @@ const enGB: Locale = {
 			`Go to page ${index}`,
 	},
 	tag: {
-		remove: 'Remove',
+		remove: /* istanbul ignore next */ (label: string) => `Remove ${label}`,
 	},
 };
 
