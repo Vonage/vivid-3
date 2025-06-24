@@ -5,6 +5,7 @@ type BaseSegment = {
 	id: number;
 	title: string;
 	titleClickable: boolean;
+	titleAriaLabel?: string;
 	prevYearButton?: boolean;
 	prevMonthButton?: boolean;
 	nextMonthButton?: boolean;
