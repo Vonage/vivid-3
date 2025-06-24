@@ -9,7 +9,9 @@
 		dropdown-indicator
 		size="expanded"
 	>
-		<vwc-avatar slot="icon" shape="pill" size="condensed"></vwc-avatar>
+		<vwc-avatar slot="icon" shape="pill" size="condensed">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 	</vwc-button>
 	<vwc-menu-item
 		text="Stone John"
@@ -17,7 +19,9 @@
 		check-appearance="tick-only"
 		text-secondary="236521"
 	>
-		<vwc-avatar slot="meta" size="condensed" shape="pill"></vwc-avatar>
+		<vwc-avatar slot="meta" size="condensed" shape="pill">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 	</vwc-menu-item>
 	<vwc-menu-item
 		text="Stanbrige Peter"
@@ -25,7 +29,9 @@
 		check-appearance="tick-only"
 		text-secondary="963851"
 	>
-		<vwc-avatar slot="meta" size="condensed" shape="pill"></vwc-avatar>
+		<vwc-avatar slot="meta" size="condensed" shape="pill">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 	</vwc-menu-item>
 	<vwc-menu-item
 		text="Kazantzis John"
@@ -33,7 +39,9 @@
 		check-appearance="tick-only"
 		text-secondary="784632"
 	>
-		<vwc-avatar slot="meta" size="condensed" shape="pill"></vwc-avatar>
+		<vwc-avatar slot="meta" size="condensed" shape="pill">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 	</vwc-menu-item>
 </vwc-menu>
 ```
@@ -42,9 +50,11 @@
 
 ```html preview 200px
 <vwc-menu aria-label="Menu example" placement="right-start" trigger="auto">
-	<button class="button" aria-label="see user details" slot="anchor">
-		<span class="avatar-satus">
-			<vwc-avatar shape="pill"></vwc-avatar>
+	<button class="button" aria-label="See user details" slot="anchor">
+		<span class="avatar-status">
+			<vwc-avatar shape="pill">
+				<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+			></vwc-avatar>
 		</span>
 	</button>
 	<vwc-menu-item text="Available">
@@ -83,11 +93,11 @@
 		cursor: pointer;
 		background: none;
 	}
-	.avatar-satus {
+	.avatar-status {
 		position: relative;
 		display: inline-block;
 	}
-	.avatar-satus::after {
+	.avatar-status::after {
 		position: absolute;
 		content: '';
 		inline-size: 14px;

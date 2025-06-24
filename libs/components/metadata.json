@@ -530,7 +530,7 @@
 				},
 				{
 					"name": "icon",
-					"description": "avatar header icon\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
+					"description": "undefined\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
 					"attributeName": "icon",
 					"propertyName": "icon"
@@ -595,6 +595,10 @@
 				{
 					"name": "graphic",
 					"description": "Assign nodes to the graphic slot to set a graphic media of any kind (e.g. image, illustration etc)."
+				},
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
 				}
 			]
 		},
