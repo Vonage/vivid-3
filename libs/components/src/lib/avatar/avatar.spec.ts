@@ -8,7 +8,6 @@ const COMPONENT_TAG = 'vwc-avatar';
 describe('vwc-avatar', () => {
 	let baseElement: Element;
 	let element: Avatar;
-
 	beforeAll(async () => {
 		await customElements.whenDefined(COMPONENT_TAG);
 	});
@@ -86,6 +85,12 @@ describe('vwc-avatar', () => {
 	});
 
 	describe('avatar icon', () => {
+		it('should have an icon slot', async () => {
+			expect(
+				element.shadowRoot?.querySelector('slot[name="icon"]')
+			).toBeTruthy();
+		});
+
 		it('should have the default icon', async () => {
 			const iconElement = baseElement.querySelector('vwc-icon');
 			expect(iconElement?.getAttribute('name')).toEqual('user-line');

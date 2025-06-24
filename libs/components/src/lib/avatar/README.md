@@ -22,7 +22,9 @@ registerAvatar('your-prefix');
 	registerAvatar('your-prefix');
 </script>
 
-<your-prefix-avatar></your-prefix-text-avatar>
+<your-prefix-avatar
+	><vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+></your-prefix-avatar>
 ```
 
 </vwc-tab-panel>
@@ -31,11 +33,11 @@ registerAvatar('your-prefix');
 
 ```html
 <script setup lang="ts">
-	import { VAvatar } from '@vonage/vivid-vue';
+	import { VAvatar, VIcon } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VAvatar />
+	<VAvatar><VIcon slot="icon" name="user-line" label="User" /></VAvatar>
 </template>
 ```
 
@@ -43,6 +45,22 @@ registerAvatar('your-prefix');
 </vwc-tabs>
 
 ## Slots
+
+### Icon
+
+Use the `icon` slot to add an icon to the avatar. If set, the `icon` attribute (deprecated) is ignored.
+
+To maintain accessibility, always provide a `label` property for the slotted icon - [read more](/components/icon/accessibility/#informative-vs-decorative-icons) in the Icon component guidelines.
+
+```html preview
+<vwc-avatar>
+	<vwc-icon
+		slot="icon"
+		name="assign-user-solid"
+		label="Verified user"
+	></vwc-icon>
+</vwc-avatar>
+```
 
 ### Graphic
 
@@ -205,14 +223,14 @@ Use the `graphic` slot to set a graphic media of any kind (e.g. image, illustrat
 
 <div class="table-wrapper">
 
-| Name            | Type                                                      | Description                     |
-| --------------- | --------------------------------------------------------- | ------------------------------- |
-| **appearance**  | Enum: `filled` (default), `duotone`, `outlined`, `subtle` | Sets the element's appearance   |
-| **connotation** | Enum: `accent` (default), `cta`                           | Sets the element's connotation  |
-| **icon**        | `string`                                                  | Sets the element's icon         |
-| **initials**    | `string`                                                  | Sets the initials on the Avatar |
-| **shape**       | Enum: `rounded` (default), `pill`                         | Sets the element's shape        |
-| **size**        | Enum: `condensed`, `normal` (default), `expanded`         | Sets the element's size         |
+| Name                                    | Type                                                      | Description                     |
+| --------------------------------------- | --------------------------------------------------------- | ------------------------------- |
+| **appearance**                          | Enum: `filled` (default), `duotone`, `outlined`, `subtle` | Sets the element's appearance   |
+| **connotation**                         | Enum: `accent` (default), `cta`                           | Sets the element's connotation  |
+| _(deprecated as of 06/25)_<br> **icon** | `string`                                                  | Sets the element's icon         |
+| **initials**                            | `string`                                                  | Sets the initials on the Avatar |
+| **shape**                               | Enum: `rounded` (default), `pill`                         | Sets the element's shape        |
+| **size**                                | Enum: `condensed`, `normal` (default), `expanded`         | Sets the element's size         |
 
 </div>
 
@@ -222,6 +240,7 @@ Use the `graphic` slot to set a graphic media of any kind (e.g. image, illustrat
 
 | Name        | Description                                              |
 | ----------- | -------------------------------------------------------- |
-| **Graphic** | Add graphic element to card. Overrides the icon property |
+| **graphic** | Add graphic element to card. Overrides the icon property |
+| **icon**    | Add an icon to the component.                            |
 
 </div>
