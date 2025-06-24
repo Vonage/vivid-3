@@ -4,13 +4,21 @@ Set the `appearance` attribute to change the avatar's appearance.
 
 ```html preview
 <div class="grid">
-	<vwc-avatar appearance="filled"></vwc-avatar>
+	<vwc-avatar appearance="filled">
+		<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon>
+	</vwc-avatar>
 	<span>filled (default) </span>
-	<vwc-avatar appearance="subtle"></vwc-avatar>
+	<vwc-avatar appearance="subtle">
+		<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+	></vwc-avatar>
 	<span>subtle</span>
-	<vwc-avatar appearance="duotone"></vwc-avatar>
+	<vwc-avatar appearance="duotone">
+		<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+	></vwc-avatar>
 	<span>duotone</span>
-	<vwc-avatar appearance="outlined"></vwc-avatar>
+	<vwc-avatar appearance="outlined">
+		<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+	></vwc-avatar>
 	<span>outlined</span>
 </div>
 
@@ -32,35 +40,51 @@ Avatar has `accent` connotation (default) and `cta`.
 ```html preview
 <div class="grid">
 	<div>
-		<vwc-avatar connotation="accent"></vwc-avatar>
+		<vwc-avatar connotation="accent">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 		<span>filled, accent</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="cta"></vwc-avatar>
+		<vwc-avatar connotation="cta">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 		<span>filled, cta</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="accent" appearance="subtle"></vwc-avatar>
+		<vwc-avatar connotation="accent" appearance="subtle">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 		<span>subtle, accent</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="cta" appearance="subtle"></vwc-avatar>
+		<vwc-avatar connotation="cta" appearance="subtle">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 		<span>subtle, cta</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="accent" appearance="duotone"></vwc-avatar>
+		<vwc-avatar connotation="accent" appearance="duotone">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 		<span>duotone, accent</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="cta" appearance="duotone"></vwc-avatar>
+		<vwc-avatar connotation="cta" appearance="duotone">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 		<span>duotone, cta</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="accent" appearance="outlined"></vwc-avatar>
+		<vwc-avatar connotation="accent" appearance="outlined">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 		<span>outlined, accent</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="cta" appearance="outlined"></vwc-avatar>
+		<vwc-avatar connotation="cta" appearance="outlined">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 		<span>outlined, cta</span>
 	</div>
 </div>
@@ -99,14 +123,12 @@ Set the `shape` attribute to change the avatar's edges.
 
 The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery/) on the Avatar other then the default `user-line` icon.
 
-<!-- Uncomment this when icon slot is added
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">
 	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
-The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+    The `icon` prop is **deprecated (as of 06/25)** and directly replaced with the [`icon` slot](/components/avatar/code/#icon). `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
 </vwc-note>
--->
 
 ```html preview
 <vwc-avatar icon="group-2-solid" aria-label="avatar for group"></vwc-avatar>
@@ -131,7 +153,9 @@ Use the `size` attribute/property to set the avatar's size.
 		<span>condensed (initials)</span>
 	</div>
 	<div>
-		<vwc-avatar size="condensed" shape="pill"></vwc-avatar>
+		<vwc-avatar size="condensed" shape="pill">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 		<span>condensed (icon)</span>
 	</div>
 	<div>
@@ -139,7 +163,9 @@ Use the `size` attribute/property to set the avatar's size.
 		<span>normal (initials)</span>
 	</div>
 	<div>
-		<vwc-avatar size="normal" shape="pill"></vwc-avatar>
+		<vwc-avatar size="normal" shape="pill">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 		<span>normal (icon)</span>
 	</div>
 	<div>
@@ -147,7 +173,9 @@ Use the `size` attribute/property to set the avatar's size.
 		<span>expanded (initials)</span>
 	</div>
 	<div>
-		<vwc-avatar size="expanded" shape="pill"></vwc-avatar>
+		<vwc-avatar size="expanded" shape="pill">
+			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+		></vwc-avatar>
 		<span>expanded (icon)</span>
 	</div>
 </div>

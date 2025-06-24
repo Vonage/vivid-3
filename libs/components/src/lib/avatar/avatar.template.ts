@@ -14,18 +14,17 @@ const getClasses = ({ appearance, connotation, shape, size }: Avatar) =>
 	);
 
 /**
- avatar icon
+ * @deprecated To be fully replaced with icon slot
+ * Avatar icon
  */
 function renderIcon(iconTag: string) {
 	return html<Avatar>`
-		<span class="icon">
-			<${iconTag} name="${(x) => (x.icon ? `${x.icon}` : 'user-line')}"></${iconTag}>
-		</span>
+		<${iconTag} name="${(x) => (x.icon ? `${x.icon}` : 'user-line')}"></${iconTag}>
 	`;
 }
 
 /**
- avatar initials
+ * Avatar initials
  */
 function renderInitials() {
 	return html<Avatar>`
@@ -39,7 +38,13 @@ export const AvatarTemplate = (context: VividElementDefinitionContext) => {
 	return html` <span class="${getClasses}">
 		<slot name="graphic">
 			${when((x) => x.initials, renderInitials())}
-			${when((x) => !x.initials, renderIcon(iconTag))}
+			${when(
+				(x) => !x.initials,
+				html`<span class="icon"
+					><slot name="icon">${renderIcon(iconTag)}</slot></span
+				>`
+			)}</slot
+			>
 		</slot>
 	</span>`;
 };
