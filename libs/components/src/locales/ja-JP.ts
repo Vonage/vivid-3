@@ -236,5 +236,8 @@ const jaJP: Locale = {
 		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
 			`${index}ページへ`,
 	},
+	tag: {
+		remove: /* istanbul ignore next */ (label: string) => `削除する ${label}`,
+	},
 };
 export default jaJP;

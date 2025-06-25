@@ -236,6 +236,9 @@ const enGB: Locale = {
 		goToPageLabel: /* istanbul ignore next */ (index: number | string) =>
 			`Go to page ${index}`,
 	},
+	tag: {
+		remove: /* istanbul ignore next */ (label: string) => `Remove ${label}`,
+	},
 };
 
 export default enGB;
