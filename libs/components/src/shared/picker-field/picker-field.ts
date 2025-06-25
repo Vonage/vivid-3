@@ -247,6 +247,7 @@ export abstract class PickerField extends WithFeedback(
 	 * @internal
 	 */
 	_onTextFieldInput(event: Event) {
+		console.log('Picker-field _onTextFieldInput', event);
 		const textField = event.currentTarget as TextField;
 		this._presentationValue = textField.value;
 	}
