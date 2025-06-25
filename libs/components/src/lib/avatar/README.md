@@ -44,6 +44,41 @@ registerAvatar('your-prefix');
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Clickable Avatar
+
+### Avatar as a Link
+
+Use the `href` attribute to change the avatar wrapper to a link. When doing so, all of the native attributes of `<a>` are supported, including target.
+
+```html preview
+<vwc-avatar
+	href="https://vivid.deno.dev"
+	target="_blank"
+	aria-label="Link to the Vivid documentation"
+>
+	<vwc-icon slot="icon" name="chain-solid" label="Link"></vwc-icon>
+</vwc-avatar>
+```
+
+### Avatar as a Button
+
+Setting the `clickable` attribute switches the avatar wrapper to a `<button>`, allowing you to trigger programmatic actions e.g. using the click event.
+
+```html preview 200px
+<vwc-menu aria-label="Menu example" placement="bottom-end" trigger="auto">
+	<vwc-avatar
+		slot="anchor"
+		appearance="subtle"
+		aria-label="Open menu"
+		clickable
+	>
+		<vwc-icon slot="icon" name="more-vertical-solid" label="Menu"></vwc-icon>
+	</vwc-avatar>
+	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+</vwc-menu>
+```
+
 ## Slots
 
 ### Icon

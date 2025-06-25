@@ -50,13 +50,15 @@
 
 ```html preview 200px
 <vwc-menu aria-label="Menu example" placement="right-start" trigger="auto">
-	<button class="button" aria-label="See user details" slot="anchor">
-		<span class="avatar-status">
-			<vwc-avatar shape="pill">
-				<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
-			></vwc-avatar>
-		</span>
-	</button>
+	<vwc-avatar
+		slot="anchor"
+		shape="pill"
+		aria-label="See user details"
+		class="avatar-status"
+		clickable
+	>
+		<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon>
+	</vwc-avatar>
 	<vwc-menu-item text="Available">
 		<vwc-badge
 			slot="meta"
@@ -85,14 +87,6 @@
 </vwc-menu>
 
 <style>
-	.button {
-		padding: 0;
-		margin: 0;
-		box-shadow: none;
-		border: none;
-		cursor: pointer;
-		background: none;
-	}
 	.avatar-status {
 		position: relative;
 		display: inline-block;
