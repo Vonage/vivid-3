@@ -33,7 +33,7 @@ function renderDismissButton(iconTag: string) {
 	return html<Tag>`
 	<span
 		class="dismiss-button"
-		aria-label="${(x) => `${x.label} - ${x.locale.tag.remove}`}"
+		aria-label="${(x) => x.locale.tag.remove(x.label as string)}"
 		@click="${(x) => x.remove()}">
 		<${iconTag} name="close-line"></${iconTag}>
 	</span>`;
