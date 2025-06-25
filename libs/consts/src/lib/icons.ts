@@ -1,5 +1,5 @@
 export const ICONS_BASE_URL = 'https://icon.resources.vonage.com';
-export const ICONS_VERSION = '4.6.7';
+export const ICONS_VERSION = '4.6.8';
 export const ICONS_MANIFEST_URL = `${ICONS_BASE_URL}/v${ICONS_VERSION}/manifest.json`;
 
 type Weight = 'solid' | 'regular';

@@ -20,10 +20,20 @@ jobs:
       eslint_plugin_release_created: ${{ steps.release.outputs['libs/eslint-plugin--release_created'] }}
       eslint_plugin_release_sha: ${{ steps.release.outputs['libs/eslint-plugin--sha'] }}
     steps:
+      # Checks if a release PR has been merged but not released yet (label: `autorelease: pending`)
+      # If so, creates releases (and tags) for the affected libraries in GitHub, updates the label, and sets the relevant outputs
+      # We have configured release-please to not create a release/tag for the vivid-vue library, as it is always released
+      # with vivid components which would make the release redundant.
+      # However, release-please depends on the vivid-vue tag to understand what has changed, so we create it ourselves in the
+      # next step.
       - uses: googleapis/release-please-action@v4
         id: release
+        with:
+          # Defer creating a new release PR until after the vivid-vue tag is created
+          # Otherwise, release-please will create a new pull request for the vivid-vue changes immediately
+          skip-github-pull-request: true
 
-      # As we've instructed release-please not to create a vivid-vue release for now, we need to create the tag ourselves
+      # Whenever the components are released, also create a tag for the vivid-vue library
       - name: Create Vivid Vue Tag
         if: ${{ steps.release.outputs['libs/components--release_created'] }}
         uses: actions/github-script@v6
@@ -40,6 +50,15 @@ jobs:
                 sha: VIVID_SHA
             })
 
+      # Now we can create/update the release PR if needed
+      # This will look for commits since the last release and associate them with libraries if files in the library
+      # directories have changed. It will then create/update a release PR that updates the libraries changelog and versions
+      # based on the conventional commit messages.
+      - uses: googleapis/release-please-action@v4
+        id: pull-request
+        with:
+          skip-github-release: true
+
   should-release:
     runs-on: ubuntu-latest
     needs: release-please
@@ -48,7 +67,7 @@ jobs:
       release_sha: ${{ steps.should-release.outputs.release_sha }}
     steps:
       - id: should-release
-        run:
+        run: |
           echo "::set-output name=should_release::${{ needs.release-please.outputs.vivid_release_created == 'true' || needs.release-please.outputs.eslint_plugin_release_created == 'true' || github.event.inputs.force-release == 'true' }}"
           echo "::set-output name=release_sha::${{ needs.release-please.outputs.vivid_release_sha || needs.release-please.outputs.eslint_plugin_release_sha || github.event.pull_request.head.sha }}"
 
