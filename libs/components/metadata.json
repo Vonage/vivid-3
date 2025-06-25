@@ -522,11 +522,39 @@
 					"propertyName": "appearance"
 				},
 				{
+					"name": "clickable",
+					"description": "Indicates whether avatar should be a clickable <button> element.",
+					"type": "boolean",
+					"attributeName": "clickable",
+					"propertyName": "clickable"
+				},
+				{
 					"name": "connotation",
 					"description": "The connotation the avatar should have.",
 					"type": "'accent' | 'cta'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
+				},
+				{
+					"name": "download",
+					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "download",
+					"propertyName": "download"
+				},
+				{
+					"name": "href",
+					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "href",
+					"propertyName": "href"
+				},
+				{
+					"name": "hreflang",
+					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "hreflang",
+					"propertyName": "hreflang"
 				},
 				{
 					"name": "icon",
@@ -543,6 +571,27 @@
 					"propertyName": "initials"
 				},
 				{
+					"name": "ping",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "ping",
+					"propertyName": "ping"
+				},
+				{
+					"name": "referrerpolicy",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "referrerpolicy",
+					"propertyName": "referrerpolicy"
+				},
+				{
+					"name": "rel",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "rel",
+					"propertyName": "rel"
+				},
+				{
 					"name": "shape",
 					"description": "The shape the avatar should have.",
 					"type": "'rounded' | 'pill'",
@@ -555,6 +604,20 @@
 					"type": "'condensed' | 'normal' | 'expanded'",
 					"attributeName": "size",
 					"propertyName": "size"
+				},
+				{
+					"name": "target",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "'_self' | '_blank' | '_parent' | '_top'",
+					"attributeName": "target",
+					"propertyName": "target"
+				},
+				{
+					"name": "type",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "type",
+					"propertyName": "type"
 				}
 			],
 			"events": [
