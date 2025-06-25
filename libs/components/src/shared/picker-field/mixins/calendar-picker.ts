@@ -275,6 +275,11 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 					type: 'month-picker',
 					title: `${this._monthPickerYear}`,
 					titleClickable: true,
+					titleAriaLabel: this.locale.calendarPicker.showCalendarForMonthLabel(
+						`${
+							this.locale.calendarPicker.months.name[this._selectedMonth.month]
+						} ${this._selectedMonth.year}`
+					),
 					prevYearButton: true,
 					nextYearButton: true,
 					months: buildMonthPickerGrid(
@@ -295,6 +300,11 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 							month.year
 						}`,
 						titleClickable: isSingle,
+						titleAriaLabel: this.locale.calendarPicker.changeMonthLabel(
+							`${this.locale.calendarPicker.months.name[month.month]} ${
+								month.year
+							}`
+						),
 						prevYearButton: isFirst && isSingle,
 						prevMonthButton: isFirst,
 						nextMonthButton: isLast,
@@ -331,7 +341,7 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 		/**
 		 * @internal
 		 */
-		abstract _isDateAriaSelected(date: DateStr): void;
+		abstract _isDateAriaSelected(date: DateStr): boolean;
 
 		/**
 		 * @internal
