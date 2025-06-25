@@ -32,8 +32,8 @@ const getClasses = ({
 function renderDismissButton(iconTag: string) {
 	return html<Tag>`
 	<span
-		aria-hidden="true"
 		class="dismiss-button"
+		aria-label="${(x) => x.locale.tag.remove(x.label as string)}"
 		@click="${(x) => x.remove()}">
 		<${iconTag} name="close-line"></${iconTag}>
 	</span>`;
@@ -50,7 +50,7 @@ export const tagTemplate = (context: VividElementDefinitionContext) => {
 			ariaDisabled: (x) => x.disabled,
 			ariaSelected: (x) => x.selectable,
 		})}
-		tabindex="${(x) => (x.disabled ? null : 0)}"
+		tabindex="${(x) => (x.disabled || x.removable ? null : 0)}"
 		@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
 		@click="${(x) => x.handleClick()}"
 	>

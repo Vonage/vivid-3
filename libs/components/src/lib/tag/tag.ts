@@ -4,6 +4,7 @@ import type { Appearance, Connotation, Shape } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import { Localized } from '../../shared/patterns';
 
 /**
  * Types of tag connotation.
@@ -39,7 +40,7 @@ export type TagShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
  * @event {CustomEvent<undefined>} selected-change - Fires when the selected state changes
  * @event {CustomEvent<undefined>} removed - Fires when the tag is removed
  */
-export class Tag extends DelegatesAria(AffixIcon(VividElement)) {
+export class Tag extends Localized(DelegatesAria(AffixIcon(VividElement))) {
 	/**
 	 * The connotation the tag should have.
 	 *
