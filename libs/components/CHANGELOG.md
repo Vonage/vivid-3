@@ -4,6 +4,24 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.27.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.26.0...vivid-v4.27.0) (2025-06-26)
+
+
+### Features
+
+* **avatar:** add icon slot (VIV-2717) ([#2430](https://github.com/Vonage/vivid-3/issues/2430)) ([6983198](https://github.com/Vonage/vivid-3/commit/69831982e7c55d154059d26d04e625bc815ca0ce))
+* **avatar:** support clickable options - link or button (VIV-2718) ([#2434](https://github.com/Vonage/vivid-3/issues/2434)) ([dd2115a](https://github.com/Vonage/vivid-3/commit/dd2115a98a6e95e07550d765036a89c526ac15c7))
+
+
+### Bug Fixes
+
+* **date-picker, date-range-picker, date-time-picker:** fix accessibility issues (VIV-2691) ([#2411](https://github.com/Vonage/vivid-3/issues/2411)) ([7a0e845](https://github.com/Vonage/vivid-3/commit/7a0e845e482394e6d1535c478edfa4789022020b))
+* **pagination:** accessibility fixes (VIV-2695) ([#2416](https://github.com/Vonage/vivid-3/issues/2416)) ([d63c485](https://github.com/Vonage/vivid-3/commit/d63c4855ff2c39effd1c8a3fa83436c8b706fb73))
+* **picker-field:** modify the clear button functionality to clear the selected value without closing the picker view (VIV-2696)  ([#2418](https://github.com/Vonage/vivid-3/issues/2418)) ([96025df](https://github.com/Vonage/vivid-3/commit/96025df08628ea7519b1a24bc9cfba188a0df14c))
+* **searchable-select:** accessibility fixes (VIV-2697) ([#2422](https://github.com/Vonage/vivid-3/issues/2422)) ([28524cb](https://github.com/Vonage/vivid-3/commit/28524cb8075a7e8f55a8aa71b592b494f056b2ae))
+* **select:** fix TypeError on disabled VSelect (VIV-2724) ([#2425](https://github.com/Vonage/vivid-3/issues/2425)) ([cdd4657](https://github.com/Vonage/vivid-3/commit/cdd46572d78d1117458cf4b71c3801813b73bfd9))
+* **tag:** improve keyboard focus when removable (VIV-2720) ([#2429](https://github.com/Vonage/vivid-3/issues/2429)) ([375e86f](https://github.com/Vonage/vivid-3/commit/375e86f966bd6f51b80ca849710b40743ca2236a))
+
 ## [4.26.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.25.0...vivid-v4.26.0) (2025-06-18)
 
 
