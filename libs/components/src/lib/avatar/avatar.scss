@@ -15,8 +15,8 @@
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/tokens/scss/size.variables' as size;
 @use '@repo/shared/mixins/border-radius' as border-radius-variables;
-@use '@repo/shared/src/lib/sass/mixins/focus' as focus;
-@use '@repo/shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
 
 :host {
 	display: inline-block;
