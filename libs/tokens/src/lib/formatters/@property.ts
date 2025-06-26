@@ -1,6 +1,6 @@
-import { formatHelpers } from 'style-dictionary';
+import SD from 'style-dictionary';
 
-const { fileHeader } = formatHelpers;
+const { fileHeader } = SD.formatHelpers;
 
 const suffixMap = {
 	integer: '',

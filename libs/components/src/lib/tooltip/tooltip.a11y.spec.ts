@@ -3,7 +3,7 @@ import {
 	axe,
 	elementUpdated,
 	fixture,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import type { Button } from '../button/button';
 import { Tooltip } from './tooltip';
 import '.';

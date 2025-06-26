@@ -203,7 +203,7 @@ export class TextField extends WithLightDOMFeedback(
 	 * HTML Attribute: type
 	 */
 	@attr
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	type: TextFieldType = TextFieldType.text;
 	/**
 	 * @internal

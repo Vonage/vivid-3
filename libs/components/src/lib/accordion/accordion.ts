@@ -48,7 +48,7 @@ export class Accordion extends VividElement {
 	 * HTML attribute: expand-mode
 	 */
 	@attr({ attribute: 'expand-mode' })
-	/* eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value */
+	/* eslint-disable-next-line @repo/repo/no-attribute-default-value */
 	expandmode: AccordionExpandMode = AccordionExpandMode.single;
 
 	/**

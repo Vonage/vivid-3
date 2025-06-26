@@ -3,7 +3,7 @@ import {
 	fixture,
 	getBaseElement,
 	setProperty,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { Connotation } from '../enums';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Avatar } from './avatar';

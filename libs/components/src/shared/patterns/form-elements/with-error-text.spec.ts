@@ -1,6 +1,6 @@
 import 'element-internals-polyfill';
 
-import { fixture } from '@vivid-nx/shared';
+import { fixture } from '@repo/shared';
 import { customElement } from '@microsoft/fast-element';
 import { FormAssociated } from '../../foundation/form-associated/form-associated';
 import { VividElement } from '../../foundation/vivid-element/vivid-element';

@@ -2,3 +2,13 @@ codecov:
   allow_coverage_offsets: true
   max_report_age: off
   token: ${{ secrets.CODECOV_TOKEN }}
+ignore:
+  - 'apps'
+  - 'libs/components/scripts'
+  - 'libs/cem-analyzer-plugins'
+  - 'libs/vue-wrappers'
+  - 'libs/wrapper-gen'
+  - 'libs/tokens'
+  - 'libs/internal-eslint-plugin'
+  - 'libs/components/src/visual-tests'
+  - 'libs/components/src/locales'

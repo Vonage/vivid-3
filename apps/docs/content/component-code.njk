@@ -11,4 +11,4 @@ eleventyComputed:
   githubEditLink: "{{ component.code | githubEditLink }}"
 ---
 
-{% renderFile component.code %}
+{% renderFile "../../" ~ component.code %}

@@ -1,5 +1,5 @@
 import { html, ViewTemplate } from '@microsoft/fast-element';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@repo/shared';
 import { DataGrid, DataGridSelectionMode } from './data-grid';
 import '.';
 import { DataGridRow } from './data-grid-row';

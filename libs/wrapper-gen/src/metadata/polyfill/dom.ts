@@ -1,5 +1,4 @@
 import { DOMWindow, JSDOM } from 'jsdom';
-import MediaQueryList from 'happy-dom/lib/match-media/MediaQueryList';
 
 const dom = new JSDOM('<!doctype html><html><body></body></html>', {
 	url: 'http://localhost/',

@@ -1,20 +1,12 @@
 {
-	"extends": ["../../.eslintrc.json"],
-	"ignorePatterns": ["!**/*"],
+	"root": true,
+	"extends": ["@repo/eslint-config/base.js"],
 	"overrides": [
 		{
 			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
 			"rules": {
 				"@typescript-eslint/no-var-requires": "off"
 			}
-		},
-		{
-			"files": ["*.ts", "*.tsx"],
-			"rules": {}
-		},
-		{
-			"files": ["*.js", "*.jsx"],
-			"rules": {}
 		}
 	]
 }

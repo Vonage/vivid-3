@@ -1,10 +1,10 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@repo/shared';
 import type { Icon } from '../icon/icon';
 import { Button } from '../button/button';
 import { Connotation } from '../enums';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
-import { Banner, CONNOTATION_ICON_MAP } from './banner';
 import type { BannerConnotation } from './banner';
+import { Banner, CONNOTATION_ICON_MAP } from './banner';
 import '.';
 
 const COMPONENT_TAG = 'vwc-banner';

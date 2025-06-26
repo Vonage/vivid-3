@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	getControlElement,
 	getResolvedTextContent,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import type { FormAssociatedElement } from '../foundation/form-associated/form-associated';
 import type { ElementWithErrorText, ElementWithSuccessText } from '../patterns';
 import type { ElementWithFeedback } from './mixins';

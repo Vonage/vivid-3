@@ -1,0 +1,24 @@
+{
+	"name": "@repo/cem-analyzer-plugins",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "vite build",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "*",
+		"@repo/eslint-config": "*",
+		"@repo/vitest-config": "*"
+	}
+}

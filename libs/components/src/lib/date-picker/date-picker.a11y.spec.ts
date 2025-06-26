@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	fixture,
 	setupDelegatesFocusPolyfill,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { DatePicker } from './date-picker';
 import '.';
 

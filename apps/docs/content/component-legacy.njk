@@ -9,4 +9,4 @@ layout: component.njk
 eleventyComputed:
     githubEditLink: "{{ component.markdown | githubEditLink }}"
 ---
-{% renderFile component.markdown %}
+{% renderFile "../../" ~ component.markdown %}

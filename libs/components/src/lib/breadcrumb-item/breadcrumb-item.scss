@@ -1,9 +1,8 @@
-@use '../../../../shared/src/lib/sass/utils' as utils;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '@repo/shared/utils' as utils;
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
 
 .base {
 	display: flex;

@@ -3,7 +3,6 @@
 		{
 			"name": "accordion",
 			"className": "Accordion",
-			"vividModulePath": "libs/components/src/lib/accordion/accordion.ts",
 			"registerFunctionName": "registerAccordion",
 			"description": "",
 			"props": [
@@ -59,7 +58,6 @@
 		{
 			"name": "accordion-item",
 			"className": "AccordionItem",
-			"vividModulePath": "libs/components/src/lib/accordion-item/accordion-item.ts",
 			"registerFunctionName": "registerAccordionItem",
 			"description": "",
 			"props": [
@@ -183,7 +181,6 @@
 		{
 			"name": "action-group",
 			"className": "ActionGroup",
-			"vividModulePath": "libs/components/src/lib/action-group/action-group.ts",
 			"registerFunctionName": "registerActionGroup",
 			"description": "",
 			"props": [
@@ -248,7 +245,6 @@
 		{
 			"name": "alert",
 			"className": "Alert",
-			"vividModulePath": "libs/components/src/lib/alert/alert.ts",
 			"registerFunctionName": "registerAlert",
 			"description": "",
 			"props": [
@@ -391,7 +387,6 @@
 		{
 			"name": "audio-player",
 			"className": "AudioPlayer",
-			"vividModulePath": "libs/components/src/lib/audio-player/audio-player.ts",
 			"registerFunctionName": "registerAudioPlayer",
 			"description": "",
 			"props": [
@@ -510,7 +505,6 @@
 		{
 			"name": "avatar",
 			"className": "Avatar",
-			"vividModulePath": "libs/components/src/lib/avatar/avatar.ts",
 			"registerFunctionName": "registerAvatar",
 			"description": "",
 			"props": [
@@ -668,7 +662,6 @@
 		{
 			"name": "badge",
 			"className": "Badge",
-			"vividModulePath": "libs/components/src/lib/badge/badge.ts",
 			"registerFunctionName": "registerBadge",
 			"description": "",
 			"props": [
@@ -766,7 +759,6 @@
 		{
 			"name": "banner",
 			"className": "Banner",
-			"vividModulePath": "libs/components/src/lib/banner/banner.ts",
 			"registerFunctionName": "registerBanner",
 			"description": "",
 			"props": [
@@ -862,7 +854,6 @@
 		{
 			"name": "breadcrumb",
 			"className": "Breadcrumb",
-			"vividModulePath": "libs/components/src/lib/breadcrumb/breadcrumb.ts",
 			"registerFunctionName": "registerBreadcrumb",
 			"description": "",
 			"props": [],
@@ -905,7 +896,6 @@
 		{
 			"name": "breadcrumb-item",
 			"className": "BreadcrumbItem",
-			"vividModulePath": "libs/components/src/lib/breadcrumb-item/breadcrumb-item.ts",
 			"registerFunctionName": "registerBreadcrumbItem",
 			"description": "",
 			"props": [
@@ -1011,7 +1001,6 @@
 		{
 			"name": "button",
 			"className": "Button",
-			"vividModulePath": "libs/components/src/lib/button/button.ts",
 			"registerFunctionName": "registerButton",
 			"description": "",
 			"props": [
@@ -1303,7 +1292,6 @@
 		{
 			"name": "calendar",
 			"className": "Calendar",
-			"vividModulePath": "libs/components/src/lib/calendar/calendar.ts",
 			"registerFunctionName": "registerCalendar",
 			"description": "",
 			"props": [
@@ -1418,7 +1406,6 @@
 		{
 			"name": "calendar-event",
 			"className": "CalendarEvent",
-			"vividModulePath": "libs/components/src/lib/calendar-event/calendar-event.ts",
 			"registerFunctionName": "registerCalendarEvent",
 			"description": "",
 			"props": [
@@ -1511,7 +1498,6 @@
 		{
 			"name": "card",
 			"className": "Card",
-			"vividModulePath": "libs/components/src/lib/card/card.ts",
 			"registerFunctionName": "registerCard",
 			"description": "",
 			"props": [
@@ -1681,7 +1667,6 @@
 		{
 			"name": "checkbox",
 			"className": "Checkbox",
-			"vividModulePath": "libs/components/src/lib/checkbox/checkbox.ts",
 			"registerFunctionName": "registerCheckbox",
 			"description": "",
 			"props": [
@@ -1864,7 +1849,6 @@
 		{
 			"name": "combobox",
 			"className": "Combobox",
-			"vividModulePath": "libs/components/src/lib/combobox/combobox.ts",
 			"registerFunctionName": "registerCombobox",
 			"description": "",
 			"props": [
@@ -2097,7 +2081,6 @@
 		{
 			"name": "data-grid",
 			"className": "DataGrid",
-			"vividModulePath": "libs/components/src/lib/data-grid/data-grid.ts",
 			"registerFunctionName": "registerDataGrid",
 			"description": "",
 			"props": [
@@ -2191,7 +2174,6 @@
 		{
 			"name": "data-grid-cell",
 			"className": "DataGridCell",
-			"vividModulePath": "libs/components/src/lib/data-grid/data-grid-cell.ts",
 			"registerFunctionName": "registerDataGrid",
 			"description": "",
 			"props": [
@@ -2314,7 +2296,6 @@
 		{
 			"name": "data-grid-row",
 			"className": "DataGridRow",
-			"vividModulePath": "libs/components/src/lib/data-grid/data-grid-row.ts",
 			"registerFunctionName": "registerDataGrid",
 			"description": "",
 			"props": [
@@ -2412,7 +2393,6 @@
 		{
 			"name": "date-picker",
 			"className": "DatePicker",
-			"vividModulePath": "libs/components/src/lib/date-picker/date-picker.ts",
 			"registerFunctionName": "registerDatePicker",
 			"description": "Single date picker component.",
 			"props": [
@@ -2563,7 +2543,6 @@
 		{
 			"name": "date-range-picker",
 			"className": "DateRangePicker",
-			"vividModulePath": "libs/components/src/lib/date-range-picker/date-range-picker.ts",
 			"registerFunctionName": "registerDateRangePicker",
 			"description": "",
 			"props": [
@@ -2758,7 +2737,6 @@
 		{
 			"name": "date-time-picker",
 			"className": "DateTimePicker",
-			"vividModulePath": "libs/components/src/lib/date-time-picker/date-time-picker.ts",
 			"registerFunctionName": "registerDateTimePicker",
 			"description": "Single date picker component.",
 			"props": [
@@ -2958,7 +2936,6 @@
 		{
 			"name": "dial-pad",
 			"className": "DialPad",
-			"vividModulePath": "libs/components/src/lib/dial-pad/dial-pad.ts",
 			"registerFunctionName": "registerDialPad",
 			"description": "Base class for dial-pad",
 			"props": [
@@ -3126,7 +3103,6 @@
 		{
 			"name": "dialog",
 			"className": "Dialog",
-			"vividModulePath": "libs/components/src/lib/dialog/dialog.ts",
 			"registerFunctionName": "registerDialog",
 			"description": "",
 			"props": [
@@ -3303,7 +3279,6 @@
 		{
 			"name": "divider",
 			"className": "Divider",
-			"vividModulePath": "libs/components/src/lib/divider/divider.ts",
 			"registerFunctionName": "registerDivider",
 			"description": "",
 			"props": [
@@ -3361,7 +3336,6 @@
 		{
 			"name": "empty-state",
 			"className": "EmptyState",
-			"vividModulePath": "libs/components/src/lib/empty-state/empty-state.ts",
 			"registerFunctionName": "registerEmptyState",
 			"description": "An empty state element. Used when there is no data to display to the user.",
 			"props": [
@@ -3445,7 +3419,6 @@
 		{
 			"name": "fab",
 			"className": "Fab",
-			"vividModulePath": "libs/components/src/lib/fab/fab.ts",
 			"registerFunctionName": "registerFab",
 			"description": "",
 			"props": [
@@ -3639,7 +3612,6 @@
 		{
 			"name": "file-picker",
 			"className": "FilePicker",
-			"vividModulePath": "libs/components/src/lib/file-picker/file-picker.ts",
 			"registerFunctionName": "registerFilePicker",
 			"description": "",
 			"props": [
@@ -3888,7 +3860,6 @@
 		{
 			"name": "header",
 			"className": "Header",
-			"vividModulePath": "libs/components/src/lib/header/header.ts",
 			"registerFunctionName": "registerHeader",
 			"description": "",
 			"props": [
@@ -3956,7 +3927,6 @@
 		{
 			"name": "icon",
 			"className": "Icon",
-			"vividModulePath": "libs/components/src/lib/icon/icon.ts",
 			"registerFunctionName": "registerIcon",
 			"description": "",
 			"props": [
@@ -4029,7 +3999,6 @@
 		{
 			"name": "layout",
 			"className": "Layout",
-			"vividModulePath": "libs/components/src/lib/layout/layout.ts",
 			"registerFunctionName": "registerLayout",
 			"description": "[--layout-grid-template-columns=repeat([the `auto-sizing` mapped value],\nminmax([the `column-basis` mapped value], 1fr))] - Controls the `grid-template-columns` of the layout.",
 			"props": [
@@ -4108,7 +4077,6 @@
 		{
 			"name": "menu",
 			"className": "Menu",
-			"vividModulePath": "libs/components/src/lib/menu/menu.ts",
 			"registerFunctionName": "registerMenu",
 			"description": "",
 			"props": [
@@ -4239,7 +4207,6 @@
 		{
 			"name": "menu-item",
 			"className": "MenuItem",
-			"vividModulePath": "libs/components/src/lib/menu-item/menu-item.ts",
 			"registerFunctionName": "registerMenuItem",
 			"description": "",
 			"props": [
@@ -4390,7 +4357,6 @@
 		{
 			"name": "nav",
 			"className": "Nav",
-			"vividModulePath": "libs/components/src/lib/nav/nav.ts",
 			"registerFunctionName": "registerNav",
 			"description": "",
 			"props": [],
@@ -4433,7 +4399,6 @@
 		{
 			"name": "nav-disclosure",
 			"className": "NavDisclosure",
-			"vividModulePath": "libs/components/src/lib/nav-disclosure/nav-disclosure.ts",
 			"registerFunctionName": "registerNavDisclosure",
 			"description": "",
 			"props": [
@@ -4533,7 +4498,6 @@
 		{
 			"name": "nav-item",
 			"className": "NavItem",
-			"vividModulePath": "libs/components/src/lib/nav-item/nav-item.ts",
 			"registerFunctionName": "registerNavItem",
 			"description": "A Nav Item Custom HTML Element.\nBased largely on the https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element .",
 			"props": [
@@ -4677,7 +4641,6 @@
 		{
 			"name": "note",
 			"className": "Note",
-			"vividModulePath": "libs/components/src/lib/note/note.ts",
 			"registerFunctionName": "registerNote",
 			"description": "",
 			"props": [
@@ -4750,7 +4713,6 @@
 		{
 			"name": "number-field",
 			"className": "NumberField",
-			"vividModulePath": "libs/components/src/lib/number-field/number-field.ts",
 			"registerFunctionName": "registerNumberField",
 			"description": "",
 			"props": [
@@ -5033,7 +4995,6 @@
 		{
 			"name": "option",
 			"className": "ListboxOption",
-			"vividModulePath": "libs/components/src/lib/option/option.ts",
 			"registerFunctionName": "registerOption",
 			"description": "An Option Custom HTML Element.\nImplements https://www.w3.org/TR/wai-aria-1.1/#option | ARIA option .",
 			"props": [
@@ -5151,7 +5112,6 @@
 		{
 			"name": "pagination",
 			"className": "Pagination",
-			"vividModulePath": "libs/components/src/lib/pagination/pagination.ts",
 			"registerFunctionName": "registerPagination",
 			"description": "",
 			"props": [
@@ -5257,7 +5217,6 @@
 		{
 			"name": "progress",
 			"className": "Progress",
-			"vividModulePath": "libs/components/src/lib/progress/progress.ts",
 			"registerFunctionName": "registerProgress",
 			"description": "",
 			"props": [
@@ -5350,7 +5309,6 @@
 		{
 			"name": "progress-ring",
 			"className": "ProgressRing",
-			"vividModulePath": "libs/components/src/lib/progress-ring/progress-ring.ts",
 			"registerFunctionName": "registerProgressRing",
 			"description": "",
 			"props": [
@@ -5434,7 +5392,6 @@
 		{
 			"name": "radio",
 			"className": "Radio",
-			"vividModulePath": "libs/components/src/lib/radio/radio.ts",
 			"registerFunctionName": "registerRadio",
 			"description": "",
 			"props": [
@@ -5579,7 +5536,6 @@
 		{
 			"name": "radio-group",
 			"className": "RadioGroup",
-			"vividModulePath": "libs/components/src/lib/radio-group/radio-group.ts",
 			"registerFunctionName": "registerRadioGroup",
 			"description": "",
 			"props": [
@@ -5703,7 +5659,6 @@
 		{
 			"name": "range-slider",
 			"className": "RangeSlider",
-			"vividModulePath": "libs/components/src/lib/range-slider/range-slider.ts",
 			"registerFunctionName": "registerRangeSlider",
 			"description": "Base class for range-slider",
 			"props": [
@@ -5922,7 +5877,6 @@
 		{
 			"name": "rich-text-editor",
 			"className": "RichTextEditor",
-			"vividModulePath": "libs/components/src/lib/rich-text-editor/rich-text-editor.ts",
 			"registerFunctionName": "registerRichTextEditor",
 			"description": "",
 			"props": [
@@ -6030,7 +5984,6 @@
 		{
 			"name": "searchable-select",
 			"className": "SearchableSelect",
-			"vividModulePath": "libs/components/src/lib/searchable-select/searchable-select.ts",
 			"registerFunctionName": "registerSearchableSelect",
 			"description": "",
 			"props": [
@@ -6293,7 +6246,6 @@
 		{
 			"name": "select",
 			"className": "Select",
-			"vividModulePath": "libs/components/src/lib/select/select.ts",
 			"registerFunctionName": "registerSelect",
 			"description": "",
 			"props": [
@@ -6528,7 +6480,6 @@
 		{
 			"name": "selectable-box",
 			"className": "SelectableBox",
-			"vividModulePath": "libs/components/src/lib/selectable-box/selectable-box.ts",
 			"registerFunctionName": "registerSelectableBox",
 			"description": "",
 			"props": [
@@ -6618,7 +6569,6 @@
 		{
 			"name": "side-drawer",
 			"className": "SideDrawer",
-			"vividModulePath": "libs/components/src/lib/side-drawer/side-drawer.ts",
 			"registerFunctionName": "registerSideDrawer",
 			"description": "",
 			"props": [
@@ -6714,7 +6664,6 @@
 		{
 			"name": "slider",
 			"className": "Slider",
-			"vividModulePath": "libs/components/src/lib/slider/slider.ts",
 			"registerFunctionName": "registerSlider",
 			"description": "",
 			"props": [
@@ -6902,7 +6851,6 @@
 		{
 			"name": "split-button",
 			"className": "SplitButton",
-			"vividModulePath": "libs/components/src/lib/split-button/split-button.ts",
 			"registerFunctionName": "registerSplitButton",
 			"description": "",
 			"props": [
@@ -7025,7 +6973,6 @@
 		{
 			"name": "switch",
 			"className": "Switch",
-			"vividModulePath": "libs/components/src/lib/switch/switch.ts",
 			"registerFunctionName": "registerSwitch",
 			"description": "",
 			"props": [
@@ -7164,7 +7111,6 @@
 		{
 			"name": "tab",
 			"className": "Tab",
-			"vividModulePath": "libs/components/src/lib/tab/tab.ts",
 			"registerFunctionName": "registerTab",
 			"description": "",
 			"props": [
@@ -7279,7 +7225,6 @@
 		{
 			"name": "tab-panel",
 			"className": "TabPanel",
-			"vividModulePath": "libs/components/src/lib/tab-panel/tab-panel.ts",
 			"registerFunctionName": "registerTabPanel",
 			"description": "",
 			"props": [],
@@ -7322,7 +7267,6 @@
 		{
 			"name": "tabs",
 			"className": "Tabs",
-			"vividModulePath": "libs/components/src/lib/tabs/tabs.ts",
 			"registerFunctionName": "registerTabs",
 			"description": "",
 			"props": [
@@ -7427,7 +7371,6 @@
 		{
 			"name": "tag",
 			"className": "Tag",
-			"vividModulePath": "libs/components/src/lib/tag/tag.ts",
 			"registerFunctionName": "registerTag",
 			"description": "",
 			"props": [
@@ -7557,7 +7500,6 @@
 		{
 			"name": "tag-group",
 			"className": "TagGroup",
-			"vividModulePath": "libs/components/src/lib/tag-group/tag-group.ts",
 			"registerFunctionName": "registerTagGroup",
 			"description": "",
 			"props": [],
@@ -7602,7 +7544,6 @@
 		{
 			"name": "text-area",
 			"className": "TextArea",
-			"vividModulePath": "libs/components/src/lib/text-area/text-area.ts",
 			"registerFunctionName": "registerTextArea",
 			"description": "",
 			"props": [
@@ -7842,7 +7783,6 @@
 		{
 			"name": "text-field",
 			"className": "TextField",
-			"vividModulePath": "libs/components/src/lib/text-field/text-field.ts",
 			"registerFunctionName": "registerTextField",
 			"description": "Base class for text-field",
 			"props": [
@@ -8116,7 +8056,6 @@
 		{
 			"name": "time-picker",
 			"className": "TimePicker",
-			"vividModulePath": "libs/components/src/lib/time-picker/time-picker.ts",
 			"registerFunctionName": "registerTimePicker",
 			"description": "",
 			"props": [
@@ -8288,7 +8227,6 @@
 		{
 			"name": "toggletip",
 			"className": "Toggletip",
-			"vividModulePath": "libs/components/src/lib/toggletip/toggletip.ts",
 			"registerFunctionName": "registerToggletip",
 			"description": "",
 			"props": [
@@ -8389,7 +8327,6 @@
 		{
 			"name": "tooltip",
 			"className": "Tooltip",
-			"vividModulePath": "libs/components/src/lib/tooltip/tooltip.ts",
 			"registerFunctionName": "registerTooltip",
 			"description": "",
 			"props": [
@@ -8464,7 +8401,6 @@
 		{
 			"name": "tree-item",
 			"className": "TreeItem",
-			"vividModulePath": "libs/components/src/lib/tree-item/tree-item.ts",
 			"registerFunctionName": "registerTreeItem",
 			"description": "",
 			"props": [
@@ -8563,7 +8499,6 @@
 		{
 			"name": "tree-view",
 			"className": "TreeView",
-			"vividModulePath": "libs/components/src/lib/tree-view/tree-view.ts",
 			"registerFunctionName": "registerTreeView",
 			"description": "",
 			"props": [
@@ -8616,7 +8551,6 @@
 		{
 			"name": "video-player",
 			"className": "VideoPlayer",
-			"vividModulePath": "libs/components/src/lib/video-player/video-player.ts",
 			"registerFunctionName": "registerVideoPlayer",
 			"description": "Base class for video-player",
 			"props": [

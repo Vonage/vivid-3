@@ -5,7 +5,7 @@ import {
 	getBaseElement,
 	getControlElement,
 	listenToFormSubmission,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import {
 	itShouldDisplayErrorTextFeedback,

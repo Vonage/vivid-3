@@ -2,32 +2,32 @@
 	"name": "@vonage/vivid",
 	"version": "4.26.0",
 	"type": "module",
-	"module": "./index.js",
-	"main": "./index.cjs",
+	"module": "./dist/index.js",
+	"main": "./dist/index.cjs",
 	"exports": {
 		".": {
-			"types": "./index.d.ts",
-			"import": "./index.js",
-			"require": "./index.cjs"
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
 		},
 		"./*": {
-			"types": "./*/index.d.ts",
-			"import": "./*/index.js",
-			"require": "./*/index.cjs"
+			"types": "./dist/*/index.d.ts",
+			"import": "./dist/*/index.js",
+			"require": "./dist/*/index.cjs"
 		},
 		"./locales/*": {
-			"types": "./locales/*.d.ts",
-			"import": "./locales/*.js",
-			"require": "./locales/*.cjs"
+			"types": "./dist/locales/*.d.ts",
+			"import": "./dist/locales/*.js",
+			"require": "./dist/locales/*.cjs"
 		},
-		"./*.css": "./*.css"
+		"./*.css": "./dist/*.css"
 	},
 	"sideEffects": [
-		"./*/index.js",
-		"./*/index.cjs",
+		"./dist/*/index.js",
+		"./dist/*/index.cjs",
 		"*.css"
 	],
-	"customElements": "./custom-elements.json",
+	"customElements": "custom-elements.json",
 	"homepage": "https://vivid.deno.dev",
 	"repository": {
 		"type": "git",
@@ -38,9 +38,37 @@
 		"url": "https://github.com/Vonage/vivid-3/issues"
 	},
 	"license": "Apache-2.0",
+	"scripts": {
+		"prebuild": "cem analyze --config ./cem.config.mjs",
+		"build": "vite build",
+		"postbuild": "api-extractor run -c ./dist/api-extractor.json && tsx scripts/copyPackageJson.ts",
+		"dev": "WATCH_MODE=true vite build -w",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"stylelint": "stylelint 'src/**/*.{css,scss}'",
+		"stylelint:fix": "stylelint 'src/**/*.{css,scss}' --fix",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"e2e": "playwright test",
+		"e2e:ui": "playwright test --ui",
+		"e2e:docker": "PW_TEST_CONNECT_WS_ENDPOINT=ws://0.0.0.0:3000/ playwright test",
+		"e2e:docker:ui": "PW_TEST_CONNECT_WS_ENDPOINT=ws://0.0.0.0:3000/ playwright test --ui",
+		"typecheck": "tsc --noEmit"
+	},
 	"dependencies": {
 		"@floating-ui/dom": "^1.6.13",
 		"@microsoft/fast-element": "^1.14.0",
 		"@microsoft/fast-web-utilities": "^6.0.0"
+	},
+	"devDependencies": {
+		"@repo/cem-analyzer-plugins": "*",
+		"@repo/consts": "*",
+		"@repo/eslint-config": "*",
+		"@repo/eslint-plugin-repo": "*",
+		"@repo/shared": "*",
+		"@repo/stylelint-config": "*",
+		"@repo/styles": "*",
+		"@repo/typescript-config": "*",
+		"@repo/vitest-config": "*"
 	}
 }

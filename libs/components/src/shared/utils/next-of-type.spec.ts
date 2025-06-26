@@ -1,4 +1,4 @@
-import { fixture } from '@vivid-nx/shared';
+import { fixture } from '@repo/shared';
 import { nextOfType } from './next-of-type';
 
 describe('nextOfType', () => {

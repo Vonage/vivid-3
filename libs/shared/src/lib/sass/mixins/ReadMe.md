@@ -85,23 +85,22 @@ hover: (
 In the component file, we need to import the connotation with the shades that are being used in the appearance
 
 ```css
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta success alert,
 	$shades: primary primary-text primary-increment contrast fierce firm soft
 		faint,
 	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/connotation' as connotation;
 ```
 
 and the appearances we will be using - combined with the states we need:
 
 ```css
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: filled outlined ghost,
 	$states: idle hover disabled active,
 	$default: ghost
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '@repo/shared/mixins/appearance' as appearance;
 ```

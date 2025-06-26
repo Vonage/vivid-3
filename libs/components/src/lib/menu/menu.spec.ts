@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import {
 	keyArrowDown,
 	keyArrowUp,

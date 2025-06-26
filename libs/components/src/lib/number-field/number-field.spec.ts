@@ -7,7 +7,7 @@ import {
 	getBaseElement,
 	getControlElement,
 	listenToFormSubmission,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { Shape, Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';

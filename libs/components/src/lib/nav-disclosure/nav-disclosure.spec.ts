@@ -3,7 +3,7 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { Connotation } from '@vonage/vivid';
 import { Icon } from '../icon/icon';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';

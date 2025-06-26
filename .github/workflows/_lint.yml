@@ -10,31 +10,27 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - uses: actions/setup-node@v3
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - uses: actions/cache@v3
-        id: cache
-        with:
-          path: |
-            node_modules/
-            apps/vue-docs/node_modules/
-            libs/storybook-vue2/node_modules/
-            libs/storybook-vue3/node_modules/
-          key: ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-cache-
+          cache: 'npm'
 
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Lint
-        run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all --max-warnings=0
+        run: npm run lint
 
-      - name: Typecheck
-        run: npm run nx run-many -- --target=typecheck
+      - name: Type Check
+        run: npm run typecheck
 
       - name: Check Formatting
-        run: npm run nx format:check -- --all
+        run: npm run format:check

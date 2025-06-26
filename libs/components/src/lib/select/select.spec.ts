@@ -1,6 +1,6 @@
 import 'element-internals-polyfill';
 
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@repo/shared';
 import {
 	keyArrowDown,
 	keyArrowUp,

@@ -1,13 +1,12 @@
 @use 'partials/variables' as variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
-@use '../../../../shared/src/lib/sass/mixins/scrim' as scrim-mixins;
-@use '../../../../shared/src/lib/sass/mixins/elevation' as elevation;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
-@use '../../../../shared/src/lib/sass/mixins/resets' as resets;
-@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/tokens/scss/size.variables' as size;
+@use '@repo/shared/mixins/scrim' as scrim-mixins;
+@use '@repo/shared/mixins/elevation' as elevation;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/resets' as resets;
+@use '@repo/shared/mixins/scrollbar' as scrollbar;
 
 $dialog-space-size: 24px;
 

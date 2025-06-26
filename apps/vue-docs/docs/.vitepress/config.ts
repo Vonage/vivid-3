@@ -1,7 +1,6 @@
 import { defineConfig } from 'vitepress';
 import components from '../components/_index.json';
 import { getComponentsMenu } from './components';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { version } from '../../../../libs/components/package.json';
 
 // https://vitepress.dev/reference/site-config
@@ -70,5 +69,5 @@ export default defineConfig({
 			},
 		],
 	],
-	outDir: '../../../dist/apps/docs/vivid-vue',
+	outDir: '../dist',
 });

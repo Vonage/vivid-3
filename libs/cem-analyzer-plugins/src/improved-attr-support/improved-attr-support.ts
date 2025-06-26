@@ -1,4 +1,7 @@
-import { AnalyzePhaseParams, Plugin } from '@custom-elements-manifest/analyzer';
+import type {
+	AnalyzePhaseParams,
+	Plugin,
+} from '@custom-elements-manifest/analyzer';
 
 /**
  * This plugin fixes an issue with the @attr decorator plugin.

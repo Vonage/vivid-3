@@ -32,13 +32,13 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 #### Generator a new component
 
-`npx nx g @vonage/nx-vivid:component my-component`
+`npx turbo gen component`
 
 Will generate a new component in `libs/components/src/lib/my-component`
 
 #### Test
 
-`npm run test components` will run unit tests for the components
+`npm run test` will run unit tests for the components
 See the [ui-tests docs](docs/ui-test/readme.md) for how to run visual tests.
 
 ## Show your support

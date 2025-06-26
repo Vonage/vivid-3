@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@repo/shared';
 import deDE from '@vonage/vivid/locales/de-DE';
 import enUS from '@vonage/vivid/locales/en-US';
 import { Select } from '../../select/select';

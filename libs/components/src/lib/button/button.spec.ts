@@ -3,7 +3,7 @@ import {
 	fixture,
 	getControlElement,
 	setProperty,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';

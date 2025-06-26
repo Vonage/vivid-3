@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	fixture,
 	getResolvedTextContent,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import enGB from '../../locales/en-GB';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';

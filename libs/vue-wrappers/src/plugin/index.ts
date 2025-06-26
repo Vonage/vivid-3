@@ -1,10 +1,7 @@
 import type { App, Plugin } from 'vue3';
-// @ts-ignore
-import tokensThemeLightCss from '../../../../dist/libs/styles/tokens/theme-light.css?raw';
-// @ts-ignore
-import tokensThemeDarkCss from '../../../../dist/libs/styles/tokens/theme-dark.css?raw';
-// @ts-ignore
-import fontsSpeziaVariableCss from '../../../../dist/libs/styles/fonts/spezia-variable.css?raw';
+import tokensThemeLightCss from '@repo/styles/tokens/theme-light.css?raw';
+import tokensThemeDarkCss from '@repo/styles/tokens/theme-dark.css?raw';
+import fontsSpeziaVariableCss from '@repo/styles/fonts/spezia-variable.css?raw';
 import { setCustomComponentPrefix } from '../init/prefix';
 import type { Style } from './styles';
 

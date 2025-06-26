@@ -1,0 +1,5 @@
+{
+	"name": "@repo/stylelint-config",
+	"private": true,
+	"type": "module"
+}

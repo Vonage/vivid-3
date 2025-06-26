@@ -1,4 +1,4 @@
-import { axe, fixture } from '@vivid-nx/shared';
+import { axe, fixture } from '@repo/shared';
 import { AppearanceUi } from './appearance-ui';
 
 const COMPONENT_TAG = 'docs-appearance-ui';

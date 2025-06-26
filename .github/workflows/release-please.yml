@@ -71,58 +71,34 @@ jobs:
           echo "::set-output name=should_release::${{ needs.release-please.outputs.vivid_release_created == 'true' || needs.release-please.outputs.eslint_plugin_release_created == 'true' || github.event.inputs.force-release == 'true' }}"
           echo "::set-output name=release_sha::${{ needs.release-please.outputs.vivid_release_sha || needs.release-please.outputs.eslint_plugin_release_sha || github.event.pull_request.head.sha }}"
 
-  build:
-    runs-on: ubuntu-latest
+  vivid-publish:
     needs: should-release
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ needs.should-release.outputs.release_sha }}
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: build
-        run: |
-          npm ci --ignore-scripts
-          npx nx run components:build
-          npx nx run components:generateMeta
-          npx nx run vue-wrappers:build
-          npx nx run eslint-plugin:build
-          npx nx run vue-docs:build
-
-      - name: upload-artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: dist/
-          include-hidden-files: true
-
-  vivid-publish:
-    needs: build
     uses: ./.github/workflows/_publish.yml
     with:
-      path: dist/libs/components
+      path: ./libs/components/dist
+      sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
   vivid-vue-publish:
-    needs: build
+    needs: should-release
+    if: ${{ needs.should-release.outputs.should_release == 'true' }}
     uses: ./.github/workflows/_publish.yml
     with:
-      path: dist/libs/vue-wrappers
+      path: ./libs/vue-wrappers
+      sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
   eslint-plugin-publish:
-    needs: build
+    needs: should-release
+    if: ${{ needs.should-release.outputs.should_release == 'true' }}
     uses: ./.github/workflows/_publish.yml
     with:
-      path: dist/libs/eslint-plugin
+      path: ./libs/eslint-plugin
+      sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
   deploy-deno:
-    needs: build
+    needs: should-release
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
     uses: ./.github/workflows/_deploy-deno.yml

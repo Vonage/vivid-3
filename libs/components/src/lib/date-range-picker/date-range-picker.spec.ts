@@ -3,7 +3,7 @@ import {
 	fixture,
 	getResolvedTextContent,
 	setupDelegatesFocusPolyfill,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';

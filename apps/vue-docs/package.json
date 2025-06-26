@@ -1,8 +1,22 @@
 {
-	"name": "vue-docs",
+	"name": "@repo/vue-docs",
+	"private": true,
 	"type": "module",
+	"scripts": {
+		"prebuild": "tsx scripts/codegen.ts",
+		"build": "vitepress build docs",
+		"dev": "vitepress dev docs --open",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix"
+	},
+	"dependencies": {
+		"@vonage/vivid-vue": "*",
+		"@repo/styles": "*"
+	},
 	"devDependencies": {
 		"vue": "^3.5.13",
-		"vitepress": "2.0.0-alpha.2"
+		"vitepress": "2.0.0-alpha.2",
+		"@repo/eslint-config": "*",
+		"@repo/wrapper-gen": "*"
 	}
 }

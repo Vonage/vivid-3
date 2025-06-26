@@ -21,8 +21,10 @@ on:
 
 name: pre-release
 jobs:
-  build:
+  get-version:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get-vivid-version.outputs.version }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -33,44 +35,29 @@ jobs:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
 
-      - name: set-vivid-version
+      - name: get-vivid-version
         working-directory: ./libs/components
         run: |
           npm version ${{ github.event.inputs.change_type }} --no-git-tag-version
           VERSION=$(node -p "require('./package.json').version")-preview.${{ github.event.inputs.preview_version }}
-          npm version $VERSION --no-git-tag-version
-
-      - name: sync-vivid-vue-version
-        working-directory: ./libs/vue-wrappers
-        run: |
-          npm version $(node -p "require('../components/package.json').version") --no-git-tag-version
-
-      - name: build
-        run: |
-          npm ci --ignore-scripts
-          npx nx run components:build
-          npx nx run components:generateMeta
-          npx nx run vue-wrappers:build
-
-      - name: upload-artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: dist/
-          include-hidden-files: true
+          echo "::set-output name=version::${VERSION}"
 
   vivid-publish:
-    needs: build
+    needs: get-version
     uses: ./.github/workflows/_publish.yml
     with:
-      path: dist/libs/components
+      path: ./libs/components/dist
       tag: preview
+      version: ${{ needs.get-version.outputs.version }}
+      sha: ${{ github.event.pull_request.head.sha }}
     secrets: inherit
 
   vivid-vue-publish:
-    needs: build
+    needs: get-version
     uses: ./.github/workflows/_publish.yml
     with:
-      path: dist/libs/vue-wrappers
+      path: ./libs/vue-wrappers
       tag: preview
+      version: ${{ needs.get-version.outputs.version }}
+      sha: ${{ github.event.pull_request.head.sha }}
     secrets: inherit
