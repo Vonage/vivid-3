@@ -83,6 +83,58 @@ export const SingleValuePicker = <T extends AbstractConstructor<PickerField>>(
 			}
 		}
 
+		override _onTextFieldInput(event: Event): void {
+			super._onTextFieldInput(event);
+
+			console.log(
+				'single-value-field _onTextFieldInput',
+				this._presentationValue,
+				this.value
+			);
+
+			if (this._presentationValue === '') {
+				if (this.value) {
+					this.value = '';
+					this.$emit('input');
+				}
+				return;
+			}
+
+			try {
+				const parsedValue = this._parsePresentationValue(
+					this._presentationValue
+				);
+				if (this.value !== parsedValue) {
+					const input = this._textFieldEl?.control; // or .input, depending on your TextField implementation
+					if (input && typeof input.selectionStart === 'number') {
+						const prevStart = input.selectionStart;
+						const prevEnd = input.selectionEnd;
+
+						// Update the value
+						console.log('parsedValue', parsedValue);
+						this.value = parsedValue;
+						// this.$emit('input');
+
+						// Restore caret after DOM update
+						requestAnimationFrame(() => {
+							input.setSelectionRange(prevStart, prevEnd);
+						});
+						this.$emit('input');
+					} else {
+						this.value = parsedValue;
+					}
+				}
+			} catch (_) {
+				console.log('tut2');
+				const invalidPresentationValue = this._presentationValue;
+				this.value = '';
+				this.$emit('input');
+				this._presentationValue = invalidPresentationValue;
+				return;
+				// Invalid intermediate value, do nothing until change event
+			}
+		}
+
 		/**
 		 * @internal
 		 */
