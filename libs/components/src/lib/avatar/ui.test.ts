@@ -10,19 +10,17 @@ const components = ['avatar', 'icon'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<style>
-		#wrapper {
-			width: 400px;
-			padding: 12px;
-
-		}
-		.wrapper-div {
-		display: flex;
-		gap: 4px;
-		margin-block: 4px;
-		align-items: center;
-		}
+			#wrapper {
+				width: 400px;
+				padding: 12px;
+			}
+			.wrapper-div {
+				display: flex;
+				gap: 4px;
+				margin-block: 4px;
+				align-items: center;
+			}
 		</style>
-
 		<div class="wrapper-div">
 			<vwc-avatar aria-label="avatar"><vwc-icon slot="icon" name="user-line" label="User"></vwc-icon></vwc-avatar>
 			<vwc-avatar><vwc-icon slot="icon" name="group-2-solid" label="Group"></vwc-icon></vwc-avatar>
@@ -206,6 +204,34 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				</svg>
 			</vwc-avatar>
 		</div>
+		<div class="wrapper-div">
+			<vwc-avatar
+				href="https://vivid.deno.dev"
+				target="_blank"
+				shape="pill"
+				aria-label="Link to the Vivid documentation"
+			>
+				<vwc-icon slot="icon" name="chain-solid" label="Link"></vwc-icon>
+			</vwc-avatar>	
+			<vwc-avatar
+				slot="anchor"
+				appearance="subtle"
+				aria-label="Open menu"
+				clickable
+			>
+				<vwc-icon slot="icon" name="more-vertical-solid" label="Menu"></vwc-icon>
+			</vwc-avatar>
+			<vwc-avatar
+				href="https://vivid.deno.dev"
+				target="_blank"
+				shape="pill"
+				aria-label="Link to the Vivid documentation"
+				connotation="cta"
+				id="focus-avatar"
+			>
+				<vwc-icon slot="icon" name="chain-solid" label="Link"></vwc-icon>
+			</vwc-avatar>	
+		</div>
 	`;
 
 	await loadComponents({
@@ -218,6 +244,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
+	const focusedAvatar = await page.$('#focus-avatar .base');
+	await focusedAvatar?.focus();
 
 	await page.waitForLoadState('networkidle');
 

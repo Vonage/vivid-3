@@ -1,6 +1,7 @@
-import { html, when } from '@microsoft/fast-element';
+import { html, ViewTemplate, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Avatar } from './avatar';
 
@@ -32,19 +33,37 @@ function renderInitials() {
 	`;
 }
 
+function renderAvatarBaseElement(x: Avatar, content: ViewTemplate<Avatar>) {
+	if (x.href) {
+		return x._renderLinkElement(content, getClasses);
+	} else if (x.clickable) {
+		return html<Avatar>`<button
+			type="button"
+			class="${getClasses}"
+			${delegateAria()}
+		>
+			${content}
+		</button>`;
+	} else {
+		return html`<span class="${getClasses}">${content}</span>`;
+	}
+}
+
 export const AvatarTemplate = (context: VividElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
-
-	return html` <span class="${getClasses}">
-		<slot name="graphic">
-			${when((x) => x.initials, renderInitials())}
-			${when(
-				(x) => !x.initials,
-				html`<span class="icon"
-					><slot name="icon">${renderIcon(iconTag)}</slot></span
+	return html`
+		${(x) =>
+			renderAvatarBaseElement(
+				x,
+				html`<slot name="graphic">
+					${when((x) => x.initials, renderInitials())}
+					${when(
+						(x) => !x.initials,
+						html`<span class="icon"
+							><slot name="icon">${renderIcon(iconTag)}</slot></span
+						>`
+					)}</slot
 				>`
-			)}</slot
-			>
-		</slot>
-	</span>`;
+			)}
+	`;
 };

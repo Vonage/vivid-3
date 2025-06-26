@@ -44,6 +44,48 @@ registerAvatar('your-prefix');
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Clickable Avatar
+
+### Avatar as a Link
+
+Use the `href` attribute to change the avatar wrapper to a link. When doing so, all of the native attributes of `<a>` are supported, including target.
+
+```html preview
+<vwc-avatar
+	href="https://vivid.deno.dev"
+	target="_blank"
+	aria-label="Link to the Vivid documentation"
+>
+	<vwc-icon slot="icon" name="chain-solid" label="Link"></vwc-icon>
+</vwc-avatar>
+```
+
+### Avatar as a Button
+
+Setting the `clickable` attribute switches the avatar wrapper to a `<button>`, allowing you to trigger programmatic actions e.g. using the click event.
+
+```html preview 200px
+<vwc-menu aria-label="Menu example" placement="bottom-end" trigger="auto">
+	<vwc-avatar
+		slot="anchor"
+		appearance="subtle"
+		aria-label="Open menu"
+		clickable
+	>
+		<vwc-icon slot="icon" name="more-vertical-solid" label="Menu"></vwc-icon>
+	</vwc-avatar>
+	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+</vwc-menu>
+```
+
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
+
+    To ensure accessibility, **always** add the `aria-level` attribute when using the `href` or `clickable` attributes.
+
+</vwc-note>
+
 ## Slots
 
 ### Icon
@@ -223,14 +265,22 @@ Use the `graphic` slot to set a graphic media of any kind (e.g. image, illustrat
 
 <div class="table-wrapper">
 
-| Name                                    | Type                                                      | Description                     |
-| --------------------------------------- | --------------------------------------------------------- | ------------------------------- |
-| **appearance**                          | Enum: `filled` (default), `duotone`, `outlined`, `subtle` | Sets the element's appearance   |
-| **connotation**                         | Enum: `accent` (default), `cta`                           | Sets the element's connotation  |
-| _(deprecated as of 06/25)_<br> **icon** | `string`                                                  | Sets the element's icon         |
-| **initials**                            | `string`                                                  | Sets the initials on the Avatar |
-| **shape**                               | Enum: `rounded` (default), `pill`                         | Sets the element's shape        |
-| **size**                                | Enum: `condensed`, `normal` (default), `expanded`         | Sets the element's size         |
+| Name                                    | Type                                                      | Description                                          |
+| --------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------- |
+| **appearance**                          | Enum: `filled` (default), `duotone`, `outlined`, `subtle` | Sets the element's appearance                        |
+| **connotation**                         | Enum: `accent` (default), `cta`                           | Sets the element's connotation                       |
+| _(deprecated as of 06/25)_<br> **icon** | `string`                                                  | Sets the element's icon                              |
+| **initials**                            | `string`                                                  | Sets the initials on the Avatar                      |
+| **shape**                               | Enum: `rounded` (default), `pill`                         | Sets the element's shape                             |
+| **size**                                | Enum: `condensed`, `normal` (default), `expanded`         | Sets the element's size                              |
+| **clickable**                           | `boolean`                                                 | Indicates whether element should be a `<button>`.    |
+| **href**                                | `string`                                                  | Sets the element's href, changes card tag to `<a>` . |
+| **download**                            | `string`                                                  | Sets the element's download.                         |
+| **hreflang**                            | `string`                                                  | Sets the element's hreflang.                         |
+| **ping**                                | `string`                                                  | Sets the element's ping.                             |
+| **referrerpolicy**                      | `string`                                                  | Sets the element's referrerpolicy.                   |
+| **rel**                                 | `string`                                                  | Sets the element's rel.                              |
+| **target**                              | _Enum_:<br/>`_self`<br/>`_blank`<br/>`_parent`<br/>`_top` | Sets the target's rel.                               |
 
 </div>
 

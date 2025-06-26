@@ -15,16 +15,22 @@
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/tokens/scss/size.variables' as size;
 @use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/src/lib/sass/mixins/focus' as focus;
+@use '@repo/shared/src/lib/sass/mixins/focus' as focus-variables;
+
+:host {
+	display: inline-block;
+}
 
 .base {
 	@include connotation.connotation(avatar);
 	@include appearance.appearance;
-
 	& {
 		display: inline-flex;
 		overflow: hidden;
 		align-items: center;
 		justify-content: center;
+		border: none;
 		border-radius: var(#{variables.$avatar-border-radius});
 		background-color: var(#{appearance.get-appearance-token(fill)});
 		block-size: var(#{variables.$avatar-size});
@@ -48,11 +54,9 @@
 		);
 	}
 
-	&:not(.size-condensed, .size-expanded) {
-		@include mixins.get-size-properties(
-			#{size.$vvd-size-normal},
-			#{constants.$vvd-typography-base-extended-bold}
-		);
+	&:is(a, button) {
+		cursor: pointer;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 
 	&:not(.shape-pill) {
@@ -60,6 +64,17 @@
 		&.size-condensed {
 			#{variables.$avatar-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
 		}
+	}
+
+	&:not(.size-condensed, .size-expanded) {
+		@include mixins.get-size-properties(
+			#{size.$vvd-size-normal},
+			#{constants.$vvd-typography-base-extended-bold}
+		);
+	}
+
+	&:is(a, button):focus-visible {
+		@include focus.focus;
 	}
 
 	&.shape-pill {
