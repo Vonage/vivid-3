@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.27.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.27.0...vivid-v4.27.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* **date-time-picker:** fix accessibility issues (VIV-2692) ([#2427](https://github.com/Vonage/vivid-3/issues/2427)) ([5f284f3](https://github.com/Vonage/vivid-3/commit/5f284f33ffa249cb5a5078b63d1d6fdf658bf4b5))
+
 ## [4.27.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.26.0...vivid-v4.27.0) (2025-06-26)
 
 
