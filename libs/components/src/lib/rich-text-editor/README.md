@@ -378,20 +378,19 @@ The `vwc-text-editor-image-placeholder` component is used to display a placehold
 
 ```html preview
 <vwc-text-editor-image-placeholder
-  file-name="example.pdf"
-  icon="pdf"
-  error-message="Failed to attach"
+	file-name="example.pdf"
+	icon="pdf"
+	error-message="Failed to attach"
 ></vwc-text-editor-image-placeholder>
 ```
 
 ### Attributes
 
-| Name           | Type     | Description                                                                 |
-|----------------|----------|-----------------------------------------------------------------------------|
-| `file-name`    | `string` | The name of the file being represented.                                     |
-| `icon`         | `string` | The icon type to display (e.g., `pdf`, `png`, `jpg`). Defaults to `clear-file-solid`. |
-| `error-message`| `string` | The error message to display below the file name.                          |
-
+| Name            | Type     | Description                                                                           |
+| --------------- | -------- | ------------------------------------------------------------------------------------- |
+| `file-name`     | `string` | The name of the file being represented.                                               |
+| `icon`          | `string` | The icon type to display (e.g., `pdf`, `png`, `jpg`). Defaults to `clear-file-solid`. |
+| `error-message` | `string` | The error message to display below the file name.                                     |
 
 ### Accessibility
 
@@ -400,13 +399,13 @@ The `vwc-text-editor-image-placeholder` component is used to display a placehold
 
 ```html preview
 <style>
-  vwc-text-editor-image-placeholder {
-    margin: 16px;
-  }
+	vwc-text-editor-image-placeholder {
+		margin: 16px;
+	}
 </style>
 <vwc-text-editor-image-placeholder
-  file-name="example very long file name.that also has more than one part.jpg"
-  icon="jpg"
-  error-message="Failed to attach jpg file"
+	file-name="example very long file name.that also has more than one part.jpg"
+	icon="jpg"
+	error-message="Failed to attach jpg file"
 ></vwc-text-editor-image-placeholder>
 ```

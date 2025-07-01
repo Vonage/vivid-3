@@ -59,18 +59,14 @@ describe('menuBar', () => {
 		it('should display the file name in the template', async () => {
 			element.fileName = 'test.pdf';
 			await elementUpdated(element);
-			const fileNameElement = element.shadowRoot?.querySelector(
-				'.name'
-			);
+			const fileNameElement = element.shadowRoot?.querySelector('.name');
 			expect(fileNameElement?.textContent).toBe('test');
 		});
 
 		it('should display the file suffix in the template', async () => {
 			element.fileName = 'test.pdf';
 			await elementUpdated(element);
-			const fileSuffixElement = element.shadowRoot?.querySelector(
-				'.suffix'
-			);
+			const fileSuffixElement = element.shadowRoot?.querySelector('.suffix');
 			expect(fileSuffixElement?.textContent).toBe('pdf');
 		});
 	});
@@ -91,9 +87,7 @@ describe('menuBar', () => {
 		it('should display the error message in the template', async () => {
 			element.errorMessage = 'File too large';
 			await elementUpdated(element);
-			const errorTextElement = element.shadowRoot?.querySelector(
-				'.error-text'
-			);
+			const errorTextElement = element.shadowRoot?.querySelector('.error-text');
 			expect(errorTextElement?.textContent).toBe(element.errorMessage);
 		});
 

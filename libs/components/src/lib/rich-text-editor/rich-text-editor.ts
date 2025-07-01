@@ -23,7 +23,7 @@ export interface RichTextEditorSelection {
 export interface RichTextEditorInlineImageProps {
 	file: File;
 	position?: number;
-	alt?: string; 
+	alt?: string;
 }
 
 export const RichTextEditorTextBlocks = {

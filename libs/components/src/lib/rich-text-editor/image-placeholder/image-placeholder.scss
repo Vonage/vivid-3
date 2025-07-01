@@ -30,7 +30,11 @@
 	align-items: center;
 	justify-content: center;
 	border-radius: 8px;
-	background-color: color-mix(in srgb, var(#{constants.$vvd-color-neutral-950}), transparent 90%);
+	background-color: color-mix(
+		in srgb,
+		var(#{constants.$vvd-color-neutral-950}),
+		transparent 90%
+	);
 	color: var(#{constants.$vvd-color-neutral-600});
 }
 
@@ -57,8 +61,8 @@
 }
 
 .suffix {
-  flex: 0 0 auto;
-  margin-left: 4px;
+	flex: 0 0 auto;
+	margin-left: 4px;
 }
 
 .error {

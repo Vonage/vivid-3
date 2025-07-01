@@ -24,4 +24,6 @@ export const imagePlaceholderDefinition = defineVividComponent(
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerImagePlaceholder = createRegisterFunction(imagePlaceholderDefinition);
+export const registerImagePlaceholder = createRegisterFunction(
+	imagePlaceholderDefinition
+);
