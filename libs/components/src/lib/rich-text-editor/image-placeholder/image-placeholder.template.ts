@@ -1,7 +1,7 @@
 import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { VividElementDefinitionContext } from '../../../shared/design-system/defineVividComponent';
 import { Icon } from '../../icon/icon';
 import { ImagePlaceholder } from './image-placeholder.js';
 
