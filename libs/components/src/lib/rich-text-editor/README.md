@@ -369,3 +369,43 @@ Set a component in the `attachments` slot to show them inside the editor area.
 | **addInlineImage**         |         | Accepts an object with `file: File`, optional `position?: number`, and optional `alt?: string`. Inserts an inline image at the given position or at the current marker position if not provided. If `alt` is not provided, it defaults to `inline image from file ${file.name}`. |
 
 </div>
+
+## Image Placeholder
+
+The `vwc-text-editor-image-placeholder` component is used to display a placeholder for files that failed to attach or load. It includes an icon, file name, file suffix, and an error message.
+
+### Example Usage
+
+```html preview
+<vwc-text-editor-image-placeholder
+	file-name="example.pdf"
+	icon="pdf"
+	error-message="Failed to attach"
+></vwc-text-editor-image-placeholder>
+```
+
+### Attributes
+
+| Name            | Type     | Description                                                                           |
+| --------------- | -------- | ------------------------------------------------------------------------------------- |
+| `file-name`     | `string` | The name of the file being represented.                                               |
+| `icon`          | `string` | The icon type to display (e.g., `pdf`, `png`, `jpg`). Defaults to `clear-file-solid`. |
+| `error-message` | `string` | The error message to display below the file name.                                     |
+
+### Accessibility
+
+- The `file-name` attribute is reflected in the `title` attribute for better accessibility (e.g. long file names).
+- The error message is displayed prominently for screen readers.
+
+```html preview
+<style>
+	vwc-text-editor-image-placeholder {
+		margin: 16px;
+	}
+</style>
+<vwc-text-editor-image-placeholder
+	file-name="example very long file name.that also has more than one part.jpg"
+	icon="jpg"
+	error-message="Failed to attach jpg file"
+></vwc-text-editor-image-placeholder>
+```

@@ -9,12 +9,13 @@ import {
 	type RichTextEditorInlineImageProps,
 } from './rich-text-editor';
 import { RichTextEditorTemplate as template } from './rich-text-editor.template';
+import { imagePlaceholderDefinition } from './image-placeholder/definition';
 
 export const richTextEditorDefinition = defineVividComponent(
 	'rich-text-editor',
 	RichTextEditor,
 	template,
-	[menuBarDefinition, dividerDefinition],
+	[menuBarDefinition, dividerDefinition, imagePlaceholderDefinition],
 	{
 		styles,
 		shadowOptions: {

@@ -4,7 +4,7 @@ import {
 	getBaseElement,
 	getControlElement,
 } from '@repo/shared';
-import { Connotation } from '@vonage/vivid';
+import { Connotation } from '../enums';
 import { Icon } from '../icon/icon';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { NavDisclosure } from './nav-disclosure';
