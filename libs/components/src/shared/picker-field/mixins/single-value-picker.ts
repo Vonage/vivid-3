@@ -1,6 +1,14 @@
 import { PickerField } from '../picker-field';
 import type { AbstractConstructor, MixinType } from '../../utils/mixins';
 
+const getActiveElementPiercingShadowRoot = () => {
+	let element = document.activeElement;
+	while (element?.shadowRoot && element.shadowRoot.activeElement !== element) {
+		element = element.shadowRoot.activeElement;
+	}
+	return element;
+};
+
 /**
  * Mixin for pickers that pick a single value (this.value), which can be i.e. a date, time or datetime.
  * Subclasses need to implement the abstract methods for their specific value format.
@@ -39,7 +47,15 @@ export const SingleValuePicker = <T extends AbstractConstructor<PickerField>>(
 					return;
 				}
 			}
-			this._updatePresentationValue();
+			// prevent updating the presentation value if the input is focused during user input
+			if (
+				this._textFieldEl?.control === getActiveElementPiercingShadowRoot() &&
+				document.hasFocus()
+			) {
+				return;
+			} else {
+				this._updatePresentationValue();
+			}
 		}
 
 		/**
@@ -67,18 +83,47 @@ export const SingleValuePicker = <T extends AbstractConstructor<PickerField>>(
 		 */
 		override _onTextFieldChange() {
 			if (this._presentationValue === '') {
-				this._updateValueDueToUserInteraction('');
+				this.value = '';
+				this.$emit('change');
 				return;
 			}
 
 			try {
-				this._updateValueDueToUserInteraction(
-					this._parsePresentationValue(this._presentationValue)
-				);
+				this.value = this._parsePresentationValue(this._presentationValue);
+				this.$emit('change');
 			} catch (_) {
 				const invalidPresentationValue = this._presentationValue;
-				this._updateValueDueToUserInteraction('');
+				this.value = '';
+				this.$emit('change');
 				this._presentationValue = invalidPresentationValue;
+				return;
+			}
+		}
+
+		/**
+		 * @internal
+		 */
+		override _onTextFieldInput(event: Event): void {
+			super._onTextFieldInput(event);
+
+			if (this._presentationValue === '') {
+				if (this.value) {
+					this.value = '';
+					this.$emit('input');
+				}
+				return;
+			}
+
+			try {
+				const parsedValue = this._parsePresentationValue(
+					this._presentationValue
+				);
+				if (this.value !== parsedValue) {
+					this.value = parsedValue;
+					this.$emit('input');
+				}
+			} catch (_) {
+				// Invalid intermediate value, do nothing until change event
 				return;
 			}
 		}
