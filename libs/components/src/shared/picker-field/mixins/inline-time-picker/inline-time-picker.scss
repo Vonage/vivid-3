@@ -38,12 +38,12 @@ $num-options-visible: --_inline-time-picker-num-options-visible;
 	block-size: space-for-options($num-options-visible);
 	gap: $option-gap;
 
-	.picker-wrapper{
+	.picker-wrapper {
 		position: relative;
 		display: flex;
 		flex-direction: column;
 		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
-		&.focused{
+		&.focused {
 			#{focus.$focus-stroke-gap-color}: transparent;
 			#{focus.$focus-inset}: -2px;
 
@@ -63,7 +63,7 @@ $num-options-visible: --_inline-time-picker-num-options-visible;
 		inline-size: $option-inline-size;
 		list-style: none;
 		scrollbar-width: none;
-		
+
 		// Hide scrollbar when not hovering
 		&:hover {
 			scrollbar-width: auto;
@@ -100,7 +100,7 @@ $num-options-visible: --_inline-time-picker-num-options-visible;
 			inline-size: $option-inline-size;
 		}
 	}
-	
+
 	.picker-wrapper:not(.focused) .picker:focus-visible .option.selected {
 		#{focus.$focus-stroke-gap-color}: transparent;
 
