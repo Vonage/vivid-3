@@ -7,9 +7,9 @@ month: 2025-07
 
 # Rethinking Design Token Architecture: A Practical Exploration
 
-_This is a shorter version of my article [Multi-level design tokens - pros, cons and optimization](https://confluence.vonage.com/pages/viewpage.action?pageId=454985049)._
+Design tokens are a powerful way to bridge design and development—providing consistency, scalability, and flexibility across platforms. But as token systems evolve, so do their challenges. As we prepare for upcoming work in this area, this post outlines how we structure our design tokens, examines the tradeoffs of abstraction, and shares practical strategies for simplifying and optimizing our token architecture.
 
-Design tokens are a powerful way to bridge design and development—providing consistency, scalability, and flexibility across platforms. But as token systems evolve, so do their challenges. This post explores how we structure design tokens, the tradeoffs of abstraction, and practical strategies to simplify and optimize our token architecture.
+_This is a shorter version of my article [Multi-level design tokens - pros, cons and optimization](https://confluence.vonage.com/pages/viewpage.action?pageId=454985049)._
 
 ## Key Concepts:<br />What Are Design Tokens, Really?
 
