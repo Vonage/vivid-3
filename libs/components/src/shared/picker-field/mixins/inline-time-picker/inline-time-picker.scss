@@ -38,21 +38,35 @@ $num-options-visible: --_inline-time-picker-num-options-visible;
 	block-size: space-for-options($num-options-visible);
 	gap: $option-gap;
 
+	.picker-wrapper {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+		&.focused {
+			#{focus.$focus-stroke-gap-color}: transparent;
+			#{focus.$focus-inset}: -2px;
+
+			@include focus.focus;
+		}
+	}
+
 	.picker {
 		position: relative;
 		display: flex;
-		overflow: hidden;
+		overflow: hidden scroll;
 		flex-direction: column;
-		padding: 0;
+		padding: 0 $option-gap;
 		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
-		margin: 0;
+		margin: 0 (-$option-gap);
 		gap: $option-gap;
 		inline-size: $option-inline-size;
 		list-style: none;
+		scrollbar-width: none;
 
 		// Hide scrollbar when not hovering
 		&:hover {
-			overflow-y: auto;
+			scrollbar-width: auto;
 		}
 
 		// Reserve space to allow scrolling options to top
@@ -64,10 +78,7 @@ $num-options-visible: --_inline-time-picker-num-options-visible;
 		}
 
 		&:focus-visible {
-			#{focus.$focus-stroke-gap-color}: transparent;
-			#{focus.$focus-inset}: -2px;
-
-			@include focus.focus;
+			outline: none;
 		}
 	}
 
@@ -88,5 +99,11 @@ $num-options-visible: --_inline-time-picker-num-options-visible;
 			font: var(#{constants.$vvd-typography-base});
 			inline-size: $option-inline-size;
 		}
+	}
+
+	.picker-wrapper:not(.focused) .picker:focus-visible .option.selected {
+		#{focus.$focus-stroke-gap-color}: transparent;
+
+		@include focus.focus;
 	}
 }
