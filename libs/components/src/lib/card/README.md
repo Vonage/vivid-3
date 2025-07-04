@@ -42,60 +42,6 @@ registerCard('your-prefix');
 </vwc-tab-panel>
 </vwc-tabs>
 
-## Clickable Cards
-
-Card component supports two **clickable** modes:
-
-### Card as a Link
-
-Use the `href` attribute to change the card wrapper to a link. When doing so, all of the native attributes of [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) are supported, including `target`.
-
-```html preview
-<vwc-card
-	headline="Vivid Card as a Link"
-	subtitle="Clicking on this card will navigate you to the documentation homepage"
-	href="https://vivid.deno.dev"
-	target="_blank"
->
-</vwc-card>
-```
-
-<vwc-note connotation="information" headline="Usage With Vue Router">
-	<vwc-icon slot="icon" name="vue-color"></vwc-icon>
-
-See [Client-Side Navigation](/getting-started/vue/#client-side-navigation) for more information on how to integrate with Vue Router.
-
-</vwc-note>
-
-### Card as a Button
-
-Setting the `clickable-card` attribute switches the card wrapper to a `<button>`, allowing you to trigger programmatic actions e.g. using the `click` event.
-
-```html preview
-<vwc-card
-	headline="Vivid Card as a Button"
-	subtitle="Clicking on this card will trigger displaying its headline as an alert"
-	type="button"
-	clickable-card
-	onclick="onClick(event)"
->
-</vwc-card>
-
-<script>
-	function onClick(event) {
-		const headline = event.currentTarget.headline;
-		alert(headline);
-	}
-</script>
-```
-
-<vwc-note connotation="warning" headline="Do not nest any interactive elements within clickable cards">
-	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
-
-The HTML specification does not allow one interactive element to be nested within another. Therefore, you should not use any links or buttons inside slots when using the `href` or `clickable-card` attributes.
-
-</vwc-note>
-
 ## Slots
 
 ### Graphic Slot
