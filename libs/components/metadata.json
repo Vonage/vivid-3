@@ -4892,6 +4892,12 @@
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
+				},
+				{
+					"name": "valueAsNumber",
+					"description": "The value property, typed as a number.",
+					"type": "number",
+					"propertyName": "valueAsNumber"
 				}
 			],
 			"events": [
@@ -4937,6 +4943,12 @@
 					"propName": "value",
 					"eventNames": ["input"],
 					"valueMapping": "event.currentTarget.value"
+				},
+				{
+					"name": "valueAsNumber",
+					"propName": "valueAsNumber",
+					"eventNames": ["input"],
+					"valueMapping": "event.currentTarget.valueAsNumber"
 				}
 			],
 			"methods": [

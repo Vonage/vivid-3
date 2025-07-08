@@ -60,6 +60,21 @@
 </template>
 </code-tab>
 
+## Value As Number
+
+<code-tab>
+<template #example>
+<ValueAsNumberExample />
+</template>
+<template #code>
+
+```vue
+<!--@include: ./components/numberfield/ValueAsNumberExample.vue -->
+```
+
+</template>
+</code-tab>
+
 ## Helper text
 
 <code-tab>
@@ -158,6 +173,7 @@ const LabelExample = defineClientComponent(() =>  import("./components/numberfie
 const PlaceholderExample = defineClientComponent(() =>  import("./components/numberfield/PlaceholderExample.vue"));
 const HelperTextExample = defineClientComponent(() =>  import("./components/numberfield/HelperTextExample.vue"));
 const ValueExample = defineClientComponent(() =>  import("./components/numberfield/ValueExample.vue"));
+const ValueAsNumberExample = defineClientComponent(() =>  import("./components/numberfield/ValueAsNumberExample.vue"));
 const SuccessTextExample = defineClientComponent(() =>  import("./components/numberfield/SuccessTextExample.vue"));
 const ShapeExample = defineClientComponent(() =>  import("./components/numberfield/ShapeExample.vue"));
 const AppearanceExample = defineClientComponent(() =>  import("./components/numberfield/AppearanceExample.vue"));
