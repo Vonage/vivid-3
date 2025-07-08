@@ -21,6 +21,10 @@
 	cursor: not-allowed;
 }
 
+:host(:focus-visible) {
+	outline: none;
+}
+
 .base {
 	@include connotation.connotation(option);
 	@include appearance.appearance;
@@ -63,6 +67,12 @@
 
 	&:not(.disabled) {
 		cursor: pointer;
+	}
+
+	:host(:focus-visible) & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		@include focus.focus;
 	}
 
 	&.disabled {

@@ -538,10 +538,10 @@ describe('vwc-combobox', () => {
 	describe('autocomplete', () => {
 		beforeEach(async () => {
 			element.innerHTML = `
-			<vwc-option value='1' text='Apple'></vwc-option>
-			<vwc-option value='2' text='Ananas'></vwc-option>
-			<vwc-option value='3' text='Nectarine'></vwc-option>
-		`;
+				<vwc-option value='1' text='Apple'></vwc-option>
+				<vwc-option value='2' text='Ananas'></vwc-option>
+				<vwc-option value='3' text='Nectarine'></vwc-option>
+			`;
 			await elementUpdated(element);
 		});
 
@@ -722,10 +722,10 @@ describe('vwc-combobox', () => {
 	describe('keyboard navigation', () => {
 		beforeEach(async () => {
 			element.innerHTML = `
-			<vwc-option value='1' text='Apple'></vwc-option>
-			<vwc-option value='2' text='Ananas'></vwc-option>
-			<vwc-option value='3' text='Nectarine'></vwc-option>
-		`;
+				<vwc-option value='1' text='Apple'></vwc-option>
+				<vwc-option value='2' text='Ananas'></vwc-option>
+				<vwc-option value='3' text='Nectarine'></vwc-option>
+			`;
 			await elementUpdated(element);
 		});
 
@@ -838,24 +838,198 @@ describe('vwc-combobox', () => {
 		});
 	});
 
-	describe('on focusout', () => {
-		it('should close', async () => {
-			element.open = true;
-
-			element.dispatchEvent(new FocusEvent('focusout'));
-
-			expect(element.open).toBe(false);
+	describe('focus management', () => {
+		beforeEach(async () => {
+			element.innerHTML = `
+				<vwc-option value='1' text='Apple'></vwc-option>
+				<vwc-option value='2' text='Ananas'></vwc-option>
+				<vwc-option value='3' text='Nectarine'></vwc-option>
+			`;
+			await elementUpdated(element);
 		});
 
-		it('should not close if focus moves to the host', async () => {
-			element.open = true;
-			element.dispatchEvent(
-				new FocusEvent('focusout', {
-					relatedTarget: element,
-				})
-			);
+		describe('focus navigation', () => {
+			it('should return focus to input when pressing ArrowUp on first option', async () => {
+				element.open = true;
+				await elementUpdated(element);
 
-			expect(element.open).toBe(true);
+				element.dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'ArrowDown' })
+				);
+				await elementUpdated(element);
+
+				expect(element.focusInOptions).toBe(true);
+				expect(element.selectedIndex).toBe(0);
+
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+				await elementUpdated(element);
+
+				expect(element.focusInOptions).toBe(false);
+			});
+
+			it('should handle focus entering options and set tabindex attributes', async () => {
+				const option = getOption('Apple');
+
+				option.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
+
+				expect(element.focusInOptions).toBe(true);
+
+				const options = element.querySelectorAll('vwc-option');
+				options.forEach((option, index) => {
+					if (index === element.selectedIndex) {
+						expect(option.getAttribute('tabindex')).toBe('0');
+					} else {
+						expect(option.getAttribute('tabindex')).toBe('-1');
+					}
+				});
+			});
+
+			it('should handle focus on control element', async () => {
+				element.focusInOptions = true;
+
+				const focusEvent = new FocusEvent('focusin', { bubbles: true });
+				Object.defineProperty(focusEvent, 'target', { value: getControl() });
+				element.dispatchEvent(focusEvent);
+
+				expect(element.focusInOptions).toBe(false);
+			});
+		});
+
+		describe('focus out behavior', () => {
+			it('should not close dropdown when focus moves within component', async () => {
+				element.open = true;
+				element.focusInOptions = true;
+				await elementUpdated(element);
+
+				const option = getOption('Apple');
+
+				element.dispatchEvent(
+					new FocusEvent('focusout', {
+						bubbles: true,
+						relatedTarget: option,
+					})
+				);
+				await elementUpdated(element);
+
+				expect(element.focusInOptions).toBe(true);
+				expect(element.open).toBe(true);
+			});
+
+			it('should close dropdown when focus leaves component entirely', async () => {
+				element.open = true;
+				element.focusInOptions = true;
+				await elementUpdated(element);
+
+				const outsideElement = document.createElement('button');
+				document.body.appendChild(outsideElement);
+
+				element.dispatchEvent(
+					new FocusEvent('focusout', {
+						bubbles: true,
+						relatedTarget: outsideElement,
+					})
+				);
+				await elementUpdated(element);
+
+				expect(element.open).toBe(false);
+				expect(element.focusInOptions).toBe(false);
+
+				document.body.removeChild(outsideElement);
+			});
+
+			it('should handle focusout logic for both open states', async () => {
+				const outsideElement = document.createElement('button');
+				document.body.appendChild(outsideElement);
+
+				const focusOutEvent = new FocusEvent('focusout', {
+					relatedTarget: outsideElement,
+				});
+
+				// Test when dropdown is open (should close it)
+				element.open = true;
+				element.focusInOptions = true;
+
+				(element as any).handleFocusOut(focusOutEvent);
+
+				expect(element.focusInOptions).toBe(false);
+				expect(element.open).toBe(false);
+
+				// Test when dropdown is closed (should remain closed)
+				element.open = false;
+				element.focusInOptions = true;
+
+				(element as any).handleFocusOut(focusOutEvent);
+
+				expect(element.focusInOptions).toBe(false);
+				expect(element.open).toBe(false);
+
+				document.body.removeChild(outsideElement);
+			});
+
+			it('should not close if focus moves to the host', async () => {
+				element.open = true;
+				element.dispatchEvent(
+					new FocusEvent('focusout', {
+						relatedTarget: element,
+					})
+				);
+
+				expect(element.open).toBe(true);
+			});
+		});
+
+		describe('keyboard and input interactions', () => {
+			it('should reset focusInOptions when Enter is pressed during navigation', async () => {
+				element.open = true;
+				element.focusInOptions = true;
+				element.selectedIndex = 0;
+				await elementUpdated(element);
+
+				const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+				element.keydownHandler(enterEvent);
+
+				expect(element.focusInOptions).toBe(false);
+				expect(element.open).toBe(false);
+			});
+
+			it('should reset focusInOptions and focus control when typing during navigation', async () => {
+				element.focusInOptions = true;
+				element.selectedIndex = 0;
+				await elementUpdated(element);
+
+				const focusSpy = vi.spyOn(element.control, 'focus');
+				element.inputHandler(new InputEvent('input', { data: 'B' }));
+
+				expect(element.focusInOptions).toBe(false);
+				expect(focusSpy).toHaveBeenCalled();
+
+				focusSpy.mockRestore();
+			});
+
+			it('should not affect focus when focusInOptions is false', async () => {
+				element.focusInOptions = false;
+
+				const focusSpy = vi.spyOn(element.control, 'focus');
+				element.inputHandler(new InputEvent('input', { data: 'A' }));
+
+				expect(focusSpy).not.toHaveBeenCalled();
+				focusSpy.mockRestore();
+			});
+
+			it('should move focus to input when typing while focus is in options', async () => {
+				element.open = true;
+				await elementUpdated(element);
+
+				element.dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'ArrowDown' })
+				);
+				await elementUpdated(element);
+
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
+				await elementUpdated(element);
+
+				expect(element.focusInOptions).toBe(false);
+			});
 		});
 	});
 
@@ -892,20 +1066,6 @@ describe('vwc-combobox', () => {
 			element.click();
 			await elementUpdated(element);
 			expect(control.getAttribute('aria-expanded')).toBe('true');
-		});
-
-		it("should set the aria-activedescendant attribute to the selected option id when the listbox is open, but this doesn't actually work because the option is in light DOM", async () => {
-			element.innerHTML = `
-				<vwc-option value="1">1</vwc-option>
-				<vwc-option value="2" id="option-2" selected>2</vwc-option>
-				`;
-			await elementUpdated(element);
-
-			element.click();
-			await elementUpdated(element);
-
-			const control = getControlElement(element);
-			expect(control.getAttribute('aria-activedescendant')).toBe('option-2');
 		});
 	});
 });

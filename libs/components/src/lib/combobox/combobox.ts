@@ -90,6 +90,13 @@ export class Combobox extends WithFeedback(
 	private filter = '';
 
 	/**
+	 * Track if focus is currently in the listbox options
+	 *
+	 * @internal
+	 */
+	@observable focusInOptions = false;
+
+	/**
 	 * The appearance attribute.
 	 *
 	 * @public
@@ -215,6 +222,23 @@ export class Combobox extends WithFeedback(
 
 			return;
 		}
+		this.focusInOptions = false;
+	}
+
+	/**
+	 * Handle focus in options change, make sure all options are focusable
+	 *
+	 * @internal
+	 */
+	protected focusInOptionsChanged() {
+		if (this.focusInOptions) {
+			this.options.forEach((option, index) => {
+				option.setAttribute(
+					'tabindex',
+					index === this.selectedIndex ? '0' : '-1'
+				);
+			});
+		}
 	}
 
 	/**
@@ -329,6 +353,49 @@ export class Combobox extends WithFeedback(
 			this.initialValue = this.value;
 		}
 		this._popup.anchor = this._anchor;
+
+		this.addEventListener('focusin', this.handleFocusIn.bind(this));
+		this.addEventListener('focusout', this.handleFocusOut.bind(this));
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this.removeEventListener('focusin', this.handleFocusIn.bind(this));
+		this.removeEventListener('focusout', this.handleFocusOut.bind(this));
+	}
+
+	/**
+	 * Handle focus entering the combobox
+	 * @internal
+	 */
+	private handleFocusIn(e: FocusEvent): void {
+		const target = e.target as HTMLElement;
+
+		if (
+			target.closest('option') ||
+			target.closest('[role="option"]') ||
+			(target.hasAttribute('data-vvd-component') &&
+				target.getAttribute('data-vvd-component') === 'option')
+		) {
+			this.focusInOptions = true;
+		} else if (target === this.control) {
+			this.focusInOptions = false;
+		}
+	}
+
+	/**
+	 * Handle focus leaving the combobox
+	 * @internal
+	 */
+	private handleFocusOut(e: FocusEvent): void {
+		const relatedTarget = e.relatedTarget as HTMLElement;
+
+		if (!relatedTarget || !this.contains(relatedTarget)) {
+			this.focusInOptions = false;
+			if (this.open) {
+				this.open = false;
+			}
+		}
 	}
 
 	/**
@@ -361,7 +428,6 @@ export class Combobox extends WithFeedback(
 	 */
 	protected override focusAndScrollOptionIntoView(): void {
 		if (this.contains(document.activeElement)) {
-			this.control.focus();
 			const firstSelectedOption = this.firstSelectedOption;
 			if (firstSelectedOption) {
 				requestAnimationFrame(() => {
@@ -390,6 +456,10 @@ export class Combobox extends WithFeedback(
 			return;
 		}
 
+		if (focusTarget && this.contains(focusTarget)) {
+			return;
+		}
+
 		this.open = false;
 	}
 
@@ -400,6 +470,11 @@ export class Combobox extends WithFeedback(
 	 * @internal
 	 */
 	inputHandler(e: InputEvent): boolean | void {
+		if (this.focusInOptions) {
+			this.focusInOptions = false;
+			this.control.focus();
+		}
+
 		this.filter = this.control.value;
 		this.filterOptions();
 
@@ -444,6 +519,10 @@ export class Combobox extends WithFeedback(
 
 		switch (key) {
 			case 'Enter': {
+				if (this.focusInOptions) {
+					this.focusInOptions = false;
+				}
+
 				this.syncValue();
 				if (this.isAutocompleteInline) {
 					this.filter = this.value;
@@ -451,6 +530,9 @@ export class Combobox extends WithFeedback(
 
 				this.open = false;
 				this.clearSelectionRange();
+
+				DOM.queueUpdate(() => this.control.focus());
+
 				break;
 			}
 
@@ -480,11 +562,13 @@ export class Combobox extends WithFeedback(
 
 				e.preventDefault();
 				this.open = false;
+				this.focusInOptions = false;
 				break;
 			}
 
 			case 'ArrowUp':
 			case 'ArrowDown': {
+				e.preventDefault();
 				this.filterOptions();
 
 				if (!this.open) {
@@ -493,7 +577,26 @@ export class Combobox extends WithFeedback(
 				}
 
 				if (this.filteredOptions.length > 0) {
+					if (key === 'ArrowUp' && this.selectedIndex === 0) {
+						this.focusInOptions = false;
+						this.selectedIndex = -1;
+						DOM.queueUpdate(() => this.control.focus());
+						break;
+					}
+
+					if (!this.focusInOptions) {
+						this.focusInOptions = true;
+					}
+
 					super.keydownHandler(e);
+
+					const selectedOption = this.options[this.selectedIndex];
+					if (selectedOption) {
+						DOM.queueUpdate(() => {
+							selectedOption.focus();
+							selectedOption.scrollIntoView({ block: 'nearest' });
+						});
+					}
 				}
 
 				if (this.isAutocompleteInline) {
@@ -504,6 +607,12 @@ export class Combobox extends WithFeedback(
 			}
 
 			default: {
+				if (key.length === 1 && this.focusInOptions) {
+					this.focusInOptions = false;
+					DOM.queueUpdate(() => {
+						this.control.focus();
+					});
+				}
 				return true;
 			}
 		}
@@ -528,6 +637,13 @@ export class Combobox extends WithFeedback(
 			}
 
 			super.selectedIndexChanged(prev, next);
+
+			// Update tabindex for keyboard navigation
+			if (this.focusInOptions) {
+				this.options.forEach((option, index) => {
+					option.setAttribute('tabindex', index === next ? '0' : '-1');
+				});
+			}
 		}
 	}
 
@@ -599,6 +715,9 @@ export class Combobox extends WithFeedback(
 	 * @internal
 	 */
 	private syncValue(): void {
+		if (this.focusInOptions) {
+			return;
+		}
 		const newValue = this.firstSelectedOption?.text ?? this.control.value;
 		this.updateValue(this.value !== newValue);
 	}

@@ -77,16 +77,19 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				label="Where did you hear about us?" placeholder="Select an option"></vwc-combobox>
 				<vwc-combobox success-text="Rome is the correct answer" placeholder="Select an option" label="Success Text"></vwc-combobox>
 				<vwc-combobox error-text="Rome is the correct answer" placeholder="Select an option" label="Error Text"></vwc-combobox>
-			<vwc-combobox open style="margin-bottom: 100px">
+			<vwc-combobox id="focused" style="margin-bottom: 100px">
 				<vwc-option text="Option 1"></vwc-option>
 				<vwc-option text="Option 2"></vwc-option>
 			</vwc-combobox>
-
 		`,
 	});
 
 	const testWrapper = await page.$('#wrapper');
 
+	const focusedCombobox = await page.$('#focused');
+	await focusedCombobox?.focus();
+	await page.keyboard.press('ArrowDown');
+	await page.keyboard.press('ArrowDown');
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
