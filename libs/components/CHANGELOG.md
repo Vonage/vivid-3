@@ -4,6 +4,20 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.28.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.27.0...vivid-v4.28.0) (2025-07-09)
+
+
+### Features
+
+* **menu-item:** update styles to match option component  (VIV-2685)  ([#2438](https://github.com/Vonage/vivid-3/issues/2438)) ([027e809](https://github.com/Vonage/vivid-3/commit/027e8091073ce2b0f391e38bfc87739ab452bfb5))
+
+
+### Bug Fixes
+
+* **date-time-picker:** fix accessibility issues (VIV-2692) ([#2427](https://github.com/Vonage/vivid-3/issues/2427)) ([5f284f3](https://github.com/Vonage/vivid-3/commit/5f284f33ffa249cb5a5078b63d1d6fdf658bf4b5))
+* **number-field:** fix valueAsNumber missing in Vue (VIV-2748) ([#2444](https://github.com/Vonage/vivid-3/issues/2444)) ([13f005e](https://github.com/Vonage/vivid-3/commit/13f005e7c9f914251e0ec222e9e881eb3a94bc49))
+* **time-picker:** display focus indicator on the list item (VIV-2733) ([#2441](https://github.com/Vonage/vivid-3/issues/2441)) ([843f19f](https://github.com/Vonage/vivid-3/commit/843f19fff4ef08c872b8a693a4ce1d489c8920f2))
+
 ## [4.27.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.26.0...vivid-v4.27.0) (2025-06-26)
 
 
