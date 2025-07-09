@@ -7,18 +7,23 @@ export default {
 	argTypes,
 };
 
-const Template = () => ({
+const BasicTemplate = () => ({
 	components: { VAudioPlayer },
+	setup() {
+		const audioUrl = "https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
+
+		return { audioUrl };
+	},
 	template: `
-    <v-audio-player 
-      skip-by="5"
-	    src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
-    >
-    </v-audio-player>
-  `,
+    <div>
+      <VAudioPlayer
+        v-bind:src="audioUrl" 
+        skip-by="10"
+        connotation="cta"
+        class="vvd-root Vlt-purple"
+        playback-rates="0.5, 1, 1.5, 2"
+      />
+    </div>`,
 });
 
-export const ExpandMode = Template.bind({});
-ExpandMode.args = {
-	expandMode: 'multi',
-};
+export const Basic = BasicTemplate.bind({});

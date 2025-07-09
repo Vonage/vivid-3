@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
 import { attr, Observable, type ValueConverter } from '@microsoft/fast-element';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { Localized } from '../../shared/patterns';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import type { Connotation } from '../enums';
 import { MediaSkipBy } from '../enums';
-import { Localized } from '../../shared/patterns';
 import type { Slider } from '../slider/slider';
-import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of audio player connotation.
@@ -93,6 +93,14 @@ export class AudioPlayer extends Localized(VividElement) {
 	 */
 	@attr src?: string;
 
+	srcChanged() {
+		if (this.src === undefined) {
+			this.#playerEl.removeAttribute('src');
+		} else {
+			this.#playerEl.src = this.src;
+		}
+	}
+
 	get playbackRate() {
 		Observable.track(this, 'playbackRate');
 		return this.#playerEl.playbackRate;
@@ -103,13 +111,6 @@ export class AudioPlayer extends Localized(VividElement) {
 		Observable.notify(this, 'playbackRate');
 	}
 
-	srcChanged() {
-		if (this.src === undefined) {
-			this.#playerEl.removeAttribute('src');
-		} else {
-			this.#playerEl.src = this.src;
-		}
-	}
 	/**
 	 * Indicates whether audio player is disabled.
 	 *
@@ -180,22 +181,34 @@ export class AudioPlayer extends Localized(VividElement) {
 
 	#playerEl = new Audio();
 
+	#isProgrammaticSliderUpdate = false;
+
 	constructor() {
 		super();
-		this.#playerEl.addEventListener('timeupdate', this.#updateProgress);
-		this.#playerEl.addEventListener('loadedmetadata', this.#updateTotalTime);
 	}
 
 	override connectedCallback(): void {
 		super.connectedCallback();
+		// if (!this.shadowRoot!.contains(this.#playerEl)) {
+		// 	this.#playerEl.setAttribute('hidden', '');
+		// 	this.shadowRoot!.appendChild(this.#playerEl);
+		// }
+		this.#playerEl.addEventListener('timeupdate', this.#updateProgress);
+		this.#playerEl.addEventListener('loadedmetadata', this.#updateTotalTime);
+		this.#playerEl.addEventListener('durationchange', this.#updateTotalTime);
 		this.#setSliderInteractionListeners();
+
 		this.#setPausedState();
+		this.#updateProgress();
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.#setSliderInteractionListeners(false);
 		this.pause();
+
+		this.#playerEl.removeEventListener('timeupdate', this.#updateProgress);
+		this.#playerEl.removeEventListener('loadedmetadata', this.#updateTotalTime);
 	}
 
 	play() {
@@ -227,13 +240,24 @@ export class AudioPlayer extends Localized(VividElement) {
 		this.#setPausedState();
 	};
 
-	#currentTimeChanged = false;
 	#updateProgress = () => {
-		this.#currentTimeChanged = true;
 		Observable.notify(this, 'currentTime');
-		const percent = (this.currentTime / this.duration) * 100;
-		this.#sliderEl!.value = percent.toString();
-		if (percent === 100) {
+
+		const duration = this.duration;
+		const currentTime = this.currentTime;
+		const isValid =
+			Number.isFinite(duration) &&
+			duration > 0 &&
+			Number.isFinite(currentTime) &&
+			currentTime >= 0;
+		const percent = isValid ? (currentTime / duration) * 100 : 0;
+
+		if (this.#sliderEl) {
+			this.#isProgrammaticSliderUpdate = true;
+			this.#sliderEl.value = percent.toString();
+			this.#isProgrammaticSliderUpdate = false;
+		}
+		if (isValid && percent === 100) {
 			this.pause();
 		}
 	};
@@ -255,13 +279,31 @@ export class AudioPlayer extends Localized(VividElement) {
 			}, 0);
 		}
 
-		if (!this.#currentTimeChanged && this.#playerEl) {
+		if (this.#isProgrammaticSliderUpdate) {
+			return;
+		}
+
+		if (this.#playerEl) {
 			this.currentTime = (this.duration * Number(this.#sliderEl!.value)) / 100;
 		}
-		this.#currentTimeChanged = false;
 	};
 
 	#setPausedState = () => {
 		Observable.notify(this, 'paused');
 	};
+
+	/**
+	 * Skips the current time by the skipBy value
+	 *
+	 * @param skipDirection - the direction to skip
+	 *
+	 * @internal
+	 */
+	skip(skipDirection: SKIP_DIRECTIONS_TYPE) {
+		const currentTime = this.currentTime;
+		const skipValue = parseInt(this.skipBy!) * skipDirection;
+		const newTime = currentTime + skipValue;
+
+		this.currentTime = Math.max(0, Math.min(this.duration, newTime));
+	}
 }
