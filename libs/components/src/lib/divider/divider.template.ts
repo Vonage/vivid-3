@@ -1,6 +1,6 @@
 import { html } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { delegateAria } from '../../shared/aria/delegates-aria';
+import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import { type Divider, DividerRole } from './divider';
 
 const getClasses = ({ orientation }: Divider) =>
@@ -9,11 +9,12 @@ const getClasses = ({ orientation }: Divider) =>
 const getAriaOrientation = ({ role, orientation }: Divider) =>
 	role === DividerRole.presentation ? null : orientation;
 
-export const DividerTemplate = html<Divider>` <span
-	class="${getClasses}"
-	${delegateAria({
+export const DividerTemplate = html<Divider>`<template
+	${applyHostSemantics({
 		role: (x) => x.role || DividerRole.separator,
 		ariaHidden: true,
 		ariaOrientation: getAriaOrientation,
 	})}
-></span>`;
+>
+	<span class="${getClasses}"></span
+></template>`;
