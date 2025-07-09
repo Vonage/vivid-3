@@ -33,6 +33,7 @@ export const ListboxOptionTemplate = (
 				ariaSelected: (x) => x.selected,
 				ariaDisabled: (x) => x.disabled,
 			})}
+			?selected="${(x) => x.selected}"
 			style="${(x) => (x._isNotMatching ? 'display: none' : '')}"
 		>
 			<div class="${getClasses}">
