@@ -115,8 +115,8 @@ export class ListboxOption extends HostSemantics(
 	 *
 	 * @public
 	 */
-	@observable
-	selected: boolean = this.defaultSelected;
+	@attr({ attribute: 'current-selected', mode: 'boolean' })
+	selected!: boolean;
 	protected selectedChanged(): void {
 		if (!this.dirtySelected) {
 			this.dirtySelected = true;
@@ -310,5 +310,18 @@ export class ListboxOption extends HostSemantics(
 		);
 		// @ts-expect-error Propery is used before it is assigned
 		this.proxy.disabled = this.disabled;
+	}
+
+	/**
+	 * @internal
+	 */
+	override connectedCallback(): void {
+		super.connectedCallback();
+
+		// Initialize selected from defaultSelected if not already set
+		if (!this.dirtySelected) {
+			this.selected = this.defaultSelected;
+			this.dirtySelected = false;
+		}
 	}
 }

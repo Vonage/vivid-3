@@ -119,7 +119,7 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-::slotted([data-vvd-component='option'][selected]) {
+::slotted([data-vvd-component='option'][current-selected]) {
 	border-radius: #{border-radius-variables.$border-radius-normal};
 
 	@include focus.focus;
