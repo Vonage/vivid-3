@@ -58,16 +58,20 @@ export class ListboxOption extends HostSemantics(
 	/**
 	 * The defaultSelected state of the option.
 	 * @public
+	 * @remarks
+	 * HTML Attribute: selected
 	 */
-	@observable
+	@attr({ attribute: 'selected', mode: 'boolean' })
 	defaultSelected = false;
 	protected defaultSelectedChanged(): void {
 		if (!this.dirtySelected) {
 			this.selected = this.defaultSelected;
-
 			if (this.proxy instanceof HTMLOptionElement) {
 				this.proxy.selected = this.defaultSelected;
 			}
+		}
+		if (this.proxy instanceof HTMLOptionElement) {
+			this.proxy.defaultSelected = this.defaultSelected;
 		}
 	}
 
@@ -93,21 +97,13 @@ export class ListboxOption extends HostSemantics(
 	}
 
 	/**
-	 * The selected attribute value. This sets the initial selected value.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: selected
+	 * @deprecated Use `defaultSelected` instead.
 	 */
-	@attr({ attribute: 'selected', mode: 'boolean' })
-	// @ts-expect-error Type is incorrectly non-optional
-	selectedAttribute: boolean;
-	protected selectedAttributeChanged(): void {
-		this.defaultSelected = this.selectedAttribute;
-
-		if (this.proxy instanceof HTMLOptionElement) {
-			this.proxy.defaultSelected = this.defaultSelected;
-		}
+	get selectedAttribute() {
+		return this.defaultSelected;
+	}
+	set selectedAttribute(value: boolean) {
+		this.defaultSelected = value;
 	}
 
 	/**
@@ -115,8 +111,8 @@ export class ListboxOption extends HostSemantics(
 	 *
 	 * @public
 	 */
-	@observable
-	selected: boolean = this.defaultSelected;
+	@attr({ attribute: 'current-selected', mode: 'boolean' })
+	selected!: boolean;
 	protected selectedChanged(): void {
 		if (!this.dirtySelected) {
 			this.dirtySelected = true;
@@ -310,5 +306,18 @@ export class ListboxOption extends HostSemantics(
 		);
 		// @ts-expect-error Propery is used before it is assigned
 		this.proxy.disabled = this.disabled;
+	}
+
+	/**
+	 * @internal
+	 */
+	override connectedCallback(): void {
+		super.connectedCallback();
+
+		// Initialize selected from defaultSelected if not already set
+		if (!this.dirtySelected) {
+			this.selected = this.defaultSelected;
+			this.dirtySelected = false;
+		}
 	}
 }

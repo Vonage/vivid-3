@@ -5011,6 +5011,13 @@
 			"description": "An Option Custom HTML Element.\nImplements https://www.w3.org/TR/wai-aria-1.1/#option | ARIA option .",
 			"props": [
 				{
+					"name": "defaultSelected",
+					"description": "The defaultSelected state of the option.",
+					"type": "boolean",
+					"attributeName": "selected",
+					"propertyName": "defaultSelected"
+				},
+				{
 					"name": "disabled",
 					"description": "The disabled state of the option.",
 					"type": "boolean",
@@ -5053,10 +5060,10 @@
 				},
 				{
 					"name": "selected",
-					"description": "The selected attribute value. This sets the initial selected value.",
+					"description": "The checked state of the control.",
 					"type": "boolean",
-					"attributeName": "selected",
-					"propertyName": "selectedAttribute"
+					"attributeName": "current-selected",
+					"propertyName": "selected"
 				},
 				{
 					"name": "tagConnotation",
