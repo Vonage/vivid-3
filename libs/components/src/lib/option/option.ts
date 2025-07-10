@@ -66,9 +66,11 @@ export class ListboxOption extends HostSemantics(
 	protected defaultSelectedChanged(): void {
 		if (!this.dirtySelected) {
 			this.selected = this.defaultSelected;
+			if (this.proxy instanceof HTMLOptionElement) {
+				this.proxy.selected = this.defaultSelected;
+			}
 		}
 		if (this.proxy instanceof HTMLOptionElement) {
-			this.proxy.selected = this.defaultSelected;
 			this.proxy.defaultSelected = this.defaultSelected;
 		}
 	}
