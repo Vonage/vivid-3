@@ -58,8 +58,10 @@ export class ListboxOption extends HostSemantics(
 	/**
 	 * The defaultSelected state of the option.
 	 * @public
+	 * @remarks
+	 * HTML Attribute: selected
 	 */
-	@observable
+	@attr({ attribute: 'selected', mode: 'boolean' })
 	defaultSelected = false;
 	protected defaultSelectedChanged(): void {
 		if (!this.dirtySelected) {
@@ -93,21 +95,13 @@ export class ListboxOption extends HostSemantics(
 	}
 
 	/**
-	 * The selected attribute value. This sets the initial selected value.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: selected
+	 * @deprecated Use `defaultSelected` instead.
 	 */
-	@attr({ attribute: 'selected', mode: 'boolean' })
-	// @ts-expect-error Type is incorrectly non-optional
-	selectedAttribute: boolean;
-	protected selectedAttributeChanged(): void {
-		this.defaultSelected = this.selectedAttribute;
-
-		if (this.proxy instanceof HTMLOptionElement) {
-			this.proxy.defaultSelected = this.defaultSelected;
-		}
+	get selectedAttribute() {
+		return this.defaultSelected;
+	}
+	set selectedAttribute(value: boolean) {
+		this.defaultSelected = value;
 	}
 
 	/**
