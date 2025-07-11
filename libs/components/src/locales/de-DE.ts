@@ -230,6 +230,7 @@ const deDE: Locale = {
 	dataGrid: {
 		cell: {
 			selected: 'Ausgewählt',
+			button: '(Schaltfläche)',
 		},
 	},
 	pagination: {

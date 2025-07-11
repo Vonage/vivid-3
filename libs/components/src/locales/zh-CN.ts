@@ -228,6 +228,7 @@ const zhCN: Locale = {
 	dataGrid: {
 		cell: {
 			selected: '已选择',
+			button: '（按钮）',
 		},
 	},
 	pagination: {
