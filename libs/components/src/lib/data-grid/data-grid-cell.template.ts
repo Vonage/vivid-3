@@ -70,6 +70,12 @@ export const DataGridCellTemplate = (
 								x.locale.dataGrid.cell.selected}</${visuallyHiddenTagName}>`
 						: null}
 				<slot></slot>
+				${when(
+					shouldShowSortIcons,
+					html`<${visuallyHiddenTagName}>${(x: DataGridCell) =>
+						x.locale.dataGrid.cell.button}</${visuallyHiddenTagName}>
+					`
+				)}
 				${(_) => renderSortIcons(context)}
 			</div>
 		</template>
