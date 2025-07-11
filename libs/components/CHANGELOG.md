@@ -4,6 +4,16 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.28.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.28.0...vivid-v4.28.1) (2025-07-11)
+
+
+### Bug Fixes
+
+* **combobox:** Fix contrast accessibility issue (VIV-2731) ([#2447](https://github.com/Vonage/vivid-3/issues/2447)) ([0008705](https://github.com/Vonage/vivid-3/commit/00087058c4f81fb6a376656891e212488c1c2578))
+* **date-time-picker:** input event does not not update the value on typing (VIV-2715)  ([#2433](https://github.com/Vonage/vivid-3/issues/2433)) ([77625cc](https://github.com/Vonage/vivid-3/commit/77625cce90751c0690f2c8e0f9ad3b302f2578e5))
+* **divider:** apply aria attributes to the host (VIV-2737) ([#2446](https://github.com/Vonage/vivid-3/issues/2446)) ([877fa59](https://github.com/Vonage/vivid-3/commit/877fa59a7efab676ffd3932a472fa8e9197e9ed2))
+* **searchable-select:** display focus indicator on list items (VIV-2732) ([#2450](https://github.com/Vonage/vivid-3/issues/2450)) ([2ed4ee5](https://github.com/Vonage/vivid-3/commit/2ed4ee5c5ab4b2db8b561abe951a42a9df3463fb))
+
 ## [4.28.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.27.0...vivid-v4.28.0) (2025-07-09)
 
 
