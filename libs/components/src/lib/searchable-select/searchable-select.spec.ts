@@ -1986,6 +1986,41 @@ describe('vwc-searchable-select', () => {
 		});
 	});
 
+	describe('highlighting options', function () {
+		beforeEach(async () => {
+			focusInput();
+			pressKey('ArrowDown');
+			await elementUpdated(element);
+		});
+
+		it('should set data-highlighted attribute on highlighted option', async function () {
+			pressKey('ArrowDown');
+			await elementUpdated(element);
+
+			expect(fieldset.classList).toContain('has-highlighted-option');
+			expect(getOption('Apple').hasAttribute('data-highlighted')).toBe(true);
+			expect(getOption('Banana').hasAttribute('data-highlighted')).toBe(false);
+			expect(getOption('Cherry').hasAttribute('data-highlighted')).toBe(false);
+		});
+
+		it('should remove data-highlighted attribute from previously highlighted option', function () {
+			pressKey('ArrowDown');
+			pressKey('ArrowDown');
+
+			expect(getOption('Apple').hasAttribute('data-highlighted')).toBe(false);
+			expect(getOption('Banana').hasAttribute('data-highlighted')).toBe(true);
+		});
+
+		it('should remove data-highlighted attribute when popup closes', async function () {
+			pressKey('ArrowDown');
+			pressKey('Escape');
+			await elementUpdated(element);
+
+			expect(fieldset.classList).not.toContain('has-highlighted-option');
+			expect(getOption('Apple').hasAttribute('data-highlighted')).toBe(false);
+		});
+	});
+
 	describe('a11y attributes', () => {
 		it('should describe the visually highlighted option in an aria-live region', async () => {
 			focusInput();
