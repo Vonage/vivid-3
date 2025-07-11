@@ -107,12 +107,12 @@ Here's an example of sorting when building the grid manually:
 		console.log(detail);
 		if (detail.sortDirection === 'ascending') {
 			target.sortDirection = 'descending';
-		} else if (e.detail.sortDirection === 'descending') {
+		} else if (detail.sortDirection === 'descending') {
 			target.sortDirection = 'none';
 		} else {
 			target.sortDirection = 'ascending';
 		}
-		renderData(e.target.sortDirection);
+		renderData(target.sortDirection);
 	});
 </script>
 ```
