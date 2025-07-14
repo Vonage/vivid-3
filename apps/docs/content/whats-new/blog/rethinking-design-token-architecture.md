@@ -93,13 +93,3 @@ We evaluated the current state of token usage in Vivid:
 ## Final Thoughts and Recommendations
 
 Design tokens are foundational—but they shouldn’t be overwhelming. The more levels we introduce, the more we need to maintain, document, and teach. When in doubt, opt for simplicity.
-
-### ✅ Recommended Approach:
-
-- Use semantic-only tokens where possible
-- Align all token types to this model
-- Standardize across platforms
-- Review how tokens are used in both design and development
-- Prioritize clarity over cleverness
-
-Design systems thrive when the infrastructure behind them is both robust and comprehensible. With a focused, flexible approach to token architecture, we can deliver consistency without complexity.
