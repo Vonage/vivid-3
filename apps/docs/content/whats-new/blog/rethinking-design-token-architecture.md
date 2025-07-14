@@ -90,6 +90,6 @@ We evaluated the current state of token usage in Vivid:
 | **Elevation**    | ⚠️ Used in Figma styles, but not defined as tokens yet.      |
 |  **Other Types** | 👀 Add only if they provide clear, consistent value.         |
 
-## Final Thoughts and Recommendations
+## Final Thoughts
 
 Design tokens are foundational—but they shouldn’t be overwhelming. The more levels we introduce, the more we need to maintain, document, and teach. When in doubt, opt for simplicity.
