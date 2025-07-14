@@ -45,7 +45,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-searchable-select disabled></vwc-searchable-select>
 				<vwc-searchable-select loading></vwc-searchable-select>
 				<vwc-searchable-select clearable>
-					<vwc-option value="1" text="Option 1" selected></vwc-option>
+					<vwc-option value="1" text="Option 1" label="op1" selected></vwc-option>
 				</vwc-searchable-select>
 				<vwc-searchable-select>
 					<vwc-option value="1" text="Option 1" selected></vwc-option>

@@ -535,12 +535,29 @@ describe('vwc-searchable-select', () => {
 				expect(input.value).toBe('Apple');
 			});
 
-			it('should set input value to the text of the selected option even if a label is set', async () => {
-				getOption('Banana').label = 'Label';
+			it('should set input value to the text of the selected option ', async () => {
 				element.value = 'banana';
 				await elementUpdated(element);
 
 				expect(input.value).toBe('Banana');
+			});
+
+			it('should set input value to the label of the selected option even if a label is set', async () => {
+				await setUpFixture(`
+					<${COMPONENT_TAG}>
+						<${OPTION_TAG} value="apple" text="Apple" ></${OPTION_TAG}>
+						<${OPTION_TAG} value="banana" text="Banana" label="Label"></${OPTION_TAG}>
+					</COMPONENT_TAG>
+				`);
+
+				element.value = 'apple';
+				await elementUpdated(element);
+				expect(input.value).toBe('Apple');
+
+				element.value = 'banana';
+				await elementUpdated(element);
+
+				expect(input.value).toBe('Label');
 			});
 
 			it('should clear input when unselecting an option', async () => {
