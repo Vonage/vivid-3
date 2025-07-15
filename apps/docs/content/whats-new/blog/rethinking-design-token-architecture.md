@@ -93,3 +93,5 @@ We evaluated the current state of token usage in Vivid:
 ## Final Thoughts
 
 Design tokens are foundational—but they shouldn’t be overwhelming. The more levels we introduce, the more we need to maintain, document, and teach. When in doubt, opt for simplicity.
+
+Watch this space for our upcoming proposal document for the work we have planned in this area.
