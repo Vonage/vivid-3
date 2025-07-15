@@ -242,7 +242,8 @@ $low-ink-color: --_low-ink-color;
 /* focus */
 
 @supports selector(:has(*)) {
-	.fieldset:has(.wrapper .control:focus-within)::after {
+	.base:not(.has-activedescendant)
+		.fieldset:has(.wrapper .control:focus-within)::after {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 		@include focus.focus;
@@ -250,7 +251,7 @@ $low-ink-color: --_low-ink-color;
 }
 
 @supports not selector(:has(*)) {
-	.wrapper:focus-within::after {
+	.base:not(.has-activedescendant) .wrapper:focus-within::after {
 		@include focus.focus;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 

@@ -656,6 +656,37 @@ describe('vwc-inline-time-picker', () => {
 
 			expect(element.shadowRoot!.activeElement).toBe(firstPicker);
 			expect(focusSpy).toHaveBeenCalledWith(options);
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot!.activeElement?.parentElement?.classList
+			).toContain('focused');
+		});
+
+		it('should remove the focused class from all picker wrappers when clicking outside', async () => {
+			element.focus();
+			await elementUpdated(element);
+
+			expect(
+				element.shadowRoot!.activeElement?.parentElement?.classList
+			).toContain('focused');
+
+			const minutesPicker = element.shadowRoot!.querySelector(
+				'#minutes'
+			) as HTMLElement;
+
+			const event = new MouseEvent('pointerdown', {
+				bubbles: true,
+				composed: true,
+			});
+			minutesPicker.dispatchEvent(event);
+
+			await Promise.resolve();
+			await elementUpdated(element);
+
+			const pickers = element.shadowRoot!.querySelectorAll('.picker');
+			pickers.forEach((el) => {
+				expect(el.parentElement?.classList).not.toContain('focused');
+			});
 		});
 	});
 });

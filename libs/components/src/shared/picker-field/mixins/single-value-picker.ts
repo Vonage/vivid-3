@@ -31,6 +31,11 @@ export const SingleValuePicker = <T extends AbstractConstructor<PickerField>>(
 		/**
 		 * @internal
 		 */
+		_isInternalValueUpdate = false;
+
+		/**
+		 * @internal
+		 */
 		override valueChanged(previous: string, next: string) {
 			super.valueChanged(previous, next);
 			if (this.value) {
@@ -39,7 +44,10 @@ export const SingleValuePicker = <T extends AbstractConstructor<PickerField>>(
 					return;
 				}
 			}
-			this._updatePresentationValue();
+			// prevent updating the presentation value on 'input'
+			if (!this._isInternalValueUpdate) {
+				this._updatePresentationValue();
+			}
 		}
 
 		/**
@@ -67,20 +75,50 @@ export const SingleValuePicker = <T extends AbstractConstructor<PickerField>>(
 		 */
 		override _onTextFieldChange() {
 			if (this._presentationValue === '') {
-				this._updateValueDueToUserInteraction('');
+				this.value = '';
+				this.$emit('change');
 				return;
 			}
 
 			try {
-				this._updateValueDueToUserInteraction(
-					this._parsePresentationValue(this._presentationValue)
-				);
+				this.value = this._parsePresentationValue(this._presentationValue);
+				this.$emit('change');
 			} catch (_) {
 				const invalidPresentationValue = this._presentationValue;
-				this._updateValueDueToUserInteraction('');
+				this.value = '';
+				this.$emit('change');
 				this._presentationValue = invalidPresentationValue;
 				return;
 			}
+		}
+
+		/**
+		 * @internal
+		 */
+		override _onTextFieldInput(event: Event): void {
+			super._onTextFieldInput(event);
+			this._isInternalValueUpdate = true;
+
+			if (this._presentationValue === '') {
+				this.value = '';
+				this.$emit('input');
+				return;
+			}
+
+			try {
+				const parsedValue = this._parsePresentationValue(
+					this._presentationValue
+				);
+				if (this.value !== parsedValue) {
+					this.value = parsedValue;
+					this.$emit('input');
+				}
+			} catch (_) {
+				// Invalid intermediate value, do nothing until change event
+				return;
+			}
+
+			this._isInternalValueUpdate = false;
 		}
 
 		/**

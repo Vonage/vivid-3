@@ -74,4 +74,16 @@ export const componentOverrides: ComponentSpecs[] = [
 			});
 		},
 	],
+
+	[
+		'number-field',
+		(component) => {
+			component.props.push({
+				name: 'valueAsNumber',
+				description: 'The value property, typed as a number.',
+				type: 'number',
+				propertyName: 'valueAsNumber',
+			});
+		},
+	],
 ];

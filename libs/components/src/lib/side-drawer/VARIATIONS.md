@@ -43,13 +43,26 @@ Use the `modal` attribute to set the side drawer's type to modal.
 	</vwc-layout>
 </vwc-side-drawer>
 <vwc-fab
-	aria-label="Toggle side drawer"
+	aria-label="Close side drawer"
 	class="fab"
+	id="fab"
 	connotation="accent"
-	onclick="sidedrawer.open = !sidedrawer.open"
+	onclick="toggleSideDrawer()"
 >
 	<vwc-icon slot="icon" name="menu-solid"></vwc-icon>
 </vwc-fab>
+
+<script>
+	function toggleSideDrawer() {
+		if (sidedrawer.open) {
+			sidedrawer.open = false;
+			fab.ariaLabel = 'Open side drawer';
+		} else {
+			sidedrawer.open = true;
+			fab.ariaLabel = 'Close side drawer';
+		}
+	}
+</script>
 
 <style>
 	.content {

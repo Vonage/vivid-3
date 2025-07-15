@@ -258,4 +258,22 @@ describe('vwc-option', () => {
 			expect(element.selected).toEqual(true);
 		});
 	});
+
+	describe('selectedAttribute (deprecated)', () => {
+		it('should get the value of defaultSelected via selectedAttribute getter', async () => {
+			element.defaultSelected = true;
+			expect(element.selectedAttribute).toBe(true);
+
+			element.defaultSelected = false;
+			expect(element.selectedAttribute).toBe(false);
+		});
+
+		it('should set the value of defaultSelected via selectedAttribute setter', async () => {
+			element.selectedAttribute = true;
+			expect(element.defaultSelected).toBe(true);
+
+			element.selectedAttribute = false;
+			expect(element.defaultSelected).toBe(false);
+		});
+	});
 });

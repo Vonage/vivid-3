@@ -23,10 +23,33 @@ registerVideoPlayer('your-prefix');
 </script>
 
 <your-prefix-video-player
-	poster="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/bbb.png"
-	src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"
+	poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg"
 >
-</your-prefix-prefix-video-player>
+	<source
+		src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"
+		type="application/x-mpegURL"
+	/>
+	<track
+		kind="captions"
+		src="/assets/images/captions.en.vtt"
+		srclang="en"
+		label="English"
+		default
+	/>
+	<track
+		kind="subtitles"
+		src="/assets/images/captions.jp.vtt"
+		srclang="jp"
+		label="Japanese"
+	/>
+	<track
+		kind="descriptions"
+		src="/assets/images/descriptions.en.vtt"
+		label="English"
+		srclang="en"
+	/>
+	<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
+</your-prefix-video-player>
 ```
 
 </vwc-tab-panel>
@@ -38,9 +61,32 @@ registerVideoPlayer('your-prefix');
 	import { VVideoPlayer } from '@vonage/vivid-vue';
 </script>
 <template>
-	<VVideoPlayer
-		src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"
-	/>
+	<VVideoPlayer poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg">
+		<source
+			src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"
+			type="application/x-mpegURL"
+		/>
+		<track
+			kind="captions"
+			src="/assets/images/captions.en.vtt"
+			srclang="en"
+			label="English"
+			default
+		/>
+		<track
+			kind="subtitles"
+			src="/assets/images/captions.jp.vtt"
+			srclang="jp"
+			label="Japanese"
+		/>
+		<track
+			kind="descriptions"
+			src="/assets/images/descriptions.en.vtt"
+			label="English"
+			srclang="en"
+		/>
+		<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
+	</VVideoPlayer>
 </template>
 ```
 
@@ -52,9 +98,28 @@ registerVideoPlayer('your-prefix');
 The `src` attribute provides a video source to the component.
 
 ```html preview
-<vwc-video-player
-	src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"
-></vwc-video-player>
+<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8">
+	<track
+		kind="captions"
+		src="/assets/images/captions.en.vtt"
+		srclang="en"
+		label="English"
+		default
+	/>
+	<track
+		kind="subtitles"
+		src="/assets/images/captions.jp.vtt"
+		srclang="jp"
+		label="Japanese"
+	/>
+	<track
+		kind="descriptions"
+		src="/assets/images/descriptions.en.vtt"
+		label="English"
+		srclang="en"
+	/>
+	<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
+</vwc-video-player>
 ```
 
 ### Supported Video Formats
