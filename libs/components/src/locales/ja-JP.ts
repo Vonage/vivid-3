@@ -228,6 +228,7 @@ const jaJP: Locale = {
 	dataGrid: {
 		cell: {
 			selected: '選択済み',
+			button: '（ボタン）',
 		},
 	},
 	pagination: {
