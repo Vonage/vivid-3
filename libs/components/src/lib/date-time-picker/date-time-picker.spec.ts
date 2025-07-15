@@ -1,9 +1,6 @@
-import {
-	createFormHTML,
-	elementUpdated,
-	fixture,
-	getResolvedTextContent,
-} from '@repo/shared';
+import { DOM } from '@microsoft/fast-element';
+
+import { createFormHTML, fixture, getResolvedTextContent } from '@repo/shared';
 import enGB from '../../locales/en-GB';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
@@ -49,12 +46,12 @@ describe('vwc-date-time-picker', () => {
 
 	async function openPopup() {
 		pickerButton.click();
-		await elementUpdated(element);
+		await DOM.nextUpdate();
 	}
 
 	async function openMonthView() {
 		titleAction.click();
-		await elementUpdated(element);
+		await DOM.nextUpdate();
 	}
 
 	async function areDatesDisabled(predicate: (date: DateStr) => boolean) {
@@ -70,13 +67,13 @@ describe('vwc-date-time-picker', () => {
 
 	async function calendarUsesMinDate(minDate: DateStr) {
 		element.value = `${minDate}T00:00:00`; // open month of min date
-		await elementUpdated(element);
+		await DOM.nextUpdate();
 		return areDatesDisabled((date) => date < minDate);
 	}
 
 	async function calendarUsesMaxDate(maxDate: DateStr) {
 		element.value = `${maxDate}T00:00:00`; // open month of max date
-		await elementUpdated(element);
+		await DOM.nextUpdate();
 		return areDatesDisabled((date) => date > maxDate);
 	}
 
@@ -147,28 +144,49 @@ describe('vwc-date-time-picker', () => {
 	describe('value', () => {
 		it('should display a formatted version of value in the text field', async () => {
 			element.value = '2021-01-21T12:34:56';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.value).toBe('01/21/2021 12:34 PM');
 		});
 
 		it('should ignore an invalid value', async () => {
 			element.value = 'x';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.value).toBe('');
 		});
 
 		it('should update value when a user enters a valid date time into the text field', async () => {
-			typeIntoTextField('01/21/2021 12:34:56 PM');
-			await elementUpdated(element);
+			typeIntoTextField('01/21/2021 12:51 PM');
+			await DOM.nextUpdate();
 
-			expect(element.value).toBe('2021-01-21T12:34:56');
+			expect(element.value).toBe('2021-01-21T12:51:00');
+
+			textField.value = '01/30/2021 11:27 PM';
+			textField.dispatchEvent(new InputEvent('input'));
+			expect(element.value).toBe('2021-01-30T23:27:00');
+		});
+
+		it('should keep the previous valid when a user enters inncorect value into the text field', async () => {
+			typeIntoTextField('01/21/2021 12:51 PM');
+			await DOM.nextUpdate();
+
+			expect(element.value).toBe('2021-01-21T12:51:00');
+
+			textField.value = '01/30/2021 11:27 PM';
+			textField.dispatchEvent(new InputEvent('input'));
+			expect(element.value).toBe('2021-01-30T23:27:00');
+
+			// type inncorect value
+			textField.value = '0130/2021 11:27 PM';
+			textField.dispatchEvent(new InputEvent('input'));
+			// keep the prev valid value
+			expect(element.value).toBe('2021-01-30T23:27:00');
 		});
 
 		it('should keep an empty value when a user enters a invalid date time into the text field', async () => {
 			typeIntoTextField('x');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(element.value).toBe('');
 		});
@@ -177,7 +195,7 @@ describe('vwc-date-time-picker', () => {
 			element.value = '2021-01-21T12:34:56';
 
 			typeIntoTextField('x');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(element.value).toBe('');
 			expect(textField.value).toBe('x');
@@ -185,10 +203,10 @@ describe('vwc-date-time-picker', () => {
 
 		it('should clear the text field when value is set to empty string', async () => {
 			element.value = '2021-01-21T12:34:56';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			element.value = '';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.value).toBe('');
 		});
@@ -201,7 +219,7 @@ describe('vwc-date-time-picker', () => {
 
 		it('should reflect the clock on the inline-time-picker', async () => {
 			element.clock = '24h';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.clock).toBe('24h');
 		});
 
@@ -212,7 +230,7 @@ describe('vwc-date-time-picker', () => {
 			'should default to the default clock of the locale',
 			async (locale, placeholder) => {
 				setLocale(locale);
-				await elementUpdated(element);
+				await DOM.nextUpdate();
 
 				expect(textField.placeholder).toBe(placeholder);
 			}
@@ -221,7 +239,7 @@ describe('vwc-date-time-picker', () => {
 		describe('12h', () => {
 			beforeEach(async () => {
 				element.clock = '12h';
-				await elementUpdated(element);
+				await DOM.nextUpdate();
 			});
 
 			it('should have a time placeholder of "hh:mm aa"', async () => {
@@ -230,7 +248,7 @@ describe('vwc-date-time-picker', () => {
 
 			it('should display a formatted version of value in the text field', async () => {
 				element.value = '2020-02-20T13:45:00';
-				await elementUpdated(element);
+				await DOM.nextUpdate();
 
 				expect(textField.value).toBe('02/20/2020 01:45 PM');
 			});
@@ -239,7 +257,7 @@ describe('vwc-date-time-picker', () => {
 		describe('24h', () => {
 			beforeEach(async () => {
 				element.clock = '24h';
-				await elementUpdated(element);
+				await DOM.nextUpdate();
 			});
 
 			it('should have a time placeholder of "hh:mm"', async () => {
@@ -248,7 +266,7 @@ describe('vwc-date-time-picker', () => {
 
 			it('should display a formatted version of value in the text field', async () => {
 				element.value = '2020-02-20T13:45:00';
-				await elementUpdated(element);
+				await DOM.nextUpdate();
 
 				expect(textField.value).toBe('02/20/2020 13:45');
 			});
@@ -257,10 +275,10 @@ describe('vwc-date-time-picker', () => {
 		it('should update the text field when the clock is changed', async () => {
 			element.clock = '12h';
 			element.value = '2020-02-20T13:45:00';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			element.clock = '24h';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.value).toBe('02/20/2020 13:45');
 		});
@@ -274,27 +292,27 @@ describe('vwc-date-time-picker', () => {
 
 		it('should reflect as undefined on the inline-time-picker when not set', async () => {
 			element.min = '';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.min).toBe(undefined);
 		});
 
 		it('should reflect the time on the inline-time-picker if value has the same date as min', async () => {
 			element.min = '2020-02-02T12:00:00';
 			element.value = '2020-02-02T15:00:00';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.min).toBe('12:00:00');
 		});
 
 		it('should not reflect the time on the inline-time-picker if value has a different date then min', async () => {
 			element.min = '2020-02-02T12:00:00';
 			element.value = '2020-02-03T15:00:00';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.min).toBe(undefined);
 		});
 
 		it('should not reflect the time on the inline-time-picker if value is not set', async () => {
 			element.min = '2020-02-02T12:00:00';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.min).toBe(undefined);
 		});
 	});
@@ -302,7 +320,7 @@ describe('vwc-date-time-picker', () => {
 	describe('minTime', () => {
 		it('should reflect on the inline-time-picker', async () => {
 			element.minTime = '12:00:00';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.min).toBe('12:00:00');
 		});
 
@@ -310,7 +328,7 @@ describe('vwc-date-time-picker', () => {
 			element.min = '2020-02-02T12:00:00';
 			element.value = '2020-02-02T15:00:00';
 			element.minTime = '13:00:00';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.min).toBe('13:00:00');
 		});
 	});
@@ -336,27 +354,27 @@ describe('vwc-date-time-picker', () => {
 
 		it('should reflect as undefined on the inline-time-picker when not set', async () => {
 			element.max = '';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.max).toBe(undefined);
 		});
 
 		it('should reflect the time on the inline-time-picker if value has the same date as min', async () => {
 			element.max = '2020-02-02T20:00:00';
 			element.value = '2020-02-02T15:00:00';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.max).toBe('20:00:00');
 		});
 
 		it('should not reflect the time on the inline-time-picker if value has a different date then min', async () => {
 			element.max = '2020-02-02T20:00:00';
 			element.value = '2020-02-01T15:00:00';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.max).toBe(undefined);
 		});
 
 		it('should not reflect the time on the inline-time-picker if value is not set', async () => {
 			element.max = '2020-02-02T12:00:00';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.max).toBe(undefined);
 		});
 	});
@@ -364,7 +382,7 @@ describe('vwc-date-time-picker', () => {
 	describe('maxTime', () => {
 		it('should reflect on the inline-time-picker', async () => {
 			element.maxTime = '12:00:00';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.max).toBe('12:00:00');
 		});
 
@@ -372,7 +390,7 @@ describe('vwc-date-time-picker', () => {
 			element.max = '2020-02-02T20:00:00';
 			element.value = '2020-02-02T15:00:00';
 			element.maxTime = '18:00:00';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.max).toBe('18:00:00');
 		});
 	});
@@ -393,13 +411,13 @@ describe('vwc-date-time-picker', () => {
 	describe('minutesStep', () => {
 		it('should reflect on the inline-time-picker', async () => {
 			element.minutesStep = 15;
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.minutesStep).toBe(15);
 		});
 
 		it('should default to 1 on the inline-time-picker when not set', async () => {
 			element.minutesStep = null;
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.minutesStep).toBe(1);
 		});
 	});
@@ -407,13 +425,13 @@ describe('vwc-date-time-picker', () => {
 	describe('secondsStep', () => {
 		it('should reflect secondsStep on the inline-time-picker', async () => {
 			element.secondsStep = 15;
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.secondsStep).toBe(15);
 		});
 
 		it('should reflect as undefined on the inline-time-picker when not set', async () => {
 			element.secondsStep = null;
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 			expect(inlineTimePicker.secondsStep).toBe(undefined);
 		});
 	});
@@ -424,7 +442,7 @@ describe('vwc-date-time-picker', () => {
 			element.addEventListener(eventName, spy);
 
 			typeIntoTextField('01/21/2021 12:34:56 PM');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
@@ -456,20 +474,20 @@ describe('vwc-date-time-picker', () => {
 		it('should clear the invalid value error when a valid date time is entered', async () => {
 			typeIntoTextField('invalid');
 			textField.dispatchEvent(new Event('blur'));
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			typeIntoTextField('01/21/2021 12:34:56 PM');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('');
 		});
 
 		it('should clear the value when an empty string is entered', async () => {
 			typeIntoTextField('01/21/2021 12:34:56 PM');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			typeIntoTextField('');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.value).toBe('');
 		});
@@ -513,7 +531,7 @@ describe('vwc-date-time-picker', () => {
 
 		it('should have an aria-label of "Change date and time, DATETIME" when a date time is selected', async () => {
 			element.value = '2021-01-01T12:34:56';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(pickerButton.getAttribute('aria-label')).toBe(
 				'Change date and time, 01/01/2021 12:34 PM'
@@ -528,21 +546,21 @@ describe('vwc-date-time-picker', () => {
 
 		it('should update current month to the month of the selected date time when the user enters a new date time', async () => {
 			typeIntoTextField('01/21/2021 12:34 AM');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(getDialogTitle()).toBe('January 2021');
 		});
 
 		it('should highlight the selected date', async () => {
 			element.value = '2023-08-20T12:34:56';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(getDateButton('2023-08-20').classList).toContain('selected');
 		});
 
 		it('should announce a selected date with the selected label', async () => {
 			element.value = '2023-08-15T12:34:56';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(
 				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-15')))
@@ -551,7 +569,7 @@ describe('vwc-date-time-picker', () => {
 
 		it('should announce both today and selected labels when today is selected', async () => {
 			element.value = '2023-08-10T12:34:56';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(
 				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-10')))
@@ -560,17 +578,17 @@ describe('vwc-date-time-picker', () => {
 
 		it('should set value and initialize time to 00:00:00 when clicking on a date and there is no current value', async () => {
 			getDateButton('2023-08-01').click();
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(element.value).toBe('2023-08-01T00:00:00');
 		});
 
 		it('should update date of the current value when clicking on a date', async () => {
 			element.value = '2023-08-20T12:34:56';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			getDateButton('2023-08-01').click();
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(element.value).toBe('2023-08-01T12:34:56');
 		});
@@ -591,7 +609,7 @@ describe('vwc-date-time-picker', () => {
 
 		it('should update time of the current value when time is changed in the inline-time-picker', async () => {
 			element.value = '2023-08-01T11:11:11';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			inlineTimePicker.dispatchEvent(
 				new CustomEvent('change', { detail: '22:22:22', bubbles: false })
@@ -616,7 +634,7 @@ describe('vwc-date-time-picker', () => {
 			element.value = '2023-08-01T12:34:56';
 
 			getButtonByLabel('Clear').click();
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(element.value).toBeFalsy();
 		});
@@ -625,7 +643,7 @@ describe('vwc-date-time-picker', () => {
 	describe('validation', () => {
 		it('should show an invalid date time error when an invalid value is entered', async () => {
 			typeIntoTextField('invalid');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('Please enter a valid date and time.');
 			expect(element.validity.valid).toBe(false);
@@ -634,7 +652,7 @@ describe('vwc-date-time-picker', () => {
 		it('should show an min date error when a date earlier than minDate is entered', async () => {
 			element.minDate = '2023-08-01';
 			typeIntoTextField('07/01/2023 12:00:00 PM');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('Date must be 08/01/2023 or later.');
 			expect(element.validity.valid).toBe(false);
@@ -643,7 +661,7 @@ describe('vwc-date-time-picker', () => {
 		it('should show an max date error when a date later than maxDate is entered', async () => {
 			element.maxDate = '2023-08-01';
 			typeIntoTextField('09/01/2023 12:00:00 PM');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('Date must be 08/01/2023 or earlier.');
 			expect(element.validity.valid).toBe(false);
@@ -652,7 +670,7 @@ describe('vwc-date-time-picker', () => {
 		it('should show an min time error when a time earlier than minTime is entered', async () => {
 			element.minTime = '10:00:00';
 			typeIntoTextField('07/01/2023 09:00:00 AM');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('Time must be 10:00 AM or later.');
 			expect(element.validity.valid).toBe(false);
@@ -661,7 +679,7 @@ describe('vwc-date-time-picker', () => {
 		it('should show an max time error when a time later than maxTime is entered', async () => {
 			element.maxTime = '20:00:00';
 			typeIntoTextField('07/01/2023 09:00:00 PM');
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('Time must be 08:00 PM or earlier.');
 			expect(element.validity.valid).toBe(false);
@@ -694,7 +712,7 @@ describe('vwc-date-time-picker', () => {
 
 			element.value = '2012-12-12T12:34:56';
 			formElement.reset();
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(element.value).toEqual(fieldValue);
 		});
@@ -709,17 +727,17 @@ describe('vwc-date-time-picker', () => {
 			setLocale(deDE);
 
 			element.value = '2021-01-21T13:13:13';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.value).toBe('21.01.2021 13:13');
 		});
 
 		it('should update the text field when the locale changes', async () => {
 			element.value = '2021-01-21T13:13:13';
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			setLocale(deDE);
-			await elementUpdated(element);
+			await DOM.nextUpdate();
 
 			expect(textField.value).toBe('21.01.2021 13:13');
 		});

@@ -19,6 +19,7 @@ const isFormValueAttribute = (attribute: Attribute): boolean =>
 		'end',
 		'initialValue',
 		'defaultChecked',
+		'defaultSelected',
 		'initialStart',
 		'initialEnd',
 	].includes(attribute.fieldName ?? '');

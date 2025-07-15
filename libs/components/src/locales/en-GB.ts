@@ -228,6 +228,7 @@ const enGB: Locale = {
 	dataGrid: {
 		cell: {
 			selected: 'Selected',
+			button: '(button)',
 		},
 	},
 	pagination: {

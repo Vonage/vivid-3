@@ -1,9 +1,28 @@
 ## Default Configuration
 
 ```html preview
-<vwc-video-player
-	src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"
-></vwc-video-player>
+<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8">
+	<track
+		kind="captions"
+		src="/assets/images/captions.en.vtt"
+		srclang="en"
+		label="English"
+		default
+	/>
+	<track
+		kind="subtitles"
+		src="/assets/images/captions.jp.vtt"
+		srclang="jp"
+		label="Japanese"
+	/>
+	<track
+		kind="descriptions"
+		src="/assets/images/descriptions.en.vtt"
+		label="English"
+		srclang="en"
+	/>
+	<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
+</vwc-video-player>
 ```
 
 ## Poster
@@ -12,9 +31,32 @@ The poster image is displayed before the video has been interacted with. The `po
 
 ```html preview
 <vwc-video-player
-	poster="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/bbb.png"
-	src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"
+	poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg"
 >
+	<source
+		src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"
+		type="application/x-mpegURL"
+	/>
+	<track
+		kind="captions"
+		src="/assets/images/captions.en.vtt"
+		srclang="en"
+		label="English"
+		default
+	/>
+	<track
+		kind="subtitles"
+		src="/assets/images/captions.jp.vtt"
+		srclang="jp"
+		label="Japanese"
+	/>
+	<track
+		kind="descriptions"
+		src="/assets/images/descriptions.en.vtt"
+		label="English"
+		srclang="en"
+	/>
+	<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
 </vwc-video-player>
 ```
 
@@ -28,12 +70,32 @@ The playback rates option can be removed by passing an empty string.
 ```html preview
 <vwc-video-player
 	playback-rates="0.5, 0.75, 1, 1.25, 1.5 1.75, 2, 2.5"
-	poster="/assets/images/steel_hi.jpg"
+	poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg"
 >
 	<source
-		src="https://d2zihajmogu5jn.cloudfront.net/tears-of-steel/playlist.m3u8"
+		src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"
 		type="application/x-mpegURL"
 	/>
+	<track
+		kind="captions"
+		src="/assets/images/captions.en.vtt"
+		srclang="en"
+		label="English"
+		default
+	/>
+	<track
+		kind="subtitles"
+		src="/assets/images/captions.jp.vtt"
+		srclang="jp"
+		label="Japanese"
+	/>
+	<track
+		kind="descriptions"
+		src="/assets/images/descriptions.en.vtt"
+		label="English"
+		srclang="en"
+	/>
+	<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
 </vwc-video-player>
 ```
 
@@ -44,10 +106,33 @@ They can be set to skip by `0`, `5`, `10` and `30` seconds using the `skip-by` a
 Setting them to `0` removes the buttons.
 
 ```html preview
-<vwc-video-player skip-by="30" poster="/assets/images/steel_hi.jpg">
+<vwc-video-player
+	skip-by="30"
+	poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg"
+>
 	<source
-		src="https://d2zihajmogu5jn.cloudfront.net/tears-of-steel/playlist.m3u8"
+		src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"
 		type="application/x-mpegURL"
 	/>
+	<track
+		kind="captions"
+		src="/assets/images/captions.en.vtt"
+		srclang="en"
+		label="English"
+		default
+	/>
+	<track
+		kind="subtitles"
+		src="/assets/images/captions.jp.vtt"
+		srclang="jp"
+		label="Japanese"
+	/>
+	<track
+		kind="descriptions"
+		src="/assets/images/descriptions.en.vtt"
+		label="English"
+		srclang="en"
+	/>
+	<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
 </vwc-video-player>
 ```

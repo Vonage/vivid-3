@@ -12,13 +12,14 @@ import { delegateAria } from '../../shared/aria/delegates-aria';
 import { OptionTag } from './option-tag';
 import type { SearchableSelect } from './searchable-select';
 
-const getStateClasses = (x: Select) =>
+const getStateClasses = (x: SearchableSelect) =>
 	classNames(
 		['disabled', x.disabled],
 		[`appearance-${x.appearance}`, Boolean(x.appearance)],
 		[`shape-${x.shape}`, Boolean(x.shape)],
 		['error', Boolean(x.errorValidationMessage)],
-		['success', !!x.successText]
+		['success', !!x.successText],
+		['has-highlighted-option', x._highlightedOptionIndex !== null]
 	);
 
 function renderLabel() {

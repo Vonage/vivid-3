@@ -97,7 +97,7 @@ $low-ink-color: --_low-ink-color;
 
 /* focus */
 @supports selector(:has(*)) {
-	.fieldset:has(.control:focus-within)::after {
+	.base:not(.has-activedescendant) .fieldset:has(.control:focus-within)::after {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 		@include focus.focus;
@@ -105,7 +105,7 @@ $low-ink-color: --_low-ink-color;
 }
 
 @supports not selector(:has(*)) {
-	.fieldset:focus-within::after {
+	.base:not(.has-activedescendant) .fieldset:focus-within::after {
 		@include focus.focus;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
@@ -117,4 +117,11 @@ $low-ink-color: --_low-ink-color;
 		inset: 0;
 		pointer-events: none;
 	}
+}
+
+::slotted([data-vvd-component='option'][current-selected]) {
+	border-radius: #{border-radius-variables.$border-radius-normal};
+
+	@include focus.focus;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
 }

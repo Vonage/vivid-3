@@ -8,6 +8,7 @@
 		max="7200"
 		end="7200"
 		step="15"
+		aria-label="Duration selector"
 	></vwc-range-slider>
 </div>
 <div>

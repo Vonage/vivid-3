@@ -28,6 +28,7 @@ export class InlineTimePicker extends Localized(VividElement) {
 	@observable clock: '12h' | '24h' = '24h';
 	@observable min?: string;
 	@observable max?: string;
+	focusedPickerClass = 'focused';
 
 	scrollSelectedOptionsToTop() {
 		if (HoursColumn.getSelectedOptionValue(this)) {
@@ -76,5 +77,50 @@ export class InlineTimePicker extends Localized(VividElement) {
 			'.picker'
 		) as HTMLElement;
 		firstFocusableElement.focus(options);
+		this._applyFocusedClass();
+	}
+
+	/**
+	 * @internal
+	 */
+	_onFocusOut = () => {
+		this._clearFocusedClasses();
+	};
+
+	/**
+	 * @internal
+	 */
+	_onPointerDown = () => {
+		this._clearFocusedClasses();
+	};
+
+	/**
+	 * @internal
+	 * Apply 'focused' class to the wrapper element of an active picker
+	 */
+	_applyFocusedClass(): void {
+		const pickers = this.shadowRoot!.querySelectorAll('.picker');
+
+		requestAnimationFrame(() => {
+			const active = this.shadowRoot!.activeElement;
+			pickers.forEach((el) => {
+				if (el === active) {
+					el.parentElement?.classList.add(this.focusedPickerClass);
+				} else {
+					el.parentElement?.classList.remove(this.focusedPickerClass);
+				}
+			});
+		});
+	}
+
+	/**
+	 * @internal
+	 * Clear 'focused' classes from all pickers wrappers
+	 */
+	_clearFocusedClasses(): void {
+		const pickers = this.shadowRoot!.querySelectorAll('.picker');
+		pickers.forEach((el) => {
+			el.parentElement?.classList.remove(this.focusedPickerClass);
+		});
 	}
 }
