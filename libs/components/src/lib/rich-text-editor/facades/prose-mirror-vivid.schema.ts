@@ -59,12 +59,51 @@ const customMarks = {
 	},
 };
 
-const extendedSchema = new Schema({
-	nodes: basicSchema.spec.nodes,
-	marks: {
-		...basicSchema.spec.marks.toObject(),
-		...customMarks,
-	},
-});
+export const dynamicSchema = (prefix = 'vwc') =>
+	new Schema({
+		nodes: {
+			...basicSchema.spec.nodes.toObject(),
+			imageError: {
+				inline: true,
+				group: 'inline',
+				atom: true,
+				attrs: {
+					alt: { default: '' },
+					icon: { default: '' },
+					errorMessage: { default: 'Failed to attach' },
+					fileName: { default: '' },
+				},
+				toDOM(node) {
+					return [
+						`${prefix}-text-editor-image-placeholder`,
+						{
+							alt: node.attrs.alt,
+							icon: node.attrs.icon,
+							'error-message': node.attrs.errorMessage,
+							'file-name': node.attrs.fileName,
+						},
+					];
+				},
+				parseDOM: [
+					{
+						tag: `${prefix}-text-editor-image-placeholder`,
+						getAttrs(dom: any) {
+							return {
+								alt: dom.getAttribute('alt'),
+								icon: dom.getAttribute('icon'),
+								errorMessage: dom.getAttribute('error-message'),
+								fileName: dom.getAttribute('file-name'),
+							};
+						},
+					},
+				],
+			},
+		},
+		marks: {
+			...basicSchema.spec.marks.toObject(),
+			...customMarks,
+		},
+	});
 
+const extendedSchema = dynamicSchema();
 export default extendedSchema;
