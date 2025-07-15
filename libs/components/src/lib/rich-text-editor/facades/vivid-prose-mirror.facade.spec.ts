@@ -1175,13 +1175,22 @@ describe('ProseMirrorFacade', () => {
 				dom.setAttribute('file-name', 'test.png');
 				dom.setAttribute('error-message', 'Error Message');
 
-				const attrs = schema.spec.nodes
-					.get('imageError')
-					.parseDOM[0].getAttrs(dom);
+				const imageErrorNode = schema.spec.nodes.get('imageError');
+				let attrs;
+				if (
+					imageErrorNode &&
+					imageErrorNode.parseDOM &&
+					imageErrorNode.parseDOM[0] &&
+					typeof imageErrorNode.parseDOM[0].getAttrs === 'function'
+				) {
+					attrs = imageErrorNode.parseDOM[0].getAttrs(dom);
+				} else {
+					attrs = {};
+				}
 
-				expect(attrs.icon).toBe('png');
-				expect(attrs['fileName']).toBe('test.png');
-				expect(attrs['errorMessage']).toBe('Error Message');
+				expect(attrs && attrs.icon).toBe('png');
+				expect(attrs && attrs['fileName']).toBe('test.png');
+				expect(attrs && attrs['errorMessage']).toBe('Error Message');
 			});
 		});
 	});
