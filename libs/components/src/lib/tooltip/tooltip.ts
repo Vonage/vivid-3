@@ -9,6 +9,9 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @slot anchor - Used to set the anchor element for the tooltip.
  */
 export class Tooltip extends Anchored(VividElement) {
+	private static tooltipIdCount = 0;
+	tooltipId = `tooltip-${++Tooltip.tooltipIdCount}`;
+
 	/**
 	 * the text of the tooltip
 	 * accepts string
@@ -42,24 +45,38 @@ export class Tooltip extends Anchored(VividElement) {
 	#setupAnchor(a: HTMLElement) {
 		a.addEventListener('mouseover', this.#show);
 		a.addEventListener('mouseout', this.#hide);
-		a.addEventListener('focusin', this.#show);
-		a.addEventListener('focusout', this.#hide);
+		a.addEventListener('click', this.#toggle);
+		a.setAttribute('aria-controls', this.tooltipId);
+		a.setAttribute('aria-haspopup', 'true');
 	}
 
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('mouseover', this.#show);
 		a.removeEventListener('mouseout', this.#hide);
-		a.removeEventListener('focusin', this.#show);
-		a.removeEventListener('focusout', this.#hide);
+		a.removeEventListener('click', this.#toggle);
+		a.removeAttribute('aria-controls');
+		a.removeAttribute('aria-haspopup');
 	}
+
+	#toggle = () => {
+		this.open ? this.#hide() : this.#show();
+	};
 
 	#show = () => {
 		this.open = true;
+		this.#updateAnchorExpanded();
 	};
 
 	#hide = () => {
 		this.open = false;
+		this.#updateAnchorExpanded();
 	};
+
+	#updateAnchorExpanded() {
+		if (this._anchorEl) {
+			this._anchorEl.setAttribute('aria-expanded', String(this.open));
+		}
+	}
 
 	#updateListeners() {
 		document.removeEventListener('keydown', this.#closeOnEscape);
