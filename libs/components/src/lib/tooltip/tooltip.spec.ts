@@ -57,15 +57,6 @@ describe('vwc-tooltip', () => {
 		);
 	});
 
-	describe('tooltipId', () => {
-		it('should be unique for each instance', async () => {
-			const element2 = (await fixture(
-				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-			)) as Tooltip;
-			expect(element.tooltipId).not.toEqual(element2.tooltipId);
-		});
-	});
-
 	describe('escape', () => {
 		it('should disappear when Escape is pressed', () => {
 			element.open = true;
@@ -149,29 +140,15 @@ describe('vwc-tooltip', () => {
 			expect(popup.anchor).toBe(anchor);
 		});
 
-		it('should set aria-controls with dynamic tooltip id', () => {
-			expect(anchor.getAttribute('aria-controls')).toBe(element.tooltipId);
-		});
-
 		it('should set aria-haspopup to true', () => {
 			expect(anchor.getAttribute('aria-haspopup')).toBe('true');
-		});
-
-		it('should toggle tooltip visibility on click', async () => {
-			expect(element.open).toBe(false);
-
-			fireEvent.click(anchor);
-			expect(element.open).toBe(true);
-			expect(anchor.getAttribute('aria-expanded')).toBe('true');
-
-			fireEvent.click(anchor);
-			expect(element.open).toBe(false);
-			expect(anchor.getAttribute('aria-expanded')).toBe('false');
 		});
 
 		describe.each([
 			{ eventName: 'mouseover', openState: false, expectation: true },
 			{ eventName: 'mouseout', openState: true, expectation: false },
+			{ eventName: 'focusin', openState: false, expectation: true },
+			{ eventName: 'focusout', openState: true, expectation: false },
 		])('on $eventName of anchor', ({ eventName, openState, expectation }) => {
 			beforeEach(() => {
 				element.open = openState;
