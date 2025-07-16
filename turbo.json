@@ -60,6 +60,11 @@
 			"cache": false,
 			"persistent": true
 		},
+		"cy:open": {
+			"dependsOn": ["^build"],
+			"cache": false,
+			"persistent": true
+		},
 		"e2e:docker": {
 			"dependsOn": ["^build"],
 			"outputs": ["test-results/**"]

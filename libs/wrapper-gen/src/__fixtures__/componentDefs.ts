@@ -9,6 +9,12 @@ export const minimalComponent: ComponentDef = {
 	vueModels: [],
 	methods: [],
 	slots: [],
+	testUtils: {
+		selectors: [],
+		actions: [],
+		queries: [],
+		refs: [],
+	},
 };
 
 export const exampleComponent: ComponentDef = {
@@ -118,4 +124,10 @@ export const exampleComponent: ComponentDef = {
 			name: 'no-description',
 		},
 	],
+	testUtils: {
+		selectors: [],
+		actions: [],
+		queries: [],
+		refs: [],
+	},
 };

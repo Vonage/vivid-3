@@ -6,6 +6,7 @@ import {
 	cssPropertiesPlugin,
 	improvedAttrSupportPlugin,
 	improvedMixinSupportPlugin,
+	testUtilsTagsPlugin,
 	vividComponentPlugin,
 } from '@repo/cem-analyzer-plugins';
 
@@ -41,6 +42,7 @@ export default {
 		readonlyPlugin(),
 		cssPropertiesPlugin(),
 		vividComponentPlugin(),
+		testUtilsTagsPlugin(),
 		improvedMixinSupportPlugin(),
 		improvedAttrSupportPlugin(),
 	],

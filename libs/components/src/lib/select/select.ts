@@ -48,6 +48,7 @@ export type SelectSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @event {CustomEvent<undefined>} input - Fires a custom 'input' event when the value updates
  * @event {CustomEvent<HTMLElement>} change - Fires a custom 'change' event when the value updates
  * @vueModel modelValue value input `event.currentTarget.value`
+ * @testAction selectOptionByText selectOptionByText
  */
 export class Select extends WithLightDOMFeedback(
 	WithErrorText(

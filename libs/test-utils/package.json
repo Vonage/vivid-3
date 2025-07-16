@@ -1,0 +1,55 @@
+{
+	"name": "@vonage/vivid-test-utils",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"exports": {
+		"./dom": {
+			"types": "./dist/dom.d.ts",
+			"import": "./dist/dom.js",
+			"require": "./dist/dom.cjs"
+		},
+		"./playwright": {
+			"types": "./dist/playwright.d.ts",
+			"import": "./dist/playwright.js",
+			"require": "./dist/playwright.cjs"
+		},
+		"./cypress": {
+			"types": "./dist/cypress.d.ts",
+			"import": "./dist/cypress.js",
+			"require": "./dist/cypress.cjs"
+		},
+		"./jsdom-polyfill": {
+			"types": "./dist/jsdom-polyfill.d.ts",
+			"import": "./dist/jsdom-polyfill.js",
+			"require": "./dist/jsdom-polyfill.cjs"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"prebuild": "tsx scripts/codegen.ts",
+		"build": "vite build",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"test": "vitest run",
+		"e2e": "concurrently -k -s first -n VITE,TEST \"vite src/tests/cases -c ./vite.config.ts\" \"npx wait-on http://localhost:5173 && npx playwright test && npx cypress run\"",
+		"playwright:open": "playwright test --ui",
+		"cypress:open": "cypress open",
+		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
+	},
+	"dependencies": {
+		"@testing-library/user-event": "^14.6.1"
+	},
+	"devDependencies": {
+		"@repo/eslint-config": "*",
+		"@repo/typescript-config": "*",
+		"@repo/vitest-config": "*",
+		"@vonage/vivid": "*",
+		"@vonage/vivid-vue": "*",
+		"@vue/test-utils": "^2",
+		"cypress": "^14.5.1",
+		"vue": "^3"
+	}
+}
