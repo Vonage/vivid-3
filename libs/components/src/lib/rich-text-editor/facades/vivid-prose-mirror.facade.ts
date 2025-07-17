@@ -5,7 +5,7 @@ import {
 	Selection,
 	TextSelection,
 } from 'prosemirror-state';
-import { DOMParser, Node } from 'prosemirror-model';
+import { DOMParser, Node, Schema } from 'prosemirror-model';
 import { Decoration, DecorationSet, EditorView } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
 import { baseKeymap, toggleMark } from 'prosemirror-commands';
@@ -15,7 +15,7 @@ import type {
 	RichTextEditorSelection,
 	SelectionStyles,
 } from '../rich-text-editor';
-import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
+import { dynamicSchema } from './prose-mirror-vivid.schema';
 
 const NEGATIVE_SELECTION = {
 	start: -1,
@@ -146,6 +146,21 @@ function convertSelectionToVividFormat({
 	};
 }
 
+function getImageErrorNode(
+	schema: Schema,
+	file: File,
+	errorMessage = 'Image loading failed'
+) {
+	const nodeType = schema.nodes.imageError;
+	const imageErrorNode = nodeType.create({
+		alt: `inline image from file ${file.name}`,
+		fileName: file.name,
+		icon: file.type.split('/')[1],
+		errorMessage,
+	});
+	return imageErrorNode;
+}
+
 const isEmptyParagraph = (node: Node): boolean => {
 	return node.type.name === 'paragraph' && node.nodeSize === 2;
 };
@@ -206,7 +221,10 @@ export class ProseMirrorFacade {
 		this.#dispatchEvent('change');
 	};
 
-	init(element: HTMLElement) {
+	#vwcPrefix = 'vwc';
+
+	init(element: HTMLElement, vwcPrefix = 'vwc') {
+		this.#vwcPrefix = vwcPrefix;
 		if (!(element instanceof HTMLElement)) {
 			throw new Error(
 				'ProseMirror Facade init accepts a valid HTMLElement as its first parameter'
@@ -220,7 +238,7 @@ export class ProseMirrorFacade {
 			keymap(baseKeymap),
 		];
 		const state = EditorState.create({
-			schema: VVD_PROSE_MIRROR_SCHEMA,
+			schema: dynamicSchema(this.#vwcPrefix),
 			plugins,
 		});
 		this.#view = new EditorView(element, { state });
@@ -247,7 +265,8 @@ export class ProseMirrorFacade {
 
 	replaceContent(content: string) {
 		this.#verifyViewInitiation();
-		const parser = DOMParser.fromSchema(VVD_PROSE_MIRROR_SCHEMA);
+
+		const parser = DOMParser.fromSchema(this.#view!.state.schema);
 		const doc = parser.parse(
 			new window.DOMParser().parseFromString(content, 'text/html').body
 		);
@@ -358,7 +377,6 @@ export class ProseMirrorFacade {
 
 		const decorations: string[] = [];
 		if (empty) {
-			// If the selection is a cursor (collapsed), check marks at the cursor position
 			const marks = state.doc.resolve(from).marks();
 			if (
 				state.schema.marks.strong &&
@@ -391,7 +409,6 @@ export class ProseMirrorFacade {
 				decorations.push('monospace');
 			}
 		} else {
-			// If the selection is a range, check marks across the range
 			if (
 				state.schema.marks.strong &&
 				state.doc.rangeHasMark(from, to, state.schema.marks.strong)
@@ -497,7 +514,6 @@ export class ProseMirrorFacade {
 
 		tr.addMark(from, to, textSizeMark.create({ size }));
 
-		// Dispatch the transaction
 		dispatch(tr.scrollIntoView());
 		this.#userContentChange = true;
 		this.#handleChangeEvent();
@@ -511,6 +527,7 @@ export class ProseMirrorFacade {
 		file,
 		position,
 		alt,
+		error,
 	}: RichTextEditorInlineImageProps): Promise<void> {
 		this.#verifyViewInitiation();
 
@@ -524,7 +541,9 @@ export class ProseMirrorFacade {
 		const { state, dispatch } = this.#view!;
 		const { schema } = state;
 		const imageAlt = alt ?? `inline image from file ${file.name}`;
-		const imageNode = schema.nodes.image.create({ src, alt: imageAlt });
+		const imageNode = error
+			? getImageErrorNode(schema, file, error)
+			: schema.nodes.image.create({ src, alt: imageAlt });
 
 		let insertPos = position;
 		if (typeof insertPos !== 'number') {
