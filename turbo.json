@@ -24,6 +24,13 @@
 				"dist/**"
 			]
 		},
+		"@vonage/vivid-test-utils#build": {
+			"dependsOn": ["^build"],
+			"outputs": [
+				"src/**/*.generated.ts",
+				"dist/**"
+			]
+		},
 		"dev": {
 			"dependsOn": ["^build"],
 			"cache": false,
@@ -76,6 +83,9 @@
 		},
 		"typecheck": {
 			"dependsOn": ["^build", "^typecheck"]
+		},
+		"@vonage/vivid-test-utils#typecheck": {
+			"dependsOn": ["build", "^build", "^typecheck"]
 		},
 		"buildMetadata": {
 			"dependsOn": ["^build"]

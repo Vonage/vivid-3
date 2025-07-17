@@ -22,7 +22,7 @@ const metadata = loadMetadata();
 
 fs.writeFileSync(
 	path.join(dirname, '../src/components.generated.ts'),
-	`import type { DriverT } from './driver';
+	`import type { DriverT } from './drivers/driver';
 import {
 	BaseComponent,
 	BaseWrapper,
@@ -124,9 +124,9 @@ export class ${kebabToPascal(def.name)}Expectations<D extends DriverT> {
 	) {
 		return this.ctx.driver.expectEq(
 			{
-				type: 'property',
+				type: 'eval',
 				el: this.wrapper.unwrap(),
-				propertyName: propName,
+				fn: (el: any) => el[propName],
 			},
 			value
 		);
@@ -187,7 +187,7 @@ export class VividWrapper<D extends DriverT> {
 		if (componentLocator.type in expectationsConstructors) {
 			return new expectationsConstructors[componentLocator.type](
 				this.ctx,
-				componentLocator
+				componentLocator as any
 			) as any;
 		}
 		throw new Error(\`Unknown component type: \${componentLocator.type}\`);
