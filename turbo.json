@@ -26,10 +26,7 @@
 		},
 		"@vonage/vivid-test-utils#build": {
 			"dependsOn": ["^build"],
-			"outputs": [
-				"src/**/*.generated.ts",
-				"dist/**"
-			]
+			"outputs": ["src/**/*.generated.ts", "dist/**"]
 		},
 		"dev": {
 			"dependsOn": ["^build"],

@@ -35,7 +35,7 @@ export const testUtilsTagsPlugin = (): Plugin => ({
 				for (const doc of (node as any).jsDoc ?? []) {
 					for (const tag of doc.tags ?? []) {
 						const parsed = parseTestUtilComment(tag.comment);
-						
+
 						if (tag.tagName.getText() === 'testSelector') {
 							vividTesting.selectors.push(parsed);
 							(classDoc as any).vividTesting = vividTesting;
@@ -65,7 +65,10 @@ export const testUtilsTagsPlugin = (): Plugin => ({
  * "a b c" -> {name: "a", args: ["b", "c"]}
  * "a `b c` `d`" -> {name: "a", args: ["b c", "d"]}
  */
-export function parseTestUtilComment(comment: string): { name: string; args: string[] } {
+export function parseTestUtilComment(comment: string): {
+	name: string;
+	args: string[];
+} {
 	if (!comment) {
 		return { name: '', args: [] };
 	}
