@@ -143,5 +143,11 @@ export const parseComponent = (name: string): ComponentDef => {
 		vueModels: declaration.vividComponent!.vueModels ?? [],
 		methods,
 		slots,
+		testUtils: declaration.vividTesting ?? {
+			selectors: [],
+			actions: [],
+			queries: [],
+			refs: [],
+		},
 	};
 };

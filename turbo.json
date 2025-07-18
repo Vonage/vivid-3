@@ -24,6 +24,10 @@
 				"dist/**"
 			]
 		},
+		"@vonage/vivid-test-utils#build": {
+			"dependsOn": ["^build"],
+			"outputs": ["src/**/*.generated.ts", "dist/**"]
+		},
 		"dev": {
 			"dependsOn": ["^build"],
 			"cache": false,
@@ -60,6 +64,11 @@
 			"cache": false,
 			"persistent": true
 		},
+		"cy:open": {
+			"dependsOn": ["^build"],
+			"cache": false,
+			"persistent": true
+		},
 		"e2e:docker": {
 			"dependsOn": ["^build"],
 			"outputs": ["test-results/**"]
@@ -71,6 +80,9 @@
 		},
 		"typecheck": {
 			"dependsOn": ["^build", "^typecheck"]
+		},
+		"@vonage/vivid-test-utils#typecheck": {
+			"dependsOn": ["build", "^build", "^typecheck"]
 		},
 		"buildMetadata": {
 			"dependsOn": ["^build"]

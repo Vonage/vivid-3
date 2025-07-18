@@ -7,6 +7,8 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @public
  * @component tooltip
  * @slot anchor - Used to set the anchor element for the tooltip.
+ * @testSelector byText byText
+ * @testQuery open open
  */
 export class Tooltip extends Anchored(VividElement) {
 	/**

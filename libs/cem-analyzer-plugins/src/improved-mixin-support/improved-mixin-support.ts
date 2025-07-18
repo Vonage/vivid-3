@@ -62,6 +62,11 @@ export const improvedMixinSupportPlugin = (): Plugin => ({
 					events: mixinClass.events,
 					slots: mixinClass.slots,
 				});
+				if (mixinClass.vividTesting) {
+					Object.assign(declaration, {
+						vividTesting: mixinClass.vividTesting,
+					});
+				}
 			}
 		}
 	},

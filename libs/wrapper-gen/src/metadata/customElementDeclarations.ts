@@ -7,7 +7,10 @@ import {
 import * as fs from 'fs';
 import { extractLocalTypeDefs } from './extractLocalTypeDefs';
 import type { TypeStr } from '../common/types';
-import type { ComponentDef } from '../common/ComponentDef';
+import type {
+	ComponentDef,
+	VividTestUtilsManifest,
+} from '../common/ComponentDef';
 
 export type Declaration = CustomElementDeclaration &
 	ClassDeclaration & {
@@ -18,6 +21,7 @@ export type Declaration = CustomElementDeclaration &
 			vueModels?: ComponentDef['vueModels'];
 			public?: true;
 		};
+		vividTesting?: ComponentDef['testUtils'];
 	};
 
 const parseManifest = (fileName: string): Declaration[] => {
@@ -114,6 +118,49 @@ const resolveLocalTypeDefs = (
 	};
 };
 
+const extractTestingDefinitions = (declaration: Declaration) => {
+	return (
+		declaration.vividTesting ?? {
+			selectors: [],
+			actions: [],
+			queries: [],
+			refs: [],
+		}
+	);
+};
+
+const mergeTestingDefinitions = (
+	a: VividTestUtilsManifest,
+	b: VividTestUtilsManifest
+) => {
+	return {
+		selectors: [...a.selectors, ...b.selectors],
+		actions: [...a.actions, ...b.actions],
+		queries: [...a.queries, ...b.queries],
+		refs: [...a.refs, ...b.refs],
+	};
+};
+
+/**
+ * Recursively traverse the inheritance hierarchy to locate testing definitions.
+ */
+const resolveTestingDefintions = (
+	kind: string,
+	name: string
+): VividTestUtilsManifest => {
+	const declaration = findDeclaration(vividDeclarations, kind, name);
+
+	return [
+		...(declaration.superclass && declaration.superclass.name !== 'FASTElement'
+			? [resolveTestingDefintions('class', declaration.superclass.name)]
+			: []),
+		...(declaration.mixins ?? []).map((m) =>
+			resolveTestingDefintions('mixin', m.name)
+		),
+		extractTestingDefinitions(declaration),
+	].reduce(mergeTestingDefinitions);
+};
+
 export const getVividComponentDeclaration = (
 	className: string
 ): Declaration => {
@@ -130,6 +177,7 @@ export const getVividComponentDeclaration = (
 
 	return {
 		...declaration,
+		vividTesting: resolveTestingDefintions('class', className),
 		_localTypeDefs: resolveLocalTypeDefs('class', className),
 	};
 };
