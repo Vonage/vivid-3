@@ -253,6 +253,34 @@ describe('vwc-audio-player', () => {
 					?.textContent?.trim()
 			).toBe('0:00');
 		});
+
+		describe('when durration-fallback is enabled', () => {
+			it('should use fallback duration from getDecodedDurationFallback when native duration is not available', async () => {
+				// Mock fetch to return a fake ArrayBuffer
+				globalThis.fetch = vi.fn().mockResolvedValue({
+					arrayBuffer: () => Promise.resolve(new ArrayBuffer(8)),
+				}) as any;
+
+				// Mock AudioContext and decodeAudioData
+				const closeMock = vi.fn();
+				globalThis.AudioContext = vi.fn().mockImplementation(() => ({
+					decodeAudioData: vi.fn().mockResolvedValue({ duration: 42 }),
+					close: closeMock,
+				})) as any;
+
+				element.durationFallback = true;
+				// Set src and simulate native duration being unavailable
+				setAudioElementDuration(Infinity);
+				element.src = 'https://example.com/audio.mp3';
+				const event = new Event('loadedmetadata');
+				nativeAudioElement.dispatchEvent(event);
+
+				// Wait for the fallback promise to resolve
+				await new Promise((resolve) => setTimeout(resolve, 10));
+
+				expect(element.duration).toBe(42);
+			});
+		});
 	});
 
 	describe('currentTime', () => {

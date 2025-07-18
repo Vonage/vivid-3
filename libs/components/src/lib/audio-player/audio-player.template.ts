@@ -8,23 +8,7 @@ import { Menu } from '../menu/menu';
 import { MenuItem } from '../menu-item/menu-item';
 import { getPlaybackRatesArray } from '../../shared/utils/playbackRates';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import {
-	AudioPlayer,
-	formatTime,
-	SKIP_DIRECTIONS,
-	type SKIP_DIRECTIONS_TYPE,
-} from './audio-player';
-
-function skip(audioElement: AudioPlayer, skipDirection: SKIP_DIRECTIONS_TYPE) {
-	const currentTime = audioElement.currentTime;
-	const skipValue = parseInt(audioElement.skipBy!) * skipDirection;
-	const newTime = currentTime + skipValue;
-
-	audioElement.currentTime = Math.max(
-		0,
-		Math.min(audioElement.duration, newTime)
-	);
-}
+import { AudioPlayer, formatTime, SKIP_DIRECTIONS } from './audio-player';
 
 const getClasses = ({
 	notime,
@@ -70,7 +54,7 @@ function renderBackwardSkipButtons(context: VividElementDefinitionContext) {
 
 	return html<AudioPlayer>`
 		<${buttonTag} class="skip backward"
-			@click="${(element) => skip(element, SKIP_DIRECTIONS.BACKWARD)}"
+			@click="${(element) => element.skip(SKIP_DIRECTIONS.BACKWARD)}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five
 				? '5-sec-backward-line'
@@ -91,7 +75,7 @@ function renderForwardSkipButtons(context: VividElementDefinitionContext) {
 
 	return html<AudioPlayer>`
 		<${buttonTag} class="skip forward"
-		@click="${(element) => skip(element, SKIP_DIRECTIONS.FORWARD)}"
+		@click="${(element) => element.skip(SKIP_DIRECTIONS.FORWARD)}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five
 				? '5-sec-forward-line'
@@ -113,7 +97,6 @@ function renderSlider(context: VividElementDefinitionContext) {
 	return html<AudioPlayer>`
 	<${sliderTag}
 		class="slider"
-		value="0"
 		aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
 		max="100"
 		aria-valuetext="${(x) => formatTime(x.currentTime)}"
