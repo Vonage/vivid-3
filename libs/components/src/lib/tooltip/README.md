@@ -25,7 +25,12 @@ registerTooltip('your-prefix');
 </script>
 
 <your-prefix-tooltip text="I'm a tooltip" placement="right">
-	<your-prefix-button slot="anchor" shape="pill" appearance="filled">
+	<your-prefix-button
+		slot="anchor"
+		shape="pill"
+		appearance="filled"
+		aria-label="More information"
+	>
 		<your-prefix-icon slot="icon" name="help-line"></your-prefix-icon>
 	</your-prefix-button>
 </your-prefix-tooltip>
@@ -41,7 +46,13 @@ registerTooltip('your-prefix');
 </script>
 <template>
 	<VTooltip text="I'm a tooltip">
-		<VButton slot="anchor" appearance="filled" shape="pill" icon="help-line" />
+		<VButton
+			slot="anchor"
+			appearance="filled"
+			shape="pill"
+			icon="help-line"
+			aria-label="More information"
+		/>
 	</VTooltip>
 </template>
 ```
@@ -55,12 +66,22 @@ It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you ca
 
 ```html preview center 150px
 <div class="wrapper">
-	<vwc-button id="button" appearance="filled" shape="pill">
+	<vwc-button
+		id="button"
+		appearance="filled"
+		shape="pill"
+		aria-label="More information"
+	>
 		<vwc-icon slot="icon" name="help-line"></vwc-icon>
 	</vwc-button>
 	<vwc-tooltip anchor="button" text="I'm a tooltip"></vwc-tooltip>
 
-	<vwc-button id="button2" appearance="filled" shape="pill">
+	<vwc-button
+		id="button2"
+		appearance="filled"
+		shape="pill"
+		aria-label="More information"
+	>
 		<vwc-icon slot="icon" name="help-line"></vwc-icon>
 	</vwc-button>
 	<vwc-tooltip id="tooltip2" text="My anchor is an HTMLElement"></vwc-tooltip>
@@ -94,7 +115,12 @@ Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the Too
 
 ```html preview center 150px
 <vwc-tooltip text="I'm a tooltip">
-	<vwc-button slot="anchor" shape="pill" appearance="filled">
+	<vwc-button
+		slot="anchor"
+		shape="pill"
+		appearance="filled"
+		aria-label="More information"
+	>
 		<vwc-icon slot="icon" name="help-line"></vwc-icon>
 	</vwc-button>
 </vwc-tooltip>
@@ -113,7 +139,12 @@ The `--tooltip-max-inline-size` variable sets the Tooltip's max inline size.
 	text="Turn on to receive notifications for important updates and alerts directly to your email or mobile device."
 	class="tooltip"
 >
-	<vwc-button slot="anchor" shape="pill" appearance="filled">
+	<vwc-button
+		slot="anchor"
+		shape="pill"
+		appearance="filled"
+		aria-label="More information"
+	>
 		<vwc-icon slot="icon" name="info-line"></vwc-icon>
 	</vwc-button>
 </vwc-tooltip>
