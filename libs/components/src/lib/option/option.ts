@@ -1,9 +1,4 @@
-import {
-	attr,
-	observable,
-	Observable,
-	volatile,
-} from '@microsoft/fast-element';
+import { attr, observable, volatile } from '@microsoft/fast-element';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -34,12 +29,6 @@ export function isListboxOption(el: Element): el is ListboxOption {
 export class ListboxOption extends HostSemantics(
 	AffixIconWithTrailing(VividElement)
 ) {
-	/**
-	 * @internal
-	 */
-	// @ts-expect-error Type is incorrectly non-optional
-	private _value: string;
-
 	/**
 	 * @internal
 	 */
@@ -124,26 +113,24 @@ export class ListboxOption extends HostSemantics(
 	}
 
 	/**
-	 * Track whether the value has been changed from the initial value
-	 */
-	dirtyValue = false;
-
-	/**
-	 * The initial value of the option. This value sets the `value` property
-	 * only when the `value` property has not been explicitly set.
+	 * The value of the option.
 	 *
+	 * @public
 	 * @remarks
 	 * HTML Attribute: value
 	 */
-	@attr({ attribute: 'value', mode: 'fromView' })
-	// @ts-expect-error Type is incorrectly non-optional
-	protected initialValue: string;
-	initialValueChanged(): void {
-		// If the value is clean and the component is connected to the DOM
-		// then set value equal to the attribute value.
-		if (!this.dirtyValue) {
-			this.value = this.initialValue;
-			this.dirtyValue = false;
+	@attr({ attribute: 'value' })
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
+	value = '';
+
+	protected valueChanged() {
+		if (typeof this.value !== 'string') {
+			this.value = '';
+			return;
+		}
+
+		if (this.proxy instanceof HTMLOptionElement) {
+			this.proxy.value = this.value;
 		}
 	}
 
@@ -183,24 +170,6 @@ export class ListboxOption extends HostSemantics(
 
 	get text() {
 		return this._text ?? '';
-	}
-
-	set value(next: string) {
-		const newValue = `${next ?? ''}`;
-		this._value = newValue;
-
-		this.dirtyValue = true;
-
-		if (this.proxy instanceof HTMLOptionElement) {
-			this.proxy.value = newValue;
-		}
-
-		Observable.notify(this, 'value');
-	}
-
-	get value(): string {
-		Observable.track(this, 'value');
-		return this._value ?? this.text;
 	}
 
 	get form(): HTMLFormElement | null {
@@ -286,7 +255,7 @@ export class ListboxOption extends HostSemantics(
 		}
 
 		if (value) {
-			this.initialValue = value;
+			this.value = value;
 		}
 
 		if (defaultSelected) {
@@ -299,8 +268,7 @@ export class ListboxOption extends HostSemantics(
 
 		this.proxy = new Option(
 			this.text,
-			// @ts-expect-error Propery is used before it is assigned
-			this.initialValue,
+			this.value,
 			this.defaultSelected,
 			this.selected
 		);
