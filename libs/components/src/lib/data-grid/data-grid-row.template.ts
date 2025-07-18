@@ -32,11 +32,16 @@ export const DataGridRowTemplate = (context: VividElementDefinitionContext) => {
 	const cellItemTemplate = createCellItemTemplate(context);
 	const headerCellItemTemplate = createHeaderCellItemTemplate(context);
 	const getBaseClasses = (x: DataGridRow) =>
-		classNames('base', ['selected', !!x.selected]);
+		classNames(
+			'base',
+			['selected', !!x.selected],
+			x.rowType !== 'default' ? x.rowType : ''
+		);
 	return html<DataGridRow>`
 		<template
 			role="row"
-			class="${(x) => (x.rowType !== 'default' ? x.rowType : '')}"
+			class="${getBaseClasses}"
+			style="grid-template-columns: ${(x) => x.gridTemplateColumns};"
 			:defaultCellItemTemplate="${cellItemTemplate}"
 			:defaultHeaderCellItemTemplate="${headerCellItemTemplate}"
 			${children({
@@ -46,12 +51,7 @@ export const DataGridRowTemplate = (context: VividElementDefinitionContext) => {
 				),
 			})}
 		>
-			<div
-				class="${getBaseClasses}"
-				style="grid-template-columns: ${(x) => x.gridTemplateColumns};"
-			>
-				<slot ${slotted('slottedCellElements')}></slot>
-			</div>
+			<slot ${slotted('slottedCellElements')}></slot>
 		</template>
 	`;
 };

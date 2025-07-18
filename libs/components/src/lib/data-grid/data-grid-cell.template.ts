@@ -53,6 +53,7 @@ export const DataGridCellTemplate = (
 	const visuallyHiddenTagName = context.tagFor(VisuallyHidden);
 	const getBaseClasses = (x: DataGridCell) =>
 		classNames('base', ['selected', !!x.selected]);
+
 	return html<DataGridCell>`
 		<template
 			tabindex="-1"
