@@ -23,7 +23,7 @@ registerAvatar('your-prefix');
 </script>
 
 <your-prefix-avatar
-	><vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+	><vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
 ></your-prefix-avatar>
 ```
 
@@ -37,7 +37,7 @@ registerAvatar('your-prefix');
 </script>
 
 <template>
-	<VAvatar><VIcon slot="icon" name="user-line" label="User" /></VAvatar>
+	<VAvatar><VIcon slot="icon" name="user-line" label="User's avatar" /></VAvatar>
 </template>
 ```
 
@@ -57,7 +57,7 @@ To maintain accessibility, always provide a `label` property for the slotted ico
 	<vwc-icon
 		slot="icon"
 		name="assign-user-solid"
-		label="Verified user"
+		label="Verified User's avatar"
 	></vwc-icon>
 </vwc-avatar>
 ```

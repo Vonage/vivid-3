@@ -4,13 +4,13 @@
 <vwc-menu aria-label="Menu example" placement="bottom-start" trigger="auto">
 	<vwc-button
 		slot="anchor"
-		label="Select a User"
+		label="Select a User's avatar"
 		appearance="outlined"
 		dropdown-indicator
 		size="expanded"
 	>
 		<vwc-avatar slot="icon" shape="pill" size="condensed">
-			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
 		></vwc-avatar>
 	</vwc-button>
 	<vwc-menu-item
@@ -20,7 +20,7 @@
 		text-secondary="236521"
 	>
 		<vwc-avatar slot="meta" size="condensed" shape="pill">
-			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
 		></vwc-avatar>
 	</vwc-menu-item>
 	<vwc-menu-item
@@ -30,7 +30,7 @@
 		text-secondary="963851"
 	>
 		<vwc-avatar slot="meta" size="condensed" shape="pill">
-			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
 		></vwc-avatar>
 	</vwc-menu-item>
 	<vwc-menu-item
@@ -40,7 +40,7 @@
 		text-secondary="784632"
 	>
 		<vwc-avatar slot="meta" size="condensed" shape="pill">
-			<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon
+			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
 		></vwc-avatar>
 	</vwc-menu-item>
 </vwc-menu>
@@ -57,7 +57,7 @@
 		class="avatar-status"
 		clickable
 	>
-		<vwc-icon slot="icon" name="user-line" label="User"></vwc-icon>
+		<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon>
 	</vwc-avatar>
 	<vwc-menu-item text="Available">
 		<vwc-badge
