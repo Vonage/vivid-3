@@ -37,7 +37,9 @@ registerAvatar('your-prefix');
 </script>
 
 <template>
-	<VAvatar><VIcon slot="icon" name="user-line" label="User's avatar" /></VAvatar>
+	<VAvatar
+		><VIcon slot="icon" name="user-line" label="User's avatar"
+	/></VAvatar>
 </template>
 ```
 
