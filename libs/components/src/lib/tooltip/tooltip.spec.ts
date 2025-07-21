@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	fixture,
 	getControlElement,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { fireEvent } from '@testing-library/dom';
 import type { Button } from '../button/button';
 import { Popup } from '../popup/popup';
@@ -140,6 +140,10 @@ describe('vwc-tooltip', () => {
 			expect(popup.anchor).toBe(anchor);
 		});
 
+		it('should set aria-haspopup to true', () => {
+			expect(anchor.getAttribute('aria-haspopup')).toBe('true');
+		});
+
 		describe.each([
 			{ eventName: 'mouseover', openState: false, expectation: true },
 			{ eventName: 'mouseout', openState: true, expectation: false },
@@ -152,15 +156,12 @@ describe('vwc-tooltip', () => {
 
 			it(`should set "open" to ${expectation}`, () => {
 				fireEvent(anchor, new Event(eventName));
-
 				expect(element.open).toBe(expectation);
 			});
 
 			it(`should leave "open" as ${openState} after the anchor has been removed`, () => {
 				element.anchor = undefined;
-
 				fireEvent(anchor, new Event(eventName));
-
 				expect(element.open).toBe(openState);
 			});
 		});

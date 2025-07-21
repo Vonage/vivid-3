@@ -1,10 +1,9 @@
 @use 'partials/variables' as variables;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
-@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
+@use '@repo/shared/mixins/scrollbar' as scrollbar;
 @import '../../../../../node_modules/video.js/dist/video-js.css';
 
 :host {
@@ -255,7 +254,7 @@
 			line-height: calc($control-size - 8px);
 		}
 		.vjs-menu {
-			inline-size: 56px;
+			inline-size: 66px;
 			inset-block-end: -4px;
 			inset-inline-start: -8px;
 			margin-block-end: 16px;

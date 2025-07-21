@@ -1,19 +1,10 @@
 {
-	"extends": "../../tsconfig.base.json",
+	"extends": "@repo/typescript-config/tsc.json",
 	"compilerOptions": {
-		"module": "commonjs",
-		"forceConsistentCasingInFileNames": true,
-		"strict": true,
-		"noImplicitOverride": true,
-		"noPropertyAccessFromIndexSignature": true,
-		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true
+		"declaration": true,
+		"sourceMap": true,
+		"outDir": "dist",
+		"rootDir": "src"
 	},
-	"files": [],
-	"include": [],
-	"references": [
-		{
-			"path": "./tsconfig.lib.json"
-		}
-	]
+	"include": ["src"]
 }

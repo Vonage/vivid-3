@@ -1,22 +1,36 @@
-import { defineConfig } from 'vite';
+/// <reference types="vitest/config" />
+import { defineConfig, mergeConfig } from 'vite';
+import dts from 'vite-plugin-dts';
+import baseVitestConfig from '@repo/vitest-config/base';
 
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+export default mergeConfig(
+	baseVitestConfig,
+	defineConfig({
+		plugins: [
+			dts({
+				skipDiagnostics: true,
+			}),
+		],
 
-export default defineConfig({
-	root: __dirname,
-	cacheDir: '../../node_modules/.vite/libs/cem-analyzer-plugins',
-
-	plugins: [nxViteTsPaths()],
-
-	test: {
-		watch: false,
-		globals: true,
-		environment: 'node',
-		include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-		reporters: ['default'],
-		coverage: {
-			reportsDirectory: '../../coverage/libs/cem-analyzer-plugins',
-			provider: 'v8',
+		build: {
+			lib: {
+				entry: 'src/index.ts',
+				fileName: 'index',
+				formats: ['es'],
+			},
+			rollupOptions: {
+				external: [
+					'@custom-elements-manifest/analyzer',
+					'@custom-elements-manifest/analyzer/src/utils/mixins.js',
+					'sass',
+					'fs',
+					'path',
+					'url',
+					'glob',
+					'minimatch',
+					'custom-elements-manifest',
+				],
+			},
 		},
-	},
-});
+	})
+);

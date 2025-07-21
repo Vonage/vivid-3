@@ -93,7 +93,7 @@ export class TextArea extends WithFeedback(
 	 * HTML Attribute: resize
 	 */
 	@attr
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	resize: TextAreaResize = TextAreaResize.none;
 
 	/**

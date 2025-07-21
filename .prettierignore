@@ -1,11 +1,22 @@
 # Add files here to ignore them from prettier formatting
 
-/dist
-/coverage
+dist
+coverage
+tmp
 
 # Ignore auto-generated files:
 package-lock.json
 **/CHANGELOG.md
+.vitepress
+.11ty-vite
+test-results
+apps/vue-docs/docs/components
+libs/vue-wrappers/web-types.json
+libs/vue-wrappers/stories
+generated
 
 /.nx/cache
 /.nx/workspace-data
+.turbo
+
+*.hbs

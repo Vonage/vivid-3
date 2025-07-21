@@ -190,7 +190,7 @@ export class Slider extends Localized(
 	 * HTML Attribute: min
 	 */
 	@attr({ converter: nullableNumberConverter })
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	min = 0; // Map to proxy element.
 	/**
 	 * @internal
@@ -212,7 +212,7 @@ export class Slider extends Localized(
 	 * HTML Attribute: max
 	 */
 	@attr({ converter: nullableNumberConverter })
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	max = 10; // Map to proxy element.
 	/**
 	 * @internal
@@ -232,7 +232,7 @@ export class Slider extends Localized(
 	 * HTML Attribute: step
 	 */
 	@attr({ converter: defaultToOneConverter })
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	step = 1; // Map to proxy element.
 	/**
 	 * @internal
@@ -254,7 +254,7 @@ export class Slider extends Localized(
 	 * HTML Attribute: orientation
 	 */
 	@attr
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	orientation: Orientation = Orientation.horizontal;
 	/**
 	 * @internal
@@ -272,7 +272,7 @@ export class Slider extends Localized(
 	 * @remarks
 	 * HTML Attribute: mode
 	 */
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	@attr mode: SliderMode = SliderMode.singleValue;
 
 	/**

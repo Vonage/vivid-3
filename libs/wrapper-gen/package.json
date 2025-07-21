@@ -1,0 +1,48 @@
+{
+	"name": "@repo/wrapper-gen",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./metadata": {
+			"types": "./dist/metadata/index.d.ts",
+			"default": "./dist/metadata/index.js"
+		},
+		"./docs": {
+			"types": "./dist/docs/index.d.ts",
+			"default": "./dist/docs/index.js"
+		},
+		"./storybookTemplates": {
+			"types": "./dist/storybookTemplates/index.d.ts",
+			"default": "./dist/storybookTemplates/index.js"
+		},
+		"./vueWrappers": {
+			"types": "./dist/vueWrappers/index.d.ts",
+			"default": "./dist/vueWrappers/index.js"
+		},
+		"./webTypes": {
+			"types": "./dist/webTypes/index.d.ts",
+			"default": "./dist/webTypes/index.js"
+		},
+		"./metadataStore": {
+			"types": "./dist/metadataStore.d.ts",
+			"default": "./dist/metadataStore.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc",
+		"buildMetadata": "tsx src/buildMetadata.ts",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
+	},
+	"devDependencies": {
+		"@vonage/vivid": "*",
+		"@repo/typescript-config": "*",
+		"@repo/eslint-config": "*",
+		"@repo/vitest-config": "*",
+		"@repo/consts": "*",
+		"@repo/shared": "*"
+	}
+}

@@ -77,7 +77,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	 * HTML Attribute: role
 	 */
 	@attr
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	override role: MenuItemRole = MenuItemRole.menuitem;
 
 	/**
@@ -299,6 +299,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 			this.submenu.anchor = this;
 			this.submenu.placement = 'right-start';
 			this.submenu.collapseExpandedItem = () => this.#collapseExpandedItem();
+			this.submenu._popupOffset = 5;
 		}
 	}
 

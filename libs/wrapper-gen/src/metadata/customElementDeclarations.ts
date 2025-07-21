@@ -1,10 +1,10 @@
 import * as schema from 'custom-elements-manifest';
-import * as fs from 'fs';
 import {
 	ClassDeclaration,
 	CustomElementDeclaration,
 	Event,
 } from 'custom-elements-manifest';
+import * as fs from 'fs';
 import { extractLocalTypeDefs } from './extractLocalTypeDefs';
 import type { TypeStr } from '../common/types';
 import type { ComponentDef } from '../common/ComponentDef';
@@ -37,7 +37,7 @@ const parseManifest = (fileName: string): Declaration[] => {
 };
 
 const vividDeclarations = parseManifest(
-	'../../dist/libs/components/custom-elements.json'
+	'../components/dist/custom-elements.json'
 );
 
 const findDeclaration = (

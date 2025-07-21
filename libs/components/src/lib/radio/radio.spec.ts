@@ -4,7 +4,7 @@ import {
 	fixture,
 	getBaseElement,
 	listenToFormSubmission,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { Connotation } from '../enums';
 import { Radio } from './radio';
 import '.';

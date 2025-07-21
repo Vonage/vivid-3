@@ -1,8 +1,8 @@
 import {
-	isMixin,
 	extractMixinNodes,
+	isMixin,
 } from '@custom-elements-manifest/analyzer/src/utils/mixins.js';
-import {
+import type {
 	AnalyzePhaseParams,
 	ModuleLinkPhaseParams,
 	Plugin,

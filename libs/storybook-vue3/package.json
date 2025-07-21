@@ -1,5 +1,11 @@
 {
-	"name": "storybook-vue3",
+	"name": "@repo/storybook-vue3",
+	"scripts": {
+		"dev": "storybook dev -p 6003"
+	},
+	"dependencies": {
+		"@vonage/vivid-vue": "*"
+	},
 	"devDependencies": {
 		"@storybook/addon-essentials": "^7.6.20",
 		"@storybook/addon-interactions": "^7.6.20",

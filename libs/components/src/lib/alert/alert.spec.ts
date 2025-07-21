@@ -3,7 +3,7 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';

@@ -4,6 +4,10 @@ import markdownIt from 'markdown-it';
 import { JSDOM } from 'jsdom';
 import type { Page, Request } from '@playwright/test';
 
+const BASE_URL = Boolean(process.env.PW_TEST_CONNECT_WS_ENDPOINT)
+	? 'http://hostmachine:8080'
+	: 'http://localhost:8080';
+
 const layout = (function () {
 	const layoutFactorial =
 		(...attrs: any[]) =>
@@ -65,9 +69,9 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 }
 
 const defaultStyles = [
-	'http://127.0.0.1:8080/dist/libs/components/styles/tokens/theme-light.css',
-	'http://127.0.0.1:8080/dist/libs/components/styles/core/all.css',
-	'http://127.0.0.1:8080/assets/fonts/speziaLocalFonts.css',
+	`${BASE_URL}/libs/components/dist/styles/tokens/theme-light.css`,
+	`${BASE_URL}/libs/components/dist/styles/core/all.css`,
+	`${BASE_URL}/assets/fonts/speziaLocalFonts.css`,
 ];
 
 export async function loadComponents({
@@ -79,12 +83,12 @@ export async function loadComponents({
 	components: string[];
 	styleUrls?: string[];
 }) {
-	await page.goto('http://127.0.0.1:8080/scripts/visual-tests/index.html');
+	await page.goto(`${BASE_URL}/assets/ui-tests/index.html`);
 
 	await (async function () {
 		for (const component of components) {
 			await page.addScriptTag({
-				url: `http://127.0.0.1:8080/dist/libs/components/${component}/index.js`,
+				url: `${BASE_URL}/libs/components/dist/${component}/index.js`,
 				type: 'module',
 			});
 		}

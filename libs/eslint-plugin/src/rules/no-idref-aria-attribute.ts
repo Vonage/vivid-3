@@ -1,4 +1,4 @@
-import { Rule } from 'eslint';
+import type { Rule } from 'eslint';
 import * as utils from 'eslint-plugin-vue/lib/utils/index.js';
 import { getAttributes } from '../utils/attributes';
 import { ComponentMetadata } from '../utils/ComponentMetadata';

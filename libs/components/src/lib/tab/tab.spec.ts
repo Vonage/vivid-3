@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import { Connotation } from '../enums';
 import { Icon } from '../icon/icon';
 import { Tab } from './tab';

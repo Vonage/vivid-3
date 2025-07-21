@@ -23,6 +23,8 @@ const getStateClasses = ({
 	placeholder,
 	label,
 	appearance,
+	open,
+	_activeDescendant,
 }: Combobox) =>
 	classNames(
 		'base',
@@ -34,6 +36,7 @@ const getStateClasses = ({
 		['no-label', !label],
 		['has-icon', !!icon || Boolean(iconSlottedContent?.length)],
 		['has-meta', Boolean(metaSlottedContent?.length)],
+		['has-activedescendant', Boolean(_activeDescendant) && open],
 		['error', Boolean(errorValidationMessage)],
 		['success', !!successText]
 	);
@@ -98,41 +101,40 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 
 	return html<Combobox>`
-        <template
-            tabindex="${(x) => (!x.disabled ? '0' : null)}"
-            @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
-            @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
-            @keydown="${(x, { event }) => {
-							x.open &&
-								handleEscapeKeyAndStopPropogation(event as KeyboardEvent);
-							return x.keydownHandler(event as KeyboardEvent);
-						}}"
-        >
-					<div class="control-wrapper">
-			${() => renderInput(context)}
-			<${popupTag} class="popup"
-				style="${setFixedDropdownVarWidth}"
-				?open="${(x) => x.open}"
-				placement="${(x) => x.placement ?? 'bottom-start'}"
-				strategy="${(x) => (x.fixedDropdown ? 'fixed' : 'absolute')}"
-				${ref('_popup')}>
-				<div id="${(x) => x.listboxId}"
-					class="listbox"
-					role="listbox"
-					?disabled="${(x) => x.disabled}"
-					${ref('listbox')}>
-					<slot ${slotted({
-						filter: Listbox.slottedOptionFilter as any,
-						flatten: true,
-						property: 'slottedOptions',
-					})}>
-					</slot>
-				</div>
-			</${popupTag}>
+		<template
+			tabindex="${(x) => (!x.disabled ? '0' : null)}"
+			@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+			@focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
+			@keydown="${(x, { event }) => {
+				x.open && handleEscapeKeyAndStopPropogation(event as KeyboardEvent);
+				return x.keydownHandler(event as KeyboardEvent);
+			}}"
+		>
+			<div class="control-wrapper">
+				${() => renderInput(context)}
+				<${popupTag} class="popup"
+					style="${setFixedDropdownVarWidth}"
+					?open="${(x) => x.open}"
+					placement="${(x) => x.placement ?? 'bottom-start'}"
+					strategy="${(x) => (x.fixedDropdown ? 'fixed' : 'absolute')}"
+					${ref('_popup')}>
+					<div id="${(x) => x.listboxId}"
+						class="listbox"
+						role="listbox"
+						?disabled="${(x) => x.disabled}"
+						${ref('listbox')}>
+						<slot ${slotted({
+							filter: Listbox.slottedOptionFilter as any,
+							flatten: true,
+							property: 'slottedOptions',
+						})}>
+						</slot>
 					</div>
-					<div class="feedback-wrapper" @click="${(_, c) => c.event.stopPropagation()}">
-						${(x) => x._getFeedbackTemplate(context)}
-					</div>
-        </template>
-		`;
+				</${popupTag}>
+			</div>
+			<div class="feedback-wrapper" @click="${(_, c) => c.event.stopPropagation()}">
+				${(x) => x._getFeedbackTemplate(context)}
+			</div>
+    </template>
+	`;
 };

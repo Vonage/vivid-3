@@ -9,7 +9,7 @@ describe('getTypescriptDefinitionPath', () => {
 			getTypescriptDefinitionPath(
 				'libs/components/src/components/button/button.ts'
 			)
-		).toBe('../../dist/libs/components/components/button/button.d.ts');
+		).toBe('libs/components/src/components/button/button.d.ts');
 	});
 });
 

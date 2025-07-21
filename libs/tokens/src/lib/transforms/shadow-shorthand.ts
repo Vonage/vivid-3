@@ -1,6 +1,7 @@
-import { type Named, type Transform, transform } from 'style-dictionary';
+import type { Named, Transform } from 'style-dictionary';
+import SD from 'style-dictionary';
 
-const { transformer: sizeToPx } = transform['size/px'];
+const { transformer: sizeToPx } = SD.transform['size/px'];
 
 const generateToken = (value) => ({
 	value,

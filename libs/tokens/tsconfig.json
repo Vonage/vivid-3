@@ -1,18 +1,7 @@
 {
-	"extends": "../../tsconfig.base.json",
+	"extends": "@repo/typescript-config/tsc.json",
 	"compilerOptions": {
-		"resolveJsonModule": true,
-		"module": "NodeNext",
-		"esModuleInterop": true
+		"strict": false
 	},
-	"files": [],
-	"include": [],
-	"references": [
-		{
-			"path": "./tsconfig.lib.json"
-		},
-		{
-			"path": "./tsconfig.spec.json"
-		}
-	]
+	"include": ["src", "scripts", "*.ts"]
 }

@@ -9,7 +9,12 @@ The `text` attribute sets the text content of the Tooltip.
 
 ```html preview center 150px
 <vwc-tooltip text="I'm a tooltip">
-	<vwc-button slot="anchor" shape="pill" appearance="filled">
+	<vwc-button
+		slot="anchor"
+		shape="pill"
+		appearance="filled"
+		aria-label="More information"
+	>
 		<vwc-icon slot="icon" name="help-line"></vwc-icon>
 	</vwc-button>
 </vwc-tooltip>
@@ -27,62 +32,122 @@ The `placement` attribute sets the default placement of the Tooltip around its a
 ```html preview center 400px
 <div class="grid">
 	<vwc-tooltip text="top-start" placement="top-start" class="grid-col-2">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Top start alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-tooltip text="top" placement="top">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Top alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-tooltip text="top-end" placement="top-end">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Top end alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-tooltip text="left-start" placement="left-start" class="grid-col-1">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Left start alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-tooltip text="right-start" placement="right-start" class="grid-col-5">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Right start alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-tooltip text="left" placement="left" class="grid-col-1">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Left alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-tooltip text="right" placement="right" class="grid-col-5">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Right alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-tooltip text="left-end" placement="left-end" class="grid-col-1">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Left end alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-tooltip text="right-end" placement="right-end" class="grid-col-5">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Right end alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-tooltip text="bottom-start" placement="bottom-start" class="grid-col-2">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Bottom start alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-tooltip text="bottom" placement="bottom">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Bottom alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-tooltip text="bottom-end" placement="bottom-end">
-		<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-button
+			slot="anchor"
+			shape="pill"
+			appearance="filled"
+			aria-label="Bottom end alignment"
+		>
 			<vwc-icon slot="icon" name="help-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>

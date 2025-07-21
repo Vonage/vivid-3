@@ -1,10 +1,10 @@
-@use '../../../../..//dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
+@use 'pkg:@repo/tokens/scss/tokens.constants' as constants;
+@use 'pkg:@repo/shared/mixins/scrollbar' as scrollbar;
 
 .vvd-root {
-	color-scheme: var(#{constants.$vvd-color-scheme});
 	background-color: var(#{constants.$vvd-color-canvas});
 	color: var(#{constants.$vvd-color-canvas-text});
+	color-scheme: var(#{constants.$vvd-color-scheme});
 }
 
 .vvd-scrollbar {
@@ -12,6 +12,7 @@
 }
 
 // using the neutral-tint elevation
+// stylelint-disable
 .vvd-neutral-tint-elevation {
 	--_vvd-tinted-color-surface-0dp: var(--vvd-neutral-tint-color-surface-0dp);
 	--_vvd-tinted-color-surface-2dp: var(--vvd-neutral-tint-color-surface-2dp);
@@ -20,7 +21,6 @@
 	--_vvd-tinted-color-surface-12dp: var(--vvd-neutral-tint-color-surface-12dp);
 	--_vvd-tinted-color-surface-16dp: var(--vvd-neutral-tint-color-surface-16dp);
 	--_vvd-tinted-color-surface-24dp: var(--vvd-neutral-tint-color-surface-24dp);
-
 	--_vvd-tinted-shadow-surface-0dp: var(--vvd-neutral-tint-shadow-surface-0dp);
 	--_vvd-tinted-shadow-surface-2dp: var(--vvd-neutral-tint-shadow-surface-2dp);
 	--_vvd-tinted-shadow-surface-4dp: var(--vvd-neutral-tint-shadow-surface-4dp);
@@ -43,7 +43,6 @@
 		--_vvd-tinted-color-surface-12dp: var(--vvd-color-surface-12dp);
 		--_vvd-tinted-color-surface-16dp: var(--vvd-color-surface-16dp);
 		--_vvd-tinted-color-surface-24dp: var(--vvd-color-surface-24dp);
-
 		--_vvd-tinted-shadow-surface-0dp: var(--vvd-shadow-surface-0dp);
 		--_vvd-tinted-shadow-surface-2dp: var(--vvd-shadow-surface-2dp);
 		--_vvd-tinted-shadow-surface-4dp: var(--vvd-shadow-surface-4dp);
@@ -53,3 +52,4 @@
 		--_vvd-tinted-shadow-surface-24dp: var(--vvd-shadow-surface-24dp);
 	}
 }
+// stylelint-enable

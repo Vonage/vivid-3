@@ -1,9 +1,8 @@
 @use 'partials/variables' as variables;
-@use '../../../../shared/src/lib/sass/utils' as utils;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../shared/src/lib/sass/mixins/resets' as resets;
-@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
+@use '@repo/shared/utils' as utils;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/mixins/resets' as resets;
+@use '@repo/shared/mixins/scrollbar' as scrollbar;
 
 :host {
 	display: var(#{variables.$popup-display}, inline);

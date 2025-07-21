@@ -1,22 +1,18 @@
-@use '../../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent,
 	$shades: primary firm faint soft dim pale,
 	$default: accent
 );
-@use '../../../../../../shared/src/lib/sass/mixins/connotation/index' as
-	connotation;
-@use '../../../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/connotation/index' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: listitem,
 	$states: idle hover active selected selectedAndHover selectedAndDisabled,
 	$default: listitem
 );
-@use '../../../../../../shared/src/lib/sass/mixins/appearance/index' as
-	appearance;
-@use '../../../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../../../shared/src/lib/sass/mixins/focus/index' as focus;
+@use '@repo/shared/mixins/appearance/index' as appearance;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/mixins/focus/index' as focus;
 
 $num-options-visible: --_inline-time-picker-num-options-visible;
 
@@ -42,21 +38,35 @@ $num-options-visible: --_inline-time-picker-num-options-visible;
 	block-size: space-for-options($num-options-visible);
 	gap: $option-gap;
 
+	.picker-wrapper {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+		&.focused {
+			#{focus.$focus-stroke-gap-color}: transparent;
+			#{focus.$focus-inset}: -2px;
+
+			@include focus.focus;
+		}
+	}
+
 	.picker {
 		position: relative;
 		display: flex;
-		overflow: hidden;
+		overflow: hidden scroll;
 		flex-direction: column;
-		padding: 0;
+		padding: 0 $option-gap;
 		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
-		margin: 0;
+		margin: 0 (-$option-gap);
 		gap: $option-gap;
 		inline-size: $option-inline-size;
 		list-style: none;
+		scrollbar-width: none;
 
 		// Hide scrollbar when not hovering
 		&:hover {
-			overflow-y: auto;
+			scrollbar-width: auto;
 		}
 
 		// Reserve space to allow scrolling options to top
@@ -68,10 +78,7 @@ $num-options-visible: --_inline-time-picker-num-options-visible;
 		}
 
 		&:focus-visible {
-			#{focus.$focus-stroke-gap-color}: transparent;
-			#{focus.$focus-inset}: -2px;
-
-			@include focus.focus;
+			outline: none;
 		}
 	}
 
@@ -92,5 +99,11 @@ $num-options-visible: --_inline-time-picker-num-options-visible;
 			font: var(#{constants.$vvd-typography-base});
 			inline-size: $option-inline-size;
 		}
+	}
+
+	.picker-wrapper:not(.focused) .picker:focus-visible .option.selected {
+		#{focus.$focus-stroke-gap-color}: transparent;
+
+		@include focus.focus;
 	}
 }

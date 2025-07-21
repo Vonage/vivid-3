@@ -1,9 +1,8 @@
-@use '../../../../../dist/libs/tokens/scss/theme-dark.tokens' as dark;
-@use '../../../../../dist/libs/tokens/scss/theme-light.tokens' as light;
-@use '../../../../../dist/libs/tokens/scss/typography.tokens' as typography;
-@use '../../../../../dist/libs/tokens/scss/@properties' as properties;
+@use 'pkg:@repo/tokens/scss/theme-dark.tokens' as dark;
+@use 'pkg:@repo/tokens/scss/theme-light.tokens' as light;
+@use 'pkg:@repo/tokens/scss/typography.tokens' as typography;
+@use 'pkg:@repo/tokens/scss/@properties' as properties;
 @use 'partials/variables' as variables;
-
 @include properties.properties;
 
 #{variables.$theme-main-selector} {

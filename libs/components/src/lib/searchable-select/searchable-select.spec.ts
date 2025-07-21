@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@repo/shared';
 import '.';
 import '../option';
 import userEvent, { type UserEvent } from '@testing-library/user-event';
@@ -535,12 +535,29 @@ describe('vwc-searchable-select', () => {
 				expect(input.value).toBe('Apple');
 			});
 
-			it('should set input value to the text of the selected option even if a label is set', async () => {
-				getOption('Banana').label = 'Label';
+			it('should set input value to the text of the selected option ', async () => {
 				element.value = 'banana';
 				await elementUpdated(element);
 
 				expect(input.value).toBe('Banana');
+			});
+
+			it('should set input value to the label of the selected option even if a label is set', async () => {
+				await setUpFixture(`
+					<${COMPONENT_TAG}>
+						<${OPTION_TAG} value="apple" text="Apple" ></${OPTION_TAG}>
+						<${OPTION_TAG} value="banana" text="Banana" label="Label"></${OPTION_TAG}>
+					</COMPONENT_TAG>
+				`);
+
+				element.value = 'apple';
+				await elementUpdated(element);
+				expect(input.value).toBe('Apple');
+
+				element.value = 'banana';
+				await elementUpdated(element);
+
+				expect(input.value).toBe('Label');
 			});
 
 			it('should clear input when unselecting an option', async () => {
@@ -1983,6 +2000,41 @@ describe('vwc-searchable-select', () => {
 			await elementUpdated(element);
 
 			expect(popup.open).toBe(true);
+		});
+	});
+
+	describe('highlighting options', function () {
+		beforeEach(async () => {
+			focusInput();
+			pressKey('ArrowDown');
+			await elementUpdated(element);
+		});
+
+		it('should set data-highlighted attribute on highlighted option', async function () {
+			pressKey('ArrowDown');
+			await elementUpdated(element);
+
+			expect(fieldset.classList).toContain('has-highlighted-option');
+			expect(getOption('Apple').hasAttribute('data-highlighted')).toBe(true);
+			expect(getOption('Banana').hasAttribute('data-highlighted')).toBe(false);
+			expect(getOption('Cherry').hasAttribute('data-highlighted')).toBe(false);
+		});
+
+		it('should remove data-highlighted attribute from previously highlighted option', function () {
+			pressKey('ArrowDown');
+			pressKey('ArrowDown');
+
+			expect(getOption('Apple').hasAttribute('data-highlighted')).toBe(false);
+			expect(getOption('Banana').hasAttribute('data-highlighted')).toBe(true);
+		});
+
+		it('should remove data-highlighted attribute when popup closes', async function () {
+			pressKey('ArrowDown');
+			pressKey('Escape');
+			await elementUpdated(element);
+
+			expect(fieldset.classList).not.toContain('has-highlighted-option');
+			expect(getOption('Apple').hasAttribute('data-highlighted')).toBe(false);
 		});
 	});
 

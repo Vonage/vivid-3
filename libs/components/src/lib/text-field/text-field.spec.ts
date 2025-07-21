@@ -4,7 +4,7 @@ import {
 	fixture,
 	getBaseElement,
 	listenToFormSubmission,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import { Icon } from '../icon/icon';
 import { Size } from '../enums';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';

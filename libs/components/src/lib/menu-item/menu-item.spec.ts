@@ -1,14 +1,14 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import '.';
 import '../menu';
 import { fireEvent } from '@testing-library/dom';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
-import { Connotation } from '@vonage/vivid';
 import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { Mock } from 'vitest';
+import { Connotation } from '../enums';
 import type { Menu } from '../menu/menu';
 import { MenuItem } from './menu-item';
 

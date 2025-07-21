@@ -1,5 +1,5 @@
-@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/scrollbar' as scrollbar;
+@use '@repo/tokens/scss/tokens.constants' as constants;
 @forward 'facades/prose-mirror';
 @forward 'prose-mirror-overrides';
 

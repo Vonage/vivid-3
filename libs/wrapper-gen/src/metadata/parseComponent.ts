@@ -19,6 +19,7 @@ const isFormValueAttribute = (attribute: Attribute): boolean =>
 		'end',
 		'initialValue',
 		'defaultChecked',
+		'defaultSelected',
 		'initialStart',
 		'initialEnd',
 	].includes(attribute.fieldName ?? '');
@@ -135,7 +136,6 @@ export const parseComponent = (name: string): ComponentDef => {
 	return {
 		name,
 		className,
-		vividModulePath: declaration._modulePath!,
 		registerFunctionName,
 		description: declaration.description,
 		props,

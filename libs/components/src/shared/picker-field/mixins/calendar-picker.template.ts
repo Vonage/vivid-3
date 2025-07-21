@@ -3,6 +3,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';
 import { Divider } from '../../../lib/divider/divider';
 import { Button } from '../../../lib/button/button';
+import { VisuallyHidden } from '../../../lib/visually-hidden/visually-hidden';
 import { areMonthsEqual, monthToStr } from '../../datetime/month';
 import type {
 	CalendarSegment,
@@ -19,7 +20,7 @@ import type { CalendarPickerElement } from './calendar-picker';
 function renderDialogHeader(context: VividElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
-	return html<Segment, CalendarPickerElement>` <div class="header">
+	return html<Segment, CalendarPickerElement>`<div class="header" tabindex="-1">
 		${when(
 			(x) => x.prevYearButton,
 			html<Segment, CalendarPickerElement>`
@@ -60,6 +61,7 @@ function renderDialogHeader(context: VividElementDefinitionContext) {
 						id="${(x) => `grid-label-${x.id}`}"
 						class="title-action button"
 						aria-live="polite"
+						aria-label="${(x) => x.titleAriaLabel}"
 						@click="${(_, c) => c.parent._onTitleActionClick()}"
 					>
 						${(x) => x.title}
@@ -116,6 +118,7 @@ function renderDialogHeader(context: VividElementDefinitionContext) {
 
 function renderCalendarGrid(context: VividElementDefinitionContext) {
 	const dividerTag = context.tagFor(Divider);
+	const visuallyHiddenTag = context.tagFor(VisuallyHidden);
 
 	return html<CalendarSegment, CalendarPickerElement>`
 		<div
@@ -198,21 +201,11 @@ function renderCalendarGrid(context: VividElementDefinitionContext) {
 											tabindex="${(x, c) =>
 												x.date ===
 												c.parentContext.parentContext.parent._tabbableDate
-													? 2
+													? 1
 													: -1}"
-											aria-selected="${(x, c) =>
-												c.parentContext.parentContext.parent._isDateAriaSelected(
-													x.date
-												)}"
 											data-date="${(x) => x.date}"
-											@click="${(x, c) =>
-												c.parentContext.parentContext.parent._onDateClick(
-													x.date
-												)}"
-											@focus="${(x, c) =>
-												c.parentContext.parentContext.parent._onDateFocus(
-													x.date
-												)}"
+											@click="${(x, c) => c.parentContext.parentContext.parent._onDateClick(x.date)}"
+											@focus="${(x, c) => c.parentContext.parentContext.parent._onDateFocus(x.date)}"
 											@mouseenter="${(x, c) =>
 												c.parentContext.parentContext.parent._onDateMouseEnter(
 													x.date
@@ -228,6 +221,24 @@ function renderCalendarGrid(context: VividElementDefinitionContext) {
 												)}"
 										>
 											${(x) => x.label}
+											<${visuallyHiddenTag}>${(x, c) => {
+										const picker = c.parentContext.parentContext.parent;
+										const announcements = [];
+
+										if (x.date === picker._currentDate) {
+											announcements.push(
+												picker.locale.calendarPicker.todayLabel
+											);
+										}
+
+										if (picker._isDateAriaSelected(x.date)) {
+											announcements.push(
+												picker.locale.calendarPicker.selectedLabel
+											);
+										}
+
+										return announcements.join(' ');
+									}}</${visuallyHiddenTag}>
 										</button>
 									</span>`
 								)}
@@ -240,6 +251,7 @@ function renderCalendarGrid(context: VividElementDefinitionContext) {
 
 function renderMonthPickerGrid(context: VividElementDefinitionContext) {
 	const dividerTag = context.tagFor(Divider);
+	const visuallyHiddenTag = context.tagFor(VisuallyHidden);
 
 	return html<MonthPickerSegment, CalendarPickerElement>`
 		<${dividerTag}
@@ -285,14 +297,9 @@ function renderMonthPickerGrid(context: VividElementDefinitionContext) {
 												x.month,
 												c.parentContext.parentContext.parent._tabbableMonth
 											)
-												? 2
+												? 1
 												: -1}"
 										aria-label="${(x) => x.monthName}"
-										aria-selected="${(x, c) =>
-											areMonthsEqual(
-												x.month,
-												c.parentContext.parentContext.parent._selectedMonth
-											)}"
 										data-month="${(x) => monthToStr(x.month)}"
 										?disabled="${(x, c) =>
 											!c.parentContext.parentContext.parent._isMonthInValidRange(
@@ -313,6 +320,22 @@ function renderMonthPickerGrid(context: VividElementDefinitionContext) {
 											)}"
 									>
 										${(x) => x.label}
+										<${visuallyHiddenTag}>${(x, c) => {
+								const picker = c.parentContext.parentContext.parent;
+								const announcements = [];
+
+								if (areMonthsEqual(x.month, picker._currentMonth)) {
+									announcements.push(picker.locale.calendarPicker.currentLabel);
+								}
+
+								if (areMonthsEqual(x.month, picker._selectedMonth)) {
+									announcements.push(
+										picker.locale.calendarPicker.selectedLabel
+									);
+								}
+
+								return announcements.join(' ');
+							}}</${visuallyHiddenTag}>
 									</button>
 								</span>
 							`

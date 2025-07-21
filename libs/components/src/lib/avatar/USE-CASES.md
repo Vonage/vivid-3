@@ -4,12 +4,14 @@
 <vwc-menu aria-label="Menu example" placement="bottom-start" trigger="auto">
 	<vwc-button
 		slot="anchor"
-		label="Select a User"
+		label="Select a User's avatar"
 		appearance="outlined"
 		dropdown-indicator
 		size="expanded"
 	>
-		<vwc-avatar slot="icon" shape="pill" size="condensed"></vwc-avatar>
+		<vwc-avatar slot="icon" shape="pill" size="condensed">
+			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
+		></vwc-avatar>
 	</vwc-button>
 	<vwc-menu-item
 		text="Stone John"
@@ -17,7 +19,9 @@
 		check-appearance="tick-only"
 		text-secondary="236521"
 	>
-		<vwc-avatar slot="meta" size="condensed" shape="pill"></vwc-avatar>
+		<vwc-avatar slot="meta" size="condensed" shape="pill">
+			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
+		></vwc-avatar>
 	</vwc-menu-item>
 	<vwc-menu-item
 		text="Stanbrige Peter"
@@ -25,7 +29,9 @@
 		check-appearance="tick-only"
 		text-secondary="963851"
 	>
-		<vwc-avatar slot="meta" size="condensed" shape="pill"></vwc-avatar>
+		<vwc-avatar slot="meta" size="condensed" shape="pill">
+			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
+		></vwc-avatar>
 	</vwc-menu-item>
 	<vwc-menu-item
 		text="Kazantzis John"
@@ -33,7 +39,9 @@
 		check-appearance="tick-only"
 		text-secondary="784632"
 	>
-		<vwc-avatar slot="meta" size="condensed" shape="pill"></vwc-avatar>
+		<vwc-avatar slot="meta" size="condensed" shape="pill">
+			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
+		></vwc-avatar>
 	</vwc-menu-item>
 </vwc-menu>
 ```
@@ -42,11 +50,15 @@
 
 ```html preview 200px
 <vwc-menu aria-label="Menu example" placement="right-start" trigger="auto">
-	<button class="button" aria-label="see user details" slot="anchor">
-		<span class="avatar-satus">
-			<vwc-avatar shape="pill"></vwc-avatar>
-		</span>
-	</button>
+	<vwc-avatar
+		slot="anchor"
+		shape="pill"
+		aria-label="See user details"
+		class="avatar-status"
+		clickable
+	>
+		<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon>
+	</vwc-avatar>
 	<vwc-menu-item text="Available">
 		<vwc-badge
 			slot="meta"
@@ -75,19 +87,11 @@
 </vwc-menu>
 
 <style>
-	.button {
-		padding: 0;
-		margin: 0;
-		box-shadow: none;
-		border: none;
-		cursor: pointer;
-		background: none;
-	}
-	.avatar-satus {
+	.avatar-status {
 		position: relative;
 		display: inline-block;
 	}
-	.avatar-satus::after {
+	.avatar-status::after {
 		position: absolute;
 		content: '';
 		inline-size: 14px;

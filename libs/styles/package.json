@@ -1,0 +1,19 @@
+{
+	"name": "@repo/styles",
+	"private": true,
+	"exports": {
+		"./dist": "./dist",
+		"./*.css": "./dist/*.css"
+	},
+	"scripts": {
+		"build": "sass --pkg-importer=node --no-source-map src/lib/tokens:dist/tokens && sass --pkg-importer=node --no-source-map src/lib/core:dist/core && sass --pkg-importer=node --no-source-map src/lib/fonts:dist/fonts",
+		"dev": "sass --pkg-importer=node src/lib/tokens:dist/tokens --watch && sass --pkg-importer=node src/lib/core:dist/core --watch && sass --pkg-importer=node src/lib/fonts:dist/fonts --watch",
+		"stylelint": "stylelint src",
+		"stylelint:fix": "stylelint src --fix"
+	},
+	"dependencies": {
+		"@repo/stylelint-config": "*",
+		"@repo/shared": "*",
+		"@repo/tokens": "*"
+	}
+}

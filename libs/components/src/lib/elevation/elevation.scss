@@ -1,6 +1,6 @@
 @use 'sass:list';
-@use '../../../../shared/src/lib/sass/utils' as utils;
-@use '../../../../shared/src/lib/sass/mixins/elevation' as elevation;
+@use '@repo/shared/utils' as utils;
+@use '@repo/shared/mixins/elevation' as elevation;
 
 $dps: 0 2 4 8 12 16 24;
 

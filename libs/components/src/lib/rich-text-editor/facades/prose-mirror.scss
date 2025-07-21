@@ -1,5 +1,5 @@
 // Comment each style that is being used in prose-mirror-overrides.scss
-@use '../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '@repo/tokens/scss/tokens.constants' as constants;
 
 /* stylelint-disable */
 //.ProseMirror {

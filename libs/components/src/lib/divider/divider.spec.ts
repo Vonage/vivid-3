@@ -1,5 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
+import { elementUpdated, fixture } from '@repo/shared';
 import { Divider } from './divider';
 import '.';
 
@@ -39,23 +38,21 @@ describe('vwc-divider', () => {
 		});
 
 		it('should set the aria-orientation attribute if role is separator', async () => {
-			const base = element.shadowRoot?.querySelector('.base');
 			const orientation = 'vertical';
 			element.orientation = orientation;
 			element.role = 'separator';
 			await elementUpdated(element);
 
-			expect(base?.getAttribute('aria-orientation')).toBe('vertical');
+			expect(element.getAttribute('aria-orientation')).toBe('vertical');
 		});
 
 		it('should NOT set the aria-orientation attribute if role is presentation', async () => {
-			const base = element.shadowRoot?.querySelector('.base');
 			const orientation = 'vertical';
 			element.orientation = orientation;
 			element.role = 'presentation';
 			await elementUpdated(element);
 
-			expect(base?.getAttribute('aria-orientation')).toBe(null);
+			expect(element.getAttribute('aria-orientation')).toBe(null);
 		});
 	});
 
@@ -64,15 +61,7 @@ describe('vwc-divider', () => {
 			(element as any).role = undefined;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).getAttribute('role')).toEqual('separator');
+			expect(element.getAttribute('role')).toEqual('separator');
 		});
-	});
-
-	describe('ARIA delegation', () => {
-		itShouldDelegateAriaAttributes(
-			() => element,
-			() => getBaseElement(element),
-			['role']
-		);
 	});
 });

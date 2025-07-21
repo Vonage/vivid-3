@@ -1,19 +1,17 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta alert success,
 	$shades: primary soft,
 	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: subtle,
 	$states: idle,
 	$default: subtle
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
+@use '@repo/shared/mixins/appearance' as appearance;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
 
 $block-size: 6px;
 $rounded-border-radius: #{border-radius-variables.$border-radius-semi-condensed};

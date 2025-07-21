@@ -2,8 +2,9 @@ import {
 	createFormHTML,
 	elementUpdated,
 	fixture,
+	getResolvedTextContent,
 	setupDelegatesFocusPolyfill,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { setLocale } from '../../shared/localization';
@@ -13,6 +14,8 @@ import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
 import { calendarPickerSpec } from '../../shared/picker-field/mixins/calendar-picker.spec';
 import { DatePicker } from './date-picker';
 import '.';
+
+const cleanWhitespace = (text: string) => text.replace(/\s+/g, ' ').trim();
 
 const COMPONENT_TAG = 'vwc-date-picker';
 
@@ -278,6 +281,24 @@ describe('vwc-date-picker', () => {
 			await elementUpdated(element);
 
 			expect(getDateButton('2023-08-20').classList).toContain('selected');
+		});
+
+		it('should announce a selected date with the selected label', async () => {
+			element.value = '2023-08-15';
+			await elementUpdated(element);
+
+			expect(
+				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-15')))
+			).toBe('15 selected');
+		});
+
+		it('should announce both today and selected labels when today is selected', async () => {
+			element.value = '2023-08-10';
+			await elementUpdated(element);
+
+			expect(
+				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-10')))
+			).toBe('10 today selected');
 		});
 
 		it('should select a date when clicking on a date', async () => {

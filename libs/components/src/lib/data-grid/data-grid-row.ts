@@ -54,7 +54,7 @@ export class DataGridRow extends VividElement {
 	 * HTML Attribute: row-type
 	 */
 	@attr({ attribute: 'row-type' })
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	rowType: DataGridRowTypes = DataGridRowTypes.default;
 	/**
 	 * @internal

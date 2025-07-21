@@ -437,4 +437,9 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	 * @internal
 	 */
 	_popupEl?: Popup;
+
+	/**
+	 * @internal
+	 */
+	@observable _popupOffset?: number;
 }

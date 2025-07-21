@@ -1,24 +1,22 @@
 @use 'partials/variables' as variables;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent,
 	$shades: primary primary-text primary-increment intermediate firm fierce faint
 		soft,
 	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset ghost,
 	$states: idle hover disabled readonly error success,
 	$default: fieldset
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use '@repo/shared/mixins/appearance' as appearance;
+@use '@repo/tokens/scss/size.variables' as size;
 
 $low-ink-color: --_low-ink-color;
 
@@ -244,7 +242,8 @@ $low-ink-color: --_low-ink-color;
 /* focus */
 
 @supports selector(:has(*)) {
-	.fieldset:has(.wrapper .control:focus-within)::after {
+	.base:not(.has-activedescendant)
+		.fieldset:has(.wrapper .control:focus-within)::after {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 		@include focus.focus;
@@ -252,7 +251,7 @@ $low-ink-color: --_low-ink-color;
 }
 
 @supports not selector(:has(*)) {
-	.wrapper:focus-within::after {
+	.base:not(.has-activedescendant) .wrapper:focus-within::after {
 		@include focus.focus;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 

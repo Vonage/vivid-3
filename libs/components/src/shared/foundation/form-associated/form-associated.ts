@@ -348,6 +348,16 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 			message?: string,
 			anchor?: HTMLElement
 		): void {
+			/**
+			 * Strip 'valid' which is not supported by ElementInternals.setValidity()
+			 * to avoid runtime TypeError in ElementInternals.setValidity on disabled elements
+			 */
+			if ('valid' in flags && this.disabled) {
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				const { valid, ...cleanFlags } = flags as ValidityState &
+					ValidityStateFlags;
+				flags = cleanFlags;
+			}
 			if (this.elementInternals) {
 				this.elementInternals.setValidity(flags, message, anchor);
 			} else if (typeof message === 'string') {

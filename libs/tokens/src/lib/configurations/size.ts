@@ -1,6 +1,5 @@
-const SD = require('style-dictionary');
-
-import { prefix, buildPath } from '../common';
+import SD from 'style-dictionary';
+import { buildPath, prefix } from '../common';
 import { isSource } from '../filters';
 
 const transformToCssVariable = ({ name, value }) => `var(--${name}, ${value})`;

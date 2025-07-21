@@ -1,5 +1,7 @@
 {
-	"extends": ["../../.eslintrc.json", "plugin:vue/vue3-recommended"],
+	"root": true,
+	"extends": ["@repo/eslint-config/base.js", "plugin:vue/vue3-recommended"],
+	"ignorePatterns": ["docs/.vitepress/cache"],
 	"parser": "vue-eslint-parser",
 	"parserOptions": {
 		"parser": "@typescript-eslint/parser"
@@ -9,24 +11,7 @@
 			"typescript": {}
 		}
 	},
-	"ignorePatterns": ["!**/*"],
 	"overrides": [
-		{
-			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-			"rules": {}
-		},
-		{
-			"files": ["*.ts", "*.tsx"],
-			"rules": {}
-		},
-		{
-			"files": ["*.js", "*.jsx"],
-			"rules": {}
-		},
-		{
-			"files": ["*.json"],
-			"parser": "jsonc-eslint-parser"
-		},
 		{
 			"files": ["*.vue"],
 			"extends": ["prettier"],

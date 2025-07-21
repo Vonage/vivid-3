@@ -167,7 +167,7 @@ export class DataGrid extends VividElement {
 	 * HTML Attribute: generate-header
 	 */
 	@attr({ attribute: 'generate-header' })
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	generateHeader: GenerateHeaderOptions = GenerateHeaderOptions.default;
 	/**
 	 * @internal

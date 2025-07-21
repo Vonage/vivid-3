@@ -78,6 +78,7 @@ const validNumber = /^-?((\d*\.\d+)|(\d+))$/;
  * @event {CustomEvent<undefined>} input - Fires a custom 'input' event when the value has changed
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
  * @vueModel modelValue value input `event.currentTarget.value`
+ * @vueModel valueAsNumber valueAsNumber input `event.currentTarget.valueAsNumber`
  */
 export class NumberField extends WithFeedback(
 	WithErrorText(
@@ -171,7 +172,7 @@ export class NumberField extends WithFeedback(
 	 * HTMLAttribute: step
 	 */
 	@attr({ converter: nullableNumberConverter })
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	step = 1;
 
 	stepChanged(_: number, next: number) {

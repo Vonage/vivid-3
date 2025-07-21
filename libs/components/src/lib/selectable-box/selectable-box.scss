@@ -1,22 +1,20 @@
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
 @use 'partials/variables' as variables;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../shared/src/lib/sass/utils' as utils;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/utils' as utils;
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta,
 	$shades: firm-all pale fierce faint soft,
 	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: duotone,
 	$states: idle hover selected selectedAndHover,
 	$default: duotone
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '@repo/shared/mixins/appearance' as appearance;
 
 :host {
 	display: flex;

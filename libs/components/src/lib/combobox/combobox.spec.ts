@@ -3,7 +3,7 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-} from '@vivid-nx/shared';
+} from '@repo/shared';
 import type { Mock } from 'vitest';
 import { Size } from '../enums';
 import type { Popup } from '../popup/popup';

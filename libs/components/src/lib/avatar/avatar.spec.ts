@@ -1,5 +1,11 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	setProperty,
+} from '@repo/shared';
 import { Connotation } from '../enums';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Avatar } from './avatar';
 import '.';
 
@@ -8,7 +14,6 @@ const COMPONENT_TAG = 'vwc-avatar';
 describe('vwc-avatar', () => {
 	let baseElement: Element;
 	let element: Avatar;
-
 	beforeAll(async () => {
 		await customElements.whenDefined(COMPONENT_TAG);
 	});
@@ -86,6 +91,12 @@ describe('vwc-avatar', () => {
 	});
 
 	describe('avatar icon', () => {
+		it('should have an icon slot', async () => {
+			expect(
+				element.shadowRoot?.querySelector('slot[name="icon"]')
+			).toBeTruthy();
+		});
+
 		it('should have the default icon', async () => {
 			const iconElement = baseElement.querySelector('vwc-icon');
 			expect(iconElement?.getAttribute('name')).toEqual('user-line');
@@ -122,5 +133,55 @@ describe('vwc-avatar', () => {
 			const text = baseElement.textContent?.trim();
 			expect(text).toEqual('Jo');
 		});
+	});
+
+	describe('avatar as a link', () => {
+		beforeEach(async () => {
+			await setProperty(element, 'href', 'https://vivid.deno.dev');
+		});
+
+		it('should render an avatar with href attribute as anchor element', async () => {
+			expect(getBaseElement(element)?.tagName).toEqual('A');
+		});
+
+		describe.each([
+			'href',
+			'hreflang',
+			'download',
+			'ping',
+			'referrerpolicy',
+			'rel',
+			'target',
+		] as const)('%s attribute', (attribute) => {
+			it('should be forwarded to the anchor element', async () => {
+				const text = 'link';
+				await setProperty(element, attribute, text);
+
+				expect(getBaseElement(element)?.getAttribute(attribute)).toEqual(text);
+			});
+		});
+
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			['ariaLabel']
+		);
+	});
+
+	describe('avatar as a button', () => {
+		beforeEach(async () => {
+			await setProperty(element, 'clickable', true);
+		});
+
+		it('should render an avatar with clickable attribute as a button', async function () {
+			expect(getBaseElement(element)?.tagName).toEqual('BUTTON');
+			expect(getBaseElement(element)?.getAttribute('type')).toEqual('button');
+		});
+
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			['ariaLabel']
+		);
 	});
 });

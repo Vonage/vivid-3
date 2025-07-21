@@ -25,9 +25,15 @@ const onPickerOptionClick = (
 
 	scrollToOption(x, column.id, optionValue, 'start');
 
-	const nextPickerEl = x.shadowRoot!.querySelector(
-		`#${column.id} + .picker`
+	const currentPicker = x
+		.shadowRoot!.querySelector(`#${column.id}`)
+		?.closest('.picker-wrapper');
+	const nextPickerWrapper =
+		currentPicker?.nextElementSibling as HTMLElement | null;
+	const nextPickerEl = nextPickerWrapper?.querySelector(
+		'.picker'
 	) as HTMLElement | null;
+
 	if (nextPickerEl) {
 		nextPickerEl.focus();
 	} else {
@@ -58,6 +64,7 @@ const onPickerKeyDown = (
 		const newValue = options[newIndex].value;
 		emitChange(x, column.updatedValue(x, newValue));
 		scrollToOption(x, column.id, newValue, 'nearest');
+		x._clearFocusedClasses();
 	}
 
 	return true;
@@ -91,6 +98,7 @@ const onBaseKeyDown = (x: InlineTimePicker, event: KeyboardEvent) => {
 			// the inline time picker
 			ignoreEventInFocusTraps(event);
 		}
+		x._applyFocusedClass();
 	}
 	return true;
 };
@@ -103,42 +111,47 @@ const emitChange = (x: InlineTimePicker, time: string) => {
  * Renders a picker for hours/minutes/etc. using a listbox pattern.
  */
 const renderPicker = (column: Column) => {
-	return html<InlineTimePicker>`<ul
-		id="${column.id}"
-		class="picker"
-		role="listbox"
-		tabindex="0"
-		aria-label="${column.getLabel}"
-		aria-activedescendant="${(x) =>
-			column.getSelectedOptionValue(x)
-				? `${column.id}-${column.getSelectedOptionValue(x)}`
-				: undefined}"
-		@keydown="${(x, c) => onPickerKeyDown(x, column, c.event as KeyboardEvent)}"
-	>
-		${repeat(
-			(x) => column.getOptions(x),
-			html<PickerOption>`<li
-				id="${(x) => `${column.id}-${x.value}`}"
-				class="${(x, c) =>
-					classNames('option', [
-						'selected',
-						column.getSelectedOptionValue(c.parent) === x.value,
-					])}"
-				aria-selected="${(x, c) =>
-					column.getSelectedOptionValue(c.parent) === x.value}"
-				role="option"
-				@click="${(x, c) => onPickerOptionClick(c.parent, column, x.value)}"
-			>
-				${(x) => x.label}
-			</li>`
-		)}
-	</ul>`;
+	return html<InlineTimePicker>`<div class="picker-wrapper">
+		<ul
+			id="${column.id}"
+			class="picker"
+			role="listbox"
+			tabindex="0"
+			aria-label="${column.getLabel}"
+			aria-activedescendant="${(x) =>
+				column.getSelectedOptionValue(x)
+					? `${column.id}-${column.getSelectedOptionValue(x)}`
+					: undefined}"
+			@keydown="${(x, c) =>
+				onPickerKeyDown(x, column, c.event as KeyboardEvent)}"
+		>
+			${repeat(
+				(x) => column.getOptions(x),
+				html<PickerOption>`<li
+					id="${(x) => `${column.id}-${x.value}`}"
+					class="${(x, c) =>
+						classNames('option', [
+							'selected',
+							column.getSelectedOptionValue(c.parent) === x.value,
+						])}"
+					aria-selected="${(x, c) =>
+						column.getSelectedOptionValue(c.parent) === x.value}"
+					role="option"
+					@click="${(x, c) => onPickerOptionClick(c.parent, column, x.value)}"
+				>
+					${(x) => x.label}
+				</li>`
+			)}
+		</ul>
+	</div>`;
 };
 
 export const InlineTimePickerTemplate = () => {
 	return html<InlineTimePicker>`<div
 		class="time-pickers"
 		@keydown="${(x, { event }) => onBaseKeyDown(x, event as KeyboardEvent)}"
+		@focusout="${(x) => x._onFocusOut()}"
+		@pointerdown="${(x) => x._onPointerDown()}"
 	>
 		${renderPicker(HoursColumn)} ${renderPicker(MinutesColumn)}
 		${when(shouldDisplaySecondsPicker, renderPicker(SecondsColumn))}

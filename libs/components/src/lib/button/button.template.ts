@@ -1,5 +1,4 @@
-import { when } from '@microsoft/fast-element';
-import { html, ref } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';

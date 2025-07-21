@@ -4,11 +4,7 @@ import { bracketMatching, indentUnit } from '@codemirror/language';
 import { html } from '@codemirror/lang-html';
 import { Compartment } from '@codemirror/state';
 import { oneDark } from '@codemirror/theme-one-dark';
-import enUS from '@vonage/vivid/locales/en-US';
-import enGB from '@vonage/vivid/locales/en-GB';
-import deDE from '@vonage/vivid/locales/de-DE';
-import zhCN from '@vonage/vivid/locales/zh-CN';
-import jaJP from '@vonage/vivid/locales/ja-JP';
+import { deDE, enGB, enUS, jaJP, zhCN } from 'vivid-locales';
 import { getCurrentThemeCss } from './theme-handler';
 
 const samplesEditors = new Map();

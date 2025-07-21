@@ -642,8 +642,10 @@ export class SearchableSelect extends WithFeedback(
 
 	#transitionHighlightedOptionTo(index: number | null) {
 		if (typeof this._highlightedOptionIndex === 'number') {
-			this._filteredEnabledOptions[this._highlightedOptionIndex]._highlighted =
-				false;
+			const prevOption =
+				this._filteredEnabledOptions[this._highlightedOptionIndex];
+			prevOption._highlighted = false;
+			prevOption.removeAttribute('data-highlighted');
 		}
 		if (typeof index === 'number') {
 			if (!this._filteredEnabledOptions.length) {
@@ -660,6 +662,7 @@ export class SearchableSelect extends WithFeedback(
 			const highlightedOption =
 				this._filteredEnabledOptions[this._highlightedOptionIndex];
 			highlightedOption._highlighted = true;
+			highlightedOption.setAttribute('data-highlighted', '');
 			scrollIntoView(highlightedOption, this._listbox!, 'nearest');
 			this._changeDescription =
 				this.locale.searchableSelect.optionFocusedMessage(
@@ -748,7 +751,11 @@ export class SearchableSelect extends WithFeedback(
 	}
 
 	#textForValue(value: string) {
-		return this._slottedOptions?.find((option) => option.value === value)?.text;
+		const option = this._slottedOptions?.find(
+			(option) => option.value === value
+		);
+
+		return option?.label;
 	}
 
 	/**

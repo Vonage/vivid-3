@@ -1,6 +1,6 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
-import deDE from '@vonage/vivid/locales/de-DE';
-import enUS from '@vonage/vivid/locales/en-US';
+import { elementUpdated, fixture } from '@repo/shared';
+import deDE from '../../../locales/de-DE';
+import enUS from '../../../locales/en-US';
 import { Select } from '../../select/select';
 import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';

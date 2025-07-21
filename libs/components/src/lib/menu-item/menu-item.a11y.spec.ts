@@ -1,4 +1,4 @@
-import { axe, fixture } from '@vivid-nx/shared';
+import { axe, fixture } from '@repo/shared';
 import '.';
 
 const COMPONENT_TAG = 'vwc-menu-item';

@@ -1,7 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import { HostSemantics } from '../../shared/aria/host-semantics';
 
 /**
  * @deprecated This will be removed along with the divider's role attribute
@@ -31,7 +31,7 @@ type DividerRole = typeof DividerRole[keyof typeof DividerRole];
  * @public
  * @component divider
  */
-export class Divider extends DelegatesAria(VividElement) {
+export class Divider extends HostSemantics(VividElement) {
 	/**
 	 * The role of the element. This property will be removed
 	 *
@@ -40,7 +40,7 @@ export class Divider extends DelegatesAria(VividElement) {
 	 * @remarks
 	 * HTML Attribute: role
 	 */
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	@attr override role: DividerRole = DividerRole.separator;
 
 	/**
@@ -50,6 +50,6 @@ export class Divider extends DelegatesAria(VividElement) {
 	 * @remarks
 	 * HTML Attribute: orientation
 	 */
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	@attr orientation: Orientation = Orientation.horizontal;
 }

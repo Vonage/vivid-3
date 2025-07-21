@@ -1,5 +1,5 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { ICONS_VERSION as ICON_SET_VERSION } from '@vonage/vwc-consts';
+import { elementUpdated, fixture, getControlElement } from '@repo/shared';
+import { ICONS_VERSION as ICON_SET_VERSION } from '@repo/consts';
 import type { Icon } from './icon';
 import '.';
 

@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@repo/shared';
 import type { TreeItem } from '../tree-item/tree-item';
 import '../tree-item';
 import { TreeView } from './tree-view';

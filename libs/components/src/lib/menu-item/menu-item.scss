@@ -1,23 +1,21 @@
-@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta,
 	$shades: primary primary-text primary-increment firm faint soft pale dim,
 	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: listitem,
 	$states: idle hover disabled active selected selectedAndHover,
 	$default: listitem
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
-@use 'partials/menu-item-variables' as menu-item-variables;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
-	border-radius-variables;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
-@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '@repo/shared/mixins/appearance' as appearance;
+@use '@repo/tokens/scss/size.variables' as size;
+@use 'partials/menu-item-variables' as variables;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
 
 :host(:focus-visible) {
 	outline: none;
@@ -32,9 +30,16 @@
 	@include connotation.connotation(menu-item);
 
 	& {
+		#{variables.$menu-item-padding-inline}: calc(
+			#{size.$vvd-size-normal} / 2.5
+		); // 16px
+	}
+
+	& {
 		display: flex;
 		box-sizing: border-box;
 		align-items: center;
+		border-radius: #{border-radius-variables.$border-radius-normal};
 		background-color: var(#{appearance.get-appearance-token(fill)});
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 		inline-size: 100%;
@@ -44,15 +49,16 @@
 		gap: 12px;
 		min-block-size: #{size.$vvd-size-normal};
 		padding-block: 8px;
-		padding-inline: 12px;
+		padding-inline: var(#{variables.$menu-item-padding-inline});
 	}
 
 	&.two-lines {
-		padding: 12px;
 		gap: 16px;
 		min-block-size: calc(
 			#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed}
 		);
+		padding-block: 12px;
+		padding-inline: var(#{variables.$menu-item-padding-inline});
 	}
 
 	@supports (user-select: none) {
@@ -132,7 +138,7 @@
 
 .text-primary {
 	font: var(#{constants.$vvd-typography-base});
-	-webkit-line-clamp: var(#{menu-item-variables.$text-primary-line-clamp}, 1);
+	-webkit-line-clamp: var(#{variables.$text-primary-line-clamp}, 1);
 	.base:not(.disabled) & {
 		color: var(#{constants.$vvd-color-canvas-text});
 	}
@@ -147,7 +153,7 @@
 .text-secondary {
 	color: var(#{constants.$vvd-color-neutral-800});
 	font: var(#{constants.$vvd-typography-base-condensed});
-	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
+	-webkit-line-clamp: var(#{variables.$text-secondary-line-clamp}, 1);
 
 	.base.two-lines & {
 		color: var(#{constants.$vvd-color-neutral-600});
@@ -166,7 +172,7 @@
 :host([internal-part]) {
 	.text-primary {
 		font: var(
-			#{menu-item-variables.$text-primary-custom-size},
+			#{variables.$text-primary-custom-size},
 			var#{constants.$vvd-typography-base}
 		);
 	}

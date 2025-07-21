@@ -1,9 +1,4 @@
-import {
-	attr,
-	observable,
-	Observable,
-	volatile,
-} from '@microsoft/fast-element';
+import { attr, observable, volatile } from '@microsoft/fast-element';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -37,12 +32,6 @@ export class ListboxOption extends HostSemantics(
 	/**
 	 * @internal
 	 */
-	// @ts-expect-error Type is incorrectly non-optional
-	private _value: string;
-
-	/**
-	 * @internal
-	 */
 	proxy: HTMLOptionElement;
 
 	/**
@@ -58,16 +47,20 @@ export class ListboxOption extends HostSemantics(
 	/**
 	 * The defaultSelected state of the option.
 	 * @public
+	 * @remarks
+	 * HTML Attribute: selected
 	 */
-	@observable
+	@attr({ attribute: 'selected', mode: 'boolean' })
 	defaultSelected = false;
 	protected defaultSelectedChanged(): void {
 		if (!this.dirtySelected) {
 			this.selected = this.defaultSelected;
-
 			if (this.proxy instanceof HTMLOptionElement) {
 				this.proxy.selected = this.defaultSelected;
 			}
+		}
+		if (this.proxy instanceof HTMLOptionElement) {
+			this.proxy.defaultSelected = this.defaultSelected;
 		}
 	}
 
@@ -93,21 +86,13 @@ export class ListboxOption extends HostSemantics(
 	}
 
 	/**
-	 * The selected attribute value. This sets the initial selected value.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: selected
+	 * @deprecated Use `defaultSelected` instead.
 	 */
-	@attr({ attribute: 'selected', mode: 'boolean' })
-	// @ts-expect-error Type is incorrectly non-optional
-	selectedAttribute: boolean;
-	protected selectedAttributeChanged(): void {
-		this.defaultSelected = this.selectedAttribute;
-
-		if (this.proxy instanceof HTMLOptionElement) {
-			this.proxy.defaultSelected = this.defaultSelected;
-		}
+	get selectedAttribute() {
+		return this.defaultSelected;
+	}
+	set selectedAttribute(value: boolean) {
+		this.defaultSelected = value;
 	}
 
 	/**
@@ -115,8 +100,8 @@ export class ListboxOption extends HostSemantics(
 	 *
 	 * @public
 	 */
-	@observable
-	selected: boolean = this.defaultSelected;
+	@attr({ attribute: 'current-selected', mode: 'boolean' })
+	selected!: boolean;
 	protected selectedChanged(): void {
 		if (!this.dirtySelected) {
 			this.dirtySelected = true;
@@ -128,26 +113,24 @@ export class ListboxOption extends HostSemantics(
 	}
 
 	/**
-	 * Track whether the value has been changed from the initial value
-	 */
-	dirtyValue = false;
-
-	/**
-	 * The initial value of the option. This value sets the `value` property
-	 * only when the `value` property has not been explicitly set.
+	 * The value of the option.
 	 *
+	 * @public
 	 * @remarks
 	 * HTML Attribute: value
 	 */
-	@attr({ attribute: 'value', mode: 'fromView' })
-	// @ts-expect-error Type is incorrectly non-optional
-	protected initialValue: string;
-	initialValueChanged(): void {
-		// If the value is clean and the component is connected to the DOM
-		// then set value equal to the attribute value.
-		if (!this.dirtyValue) {
-			this.value = this.initialValue;
-			this.dirtyValue = false;
+	@attr({ attribute: 'value' })
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
+	value = '';
+
+	protected valueChanged() {
+		if (typeof this.value !== 'string') {
+			this.value = '';
+			return;
+		}
+
+		if (this.proxy instanceof HTMLOptionElement) {
+			this.proxy.value = this.value;
 		}
 	}
 
@@ -187,24 +170,6 @@ export class ListboxOption extends HostSemantics(
 
 	get text() {
 		return this._text ?? '';
-	}
-
-	set value(next: string) {
-		const newValue = `${next ?? ''}`;
-		this._value = newValue;
-
-		this.dirtyValue = true;
-
-		if (this.proxy instanceof HTMLOptionElement) {
-			this.proxy.value = newValue;
-		}
-
-		Observable.notify(this, 'value');
-	}
-
-	get value(): string {
-		Observable.track(this, 'value');
-		return this._value ?? this.text;
 	}
 
 	get form(): HTMLFormElement | null {
@@ -290,7 +255,7 @@ export class ListboxOption extends HostSemantics(
 		}
 
 		if (value) {
-			this.initialValue = value;
+			this.value = value;
 		}
 
 		if (defaultSelected) {
@@ -303,12 +268,24 @@ export class ListboxOption extends HostSemantics(
 
 		this.proxy = new Option(
 			this.text,
-			// @ts-expect-error Propery is used before it is assigned
-			this.initialValue,
+			this.value,
 			this.defaultSelected,
 			this.selected
 		);
 		// @ts-expect-error Propery is used before it is assigned
 		this.proxy.disabled = this.disabled;
+	}
+
+	/**
+	 * @internal
+	 */
+	override connectedCallback(): void {
+		super.connectedCallback();
+
+		// Initialize selected from defaultSelected if not already set
+		if (!this.dirtySelected) {
+			this.selected = this.defaultSelected;
+			this.dirtySelected = false;
+		}
 	}
 }

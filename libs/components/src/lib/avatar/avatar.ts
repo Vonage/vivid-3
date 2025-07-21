@@ -1,5 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import type { Appearance, Connotation, Shape, Size } from '../enums.js';
+import { Linkable } from '../../shared/patterns/linkable';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 
@@ -32,11 +33,6 @@ export type AvatarAppearance = ExtractFromEnum<
  * @public
  */
 export type AvatarShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
-/**
- * Base class for avatar
- *
- * @public
- */
 
 /**
  * Types of avatar size.
@@ -52,8 +48,9 @@ export type AvatarSize = ExtractFromEnum<
  * @public
  * @component avatar
  * @slot graphic - Assign nodes to the graphic slot to set a graphic media of any kind (e.g. image, illustration etc).
+ * @slot icon - The preferred way to add an icon to the component.
  */
-export class Avatar extends VividElement {
+export class Avatar extends Linkable(VividElement) {
 	/**
 	 * The connotation the avatar should have.
 	 *
@@ -91,6 +88,7 @@ export class Avatar extends VividElement {
 	@attr size?: AvatarSize;
 
 	/**
+	 * @deprecated Use icon slot instead.
 	 * avatar header icon
 	 *
 	 * @public
@@ -103,4 +101,15 @@ export class Avatar extends VividElement {
 	 * @public
 	 */
 	@attr initials?: string;
+
+	/**
+	 * Indicates whether avatar should be a clickable <button> element.
+	 *
+	 * @public
+	 */
+	@attr({
+		mode: 'boolean',
+		attribute: 'clickable',
+	})
+	clickable = false;
 }

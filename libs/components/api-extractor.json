@@ -1,6 +1,6 @@
 {
 	"$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
-	"projectFolder": "../../../libs/components",
+	"projectFolder": "..",
 	"mainEntryPointFilePath": "index.d.ts",
 	"docModel": {
 		"enabled": true,
@@ -20,6 +20,13 @@
 			"ae-forgotten-export": {
 				"logLevel": "none"
 			}
+		}
+	},
+	"compiler": {
+		"overrideTsconfig": {
+			"extends": "./tsconfig.json",
+			"files": [],
+			"include": []
 		}
 	}
 }
