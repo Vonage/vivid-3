@@ -13,6 +13,7 @@ test-results
 apps/vue-docs/docs/components
 libs/vue-wrappers/web-types.json
 libs/vue-wrappers/stories
+libs/test-utils/**.generated.ts
 generated
 
 /.nx/cache
