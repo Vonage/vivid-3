@@ -405,6 +405,13 @@
 					"propertyName": "disabled"
 				},
 				{
+					"name": "durationFallback",
+					"description": "Enables fallback logic to fetch and decode audio buffer for duration when metadata is missing.",
+					"type": "boolean",
+					"attributeName": "duration-fallback",
+					"propertyName": "durationFallback"
+				},
+				{
 					"name": "notime",
 					"type": "boolean",
 					"attributeName": "notime",
