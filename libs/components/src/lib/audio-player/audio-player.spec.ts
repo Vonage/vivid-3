@@ -254,7 +254,7 @@ describe('vwc-audio-player', () => {
 			).toBe('0:00');
 		});
 
-		describe('when durration-fallback is enabled', () => {
+		describe('when duration-fallback is enabled', () => {
 			it('should use fallback duration  when native duration  calculation is not available', async () => {
 				// Mock fetch to return a fake ArrayBuffer
 				globalThis.fetch = vi.fn().mockResolvedValue({
