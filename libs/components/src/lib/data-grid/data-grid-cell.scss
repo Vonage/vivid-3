@@ -26,12 +26,12 @@
 }
 
 :host([data-fixed]) {
-  position: sticky;
-  z-index: 5;
-  background: var(
-    #{variables.$data-grid-cell-background},
-    var(#{constants.$vvd-color-canvas})
-  );
+	position: sticky;
+	z-index: 5;
+	background: var(
+		#{variables.$data-grid-cell-background},
+		var(#{constants.$vvd-color-canvas})
+	);
 }
 
 :host([data-fixed])::before {
