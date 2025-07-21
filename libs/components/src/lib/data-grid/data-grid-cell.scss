@@ -30,7 +30,7 @@
 	z-index: 5;
 	background: var(
 		#{variables.$data-grid-cell-background},
-		var(#{constants.$vvd-color-canvas})
+		var(#{constants.$vvd-color-surface-2dp})
 	);
 }
 
