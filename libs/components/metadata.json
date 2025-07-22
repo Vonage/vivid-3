@@ -2092,6 +2092,13 @@
 			"description": "",
 			"props": [
 				{
+					"name": "fixedColumns",
+					"description": "Number of columns to be fixed when scrolling horizontally",
+					"type": "number",
+					"attributeName": "fixed-columns",
+					"propertyName": "fixedColumns"
+				},
+				{
 					"name": "generateHeader",
 					"description": "Whether the grid should automatically generate a header row and its type",
 					"type": "'none' | 'default' | 'sticky'",
@@ -5046,13 +5053,6 @@
 					"propertyName": "iconTrailing"
 				},
 				{
-					"name": "initialValue",
-					"description": "The initial value of the option. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
-					"type": "string",
-					"attributeName": "value",
-					"propertyName": "initialValue"
-				},
-				{
 					"name": "label",
 					"type": "string",
 					"attributeName": "label",
@@ -5087,8 +5087,9 @@
 				},
 				{
 					"name": "value",
-					"description": "Value to be submitted as part of the form data",
+					"description": "The value of the option.",
 					"type": "string",
+					"attributeName": "value",
 					"propertyName": "value"
 				}
 			],
@@ -5125,9 +5126,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{ "name": "initialValueChanged", "args": [], "returnType": "void" }
-			],
+			"methods": [],
 			"slots": [
 				{
 					"name": "icon",

@@ -64,18 +64,6 @@ export const componentOverrides: ComponentSpecs[] = [
 	],
 
 	[
-		'option',
-		(component) => {
-			component.props.push({
-				name: 'value',
-				description: 'Value to be submitted as part of the form data',
-				type: 'string',
-				propertyName: 'value',
-			});
-		},
-	],
-
-	[
 		'number-field',
 		(component) => {
 			component.props.push({
