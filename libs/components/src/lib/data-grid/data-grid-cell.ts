@@ -118,6 +118,35 @@ export class DataGridCell extends Localized(VividElement) {
 		}
 	}
 
+	/**
+	 * Position from the left when the column is fixed
+	 * @internal
+	 */
+	private fixedPosition?: string;
+
+	/**
+	 * Updates the fixed column style
+	 * @internal
+	 */
+	private updateFixedStyle(): void {
+		if (this.fixedPosition !== undefined) {
+			this.setAttribute('data-fixed', '');
+			this.style.left = this.fixedPosition;
+		} else {
+			this.removeAttribute('data-fixed');
+			this.style.removeProperty('left');
+		}
+	}
+
+	/**
+	 * Sets the fixed state and position for this cell
+	 * @internal
+	 */
+	setFixedPosition(position: string | undefined): void {
+		this.fixedPosition = position;
+		this.updateFixedStyle();
+	}
+
 	private isActiveCell = false;
 	private customCellView: HTMLView | null = null;
 
@@ -139,6 +168,7 @@ export class DataGridCell extends Localized(VividElement) {
 
 		this.updateCellView();
 		this.updateCellStyle();
+		this.updateFixedStyle();
 	}
 
 	/**
