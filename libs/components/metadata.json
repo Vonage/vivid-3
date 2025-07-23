@@ -3290,6 +3290,13 @@
 			"description": "",
 			"props": [
 				{
+					"name": "appearance",
+					"description": "The appearance of the divider.",
+					"type": "Appearance",
+					"attributeName": "appearance",
+					"propertyName": "appearance"
+				},
+				{
 					"name": "orientation",
 					"description": "The orientation of the divider.",
 					"type": "'horizontal' | 'vertical'",
