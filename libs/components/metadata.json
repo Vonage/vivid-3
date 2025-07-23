@@ -3292,7 +3292,7 @@
 				{
 					"name": "appearance",
 					"description": "The appearance of the divider.",
-					"type": "Appearance",
+					"type": "'ghost' | 'subtle'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},

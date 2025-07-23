@@ -73,5 +73,5 @@ export class Divider extends HostSemantics(VividElement) {
 	 * HTML Attribute: appearance
 	 */
 	// eslint-disable-next-line @repo/repo/no-attribute-default-value
-	@attr appearance: Appearance = Appearance.Ghost;
+	@attr appearance?: DividerAppearance = Appearance.Ghost;
 }
