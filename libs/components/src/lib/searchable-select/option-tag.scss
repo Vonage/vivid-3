@@ -34,22 +34,30 @@ $block-size: #{size.$vvd-size-super-condensed};
 
 	&:not(.disabled) {
 		--text-color: var(#{connotation.get-connotation-token(contrast)});
-		--fill-color: color-mix(
-			in srgb,
-			var(#{connotation.get-connotation-token(contrast)}),
-			transparent 87.5%
-		);
+		--fill-color: var(#{connotation.get-connotation-token(soft)});
 		--outline-color: transparent;
+
+		@supports (background-color: color-mix(in srgb, black 50%, white)) {
+			--fill-color: color-mix(
+				in srgb,
+				var(#{connotation.get-connotation-token(contrast)}),
+				transparent 87.5%
+			);
+		}
 	}
 
 	&.disabled {
 		--text-color: var(#{constants.$vvd-color-neutral-300});
-		--fill-color: color-mix(
-			in srgb,
-			var(#{constants.$vvd-color-neutral-800}),
-			transparent 87.5%
-		);
+		--fill-color: var(#{constants.$vvd-color-neutral-200});
 		--outline-color: transparent;
+
+		@supports (background-color: color-mix(in srgb, black 50%, white)) {
+			--fill-color: color-mix(
+				in srgb,
+				var(#{constants.$vvd-color-neutral-800}),
+				transparent 87.5%
+			);
+		}
 	}
 
 	/* Shape */
