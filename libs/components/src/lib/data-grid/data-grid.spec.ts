@@ -401,6 +401,109 @@ describe('vwc-data-grid', () => {
 		});
 	});
 
+	describe('fixedColumns', () => {
+		beforeEach(async () => {
+			setMockRows(element);
+			element.generateHeader = 'none';
+			element.rowsData = [
+				{ id: '1', name: 'Person 1', age: '20', city: 'City 1' },
+				{ id: '2', name: 'Person 2', age: '30', city: 'City 2' },
+				{ id: '3', name: 'Person 3', age: '40', city: 'City 3' },
+			];
+			await elementUpdated(element);
+		});
+
+		it('should initialize fixedColumns as undefined', () => {
+			expect(element.fixedColumns).toBeUndefined();
+		});
+
+		it('should handle gridTemplateColumns changes when fixedColumns is set', async () => {
+			element.fixedColumns = 2;
+			await elementUpdated(element);
+
+			element.gridTemplateColumns = '200px 150px 1fr';
+			await elementUpdated(element);
+
+			expect(element.gridTemplateColumns).toBe('200px 150px 1fr');
+			expect(element.fixedColumns).toBe(2);
+		});
+
+		it('should handle cells with setFixedPosition method', async () => {
+			const mockSetFixedPosition = vi.fn();
+			element.fixedColumns = 2;
+			await elementUpdated(element);
+
+			element.rowElements.forEach((row) => {
+				const cells = row.querySelectorAll(
+					'[role="cell"], [role="gridcell"], [role="columnheader"]'
+				);
+				cells.forEach((cell) => {
+					(cell as any).setFixedPosition = mockSetFixedPosition;
+				});
+			});
+
+			element.fixedColumns = 0;
+			await elementUpdated(element);
+
+			element.fixedColumns = 2;
+			await elementUpdated(element);
+
+			expect(mockSetFixedPosition).toHaveBeenCalled();
+		});
+
+		it('should handle ResizeObserver creation and callback', async () => {
+			let resizeCallback: (() => void) | undefined;
+			const mockObserve = vi.fn();
+			const mockDisconnect = vi.fn();
+			const mockResizeObserver = vi
+				.fn()
+				.mockImplementation((callback: () => void) => {
+					resizeCallback = callback;
+					return {
+						observe: mockObserve,
+						disconnect: mockDisconnect,
+					};
+				});
+
+			const originalResizeObserver = global.ResizeObserver;
+			global.ResizeObserver = mockResizeObserver;
+
+			const applyFixedColumnsSpy = vi.spyOn(
+				element as any,
+				'applyFixedColumns'
+			);
+
+			element.fixedColumns = 2;
+			await elementUpdated(element);
+
+			expect(mockResizeObserver).toHaveBeenCalled();
+			expect(mockObserve).toHaveBeenCalledWith(element);
+
+			expect(resizeCallback).toBeDefined();
+			resizeCallback!();
+
+			expect(applyFixedColumnsSpy).toHaveBeenCalled();
+
+			global.ResizeObserver = originalResizeObserver;
+			applyFixedColumnsSpy.mockRestore();
+		});
+
+		it('should handle empty rowElements', async () => {
+			Object.defineProperty(element, 'rowElements', {
+				value: [],
+				writable: true,
+			});
+
+			element.fixedColumns = 2;
+			await elementUpdated(element);
+
+			element.fixedColumns = 0;
+			await elementUpdated(element);
+
+			expect(element.fixedColumns).toBe(0);
+		});
+	});
+
 	describe('keyboard navigation', () => {
 		const setupData = async () => {
 			element.rowsData = [

@@ -128,6 +128,62 @@ Values match the CSS `grid-template-columns` property.
 </vwc-data-grid>
 ```
 
+## Fixed Columns
+
+Use the `fixed-columns` attribute to set the number of the fixed grid columns. These columns will remain fixed to the left edge of the grid when scrolling horizontally.
+
+```html preview
+<style>
+	[data-vvd-component='data-grid-row'] {
+		width: 1200px;
+		display: block;
+		box-sizing: border-box;
+	}
+</style>
+<vwc-data-grid fixed-columns="1">
+	<vwc-data-grid-row row-type="sticky-header">
+		<vwc-data-grid-cell cell-type="columnheader">ID</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Status</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Category</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Value</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Updated On</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Notes</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>001</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Active</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Hardware</vwc-data-grid-cell>
+		<vwc-data-grid-cell>128.45</vwc-data-grid-cell>
+		<vwc-data-grid-cell>2025-07-10</vwc-data-grid-cell>
+		<vwc-data-grid-cell>New batch arrived</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>002</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Inactive</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Software</vwc-data-grid-cell>
+		<vwc-data-grid-cell>76.30</vwc-data-grid-cell>
+		<vwc-data-grid-cell>2025-06-28</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Deprecated module</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>003</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Pending</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Licensing</vwc-data-grid-cell>
+		<vwc-data-grid-cell>150.00</vwc-data-grid-cell>
+		<vwc-data-grid-cell>2025-07-15</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Awaiting approval</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>004</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Active</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Service</vwc-data-grid-cell>
+		<vwc-data-grid-cell>89.99</vwc-data-grid-cell>
+		<vwc-data-grid-cell>2025-07-17</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Auto-renew enabled</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+```
+
 ## Selection Mode
 
 Use the `selection-mode` attribute to specify the how cells or rows can be selected.

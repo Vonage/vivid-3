@@ -394,6 +394,84 @@ Use `--data-grid-row-background` to change the sticky row background-color.
 </script>
 ```
 
+### Cell Background
+
+When a grid has the `fixed-columns` attribute, fixed columns cells have a default canvas background-color.  
+Use `--data-grid-cell-background` to overwrite the default background-color.
+
+```html preview
+<vwc-data-grid class="data-grid"></vwc-data-grid>
+
+<style>
+	.data-grid {
+		--data-grid-cell-background: var(--vvd-color-neutral-50);
+	}
+	[data-vvd-component='data-grid-row'] {
+		width: 1200px;
+		display: block;
+		box-sizing: border-box;
+	}
+</style>
+
+<script>
+	const grid = document.querySelector('vwc-data-grid');
+	grid.fixedColumns = '1';
+	grid.gridTemplateColumns = '2fr repeat(7, 1fr)';
+	grid.rowsData = [
+		{
+			team: 'Ironhill United',
+			played: 5,
+			won: 4,
+			drawn: 1,
+			lost: 0,
+			goalsFor: 12,
+			goalsAgainst: 4,
+			points: 13,
+		},
+		{
+			team: 'Crimson Valley FC',
+			played: 5,
+			won: 3,
+			drawn: 1,
+			lost: 1,
+			goalsFor: 9,
+			goalsAgainst: 6,
+			points: 10,
+		},
+		{
+			team: 'Stormridge City',
+			played: 5,
+			won: 2,
+			drawn: 2,
+			lost: 1,
+			goalsFor: 7,
+			goalsAgainst: 5,
+			points: 8,
+		},
+		{
+			team: 'Eastbridge Rovers',
+			played: 5,
+			won: 1,
+			drawn: 1,
+			lost: 3,
+			goalsFor: 5,
+			goalsAgainst: 11,
+			points: 4,
+		},
+		{
+			team: 'Shadowmere FC',
+			played: 5,
+			won: 0,
+			drawn: 1,
+			lost: 4,
+			goalsFor: 3,
+			goalsAgainst: 10,
+			points: 1,
+		},
+	];
+</script>
+```
+
 ### Block Size
 
 Use `--data-grid-cell-block-size` to change the cell's `block-size`.
@@ -464,20 +542,21 @@ By default, header cells will not wrap text (`nowrap`), while data cells will wr
 
 <div class="table-wrapper">
 
-| Name                       | Type                                                                 | Description                                                        |
-| -------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| **cellItemTemplate**       | `ViewTemplate`                                                       | Templete to use when rendering cells                               |
-| **columnDefinitions**      | `ColumnDefinition[]`                                                 | Configure the grid header columns                                  |
-| **focusColumnIndex**       | `number`                                                             | Index of column to be focused on when the Data Grid receives focus |
-| **focusRowIndex**          | `number`                                                             | Index of row to be focused on when the Data Grid receives focus    |
-| **generateHeader**         | enum: `default`, `sticky`, `none`                                    | Type of header to be generated                                     |
-| **headerCellItemTemplate** | `ViewTemplate`                                                       | Templete to use when rendering grid header cells                   |
-| **grid-template-columns**  | `string`                                                             | Sets the width of the columns                                      |
-| **no-tabbing**             | `boolean`                                                            | Remove the grid from the tab order                                 |
-| **rowsData**               | `object[]`                                                           | Content of the grid in data format                                 |
-| **rowElementTag**          | `string`                                                             | Element tag for header rows                                        |
-| **rowItemTemplate**        | `ViewTemplate`                                                       | Templete to use when rendering rows                                |
-| **selection-mode**         | enum: `none`, `single-row`, `multi-row`, `single-cell`, `multi-cell` | Set the selection mode                                             |
+| Name                       | Type                                                                 | Description                                                            |
+| -------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| **cellItemTemplate**       | `ViewTemplate`                                                       | Templete to use when rendering cells                                   |
+| **columnDefinitions**      | `ColumnDefinition[]`                                                 | Configure the grid header columns                                      |
+| **focusColumnIndex**       | `number`                                                             | Index of column to be focused on when the Data Grid receives focus     |
+| **focusRowIndex**          | `number`                                                             | Index of row to be focused on when the Data Grid receives focus        |
+| **generateHeader**         | enum: `default`, `sticky`, `none`                                    | Type of header to be generated                                         |
+| **headerCellItemTemplate** | `ViewTemplate`                                                       | Templete to use when rendering grid header cells                       |
+| **grid-template-columns**  | `string`                                                             | Sets the width of the columns                                          |
+| **no-tabbing**             | `boolean`                                                            | Remove the grid from the tab order                                     |
+| **rowsData**               | `object[]`                                                           | Content of the grid in data format                                     |
+| **rowElementTag**          | `string`                                                             | Element tag for header rows                                            |
+| **rowItemTemplate**        | `ViewTemplate`                                                       | Templete to use when rendering rows                                    |
+| **selection-mode**         | enum: `none`, `single-row`, `multi-row`, `single-cell`, `multi-cell` | Set the selection mode                                                 |
+| **fixed-columns**          | `number`                                                             | Sets the number of columns fixed to the left when horizontal scrolling |
 
 </div>
 
@@ -489,7 +568,7 @@ By default, header cells will not wrap text (`nowrap`), while data cells will wr
 
 | Name                            | Type                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `columndDataKey`                | `string`                                                             | The property from which the data of the column is taken from                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `columnDataKey`                 | `string`                                                             | The property from which the data of the column is taken from                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `title`                         | `string`                                                             | The title of the column                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `headerCellTemplate`            | `ViewTemplate`                                                       | A custom template for a header cell                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `headerCellInternalFocusQueue`  | `boolean`                                                            | Indicates whether the header cell has in internal focus queue. This should be set to `true` for header cells that host controls that need to use arrow keys or have multiple focusable internal elements. When the user hits the Enter or F2 key the element specified by the `headerCellFocusTargetCallback` function will be focused (see keyboard interactions described [here](https://w3c.github.io/aria-practices/#grid)).                                                                                                                           |

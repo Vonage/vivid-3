@@ -203,4 +203,8 @@
 	&.current {
 		border: 1px solid var(#{constants.$vvd-color-neutral-200});
 	}
+
+	&.selected {
+		border: 1px solid var(#{constants.$vvd-color-neutral-900});
+	}
 }
