@@ -3,8 +3,12 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import { type Divider, DividerRole } from './divider';
 
-const getClasses = ({ orientation }: Divider) =>
-	classNames('base', [`${orientation}`, Boolean(orientation)]);
+const getClasses = ({ orientation, appearance }: Divider) =>
+	classNames(
+		'base',
+		[`${orientation}`, Boolean(orientation)],
+		[`appearance-${appearance}`, Boolean(appearance)]
+	);
 
 const getAriaOrientation = ({ role, orientation }: Divider) =>
 	role === DividerRole.presentation ? null : orientation;

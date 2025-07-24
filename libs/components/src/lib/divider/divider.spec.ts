@@ -1,4 +1,5 @@
 import { elementUpdated, fixture } from '@repo/shared';
+import { Appearance } from '../enums.js';
 import { Divider } from './divider';
 import '.';
 
@@ -53,6 +54,17 @@ describe('vwc-divider', () => {
 			await elementUpdated(element);
 
 			expect(element.getAttribute('aria-orientation')).toBe(null);
+		});
+	});
+
+	describe('appearance', function () {
+		it('should set the appearance class', async function () {
+			const base = element.shadowRoot?.querySelector('.base');
+			const appearance = 'subtle';
+			element.appearance = Appearance.Subtle;
+			await elementUpdated(element);
+
+			expect(base?.classList.contains(`appearance-${appearance}`)).toBeTruthy();
 		});
 	});
 

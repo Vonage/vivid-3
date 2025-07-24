@@ -11,7 +11,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<div style="margin: 5px;padding-top:5px;">
 			<vwc-divider orientation="horizontal"></vwc-divider>
-			<vwc-divider orientation="vertical" style="block-size: 40px;"></vwc-divider>
+			<vwc-divider orientation="vertical" style="block-size: 40px; margin:20px 0;"></vwc-divider>
+			<vwc-divider appearance="subtle"></vwc-divider>
 		</div>
 		<div style="margin: 5px;">
 			<vwc-action-group appearance="fieldset">

@@ -12,3 +12,14 @@ Use the `orientation` attribute to control the orientation of the Divider. See t
 	}
 </style>
 ```
+
+## Appearance
+
+Use the `appearance` attribute to change the Divider's appearance.
+
+- Type: `'ghost'` | `'subtle'`
+- Default: `'ghost'`
+
+```html preview blocks
+<vwc-divider></vwc-divider> <vwc-divider appearance="subtle"></vwc-divider>
+```
