@@ -405,6 +405,13 @@
 					"propertyName": "disabled"
 				},
 				{
+					"name": "durationFallback",
+					"description": "Enables fallback logic to fetch and decode audio buffer for duration when metadata is missing.",
+					"type": "boolean",
+					"attributeName": "duration-fallback",
+					"propertyName": "durationFallback"
+				},
+				{
 					"name": "notime",
 					"type": "boolean",
 					"attributeName": "notime",
@@ -2084,6 +2091,13 @@
 			"registerFunctionName": "registerDataGrid",
 			"description": "",
 			"props": [
+				{
+					"name": "fixedColumns",
+					"description": "Number of columns to be fixed when scrolling horizontally",
+					"type": "number",
+					"attributeName": "fixed-columns",
+					"propertyName": "fixedColumns"
+				},
 				{
 					"name": "generateHeader",
 					"description": "Whether the grid should automatically generate a header row and its type",

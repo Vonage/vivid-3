@@ -24,6 +24,7 @@ export interface RichTextEditorInlineImageProps {
 	file: File;
 	position?: number;
 	alt?: string;
+	error?: string;
 }
 
 export const RichTextEditorTextBlocks = {
