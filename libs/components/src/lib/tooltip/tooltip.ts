@@ -46,6 +46,8 @@ export class Tooltip extends Anchored(VividElement) {
 		a.addEventListener('mouseout', this.#hide);
 		a.addEventListener('focusin', this.#show);
 		a.addEventListener('focusout', this.#hide);
+		a.setAttribute('aria-haspopup', 'true');
+		a.setAttribute('aria-expanded', String(this.open));
 	}
 
 	#cleanupAnchor(a: HTMLElement) {
@@ -53,15 +55,25 @@ export class Tooltip extends Anchored(VividElement) {
 		a.removeEventListener('mouseout', this.#hide);
 		a.removeEventListener('focusin', this.#show);
 		a.removeEventListener('focusout', this.#hide);
+		a.removeAttribute('aria-haspopup');
+		a.removeAttribute('aria-expanded');
 	}
 
 	#show = () => {
 		this.open = true;
+		this.#updateAnchorExpanded();
 	};
 
 	#hide = () => {
 		this.open = false;
+		this.#updateAnchorExpanded();
 	};
+
+	#updateAnchorExpanded() {
+		if (this._anchorEl) {
+			this._anchorEl.setAttribute('aria-expanded', String(this.open));
+		}
+	}
 
 	#updateListeners() {
 		document.removeEventListener('keydown', this.#closeOnEscape);

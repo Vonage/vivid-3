@@ -2,7 +2,7 @@ import { EditorState, type EditorStateConfig } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import type { MockedObject } from 'vitest';
 import type { RichTextEditorSelection } from '../rich-text-editor.js';
-import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
+import * as schemaModule from './prose-mirror-vivid.schema';
 import { ProseMirrorFacade } from './vivid-prose-mirror.facade';
 
 type DeepPartial<T> = T extends object
@@ -17,9 +17,11 @@ vi.mock('prosemirror-view', async () => ({
 }));
 
 describe('ProseMirrorFacade', () => {
-	function initViewer() {
+	function initViewer(prefix?: string) {
 		const element = document.createElement('div');
-		facadeInstance.init(element);
+		prefix
+			? facadeInstance.init(element, prefix)
+			: facadeInstance.init(element);
 		return element;
 	}
 
@@ -101,15 +103,30 @@ describe('ProseMirrorFacade', () => {
 		});
 
 		it('should use the element and state created with VIVID schema when creating the ProseMirror EditorView', async () => {
+			const mockedSchema = {};
+			vi.spyOn(schemaModule, 'dynamicSchema').mockReturnValueOnce(
+				mockedSchema as any
+			);
+
 			const element = initViewer();
 
 			expect(EditorState.create).toHaveBeenCalledWith({
-				schema: VVD_PROSE_MIRROR_SCHEMA,
+				schema: mockedSchema,
 				plugins: expect.arrayContaining([]),
 			});
 			expect(EditorViewMock).toHaveBeenCalledWith(element, {
 				state: StateMock,
 			});
+		});
+
+		it('should call dynamic schema with given prefix', async () => {
+			const prefix = 'prefix';
+			const mockedSchema = {};
+			const dynamicSchemaSpy = vi
+				.spyOn(schemaModule, 'dynamicSchema')
+				.mockReturnValueOnce(mockedSchema as any);
+			initViewer(prefix);
+			expect(dynamicSchemaSpy).toHaveBeenCalledWith(prefix);
 		});
 
 		it('should set default placeholder text', async () => {
@@ -1081,6 +1098,100 @@ describe('ProseMirrorFacade', () => {
 
 			const img = getOutputElement(element).querySelector('img');
 			expect(img?.alt).toBe('inline image from file test.png');
+		});
+
+		it('should render inline image placeholder component when error is true', async () => {
+			const element = initViewer();
+			const expected =
+				/^<p>ab<vwc-text-editor-image-placeholder[^>]*><\/vwc-text-editor-image-placeholder>c<\/p>$/;
+			facadeInstance.replaceContent('<p>abc</p>');
+			facadeInstance.selection({ start: 3, end: 3 });
+			const image = createImageFile();
+
+			await facadeInstance.addInlineImage({
+				file: image,
+				error: 'Error Message',
+			});
+
+			const output = getOutputElement(element).innerHTML;
+			const img = getOutputElement(element).querySelector('img');
+			expect(output).toMatch(expected);
+			expect(img).toBeNull();
+		});
+
+		it('should render image placeholder with custom prefix when error is true', async () => {
+			const element = initViewer('custom-prefix');
+			const expected =
+				/^<p>ab<custom-prefix-text-editor-image-placeholder[^>]*><\/custom-prefix-text-editor-image-placeholder>c<\/p>$/;
+			facadeInstance.replaceContent('<p>abc</p>');
+			facadeInstance.selection({ start: 3, end: 3 });
+			const image = createImageFile();
+
+			await facadeInstance.addInlineImage({
+				file: image,
+				error: 'Error Message',
+			});
+
+			const output = getOutputElement(element).innerHTML;
+			const img = getOutputElement(element).querySelector('img');
+			expect(output).toMatch(expected);
+			expect(img).toBeNull();
+		});
+
+		it('should set the placeholder props from the image details when error is true', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent('<p>abc</p>');
+			facadeInstance.selection({ start: 3, end: 3 });
+			const image = createImageFile();
+
+			await facadeInstance.addInlineImage({
+				file: image,
+				error: 'Error Message',
+			});
+
+			const imagePlaceholder = getOutputElement(element).querySelector(
+				'vwc-text-editor-image-placeholder'
+			);
+
+			expect(imagePlaceholder?.getAttribute('icon')).toBe('png');
+			expect(imagePlaceholder?.getAttribute('file-name')).toBe('test.png');
+			expect(imagePlaceholder?.getAttribute('error-message')).toBe(
+				'Error Message'
+			);
+		});
+	});
+
+	describe('schema', () => {
+		describe('imageError', () => {
+			it('should render the correct placeholder element with attributes', () => {
+				const prefix = 'custom-prefix';
+				const schema = schemaModule.dynamicSchema(prefix);
+
+				const dom = document.createElement(
+					`${prefix}-text-editor-image-placeholder`
+				);
+				dom.setAttribute('alt', 'alt text');
+				dom.setAttribute('icon', 'png');
+				dom.setAttribute('file-name', 'test.png');
+				dom.setAttribute('error-message', 'Error Message');
+
+				const imageErrorNode = schema.spec.nodes.get('imageError');
+				let attrs;
+				if (
+					imageErrorNode &&
+					imageErrorNode.parseDOM &&
+					imageErrorNode.parseDOM[0] &&
+					typeof imageErrorNode.parseDOM[0].getAttrs === 'function'
+				) {
+					attrs = imageErrorNode.parseDOM[0].getAttrs(dom);
+				} else {
+					attrs = {};
+				}
+
+				expect(attrs && attrs.icon).toBe('png');
+				expect(attrs && attrs['fileName']).toBe('test.png');
+				expect(attrs && attrs['errorMessage']).toBe('Error Message');
+			});
 		});
 	});
 });

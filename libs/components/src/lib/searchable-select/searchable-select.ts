@@ -753,7 +753,11 @@ export class SearchableSelect extends WithFeedback(
 	}
 
 	#textForValue(value: string) {
-		return this._slottedOptions?.find((option) => option.value === value)?.text;
+		const option = this._slottedOptions?.find(
+			(option) => option.value === value
+		);
+
+		return option?.label;
 	}
 
 	/**

@@ -253,6 +253,111 @@ describe('vwc-audio-player', () => {
 					?.textContent?.trim()
 			).toBe('0:00');
 		});
+
+		describe('when duration-fallback is enabled', () => {
+			it('should use fallback duration  when native duration  calculation is not available', async () => {
+				// Mock fetch to return a fake ArrayBuffer
+				globalThis.fetch = vi.fn().mockResolvedValue({
+					arrayBuffer: () => Promise.resolve(new ArrayBuffer(8)),
+				}) as any;
+
+				// Mock AudioContext and decodeAudioData
+				const closeMock = vi.fn();
+				globalThis.AudioContext = vi.fn().mockImplementation(function () {
+					return {
+						decodeAudioData: vi.fn().mockResolvedValue({ duration: 42 }),
+						close: closeMock,
+					};
+				});
+
+				element.durationFallback = true;
+				// Set src and simulate native duration being unavailable
+				setAudioElementDuration(Infinity);
+				element.src = 'https://example.com/audio.mp3';
+				const event = new Event('loadedmetadata');
+				nativeAudioElement.dispatchEvent(event);
+
+				// Wait for the fallback promise to resolve
+				await new Promise((resolve) => setTimeout(resolve, 10));
+
+				expect(element.duration).toBe(42);
+			});
+
+			it('should not fetch if src is not set', async () => {
+				element.durationFallback = true;
+				setAudioElementDuration(Infinity);
+				element.src = undefined;
+				const event = new Event('loadedmetadata');
+				nativeAudioElement.dispatchEvent(event);
+
+				const fetchSpy = vi.spyOn(globalThis, 'fetch');
+				await elementUpdated(element);
+				expect(fetchSpy).not.toHaveBeenCalled();
+				fetchSpy.mockRestore();
+			});
+
+			it('should handle errors during fetch and clean up the abort controller', async () => {
+				element.durationFallback = true;
+				setAudioElementDuration(Infinity);
+				element.src = 'https://example.com/audio.mp3';
+
+				// Make fetch reject
+				globalThis.fetch = vi.fn().mockRejectedValue(new Error('fetch failed'));
+
+				const event = new Event('loadedmetadata');
+				nativeAudioElement.dispatchEvent(event);
+
+				// Wait for the promise to settle
+				await new Promise((resolve) => setTimeout(resolve, 10));
+
+				// The abort controller should be cleaned up
+				expect((element as any).fetchAbortController).toBeUndefined();
+			});
+
+			it('should abort ongoing fetch request when a new fetch is initiated on src change', async () => {
+				const abortSpy = vi.fn();
+				let resolveFetch: any;
+				const fetchPromise = new Promise((resolve) => {
+					resolveFetch = resolve;
+				});
+				globalThis.fetch = vi.fn().mockImplementation((_url, { signal }) => {
+					if (signal) {
+						signal.addEventListener('abort', abortSpy);
+					}
+					return fetchPromise;
+				});
+
+				// Mock AudioContext and decodeAudioData
+				const closeMock = vi.fn();
+				globalThis.AudioContext = vi.fn().mockImplementation(function () {
+					return {
+						decodeAudioData: vi.fn().mockResolvedValue({ duration: 42 }),
+						close: closeMock,
+					};
+				});
+
+				element.durationFallback = true;
+				setAudioElementDuration(Infinity);
+				element.src = 'https://example.com/audio1.mp3';
+				const event1 = new Event('loadedmetadata');
+				nativeAudioElement.dispatchEvent(event1);
+
+				// Trigger another fetch before the first one resolves
+				element.src = 'https://example.com/audio2.mp3';
+				const event2 = new Event('loadedmetadata');
+				nativeAudioElement.dispatchEvent(event2);
+
+				// Wait a tick for abort to propagate
+				await new Promise((resolve) => setTimeout(resolve, 10));
+
+				expect(abortSpy).toHaveBeenCalled();
+				// Clean up
+				resolveFetch &&
+					resolveFetch({
+						arrayBuffer: () => Promise.resolve(new ArrayBuffer(8)),
+					});
+			});
+		});
 	});
 
 	describe('currentTime', () => {
