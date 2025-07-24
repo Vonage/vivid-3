@@ -232,10 +232,12 @@ module.exports = function (eleventyConfig) {
 	});
 
 	eleventyConfig.on('eleventy.after', async ({ dir, runMode }) => {
-		spawnSync('npx', ['pagefind', '--site', dir.output], {
-			windowsHide: true,
-			stdio: [process.stdin, process.stdout, process.stderr],
-		});
+		if (runMode === 'serve') {
+			spawnSync('npx', ['pagefind', '--site', dir.output], {
+				windowsHide: true,
+				stdio: [process.stdin, process.stdout, process.stderr],
+			});
+		}
 	});
 
 	return {

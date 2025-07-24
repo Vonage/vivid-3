@@ -4,6 +4,7 @@
 	"scripts": {
 		"prebuild": "rm -rf .11ty-vite dist",
 		"build": "eleventy",
+		"postbuild": "pagefind --site dist",
 		"predev": "rm -rf .11ty-vite dist",
 		"dev": "eleventy --serve",
 		"lint": "eslint . --max-warnings=0",
