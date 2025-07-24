@@ -13,12 +13,13 @@ module.exports =
 		const info = token.info ? unescapeAll(token.info).trim() : '';
 		const [lang, ...additionalOptions] = info.split(/\s+/g);
 
-		if (lang === 'html') {
+		if (lang === 'html' || lang === 'vue') {
 			if (additionalOptions.includes('preview')) {
 				return `${createCodeExample({
 					code: token.content,
 					options: additionalOptions,
 					url: env.page.url,
+					lang,
 				})}\n`;
 			}
 

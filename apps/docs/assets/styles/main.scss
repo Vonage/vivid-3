@@ -385,6 +385,10 @@ vwc-note ~ vwc-note {
 	margin-block-start: 16px;
 }
 
+docs-live-sample {
+	margin-block: 16px;
+}
+
 /* #endregion article */
 
 /* #startregion table */
@@ -421,41 +425,6 @@ th {
 /* #endregion table */
 
 /* #region code fence demo */
-
-.cbd-iframe-container {
-	position: relative;
-}
-
-.cbd-demo {
-	overflow: hidden;
-	width: 100%;
-	border: none;
-	border-radius: 8px 8px 0 0;
-	block-size: 30px;
-}
-
-.cbd-actions {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.cbd-locale-switcher {
-	margin: 8px;
-}
-
-.cbd-details > summary {
-	display: none;
-}
-
-.cbd-code-block {
-	border-top: 1px solid var(--vvd-color-neutral-100);
-}
-
-.cbd-code-block > pre {
-	border-radius: 0;
-	margin: 0;
-}
 
 .cbd-variables,
 .cbd-variables th,
