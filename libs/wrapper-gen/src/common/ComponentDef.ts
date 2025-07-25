@@ -1,5 +1,17 @@
 import { TypeStr } from './types';
 
+type TestUtilAnnotation = {
+	name: string;
+	args: string[];
+};
+
+export type VividTestUtilsManifest = {
+	selectors: TestUtilAnnotation[];
+	actions: TestUtilAnnotation[];
+	queries: TestUtilAnnotation[];
+	refs: TestUtilAnnotation[];
+};
+
 export interface ComponentDef {
 	name: string; // The un-prefixed Vivid component tag name. e.g. accordion-item
 	className: string; // Name of the vivid class, e.g. AccordionItem. May differ from name e.g. option -> ListboxOption
@@ -36,4 +48,5 @@ export interface ComponentDef {
 		name: string;
 		description?: string;
 	}[];
+	testUtils: VividTestUtilsManifest;
 }
