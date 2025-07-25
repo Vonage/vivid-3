@@ -3,12 +3,12 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../../shared/design-system/defineVividComponent';
 import { MENU_BAR_ITEMS } from './consts.js';
-import { MenuBar } from './menubar.js';
+import { Menubar } from './menubar.js';
 
-const getClasses = (menuBar: MenuBar) =>
+const getClasses = (menubar: Menubar) =>
 	classNames('control', [
 		'hide-menubar',
-		getValidMenuItems(menuBar).length === 0,
+		getValidMenuItems(menubar).length === 0,
 	]);
 
 const validItems = ['textBlock', 'textDecoration', 'textSize', 'divider'];
@@ -21,7 +21,7 @@ function createMenuItem(item: string) {
 	return MENU_BAR_ITEMS[item].render;
 }
 
-function getValidMenuItems({ menuItems }: MenuBar) {
+function getValidMenuItems({ menuItems }: Menubar) {
 	return menuItems
 		? menuItems.split(' ').filter((item) => validItems.includes(item))
 		: [];
@@ -29,7 +29,7 @@ function getValidMenuItems({ menuItems }: MenuBar) {
 
 function renderMenuItems(context: VividElementDefinitionContext) {
 	return () =>
-		html<MenuBar>`${repeat(
+		html<Menubar>`${repeat(
 			getValidMenuItems,
 			html`${(menuItemName, { parent }) => {
 				getPropertyStateRgistrationFunction(menuItemName)?.(parent);
@@ -39,14 +39,14 @@ function renderMenuItems(context: VividElementDefinitionContext) {
 }
 
 /**
- * The template for the MenuBar component.
+ * The template for the Menubar component.
  *
  * @param context - element definition context
  * @public
  */
-export const MenuBarTemplate: (
+export const MenubarTemplate: (
 	context: VividElementDefinitionContext
-) => ViewTemplate<MenuBar> = (context: VividElementDefinitionContext) => {
+) => ViewTemplate<Menubar> = (context: VividElementDefinitionContext) => {
 	return html`<template class="${getClasses}">
 		${renderMenuItems(context)}
 	</template>`;

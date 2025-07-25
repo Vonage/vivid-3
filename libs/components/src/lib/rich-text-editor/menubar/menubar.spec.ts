@@ -5,13 +5,13 @@ import { Select } from '../../select/select';
 import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
 import { setLocale } from '../../../shared/localization';
-import { MenuBar } from './menubar';
+import { Menubar } from './menubar';
 import { TEXT_DECORATION_ITEMS, TEXT_SIZES } from './consts';
 import '.';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
-describe('menuBar', () => {
+describe('menubar', () => {
 	async function openTextBlockMenu() {
 		getSelectionMenu('text-block').open = true;
 		await elementUpdated(element);
@@ -21,18 +21,18 @@ describe('menuBar', () => {
 		return element.shadowRoot?.querySelector(`#${menuItemName}`) as Select;
 	}
 
-	let element: MenuBar;
+	let element: Menubar;
 
 	beforeEach(async () => {
 		setLocale(enUS);
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as unknown as MenuBar;
+		)) as unknown as Menubar;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-menubar', async () => {
-			expect(element).toBeInstanceOf(MenuBar);
+			expect(element).toBeInstanceOf(Menubar);
 		});
 
 		it('should allow being created via createElement', () => {
