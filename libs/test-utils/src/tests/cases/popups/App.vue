@@ -46,9 +46,9 @@ function delayedClose() {
 					<VOption value="3" label="Option 3" text="Text 3" />
 				</VSelect>
 				<VSearchableSelect multiple data-testid="searchable" label="Searchable">
-					<VOption initial-value="1" label="Option 1" text="Text 1" />
-					<VOption initial-value="2" label="Option 2" text="Text 2" />
-					<VOption initial-value="3" label="Option 3" text="Text 3" />
+					<VOption value="1" label="Option 1" text="Text 1" />
+					<VOption value="2" label="Option 2" text="Text 2" />
+					<VOption value="3" label="Option 3" text="Text 3" />
 				</VSearchableSelect>
 			</template>
 			<template #footer>

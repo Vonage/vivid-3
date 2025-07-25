@@ -68,7 +68,10 @@ export function toggleOptionsByValue<D extends DriverT>(
 		...values.map(
 			(value) => () =>
 				ctx.driver.userClick(
-					ctx.driver.querySelector(locator(), `[value="${value}"]`)
+					ctx.driver.querySelector(
+						locator(),
+						`[data-vvd-component=option][value="${value}"]`
+					)
 				)
 		),
 	]);

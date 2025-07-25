@@ -126,7 +126,8 @@ export class ${kebabToPascal(def.name)}Expectations<D extends DriverT> {
 			{
 				type: 'eval',
 				el: this.wrapper.unwrap(),
-				fn: (el: any) => el[propName],
+				fn: (el: any, propName: any) => el[propName],
+				arg: propName
 			},
 			value
 		);
