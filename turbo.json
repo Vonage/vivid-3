@@ -59,17 +59,22 @@
 			"outputs": ["coverage/**"]
 		},
 		"e2e": {
-			"dependsOn": ["^build"],
+			"dependsOn": ["build"],
+			"outputs": ["test-results/**"],
+			"passThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH"]
+		},
+		"cy": {
+			"dependsOn": ["build"],
 			"outputs": ["test-results/**"],
 			"passThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH"]
 		},
 		"e2e:ui": {
-			"dependsOn": ["^build"],
+			"dependsOn": ["build"],
 			"cache": false,
 			"persistent": true
 		},
-		"cy:open": {
-			"dependsOn": ["^build"],
+		"cy:ui": {
+			"dependsOn": ["build"],
 			"cache": false,
 			"persistent": true
 		},

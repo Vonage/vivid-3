@@ -34,9 +34,10 @@
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
 		"test": "vitest run",
-		"e2e": "concurrently -k -s first -n VITE,TEST \"vite src/tests/cases -c ./vite.config.ts\" \"npx wait-on http://localhost:5173 && npx playwright test && npx cypress run\"",
-		"playwright:open": "playwright test --ui",
-		"cypress:open": "cypress open",
+		"e2e": "concurrently -k -s first -n VITE,TEST \"npx vite src/tests/cases -c ./vite.config.ts --host\" \"npx wait-on http://localhost:5173 && npx playwright test\"",
+		"cy": "concurrently -k -s first -n VITE,TEST \"npx vite src/tests/cases -c ./vite.config.ts --host\" \"npx wait-on http://localhost:5173 && npx cypress run\"",
+		"e2e:ui": "playwright test --ui",
+		"cy:ui": "cypress open",
 		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},
 	"dependencies": {
