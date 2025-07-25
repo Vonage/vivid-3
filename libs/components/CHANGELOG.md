@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.30.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.29.0...vivid-v4.30.0) (2025-07-25)
+
+
+### Features
+
+* **tag:** add support for subtle-light appearance (VIV-2741)  ([#2468](https://github.com/Vonage/vivid-3/issues/2468)) ([24a16cd](https://github.com/Vonage/vivid-3/commit/24a16cd276481176266bc44a3ad9c3508ff59c1b))
+
 ## [4.29.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.28.0...vivid-v4.29.0) (2025-07-25)
 
 
