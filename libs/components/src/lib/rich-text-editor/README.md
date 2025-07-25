@@ -17,7 +17,6 @@ The `value` property sets and gets the HTML content of the Rich Text Editor comp
 ```html preview
 <vwc-rich-text-editor></vwc-rich-text-editor>
 <script>
-	// waiting for the component to load so using interval. A better mechanism is in the works.
 	rteComponent = document.querySelector('vwc-rich-text-editor');
 	const interval = setInterval(() => {
 		if (!rteComponent.value) return;
@@ -36,7 +35,6 @@ Use the `selectionStart` attribute to get or set the starting point of the marke
 <p>Focus using the keyboard into the component to see the selection</p>
 <vwc-rich-text-editor></vwc-rich-text-editor>
 <script>
-	// waiting for the component to load so using interval. A better mechanism is in the works.
 	rteComponent = document.querySelector('vwc-rich-text-editor');
 	const interval = setInterval(() => {
 		if (!rteComponent.value) return;
@@ -58,7 +56,6 @@ Use the `selectionEnd` attribute to get or set the end point of the marker. To s
 <p>Focus using the keyboard into the component to see the selection</p>
 <vwc-rich-text-editor></vwc-rich-text-editor>
 <script>
-	// waiting for the component to load so using interval. A better mechanism is in the works.
 	rteComponent = document.querySelector('vwc-rich-text-editor');
 	const interval = setInterval(() => {
 		if (!rteComponent.value) return;
@@ -114,10 +111,10 @@ Use the `setTextBlock` method to set the text block to one of three types: `titl
 	async function start() {
 		await waitForEditorReady();
 		rteComponent.value = `
-			<p>Title</p>
-			<p>Sub Title</p>
-			<p>Body</p>
-		`;
+            <p>Title</p>
+            <p>Sub Title</p>
+            <p>Body</p>
+        `;
 		moveMarkerToPosition(2);
 		rteComponent.setTextBlock('title');
 		moveMarkerToPosition(11);
@@ -131,9 +128,7 @@ Use the `setTextBlock` method to set the text block to one of three types: `titl
 		await new Promise((res) => requestAnimationFrame(res));
 	}
 
-	// waiting for the component to load so using interval. A better mechanism is in the works.
 	rteComponent = document.querySelector('vwc-rich-text-editor');
-
 	start();
 </script>
 ```
@@ -180,10 +175,10 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 	async function start() {
 		await waitForEditorReady();
 		rteComponent.value = `
-			<p>Title</p>
-			<p>Sub Title</p>
-			<p>Body</p>
-		`;
+            <p>Title</p>
+            <p>Sub Title</p>
+            <p>Body</p>
+        `;
 		moveMarkerToPosition(2);
 		rteComponent.setTextBlock('title');
 		moveMarkerToPosition(11);
@@ -197,9 +192,7 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 		await new Promise((res) => requestAnimationFrame(res));
 	}
 
-	// waiting for the component to load so using interval. A better mechanism is in the works.
 	rteComponent = document.querySelector('vwc-rich-text-editor');
-
 	start();
 </script>
 ```
@@ -273,8 +266,8 @@ Set a component in the `attachments` slot to show them inside the editor area.
 		await waitForEditorReady();
 		console.log('adding value');
 		rteComponent.value = `
-			<p>Technically sound</p><p>everlasting peace</p><p>no matter what you do</p><p>I'll stay around with you</p><p>and noone ever dared</p><p>to hook my piece of ware</p><p>no matter how it goes</p><p>the matter usually blows</p>
-		`;
+            <p>Technically sound</p><p>everlasting peace</p><p>no matter what you do</p><p>I'll stay around with you</p><p>and noone ever dared</p><p>to hook my piece of ware</p><p>no matter how it goes</p><p>the matter usually blows</p>
+        `;
 	}
 
 	async function moveMarkerToPosition(moveTo) {
@@ -284,7 +277,6 @@ Set a component in the `attachments` slot to show them inside the editor area.
 
 	rteComponent = document.querySelector('vwc-rich-text-editor');
 
-	// Observe visibility of the attachments slot
 	observer = new IntersectionObserver(
 		(entries) => {
 			const entry = entries[0];
@@ -303,56 +295,16 @@ Set a component in the `attachments` slot to show them inside the editor area.
 </script>
 ```
 
-## CSS Variables
-
 ## Events
-
-### file-drop
-
-```html preview 250px
-<vwc-layout gutters="small" column-basis="block" row-spacing="small">
-	<vwc-rich-text-editor>
-		<vwc-menubar
-			slot="menu-bar"
-			menu-items="textBlock textSize divider textDecoration divider"
-		></vwc-menubar>
-	</vwc-rich-text-editor>
-</vwc-layout>
-<script>
-	const rteComponent = document.querySelector('vwc-rich-text-editor');
-	async function waitForEditorReady() {
-		await new Promise((res) => {
-			const interval = setInterval(() => {
-				if (!rteComponent.value) return;
-				clearInterval(interval);
-				res();
-			});
-		});
-	}
-
-	async function start() {
-		await waitForEditorReady();
-		rteComponent.addEventListener('file-drop', (event) => {
-			console.log(event.detail);
-			rteComponent.addInlineImage({
-				file: event.detail[0],
-				position: 3,
-				alt: 'this is a test inline image',
-			});
-		});
-	}
-
-	start();
-</script>
-```
 
 <div class="table-wrapper">
 
-| Name                  | Type                     | Bubbles | Composed | Description                                                                          |
-| --------------------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------ |
-| **input**             | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'input' event when the content was edited by the user                 |
-| **change**            | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the element is blurred and the content was edited |
-| **selection-changed** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'selection-changed' event when the selection in the editor changes    |
+| Name                  | Type                     | Bubbles | Composed | Description                                                                                    |
+| --------------------- | ------------------------ | ------- | -------- | ---------------------------------------------------------------------------------------------- |
+| **input**             | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'input' event when the content was edited by the user                           |
+| **change**            | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the element is blurred and the content was edited           |
+| **selection-changed** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'selection-changed' event when the selection in the editor changes              |
+| **file-drop**         | `CustomEvent<FileList>`  | Yes     | Yes      | Fires when files are dropped onto the editor. The event’s `detail` contains the dropped files. |
 
 </div>
 
@@ -362,50 +314,18 @@ Set a component in the `attachments` slot to show them inside the editor area.
 
 | Name                       | Returns | Description                                                                                                                                                                                                                                                                      |
 | -------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **setTextBlock**           |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection                                                                                                                                                                         |
-| **setSelectionDecoration** |         | Accepts a decoration type (`bold`, `italic`, `underline`, `strikethrough` and `monospace`) and applies it to the current selection in the editor. If the decoration type is invalid, it logs a warning.                                                                          |
+| **setTextBlock**           |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection. Logs a warning if the block type is invalid.                                                                                                                           |
+| **setSelectionDecoration** |         | Accepts a decoration type (`bold`, `italic`, `underline`, `strikethrough`, `monospace`) and applies it to the current selection in the editor. Logs a warning if the decoration type is invalid.                                                                                 |
 | **setSelectionTextSize**   |         | Accepts a text size (`extra-large`, `large`, `normal`, or `small`) and applies it to the current selection in the editor.                                                                                                                                                        |
 | **scrollToAttachments**    |         | Accepts `pixelsAddition` which defaults to 0 and scrolls to the top of the attachments area plus the `pixelsAddition` value.                                                                                                                                                     |
 | **addInlineImage**         |         | Accepts an object with `file: File`, optional `position?: number`, and optional `alt?: string`. Inserts an inline image at the given position or at the current marker position if not provided. If `alt` is not provided, it defaults to `inline image from file ${file.name}`. |
 
 </div>
 
-## Image Placeholder
+## CSS Variables
 
-The `vwc-text-editor-image-placeholder` component is used to display a placeholder for files that failed to attach or load. It includes an icon, file name, file suffix, and an error message.
+## Menu Bar
 
-### Example Usage
-
-```html preview
-<vwc-text-editor-image-placeholder
-	file-name="example.pdf"
-	icon="pdf"
-	error-message="Failed to attach"
-></vwc-text-editor-image-placeholder>
-```
-
-### Attributes
-
-| Name            | Type     | Description                                                                           |
-| --------------- | -------- | ------------------------------------------------------------------------------------- |
-| `file-name`     | `string` | The name of the file being represented.                                               |
-| `icon`          | `string` | The icon type to display (e.g., `pdf`, `png`, `jpg`). Defaults to `clear-file-solid`. |
-| `error-message` | `string` | The error message to display below the file name.                                     |
-
-### Accessibility
-
-- The `file-name` attribute is reflected in the `title` attribute for better accessibility (e.g. long file names).
-- The error message is displayed prominently for screen readers.
-
-```html preview
-<style>
-	vwc-text-editor-image-placeholder {
-		margin: 16px;
-	}
-</style>
-<vwc-text-editor-image-placeholder
-	file-name="example very long file name.that also has more than one part.jpg"
-	icon="jpg"
-	error-message="Failed to attach jpg file"
-></vwc-text-editor-image-placeholder>
-```
+Use the `<vwc-menubar>` component in the `menu-bar` slot for adding style controls.  
+Supported menu bar items: `textBlock`, `textDecoration`, `textSize`, `divider`.  
+Menu bar options and tooltips are localized.
