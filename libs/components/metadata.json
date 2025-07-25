@@ -7409,7 +7409,7 @@
 				{
 					"name": "appearance",
 					"description": "The appearance the tag should have.",
-					"type": "'subtle' | 'duotone'",
+					"type": "'subtle' | 'duotone' | 'subtle-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},
