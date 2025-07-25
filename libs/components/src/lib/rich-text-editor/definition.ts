@@ -3,7 +3,7 @@ import { defineVividComponent } from '../../shared/design-system/defineVividComp
 import { dividerDefinition } from '../components';
 import styles from './rich-text-editor.scss?inline';
 
-import { menuBarDefinition } from './menubar/definition';
+import { menubarDefinition } from './menubar/definition';
 import {
 	RichTextEditor,
 	type RichTextEditorInlineImageProps,
@@ -15,7 +15,7 @@ export const richTextEditorDefinition = defineVividComponent(
 	'rich-text-editor',
 	RichTextEditor,
 	template,
-	[menuBarDefinition, dividerDefinition, imagePlaceholderDefinition],
+	[menubarDefinition, dividerDefinition, imagePlaceholderDefinition],
 	{
 		styles,
 		shadowOptions: {

@@ -7,13 +7,13 @@ import { tooltipDefinition } from '../../tooltip/definition';
 import { menuDefinition } from '../../menu/definition';
 import { menuItemDefinition } from '../../menu-item/definition';
 import { selectDefinition } from '../../select/definition';
-import { MenuBarTemplate as template } from './menubar.template';
-import { MenuBar } from './menubar';
+import { MenubarTemplate as template } from './menubar.template';
+import { Menubar } from './menubar';
 import styles from './menubar.scss?inline';
 
-export const menuBarDefinition = defineVividComponent(
+export const menubarDefinition = defineVividComponent(
 	'menubar',
-	MenuBar,
+	Menubar,
 	template,
 	[
 		buttonDefinition,
@@ -37,4 +37,4 @@ export const menuBarDefinition = defineVividComponent(
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerMenuBar = createRegisterFunction(menuBarDefinition);
+export const registerMenubar = createRegisterFunction(menubarDefinition);

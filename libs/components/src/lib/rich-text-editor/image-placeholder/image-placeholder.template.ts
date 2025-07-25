@@ -22,7 +22,7 @@ const getFileName = (x: ImagePlaceholder) => {
 	return x.fileName?.replace(/\.[^/.]+$/, '') || '';
 };
 /**
- * The template for the MenuBar component.
+ * The template for the Menubar component.
  *
  * @param context - element definition context
  * @public
