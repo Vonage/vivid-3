@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.29.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.28.0...vivid-vue-v4.29.0) (2025-07-25)
+
+
+### Bug Fixes
+
+* **audio-player:** fix duration bar and skip controls not working correctly (VIV-2728)  ([#2445](https://github.com/Vonage/vivid-3/issues/2445)) ([c2549ed](https://github.com/Vonage/vivid-3/commit/c2549ed19cbcd379c5a67b7c67afd42091f54af5))
+
 ## [4.28.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.27.0...vivid-vue-v4.28.0) (2025-07-09)
 
 
