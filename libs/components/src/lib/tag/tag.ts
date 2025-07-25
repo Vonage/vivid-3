@@ -23,7 +23,7 @@ export type TagConnotation = ExtractFromEnum<
  */
 export type TagAppearance = ExtractFromEnum<
 	Appearance,
-	Appearance.Subtle | Appearance.Duotone
+	Appearance.Subtle | Appearance.Duotone | Appearance.SubtleLight
 >;
 
 /**
