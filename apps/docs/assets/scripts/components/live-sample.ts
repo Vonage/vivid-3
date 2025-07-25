@@ -17,6 +17,7 @@ import {
 import _ from 'lodash';
 import { getCurrentThemeCss } from '../theme-handler';
 import { deDE, enGB, enUS, jaJP, zhCN } from '../locales-bundle';
+import type { ViewUpdate } from '@codemirror/view';
 
 const locales = {
 	'en-US': enUS,
@@ -125,7 +126,7 @@ const locales = {
 									icon="code-line"
 									aria-expanded="${(x) => (x.open ? 'true' : 'false')}"
 									aria-controls="details"
-									@click="${(x) => x.toggleCode()}"
+									@click="${(x) => x.toggleEditorOpen()}"
 								></vwc-button>
 							</vwc-tooltip>
 							<vwc-tooltip
@@ -197,7 +198,7 @@ export class LiveSample extends FASTElement {
 				oneDark,
 				...(this.readonly
 					? [EditorState.readOnly.of(true), EditorView.editable.of(false)]
-					: [EditorView.updateListener.of(() => this.updateIframeCode())]),
+					: [EditorView.updateListener.of(this.updateIframeCode)]),
 				minimalSetup,
 				bracketMatching(),
 				codeMirrorHtml(),
@@ -275,11 +276,15 @@ export class LiveSample extends FASTElement {
 			.removeEventListener('change', this.setIframeTheme);
 	}
 
-	updateIframeCode = _.debounce(() => {
+	updateIframeCode = _.debounce((update: ViewUpdate) => {
+		if (!update.docChanged) {
+			return;
+		}
+
 		const placeholder =
 			this.iframeEl.contentDocument!.querySelector('#_target');
 		if (!placeholder) {
-			return;
+			return; // iframe is not ready
 		}
 
 		const updatedCode = this.view.state.doc.toString().trim();

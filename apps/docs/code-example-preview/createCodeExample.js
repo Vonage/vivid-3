@@ -45,17 +45,10 @@ function createCodeExample({ code, options, cssProperties, url, lang }) {
 
 	const id = getExampleId(url);
 	const src = createExample(code, options, id, lang);
-	return renderLiveSample(id, src, code, options, cssProperties, lang);
+	return renderLiveSample(src, code, options, cssProperties, lang);
 }
 
-const renderLiveSample = (
-	id,
-	src,
-	content,
-	classList,
-	variableToShow,
-	lang
-) => {
+const renderLiveSample = (src, content, classList, variableToShow, lang) => {
 	const code = _.escape(content).trim();
 
 	const vwcUsages = content.match(/vwc-[\w-]+/g) ?? [];
