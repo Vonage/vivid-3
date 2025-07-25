@@ -20,15 +20,17 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@vonage/vivid": "*",
 		"@repo/consts": "*",
-		"@repo/styles": "*"
+		"@repo/styles": "*",
+		"@vonage/vivid": "*",
+		"@vonage/vivid-vue": "*"
 	},
 	"devDependencies": {
-		"@repo/typescript-config": "*",
 		"@repo/eslint-config": "*",
+		"@repo/shared": "*",
 		"@repo/stylelint-config": "*",
+		"@repo/typescript-config": "*",
 		"@repo/vitest-config": "*",
-		"@repo/shared": "*"
+		"@vitejs/plugin-vue": "^6.0.0"
 	}
 }

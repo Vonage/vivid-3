@@ -61,27 +61,3 @@
 		}
 	}
 }
-
-.code-example-wrapper {
-	display: flex;
-	align-items: start;
-	gap: 32px;
-
-	& > * {
-		flex: 1;
-
-		> p:first-child,
-		> ul:first-child,
-		> ol:first-child {
-			margin-block-start: 0;
-		}
-	}
-
-	p:empty {
-		display: none;
-	}
-
-	.cbd-container {
-		margin-block-start: -15px;
-	}
-}
