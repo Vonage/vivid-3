@@ -4,6 +4,29 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.29.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.28.0...vivid-v4.29.0) (2025-07-25)
+
+
+### Features
+
+* **data-grid:** add fixed columns attribute (VIV-2637) ([#2459](https://github.com/Vonage/vivid-3/issues/2459)) ([ddcaa8c](https://github.com/Vonage/vivid-3/commit/ddcaa8c62451e39f02bb3216d2a956a4e4ff9b4f))
+* **date-picker, date-time-picker:** adjust the contrast of the selected day’s color to comply with accessibility standards (VIV-2719)  ([#2463](https://github.com/Vonage/vivid-3/issues/2463)) ([76dde1b](https://github.com/Vonage/vivid-3/commit/76dde1bc229c07c87e0059ca76e7a5e576a9ef16))
+* **divider:** add appearance prop to divider (VIV-2684) ([#2466](https://github.com/Vonage/vivid-3/issues/2466)) ([3618acc](https://github.com/Vonage/vivid-3/commit/3618acc6a0c0cb079e681ac3a0f994151c3b59f5))
+* **searchable-select:** add  label attribute  support for option (VIV-2735) ([#2451](https://github.com/Vonage/vivid-3/issues/2451)) ([0073b8b](https://github.com/Vonage/vivid-3/commit/0073b8bd99903a5427f790d5ec6236f4ca98d8ed))
+
+
+### Bug Fixes
+
+* **audio-player:** fix duration bar and skip controls not working correctly (VIV-2728)  ([#2445](https://github.com/Vonage/vivid-3/issues/2445)) ([c2549ed](https://github.com/Vonage/vivid-3/commit/c2549ed19cbcd379c5a67b7c67afd42091f54af5))
+* **combobox:** Fix contrast accessibility issue (VIV-2731) ([#2447](https://github.com/Vonage/vivid-3/issues/2447)) ([0008705](https://github.com/Vonage/vivid-3/commit/00087058c4f81fb6a376656891e212488c1c2578))
+* **data-grid:** announce sortable column header as a button (VIV-2736) ([#2449](https://github.com/Vonage/vivid-3/issues/2449)) ([8ae2c72](https://github.com/Vonage/vivid-3/commit/8ae2c7217567663d188aeced22fc68c4f384fa77))
+* **date-time-picker:** input event does not not update the value on typing (VIV-2715)  ([#2433](https://github.com/Vonage/vivid-3/issues/2433)) ([77625cc](https://github.com/Vonage/vivid-3/commit/77625cce90751c0690f2c8e0f9ad3b302f2578e5))
+* **divider:** apply aria attributes to the host (VIV-2737) ([#2446](https://github.com/Vonage/vivid-3/issues/2446)) ([877fa59](https://github.com/Vonage/vivid-3/commit/877fa59a7efab676ffd3932a472fa8e9197e9ed2))
+* **option:** fix value not being reflected (VIV-2748) ([#2457](https://github.com/Vonage/vivid-3/issues/2457)) ([bc8442c](https://github.com/Vonage/vivid-3/commit/bc8442c5f92ce4f64638eb5bf4b31fe9e9f3ac7c))
+* **searchable-select:** add CSS fallback for option-tag background (VIV-2753) ([#2465](https://github.com/Vonage/vivid-3/issues/2465)) ([2732df3](https://github.com/Vonage/vivid-3/commit/2732df318756c64c3ffbef7eafa313e67c8510ed))
+* **searchable-select:** display focus indicator on list items (VIV-2732) ([#2450](https://github.com/Vonage/vivid-3/issues/2450)) ([2ed4ee5](https://github.com/Vonage/vivid-3/commit/2ed4ee5c5ab4b2db8b561abe951a42a9df3463fb))
+* **tooltip:** tooltip anchor a11y (VIV-2748) ([#2456](https://github.com/Vonage/vivid-3/issues/2456)) ([8aa8b40](https://github.com/Vonage/vivid-3/commit/8aa8b40afa7e135f5d62bb1825859762e4f22961))
+
 ## [4.28.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.27.0...vivid-v4.28.0) (2025-07-09)
 
 
