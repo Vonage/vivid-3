@@ -27,7 +27,6 @@ describe('vwc-selectable-box', () => {
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
 			expect(element.clickableBox).toBe(false);
-			expect(element.clickable).toBe(false);
 			expect(element.tight).toBe(false);
 			expect(element.checked).toBe(false);
 		});
@@ -161,18 +160,6 @@ describe('vwc-selectable-box', () => {
 			await elementUpdated(element);
 
 			expect(baseElement?.classList?.contains('clickable')).toBe(true);
-		});
-	});
-
-	describe('clickable', () => {
-		it('should set clickableBox', async function () {
-			element.clickable = true;
-			expect(element.clickableBox).toBe(true);
-		});
-
-		it('should not be set by clickableBox', async function () {
-			element.clickableBox = true;
-			expect(element.clickable).toBe(false);
 		});
 	});
 
