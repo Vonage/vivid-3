@@ -6523,12 +6523,6 @@
 					"propertyName": "checked"
 				},
 				{
-					"name": "clickable",
-					"type": "boolean",
-					"attributeName": "clickable",
-					"propertyName": "clickable"
-				},
-				{
 					"name": "clickableBox",
 					"description": "Makes the entire selectable box clickable",
 					"type": "boolean",
