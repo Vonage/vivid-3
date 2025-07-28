@@ -65,7 +65,6 @@
 		},
 		"cy": {
 			"dependsOn": ["build"],
-			"outputs": ["test-results/**"],
 			"passThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH"]
 		},
 		"e2e:ui": {
