@@ -44,6 +44,8 @@ jobs:
     container:
       image: cypress/browsers:22.15.0
       options: --user 1001
+      env:
+        CYPRESS_CACHE_FOLDER: '~/.cache/Cypress'
     steps:
       - uses: actions/checkout@v4
         with:
