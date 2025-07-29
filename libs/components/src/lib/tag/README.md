@@ -60,12 +60,13 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 Set the `appearance` attribute to change the tag's appearance.
 
-- Type: `'subtle'` | `'duotone'`
+- Type: `'subtle'` | `'duotone'` | `'subtle-light'`
 - Default: `'subtle'`
 
 ```html preview
 <vwc-tag-group>
 	<vwc-tag label="subtle" appearance="subtle"></vwc-tag>
+	<vwc-tag label="subtle-light" appearance="subtle-light"></vwc-tag>
 	<vwc-tag label="duotone" appearance="duotone"></vwc-tag>
 </vwc-tag-group>
 ```
@@ -82,8 +83,22 @@ It accepts a subset of predefined values.
 
 ```html preview
 <vwc-tag-group>
-	<vwc-tag label="accent" appearance="subtle" connotation="accent"></vwc-tag>
-	<vwc-tag label="cta" appearance="subtle" connotation="cta"></vwc-tag>
+	<vwc-tag label="Accent" appearance="subtle" connotation="accent"></vwc-tag>
+	<vwc-tag label="CTA" appearance="subtle" connotation="cta"></vwc-tag>
+</vwc-tag-group>
+<p>Subtle-Light Tag with connotation</p>
+<vwc-tag-group>
+	<vwc-tag
+		label="Accent"
+		appearance="subtle-light"
+		connotation="accent"
+	></vwc-tag>
+	<vwc-tag label="CTA" appearance="subtle-light" connotation="cta"></vwc-tag>
+</vwc-tag-group>
+<p>Duotone Tag with connotation</p>
+<vwc-tag-group>
+	<vwc-tag label="Accent" appearance="duotone" connotation="accent"></vwc-tag>
+	<vwc-tag label="CTA" appearance="duotone" connotation="cta"></vwc-tag>
 </vwc-tag-group>
 ```
 
@@ -119,7 +134,14 @@ Toggle the `selected` attribute to select and deselect the tag.
 
 ```html preview
 <vwc-tag-group>
-	<vwc-tag label="selectable" selectable selected></vwc-tag>
+	<vwc-tag appearance="subtle" label="First tag" selectable selected></vwc-tag>
+	<vwc-tag
+		appearance="subtle-light"
+		label="Second tag"
+		selectable
+		selected
+	></vwc-tag>
+	<vwc-tag appearance="duotone" label="Third tag" selectable selected></vwc-tag>
 </vwc-tag-group>
 ```
 

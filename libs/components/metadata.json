@@ -6523,12 +6523,6 @@
 					"propertyName": "checked"
 				},
 				{
-					"name": "clickable",
-					"type": "boolean",
-					"attributeName": "clickable",
-					"propertyName": "clickable"
-				},
-				{
 					"name": "clickableBox",
 					"description": "Makes the entire selectable box clickable",
 					"type": "boolean",
@@ -7409,7 +7403,7 @@
 				{
 					"name": "appearance",
 					"description": "The appearance the tag should have.",
-					"type": "'subtle' | 'duotone'",
+					"type": "'subtle' | 'duotone' | 'subtle-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},
