@@ -2,6 +2,7 @@ import { attr } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import { replaces } from '../../shared/deprecation/replaced-props';
 
 /**
  * Types of selectable-box connotation.
@@ -33,11 +34,22 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	@attr({ mode: 'boolean' }) checked = false;
 
 	/**
+	 * @deprecated Renamed to clickable-box. Use clickable-box instead.
+	 * @public
+	 * HTML Attribute: clickable
+	 */
+	@attr({ mode: 'boolean' }) clickable = false;
+
+	/**
 	 * Makes the entire selectable box clickable
 	 *
 	 * @public
 	 * HTML Attribute: clickable-box
 	 */
+	@replaces<boolean>({
+		deprecatedPropertyName: 'clickable',
+		fromDeprecated: (v) => v,
+	})
 	@attr({ attribute: 'clickable-box', mode: 'boolean' })
 	clickableBox = false;
 
