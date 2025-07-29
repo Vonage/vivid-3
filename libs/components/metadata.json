@@ -62,6 +62,13 @@
 			"description": "",
 			"props": [
 				{
+					"name": "appearance",
+					"description": "The appearance the button should have.",
+					"type": "'ghost' | 'filled' | 'ghost-light'",
+					"attributeName": "appearance",
+					"propertyName": "appearance"
+				},
+				{
 					"name": "expanded",
 					"description": "Expands or collapses the item.",
 					"type": "boolean",
