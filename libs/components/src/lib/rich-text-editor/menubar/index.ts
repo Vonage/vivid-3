@@ -1,3 +1,3 @@
-import { registerMenuBar } from './definition.js';
+import { registerMenubar } from './definition.js';
 
-registerMenuBar();
+registerMenubar();

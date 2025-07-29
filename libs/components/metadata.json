@@ -405,6 +405,13 @@
 					"propertyName": "disabled"
 				},
 				{
+					"name": "durationFallback",
+					"description": "Enables fallback logic to fetch and decode audio buffer for duration when metadata is missing.",
+					"type": "boolean",
+					"attributeName": "duration-fallback",
+					"propertyName": "durationFallback"
+				},
+				{
 					"name": "notime",
 					"type": "boolean",
 					"attributeName": "notime",
@@ -2085,6 +2092,13 @@
 			"description": "",
 			"props": [
 				{
+					"name": "fixedColumns",
+					"description": "Number of columns to be fixed when scrolling horizontally",
+					"type": "number",
+					"attributeName": "fixed-columns",
+					"propertyName": "fixedColumns"
+				},
+				{
 					"name": "generateHeader",
 					"description": "Whether the grid should automatically generate a header row and its type",
 					"type": "'none' | 'default' | 'sticky'",
@@ -3282,6 +3296,13 @@
 			"registerFunctionName": "registerDivider",
 			"description": "",
 			"props": [
+				{
+					"name": "appearance",
+					"description": "The appearance of the divider.",
+					"type": "'ghost' | 'subtle'",
+					"attributeName": "appearance",
+					"propertyName": "appearance"
+				},
 				{
 					"name": "orientation",
 					"description": "The orientation of the divider.",
@@ -5039,13 +5060,6 @@
 					"propertyName": "iconTrailing"
 				},
 				{
-					"name": "initialValue",
-					"description": "The initial value of the option. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
-					"type": "string",
-					"attributeName": "value",
-					"propertyName": "initialValue"
-				},
-				{
 					"name": "label",
 					"type": "string",
 					"attributeName": "label",
@@ -5080,8 +5094,9 @@
 				},
 				{
 					"name": "value",
-					"description": "Value to be submitted as part of the form data",
+					"description": "The value of the option.",
 					"type": "string",
+					"attributeName": "value",
 					"propertyName": "value"
 				}
 			],
@@ -5118,9 +5133,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{ "name": "initialValueChanged", "args": [], "returnType": "void" }
-			],
+			"methods": [],
 			"slots": [
 				{
 					"name": "icon",
@@ -6510,12 +6523,6 @@
 					"propertyName": "checked"
 				},
 				{
-					"name": "clickable",
-					"type": "boolean",
-					"attributeName": "clickable",
-					"propertyName": "clickable"
-				},
-				{
 					"name": "clickableBox",
 					"description": "Makes the entire selectable box clickable",
 					"type": "boolean",
@@ -7396,7 +7403,7 @@
 				{
 					"name": "appearance",
 					"description": "The appearance the tag should have.",
-					"type": "'subtle' | 'duotone'",
+					"type": "'subtle' | 'duotone' | 'subtle-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},

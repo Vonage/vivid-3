@@ -46,6 +46,7 @@ The `appearance` attribute sets the Tag's appearance.
 ```html preview
 <vwc-tag-group>
 	<vwc-tag label="Subtle" appearance="subtle"></vwc-tag>
+	<vwc-tag label="Subtle-Light" appearance="subtle-light"></vwc-tag>
 	<vwc-tag label="Duotone" appearance="duotone"></vwc-tag>
 </vwc-tag-group>
 ```
@@ -60,6 +61,15 @@ It accepts a subset of predefined values.
 <vwc-tag-group>
 	<vwc-tag label="Accent" appearance="subtle" connotation="accent"></vwc-tag>
 	<vwc-tag label="CTA" appearance="subtle" connotation="cta"></vwc-tag>
+</vwc-tag-group>
+<p>Subtle-Light Tag with connotation</p>
+<vwc-tag-group>
+	<vwc-tag
+		label="Accent"
+		appearance="subtle-light"
+		connotation="accent"
+	></vwc-tag>
+	<vwc-tag label="CTA" appearance="subtle-light" connotation="cta"></vwc-tag>
 </vwc-tag-group>
 <p>Duotone Tag with connotation</p>
 <vwc-tag-group>

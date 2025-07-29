@@ -263,6 +263,16 @@ describe('vwc-data-grid-cell', () => {
 		});
 	});
 
+	describe('setFixedPosition', () => {
+		it('should set fixed position and add fixed class', async () => {
+			element.setFixedPosition('100px');
+			await elementUpdated(element);
+
+			expect(element.style.left).toBe('100px');
+			expect(element.hasAttribute('data-fixed')).toBe(true);
+		});
+	});
+
 	/**
 	 * @deprecated
 	 */

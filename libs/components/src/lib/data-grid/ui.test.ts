@@ -403,3 +403,78 @@ test('cell link click', async function ({ page }: { page: Page }) {
 	await page.pause();
 	expect(await page.url()).toEqual('https://www.google.com/');
 });
+
+test('fixed columns', async function ({ page }: { page: Page }) {
+	const template = `<div style="margin: 5px;">
+		<style>
+			.scroll-wrapper{
+				width: 900px;
+			}
+			[data-vvd-component='data-grid-row'] {
+				width: 1200px;
+				display: block;
+				box-sizing: border-box;
+			}
+		</style>
+		<div class="scroll-wrapper">
+			<vwc-data-grid id="fixed-columns-grid" fixed-columns="1">
+				<vwc-data-grid-row row-type="sticky-header">
+					<vwc-data-grid-cell cell-type="columnheader">Name</vwc-data-grid-cell>
+					<vwc-data-grid-cell cell-type="columnheader">Email Address</vwc-data-grid-cell>
+					<vwc-data-grid-cell cell-type="columnheader">Age</vwc-data-grid-cell>
+					<vwc-data-grid-cell cell-type="columnheader">Phone Number</vwc-data-grid-cell>
+					<vwc-data-grid-cell cell-type="columnheader">Full Address</vwc-data-grid-cell>
+				</vwc-data-grid-row>
+				<vwc-data-grid-row>
+					<vwc-data-grid-cell>John Smith</vwc-data-grid-cell>
+					<vwc-data-grid-cell>john.smith@email.com</vwc-data-grid-cell>
+					<vwc-data-grid-cell>25</vwc-data-grid-cell>
+					<vwc-data-grid-cell>(555) 123-4567</vwc-data-grid-cell>
+					<vwc-data-grid-cell>123 Main St, City, State</vwc-data-grid-cell>
+				</vwc-data-grid-row>
+				<vwc-data-grid-row>
+					<vwc-data-grid-cell>Jane Doe</vwc-data-grid-cell>
+					<vwc-data-grid-cell>jane.doe@email.com</vwc-data-grid-cell>
+					<vwc-data-grid-cell>30</vwc-data-grid-cell>
+					<vwc-data-grid-cell>(555) 987-6543</vwc-data-grid-cell>
+					<vwc-data-grid-cell>456 Oak Ave, City, State</vwc-data-grid-cell>
+				</vwc-data-grid-row>
+			</vwc-data-grid>
+		</div>
+  </div>`;
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	const grid = await page.locator('#fixed-columns-grid');
+	await grid.isVisible();
+
+	await page.waitForTimeout(100);
+
+	const scrollTarget = await page
+		.locator('vwc-data-grid')
+		.evaluateHandle((el) => {
+			return el.shadowRoot?.querySelector('.base');
+		});
+
+	await scrollTarget.evaluate((el) => {
+		if (el) el.scrollLeft = 50;
+	});
+
+	await page.waitForTimeout(100);
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'snapshots/data-grid-fixed-columns.png',
+		{ maxDiffPixelRatio: 0.01 }
+	);
+});

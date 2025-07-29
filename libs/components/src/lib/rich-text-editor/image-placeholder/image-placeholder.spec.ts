@@ -4,7 +4,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-text-editor-image-placeholder';
 
-describe('menuBar', () => {
+describe('menubar', () => {
 	let element: ImagePlaceholder;
 
 	beforeEach(async () => {

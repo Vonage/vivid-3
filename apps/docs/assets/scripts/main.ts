@@ -2,7 +2,6 @@ import './scroll-handler.js';
 import './theme-handler.js';
 import './viewport-handler.js';
 import './cache-assets.js';
-import './live-sample.js';
 import './turbolinks.js';
 import './toc/toc.js';
 import './icons-gallery/icons-gallery.js';

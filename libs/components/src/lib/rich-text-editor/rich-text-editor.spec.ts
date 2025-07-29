@@ -545,31 +545,31 @@ describe('vwc-rich-text-editor', () => {
 
 	describe('menu-bar slot', () => {
 		it('should accept only the first menu-bar element', async () => {
-			const notMenuBar = document.createElement('div');
-			const menuBar = document.createElement('vwc-menubar');
-			const menuBar2 = document.createElement('vwc-menubar');
-			notMenuBar.slot = 'menu-bar';
-			menuBar.slot = 'menu-bar';
-			menuBar2.slot = 'menu-bar';
-			element.appendChild(notMenuBar);
-			element.appendChild(menuBar);
-			element.appendChild(menuBar2);
+			const notMenubar = document.createElement('div');
+			const menubar = document.createElement('vwc-menubar');
+			const menubar2 = document.createElement('vwc-menubar');
+			notMenubar.slot = 'menu-bar';
+			menubar.slot = 'menu-bar';
+			menubar2.slot = 'menu-bar';
+			element.appendChild(notMenubar);
+			element.appendChild(menubar);
+			element.appendChild(menubar2);
 			await elementUpdated(element);
 
-			expect(getComputedStyle(menuBar).display).not.toBe('none');
-			expect(getComputedStyle(menuBar2).display).toBe('none');
-			expect(getComputedStyle(notMenuBar).display).toBe('none');
+			expect(getComputedStyle(menubar).display).not.toBe('none');
+			expect(getComputedStyle(menubar2).display).toBe('none');
+			expect(getComputedStyle(notMenubar).display).toBe('none');
 		});
 
 		it('should change text block type on `text-block-selected` event from menubar', async () => {
 			const newTextBlock = 'title';
 			const setTextBlockSpy = vi.spyOn(element, 'setTextBlock');
-			const menuBar = document.createElement('vwc-menubar');
-			menuBar.slot = 'menu-bar';
-			element.appendChild(menuBar);
+			const menubar = document.createElement('vwc-menubar');
+			menubar.slot = 'menu-bar';
+			element.appendChild(menubar);
 			await elementUpdated(element);
 
-			menuBar.dispatchEvent(
+			menubar.dispatchEvent(
 				new CustomEvent('text-block-selected', { detail: newTextBlock })
 			);
 
@@ -579,12 +579,12 @@ describe('vwc-rich-text-editor', () => {
 		it('should change text decoration on `text-decoration-selected` event from menubar', async () => {
 			const newTextDecoration = 'bold';
 			const setTextDecorationSpy = vi.spyOn(element, 'setSelectionDecoration');
-			const menuBar = document.createElement('vwc-menubar');
-			menuBar.slot = 'menu-bar';
-			element.appendChild(menuBar);
+			const menubar = document.createElement('vwc-menubar');
+			menubar.slot = 'menu-bar';
+			element.appendChild(menubar);
 			await elementUpdated(element);
 
-			menuBar.dispatchEvent(
+			menubar.dispatchEvent(
 				new CustomEvent('text-decoration-selected', {
 					detail: newTextDecoration,
 				})
@@ -596,12 +596,12 @@ describe('vwc-rich-text-editor', () => {
 		it('should change text size on `text-size-selected` event from menubar', async () => {
 			const newTextSize = 'large';
 			const setTextSizeSpy = vi.spyOn(element, 'setSelectionTextSize');
-			const menuBar = document.createElement('vwc-menubar');
-			menuBar.slot = 'menu-bar';
-			element.appendChild(menuBar);
+			const menubar = document.createElement('vwc-menubar');
+			menubar.slot = 'menu-bar';
+			element.appendChild(menubar);
 			await elementUpdated(element);
 
-			menuBar.dispatchEvent(
+			menubar.dispatchEvent(
 				new CustomEvent('text-size-selected', {
 					detail: newTextSize,
 				})
@@ -612,12 +612,12 @@ describe('vwc-rich-text-editor', () => {
 
 		it('should focus on the editable after a textBlock selection', async () => {
 			const newTextBlock = 'title';
-			const menuBar = document.createElement('vwc-menubar');
-			menuBar.slot = 'menu-bar';
-			element.appendChild(menuBar);
+			const menubar = document.createElement('vwc-menubar');
+			menubar.slot = 'menu-bar';
+			element.appendChild(menubar);
 			await elementUpdated(element);
 			vi.useFakeTimers();
-			menuBar.dispatchEvent(
+			menubar.dispatchEvent(
 				new CustomEvent('text-block-selected', { detail: newTextBlock })
 			);
 			await vi.advanceTimersToNextTimerAsync();
@@ -629,13 +629,13 @@ describe('vwc-rich-text-editor', () => {
 
 		it('should async focus on the editable after a textDecoration selection', async () => {
 			const newTextDecoration = 'bold';
-			const menuBar = document.createElement('vwc-menubar');
-			menuBar.slot = 'menu-bar';
-			element.appendChild(menuBar);
+			const menubar = document.createElement('vwc-menubar');
+			menubar.slot = 'menu-bar';
+			element.appendChild(menubar);
 			await elementUpdated(element);
 
 			vi.useFakeTimers();
-			menuBar.dispatchEvent(
+			menubar.dispatchEvent(
 				new CustomEvent('text-decoration-selected', {
 					detail: newTextDecoration,
 				})

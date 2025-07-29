@@ -4,6 +4,8 @@ import styles from './divider.scss?inline';
 import { Divider } from './divider';
 import { DividerTemplate as template } from './divider.template';
 
+export type { DividerAppearance } from './divider';
+
 /**
  * @internal
  */

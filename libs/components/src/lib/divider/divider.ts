@@ -1,7 +1,19 @@
 import { attr } from '@microsoft/fast-element';
 import { Orientation } from '@microsoft/fast-web-utilities';
+import { Appearance } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { HostSemantics } from '../../shared/aria/host-semantics';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
+
+/**
+ * Types of divider appearance.
+ *
+ * @public
+ */
+export type DividerAppearance = ExtractFromEnum<
+	Appearance,
+	Appearance.Ghost | Appearance.Subtle
+>;
 
 /**
  * @deprecated This will be removed along with the divider's role attribute
@@ -52,4 +64,14 @@ export class Divider extends HostSemantics(VividElement) {
 	 */
 	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	@attr orientation: Orientation = Orientation.horizontal;
+
+	/**
+	 * The appearance of the divider.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: appearance
+	 */
+	// eslint-disable-next-line @repo/repo/no-attribute-default-value
+	@attr appearance?: DividerAppearance = Appearance.Ghost;
 }

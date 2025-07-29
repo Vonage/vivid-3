@@ -1,3 +1,4 @@
+const vue = require('@vitejs/plugin-vue');
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
 const EleventyVitePlugin = require('@11ty/eleventy-plugin-vite');
 const pluginTOC = require('eleventy-plugin-nesting-toc');
@@ -50,6 +51,7 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(EleventyVitePlugin, {
 		viteOptions: {
+			plugins: [vue()],
 			build: {
 				emptyOutDir: true,
 			},
@@ -232,10 +234,12 @@ module.exports = function (eleventyConfig) {
 	});
 
 	eleventyConfig.on('eleventy.after', async ({ dir, runMode }) => {
-		spawnSync('npx', ['pagefind', '--site', dir.output], {
-			windowsHide: true,
-			stdio: [process.stdin, process.stdout, process.stderr],
-		});
+		if (runMode === 'serve') {
+			spawnSync('npx', ['pagefind', '--site', dir.output], {
+				windowsHide: true,
+				stdio: [process.stdin, process.stdout, process.stderr],
+			});
+		}
 	});
 
 	return {

@@ -1,6 +1,7 @@
 import {
 	attr,
 	DOM,
+	nullableNumberConverter,
 	observable,
 	Observable,
 	RepeatBehavior,
@@ -194,6 +195,9 @@ export class DataGrid extends VividElement {
 	gridTemplateColumnsChanged(): void {
 		if (this.$fastController.isConnected) {
 			this.updateRowIndexes();
+			if (this.fixedColumns && this.fixedColumns > 0) {
+				this.applyFixedColumns();
+			}
 		}
 	}
 
@@ -314,6 +318,51 @@ export class DataGrid extends VividElement {
 	}
 
 	/**
+	 * Number of columns to be fixed when scrolling horizontally
+	 * @public
+	 * @remarks
+	 * HTML Attribute: fixed-columns
+	 */
+	@attr({ attribute: 'fixed-columns', converter: nullableNumberConverter })
+	fixedColumns?: number;
+
+	/**
+	 * @internal
+	 */
+	fixedColumnsChanged(): void {
+		if (this.$fastController.isConnected) {
+			this.applyFixedColumns();
+			this.setupResizeObserver();
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	private fixedColumnsPositions: number[] = [];
+
+	/**
+	 * @internal
+	 */
+	private setupResizeObserver(): void {
+		if (this.resizeObserver) {
+			this.resizeObserver.disconnect();
+			this.resizeObserver = undefined;
+		}
+
+		if (
+			typeof ResizeObserver !== 'undefined' &&
+			this.fixedColumns &&
+			this.fixedColumns > 0
+		) {
+			this.resizeObserver = new ResizeObserver(() => {
+				this.applyFixedColumns();
+			});
+			this.resizeObserver.observe(this);
+		}
+	}
+
+	/**
 	 * The default row item template.  Set by the component templates.
 	 *
 	 * @internal
@@ -344,6 +393,7 @@ export class DataGrid extends VividElement {
 	private isUpdatingFocus = false;
 	private pendingFocusUpdate = false;
 
+	private resizeObserver?: ResizeObserver;
 	private observer!: MutationObserver;
 
 	private rowindexUpdateQueued = false;
@@ -383,6 +433,7 @@ export class DataGrid extends VividElement {
 		this.observer = new MutationObserver(this.onChildListChange);
 		// only observe if nodes are added or removed
 		this.observer.observe(this, { childList: true });
+		this.setupResizeObserver();
 
 		DOM.queueUpdate(this.queueRowIndexUpdate);
 
@@ -410,6 +461,10 @@ export class DataGrid extends VividElement {
 
 		// disconnect observer
 		this.observer.disconnect();
+		if (this.resizeObserver) {
+			this.resizeObserver.disconnect();
+			this.resizeObserver = undefined;
+		}
 
 		this.rowsPlaceholder = null;
 		this.generatedHeader = null;
@@ -899,5 +954,86 @@ export class DataGrid extends VividElement {
 				gridColumn: `${index}`,
 			};
 		});
+	}
+
+	/**
+	 * @internal
+	 */
+	private applyFixedColumns(): void {
+		if (!this.fixedColumns || this.fixedColumns <= 0) {
+			this.clearFixedColumns();
+			return;
+		}
+
+		this.calculateFixedColumnPositions();
+		this.applyFixedColumnStyling();
+	}
+
+	/**
+	 * Applies fixed columns styling using cached positions
+	 * @internal
+	 */
+	private applyFixedColumnStyling(): void {
+		this.rowElements.forEach((row) => {
+			const cells = row.querySelectorAll(
+				'[role="cell"], [role="gridcell"], [role="columnheader"]'
+			);
+
+			this.fixedColumnsPositions.forEach((position, index) => {
+				if (index < cells.length) {
+					const gridCell = cells[index] as DataGridCell;
+					if (typeof gridCell.setFixedPosition === 'function') {
+						gridCell.setFixedPosition(`${position}px`);
+					}
+				}
+			});
+		});
+	}
+
+	/**
+	 * Calculates and caches fixed columns positions based on current layout
+	 * @internal
+	 */
+	private calculateFixedColumnPositions(): void {
+		this.fixedColumnsPositions = [];
+		if (this.rowElements.length === 0) return;
+
+		const cells = this.rowElements[0].querySelectorAll(
+			'[role="cell"], [role="gridcell"], [role="columnheader"]'
+		);
+
+		let accumulator = 0;
+		for (let i = 0; i < Math.min(this.fixedColumns!, cells.length); i++) {
+			this.fixedColumnsPositions.push(accumulator);
+			accumulator += (cells[i] as HTMLElement).offsetWidth;
+		}
+	}
+
+	/**
+	 * Clears all fixed columns state and styling
+	 * @internal
+	 */
+	private clearFixedColumns(): void {
+		if (this.rowElements.length === 0) {
+			this.fixedColumnsPositions = [];
+			return;
+		}
+
+		this.rowElements.forEach((row) => {
+			const cells = row.querySelectorAll(
+				'[role="cell"], [role="gridcell"], [role="columnheader"]'
+			);
+
+			this.fixedColumnsPositions.forEach((_, index) => {
+				if (index < cells.length) {
+					const gridCell = cells[index] as DataGridCell;
+					if (typeof gridCell.setFixedPosition === 'function') {
+						gridCell.setFixedPosition(undefined);
+					}
+				}
+			});
+		});
+
+		this.fixedColumnsPositions = [];
 	}
 }

@@ -8,14 +8,14 @@ import { Select } from '../../select/select.js';
 import { ListboxOption } from '../../option/option.js';
 import { Menu } from '../../menu/menu.js';
 import { MenuItem } from '../../menu-item/menu-item.js';
-import type { MenuBar } from './menubar.js';
+import type { Menubar } from './menubar.js';
 
-function notifyMenuBarChange(
-	menuBar: MenuBar,
+function notifyMenubarChange(
+	menubar: Menubar,
 	eventName: string,
 	payload: any
 ): any {
-	menuBar.$emit(eventName, payload, { bubbles: false, composed: false });
+	menubar.$emit(eventName, payload, { bubbles: false, composed: false });
 	return true;
 }
 
@@ -124,13 +124,13 @@ const textSizeEventHandler = (event: Event) => {
 };
 export const MENU_BAR_ITEMS: {
 	[key: string]: {
-		registerStateProperty?: (menuBar: MenuBar) => void;
+		registerStateProperty?: (menubar: Menubar) => void;
 		render: (context: VividElementDefinitionContext) => ViewTemplate<any, any>;
 	};
 } = {
 	textBlock: {
-		registerStateProperty: function (menuBar: MenuBar) {
-			menuBar.addEventListener('text-styles-changed', textBlockEventHandler);
+		registerStateProperty: function (menubar: Menubar) {
+			menubar.addEventListener('text-styles-changed', textBlockEventHandler);
 		},
 		render: function (context) {
 			const selectTag = context.tagFor(Select);
@@ -151,7 +151,7 @@ export const MENU_BAR_ITEMS: {
 				placement="bottom-end"
 				value="${(_, { parent }) => parent.textBlockType}"
 				@change="${(_, { parent, event }) =>
-					notifyMenuBarChange(
+					notifyMenubarChange(
 						parent,
 						'text-block-selected',
 						(event.target as HTMLSelectElement).value
@@ -184,8 +184,8 @@ export const MENU_BAR_ITEMS: {
 		},
 	},
 	textDecoration: {
-		registerStateProperty: function (menuBar) {
-			menuBar.addEventListener(
+		registerStateProperty: function (menubar) {
+			menubar.addEventListener(
 				'text-styles-changed',
 				textDecorationEventHandler
 			);
@@ -214,7 +214,7 @@ export const MENU_BAR_ITEMS: {
                                 shape="rounded"
                                 icon="${(x) => x.icon}"
                                 @click="${(x, c) =>
-																	notifyMenuBarChange(
+																	notifyMenubarChange(
 																		c.parentContext.parent,
 																		'text-decoration-selected',
 																		x.value
@@ -228,8 +228,8 @@ export const MENU_BAR_ITEMS: {
 		},
 	},
 	textSize: {
-		registerStateProperty: function (menuBar) {
-			menuBar.addEventListener('text-styles-changed', textSizeEventHandler);
+		registerStateProperty: function (menubar) {
+			menubar.addEventListener('text-styles-changed', textSizeEventHandler);
 		},
 		render: function (context) {
 			const menuTag = context.tagFor(Menu);
@@ -267,7 +267,7 @@ export const MENU_BAR_ITEMS: {
 								class="menubar-selector-menuitem"
 								connotation="cta"
 								@click="${(x, c) =>
-									notifyMenuBarChange(
+									notifyMenubarChange(
 										c.parentContext.parent,
 										'text-size-selected',
 										x.value
