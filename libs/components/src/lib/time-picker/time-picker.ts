@@ -168,11 +168,12 @@ export class TimePicker extends TimeSelectionPicker(
 	/**
 	 * @internal
 	 */
-	override _onPickerButtonClick() {
-		super._onPickerButtonClick();
-		if (this._popupOpen) {
+	override _onPickerButtonClick(event: Event) {
+		super._onPickerButtonClick(event);
+
+		if (this._popupOpen && event instanceof MouseEvent && event.detail === 0) {
 			DOM.processUpdates();
-			this._focusableElsWithinDialog()[0].focus();
+			this._focusableElsWithinDialog()[0]?.focus();
 		}
 	}
 
