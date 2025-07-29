@@ -141,8 +141,8 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 		/**
 		 * @internal
 		 */
-		override _onPickerButtonClick() {
-			super._onPickerButtonClick();
+		override _onPickerButtonClick(event: Event) {
+			super._onPickerButtonClick(event);
 
 			if (this._popupOpen) {
 				DOM.processUpdates();
