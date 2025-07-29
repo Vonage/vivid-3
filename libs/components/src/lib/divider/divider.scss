@@ -12,7 +12,9 @@
 .base {
 	@include connotation.connotation(divider);
 
-	display: block;
+	& {
+		display: block;
+	}
 
 	&:not(.vertical) {
 		block-size: 1px;
