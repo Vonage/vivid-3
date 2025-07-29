@@ -373,15 +373,16 @@ Use the `--accordion-item-meta-inline-size` to control the width of the `meta-da
 
 <div class="table-wrapper">
 
-| Name                                   | Type                                   | Description                                                                                                     |
-| -------------------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| **heading**                            | `string`                               | Sets the text for the heading                                                                                   |
-| **heading-level**                      | `1`, `2` (default), `3`, `4`, `5`, `6` | Determines the heading level                                                                                    |
-| _(deprecated as of 05/25)_<br>**icon** | Enum: `[icon-name]`                    | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names |
-| **expanded**                           | `boolean`                              | Sets the open state                                                                                             |
-| **meta**                               | `string`                               | Sets the meta text for the heading                                                                              |
-| **no-indicator**                       | `boolean`                              | Hides the open state indicator icon (chevron)                                                                   |
-| **size**                               | `normal` (default), `condensed`        | Sets the size                                                                                                   |
+| Name                                   | Type                                       | Description                                                                                                     |
+| -------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| **heading**                            | `string`                                   | Sets the text for the heading                                                                                   |
+| **heading-level**                      | `1`, `2` (default), `3`, `4`, `5`, `6`     | Determines the heading level                                                                                    |
+| _(deprecated as of 05/25)_<br>**icon** | Enum: `[icon-name]`                        | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names |
+| **expanded**                           | `boolean`                                  | Sets the open state                                                                                             |
+| **meta**                               | `string`                                   | Sets the meta text for the heading                                                                              |
+| **no-indicator**                       | `boolean`                                  | Hides the open state indicator icon (chevron)                                                                   |
+| **size**                               | `normal` (default), `condensed`            | Sets the size                                                                                                   |
+| **appearance**                         | `ghost` (default), `filled`, `ghost-light` | Controls the appearance                                                                                         |
 
 </div>
 

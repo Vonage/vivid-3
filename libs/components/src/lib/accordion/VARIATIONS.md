@@ -78,6 +78,31 @@ Use the `expanded` attribute on **Accordion Item** to set it's open state.
 </vwc-accordion>
 ```
 
+## Appearance
+
+Use the `appearance` attribute to change the **Accordion Item** appearance.
+
+- Type: `'ghost'` | `'ghost-light'` | `'filled'`
+- Default: `'ghost'`
+
+```html preview blocks
+<vwc-accordion>
+	<vwc-accordion-item heading="Accordion item 1">
+		This is the first item's accordion body.
+	</vwc-accordion-item>
+	<vwc-accordion-item
+		heading="Accordion item 2"
+		appearance="ghost-light"
+		expanded
+	>
+		This is the second item's accordion body.
+	</vwc-accordion-item>
+	<vwc-accordion-item heading="Accordion item 3" appearance="filled">
+		This is the third item's accordion body.
+	</vwc-accordion-item>
+</vwc-accordion>
+```
+
 ## Icon
 
 The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the **Accordion Item**'s heading.

@@ -1,4 +1,5 @@
 import { html, ref, slotted, when } from '@microsoft/fast-element';
+import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
@@ -6,13 +7,20 @@ import {
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { AccordionItem } from './accordion-item.js';
 
+const getClasses = ({ appearance, size }: AccordionItem) =>
+	classNames(
+		'heading-button',
+		[`appearance-${appearance}`, Boolean(appearance)],
+		[`size-${size}`, Boolean(size)]
+	);
+
 const header = (context: VividElementDefinitionContext, hTag: string) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<AccordionItem>`
 		<${hTag} class="heading-container">
 			<button
-				class="heading-button ${(x) => (x.size ? `size-${x.size}` : '')}"
+				class="${getClasses}"
 				id="${(x) => x.id}"
 				aria-expanded="${(x) => x.expanded}"
 				aria-controls="${(x) => x.id}-panel"

@@ -2,12 +2,12 @@
 @use '@repo/tokens/scss/tokens.constants' as constants;
 @use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: faint soft firm,
+	$shades: primary primary-text primary-increment fierce faint soft firm,
 	$default: accent
 );
 @use '@repo/shared/mixins/connotation' as connotation;
 @use '@repo/shared/mixins/appearance/config' as appearance-config with (
-	$appearances: ghost,
+	$appearances: ghost ghost-light filled,
 	$states: idle hover active,
 	$default: ghost
 );
