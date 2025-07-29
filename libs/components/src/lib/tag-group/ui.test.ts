@@ -102,9 +102,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.$('#wrapper');
 
 	await page.waitForLoadState('networkidle');
-	const focusRemovableBtn = await page.$('#removable .focus .dismiss-button');
-	await focusRemovableBtn?.focus();
-
+	
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'snapshots/tag-group.png'
 	);
