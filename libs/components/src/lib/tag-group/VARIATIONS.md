@@ -6,8 +6,15 @@ The `label` attribute adds label text to the **Tag**.
 
 ```html preview
 <vwc-tag-group>
-	<vwc-tag label="Tag label"></vwc-tag>
+	<vwc-tag label="My first tag"></vwc-tag>
 </vwc-tag-group>
+
+<script>
+	document.querySelector('vwc-tag-group').addEventListener('click', (e) => {
+		if (e.target?.getAttribute('data-vvd-component') !== 'tag') return;
+		alert(`You clicked ${e.target.label}`);
+	});	
+</script>
 ```
 
 ## Selectable
