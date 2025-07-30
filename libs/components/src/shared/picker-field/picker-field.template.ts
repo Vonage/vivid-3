@@ -47,7 +47,7 @@ export const PickerFieldTemplate = (
 					appearance='ghost'
 					?disabled='${(x) => x.disabled || x.readOnly}'
 					aria-label='${(x) => x._pickerButtonLabel}'
-					@click='${(x, c) => x._onPickerButtonClick(c.event)}'
+					@click='${(x) => x._onPickerButtonClick()}'
 				></${buttonTag}>
 			</${textFieldTag}>
 			<${popupTag}

@@ -146,8 +146,8 @@ export const TimeSelectionPicker = <
 		/**
 		 * @internal
 		 */
-		override _onPickerButtonClick(event: Event) {
-			super._onPickerButtonClick(event);
+		override _onPickerButtonClick() {
+			super._onPickerButtonClick();
 			if (this._popupOpen) {
 				DOM.processUpdates();
 				this._inlineTimePickerEl.scrollSelectedOptionsToTop();

@@ -74,10 +74,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.locator('#time-picker #picker-button').click();
 	await page.locator('#time-picker-seconds #picker-button').click();
-	await page.locator('#time-picker-24h #picker-button').focus();
+	await page.locator('#time-picker-24h #picker-button').click();
 
-	await page.keyboard.press('Enter');
-	await page.keyboard.press('ArrowDown');
 	await page.keyboard.press('Tab');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(

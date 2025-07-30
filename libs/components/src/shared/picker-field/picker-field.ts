@@ -271,7 +271,7 @@ export abstract class PickerField extends WithFeedback(
 	/**
 	 * @internal
 	 */
-	_onPickerButtonClick(event: Event) {
+	_onPickerButtonClick() {
 		if (this._popupOpen) {
 			this._closePopup();
 		} else {
