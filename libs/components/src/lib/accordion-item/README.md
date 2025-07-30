@@ -138,7 +138,7 @@ Use the `appearance` attribute to change the **Accordion Item** appearance.
 	>
 		This is the second item's accordion body.
 	</vwc-accordion-item>
-	<vwc-accordion-item heading="Accordion item 3" appearance="filled">
+	<vwc-accordion-item heading="Filled accordion item" appearance="filled">
 		This is the third item's accordion body.
 	</vwc-accordion-item>
 </vwc-accordion>
