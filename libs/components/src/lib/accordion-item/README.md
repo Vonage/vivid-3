@@ -128,7 +128,7 @@ Use the `appearance` attribute to change the **Accordion Item** appearance.
 
 ```html preview blocks
 <vwc-accordion>
-	<vwc-accordion-item heading="Accordion item 1">
+	<vwc-accordion-item heading="Ghost accordion item (default)">
 		This is the first item's accordion body.
 	</vwc-accordion-item>
 	<vwc-accordion-item
