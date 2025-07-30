@@ -31,12 +31,13 @@ const getClasses = ({
 
 function renderDismissButton(iconTag: string) {
 	return html<Tag>`
-	<span
+	<button
 		class="dismiss-button"
 		aria-label="${(x) => x.locale.tag.remove(x.label as string)}"
+		?disabled="${(x) => x.disabled}"
 		@click="${(x) => x.remove()}">
 		<${iconTag} name="close-line"></${iconTag}>
-	</span>`;
+	</button>`;
 }
 
 export const tagTemplate = (context: VividElementDefinitionContext) => {
@@ -48,7 +49,7 @@ export const tagTemplate = (context: VividElementDefinitionContext) => {
 		${delegateAria({
 			role: 'option',
 			ariaDisabled: (x) => x.disabled,
-			ariaSelected: (x) => x.selectable,
+			ariaSelected: (x) => x.selected && x.selectable,
 		})}
 		tabindex="${(x) => (x.disabled || x.removable ? null : 0)}"
 		@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
