@@ -132,7 +132,7 @@ Use the `appearance` attribute to change the **Accordion Item** appearance.
 		This is the first item's accordion body.
 	</vwc-accordion-item>
 	<vwc-accordion-item
-		heading="Accordion item 2"
+		heading="Ghost light accordion item"
 		appearance="ghost-light"
 		expanded
 	>
