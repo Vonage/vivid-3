@@ -43,7 +43,7 @@ $num-options-visible: --_inline-time-picker-num-options-visible;
 		display: flex;
 		flex-direction: column;
 		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
-		&.focused {
+		&.focused:has(.picker:focus-visible) {
 			#{focus.$focus-stroke-gap-color}: transparent;
 			#{focus.$focus-inset}: -2px;
 
