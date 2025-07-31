@@ -3,7 +3,7 @@ import { VividElement } from '../../../shared/foundation/vivid-element/vivid-ele
 import { Localized } from '../../../shared/patterns';
 import type { RichTextEditor } from '../rich-text-editor';
 
-export class MenuBar extends Localized(VividElement) {
+export class Menubar extends Localized(VividElement) {
 	@attr({ attribute: 'menu-items' })
 	menuItems?: string;
 

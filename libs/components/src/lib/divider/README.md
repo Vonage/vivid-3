@@ -66,9 +66,10 @@ See the [Decorative Divider](/components/divider/use-cases/#decorative-divider) 
 
 <div class="table-wrapper">
 
-| Name            | Type                                  | Description                |
-| --------------- | ------------------------------------- | -------------------------- |
-| **orientation** | `horizontal` (default), `vertical`    | Controls the orientation   |
-| **role**        | `separator` (default), `presentation` | Controls the semantic role |
+| Name            | Type                                  | Description                       |
+| --------------- | ------------------------------------- | --------------------------------- |
+| **orientation** | `horizontal` (default), `vertical`    | Controls the orientation          |
+| **role**        | `separator` (default), `presentation` | Controls the semantic role        |
+| **appearance**  | `ghost` (default), `subtle`           | Controls the divider's appearance |
 
 </div>

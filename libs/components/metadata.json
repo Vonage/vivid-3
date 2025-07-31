@@ -3474,6 +3474,13 @@
 			"description": "",
 			"props": [
 				{
+					"name": "appearance",
+					"description": "The appearance of the divider.",
+					"type": "'ghost' | 'subtle'",
+					"attributeName": "appearance",
+					"propertyName": "appearance"
+				},
+				{
 					"name": "orientation",
 					"description": "The orientation of the divider.",
 					"type": "'horizontal' | 'vertical'",
@@ -7798,7 +7805,7 @@
 				{
 					"name": "appearance",
 					"description": "The appearance the tag should have.",
-					"type": "'subtle' | 'duotone'",
+					"type": "'subtle' | 'duotone' | 'subtle-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},

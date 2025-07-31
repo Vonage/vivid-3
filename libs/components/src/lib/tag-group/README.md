@@ -72,17 +72,17 @@ Use the `icon` slot in the **Tag** component to customise icons. If set, the `ic
 
 <div class="table-wrapper">
 
-| Name                                   | Type                          | Description                                                                                                     |
-| -------------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| **appearance**                         | `subtle` (default), `duotone` | Sets the appearance                                                                                             |
-| **connotation**                        | `accent` (default), `cta`     | Sets the connotation                                                                                            |
-| **disabled**                           | `boolean`                     | Sets the disabled state                                                                                         |
-| _(deprecated as of 05/25)_<br>**icon** | Enum: `[icon-name]`           | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names |
-| **label**                              | `string`                      | Sets the label text                                                                                             |
-| **selectable**                         | `boolean`                     | Enables the selectable behaviour                                                                                |
-| **selected**                           | `boolean`                     | Sets the selected state                                                                                         |
-| **shape**                              | `rounded` (default), `pill`   | Sets the shape                                                                                                  |
-| **removable**                          | `boolean`                     | Enables the removable behaviour                                                                                 |
+| Name                                   | Type                                          | Description                                                                                                     |
+| -------------------------------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **appearance**                         | `subtle` (default), `subtle-light`, `duotone` | Sets the appearance                                                                                             |
+| **connotation**                        | `accent` (default), `cta`                     | Sets the connotation                                                                                            |
+| **disabled**                           | `boolean`                                     | Sets the disabled state                                                                                         |
+| _(deprecated as of 05/25)_<br>**icon** | Enum: `[icon-name]`                           | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names |
+| **label**                              | `string`                                      | Sets the label text                                                                                             |
+| **selectable**                         | `boolean`                                     | Enables the selectable behaviour                                                                                |
+| **selected**                           | `boolean`                                     | Sets the selected state                                                                                         |
+| **shape**                              | `rounded` (default), `pill`                   | Sets the shape                                                                                                  |
+| **removable**                          | `boolean`                                     | Enables the removable behaviour                                                                                 |
 
 </div>
 

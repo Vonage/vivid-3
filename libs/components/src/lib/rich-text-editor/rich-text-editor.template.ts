@@ -48,32 +48,32 @@ function handleAttachmentsSlotChange(
 	);
 }
 
-function handleMenuBarSlotChange(
+function handleMenubarSlotChange(
 	_: RichTextEditor,
 	{ event }: ExecutionContext
 ) {
 	const slot = event.target as HTMLSlotElement;
 	const assignedElements = slot.assignedElements({ flatten: true });
-	const menuBar = assignedElements.find((element) =>
+	const menubar = assignedElements.find((element) =>
 		element.tagName.toLowerCase().endsWith(VALID_MENU_ELEMEMENT_SUFFIX)
 	);
 	assignedElements.forEach((element) => {
-		if (element === menuBar) {
+		if (element === menubar) {
 			(element as HTMLElement).style.removeProperty('display');
 		} else {
 			(element as HTMLElement).style.display = 'none';
 		}
 	});
-	if (menuBar) {
-		menuBar.addEventListener(
+	if (menubar) {
+		menubar.addEventListener(
 			'text-block-selected',
 			textBlockSelectedHandler as EventListener
 		);
-		menuBar.addEventListener(
+		menubar.addEventListener(
 			'text-decoration-selected',
 			selectionDecorationSelectedHandler as EventListener
 		);
-		menuBar.addEventListener(
+		menubar.addEventListener(
 			'text-size-selected',
 			textSizeSelectedHandler as EventListener
 		);
@@ -113,8 +113,8 @@ export const RichTextEditorTemplate: (
 ) => {
 	const dividerTag = context.tagFor(Divider);
 	return html`<template class="${getClasses}">
-		<div id="editor" 
-		     class="editor" 
+		<div id="editor"
+		     class="editor"
 			 @drop="${handleFileDrop}"
 			 @dragenter="${handleDragEnter}"
 			 @dragleave="${handleDragLeave}"
@@ -129,7 +129,7 @@ export const RichTextEditorTemplate: (
 				</slot>
 			</div>
 		</div>
-		<slot name="menu-bar" 
-			  @slotchange="${handleMenuBarSlotChange}"></slot>
+		<slot name="menu-bar"
+			  @slotchange="${handleMenubarSlotChange}"></slot>
 	</template>`;
 };

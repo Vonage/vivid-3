@@ -28,13 +28,6 @@
 		<style id="vivid-theme"></style>
 		<link rel="stylesheet" href="/docs/assets/styles/main.scss">
 
-		{% set inlinedJs %}
-			{% include "../../assets/scripts/buffer-loaded-iframes.inline.js" %}
-		{% endset %}
-    <script>
-      {{ inlinedJs | safe }}
-    </script>
-
 		<script type="module" src="/docs/assets/scripts/main.ts"></script>
 		<script type="module" src="/docs/assets/scripts/vivid-components.ts"></script>
 

@@ -29,9 +29,9 @@ registerButton('your-prefix');
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
-```html
+```vue preview
 <script setup lang="ts">
-	import { VButton } from '@vonage/vivid-vue';
+import { VButton } from '@vonage/vivid-vue';
 </script>
 <template>
 	<VButton appearance="filled" label="Click me" />

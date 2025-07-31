@@ -14,11 +14,6 @@ const IFRAME_INLINE_STYLE = `<style>
 	}
 </style>`;
 
-const CBD_CONTAINER = 'cbd-container';
-const CBD_DEMO = 'cbd-demo';
-const CBD_DETAILS = 'cbd-details';
-const CBD_CODE_BLOCK = 'cbd-code-block';
-const CBD_ACTIONS = 'cbd-actions';
 const CBD_VARIABLES = 'cbd-variables';
 
 const EXISTING_COMPONENTS = new Set(
@@ -45,15 +40,17 @@ function resetExampleIndex() {
 	exampleIndexes.clear();
 }
 
-function createCodeExample({ code, options, cssProperties, url }) {
+function createCodeExample({ code, options, cssProperties, url, lang }) {
 	code = replaceVividImports(code);
 
 	const id = getExampleId(url);
-	const src = createiFrameContent(code, options, id);
-	return renderiFrame(id, src, code, options, cssProperties);
+	const src = createExample(code, options, id, lang);
+	return renderLiveSample(src, code, options, cssProperties, lang);
 }
 
-const renderiFrame = (id, src, content, classList, variableToShow) => {
+const renderLiveSample = (src, content, classList, variableToShow, lang) => {
+	const code = _.escape(content).trim();
+
 	const vwcUsages = content.match(/vwc-[\w-]+/g) ?? [];
 	const uniqueComponentNames = [
 		...new Set(vwcUsages.map((name) => name.replace('vwc-', ''))),
@@ -68,48 +65,34 @@ const renderiFrame = (id, src, content, classList, variableToShow) => {
 		? renderVariablesTable(variableToShow)
 		: '';
 
-	const localeSwitcher = classList.includes('locale-switcher')
-		? `
-		<vwc-select id="selectLocale${id}" class="cbd-locale-switcher" icon="globe-line" aria-label="Locale" data-example-id="${id}" slot="main"></vwc-select>`
-		: '';
-
-	const toolbar = !classList.includes('example')
-		? `<div class="${CBD_ACTIONS}" slot="main">
-				<div>${localeSwitcher}</div>
-				<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
-					<vwc-tooltip text="Edit on CodePen" placement="top">
-						<vwc-button slot="anchor" id="buttonCPen${id}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-example-id="${id}" data-deps="${deps}"></vwc-button>
-					</vwc-tooltip>
-					<vwc-tooltip text="Edit code" placement="top">
-						<vwc-button slot="anchor" id="buttonEdit${id}" connotation="cta" aria-label="Edit source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${id}" onclick="codeBlockButtonClick(this)"></vwc-button>
-					</vwc-tooltip>
-					<vwc-tooltip text="Copy code" placement="top">
-						<vwc-button slot="anchor" slot="anchor" id="buttonCopy${id}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-example-id="${id}"></vwc-button>
-					</vwc-tooltip>
-				</vwc-action-group>
-			</div>`
-		: '';
+	const showLocaleSwitcher = classList.includes('locale-switcher');
+	const hideToolbar = classList.includes('example');
 
 	return `
-	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: auto" data-pagefind-ignore>
-	    ${variableTable}
-		<vwc-card elevation="0">
-			<iframe id="iframe-sample-${id}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
-			${toolbar}
-			<details class="${CBD_DETAILS}" slot="main">
-				<summary></summary>
-				<div class="cbd-live-sample" data-example-id="${id}" role="region">
-					<pre>${_.escape(
-						'<!-- Feel free to edit the code below. The live preview will update as you make changes. -->\n' +
-							content
-					)}</pre>
-				</div>
-			</details>
-		</vwc-card>
-	</div>`;
+		<docs-live-sample
+			example-lang="${lang}"
+			example-src="${src}"
+			example-code="${code}"
+			deps="${deps}"
+			${showLocaleSwitcher ? 'locale-switcher' : ''}
+			${hideToolbar ? 'hide-toolbar' : ''}
+			data-pagefind-ignore
+		>
+			${variableTable}
+		</docs-live-sample>
+	`;
 };
 
-const createiFrameContent = (code, classList, id) => {
+const createExample = (code, classList, id, lang) => {
+	switch (lang) {
+		case 'html':
+			return createHTMLExample(code, classList, id);
+		case 'vue':
+			return createVueExample(code, classList, id);
+	}
+};
+
+const createHTMLExample = (code, classList, id) => {
 	let numberWithPx = '';
 	for (const item of classList) {
 		const match = item.match(/\d+px/);
@@ -133,6 +116,50 @@ const createiFrameContent = (code, classList, id) => {
 	if (!fs.existsSync(OUTPUT_PATH)) {
 		fs.mkdirSync(OUTPUT_PATH, { recursive: true });
 	}
+
+	const filePath = `${OUTPUT_PATH}/${id}.html`;
+	fs.writeFileSync(filePath, document);
+	return `/frames/${id}.html`;
+};
+
+const createVueExample = (code, classList, id) => {
+	let numberWithPx = '';
+	for (const item of classList) {
+		const match = item.match(/\d+px/);
+		numberWithPx = match ? match[0] : 'auto';
+	}
+
+	const document = `<!DOCTYPE html>
+		 <html class="vvd-root vvd-scrollbar" lang="en-US" style="block-size: ${numberWithPx};">
+			<head>
+				${IFRAME_STYLE}
+				${IFRAME_INLINE_STYLE}
+				${FONTS}
+			</head>
+			<body ${classList.includes('full') ? 'id="_target"' : ''}>
+				<div id="app" style="padding: 16px"></div>
+			 	<script type="module">
+					import { createApp } from 'vue'
+					import { vividVue } from '@vonage/vivid-vue';
+					import { setLocale } from '@vonage/vivid';
+
+					import Example from './example-${id}.vue'
+
+					createApp(Example).use(vividVue, {
+						font: 'none'
+					}).mount('#app')
+
+					window.setLocale = setLocale;
+				</script>
+			</body>
+		 </html>`;
+
+	if (!fs.existsSync(OUTPUT_PATH)) {
+		fs.mkdirSync(OUTPUT_PATH, { recursive: true });
+	}
+
+	const vueFilePath = `${OUTPUT_PATH}/example-${id}.vue`;
+	fs.writeFileSync(vueFilePath, code);
 
 	const filePath = `${OUTPUT_PATH}/${id}.html`;
 	fs.writeFileSync(filePath, document);

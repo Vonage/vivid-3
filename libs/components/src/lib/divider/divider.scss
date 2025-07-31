@@ -1,11 +1,20 @@
 @use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/connotation/config' with (
+	$connotations: accent,
+	$shades: soft dim,
+	$default: accent
+);
+@use '@repo/shared/mixins/connotation/index' as connotation;
 
 :host {
 	display: block;
 }
 .base {
-	display: block;
-	background-color: var(#{constants.$vvd-color-neutral-200});
+	@include connotation.connotation(divider);
+
+	& {
+		display: block;
+	}
 
 	&:not(.vertical) {
 		block-size: 1px;
@@ -15,5 +24,13 @@
 	&.vertical {
 		block-size: 100%;
 		inline-size: 1px;
+	}
+
+	&.appearance-ghost {
+		background-color: var(#{connotation.get-connotation-token(dim)});
+	}
+
+	&.appearance-subtle {
+		background-color: var(#{connotation.get-connotation-token(soft)});
 	}
 }
