@@ -127,6 +127,8 @@ const installSafariWorkaroundStyleIfNeeded = (
  * @slot helper-text - Describes how to use the text-field. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
  * @vueModel modelValue value input `event.currentTarget.value`
+ * @testAction fill fill control
+ * @testRef control light input[slot="_control"] HTMLInputElement
  */
 export class TextField extends WithLightDOMFeedback(
 	WithCharCount(
