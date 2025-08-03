@@ -14,8 +14,8 @@
 		"@repo/styles": "*"
 	},
 	"devDependencies": {
-		"vue": "^3.5.13",
-		"vitepress": "2.0.0-alpha.2",
+		"vue": "^2.7.8",
+		"vitepress": "2.0.0-alpha.9",
 		"@repo/eslint-config": "*",
 		"@repo/wrapper-gen": "*"
 	}

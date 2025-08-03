@@ -31,6 +31,6 @@
 		"@repo/stylelint-config": "*",
 		"@repo/typescript-config": "*",
 		"@repo/vitest-config": "*",
-		"@vitejs/plugin-vue": "^6.0.0"
+		"@vitejs/plugin-vue": "^4.5.1"
 	}
 }
