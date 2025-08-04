@@ -24,6 +24,10 @@
 				"dist/**"
 			]
 		},
+		"@vonage/vivid-test-utils#build": {
+			"dependsOn": ["^build"],
+			"outputs": ["src/**/*.generated.ts", "dist/**"]
+		},
 		"dev": {
 			"dependsOn": ["^build"],
 			"cache": false,
@@ -55,12 +59,21 @@
 			"outputs": ["coverage/**"]
 		},
 		"e2e": {
-			"dependsOn": ["^build"],
+			"dependsOn": ["build"],
 			"outputs": ["test-results/**"],
 			"passThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH"]
 		},
+		"cy": {
+			"dependsOn": ["build"],
+			"passThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH"]
+		},
 		"e2e:ui": {
-			"dependsOn": ["^build"],
+			"dependsOn": ["build"],
+			"cache": false,
+			"persistent": true
+		},
+		"cy:ui": {
+			"dependsOn": ["build"],
 			"cache": false,
 			"persistent": true
 		},
@@ -75,6 +88,9 @@
 		},
 		"typecheck": {
 			"dependsOn": ["^build", "^typecheck"]
+		},
+		"@vonage/vivid-test-utils#typecheck": {
+			"dependsOn": ["build", "^build", "^typecheck"]
 		},
 		"buildMetadata": {
 			"dependsOn": ["^build"]
