@@ -28,6 +28,9 @@ export type ProxyElement =
 export const FormAssociated = <T extends Constructor<VividElement>>(
 	Base: T
 ) => {
+	/**
+	 * @testQuery value value
+	 */
 	class FormAssociatedElement extends Base {
 		/**
 		 * The proxy element - this element serves as the communication layer with the parent form

@@ -22,6 +22,7 @@ export type CardAppearance = ExtractFromEnum<
  * @slot meta - The meta slot is for action content in the card header.
  * @slot footer - The footer slot is for content in the card footer.
  * @slot main - Assign nodes to main slot to fully override a card's predefined flow and style with your own.
+ * @testQuery headline headline
  */
 
 export class Card extends Linkable(VividElement) {

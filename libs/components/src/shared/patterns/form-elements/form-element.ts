@@ -8,6 +8,10 @@ import type { FormAssociatedElement } from '../../foundation/form-associated/for
 export const FormElement = <T extends Constructor<FormAssociatedElement>>(
 	Base: T
 ) => {
+	/**
+	 * @testSelector byLabel byLabel
+	 * @testQuery visibleError visibleError
+	 */
 	class FormElementElement extends Base {
 		/**
 		 * The label for the form element.

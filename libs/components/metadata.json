@@ -53,7 +53,13 @@
 			],
 			"vueModels": [],
 			"methods": [{ "name": "closeAll", "args": [], "returnType": "void" }],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "accordion-item",
@@ -183,7 +189,13 @@
 					"name": "meta",
 					"description": "Used to add additional content to the heading."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "action-group",
@@ -247,7 +259,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "alert",
@@ -389,7 +407,13 @@
 					"description": "The preferred way to add an icon to the component."
 				},
 				{ "name": "main", "description": "The main content of the Alert." }
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "audio-player",
@@ -514,7 +538,13 @@
 				{ "name": "play", "args": [], "returnType": "unknown" },
 				{ "name": "srcChanged", "args": [], "returnType": "unknown" }
 			],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "avatar",
@@ -671,7 +701,13 @@
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "badge",
@@ -768,7 +804,13 @@
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "banner",
@@ -863,7 +905,13 @@
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "breadcrumb",
@@ -905,7 +953,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "breadcrumb-item",
@@ -1010,7 +1064,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "button",
@@ -1301,7 +1361,16 @@
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover"] },
+					{ "name": "click", "args": ["click", "control"] }
+				],
+				"queries": [{ "name": "value", "args": ["value"] }],
+				"refs": [{ "name": "control", "args": ["shadow", ".control"] }]
+			}
 		},
 		{
 			"name": "calendar",
@@ -1415,7 +1484,13 @@
 					"description": "Assign elements to corresponding day column using this slot."
 				},
 				{ "name": "default", "description": "Default slot." }
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "calendar-event",
@@ -1507,7 +1582,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "card",
@@ -1676,7 +1757,13 @@
 					"name": "meta",
 					"description": "The meta slot is for action content in the card header."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [{ "name": "headline", "args": ["headline"] }],
+				"refs": []
+			}
 		},
 		{
 			"name": "checkbox",
@@ -1858,7 +1945,23 @@
 					"name": "helper-text",
 					"description": "Describes how to use the checkbox. Alternative to the `helper-text` attribute."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [
+					{ "name": "byLabel", "args": ["byLabel"] },
+					{ "name": "byTestId", "args": ["byTestId"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover"] },
+					{ "name": "check", "args": ["check", "control"] }
+				],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] },
+					{ "name": "checked", "args": ["checked"] }
+				],
+				"refs": [{ "name": "control", "args": ["shadow", ".control"] }]
+			}
 		},
 		{
 			"name": "combobox",
@@ -2090,7 +2193,16 @@
 					"name": "meta",
 					"description": "Slot to add meta content to the combobox control."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
 		},
 		{
 			"name": "data-grid",
@@ -2190,7 +2302,13 @@
 					"returnType": "unknown"
 				}
 			],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "data-grid-cell",
@@ -2312,7 +2430,13 @@
 					"returnType": "void"
 				}
 			],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "data-grid-row",
@@ -2409,7 +2533,13 @@
 					"returnType": "void"
 				}
 			],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "date-picker",
@@ -2559,7 +2689,16 @@
 					"name": "helper-text",
 					"description": "Describes how to use the date-picker. Alternative to the `helper-text` attribute."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
 		},
 		{
 			"name": "date-range-picker",
@@ -2753,7 +2892,16 @@
 					"name": "helper-text",
 					"description": "Describes how to use the date-range-picker. Alternative to the `helper-text` attribute."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
 		},
 		{
 			"name": "date-time-picker",
@@ -2952,7 +3100,16 @@
 					"name": "helper-text",
 					"description": "Describes how to use the date-picker. Alternative to the `helper-text` attribute."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
 		},
 		{
 			"name": "dial-pad",
@@ -3119,7 +3276,13 @@
 					"returnType": "unknown"
 				}
 			],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "dialog",
@@ -3295,7 +3458,21 @@
 					"name": "main",
 					"description": "Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byHeadline", "args": ["byHeadline"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover"] },
+					{ "name": "clickDismissButton", "args": ["click", "dismissButton"] }
+				],
+				"queries": [
+					{ "name": "open", "args": ["dialogOpen"] },
+					{ "name": "headline", "args": ["headline"] }
+				],
+				"refs": [
+					{ "name": "dismissButton", "args": ["shadow", ".dismiss-button"] }
+				]
+			}
 		},
 		{
 			"name": "divider",
@@ -3359,7 +3536,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "empty-state",
@@ -3442,7 +3625,13 @@
 					"name": "graphic",
 					"description": "The graphic slot allows overriding the icon with a custom illustration"
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "fab",
@@ -3635,7 +3824,13 @@
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [{ "name": "value", "args": ["value"] }],
+				"refs": []
+			}
 		},
 		{
 			"name": "file-picker",
@@ -3883,7 +4078,16 @@
 					"name": "helper-text",
 					"description": "Describes how to use the file-picker. Alternative to the `helper-text` attribute."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
 		},
 		{
 			"name": "header",
@@ -3950,7 +4154,13 @@
 					"description": "Content vertically aligned with header."
 				},
 				{ "name": "default", "description": "Default slot." }
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "icon",
@@ -4022,7 +4232,13 @@
 			"methods": [
 				{ "name": "nameChanged", "args": [], "returnType": "unknown" }
 			],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "layout",
@@ -4100,7 +4316,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "menu",
@@ -4230,7 +4452,13 @@
 					"name": "header",
 					"description": "Used to add additional content to the top of the menu."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "menu-item",
@@ -4380,7 +4608,13 @@
 					"name": "trailing-meta",
 					"description": "Assign nodes to the `meta` slot to set a badge or an additional icon."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "nav",
@@ -4422,7 +4656,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "nav-disclosure",
@@ -4521,7 +4761,13 @@
 					"name": "meta",
 					"description": "A slot to add additional content to the nav disclosure."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "nav-item",
@@ -4664,7 +4910,13 @@
 					"name": "meta",
 					"description": "A slot to add additional content to the nav item."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "note",
@@ -4736,7 +4988,13 @@
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "number-field",
@@ -5030,7 +5288,16 @@
 					"name": "helper-text",
 					"description": "Describes how to use the number-field. Alternative to the `helper-text` attribute."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
 		},
 		{
 			"name": "option",
@@ -5146,7 +5413,13 @@
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "pagination",
@@ -5251,7 +5524,13 @@
 					"returnType": "unknown"
 				}
 			],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "progress",
@@ -5343,7 +5622,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "progress-ring",
@@ -5426,7 +5711,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "radio",
@@ -5570,7 +5861,16 @@
 					"returnType": "boolean"
 				}
 			],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
 		},
 		{
 			"name": "radio-group",
@@ -5693,7 +5993,13 @@
 					"name": "helper-text",
 					"description": "Describes how to use the text-field. Alternative to the `helper-text` attribute."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "range-slider",
@@ -5911,7 +6217,16 @@
 					"returnType": "boolean"
 				}
 			],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
 		},
 		{
 			"name": "rich-text-editor",
@@ -6018,7 +6333,13 @@
 					"returnType": "unknown"
 				}
 			],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "searchable-select",
@@ -6280,7 +6601,20 @@
 					"name": "no-options",
 					"description": "Message that appears when no options are available."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover"] },
+					{ "name": "toggleOptionsByValue", "args": ["toggleOptionsByValue"] }
+				],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] },
+					{ "name": "values", "args": ["values"] }
+				],
+				"refs": []
+			}
 		},
 		{
 			"name": "select",
@@ -6514,7 +6848,19 @@
 					"name": "meta",
 					"description": "Slot to add meta content to the select control."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover"] },
+					{ "name": "selectOptionByText", "args": ["selectOptionByText"] }
+				],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
 		},
 		{
 			"name": "selectable-box",
@@ -6603,7 +6949,15 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": [{ "name": "default", "description": "Slot for box's content." }]
+			"slots": [
+				{ "name": "default", "description": "Slot for box's content." }
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "side-drawer",
@@ -6698,7 +7052,13 @@
 					"name": "default",
 					"description": "Sets assigned nodes to the side drawer itself."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "slider",
@@ -6885,7 +7245,13 @@
 					"returnType": "void"
 				}
 			],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [{ "name": "value", "args": ["value"] }],
+				"refs": []
+			}
 		},
 		{
 			"name": "split-button",
@@ -7007,7 +7373,13 @@
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "switch",
@@ -7145,7 +7517,13 @@
 					"returnType": "boolean"
 				}
 			],
-			"slots": []
+			"slots": [],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [{ "name": "value", "args": ["value"] }],
+				"refs": []
+			}
 		},
 		{
 			"name": "tab",
@@ -7259,7 +7637,13 @@
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "tab-panel",
@@ -7301,7 +7685,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "tabs",
@@ -7405,7 +7795,13 @@
 					"returnType": "void"
 				}
 			],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "tag",
@@ -7534,7 +7930,13 @@
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "tag-group",
@@ -7578,7 +7980,13 @@
 			"methods": [],
 			"slots": [
 				{ "name": "default", "description": "The content of the tag-group." }
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "text-area",
@@ -7817,7 +8225,19 @@
 					"name": "helper-text",
 					"description": "Describes how to use the text-area. Alternative to the `helper-text` attribute."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover"] },
+					{ "name": "fill", "args": ["fill", "control"] }
+				],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": [{ "name": "control", "args": ["shadow", ".control"] }]
+			}
 		},
 		{
 			"name": "text-field",
@@ -8090,7 +8510,24 @@
 					"name": "leading-action-items",
 					"description": "Used to add action items to the start of the text-field."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover"] },
+					{ "name": "fill", "args": ["fill", "control"] }
+				],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": [
+					{
+						"name": "control",
+						"args": ["light", "input[slot=\"_control\"]", "HTMLInputElement"]
+					}
+				]
+			}
 		},
 		{
 			"name": "time-picker",
@@ -8261,7 +8698,16 @@
 					"name": "helper-text",
 					"description": "Describes how to use the time-picker. Alternative to the `helper-text` attribute."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
 		},
 		{
 			"name": "toggletip",
@@ -8361,7 +8807,13 @@
 					"name": "default",
 					"description": "The content to display in the toggletip."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "tooltip",
@@ -8435,7 +8887,13 @@
 					"name": "anchor",
 					"description": "Used to set the anchor element for the tooltip."
 				}
-			]
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byText", "args": ["byText"] }],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [{ "name": "open", "args": ["open"] }],
+				"refs": []
+			}
 		},
 		{
 			"name": "tree-item",
@@ -8533,7 +8991,13 @@
 					"description": "The preferred way to add an icon to the component."
 				},
 				{ "name": "item", "description": "To specify a child tree item." }
-			]
+			],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "tree-view",
@@ -8585,7 +9049,13 @@
 			"methods": [
 				{ "name": "slottedTreeItemsChanged", "args": [], "returnType": "void" }
 			],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		},
 		{
 			"name": "video-player",
@@ -8685,7 +9155,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": [{ "name": "default", "description": "Default slot" }]
+			"slots": [{ "name": "default", "description": "Default slot" }],
+			"testUtils": {
+				"selectors": [],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [],
+				"refs": []
+			}
 		}
 	],
 	"iconsManifestUrl": "https://icon.resources.vonage.com/v4.6.9/manifest.json"

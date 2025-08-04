@@ -1,0 +1,14 @@
+{
+	"extends": "@repo/typescript-config/components.json",
+	"compilerOptions": {
+		"outDir": "dist",
+		"allowJs": false,
+		"rootDir": "src"
+	},
+	"include": ["src"],
+	"references": [
+		{
+			"path": "./tsconfig.tools.json"
+		}
+	]
+}
