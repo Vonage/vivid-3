@@ -62,6 +62,13 @@
 			"description": "",
 			"props": [
 				{
+					"name": "appearance",
+					"description": "The appearance the button should have.",
+					"type": "'ghost' | 'filled' | 'ghost-light'",
+					"attributeName": "appearance",
+					"propertyName": "appearance"
+				},
+				{
 					"name": "expanded",
 					"description": "Expands or collapses the item.",
 					"type": "boolean",
@@ -8681,5 +8688,5 @@
 			"slots": [{ "name": "default", "description": "Default slot" }]
 		}
 	],
-	"iconsManifestUrl": "https://icon.resources.vonage.com/v4.6.8/manifest.json"
+	"iconsManifestUrl": "https://icon.resources.vonage.com/v4.6.9/manifest.json"
 }
