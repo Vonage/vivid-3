@@ -25,6 +25,11 @@ type DismissMethod = 'escape' | 'dismiss-button' | 'light-dismiss';
  * @event {CustomEvent<string>} close - The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property.
  * @event {CustomEvent<undefined>} cancel - The `cancel` event fires when the user requests to close the dialog. You can prevent the dialog from closing by calling `.preventDefault()` on the event.
  * @vueModel open open open,close `event.currentTarget.open`
+ * @testSelector byHeadline byHeadline
+ * @testAction clickDismissButton click dismissButton
+ * @testQuery open dialogOpen
+ * @testQuery headline headline
+ * @testRef dismissButton shadow .dismiss-button
  */
 export class Dialog extends Localized(DelegatesAria(VividElement)) {
 	/**
