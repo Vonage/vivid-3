@@ -69,6 +69,7 @@
 
 	&.removable {
 		cursor: auto;
+		padding-inline: 8px 1px;
 	}
 }
 
@@ -85,13 +86,15 @@ slot[name='icon'] {
 }
 
 .dismiss-button {
+	position: relative;
 	display: flex;
 	align-items: center;
-	padding: 0;
+	padding: 4px;
 	border: none;
 	border-radius: inherit;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	cursor: pointer;
+	inset-inline-start: -4px;
 
 	&:focus {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
