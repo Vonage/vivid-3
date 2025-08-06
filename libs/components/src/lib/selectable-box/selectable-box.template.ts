@@ -12,6 +12,7 @@ const getClasses = ({
 	tight,
 	checked,
 	clickableBox,
+	controlPlacement,
 }: SelectableBox) =>
 	classNames(
 		'base',
@@ -19,7 +20,8 @@ const getClasses = ({
 		['tight', tight],
 		['selected', checked],
 		['clickable', clickableBox],
-		['readonly', !clickableBox]
+		['readonly', !clickableBox],
+		[`control-placement-${controlPlacement}`, Boolean(controlPlacement)]
 	);
 
 function handleControlChange(x: SelectableBox) {
@@ -41,7 +43,7 @@ function checkbox(context: VividElementDefinitionContext) {
 				{ onlySpecified: true }
 			)}
 			@change="${(x) => handleControlChange(x)}"
-			class="control checkbox"
+			class="control checkbox ${(x) => x.controlPlacement}"
 			connotation="${(x) =>
 				x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${(x) => x.checked}"
@@ -65,7 +67,7 @@ function radio(context: VividElementDefinitionContext) {
 				{ onlySpecified: true }
 			)}
 			@change="${(x) => handleControlChange(x)}"
-			class="control radio"
+			class="control radio ${(x) => x.controlPlacement}"
 			connotation="${(x) =>
 				x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${(x) => x.checked}"

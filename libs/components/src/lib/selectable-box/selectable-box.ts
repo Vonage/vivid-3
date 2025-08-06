@@ -19,6 +19,17 @@ export type SelectableBoxConnotation = Connotation.Accent | Connotation.CTA;
 export type SelectableBoxControlType = 'checkbox' | 'radio';
 
 /**
+ * Types of selectable-box control-placement.
+ *
+ * @public
+ */
+export type SelectableBoxControlPlacement =
+	| 'start'
+	| 'start-stacked'
+	| 'end'
+	| 'end-stacked';
+
+/**
  * @public
  * @component selectable-box
  * @slot default - Slot for box's content.
@@ -70,6 +81,16 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	 * HTML Attribute: control-type
 	 */
 	@attr({ attribute: 'control-type' }) controlType?: SelectableBoxControlType;
+
+	/**
+	 * Defines where the control (checkbox or radio) should be located.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: control-placement
+	 */
+	@attr({ attribute: 'control-placement', mode: 'fromView' })
+	controlPlacement: SelectableBoxControlPlacement = 'end-stacked';
 
 	/**
 	 * Removes the padding around the box's slot content

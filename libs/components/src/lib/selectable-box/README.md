@@ -66,13 +66,14 @@ Use the `--selectable-box-spacing` variable to set the amount of spacing applied
 
 <div class="table-wrapper">
 
-| Name              | Type                          | Description                                     |
-| ----------------- | ----------------------------- | ----------------------------------------------- |
-| **checked**       | `boolean`                     | Controls the checked state                      |
-| **clickable-box** | `boolean`                     | Sets the whole box to be clickable              |
-| **connotation**   | `accent` (default), `cta`     | Controls the color of the box and its control   |
-| **control-type**  | `checkbox` (default), `radio` | Controls the type of control in the box         |
-| **tight**         | `boolean`                     | Removes the padding from the boxes content area |
+| Name                  | Type                                                                           | Description                                            |
+| --------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------ |
+| **checked**           | `boolean`                                                                      | Controls the checked state                             |
+| **clickable-box**     | `boolean`                                                                      | Sets the whole box to be clickable                     |
+| **connotation**       | `accent` (default), `cta`                                                      | Controls the color of the box and its control          |
+| **control-type**      | `checkbox` (default), `radio`                                                  | Controls the type of control in the box                |
+| **control-placement** | _Enum_:<br/>`end-stacked` (default),<br/>`end`<br/>`start`<br/>`start-stacked` | Controls where the control should be placed in the box |
+| **tight**             | `boolean`                                                                      | Removes the padding from the boxes content area        |
 
 </div>
 

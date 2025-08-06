@@ -176,6 +176,31 @@ describe('vwc-selectable-box', () => {
 		});
 	});
 
+	describe('control placement', () => {
+		it('should have default CSS classes when control-placement attribute is not set', function () {
+			const defaultPlacement = 'end-stacked';
+			const controlElement = getControlElement(element);
+			expect(
+				baseElement?.classList?.contains(
+					`control-placement-${defaultPlacement}`
+				)
+			).toBe(true);
+			expect(controlElement?.classList?.contains(defaultPlacement)).toBe(true);
+		});
+
+		it('should apply CSS classes based on the control-placement attribute when set', async function () {
+			const placement = 'start';
+			element.controlPlacement = placement;
+			await elementUpdated(element);
+
+			const controlElement = getControlElement(element);
+			expect(
+				baseElement?.classList?.contains(`control-placement-${placement}`)
+			).toBe(true);
+			expect(controlElement?.classList?.contains(placement)).toBe(true);
+		});
+	});
+
 	describe('change event', () => {
 		const spy = vi.fn();
 		let controlElement: any;

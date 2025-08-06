@@ -9,62 +9,45 @@ const components = ['selectable-box', 'checkbox', 'radio', 'layout', 'card'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
-		<div style="margin:5px">
-			<vwc-selectable-box aria-label="Box 1">Box content</vwc-selectable-box>
-		</div>
-		<div style="margin:5px">
-			<vwc-layout gutters="small" row-spacing="small" column-basis="block">
-				<vwc-selectable-box control-type="checkbox" style="max-inline-size: 450px">
+		<div class="wrapper">
+			<vwc-layout column-basis="large" row-spacing="small" column-spacing="small">
+				<vwc-selectable-box aria-label="Box 1">Box content</vwc-selectable-box>
+				<vwc-selectable-box control-type="checkbox">
 					Checkbox accent box
 				</vwc-selectable-box>
-				<vwc-selectable-box control-type="radio" style="max-inline-size: 450px">
+				<vwc-selectable-box control-type="radio">
 					Radio accent box
 				</vwc-selectable-box>
-				<vwc-selectable-box control-type="checkbox" connotation="cta" style="max-inline-size: 450px">
+				<vwc-selectable-box control-type="checkbox" connotation="cta">
 					Checkbox CTA box
 				</vwc-selectable-box>
-				<vwc-selectable-box connotation="cta" control-type="radio" style="max-inline-size: 450px">
+				<vwc-selectable-box connotation="cta" control-type="radio">
 					Radio CTA box
 				</vwc-selectable-box>
-			</vwc-layout>
-		</div>
-		<div style="margin:5px">
-			<vwc-layout gutters="small" row-spacing="small" column-basis="block">
-				<vwc-selectable-box connotation="accent" style="max-inline-size: 450px">
+				<vwc-selectable-box connotation="accent">
 					Accent box
 				</vwc-selectable-box>
-				<vwc-selectable-box connotation="cta" style="max-inline-size: 450px">
+				<vwc-selectable-box connotation="cta">
 					CTA box
 				</vwc-selectable-box>
-			</vwc-layout>
-		</div>
-		<div style="margin:5px">
-			<vwc-layout gutters="small" row-spacing="small" column-basis="block">
-				<vwc-selectable-box clickable-box style="max-inline-size: 450px">
+				<vwc-selectable-box clickable-box>
 					Clickable accent box
 				</vwc-selectable-box>
 				<vwc-selectable-box
 					clickable-box
 					connotation="cta"
-					style="max-inline-size: 450px"
 				>
 					Clickable CTA box
 				</vwc-selectable-box>
-			</vwc-layout>
-		</div>
-		<div style="margin:5px">
-			<vwc-layout gutters="small" row-spacing="small" column-basis="block">
 				<vwc-selectable-box
 					control-type="checkbox"
 					checked
-					style="max-inline-size: 450px"
 				>
 					Checked checkbox box
 				</vwc-selectable-box>
 				<vwc-selectable-box
 					control-type="radio"
 					checked
-					style="max-inline-size: 450px"
 				>
 					Checked radio box
 				</vwc-selectable-box>
@@ -72,7 +55,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					control-type="checkbox"
 					connotation="cta"
 					checked
-					style="max-inline-size: 450px"
 				>
 					Checked CTA checkbox box
 				</vwc-selectable-box>
@@ -80,30 +62,26 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					control-type="radio"
 					connotation="cta"
 					checked
-					style="max-inline-size: 450px"
 				>
 					Checked CTA radio box
 				</vwc-selectable-box>
-			</vwc-layout>
-		</div>
-		<div style="margin:5px">
-			<vwc-layout gutters="small" row-spacing="small" column-basis="block">
-				<vwc-selectable-box tight style="max-inline-size: 450px">
+				<vwc-selectable-box tight>
 					Tight box
 				</vwc-selectable-box>
-			</vwc-layout>
-		</div>
-		<div style="margin:5px">
-			<vwc-layout gutters="small" row-spacing="small" column-basis="block">
-				<vwc-selectable-box
-					style="--selectable-box-spacing: 8px; max-inline-size: 450px"
-				>
+				<vwc-selectable-box style="--selectable-box-spacing: 8px;">
 					Custom spaced box
 				</vwc-selectable-box>
+				<vwc-selectable-box control-placement="start-stacked">
+					Control placement: <strong>start-stacked</strong>
+				</vwc-selectable-box>
+				<vwc-selectable-box control-placement="end">
+					Control placement: <strong>end</strong>
+				</vwc-selectable-box>
+				<vwc-selectable-box control-placement="start">
+					Control placement: <strong>start</strong>
+				</vwc-selectable-box>
 			</vwc-layout>
-		</div>
-		<div style="margin:5px">
-			<vwc-layout role="group" aria-label="pick your ios">
+			<vwc-layout role="group" aria-label="pick your ios" gutters="small-block">
 				<vwc-selectable-box tight clickable-box style="max-inline-size: 450px">
 					<vwc-card
 						headline="Card Component"
@@ -144,8 +122,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					</vwc-card>
 				</vwc-selectable-box>
 			</vwc-layout>
-		</div>
-		<div style="margin:5px">
 			<vwc-layout role="group">
 				<vwc-selectable-box
 					aria-label="Bright ideas"
@@ -185,6 +161,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				</vwc-selectable-box>
 			</vwc-layout>
 		</div>
+		<style>
+			.wrapper{
+				padding: 16px 8px;	
+			}
+		</style>
 	`;
 
 	await loadComponents({
