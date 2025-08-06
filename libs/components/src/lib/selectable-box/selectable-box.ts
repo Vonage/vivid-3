@@ -34,6 +34,11 @@ export type SelectableBoxControlPlacement =
  * @component selectable-box
  * @slot default - Slot for box's content.
  * @event {CustomEvent<undefined>} change - Fired when the checked state changes
+ * @testAction check check #control
+ * @testAction uncheck uncheck #control
+ * @testQuery checked checked true
+ * @testQuery unchecked checked false
+ * @testRef control nestedShadow [data-vvd-component].control div.control
  */
 export class SelectableBox extends DelegatesAria(VividElement) {
 	/**

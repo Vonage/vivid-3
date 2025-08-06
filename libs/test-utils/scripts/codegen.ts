@@ -34,6 +34,11 @@ import * as selectors from './selectors';
 import * as actions from './actions';
 import * as refs from './refs';
 import * as queries from './queries';
+import type {
+${metadata.componentDefs
+	.map((def) => `Vwc${kebabToPascal(def.name)}Element`)
+	.join(',\n')}
+} from "@vonage/vivid";
 
 type IconId = string;
 
@@ -64,7 +69,9 @@ const ${kebabToCamel(def.name)}ComponentInfo = {
 
 export class ${kebabToPascal(
 					def.name
-				)}Wrapper<D extends DriverT> extends BaseWrapper<D> {
+				)}Wrapper<D extends DriverT> extends BaseWrapper<D, ${`Vwc${kebabToPascal(
+					def.name
+				)}Element`}> {
 	type = '${kebabToCamel(def.name)}' as const;
 
 	componentInfo = ${kebabToCamel(def.name)}ComponentInfo;
@@ -73,11 +80,20 @@ export class ${kebabToPascal(
 		.map(
 			(action) =>
 				`// prettier-ignore
-${action.name} = (actions.${
+${action.name} = this.ctx.driver.wrapAction((actions.${
 					action.args[0]
-				}<D>).bind(null, this.ctx, this.componentInfo, () => this.${
-					action.args[1] ? `${action.args[1]}()` : 'locator'
-				});`
+				}<D>).bind(this, ${[
+					...action.args.slice(1).map((arg) => {
+						if (arg === '#locator') {
+							return `() => this.locator`;
+						}
+						if (arg.startsWith('#')) {
+							return `() => this.${arg.slice(1)}()`;
+						} else {
+							return arg;
+						}
+					}),
+				].join(', ')}));`
 		)
 		.join('\n')}
 
@@ -85,7 +101,10 @@ ${action.name} = (actions.${
 		.map(
 			(ref) =>
 				`// prettier-ignore
-${ref.name} = (refs.${ref.args[0]}<D>).bind(null, this.ctx, this, '${ref.args[1]}');`
+protected ${ref.name} = (refs.${ref.args[0]}<D>).bind(this, ${ref.args
+					.slice(1)
+					.map((arg) => `'${arg}'`)
+					.join(', ')});`
 		)
 		.join('\n')}
 }
@@ -106,9 +125,9 @@ export class ${kebabToPascal(
 		.map(
 			(selector) =>
 				`// prettier-ignore
-${selector.name} = (selectors.${selector.args[0]}<D, ${kebabToPascal(
-					def.name
-				)}Wrapper<D>>).bind(null, this.ctx, this.componentInfo, this.wrap.bind(this));`
+${selector.name} = this.ctx.driver.wrapSelector((selectors.${
+					selector.args[0]
+				}<D, ${kebabToPascal(def.name)}Wrapper<D>>).bind(this));`
 		)
 		.join('\n')}
 }
@@ -118,37 +137,72 @@ export class ${kebabToPascal(def.name)}Expectations<D extends DriverT> {
 		def.name
 	)}Wrapper<D>) {}
 
-	toHaveProp<T extends keyof ${kebabToPascal(def.name)}Props>(
+	${
+		def.props.length
+			? `
+	toHaveProp = this.ctx.driver.wrapExpect(<T extends keyof ${kebabToPascal(
+		def.name
+	)}Props>(
 		propName: T,
 		value: ${kebabToPascal(def.name)}Props[T]
-	) {
-		return this.ctx.driver.expectEq(
+	) => this.ctx.driver.expectEq(
 			{
 				type: 'eval',
 				el: this.wrapper.unwrap(),
 				fn: (el: any, propName: any) => el[propName],
 				arg: propName
 			},
-			value
-		);
+			value,
+			\`toHaveProp("\${propName}", \${value})\`
+		));
+	`
+			: `
+	toHaveProp = (propName: never, value: never) => {
+		throw new Error('Component does not have props.');
+	}
+	`
 	}
 
   ${def.testUtils.queries
-		.map(
-			(query) => `
-  toHave${camelToPascal(query.name)}(
+		.map((query) => {
+			let name = query.name;
+			let isNegation = false;
+			if (name.startsWith('!')) {
+				isNegation = true;
+				name = name.slice(1);
+			}
+			const isBoolean = query.args.length > 1;
+			if (isBoolean) {
+				name = isNegation
+					? `notToBe${camelToPascal(name)}`
+					: `toBe${camelToPascal(name)}`;
+				return `
+  ${name} = this.ctx.driver.wrapExpect(() => this.ctx.driver.expectEq(
+				{
+					type: 'eval',
+					el: this.wrapper.unwrap(),
+					fn: queries.${query.args[0]},
+				},
+				${query.args[1]},
+				"${name}()"
+			));
+	`;
+			} else {
+				return `
+  toHave${camelToPascal(query.name)} = this.ctx.driver.wrapExpect((
 		value: any
-	) {
-		return this.ctx.driver.expectEq(
-			{
-				type: 'eval',
-				el: this.wrapper.unwrap(),
-				fn: queries.${query.args[0]},
-			},
-			value
-		);
-	}`
-		)
+	) => this.ctx.driver.expectEq(
+				{
+					type: 'eval',
+					el: this.wrapper.unwrap(),
+					fn: queries.${query.args[0]},
+				},
+				value,
+				"toHave${camelToPascal(query.name)}(\${value})"
+			));
+	`;
+			}
+		})
 		.join('\n')}
 }
 	`;
@@ -201,5 +255,62 @@ export class VividWrapper<D extends DriverT> {
 		)
 		.join('\n')}
 }
+`
+);
+
+fs.writeFileSync(
+	path.join(dirname, '../API.md'),
+	`# Vivid Test Utils
+
+${metadata.componentDefs
+	.map(
+		(componentDef) => `## ${kebabToPascal(componentDef.name)}
+
+#### Selectors
+
+${componentDef.testUtils.selectors
+	.map((selector) => `- \`${selector.name}\``)
+	.join('\n')}
+
+${
+	componentDef.testUtils.actions.length
+		? `
+#### Actions
+
+${componentDef.testUtils.actions
+	.map((action) => `- \`${action.name}\``)
+	.join('\n')}
+
+`
+		: ''
+}
+
+${
+	componentDef.testUtils.queries.length
+		? `
+#### Queries
+
+${componentDef.testUtils.queries
+	.map((query) => `- \`${query.name}\``)
+	.join('\n')}
+
+`
+		: ''
+}
+
+${
+	componentDef.testUtils.refs.length
+		? `
+#### Refs
+
+${componentDef.testUtils.refs.map((ref) => `- \`${ref.name}\``).join('\n')}
+
+`
+		: ''
+}
+
+`
+	)
+	.join('\n')}
 `
 );

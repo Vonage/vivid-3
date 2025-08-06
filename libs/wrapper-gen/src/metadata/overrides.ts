@@ -74,4 +74,34 @@ export const componentOverrides: ComponentSpecs[] = [
 			});
 		},
 	],
+
+	[
+		'slider',
+		(component) => {
+			component.props.push({
+				name: 'valueAsNumber',
+				description: 'The value property, typed as a number.',
+				type: 'number',
+				propertyName: 'valueAsNumber',
+			});
+		},
+	],
+
+	[
+		'range-slider',
+		(component) => {
+			component.props.push({
+				name: 'startAsNumber',
+				description: 'The start property, typed as a number.',
+				type: 'number',
+				propertyName: 'startAsNumber',
+			});
+			component.props.push({
+				name: 'endAsNumber',
+				description: 'The end property, typed as a number.',
+				type: 'number',
+				propertyName: 'endAsNumber',
+			});
+		},
+	],
 ];

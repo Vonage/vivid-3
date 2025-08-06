@@ -1,43 +1,31 @@
 import type { DriverT } from './drivers/driver';
-import { BaseWrapper, type ComponentInfo, type Context } from './base';
-
-const attributeSelector = (
-	prefix: string,
-	componentName: string,
-	attributes: Array<[string, string]>
-) => {
-	return attributes
-		.map(([attr, value]) => `${prefix}-${componentName}[${attr}="${value}"]`)
-		.join(',');
-};
+import { BaseComponent, BaseWrapper } from './base';
+import { attributeSelector } from './utils/cssSelectors';
 
 export function byTestId<D extends DriverT, W extends BaseWrapper<D>>(
-	ctx: Context<D>,
-	component: ComponentInfo,
-	wrap: (locator: D['locator']) => W,
-	label: string
+	this: BaseComponent<D, W>,
+	id: string
 ): W {
-	return wrap(
-		ctx.driver.querySelector(
-			ctx.rootLocator,
-			attributeSelector(ctx.prefix, component.name, [
-				['data-testid', label],
-				['data-test-id', label],
+	return this.wrap(
+		this.ctx.driver.querySelector(
+			this.ctx.rootLocator,
+			attributeSelector(this.componentInfo.name, [
+				['data-testid', id],
+				['data-test-id', id],
+				['data-cy', id],
 			])
 		)
 	);
 }
 
 export function byLabel<D extends DriverT, W extends BaseWrapper<D>>(
-	ctx: Context<D>,
-	component: ComponentInfo,
-	wrap: (locator: D['locator']) => W,
+	this: BaseComponent<D, W>,
 	label: string
 ): W {
-	return wrap(
-		ctx.driver.querySelector(
-			ctx.rootLocator,
-			attributeSelector(ctx.prefix, component.name, [
+	return this.wrap(
+		this.ctx.driver.querySelector(
+			this.ctx.rootLocator,
+			attributeSelector(this.componentInfo.name, [
 				['label', label],
 				['aria-label', label],
 			])
@@ -45,30 +33,38 @@ export function byLabel<D extends DriverT, W extends BaseWrapper<D>>(
 	);
 }
 
+export function byHeading<D extends DriverT, W extends BaseWrapper<D>>(
+	this: BaseComponent<D, W>,
+	heading: string
+): W {
+	return this.wrap(
+		this.ctx.driver.querySelector(
+			this.ctx.rootLocator,
+			attributeSelector(this.componentInfo.name, [['heading', heading]])
+		)
+	);
+}
+
 export function byHeadline<D extends DriverT, W extends BaseWrapper<D>>(
-	ctx: Context<D>,
-	component: ComponentInfo,
-	wrap: (locator: D['locator']) => W,
+	this: BaseComponent<D, W>,
 	headline: string
 ): W {
-	return wrap(
-		ctx.driver.querySelector(
-			ctx.rootLocator,
-			attributeSelector(ctx.prefix, component.name, [['headline', headline]])
+	return this.wrap(
+		this.ctx.driver.querySelector(
+			this.ctx.rootLocator,
+			attributeSelector(this.componentInfo.name, [['headline', headline]])
 		)
 	);
 }
 
 export function byText<D extends DriverT, W extends BaseWrapper<D>>(
-	ctx: Context<D>,
-	component: ComponentInfo,
-	wrap: (locator: D['locator']) => W,
+	this: BaseComponent<D, W>,
 	text: string
 ): W {
-	return wrap(
-		ctx.driver.querySelector(
-			ctx.rootLocator,
-			attributeSelector(ctx.prefix, component.name, [['text', text]])
+	return this.wrap(
+		this.ctx.driver.querySelector(
+			this.ctx.rootLocator,
+			attributeSelector(this.componentInfo.name, [['text', text]])
 		)
 	);
 }

@@ -1,5 +1,5 @@
-import { attr, html, observable, slotted } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
+import { attr, html, observable, slotted } from '@microsoft/fast-element';
 import { Icon } from '../../lib/icon/icon';
 import type { VividElementDefinitionContext } from '../design-system/defineVividComponent';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
@@ -10,6 +10,9 @@ import type { Constructor, MixinType } from '../utils/mixins';
  * These are generally used to decorate text elements with icons or other visual indicators.
  */
 export const AffixIcon = <T extends Constructor<VividElement>>(Base: T) => {
+	/**
+	 * @testQuery icon affixIcon
+	 */
 	class AffixIconElement extends Base {
 		/**
 		 * A decorative icon the custom element should have.

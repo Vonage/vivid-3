@@ -55,8 +55,12 @@
 			"methods": [{ "name": "closeAll", "args": [], "returnType": "void" }],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -191,10 +195,23 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
-				"refs": []
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byHeading", "args": ["byHeading"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "expand", "args": ["toggleAccordionItem", "true"] },
+					{ "name": "collapse", "args": ["toggleAccordionItem", "false"] }
+				],
+				"queries": [
+					{ "name": "icon", "args": ["affixIcon"] },
+					{ "name": "expanded", "args": ["expanded", "true"] },
+					{ "name": "collapsed", "args": ["expanded", "false"] }
+				],
+				"refs": [{ "name": "button", "args": ["shadow", ".heading-button"] }]
 			}
 		},
 		{
@@ -261,8 +278,12 @@
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -409,9 +430,20 @@
 				{ "name": "main", "description": "The main content of the Alert." }
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byHeadline", "args": ["byHeadline"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [
+					{ "name": "icon", "args": ["affixIcon"] },
+					{ "name": "open", "args": ["open", "true"] },
+					{ "name": "closed", "args": ["open", "false"] }
+				],
 				"refs": []
 			}
 		},
@@ -540,8 +572,12 @@
 			],
 			"slots": [],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -703,8 +739,12 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -806,9 +846,13 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [{ "name": "icon", "args": ["affixIcon"] }],
 				"refs": []
 			}
 		},
@@ -907,10 +951,23 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
-				"refs": []
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byText", "args": ["byText"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "dismiss", "args": ["clickButton", "#dismissButton"] }
+				],
+				"queries": [{ "name": "icon", "args": ["affixIcon"] }],
+				"refs": [
+					{
+						"name": "dismissButton",
+						"args": ["shadowButton", ".dismiss-button"]
+					}
+				]
 			}
 		},
 		{
@@ -955,8 +1012,12 @@
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -1066,8 +1127,12 @@
 			"methods": [],
 			"slots": [],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -1363,13 +1428,21 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
-				"actions": [
-					{ "name": "hover", "args": ["hover"] },
-					{ "name": "click", "args": ["click", "control"] }
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
 				],
-				"queries": [{ "name": "value", "args": ["value"] }],
-				"refs": [{ "name": "control", "args": ["shadow", ".control"] }]
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "click", "args": ["click", "#control"] }
+				],
+				"queries": [
+					{ "name": "value", "args": ["value"] },
+					{ "name": "icon", "args": ["affixIcon"] }
+				],
+				"refs": [{ "name": "control", "args": ["shadow", "button.control"] }]
 			}
 		},
 		{
@@ -1486,8 +1559,12 @@
 				{ "name": "default", "description": "Default slot." }
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -1584,8 +1661,12 @@
 			"methods": [],
 			"slots": [],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -1759,8 +1840,12 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [{ "name": "headline", "args": ["headline"] }],
 				"refs": []
 			}
@@ -1948,19 +2033,27 @@
 			],
 			"testUtils": {
 				"selectors": [
-					{ "name": "byLabel", "args": ["byLabel"] },
-					{ "name": "byTestId", "args": ["byTestId"] }
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
 				],
 				"actions": [
-					{ "name": "hover", "args": ["hover"] },
-					{ "name": "check", "args": ["check", "control"] }
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "check", "args": ["check", "#control"] },
+					{ "name": "uncheck", "args": ["uncheck", "#control"] }
 				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
 					{ "name": "value", "args": ["value"] },
-					{ "name": "checked", "args": ["checked"] }
+					{ "name": "checked", "args": ["checkedState", "\"checked\""] },
+					{ "name": "unchecked", "args": ["checkedState", "\"unchecked\""] },
+					{
+						"name": "indeterminate",
+						"args": ["checkedState", "\"indeterminate\""]
+					}
 				],
-				"refs": [{ "name": "control", "args": ["shadow", ".control"] }]
+				"refs": [{ "name": "control", "args": ["shadow", "div.control"] }]
 			}
 		},
 		{
@@ -2195,13 +2288,25 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "fill", "args": ["comboboxFill"] },
+					{ "name": "clear", "args": ["comboboxClear"] },
+					{ "name": "selectOptionByText", "args": ["selectOptionByText"] },
+					{ "name": "selectOptionByValue", "args": ["selectOptionByValue"] }
+				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "icon", "args": ["affixIcon"] },
 					{ "name": "value", "args": ["value"] }
 				],
-				"refs": []
+				"refs": [{ "name": "control", "args": ["shadow", "input.control"] }]
 			}
 		},
 		{
@@ -2304,8 +2409,12 @@
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -2432,8 +2541,12 @@
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -2535,8 +2648,12 @@
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -2691,13 +2808,35 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "clear", "args": ["clearPicker"] },
+					{ "name": "selectDate", "args": ["selectDate"] }
+				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
 					{ "name": "value", "args": ["value"] }
 				],
-				"refs": []
+				"refs": [
+					{
+						"name": "control",
+						"args": [
+							"shadowTextField",
+							"[data-vvd-component=text-field].control"
+						]
+					},
+					{
+						"name": "pickerButton",
+						"args": ["shadowButton", "#picker-button"]
+					},
+					{ "name": "clearButton", "args": ["shadowButton", "#clear-button"] }
+				]
 			}
 		},
 		{
@@ -2894,13 +3033,36 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "clear", "args": ["clearPicker"] },
+					{ "name": "selectDateRange", "args": ["selectDateRange"] }
+				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
-					{ "name": "value", "args": ["value"] }
+					{ "name": "value", "args": ["value"] },
+					{ "name": "range", "args": ["range"] }
 				],
-				"refs": []
+				"refs": [
+					{
+						"name": "control",
+						"args": [
+							"shadowTextField",
+							"[data-vvd-component=text-field].control"
+						]
+					},
+					{
+						"name": "pickerButton",
+						"args": ["shadowButton", "#picker-button"]
+					},
+					{ "name": "clearButton", "args": ["shadowButton", "#clear-button"] }
+				]
 			}
 		},
 		{
@@ -3102,13 +3264,35 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "clear", "args": ["clearPicker"] },
+					{ "name": "selectDateTime", "args": ["selectDateTime"] }
+				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
 					{ "name": "value", "args": ["value"] }
 				],
-				"refs": []
+				"refs": [
+					{
+						"name": "control",
+						"args": [
+							"shadowTextField",
+							"[data-vvd-component=text-field].control"
+						]
+					},
+					{
+						"name": "pickerButton",
+						"args": ["shadowButton", "#picker-button"]
+					},
+					{ "name": "clearButton", "args": ["shadowButton", "#clear-button"] }
+				]
 			}
 		},
 		{
@@ -3278,8 +3462,12 @@
 			],
 			"slots": [],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -3460,13 +3648,19 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byHeadline", "args": ["byHeadline"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byHeadline", "args": ["byHeadline"] }
+				],
 				"actions": [
-					{ "name": "hover", "args": ["hover"] },
-					{ "name": "clickDismissButton", "args": ["click", "dismissButton"] }
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "dismiss", "args": ["click", "#dismissButton"] }
 				],
 				"queries": [
-					{ "name": "open", "args": ["dialogOpen"] },
+					{ "name": "open", "args": ["open", "true"] },
+					{ "name": "closed", "args": ["open", "false"] },
 					{ "name": "headline", "args": ["headline"] }
 				],
 				"refs": [
@@ -3538,8 +3732,12 @@
 			"methods": [],
 			"slots": [],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -3627,8 +3825,12 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -3826,10 +4028,21 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [{ "name": "value", "args": ["value"] }],
-				"refs": []
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "click", "args": ["click", "#control"] }
+				],
+				"queries": [
+					{ "name": "value", "args": ["value"] },
+					{ "name": "icon", "args": ["affixIcon"] }
+				],
+				"refs": [{ "name": "control", "args": ["shadow", "button.control"] }]
 			}
 		},
 		{
@@ -4080,8 +4293,15 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
 					{ "name": "value", "args": ["value"] }
@@ -4156,8 +4376,12 @@
 				{ "name": "default", "description": "Default slot." }
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -4234,9 +4458,13 @@
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [{ "name": "name", "args": ["name"] }],
 				"refs": []
 			}
 		},
@@ -4318,8 +4546,12 @@
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -4454,9 +4686,19 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [
+					{ "name": "open", "args": ["open", "true"] },
+					{ "name": "closed", "args": ["open", "false"] }
+				],
 				"refs": []
 			}
 		},
@@ -4610,10 +4852,23 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
-				"refs": []
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byText", "args": ["byText"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "click", "args": ["click", "#base"] }
+				],
+				"queries": [
+					{ "name": "icon", "args": ["affixIcon"] },
+					{ "name": "checked", "args": ["checked", "true"] },
+					{ "name": "unchecked", "args": ["checked", "false"] },
+					{ "name": "disabled", "args": ["disabled"] }
+				],
+				"refs": [{ "name": "base", "args": ["shadow", ".base"] }]
 			}
 		},
 		{
@@ -4658,8 +4913,12 @@
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -4763,10 +5022,25 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
-				"refs": []
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "expand", "args": ["toggleNavDisclosure", "true"] },
+					{ "name": "collapse", "args": ["toggleNavDisclosure", "false"] }
+				],
+				"queries": [
+					{ "name": "icon", "args": ["affixIcon"] },
+					{ "name": "current", "args": ["navCurrent", "true"] },
+					{ "name": "!current", "args": ["navCurrent", "false"] },
+					{ "name": "open", "args": ["open", "true"] },
+					{ "name": "closed", "args": ["open", "false"] }
+				],
+				"refs": [{ "name": "summary", "args": ["shadow", "summary"] }]
 			}
 		},
 		{
@@ -4912,10 +5186,22 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
-				"refs": []
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "click", "args": ["click", "#control"] }
+				],
+				"queries": [
+					{ "name": "icon", "args": ["affixIcon"] },
+					{ "name": "current", "args": ["navCurrent", "true"] },
+					{ "name": "!current", "args": ["navCurrent", "false"] }
+				],
+				"refs": [{ "name": "control", "args": ["shadow", ".control"] }]
 			}
 		},
 		{
@@ -4990,9 +5276,13 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [{ "name": "icon", "args": ["affixIcon"] }],
 				"refs": []
 			}
 		},
@@ -5290,13 +5580,36 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "fill", "args": ["fill", "#control"] },
+					{ "name": "clear", "args": ["clear", "#control"] },
+					{
+						"name": "clickIncrement",
+						"args": ["clickButton", "#incrementButton"]
+					},
+					{
+						"name": "clickDecrement",
+						"args": ["clickButton", "#decrementButton"]
+					}
+				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
-					{ "name": "value", "args": ["value"] }
+					{ "name": "icon", "args": ["affixIcon"] },
+					{ "name": "value", "args": ["value"] },
+					{ "name": "valueAsNumber", "args": ["valueAsNumber"] }
 				],
-				"refs": []
+				"refs": [
+					{ "name": "control", "args": ["shadow", "input.control"] },
+					{ "name": "incrementButton", "args": ["shadowButton", "#add"] },
+					{ "name": "decrementButton", "args": ["shadowButton", "#subtract"] }
+				]
 			}
 		},
 		{
@@ -5415,9 +5728,14 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "click", "args": ["click", "#locator"] }
+				],
+				"queries": [{ "name": "icon", "args": ["affixIcon"] }],
 				"refs": []
 			}
 		},
@@ -5497,7 +5815,14 @@
 					"type": "CustomEvent<{selectedIndex: number, total: number, oldIndex: number}>"
 				}
 			],
-			"vueModels": [],
+			"vueModels": [
+				{
+					"name": "modelValue",
+					"propName": "selectedIndex",
+					"eventNames": ["pagination-change"],
+					"valueMapping": "event.currentTarget.selectedIndex"
+				}
+			],
 			"methods": [
 				{
 					"name": "paginationButtonsChanged",
@@ -5526,10 +5851,23 @@
 			],
 			"slots": [],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
-				"refs": []
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "clickNext", "args": ["click", "#nextButton"] },
+					{ "name": "clickPrev", "args": ["click", "#prevButton"] },
+					{ "name": "clickPageIndex", "args": ["clickPaginationPage"] }
+				],
+				"queries": [
+					{ "name": "total", "args": ["total"] },
+					{ "name": "selectedPage", "args": ["paginationSelectedPage"] }
+				],
+				"refs": [
+					{ "name": "nextButton", "args": ["shadow", ".next-button"] },
+					{ "name": "prevButton", "args": ["shadow", ".prev-button"] }
+				]
 			}
 		},
 		{
@@ -5624,8 +5962,12 @@
 			"methods": [],
 			"slots": [],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -5713,8 +6055,12 @@
 			"methods": [],
 			"slots": [],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -5863,13 +6209,23 @@
 			],
 			"slots": [],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "check", "args": ["click", "#control"] }
+				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
-					{ "name": "value", "args": ["value"] }
+					{ "name": "value", "args": ["value"] },
+					{ "name": "checked", "args": ["checked", "true"] },
+					{ "name": "unchecked", "args": ["checked", "false"] }
 				],
-				"refs": []
+				"refs": [{ "name": "control", "args": ["shadow", ".control"] }]
 			}
 		},
 		{
@@ -5995,8 +6351,12 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -6041,6 +6401,12 @@
 					"type": "string",
 					"attributeName": "current-end",
 					"propertyName": "currentEnd"
+				},
+				{
+					"name": "endAsNumber",
+					"description": "The end property, typed as a number.",
+					"type": "number",
+					"propertyName": "endAsNumber"
 				},
 				{
 					"name": "initialEnd",
@@ -6127,6 +6493,12 @@
 					"propertyName": "currentStart"
 				},
 				{
+					"name": "startAsNumber",
+					"description": "The start property, typed as a number.",
+					"type": "number",
+					"propertyName": "startAsNumber"
+				},
+				{
 					"name": "step",
 					"description": "Value to increment or decrement via arrow keys, mouse click or drag.",
 					"type": "number",
@@ -6196,10 +6568,22 @@
 					"valueMapping": "event.currentTarget.end"
 				},
 				{
+					"name": "endAsNumber",
+					"propName": "endAsNumber",
+					"eventNames": ["input:end"],
+					"valueMapping": "event.currentTarget.endAsNumber"
+				},
+				{
 					"name": "start",
 					"propName": "start",
 					"eventNames": ["input:start"],
 					"valueMapping": "event.currentTarget.start"
+				},
+				{
+					"name": "startAsNumber",
+					"propName": "startAsNumber",
+					"eventNames": ["input:start"],
+					"valueMapping": "event.currentTarget.startAsNumber"
 				}
 			],
 			"methods": [
@@ -6219,13 +6603,30 @@
 			],
 			"slots": [],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{
+						"name": "slideStartTo",
+						"args": ["slideTo", "#track", "#startThumb"]
+					},
+					{ "name": "slideEndTo", "args": ["slideTo", "#track", "#endThumb"] }
+				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
-					{ "name": "value", "args": ["value"] }
+					{ "name": "value", "args": ["value"] },
+					{ "name": "range", "args": ["rangeAsNumber"] }
 				],
-				"refs": []
+				"refs": [
+					{ "name": "track", "args": ["shadow", ".control"] },
+					{ "name": "startThumb", "args": ["shadow", "#start-thumb"] },
+					{ "name": "endThumb", "args": ["shadow", "#end-thumb"] }
+				]
 			}
 		},
 		{
@@ -6335,8 +6736,12 @@
 			],
 			"slots": [],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -6603,15 +7008,23 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
 				"actions": [
-					{ "name": "hover", "args": ["hover"] },
-					{ "name": "toggleOptionsByValue", "args": ["toggleOptionsByValue"] }
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "selectOptionByValue", "args": ["selectOptionByValue"] },
+					{ "name": "selectOptionByText", "args": ["selectOptionByText"] }
 				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "icon", "args": ["affixIcon"] },
 					{ "name": "value", "args": ["value"] },
-					{ "name": "values", "args": ["values"] }
+					{ "name": "values", "args": ["values"] },
+					{ "name": "selectedOptions", "args": ["selectedOptionsText"] }
 				],
 				"refs": []
 			}
@@ -6850,13 +7263,20 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
 				"actions": [
-					{ "name": "hover", "args": ["hover"] },
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "selectOptionByValue", "args": ["selectOptionByValue"] },
 					{ "name": "selectOptionByText", "args": ["selectOptionByText"] }
 				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "icon", "args": ["affixIcon"] },
 					{ "name": "value", "args": ["value"] }
 				],
 				"refs": []
@@ -6960,10 +7380,28 @@
 				{ "name": "default", "description": "Slot for box's content." }
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
-				"refs": []
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "check", "args": ["check", "#control"] },
+					{ "name": "uncheck", "args": ["uncheck", "#control"] }
+				],
+				"queries": [
+					{ "name": "checked", "args": ["checked", "true"] },
+					{ "name": "unchecked", "args": ["checked", "false"] }
+				],
+				"refs": [
+					{
+						"name": "control",
+						"args": [
+							"nestedShadow",
+							"[data-vvd-component].control",
+							"div.control"
+						]
+					}
+				]
 			}
 		},
 		{
@@ -7061,8 +7499,12 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -7170,6 +7612,12 @@
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
+				},
+				{
+					"name": "valueAsNumber",
+					"description": "The value property, typed as a number.",
+					"type": "number",
+					"propertyName": "valueAsNumber"
 				}
 			],
 			"events": [
@@ -7215,6 +7663,12 @@
 					"propName": "value",
 					"eventNames": ["change"],
 					"valueMapping": "event.currentTarget.value"
+				},
+				{
+					"name": "valueAsNumber",
+					"propName": "valueAsNumber",
+					"eventNames": ["change"],
+					"valueMapping": "event.currentTarget.valueAsNumber"
 				}
 			],
 			"methods": [
@@ -7254,10 +7708,24 @@
 			],
 			"slots": [],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [{ "name": "value", "args": ["value"] }],
-				"refs": []
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "slideTo", "args": ["slideTo", "#track", "#thumb"] }
+				],
+				"queries": [
+					{ "name": "value", "args": ["value"] },
+					{ "name": "valueAsNumber", "args": ["valueAsNumber"] }
+				],
+				"refs": [
+					{ "name": "track", "args": ["shadow", ".control"] },
+					{ "name": "thumb", "args": ["shadow", ".thumb-container"] }
+				]
 			}
 		},
 		{
@@ -7382,10 +7850,22 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
-				"refs": []
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "clickAction", "args": ["click", "#actionButton"] },
+					{ "name": "clickIndicator", "args": ["click", "#indicatorButton"] }
+				],
+				"queries": [{ "name": "icon", "args": ["affixIcon"] }],
+				"refs": [
+					{ "name": "actionButton", "args": ["shadow", "button.control"] },
+					{ "name": "indicatorButton", "args": ["shadow", "button.indicator"] }
+				]
 			}
 		},
 		{
@@ -7526,10 +8006,23 @@
 			],
 			"slots": [],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [{ "name": "value", "args": ["value"] }],
-				"refs": []
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "check", "args": ["click", "#switch"] },
+					{ "name": "uncheck", "args": ["click", "#switch"] }
+				],
+				"queries": [
+					{ "name": "value", "args": ["value"] },
+					{ "name": "checked", "args": ["checked", "true"] },
+					{ "name": "unchecked", "args": ["checked", "false"] }
+				],
+				"refs": [{ "name": "switch", "args": ["shadow", ".switch"] }]
 			}
 		},
 		{
@@ -7646,10 +8139,22 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
-				"refs": []
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "select", "args": ["click", "#base"] }
+				],
+				"queries": [
+					{ "name": "icon", "args": ["affixIcon"] },
+					{ "name": "active", "args": ["active", "true"] },
+					{ "name": "inactive", "args": ["active", "false"] }
+				],
+				"refs": [{ "name": "base", "args": ["shadow", ".base"] }]
 			}
 		},
 		{
@@ -7694,8 +8199,12 @@
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -7804,8 +8313,12 @@
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -7939,10 +8452,30 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
-				"refs": []
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "click", "args": ["click", "#base"] },
+					{ "name": "remove", "args": ["click", "#dismissButton"] },
+					{ "name": "select", "args": ["toggleTag", "true"] },
+					{ "name": "unselect", "args": ["toggleTag", "false"] }
+				],
+				"queries": [
+					{ "name": "icon", "args": ["affixIcon"] },
+					{ "name": "selected", "args": ["selected", "true"] },
+					{ "name": "unselected", "args": ["selected", "false"] },
+					{ "name": "disabled", "args": ["disabled", "true"] },
+					{ "name": "!disabled", "args": ["disabled", "false"] }
+				],
+				"refs": [
+					{ "name": "base", "args": ["shadow", ".base"] },
+					{ "name": "dismissButton", "args": ["shadow", ".dismiss-button"] }
+				]
 			}
 		},
 		{
@@ -7989,8 +8522,12 @@
 				{ "name": "default", "description": "The content of the tag-group." }
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -8234,10 +8771,16 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
 				"actions": [
-					{ "name": "hover", "args": ["hover"] },
-					{ "name": "fill", "args": ["fill", "control"] }
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "fill", "args": ["fill", "#control"] },
+					{ "name": "clear", "args": ["clear", "#control"] }
 				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
@@ -8519,20 +9062,24 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
 				"actions": [
-					{ "name": "hover", "args": ["hover"] },
-					{ "name": "fill", "args": ["fill", "control"] }
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "fill", "args": ["fill", "#control"] },
+					{ "name": "clear", "args": ["clear", "#control"] },
+					{ "name": "blur", "args": ["blur", "#control"] }
 				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "icon", "args": ["affixIcon"] },
 					{ "name": "value", "args": ["value"] }
 				],
 				"refs": [
-					{
-						"name": "control",
-						"args": ["light", "input[slot=\"_control\"]", "HTMLInputElement"]
-					}
+					{ "name": "control", "args": ["light", "input[slot=\"_control\"]"] }
 				]
 			}
 		},
@@ -8707,13 +9254,35 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "clear", "args": ["clearPicker"] },
+					{ "name": "selectTime", "args": ["selectTime"] }
+				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
 					{ "name": "value", "args": ["value"] }
 				],
-				"refs": []
+				"refs": [
+					{
+						"name": "control",
+						"args": [
+							"shadowTextField",
+							"[data-vvd-component=text-field].control"
+						]
+					},
+					{
+						"name": "pickerButton",
+						"args": ["shadowButton", "#picker-button"]
+					},
+					{ "name": "clearButton", "args": ["shadowButton", "#clear-button"] }
+				]
 			}
 		},
 		{
@@ -8816,9 +9385,19 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byHeadline", "args": ["byHeadline"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [
+					{ "name": "open", "args": ["open", "true"] },
+					{ "name": "closed", "args": ["open", "false"] }
+				],
 				"refs": []
 			}
 		},
@@ -8896,9 +9475,19 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byText", "args": ["byText"] }],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [{ "name": "open", "args": ["open"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byText", "args": ["byText"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [
+					{ "name": "open", "args": ["open", "true"] },
+					{ "name": "closed", "args": ["open", "false"] }
+				],
 				"refs": []
 			}
 		},
@@ -9000,9 +9589,13 @@
 				{ "name": "item", "description": "To specify a child tree item." }
 			],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
-				"queries": [],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [{ "name": "icon", "args": ["affixIcon"] }],
 				"refs": []
 			}
 		},
@@ -9058,8 +9651,12 @@
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
@@ -9164,8 +9761,12 @@
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot" }],
 			"testUtils": {
-				"selectors": [],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [],
 				"refs": []
 			}
