@@ -675,28 +675,6 @@ describe('vwc-text-field', () => {
 		});
 	});
 
-	describe('in environments without adoptedStyleSheets', () => {
-		const adoptedStyleSheetsDescriptor = Object.getOwnPropertyDescriptor(
-			document,
-			'adoptedStyleSheets'
-		)!;
-		beforeAll(() => {
-			delete (document as any).adoptedStyleSheets;
-		});
-		afterAll(() => {
-			Object.defineProperty(
-				document,
-				'adoptedStyleSheets',
-				adoptedStyleSheetsDescriptor
-			);
-		});
-
-		it('should handle being connected without error', () => {
-			element = document.createElement(COMPONENT_TAG) as TextField;
-			expect(() => element.connectedCallback()).not.toThrow();
-		});
-	});
-
 	describe('safari workaround', () => {
 		it('should install the safari workaround stylesheet only once', () => {
 			// eslint-disable-next-line compat/compat

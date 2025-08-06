@@ -1,10 +1,10 @@
 import {
 	attr,
 	DOM,
+	ElementStyles,
 	nullableNumberConverter,
 	observable,
 } from '@microsoft/fast-element';
-import { memoizeWith } from 'ramda';
 import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
@@ -70,50 +70,20 @@ export type TextFieldType = typeof TextFieldType[keyof typeof TextFieldType];
 // As a workaround we add a stylesheet to root of text-field to apply the styles
 // Once fixed in Safari we can remove the workaround (VIV-1413)
 const safariWorkaroundClassName = '_vvd-3-text-field-safari-workaround';
-const getSafariWorkaroundStyleSheet = memoizeWith(
-	() => '',
-	() => {
-		const styleSheet = new CSSStyleSheet();
-
-		// Prevent error in environments that do not support `replaceSync` like JSDOM
-		const supportsReplaceSync = 'replaceSync' in styleSheet;
-		// istanbul ignore else
-		if (supportsReplaceSync) {
-			styleSheet.replaceSync(`
-.${safariWorkaroundClassName}::placeholder {
-	opacity: 1 !important;
-	-webkit-text-fill-color: var(--_low-ink-color) !important;
-}`);
-		}
-
-		return styleSheet;
+const safariWorkaroundStyles = ElementStyles.create([
+	`
+	.${safariWorkaroundClassName}::placeholder {
+		opacity: 1 !important;
+		-webkit-text-fill-color: var(--_low-ink-color) !important;
 	}
-);
+`,
+]);
 
-const installSafariWorkaroundStyleIfNeeded = (
-	forElement: TextField & {
-		_isSafariWorkaroundInstalled?: boolean;
-	}
-) => {
-	if (forElement._isSafariWorkaroundInstalled) {
-		return;
-	}
-	forElement._isSafariWorkaroundInstalled = true;
-
+const installSafariWorkaroundStyleIfNeeded = (forElement: TextField) => {
 	const root = forElement.getRootNode() as ShadowRoot | Document;
-	const workaroundStyleSheet = getSafariWorkaroundStyleSheet();
 
-	// Prevent error in environments that do not support `adoptedStyleSheets` like JSDOM
-	const supportsAdoptedStyleSheets = 'adoptedStyleSheets' in root;
-	if (!supportsAdoptedStyleSheets) {
-		return;
-	}
-
-	if (!root.adoptedStyleSheets.includes(workaroundStyleSheet)) {
-		root.adoptedStyleSheets = [
-			...root.adoptedStyleSheets,
-			workaroundStyleSheet,
-		];
+	if (!safariWorkaroundStyles.isAttachedTo(root)) {
+		safariWorkaroundStyles.addStylesTo(root);
 	}
 };
 
