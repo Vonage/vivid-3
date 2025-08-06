@@ -27,7 +27,8 @@ type DismissMethod = 'escape' | 'dismiss-button' | 'light-dismiss';
  * @vueModel open open open,close `event.currentTarget.open`
  * @testSelector byHeadline byHeadline
  * @testAction clickDismissButton click dismissButton
- * @testQuery open dialogOpen
+ * @testQuery open open true
+ * @testQuery closed open false
  * @testQuery headline headline
  * @testRef dismissButton shadow .dismiss-button
  */

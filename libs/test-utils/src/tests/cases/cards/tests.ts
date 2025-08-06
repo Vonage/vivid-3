@@ -13,6 +13,5 @@ export const cardTests: TestCase[] = [
 				() => vvd.expect(vvd.card.all()).toHaveCount(2),
 				() => vvd.expect(vvd.card.all().nth(1)).toHaveHeadline('Card 1'),
 			]),
-		expectedState: {},
 	},
 ];

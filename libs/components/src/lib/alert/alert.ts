@@ -40,6 +40,9 @@ export type AlertStrategy = 'fixed' | 'static';
  * @slot icon - The preferred way to add an icon to the component.
  * @event {CustomEvent<undefined>} open - Fired when the Alert is opened
  * @event {CustomEvent<undefined>} close - Fired when the Alert is closed
+ * @testSelector byHeadline byHeadline
+ * @testQuery open open true
+ * @testQuery closed open false
  */
 export class Alert extends AffixIcon(Localized(VividElement)) {
 	/**

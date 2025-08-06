@@ -33,6 +33,12 @@ function isDefined<T>(value: T | null | undefined): value is T {
  * @event {CustomEvent<undefined>} change - Emitted when either the start or end value changes
  * @vueModel start start input:start `event.currentTarget.start`
  * @vueModel end end input:end `event.currentTarget.end`
+ * @testAction selectDateRange selectDateRange control
+ * @testAction clear clearPicker pickerButton #clearButton
+ * @testQuery range range
+ * @testRef control shadowTextField [data-vvd-component=text-field].control
+ * @testRef pickerButton shadowButton #picker-button
+ * @testRef clearButton shadowButton #clear-button
  */
 export class DateRangePicker extends MinMaxCalendarPicker(
 	CalendarPicker(PickerField)

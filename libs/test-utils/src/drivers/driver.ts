@@ -54,7 +54,35 @@ export type Driver<D extends DriverT> = {
 	userFocus: (loc: D['locator']) => D['actionReturn'];
 	userBlur: (loc: D['locator']) => D['actionReturn'];
 	userHover: (loc: D['locator']) => D['actionReturn'];
+	userDragSlider: (
+		loc: D['locator'],
+		track: D['locator'],
+		thumb: D['locator'],
+		value: number
+	) => D['actionReturn'];
 
+	/**
+	 * Evaluates fn in the browser. If provided, continuation is called with the result of the evaluation.
+	 */
+	eval: (
+		loc: D['locator'],
+		fn: (el: any, arg?: any) => any,
+		arg?: any,
+		continuation?: (result: any) => void | Promise<void>
+	) => D['actionReturn'];
+	/**
+	 * Waits for the next DOM update cycle to complete.
+	 */
+	waitForUpdate: (loc: D['locator']) => D['actionReturn'];
+
+	/**
+	 * Evaluates a query command and compares the result to match the provided value.
+	 * Comparison is done using assert mechanism of the testing framework, which means they will be retried if applicable.
+	 */
 	expectEq: (query: QueryCommand<D>, value: any) => D['expectReturn'];
+
+	/**
+	 * Runs a sequence of actions in order, waiting for each to complete before proceeding to the next.
+	 */
 	actionSequence: (steps: Array<() => D['actionReturn']>) => D['actionReturn'];
 };

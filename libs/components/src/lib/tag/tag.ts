@@ -39,6 +39,14 @@ export type TagShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
  * @slot icon - The preferred way to add an icon to the component.
  * @event {CustomEvent<undefined>} selected-change - Fires when the selected state changes
  * @event {CustomEvent<undefined>} removed - Fires when the tag is removed
+ * @testSelector byLabel byLabel
+ * @testAction click click base
+ * @testAction clickRemove click dismissButton
+ * @testQuery selected selected true
+ * @testQuery unselected selected false
+ * @testQuery disabled disabled
+ * @testRef base shadow .base
+ * @testRef dismissButton shadow .dismiss-button
  */
 export class Tag extends Localized(DelegatesAria(AffixIcon(VividElement))) {
 	/**

@@ -19,6 +19,11 @@ import { SingleDatePickerMixin } from '../../shared/picker-field/mixins/single-d
  * @event {CustomEvent<undefined>} input - Emitted when the date is changed by the user.
  * @event {CustomEvent<undefined>} change - Emitted when the date is changed by the user.
  * @vueModel modelValue value input `event.currentTarget.value`
+ * @testAction selectDate selectDate control
+ * @testAction clear clearPicker pickerButton #clearButton
+ * @testRef control shadowTextField [data-vvd-component=text-field].control
+ * @testRef pickerButton shadowButton #picker-button
+ * @testRef clearButton shadowButton #clear-button
  */
 export class DatePicker extends SingleDatePickerMixin(
 	SingleValuePicker(MinMaxCalendarPicker(CalendarPicker(PickerField)))
