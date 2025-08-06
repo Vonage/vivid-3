@@ -34,12 +34,7 @@ registerMenuItem('your-prefix');
 	registerButton(prefix);
 </script>
 
-<your-prefix-menu
-	open
-	aria-label="Menu example"
-	placement="bottom-end"
-	trigger="auto"
->
+<your-prefix-menu open aria-label="Menu example" placement="bottom-end">
 	<your-prefix-button
 		slot="anchor"
 		aria-label="Open menu"
@@ -81,19 +76,12 @@ registerMenuItem('your-prefix');
 
 The `trigger` attribute controls whether the Menu opens and closes itself automatically.
 
-- `auto` - The menu opens and closes automatically when the anchor is clicked. It also closes itself when the user selects a menu item with a role different from `menuitemcheckbox`.
-- `legacy` (default) - The menu opens automatically when the anchor is clicked. This value is not recommended and only exists for backwards compatibility.
+- `auto` (default) - The menu opens and closes automatically when the anchor is clicked. It also closes itself when the user selects a menu item with a role different from `menuitemcheckbox`.
+- `legacy` - The menu opens automatically when the anchor is clicked. This value is not recommended and only exists for backwards compatibility.
 - `off` - The menu does not open or close automatically.
 
-<vwc-note connotation="information" headline="Change Announcement">
-	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
-
-We will change the default value of `trigger` to `auto` in a future major version of Vivid to make this the default behaviour.
-
-</vwc-note>
-
 ```html preview 340px
-<vwc-menu aria-label="Menu example" trigger="auto" placement="bottom-end">
+<vwc-menu aria-label="Menu example" placement="bottom-end">
 	<vwc-button slot="anchor" aria-label="Open menu" appearance="outlined">
 		<vwc-icon slot="icon" name="more-vertical-line"></vwc-icon>
 	</vwc-button>
@@ -114,13 +102,7 @@ The `auto-dismiss` attribute sets it to automatically close when focus is moved 
 
 ```html preview 200px
 <div style="position: relative">
-	<vwc-menu
-		auto-dismiss
-		id="menu"
-		open
-		trigger="auto"
-		aria-label="Menu example"
-	>
+	<vwc-menu auto-dismiss id="menu" open aria-label="Menu example">
 		<vwc-button
 			slot="anchor"
 			label="Toggle Menu"
@@ -150,7 +132,6 @@ In vivid version 4.12.0, popover attribute was added to menu, using the power of
 <div style="position: absolute; container-type: inline-size;">
 	<vwc-menu
 		position-strategy="absolute"
-		trigger="auto"
 		aria-label="Menu example"
 		placement="bottom-end"
 	>
@@ -351,7 +332,7 @@ Use the `--menu-block-size` variable to set the block size.
 | **open**             | `boolean`                                                                                                                                                               | Sets the open state of the Menu                                       |
 | **placement**        | `left-start`, `left-center` `left-end`, `right-start`, `right-center`, `right-end`, `top-start`, `top-center`, `top-end`, `bottom-start`, `bottom-center`, `bottom-end` | Sets the desired position of the Menu relative to it's anchor element |
 | **position-stategy** | `fixed` (deafult), `absolute`                                                                                                                                           | Sets the position strategy                                            |
-| **trigger**          | `none`, `legacy` (default), `auto`                                                                                                                                      | Sets trigger method of Menu                                           |
+| **trigger**          | `none`, `legacy`, `auto`(default)                                                                                                                                       | Sets trigger method of Menu                                           |
 
 </div>
 

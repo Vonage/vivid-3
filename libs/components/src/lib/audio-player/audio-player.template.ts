@@ -149,7 +149,7 @@ export const AudioPlayerTemplate = (context: VividElementDefinitionContext) => {
 			${when(
 				(x) => Boolean(x.playbackRates),
 				html`
-			<${menuTag} class="playback-rates" trigger="auto" placement="top-start" auto-dismiss id="playback-menu" position-strategy="absolute">
+			<${menuTag} class="playback-rates" placement="top-start" auto-dismiss id="playback-menu" position-strategy="absolute">
 				<${buttonTag} id="playback-open-button"
 							  class="playback-button"
 							  slot="anchor"

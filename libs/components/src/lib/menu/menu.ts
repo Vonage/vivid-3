@@ -285,7 +285,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	 */
 	@attr trigger?: 'auto' | 'legacy' | 'off';
 	get #triggerBehaviour(): 'auto' | 'legacy' | 'off' {
-		return this.trigger ?? 'legacy';
+		return this.trigger ?? 'auto';
 	}
 
 	/**
