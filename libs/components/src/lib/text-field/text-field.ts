@@ -128,6 +128,8 @@ const installSafariWorkaroundStyleIfNeeded = (
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
  * @vueModel modelValue value input `event.currentTarget.value`
  * @testAction fill fill control
+ * @testAction clear clear control
+ * @testAction blur blur control
  * @testRef control light input[slot="_control"] HTMLInputElement
  */
 export class TextField extends WithLightDOMFeedback(

@@ -42,6 +42,9 @@ const isMenuItemElement = (el: Element): el is HTMLElement =>
  * @slot action-items - Used to add action items to the bottom of the menu.
  * @event {CustomEvent<undefined>} open - Fired when the menu is opened
  * @event {CustomEvent<undefined>} close - Fired when the menu is closed
+ * @testSelector byLabel byLabel
+ * @testQuery open open true
+ * @testQuery closed open false
  */
 export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	/**

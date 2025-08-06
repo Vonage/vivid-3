@@ -59,7 +59,7 @@ export type ButtonSize = ExtractFromEnum<
  * @slot icon - The preferred way to add an icon to the component.
  * @testSelector byLabel byLabel
  * @testAction click click control
- * @testRef control shadow .control
+ * @testRef control shadow button.control
  */
 export class Button extends AffixIconWithTrailing(
 	Localized(Linkable(VividFoundationButton))

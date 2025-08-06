@@ -75,9 +75,20 @@ export class ${kebabToPascal(
 				`// prettier-ignore
 ${action.name} = (actions.${
 					action.args[0]
-				}<D>).bind(null, this.ctx, this.componentInfo, () => this.${
-					action.args[1] ? `${action.args[1]}()` : 'locator'
-				});`
+				}<D>).bind(null, this.ctx, this.componentInfo, ${[
+					`() => this.${
+						action.args[1] && action.args[1] !== '#locator'
+							? `${action.args[1]}()`
+							: 'locator'
+					}`,
+					...action.args.slice(2).map((arg) => {
+						if (arg.startsWith('#')) {
+							return `() => this.${arg.slice(1)}()`;
+						} else {
+							return arg;
+						}
+					}),
+				].join(', ')});`
 		)
 		.join('\n')}
 
@@ -85,7 +96,10 @@ ${action.name} = (actions.${
 		.map(
 			(ref) =>
 				`// prettier-ignore
-${ref.name} = (refs.${ref.args[0]}<D>).bind(null, this.ctx, this, '${ref.args[1]}');`
+${ref.name} = (refs.${ref.args[0]}<D>).bind(null, this.ctx, this, ${ref.args
+					.slice(1)
+					.map((arg) => `'${arg}'`)
+					.join(', ')});`
 		)
 		.join('\n')}
 }
@@ -134,21 +148,61 @@ export class ${kebabToPascal(def.name)}Expectations<D extends DriverT> {
 	}
 
   ${def.testUtils.queries
-		.map(
-			(query) => `
+		.map((query) => {
+			let name = query.name;
+			let isNegation = false;
+			if (name.startsWith('!')) {
+				isNegation = true;
+				name = name.slice(1);
+			}
+			const isBoolean = query.args.length > 1;
+			if (isBoolean) {
+				name = isNegation
+					? `notToBe${camelToPascal(name)}`
+					: `toBe${camelToPascal(name)}`;
+				return `
+  ${name}() {
+		try {
+			return this.ctx.driver.expectEq(
+				{
+					type: 'eval',
+					el: this.wrapper.unwrap(),
+					fn: queries.${query.args[0]},
+				},
+				${query.args[1]}
+			);
+		} catch (error) {
+			if (error instanceof Error) {
+				// Report the error at call site
+				Error.captureStackTrace(error, this.${name});
+			}
+			throw error;
+		}
+	}`;
+			} else {
+				return `
   toHave${camelToPascal(query.name)}(
 		value: any
 	) {
-		return this.ctx.driver.expectEq(
-			{
-				type: 'eval',
-				el: this.wrapper.unwrap(),
-				fn: queries.${query.args[0]},
-			},
-			value
-		);
-	}`
-		)
+		try {
+			return this.ctx.driver.expectEq(
+				{
+					type: 'eval',
+					el: this.wrapper.unwrap(),
+					fn: queries.${query.args[0]},
+				},
+				value
+			);
+		} catch (error) {
+			if (error instanceof Error) {
+				// Report the error at call site
+				Error.captureStackTrace(error, this.toHave${camelToPascal(query.name)});
+			}
+			throw error;
+		}
+	}`;
+			}
+		})
 		.join('\n')}
 }
 	`;
@@ -182,6 +236,10 @@ type ComponentLocator<D extends DriverT> = BaseWrapper<D> & {
 export class VividWrapper<D extends DriverT> {
 	constructor(protected readonly ctx: Context<D>) {}
 
+	debug() {
+		console.log(this.ctx.rootLocator.innerHTML);
+	}
+
 	expect<K extends ComponentLocator<D> | ComponentCollectionLocator<D, any>>(
 		componentLocator: K
 	): Expectations<D>[K['type']] {
@@ -201,5 +259,62 @@ export class VividWrapper<D extends DriverT> {
 		)
 		.join('\n')}
 }
+`
+);
+
+fs.writeFileSync(
+	path.join(dirname, '../API.md'),
+	`# Vivid Test Utils
+
+${metadata.componentDefs
+	.map(
+		(componentDef) => `## ${kebabToPascal(componentDef.name)}
+
+#### Selectors
+
+${componentDef.testUtils.selectors
+	.map((selector) => `- \`${selector.name}\``)
+	.join('\n')}
+
+${
+	componentDef.testUtils.actions.length
+		? `
+#### Actions
+
+${componentDef.testUtils.actions
+	.map((action) => `- \`${action.name}\``)
+	.join('\n')}
+
+`
+		: ''
+}
+
+${
+	componentDef.testUtils.queries.length
+		? `
+#### Queries
+
+${componentDef.testUtils.queries
+	.map((query) => `- \`${query.name}\``)
+	.join('\n')}
+
+`
+		: ''
+}
+
+${
+	componentDef.testUtils.refs.length
+		? `
+#### Refs
+
+${componentDef.testUtils.refs.map((ref) => `- \`${ref.name}\``).join('\n')}
+
+`
+		: ''
+}
+
+`
+	)
+	.join('\n')}
 `
 );

@@ -72,6 +72,7 @@ export const PickerFieldTemplate = (
 					<div class="${() =>
 						classNames('footer', ['footer--with-separator', withSeparator])}">
 						<${buttonTag}
+							id='clear-button'
 							tabindex='3'
 							class='vwc-button'
 							size='condensed'

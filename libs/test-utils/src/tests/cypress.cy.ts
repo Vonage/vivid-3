@@ -8,11 +8,8 @@ for (const testCase of testCases) {
 		cy.visit(`http://localhost:5173/${testCase.path}/`);
 		const vvd = vividCypress(cy);
 
-		testCase.test(vvd);
-
-		cy.get('pre').should(
-			'contain.text',
-			JSON.stringify(testCase.expectedState)
-		);
+		testCase.test(vvd, (expectedState) => {
+			cy.get('pre').should('contain.text', JSON.stringify(expectedState));
+		});
 	});
 }

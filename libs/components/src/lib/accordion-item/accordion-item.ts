@@ -36,6 +36,11 @@ export type AccordionItemAppearance = ExtractFromEnum<
  * @slot meta - Used to add additional content to the heading.
  * @slot heading - Used to add content to the heading.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the button is invoked
+ * @testSelector byHeading byHeading
+ * @testAction toggle click button
+ * @testQuery expanded expanded true
+ * @testQuery collapsed expanded false
+ * @testRef button shadow .heading-button
  */
 export class AccordionItem extends AffixIconWithTrailing(VividElement) {
 	/**

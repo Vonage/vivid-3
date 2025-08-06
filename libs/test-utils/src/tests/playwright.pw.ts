@@ -8,10 +8,10 @@ for (const testCase of testCases) {
 		await page.goto(`http://localhost:5173/${testCase.path}/`);
 		const vvd = vividPlaywright(page, expect);
 
-		await testCase.test(vvd);
-
-		await expect(page.locator('pre')).toContainText(
-			JSON.stringify(testCase.expectedState)
-		);
+		await testCase.test(vvd, async (expectedState) => {
+			await expect(page.locator('pre')).toContainText(
+				JSON.stringify(expectedState)
+			);
+		});
 	});
 }

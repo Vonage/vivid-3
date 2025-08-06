@@ -45,6 +45,20 @@ export function byLabel<D extends DriverT, W extends BaseWrapper<D>>(
 	);
 }
 
+export function byHeading<D extends DriverT, W extends BaseWrapper<D>>(
+	ctx: Context<D>,
+	component: ComponentInfo,
+	wrap: (locator: D['locator']) => W,
+	heading: string
+): W {
+	return wrap(
+		ctx.driver.querySelector(
+			ctx.rootLocator,
+			attributeSelector(ctx.prefix, component.name, [['heading', heading]])
+		)
+	);
+}
+
 export function byHeadline<D extends DriverT, W extends BaseWrapper<D>>(
 	ctx: Context<D>,
 	component: ComponentInfo,
