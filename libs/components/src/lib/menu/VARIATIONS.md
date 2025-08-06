@@ -24,12 +24,7 @@ In such cases - prefer using `bottom-start` or `end` instead.
 
 ```html preview 150px
 <div style="position: relative; text-align: end;">
-	<vwc-menu
-		placement="left-start"
-		open
-		trigger="auto"
-		aria-label="Menu example"
-	>
+	<vwc-menu placement="left-start" open aria-label="Menu example">
 		<vwc-button
 			slot="anchor"
 			label="Toggle Menu"

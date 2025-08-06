@@ -381,7 +381,7 @@ When the button is used to trigger a menu / dropdown, you can set `dropdown-indi
 </vwc-note>
 
 ```html preview 220px
-<vwc-menu trigger="auto" auto-dismiss placement="bottom-start">
+<vwc-menu auto-dismiss placement="bottom-start">
 	<vwc-button
 		slot="anchor"
 		appearance="outlined-light"
