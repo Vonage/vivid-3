@@ -172,7 +172,7 @@ export class TimePicker extends TimeSelectionPicker(
 		super._onPickerButtonClick();
 		if (this._popupOpen) {
 			DOM.processUpdates();
-			this._focusableElsWithinDialog()[0].focus();
+			this._focusableElsWithinDialog()[0]?.focus();
 		}
 	}
 

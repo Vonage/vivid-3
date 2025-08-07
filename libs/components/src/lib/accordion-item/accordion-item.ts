@@ -4,7 +4,7 @@ import {
 	observable,
 } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
-import type { Size } from '../enums.js';
+import type { Appearance, Size } from '../enums';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 
@@ -16,6 +16,16 @@ import type { ExtractFromEnum } from '../../shared/utils/enums';
 export type AccordionItemSize = ExtractFromEnum<
 	Size,
 	Size.Condensed | Size.Normal
+>;
+
+/**
+ * Types of accordion-item appearance.
+ *
+ * @public
+ */
+export type AccordionItemAppearance = ExtractFromEnum<
+	Appearance,
+	Appearance.Ghost | Appearance.Filled | Appearance.GhostLight
 >;
 
 /**
@@ -43,6 +53,15 @@ export class AccordionItem extends AffixIconWithTrailing(VividElement) {
 		converter: nullableNumberConverter,
 	})
 	headinglevel: 1 | 2 | 3 | 4 | 5 | 6 = 2;
+
+	/**
+	 * The appearance the button should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: appearance
+	 */
+	@attr appearance?: AccordionItemAppearance;
 
 	/**
 	 * Expands or collapses the item.

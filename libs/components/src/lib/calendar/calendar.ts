@@ -93,7 +93,7 @@ export class Calendar extends VividElement {
 	 * HTML Attribute: sticky-mode
 	 */
 	@attr({ attribute: 'sticky-mode', mode: 'fromView' })
-	stickyMode: CalendarSticky = Sticky.None;
+	stickyMode: CalendarSticky = Sticky.All;
 
 	/**
 	 * @internal
