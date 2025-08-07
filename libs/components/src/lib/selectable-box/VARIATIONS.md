@@ -48,13 +48,6 @@ It accepts a subset of predefined values.
 By default, the card's control element (checkbox or radio) is the clickable element. This allows you to use other clickable elements within the box.
 Setting the `clickable-box` attribute makes the whole box clickable, just make sure the box does not contain other clickable elements.
 
-<vwc-note connotation="warning" headline="Deprecated Prop: clickable">
-	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
-
-The `clickable` prop is deprecated (as of 11/23) and directly replaced with `clickable-box`. `clickable` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
-
-</vwc-note>
-
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
 	<vwc-selectable-box clickable-box class="box">
