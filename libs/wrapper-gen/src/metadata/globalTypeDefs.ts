@@ -88,6 +88,8 @@ export const globalTypeDefs: Record<string, TypeStr> = {
 
 	// Selectable box:
 	SelectableBoxControlType: "'checkbox' | 'radio'",
+	SelectableBoxControlPlacement:
+		"'start' | 'start-stacked' | 'end'| 'end-stacked'",
 
 	// Empty-state:
 	EmptyStateIconDecoration: "'outlined' | 'filled'",
