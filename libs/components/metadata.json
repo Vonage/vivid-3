@@ -6896,6 +6896,13 @@
 					"propertyName": "connotation"
 				},
 				{
+					"name": "controlPlacement",
+					"description": "Defines where the control (checkbox or radio) should be located.",
+					"type": "'start' | 'start-stacked' | 'end' | 'end-stacked'",
+					"attributeName": "control-placement",
+					"propertyName": "controlPlacement"
+				},
+				{
 					"name": "controlType",
 					"description": "The type of control the box should have: checkbox or radio.",
 					"type": "'checkbox' | 'radio'",

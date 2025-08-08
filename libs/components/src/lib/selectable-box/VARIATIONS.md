@@ -1,6 +1,6 @@
 ## Control Type
 
-Set the `control-type` attribute to change the box's selectable control
+Set the `control-type` attribute to change the box's selectable control.
 It accepts a subset of predefined values.
 When `control-type` is set to `radio`, it is the consuming app's responsibility to ensure only one Selectable Box in a group is checked at a time.
 
@@ -19,6 +19,27 @@ When `control-type` is set to `radio`, it is the consuming app's responsibility 
 		max-inline-size: 450px;
 	}
 </style>
+```
+
+## Control Placement
+
+Use the `control-placement` attribute to change the box's selectable control placement.
+
+```html preview
+<vwc-layout gutters="small" row-spacing="small" column-basis="medium">
+	<vwc-selectable-box>
+		Control placement: <strong>end-stacked (default)</strong>
+	</vwc-selectable-box>
+	<vwc-selectable-box control-placement="start-stacked">
+		Control placement: <strong>start-stacked</strong>
+	</vwc-selectable-box>
+	<vwc-selectable-box control-placement="end">
+		Control placement: <strong>end</strong>
+	</vwc-selectable-box>
+	<vwc-selectable-box control-placement="start">
+		Control placement: <strong>start</strong>
+	</vwc-selectable-box>
+</vwc-layout>
 ```
 
 ## Connotation

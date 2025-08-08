@@ -24,6 +24,8 @@
 	@include connotation.connotation(selectable-box);
 	@include appearance.appearance;
 
+	--control-offset: calc(var(#{variables.$spacing-var}, 16px) + 36px);
+
 	& {
 		position: relative;
 		padding: var(#{variables.$spacing-var}, 16px);
@@ -31,8 +33,18 @@
 		border-radius: #{border-radius-variables.$border-radius-normal};
 		background-color: var(#{appearance.get-appearance-token(fill)});
 		inline-size: 100%;
-		padding-block-start: calc(var(#{variables.$spacing-var}, 16px) + 36px);
 		text-align: start;
+	}
+
+	&.control-placement-end-stacked,
+	&.control-placement-start-stacked {
+		padding-block-start: var(--control-offset);
+	}
+	&.control-placement-start {
+		padding-inline-start: var(--control-offset);
+	}
+	&.control-placement-end {
+		padding-inline-end: var(--control-offset);
 	}
 
 	&:focus-visible {
@@ -55,5 +67,12 @@
 .control {
 	position: absolute;
 	inset-block-start: var(#{variables.$spacing-var}, 16px);
-	inset-inline-end: var(#{variables.$spacing-var}, 16px);
+	&.start-stacked,
+	&.start {
+		inset-inline-start: var(#{variables.$spacing-var}, 16px);
+	}
+	&.end-stacked,
+	&.end {
+		inset-inline-end: var(#{variables.$spacing-var}, 16px);
+	}
 }
