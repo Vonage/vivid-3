@@ -26,14 +26,13 @@
 	gap: 12px;
 
 	.header {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-
 		display: flex;
 		align-items: center;
 		padding-block: 8px;
 
-		&:focus-visible {
-			@include focus.focus;
+		&:focus {
+			box-shadow: none;
+			outline: none;
 		}
 	}
 
