@@ -27,7 +27,10 @@ export type SplitButtonConnotation = ExtractFromEnum<
  */
 export type SplitButtonAppearance = ExtractFromEnum<
 	Appearance,
-	Appearance.Filled | Appearance.Outlined | Appearance.Ghost
+	| Appearance.Filled
+	| Appearance.Outlined
+	| Appearance.Ghost
+	| Appearance.OutlinedLight
 >;
 
 /**
