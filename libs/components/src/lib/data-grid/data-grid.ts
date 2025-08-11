@@ -640,7 +640,7 @@ export class DataGrid extends VividElement {
 		const focusRow: Element = this.rowElements[focusRowIndex];
 
 		const cells: NodeListOf<Element> = focusRow.querySelectorAll(
-			'[role="cell"], [role="gridcell"], [role="columnheader"], [role="rowheader"], [cell-type]'
+			'[role="cell"], [role="gridcell"], [role="columnheader"], [role="rowheader"], [data-vvd-component="data-grid-cell"]'
 		);
 
 		const focusColumnIndex = Math.max(
@@ -716,7 +716,8 @@ export class DataGrid extends VividElement {
 				mutation.addedNodes.forEach((newNode: Node): void => {
 					if (
 						newNode.nodeType === 1 &&
-						(newNode as Element).getAttribute('role') === 'row'
+						((newNode as Element).getAttribute('role') === 'row' ||
+							(newNode as Element).getAttribute('row-type') === 'default')
 					) {
 						(newNode as DataGridRow).columnDefinitions = this.columnDefinitions;
 					}
@@ -825,7 +826,11 @@ export class DataGrid extends VividElement {
 	};
 
 	#handleClick = ({ target, ctrlKey, shiftKey, metaKey }: MouseEvent) => {
-		if ((target as HTMLElement).getAttribute('role') !== 'gridcell') return;
+		if (
+			(target as HTMLElement).getAttribute('role') !== 'gridcell' ||
+			(target as HTMLElement).getAttribute('cell-type') !== 'default'
+		)
+			return;
 
 		if (
 			this.selectionMode === DataGridSelectionMode.singleCell ||
@@ -903,10 +908,10 @@ export class DataGrid extends VividElement {
 	 */
 	private _resetSelection = (clear = false) => {
 		const cells = Array.from(
-			this.querySelectorAll('[role="gridcell"], [cell-type]')
+			this.querySelectorAll('[role="gridcell"], [cell-type="default"]')
 		) as DataGridCell[];
 		const rows = Array.from(
-			this.querySelectorAll('[role="row"], [row-type]')
+			this.querySelectorAll('[role="row"], [row-type="default"]')
 		) as DataGridRow[];
 
 		if (
@@ -976,7 +981,7 @@ export class DataGrid extends VividElement {
 	private applyFixedColumnStyling(): void {
 		this.rowElements.forEach((row) => {
 			const cells = row.querySelectorAll(
-				'[role="cell"], [role="gridcell"], [role="columnheader"]'
+				'[role="cell"], [role="gridcell"], [role="columnheader"], [cell-type="default"], [cell-type="columnheader"]'
 			);
 
 			this.fixedColumnsPositions.forEach((position, index) => {
@@ -999,7 +1004,7 @@ export class DataGrid extends VividElement {
 		if (this.rowElements.length === 0) return;
 
 		const cells = this.rowElements[0].querySelectorAll(
-			'[role="cell"], [role="gridcell"], [role="columnheader"]'
+			'[role="cell"], [role="gridcell"], [role="columnheader"], [cell-type="default"], [cell-type="columnheader"]'
 		);
 
 		let accumulator = 0;
@@ -1021,7 +1026,7 @@ export class DataGrid extends VividElement {
 
 		this.rowElements.forEach((row) => {
 			const cells = row.querySelectorAll(
-				'[role="cell"], [role="gridcell"], [role="columnheader"]'
+				'[role="cell"], [role="gridcell"], [role="columnheader"], [cell-type="default"], [cell-type="columnheader"]'
 			);
 
 			this.fixedColumnsPositions.forEach((_, index) => {

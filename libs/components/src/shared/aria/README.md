@@ -19,6 +19,16 @@ Although not always followed in the past, we now strive to align our components 
 - ARIA attributes should not affect the component's behaviour or appearance.
   - This is how native HTML elements behave as well.
 
+## Renaming
+
+When a component has delegated semantics, e.g. a button that delegates `aria-label` to a child button element, we remove the ARIA attributes from the host element itself.
+
+Otherwise, they would apply to the host element itself, which may lead to incorrect or invalid semantics.
+
+To avoid confusion, the removed attribute is added back as a data attribute `data-vvd-aria-label`.
+
+## Mixins
+
 To keep our code maintainable, we centrally manage ARIA behavior using the following mixins:
 
 ### AriaMixin

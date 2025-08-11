@@ -15,7 +15,8 @@ export function isListboxOption(el: Element): el is ListboxOption {
 	return (
 		isHTMLElement(el) &&
 		((el.getAttribute('role') as string) === 'option' ||
-			el instanceof HTMLOptionElement)
+			el instanceof HTMLOptionElement ||
+			el instanceof ListboxOption)
 	);
 }
 /**
@@ -41,7 +42,20 @@ export class ListboxOption extends HostSemantics(
 	 *
 	 * @public
 	 */
-	@observable
+	@attr({
+		converter: {
+			fromView: (value) => {
+				if (value === true || value === 'true') {
+					return true;
+				}
+				if (value === false || value === 'false') {
+					return false;
+				}
+				return undefined;
+			},
+			toView: (value) => value,
+		},
+	})
 	checked?: boolean;
 
 	/**

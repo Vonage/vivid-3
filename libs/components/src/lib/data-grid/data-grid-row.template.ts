@@ -1,8 +1,17 @@
 import { children, elements, html, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import { DataGridCell } from './data-grid-cell';
 import type { DataGridRow } from './data-grid-row';
+
+function calculateAriaSelectedValue(x: DataGridRow) {
+	if (x._selectable && x.selected) return 'true';
+
+	if (x._selectable && !x.selected) return 'false';
+
+	return null;
+}
 
 function createCellItemTemplate(context: VividElementDefinitionContext) {
 	const cellTag = context.tagFor(DataGridCell);
@@ -35,14 +44,17 @@ export const DataGridRowTemplate = (context: VividElementDefinitionContext) => {
 		classNames('base', ['selected', !!x.selected]);
 	return html<DataGridRow>`
 		<template
-			role="row"
+			${applyHostSemantics({
+				role: 'row',
+				ariaSelected: calculateAriaSelectedValue,
+			})}
 			class="${(x) => (x.rowType !== 'default' ? x.rowType : '')}"
 			:defaultCellItemTemplate="${cellItemTemplate}"
 			:defaultHeaderCellItemTemplate="${headerCellItemTemplate}"
 			${children({
 				property: 'cellElements',
 				filter: elements(
-					'[role="cell"],[role="gridcell"],[role="columnheader"],[role="rowheader"],[cell-type]'
+					'[role="cell"],[role="gridcell"],[role="columnheader"],[role="rowheader"],[data-vvd-component="data-grid-cell"]'
 				),
 			})}
 		>

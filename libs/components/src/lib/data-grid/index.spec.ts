@@ -2,6 +2,8 @@ import { elementUpdated, fixture } from '@repo/shared';
 import type { DataGrid } from './data-grid';
 import { DataGridSelectionMode } from './data-grid';
 import './index';
+import type { DataGridRow } from './data-grid-row';
+import type { DataGridCell } from './data-grid-cell';
 
 const COMPONENT_TAG = 'vwc-data-grid';
 
@@ -13,6 +15,17 @@ describe('data grid integration tests', () => {
 	function getRow(row: number) {
 		return element.rowElements[row] as HTMLElement;
 	}
+
+	const getAllNonHeaderRows = () =>
+		Array.from(
+			element.querySelectorAll('[row-type="default"]')
+		) as DataGridRow[];
+
+	const getAllNonHeaderCells = () =>
+		Array.from(
+			element.querySelectorAll('[cell-type="default"]')
+		) as DataGridCell[];
+
 	let element: DataGrid;
 
 	beforeEach(async () => {
@@ -53,19 +66,19 @@ describe('data grid integration tests', () => {
 			beforeEach(async function () {
 				element = (await fixture(
 					`<${COMPONENT_TAG}>
-						<${COMPONENT_TAG}-row role="row">
-							<${COMPONENT_TAG}-cell cell-type="columnheader" role="columnheader">
+						<${COMPONENT_TAG}-row>
+							<${COMPONENT_TAG}-cell cell-type="columnheader">
 							data1
 							</${COMPONENT_TAG}-cell>
 							<${COMPONENT_TAG}-cell cell-type="columnheader">
 							data2
 							</${COMPONENT_TAG}-cell>
 						</${COMPONENT_TAG}-row>
-						<${COMPONENT_TAG}-row aria-selected="true">
+						<${COMPONENT_TAG}-row selected>
 							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
 							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
 						</${COMPONENT_TAG}-row>
-						<${COMPONENT_TAG}-row aria-selected="false">
+						<${COMPONENT_TAG}-row>
 							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
 							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
 						</${COMPONENT_TAG}-row>
@@ -89,8 +102,8 @@ describe('data grid integration tests', () => {
 			it('should not overwrite header row-type when it is set in the grid template and generateHeader is default', async function () {
 				element = (await fixture(
 					`<${COMPONENT_TAG}>
-						<${COMPONENT_TAG}-row row-type="sticky-header" role="row">
-							<${COMPONENT_TAG}-cell cell-type="columnheader" role="columnheader">
+						<${COMPONENT_TAG}-row row-type="sticky-header">
+							<${COMPONENT_TAG}-cell cell-type="columnheader">
 							data1
 							</${COMPONENT_TAG}-cell>
 							<${COMPONENT_TAG}-cell cell-type="columnheader">
@@ -146,11 +159,11 @@ describe('data grid integration tests', () => {
 		describe('sort', function () {
 			async function addSortableHeader() {
 				element.innerHTML = `
-					<vwc-data-grid-row role="row" class="header" row-type="header">
-						<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
+					<vwc-data-grid-row row-type="header">
+						<vwc-data-grid-cell cell-type="columnheader">
 						data1
 						</vwc-data-grid-cell>
-						<vwc-data-grid-cell aria-sort="none" cell-type="columnheader">
+						<vwc-data-grid-cell sort-direction="none" cell-type="columnheader">
 						data2
 						</vwc-data-grid-cell>
 					</vwc-data-grid-row>
@@ -228,7 +241,7 @@ describe('data grid integration tests', () => {
 					element.selectionMode = selectionMode;
 					await elementUpdated(element);
 					const allNoneHeaderCells = Array.from(
-						element.querySelectorAll('[role="gridcell"]')
+						element.querySelectorAll('[cell-type="default"]')
 					);
 					const allNoneHeaderCellsSelectable = allNoneHeaderCells.every(
 						(cell) => cell.getAttribute('aria-selected') === 'false'
@@ -244,10 +257,7 @@ describe('data grid integration tests', () => {
 				element.selectionMode = DataGridSelectionMode.none;
 				await elementUpdated(element);
 
-				const allNonHeaderCells = Array.from(
-					element.querySelectorAll('[role="gridcell"]')
-				);
-				const allNonHeaderCellsNotSelectable = allNonHeaderCells.every(
+				const allNonHeaderCellsNotSelectable = getAllNonHeaderCells().every(
 					(cell) => !cell.hasAttribute('aria-selected')
 				);
 				expect(allNonHeaderCellsNotSelectable).toEqual(true);
@@ -260,10 +270,7 @@ describe('data grid integration tests', () => {
 				element.selectionMode = DataGridSelectionMode.singleCell;
 				await elementUpdated(element);
 
-				const allNonHeaderRows = Array.from(
-					element.querySelectorAll('[role="row"]')
-				);
-				const allNonHeaderRowsNotSelectable = allNonHeaderRows.every(
+				const allNonHeaderRowsNotSelectable = getAllNonHeaderRows().every(
 					(row) => !row.hasAttribute('aria-selected')
 				);
 				expect(allNonHeaderRowsNotSelectable).toEqual(true);
@@ -453,11 +460,7 @@ describe('data grid integration tests', () => {
 				element.selectionMode = DataGridSelectionMode.none;
 				await elementUpdated(element);
 
-				const allNoneHeaderRows = Array.from(
-					element.querySelectorAll('[role="row"]')
-				);
-
-				const allNonHeaderRowsNotSelectable = allNoneHeaderRows.every(
+				const allNonHeaderRowsNotSelectable = getAllNonHeaderRows().every(
 					(row) => !row.hasAttribute('aria-selected')
 				);
 				expect(allNonHeaderRowsNotSelectable).toEqual(true);
@@ -470,10 +473,7 @@ describe('data grid integration tests', () => {
 				element.selectionMode = DataGridSelectionMode.multiRow;
 				await elementUpdated(element);
 
-				const allNonHeaderCells = Array.from(
-					element.querySelectorAll('[role="gridcell"]')
-				);
-				const allNonHeaderCellsNotSelectable = allNonHeaderCells.every(
+				const allNonHeaderCellsNotSelectable = getAllNonHeaderCells().every(
 					(cell) => !cell.hasAttribute('aria-selected')
 				);
 				expect(allNonHeaderCellsNotSelectable).toEqual(true);
@@ -487,12 +487,11 @@ describe('data grid integration tests', () => {
 				async function (selectionMode: DataGridSelectionMode) {
 					element.selectionMode = selectionMode;
 					await elementUpdated(element);
-					const allNonHeaderRows = element.querySelectorAll('[role="row"]');
-					const allNonHeaderRowsHaveSelectedFalse = Array.from(
-						allNonHeaderRows
-					).every((row) => {
-						return row.getAttribute('aria-selected') === 'false';
-					});
+					const allNonHeaderRowsHaveSelectedFalse = getAllNonHeaderRows().every(
+						(row) => {
+							return row.getAttribute('aria-selected') === 'false';
+						}
+					);
 					expect(allNonHeaderRowsHaveSelectedFalse).toEqual(true);
 				}
 			);

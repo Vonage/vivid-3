@@ -26,8 +26,7 @@ export function getDisplayedNodes(
 		// only include nested items if their parents are expanded
 		const visibleNodes: HTMLElement[] = nodes.filter((node: HTMLElement) => {
 			if (node.parentElement instanceof TreeItem) {
-				if (node.parentElement.getAttribute('aria-expanded') === 'true')
-					return true;
+				if (node.parentElement.expanded) return true;
 			} else {
 				return true;
 			}
