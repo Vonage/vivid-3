@@ -7269,7 +7269,7 @@
 				{
 					"name": "appearance",
 					"description": "The appearance the split button should have.",
-					"type": "'filled' | 'outlined' | 'ghost'",
+					"type": "'filled' | 'outlined' | 'ghost' | 'outlined-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},
