@@ -7,7 +7,6 @@ import {
 
 const components = ['layout', 'card', 'divider'];
 
-test.describe.configure({ mode: 'parallel' });
 
 test('should show the default component', async ({ page }: { page: Page }) => {
 	const template = `
@@ -102,9 +101,6 @@ test('should show the default component', async ({ page }: { page: Page }) => {
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'snapshots/layout.png',
-		{
-			maxDiffPixelRatio: 0.02,
-		}
 	);
 });
 
