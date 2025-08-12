@@ -4,8 +4,9 @@ import {
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
+import type { VwcMenuElement, VwcSplitButtonElement } from '../components.js';
 
-const components = ['split-button'];
+const components = ['split-button', 'menu', 'menu-item'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<div style="margin: 5px;">
@@ -102,12 +103,17 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 		</vwc-split-button>
 	</div>
-	<div style="margin: 5px;">
-		<vwc-split-button id="expanded" label="Expanded"></vwc-split-button>
+	<div style="margin: 5px; height: 135px;">
+		<vwc-split-button id="splitButton" label="Expanded">
+			<vwc-menu id="menu" placement="bottom-end">
+				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+				<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+			</vwc-menu>
+		</vwc-split-button>
 	</div>
 `;
 
-	page.setViewportSize({ width: 600, height: 1000 });
+	page.setViewportSize({ width: 600, height: 1200 });
 
 	await loadComponents({
 		page,
@@ -118,9 +124,22 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		template,
 	});
 
+	await page.evaluate(() => {
+		const splitButton = document.querySelector(
+			'#splitButton'
+		) as VwcSplitButtonElement;
+		const menu = document.querySelector('#menu') as VwcMenuElement;
+
+		menu.anchor = splitButton.indicator;
+
+		splitButton.addEventListener('indicator-click', () => {
+			menu.open = !menu.open;
+		});
+	});
+
 	const testWrapper = await page.$('#wrapper');
-	const buttonToExpand = await page.$('#expanded .indicator');
-	await buttonToExpand?.click();
+	const buttonIndicator = await page.$('#splitButton .indicator');
+	await buttonIndicator?.click();
 
 	await page.waitForLoadState('networkidle');
 
