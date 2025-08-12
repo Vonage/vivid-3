@@ -7,7 +7,6 @@ import {
 
 const components = ['layout', 'card', 'divider'];
 
-
 test('should show the default component', async ({ page }: { page: Page }) => {
 	const template = `
 		<div style="margin: 5px;">
@@ -16,67 +15,37 @@ test('should show the default component', async ({ page }: { page: Page }) => {
 					headline="Lorem ipsum"
 					text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 				>
-					<img
-						slot="media"
-						src="https://picsum.photos/id/1015/300/200"
-						alt="landscape"
-						style="width: 100%; height: 150px; object-fit: cover;"
-					/>
+					<div slot="media" style="width: 100%; height: 150px; background-color: var(--vvd-color-cta-400);"></div>
 				</vwc-card>
 				<vwc-card
 					headline="Lorem ipsum"
 					text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 				>
-					<img
-						slot="media"
-						src="https://picsum.photos/id/1016/300/200"
-						alt="landscape"
-						style="width: 100%; height: 150px; object-fit: cover;"
-					/>
+					<div slot="media" style="width: 100%; height: 150px; background-color: var(--vvd-color-information-400);"></div>
 				</vwc-card>
 				<vwc-card
 					headline="Lorem ipsum"
 					text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 				>
-					<img
-						slot="media"
-						src="https://picsum.photos/id/1018/300/200"
-						alt="landscape"
-						style="width: 100%; height: 150px; object-fit: cover;"
-					/>
+					<div slot="media" style="width: 100%; height: 150px; background-color: var(--vvd-color-announcement-400);"></div>
 				</vwc-card>
 				<vwc-card
 					headline="Lorem ipsum"
 					text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 				>
-					<img
-						slot="media"
-						src="https://picsum.photos/id/1019/300/200"
-						alt="landscape"
-						style="width: 100%; height: 150px; object-fit: cover;"
-					/>
+					<div slot="media" style="width: 100%; height: 150px; background-color: var(--vvd-color-success-400);"></div>
 				</vwc-card>
 				<vwc-card
 					headline="Lorem ipsum"
 					text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 				>
-					<img
-						slot="media"
-						src="https://picsum.photos/id/1055/300/200"
-						alt="landscape"
-						style="width: 100%; height: 150px; object-fit: cover;"
-					/>
+					<div slot="media" style="width: 100%; height: 150px; background-color: var(--vvd-color-warning-400);"></div>
 				</vwc-card>
 				<vwc-card
 					headline="Lorem ipsum"
 					text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 				>
-					<img
-						slot="media"
-						src="https://picsum.photos/id/1050/300/200"
-						alt="landscape"
-						style="width: 100%; height: 150px; object-fit: cover;"
-					/>
+					<div slot="media" style="width: 100%; height: 150px; background-color: var(--vvd-color-neutral-tint-400);"></div>
 				</vwc-card>
 			</vwc-layout>
 		</div>`;
@@ -100,7 +69,7 @@ test('should show the default component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/layout.png',
+		'snapshots/layout.png'
 	);
 });
 
@@ -187,10 +156,7 @@ test('should apply column-basis', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/layout-column-basis.png',
-		{
-			maxDiffPixelRatio: 0.02,
-		}
+		'snapshots/layout-column-basis.png'
 	);
 });
 
@@ -274,10 +240,7 @@ test('should apply auto-sizing and custom gutters', async ({
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/layout-auto-sizing.png',
-		{
-			maxDiffPixelRatio: 0.02,
-		}
+		'snapshots/layout-auto-sizing.png'
 	);
 });
 
@@ -330,9 +293,6 @@ test('should apply css variables', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/layout-css-variables.png',
-		{
-			maxDiffPixelRatio: 0.02,
-		}
+		'snapshots/layout-css-variables.png'
 	);
 });
