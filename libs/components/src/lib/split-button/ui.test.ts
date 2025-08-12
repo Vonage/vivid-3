@@ -103,11 +103,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</vwc-split-button>
 	</div>
 	<div style="margin: 5px;">
-		<vwc-split-button label="Expanded" aria-expanded="true"></vwc-split-button>
+		<vwc-split-button id="expanded" label="Expanded"></vwc-split-button>
 	</div>
 `;
 
-	page.setViewportSize({ width: 600, height: 720 });
+	page.setViewportSize({ width: 600, height: 1000 });
 
 	await loadComponents({
 		page,
@@ -119,6 +119,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
+	const buttonToExpand = await page.$('#expanded .indicator');
+	await buttonToExpand?.click();
 
 	await page.waitForLoadState('networkidle');
 
