@@ -205,13 +205,13 @@
 		opacity: 0.35;
 	}
 
-	&:is(.appearance-ghost) {
+	&:not(.appearance-filled, .appearance-outlined, .appearance-outlined-light) {
 		&::before {
 			block-size: 50%;
 		}
 	}
 
-	&:not(.appearance-ghost) {
+	&:is(.appearance-filled, .appearance-outlined, .appearance-outlined-light) {
 		&::before {
 			block-size: 100%;
 		}
