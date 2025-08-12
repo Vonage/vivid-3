@@ -101,7 +101,7 @@ Use the `icon` slot add custom icons. If set, the icon attribute is ignored.
 
 | Name                                   | Type                                                           | Description                                                       |
 | -------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------- |
-| **appearance**                         | `ghost` (default), `filled`, `outlined`                        | Sets the appearance                                               |
+| **appearance**                         | `ghost` (default), `filled`, `outlined`, `outlined-light`      | Sets the appearance                                               |
 | **action**                             | `HTMLButtonElement`                                            | A read-only HTML button element that represents the left button.  |
 | **connotation**                        | `accent` (default), `cta`, `announcement`, `success`, `alert`  | Sets the connotation                                              |
 | **disabled**                           | `boolean`                                                      | Sets the disabled state                                           |
@@ -118,10 +118,10 @@ Use the `icon` slot add custom icons. If set, the icon attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name        | Description                                             |
-| ----------- | ------------------------------------------------------- |
-| **default** | Content to be openned by the secondary action (eg Menu) |
-| **icon**    | For custom icons                                        |
+| Name        | Description                                              |
+| ----------- | -------------------------------------------------------- |
+| **default** | Content to be opened by the secondary action (e.g. Menu) |
+| **icon**    | For custom icons                                         |
 
 </div>
 

@@ -7,12 +7,12 @@
 @use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta success alert announcement,
 	$shades: primary primary-text primary-increment contrast fierce firm soft
-		faint,
+		faint fierce-primary,
 	$default: accent
 );
 @use '@repo/shared/mixins/connotation' as connotation;
 @use '@repo/shared/mixins/appearance/config' as appearance-config with (
-	$appearances: filled outlined ghost,
+	$appearances: filled outlined ghost outlined-light,
 	$states: idle hover disabled active,
 	$default: ghost
 );
@@ -21,7 +21,7 @@
 @use '@repo/shared/mixins/border-radius' as border-radius-variables;
 @include connotation.variables-backwards-compatibility(
 	'split-button',
-	':where(.control, .indicator):not(.appearance-filled, .appearance-outlined)'
+	':where(.control, .indicator):not(.appearance-filled, .appearance-outlined, .appearance-outlined-light)'
 );
 
 :host {
@@ -177,7 +177,8 @@
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 
-	&.appearance-outlined {
+	&.appearance-outlined,
+	&.appearance-outlined-light {
 		#{focus-variables.$focus-inset}: 1px;
 	}
 
@@ -204,13 +205,13 @@
 		opacity: 0.35;
 	}
 
-	&:not(.appearance-filled, .appearance-outlined) {
+	&:not(.appearance-filled, .appearance-outlined, .appearance-outlined-light) {
 		&::before {
 			block-size: 50%;
 		}
 	}
 
-	&:is(.appearance-filled, .appearance-outlined) {
+	&:is(.appearance-filled, .appearance-outlined, .appearance-outlined-light) {
 		&::before {
 			block-size: 100%;
 		}

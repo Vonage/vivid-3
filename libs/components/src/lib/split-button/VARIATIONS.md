@@ -63,6 +63,10 @@ The `appearance` sets the Split Button's appearance.
 	<vwc-split-button label="ghost" appearance="ghost"></vwc-split-button>
 	<vwc-split-button label="filled" appearance="filled"></vwc-split-button>
 	<vwc-split-button label="outlined" appearance="outlined"></vwc-split-button>
+	<vwc-split-button
+		label="outlined-light"
+		appearance="outlined-light"
+	></vwc-split-button>
 </div>
 
 <style>
