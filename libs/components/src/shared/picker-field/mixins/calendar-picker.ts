@@ -146,26 +146,15 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 
 			if (this._popupOpen) {
 				DOM.processUpdates();
-				const headerElement = this._dialogEl.querySelector(
-					'.header'
-				) as HTMLElement | null;
-				headerElement?.focus();
+
+				const tabbableDate = this._tabbableDate;
+				if (tabbableDate)
+					(
+						this.shadowRoot!.querySelector(
+							`[data-date="${tabbableDate}"]`
+						) as HTMLButtonElement
+					).focus();
 			}
-
-			// TODO: make this logic configurable by attribute ?
-			//  The logic below prevents screen-readers to announce header buttons.
-
-			// if (this._popupOpen) {
-			// 	DOM.processUpdates();
-
-			// 	const tabbableDate = this._tabbableDate;
-			// 	if (tabbableDate)
-			// 		(
-			// 			this.shadowRoot!.querySelector(
-			// 				`[data-date="${tabbableDate}"]`
-			// 			) as HTMLButtonElement
-			// 		).focus();
-			// }
 		}
 
 		// --- Calendar header ---
