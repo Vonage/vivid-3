@@ -8,12 +8,7 @@ The `removable` attribute on the **Tab** component can used along with the `acti
 	<vwc-tab-panel>Task content</vwc-tab-panel>
 	<vwc-tab id="tab-2" label="Event" removable></vwc-tab>
 	<vwc-tab-panel>Event content</vwc-tab-panel>
-	<vwc-menu
-		slot="action-items"
-		trigger="auto"
-		auto-dismiss
-		placement="bottom-end"
-	>
+	<vwc-menu slot="action-items" auto-dismiss placement="bottom-end">
 		<vwc-button slot="anchor" shape="pill" size="condensed">
 			<vwc-icon slot="icon" name="plus-line"></vwc-icon>
 		</vwc-button>

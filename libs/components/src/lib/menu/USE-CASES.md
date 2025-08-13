@@ -1,12 +1,7 @@
 ## Dropdown Menu with Checkbox
 
 ```html preview 350px
-<vwc-menu
-	placement="bottom-start"
-	open
-	trigger="auto"
-	aria-label="Menu example"
->
+<vwc-menu placement="bottom-start" open aria-label="Menu example">
 	<vwc-button
 		slot="anchor"
 		label="Select"
