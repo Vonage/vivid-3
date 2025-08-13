@@ -279,6 +279,10 @@ export class FilePicker extends WithFeedback(
 		const previewList = this.shadowRoot!.querySelector(
 			'.preview-list'
 		) as HTMLDivElement;
+
+		// Add drag event handlers for enhanced visual feedback
+		this.#setupDragEventHandlers(control);
+
 		this.#dropzone = new Dropzone(control, {
 			url: '/', // dummy url, we do not use dropzone's upload functionality
 			maxFiles: this.maxFiles ?? (null as any),
@@ -313,6 +317,39 @@ export class FilePicker extends WithFeedback(
 		});
 
 		this.#syncSingleFileState();
+	}
+
+	/**
+	 * Sets up drag event handlers for enhanced visual feedback
+	 * @private
+	 */
+	#setupDragEventHandlers(control: HTMLDivElement): void {
+		control.addEventListener('dragenter', (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			control.classList.add('dz-drag-hover');
+		});
+
+		control.addEventListener('dragover', (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			control.classList.add('dz-drag-hover');
+		});
+
+		control.addEventListener('dragleave', (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			// Only remove the class if we're leaving the control element itself
+			if (!control.contains(e.relatedTarget as Node)) {
+				control.classList.remove('dz-drag-hover');
+			}
+		});
+
+		control.addEventListener('drop', (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			control.classList.remove('dz-drag-hover');
+		});
 	}
 
 	override disconnectedCallback() {
