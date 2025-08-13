@@ -4,6 +4,22 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.30.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.29.0...vivid-v4.30.0) (2025-08-13)
+
+
+### Features
+
+* **accordion-item:** add support for 'ghost', 'ghost-light'  and 'filled' appearances (VIV-2709) ([#2473](https://github.com/Vonage/vivid-3/issues/2473)) ([c6cd73b](https://github.com/Vonage/vivid-3/commit/c6cd73b462f20873ae217ce58f44fe49c34768bd))
+* **selectable-box:** add control-placement attribute (VIV-2742) ([#2489](https://github.com/Vonage/vivid-3/issues/2489)) ([52d10e9](https://github.com/Vonage/vivid-3/commit/52d10e916851f70059d47bea6f69862cf310cb79))
+* **split-button:** add outlined-light appearance (VIV-2751) ([#2493](https://github.com/Vonage/vivid-3/issues/2493)) ([d5fa90b](https://github.com/Vonage/vivid-3/commit/d5fa90b19cb469a3e50f3e5bae8cc4978a8b566c))
+* **tag:** add support for subtle-light appearance (VIV-2741)  ([#2468](https://github.com/Vonage/vivid-3/issues/2468)) ([24a16cd](https://github.com/Vonage/vivid-3/commit/24a16cd276481176266bc44a3ad9c3508ff59c1b))
+
+
+### Bug Fixes
+
+* **date-picker:** fix focus bug on opening calendar (VIV-2758) ([#2490](https://github.com/Vonage/vivid-3/issues/2490)) ([9fdedf8](https://github.com/Vonage/vivid-3/commit/9fdedf869cef34cbeeca86313cd977995dda5674))
+* **time-picker:** fix time picker focus on button click (VIV-2759) ([#2477](https://github.com/Vonage/vivid-3/issues/2477)) ([40dc979](https://github.com/Vonage/vivid-3/commit/40dc9794ceb19d083f63fbd543411f3c78f75cce))
+
 ## [4.29.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.28.0...vivid-v4.29.0) (2025-07-25)
 
 
