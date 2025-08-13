@@ -12,15 +12,15 @@ This document provides descriptions of the breaking changes in this release and 
 
 ### The change
 
-Aria- attributes set on components were previously passed down internally to child elements, which led to duplicated aria-attributes on multiple nodes and caused issues with accessibility semantics. In v5, a new mechanism has been introduced that renames `aria-*` attributes to `vvd-aria-*` during rendering. This improvement enhances accessibility while allowing you to set aria attributes in the same, simple way as before.
+Aria- attributes set on components were previously passed down internally to child elements, which led to duplicated aria-attributes on multiple nodes and caused issues with accessibility semantics. In v5, a new mechanism has been introduced that renames `aria-*` attributes to `data-vvd-aria-*` during rendering. This improvement enhances accessibility while allowing you to set aria attributes in the same, simple way as before.
 
 The change affects how aria attributes are handled internally within components to prevent duplication and ensure proper accessibility semantics. However, the developer experience **remains the same** - you continue to use standard `aria-*` attributes on components as you would normally.
 
 ### How to get ready?
 
-If your test suites rely on checking for specific `aria-*` attributes in the DOM, you may need to update them. Instead of looking for `aria-*` attributes directly, your tests should now look for `vvd-aria-*` attributes or test the accessibility functionality directly rather than relying on specific attribute names.
+If your test suites rely on checking for specific `aria-*` attributes in the DOM, you may need to update them. Instead of looking for `aria-*` attributes directly, your tests should now look for `data-vvd-aria-*` attributes or test the accessibility functionality directly rather than relying on specific attribute names.
 
-For example, if your test was checking for `aria-selected`, you should update it to check for `vvd-aria-selected` or use accessibility testing tools that focus on the actual accessibility tree rather than raw attributes.
+For example, if your test was checking for `aria-selected`, you should update it to check for `data-vvd-aria-selected` or use accessibility testing tools that focus on the actual accessibility tree rather than raw attributes.
 
 ## Calendar
 
