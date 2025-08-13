@@ -17,13 +17,8 @@ export const getEventType = (
 	// The event `currentTarget` will always be the host component. Therefore, type `currentTarget` accordingly to make
 	// it easier to use for consumers.
 	// Originally we typed `target` instead, but this is not the case if the event bubbles from the light DOM, e.g. an
-	// input event bubbling from a select slotted into a text-field. We will remove the inaccurate typing in a future
-	// major version.
+	// input event bubbling from a select slotted into a text-field.
 	return `${type} & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: ${className},
 			currentTarget: ${className}
 		}`;
 };
