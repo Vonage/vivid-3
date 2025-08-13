@@ -40,7 +40,6 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 						name="cloud-upload-line"
 						size="-4"
 						label="Upload files"
-						aria-hidden="true"
 					></vwc-icon>
 					<slot class="main"></slot>
 				</div>

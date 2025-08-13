@@ -50,34 +50,29 @@ $low-ink-color: --_low-ink-color;
 	transition: all 0.3s ease;
 	position: relative;
 
-	// Add a subtle border animation to indicate interactivity
-	&::before {
-		content: '';
-		position: absolute;
-		top: -2px;
-		left: -2px;
-		right: -2px;
-		bottom: -2px;
-		border: 2px dashed var(#{constants.$vvd-color-cta-300});
-		border-radius: #{border-radius-variables.$border-radius-normal};
-		opacity: 0;
-		transition: opacity 0.3s ease;
-		pointer-events: none;
+	::slotted(*) {
+		isolation: isolate;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		transition: all 0.3s ease;
+		color: var(#{constants.$vvd-color-neutral-600});
+		// pointer-events: none; // Allow clicks to pass through to parent
 	}
 
-	// Add a subtle hint text that appears on hover
-	&::after {
-		content: 'Click or drag files here';
-		position: absolute;
-		bottom: -24px;
-		left: 50%;
-		transform: translateX(-50%);
-		font-size: 12px;
-		color: var(#{constants.$vvd-color-neutral-500});
-		opacity: 0;
-		transition: opacity 0.3s ease;
-		pointer-events: none;
-		white-space: nowrap;
+	&:hover {
+		::slotted(*) {
+			color: var(#{constants.$vvd-color-neutral-800});
+		}
+	}
+
+	&.dz-drag-hover {
+		::slotted(*) {
+			color: var(#{constants.$vvd-color-cta-700});
+			font-weight: 500;
+		}
 	}
 
 	&:not(.size-expanded) {
@@ -99,14 +94,6 @@ $low-ink-color: --_low-ink-color;
 		border-color: var(#{constants.$vvd-color-cta-400});
 		transform: translateY(-1px);
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-		&::before {
-			opacity: 1;
-		}
-
-		&::after {
-			opacity: 1;
-		}
 	}
 
 	&:active {
@@ -119,19 +106,9 @@ $low-ink-color: --_low-ink-color;
 		background-color: var(#{constants.$vvd-color-cta-200});
 		border-color: var(#{constants.$vvd-color-cta-500});
 		border-style: solid;
-		border-width: 2px;
+		outline: 2px solid var(#{constants.$vvd-color-cta-500});
+		outline-offset: -2px; // Overlap with border to avoid gaps
 		transform: scale(1.02);
-
-		&::before {
-			opacity: 0;
-		}
-
-		&::after {
-			content: 'Drop files here';
-			opacity: 1;
-			color: var(#{constants.$vvd-color-cta-700});
-			font-weight: 500;
-		}
 	}
 }
 
@@ -139,6 +116,7 @@ $low-ink-color: --_low-ink-color;
 	color: var(#{constants.$vvd-color-cta-600});
 	transition: all 0.3s ease;
 	animation: subtle-pulse 2s ease-in-out infinite;
+	pointer-events: none; // Allow clicks to pass through to parent
 
 	.control:hover & {
 		color: var(#{constants.$vvd-color-cta-700});
