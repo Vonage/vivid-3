@@ -100,8 +100,9 @@ ${action.name} = this.ctx.driver.wrapAction((actions.${
 	${def.testUtils.refs
 		.map(
 			(ref) =>
-				`// prettier-ignore
-protected ${ref.name} = (refs.${ref.args[0]}<D>).bind(this, ${ref.args
+				`/** @internal */
+// prettier-ignore
+${ref.name} = (refs.${ref.args[0]}<D>).bind(this, ${ref.args
 					.slice(1)
 					.map((arg) => `'${arg}'`)
 					.join(', ')});`
