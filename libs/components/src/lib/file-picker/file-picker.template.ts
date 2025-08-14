@@ -30,10 +30,17 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 					tabindex="0"
 					@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
 					aria-describedby="${(x) => x._feedbackDescribedBy}"
+					aria-label="File upload area. Drag and drop files here or click to browse files."
 					${delegateAria({
 						role: 'button',
 					})}
 				>
+					<vwc-icon
+						class="upload-icon"
+						name="cloud-upload-line"
+						size="-4"
+						label="Upload files"
+					></vwc-icon>
 					<slot class="main"></slot>
 				</div>
 				${(x) => x._getFeedbackTemplate(context)}

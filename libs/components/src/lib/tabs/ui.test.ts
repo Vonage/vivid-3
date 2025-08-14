@@ -237,7 +237,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-tab-panel>Event content</vwc-tab-panel>
 				<vwc-menu
 					slot="action-items"
-					trigger="auto"
 					auto-dismiss
 					placement="bottom-end"
 				>

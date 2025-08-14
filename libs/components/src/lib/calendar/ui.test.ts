@@ -9,10 +9,10 @@ const components = ['calendar'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
-    <vwc-calendar datetime="2022-01-01"></vwc-calendar>
-    <vwc-calendar datetime="2022-01-01" hour12 locales="he-IL" start-day="sunday" style="direction: rtl"></vwc-calendar>
+    <vwc-calendar sticky-mode="none" datetime="2022-01-01"></vwc-calendar>
+    <vwc-calendar sticky-mode="none" datetime="2022-01-01" hour12 locales="he-IL" start-day="sunday" style="direction: rtl"></vwc-calendar>
     <div class="wrapper">
-			<vwc-calendar sticky-mode="all" datetime="2022-01-01"></vwc-calendar>
+			<vwc-calendar datetime="2022-01-01"></vwc-calendar>
 			<style>
 				.wrapper {
 				--calendar-header-background-color: var(--vvd-color-neutral-100);
