@@ -32,7 +32,12 @@ Object.defineProperty(ShadowRoot.prototype, 'adoptedStyleSheets', {
 	value: [],
 });
 
+CSSStyleSheet.prototype.replace = vi.fn();
 CSSStyleSheet.prototype.replaceSync = vi.fn();
+
+global.CSS = {
+	supports: () => false,
+} as any;
 
 global.ResizeObserver = class {
 	observe = vi.fn();
