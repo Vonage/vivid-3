@@ -1,6 +1,6 @@
 ---
 title: Migrating From Vivid 2.x
-order: 6
+order: 3
 ---
 
 # Migrating From Vivid 2.x to Vivid 3.x

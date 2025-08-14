@@ -1,6 +1,6 @@
 ---
 title: Adding New Icons
-order: 10
+order: 5
 ---
 
 # Adding Icons to the Vivid Icon Set
