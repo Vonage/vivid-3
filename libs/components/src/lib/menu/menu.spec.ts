@@ -456,7 +456,7 @@ describe('vwc-menu', () => {
 		});
 
 		it('should set aria-haspopup=menu on the anchor element', async () => {
-			expect(anchor.getAttribute('aria-haspopup')).toBe('menu');
+			expect(anchor.ariaHasPopup).toBe('menu');
 		});
 
 		it.each([
@@ -466,8 +466,8 @@ describe('vwc-menu', () => {
 			'should set aria-expanded=%s and data-expanded=%s on the anchor element when open is %s',
 			async (expectedValue, isOpen) => {
 				element.open = isOpen;
-				expect(anchor.getAttribute('aria-expanded')).toBe(expectedValue);
-				expect(anchor.getAttribute('data-expanded')).toBe(expectedValue);
+				expect(anchor.ariaExpanded).toBe(expectedValue);
+				expect(anchor.dataset.expanded).toBe(expectedValue);
 			}
 		);
 
@@ -484,12 +484,12 @@ describe('vwc-menu', () => {
 			});
 
 			it('should remove aria-haspopup from anchor element', async () => {
-				expect(anchor.hasAttribute('aria-haspopup')).toBe(false);
+				expect(anchor.ariaHasPopup).toBe(null);
 			});
 
 			it('should remove aria-expanded and data-expanded from anchor element', async () => {
-				expect(anchor.hasAttribute('aria-expanded')).toBe(false);
-				expect(anchor.hasAttribute('data-expanded')).toBe(false);
+				expect(anchor.ariaExpanded).toBe(null);
+				expect('expanded' in anchor.dataset).toBe(false);
 			});
 
 			it('should no longer open when anchor is clicked', async () => {
@@ -685,12 +685,6 @@ describe('vwc-menu', () => {
 			expect(spy).toHaveBeenCalledWith(
 				expect.objectContaining({ bubbles: false })
 			);
-		});
-	});
-
-	describe('a11y attributes', () => {
-		it('should render the element with a role of presentation', async () => {
-			expect(element.getAttribute('role')).toBe('presentation');
 		});
 	});
 

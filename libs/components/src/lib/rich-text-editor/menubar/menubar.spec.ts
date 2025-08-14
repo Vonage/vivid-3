@@ -276,7 +276,7 @@ describe('menubar', () => {
 
 			const getDecorationButton = (buttonText: string) =>
 				element.shadowRoot?.querySelector(
-					`[aria-label="${buttonText}"]`
+					`[data-vvd-aria-label="${buttonText}"]`
 				) as HTMLElement;
 
 			beforeEach(async () => {
@@ -345,7 +345,7 @@ describe('menubar', () => {
 					expect(buttons[i].getAttribute('slot')).toBe('anchor');
 					expect(buttons[i].parentElement instanceof Tooltip).toBe(true);
 					expect(buttons[i].parentElement?.getAttribute('text')).toBe(
-						buttons[i].getAttribute('aria-label')
+						buttons[i].ariaLabel
 					);
 					expect(buttons[i].parentElement?.getAttribute('placement')).toBe(
 						'top'
@@ -497,7 +497,7 @@ describe('menubar', () => {
 				const menu = getSelectionMenu('text-size');
 				const tooltip = menu.querySelector('[text="Text Size"]');
 				const button = menu.querySelector(
-					'[aria-label="Open text size menu"]'
+					'[data-vvd-aria-label="Open text size menu"]'
 				) as HTMLElement;
 
 				button.click();

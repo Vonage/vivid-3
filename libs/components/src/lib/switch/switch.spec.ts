@@ -303,17 +303,6 @@ describe('vwc-switch', () => {
 		it('should set role to switch on the control element', async () => {
 			expect(getControlElement(element).getAttribute('role')).toBe('switch');
 		});
-
-		it('should set role presentation on the host element by default', async () => {
-			expect(element.getAttribute('role')).toBe('presentation');
-		});
-
-		it('should remove role to presentation on the host when aria-label is set', async () => {
-			element.ariaLabel = 'Label';
-			await elementUpdated(element);
-
-			expect(element.hasAttribute('role')).toBe(false);
-		});
 	});
 
 	describe('ARIA delegation', () => {

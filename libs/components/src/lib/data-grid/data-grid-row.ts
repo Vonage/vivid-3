@@ -16,6 +16,7 @@ import {
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { HostSemantics } from '../../shared/aria/host-semantics';
 import { DataGridRowTypes } from './data-grid.options';
 import type { ColumnDefinition } from './data-grid';
 
@@ -26,7 +27,7 @@ import type { ColumnDefinition } from './data-grid';
  * @event {CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>} cell-click - Event that fires when a cell is clicked
  * @event {CustomEvent<HTMLElement>} row-focused - Fires a custom 'row-focused' event when focus is on an element (usually a cell or its contents) in the row
  */
-export class DataGridRow extends VividElement {
+export class DataGridRow extends HostSemantics(VividElement) {
 	/**
 	 * String that gets applied to the the css gridTemplateColumns attribute for the row
 	 *x
@@ -283,26 +284,19 @@ export class DataGridRow extends VividElement {
 	 * @public
 	 * HTML Attribute: aria-selected
 	 */
-	@attr({ attribute: 'aria-selected' })
 	override ariaSelected: string | null = null;
 
 	/**
 	 * @internal
 	 */
-	ariaSelectedChanged(_oldValue: string | null, newValue: string | null) {
+	override ariaSelectedChanged(
+		oldValue: string | null,
+		newValue: string | null
+	) {
+		super.ariaSelectedChanged(oldValue, newValue);
+
 		this._selectable = newValue !== null;
 		this.selected = newValue === 'true';
-	}
-
-	/**
-	 * @internal
-	 */
-	private _calculateAriaSelectedValue() {
-		if (this._selectable && this.selected) return 'true';
-
-		if (this._selectable && !this.selected) return 'false';
-
-		return null;
 	}
 
 	/**
@@ -312,24 +306,10 @@ export class DataGridRow extends VividElement {
 	_selectable = false;
 
 	/**
-	 * @internal
-	 */
-	_selectableChanged() {
-		this.ariaSelected = this._calculateAriaSelectedValue();
-	}
-
-	/**
 	 * Reflects selected state of the row
 	 *
 	 * @public
 	 */
 	@attr({ mode: 'boolean' })
 	selected?: boolean = false;
-
-	/**
-	 * @internal
-	 */
-	selectedChanged() {
-		this.ariaSelected = this._calculateAriaSelectedValue();
-	}
 }

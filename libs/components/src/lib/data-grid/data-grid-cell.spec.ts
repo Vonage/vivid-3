@@ -491,7 +491,7 @@ describe('vwc-data-grid-cell', () => {
 		});
 
 		it('should have a button role when sorting is enabled', async function () {
-			element.setAttribute('aria-sort', 'none');
+			element.sortDirection = 'none';
 			await elementUpdated(element);
 			const baseElement = element.shadowRoot?.querySelector('.base');
 

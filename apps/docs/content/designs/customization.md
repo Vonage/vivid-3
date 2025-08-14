@@ -231,7 +231,7 @@ Click on "Edit code" to be able to modify the variables.
 		href="#"
 		text="1st level item"
 		onclick="onClick(event)"
-		aria-current="page"
+		current
 	></vwc-nav-item>
 	<vwc-nav-item
 		href="#"
@@ -273,7 +273,7 @@ Click on "Edit code" to be able to modify the variables.
 		href="#"
 		text="Shop"
 		onclick="onClick(event)"
-		aria-current="page"
+		current
 	></vwc-nav-item>
 	<vwc-nav-item href="#" text="My Cart" onclick="onClick(event)"></vwc-nav-item>
 </vwc-nav>

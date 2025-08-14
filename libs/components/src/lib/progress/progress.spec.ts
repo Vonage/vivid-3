@@ -187,10 +187,6 @@ describe('vwc-progress', () => {
 			await elementUpdated(element);
 		});
 
-		it('should set the component element role attribute to presentation', async () => {
-			expect(element.getAttribute('role')).toBe('presentation');
-		});
-
 		it('should set the correct a11y attributes', () => {
 			element.ariaLabel = 'Label';
 			const baseElement = getBaseElement(element);

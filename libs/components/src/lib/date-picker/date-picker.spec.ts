@@ -32,7 +32,10 @@ describe('vwc-date-picker', () => {
 
 	const getButtonByLabel = (label: string) =>
 		(element.shadowRoot!.querySelector(`[aria-label="${label}"]`) ??
-			element.shadowRoot!.querySelector(`[label="${label}"]`)) as Button;
+			element.shadowRoot!.querySelector(`[label="${label}"]`) ??
+			element.shadowRoot!.querySelector(
+				`[data-vvd-aria-label="${label}"]`
+			)) as Button;
 
 	const getDialogTitle = () => titleAction.textContent!.trim();
 
@@ -96,7 +99,7 @@ describe('vwc-date-picker', () => {
 			(shadowRoot) => {
 				return {
 					firstFocusable: shadowRoot.querySelector(
-						'vwc-button[aria-label="Previous year"]'
+						'vwc-button[data-vvd-aria-label="Previous year"]'
 					)!,
 					lastFocusable: shadowRoot.querySelector('vwc-button[label="OK"]')!,
 				};
@@ -251,16 +254,14 @@ describe('vwc-date-picker', () => {
 		});
 
 		it('should have an aria-label of "Choose date" when no date is selected', async () => {
-			expect(pickerButton.getAttribute('aria-label')).toBe('Choose date');
+			expect(pickerButton.ariaLabel).toBe('Choose date');
 		});
 
 		it('should have an aria-label of "Change date, DATE" when a date is selected', async () => {
 			element.value = '2021-01-01';
 			await elementUpdated(element);
 
-			expect(pickerButton.getAttribute('aria-label')).toBe(
-				'Change date, 01/01/2021'
-			);
+			expect(pickerButton.ariaLabel).toBe('Change date, 01/01/2021');
 		});
 	});
 

@@ -108,9 +108,9 @@ describe('vwc-searchable-select', () => {
 			.map((option) => option.text);
 
 	const getClearButton = () =>
-		element.shadowRoot!.querySelector('[aria-label="Clear selection"]') as
-			| Button
-			| undefined;
+		element.shadowRoot!.querySelector(
+			'[data-vvd-aria-label="Clear selection"]'
+		) as Button | undefined;
 
 	const getAriaLiveRegionText = () =>
 		(

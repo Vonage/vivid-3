@@ -73,7 +73,7 @@ export const DataGridTemplate = (context: VividElementDefinitionContext) => {
 			:defaultRowItemTemplate="${rowItemTemplate}"
 			${children({
 				property: 'rowElements',
-				filter: elements('[role=row]'),
+				filter: elements('[role=row],[data-vvd-component=data-grid-row]'),
 			})}
 		>
 			<div class="base">
