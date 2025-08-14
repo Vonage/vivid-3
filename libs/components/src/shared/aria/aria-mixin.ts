@@ -125,7 +125,7 @@ export const AriaMixin = <T extends Constructor<FASTElement & HTMLElement>>(
 		_vividAriaBehaviour: VividAriaBehaviour = 'default';
 
 		constructor(...args: any[]) {
-			super(args);
+			super(...args);
 			// Default to null for all ARIA properties
 			// This is not needed if DOM implements AriaMixin as null would already be the default
 			// As a performance improvement set the FAST backing value, to skip running change handlers for all properties
