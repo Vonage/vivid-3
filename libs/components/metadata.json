@@ -725,7 +725,7 @@
 				{
 					"name": "connotation",
 					"description": "The connotation the badge should have.",
-					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information'",
+					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
