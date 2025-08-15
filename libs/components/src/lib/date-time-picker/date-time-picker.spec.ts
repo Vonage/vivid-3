@@ -39,6 +39,10 @@ describe('vwc-date-time-picker', () => {
 	function typeIntoTextField(text: string) {
 		textField.value = text;
 		textField.dispatchEvent(new InputEvent('input'));
+	}
+
+	function typeIntoTextFieldAndBlur(text: string) {
+		typeIntoTextField(text);
 		textField.dispatchEvent(new InputEvent('change'));
 		textField.dispatchEvent(new Event('blur'));
 		element.dispatchEvent(new Event('focusout'));
@@ -157,44 +161,23 @@ describe('vwc-date-time-picker', () => {
 		});
 
 		it('should update value when a user enters a valid date time into the text field', async () => {
-			typeIntoTextField('01/21/2021 12:51 PM');
+			typeIntoTextFieldAndBlur('01/21/2021 12:51 PM');
 			await DOM.nextUpdate();
 
 			expect(element.value).toBe('2021-01-21T12:51:00');
-
-			textField.value = '01/30/2021 11:27 PM';
-			textField.dispatchEvent(new InputEvent('input'));
-			expect(element.value).toBe('2021-01-30T23:27:00');
-		});
-
-		it('should keep the previous valid when a user enters inncorect value into the text field', async () => {
-			typeIntoTextField('01/21/2021 12:51 PM');
-			await DOM.nextUpdate();
-
-			expect(element.value).toBe('2021-01-21T12:51:00');
-
-			textField.value = '01/30/2021 11:27 PM';
-			textField.dispatchEvent(new InputEvent('input'));
-			expect(element.value).toBe('2021-01-30T23:27:00');
-
-			// type inncorect value
-			textField.value = '0130/2021 11:27 PM';
-			textField.dispatchEvent(new InputEvent('input'));
-			// keep the prev valid value
-			expect(element.value).toBe('2021-01-30T23:27:00');
 		});
 
 		it('should keep an empty value when a user enters a invalid date time into the text field', async () => {
-			typeIntoTextField('x');
+			typeIntoTextFieldAndBlur('x');
 			await DOM.nextUpdate();
 
 			expect(element.value).toBe('');
 		});
 
-		it('should clear the value but keep invalid input when a user enters a invalid date time into the text field', async () => {
+		it('should clear the value but keep invalid input after a user enters a invalid date time into the text field', async () => {
 			element.value = '2021-01-21T12:34:56';
 
-			typeIntoTextField('x');
+			typeIntoTextFieldAndBlur('x');
 			await DOM.nextUpdate();
 
 			expect(element.value).toBe('');
@@ -209,6 +192,26 @@ describe('vwc-date-time-picker', () => {
 			await DOM.nextUpdate();
 
 			expect(textField.value).toBe('');
+		});
+
+		describe('while typing into the text field', () => {
+			it('should update value if input is valid', async () => {
+				typeIntoTextField('01/21/2021 12:34');
+				await DOM.nextUpdate();
+
+				expect(element.value).toBe('2021-01-21T00:34:00');
+				expect(textField.value).toBe('01/21/2021 12:34');
+			});
+
+			it('should keep the previous value if input is invalid', async () => {
+				element.value = '2021-01-21T12:34:56';
+
+				typeIntoTextField('2');
+				await DOM.nextUpdate();
+
+				expect(element.value).toBe('2021-01-21T12:34:56');
+				expect(textField.value).toBe('2');
+			});
 		});
 	});
 
@@ -441,7 +444,7 @@ describe('vwc-date-time-picker', () => {
 			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
-			typeIntoTextField('01/21/2021 12:34:56 PM');
+			typeIntoTextFieldAndBlur('01/21/2021 12:34:56 PM');
 			await DOM.nextUpdate();
 
 			expect(spy).toHaveBeenCalledTimes(1);
@@ -470,23 +473,46 @@ describe('vwc-date-time-picker', () => {
 		});
 	});
 
-	describe('text field', () => {
-		it('should clear the invalid value error when a valid date time is entered', async () => {
-			typeIntoTextField('invalid');
-			textField.dispatchEvent(new Event('blur'));
-			await DOM.nextUpdate();
+	describe('input event', () => {
+		it('should be fired when the value updates while a user is typing', async () => {
+			const spy = vi.fn();
+			element.addEventListener('input', spy);
 
 			typeIntoTextField('01/21/2021 12:34:56 PM');
+			await DOM.nextUpdate();
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('change event', () => {
+		it('should not be fired when the value updates while a user is typing', async () => {
+			const spy = vi.fn();
+			element.addEventListener('change', spy);
+
+			typeIntoTextField('01/21/2021 12:34:56 PM');
+			await DOM.nextUpdate();
+
+			expect(spy).toHaveBeenCalledTimes(0);
+		});
+	});
+
+	describe('text field', () => {
+		it('should clear the invalid value error when a valid date time is entered', async () => {
+			typeIntoTextFieldAndBlur('invalid');
+			await DOM.nextUpdate();
+
+			typeIntoTextFieldAndBlur('01/21/2021 12:34:56 PM');
 			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('');
 		});
 
 		it('should clear the value when an empty string is entered', async () => {
-			typeIntoTextField('01/21/2021 12:34:56 PM');
+			typeIntoTextFieldAndBlur('01/21/2021 12:34:56 PM');
 			await DOM.nextUpdate();
 
-			typeIntoTextField('');
+			typeIntoTextFieldAndBlur('');
 			await DOM.nextUpdate();
 
 			expect(textField.value).toBe('');
@@ -545,7 +571,7 @@ describe('vwc-date-time-picker', () => {
 		});
 
 		it('should update current month to the month of the selected date time when the user enters a new date time', async () => {
-			typeIntoTextField('01/21/2021 12:34 AM');
+			typeIntoTextFieldAndBlur('01/21/2021 12:34 AM');
 			await DOM.nextUpdate();
 
 			expect(getDialogTitle()).toBe('January 2021');
@@ -642,7 +668,7 @@ describe('vwc-date-time-picker', () => {
 
 	describe('validation', () => {
 		it('should show an invalid date time error when an invalid value is entered', async () => {
-			typeIntoTextField('invalid');
+			typeIntoTextFieldAndBlur('invalid');
 			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('Please enter a valid date and time.');
@@ -651,7 +677,7 @@ describe('vwc-date-time-picker', () => {
 
 		it('should show an min date error when a date earlier than minDate is entered', async () => {
 			element.minDate = '2023-08-01';
-			typeIntoTextField('07/01/2023 12:00:00 PM');
+			typeIntoTextFieldAndBlur('07/01/2023 12:00:00 PM');
 			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('Date must be 08/01/2023 or later.');
@@ -660,7 +686,7 @@ describe('vwc-date-time-picker', () => {
 
 		it('should show an max date error when a date later than maxDate is entered', async () => {
 			element.maxDate = '2023-08-01';
-			typeIntoTextField('09/01/2023 12:00:00 PM');
+			typeIntoTextFieldAndBlur('09/01/2023 12:00:00 PM');
 			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('Date must be 08/01/2023 or earlier.');
@@ -669,7 +695,7 @@ describe('vwc-date-time-picker', () => {
 
 		it('should show an min time error when a time earlier than minTime is entered', async () => {
 			element.minTime = '10:00:00';
-			typeIntoTextField('07/01/2023 09:00:00 AM');
+			typeIntoTextFieldAndBlur('07/01/2023 09:00:00 AM');
 			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('Time must be 10:00 AM or later.');
@@ -678,7 +704,7 @@ describe('vwc-date-time-picker', () => {
 
 		it('should show an max time error when a time later than maxTime is entered', async () => {
 			element.maxTime = '20:00:00';
-			typeIntoTextField('07/01/2023 09:00:00 PM');
+			typeIntoTextFieldAndBlur('07/01/2023 09:00:00 PM');
 			await DOM.nextUpdate();
 
 			expect(textField.errorText).toBe('Time must be 08:00 PM or earlier.');

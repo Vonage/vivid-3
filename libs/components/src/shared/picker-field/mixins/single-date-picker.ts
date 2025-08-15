@@ -39,7 +39,7 @@ export const SingleDatePickerMixin = <
 		 * @internal
 		 */
 		override _onDateClick(date: DateStr) {
-			this._updateValueDueToUserInteraction(this._withUpdatedDate(date));
+			this._updateValueDueToUserInteraction(this._withUpdatedDate(date), false);
 		}
 
 		/**

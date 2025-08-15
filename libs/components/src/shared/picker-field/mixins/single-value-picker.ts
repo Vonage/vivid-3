@@ -64,10 +64,22 @@ export const SingleValuePicker = <T extends AbstractConstructor<PickerField>>(
 		/**
 		 * @internal
 		 */
-		_updateValueDueToUserInteraction(newValue: string) {
-			this.value = newValue;
-			this.$emit('change');
-			this.$emit('input');
+		_updateValueDueToUserInteraction(
+			newValue: string,
+			isIntermediateUpdate: boolean
+		) {
+			if (this.value !== newValue) {
+				this._isInternalValueUpdate = true;
+				this.value = newValue;
+				this._isInternalValueUpdate = false;
+				this.$emit('input');
+			}
+
+			// While the user is typing, do not update the presentation value or emit change events
+			if (!isIntermediateUpdate) {
+				this._updatePresentationValue();
+				this.$emit('change');
+			}
 		}
 
 		/**
@@ -75,18 +87,18 @@ export const SingleValuePicker = <T extends AbstractConstructor<PickerField>>(
 		 */
 		override _onTextFieldChange() {
 			if (this._presentationValue === '') {
-				this.value = '';
-				this.$emit('change');
+				this._updateValueDueToUserInteraction('', false);
 				return;
 			}
 
 			try {
-				this.value = this._parsePresentationValue(this._presentationValue);
-				this.$emit('change');
+				this._updateValueDueToUserInteraction(
+					this._parsePresentationValue(this._presentationValue),
+					false
+				);
 			} catch (_) {
 				const invalidPresentationValue = this._presentationValue;
-				this.value = '';
-				this.$emit('change');
+				this._updateValueDueToUserInteraction('', false);
 				this._presentationValue = invalidPresentationValue;
 				return;
 			}
@@ -97,28 +109,21 @@ export const SingleValuePicker = <T extends AbstractConstructor<PickerField>>(
 		 */
 		override _onTextFieldInput(event: Event): void {
 			super._onTextFieldInput(event);
-			this._isInternalValueUpdate = true;
 
 			if (this._presentationValue === '') {
-				this.value = '';
-				this.$emit('input');
+				this._updateValueDueToUserInteraction('', true);
 				return;
 			}
 
 			try {
-				const parsedValue = this._parsePresentationValue(
-					this._presentationValue
+				this._updateValueDueToUserInteraction(
+					this._parsePresentationValue(this._presentationValue),
+					true
 				);
-				if (this.value !== parsedValue) {
-					this.value = parsedValue;
-					this.$emit('input');
-				}
 			} catch (_) {
 				// Invalid intermediate value, do nothing until change event
 				return;
 			}
-
-			this._isInternalValueUpdate = false;
 		}
 
 		/**
@@ -141,7 +146,7 @@ export const SingleValuePicker = <T extends AbstractConstructor<PickerField>>(
 		 * @internal
 		 */
 		override _onClearClick() {
-			this._updateValueDueToUserInteraction('');
+			this._updateValueDueToUserInteraction('', false);
 			super._onClearClick();
 		}
 	}
