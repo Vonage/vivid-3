@@ -4,6 +4,14 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.30.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.30.0...vivid-v4.30.1) (2025-08-15)
+
+
+### Bug Fixes
+
+* make remove button focusable in tag ([a780453](https://github.com/Vonage/vivid-3/commit/a7804532273a5ba13871f838b50233051e82ed1a))
+* **tag:** make remove button focusable (VIV-000) ([#2481](https://github.com/Vonage/vivid-3/issues/2481)) ([a780453](https://github.com/Vonage/vivid-3/commit/a7804532273a5ba13871f838b50233051e82ed1a))
+
 ## [4.30.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.29.0...vivid-v4.30.0) (2025-08-13)
 
 
