@@ -60,6 +60,11 @@ export type SplitButtonSize = ExtractFromEnum<
  * @slot icon - The preferred way to add an icon to the component.
  * @event {CustomEvent<undefined>} action-click - Event emitted when the action button is clicked
  * @event {CustomEvent<undefined>} indicator-click - Event emitted when the indicator button is clicked
+ * @testSelector byLabel byLabel
+ * @testAction clickAction click #actionButton
+ * @testAction clickIndicator click #indicatorButton
+ * @testRef actionButton shadow button.control
+ * @testRef indicatorButton shadow button.indicator
  */
 export class SplitButton extends AffixIcon(
 	Localized(DelegatesAria(VividElement))

@@ -8,11 +8,29 @@ for (const testCase of testCases) {
 		cy.visit(`http://localhost:5173/${testCase.path}/`);
 		const vvd = vividCypress(cy);
 
-		testCase.test(vvd);
+		const failHandler = (err: Error, runnable: any) => {
+			if (
+				runnable.title === testCase.name &&
+				err.message.includes(testCase.expectErrorMessage!)
+			) {
+				// Expected failure
+			} else {
+				throw err;
+			}
+		};
+		if (testCase.expectErrorMessage) {
+			Cypress.once('fail', failHandler);
+		}
 
-		cy.get('pre').should(
-			'contain.text',
-			JSON.stringify(testCase.expectedState)
-		);
+		testCase.test(vvd, (expectedState) => {
+			cy.get('pre').should('contain.text', JSON.stringify(expectedState));
+		});
+
+		if (testCase.expectErrorMessage) {
+			cy.then(() => {
+				Cypress.off('fail', failHandler);
+				throw new Error('Test did not fail with expected error');
+			});
+		}
 	});
 }

@@ -37,3 +37,6 @@ export function setDialogPolyfill() {
 }
 
 setDialogPolyfill();
+
+window.HTMLElement.prototype.scrollIntoView = function () {};
+window.HTMLElement.prototype.scrollTo = function () {};

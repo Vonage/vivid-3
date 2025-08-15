@@ -133,11 +133,17 @@ const mergeTestingDefinitions = (
 	a: VividTestUtilsManifest,
 	b: VividTestUtilsManifest
 ) => {
+	const mergeCollection = <T extends { name: string }>(a: T[], b: T[]): T[] => {
+		const bNames = new Set(b.map((item) => item.name));
+		// Allow items from b to override items in a
+		return [...a.filter((item) => !bNames.has(item.name)), ...b];
+	};
+
 	return {
-		selectors: [...a.selectors, ...b.selectors],
-		actions: [...a.actions, ...b.actions],
-		queries: [...a.queries, ...b.queries],
-		refs: [...a.refs, ...b.refs],
+		selectors: mergeCollection(a.selectors, b.selectors),
+		actions: mergeCollection(a.actions, b.actions),
+		queries: mergeCollection(a.queries, b.queries),
+		refs: mergeCollection(a.refs, b.refs),
 	};
 };
 

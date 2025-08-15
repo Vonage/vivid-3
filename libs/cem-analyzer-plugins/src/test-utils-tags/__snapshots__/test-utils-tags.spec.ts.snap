@@ -113,6 +113,14 @@ exports[`testUtilsTagsPlugin > should produce correct results for testcase edge-
 }
 `;
 
+exports[`testUtilsTagsPlugin > should produce correct results for testcase inheritance 1`] = `
+{
+  "modules": [],
+  "readme": "",
+  "schemaVersion": "1.0.0",
+}
+`;
+
 exports[`testUtilsTagsPlugin > should produce correct results for testcase simple-cases 1`] = `
 {
   "modules": [

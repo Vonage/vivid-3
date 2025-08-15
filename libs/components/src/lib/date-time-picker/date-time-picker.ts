@@ -47,6 +47,7 @@ const ValidDateTimeFilter: ValueConverter = {
  * @event {CustomEvent<undefined>} input - Emitted when the date is changed by the user.
  * @event {CustomEvent<undefined>} change - Emitted when the date is changed by the user.
  * @vueModel modelValue value input `event.currentTarget.value`
+ * @testAction selectDateTime selectDateTime
  */
 export class DateTimePicker extends TimeSelectionPicker(
 	SingleDatePickerMixin(SingleValuePicker(CalendarPicker(PickerField)))
