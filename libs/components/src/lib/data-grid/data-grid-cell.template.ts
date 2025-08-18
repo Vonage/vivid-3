@@ -3,6 +3,7 @@ import { classNames, keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { VisuallyHidden } from '../visually-hidden/visually-hidden';
+import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import { DataGridCellRole, DataGridCellSortStates } from './data-grid.options';
 import type { DataGridCell } from './data-grid-cell';
 
@@ -24,6 +25,14 @@ function getSortIcon<T extends DataGridCell>(x: T): string {
 	}
 
 	return 'sort-solid';
+}
+
+function calculateAriaSelectedValue(x: DataGridCell) {
+	if (x._selectable && x.selected) return 'true';
+
+	if (x._selectable && !x.selected) return 'false';
+
+	return null;
 }
 
 function renderSortIcons<T extends DataGridCell>(
@@ -56,7 +65,11 @@ export const DataGridCellTemplate = (
 	return html<DataGridCell>`
 		<template
 			tabindex="-1"
-			role="${(x) => DataGridCellRole[x.cellType] ?? DataGridCellRole.default}"
+			${applyHostSemantics({
+				role: (x) => DataGridCellRole[x.cellType] ?? DataGridCellRole.default,
+				ariaSelected: calculateAriaSelectedValue,
+				ariaSort: (x) => x.sortDirection ?? null,
+			})}
 			@click="${(x) => x._handleInteraction()}"
 			@keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
 		>
@@ -65,7 +78,7 @@ export const DataGridCellTemplate = (
 				role="${(x) => (shouldShowSortIcons(x) ? 'button' : undefined)}"
 			>
 				${(x) =>
-					x.ariaSelected === 'true'
+					x.selected
 						? html`<${visuallyHiddenTagName}>${(x) =>
 								x.locale.dataGrid.cell.selected}</${visuallyHiddenTagName}>`
 						: null}

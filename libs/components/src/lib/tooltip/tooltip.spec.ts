@@ -141,7 +141,7 @@ describe('vwc-tooltip', () => {
 		});
 
 		it('should set aria-haspopup to true', () => {
-			expect(anchor.getAttribute('aria-haspopup')).toBe('true');
+			expect(anchor.ariaHasPopup).toBe('true');
 		});
 
 		describe.each([

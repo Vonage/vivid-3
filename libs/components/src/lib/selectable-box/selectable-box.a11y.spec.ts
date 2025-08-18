@@ -29,6 +29,7 @@ describe('a11y: vwc-selectable-box', () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} control-type="radio" aria-label="Box 1"></${COMPONENT_TAG}>`
 			)) as SelectableBox;
+			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();
 		});
@@ -48,6 +49,7 @@ describe('a11y: vwc-selectable-box', () => {
 				element = (await fixture(
 					`<${COMPONENT_TAG} control-type="radio" aria-label="Box 1" clickable-box></${COMPONENT_TAG}>`
 				)) as SelectableBox;
+				await elementUpdated(element);
 
 				expect(await axe(element)).toHaveNoViolations();
 			});

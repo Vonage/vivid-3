@@ -38,7 +38,10 @@ describe('vwc-time-picker', () => {
 
 	const getButtonByLabel = (label: string) =>
 		(element.shadowRoot!.querySelector(`[aria-label="${label}"]`) ??
-			element.shadowRoot!.querySelector(`[label="${label}"]`)) as Button;
+			element.shadowRoot!.querySelector(`[label="${label}"]`) ??
+			element.shadowRoot!.querySelector(
+				`[data-vvd-aria-label="${label}"]`
+			)) as Button;
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -400,16 +403,14 @@ describe('vwc-time-picker', () => {
 		});
 
 		it('should have an aria-label of "Choose time" when no time is selected', async () => {
-			expect(pickerButton.getAttribute('aria-label')).toBe('Choose time');
+			expect(pickerButton.ariaLabel).toBe('Choose time');
 		});
 
 		it('should have an aria-label of "Change time, TIME" when a time is selected', async () => {
 			element.value = '13:45:00';
 			await elementUpdated(element);
 
-			expect(pickerButton.getAttribute('aria-label')).toBe(
-				'Change time, 01:45 PM'
-			);
+			expect(pickerButton.ariaLabel).toBe('Change time, 01:45 PM');
 		});
 
 		it('should scroll selected options to the top if a time is selected', async () => {

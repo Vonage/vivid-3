@@ -19,9 +19,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 const handleLocationChange = () => {
 	for (const el of document.querySelectorAll(
-		'vwc-nav-item[aria-current="page"], vwc-nav-disclosure[aria-current="true"]'
+		'vwc-nav-item[current], vwc-nav-disclosure[current]'
 	)) {
-		el.removeAttribute('aria-current');
+		el.removeAttribute('current');
 	}
 
 	let current =
@@ -30,10 +30,10 @@ const handleLocationChange = () => {
 		) ?? null;
 	while (current) {
 		if (current.tagName === 'VWC-NAV-ITEM') {
-			current.setAttribute('aria-current', 'page');
+			current.setAttribute('current', '');
 		}
 		if (current.tagName === 'VWC-NAV-DISCLOSURE') {
-			current.setAttribute('aria-current', 'true');
+			current.setAttribute('current', '');
 		}
 		current = current.parentElement;
 	}

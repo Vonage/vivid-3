@@ -665,14 +665,11 @@ describe('vwc-pagination', () => {
 			const buttons = Array.from(
 				element.shadowRoot!.querySelectorAll('.vwc-pagination-button')
 			);
-			const allButtonsAriaSelectedFalse = buttons?.reduce(
-				(correct, button, index) => {
-					if (element.selectedIndex === index) return correct;
-					return correct && button.getAttribute('aria-current') === 'false';
-				},
-				true
-			);
-			expect(allButtonsAriaSelectedFalse).toEqual(true);
+			const allButtonsAriaCurrentFalse = buttons.every((button, index) => {
+				if (element.selectedIndex === index) return true;
+				return button.ariaCurrent === 'false';
+			});
+			expect(allButtonsAriaCurrentFalse).toEqual(true);
 		});
 
 		it('should set descriptive aria-labels on the page buttons', async () => {
@@ -681,21 +678,15 @@ describe('vwc-pagination', () => {
 			const buttons = element.shadowRoot?.querySelectorAll(
 				'.vwc-pagination-button'
 			);
-			expect(buttons?.item(1)?.getAttribute('aria-label')).toEqual(
-				'Go to page 2'
-			);
-			expect(buttons?.item(2)?.getAttribute('aria-label')).toEqual(
-				'Go to page 3'
-			);
+			expect(buttons?.item(1)?.ariaLabel).toEqual('Go to page 2');
+			expect(buttons?.item(2)?.ariaLabel).toEqual('Go to page 3');
 		});
 
 		it('should set descriptive aria-labels on the prev/next buttons', async function () {
 			const prevButton = element.shadowRoot?.querySelector('.prev-button');
 			const nextButton = element.shadowRoot?.querySelector('.next-button');
-			expect(prevButton?.getAttribute('aria-label')).toEqual(
-				'Go to previous page'
-			);
-			expect(nextButton?.getAttribute('aria-label')).toEqual('Go to next page');
+			expect(prevButton?.ariaLabel).toEqual('Go to previous page');
+			expect(nextButton?.ariaLabel).toEqual('Go to next page');
 		});
 	});
 });

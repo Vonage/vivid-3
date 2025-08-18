@@ -52,8 +52,7 @@ export class Divider extends HostSemantics(VividElement) {
 	 * @remarks
 	 * HTML Attribute: role
 	 */
-	// eslint-disable-next-line @repo/repo/no-attribute-default-value
-	@attr override role: DividerRole = DividerRole.separator;
+	override role: DividerRole = DividerRole.separator;
 
 	/**
 	 * The orientation of the divider.
