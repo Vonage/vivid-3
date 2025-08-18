@@ -39,6 +39,10 @@ describe('vwc-date-picker', () => {
 	function typeIntoTextField(text: string) {
 		textField.value = text;
 		textField.dispatchEvent(new InputEvent('input'));
+	}
+
+	function typeIntoTextFieldAndBlur(text: string) {
+		typeIntoTextField(text);
 		textField.dispatchEvent(new InputEvent('change'));
 		textField.dispatchEvent(new Event('blur'));
 		element.dispatchEvent(new Event('focusout'));
@@ -133,14 +137,14 @@ describe('vwc-date-picker', () => {
 		});
 
 		it('should update value when a user enters a valid date into the text field', async () => {
-			typeIntoTextField('01/21/2021');
+			typeIntoTextFieldAndBlur('01/21/2021');
 			await elementUpdated(element);
 
 			expect(element.value).toBe('2021-01-21');
 		});
 
 		it('should keep an empty value when a user enters a invalid date into the text field', async () => {
-			typeIntoTextField('x');
+			typeIntoTextFieldAndBlur('x');
 			await elementUpdated(element);
 
 			expect(element.value).toBe('');
@@ -149,7 +153,7 @@ describe('vwc-date-picker', () => {
 		it('should clear the value but keep invalid input when a user enters a invalid date into the text field', async () => {
 			element.value = '2021-01-21';
 
-			typeIntoTextField('x');
+			typeIntoTextFieldAndBlur('x');
 			await elementUpdated(element);
 
 			expect(element.value).toBe('');
@@ -165,6 +169,26 @@ describe('vwc-date-picker', () => {
 
 			expect(textField.value).toBe('');
 		});
+
+		describe('while typing into the text field', () => {
+			it('should update value if input is valid', async () => {
+				typeIntoTextField('1/21/2021');
+				await elementUpdated(element);
+
+				expect(element.value).toBe('2021-01-21');
+				expect(textField.value).toBe('1/21/2021');
+			});
+
+			it('should keep the previous value if input is invalid', async () => {
+				element.value = '2021-01-21';
+
+				typeIntoTextField('2');
+				await elementUpdated(element);
+
+				expect(element.value).toBe('2021-01-21');
+				expect(textField.value).toBe('2');
+			});
+		});
 	});
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
@@ -172,7 +196,7 @@ describe('vwc-date-picker', () => {
 			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
-			typeIntoTextField('01/21/2021');
+			typeIntoTextFieldAndBlur('01/21/2021');
 			await elementUpdated(element);
 
 			expect(spy).toHaveBeenCalledTimes(1);
@@ -189,31 +213,53 @@ describe('vwc-date-picker', () => {
 		});
 	});
 
+	describe('input event', () => {
+		it('should be fired when the value updates while a user is typing', async () => {
+			const spy = vi.fn();
+			element.addEventListener('input', spy);
+
+			typeIntoTextField('01/21/2021');
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('change event', () => {
+		it('should not be fired when the value updates while a user is typing', async () => {
+			const spy = vi.fn();
+			element.addEventListener('change', spy);
+
+			typeIntoTextField('01/21/2021');
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(0);
+		});
+	});
+
 	describe('text field', () => {
 		it('should show an invalid date error when an invalid date is entered', async () => {
-			typeIntoTextField('invalid date');
-			textField.dispatchEvent(new Event('blur'));
+			typeIntoTextFieldAndBlur('invalid date');
 			await elementUpdated(element);
 
 			expect(textField.errorText).toBe('Please enter a valid date.');
 		});
 
 		it('should clear the invalid date error when a valid date is entered', async () => {
-			typeIntoTextField('invalid date');
-			textField.dispatchEvent(new Event('blur'));
+			typeIntoTextFieldAndBlur('invalid date');
 			await elementUpdated(element);
 
-			typeIntoTextField('01/21/2021');
+			typeIntoTextFieldAndBlur('01/21/2021');
 			await elementUpdated(element);
 
 			expect(textField.errorText).toBe('');
 		});
 
 		it('should clear the value when an empty string is entered', async () => {
-			typeIntoTextField('01/21/2021');
+			typeIntoTextFieldAndBlur('01/21/2021');
 			await elementUpdated(element);
 
-			typeIntoTextField('');
+			typeIntoTextFieldAndBlur('');
 			await elementUpdated(element);
 
 			expect(textField.value).toBe('');
@@ -270,7 +316,7 @@ describe('vwc-date-picker', () => {
 		});
 
 		it('should update current month to the month of the selected date when the user enters a new date', async () => {
-			typeIntoTextField('01/21/2021');
+			typeIntoTextFieldAndBlur('01/21/2021');
 			await elementUpdated(element);
 
 			expect(getDialogTitle()).toBe('January 2021');

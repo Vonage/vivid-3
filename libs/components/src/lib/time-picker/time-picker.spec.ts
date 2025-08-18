@@ -22,6 +22,10 @@ describe('vwc-time-picker', () => {
 	function typeIntoTextField(text: string) {
 		textField.value = text;
 		textField.dispatchEvent(new InputEvent('input'));
+	}
+
+	function typeIntoTextFieldAndBlur(text: string) {
+		typeIntoTextField(text);
 		textField.dispatchEvent(new InputEvent('change'));
 		textField.dispatchEvent(new Event('blur'));
 		element.dispatchEvent(new Event('focusout'));
@@ -92,14 +96,14 @@ describe('vwc-time-picker', () => {
 		});
 
 		it('should update value when a user enters a valid time into the text field', async () => {
-			typeIntoTextField('01:45 PM');
+			typeIntoTextFieldAndBlur('01:45 PM');
 			await elementUpdated(element);
 
 			expect(element.value).toBe('13:45:00');
 		});
 
 		it('should keep an empty value when a user enters a invalid time into the text field', async () => {
-			typeIntoTextField('x');
+			typeIntoTextFieldAndBlur('x');
 			await elementUpdated(element);
 
 			expect(element.value).toBe('');
@@ -108,7 +112,7 @@ describe('vwc-time-picker', () => {
 		it('should clear the value but keep invalid input when a user enters a invalid time into the text field', async () => {
 			element.value = '12:34:56';
 
-			typeIntoTextField('x');
+			typeIntoTextFieldAndBlur('x');
 			await elementUpdated(element);
 
 			expect(element.value).toBe('');
@@ -135,6 +139,26 @@ describe('vwc-time-picker', () => {
 			element.value = '';
 			await elementUpdated(element);
 			expect(inlineTimePicker.value).toBe(undefined);
+		});
+
+		describe('while typing into the text field', () => {
+			it('should update value if input is valid', async () => {
+				typeIntoTextField('12:34');
+				await elementUpdated(element);
+
+				expect(element.value).toBe('00:34:00');
+				expect(textField.value).toBe('12:34');
+			});
+
+			it('should keep the previous value if input is invalid', async () => {
+				element.value = '12:34:56';
+
+				typeIntoTextField(' ');
+				await elementUpdated(element);
+
+				expect(element.value).toBe('12:34:56');
+				expect(textField.value).toBe(' ');
+			});
 		});
 	});
 
@@ -281,7 +305,7 @@ describe('vwc-time-picker', () => {
 			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
-			typeIntoTextField('01:45 PM');
+			typeIntoTextFieldAndBlur('01:45 PM');
 			await elementUpdated(element);
 
 			expect(spy).toHaveBeenCalledTimes(1);
@@ -297,6 +321,30 @@ describe('vwc-time-picker', () => {
 			);
 
 			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('input event', () => {
+		it('should be fired when the value updates while a user is typing', async () => {
+			const spy = vi.fn();
+			element.addEventListener('input', spy);
+
+			typeIntoTextField('12:34:56 PM');
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('change event', () => {
+		it('should not be fired when the value updates while a user is typing', async () => {
+			const spy = vi.fn();
+			element.addEventListener('change', spy);
+
+			typeIntoTextField('12:34:56 PM');
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(0);
 		});
 	});
 
@@ -319,29 +367,27 @@ describe('vwc-time-picker', () => {
 		);
 
 		it('should show an invalid time error when an invalid time is entered', async () => {
-			typeIntoTextField('invalid time');
-			textField.dispatchEvent(new Event('blur'));
+			typeIntoTextFieldAndBlur('invalid time');
 			await elementUpdated(element);
 
 			expect(textField.errorText).toBe('Please enter a valid time.');
 		});
 
 		it('should clear the invalid time error when a valid time is entered', async () => {
-			typeIntoTextField('invalid time');
-			textField.dispatchEvent(new Event('blur'));
+			typeIntoTextFieldAndBlur('invalid time');
 			await elementUpdated(element);
 
-			typeIntoTextField('01:45 PM');
+			typeIntoTextFieldAndBlur('01:45 PM');
 			await elementUpdated(element);
 
 			expect(textField.errorText).toBe('');
 		});
 
 		it('should clear the value when an empty string is entered', async () => {
-			typeIntoTextField('01:45 PM');
+			typeIntoTextFieldAndBlur('01:45 PM');
 			await elementUpdated(element);
 
-			typeIntoTextField('');
+			typeIntoTextFieldAndBlur('');
 			await elementUpdated(element);
 
 			expect(textField.value).toBe('');

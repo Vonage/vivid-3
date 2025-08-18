@@ -161,7 +161,8 @@ export const TimeSelectionPicker = <
 		 */
 		_onInlineTimePickerChange(event: CustomEvent<string>) {
 			this._updateValueDueToUserInteraction(
-				this._withUpdatedTime(event.detail)
+				this._withUpdatedTime(event.detail),
+				false
 			);
 		}
 
