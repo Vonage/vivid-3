@@ -9,13 +9,15 @@ const toggleSideDrawerButtonIcon = (open: boolean) => {
 
 window.toggleSideDrawerButton = () => {
 	const sideDrawer = document.querySelector(
-		'vwc-side-drawer#sidedrawer'
+		'vwc-side-drawer#navigation-sidedrawer'
 	) as SideDrawer;
 	sideDrawer.open = !sideDrawer.open;
 };
 
 const addSideDrawerListeners = () => {
-	const sideDrawer = document.querySelector('vwc-side-drawer#sidedrawer')!;
+	const sideDrawer = document.querySelector(
+		'vwc-side-drawer#navigation-sidedrawer'
+	)!;
 	sideDrawer.addEventListener('close', () => toggleSideDrawerButtonIcon(false));
 	sideDrawer.addEventListener('open', () => toggleSideDrawerButtonIcon(true));
 };

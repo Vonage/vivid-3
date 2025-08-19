@@ -89,6 +89,15 @@ jobs:
       sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
+  test-utils-publish:
+    needs: should-release
+    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: ./libs/test-utils
+      sha: ${{ needs.should-release.outputs.release_sha }}
+    secrets: inherit
+
   eslint-plugin-publish:
     needs: should-release
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
