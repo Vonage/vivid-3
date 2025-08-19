@@ -8,7 +8,7 @@ const updateHeaderElevationShadow = (isShadowed: boolean) => {
 
 const getSideDrawerBase = () =>
 	document
-		.getElementById('sidedrawer')!
+		.getElementById('navigation-sidedrawer')!
 		.shadowRoot!.querySelector('[part~="base"]')!;
 
 const onScroll = () => {
