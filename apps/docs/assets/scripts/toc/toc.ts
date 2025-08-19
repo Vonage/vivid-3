@@ -33,7 +33,6 @@ function highlightActiveAnchor(anchor: HTMLAnchorElement, lock = false) {
 const intersectingTargets = new Set<HTMLElement>();
 const intersectionObserver = new IntersectionObserver(
 	(entries) => {
-		console.log('intersectionObserver', entries);
 		for (const entry of entries) {
 			if (!entry.isIntersecting) {
 				intersectingTargets.delete(entry.target as HTMLElement);
@@ -50,7 +49,6 @@ const intersectionObserver = new IntersectionObserver(
 					topmostIntersectingTarget = target;
 				}
 			}
-			console.log(topmostIntersectingTarget);
 			if (topmostIntersectingTarget) {
 				const anchor = document.querySelector(
 					`.article-toc a[href="#${topmostIntersectingTarget.id}"]`
