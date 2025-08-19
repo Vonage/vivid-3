@@ -1,5 +1,5 @@
 ---
-title: Unifying Vivid with Design Tokens 
+title: Unifying Vivid with Design Tokens
 month: 2025-08
 ---
 
