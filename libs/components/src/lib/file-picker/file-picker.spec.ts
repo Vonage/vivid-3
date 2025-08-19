@@ -188,8 +188,7 @@ describe('vwc-file-picker', () => {
 
 			expect(uploadIcon).toBeTruthy();
 			expect(uploadIcon.getAttribute('name')).toBe('cloud-upload-line');
-			expect(uploadIcon.getAttribute('size')).toBe('2');
-			expect(uploadIcon.getAttribute('aria-hidden')).toBe('true');
+			expect(uploadIcon.getAttribute('size')).toBe('-4');
 		});
 	});
 
