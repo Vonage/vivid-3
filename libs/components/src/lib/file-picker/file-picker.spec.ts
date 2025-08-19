@@ -110,6 +110,89 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
+	describe('drag and drop visual feedback', () => {
+		it('should add dz-drag-hover class on dragenter', async () => {
+			const control = element.shadowRoot!.querySelector(
+				'.control'
+			) as HTMLElement;
+
+			const dragEnterEvent = new DragEvent('dragenter', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			control.dispatchEvent(dragEnterEvent);
+			await elementUpdated(element);
+
+			expect(control.classList.contains('dz-drag-hover')).toBe(true);
+		});
+
+		it('should add dz-drag-hover class on dragover', async () => {
+			const control = element.shadowRoot!.querySelector(
+				'.control'
+			) as HTMLElement;
+
+			const dragOverEvent = new DragEvent('dragover', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			control.dispatchEvent(dragOverEvent);
+			await elementUpdated(element);
+
+			expect(control.classList.contains('dz-drag-hover')).toBe(true);
+		});
+
+		it('should remove dz-drag-hover class on dragleave', async () => {
+			const control = element.shadowRoot!.querySelector(
+				'.control'
+			) as HTMLElement;
+
+			// First add the class
+			control.classList.add('dz-drag-hover');
+
+			const dragLeaveEvent = new DragEvent('dragleave', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			control.dispatchEvent(dragLeaveEvent);
+			await elementUpdated(element);
+
+			expect(control.classList.contains('dz-drag-hover')).toBe(false);
+		});
+
+		it('should remove dz-drag-hover class on drop', async () => {
+			const control = element.shadowRoot!.querySelector(
+				'.control'
+			) as HTMLElement;
+
+			// First add the class
+			control.classList.add('dz-drag-hover');
+
+			const dropEvent = new DragEvent('drop', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			control.dispatchEvent(dropEvent);
+			await elementUpdated(element);
+
+			expect(control.classList.contains('dz-drag-hover')).toBe(false);
+		});
+
+		it('should have upload icon with correct attributes', async () => {
+			const uploadIcon = element.shadowRoot!.querySelector(
+				'.upload-icon'
+			) as HTMLElement;
+
+			expect(uploadIcon).toBeTruthy();
+			expect(uploadIcon.getAttribute('name')).toBe('cloud-upload-line');
+			expect(uploadIcon.getAttribute('size')).toBe('2');
+			expect(uploadIcon.getAttribute('aria-hidden')).toBe('true');
+		});
+	});
+
 	describe('label', function () {
 		it('should set a file picker label if label is set', async function () {
 			const labelText = 'label';

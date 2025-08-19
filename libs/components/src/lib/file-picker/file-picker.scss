@@ -26,10 +26,12 @@ $low-ink-color: --_low-ink-color;
 	flex-direction: column;
 	block-size: inherit;
 	gap: 4px;
+	margin-block-end: 8px; // Add space for the hint text
 	max-block-size: inherit;
 }
 
 .control {
+	position: relative;
 	display: flex;
 	box-sizing: border-box;
 	flex-wrap: wrap;
@@ -47,21 +49,96 @@ $low-ink-color: --_low-ink-color;
 	min-block-size: 52px;
 	outline: none;
 	transition: all 0.3s ease;
+
+	::slotted(*) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(#{constants.$vvd-color-neutral-600});
+		isolation: isolate;
+		text-align: center;
+		transition: all 0.3s ease;
+	}
+
+	&:hover {
+		::slotted(*) {
+			color: var(#{constants.$vvd-color-neutral-800});
+		}
+	}
+
+	&.dz-drag-hover {
+		::slotted(*) {
+			color: var(#{constants.$vvd-color-neutral-800});
+		}
+	}
+
 	&:not(.size-expanded) {
 		min-block-size: 52px;
 	}
 	&.size-expanded {
 		min-block-size: 120px;
 	}
+
 	&:focus-visible {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 		@include focus.focus;
 	}
+
 	&:hover,
 	&:active,
 	&:focus-visible {
+		border-color: var(#{constants.$vvd-color-cta-400});
 		background-color: var(#{constants.$vvd-color-cta-100});
+		box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+		transform: translateY(-1px);
+	}
+
+	&:active {
+		box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
+		transform: translateY(0);
+	}
+
+	&.dz-drag-hover {
+		border-color: var(#{constants.$vvd-color-cta-200});
+		background-color: var(#{constants.$vvd-color-cta-200});
+		outline: 2px dashed var(#{constants.$vvd-color-cta-500});
+		transform: scale(1.02);
+	}
+}
+
+.upload-icon {
+	animation: subtle-pulse 2s ease-in-out infinite;
+	color: var(#{constants.$vvd-color-cta-600});
+	pointer-events: none; // Allow clicks to pass through to parent
+	transition: all 0.3s ease;
+
+	.control:hover & {
+		animation: none; // Stop animation on hover for better interaction feedback
+		color: var(#{constants.$vvd-color-cta-700});
+		transform: scale(1.1);
+	}
+
+	.control:active & {
+		transform: scale(1.05);
+	}
+
+	.control.dz-drag-hover & {
+		animation: none;
+		color: var(#{constants.$vvd-color-neutral-800});
+		transform: scale(1.15);
+	}
+}
+
+@keyframes subtle-pulse {
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.8;
+		transform: scale(1.05);
 	}
 }
 
