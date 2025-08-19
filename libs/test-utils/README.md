@@ -18,20 +18,20 @@ The library supports the following testing frameworks:
 - Cypress
 - DOM: Can be used with a simulated DOM like JSDOM, e.g. in combination with Vue Test Utils or React Testing Library
 
-The usage across all testing frameworks is the same. The only difference is in initialization and whether certain operations are asynchronous or not. 
+The usage across all testing frameworks is the same. The only difference is in initialization and whether certain operations are asynchronous or not.
 
 ## Usage
 
 ### Installation
 
-The library is provided as the `@vonage/vivid-test-utils` package. The version number is kept in sync with the Vivid library itself that it supports. 
+The library is provided as the `@vonage/vivid-test-utils` package. The version number is kept in sync with the Vivid library itself that it supports.
 
 ### Initialization
 
 #### Playwright
 
 ```js
-import { vividPlaywright } from "@vonage/vivid-test-utils/playwright";
+import { vividPlaywright } from '@vonage/vivid-test-utils/playwright';
 
 // Create the vvd object using the Playwright page object and Playwright's expect function:
 const vvd = vividPlaywright(page, expect);
@@ -40,7 +40,7 @@ const vvd = vividPlaywright(page, expect);
 #### Cypress
 
 ```js
-import { vividCypress } from "@vonage/vivid-test-utils/cypress";
+import { vividCypress } from '@vonage/vivid-test-utils/cypress';
 
 // Create the vvd object using the cy object:
 const vvd = vividCypress(cy);
@@ -57,7 +57,7 @@ import '@vonage/vivid-test-utils/jsdom-polyfill';
 ```
 
 ```js
-import { vividDOM } from "@vonage/vivid-test-utils/dom";
+import { vividDOM } from '@vonage/vivid-test-utils/dom';
 
 const wrapper = mount(Component, { attachTo: document.body });
 // Create the vvd object using a Jest/Vitest or other Jasmine-style expect function and a root DOM node:
@@ -68,9 +68,9 @@ const vvd = vividDOM(expect, document.body);
 
 ```js
 // Select with a component specific selector:
-vvd.textField.byLabel('Email')
+vvd.textField.byLabel('Email');
 // Or by test ID, which will work for all components:
-vvd.textField.byTestId('#email')
+vvd.textField.byTestId('#email');
 ```
 
 ### Performing Actions
