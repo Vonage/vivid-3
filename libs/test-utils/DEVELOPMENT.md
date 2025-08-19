@@ -1,7 +1,5 @@
 # Development
 
-
-
 ## Operations
 
 - Selectors: Finding components, e.g. a Dialog by its headline.
