@@ -13,9 +13,9 @@ import {
 	itShouldDisplaySuccessTextFeedback,
 	itShouldDisplayValidationErrorFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
+import type { Icon } from '../icon/icon';
 import { Checkbox } from './checkbox';
 import '.';
-import type { Icon } from '../icon/icon';
 
 const COMPONENT_TAG = 'vwc-checkbox';
 
