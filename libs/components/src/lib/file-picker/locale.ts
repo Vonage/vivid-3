@@ -4,4 +4,5 @@ export interface FilePickerLocale {
 	fileTooBigError: string;
 	invalidFilesError: string;
 	removeFileLabel: string;
+	uploadFilesLabel: string;
 }

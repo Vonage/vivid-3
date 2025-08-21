@@ -52,7 +52,7 @@ Use the `single-file` attribute to allow only a single file. Subsequent file upl
 
 ```html preview 230px
 <vwc-file-picker single-file>
-	<span>Drag & Drop or click to upload only one file</span>
+	Drag & Drop or click to upload only one file
 </vwc-file-picker>
 ```
 
@@ -69,7 +69,7 @@ If the user tries to upload more files than the maximum number of files, the fil
 
 ```html preview 330px
 <vwc-file-picker helper-text="Maximum of 2 files" max-files="2">
-	<span>Drag & Drop or click to upload</span>
+	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
 
@@ -87,7 +87,7 @@ Note: localisation will need to be handled at the application level.
 	helper-text="Maximum of 2 files"
 	max-files="2"
 >
-	<span>Drag & Drop or click to upload</span>
+	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
 
@@ -100,7 +100,7 @@ If the user tries to upload a file that exceeds the maximum file size, the file 
 
 ```html preview 230px
 <vwc-file-picker helper-text="Max file size is 0.1MB" max-file-size="0.1">
-	<span>Drag & Drop or click to upload</span>
+	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
 
@@ -118,7 +118,7 @@ Note: localisation will need to be handled at the application level.
 	helper-text="Max file size is 0.1MB"
 	max-file-size="0.1"
 >
-	<span>Drag & Drop or click to upload</span>
+	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
 
@@ -138,7 +138,7 @@ If the user tries to upload a file that does not match the accepted files, the F
 
 ```html preview 230px
 <vwc-file-picker helper-text=".jpg, .jpeg types only" accept=".jpg, .jpeg">
-	<span>Drag & Drop or click to upload</span>
+	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
 
@@ -154,7 +154,7 @@ Note: localisation will need to be handled at the application level.
 	helper-text=".jpg, .jpeg types only"
 	accept=".jpg, .jpeg"
 >
-	<span>Drag & Drop or click to upload</span>
+	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
 
@@ -184,7 +184,7 @@ Use `files` or `rejectedFiles` to access the list of files that have been added 
 					max-files="2"
 					required
 				>
-					<span>Drag & Drop or click to upload</span>
+					Drag & Drop or click to upload
 				</vwc-file-picker>
 				<div class="buttons">
 					<vwc-button
@@ -259,7 +259,7 @@ Use the default slot to set the content of the file picker.
 
 ```html preview
 <vwc-file-picker label="Label">
-	<span>Drag & Drop or <strong>Click</strong> to upload</span>
+	Drag & Drop or <strong>Click</strong> to upload
 </vwc-file-picker>
 <style>
 	span {
@@ -274,7 +274,7 @@ The `helper-text` slot allows you to use rich content as the File Picker's helpe
 
 ```html preview
 <vwc-file-picker>
-	<span>Drag & Drop the .csv file here or click to upload</span>
+	Drag & Drop the .csv file here or click to upload
 	<span slot="helper-text"
 		>Max file size is 0.1MB.
 		<a href="#">Learn how export your data to .csv</a></span

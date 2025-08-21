@@ -26,7 +26,6 @@ $low-ink-color: --_low-ink-color;
 	flex-direction: column;
 	block-size: inherit;
 	gap: 4px;
-	margin-block-end: 8px; // Add space for the hint text
 	max-block-size: inherit;
 }
 
@@ -50,24 +49,25 @@ $low-ink-color: --_low-ink-color;
 	outline: none;
 	transition: all 0.3s ease;
 
-	::slotted(*) {
+	.upload-text {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		color: var(#{constants.$vvd-color-neutral-600});
 		isolation: isolate;
+		pointer-events: none;
 		text-align: center;
 		transition: all 0.3s ease;
 	}
 
 	&:hover {
-		::slotted(*) {
+		.upload-text {
 			color: var(#{constants.$vvd-color-neutral-800});
 		}
 	}
 
 	&.dz-drag-hover {
-		::slotted(*) {
+		.upload-text {
 			color: var(#{constants.$vvd-color-neutral-800});
 		}
 	}

@@ -11,9 +11,9 @@ The `label` attribute provides a short description of the purpose of the File Pi
 </vwc-note>
 
 ```html preview
-<vwc-file-picker label="Label"
-	><span>Drag & Drop or click to upload</span></vwc-file-picker
->
+<vwc-file-picker label="Label">
+	Drag & Drop or click to upload
+</vwc-file-picker>
 ```
 
 ### Helper text
@@ -23,7 +23,7 @@ To add HTML to the helper text, use the [helper-text slot](/components/file-pick
 
 ```html preview
 <vwc-file-picker helper-text="helper-text">
-	<span>Drag & Drop or click to upload</span>
+	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
 
@@ -35,7 +35,7 @@ The `error-text` attribute provides a custom error message. Any current error st
 
 ```html preview
 <vwc-file-picker error-text="Please provide a valid file.">
-	<span>Drag & Drop or click to upload</span>
+	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
 
@@ -46,10 +46,10 @@ Use the `size` attribute to set the file picker's block-size.
 ```html preview
 <div class="wrapper">
 	<vwc-file-picker size="normal" label="Normal">
-		<span>File picker with Normal size (default)</span>
+		File picker with Normal size (default)
 	</vwc-file-picker>
 	<vwc-file-picker size="expanded" label="Expanded">
-		<span>File picker with Expanded size (default)</span>
+		File picker with Expanded size (default)
 	</vwc-file-picker>
 </div>
 

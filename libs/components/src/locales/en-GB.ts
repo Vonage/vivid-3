@@ -114,6 +114,7 @@ const enGB: Locale = {
 		removeFileLabel: 'Remove file',
 		invalidFilesError:
 			'One or more selected files are invalid. Please upload only valid file types under the size limit.',
+		uploadFilesLabel: 'Upload files',
 	},
 	audioPlayer: {
 		playButtonLabel: 'Play',
