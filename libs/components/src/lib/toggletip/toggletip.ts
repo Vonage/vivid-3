@@ -12,6 +12,7 @@ import { Localized } from '../../shared/patterns';
  * @slot action-items - The content to display in the toggletip action items.
  */
 export class Toggletip extends Localized(Anchored(VividElement)) {
+	originalAriaLabel: string | null;
 	/**
 	 * the optional title of the toggletip
 	 *
@@ -80,6 +81,7 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 
 	#setupAnchor(a: HTMLElement) {
 		a.addEventListener('click', this.#openIfClosed, true);
+		this.originalAriaLabel = a.ariaLabel;
 		a.ariaLabel = `${this.locale.toggletip.anchorLabel(a.ariaLabel || '')}`;
 
 		this.#updateAnchor(a);
@@ -93,11 +95,7 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('click', this.#openIfClosed, true);
-		if (a.ariaLabel)
-			a.ariaLabel = a.ariaLabel.replace(
-				`${this.locale.toggletip.anchorLabel(a.ariaLabel || '')}`,
-				''
-			);
+		if (a.ariaLabel) a.ariaLabel = this.originalAriaLabel;
 		a.removeAttribute('aria-expanded');
 		a.removeAttribute('data-expanded');
 	}
