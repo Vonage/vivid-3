@@ -33,15 +33,15 @@ const addFile = async (
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `<div style="background-color: var(--vvd-color-neutral-50); padding: 8px;"><vwc-layout column-basis="block">
-	  <vwc-file-picker label="Pick files" helper-text="multiple files of any type" max-file-size="0.001" accept="image/*">
-	  	Drag & Drop or click to upload
+  <vwc-file-picker label="Pick files" helper-text="multiple files of any type" max-file-size="0.001" accept="image/*">
+  	Drag & Drop or click to upload
 		</vwc-file-picker>
 		</div>
-	  <vwc-file-picker label="Pick files" helper-text="multiple files of any type" size="expanded">
-	  	Drag & Drop or click to upload
+  <vwc-file-picker label="Pick files" helper-text="multiple files of any type" size="expanded">
+  	Drag & Drop or click to upload
 		</vwc-file-picker>
 		<vwc-file-picker label="Pick files" helper-text="multiple files of any type" error-text="error-text">
-	  	Drag & Drop or click to upload
+  	Drag & Drop or click to upload
 		</vwc-file-picker>
 	</vwc-layout>`;
 

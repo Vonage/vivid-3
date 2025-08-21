@@ -115,6 +115,7 @@ const deDE: Locale = {
 		removeFileLabel: 'Datei entfernen',
 		invalidFilesError:
 			'Eine oder mehrere ausgewählte Dateien sind ungültig. Bitte laden Sie nur gültige Dateitypen innerhalb der Größenbeschränkung hoch.',
+		uploadFilesLabel: 'Dateien hochladen',
 	},
 	audioPlayer: {
 		playButtonLabel: 'Abspielen',

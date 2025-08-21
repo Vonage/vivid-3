@@ -63,3 +63,49 @@ function preventPopupCodeRunningAfterWindowClose() {
 }
 
 preventPopupCodeRunningAfterWindowClose();
+
+// Polyfill DragEvent/DataTransfer for jsdom environment
+(() => {
+	if (typeof (globalThis as any).DataTransfer === 'undefined') {
+		class DataTransferPolyfill {
+			dropEffect = '';
+			effectAllowed = '';
+			files: File[] = [];
+			items: any[] = [];
+			types: string[] = [];
+			#store = new Map<string, string>();
+
+			setData(format: string, data: string) {
+				this.#store.set(format, data);
+				if (!this.types.includes(format)) this.types.push(format);
+			}
+			getData(format: string) {
+				return this.#store.get(format) ?? '';
+			}
+			clearData(format?: string) {
+				if (format) this.#store.delete(format);
+				else this.#store.clear();
+			}
+			setDragImage() {}
+		}
+		(globalThis as any).DataTransfer =
+			DataTransferPolyfill as unknown as typeof DataTransfer;
+	}
+
+	if (typeof (globalThis as any).DragEvent === 'undefined') {
+		class DragEventPolyfill extends Event {
+			dataTransfer: DataTransfer;
+			relatedTarget: EventTarget | null;
+
+			constructor(type: string, eventInitDict: any = {}) {
+				super(type, eventInitDict);
+				this.dataTransfer =
+					eventInitDict.dataTransfer ?? new (globalThis as any).DataTransfer();
+				this.relatedTarget = eventInitDict.relatedTarget ?? null;
+			}
+		}
+
+		(globalThis as any).DragEvent =
+			DragEventPolyfill as unknown as typeof DragEvent;
+	}
+})();

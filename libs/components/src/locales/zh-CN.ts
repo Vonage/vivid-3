@@ -114,6 +114,7 @@ const zhCN: Locale = {
 		removeFileLabel: '删除文件',
 		invalidFilesError:
 			'所选的一个或多个文件无效。请仅上传大小限制内的有效文件类型。',
+		uploadFilesLabel: '上传文件',
 	},
 	audioPlayer: {
 		playButtonLabel: '草創',
