@@ -5,7 +5,7 @@ order: 1
 
 # Vivid v5.0.0 Migration Guide
 
-Release date: xx 2025.  
+Release date: 25th August 2025.  
 This document provides descriptions of the breaking changes in this release and instructions on how to prepare for them.
 
 ## Aria Attributes
@@ -51,7 +51,20 @@ The available values for `sticky-mode` are:
 
 ### The change
 
+The file picker component has been updated to provide **interactive visual feedback** during drag-and-drop and hover interactions. Key changes include:
+
+- A new animated **upload icon** and text label inside the picker,
+- Visual state classes for hover, active, and drag-hover events,
+- A new localized label key `uploadFilesLabel` in locale files,
+- Updated styles for improved accessibility and clearer interaction cues.
+
 ### How to get ready?
+
+- If your test snapshots rely on the file picker’s appearance, update them to match the new layout, including the icon,
+- If you rely on localized text, ensure your app uses the updated locale files with the `uploadFilesLabel` string,
+- To customize the label, override the slot content or provide your own translation for `uploadFilesLabel`.
+
+No other changes are required for typical usage — the default behavior remains the same, but users now get enhanced feedback.
 
 ## Menu
 
