@@ -4,6 +4,16 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.30.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.30.0...vivid-v4.30.1) (2025-08-19)
+
+
+### Bug Fixes
+
+* **badge:** fix connotation type missing announcement (VIV-2780) ([#2498](https://github.com/Vonage/vivid-3/issues/2498)) ([9da1f44](https://github.com/Vonage/vivid-3/commit/9da1f44e83afe8b8a4ae0242c49904b04aa398fc))
+* **date-picker, time-picker, date-time-picker:** fix presentation value not updating after invalid input (VIV-2781) ([#2499](https://github.com/Vonage/vivid-3/issues/2499)) ([f8515a3](https://github.com/Vonage/vivid-3/commit/f8515a3280af4e67c3cc8d6d87c3eaa73741e1d9))
+* make remove button focusable in tag ([a780453](https://github.com/Vonage/vivid-3/commit/a7804532273a5ba13871f838b50233051e82ed1a))
+* **tag:** make remove button focusable (VIV-000) ([#2481](https://github.com/Vonage/vivid-3/issues/2481)) ([a780453](https://github.com/Vonage/vivid-3/commit/a7804532273a5ba13871f838b50233051e82ed1a))
+
 ## [4.30.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.29.0...vivid-v4.30.0) (2025-08-13)
 
 

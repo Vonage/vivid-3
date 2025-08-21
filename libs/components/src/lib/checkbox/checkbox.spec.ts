@@ -13,6 +13,7 @@ import {
 	itShouldDisplaySuccessTextFeedback,
 	itShouldDisplayValidationErrorFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
+import type { Icon } from '../icon/icon';
 import { Checkbox } from './checkbox';
 import '.';
 
@@ -132,6 +133,16 @@ describe('vwc-checkbox', () => {
 			);
 
 			expect(element.checked).toBe(false);
+		});
+
+		it('should not appear checked when indeterminate is true', async () => {
+			element.checked = true;
+			element.indeterminate = true;
+			await elementUpdated(element);
+
+			const icons = element.shadowRoot!.querySelectorAll<Icon>('.icon');
+			expect(icons.length).toBe(1);
+			expect(icons[0].name).toBe('minus-solid');
 		});
 	});
 
