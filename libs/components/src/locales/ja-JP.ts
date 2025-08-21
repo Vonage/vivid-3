@@ -240,5 +240,8 @@ const jaJP: Locale = {
 	tag: {
 		remove: /* istanbul ignore next */ (label: string) => `削除する ${label}`,
 	},
+	toggletip: {
+		anchorLabel: ' ; さらに情報を表示',
+	},
 };
 export default jaJP;

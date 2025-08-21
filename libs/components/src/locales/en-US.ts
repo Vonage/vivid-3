@@ -240,6 +240,9 @@ const enUS: Locale = {
 	tag: {
 		remove: /* istanbul ignore next */ (label: string) => `Remove ${label}`,
 	},
+	toggletip: {
+		anchorLabel: ' ; Show more information',
+	},
 };
 
 export default enUS;
