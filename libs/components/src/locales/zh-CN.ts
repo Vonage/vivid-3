@@ -241,7 +241,8 @@ const zhCN: Locale = {
 		remove: /* istanbul ignore next */ (label: string) => `移除 ${label}`,
 	},
 	toggletip: {
-		anchorLabel: ' ; 显示更多信息',
+		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
+			ariaLabel ? `关于 ${ariaLabel} 的更多信息` : `显示更多信息`,
 	},
 };
 

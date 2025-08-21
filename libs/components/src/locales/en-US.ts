@@ -241,7 +241,10 @@ const enUS: Locale = {
 		remove: /* istanbul ignore next */ (label: string) => `Remove ${label}`,
 	},
 	toggletip: {
-		anchorLabel: ' ; Show more information',
+		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
+			ariaLabel
+				? `Show more information about ${ariaLabel}`
+				: `Show more information`,
 	},
 };
 

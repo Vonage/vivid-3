@@ -1,3 +1,3 @@
 export interface ToggletipLocale {
-	anchorLabel: string;
+	anchorLabel: (ariaLabel?: string) => string;
 }

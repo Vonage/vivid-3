@@ -80,7 +80,8 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 
 	#setupAnchor(a: HTMLElement) {
 		a.addEventListener('click', this.#openIfClosed, true);
-		a.ariaLabel = (a.ariaLabel ?? '') + this.locale.toggletip.anchorLabel;
+		a.ariaLabel = `${this.locale.toggletip.anchorLabel(a.ariaLabel || '')}`;
+
 		this.#updateAnchor(a);
 		// TODO aria-controls="myid"
 	}
@@ -93,7 +94,10 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('click', this.#openIfClosed, true);
 		if (a.ariaLabel)
-			a.ariaLabel = a.ariaLabel.replace(this.locale.toggletip.anchorLabel, '');
+			a.ariaLabel = a.ariaLabel.replace(
+				`${this.locale.toggletip.anchorLabel(a.ariaLabel || '')}`,
+				''
+			);
 		a.removeAttribute('aria-expanded');
 		a.removeAttribute('data-expanded');
 	}
