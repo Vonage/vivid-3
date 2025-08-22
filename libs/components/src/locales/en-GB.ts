@@ -240,6 +240,12 @@ const enGB: Locale = {
 	tag: {
 		remove: /* istanbul ignore next */ (label: string) => `Remove ${label}`,
 	},
+	toggletip: {
+		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
+			ariaLabel
+				? `Show more information about ${ariaLabel}`
+				: `Show more information`,
+	},
 };
 
 export default enGB;

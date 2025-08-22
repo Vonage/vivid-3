@@ -2,6 +2,7 @@ import { attr, DOM } from '@microsoft/fast-element';
 import type { Placement } from '@floating-ui/dom';
 import { Anchored } from '../../shared/patterns/anchored';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { Localized } from '../../shared/patterns';
 
 /**
  * @public
@@ -10,8 +11,8 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @slot anchor - Used to set the anchor element for the toggletip.
  * @slot action-items - The content to display in the toggletip action items.
  */
-export class Toggletip extends Anchored(VividElement) {
-	#ANCHOR_ARIA_LABEL_SUFFIX = ' ; Show more information';
+export class Toggletip extends Localized(Anchored(VividElement)) {
+	#originalAriaLabel: string | null = null;
 
 	/**
 	 * the optional title of the toggletip
@@ -81,7 +82,9 @@ export class Toggletip extends Anchored(VividElement) {
 
 	#setupAnchor(a: HTMLElement) {
 		a.addEventListener('click', this.#openIfClosed, true);
-		a.ariaLabel = (a.ariaLabel ?? '') + this.#ANCHOR_ARIA_LABEL_SUFFIX;
+		this.#originalAriaLabel = a.ariaLabel;
+		a.ariaLabel = `${this.locale.toggletip.anchorLabel(a.ariaLabel || '')}`;
+
 		this.#updateAnchor(a);
 		// TODO aria-controls="myid"
 	}
@@ -93,8 +96,7 @@ export class Toggletip extends Anchored(VividElement) {
 
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('click', this.#openIfClosed, true);
-		if (a.ariaLabel)
-			a.ariaLabel = a.ariaLabel.replace(this.#ANCHOR_ARIA_LABEL_SUFFIX, '');
+		if (a.ariaLabel) a.ariaLabel = this.#originalAriaLabel;
 		a.removeAttribute('aria-expanded');
 		a.removeAttribute('data-expanded');
 	}

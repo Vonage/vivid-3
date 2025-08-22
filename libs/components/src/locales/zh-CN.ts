@@ -240,6 +240,10 @@ const zhCN: Locale = {
 	tag: {
 		remove: /* istanbul ignore next */ (label: string) => `移除 ${label}`,
 	},
+	toggletip: {
+		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
+			ariaLabel ? `关于 ${ariaLabel} 的更多信息` : `显示更多信息`,
+	},
 };
 
 export default zhCN;
