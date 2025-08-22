@@ -1,9 +1,4 @@
-import {
-	html,
-	observable,
-	slotted,
-	ViewTemplate,
-} from '@microsoft/fast-element';
+import { html, observable, slotted } from '@microsoft/fast-element';
 import type { Constructor, MixinType } from '../../utils/mixins';
 import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';
 import { ContextualHelp } from '../../../lib/contextual-help/contextual-help';
@@ -37,31 +32,20 @@ export const WithContextualHelp = <T extends Constructor<FormElementElement>>(
 
 		/**
 		 * @internal
-		 * Helper function to render label and contextual-help, with customizable label template.
+		 * Helper function to render contextual-help with slots
 		 */
-		_renderLabelWithContextualHelp(
-			context: VividElementDefinitionContext,
-			customLabelTemplate?: ViewTemplate<ElementWithContextualHelp>
-		) {
+		_renderContextualHelp(context: VividElementDefinitionContext) {
 			const contextualHelpTag = context.tagFor(ContextualHelp);
-			const defaultLabelTemplate = html<ElementWithContextualHelp>`
-				<label class="label" for="control">${(x) => x.label}</label>
-			`;
-			const labelTemplate = customLabelTemplate || defaultLabelTemplate;
-
 			return html<ElementWithContextualHelp>`
-				<div class="label-container">
-					${labelTemplate}
-					<${contextualHelpTag} ?hidden="${(x) => !x._shouldShowContextualHelp}">
-          	<slot 
+				<${contextualHelpTag} ?hidden="${(x) => !x._shouldShowContextualHelp}">
+					<slot 
 						name="contextual-help-icon" 
 						slot="${(x) =>
 							x.contextualHelpIconSlottedContent?.length ? 'icon' : undefined}"
-							${slotted('contextualHelpIconSlottedContent')}
-						></slot>
-						<slot name="contextual-help" ${slotted('contextualHelpSlottedContent')}></slot>
-					</${contextualHelpTag}>
-				</div>
+						${slotted('contextualHelpIconSlottedContent')}
+					></slot>
+					<slot name="contextual-help" ${slotted('contextualHelpSlottedContent')}></slot>
+				</${contextualHelpTag}>
 			`;
 		}
 	}

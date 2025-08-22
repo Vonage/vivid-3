@@ -1,7 +1,7 @@
 import 'element-internals-polyfill';
 
 import { fixture } from '@repo/shared';
-import { customElement, html } from '@microsoft/fast-element';
+import { customElement } from '@microsoft/fast-element';
 import { FormAssociated } from '../../foundation/form-associated/form-associated';
 import { VividElement } from '../../foundation/vivid-element/vivid-element';
 import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';
@@ -63,53 +63,35 @@ describe('WithContextualHelp mixin', function () {
 		});
 	});
 
-	describe('_renderLabelWithContextualHelp', function () {
-		it('should return a valid template', function () {
-			const template = instance._renderLabelWithContextualHelp(mockContext);
-			expect(template).toBeTruthy();
+	describe('_renderContextualHelp', function () {
+		function renderTemplateAndGetIconSlot(iconContent: any) {
+			instance.contextualHelpIconSlottedContent = iconContent;
+			instance.label = 'Test Label';
+			instance.contextualHelpSlottedContent = [document.createElement('div')]; // Ensure it will show
+
+			const template = instance._renderContextualHelp(mockContext);
+			const tempElement = document.createElement('div');
+			template.render(instance, tempElement);
+			return tempElement.querySelector('slot[name="contextual-help-icon"]');
+		}
+
+		it('should set slot="icon" when icon content is present', function () {
+			const iconSlot = renderTemplateAndGetIconSlot([
+				document.createElement('vwc-icon'),
+			]);
+			expect(iconSlot?.getAttribute('slot')).toBe('icon');
 		});
 
-		it('should use custom label template when provided', function () {
-			const customTemplate = html`<span class="custom-label"
-				>${(x) => x.label}</span
-			>`;
-			const template = instance._renderLabelWithContextualHelp(
-				mockContext,
-				customTemplate
-			);
-
-			expect(template).toBeTruthy();
-		});
-
-		describe('contextual help icon slot conditional logic', function () {
-			function renderTemplateAndGetIconSlot(iconContent: any) {
-				instance.contextualHelpIconSlottedContent = iconContent;
-				const template = instance._renderLabelWithContextualHelp(mockContext);
-
-				const tempElement = document.createElement('div');
-				template.render(instance, tempElement);
-
-				return tempElement.querySelector('slot[name="contextual-help-icon"]');
+		it.each([
+			['empty array', []],
+			['null', null],
+			['undefined', undefined],
+		])(
+			'should not set slot attribute when icon content is %s',
+			function (_, iconContent) {
+				const iconSlot = renderTemplateAndGetIconSlot(iconContent);
+				expect(iconSlot?.hasAttribute('slot')).toBe(false);
 			}
-
-			it('should set slot="icon" when icon content is present', function () {
-				const iconSlot = renderTemplateAndGetIconSlot([
-					document.createElement('vwc-icon'),
-				]);
-				expect(iconSlot?.getAttribute('slot')).toBe('icon');
-			});
-
-			it.each([
-				['empty array', []],
-				['null', null],
-				['undefined', undefined],
-			])(
-				'should not set slot attribute when icon content is %s',
-				function (_, iconContent) {
-					const iconSlot = renderTemplateAndGetIconSlot(iconContent);
-					expect(iconSlot?.hasAttribute('slot')).toBe(false);
-				}
-			);
-		});
+		);
 	});
 });
