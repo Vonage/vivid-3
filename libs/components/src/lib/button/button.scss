@@ -153,7 +153,7 @@
 			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-full};
 		}
 
-		&.icon-only.size-super-condensed{
+		&.icon-only.size-super-condensed {
 			padding-inline: calc(var(#{variables.$block-size}) / 6);
 		}
 	}
