@@ -34,6 +34,12 @@ export type MenuItemConnotation = ExtractFromEnum<
  * @event {CustomEvent<HTMLElement>} expanded-change - Fired when the expanded state changes.
  * @event {CustomEvent<undefined>} change - Fired when the item is triggered. Does not fire when a submenu is collapsed or expanded.
  * @vueModel modelValue checked change `event.currentTarget.checked`
+ * @testSelector byText byText
+ * @testAction click click #base
+ * @testQuery checked checked true
+ * @testQuery unchecked checked false
+ * @testQuery disabled disabled
+ * @testRef base shadow .base
  */
 export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	/**

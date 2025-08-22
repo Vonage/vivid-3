@@ -55,7 +55,8 @@ export type TextAreaResize = typeof TextAreaResize[keyof typeof TextAreaResize];
  * @slot helper-text - Describes how to use the text-area. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Emits a custom 'change' event when the textarea emits a change event
  * @vueModel modelValue value input `event.currentTarget.value`
- * @testAction fill fill control
+ * @testAction fill fill #control
+ * @testAction clear clear #control
  * @testRef control shadow .control
  */
 export class TextArea extends WithFeedback(

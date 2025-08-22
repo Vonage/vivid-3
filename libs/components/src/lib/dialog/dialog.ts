@@ -26,8 +26,9 @@ type DismissMethod = 'escape' | 'dismiss-button' | 'light-dismiss';
  * @event {CustomEvent<undefined>} cancel - The `cancel` event fires when the user requests to close the dialog. You can prevent the dialog from closing by calling `.preventDefault()` on the event.
  * @vueModel open open open,close `event.currentTarget.open`
  * @testSelector byHeadline byHeadline
- * @testAction clickDismissButton click dismissButton
- * @testQuery open dialogOpen
+ * @testAction dismiss click #dismissButton
+ * @testQuery open open true
+ * @testQuery closed open false
  * @testQuery headline headline
  * @testRef dismissButton shadow .dismiss-button
  */

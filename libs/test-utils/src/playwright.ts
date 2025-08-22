@@ -4,13 +4,8 @@ import type { Context } from './base';
 import { VividWrapper } from './components.generated';
 import { createPlaywrightDriver } from './drivers/playwright';
 
-export const vividPlaywright = (
-	page: Page,
-	expect: typeof pwExpect,
-	prefix = 'vwc'
-) => {
+export const vividPlaywright = (page: Page, expect: typeof pwExpect) => {
 	const ctx: Context<PlaywrightDriverT> = {
-		prefix,
 		rootLocator: page,
 		driver: createPlaywrightDriver(expect),
 	};

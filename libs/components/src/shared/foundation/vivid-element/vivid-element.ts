@@ -7,7 +7,10 @@ declare const __PACKAGE_VERSION__: string;
 
 /**
  * Base class for all Vivid elements.
- * @testAction hover hover
+ * @testSelector byTestId byTestId
+ * @testAction hover hover #locator
+ * @testAction focus focus #locator
+ * @testAction blur blur #locator
  */
 export class VividElement extends AriaMixin(ReplacedPropHandling(FASTElement)) {
 	/**
