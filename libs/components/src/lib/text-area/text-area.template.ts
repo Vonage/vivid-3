@@ -34,10 +34,13 @@ function renderLabel() {
 export const TextAreaTemplate = (context: VividElementDefinitionContext) => {
 	return html`
 		<div class="${getClasses}">
-			${when(
-				(x) => x.charCount && x.maxlength,
-				(x) => x._getCharCountTemplate(context)
-			)}
+			<div class="label-suffix">
+				${when(
+					(x) => x.charCount && x.maxlength,
+					(x) => x._getCharCountTemplate(context)
+				)}
+				${(x) => x._renderContextualHelp(context)}
+			</div>
 			${when((x) => x.label, renderLabel())}
 			<textarea
 				class="control"

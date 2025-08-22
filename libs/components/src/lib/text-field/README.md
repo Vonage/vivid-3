@@ -168,6 +168,27 @@ The `helper-text` slot allows you to use rich content as the text-field's helper
 </style>
 ```
 
+### Contextual-Help
+
+The `contextual-help` slot allows you to add the toggletip with additional information next to the label.
+
+```html preview
+<vwc-text-field label="First name">
+	<span slot="contextual-help">This is the contextual help</span>
+</vwc-text-field>
+```
+
+### Contextual-Help-Icon
+
+The `contextual-help-icon` slot allows you to customize the default icon of the **Contextual Help**.
+
+```html preview
+<vwc-text-field label="First name">
+	<span slot="contextual-help">This is the contextual help</span>
+	<vwc-icon slot="contextual-help-icon" size="-6" name="info-solid"></vwc-icon>
+</vwc-text-field>
+```
+
 ## API Reference
 
 ### Properties
@@ -205,11 +226,13 @@ The `helper-text` slot allows you to use rich content as the text-field's helper
 
 <div class="table-wrapper">
 
-| Name                     | Description                                           |
-| ------------------------ | ----------------------------------------------------- |
-| **action-items**         | Add postfix elements to the Text Field input element. |
-| **helper-text**          | Add rich content as the Text Field's helper text.     |
-| **leading-action-items** | Add prefix elements to the Text Field input element.  |
+| Name                     | Description                                                             |
+| ------------------------ | ----------------------------------------------------------------------- |
+| **action-items**         | Add postfix elements to the Text Field input element.                   |
+| **helper-text**          | Add rich content as the Text Field's helper text.                       |
+| **leading-action-items** | Add prefix elements to the Text Field input element.                    |
+| **contextual-help**      | Add contextual help to be displayed in the toggletip next to the label. |
+| **contextual-help-icon** | Add custom icon for the contextual help button.                         |
 
 </div>
 
