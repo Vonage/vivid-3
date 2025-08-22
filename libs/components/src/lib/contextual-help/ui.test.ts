@@ -12,6 +12,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<div style="padding: 20px 100px;">
 			<vwc-contextual-help>Example contextual help</vwc-contextual-help>
 		</div>
+		<div style="padding: 20px 100px;">
+			<vwc-contextual-help>
+				Example contextual help
+				<vwc-icon slot="icon" size="-6" name="info-solid"></vwc-icon>
+			</vwc-contextual-help>
+		</div>
 	`;
 
 	await loadComponents({

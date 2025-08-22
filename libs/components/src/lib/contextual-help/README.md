@@ -14,8 +14,9 @@
 
 <div class="table-wrapper">
 
-| Name        | Description                                                 |
-| ----------- | ----------------------------------------------------------- |
-| **default** | For the default content of the Contextual Help's Toggletip. |
+| Name        | Description                                               |
+| ----------- | --------------------------------------------------------- |
+| **default** | For the default content of the Contextual Help Toggletip. |
+| **icon**    | Add the Custom Icon to the Contextual Help Button.        |
 
 </div>

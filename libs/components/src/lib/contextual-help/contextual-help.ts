@@ -5,6 +5,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
 /**
  * @component contextual-help
  * @slot - Default slot.
+ * @slot icon - Custom icon slot (optional).
  */
 export class ContextualHelp extends VividElement {
 	/**

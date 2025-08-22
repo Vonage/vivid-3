@@ -21,9 +21,11 @@ export const ContextualHelpTemplate = (
 	const buttonTag = context.tagFor(Button);
 	const iconTag = context.tagFor(Icon);
 	return html<ContextualHelp>`
-		<${toggletipTag} class="${getClasses}">
-			<${buttonTag} slot="anchor" shape="pill" appearance="ghost" size="super-condensed">
-				<${iconTag} slot="icon" name="help-solid" size="-6"></${iconTag}>
+		<${toggletipTag} class="${getClasses}" part="vvd-theme-alternate">
+			<${buttonTag} slot="anchor" shape="pill" appearance="ghost" size="super-condensed" part="vvd-root">
+        <slot name="icon" slot="icon">
+          <${iconTag} name="help-solid" size="-6"></${iconTag}>
+        </slot>
 			</${buttonTag}>
 			<slot></slot>
 		</${toggletipTag}>
