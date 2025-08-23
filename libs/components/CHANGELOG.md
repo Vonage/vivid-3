@@ -4,6 +4,18 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.31.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.30.1...vivid-v4.31.0) (2025-08-22)
+
+
+### Features
+
+* **toggletip:** adds localised aria-label to anchor element (VIV-2787) ([#2505](https://github.com/Vonage/vivid-3/issues/2505)) ([a5f8ec5](https://github.com/Vonage/vivid-3/commit/a5f8ec505ed98d49835713fe0db298d1a8fc3368))
+
+
+### Bug Fixes
+
+* **checkbox:** fix appearance when checked and indeterminate (VIV-2761) ([#2504](https://github.com/Vonage/vivid-3/issues/2504)) ([c32e91b](https://github.com/Vonage/vivid-3/commit/c32e91ba5eb1e4c230e894dd2bab21af19c5db57))
+
 ## [4.30.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.30.0...vivid-v4.30.1) (2025-08-19)
 
 
