@@ -39,6 +39,16 @@ To add HTML to the helper text, use the [helper-text slot](/components/number-fi
 ></vwc-number-field>
 ```
 
+### Contextual Help
+
+You can add the Contextual Help toggletip that will be displayed next to the label using `contextual-help` slot.
+
+```html preview
+<vwc-number-field label="Wanted quantity">
+	<span slot="contextual-help">How many apples you need?</span>
+</vwc-number-field>
+```
+
 ## Value
 
 Set the `value` attribute to set the default value for the number field.  

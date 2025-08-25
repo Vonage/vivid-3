@@ -45,10 +45,13 @@ export const TextfieldTemplate = (context: VividElementDefinitionContext) => {
 
 	return html<TextField>`
 		<div class="base ${getStateClasses}">
-			${when(
-				(x) => x.charCount && x.maxlength,
-				(x) => x._getCharCountTemplate(context)
-			)}
+			<div class="label-suffix">
+				${when(
+					(x) => x.charCount && x.maxlength,
+					(x) => x._getCharCountTemplate(context)
+				)}
+				${(x) => x._renderContextualHelp(context)}
+			</div>
 			<slot class="label" name="_label"></slot>
 			${renderInLightDOM(html<TextField>`
 				${when(

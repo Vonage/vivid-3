@@ -105,6 +105,27 @@ Example showing a link in the helper text:
 </vwc-number-field>
 ```
 
+### Contextual-Help
+
+The `contextual-help` slot allows you to add the toggletip with additional information next to the label.
+
+```html preview
+<vwc-number-field label="Wanted quantity">
+	<span slot="contextual-help">How many apples you need?</span>
+</vwc-number-field>
+```
+
+### Contextual-Help-Icon
+
+The `contextual-help-icon` slot allows you to customize the default icon of the **Contextual Help**.
+
+```html preview
+<vwc-number-field label="Wanted quantity">
+	<span slot="contextual-help">How many apples you need?</span>
+	<vwc-icon slot="contextual-help-icon" size="-6" name="info-solid"></vwc-icon>
+</vwc-number-field>
+```
+
 ## Properties
 
 <div class="table-wrapper">
@@ -135,9 +156,11 @@ Example showing a link in the helper text:
 
 <div class="table-wrapper">
 
-| Name                     | Description                                        |
-| ------------------------ | -------------------------------------------------- |
-| **leading-action-items** | Add rich content as the number-field's helper text |
+| Name                     | Description                                                            |
+| ------------------------ | ---------------------------------------------------------------------- |
+| **leading-action-items** | Add rich content as the number-field's helper text                     |
+| **contextual-help**      | Add contextual help to be displayed in the toggletip next to the label |
+| **contextual-help-icon** | Add custom icon for the contextual help button                         |
 
 </div>
 

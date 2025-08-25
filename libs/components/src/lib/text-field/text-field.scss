@@ -17,6 +17,7 @@
 );
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/tokens/scss/size.variables' as size;
+@forward '../../shared/patterns/form-elements/with-contextual-help';
 
 $low-ink-color: --_low-ink-color;
 
@@ -48,6 +49,7 @@ $low-ink-color: --_low-ink-color;
 
 		display: inline-grid;
 		width: 100%;
+		align-items: center;
 		gap: 4px;
 		grid-template-columns: min-content 1fr max-content;
 	}
@@ -99,7 +101,6 @@ $low-ink-color: --_low-ink-color;
 .char-count {
 	color: var(#{$low-ink-color});
 	font: var(#{constants.$vvd-typography-base});
-	grid-column: 3 / 4;
 }
 
 .fieldset {

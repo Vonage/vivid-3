@@ -42,7 +42,7 @@ The `placeholder` attribute provides an example of the type of input the user ne
 ></vwc-text-area>
 ```
 
-## Character Count
+### Character Count
 
 The `char-count` attribute can be use in combination with the `maxlength` attribute to provide a visual character count.
 
@@ -52,6 +52,16 @@ The `char-count` attribute can be use in combination with the `maxlength` attrib
 	char-count
 	maxlength="15"
 ></vwc-text-area>
+```
+
+### Contextual Help
+
+You can add the Contextual Help toggletip that will be displayed next to the label using `contextual-help` slot.
+
+```html preview
+<vwc-text-area label="Your comments">
+	<span slot="contextual-help">This is the contextual help</span>
+</vwc-text-area>
 ```
 
 ## Value
