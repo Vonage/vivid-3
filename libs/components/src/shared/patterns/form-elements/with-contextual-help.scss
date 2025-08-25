@@ -6,7 +6,9 @@ $label-suffix-gap: --_label-suffix-gap;
 	gap: var(--label-suffix-gap, 8px);
 	grid-column-end: -1;
 	grid-row: 1;
-	&:has(*:not([hidden])) {
+
+	&:has(.char-count),
+	&:has([data-vvd-component='contextual-help']:not([hidden])) {
 		display: flex;
 	}
 }
