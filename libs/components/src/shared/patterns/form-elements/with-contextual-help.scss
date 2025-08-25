@@ -4,7 +4,7 @@ $label-suffix-gap: --_label-suffix-gap;
 	display: none;
 	align-items: center;
 	gap: var(--label-suffix-gap, 8px);
-  grid-column-end: -1;
+	grid-column-end: -1;
 	grid-row: 1;
 	&:has(*:not([hidden])) {
 		display: flex;
