@@ -3,7 +3,6 @@ import { iconDefinition } from '../icon/definition';
 import { toggletipDefinition } from '../toggletip/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
-import styles from './contextual-help.scss?inline';
 import { ContextualHelp } from './contextual-help';
 import { ContextualHelpTemplate as template } from './contextual-help.template';
 
@@ -15,9 +14,7 @@ export const contextualHelpDefinition = defineVividComponent(
 	ContextualHelp,
 	template,
 	[buttonDefinition, iconDefinition, toggletipDefinition],
-	{
-		styles,
-	}
+	{}
 );
 
 /**

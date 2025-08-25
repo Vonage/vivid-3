@@ -15,7 +15,4 @@ export class ContextualHelp extends VividElement {
 	 * HTML Attribute: placement
 	 */
 	@attr({ mode: 'fromView' }) placement?: Placement = 'right';
-
-	@attr({ attribute: 'theme-context', mode: 'boolean' })
-	themeContext: boolean = false;
 }
