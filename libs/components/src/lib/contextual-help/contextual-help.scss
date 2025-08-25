@@ -1,0 +1,6 @@
+@use 'pkg:@repo/tokens/scss/theme-light.tokens' as light;
+.control {
+	[data-vvd-component='button'] {
+		@include light.variables;
+	}
+}
