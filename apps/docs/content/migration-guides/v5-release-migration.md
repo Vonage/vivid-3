@@ -12,14 +12,16 @@ This document provides descriptions of the breaking changes in this release and 
 
 ### The Change
 
-To improve accessibility, certain components will rename ARIA attributes set on them after rendering.  
+To improve accessibility, certain components will rename ARIA attributes set on them after rendering.
 
 For example, when you set `aria-label` on an icon only Button:
+
 ```html
 <vwc-button aria-label="Send"><!-- ... --></vwc-button>
 ```
 
 The attribute will be renamed in the DOM after rendering:
+
 ```html
 <vwc-button data-vvd-aria-label="Send"><!-- ... --></vwc-button>
 ```
@@ -29,6 +31,7 @@ Your `aria-label` is still in effect, so you do not change your usage of the com
 However, there may be CSS selectors like (`vwc-button[aria-label="Send"]`) or other code depending on these attributes in your code base.
 
 You will need to update them to use the new attribute name instead:
+
 ```diff
 -vwc-button[aria-label="Send"]
 +vwc-button[data-vvd-aria-label="Send"]
@@ -74,8 +77,9 @@ For example the `vwc-button` renders a `button` element inside the shadow DOM:
 
 ```html
 <vwc-button aria-label="Send">
-	#shadow-root
+	<#shadow-root>
 		<button aria-label="Send"></button>
+	</#shadow-root>
 </vwc-button>
 ```
 
@@ -89,12 +93,13 @@ This means that the ARIA attributes end up duplicated which causes accessibility
 We recommend that you avoid relying on the presence of ARIA attributes on Vivid components and use alternate approaches.
 
 Some components have alternative attributes already available:
+
 ```diff
 -vwc-nav-item[aria-current="page"]
 +vwc-nav-item[current]
 ```
 
-Or you can set your own `data-*` attributes to be able to select specific components later. 
+Or you can set your own `data-*` attributes to be able to select specific components later.
 
 ## Calendar
 
@@ -125,7 +130,7 @@ The available values for `sticky-mode` are:
 
 ### The Change
 
-The default value for the trigger attribute has been changed from `legacy` to `auto`. The `legacy` behavior is inconsistent and should not be used. 
+The default value for the trigger attribute has been changed from `legacy` to `auto`. The `legacy` behavior is inconsistent and should not be used.
 
 |                         | V4       | V5     |
 | ----------------------- | -------- | ------ |
@@ -146,10 +151,10 @@ If you need to maintain the previous behavior for compatibility reasons, explici
 
 ```html
 <vwc-menu aria-label="Menu example" placement="bottom-end" trigger="legacy">
-  <vwc-button slot="anchor" aria-label="Open menu" appearance="outlined">
-    <vwc-icon slot="icon" name="more-vertical-line"></vwc-icon>
-  </vwc-button>
-  <!-- menu items -->
+	<vwc-button slot="anchor" aria-label="Open menu" appearance="outlined">
+		<vwc-icon slot="icon" name="more-vertical-line"></vwc-icon>
+	</vwc-button>
+	<!-- menu items -->
 </vwc-menu>
 ```
 
@@ -166,7 +171,7 @@ The `clickable` property has been completely removed from the component after th
 Replace all usage of the `clickable` property with the `clickable-box` attribute:
 
 ```html
-<vwc-selectable-box clickable-box>
+<vwc-selectable-box clickable-box></vwc-selectable-box>
 ```
 
 ## File Picker
