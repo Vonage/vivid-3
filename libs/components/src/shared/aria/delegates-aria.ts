@@ -23,15 +23,10 @@ export function delegateAria<T>(
 ): CaptureType<T> {
 	// Forward all other properties to the target element, unless onlySpecified is set
 	const forwardedProperties = new Set(
-		(options.onlySpecified ? [] : ariaMixinProperties)
-			.filter((p) => p !== 'role')
-			.filter((p) => !(p in boundProperties))
+		(options.onlySpecified ? [] : ariaMixinProperties).filter(
+			(p) => !(p in boundProperties)
+		)
 	);
-
-	// If role is a dynamic binding, it may delegate the role (e.g. `role: (x) => x.role ?? 'default'`)
-	// Delegating the role and our mitigation (role=presentation) are mutually exclusive
-	const disableAccessibilityMitigation =
-		boundProperties.role instanceof Function;
 
 	return new AttachedBehaviorHTMLDirective(
 		'vvd-delegate-aria',
@@ -39,7 +34,6 @@ export function delegateAria<T>(
 		{
 			boundProperties,
 			forwardedProperties,
-			disableAccessibilityMitigation,
 		}
 	);
 }

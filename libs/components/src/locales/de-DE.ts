@@ -115,6 +115,7 @@ const deDE: Locale = {
 		removeFileLabel: 'Datei entfernen',
 		invalidFilesError:
 			'Eine oder mehrere ausgewählte Dateien sind ungültig. Bitte laden Sie nur gültige Dateitypen innerhalb der Größenbeschränkung hoch.',
+		uploadFilesLabel: 'Dateien hochladen',
 	},
 	audioPlayer: {
 		playButtonLabel: 'Abspielen',
@@ -241,6 +242,12 @@ const deDE: Locale = {
 	},
 	tag: {
 		remove: /* istanbul ignore next */ (label: string) => `Entfernen ${label}`,
+	},
+	toggletip: {
+		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
+			ariaLabel
+				? `Weitere Informationen zu ${ariaLabel} anzeigen`
+				: `Weitere Informationen anzeigen`,
 	},
 };
 

@@ -114,6 +114,7 @@ const enGB: Locale = {
 		removeFileLabel: 'Remove file',
 		invalidFilesError:
 			'One or more selected files are invalid. Please upload only valid file types under the size limit.',
+		uploadFilesLabel: 'Upload files',
 	},
 	audioPlayer: {
 		playButtonLabel: 'Play',
@@ -239,6 +240,12 @@ const enGB: Locale = {
 	},
 	tag: {
 		remove: /* istanbul ignore next */ (label: string) => `Remove ${label}`,
+	},
+	toggletip: {
+		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
+			ariaLabel
+				? `Show more information about ${ariaLabel}`
+				: `Show more information`,
 	},
 };
 

@@ -17,6 +17,7 @@ export type BadgeConnotation = ExtractFromEnum<
 	| Connotation.Alert
 	| Connotation.Warning
 	| Connotation.Information
+	| Connotation.Announcement
 >;
 
 /**
