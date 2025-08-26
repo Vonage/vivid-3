@@ -114,6 +114,7 @@ const jaJP: Locale = {
 		removeFileLabel: 'ファイルを削除',
 		invalidFilesError:
 			'選択したファイルの1つ以上が無効です。サイズ制限以下の有効なファイル形式のみをアップロードしてください。',
+		uploadFilesLabel: 'ファイルをアップロード',
 	},
 	audioPlayer: {
 		playButtonLabel: '開始',

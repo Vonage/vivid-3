@@ -34,7 +34,13 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 						role: 'button',
 					})}
 				>
-					<slot class="main"></slot>
+					<vwc-icon
+						class="upload-icon"
+						name="cloud-upload-line"
+						size="-4"
+						label="${(x) => x.locale.filePicker.uploadFilesLabel}"
+					></vwc-icon>
+					<span class="upload-text"><slot></slot></span>
 				</div>
 				${(x) => x._getFeedbackTemplate(context)}
 			</div>
