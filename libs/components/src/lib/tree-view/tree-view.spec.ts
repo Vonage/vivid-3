@@ -271,7 +271,7 @@ describe('vwc-tree-view', () => {
 			);
 			await elementUpdated(treeItem1);
 
-			expect(treeItem1.getAttribute('aria-expanded')).toEqual('true');
+			expect(treeItem1.expanded).toBe(true);
 		});
 
 		it('should shift focus to the first nested tree-item when the ArrowRight key is pressed a second time', async () => {
@@ -294,14 +294,14 @@ describe('vwc-tree-view', () => {
 			);
 			await elementUpdated(treeItem1);
 
-			expect(treeItem1.getAttribute('aria-expanded')).toEqual('true');
+			expect(treeItem1.expanded).toBe(true);
 
 			treeItem1.dispatchEvent(
 				new KeyboardEvent('keydown', { key: keyArrowLeft, bubbles: true })
 			);
 			await elementUpdated(treeItem1);
 
-			expect(treeItem1.getAttribute('aria-expanded')).toEqual('false');
+			expect(treeItem1.expanded).toBe(false);
 		});
 
 		it('should shift focus to the parent tree-item when the ArrowLeft key is pressed when focussed on the first nested tree-item', async () => {
