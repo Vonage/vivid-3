@@ -37,9 +37,9 @@ export const WithContextualHelp = <T extends Constructor<FormElementElement>>(
 		_renderContextualHelp(context: VividElementDefinitionContext) {
 			const contextualHelpTag = context.tagFor(ContextualHelp);
 			return html<ElementWithContextualHelp>`
-				<${contextualHelpTag} ?hidden="${(x) => !x._shouldShowContextualHelp}">
-					<slot 
-						name="contextual-help-icon" 
+				<${contextualHelpTag} ?hidden="${(x) => !x._shouldShowContextualHelp}" exportparts="vvd-theme-alternate">
+					<slot
+						name="contextual-help-icon"
 						slot="${(x) =>
 							x.contextualHelpIconSlottedContent?.length ? 'icon' : undefined}"
 						${slotted('contextualHelpIconSlottedContent')}
