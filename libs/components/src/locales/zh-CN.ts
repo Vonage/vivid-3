@@ -114,6 +114,7 @@ const zhCN: Locale = {
 		removeFileLabel: '删除文件',
 		invalidFilesError:
 			'所选的一个或多个文件无效。请仅上传大小限制内的有效文件类型。',
+		uploadFilesLabel: '上传文件',
 	},
 	audioPlayer: {
 		playButtonLabel: '草創',
@@ -239,6 +240,10 @@ const zhCN: Locale = {
 	},
 	tag: {
 		remove: /* istanbul ignore next */ (label: string) => `移除 ${label}`,
+	},
+	toggletip: {
+		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
+			ariaLabel ? `关于 ${ariaLabel} 的更多信息` : `显示更多信息`,
 	},
 };
 

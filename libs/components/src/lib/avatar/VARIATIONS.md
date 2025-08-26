@@ -211,7 +211,7 @@ Use the `href` attribute to change the avatar wrapper to a link. When doing so, 
 Setting the `clickable-avatar` attribute switches the avatar wrapper to a `<button>`, allowing you to trigger programmatic actions e.g. using the click event.
 
 ```html preview 200px
-<vwc-menu aria-label="Menu example" placement="bottom-end" trigger="auto">
+<vwc-menu aria-label="Menu example" placement="bottom-end">
 	<vwc-avatar
 		slot="anchor"
 		appearance="subtle"

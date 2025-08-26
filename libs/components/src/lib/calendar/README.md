@@ -112,14 +112,29 @@ When using Sticky-Mode for header or column or both, set the css-variable `--cal
 </style>
 ```
 
-## Slots
+## API Reference
 
-### Day
+### Properties
 
-Day slot is created for each day of the week.
-Assign elements to a day column using `'day-0'` | `'day-1'` | `'day-2'` | `'day-3'` | `'day-4'` | `'day-5'` | `'day-6'`
+<div class="table-wrapper">
 
-## Methods
+| Name            | Type                                                  | Description                     |
+| --------------- | ----------------------------------------------------- | ------------------------------- |
+| **sticky-mode** | `'none'` , `'header'` , `'column'` , `'all'`(default) | Set the `sticky-mode` attribute |
+
+</div>
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name    | Description                                                                                                   |
+| ------- | ------------------------------------------------------------------------------------------------------------- |
+| **Day** | Day slot is created for each day of the week.<br>Assign elements to a day column using `'day-0'`...`'day-6'`. |
+
+</div>
+
+### Methods
 
 <div class="table-wrapper">
 

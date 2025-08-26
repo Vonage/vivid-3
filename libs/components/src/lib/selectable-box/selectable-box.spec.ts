@@ -29,7 +29,6 @@ describe('vwc-selectable-box', () => {
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
 			expect(element.clickableBox).toBe(false);
-			expect(element.clickable).toBe(false);
 			expect(element.tight).toBe(false);
 			expect(element.checked).toBe(false);
 		});
@@ -158,43 +157,6 @@ describe('vwc-selectable-box', () => {
 			await elementUpdated(element);
 
 			expect(baseElement?.classList?.contains('clickable')).toBe(true);
-		});
-	});
-
-	describe('clickable', () => {
-		it('should set clickableBox', async function () {
-			element.clickable = true;
-			expect(element.clickableBox).toBe(true);
-		});
-
-		it('should not be set by clickableBox', async function () {
-			element.clickableBox = true;
-			expect(element.clickable).toBe(false);
-		});
-	});
-
-	describe('control placement', () => {
-		it('should have default CSS classes when control-placement attribute is not set', function () {
-			const defaultPlacement = 'end-stacked';
-			const controlElement = getControlElement(element);
-			expect(
-				baseElement?.classList?.contains(
-					`control-placement-${defaultPlacement}`
-				)
-			).toBe(true);
-			expect(controlElement?.classList?.contains(defaultPlacement)).toBe(true);
-		});
-
-		it('should apply CSS classes based on the control-placement attribute when set', async function () {
-			const placement = 'start';
-			element.controlPlacement = placement;
-			await elementUpdated(element);
-
-			const controlElement = getControlElement(element);
-			expect(
-				baseElement?.classList?.contains(`control-placement-${placement}`)
-			).toBe(true);
-			expect(controlElement?.classList?.contains(placement)).toBe(true);
 		});
 	});
 

@@ -22,6 +22,7 @@ import type { DataGridLocale } from '../../lib/data-grid/locale';
 import type { PaginationLocale } from '../../lib/pagination/locale';
 import type { TagLocale } from '../../lib/tag/locale';
 import type { Connotation } from '../../lib/enums';
+import type { ToggletipLocale } from '../../lib/toggletip/locale';
 
 type ConnotationAnnoncementLocale = {
 	[key in Connotation as `${key}Icon`]: string;
@@ -56,4 +57,5 @@ export interface Locale {
 	dataGrid: DataGridLocale;
 	pagination: PaginationLocale;
 	tag: TagLocale;
+	toggletip: ToggletipLocale;
 }

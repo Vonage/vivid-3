@@ -25,7 +25,7 @@ describe('vwc-calendar', () => {
 			expect(element.startDay).toBeUndefined();
 			expect(element.locales).toBeUndefined();
 			expect(element.hour12).toBeFalsy();
-			expect(element.stickyMode).toEqual('none');
+			expect(element.stickyMode).toEqual('all');
 		});
 
 		it('should allow being created via createElement', () => {
