@@ -157,12 +157,12 @@ describe('vwc-toggletip', () => {
 
 		it('should set aria-label on anchor', async () => {
 			element.anchor = document.createElement('div');
-			expect(element.anchor.ariaLabel).toEqual(' ; Show more information');
+			expect(element.anchor.ariaLabel).toEqual('Show more information');
 		});
 
 		it('should append to an existing aria-label on anchor', async () => {
 			expect(anchor.ariaLabel).toEqual(
-				`${ANCHOR_ARIA_LABEL} ; Show more information`
+				`Show more information about ${ANCHOR_ARIA_LABEL}`
 			);
 		});
 

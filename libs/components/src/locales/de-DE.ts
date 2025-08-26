@@ -243,6 +243,12 @@ const deDE: Locale = {
 	tag: {
 		remove: /* istanbul ignore next */ (label: string) => `Entfernen ${label}`,
 	},
+	toggletip: {
+		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
+			ariaLabel
+				? `Weitere Informationen zu ${ariaLabel} anzeigen`
+				: `Weitere Informationen anzeigen`,
+	},
 };
 
 export default deDE;
