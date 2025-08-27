@@ -5,7 +5,7 @@ order: 1
 
 # Vivid v5.0.0 Migration Guide
 
-Release date: 26th August 2025.  
+Release date: 27th August 2025.  
 This document provides descriptions of the breaking changes in this release and instructions on how to prepare for them.
 
 ## ARIA Attribute Renaming
