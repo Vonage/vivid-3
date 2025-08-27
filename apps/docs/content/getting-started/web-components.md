@@ -103,7 +103,7 @@ import { registerButton } from '@vonage/vivid';
 registerButton('your-prefix');
 ```
 
-If you omit the prefix, a default of `vwc` will be used. 
+If you omit the prefix, a default of `vwc` will be used.
 
 Use them in your HTML:
 
@@ -114,7 +114,7 @@ Use them in your HTML:
 <vwc-note connotation="warning" headline="Side effect imports">
 <vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
 
-It is also possible to register components through a side effect import: 
+It is also possible to register components through a side effect import:
 
 ```js
 import '@vonage/vivid/button';
