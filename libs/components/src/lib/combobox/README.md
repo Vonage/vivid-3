@@ -8,14 +8,6 @@
 import '@vonage/vivid/combobox';
 ```
 
-or, if you need to use a unique prefix:
-
-```js
-import { registerCombobox } from '@vonage/vivid';
-
-registerCombobox('your-prefix');
-```
-
 ```html preview 270px
 <script type="module">
 	import { registerCombobox, registerOption } from '@vonage/vivid';

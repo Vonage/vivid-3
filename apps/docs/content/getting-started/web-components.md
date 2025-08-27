@@ -95,49 +95,36 @@ Add the following to your `<head>` to load them from Google Fonts:
 
 ## Usage
 
-You have two options to import the components:
+Register components in your project via:
 
-- Using [side effect imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only) to register them with the default `vwc` prefix.
-- Using a register function to register them with a [custom prefix](/guides/prefix/).
+```js
+import { registerButton } from '@vonage/vivid';
 
-<vwc-tabs gutters="none">
-<vwc-tab label="Import"></vwc-tab>
-<vwc-tab-panel>
+registerButton('your-prefix');
+```
 
-Import components in your project via:
+If you omit the prefix, a default of `vwc` will be used. 
+
+Use them in your HTML:
+
+```html
+<your-prefix-button label="Click me"></your-prefix-button>
+```
+
+<vwc-note connotation="warning" headline="Side effect imports">
+<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+It is also possible to register components through a side effect import: 
 
 ```js
 import '@vonage/vivid/button';
 ```
 
-And include in HTML:
+We no longer recommend this approach unless you're importing directly into the browser without a build step, e.g. from a CDN.
 
-```html
-<vwc-button label="Click me"></vwc-button>
-```
+To work in the browser, the side effect imports are bundled with all of Vivid's dependencies. This prevents your own bundler from optimizing these dependencies and leads to larger bundle sizes.
 
-</vwc-tab-panel>
-<vwc-tab label="Register Function"></vwc-tab>
-<vwc-tab-panel>
-
-Import components in your project via:
-
-```js
-import { registerButton } from '@vonage/vivid';
-
-registerButton('dashboard');
-```
-
-And include in HTML:
-
-```html
-<dashboard-button label="Click me"></dashboard-button>
-```
-
-Remember to not include the default side effect import (`import '@vonage/vivid/button';`) anywhere when using the register function as it will register the default prefix.
-
-</vwc-tab-panel>
-</vwc-tabs>
+</vwc-note>
 
 ### Component Types
 

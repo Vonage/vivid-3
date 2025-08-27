@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/card';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerCard } from '@vonage/vivid';
 
 registerCard('your-prefix');

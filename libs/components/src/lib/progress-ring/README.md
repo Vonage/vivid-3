@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/progress-ring';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerProgressRing } from '@vonage/vivid';
 
 registerProgressRing('your-prefix');

@@ -45,6 +45,12 @@ When you drop the `:ui` suffix from the command, it will run the playwright norm
 
 `npx turbo run @vonage/vivid#e2e:docker -- --update-snapshots <optionally specify component name to run only that component>`
 
+### Development notes
+
+When you run the Playwright UI and want to see code changes reflected without restarting the command, you can run `npx turbo run @vonage/vivid#dev:bundled`.
+
+This will watch for changes and rebuild the components.
+
 ### Running the docs tests
 
 The visual tests for the documentation are run separately from the components. They are run the same way as the components, but with a different command: `npx turbo run @repo/docs#e2e`. The config file is located in `./apps/docs/playwright.config.ts`.

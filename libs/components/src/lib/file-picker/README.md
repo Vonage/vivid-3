@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/file-picker';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerFilePicker } from '@vonage/vivid';
 
 registerFilePicker('your-prefix');

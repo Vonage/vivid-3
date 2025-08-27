@@ -5,13 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/menu';
-import '@vonage/vivid/menu-item';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerMenu, registerMenuItem } from '@vonage/vivid';
 
 registerMenu('your-prefix');

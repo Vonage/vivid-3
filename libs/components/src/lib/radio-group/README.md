@@ -5,13 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/radio';
-import '@vonage/vivid/radio-group';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerRadio, registerRadioGroup } from '@vonage/vivid';
 
 registerRadio('your-prefix');

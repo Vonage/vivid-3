@@ -5,13 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/breadcrumb';
-import '@vonage/vivid/breadcrumb-item';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerBreadcrumb, registerBreadcrumbItem } from '@vonage/vivid';
 
 registerBreadcrumb('your-prefix');

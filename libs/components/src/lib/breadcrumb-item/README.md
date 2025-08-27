@@ -2,10 +2,6 @@
 
 `vwc-breadcrum-item`s should be placed inside a `vwc-breadcrumb` element.
 
-```js
-<script type="module">import '@vonage/vivid/breadcrumb-item';</script>
-```
-
 ## Members
 
 ### Href
