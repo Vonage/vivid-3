@@ -5,7 +5,9 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/combobox';
+import { registerCombobox } from '@vonage/vivid';
+
+registerCombobox('your-prefix');
 ```
 
 ```html preview 270px
