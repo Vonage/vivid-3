@@ -63,6 +63,9 @@ const offsetProperty = (orientation: TabsOrientation) =>
 const isFocusableElement = (el: Element) =>
 	el.getAttribute('aria-disabled') !== 'true' && !el.hasAttribute('hidden');
 
+const arrayShallowEquals = <T>(a: T[], b: T[]) =>
+	a.length === b.length && a.every((v, i) => v === b[i]);
+
 /**
  * @public
  * @component tabs
@@ -94,6 +97,11 @@ export class Tabs extends VividElement {
 	/**
 	 * @internal
 	 */
+	_tabsSlot!: HTMLSlotElement;
+
+	/**
+	 * @internal
+	 */
 	@observable
 	tabs: HTMLElement[] = [];
 	/**
@@ -113,6 +121,11 @@ export class Tabs extends VividElement {
 	/**
 	 * @internal
 	 */
+	_tabPanelsSlot!: HTMLSlotElement;
+
+	/**
+	 * @internal
+	 */
 	@observable
 	tabpanels: HTMLElement[] = [];
 	/**
@@ -125,6 +138,13 @@ export class Tabs extends VividElement {
 			}
 		}
 		this._registerTabsChange();
+	}
+
+	#areSlotsSynced() {
+		return (
+			arrayShallowEquals(this.tabs, this._tabsSlot.assignedNodes()) &&
+			arrayShallowEquals(this.tabpanels, this._tabPanelsSlot.assignedNodes())
+		);
 	}
 
 	/**
@@ -189,7 +209,8 @@ export class Tabs extends VividElement {
 		}
 		this.#isTabsChangeQueued = true;
 		window.queueMicrotask(() => {
-			if (this.$fastController.isConnected) {
+			// If slots are not synced, the slotchange event has not yet fired. Cancel the current update and wait for the event to trigger it again.
+			if (this.$fastController.isConnected && this.#areSlotsSynced()) {
 				this.#handleTabsChange();
 			}
 			this.#isTabsChangeQueued = false;

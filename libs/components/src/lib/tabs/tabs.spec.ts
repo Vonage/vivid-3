@@ -304,6 +304,12 @@ describe('vwc-tabs', () => {
 			expect(element.activeid).toEqual('apps');
 		});
 
+		it('should initialize the active tab when provided', async () => {
+			await setFixtureWithActiveId('entrees');
+			await elementUpdated(element);
+			expect(element.activeid).toBe('entrees');
+		});
+
 		it('should set the active tab', async () => {
 			const tab = element.querySelector('#entrees') as Tab;
 			expect(tab.ariaSelected).toEqual('false');
