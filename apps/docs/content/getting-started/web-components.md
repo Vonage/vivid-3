@@ -196,13 +196,13 @@ The following snippet fully renders a Vivid Button component:
 <!-- import light theme style tokens -->
 <link
 	rel="stylesheet"
-	href="https://unpkg.com/@vonage/vivid@4.x/styles/tokens/theme-light.css"
+	href="https://unpkg.com/@vonage/vivid@5.x/styles/tokens/theme-light.css"
 />
 
 <!-- import Vivid button component -->
 <script
 	type="module"
-	src="https://unpkg.com/@vonage/vivid@4.x/button/index.js"
+	src="https://unpkg.com/@vonage/vivid@5.x/button/index.js"
 ></script>
 
 <!-- Part of the app (or a whole app) that contains vivid components -->

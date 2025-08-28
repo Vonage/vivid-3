@@ -108,7 +108,15 @@ export class Checkbox extends DelegatesAria(
 		this.proxy.setAttribute('type', 'checkbox');
 	}
 
-	ariaCheckedChanged() {
+	/**
+	 * @internal
+	 */
+	override ariaCheckedChanged(
+		oldValue: string | null,
+		newValue: string | null
+	) {
+		super.ariaCheckedChanged(oldValue, newValue);
+
 		if (this.ariaChecked === 'mixed') {
 			this.indeterminate = true;
 		} else {

@@ -4,15 +4,11 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
 import { AffixIcon } from '../../shared/patterns/affix';
 import { HostSemantics } from '../../shared/aria/host-semantics';
 
-/**
- * check if the item is a tree item
- * @public
- * @remarks
- * determines if element is an HTMLElement and if it has the role treeitem
- */
 export function isTreeItemElement(el: Element): el is HTMLElement {
 	return (
-		isHTMLElement(el) && (el.getAttribute('role') as string) === 'treeitem'
+		isHTMLElement(el) &&
+		((el.getAttribute('role') as string) === 'treeitem' ||
+			el instanceof TreeItem)
 	);
 }
 

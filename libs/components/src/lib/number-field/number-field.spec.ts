@@ -841,24 +841,18 @@ describe('vwc-number-field', () => {
 		describe('add and subtract buttons', () => {
 			it('renders a localized "aria-label" on the add button', async () => {
 				const addButton = element.shadowRoot?.getElementById('add');
-				expect(addButton?.getAttribute('aria-label')).toBe('Increase value');
+				expect(addButton?.ariaLabel).toBe('Increase value');
 				element.step = 3;
 				await elementUpdated(element);
-				expect(addButton?.getAttribute('aria-label')).toBe(
-					'Increase value by 3'
-				);
+				expect(addButton?.ariaLabel).toBe('Increase value by 3');
 			});
 
 			it('renders a localized "aria-label" on the subtract button', async () => {
 				const subtractButton = element.shadowRoot?.getElementById('subtract');
-				expect(subtractButton?.getAttribute('aria-label')).toBe(
-					'Decrease value'
-				);
+				expect(subtractButton?.ariaLabel).toBe('Decrease value');
 				element.step = 3;
 				await elementUpdated(element);
-				expect(subtractButton?.getAttribute('aria-label')).toBe(
-					'Decrease value by 3'
-				);
+				expect(subtractButton?.ariaLabel).toBe('Decrease value by 3');
 			});
 
 			it('updates status announcement after clicking the button', async () => {
@@ -879,16 +873,14 @@ describe('vwc-number-field', () => {
 					element.incrementButtonAriaLabel = 'Add label';
 					await elementUpdated(element);
 					const addButton = element.shadowRoot?.getElementById('add');
-					expect(addButton?.getAttribute('aria-label')).toBe('Add label');
+					expect(addButton?.ariaLabel).toBe('Add label');
 				});
 
 				it('renders the correct text for "aria-label" in the subtract button', async () => {
 					element.decrementButtonAriaLabel = 'Subtract label';
 					await elementUpdated(element);
 					const subtractButton = element.shadowRoot?.getElementById('subtract');
-					expect(subtractButton?.getAttribute('aria-label')).toBe(
-						'Subtract label'
-					);
+					expect(subtractButton?.ariaLabel).toBe('Subtract label');
 				});
 			});
 		});

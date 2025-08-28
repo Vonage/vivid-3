@@ -19,6 +19,11 @@ function setMockRows(element: DataGrid) {
 describe('vwc-data-grid', () => {
 	let element: DataGrid;
 
+	const getRows = () =>
+		Array.from(
+			element.querySelectorAll('[data-vvd-component="data-grid-row"]')
+		) as DataGridRow[];
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
@@ -213,11 +218,9 @@ describe('vwc-data-grid', () => {
 			await elementUpdated(element);
 			await elementUpdated(element);
 
-			const rows = Array.from(element.querySelectorAll('[role="row"]') as any);
-			const allRowsHaveSameGridColumnTemplate = rows.reduce((acc, row: any) => {
-				return acc && row.gridTemplateColumns === '1fr 25px';
-			});
-			expect(allRowsHaveSameGridColumnTemplate).toEqual(true);
+			expect(
+				getRows().every((row) => row.gridTemplateColumns === '1fr 25px')
+			).toEqual(true);
 		});
 	});
 
@@ -253,9 +256,7 @@ describe('vwc-data-grid', () => {
 			await elementUpdated(element);
 			await elementUpdated(element);
 
-			const rows = element.querySelectorAll('[role="row"]') as any;
-
-			rows.forEach((row: any, index: number) => {
+			getRows().forEach((row, index) => {
 				expect(row.columnDefinitions).toEqual(columnDefinitions);
 				expect(row.rowIndex).toEqual(index);
 				expect(row.gridTemplateColumns).toEqual(
@@ -435,7 +436,7 @@ describe('vwc-data-grid', () => {
 
 			element.rowElements.forEach((row) => {
 				const cells = row.querySelectorAll(
-					'[role="cell"], [role="gridcell"], [role="columnheader"]'
+					'[role="cell"], [role="gridcell"], [role="columnheader"], [data-vvd-component="data-grid-cell"]'
 				);
 				cells.forEach((cell) => {
 					(cell as any).setFixedPosition = mockSetFixedPosition;
@@ -516,11 +517,11 @@ describe('vwc-data-grid', () => {
 			await elementUpdated(element);
 			await elementUpdated(element);
 
-			const rows = Array.from(element.querySelectorAll('[role="row"]'));
+			const rows = getRows();
 			const cells = rows.map(
 				(row) =>
 					Array.from(
-						row.querySelectorAll('[role="columnheader"],[role="gridcell"]')
+						row.querySelectorAll('[data-vvd-component="data-grid-cell"]')
 					) as HTMLElement[]
 			);
 

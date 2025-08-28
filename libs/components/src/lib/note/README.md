@@ -60,7 +60,7 @@ Any slotted content will appear below the headline.
 
 ```html preview
 <vwc-note headline="Note Headline" connotation="information">
-	<vwc-icon slot="icon" name="home"></vwc-icon>
+	<vwc-icon slot="icon" name="home" label="User information:"></vwc-icon>
 	<p>This is the text that explains about something important!</p>
 </vwc-note>
 ```

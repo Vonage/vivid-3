@@ -306,12 +306,12 @@ describe('vwc-tabs', () => {
 
 		it('should set the active tab', async () => {
 			const tab = element.querySelector('#entrees') as Tab;
-			expect(tab.ariaSelected).toEqual('false');
+			expect(tab.active).toBe(false);
 
 			element.activeid = 'entrees';
 			await elementUpdated(element);
 
-			expect(tab.ariaSelected).toEqual('true');
+			expect(tab.active).toBe(true);
 		});
 
 		it('should be reset when set to a tab that does not exist', async () => {
@@ -496,7 +496,7 @@ describe('vwc-tabs', () => {
 
 		function checkConnotationDoesntExistOnNonActiveTabs() {
 			const nonActiveTabs = Array.from(
-				element.querySelectorAll('vwc-tab:not([aria-selected="true"])')
+				element.querySelectorAll('vwc-tab:not([active])')
 			);
 			nonActiveTabs.forEach((tab) => {
 				expect(tab.hasAttribute('connotation')).toBeFalsy();

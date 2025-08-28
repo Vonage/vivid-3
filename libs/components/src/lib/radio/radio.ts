@@ -57,8 +57,6 @@ export type RadioOptions = VividComponentDefinition & {
 export class Radio extends WithErrorText(
 	FormElement(CheckableFormAssociated(VividElement))
 ) {
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
-
 	/**
 	 * The connotation the radioButton should have.
 	 *

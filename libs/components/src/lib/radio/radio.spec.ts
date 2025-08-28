@@ -197,21 +197,5 @@ describe('vwc-radio', () => {
 		it('should render the correct a11y attributes', async () => {
 			expect(element.getAttribute('role')).toBe('radio');
 		});
-
-		describe('aria-label', () => {
-			beforeEach(async () => {
-				element.ariaLabel = 'Label';
-				await elementUpdated(element);
-			});
-
-			it('should render role as presentation on the component element', async () => {
-				expect(element.getAttribute('role')).toBe('radio');
-			});
-
-			it('should render the correct a11y attributes', async () => {
-				expect(element.getAttribute('role')).toBe('radio');
-				expect(element.getAttribute('aria-label')).toBe('Label');
-			});
-		});
 	});
 });

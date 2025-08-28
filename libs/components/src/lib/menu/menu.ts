@@ -288,7 +288,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	 */
 	@attr trigger?: 'auto' | 'legacy' | 'off';
 	get #triggerBehaviour(): 'auto' | 'legacy' | 'off' {
-		return this.trigger ?? 'legacy';
+		return this.trigger ?? 'auto';
 	}
 
 	/**
@@ -343,21 +343,21 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	#setupAnchor(a: HTMLElement) {
 		a.addEventListener('click', this.#onAnchorClick, true);
 		a.addEventListener('focusout', this._onFocusout);
-		a.setAttribute('aria-haspopup', 'menu');
+		a.ariaHasPopup = 'menu';
 		this.#updateAnchor(a);
 	}
 
 	#updateAnchor(a: HTMLElement) {
-		a.setAttribute('aria-expanded', this.open.toString());
-		a.setAttribute('data-expanded', this.open.toString());
+		a.ariaExpanded = this.open.toString();
+		a.dataset.expanded = this.open.toString();
 	}
 
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('click', this.#onAnchorClick, true);
 		a.removeEventListener('focusout', this._onFocusout);
-		a.removeAttribute('aria-haspopup');
-		a.removeAttribute('aria-expanded');
-		a.removeAttribute('data-expanded');
+		a.ariaHasPopup = null;
+		a.ariaExpanded = null;
+		delete a.dataset.expanded;
 	}
 
 	#onAnchorClick = () => {

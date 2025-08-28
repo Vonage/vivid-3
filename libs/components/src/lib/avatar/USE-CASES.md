@@ -1,7 +1,7 @@
 ## Avatar Dropdown
 
 ```html preview 300px
-<vwc-menu aria-label="Menu example" placement="bottom-start" trigger="auto">
+<vwc-menu aria-label="Menu example" placement="bottom-start">
 	<vwc-button
 		slot="anchor"
 		label="Select a User's avatar"
@@ -49,7 +49,7 @@
 ## User Status
 
 ```html preview 200px
-<vwc-menu aria-label="Menu example" placement="right-start" trigger="auto">
+<vwc-menu aria-label="Menu example" placement="right-start">
 	<vwc-avatar
 		slot="anchor"
 		shape="pill"

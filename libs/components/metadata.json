@@ -765,7 +765,7 @@
 				{
 					"name": "connotation",
 					"description": "The connotation the badge should have.",
-					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information'",
+					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -2007,7 +2007,6 @@
 				}
 			],
 			"methods": [
-				{ "name": "ariaCheckedChanged", "args": [], "returnType": "unknown" },
 				{
 					"name": "checkValidity",
 					"description": "Return the current validity of the element.",
@@ -2426,20 +2425,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaSelected",
-					"description": "Indicates the selected status.",
-					"type": "string",
-					"attributeName": "aria-selected",
-					"propertyName": "ariaSelected"
-				},
-				{
-					"name": "ariaSort",
-					"description": "Indicates the sort status.",
-					"type": "string",
-					"attributeName": "aria-sort",
-					"propertyName": "ariaSort"
-				},
-				{
 					"name": "cellType",
 					"description": "The type of cell",
 					"type": "'default' | 'columnheader' | 'rowheader'",
@@ -2557,13 +2542,6 @@
 			"registerFunctionName": "registerDataGrid",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaSelected",
-					"description": "Indicates the selected status.",
-					"type": "string",
-					"attributeName": "aria-selected",
-					"propertyName": "ariaSelected"
-				},
 				{
 					"name": "gridTemplateColumns",
 					"description": "String that gets applied to the the css gridTemplateColumns attribute for the row\nx",
@@ -3687,13 +3665,6 @@
 					"type": "'horizontal' | 'vertical'",
 					"attributeName": "orientation",
 					"propertyName": "orientation"
-				},
-				{
-					"name": "role",
-					"description": "The role of the element. This property will be removed",
-					"type": "'separator' | 'presentation'",
-					"attributeName": "role",
-					"propertyName": "role"
 				}
 			],
 			"events": [
@@ -4765,13 +4736,6 @@
 					"propertyName": "icon"
 				},
 				{
-					"name": "role",
-					"description": "The role of the element.",
-					"type": "'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'presentation'",
-					"attributeName": "role",
-					"propertyName": "role"
-				},
-				{
 					"name": "text",
 					"description": "Indicates the menu item's text.",
 					"type": "string",
@@ -5619,6 +5583,13 @@
 			"description": "An Option Custom HTML Element.\nImplements https://www.w3.org/TR/wai-aria-1.1/#option | ARIA option .",
 			"props": [
 				{
+					"name": "checked",
+					"description": "The checked state is used when the parent listbox is in multiple selection mode.\nTo avoid accessibility conflicts, the checked state should not be present in\nsingle selection mode.",
+					"type": "boolean",
+					"attributeName": "checked",
+					"propertyName": "checked"
+				},
+				{
 					"name": "defaultSelected",
 					"description": "The defaultSelected state of the option.",
 					"type": "boolean",
@@ -6071,12 +6042,6 @@
 			"registerFunctionName": "registerRadio",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaLabel",
-					"type": "string",
-					"attributeName": "aria-label",
-					"propertyName": "ariaLabel"
-				},
 				{
 					"name": "checked",
 					"description": "The current checkedness of the element.",
@@ -7294,12 +7259,6 @@
 					"type": "boolean",
 					"attributeName": "checked",
 					"propertyName": "checked"
-				},
-				{
-					"name": "clickable",
-					"type": "boolean",
-					"attributeName": "clickable",
-					"propertyName": "clickable"
 				},
 				{
 					"name": "clickableBox",

@@ -11,28 +11,16 @@ export interface VExampleComponentEvents {
  * This is an example event
  */
 				'example-event': Event & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		},
 
 				
 				'input': Event & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		},
 
 				
 				'input:start': CustomEvent<{a: string | number}> & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		},
 

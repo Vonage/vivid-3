@@ -4,6 +4,63 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.0.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.31.0...vivid-v5.0.0) (2025-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **menu:** change default value for 'trigger' attribute to 'auto' (VIV-2674) ([#2496](https://github.com/Vonage/vivid-3/issues/2496))
+* **calendar:** make 'all' value as default for 'sticky-mode ' attribute (VIV-2677) ([#2497](https://github.com/Vonage/vivid-3/issues/2497))
+* **components:** rename delegated ARIA attributes (VIV-2726) ([#2494](https://github.com/Vonage/vivid-3/issues/2494))
+* **file-picker:** add interactive feedback (VIV-1989)  ([#2495](https://github.com/Vonage/vivid-3/issues/2495))
+* **selectable-box:** remove clickable prop (VIV-2675) ([#2476](https://github.com/Vonage/vivid-3/issues/2476))
+
+### Features
+
+* **calendar:** make 'all' value as default for 'sticky-mode ' attribute (VIV-2677) ([#2497](https://github.com/Vonage/vivid-3/issues/2497)) ([fa07f02](https://github.com/Vonage/vivid-3/commit/fa07f0286fba79d288619257578b99620e6bc5eb))
+* **components:** rename delegated ARIA attributes (VIV-2726) ([#2494](https://github.com/Vonage/vivid-3/issues/2494)) ([d7e84fb](https://github.com/Vonage/vivid-3/commit/d7e84fbf151bd7e628d5107a63d6b8828ab4fb2f))
+* **file-picker:** add interactive feedback (VIV-1989)  ([#2495](https://github.com/Vonage/vivid-3/issues/2495)) ([c78d4c4](https://github.com/Vonage/vivid-3/commit/c78d4c4556c44ef76cc65f9e990192a5c6aec954))
+* **menu:** change default value for 'trigger' attribute to 'auto' (VIV-2674) ([#2496](https://github.com/Vonage/vivid-3/issues/2496)) ([cc012a9](https://github.com/Vonage/vivid-3/commit/cc012a90d00a45815a6b4d4322df91edc1834530))
+* **selectable-box:** remove clickable prop (VIV-2675) ([#2476](https://github.com/Vonage/vivid-3/issues/2476)) ([4f44dab](https://github.com/Vonage/vivid-3/commit/4f44dab1954b288b193d5e6fc1ebc04498158c50))
+
+## [4.31.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.30.1...vivid-v4.31.0) (2025-08-22)
+
+
+### Features
+
+* **toggletip:** adds localised aria-label to anchor element (VIV-2787) ([#2505](https://github.com/Vonage/vivid-3/issues/2505)) ([a5f8ec5](https://github.com/Vonage/vivid-3/commit/a5f8ec505ed98d49835713fe0db298d1a8fc3368))
+
+
+### Bug Fixes
+
+* **checkbox:** fix appearance when checked and indeterminate (VIV-2761) ([#2504](https://github.com/Vonage/vivid-3/issues/2504)) ([c32e91b](https://github.com/Vonage/vivid-3/commit/c32e91ba5eb1e4c230e894dd2bab21af19c5db57))
+
+## [4.30.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.30.0...vivid-v4.30.1) (2025-08-19)
+
+
+### Bug Fixes
+
+* **badge:** fix connotation type missing announcement (VIV-2780) ([#2498](https://github.com/Vonage/vivid-3/issues/2498)) ([9da1f44](https://github.com/Vonage/vivid-3/commit/9da1f44e83afe8b8a4ae0242c49904b04aa398fc))
+* **date-picker, time-picker, date-time-picker:** fix presentation value not updating after invalid input (VIV-2781) ([#2499](https://github.com/Vonage/vivid-3/issues/2499)) ([f8515a3](https://github.com/Vonage/vivid-3/commit/f8515a3280af4e67c3cc8d6d87c3eaa73741e1d9))
+* make remove button focusable in tag ([a780453](https://github.com/Vonage/vivid-3/commit/a7804532273a5ba13871f838b50233051e82ed1a))
+* **tag:** make remove button focusable (VIV-000) ([#2481](https://github.com/Vonage/vivid-3/issues/2481)) ([a780453](https://github.com/Vonage/vivid-3/commit/a7804532273a5ba13871f838b50233051e82ed1a))
+
+## [4.30.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.29.0...vivid-v4.30.0) (2025-08-13)
+
+
+### Features
+
+* **accordion-item:** add support for 'ghost', 'ghost-light'  and 'filled' appearances (VIV-2709) ([#2473](https://github.com/Vonage/vivid-3/issues/2473)) ([c6cd73b](https://github.com/Vonage/vivid-3/commit/c6cd73b462f20873ae217ce58f44fe49c34768bd))
+* **selectable-box:** add control-placement attribute (VIV-2742) ([#2489](https://github.com/Vonage/vivid-3/issues/2489)) ([52d10e9](https://github.com/Vonage/vivid-3/commit/52d10e916851f70059d47bea6f69862cf310cb79))
+* **split-button:** add outlined-light appearance (VIV-2751) ([#2493](https://github.com/Vonage/vivid-3/issues/2493)) ([d5fa90b](https://github.com/Vonage/vivid-3/commit/d5fa90b19cb469a3e50f3e5bae8cc4978a8b566c))
+* **tag:** add support for subtle-light appearance (VIV-2741)  ([#2468](https://github.com/Vonage/vivid-3/issues/2468)) ([24a16cd](https://github.com/Vonage/vivid-3/commit/24a16cd276481176266bc44a3ad9c3508ff59c1b))
+
+
+### Bug Fixes
+
+* **date-picker:** fix focus bug on opening calendar (VIV-2758) ([#2490](https://github.com/Vonage/vivid-3/issues/2490)) ([9fdedf8](https://github.com/Vonage/vivid-3/commit/9fdedf869cef34cbeeca86313cd977995dda5674))
+* **time-picker:** fix time picker focus on button click (VIV-2759) ([#2477](https://github.com/Vonage/vivid-3/issues/2477)) ([40dc979](https://github.com/Vonage/vivid-3/commit/40dc9794ceb19d083f63fbd543411f3c78f75cce))
+
 ## [4.29.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.28.0...vivid-v4.29.0) (2025-07-25)
 
 

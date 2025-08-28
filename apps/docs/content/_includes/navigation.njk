@@ -2,11 +2,11 @@
 	{% if entry.children | length %}
 		{% set isActive = entry | isNavItemActive %}
 		{% set isOpen = isActive or entry.initiallyOpen %}
-		<vwc-nav-disclosure appearance="ghost-light" label="{{ entry.title }}" {% if isOpen %} open {% endif %} {% if isActive %} aria-current="true" {% endif%}>
+		<vwc-nav-disclosure appearance="ghost-light" label="{{ entry.title }}" {% if isOpen %} open {% endif %} {% if isActive %} current {% endif%}>
 			{%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}
 		</vwc-nav-disclosure>
 	{% else %}
-		<vwc-nav-item appearance="ghost-light" href="{{ entry.url }}" text="{{ entry.title }}" {% if entry | isNavItemActive %} aria-current="page" {% endif %}>
+		<vwc-nav-item appearance="ghost-light" href="{{ entry.url }}" text="{{ entry.title }}" {% if entry | isNavItemActive %} current {% endif %}>
 			{% if entry.status == "underlying" %}
 				<vwc-badge slot="meta" text="underlying" connotation="information" appearance="subtle" shape="pill"></vwc-badge>
 			{% endif %}

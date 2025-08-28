@@ -1,6 +1,6 @@
 ---
 title: V4 Release Migration
-order: 5
+order: 2
 ---
 
 # Vivid v4.0.0 Migration Guide

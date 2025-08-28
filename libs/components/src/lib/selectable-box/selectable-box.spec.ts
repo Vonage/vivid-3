@@ -5,6 +5,8 @@ import {
 	getControlElement,
 } from '@repo/shared';
 import { Connotation } from '../enums';
+import type { Checkbox } from '../checkbox/checkbox';
+import type { Radio } from '../radio/radio';
 import { SelectableBox } from './selectable-box';
 import '.';
 
@@ -27,7 +29,6 @@ describe('vwc-selectable-box', () => {
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
 			expect(element.clickableBox).toBe(false);
-			expect(element.clickable).toBe(false);
 			expect(element.tight).toBe(false);
 			expect(element.checked).toBe(false);
 		});
@@ -37,10 +38,6 @@ describe('vwc-selectable-box', () => {
 			// This is because only createElement performs checks for custom element constructor requirements
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
-		});
-
-		it('should render the role attribute set to "presentation"', async () => {
-			expect(element.getAttribute('role')).toBe('presentation');
 		});
 	});
 
@@ -135,22 +132,21 @@ describe('vwc-selectable-box', () => {
 			expect(baseElement?.classList?.contains('selected')).toBe(true);
 		});
 
-		it('should set the checked attribute on the control element', async () => {
-			const control = getControlElement(element);
-			const controlElement =
-				control.shadowRoot?.querySelector('[role="checkbox"]');
-
-			expect(controlElement?.getAttribute('aria-checked')).toBe('true');
+		describe('checkbox', () => {
+			it('should set checked on the control element', async () => {
+				const controlElement = getControlElement(element) as Checkbox;
+				expect(controlElement.checked).toBe(true);
+			});
 		});
 
 		describe('radio', () => {
-			it('should set the checked attribute on the control element', async () => {
+			it('should set checked on the control element', async () => {
 				element = (await fixture(
 					`<${COMPONENT_TAG} control-type="radio" checked></${COMPONENT_TAG}>`
 				)) as SelectableBox;
-				const controlElement = getControlElement(element);
+				const controlElement = getControlElement(element) as Radio;
 
-				expect(controlElement?.getAttribute('aria-checked')).toBe('true');
+				expect(controlElement.checked).toBe(true);
 			});
 		});
 	});
@@ -161,43 +157,6 @@ describe('vwc-selectable-box', () => {
 			await elementUpdated(element);
 
 			expect(baseElement?.classList?.contains('clickable')).toBe(true);
-		});
-	});
-
-	describe('clickable', () => {
-		it('should set clickableBox', async function () {
-			element.clickable = true;
-			expect(element.clickableBox).toBe(true);
-		});
-
-		it('should not be set by clickableBox', async function () {
-			element.clickableBox = true;
-			expect(element.clickable).toBe(false);
-		});
-	});
-
-	describe('control placement', () => {
-		it('should have default CSS classes when control-placement attribute is not set', function () {
-			const defaultPlacement = 'end-stacked';
-			const controlElement = getControlElement(element);
-			expect(
-				baseElement?.classList?.contains(
-					`control-placement-${defaultPlacement}`
-				)
-			).toBe(true);
-			expect(controlElement?.classList?.contains(defaultPlacement)).toBe(true);
-		});
-
-		it('should apply CSS classes based on the control-placement attribute when set', async function () {
-			const placement = 'start';
-			element.controlPlacement = placement;
-			await elementUpdated(element);
-
-			const controlElement = getControlElement(element);
-			expect(
-				baseElement?.classList?.contains(`control-placement-${placement}`)
-			).toBe(true);
-			expect(controlElement?.classList?.contains(placement)).toBe(true);
 		});
 	});
 
@@ -382,8 +341,7 @@ describe('vwc-selectable-box', () => {
 			const control = getControlElement(element);
 
 			expect(control?.getAttribute('tabindex')).toBe(null);
-			expect(control?.getAttribute('aria-label')).toBe('Box 1');
-			expect(control?.getAttribute('aria-press')).toBe(null);
+			expect(control?.ariaLabel).toBe('Box 1');
 		});
 
 		describe('radio', () => {
@@ -391,13 +349,14 @@ describe('vwc-selectable-box', () => {
 				element = (await fixture(
 					`<${COMPONENT_TAG} control-type="radio" aria-label="Box 1"></${COMPONENT_TAG}>`
 				)) as SelectableBox;
+				await elementUpdated(element);
 			});
 
 			it('should put the correct a11y attributes on the control element', async () => {
 				const control = getControlElement(element);
 
 				expect(control?.getAttribute('tabindex')).toBe('0');
-				expect(control?.getAttribute('aria-label')).toBe('Box 1');
+				expect(control?.ariaLabel).toBe('Box 1');
 			});
 		});
 
