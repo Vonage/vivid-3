@@ -4,6 +4,25 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.0.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.31.0...vivid-v5.0.0) (2025-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **menu:** change default value for 'trigger' attribute to 'auto' (VIV-2674) ([#2496](https://github.com/Vonage/vivid-3/issues/2496))
+* **calendar:** make 'all' value as default for 'sticky-mode ' attribute (VIV-2677) ([#2497](https://github.com/Vonage/vivid-3/issues/2497))
+* **components:** rename delegated ARIA attributes (VIV-2726) ([#2494](https://github.com/Vonage/vivid-3/issues/2494))
+* **file-picker:** add interactive feedback (VIV-1989)  ([#2495](https://github.com/Vonage/vivid-3/issues/2495))
+* **selectable-box:** remove clickable prop (VIV-2675) ([#2476](https://github.com/Vonage/vivid-3/issues/2476))
+
+### Features
+
+* **calendar:** make 'all' value as default for 'sticky-mode ' attribute (VIV-2677) ([#2497](https://github.com/Vonage/vivid-3/issues/2497)) ([fa07f02](https://github.com/Vonage/vivid-3/commit/fa07f0286fba79d288619257578b99620e6bc5eb))
+* **components:** rename delegated ARIA attributes (VIV-2726) ([#2494](https://github.com/Vonage/vivid-3/issues/2494)) ([d7e84fb](https://github.com/Vonage/vivid-3/commit/d7e84fbf151bd7e628d5107a63d6b8828ab4fb2f))
+* **file-picker:** add interactive feedback (VIV-1989)  ([#2495](https://github.com/Vonage/vivid-3/issues/2495)) ([c78d4c4](https://github.com/Vonage/vivid-3/commit/c78d4c4556c44ef76cc65f9e990192a5c6aec954))
+* **menu:** change default value for 'trigger' attribute to 'auto' (VIV-2674) ([#2496](https://github.com/Vonage/vivid-3/issues/2496)) ([cc012a9](https://github.com/Vonage/vivid-3/commit/cc012a90d00a45815a6b4d4322df91edc1834530))
+* **selectable-box:** remove clickable prop (VIV-2675) ([#2476](https://github.com/Vonage/vivid-3/issues/2476)) ([4f44dab](https://github.com/Vonage/vivid-3/commit/4f44dab1954b288b193d5e6fc1ebc04498158c50))
+
 ## [4.31.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.30.1...vivid-v4.31.0) (2025-08-22)
 
 
