@@ -28,6 +28,7 @@ export function byLabel<D extends DriverT, W extends BaseWrapper<D>>(
 			attributeSelector(this.componentInfo.name, [
 				['label', label],
 				['aria-label', label],
+				['data-vvd-aria-label', label],
 			])
 		)
 	);

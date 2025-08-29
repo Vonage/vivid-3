@@ -216,8 +216,7 @@ export class Combobox extends WithFeedback(
 			this.focusAndScrollOptionIntoView();
 
 			// focus is directed to the element when `open` is changed programmatically
-			DOM.processUpdates();
-			this.control.focus();
+			DOM.queueUpdate(() => this.control.focus());
 
 			return;
 		}

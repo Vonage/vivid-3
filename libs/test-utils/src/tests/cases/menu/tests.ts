@@ -19,12 +19,14 @@ export const menuTests: TestCase[] = [
 				() => vvd.button.byLabel('Menu Trigger').click(),
 				() => vvd.expect(vvd.menu.byLabel('Menu')).toBeOpen(),
 				() => vvd.menuItem.byText('Menu Item').click(),
+				() => vvd.button.byLabel('Menu Trigger').click(),
 				() => vvd.menuItem.byText('Checkbox Item').click(),
 				() => vvd.expect(vvd.menuItem.byText('Checkbox Item')).toBeChecked(),
 				() => vvd.menuItem.byText('Radio Item').click(),
 				() => vvd.expect(vvd.menuItem.byText('Radio Item')).toBeChecked(),
 				() =>
 					vvd.expect(vvd.menuItem.byText('Checked Radio Item')).toBeUnchecked(),
+				() => vvd.button.byLabel('Menu Trigger').click(),
 				() => vvd.menuItem.byText('Checked Radio Item').click(),
 				() =>
 					expectState({
