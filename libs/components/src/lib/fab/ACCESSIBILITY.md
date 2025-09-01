@@ -1,16 +1,25 @@
+<div class="a11y-test">
+  <vwc-icon name="check-solid" connotation="success" size="1"></vwc-icon> 
+  <div>
+    <p>No Issues found.</p>
+    <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+  </div>
+</div>
+
 ## Implementation
 
-### Icon Only Fab
+### Icon-Only Buttons
 
-Use the `aria-label` attribute to provide alternative text for _icon-only_ Fab. This text is read by screen readers and lets the user know the purpose of the Fab.
+- Always provide an `aria-label` for buttons that contain only an icon.
+- The label is announced by screen readers and communicates the button’s purpose.
 
 ## Best Practices
 
 ### Avoid Disabling Buttons
 
-Disabled Fab don't explain why the Fab isn't usable, and they aren't focusable at all for people using keyboard navigation.
-
-Instead, keep the Fab pressable, and use validation and errors to explain what needs to be done to proceed.
+- Disabled buttons cannot receive focus and don’t explain why they can’t be used.
+- Instead, consider keeping the button active and use validation or error messages to guide the user.
+- Don’t Use Tooltips on Disabled Buttons. Tooltips are not reliably available across devices or assistive technologies.
 
 ## Resources
 

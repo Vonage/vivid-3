@@ -1,8 +1,18 @@
+<div class="a11y-test">
+  <vwc-icon name="check-solid" connotation="success" size="1"></vwc-icon> 
+  <div>
+    <p>No Issues found.</p>
+    <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+  </div>
+</div>
+
 ## Implementation
 
-It's generally a good idea to include an `aria-label` attribute on elements that are important for a user to be able to interact with or understand its purpose.
-You could use an aria-label attribute like "Profile avatar" or "User profile picture" to describe the purpose of the avatar. You should **always** use an aria-label attribute when rendering avatar as a link (using `href` attribute) or a button (using `clickable` attribute).
-
-When using `icon` slot, always provide a `label` property. [Read more](/components/icon/accessibility/#informative-vs-decorative-icons) in the Icon component guidelines.
-
-If your avatar is purely decorative and is not interactive, then you can use the `role="presentation"` attribute to indicate that the element is purely decorative, and should be ignored by assistive technologies such as screen readers.
+- **Label interactive avatars**
+  - Always provide an aria-label when the avatar is a link (href) or a button (clickable).
+  - Use clear, descriptive text (e.g. "Profile avatar", "User profile picture").
+- **Label icons in slots**
+  - When using the icon slot, always provide a label property.
+  - See the [Icon component guidelines](/components/icon/accessibility/#informative-vs-decorative-icons) for details.
+- **Mark decorative avatars as presentation**
+  - If the avatar is purely decorative and not interactive, use `role="presentation"` so it’s ignored by assistive technologies.

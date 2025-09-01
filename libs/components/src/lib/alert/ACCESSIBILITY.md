@@ -1,6 +1,23 @@
+<div class="a11y-test">
+  <vwc-icon name="check-solid" connotation="success" size="1"></vwc-icon> 
+  <div>
+    <p>No Issues found.</p>
+    <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+  </div>
+</div>
+
+This component follows the [Alert and Message Dialogs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/) from the W3C.
+
 ## Implementation
 
-Use the `timeoutms` attribute with care. Users with disabilities may need more time to read the content. If the Alert contains interactive elements, such as links or buttons, you should avoid using `timeoutms`. See also [WCAG SC 2.2.3 No Timing](https://www.w3.org/WAI/WCAG22/Understanding/no-timing).
+### Use the timeoutms attribute cautiously.
+
+Some users — particularly those with disabilities—may need extra time to read and understand the content.
+
+- If the Alert contains interactive elements (e.g., links or buttons), avoid using timeoutms altogether.
+- Automatic dismissal can prevent users from completing their task or accessing important information.
+
+For guidance, see [WCAG SC 2.2.3: No Timing](https://www.w3.org/WAI/WCAG22/Understanding/no-timing).
 
 ## Resources
 

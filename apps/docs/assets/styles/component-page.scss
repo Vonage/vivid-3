@@ -61,3 +61,12 @@
 		}
 	}
 }
+
+.a11y-test {
+	display: flex;
+	gap: 16px;
+
+	div p:first-child {
+		margin-block-start: 0;
+	}
+}

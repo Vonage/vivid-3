@@ -1,6 +1,18 @@
+<div class="a11y-test">
+  <vwc-icon name="check-solid" connotation="success" size="1"></vwc-icon> 
+  <div>
+    <p>No Issues found.</p>
+    <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+  </div>
+</div>
+
 ## Implementation
 
-- **Icons**: ideally the icon should be accompanied by a label or text, but if this is not the case, be sure to supply the **Nav Item** or the **Nav Disclosure** component with an aria-label attribute so that screen reader user will know the purpose of the items.
+### Icons in Navigation
+
+- Icons should be accompanied by visible text whenever possible.
+- If an icon conveys meaning that is not provided by the accompanying text, provide it with a description using the `label` attribute.
+- If no accompanying text is present, provide an `aria-label` on the Nav Item or Nav Disclosure so screen reader users can understand the purpose of the item.
 
 ## Keyboard Interaction
 

@@ -1,3 +1,11 @@
+<div class="a11y-test">
+  <vwc-icon name="check-solid" connotation="success" size="1"></vwc-icon> 
+  <div>
+    <p>No Issues found.</p>
+    <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+  </div>
+</div>
+
 ## Implementation
 
 - **Icons:** ideally the [icon should be accompanied by a label](https://www.nngroup.com/articles/icon-usability/), but if this is not the case, be sure to supply the **Tab** component with an `aria-label` attribute so that screen reader user will know the purpose of the tab.

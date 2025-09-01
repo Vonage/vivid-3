@@ -1,3 +1,11 @@
+<div class="a11y-test">
+  <vwc-icon name="check-solid" connotation="success" size="1"></vwc-icon> 
+  <div>
+    <p>No Issues found.</p>
+    <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+  </div>
+</div>
+
 ## Implementation
 
 - The Menu requires an accessible name. It is the consumer's concern to provide an `aria-label` to the Menu.

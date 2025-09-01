@@ -1,3 +1,21 @@
+<div class="a11y-test">
+  <vwc-icon name="check-solid" connotation="warning" size="1"></vwc-icon> 
+  <div>
+    <p>Passed with following exceptions:
+      <ul>
+        <li><b>Sort functionality is not announced when header cell is focussed.</b><br />We have an item on the backlog to address this improvement.</li>
+      </ul>
+    </p>
+    <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+  </div>
+</div>
+
+## Keyboard Interactions
+
+- Navigate data-grid cells using the Arrow keys.
+- If a cell contains an interactive element, it can be reached using the Tab key.
+- If a header cell contains sort functionality, it can be activated using the Space or Enter key.
+
 ## Implementation
 
 - Usage of `selected` attribute defines the `aria-selected` value.

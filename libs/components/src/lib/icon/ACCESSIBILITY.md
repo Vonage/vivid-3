@@ -1,10 +1,18 @@
+<div class="a11y-test">
+  <vwc-icon name="check-solid" connotation="success" size="1"></vwc-icon> 
+  <div>
+    <p>No Issues found.</p>
+    <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+  </div>
+</div>
+
 ## Implementation
 
 ### Informative vs Decorative Icons
 
-**Informative icons** convey information not otherwise present in the page's text.
-
-You must set the `label` attribute on informative icons to provide an accessible name.
+- **Informative icons**
+  - Convey information not otherwise present in the page's text.
+  - Must set the `label` attribute on informative icons to provide an accessible name.
 
 ```html preview
 <div class="number">
@@ -24,9 +32,10 @@ You must set the `label` attribute on informative icons to provide an accessible
 </style>
 ```
 
-**Decorative icons** duplicate information already present in the text or are purely aesthetic. They are used to enhance the visual appearance of the content.
-
-There is no need to provide the Icon with a `label` as the icon's meaning is already described by the visible text. When `label` is not provided, the `aria-hidden` is set to `true` automatically, so there is no need for you to set it.
+- **Decorative icons**
+  - Duplicate information already present in the text, or are purely aesthetic.
+  - Do not require a `label`.
+  - When no `label` is provided, `aria-hidden="true"` is automatically applied.
 
 ```html preview
 <p><vwc-icon name="flag-united-states"></vwc-icon> United States</p>
@@ -36,9 +45,9 @@ There is no need to provide the Icon with a `label` as the icon's meaning is alr
 
 ### Icons Are Non-Interactive
 
-Icons are non-interactive elements. You cannot use them to trigger actions or place a tooltip on them.
-
-If you need an interactive component, use an [icon-only Button](/components/button/#icon-only) instead.
+- Icons must not be used as interactive elements.
+- Do not use icons to trigger actions or attach tooltips.
+- If you need an interactive icon, use an [icon-only Button](/components/button/#icon-only).
 
 ## Resources
 
