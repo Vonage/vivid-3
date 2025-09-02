@@ -65,11 +65,11 @@
 		inline-size: 100%;
 	}
 
-	&:not(.disabled) {
+	&:not([aria-disabled="true"]) {
 		cursor: pointer;
 	}
 
-	&.disabled {
+	&[aria-disabled="true"] {
 		cursor: not-allowed;
 	}
 
