@@ -336,7 +336,64 @@ describe('vwc-button', () => {
 			);
 			expect(control).toBeInstanceOf(Element);
 		});
+
+		it('should set aria-disabled on <button> when disabled', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const control = getControlElement(element);
+			expect(control?.getAttribute('aria-disabled')).toBe('true');
+		});
+
+		it('should not emit click when disabled', async () => {
+			const listener = vi.fn();
+			element.addEventListener('click', listener);
+
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const control = getControlElement(element);
+			control?.click();
+
+			expect(listener).not.toHaveBeenCalled();
+		});
+
+		it('should not emit keyboard activation when disabled (Enter)', async () => {
+			const listener = vi.fn();
+			element.addEventListener('click', listener);
+
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const control = getControlElement(element);
+			const event = new KeyboardEvent('keydown', {
+				key: 'Enter',
+				bubbles: true,
+			});
+			control?.dispatchEvent(event);
+
+			expect(listener).not.toHaveBeenCalled();
+		});
+
+		it('should not emit keyboard activation when disabled (Space)', async () => {
+			const listener = vi.fn();
+			element.addEventListener('click', listener);
+
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const control = getControlElement(element);
+			const event = new KeyboardEvent('keydown', {
+				key: ' ',
+				code: 'Space',
+				bubbles: true,
+			});
+			control?.dispatchEvent(event);
+
+			expect(listener).not.toHaveBeenCalled();
+		});
 	});
+
 	describe('title', function () {
 		it('should set title on the button if set', async () => {
 			const titleText = 'close';
@@ -364,7 +421,6 @@ describe('vwc-button', () => {
 					'ariaAtomic',
 					'ariaBusy',
 					'ariaCurrent',
-					'ariaDisabled',
 					'ariaExpanded',
 					'ariaHasPopup',
 					'ariaHidden',

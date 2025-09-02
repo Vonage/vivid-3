@@ -28,6 +28,7 @@ const getClasses = ({
 	icon,
 	label,
 	disabled,
+	pending,
 	stacked,
 	size,
 	iconSlottedContent,
@@ -39,7 +40,10 @@ const getClasses = ({
 		'control',
 		[`connotation-${connotation}`, Boolean(connotation)],
 		[
-			getAppearanceClassName(appearance as ButtonAppearance, disabled),
+			getAppearanceClassName(
+				appearance as ButtonAppearance,
+				disabled || pending
+			),
 			Boolean(appearance),
 		],
 		[`shape-${shape}`, Boolean(shape)],
@@ -111,7 +115,6 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 	return html` <button
 		class="${getClasses}"
 		?autofocus="${(x) => x.autofocus}"
-		?disabled="${(x) => x.disabled || x.pending}"
 		form="${(x) => x.formId}"
 		formaction="${(x) => x.formaction}"
 		formenctype="${(x) => x.formenctype}"
@@ -124,8 +127,25 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 		title="${(x) => x.title}"
 		${delegateAria({
 			ariaLabel: null,
+			ariaDisabled: (x) => x.disabled || x.pending,
 		})}
 		${ref('control')}
+		@click="${(x, c) => {
+			if (x.disabled || x.pending) {
+				c.event.preventDefault();
+				c.event.stopImmediatePropagation();
+			}
+		}}"
+		@keydown="${(x, c) => {
+			const evt = c.event as KeyboardEvent;
+			if (
+				(x.disabled || x.pending) &&
+				(evt.key === 'Enter' || evt.key === ' ')
+			) {
+				c.event.preventDefault();
+				c.event.stopImmediatePropagation();
+			}
+		}}"
 	>
 		${buttonContent(context)}
 	</button>`;
