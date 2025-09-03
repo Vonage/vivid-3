@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/number-field';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerNumberField } from '@vonage/vivid';
 
 registerNumberField('your-prefix');

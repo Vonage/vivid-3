@@ -7,12 +7,6 @@ All native attributes of the `textarea` are supported as well as some enhancemen
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/text-area';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerTextArea } from '@vonage/vivid';
 
 registerTextArea('your-prefix');

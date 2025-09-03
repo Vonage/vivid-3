@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/dial-pad';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerDialPad } from '@vonage/vivid';
 
 registerDialPad('your-prefix');

@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/date-picker';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerDateRangePicker } from '@vonage/vivid';
 
 registerDateRangePicker('your-prefix');

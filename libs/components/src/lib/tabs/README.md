@@ -5,14 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/tabs';
-import '@vonage/vivid/tab';
-import '@vonage/vivid/tab-panel';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerTabs, registerTab, registerTabPanel } from '@vonage/vivid';
 
 registerTabs('your-prefix');

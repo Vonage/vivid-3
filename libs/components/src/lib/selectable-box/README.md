@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/selectable-box';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerSelectableBox } from '@vonage/vivid';
 
 registerSelectableBox('your-prefix');

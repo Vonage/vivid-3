@@ -5,13 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/tag-group';
-import '@vonage/vivid/tag';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerTag, registerTagGroup } from '@vonage/vivid';
 
 registerTag('your-prefix');

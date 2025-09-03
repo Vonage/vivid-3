@@ -1,9 +1,5 @@
 # Tag
 
-```js
-<script type="module">import '@vonage/vivid/tag';</script>
-```
-
 ## Members
 
 ### Label
