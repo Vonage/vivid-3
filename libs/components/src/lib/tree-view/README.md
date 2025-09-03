@@ -3,10 +3,6 @@
 Represents a hierarchical list. Any [vwc-tree-item](/components/tree-item/) in the hierarchy may have child vwc-tree-items, and vwc-tree-items that have children may be expanded or collapsed to show or hide the children.
 Click [here](https://www.w3.org/WAI/ARIA/apg/patterns/treeview) to learn more about TreeView's Keyboard Interaction and Accessibility.
 
-```js
-<script type="module">import '@vonage/vivid/tree-view';</script>
-```
-
 ## Slots
 
 ### Default

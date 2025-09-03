@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/fab';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerFab } from '@vonage/vivid';
 
 registerFab('your-prefix');

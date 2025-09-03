@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/button';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerButton } from '@vonage/vivid';
 
 registerButton('your-prefix');

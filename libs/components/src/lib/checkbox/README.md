@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/checkbox';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerCheckbox } from '@vonage/vivid';
 
 registerCheckbox('your-prefix');

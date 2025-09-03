@@ -6,10 +6,6 @@ Radio components are designed to represent a single value in a set of related on
 As such, they do not make sense on their own and should always be used inside `radio-group` containers (see [here](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for details).
 Their `value` member contains the value that will be associated to the component name during form submission (i.e., the `radio-group`'s name).
 
-```js
-<script type="module">import '@vonage/vivid/radio';</script>
-```
-
 ## Members
 
 ### Label

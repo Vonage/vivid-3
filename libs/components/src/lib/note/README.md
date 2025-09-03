@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/note';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerNote } from '@vonage/vivid';
 
 registerNote('your-prefix');

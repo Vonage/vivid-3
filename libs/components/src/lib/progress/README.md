@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/progress';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerProgress } from '@vonage/vivid';
 
 registerProgress('your-prefix');

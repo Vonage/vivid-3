@@ -2,10 +2,6 @@
 
 Represents a tab custom element.
 
-```js
-<script type="module">import '@vonage/vivid/tab';</script>
-```
-
 ## Members
 
 ### Label

@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/side-drawer';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerSideDrawer } from '@vonage/vivid';
 
 registerSideDrawer('your-prefix');

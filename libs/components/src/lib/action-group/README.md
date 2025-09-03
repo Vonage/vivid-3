@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/action-group';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerActionGroup } from '@vonage/vivid';
 
 registerActionGroup('your-prefix');

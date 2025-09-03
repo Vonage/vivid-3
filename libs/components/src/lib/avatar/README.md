@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/avatar';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerAvatar } from '@vonage/vivid';
 
 registerAvatar('your-prefix');

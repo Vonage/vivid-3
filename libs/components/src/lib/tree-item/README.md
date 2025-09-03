@@ -3,10 +3,6 @@
 Represents a tree-item custom element.
 Read more about [vwc-tree-view](/components/tree-view/).
 
-```js
-<script type="module">import '@vonage/vivid/tree-item';</script>
-```
-
 ## Members
 
 ### Text

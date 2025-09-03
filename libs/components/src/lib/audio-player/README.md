@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/audio-player';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerAudioPlayer } from '@vonage/vivid';
 
 registerAudioPlayer('your-prefix');

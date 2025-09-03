@@ -1,10 +1,16 @@
-## Aria-Current
+<vwc-note connotation="success" headline="No issues found">
+  <vwc-icon name="check-solid" connotation="success" label="Passed Accessibility Testing" slot="icon" size="0"></vwc-icon>
+  <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+</vwc-note>
 
-When your last Breadcrumb-Item has `href` on it, add `aria-current="page"` to it. This represents the current item within a container or set of related elements.
+## Implementation
 
-## Aria-label
-
-By default, Breadcrumbs has `aria-label="breadcrumbs"`, if needed this can be changed by setting a different value.
+- `aria-current`
+  - Always add `aria-current="page"` to the last Breadcrumb Item when it has a href.
+  - This identifies the current page within the breadcrumb trail.
+- `aria-label`
+  - By default, the Breadcrumbs component uses `aria-label="breadcrumbs"`.
+  - You can override this value if a different label is more descriptive in context.
 
 ## Resources
 

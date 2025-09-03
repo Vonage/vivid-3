@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/switch';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerSwitch } from '@vonage/vivid';
 
 registerSwitch('your-prefix');

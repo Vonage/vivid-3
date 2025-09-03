@@ -3,10 +3,6 @@
 Represents underlying _elevation_ custom element.
 Applies a perceived visual elevation to a direct child element.
 
-```js
-<script type="module">import '@vonage/vivid/elevation';</script>
-```
-
 ```html preview
 <style>
 	#card {

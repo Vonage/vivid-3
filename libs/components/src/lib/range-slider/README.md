@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/range-slider';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerRangeSlider } from '@vonage/vivid';
 
 registerRangeSlider('your-prefix');
