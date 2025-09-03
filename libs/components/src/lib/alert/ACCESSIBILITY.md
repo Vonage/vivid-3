@@ -11,7 +11,7 @@ This component follows the [Alert and Message Dialogs pattern](https://www.w3.or
 
 Some users — particularly those with disabilities—may need extra time to read and understand the content.
 
-- If the Alert contains interactive elements (e.g., links or buttons), avoid using timeoutms altogether.
+- If the Alert contains interactive elements (e.g., links or buttons), avoid using `timeoutms` altogether.
 - Automatic dismissal can prevent users from completing their task or accessing important information.
 
 For guidance, see [WCAG SC 2.2.3: No Timing](https://www.w3.org/WAI/WCAG22/Understanding/no-timing).
