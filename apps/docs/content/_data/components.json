@@ -501,10 +501,9 @@
 	},
 	{
 		"title": "Split Button",
-		"description": "A button with two parts: a label and an arrow; clicking on the label selects a default action, and clicking on the arrow opens up a list of other possible actions.",
+		"description": "A split button is a dual-function menu button that offers a default action as well as the possibility of choosing a different action by selecting from a set of alternatives.",
 		"variations": "./libs/components/src/lib/split-button/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/split-button/GUIDELINES.md",
-		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/split-button/README.md",
 		"accessibility": "./libs/components/src/lib/split-button/ACCESSIBILITY.md",
 		"useCases": "./libs/components/src/lib/split-button/USE-CASES.md"

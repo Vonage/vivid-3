@@ -15,6 +15,7 @@ import {
 } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { Localized } from '../../shared/patterns';
+import { HostSemantics } from '../../shared/aria/host-semantics';
 import { DataGridCellSortStates, DataGridCellTypes } from './data-grid.options';
 import type { ColumnDefinition } from './data-grid';
 
@@ -51,7 +52,7 @@ const defaultHeaderCellContentsTemplate: ViewTemplate<DataGridCell> = html`
  * @event {CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>} cell-click - Event that fires when a cell is clicked
  * @event {CustomEvent<HTMLElement>} cell-focused - Fires a custom 'cell-focused' event when focus is on the cell or its contents
  */
-export class DataGridCell extends Localized(VividElement) {
+export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 	/**
 	 * The type of cell
 	 *
@@ -364,29 +365,10 @@ export class DataGridCell extends Localized(VividElement) {
 	};
 
 	/**
-	 *
-	 * @private
-	 */
-	private calculateAriaSelectedValue() {
-		if (this._selectable && this.selected) return 'true';
-
-		if (this._selectable && !this.selected) return 'false';
-
-		return null;
-	}
-
-	/**
 	 * @internal
 	 */
 	@observable
 	_selectable = false;
-
-	/**
-	 * @internal
-	 */
-	_selectableChanged() {
-		this.ariaSelected = this.calculateAriaSelectedValue();
-	}
 
 	/**
 	 * Reflects selected state of the row
@@ -397,26 +379,23 @@ export class DataGridCell extends Localized(VividElement) {
 	selected = false;
 
 	/**
-	 * @internal
-	 */
-	selectedChanged() {
-		this.ariaSelected = this.calculateAriaSelectedValue();
-	}
-
-	/**
 	 * Indicates the selected status.
 	 *
 	 * @deprecated For setting selected state, please use `selected` property instead.
 	 * @public
 	 * HTML Attribute: aria-selected
 	 */
-	@attr({ attribute: 'aria-selected', mode: 'fromView' })
 	override ariaSelected: string | null = null;
 
 	/**
 	 * @internal
 	 */
-	ariaSelectedChanged(_: string | null, newValue: string | null) {
+	override ariaSelectedChanged(
+		prevValue: string | null,
+		newValue: string | null
+	) {
+		super.ariaSelectedChanged(prevValue, newValue);
+
 		this._selectable = newValue !== null;
 		this.selected = newValue === 'true';
 	}
@@ -428,21 +407,20 @@ export class DataGridCell extends Localized(VividElement) {
 	 * @public
 	 * HTML Attribute: aria-sort
 	 */
-	@attr({ attribute: 'aria-sort' }) override ariaSort: string | null = null;
+	override ariaSort: string | null = null;
 
 	/**
 	 * @internal
 	 */
-	ariaSortChanged(
-		_oldValue: DataGridCellSortStates,
-		newValue: DataGridCellSortStates
-	) {
+	override ariaSortChanged(oldValue: string | null, newValue: string | null) {
+		super.ariaSortChanged(oldValue, newValue);
+
 		if (newValue === null) {
 			this.sortDirection = undefined;
 			return;
 		}
 
-		this.sortDirection = newValue;
+		this.sortDirection = newValue as DataGridCellSortStates;
 	}
 
 	/**
@@ -452,21 +430,6 @@ export class DataGridCell extends Localized(VividElement) {
 	 * HTML Attribute: sort-direction
 	 */
 	@attr({ attribute: 'sort-direction' }) sortDirection?: DataGridCellSortStates;
-
-	/**
-	 * @internal
-	 */
-	sortDirectionChanged(
-		_oldValue: DataGridCellSortStates | undefined,
-		newValue: DataGridCellSortStates | undefined
-	) {
-		if (newValue === undefined) {
-			this.ariaSort = null;
-			return;
-		}
-
-		this.ariaSort = newValue;
-	}
 
 	#getColumnDataKey() {
 		return this.columnDefinition && this.columnDefinition.columnDataKey

@@ -25,7 +25,7 @@ describe('vwc-select', () => {
 	 */
 	const getCheckedOptions = () =>
 		Array.from(
-			element.querySelectorAll('vwc-option[aria-checked="true"]')
+			element.querySelectorAll('vwc-option[checked="true"]')
 		) as ListboxOption[];
 
 	/**

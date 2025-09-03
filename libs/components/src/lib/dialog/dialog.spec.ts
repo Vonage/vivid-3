@@ -720,12 +720,12 @@ describe('vwc-dialog', () => {
 				const labelId = 'label';
 				element.setAttribute('dismiss-button-aria-label', labelId);
 				await elementUpdated(element);
-				expect(getDismissButton().getAttribute('aria-label')).toBe(labelId);
+				expect(getDismissButton().ariaLabel).toBe(labelId);
 			});
 		});
 
 		it('should set localised "aria-label" on the dismiss button', async () => {
-			expect(getDismissButton().getAttribute('aria-label')).toBe('Close');
+			expect(getDismissButton().ariaLabel).toBe('Close');
 		});
 	});
 

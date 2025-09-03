@@ -57,4 +57,41 @@ describe('DelegatesAria', () => {
 			'true'
 		);
 	});
+
+	it('should remove ARIA attributes from the host element', async () => {
+		const element = fixture(
+			`<dummy-element aria-current="true"></dummy-element>`
+		) as DummyElement;
+		element.ariaDisabled = 'true';
+
+		await elementUpdated(element);
+
+		expect(element.ariaCurrent).toBe('true');
+		expect(element.hasAttribute('aria-current')).toBe(false);
+		expect(element.ariaDisabled).toBe('true');
+		expect(element.hasAttribute('aria-disabled')).toBe(false);
+	});
+
+	it('should add a data attribute for removed ARIA attributes on the host', async () => {
+		const element = fixture(
+			`<dummy-element aria-current="true"></dummy-element>`
+		) as DummyElement;
+		element.ariaDisabled = 'true';
+
+		await elementUpdated(element);
+
+		expect(element.dataset['vvdAriaCurrent']).toBe('true');
+		expect(element.dataset['vvdAriaDisabled']).toBe('true');
+	});
+
+	it('should remove the data attribute when ARIA property is set to null', async () => {
+		const element = fixture(
+			`<dummy-element aria-current="true"></dummy-element>`
+		) as DummyElement;
+		element.ariaCurrent = null;
+
+		await elementUpdated(element);
+
+		expect('vvdAriaCurrent' in element.dataset).toBe(false);
+	});
 });

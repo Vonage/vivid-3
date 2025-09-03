@@ -21,19 +21,16 @@ export type BoundAriaProperties<T> = Partial<{
 export class DelegateAriaBehavior<T> implements Behavior {
 	private readonly boundProperties: BoundAriaProperties<T>;
 	private readonly forwardedProperties: Set<AriaPropertyName>;
-	private readonly isMitigationDisabled: boolean;
 
 	constructor(
 		private target: HTMLElement,
 		params: {
 			boundProperties: BoundAriaProperties<T>;
 			forwardedProperties: Set<AriaPropertyName>;
-			disableAccessibilityMitigation: boolean;
 		}
 	) {
 		this.boundProperties = params.boundProperties;
 		this.forwardedProperties = params.forwardedProperties;
-		this.isMitigationDisabled = params.disableAccessibilityMitigation;
 	}
 
 	private source: DelegatesAriaElement | null = null;
@@ -46,7 +43,6 @@ export class DelegateAriaBehavior<T> implements Behavior {
 			this.forwardedProperties,
 			this.target
 		);
-		this.mitigateAccessibilityIssues(source);
 	}
 
 	unbind() {
@@ -110,8 +106,6 @@ export class DelegateAriaBehavior<T> implements Behavior {
 		source: AriaMixinElement,
 		property: AriaPropertyName
 	) => {
-		this.mitigateAccessibilityIssues(source);
-
 		if (!this.forwardedProperties.has(property)) {
 			return;
 		}
@@ -125,25 +119,5 @@ export class DelegateAriaBehavior<T> implements Behavior {
 		value: BoundValue
 	) {
 		DOM.setAttribute(target, ariaAttributeName(property), value);
-	}
-
-	/**
-	 * Sets role to presentation unless there are properties present that prohibit it.
-	 * Using role="presentation" will cause non-global states or properties to be ignored.
-	 * See: https://www.w3.org/TR/wai-aria-1.3/#conflict_resolution_presentation_none
-	 */
-	private mitigateAccessibilityIssues(source: AriaMixinElement) {
-		if (this.isMitigationDisabled) {
-			return;
-		}
-
-		const hasProhibitedProperties = Boolean(
-			source.ariaLabel || source.ariaBrailleLabel || source.ariaChecked
-		);
-		if (hasProhibitedProperties) {
-			source.removeAttribute('role');
-		} else {
-			source.setAttribute('role', 'presentation');
-		}
 	}
 }

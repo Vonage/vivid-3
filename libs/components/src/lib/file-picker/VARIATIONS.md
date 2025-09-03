@@ -11,7 +11,9 @@ The `label` attribute provides a short description of the purpose of the File Pi
 </vwc-note>
 
 ```html preview
-<vwc-file-picker label="Label">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker label="Label">
+	Drag & Drop or click to upload
+</vwc-file-picker>
 ```
 
 ### Helper text
