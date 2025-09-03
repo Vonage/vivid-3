@@ -23,6 +23,7 @@ import type { PaginationLocale } from '../../lib/pagination/locale';
 import type { TagLocale } from '../../lib/tag/locale';
 import type { Connotation } from '../../lib/enums';
 import type { ToggletipLocale } from '../../lib/toggletip/locale';
+import type { SimpleColorPickerLocale } from '../../lib/simple-color-picker/locale';
 
 type ConnotationAnnoncementLocale = {
 	[key in Connotation as `${key}Icon`]: string;
@@ -58,4 +59,5 @@ export interface Locale {
 	pagination: PaginationLocale;
 	tag: TagLocale;
 	toggletip: ToggletipLocale;
+	simpleColorPicker: SimpleColorPickerLocale;
 }
