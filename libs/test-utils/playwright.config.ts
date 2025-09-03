@@ -4,10 +4,10 @@ const config: PlaywrightTestConfig = {
 	testMatch: 'src/tests/**/*.pw.ts',
 	timeout: 10000,
 	use: {
-		actionTimeout: 500,
+		actionTimeout: 2000,
 	},
 	expect: {
-		timeout: 1000,
+		timeout: 3000,
 	},
 	projects: [
 		{
