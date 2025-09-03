@@ -15,10 +15,10 @@
 
 When the nav has focus:
 
-`Enter`: activates the nav-disclosure and toggles the visibility of the content.  
-`Space`: activates the nav-disclosure and toggles the visibility of the content.  
-`Tab`: moves focus to the next element in the tab order.  
-`Shift` + `Tab`: moves focus to the previous element in the tab order.
+- `Enter`: activates the nav-disclosure and toggles the visibility of the content.
+- `Space`: activates the nav-disclosure and toggles the visibility of the content.
+- `Tab`: moves focus to the next element in the tab order.
+- `Shift` + `Tab`: moves focus to the previous element in the tab order.
 
 ## Resources
 
