@@ -1,14 +1,10 @@
-<div class="a11y-test">
-  <vwc-icon name="check-solid" connotation="warning" size="1"></vwc-icon> 
-  <div>
-    <p>Passed with the following exceptions:
-      <ul>
-        <li><b>Progress bar does not announce the min and max values.</b><br />All the correct aria attributes and values are present. Deemed to be a screen reader limitation.</li>
-      </uL>
-    </p>
-    <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
-  </div>
-</div>
+<vwc-note connotation="warning" headline="Passed with the following exceptions">
+  <vwc-icon name="check-solid" slot="icon" connotation="warning" size="0"></vwc-icon> 
+  <ul>
+    <li><b>Progress bar does not announce the min and max values.</b><br />All the correct aria attributes and values are present. Deemed to be a screen reader limitation.</li>
+  </ul>
+  <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+</vwc-note>
 
 ## Resources
 
