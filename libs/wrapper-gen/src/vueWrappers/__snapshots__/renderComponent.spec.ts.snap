@@ -104,29 +104,17 @@ export default defineComponent({
             class: 'vvd-component',
             domProps: { ...((this.forcedDomProp) !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}) },
             on: { 'example-event': (event: Event & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		}) => {
           
           this.$emit('example-event', event);
         },'input': (event: Event & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		}) => {
           this.$emit('update:modelValue', event.currentTarget.value);
 this.$emit('update:sameEvent', event.currentTarget.exampleProp);
           this.$emit('input', event);
         },'input:start': (event: CustomEvent<{a: string | number}> & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		}) => {
           this.$emit('update:start', event.currentTarget.start);
@@ -144,29 +132,17 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
           ref: 'element',
           class: 'vvd-component',
           ...handleVue3Props({...((this.sameEvent ?? this.exampleProp) !== undefined ? {'^example-prop': this.sameEvent ?? this.exampleProp } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'^icon-type': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^current-value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanProp) !== undefined && (this.booleanProp) !== false ? {'^boolean-prop': this.booleanProp } : {})}),'onExampleEvent': (event: Event & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		}) => {
 					 
           this.$emit('example-event', event);
         },'onInput': (event: Event & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		}) => {
 					 this.$emit('update:modelValue', event.currentTarget.value);
 this.$emit('update:sameEvent', event.currentTarget.exampleProp);
           this.$emit('input', event);
         },'onInput:start': (event: CustomEvent<{a: string | number}> & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		}) => {
 					 this.$emit('update:start', event.currentTarget.start);
@@ -238,10 +214,6 @@ export default defineComponent({
  * @type {Event}
  */
 				['example-event'](event: Event & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		}) { return true },
 
@@ -249,10 +221,6 @@ export default defineComponent({
  * @type {Event}
  */
 				['input'](event: Event & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		}) { return true },
 
@@ -260,10 +228,6 @@ export default defineComponent({
  * @type {CustomEvent<{a: string | number}>}
  */
 				['input:start'](event: CustomEvent<{a: string | number}> & {
-			/**
-			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
-			 */
-			target: VwcExampleComponentElement,
 			currentTarget: VwcExampleComponentElement
 		}) { return true },
 

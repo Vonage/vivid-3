@@ -19,12 +19,7 @@ registerMenuItem('your-prefix');
 	registerMenuItem(prefix);
 </script>
 
-<your-prefix-menu
-	open
-	aria-label="Menu example"
-	placement="bottom-end"
-	trigger="auto"
->
+<your-prefix-menu open aria-label="Menu example" placement="bottom-end">
 	<your-prefix-menu-item text="Menu item 1"></your-prefix-menu-item>
 	<your-prefix-menu-item text="Menu item 2"></your-prefix-menu-item>
 </your-prefix-menu>

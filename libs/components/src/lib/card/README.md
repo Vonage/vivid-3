@@ -91,7 +91,7 @@ The meta slot is for action content in the card header.
 	subtitle="Extra text below the card headline"
 >
 	<div slot="meta">
-		<vwc-menu aria-label="Card options" placement="bottom-start" trigger="auto">
+		<vwc-menu aria-label="Card options" placement="bottom-start">
 			<vwc-button slot="anchor" aria-label="Open menu" appearance="outlined">
 				<vwc-icon slot="icon" name="more-vertical-line"></vwc-icon>
 			</vwc-button>

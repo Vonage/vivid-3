@@ -48,7 +48,7 @@ export const CheckboxTemplate = (context: VividElementDefinitionContext) => {
 		>
 			<div class="control">
 				${when(
-					(x) => x.checked,
+					(x) => x.checked && !x.indeterminate,
 					html<Checkbox>`<${iconTag} name="check-solid" class="icon"></${iconTag}>`
 				)}
 				${when(

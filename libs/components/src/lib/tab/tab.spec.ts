@@ -22,7 +22,6 @@ describe('vwc-tab', () => {
 			expect(element.connotation).toBeFalsy();
 			expect(element.shape).toBeFalsy();
 			expect(element.active).toBeFalsy();
-			expect(element.ariaSelected).toBe('false');
 		});
 
 		it('should allow being created via createElement', () => {

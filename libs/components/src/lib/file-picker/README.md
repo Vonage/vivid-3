@@ -252,10 +252,14 @@ Use `files` or `rejectedFiles` to access the list of files that have been added 
 Use the default slot to set the content of the file picker.
 
 ```html preview
-<vwc-file-picker>
-	<vwc-icon name="file-csv-line" size="-5"></vwc-icon>
-	Drag & Drop the .csv file here or click to upload
+<vwc-file-picker label="Label">
+	Drag & Drop or <strong>Click</strong> to upload
 </vwc-file-picker>
+<style>
+	span {
+		white-space: pre-wrap;
+	}
+</style>
 ```
 
 ### Helper-Text

@@ -414,9 +414,7 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(getSliderElement().value).toEqual(expectedValue);
-			expect(getSliderElement().getAttribute('aria-valuetext')).toEqual(
-				expectedAriaValuetext
-			);
+			expect(getSliderElement().ariaValueText).toEqual(expectedAriaValuetext);
 		});
 
 		it('should set currentTime according to slider value on slider change', async () => {

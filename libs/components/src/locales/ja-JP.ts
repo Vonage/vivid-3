@@ -114,6 +114,7 @@ const jaJP: Locale = {
 		removeFileLabel: 'ファイルを削除',
 		invalidFilesError:
 			'選択したファイルの1つ以上が無効です。サイズ制限以下の有効なファイル形式のみをアップロードしてください。',
+		uploadFilesLabel: 'ファイルをアップロード',
 	},
 	audioPlayer: {
 		playButtonLabel: '開始',
@@ -239,6 +240,10 @@ const jaJP: Locale = {
 	},
 	tag: {
 		remove: /* istanbul ignore next */ (label: string) => `削除する ${label}`,
+	},
+	toggletip: {
+		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
+			ariaLabel ? `さらに情報を表示 ${ariaLabel}` : `さらに情報を表示`,
 	},
 };
 export default jaJP;

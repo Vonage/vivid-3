@@ -61,7 +61,12 @@ const offsetProperty = (orientation: TabsOrientation) =>
 	orientation === TabsOrientation.horizontal ? 'offsetLeft' : 'offsetTop';
 
 const isFocusableElement = (el: Element) =>
-	el.getAttribute('aria-disabled') !== 'true' && !el.hasAttribute('hidden');
+	el.getAttribute('aria-disabled') !== 'true' &&
+	!(el as Tab).disabled &&
+	!el.hasAttribute('hidden');
+
+const arrayShallowEquals = <T>(a: T[], b: T[]) =>
+	a.length === b.length && a.every((v, i) => v === b[i]);
 
 const arrayShallowEquals = <T>(a: T[], b: T[]) =>
 	a.length === b.length && a.every((v, i) => v === b[i]);

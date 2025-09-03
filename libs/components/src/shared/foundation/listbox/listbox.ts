@@ -155,7 +155,7 @@ export class Listbox extends VividElement {
 	 */
 	clickHandler(e: MouseEvent): boolean | void {
 		const captured = (e.target as HTMLElement).closest(
-			`option,[role=option]`
+			`option,[role=option],[data-vvd-component=option]`
 		) as ListboxOption;
 
 		if (captured && !captured.disabled) {

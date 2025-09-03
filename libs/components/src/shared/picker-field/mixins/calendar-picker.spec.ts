@@ -59,7 +59,10 @@ export const calendarPickerSpec = <T extends CalendarPickerElement>(
 
 	const getButtonByLabel = (label: string) =>
 		(element.shadowRoot!.querySelector(`[aria-label="${label}"]`) ??
-			element.shadowRoot!.querySelector(`[label="${label}"]`)) as Button;
+			element.shadowRoot!.querySelector(`[label="${label}"]`) ??
+			element.shadowRoot!.querySelector(
+				`[data-vvd-aria-label="${label}"]`
+			)) as Button;
 
 	const getDialogTitle = () => getTitleAction().textContent!.trim();
 

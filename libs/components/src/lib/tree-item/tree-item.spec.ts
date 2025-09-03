@@ -130,7 +130,7 @@ describe('vwc-tree-item', () => {
 			expandButton.click();
 
 			await elementUpdated(treeItem1);
-			expect(treeItem1.getAttribute('aria-expanded')).toEqual('true');
+			expect(treeItem1.expanded).toBe(true);
 		});
 
 		it('should focus out', async () => {
