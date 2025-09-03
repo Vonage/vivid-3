@@ -68,9 +68,6 @@ const isFocusableElement = (el: Element) =>
 const arrayShallowEquals = <T>(a: T[], b: T[]) =>
 	a.length === b.length && a.every((v, i) => v === b[i]);
 
-const arrayShallowEquals = <T>(a: T[], b: T[]) =>
-	a.length === b.length && a.every((v, i) => v === b[i]);
-
 /**
  * @public
  * @component tabs
