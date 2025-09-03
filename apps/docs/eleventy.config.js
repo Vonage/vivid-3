@@ -27,9 +27,9 @@ const { NodePackageImporter } = require('sass');
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..');
 const DOCS_DIR = '.';
 const INPUT_DIR = `${DOCS_DIR}/content`;
-const OUTPUT_DIR = 'dist';
+const OUTPUT_DIR = './dist';
 
-module.exports = function (eleventyConfig) {
+module.exports = async (eleventyConfig) => {
 	eleventyConfig.setLibrary('md', markdownLibrary);
 
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
@@ -49,7 +49,9 @@ module.exports = function (eleventyConfig) {
 		}
 	});
 
-	eleventyConfig.addPlugin(EleventyVitePlugin, {
+	const EleventyVitePlugin = await import('@11ty/eleventy-plugin-vite');
+
+	eleventyConfig.addPlugin(EleventyVitePlugin.default, {
 		viteOptions: {
 			plugins: [vue()],
 			build: {

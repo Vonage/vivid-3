@@ -1,21 +1,25 @@
-### Accessibility
+<vwc-note connotation="success" headline="No issues found">
+  <vwc-icon name="check-solid" connotation="success" label="Passed Accessibility Testing" slot="icon" size="0"></vwc-icon>
+  <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+</vwc-note>
 
-The banner defaults its role to `status` with a redundant aria-live attribute set to polite (to maximize compatibility when using this role).  
-This indicates that the screen reader should wait until the user is idle before presenting updates to the user.
-However, consumers can modify the above attributes (role and aria-live) to fit contextually.  
-If the information is critical, by altering the banner's role to `alert`, assistive technologies will interrupt other processes and provide users with immediate notification.
+## Implementation
 
-- The `role` attribute is set to [`status`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/status_role) by default. This can be changed.
-- The [`aria-live`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-live) attribute is set to `polite` by default. This can be changed.
-- The banner can be dismissed by hitting the `escape` key when it is in focus.
+- **Default behavior**
+  - `role="status"`
+  - `aria-live="polite"`
+  - Updates are announced once the user is idle.
+- **Changing the behavior**
+  - You can override both `role` and `aria-live` to fit the context.
+  - For critical information, use `role="alert"` so assistive technologies interrupt and announce immediately.
+- **Dismissal**
+  - Users can dismiss the banner with the **Escape key** when it is focused.
 
-```js
-<vwc-banner
-	role="status"
-	aria-live="polite"
-	text="Here's some information that you may find important!"
-></vwc-banner>
-```
+### When to Use status vs. alert
+
+- Use `status` (default) for non-critical updates, confirmations, or informational messages (e.g., “Settings saved”).
+- Use `alert` for urgent, time-sensitive, or error messages that require immediate attention (e.g., “Payment failed”).
+- Do not overuse `alert` — frequent interruptions can overwhelm users.
 
 ## Resources
 
