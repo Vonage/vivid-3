@@ -31,10 +31,12 @@ export type CheckboxConnotation = ExtractFromEnum<
  * @event {CustomEvent<undefined>} change - Emitted when the checked state changes.
  * @event {CustomEvent<undefined>} input - Emitted when the checked state changes.
  * @vueModel modelValue checked change `event.currentTarget.checked`
- * @testSelector byTestId byTestId
- * @testAction check check control
- * @testQuery checked checked
- * @testRef control shadow .control
+ * @testAction check check #control
+ * @testAction uncheck uncheck #control
+ * @testQuery checked checkedState "checked"
+ * @testQuery unchecked checkedState "unchecked"
+ * @testQuery indeterminate checkedState "indeterminate"
+ * @testRef control shadow div.control
  */
 export class Checkbox extends DelegatesAria(
 	WithFeedback(

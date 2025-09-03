@@ -50,6 +50,12 @@ export type SliderMode = typeof SliderMode[keyof typeof SliderMode];
  * @component slider
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the slider value changes
  * @vueModel modelValue value change `event.currentTarget.value`
+ * @vueModel valueAsNumber valueAsNumber change `event.currentTarget.valueAsNumber`
+ * @testSelector byLabel byLabel
+ * @testAction slideTo slideTo #track #thumb
+ * @testQuery valueAsNumber valueAsNumber
+ * @testRef track shadow .control
+ * @testRef thumb shadow .thumb-container
  */
 export class Slider extends Localized(
 	DelegatesAria(FormAssociated(VividElement))

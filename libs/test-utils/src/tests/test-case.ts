@@ -4,6 +4,9 @@ import type { VividWrapper } from '../components.generated';
 export interface TestCase {
 	name: string;
 	path: string;
-	test: <T extends DriverT>(vvd: VividWrapper<T>) => void | Promise<void>;
-	expectedState: Record<string, unknown>;
+	expectErrorMessage?: string;
+	test: <T extends DriverT>(
+		vvd: VividWrapper<T>,
+		expectState: (expectedState: Record<string, any>) => void | Promise<void>
+	) => void | Promise<void>;
 }
