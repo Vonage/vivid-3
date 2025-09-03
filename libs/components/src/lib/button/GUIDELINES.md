@@ -582,7 +582,7 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 </docs-do>
 </docs-do-dont>
 
-## Ghost buttons
+## Ghost Buttons
 
 <docs-do-dont>
 <docs-do slot="description" headline="Use ghost buttons inside a container">
@@ -634,16 +634,26 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 </docs-do>
 </docs-do-dont>
 
-## Disabled
+## Disabled Buttons
 
-<vwc-note connotation="warning" headline="Disabled buttons should be used with caution">
-	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+### Why Disabled Buttons Are Problematic
 
-Try to use [progressive disclosure](https://www.nngroup.com/articles/progressive-disclosure/) instead of disabled buttons.
+1. **Cause deception**<br />The call to action text draws users to click, but nothing happens. This causes confusion, leading users to think that the interface is broken.
+2. **Insufficient contrast**<br />Even if the button is disabled, the button label is still crucial for understanding the interface.
+3. **No feedback**<br />Without feedback, users don't know what has gone wrong or how to fix the error.
+4. **System complexity**<br />Disabled buttons are often used to prevent wasteful clicks, but this puts pressure on the design / implementation to provide robust inline validation. The reality is, inline validation systems can fail, leaving the user stuck with a disabled button and no way to complete the form.
 
-</vwc-note>
+### When Disabled Buttons Can Be Useful
 
-Ensure that the user is able to understand why the action is disabled and what they need to do to enable it.
+While disabled buttons often create more problems than they solve, there are limited scenarios where they can improve the user experience if designed carefully:
+
+1. **Preventing duplicate submissions**<br />After a critical action such as submitting a payment, booking, or form, the button can be temporarily disabled to avoid multiple clicks and duplicate transactions. This should always be paired with visible feedback (e.g., changing the label to “Processing…” and showing a spinner). We have the [`pending` feature](/components/button/#pending) for this situation.
+2. **Communicating temporary unavailability**<br/>Buttons may be disabled while content is loading or while a dependent process finishes (eg. waiting for a verification SMS). This should be short-lived, and the button state must be updated as soon as the action becomes available.
+
+### Best Practices
+
+- Always provide visible and accessible feedback when a button is disabled (e.g., helper text, inline validation, or an explanatory tooltip).
+- Prefer inline error messages and contextual feedback over disabling buttons—this often gives a clearer and more usable experience.
 
 ## Related Components
 

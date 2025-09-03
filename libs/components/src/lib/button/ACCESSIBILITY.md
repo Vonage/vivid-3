@@ -4,17 +4,15 @@
 
 Use the `aria-label` attribute to provide alternative text for _icon-only_ buttons. This text is read by screen readers and lets the user know the purpose of the button.
 
+### Disabled Buttons
+
+When you set the `disabled` attribute on the Button component, the `aria-disabled` attribute on the button element. This allows the button to receive focus so that it can be announced (as a disabled button) by a screen reader.
+
 ## Best Practices
 
-### Avoid Disabling Buttons
+### Never Put Tooltips/Toggletips on Disabled Buttons
 
-Disabled buttons don't explain why the button isn't usable, and they aren't focusable at all for people using keyboard navigation.
-
-Instead, keep the button pressable, and use validation and errors to explain what needs to be done to proceed.
-
-### Never Put Tooltips on Disabled Buttons
-
-Tooltips can't be reached on all devices or by some assitive technologies, and they should never appear on elements that aren't interactable.
+Tooltips/Toggletips can't be reached on all devices or by some assitive technologies, and they should never appear on elements that aren't interactable.
 
 ## Resources
 
