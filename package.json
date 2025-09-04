@@ -119,7 +119,7 @@
 		"minimist": "1.2.8",
 		"path-to-regexp": "8.2.0",
 		"express": {
-			"path-to-regexp": "0.1.12"
+			"path-to-regexp": "0.2.5"
 		},
 		"nconf": "0.13.0",
 		"rollup": "^4.22.4",
