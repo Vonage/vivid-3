@@ -28,7 +28,7 @@ const addFile = async (
 		dataTransfer,
 	});
 
-	await page.waitForSelector('vwc-file-picker:first-child .dz-preview');
+	await page.waitForSelector('vwc-file-picker:first-child .preview');
 };
 
 test('should show the component', async ({ page }: { page: Page }) => {

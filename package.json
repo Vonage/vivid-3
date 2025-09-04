@@ -41,7 +41,6 @@
 		"@testing-library/dom": "^8.18.1",
 		"@testing-library/user-event": "^14.6.1",
 		"@turbo/gen": "^2.5.5",
-		"@types/dropzone": "^5.7.9",
 		"@types/eslint": "^8.56.11",
 		"@types/glob": "^8.1.0",
 		"@types/jsdom": "^21.1.7",
