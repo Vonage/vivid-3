@@ -7027,6 +7027,166 @@
 			}
 		},
 		{
+			"name": "simple-color-picker",
+			"className": "SimpleColorPicker",
+			"registerFunctionName": "registerSimpleColorPicker",
+			"description": "",
+			"props": [
+				{
+					"name": "anchor",
+					"description": "ID or direct reference to the component's anchor element.",
+					"type": "string | HTMLElement",
+					"attributeName": "anchor",
+					"propertyName": "anchor"
+				},
+				{
+					"name": "disabled",
+					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
+					"type": "boolean",
+					"attributeName": "disabled",
+					"propertyName": "disabled"
+				},
+				{
+					"name": "label",
+					"description": "The label for the form element.",
+					"type": "string",
+					"attributeName": "label",
+					"propertyName": "label"
+				},
+				{
+					"name": "name",
+					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
+					"type": "string",
+					"attributeName": "name",
+					"propertyName": "name"
+				},
+				{
+					"name": "offset",
+					"description": "Default offset of the popup",
+					"type": "number",
+					"attributeName": "offset",
+					"propertyName": "offset"
+				},
+				{
+					"name": "open",
+					"description": "Indicates whether the popup is open",
+					"type": "boolean",
+					"attributeName": "open",
+					"propertyName": "open"
+				},
+				{
+					"name": "placement",
+					"description": "Placement of the popup with color swatches",
+					"type": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'",
+					"attributeName": "placement",
+					"propertyName": "placement"
+				},
+				{
+					"name": "required",
+					"description": "Require the field to be completed prior to form submission.",
+					"type": "boolean",
+					"attributeName": "required",
+					"propertyName": "required"
+				},
+				{
+					"name": "swatches",
+					"description": "List of color swatches as JSON string\nCan be either:\n- Array of strings: '[\"#ff0000\", \"#00ff00\", \"#0000ff\"]'\n- Array of objects: '[{\"label\": \"Red\", \"value\": \"#ff0000\"}, {\"value\": \"#00ff00\"}]'",
+					"type": "ColorSwatch[]",
+					"attributeName": "swatches",
+					"propertyName": "swatches"
+				},
+				{
+					"name": "swatchesPerRow",
+					"description": "Number of swatches per row for grid layout",
+					"type": "number",
+					"attributeName": "swatches-per-row",
+					"propertyName": "swatchesPerRow"
+				},
+				{
+					"name": "value",
+					"description": "The current selected color value",
+					"type": "string",
+					"attributeName": "value",
+					"propertyName": "value"
+				},
+				{
+					"name": "value",
+					"description": "The current value of the element.",
+					"type": "string",
+					"attributeName": "current-value",
+					"propertyName": "value"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "change",
+					"description": "Fires when the value changes",
+					"type": "CustomEvent<undefined>"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{ "name": "swatchesChanged", "args": [], "returnType": "unknown" }
+			],
+			"slots": [
+				{
+					"name": "anchor",
+					"description": "Slot for attaching the toggle button"
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
+				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
+		},
+		{
 			"name": "slider",
 			"className": "Slider",
 			"registerFunctionName": "registerSlider",
