@@ -39,13 +39,8 @@ const getClasses = ({
 	classNames(
 		'control',
 		[`connotation-${connotation}`, Boolean(connotation)],
-		[
-			getAppearanceClassName(
-				appearance as ButtonAppearance,
-				disabled || pending
-			),
-			Boolean(appearance),
-		],
+		[`appearance-${appearance}`, Boolean(appearance)],
+		['disabled', disabled || pending],
 		[`shape-${shape}`, Boolean(shape)],
 		[`size-${size}`, Boolean(size)],
 		[
@@ -132,16 +127,6 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 		${ref('control')}
 		@click="${(x, c) => {
 			if (x.disabled || x.pending) {
-				c.event.preventDefault();
-				c.event.stopImmediatePropagation();
-			}
-		}}"
-		@keydown="${(x, c) => {
-			const evt = c.event as KeyboardEvent;
-			if (
-				(x.disabled || x.pending) &&
-				(evt.key === 'Enter' || evt.key === ' ')
-			) {
 				c.event.preventDefault();
 				c.event.stopImmediatePropagation();
 			}

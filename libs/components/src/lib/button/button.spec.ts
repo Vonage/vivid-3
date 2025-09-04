@@ -405,41 +405,6 @@ describe('vwc-button', () => {
 
 			expect(listener).not.toHaveBeenCalled();
 		});
-
-		it('should not emit keyboard activation when disabled (Enter)', async () => {
-			const listener = vi.fn();
-			element.addEventListener('click', listener);
-
-			element.disabled = true;
-			await elementUpdated(element);
-
-			const control = getControlElement(element);
-			const event = new KeyboardEvent('keydown', {
-				key: 'Enter',
-				bubbles: true,
-			});
-			control?.dispatchEvent(event);
-
-			expect(listener).not.toHaveBeenCalled();
-		});
-
-		it('should not emit keyboard activation when disabled (Space)', async () => {
-			const listener = vi.fn();
-			element.addEventListener('click', listener);
-
-			element.disabled = true;
-			await elementUpdated(element);
-
-			const control = getControlElement(element);
-			const event = new KeyboardEvent('keydown', {
-				key: ' ',
-				code: 'Space',
-				bubbles: true,
-			});
-			control?.dispatchEvent(event);
-
-			expect(listener).not.toHaveBeenCalled();
-		});
 	});
 
 	describe('title', function () {
