@@ -27,8 +27,6 @@ const addFile = async (
 	await page.dispatchEvent('vwc-file-picker:first-child .control', 'drop', {
 		dataTransfer,
 	});
-
-	await page.waitForSelector('vwc-file-picker:first-child .preview');
 };
 
 test('should show the component', async ({ page }: { page: Page }) => {
@@ -80,9 +78,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await atLeastOneImageWasRequested;
 	await requests.noneInFlight((request) => request.resourceType() === 'image');
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/file-picker.png'
-	);
+	expect(
+		await testWrapper?.screenshot({
+			animations: 'disabled',
+		})
+	).toMatchSnapshot('snapshots/file-picker.png');
 });
 
 test.describe('form association', async () => {

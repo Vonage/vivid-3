@@ -18,13 +18,13 @@ async function filesFromDataTransferItems(
 	const result: Array<Promise<File[]>> = [];
 
 	for (const item of items) {
-		const entry = item.webkitGetAsEntry();
-		if (entry) {
-			result.push(filesFromEntry(entry, false));
+		const file = item.getAsFile(); // For top level files, prefer getAsFile which is more reliable
+		if (file) {
+			result.push(Promise.resolve([file]));
 		} else {
-			const file = item.getAsFile();
-			if (file) {
-				result.push(Promise.resolve([file]));
+			const entry = item.webkitGetAsEntry();
+			if (entry) {
+				result.push(filesFromEntry(entry, false));
 			}
 		}
 	}

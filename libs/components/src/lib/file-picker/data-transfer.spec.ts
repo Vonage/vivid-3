@@ -115,7 +115,7 @@ describe('filesFromDataTransfer', () => {
 			expect(result.map((f) => f.name)).toEqual(['file1.txt']);
 		});
 
-		it('should fallback to .getAsFile when webkitGetAsEntry returns null for files', async () => {
+		it('should use .getAsFile when webkitGetAsEntry returns null for files', async () => {
 			const result = await filesFromDataTransfer(
 				simulateWebkitGetAsEntryReturnsNull(
 					mockTransfer([
