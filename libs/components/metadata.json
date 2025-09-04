@@ -7619,8 +7619,15 @@
 				}
 			],
 			"testUtils": {
-				"selectors": [{ "name": "byLabel", "args": ["byLabel"] }],
-				"actions": [{ "name": "hover", "args": ["hover"] }],
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
 				"queries": [
 					{ "name": "visibleError", "args": ["visibleError"] },
 					{ "name": "value", "args": ["value"] }
