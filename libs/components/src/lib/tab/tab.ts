@@ -27,6 +27,11 @@ export type TabShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Sharp>;
  * @public
  * @component tab
  * @slot icon - The preferred way to add an icon to the component.
+ * @testSelector byLabel byLabel
+ * @testAction select click #base
+ * @testQuery active active true
+ * @testQuery inactive active false
+ * @testRef base shadow .base
  */
 export class Tab extends HostSemantics(
 	AffixIconWithTrailing(Localized(VividElement))

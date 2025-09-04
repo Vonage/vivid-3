@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/searchable-select';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerSearchableSelect } from '@vonage/vivid';
 
 registerSearchableSelect('your-prefix');

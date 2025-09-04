@@ -26,6 +26,7 @@ export function isListboxOption(el: Element): el is ListboxOption {
  * @public
  * @component option
  * @slot icon - The preferred way to add an icon to the component.
+ * @testAction click click #locator
  */
 export class ListboxOption extends HostSemantics(
 	AffixIconWithTrailing(VividElement)

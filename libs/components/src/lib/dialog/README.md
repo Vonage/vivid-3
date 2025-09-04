@@ -10,12 +10,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/dialog';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerDialog } from '@vonage/vivid';
 
 registerDialog('your-prefix');

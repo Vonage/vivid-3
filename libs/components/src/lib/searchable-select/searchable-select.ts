@@ -59,8 +59,10 @@ const isFormAssociatedTryingToSetFormValue = (
  * @event {CustomEvent<undefined>} change - Fired when the selected options change
  * @vueModel modelValue value input `event.currentTarget.value`
  * @vueModel values values input `event.currentTarget.values`
- * @testAction toggleOptionsByValue toggleOptionsByValue
+ * @testAction selectOptionByValue selectOptionByValue
+ * @testAction selectOptionByText selectOptionByText
  * @testQuery values values
+ * @testQuery selectedOptions selectedOptionsText
  */
 export class SearchableSelect extends WithFeedback(
 	WithErrorText(

@@ -49,6 +49,10 @@ export type RadioOptions = VividComponentDefinition & {
  * @public
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value changes
  * @component radio
+ * @testAction check click #control
+ * @testQuery checked checked true
+ * @testQuery unchecked checked false
+ * @testRef control shadow .control
  */
 export class Radio extends WithErrorText(
 	FormElement(CheckableFormAssociated(VividElement))

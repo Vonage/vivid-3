@@ -1,7 +1,6 @@
 import type { Driver, DriverT } from './drivers/driver';
 
 export type Context<D extends DriverT> = {
-	prefix: string;
 	rootLocator: D['rootLocator'];
 	driver: Driver<D>;
 };
@@ -10,7 +9,10 @@ export type ComponentInfo = {
 	name: string;
 };
 
-export abstract class BaseWrapper<D extends DriverT> {
+export abstract class BaseWrapper<
+	D extends DriverT,
+	E extends HTMLElement = HTMLElement
+> {
 	constructor(
 		protected readonly ctx: Context<D>,
 		protected readonly locator: D['locator']
@@ -20,6 +22,24 @@ export abstract class BaseWrapper<D extends DriverT> {
 
 	unwrap() {
 		return this.locator;
+	}
+
+	protected assert<A = unknown, Q = unknown>(
+		message: string,
+		query: (el: E, arg: A) => Q,
+		expectedValue: Q,
+		arg?: A
+	) {
+		return this.ctx.driver.expectEq(
+			{
+				type: 'eval',
+				el: this.locator,
+				fn: query,
+				arg,
+			},
+			expectedValue,
+			`Failed to assert condition: "${message}"`
+		);
 	}
 }
 
@@ -33,16 +53,17 @@ export abstract class BaseComponent<
 
 	abstract wrap(locator: D['locator']): W;
 
-	all() {
-		return new ComponentCollection(
-			this.ctx,
-			this,
-			this.ctx.driver.querySelectorAll(
-				this.ctx.rootLocator,
-				`${this.ctx.prefix}-${this.componentInfo.name}`
+	all = this.ctx.driver.wrapSelector(
+		() =>
+			new ComponentCollection(
+				this.ctx,
+				this,
+				this.ctx.driver.querySelectorAll(
+					this.ctx.rootLocator,
+					`[data-vvd-component="${this.componentInfo.name}"]`
+				)
 			)
-		);
-	}
+	);
 }
 
 export type ComponentCollectionLocator<
@@ -59,9 +80,9 @@ export class ComponentCollection<D extends DriverT, W extends BaseWrapper<D>> {
 
 	type = 'collection' as const;
 
-	nth(n: number) {
-		return this.component.wrap(this.ctx.driver.nth(this.locator, n));
-	}
+	nth = this.ctx.driver.wrapSelector((n: number) =>
+		this.component.wrap(this.ctx.driver.nth(this.locator, n))
+	);
 }
 
 export class ComponentCollectionExpectations<D extends DriverT> {
@@ -70,13 +91,14 @@ export class ComponentCollectionExpectations<D extends DriverT> {
 		private readonly locator: ComponentCollectionLocator<D, any>
 	) {}
 
-	toHaveCount(n: number) {
-		return this.ctx.driver.expectEq(
+	toHaveCount = this.ctx.driver.wrapExpect((n: number) =>
+		this.ctx.driver.expectEq(
 			{
 				el: (this.locator as any).locator, // FIXME: retrieve the locator correctly
 				type: 'count',
 			},
-			n
-		);
-	}
+			n,
+			`toHaveCount(${n})`
+		)
+	);
 }

@@ -63,7 +63,7 @@ export const TabsTemplate = html<Tabs>`
 				<div class="scroll-shadow">
 					<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
 						<div class="tablist" role="tablist" ${ref('tablist')}>
-							<slot name="tab" ${slotted('tabs')}></slot>
+							<slot name="tab" ${ref('_tabsSlot')} ${slotted('tabs')}></slot>
 							<div
 								${ref('activeIndicatorRef')}
 								class="active-indicator"
@@ -81,7 +81,11 @@ export const TabsTemplate = html<Tabs>`
 				></slot>
 			</div>
 			<div class="tabpanel" part="tab-panel">
-				<slot name="tabpanel" ${slotted('tabpanels')}></slot>
+				<slot
+					name="tabpanel"
+					${ref('_tabPanelsSlot')}
+					${slotted('tabpanels')}
+				></slot>
 			</div>
 		</div>
 	</template>

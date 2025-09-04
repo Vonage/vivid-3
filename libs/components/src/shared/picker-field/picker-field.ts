@@ -21,6 +21,10 @@ import { VividElement } from '../foundation/vivid-element/vivid-element';
 /**
  * Base class for picker fields. Picker fields consist of a text field with a button that opens a popup that allows
  * picking values.
+ * @testAction clear clearPicker
+ * @testRef control shadowTextField [data-vvd-component=text-field].control
+ * @testRef pickerButton shadowButton #picker-button
+ * @testRef clearButton shadowButton #clear-button
  */
 export abstract class PickerField extends WithFeedback(
 	WithErrorText(

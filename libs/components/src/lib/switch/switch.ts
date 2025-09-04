@@ -17,6 +17,12 @@ export type SwitchConnotation =
  * @component switch
  * @event {CustomEvent<undefined>} change - Emits a custom change event when the checked state changes
  * @vueModel modelValue checked change `event.currentTarget.checked`
+ * @testSelector byLabel byLabel
+ * @testAction check click #switch
+ * @testAction uncheck click #switch
+ * @testQuery checked checked true
+ * @testQuery unchecked checked false
+ * @testRef switch shadow .switch
  */
 export class Switch extends DelegatesAria(
 	CheckableFormAssociated(VividElement)

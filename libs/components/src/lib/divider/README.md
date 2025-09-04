@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/divider';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerDivider } from '@vonage/vivid';
 
 registerDivider('your-prefix');

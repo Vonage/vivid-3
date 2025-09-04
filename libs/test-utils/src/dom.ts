@@ -3,13 +3,8 @@ import type { Context } from './base';
 import { VividWrapper } from './components.generated';
 import { createDOMDriver, type ExpectFn } from './drivers/dom';
 
-export const vividDOM = (
-	expect: ExpectFn,
-	root: HTMLElement,
-	prefix = 'vwc'
-) => {
+export const vividDOM = (expect: ExpectFn, root: HTMLElement) => {
 	const ctx: Context<DOMDriverT> = {
-		prefix,
 		rootLocator: root,
 		driver: createDOMDriver(expect),
 	};

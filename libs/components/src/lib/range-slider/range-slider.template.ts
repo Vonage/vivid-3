@@ -40,6 +40,7 @@ export const RangeSliderTemplate = (context: VividElementDefinitionContext) => {
 					)}
 				</div>
 				<div
+					id="start-thumb"
 					${ref('_startThumbEl')}
 					class="${getThumbClassesFor('start')}"
 					style="${(x) => x._startThumbCss}"
@@ -74,6 +75,7 @@ export const RangeSliderTemplate = (context: VividElementDefinitionContext) => {
 				</${popupTag}>`
 				)}
 				<div
+					id="end-thumb"
 					${ref('_endThumbEl')}
 					class="${getThumbClassesFor('end')}"
 					style="${(x) => x._endThumbCss}"

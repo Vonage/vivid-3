@@ -28,6 +28,7 @@ export const ValidTimeFilter: ValueConverter = {
  * @event {CustomEvent<undefined>} input - Emitted when the time is changed by the user.
  * @event {CustomEvent<undefined>} change - Emitted when the time is changed by the user.
  * @vueModel modelValue value input `event.currentTarget.value`
+ * @testAction selectTime selectTime
  */
 export class TimePicker extends TimeSelectionPicker(
 	SingleValuePicker(PickerField)

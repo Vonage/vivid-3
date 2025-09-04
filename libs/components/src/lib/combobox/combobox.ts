@@ -43,6 +43,11 @@ export type ComboboxSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @slot helper-text - Describes how to use the combobox. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value updates
  * @vueModel modelValue value change `event.currentTarget.value`
+ * @testAction fill comboboxFill
+ * @testAction clear comboboxClear
+ * @testAction selectOptionByText selectOptionByText
+ * @testAction selectOptionByValue selectOptionByValue
+ * @testRef control shadow input.control
  */
 export class Combobox extends WithFeedback(
 	WithErrorText(
@@ -211,7 +216,7 @@ export class Combobox extends WithFeedback(
 			this.focusAndScrollOptionIntoView();
 
 			// focus is directed to the element when `open` is changed programmatically
-			DOM.queueUpdate(() => this.focus());
+			DOM.queueUpdate(() => this.control.focus());
 
 			return;
 		}

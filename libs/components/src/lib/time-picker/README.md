@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/time-picker';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerTimePicker } from '@vonage/vivid';
 
 registerTimePicker('your-prefix');

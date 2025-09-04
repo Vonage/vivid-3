@@ -30,6 +30,14 @@ const totalConverter: ValueConverter = {
  * @public
  * @component pagination
  * @event {CustomEvent<{selectedIndex: number, total: number, oldIndex: number}>} pagination-change - Fires when the page changes.
+ * @vueModel modelValue selectedIndex pagination-change `event.currentTarget.selectedIndex`
+ * @testAction clickNext click #nextButton
+ * @testAction clickPrev click #prevButton
+ * @testAction clickPageIndex clickPaginationPage
+ * @testQuery total total
+ * @testQuery selectedPage paginationSelectedPage
+ * @testRef nextButton shadow .next-button
+ * @testRef prevButton shadow .prev-button
  */
 export class Pagination extends Localized(VividElement) {
 	/**

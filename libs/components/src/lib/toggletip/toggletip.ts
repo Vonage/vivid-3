@@ -10,6 +10,9 @@ import { Localized } from '../../shared/patterns';
  * @slot - The content to display in the toggletip.
  * @slot anchor - Used to set the anchor element for the toggletip.
  * @slot action-items - The content to display in the toggletip action items.
+ * @testSelector byHeadline byHeadline
+ * @testQuery open open true
+ * @testQuery closed open false
  */
 export class Toggletip extends Localized(Anchored(VividElement)) {
 	#originalAriaLabel: string | null = null;

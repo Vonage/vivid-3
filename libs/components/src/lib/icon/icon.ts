@@ -61,6 +61,7 @@ export type IconConnotation = ExtractFromEnum<
  * @public
  * @component icon
  * @slot - Default slot.
+ * @testQuery name name
  */
 export class Icon extends VividElement {
 	/**

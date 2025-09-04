@@ -33,6 +33,14 @@ export type NavDisclosureConnotation = ExtractFromEnum<
  * @slot meta - A slot to add additional content to the nav disclosure.
  * @slot icon - The preferred way to add an icon to the component.
  * @event {CustomEvent<undefined>} toggle - Event emitted when the nav disclosure is toggled.
+ * @testSelector byLabel byLabel
+ * @testAction expand toggleNavDisclosure true
+ * @testAction collapse toggleNavDisclosure false
+ * @testQuery current navCurrent true
+ * @testQuery !current navCurrent false
+ * @testQuery open open true
+ * @testQuery closed open false
+ * @testRef summary shadow summary
  */
 export class NavDisclosure extends AffixIcon(DelegatesAria(VividElement)) {
 	details!: HTMLDetailsElement;

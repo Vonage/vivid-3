@@ -33,6 +33,11 @@ export type NavItemAppearance = ExtractFromEnum<
  * @component nav-item
  * @slot meta - A slot to add additional content to the nav item.
  * @slot icon - The preferred way to add an icon to the component.
+ * @testSelector byLabel byLabel
+ * @testAction click click #control
+ * @testQuery current navCurrent true
+ * @testQuery !current navCurrent false
+ * @testRef control shadow .control
  */
 export class NavItem extends AffixIcon(Linkable(VividElement)) {
 	/**

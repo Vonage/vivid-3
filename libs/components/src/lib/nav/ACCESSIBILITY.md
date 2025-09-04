@@ -1,15 +1,24 @@
+<vwc-note connotation="success" headline="No issues found">
+  <vwc-icon name="check-solid" connotation="success" label="Passed Accessibility Testing" slot="icon" size="0"></vwc-icon>
+  <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
+</vwc-note>
+
 ## Implementation
 
-- **Icons**: ideally the icon should be accompanied by a label or text, but if this is not the case, be sure to supply the **Nav Item** or the **Nav Disclosure** component with an aria-label attribute so that screen reader user will know the purpose of the items.
+### Icons in Navigation
+
+- Icons should be accompanied by visible text whenever possible.
+- If an icon conveys meaning that is not provided by the accompanying text, provide it with a description using the `label` attribute.
+- If no accompanying text is present, provide an `aria-label` on the Nav Item or Nav Disclosure so screen reader users can understand the purpose of the item.
 
 ## Keyboard Interaction
 
 When the nav has focus:
 
-`Enter`: activates the nav-disclosure and toggles the visibility of the content.  
-`Space`: activates the nav-disclosure and toggles the visibility of the content.  
-`Tab`: moves focus to the next element in the tab order.  
-`Shift` + `Tab`: moves focus to the previous element in the tab order.
+- `Enter`: activates the nav-disclosure and toggles the visibility of the content.
+- `Space`: activates the nav-disclosure and toggles the visibility of the content.
+- `Tab`: moves focus to the next element in the tab order.
+- `Shift` + `Tab`: moves focus to the previous element in the tab order.
 
 ## Resources
 
