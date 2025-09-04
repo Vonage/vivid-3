@@ -4,9 +4,8 @@ import type { CypressDriverT } from './drivers/driver';
 import { VividWrapper } from './components.generated';
 import { createCypressDriver } from './drivers/cypress';
 
-export const vividCypress = (cy: Cypress.cy, prefix = 'vwc') => {
+export const vividCypress = (cy: Cypress.cy) => {
 	const ctx: Context<CypressDriverT> = {
-		prefix,
 		rootLocator: cy,
 		driver: createCypressDriver(cy),
 	};

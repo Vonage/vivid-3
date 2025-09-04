@@ -79,6 +79,14 @@ const validNumber = /^-?((\d*\.\d+)|(\d+))$/;
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
  * @vueModel modelValue value input `event.currentTarget.value`
  * @vueModel valueAsNumber valueAsNumber input `event.currentTarget.valueAsNumber`
+ * @testAction fill fill #control
+ * @testAction clear clear #control
+ * @testAction clickIncrement clickButton #incrementButton
+ * @testAction clickDecrement clickButton #decrementButton
+ * @testQuery valueAsNumber valueAsNumber
+ * @testRef control shadow input.control
+ * @testRef incrementButton shadowButton #add
+ * @testRef decrementButton shadowButton #subtract
  */
 export class NumberField extends WithFeedback(
 	WithErrorText(

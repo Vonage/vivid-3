@@ -1,10 +1,9 @@
 [
 	{
 		"title": "Accordion",
-		"description": "Accordion is an interactive element that works alongside Accordion Item to organise and display content in a collapsible and expandable way.",
+		"description": "Accordion and Accordion Item work together to provide a vertically stacked list of headers that reveal or hide associated sections of content.",
 		"variations": "./libs/components/src/lib/accordion/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/accordion/GUIDELINES.md",
-		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/accordion/README.md",
 		"accessibility": "./libs/components/src/lib/accordion/ACCESSIBILITY.md",
 		"useCases": "./libs/components/src/lib/accordion/USE-CASES.md"
@@ -118,7 +117,6 @@
 		"variations": "./libs/components/src/lib/layout/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/layout/GUIDELINES.md",
 		"hideGuidelines": "true",
-		"hideAccessibility": "true",
 		"code": "./libs/components/src/lib/layout/README.md",
 		"accessibility": "./libs/components/src/lib/layout/ACCESSIBILITY.md"
 	},
@@ -258,7 +256,6 @@
 		"variations": "./libs/components/src/lib/header/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/header/GUIDELINES.md",
 		"hideGuidelines": "true",
-		"hideAccessibility": "true",
 		"code": "./libs/components/src/lib/header/README.md",
 		"useCases": "./libs/components/src/lib/header/USE-CASES.md",
 		"accessibility": "./libs/components/src/lib/header/ACCESSIBILITY.md"
@@ -331,7 +328,6 @@
 		"variations": "./libs/components/src/lib/option/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/option/GUIDELINES.md",
 		"hideGuidelines": "true",
-		"hideAccessibility": "true",
 		"code": "./libs/components/src/lib/option/README.md",
 		"accessibility": "./libs/components/src/lib/option/ACCESSIBILITY.md"
 	},
@@ -481,7 +477,6 @@
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/empty-state/README.md",
 		"accessibility": "./libs/components/src/lib/empty-state/ACCESSIBILITY.md",
-		"hideAccessibility": "true",
 		"useCases": "./libs/components/src/lib/empty-state/USE-CASES.md"
 	},
 	{

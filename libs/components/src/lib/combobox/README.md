@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/combobox';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerCombobox } from '@vonage/vivid';
 
 registerCombobox('your-prefix');

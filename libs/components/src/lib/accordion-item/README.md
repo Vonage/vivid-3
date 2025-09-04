@@ -1,9 +1,5 @@
 # Accordion Item
 
-```js
-<script type="module">import '@vonage/vivid/accordion-item';</script>
-```
-
 ## Members
 
 ### Heading

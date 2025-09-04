@@ -5,13 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/accordion';
-import '@vonage/vivid/accordion-item';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerAccordion } from '@vonage/vivid';
 import { registerAccordionItem } from '@vonage/vivid';
 

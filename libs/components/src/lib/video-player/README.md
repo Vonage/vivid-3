@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/video-player';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerVideoPlayer } from '@vonage/vivid';
 
 registerVideoPlayer('your-prefix');

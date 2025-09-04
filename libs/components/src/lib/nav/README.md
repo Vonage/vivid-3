@@ -5,14 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/nav';
-import '@vonage/vivid/nav-item';
-import '@vonage/vivid/nav-disclosure';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import {
 	registerNav,
 	registerNavItem,

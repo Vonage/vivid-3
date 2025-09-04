@@ -1,9 +1,5 @@
 ## Usage
 
-```js
-<script type="module">import '@vonage/vivid/rich-text-editor';</script>
-```
-
 ```html preview
 <vwc-rich-text-editor></vwc-rich-text-editor>
 ```

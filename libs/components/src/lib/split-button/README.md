@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/split-button';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerSplitButton } from '@vonage/vivid';
 
 registerSplitButton('your-prefix');

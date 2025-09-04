@@ -5,14 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/data-grid';
-import '@vonage/vivid/data-grid-row';
-import '@vonage/vivid/data-grid-cell';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerDataGrid } from '@vonage/vivid';
 
 registerDataGrid('your-prefix');

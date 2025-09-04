@@ -5,12 +5,6 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/tooltip';
-```
-
-or, if you need to use a unique prefix:
-
-```js
 import { registerTooltip } from '@vonage/vivid';
 
 registerTooltip('your-prefix');

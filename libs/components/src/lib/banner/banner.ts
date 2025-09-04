@@ -28,6 +28,9 @@ const getConnotationIcon = (
  * @component banner
  * @slot action-items - Add action items to banner using this slot.
  * @slot icon - The preferred way to add an icon to the component.
+ * @testSelector byText byText
+ * @testAction dismiss clickButton #dismissButton
+ * @testRef dismissButton shadowButton .dismiss-button
  */
 export class Banner extends AffixIcon(Localized(DelegatesAria(VividElement))) {
 	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel:

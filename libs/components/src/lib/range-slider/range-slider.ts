@@ -46,6 +46,15 @@ export type ThumbId = 'start' | 'end';
  * @event {CustomEvent<undefined>} change - Event emitted when either the start or end value changes.
  * @vueModel start start input:start `event.currentTarget.start`
  * @vueModel end end input:end `event.currentTarget.end`
+ * @vueModel startAsNumber startAsNumber input:start `event.currentTarget.startAsNumber`
+ * @vueModel endAsNumber endAsNumber input:end `event.currentTarget.endAsNumber`
+ * @testSelector byLabel byLabel
+ * @testAction slideStartTo slideTo #track #startThumb
+ * @testAction slideEndTo slideTo #track #endThumb
+ * @testQuery range rangeAsNumber
+ * @testRef track shadow .control
+ * @testRef startThumb shadow #start-thumb
+ * @testRef endThumb shadow #end-thumb
  */
 export class RangeSlider extends Localized(
 	FormElement(FormAssociated(VividElement))
