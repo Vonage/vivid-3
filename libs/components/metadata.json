@@ -4080,14 +4080,14 @@
 				},
 				{
 					"name": "maxFileSize",
-					"description": "The max file size that can be selected.",
+					"description": "The maximum file size (in megabytes) for each file.",
 					"type": "number",
 					"attributeName": "max-file-size",
 					"propertyName": "maxFileSize"
 				},
 				{
 					"name": "maxFiles",
-					"description": "The max files that can be selected.",
+					"description": "The max number of files that can be selected. Additional files will be rejected.",
 					"type": "number",
 					"attributeName": "max-files",
 					"propertyName": "maxFiles"
@@ -4115,7 +4115,7 @@
 				},
 				{
 					"name": "singleFile",
-					"description": "Single file state.",
+					"description": "Whether to allow only a single file. Subsequent added file will replace the current file.",
 					"type": "boolean",
 					"attributeName": "single-file",
 					"propertyName": "singleFile"
@@ -4143,7 +4143,7 @@
 				},
 				{
 					"name": "change",
-					"description": "Emitted when a file is added or removed.",
+					"description": "Emitted when files are added or removed.",
 					"type": "CustomEvent<undefined>"
 				},
 				{
@@ -4175,67 +4175,10 @@
 			"vueModels": [],
 			"methods": [
 				{
-					"name": "acceptChanged",
-					"args": [
-						{ "name": "_oldValue", "type": "string" },
-						{ "name": "newValue", "type": "string" }
-					],
-					"returnType": "void"
-				},
-				{
 					"name": "checkValidity",
 					"description": "Return the current validity of the element.",
 					"args": [],
 					"returnType": "boolean"
-				},
-				{
-					"name": "fileTooBigErrorChanged",
-					"args": [
-						{ "name": "_oldValue", "type": "string" },
-						{ "name": "newValue", "type": "string" }
-					],
-					"returnType": "void"
-				},
-				{ "name": "formResetCallback", "args": [], "returnType": "void" },
-				{
-					"name": "invalidFileTypeErrorChanged",
-					"args": [
-						{ "name": "_oldValue", "type": "string" },
-						{ "name": "newValue", "type": "string" }
-					],
-					"returnType": "void"
-				},
-				{
-					"name": "maxFileSizeChanged",
-					"args": [
-						{ "name": "_oldValue", "type": "number" },
-						{ "name": "newValue", "type": "number" }
-					],
-					"returnType": "void"
-				},
-				{
-					"name": "maxFilesChanged",
-					"args": [
-						{ "name": "_oldValue", "type": "number" },
-						{ "name": "newValue", "type": "number" }
-					],
-					"returnType": "void"
-				},
-				{
-					"name": "maxFilesExceededErrorChanged",
-					"args": [
-						{ "name": "_oldValue", "type": "string" },
-						{ "name": "newValue", "type": "string" }
-					],
-					"returnType": "void"
-				},
-				{
-					"name": "nameChanged",
-					"args": [
-						{ "name": "previous", "type": "string" },
-						{ "name": "next", "type": "string" }
-					],
-					"returnType": "unknown"
 				},
 				{
 					"name": "removeAllFiles",
@@ -4248,13 +4191,6 @@
 					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
 					"args": [],
 					"returnType": "boolean"
-				},
-				{ "name": "singleFileChanged", "args": [], "returnType": "unknown" },
-				{
-					"name": "validate",
-					"description": "{@inheritDoc (FormAssociated:interface).validate}",
-					"args": [],
-					"returnType": "void"
 				}
 			],
 			"slots": [
