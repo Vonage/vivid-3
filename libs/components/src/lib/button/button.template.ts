@@ -9,16 +9,7 @@ import {
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { delegateAria } from '../../shared/aria/delegates-aria';
-import type { Button, ButtonAppearance, ButtonSize } from './button';
-
-const getAppearanceClassName = (
-	appearance: ButtonAppearance,
-	disabled: boolean
-) => {
-	let className = `appearance-${appearance}`;
-	disabled && (className += ' disabled');
-	return className;
-};
+import type { Button, ButtonSize } from './button';
 
 const getClasses = ({
 	connotation,
