@@ -321,6 +321,25 @@ describe('vwc-simple-color-picker', () => {
 			expect(icon).toBeTruthy();
 			expect(icon?.getAttribute('name')).toBe('check-solid');
 		});
+
+		it('should reset value when clicking already selected swatch', async () => {
+			const changePromise = new Promise((resolve) =>
+				element.addEventListener('change', () => resolve(true))
+			);
+
+			const firstSwatch = getSwatch(0);
+			firstSwatch?.click();
+			expect(element.value).toBe('#ff0000');
+
+			element.open = true;
+			await elementUpdated(element);
+
+			firstSwatch?.click();
+
+			expect(element.value).toBe('');
+			expect(element.open).toBe(false);
+			expect(await changePromise).toBe(true);
+		});
 	});
 
 	describe('keyboard navigation', () => {

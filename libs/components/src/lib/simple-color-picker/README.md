@@ -66,6 +66,43 @@ Use the `open` attribute to indicate whether the Simple Color Picker's popup sho
 </vwc-simple-color-picker>
 ```
 
+## Anchor
+
+<vwc-note connotation="information" headline="Prefer using the anchot slot">
+	<vwc-icon slot="icon" name="info-solid" label="Note:"></vwc-icon>
+
+It is recommended use the [`anchor` slot](/code#anchor-slot) to set the anchor.
+
+</vwc-note>
+
+The `anchor` attribute should be set to the `id` value of the anchor element or pass the anchor element itself.
+
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+**Pay attention to the source order** the components to ensure they can be operated logically using only a keyboard.
+
+</vwc-note>
+
+```html preview 130px
+<vwc-simple-color-picker
+	anchor="button"
+	swatches="['#E61D1D', '#FA9F00', '#1C8731', '#0276D5', '#000000', '#CCCCCC']"
+	swatches-per-row="6"
+>
+</vwc-simple-color-picker>
+
+<vwc-button
+	id="button"
+	label="Toggle Color Picker"
+	size="normal"
+	shape="rounded"
+	appearance="filled"
+>
+	<vwc-icon slot="icon" name="palette-solid"></vwc-icon>
+</vwc-button>
+```
+
 ## Offset
 
 Use the `offset` attribute to add an extra gap (in `px`) between the Simple Color Picker's popup and the anchor element.
@@ -125,7 +162,7 @@ Simple Color Picker needs to be anchored to an element. Place the anchor element
 | **offset**           | `number`                                                                                                                                     | Sets the offset between the Color Picker's popup and the anchor element                               |
 | **open**             | `boolean`                                                                                                                                    | Sets the open state of the Color Picker's popup                                                       |
 | **placement**        | `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` | Preferred placement of the Color Picker's popup in relation to the anchor element                     |
-| **swatches**         | `string[]` or `{label?: string; value: string}[]`                                                                                            | Sets a color palette from which users can select colors                                               |
+| **swatches**         | `string[]` or `{label?: string; value: string;}[]`                                                                                           | Sets a color palette from which users can select colors                                               |
 | **swatches-per-row** | `number`                                                                                                                                     | Sets the number of swatches to be displayed per row in the color palette grid                         |
 | **value**            | `string`                                                                                                                                     | The value of the element. When specified in the HTML, corresponds to the initial value                |
 

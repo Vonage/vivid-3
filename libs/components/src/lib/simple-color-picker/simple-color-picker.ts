@@ -44,7 +44,8 @@ export class SimpleColorPicker extends Localized(
 	/**
 	 * @internal
 	 */
-	override valueChanged() {
+	override valueChanged(previous: string, next: string) {
+		super.valueChanged(previous, next);
 		this.$emit('change');
 	}
 
@@ -72,6 +73,7 @@ export class SimpleColorPicker extends Localized(
 			}
 		}
 
+		// When opening with keyboard navigation, move focus to the selected (if exists) or first swatch
 		if (this.open && this._openedViaKeyboard) {
 			requestAnimationFrame(() => {
 				const selectedIndex = this.swatches.findIndex(
@@ -278,7 +280,11 @@ export class SimpleColorPicker extends Localized(
 	 * @internal
 	 */
 	_handleSwatchSelection = (swatch: ColorSwatch) => {
-		this.value = swatch.value;
+		if (this.value === swatch.value) {
+			this.value = '';
+		} else {
+			this.value = swatch.value;
+		}
 		this.open = false;
 	};
 

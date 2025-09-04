@@ -7,9 +7,7 @@
 :host {
 	@include anchored.anchored;
 }
-.base{
-	position: relative;
-}
+
 .palette {
 	display: grid;
 	padding: var(#{variables.$color-palette-spacing}, 16px);
@@ -43,9 +41,9 @@
 
 ::part(popup-base) {
 	block-size: max-content;
-  inline-size: max-content;
+	inline-size: max-content;
 	max-block-size: 100vh;
-  max-inline-size: 100vw;
-  min-block-size: var(#{variables.$color-swatch-size}, 24px);
-  min-inline-size: var(#{variables.$color-swatch-size}, 24px);
+	max-inline-size: 100vw;
+	min-block-size: var(#{variables.$color-swatch-size}, 24px);
+	min-inline-size: var(#{variables.$color-swatch-size}, 24px);
 }
