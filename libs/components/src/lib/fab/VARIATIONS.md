@@ -82,8 +82,15 @@ The `size` attribute controls the size of the Fab.
 
 The `disabled` attribute disables the Fab and indicates that the action is not available.
 
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	
+Disabled buttons should be used with caution. Read our [guidelines for when to disabled buttons](/components/button/guidelines/#disabled).
+
+</vwc-note>
+
 ```html preview
 <vwc-fab disabled>
-	<vwc-icon slot="icon" name="store-line"></vwc-icon>
+	<vwc-icon slot="icon" name="store-line" label="Home"></vwc-icon>
 </vwc-fab>
 ```
