@@ -32,16 +32,6 @@ export class SimpleColorPicker extends Localized(
 	_popupId = uniqueId('color-picker-');
 
 	/**
-	 * The current selected color value
-	 * @public
-	 * @remarks
-	 * HTML Attribute: value
-	 */
-	@attr({ attribute: 'value' })
-	// eslint-disable-next-line @repo/repo/no-attribute-default-value
-	override value = '';
-
-	/**
 	 * @internal
 	 */
 	override valueChanged(previous: string, next: string) {

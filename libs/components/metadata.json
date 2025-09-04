@@ -7489,6 +7489,13 @@
 					"propertyName": "disabled"
 				},
 				{
+					"name": "initialValue",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"type": "string",
+					"attributeName": "value",
+					"propertyName": "initialValue"
+				},
+				{
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
@@ -7533,7 +7540,7 @@
 				{
 					"name": "swatches",
 					"description": "List of color swatches as JSON string\nCan be either:\n- Array of strings: '[\"#ff0000\", \"#00ff00\", \"#0000ff\"]'\n- Array of objects: '[{\"label\": \"Red\", \"value\": \"#ff0000\"}, {\"value\": \"#00ff00\"}]'",
-					"type": "ColorSwatch[]",
+					"type": "string",
 					"attributeName": "swatches",
 					"propertyName": "swatches"
 				},
@@ -7543,13 +7550,6 @@
 					"type": "number",
 					"attributeName": "swatches-per-row",
 					"propertyName": "swatchesPerRow"
-				},
-				{
-					"name": "value",
-					"description": "The current selected color value",
-					"type": "string",
-					"attributeName": "value",
-					"propertyName": "value"
 				},
 				{
 					"name": "value",
