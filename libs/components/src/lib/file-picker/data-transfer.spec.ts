@@ -66,10 +66,12 @@ describe('filesFromDataTransfer', () => {
 		await expect(
 			filesFromDataTransfer(
 				mockTransfer([
-					simulateFileReadError(
-						mockFile('file1.txt'),
-						new DOMException('File reading failed')
-					),
+					mockDir('a', [
+						simulateFileReadError(
+							mockFile('file1.txt'),
+							new DOMException('File reading failed')
+						),
+					]),
 				])
 			)
 		).rejects.toThrow('File reading failed');

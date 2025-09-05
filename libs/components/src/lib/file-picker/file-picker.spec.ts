@@ -22,9 +22,9 @@ import {
 } from '../../shared/feedback/should-display-feedback.spec';
 import { FilePicker } from './file-picker';
 import {
-	mockFile,
+	mockDir,
 	mockTransfer,
-	simulateFileReadError,
+	simulateDirReadError,
 } from './__mocks__/data-transfer';
 
 const COMPONENT_TAG = 'vwc-file-picker';
@@ -709,14 +709,14 @@ describe('vwc-file-picker', () => {
 			const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {
 				/* ignore */
 			});
-			const error = new DOMException('File read error');
+			const error = new DOMException('Dir read error');
 
 			getControlElement(element).dispatchEvent(
 				new DragEvent('drop', {
 					bubbles: true,
 					cancelable: true,
 					dataTransfer: mockTransfer([
-						simulateFileReadError(mockFile('error.txt'), error),
+						simulateDirReadError(mockDir('a', []), error),
 					]),
 				})
 			);
