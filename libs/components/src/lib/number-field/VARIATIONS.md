@@ -41,11 +41,13 @@ To add HTML to the helper text, use the [helper-text slot](/components/number-fi
 
 ### Contextual Help
 
-You can add the Contextual Help toggletip that will be displayed next to the label using `contextual-help` slot.
+You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
 
 ```html preview
 <vwc-number-field label="Wanted quantity">
-	<span slot="contextual-help">How many apples you need?</span>
+	<vwc-contextual-help slot="contextual-help"
+		>How many apples do you need</vwc-contextual-help
+	>
 </vwc-number-field>
 ```
 

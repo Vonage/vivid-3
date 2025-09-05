@@ -1,7 +1,5 @@
-import { html, observable, slotted } from '@microsoft/fast-element';
+import { observable } from '@microsoft/fast-element';
 import type { Constructor, MixinType } from '../../utils/mixins';
-import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';
-import { ContextualHelp } from '../../../lib/contextual-help/contextual-help';
 import type { FormElementElement } from './form-element';
 
 /**
@@ -12,41 +10,19 @@ export const WithContextualHelp = <T extends Constructor<FormElementElement>>(
 ) => {
 	/**
 	 * @public
-	 * @slot contextual-help - The contextual help content.
-	 * @slot contextual-help-icon - Override the default icon shown in the contextual-help button.
+	 * @slot contextual-help - Slot for the contextual-help component, displayed next to the label.
 	 */
 	class ElementWithContextualHelp extends Base {
 		/**
 		 * @internal
 		 */
 		@observable contextualHelpSlottedContent?: HTMLElement[];
-		@observable contextualHelpIconSlottedContent?: HTMLElement[];
 
 		/**
 		 * @internal
-		 * Computed property to determine if both label and contextual-help slot are present.
 		 */
-		get _shouldShowContextualHelp(): boolean {
-			return !!(this.label && this.contextualHelpSlottedContent?.length);
-		}
-
-		/**
-		 * @internal
-		 * Helper function to render contextual-help with slots
-		 */
-		_renderContextualHelp(context: VividElementDefinitionContext) {
-			const contextualHelpTag = context.tagFor(ContextualHelp);
-			return html<ElementWithContextualHelp>`
-				<${contextualHelpTag} ?hidden="${(x) => !x._shouldShowContextualHelp}" exportparts="vvd-theme-alternate">
-					<slot
-						name="contextual-help-icon"
-						slot="${(x) =>
-							x.contextualHelpIconSlottedContent?.length ? 'icon' : undefined}"
-						${slotted('contextualHelpIconSlottedContent')}
-					></slot>
-					<slot name="contextual-help" ${slotted('contextualHelpSlottedContent')}></slot>
-				</${contextualHelpTag}>
-			`;
+		get hasContextualHelp(): boolean {
+			return (this.contextualHelpSlottedContent?.length ?? 0) > 0;
 		}
 	}
 

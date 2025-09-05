@@ -578,7 +578,6 @@
 		"variations": "./libs/components/src/lib/contextual-help/VARIATIONS.md",
 		"code": "./libs/components/src/lib/contextual-help/README.md",
 		"hideGuidelines": "true",
-		"hideAccessibility": "true",
-		"status": "underlying"
+		"hideAccessibility": "true"
 	}
 ]

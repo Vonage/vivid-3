@@ -98,22 +98,13 @@ The `helper-text` slot allows you to use rich content as the Text Area's helper 
 
 ### Contextual-Help
 
-The `contextual-help` slot allows you to add the toggletip with additional information next to the label.
+The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
 
 ```html preview
 <vwc-text-area label="Your comments">
-	<span slot="contextual-help">This is the contextual help</span>
-</vwc-text-area>
-```
-
-### Contextual-Help-Icon
-
-The `contextual-help-icon` slot allows you to customize the default icon of the **Contextual Help**.
-
-```html preview
-<vwc-text-area label="Your comments">
-	<span slot="contextual-help">This is the contextual help</span>
-	<vwc-icon slot="contextual-help-icon" size="-6" name="info-solid"></vwc-icon>
+	<vwc-contextual-help slot="contextual-help"
+		>This is the contextual help</vwc-contextual-help
+	>
 </vwc-text-area>
 ```
 
@@ -147,11 +138,10 @@ The `contextual-help-icon` slot allows you to customize the default icon of the 
 
 <div class="table-wrapper">
 
-| Name                     | Description                                                            |
-| ------------------------ | ---------------------------------------------------------------------- |
-| **helper-text**          | Sets the input element's appearance                                    |
-| **contextual-help**      | Add contextual help to be displayed in the toggletip next to the label |
-| **contextual-help-icon** | Add custom icon for the contextual help button                         |
+| Name                | Description                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **helper-text**     | Sets the input element's appearance                                                                                |
+| **contextual-help** | Allows you to add the [Contextual Help](/components/contextual-help/) component to be displayed next to the label. |
 
 </div>
 

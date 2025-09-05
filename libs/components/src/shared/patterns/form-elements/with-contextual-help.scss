@@ -1,14 +1,17 @@
 $label-suffix-gap: --_label-suffix-gap;
 
 .label-suffix {
-	display: none;
+	display: flex;
 	align-items: center;
 	gap: var(--label-suffix-gap, 8px);
 	grid-column-end: -1;
 	grid-row: 1;
-
-	&:has(.char-count),
-	&:has([data-vvd-component='contextual-help']:not([hidden])) {
-		display: flex;
+	&[hidden] {
+		display: none;
 	}
+}
+
+::slotted([data-vvd-component='contextual-help']) {
+	grid-column-end: -1;
+	grid-row: 1;
 }
