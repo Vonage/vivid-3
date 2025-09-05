@@ -5285,10 +5285,6 @@
 			],
 			"slots": [
 				{
-					"name": "contextual-help",
-					"description": "Slot for the contextual-help component, displayed next to the label."
-				},
-				{
 					"name": "helper-text",
 					"description": "Describes how to use the number-field. Alternative to the `helper-text` attribute."
 				}
@@ -8233,10 +8229,6 @@
 			],
 			"slots": [
 				{
-					"name": "contextual-help",
-					"description": "Slot for the contextual-help component, displayed next to the label."
-				},
-				{
 					"name": "helper-text",
 					"description": "Describes how to use the text-area. Alternative to the `helper-text` attribute."
 				}
@@ -8516,10 +8508,6 @@
 				{
 					"name": "action-items",
 					"description": "Used to add action items to the end of the text-field."
-				},
-				{
-					"name": "contextual-help",
-					"description": "Slot for the contextual-help component, displayed next to the label."
 				},
 				{
 					"name": "helper-text",
