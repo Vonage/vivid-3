@@ -249,6 +249,20 @@ const deDE: Locale = {
 				? `Weitere Informationen zu ${ariaLabel} anzeigen`
 				: `Weitere Informationen anzeigen`,
 	},
+	simpleColorPicker: {
+		colorPaletteLabel: 'Farbpalette',
+		colorSwatchLabel: /* istanbul ignore next */ (
+			value: string,
+			label?: string,
+			selected?: boolean
+		) => {
+			let swatchLabel = label
+				? `${label} auswählen, Hex: ${value}`
+				: `${value} auswählen`;
+			if (selected) swatchLabel += `, ausgewählt.`;
+			return swatchLabel;
+		},
+	},
 };
 
 export default deDE;

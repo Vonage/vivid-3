@@ -245,6 +245,20 @@ const zhCN: Locale = {
 		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
 			ariaLabel ? `关于 ${ariaLabel} 的更多信息` : `显示更多信息`,
 	},
+	simpleColorPicker: {
+		colorPaletteLabel: '调色板',
+		colorSwatchLabel: /* istanbul ignore next */ (
+			value: string,
+			label?: string,
+			selected?: boolean
+		) => {
+			let swatchLabel = label
+				? `选择${label}, 十六进制：${value}`
+				: `选择${value}`;
+			if (selected) swatchLabel += `，已选择。`;
+			return swatchLabel;
+		},
+	},
 };
 
 export default zhCN;

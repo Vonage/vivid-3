@@ -247,6 +247,19 @@ const enUS: Locale = {
 				? `Show more information about ${ariaLabel}`
 				: `Show more information`,
 	},
+	simpleColorPicker: {
+		colorPaletteLabel: 'Color palette',
+		colorSwatchLabel: /* istanbul ignore next */ (
+			value: string,
+			label?: string,
+			selected?: boolean
+		) => {
+			let swatchLabel = label
+				? `Select ${label}, hex: ${value}`
+				: `Select ${value}`;
+			if (selected) swatchLabel += `, selected.`;
+			return swatchLabel;
+		},
+	},
 };
-
 export default enUS;
