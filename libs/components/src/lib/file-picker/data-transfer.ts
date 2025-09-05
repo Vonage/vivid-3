@@ -24,6 +24,7 @@ async function filesFromDataTransferItems(
 		} else {
 			const entry = item.webkitGetAsEntry();
 			if (entry) {
+				// Note: cannot await here as DataTransfer needs to be processed synchronously
 				result.push(filesFromEntry(entry, false));
 			}
 		}
