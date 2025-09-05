@@ -188,6 +188,15 @@ export class ListboxOption extends HostSemantics(
 		return this._text ?? '';
 	}
 
+	/**
+	 * Provides an accessible name for use by parent components.
+	 * Note: Does not implement full accessible name computation, e.g. slotted content is missed.
+	 * @internal
+	 */
+	_getAccessibleName(): string {
+		return this.ariaLabel || this.text || '';
+	}
+
 	get form(): HTMLFormElement | null {
 		return null;
 	}
