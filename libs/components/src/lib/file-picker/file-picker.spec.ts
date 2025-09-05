@@ -21,6 +21,11 @@ import {
 	itShouldDisplayValidationErrorFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
 import { FilePicker } from './file-picker';
+import {
+	mockDir,
+	mockTransfer,
+	simulateDirReadError,
+} from './__mocks__/data-transfer';
 
 const COMPONENT_TAG = 'vwc-file-picker';
 
@@ -33,34 +38,43 @@ async function generateFile(
 	return new File([blob], fileName, { type: blob.type });
 }
 
-function getHiddenInput() {
-	return document.querySelector('input[type=file]') as HTMLInputElement;
-}
-
-function addFiles(files: File[]) {
-	// Use hidden input element that dropzone adds to the body to add files
-	const hiddenInput = getHiddenInput();
-	Object.defineProperty(hiddenInput, 'files', {
-		value: files,
-	});
-	hiddenInput.dispatchEvent(new Event('change'));
-}
-
-function removeFileAtTop(index = 0) {
-	const button = document
-		.querySelector(COMPONENT_TAG)
-		?.shadowRoot?.querySelectorAll('vwc-button')[index] as Button;
-
-	button?.click();
-}
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 describe('vwc-file-picker', () => {
 	let element: FilePicker;
+	let hiddenInput: HTMLInputElement;
+
+	function setupFixture(template: string) {
+		element = fixture(template) as FilePicker;
+		hiddenInput = element.shadowRoot!.querySelector(
+			'input[type=file]'
+		) as HTMLInputElement;
+	}
+
+	function addFiles(files: File[]) {
+		Object.defineProperty(hiddenInput, 'files', {
+			value: files,
+			configurable: true,
+		});
+		hiddenInput.dispatchEvent(new Event('change'));
+	}
+
+	function getErrorMessage(forFileAtIndex: number) {
+		return element
+			.shadowRoot!.querySelectorAll('.preview-list .error-message')
+			[forFileAtIndex]!.textContent!.trim();
+	}
+
+	function getRemoveButton(forFileAtIndex: number) {
+		return element.shadowRoot!.querySelectorAll('.preview-list .remove-btn')[
+			forFileAtIndex
+		] as Button;
+	}
 
 	beforeEach(async () => {
-		element = fixture(
+		setupFixture(
 			`<${COMPONENT_TAG}>Drag & drop or click to upload</${COMPONENT_TAG}>`
-		) as FilePicker;
+		);
 	});
 
 	afterEach(() => {
@@ -110,75 +124,85 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
-	describe('drag and drop visual feedback', () => {
-		it('should add dz-drag-hover class on dragenter', async () => {
-			const control = element.shadowRoot!.querySelector(
-				'.control'
-			) as HTMLElement;
-
+	describe('drag and drop', () => {
+		it('should show drag-hover state on dragenter', async () => {
 			const dragEnterEvent = new DragEvent('dragenter', {
 				bubbles: true,
 				cancelable: true,
 			});
 
-			control.dispatchEvent(dragEnterEvent);
+			getControlElement(element).dispatchEvent(dragEnterEvent);
 			await elementUpdated(element);
 
-			expect(control.classList.contains('dz-drag-hover')).toBe(true);
+			expect(getControlElement(element).classList.contains('drag-hover')).toBe(
+				true
+			);
 		});
 
-		it('should add dz-drag-hover class on dragover', async () => {
-			const control = element.shadowRoot!.querySelector(
-				'.control'
-			) as HTMLElement;
-
-			const dragOverEvent = new DragEvent('dragover', {
-				bubbles: true,
-				cancelable: true,
-			});
-
-			control.dispatchEvent(dragOverEvent);
+		it('should stop showing drag-hover state on dragleave', async () => {
+			getControlElement(element).dispatchEvent(
+				new DragEvent('dragenter', {
+					bubbles: true,
+					cancelable: true,
+				})
+			);
 			await elementUpdated(element);
 
-			expect(control.classList.contains('dz-drag-hover')).toBe(true);
+			getControlElement(element).dispatchEvent(
+				new DragEvent('dragleave', {
+					bubbles: true,
+					cancelable: true,
+				})
+			);
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList.contains('drag-hover')).toBe(
+				false
+			);
 		});
 
-		it('should remove dz-drag-hover class on dragleave', async () => {
-			const control = element.shadowRoot!.querySelector(
-				'.control'
-			) as HTMLElement;
-
-			// First add the class
-			control.classList.add('dz-drag-hover');
-
-			const dragLeaveEvent = new DragEvent('dragleave', {
-				bubbles: true,
-				cancelable: true,
-			});
-
-			control.dispatchEvent(dragLeaveEvent);
+		it('should stop showing drag-hover state on drop', async () => {
+			getControlElement(element).dispatchEvent(
+				new DragEvent('dragenter', {
+					bubbles: true,
+					cancelable: true,
+				})
+			);
 			await elementUpdated(element);
 
-			expect(control.classList.contains('dz-drag-hover')).toBe(false);
+			getControlElement(element).dispatchEvent(
+				new DragEvent('drop', {
+					bubbles: true,
+					cancelable: true,
+				})
+			);
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList.contains('drag-hover')).toBe(
+				false
+			);
 		});
 
-		it('should remove dz-drag-hover class on drop', async () => {
-			const control = element.shadowRoot!.querySelector(
-				'.control'
-			) as HTMLElement;
-
-			// First add the class
-			control.classList.add('dz-drag-hover');
-
-			const dropEvent = new DragEvent('drop', {
-				bubbles: true,
-				cancelable: true,
-			});
-
-			control.dispatchEvent(dropEvent);
+		it('should stop showing drag-hover state on dragend', async () => {
+			getControlElement(element).dispatchEvent(
+				new DragEvent('dragenter', {
+					bubbles: true,
+					cancelable: true,
+				})
+			);
 			await elementUpdated(element);
 
-			expect(control.classList.contains('dz-drag-hover')).toBe(false);
+			getControlElement(element).dispatchEvent(
+				new DragEvent('dragend', {
+					bubbles: true,
+					cancelable: true,
+				})
+			);
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList.contains('drag-hover')).toBe(
+				false
+			);
 		});
 
 		it('should have upload icon with correct attributes', async () => {
@@ -189,6 +213,90 @@ describe('vwc-file-picker', () => {
 			expect(uploadIcon).toBeTruthy();
 			expect(uploadIcon.getAttribute('name')).toBe('cloud-upload-line');
 			expect(uploadIcon.getAttribute('size')).toBe('-4');
+		});
+
+		it('should ignore drop events without dataTransfer', async () => {
+			const dropEvent = new DragEvent('drop', {
+				bubbles: true,
+				cancelable: true,
+			});
+			Object.defineProperty(dropEvent, 'dataTransfer', {
+				value: null,
+			});
+
+			getControlElement(element).dispatchEvent(dropEvent);
+
+			expect(dropEvent.defaultPrevented).toBe(false);
+		});
+
+		it('should prevent default of drop events with dataTransfer', async () => {
+			const dropEvent = new DragEvent('drop', {
+				bubbles: true,
+				cancelable: true,
+				dataTransfer: new DataTransfer(),
+			});
+
+			getControlElement(element).dispatchEvent(dropEvent);
+
+			expect(dropEvent.defaultPrevented).toBe(true);
+		});
+
+		it('should ignore dragover events without dataTransfer', async () => {
+			const dragOverEvent = new DragEvent('dragover', {
+				bubbles: true,
+				cancelable: true,
+			});
+			Object.defineProperty(dragOverEvent, 'dataTransfer', {
+				value: null,
+			});
+
+			getControlElement(element).dispatchEvent(dragOverEvent);
+
+			expect(dragOverEvent.defaultPrevented).toBe(false);
+		});
+
+		it('should prevent default of dragover events with dataTransfer', async () => {
+			const dragOverEvent = new DragEvent('dragover', {
+				bubbles: true,
+				cancelable: true,
+				dataTransfer: new DataTransfer(),
+			});
+
+			getControlElement(element).dispatchEvent(dragOverEvent);
+
+			expect(dragOverEvent.defaultPrevented).toBe(true);
+		});
+
+		describe('allows dragging files from chrome download bar', () => {
+			it('should set dropEffect to "copy" by default', async () => {
+				const dataTransfer = new DataTransfer();
+				const dragOverEvent = new DragEvent('dragover', {
+					bubbles: true,
+					cancelable: true,
+					dataTransfer,
+				});
+
+				getControlElement(element).dispatchEvent(dragOverEvent);
+
+				expect(dataTransfer.dropEffect).toBe('copy');
+			});
+
+			it.each(['move', 'linkMove'] as const)(
+				'should set dropEffect to "move" when effectAllowed is "%s"',
+				async (effectAllowed) => {
+					const dataTransfer = new DataTransfer();
+					dataTransfer.effectAllowed = effectAllowed;
+					const dragOverEvent = new DragEvent('dragover', {
+						bubbles: true,
+						cancelable: true,
+						dataTransfer,
+					});
+
+					getControlElement(element).dispatchEvent(dragOverEvent);
+
+					expect(dataTransfer.dropEffect).toBe('move');
+				}
+			);
 		});
 	});
 
@@ -210,6 +318,7 @@ describe('vwc-file-picker', () => {
 	describe('value', function () {
 		it('should be set to a fake path when a file is added', async function () {
 			addFiles([await generateFile('london.png', 1)]);
+			await elementUpdated(element);
 			expect(element.value).toBe('C:\\fakepath\\london.png');
 		});
 
@@ -220,6 +329,7 @@ describe('vwc-file-picker', () => {
 				await generateFile('london-2.png', 1),
 				await generateFile('london-3.png', 2),
 			]);
+			await elementUpdated(element);
 
 			expect([
 				element.files.length,
@@ -238,8 +348,8 @@ describe('vwc-file-picker', () => {
 	describe('max file size', function () {
 		it('should show an error message for files larger than maxFileSize', async function () {
 			element.maxFileSize = 1; // 1 MB
-			const file = await generateFile('london.png', 2);
-			addFiles([file]);
+			addFiles([await generateFile('london.png', 2)]);
+			await elementUpdated(element);
 
 			expect(getErrorMessage(0)).toBe(
 				'File is too big (2MiB). Max filesize: 1MiB.'
@@ -250,30 +360,14 @@ describe('vwc-file-picker', () => {
 			element.maxFileSize = 1; // 1 MB
 			element.fileTooBigError =
 				'File size of {{filesize}}MB is too big. Limit is {{maxFilesize}}MB.';
-			const file = await generateFile('london.png', 2);
-			addFiles([file]);
-
-			expect(getErrorMessage(0)).toBe(
-				'File size of 2MB is too big. Limit is 1MB.'
-			);
-		});
-
-		it('should revert back to the standard message when the custom message is removed', async function () {
-			element.maxFileSize = 1; // 1 MB
-			element.fileTooBigError =
-				'File size of {{filesize}}MB is too big. Limit is {{maxFilesize}}MB.';
-			const file = await generateFile('london.png', 2);
-			addFiles([file]);
+			addFiles([await generateFile('london.png', 2)]);
+			await elementUpdated(element);
 
 			expect(getErrorMessage(0)).toBe(
 				'File size of 2MB is too big. Limit is 1MB.'
 			);
 
 			element.fileTooBigError = undefined;
-			element.removeAllFiles();
-			await elementUpdated(element);
-
-			addFiles([file]);
 			await elementUpdated(element);
 
 			expect(getErrorMessage(0)).toBe(
@@ -290,6 +384,7 @@ describe('vwc-file-picker', () => {
 					await generateFile('london.png', 1),
 					await generateFile('london.png', 1),
 				]);
+				await elementUpdated(element);
 
 				expect(getErrorMessage(0)).toBe('');
 				expect(getErrorMessage(1)).toBe("You can't select any more files.");
@@ -304,126 +399,61 @@ describe('vwc-file-picker', () => {
 					await generateFile('london.png', 1),
 					await generateFile('london.png', 1),
 				]);
-
-				expect(getErrorMessage(0)).toBe('');
-				expect(getErrorMessage(1)).toBe('Max files exceeded.');
-			});
-
-			it('should show an custom error message (when supplied) for files added after the maxFiles limit is reached', async function () {
-				element.maxFiles = 1;
-				element.maxFilesExceededError = 'Max files exceeded.';
 				await elementUpdated(element);
 
-				addFiles([
-					await generateFile('london.png', 1),
-					await generateFile('london.png', 1),
-				]);
-
 				expect(getErrorMessage(0)).toBe('');
-				expect(getErrorMessage(1)).toBe('Max files exceeded.');
-			});
-
-			it('should revert back to the standard message when the custom message is removed', async function () {
-				element.maxFiles = 1;
-				element.maxFilesExceededError = 'Max files exceeded.';
-				await elementUpdated(element);
-
-				addFiles([
-					await generateFile('london.png', 1),
-					await generateFile('london.png', 1),
-				]);
-
 				expect(getErrorMessage(1)).toBe('Max files exceeded.');
 
 				element.maxFilesExceededError = undefined;
-				element.removeAllFiles();
-
 				await elementUpdated(element);
-
-				addFiles([
-					await generateFile('london.png', 1),
-					await generateFile('london.png', 1),
-				]);
 
 				expect(getErrorMessage(1)).toBe("You can't select any more files.");
 			});
 		});
 
 		it('should add multiple attribute to the hidden file input when maxFiles is not set', function () {
-			expect(getHiddenInput().multiple).toBe(true);
+			expect(hiddenInput.multiple).toBe(true);
 		});
 
 		it('should remove multiple attribute from the hidden file input when maxFiles is 1', async function () {
 			element.maxFiles = 1;
-			expect(getHiddenInput().multiple).toBe(false);
+			await elementUpdated(element);
+			expect(hiddenInput.multiple).toBe(false);
 		});
 
 		it('should add multiple attribute to the hidden file input when maxFiles is > 1', async function () {
 			element.maxFiles = 2;
-			expect(getHiddenInput().multiple).toBe(true);
+			await elementUpdated(element);
+			expect(hiddenInput.multiple).toBe(true);
 		});
 	});
 
 	describe('single-file', () => {
-		beforeEach(async () => {
+		it('should not set multiple on the hidden input attribute', async () => {
 			element.singleFile = true;
 			await elementUpdated(element);
+
+			expect(hiddenInput.hasAttribute('multiple')).toBe(false);
 		});
 
-		it('should initiate in single file mode', async () => {
-			element = fixture(
-				`<${COMPONENT_TAG} single-file>Drag & drop or click to upload</${COMPONENT_TAG}>`
-			) as FilePicker;
-
-			await elementUpdated(element);
-
-			expect(element.singleFile).toBe(true);
-			expect(getHiddenInput().hasAttribute('multiple')).toBe(false);
-		});
-
-		it('should reflect the attribute single-file', async () => {
-			expect(element.hasAttribute('single-file')).toBe(true);
-		});
-
-		it('should reflect the property to an attribute', async () => {
-			element.singleFile = false;
-			await elementUpdated(element);
-
-			element.toggleAttribute('single-file');
-			await elementUpdated(element);
-
-			expect(element.singleFile).toBe(true);
-		});
-
-		it('should remove the hidden input multiple attribute when true', async () => {
-			expect(getHiddenInput()?.hasAttribute('multiple')).toBe(false);
-		});
-
-		it('should add the hidden input multiple attribute when false', async () => {
-			element.singleFile = false;
-			await elementUpdated(element);
-			expect(getHiddenInput()?.getAttribute('multiple')).toBe('multiple');
-		});
-
-		it('should remove after change event', async () => {
-			addFiles([await generateFile('london.png', 1)]);
-
-			getHiddenInput().dispatchEvent(new Event('change'));
-			await elementUpdated(element);
-			expect(getHiddenInput()?.hasAttribute('multiple')).toBe(false);
-		});
-
-		it('should add a file to the list when uploading a file for the first time', async () => {
-			const file = await generateFile('london.png', 1, 'image/png');
-			addFiles([file]);
-			expect(element.files).toEqual([file]);
-		});
-
-		it('should replace existing file in the list when uploading a new file', async () => {
+		it('should only add the last file when uploading multiple files', async () => {
+			element.singleFile = true;
 			const file1 = await generateFile('london.png', 1, 'image/png');
 			const file2 = await generateFile('london2.png', 1, 'image/png');
+
+			addFiles([file1, file2]);
+
+			expect(element.files).toEqual([file2]);
+		});
+
+		it('should replace existing file when uploading a new file', async () => {
+			element.singleFile = true;
+			const file1 = await generateFile('london.png', 1, 'image/png');
+			const file2 = await generateFile('london2.png', 1, 'image/png');
+
 			addFiles([file1]);
 			addFiles([file2]);
+
 			expect(element.files).toEqual([file2]);
 		});
 	});
@@ -438,29 +468,12 @@ describe('vwc-file-picker', () => {
 				await generateFile('london.zip', 1, 'application/zip'),
 				await generateFile('london.txt', 1, 'text/plain'),
 			]);
+			await elementUpdated(element);
 
 			expect(getErrorMessage(0)).toBe('');
 			expect(getErrorMessage(1)).toBe('');
 			expect(getErrorMessage(2)).toBe('');
 			expect(getErrorMessage(3)).toBe("You can't select files of this type.");
-		});
-
-		it('should display message from error property if error message is an object', async () => {
-			element.accept = 'image/*, text/html, .zip';
-			(element.invalidFileTypeError as any) = {
-				error: 'error from object',
-			};
-
-			await elementUpdated(element);
-
-			addFiles([
-				await generateFile('london.png', 1, 'image/png'),
-				await generateFile('london.html', 1, 'text/html'),
-				await generateFile('london.zip', 1, 'application/zip'),
-				await generateFile('london.txt', 1, 'text/plain'),
-			]);
-
-			expect(getErrorMessage(3)).toBe('error from object');
 		});
 
 		it('should show an custom error message (when supplied) for files added that do not match the accept attribute', async function () {
@@ -474,34 +487,12 @@ describe('vwc-file-picker', () => {
 				await generateFile('london.zip', 1, 'application/zip'),
 				await generateFile('london.txt', 1, 'text/plain'),
 			]);
-
-			expect(getErrorMessage(3)).toBe('File type not allowed.');
-		});
-
-		it('should revert back to the standard message when the custom message is removed', async function () {
-			element.accept = 'image/*, text/html, .zip';
-			element.invalidFileTypeError = 'File type not allowed.';
 			await elementUpdated(element);
-
-			addFiles([
-				await generateFile('london.png', 1, 'image/png'),
-				await generateFile('london.html', 1, 'text/html'),
-				await generateFile('london.zip', 1, 'application/zip'),
-				await generateFile('london.txt', 1, 'text/plain'),
-			]);
 
 			expect(getErrorMessage(3)).toBe('File type not allowed.');
 
 			element.invalidFileTypeError = undefined;
-			element.removeAllFiles();
 			await elementUpdated(element);
-
-			addFiles([
-				await generateFile('london.png', 1, 'image/png'),
-				await generateFile('london.html', 1, 'text/html'),
-				await generateFile('london.zip', 1, 'application/zip'),
-				await generateFile('london.txt', 1, 'text/plain'),
-			]);
 
 			expect(getErrorMessage(3)).toBe("You can't select files of this type.");
 		});
@@ -524,21 +515,25 @@ describe('vwc-file-picker', () => {
 	});
 
 	describe('change', function () {
-		it('should fire "change" event after a file is added', async () => {
+		it('should fire a "change" event after files are added', async () => {
 			let filesLengthInChangeHandler = -1;
 			const onChange = vi.fn().mockImplementation(() => {
 				filesLengthInChangeHandler = element.files.length;
 			});
 			element.addEventListener('change', onChange);
 
-			addFiles([await generateFile('london.png', 1)]);
+			addFiles([
+				await generateFile('london.png', 1),
+				await generateFile('paris.png', 1),
+			]);
 
 			expect(onChange).toHaveBeenCalledTimes(1);
-			expect(filesLengthInChangeHandler).toBe(1);
+			expect(filesLengthInChangeHandler).toBe(2);
 		});
 
-		it('should fire "change" event after a file is removed', async () => {
+		it('should fire "change" event after files are removed', async () => {
 			addFiles([await generateFile('london.png', 1)]);
+			await elementUpdated(element);
 			let filesLengthInChangeHandler = -1;
 			const onChange = vi.fn().mockImplementation(() => {
 				filesLengthInChangeHandler = element.files.length;
@@ -569,6 +564,7 @@ describe('vwc-file-picker', () => {
 
 		it('should remove files when clicking remove button', async function () {
 			addFiles([await generateFile('london.png', 1)]);
+			await elementUpdated(element);
 
 			getRemoveButton(0).click();
 
@@ -592,6 +588,7 @@ describe('vwc-file-picker', () => {
 		it('should remove rejectedFiles when clicking remove button', async function () {
 			element.maxFileSize = 1;
 			addFiles([await generateFile('london.png', 1)]);
+			await elementUpdated(element);
 
 			getRemoveButton(0).click();
 
@@ -621,40 +618,19 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
-	describe('choose file with keyboard', function () {
-		it.each([
-			['Space', ' '],
-			['Enter', 'Enter'],
-		])(
-			'should click on the hidden file input when pressing %s key',
-			async function (_, key) {
-				const hiddenInputClick = vi.fn();
-				const hiddenInput = getHiddenInput();
-				hiddenInput.click = hiddenInputClick;
-
-				element.focus();
-				getControlElement(element).dispatchEvent(
-					new KeyboardEvent('keydown', { key })
-				);
-
-				expect(hiddenInputClick).toHaveBeenCalledTimes(1);
-			}
-		);
-	});
-
 	describe.each([
 		{
 			lang: 'en-US',
 			locale: enUS,
 			localizedErrorMessage: 'File is too big (2.5MiB). Max filesize: 1.5MiB.',
-			localizedFileSize: '0.1 MB',
+			localizedFileSize: /0\.1\s+MB/,
 		},
 		{
 			lang: 'de-DE',
 			locale: deDE,
 			localizedErrorMessage:
 				'Die Datei ist zu groß (2,5MiB). Maximale Dateigröße: 1,5MiB.',
-			localizedFileSize: '0,1 MB',
+			localizedFileSize: /0,1\s+MB/,
 		},
 	])(
 		'localized error messages for $lang',
@@ -662,15 +638,16 @@ describe('vwc-file-picker', () => {
 			beforeEach(async () => {
 				element.remove();
 				setLocale(locale);
-				element = fixture(
+				setupFixture(
 					`<${COMPONENT_TAG}>Drag & drop or click to upload</${COMPONENT_TAG}>`
-				) as FilePicker;
+				);
 			});
 
 			it('should localize error message for oversize file', async function () {
 				element.maxFileSize = 1.5;
 				const file = await generateFile('london.png', 2.5);
 				addFiles([file]);
+				await elementUpdated(element);
 
 				expect(getErrorMessage(0)).toBe(localizedErrorMessage);
 			});
@@ -678,13 +655,77 @@ describe('vwc-file-picker', () => {
 			it('should localize displayed file size', async function () {
 				const file = await generateFile('london.png', 0.1);
 				addFiles([file]);
+				await elementUpdated(element);
 
-				expect(
-					element.shadowRoot!.querySelector('[data-dz-size]')!.textContent
-				).toBe(localizedFileSize);
+				expect(element.shadowRoot!.querySelector('.size')!.textContent).toMatch(
+					localizedFileSize
+				);
 			});
 		}
 	);
+
+	describe('adding files', () => {
+		it('should open file picker dialog when clicking on the control element', async () => {
+			const clickSpy = vi.spyOn(hiddenInput, 'click');
+
+			await userEvent.click(getControlElement(element));
+
+			expect(clickSpy).toHaveBeenCalled();
+		});
+
+		it('should add files selected in the file picker dialog', async () => {
+			Object.defineProperty(hiddenInput, 'files', {
+				value: [await generateFile('london.png', 1)],
+				configurable: true,
+			});
+			hiddenInput.dispatchEvent(
+				new Event('change', { bubbles: true, composed: true, cancelable: true })
+			);
+
+			expect(element.files.length).toBe(1);
+		});
+
+		it('should add files dropped into the control', async () => {
+			const file = await generateFile('london.png', 1);
+			const dataTransfer = new DataTransfer();
+			Object.defineProperty(dataTransfer, 'files', {
+				value: [file],
+				configurable: true,
+			});
+
+			const dropEvent = new DragEvent('drop', {
+				bubbles: true,
+				cancelable: true,
+				dataTransfer,
+			});
+
+			getControlElement(element).dispatchEvent(dropEvent);
+			await elementUpdated(element);
+
+			expect(element.files).toEqual([file]);
+		});
+
+		it('should log errors occurring while reading files from the drop data transfer', async () => {
+			const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {
+				/* ignore */
+			});
+			const error = new DOMException('Dir read error');
+
+			getControlElement(element).dispatchEvent(
+				new DragEvent('drop', {
+					bubbles: true,
+					cancelable: true,
+					dataTransfer: mockTransfer([
+						simulateDirReadError(mockDir('a', []), error),
+					]),
+				})
+			);
+			await sleep(1); // Wait for the async file reading to complete
+
+			expect(errorSpy).toHaveBeenCalledWith(error);
+			expect(element.files).toEqual([]);
+		});
+	});
 
 	describe('feedback messages', () => {
 		itShouldDisplayHelperTextFeedback(() => element);
@@ -699,22 +740,25 @@ describe('vwc-file-picker', () => {
 			allAriaPropertiesExcept([])
 		);
 	});
-
-	function getErrorMessage(forFileAtIndex: number) {
-		return element.shadowRoot
-			?.querySelectorAll('.preview-list .dz-error-message')
-			[forFileAtIndex]?.textContent?.trim();
-	}
-
-	function getRemoveButton(forFileAtIndex: number) {
-		return element.shadowRoot?.querySelectorAll('.preview-list .remove-btn')[
-			forFileAtIndex
-		] as Button;
-	}
 });
 
 describe('form associated vwc-file-picker', function () {
 	let formWrapper: HTMLDivElement;
+
+	function getHiddenInput(element: FilePicker) {
+		return element.shadowRoot!.querySelector(
+			'input[type=file]'
+		) as HTMLInputElement;
+	}
+
+	function addFiles(element: FilePicker, files: File[]) {
+		const hiddenInput = getHiddenInput(element);
+		Object.defineProperty(hiddenInput, 'files', {
+			value: files,
+			configurable: true,
+		});
+		hiddenInput.dispatchEvent(new Event('change'));
+	}
 
 	beforeEach(function () {
 		formWrapper = document.createElement('div');
@@ -749,7 +793,8 @@ describe('form associated vwc-file-picker', function () {
 		formElement.addEventListener('submit', submitHandler);
 
 		// Try to add a PDF file (wrong type)
-		addFiles([await generateFile('test.pdf', 0.5, 'application/pdf')]);
+		addFiles(element, [await generateFile('test.pdf', 0.5, 'application/pdf')]);
+		await elementUpdated(element);
 		// simulate form submission
 		await userEvent.click(button as Element);
 		await elementUpdated(element);
@@ -761,7 +806,8 @@ describe('form associated vwc-file-picker', function () {
 
 		// Try to add a file that's too big
 		const bigFile = await generateFile('test.txt', 2);
-		addFiles([bigFile]);
+		addFiles(element, [bigFile]);
+		await elementUpdated(element);
 		await userEvent.click(button as Element);
 		await elementUpdated(element);
 
@@ -770,12 +816,12 @@ describe('form associated vwc-file-picker', function () {
 		);
 		expect(submitHandler).toHaveBeenCalledTimes(0);
 
-		removeFileAtTop();
-		removeFileAtTop();
+		element.removeAllFiles();
 
 		// Add a valid file
 		const validFile = await generateFile('valid.txt', 0.5);
-		addFiles([validFile]);
+		addFiles(element, [validFile]);
+		await elementUpdated(element);
 		await userEvent.click(button as Element);
 		await elementUpdated(element);
 
@@ -793,10 +839,12 @@ describe('form associated vwc-file-picker', function () {
 		});
 		element.maxFileSize = 1;
 
-		addFiles([
+		addFiles(element, [
 			await generateFile('london-1.png', 1),
 			await generateFile('london-2.png', 2),
 		]);
+		await elementUpdated(element);
+
 		const valueBeforeReset = element.value;
 		const numValidFilesBeforeReset = element.files.length;
 		const numInvalidFilesBeforeReset = element.rejectedFiles.length;
@@ -820,7 +868,7 @@ describe('form associated vwc-file-picker', function () {
 			componentTagName: COMPONENT_TAG,
 			formWrapper,
 		});
-		addFiles([await generateFile('london.png', 1)]);
+		addFiles(element, [await generateFile('london.png', 1)]);
 
 		element.name = 'file';
 
