@@ -5699,7 +5699,7 @@
 				},
 				{
 					"name": "trailing-meta",
-					"description": "For additional elements at the end of the Menu Item."
+					"description": "For additional elements at the end of the Option."
 				}
 			],
 			"testUtils": {
