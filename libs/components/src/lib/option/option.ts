@@ -26,7 +26,7 @@ export function isListboxOption(el: Element): el is ListboxOption {
  * @public
  * @component option
  * @slot icon - The preferred way to add an icon to the component.
- * @slot trailing-meta - For additional elements at the end of the Menu Item.
+ * @slot trailing-meta - For additional elements at the end of the Option.
  * @testAction click click #locator
  */
 export class ListboxOption extends HostSemantics(
