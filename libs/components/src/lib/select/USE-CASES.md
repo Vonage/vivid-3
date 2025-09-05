@@ -162,20 +162,45 @@ The Select component can be used Avatar to implement a user selector.
 
 ```html preview 250px
 <vwc-select label="User">
-	<vwc-avatar slot="icon" shape="pill" size="condensed" appearance="duotone" initials="AL"></vwc-avatar>
+	<vwc-avatar
+		slot="icon"
+		shape="pill"
+		size="condensed"
+		appearance="duotone"
+		initials="AL"
+	></vwc-avatar>
 	<vwc-option value="1" text="Ada Lovelace">
-		<vwc-avatar slot="icon" shape="pill" size="condensed" appearance="duotone" initials="AL"></vwc-avatar>
+		<vwc-avatar
+			slot="icon"
+			shape="pill"
+			size="condensed"
+			appearance="duotone"
+			initials="AL"
+		></vwc-avatar>
 	</vwc-option>
 	<vwc-option value="2" text="Alan Turing">
-		<vwc-avatar slot="icon" shape="pill" size="condensed" appearance="duotone" initials="AT"></vwc-avatar>
+		<vwc-avatar
+			slot="icon"
+			shape="pill"
+			size="condensed"
+			appearance="duotone"
+			initials="AT"
+		></vwc-avatar>
 	</vwc-option>
 	<vwc-option value="3" text="Grace Hopper">
-		<vwc-avatar slot="icon" shape="pill" size="condensed" appearance="duotone" initials="GH"></vwc-avatar>
+		<vwc-avatar
+			slot="icon"
+			shape="pill"
+			size="condensed"
+			appearance="duotone"
+			initials="GH"
+		></vwc-avatar>
 	</vwc-option>
 </vwc-select>
 <script>
 	document.querySelector('vwc-select').addEventListener('change', (e) => {
-		document.querySelector('vwc-select > vwc-avatar').initials = e.currentTarget.selectedOptions[0].querySelector('vwc-avatar').initials;
+		document.querySelector('vwc-select > vwc-avatar').initials =
+			e.currentTarget.selectedOptions[0].querySelector('vwc-avatar').initials;
 	});
 </script>
 ```
