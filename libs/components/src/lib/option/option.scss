@@ -96,6 +96,7 @@
 
 .text {
 	font: var(#{constants.$vvd-typography-base});
+	margin-inline-end: auto;
 }
 
 .match {
@@ -113,6 +114,5 @@ slot[name='icon'] {
 }
 
 .checkmark {
-	margin-left: auto;
 	font-size: var(#{variables.$option-icon-size});
 }

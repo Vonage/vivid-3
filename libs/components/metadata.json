@@ -5696,6 +5696,10 @@
 				{
 					"name": "icon",
 					"description": "The preferred way to add an icon to the component."
+				},
+				{
+					"name": "trailing-meta",
+					"description": "For additional elements at the end of the Menu Item."
 				}
 			],
 			"testUtils": {

@@ -1,12 +1,12 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 import { ListboxOption } from './option';
 
-const components = ['option'];
+const components = ['option', 'badge'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	await page.setViewportSize({ width: 200, height: 720 });
 
@@ -30,9 +30,25 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						connotation="success"
 					></vwc-icon>
 				</vwc-option>
-				<vwc-option id="checkmark" text="Option" selected></vwc-option>
-				<vwc-option id="highlighted" text="Option"></vwc-option>
-				<vwc-option id="match" text="Option" matched-text="pti"></vwc-option>
+				<vwc-option class="checkmark" text="Option" selected></vwc-option>
+				<vwc-option class="highlighted" text="Option"></vwc-option>
+				<vwc-option text="Option" matched-text="pti"></vwc-option>
+				<vwc-option text="Option" value="my-value">
+					<vwc-badge
+						slot="trailing-meta"
+						appearance="subtle"
+						connotation="cta"
+						text="New"
+					></vwc-badge>
+				</vwc-option>
+				<vwc-option class="checkmark" text="Option" value="my-value" selected>
+					<vwc-badge
+						slot="trailing-meta"
+						appearance="subtle"
+						connotation="cta"
+						text="New"
+					></vwc-badge>
+				</vwc-option>
 			</div>
 		`,
 	});
@@ -40,10 +56,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.$('#wrapper');
 
 	await page.evaluate(() => {
-		const checkmark = document.getElementById('checkmark') as ListboxOption;
-		checkmark._displayCheckmark = true;
-		const highlighted = document.getElementById('highlighted') as ListboxOption;
-		highlighted._highlighted = true;
+		for (const option of document.querySelectorAll<ListboxOption>(
+			'.checkmark'
+		)) {
+			option._displayCheckmark = true;
+		}
+		for (const option of document.querySelectorAll<ListboxOption>(
+			'.highlighted'
+		)) {
+			option._highlighted = true;
+		}
 	});
 
 	await page.waitForLoadState('networkidle');

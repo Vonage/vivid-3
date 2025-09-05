@@ -106,6 +106,35 @@ If set, the `icon` attribute is ignored.
 </style>
 ```
 
+### Trailing Meta Slot
+
+Use the `trailing-meta` slot to add an element (like a badge or an additional icon) to the end of Option.
+
+```html preview
+<div class="container">
+	<vwc-option text="Option" value="my-value">
+		<vwc-icon
+			slot="icon"
+			name="check-circle-solid"
+			connotation="success"
+			label="Selected"
+		></vwc-icon>
+		<vwc-badge
+			slot="trailing-meta"
+			appearance="subtle"
+			connotation="cta"
+			text="New"
+		></vwc-badge>
+	</vwc-option>
+</div>
+
+<style>
+	.container {
+		width: 250px;
+	}
+</style>
+```
+
 ### Tag Icon Slot
 
 If the option is represented as a tag in a [Searchable Select](/components/searchable-select/) component, you can use `tag-icon` slot to show an icon in the tag.
@@ -141,9 +170,10 @@ If the option is represented as a tag in a [Searchable Select](/components/searc
 
 <div class="table-wrapper">
 
-| Name         | Description                                                               |
-| ------------ | ------------------------------------------------------------------------- |
-| **icon**     | Add an icon before the option's text                                      |
-| **tag-icon** | Icon to be displayed in the tag when selected inside of Searchable Select |
+| Name              | Description                                                               |
+| ----------------- | ------------------------------------------------------------------------- |
+| **icon**          | Add an icon before the option's text                                      |
+| **trailing-meta** | For additional elements at the end of the Menu Item                       |
+| **tag-icon**      | Icon to be displayed in the tag when selected inside of Searchable Select |
 
 </div>
