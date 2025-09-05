@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.0.1](https://github.com/Vonage/vivid-3/compare/vivid-v5.0.0...vivid-v5.0.1) (2025-09-05)
+
+
+### Bug Fixes
+
+* **tabs:** fix activeid being reset (VIV-2795) ([#2514](https://github.com/Vonage/vivid-3/issues/2514)) ([246f952](https://github.com/Vonage/vivid-3/commit/246f952ede4b88bfac91b38023c8ba7f7570c51d))
+
 ## [5.0.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.31.0...vivid-v5.0.0) (2025-08-27)
 
 
