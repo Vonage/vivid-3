@@ -14,6 +14,7 @@ import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { WithFeedback } from '../../shared/feedback/mixins';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { WithContextualHelp } from '../../shared/patterns/form-elements/with-contextual-help';
 
 export type TextAreaWrap = 'hard' | 'soft' | 'off';
 
@@ -59,10 +60,14 @@ export type TextAreaResize = typeof TextAreaResize[keyof typeof TextAreaResize];
  * @testAction clear clear #control
  * @testRef control shadow .control
  */
-export class TextArea extends WithFeedback(
-	WithCharCount(
-		WithErrorText(
-			WithSuccessText(FormElement(DelegatesAria(FormAssociated(VividElement))))
+export class TextArea extends WithContextualHelp(
+	WithFeedback(
+		WithCharCount(
+			WithErrorText(
+				WithSuccessText(
+					FormElement(DelegatesAria(FormAssociated(VividElement)))
+				)
+			)
 		)
 	)
 ) {

@@ -57,6 +57,18 @@ The `char-count` attribute can be use in combination with the `maxlength` attrib
 ></vwc-text-field>
 ```
 
+### Contextual Help
+
+You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
+
+```html preview
+<vwc-text-field label="First name">
+	<vwc-contextual-help slot="contextual-help"
+		>This is the contextual help</vwc-contextual-help
+	>
+</vwc-text-field>
+```
+
 ## Value
 
 The `value` attribute can be used the set the default value for the Text Field input element.

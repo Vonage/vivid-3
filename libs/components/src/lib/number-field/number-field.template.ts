@@ -86,6 +86,7 @@ export const NumberFieldTemplate = (context: VividElementDefinitionContext) => {
 	return html<NumberField>`
 		<div class="base ${getStateClasses}">
 			${when((x) => x.label, renderLabel())}
+			<slot name="contextual-help"></slot>
 			<div class="fieldset">
 				<div class="wrapper">
 					<input

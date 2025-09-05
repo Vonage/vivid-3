@@ -5,6 +5,7 @@ import { iconDefinition } from '../icon/definition';
 import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { contextualHelpDefinition } from '../contextual-help/definition';
 import styles from './number-field.scss?inline';
 import { NumberField } from './number-field';
 import { NumberFieldTemplate as template } from './number-field.template';
@@ -24,6 +25,7 @@ export const numberFieldDefinition = defineVividComponent(
 		iconDefinition,
 		feedbackMessageDefinition,
 		visuallyHiddenDefinition,
+		contextualHelpDefinition,
 	],
 	{
 		styles,

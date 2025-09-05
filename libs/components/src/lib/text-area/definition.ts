@@ -2,6 +2,7 @@ import { createRegisterFunction } from '../../shared/design-system/createRegiste
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
 import { visuallyHiddenDefinition } from '../../lib/visually-hidden/definition';
+import { contextualHelpDefinition } from '../contextual-help/definition';
 import styles from './text-area.scss?inline';
 import { TextArea } from './text-area';
 import { TextAreaTemplate as template } from './text-area.template';
@@ -15,7 +16,11 @@ export const textAreaDefinition = defineVividComponent(
 	'text-area',
 	TextArea,
 	template,
-	[feedbackMessageDefinition, visuallyHiddenDefinition],
+	[
+		feedbackMessageDefinition,
+		visuallyHiddenDefinition,
+		contextualHelpDefinition,
+	],
 	{
 		styles,
 		shadowOptions: {
