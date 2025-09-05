@@ -53,6 +53,7 @@ export const ListboxOptionTemplate = (
 						)}${(x) => x.text.slice(x._matchedRange.to)}
 					</div>`
 				)}
+				<slot name="trailing-meta"></slot>
 				${when(
 					(x) => x._displayCheckmark && x.selected,
 					html`<${iconTag} class="checkmark" name="check-line"></${iconTag}>`

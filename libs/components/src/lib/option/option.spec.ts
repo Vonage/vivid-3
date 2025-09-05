@@ -248,6 +248,25 @@ describe('vwc-option', () => {
 		});
 	});
 
+	describe('_getAccessibleName', () => {
+		it('should return the aria-label if set', async () => {
+			element.ariaLabel = 'aria label';
+			element.text = 'text';
+
+			expect(element._getAccessibleName()).toBe('aria label');
+		});
+
+		it('should return the text if aria-label is not set', async () => {
+			element.text = 'text';
+
+			expect(element._getAccessibleName()).toBe('text');
+		});
+
+		it('should return empty string if neither aria-label nor text are set', async () => {
+			expect(element._getAccessibleName()).toBe('');
+		});
+	});
+
 	describe('constructor', () => {
 		it('should construct with provided values', async () => {
 			element = new ListboxOption('text', 'value', true, true);

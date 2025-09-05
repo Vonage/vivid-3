@@ -26,6 +26,7 @@ export function isListboxOption(el: Element): el is ListboxOption {
  * @public
  * @component option
  * @slot icon - The preferred way to add an icon to the component.
+ * @slot trailing-meta - For additional elements at the end of the Option.
  * @testAction click click #locator
  */
 export class ListboxOption extends HostSemantics(
@@ -185,6 +186,15 @@ export class ListboxOption extends HostSemantics(
 
 	get text() {
 		return this._text ?? '';
+	}
+
+	/**
+	 * Provides an accessible name for use by parent components.
+	 * Note: Does not implement full accessible name computation, e.g. slotted content is missed.
+	 * @internal
+	 */
+	_getAccessibleName(): string {
+		return this.ariaLabel || this.text || '';
 	}
 
 	get form(): HTMLFormElement | null {
