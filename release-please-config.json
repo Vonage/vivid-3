@@ -9,6 +9,10 @@
 			"component": "vivid-vue",
 			"skip-github-release": true
 		},
+		"libs/test-utils": {
+			"component": "test-utils",
+			"skip-github-release": true
+		},
 		"libs/eslint-plugin": {
 			"component": "eslint-plugin",
 			"package-name": "eslint-plugin"
@@ -18,7 +22,7 @@
 		{
 			"type": "linked-versions",
 			"groupName": "vivid",
-			"components": ["vivid", "vivid-vue"]
+			"components": ["vivid", "vivid-vue", "test-utils"]
 		}
 	]
 }
