@@ -22,7 +22,7 @@ Use Split Buttons when one action is most frequently used, but related alternati
 - No strong default action exists (use a [regular menu button](components/button/#dropdown-indicator) instead).
 - For website navigation (use [Navigation](components/navigation/)).
 - In touchscreen-heavy UIs where arrow targets would be too small.
-- Either part of the Split Button needs to be disabled independantly (Use separate buttons in this case).
+- Either part of the Split Button needs to be disabled independently (Use separate buttons in this case).
 
 ## Best Practices
 
