@@ -1,4 +1,9 @@
-import { attr, DOM, nullableNumberConverter } from '@microsoft/fast-element';
+import {
+	attr,
+	DOM,
+	nullableNumberConverter,
+	observable,
+} from '@microsoft/fast-element';
 import type { Placement } from '@floating-ui/dom';
 import { Anchored } from '../../shared/patterns/anchored';
 import { FormElement, Localized } from '../../shared/patterns';
@@ -7,7 +12,6 @@ import { FormAssociated } from '../../shared/foundation/form-associated/form-ass
 import {
 	applyContrastClass,
 	type ColorSwatch,
-	colorSwatchesConverter,
 } from '../../shared/color-picker';
 
 /**
@@ -41,16 +45,9 @@ export class SimpleColorPicker extends Localized(
 
 		if (this._anchorEl) {
 			this.#updateAnchor(this._anchorEl);
-
-			if (this.open) {
-				this._anchorEl.tabIndex = -1;
-			} else {
-				this._anchorEl.tabIndex = 0;
-			}
 		}
 
-		// When opening with keyboard navigation, move focus to the selected (if exists) or first swatch
-		if (this.open && this._openedViaKeyboard) {
+		if (this.open) {
 			requestAnimationFrame(() => {
 				const selectedIndex = this.swatches.findIndex(
 					(swatch) => swatch.value === this.value
@@ -58,10 +55,6 @@ export class SimpleColorPicker extends Localized(
 				const targetIndex = selectedIndex >= 0 ? selectedIndex : 0;
 				this.#focusSwatchByIndex(targetIndex);
 			});
-		}
-
-		if (!this.open) {
-			this._openedViaKeyboard = false;
 		}
 	}
 
@@ -74,19 +67,16 @@ export class SimpleColorPicker extends Localized(
 	@attr({ mode: 'fromView' }) placement?: Placement = 'top-start';
 
 	/**
-	 * List of color swatches as JSON string
-	 * Can be either:
-	 * - Array of strings: '["#ff0000", "#00ff00", "#0000ff"]'
-	 * - Array of objects: '[{"label": "Red", "value": "#ff0000"}, {"value": "#00ff00"}]'
+	 * List of color swatches, has to be an array of objects
+	 *
 	 * @public
-	 * @remarks
-	 * HTML Attribute: swatches
+	 * @example
+	 * colorPicker.swatches = [
+	 *   { value: '#ff0000', label: 'Red' },
+	 *   { value: '#00ff00', label: 'Green' }
+	 * ];
 	 */
-	@attr({
-		attribute: 'swatches',
-		converter: colorSwatchesConverter,
-		mode: 'fromView',
-	})
+	@observable
 	swatches: ColorSwatch[] = [];
 
 	swatchesChanged() {
@@ -145,12 +135,6 @@ export class SimpleColorPicker extends Localized(
 			document.addEventListener('keydown', this.#closeOnEscape);
 		}
 	}
-
-	/**
-	 * Track if popup was opened via keyboard for proper focus management
-	 * @internal
-	 */
-	_openedViaKeyboard = false;
 
 	/**
 	 * @internal
@@ -212,7 +196,6 @@ export class SimpleColorPicker extends Localized(
 	#handleAnchorKeydown = (event: KeyboardEvent) => {
 		if (event.key === 'Enter' || event.key === ' ') {
 			if (!this.open) {
-				this._openedViaKeyboard = true;
 				DOM.queueUpdate(() => (this.open = true));
 			}
 			event.preventDefault();
@@ -264,32 +247,30 @@ export class SimpleColorPicker extends Localized(
 		const currentCol = index % rowLength;
 		const totalRows = Math.ceil(totalCells / rowLength);
 
-		let handled = true;
-
 		switch (event.key) {
 			case 'ArrowRight':
 				if (currentCol < rowLength - 1 && index + 1 < totalCells) {
 					this.#focusSwatchByIndex(index + 1);
 				}
-				break;
+				return false;
 
 			case 'ArrowLeft':
 				if (currentCol > 0) {
 					this.#focusSwatchByIndex(index - 1);
 				}
-				break;
+				return false;
 
 			case 'ArrowDown':
 				if (currentRow < totalRows - 1 && index + rowLength < totalCells) {
 					this.#focusSwatchByIndex(index + rowLength);
 				}
-				break;
+				return false;
 
 			case 'ArrowUp':
 				if (currentRow > 0) {
 					this.#focusSwatchByIndex(index - rowLength);
 				}
-				break;
+				return false;
 
 			case 'PageDown': {
 				const lastRowStart = (totalRows - 1) * rowLength;
@@ -297,7 +278,7 @@ export class SimpleColorPicker extends Localized(
 				if (index !== targetIndex) {
 					this.#focusSwatchByIndex(targetIndex);
 				}
-				break;
+				return false;
 			}
 
 			case 'PageUp': {
@@ -305,7 +286,7 @@ export class SimpleColorPicker extends Localized(
 				if (index !== targetIndex) {
 					this.#focusSwatchByIndex(targetIndex);
 				}
-				break;
+				return false;
 			}
 
 			case 'Home':
@@ -314,7 +295,7 @@ export class SimpleColorPicker extends Localized(
 				} else {
 					this.#focusSwatchByIndex(currentRow * rowLength);
 				}
-				break;
+				return false;
 
 			case 'End':
 				if (event.ctrlKey) {
@@ -326,32 +307,25 @@ export class SimpleColorPicker extends Localized(
 					);
 					this.#focusSwatchByIndex(rowEnd);
 				}
-				break;
+				return false;
 
 			case 'Enter':
 			case ' ':
 				this._handleSwatchSelection(swatch);
 				this.#returnFocusToAnchor();
-				break;
+				return false;
 
 			case 'Escape':
 				this.open = false;
 				this.#returnFocusToAnchor();
-				break;
+				return false;
 
 			case 'Tab':
 				this.open = false;
-				this.#returnFocusToAnchor();
-				handled = false;
-				break;
+				return true;
 
 			default:
-				handled = false;
-				break;
-		}
-
-		if (handled) {
-			event.preventDefault();
+				return true;
 		}
 	};
 

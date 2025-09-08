@@ -1,6 +1,3 @@
-import { type ValueConverter } from '@microsoft/fast-element';
-import type { ColorSwatch } from './types';
-
 /**
  * Calculate the relative luminance of a hex color using WCAG formula
  */
@@ -64,37 +61,3 @@ export function applyContrastClass(
 		swatch.classList.remove('contrast');
 	}
 }
-
-/**
- * Converter for swatches attribute, parses the JSON array safely
- */
-export const colorSwatchesConverter: ValueConverter = {
-	fromView(value: string): ColorSwatch[] {
-		if (!value || typeof value !== 'string') return [];
-
-		// Handle both original JSON format & JS single-quotes
-		const formats = [value, value.replace(/'/g, '"')];
-
-		for (const format of formats) {
-			try {
-				const parsed = JSON.parse(format);
-				if (Array.isArray(parsed)) {
-					return parsed.map((swatch) =>
-						typeof swatch === 'string'
-							? { value: swatch }
-							: {
-									value: swatch.value,
-									...(swatch.label && { label: swatch.label }),
-							  }
-					);
-				}
-			} catch {
-				continue;
-			}
-		}
-
-		return [];
-	},
-
-	toView: (value: ColorSwatch[]) => JSON.stringify(value),
-};

@@ -50,10 +50,7 @@ Use the `open` attribute to indicate whether the Simple Color Picker's popup sho
 - Default: `false`
 
 ```html preview 120px
-<vwc-simple-color-picker
-	open
-	swatches="['#000000','#E61D1D','#FA9F00','#1C8731','#0276D5','#9941FF','#D6219C']"
->
+<vwc-simple-color-picker open id="picker">
 	<vwc-button
 		aria-label="Pick color"
 		slot="anchor"
@@ -64,6 +61,47 @@ Use the `open` attribute to indicate whether the Simple Color Picker's popup sho
 		<vwc-icon id="icon" slot="icon" name="textcolor-solid"></vwc-icon>
 	</vwc-button>
 </vwc-simple-color-picker>
+
+<script>
+	const swatches = [
+		{
+			label: 'Black',
+			value: '#000000',
+		},
+		{
+			label: 'Red',
+			value: '#E61D1D',
+		},
+		{
+			label: 'Yellow',
+			value: '#FA9F00',
+		},
+		{
+			label: 'Green',
+			value: '#1C8731',
+		},
+		{
+			label: 'Blue',
+			value: '#0276D5',
+		},
+		{
+			label: 'Purple',
+			value: '#9941FF',
+		},
+		{
+			label: 'Pink',
+			value: '#D6219C',
+		},
+	];
+	const picker = document.getElementById('picker');
+	const buttonIcon = document.getElementById('icon');
+	picker.swatches = swatches;
+
+	picker.addEventListener('change', (e) => {
+		const selectedColor = e.target.value;
+		buttonIcon.setAttribute('style', `color: ${selectedColor}; `);
+	});
+</script>
 ```
 
 ## Anchor
@@ -87,20 +125,50 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 ```html preview 130px
 <vwc-simple-color-picker
 	anchor="button"
-	swatches="['#E61D1D', '#FA9F00', '#1C8731', '#0276D5', '#000000', '#CCCCCC']"
 	swatches-per-row="6"
->
-</vwc-simple-color-picker>
+	id="picker"
+></vwc-simple-color-picker>
 
 <vwc-button
-	id="button"
-	label="Toggle Color Picker"
+	label="Different button"
 	size="normal"
 	shape="rounded"
 	appearance="filled"
+	connotation="cta"
 >
-	<vwc-icon slot="icon" name="palette-solid"></vwc-icon>
+	<vwc-icon slot="icon" name="help-solid"></vwc-icon>
 </vwc-button>
+
+<script>
+	const swatches = [
+		{
+			label: 'Red',
+			value: '#E61D1D',
+		},
+		{
+			label: 'Yellow',
+			value: '#FA9F00',
+		},
+		{
+			label: 'Green',
+			value: '#1C8731',
+		},
+		{
+			label: 'Blue',
+			value: '#0276D5',
+		},
+		{
+			label: 'Black',
+			value: '#000000',
+		},
+		{
+			label: 'Light Grey',
+			value: '#CCCCCC',
+		},
+	];
+	const picker = document.getElementById('picker');
+	picker.swatches = swatches;
+</script>
 ```
 
 ## Slots
@@ -110,10 +178,7 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 Simple Color Picker needs to be anchored to an element. Place the anchor element inside the `anchor` slot of the Simple Color Picker. It is recommended to use the [Button](/components/button/) component as the anchor element.
 
 ```html preview 130px
-<vwc-simple-color-picker
-	swatches="['#E61D1D', '#FA9F00', '#1C8731', '#0276D5', '#000000', '#CCCCCC']"
-	swatches-per-row="6"
->
+<vwc-simple-color-picker id="picker" swatches-per-row="6">
 	<vwc-button
 		slot="anchor"
 		label="Toggle Color Picker"
@@ -124,6 +189,37 @@ Simple Color Picker needs to be anchored to an element. Place the anchor element
 		<vwc-icon slot="icon" name="palette-solid"></vwc-icon>
 	</vwc-button>
 </vwc-simple-color-picker>
+
+<script>
+	const swatches = [
+		{
+			label: 'Red',
+			value: '#E61D1D',
+		},
+		{
+			label: 'Yellow',
+			value: '#FA9F00',
+		},
+		{
+			label: 'Green',
+			value: '#1C8731',
+		},
+		{
+			label: 'Blue',
+			value: '#0276D5',
+		},
+		{
+			label: 'Black',
+			value: '#000000',
+		},
+		{
+			label: 'Light Grey',
+			value: '#CCCCCC',
+		},
+	];
+	const picker = document.getElementById('picker');
+	picker.swatches = swatches;
+</script>
 ```
 
 ## API Reference
@@ -137,7 +233,7 @@ Simple Color Picker needs to be anchored to an element. Place the anchor element
 | **anchor**           | `string` or `HTMLElement`                                                                                                                    | ID of, or HTML element itself, to anchor the Color Picker's popup to. Prefer using the `anchor` slot. |
 | **open**             | `boolean`                                                                                                                                    | Sets the open state of the Color Picker's popup                                                       |
 | **placement**        | `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` | Preferred placement of the Color Picker's popup in relation to the anchor element                     |
-| **swatches**         | `string[]` or `{label?: string; value: string;}[]`                                                                                           | Sets a color palette from which users can select colors                                               |
+| **swatches**         | `{label?: string; value: string;}[]`                                                                                                         | Sets a color palette from which users can select colors                                               |
 | **swatches-per-row** | `number`                                                                                                                                     | Sets the number of swatches to be displayed per row in the color palette grid                         |
 | **value**            | `string`                                                                                                                                     | The value of the element. When specified in the HTML, corresponds to the initial value                |
 

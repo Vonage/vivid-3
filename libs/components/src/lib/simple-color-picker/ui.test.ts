@@ -4,14 +4,14 @@ import {
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
+import type { SimpleColorPicker } from './simple-color-picker.js';
 
 const components = ['simple-color-picker', 'button', 'icon'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<div style="margin: 5px; min-height: 150px;">
-			<vwc-simple-color-picker open 
-				swatches="['#000000','#6E0000','#BE5702','#183A1E','#0E306D','#440291','#620256','#757575','#E61D1D','#FA9F00','#1C8731','#0276D5','#9941FF','#D6219C']">
+			<vwc-simple-color-picker id="picker" open>
 				<vwc-button
 					aria-label="Pick color"
 					slot="anchor"
@@ -35,6 +35,68 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
+
+	await page.evaluate(() => {
+		const picker = document.querySelector('#picker') as SimpleColorPicker;
+		picker.swatches = [
+			{
+				label: 'Black',
+				value: '#000000',
+			},
+			{
+				label: 'Maroon',
+				value: '#6E0000',
+			},
+			{
+				label: 'Burnt Orange',
+				value: '#BE5702',
+			},
+			{
+				label: 'Forest Green',
+				value: '#183A1E',
+			},
+			{
+				label: 'Navy Blue',
+				value: '#0E306D',
+			},
+			{
+				label: 'Indigo',
+				value: '#440291',
+			},
+			{
+				label: 'Magenta',
+				value: '#620256',
+			},
+			{
+				label: 'Grey',
+				value: '#757575',
+			},
+			{
+				label: 'Red',
+				value: '#E61D1D',
+			},
+			{
+				label: 'Yellow',
+				value: '#FA9F00',
+			},
+			{
+				label: 'Green',
+				value: '#1C8731',
+			},
+			{
+				label: 'Blue',
+				value: '#0276D5',
+			},
+			{
+				label: 'Purple',
+				value: '#9941FF',
+			},
+			{
+				label: 'Pink',
+				value: '#D6219C',
+			},
+		];
+	});
 
 	await page.waitForLoadState('networkidle');
 

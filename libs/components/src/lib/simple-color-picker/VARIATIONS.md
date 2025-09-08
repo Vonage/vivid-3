@@ -2,10 +2,7 @@
 
 The `swatches` attribute sets a color palette from which users can select colors.
 
-It accepts a **JSON string** that can be either:
-
-- Array of hex color strings: `["#ff0000", "#00ff00", "#0000ff"]`
-- Array of objects with `value` and `label` properties: `[{"label": "Red", "value": "#ff0000"}, {"value": "#00ff00"}]`. The optional `label` property provides descriptive text for screen readers, improving accessibility.
+It accepts an array of objects with `value` and `label` properties: `[{"label": "Red", "value": "#ff0000"}, {"value": "#00ff00"}]`. The optional `label` property provides descriptive text for screen readers, improving accessibility.
 
 <vwc-note connotation="information" headline="Accessibility Tip">
 	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
@@ -88,7 +85,7 @@ It accepts a **JSON string** that can be either:
 
 	const picker = document.getElementById('picker');
 	const buttonIcon = document.getElementById('icon');
-	picker.swatches = JSON.stringify(swatches);
+	picker.swatches = swatches;
 
 	picker.addEventListener('change', (e) => {
 		const selectedColor = e.target.value;
@@ -147,7 +144,7 @@ The `swatches-per-row` attribute controls how many swatches should be displayed 
 
 	const picker = document.getElementById('picker');
 	const buttonIcon = document.getElementById('icon');
-	picker.swatches = JSON.stringify(swatches);
+	picker.swatches = swatches;
 
 	picker.addEventListener('change', (e) => {
 		const selectedColor = e.target.value;
@@ -246,7 +243,7 @@ The `placement` attribute sets the default placement of the Simple Color Picker'
 
 	const picker = document.getElementById('picker');
 	const buttonIcon = document.getElementById('icon');
-	picker.swatches = JSON.stringify(swatches);
+	picker.swatches = swatches;
 
 	picker.addEventListener('change', (e) => {
 		const selectedColor = e.target.value;

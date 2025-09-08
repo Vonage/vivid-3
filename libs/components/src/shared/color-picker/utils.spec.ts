@@ -1,10 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-	applyContrastClass,
-	colorSwatchesConverter,
-	getContrastRatio,
-	getLuminance,
-} from './utils';
+import { applyContrastClass, getContrastRatio, getLuminance } from './utils';
 
 describe('color-picker-utils', () => {
 	describe('getLuminance', () => {
@@ -97,99 +92,6 @@ describe('color-picker-utils', () => {
 
 			expect(() => applyContrastClass(mockSwatch)).not.toThrow();
 			expect(mockSwatch.classList.contains('contrast')).toBe(false);
-		});
-	});
-
-	describe('colorSwatchesConverter', () => {
-		describe('fromView', () => {
-			it('should parse array of swatch objects', () => {
-				const input =
-					'[{"value": "#ff0000", "label": "Red"}, {"value": "#00ff00", "label": "Green"}]';
-				const expected = [
-					{ value: '#ff0000', label: 'Red' },
-					{ value: '#00ff00', label: 'Green' },
-				];
-
-				expect(colorSwatchesConverter.fromView(input)).toEqual(expected);
-			});
-
-			it('should parse array of color strings', () => {
-				const input = '["#ff0000", "#00ff00", "#0000ff"]';
-				const expected = [
-					{ value: '#ff0000' },
-					{ value: '#00ff00' },
-					{ value: '#0000ff' },
-				];
-
-				expect(colorSwatchesConverter.fromView(input)).toEqual(expected);
-			});
-
-			it('should handle mixed array with objects and strings', () => {
-				const input = '[{"value": "#ff0000", "label": "Red"}, "#00ff00"]';
-				const expected = [
-					{ value: '#ff0000', label: 'Red' },
-					{ value: '#00ff00' },
-				];
-
-				expect(colorSwatchesConverter.fromView(input)).toEqual(expected);
-			});
-
-			it('should handle objects without labels', () => {
-				const input = '[{"value": "#ff0000"}, {"value": "#00ff00"}]';
-				const expected = [{ value: '#ff0000' }, { value: '#00ff00' }];
-
-				expect(colorSwatchesConverter.fromView(input)).toEqual(expected);
-			});
-
-			it('should handle single quotes by converting to double quotes', () => {
-				const input = "[{'value': '#ff0000', 'label': 'Red'}]";
-				const expected = [{ value: '#ff0000', label: 'Red' }];
-
-				expect(colorSwatchesConverter.fromView(input)).toEqual(expected);
-			});
-
-			it('should return empty array for invalid JSON', () => {
-				expect(colorSwatchesConverter.fromView('invalid-json')).toEqual([]);
-				expect(colorSwatchesConverter.fromView('{"not": "array"}')).toEqual([]);
-				expect(colorSwatchesConverter.fromView('')).toEqual([]);
-				expect(colorSwatchesConverter.fromView('null')).toEqual([]);
-			});
-
-			it('should return empty array for non-string input', () => {
-				expect(colorSwatchesConverter.fromView(null as any)).toEqual([]);
-				expect(colorSwatchesConverter.fromView(undefined as any)).toEqual([]);
-				expect(colorSwatchesConverter.fromView(123 as any)).toEqual([]);
-			});
-
-			it('should return empty array for non-array JSON', () => {
-				expect(colorSwatchesConverter.fromView('{"color": "#ff0000"}')).toEqual(
-					[]
-				);
-				expect(colorSwatchesConverter.fromView('true')).toEqual([]);
-			});
-		});
-
-		describe('toView', () => {
-			it('should convert swatch array to JSON string', () => {
-				const input = [
-					{ value: '#ff0000', label: 'Red' },
-					{ value: '#00ff00', label: 'Green' },
-				];
-				const expected = JSON.stringify(input);
-
-				expect(colorSwatchesConverter.toView(input)).toBe(expected);
-			});
-
-			it('should handle empty array', () => {
-				expect(colorSwatchesConverter.toView([])).toBe('[]');
-			});
-
-			it('should handle swatches without labels', () => {
-				const input = [{ value: '#ff0000' }, { value: '#00ff00' }];
-				const expected = JSON.stringify(input);
-
-				expect(colorSwatchesConverter.toView(input)).toBe(expected);
-			});
 		});
 	});
 });

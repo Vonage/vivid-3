@@ -69,10 +69,7 @@ describe('vwc-simple-color-picker', () => {
 		});
 
 		it('should update selected swatch when value matches', async () => {
-			element.setAttribute(
-				'swatches',
-				JSON.stringify(TEST_SWATCHES.slice(0, 2))
-			);
+			element.swatches = TEST_SWATCHES.slice(0, 2);
 			element.value = '#ff0000';
 			element.open = true;
 			await elementUpdated(element);
@@ -117,17 +114,6 @@ describe('vwc-simple-color-picker', () => {
 			expect(popup?.hasAttribute('open')).toBe(false);
 		});
 
-		it('should clear _openedViaKeyboard flag when closed', async () => {
-			element._openedViaKeyboard = true;
-			element.open = true;
-			await elementUpdated(element);
-
-			element.open = false;
-			await elementUpdated(element);
-
-			expect(element._openedViaKeyboard).toBe(false);
-		});
-
 		it('should handle escape key in popup template without closing directly', async () => {
 			element.open = true;
 			await elementUpdated(element);
@@ -146,39 +132,23 @@ describe('vwc-simple-color-picker', () => {
 	});
 
 	describe('swatches', () => {
-		it('should parse swatches from JSON string attribute', async () => {
-			const swatchesJson = JSON.stringify(TEST_SWATCHES.slice(0, 3));
-			element.setAttribute('swatches', swatchesJson);
+		it('should accept array of swatch objects', async () => {
+			element.swatches = TEST_SWATCHES.slice(0, 3);
 			await elementUpdated(element);
 			expect(element.swatches).toEqual(TEST_SWATCHES.slice(0, 3));
 		});
 
-		it('should parse simple string array of swatches', async () => {
-			const simpleSwatches = TEST_SWATCHES.slice(0, 3).map((s) => s.value);
-			element.setAttribute('swatches', JSON.stringify(simpleSwatches));
+		it('should accept array of objects with only value properties', async () => {
+			const simpleSwatches = TEST_SWATCHES.slice(0, 3).map((s) => ({
+				value: s.value,
+			}));
+			element.swatches = simpleSwatches;
 			await elementUpdated(element);
-			expect(element.swatches).toEqual([
-				{ value: '#ff0000' },
-				{ value: '#00ff00' },
-				{ value: '#0000ff' },
-			]);
-		});
-
-		it('should handle invalid JSON gracefully', async () => {
-			element.setAttribute('swatches', 'invalid-json');
-			await elementUpdated(element);
-			expect(element.swatches).toEqual([]);
-
-			element.setAttribute('swatches', '{"not": "array"}');
-			await elementUpdated(element);
-			expect(element.swatches).toEqual([]);
+			expect(element.swatches).toEqual(simpleSwatches);
 		});
 
 		it('should render swatches with correct properties when open', async () => {
-			element.setAttribute(
-				'swatches',
-				JSON.stringify(TEST_SWATCHES.slice(0, 3))
-			);
+			element.swatches = TEST_SWATCHES.slice(0, 3);
 			element.open = true;
 			await elementUpdated(element);
 
@@ -192,14 +162,6 @@ describe('vwc-simple-color-picker', () => {
 			expect(firstSwatch?.getAttribute('tabindex')).toBe('0');
 			expect(swatchButtons?.[1]?.getAttribute('tabindex')).toBe('-1');
 			expect(swatchButtons?.[2]?.getAttribute('tabindex')).toBe('-1');
-		});
-
-		it('should clear swatch elements cache when swatches change', () => {
-			element.setAttribute(
-				'swatches',
-				JSON.stringify(TEST_SWATCHES.slice(0, 3))
-			);
-			expect(element['_swatchElements']).toBeUndefined();
 		});
 	});
 
@@ -256,10 +218,7 @@ describe('vwc-simple-color-picker', () => {
 
 	describe('click interactions', () => {
 		beforeEach(async () => {
-			element.setAttribute(
-				'swatches',
-				JSON.stringify(TEST_SWATCHES.slice(0, 3))
-			);
+			element.swatches = TEST_SWATCHES.slice(0, 3);
 			element.open = true;
 			await elementUpdated(element);
 		});
@@ -322,7 +281,7 @@ describe('vwc-simple-color-picker', () => {
 
 	describe('keyboard navigation', () => {
 		beforeEach(async () => {
-			element.setAttribute('swatches', JSON.stringify(TEST_SWATCHES));
+			element.swatches = TEST_SWATCHES;
 			element.swatchesPerRow = 3;
 			element.open = true;
 			await elementUpdated(element);
@@ -449,25 +408,7 @@ describe('vwc-simple-color-picker', () => {
 			}).not.toThrow();
 		});
 
-		it('should return focus to anchor after Tab key', async () => {
-			const anchorElement = document.createElement('button');
-			anchorElement.slot = 'anchor';
-			element.appendChild(anchorElement);
-			await elementUpdated(element);
-
-			const focusSpy = vi.fn();
-			anchorElement.focus = focusSpy;
-
-			getSwatch(0)?.dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'Tab', bubbles: true })
-			);
-			await elementUpdated(element);
-			await new Promise((resolve) => setTimeout(resolve, 50));
-
-			expect(focusSpy).toHaveBeenCalled();
-		});
-
-		it('should focus correct swatch when opened via keyboard', async () => {
+		it('should focus correct swatch when opened via any method', async () => {
 			const anchorElement = document.createElement('button');
 			anchorElement.slot = 'anchor';
 			element.appendChild(anchorElement);
@@ -483,10 +424,15 @@ describe('vwc-simple-color-picker', () => {
 			expect(element.shadowRoot?.activeElement).toBe(getSwatch(1));
 
 			element.open = false;
+			element.value = '#ffff00';
+			anchorElement.click();
+			await elementUpdated(element);
+			await new Promise((resolve) => setTimeout(resolve, 50));
+			expect(element.shadowRoot?.activeElement).toBe(getSwatch(3));
+
+			element.open = false;
 			element.value = '#999999';
-			anchorElement.dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })
-			);
+			anchorElement.click();
 			await elementUpdated(element);
 			await new Promise((resolve) => setTimeout(resolve, 50));
 			expect(element.shadowRoot?.activeElement).toBe(getSwatch(0));
@@ -526,7 +472,6 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			expect(element.open).toBe(true);
-			expect(element._openedViaKeyboard).toBe(true);
 		});
 
 		it('should open popup when Space is pressed on anchor', async () => {
@@ -543,7 +488,6 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			expect(element.open).toBe(true);
-			expect(element._openedViaKeyboard).toBe(true);
 			expect(spaceEvent.preventDefault).toHaveBeenCalled();
 		});
 
@@ -563,10 +507,7 @@ describe('vwc-simple-color-picker', () => {
 		let anchorElement: HTMLElement;
 
 		beforeEach(async () => {
-			element.setAttribute(
-				'swatches',
-				JSON.stringify(TEST_SWATCHES.slice(0, 3))
-			);
+			element.swatches = TEST_SWATCHES.slice(0, 3);
 		});
 
 		it('should have proper ARIA attributes on palette and swatches', async () => {
