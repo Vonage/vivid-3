@@ -11,7 +11,7 @@ $label-suffix-gap: --_label-suffix-gap;
 	}
 }
 
-::slotted([data-vvd-component='contextual-help']) {
+slot[name='contextual-help']::slotted([data-vvd-component='contextual-help']) {
 	grid-column-end: -1;
 	grid-row: 1;
 }

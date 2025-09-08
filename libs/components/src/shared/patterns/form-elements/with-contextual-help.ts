@@ -16,12 +16,12 @@ export const WithContextualHelp = <T extends Constructor<FormElementElement>>(
 		/**
 		 * @internal
 		 */
-		@observable contextualHelpSlottedContent?: HTMLElement[];
+		@observable _contextualHelpSlottedContent?: HTMLElement[];
 
 		/**
 		 * @internal
 		 */
-		get hasContextualHelp(): boolean {
+		get _hasContextualHelp(): boolean {
 			return (this.contextualHelpSlottedContent?.length ?? 0) > 0;
 		}
 	}

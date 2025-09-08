@@ -7,7 +7,7 @@ Use the `icon` slot to customize default icon.
 ```html preview
 <vwc-contextual-help>
 	This is an example contextual help
-	<vwc-icon slot="icon" size="-6" name="info-solid"></vwc-icon>
+	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
 </vwc-contextual-help>
 ```
 
