@@ -11,7 +11,7 @@
 @use '@repo/shared/mixins/connotation' as connotation;
 @use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: ghost ghost-light,
-	$states: idle hover active selected selectedAndHover,
+	$states: idle hover active selected selected-hover,
 	$default: ghost
 );
 @use '@repo/shared/mixins/appearance' as appearance;

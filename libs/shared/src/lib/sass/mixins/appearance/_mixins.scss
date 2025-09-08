@@ -32,11 +32,11 @@ $state-aspect-selectors: (
 		disabled: '&:where(#{$disabled})',
 		readonly: '&:where(#{$readonly}):where(:not(#{$disabled}))',
 		selected: '&:where(#{$selected}):where(:not(#{$disabled}))',
-		selectedAndHover:
+		selected-hover:
 			'&:where(#{$selected}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
-		selectedAndDisabled: '&:where(#{$selected}):where(#{$disabled})',
+		selected-disabled: '&:where(#{$selected}):where(#{$disabled})',
 		checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
-		checkedAndHover:
+		checked-hover:
 			'&:where(#{$checked}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
 		active: '&:where(#{$active}):where(:not(#{$disabled}))',
 		error: '&:where(#{$error}):where(:not(#{$disabled}))',
@@ -44,7 +44,8 @@ $state-aspect-selectors: (
 	);
 }
 
-$hover-sensitive-states: (hover, selectedAndHover, checkedAndHover);
+// keep all lowercase / kebab-case
+$hover-sensitive-states: (hover, selected-hover, checked-hover);
 
 @mixin appearance($state-selectors: state-selectors($state-aspect-selectors)) {
 	@each $state in config.$states {
@@ -53,18 +54,18 @@ $hover-sensitive-states: (hover, selectedAndHover, checkedAndHover);
 		@if list.index($hover-sensitive-states, $state) {
 			@media (hover: hover) {
 				#{$selector} {
-					@include _appearance-inner($state);
+					@include appearance-inner($state);
 				}
 			}
 		} @else {
 			#{$selector} {
-				@include _appearance-inner($state);
+				@include appearance-inner($state);
 			}
 		}
 	}
 }
 
-@mixin _appearance-inner($state) {
+@mixin appearance-inner($state) {
 	$state-mapping: map.get(variables.$states-mapping, $state);
 
 	@each $appearance in config.$appearances {

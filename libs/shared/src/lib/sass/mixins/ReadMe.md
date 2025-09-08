@@ -24,9 +24,9 @@
 - disabled
 - readonly
 - selected
-- selectedAndHover
+- selected-hover
 - checked
-- checkedAndHover
+- checked-hover
 - active
 - error
 - success

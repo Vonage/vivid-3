@@ -9,7 +9,7 @@
 @use '@repo/shared/mixins/connotation' as connotation;
 @use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: listitem,
-	$states: idle hover disabled active selected selectedAndHover,
+	$states: idle hover disabled active selected selected-hover,
 	$default: listitem
 );
 @use '@repo/shared/mixins/appearance' as appearance;

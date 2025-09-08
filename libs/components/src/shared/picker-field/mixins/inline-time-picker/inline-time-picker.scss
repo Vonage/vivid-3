@@ -7,7 +7,7 @@
 @use '@repo/shared/mixins/connotation/index' as connotation;
 @use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: listitem,
-	$states: idle hover active selected selectedAndHover selectedAndDisabled,
+	$states: idle hover active selected selected-hover selected-disabled,
 	$default: listitem
 );
 @use '@repo/shared/mixins/appearance/index' as appearance;
