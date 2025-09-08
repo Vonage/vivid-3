@@ -47,19 +47,6 @@ describe('vwc-simple-color-picker', () => {
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 
-		it('should have a unique popup ID', () => {
-			const element1 = document.createElement(
-				COMPONENT_TAG
-			) as SimpleColorPicker;
-			const element2 = document.createElement(
-				COMPONENT_TAG
-			) as SimpleColorPicker;
-
-			expect(element1._popupId).toBeDefined();
-			expect(element2._popupId).toBeDefined();
-			expect(element1._popupId).not.toBe(element2._popupId);
-		});
-
 		it('should have proper form association proxy', () => {
 			expect(element.proxy).toBeInstanceOf(HTMLInputElement);
 		});
@@ -79,15 +66,6 @@ describe('vwc-simple-color-picker', () => {
 			element.setAttribute('value', '#00ff00');
 			await elementUpdated(element);
 			expect(element.value).toBe('#00ff00');
-		});
-
-		it('should emit change event when value changes', async () => {
-			const changePromise = new Promise((resolve) =>
-				element.addEventListener('change', () => resolve(true))
-			);
-
-			element.value = '#ff0000';
-			expect(await changePromise).toBe(true);
 		});
 
 		it('should update selected swatch when value matches', async () => {
@@ -614,9 +592,6 @@ describe('vwc-simple-color-picker', () => {
 			element.appendChild(anchorElement);
 			await elementUpdated(element);
 
-			expect(anchorElement.getAttribute('aria-controls')).toBe(
-				element._popupId
-			);
 			expect(anchorElement.getAttribute('aria-haspopup')).toBe('true');
 			expect(anchorElement.getAttribute('aria-expanded')).toBe('false');
 

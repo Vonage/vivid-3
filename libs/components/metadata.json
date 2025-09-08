@@ -7510,13 +7510,6 @@
 					"propertyName": "name"
 				},
 				{
-					"name": "offset",
-					"description": "Default offset of the popup",
-					"type": "number",
-					"attributeName": "offset",
-					"propertyName": "offset"
-				},
-				{
 					"name": "open",
 					"description": "Indicates whether the popup is open",
 					"type": "boolean",
@@ -7596,7 +7589,14 @@
 					"type": "KeyboardEvent"
 				}
 			],
-			"vueModels": [],
+			"vueModels": [
+				{
+					"name": "modelValue",
+					"propName": "value",
+					"eventNames": ["input"],
+					"valueMapping": "event.currentTarget.value"
+				}
+			],
 			"methods": [
 				{
 					"name": "checkValidity",

@@ -22,8 +22,7 @@ export const SimpleColorPickerTemplate = (
 			:anchor="${(x) => x._anchorEl}"
 			:open="${(x) => x.open}"
 			placement="${(x) => x.placement}"
-			offset="${(x) => x.offset}"
-			id="${(x) => x._popupId}"
+			offset="4"
 			@keydown="${(x, { event }) => {
 				if (
 					x.open &&

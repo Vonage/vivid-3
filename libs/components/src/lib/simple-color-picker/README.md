@@ -103,30 +103,6 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 </vwc-button>
 ```
 
-## Offset
-
-Use the `offset` attribute to add an extra gap (in `px`) between the Simple Color Picker's popup and the anchor element.
-
-- Type: `number`
-- Default: `4`
-
-```html preview 160px
-<vwc-simple-color-picker
-	offset="12"
-	swatches="['#000000','#6E0000','#BE5702','#183A1E','#0E306D','#440291','#620256','#757575','#E61D1D','#FA9F00','#1C8731','#0276D5','#9941FF','#D6219C']"
->
-	<vwc-button
-		aria-label="Pick color"
-		slot="anchor"
-		size="super-condensed"
-		shape="pill"
-		appearance="outlined"
-	>
-		<vwc-icon id="icon" slot="icon" name="textcolor-solid"></vwc-icon>
-	</vwc-button>
-</vwc-simple-color-picker>
-```
-
 ## Slots
 
 ### Anchor Slot
@@ -159,7 +135,6 @@ Simple Color Picker needs to be anchored to an element. Place the anchor element
 | Name                 | Type                                                                                                                                         | Description                                                                                           |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | **anchor**           | `string` or `HTMLElement`                                                                                                                    | ID of, or HTML element itself, to anchor the Color Picker's popup to. Prefer using the `anchor` slot. |
-| **offset**           | `number`                                                                                                                                     | Sets the offset between the Color Picker's popup and the anchor element                               |
 | **open**             | `boolean`                                                                                                                                    | Sets the open state of the Color Picker's popup                                                       |
 | **placement**        | `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` | Preferred placement of the Color Picker's popup in relation to the anchor element                     |
 | **swatches**         | `string[]` or `{label?: string; value: string;}[]`                                                                                           | Sets a color palette from which users can select colors                                               |
@@ -185,5 +160,6 @@ Simple Color Picker needs to be anchored to an element. Place the anchor element
 | Name       | Type                     | Bubbles | Composed | Description                                                              |
 | ---------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------ |
 | **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the `value` of an element has changed |
+| **input**  | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'input' event immediately when the `value` has changed    |
 
 </div>

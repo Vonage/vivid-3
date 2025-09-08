@@ -1,5 +1,4 @@
 import { attr, DOM, nullableNumberConverter } from '@microsoft/fast-element';
-import { uniqueId } from '@microsoft/fast-web-utilities';
 import type { Placement } from '@floating-ui/dom';
 import { Anchored } from '../../shared/patterns/anchored';
 import { FormElement, Localized } from '../../shared/patterns';
@@ -16,6 +15,7 @@ import {
  * @component simple-color-picker
  * @slot anchor - Slot for attaching the toggle button
  * @event {CustomEvent<undefined>} change - Fires when the value changes
+ * @vueModel modelValue value input `event.currentTarget.value`
  */
 export class SimpleColorPicker extends Localized(
 	Anchored(FormElement(FormAssociated(VividElement)))
@@ -24,20 +24,6 @@ export class SimpleColorPicker extends Localized(
 	 * @internal
 	 */
 	override proxy = document.createElement('input');
-
-	/**
-	 * Unique ID for this component instance
-	 * @internal
-	 */
-	_popupId = uniqueId('color-picker-');
-
-	/**
-	 * @internal
-	 */
-	override valueChanged(previous: string, next: string) {
-		super.valueChanged(previous, next);
-		this.$emit('change');
-	}
 
 	/**
 	 * Indicates whether the popup is open
@@ -86,19 +72,6 @@ export class SimpleColorPicker extends Localized(
 	 * HTML Attribute: placement
 	 */
 	@attr({ mode: 'fromView' }) placement?: Placement = 'top-start';
-
-	/**
-	 * Default offset of the popup
-	 *
-	 * @public
-	 * HTML Attribute: offset
-	 */
-	@attr({
-		attribute: 'offset',
-		converter: nullableNumberConverter,
-		mode: 'fromView',
-	})
-	offset: number = 4;
 
 	/**
 	 * List of color swatches as JSON string
@@ -208,10 +181,9 @@ export class SimpleColorPicker extends Localized(
 	 * @internal
 	 */
 	#setupAnchor(a: HTMLElement) {
+		this.#updateAnchor(a);
 		a.addEventListener('click', this.#openPopup, true);
 		a.addEventListener('keydown', this.#handleAnchorKeydown);
-		this.#updateAnchor(a);
-		a.setAttribute('aria-controls', this._popupId);
 		a.setAttribute('aria-haspopup', 'true');
 	}
 
@@ -223,7 +195,6 @@ export class SimpleColorPicker extends Localized(
 		a.removeEventListener('keydown', this.#handleAnchorKeydown);
 		a.removeAttribute('aria-expanded');
 		a.removeAttribute('data-expanded');
-		a.removeAttribute('aria-controls');
 		a.removeAttribute('aria-haspopup');
 	}
 
@@ -275,6 +246,7 @@ export class SimpleColorPicker extends Localized(
 		} else {
 			this.value = swatch.value;
 		}
+		this.$emit('change');
 		this.open = false;
 	};
 
