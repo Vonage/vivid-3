@@ -1,10 +1,10 @@
-import { buttonDefinition } from '../button/definition';
 import { iconDefinition } from '../icon/definition';
 import { toggletipDefinition } from '../toggletip/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { ContextualHelp } from './contextual-help';
 import { ContextualHelpTemplate as template } from './contextual-help.template';
+import styles from './contextual-help.scss?inline';
 
 /**
  * @internal
@@ -13,8 +13,10 @@ export const contextualHelpDefinition = defineVividComponent(
 	'contextual-help',
 	ContextualHelp,
 	template,
-	[buttonDefinition, iconDefinition, toggletipDefinition],
-	{}
+	[iconDefinition, toggletipDefinition],
+	{
+		styles,
+	}
 );
 
 /**

@@ -152,10 +152,6 @@
 		&.icon-only {
 			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-full};
 		}
-
-		&.icon-only.size-super-condensed {
-			padding-inline: calc(var(#{variables.$block-size}) / 6);
-		}
 	}
 
 	&.stacked {

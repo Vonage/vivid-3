@@ -13,6 +13,6 @@ Default Icon can be overridden using the `icon` slot.
 ```html preview
 <vwc-contextual-help>
 	This is an example contextual help
-	<vwc-icon slot="icon" size="-6" name="info-solid"></vwc-icon>
+	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
 </vwc-contextual-help>
 ```

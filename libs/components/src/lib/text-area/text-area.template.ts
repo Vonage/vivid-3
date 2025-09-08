@@ -36,7 +36,7 @@ export const TextAreaTemplate = (context: VividElementDefinitionContext) => {
 		<div class="${getClasses}">
 			<div
 				class="label-suffix"
-				?hidden=${(x) => !(x.charCount && x.maxlength) && !x.hasContextualHelp}
+				?hidden=${(x) => !(x.charCount && x.maxlength) && !x._hasContextualHelp}
 			>
 				${when(
 					(x) => x.charCount && x.maxlength,
@@ -44,7 +44,7 @@ export const TextAreaTemplate = (context: VividElementDefinitionContext) => {
 				)}
 				<slot
 					name="contextual-help"
-					${slotted('contextualHelpSlottedContent')}
+					${slotted('_contextualHelpSlottedContent')}
 				></slot>
 			</div>
 			${when((x) => x.label, renderLabel())}

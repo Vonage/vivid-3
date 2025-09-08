@@ -22,7 +22,7 @@ export const WithContextualHelp = <T extends Constructor<FormElementElement>>(
 		 * @internal
 		 */
 		get _hasContextualHelp(): boolean {
-			return (this.contextualHelpSlottedContent?.length ?? 0) > 0;
+			return (this._contextualHelpSlottedContent?.length ?? 0) > 0;
 		}
 	}
 
