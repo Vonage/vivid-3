@@ -65,8 +65,10 @@ $num-options-visible: --_inline-time-picker-num-options-visible;
 		scrollbar-width: none;
 
 		// Hide scrollbar when not hovering
-		&:hover {
-			scrollbar-width: auto;
+		@media (hover: hover) {
+			&:hover {
+				scrollbar-width: auto;
+			}
 		}
 
 		// Reserve space to allow scrolling options to top
