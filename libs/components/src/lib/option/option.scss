@@ -63,9 +63,7 @@
 			); // 10px (results in height of 40px with 1 line of text)
 		}
 		&.two-lines {
-			gap: calc(
-				#{size.$vvd-size-normal} / 2.5
-			); // 16px
+			gap: calc(#{size.$vvd-size-normal} / 2.5); // 16px
 
 			padding-block: calc(
 				#{size.$vvd-size-super-condensed} / 2
@@ -101,11 +99,11 @@
 			); // 6px (results in height of 32px with 1 line of text)
 		}
 		&.two-lines {
-			gap: calc(
-				#{size.$vvd-size-semi-condensed} / 3
-			); // 12px
+			gap: calc(#{size.$vvd-size-semi-condensed} / 3); // 12px
 
-			padding-block: calc(#{size.$vvd-size-condensed} / 4); // 8px (+2px, like normal size)
+			padding-block: calc(
+				#{size.$vvd-size-condensed} / 4
+			); // 8px (+2px, like normal size)
 		}
 	}
 
