@@ -5651,6 +5651,12 @@
 					"propertyName": "_text"
 				},
 				{
+					"name": "textSecondary",
+					"type": "string",
+					"attributeName": "text-secondary",
+					"propertyName": "textSecondary"
+				},
+				{
 					"name": "value",
 					"description": "The value of the option.",
 					"type": "string",
