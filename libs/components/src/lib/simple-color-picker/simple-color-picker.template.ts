@@ -43,7 +43,10 @@ export const SimpleColorPickerTemplate = (
 					html`
 						<button
 							class="swatch ${(x, c) =>
-								c.parent.value === x.value ? 'selected' : ''}"
+								classNames(
+									c.parent.value === x.value ? 'selected' : '',
+									c.parent._applyContrastClass(x.value) ? 'contrast' : ''
+								)}"
 							role="gridcell"
 							style="--swatch-color: ${(x) => x.value};"
 							tabindex="${(x, c) => (c.index === 0 ? '0' : '-1')}"

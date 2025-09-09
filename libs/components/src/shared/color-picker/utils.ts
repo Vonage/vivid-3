@@ -1,8 +1,16 @@
+function parseHexColor(input: string): string | null {
+	if (!input) return null;
+	const hex = input.trim().replace(/^#/, '');
+	if (/^[0-9a-fA-F]{6}$/.test(hex)) return hex.toLowerCase();
+	return null;
+}
+
 /**
  * Calculate the relative luminance of a hex color using WCAG formula
  */
 export function getLuminance(hexColor: string): number {
-	const hex = hexColor.replace('#', '');
+	const hex = parseHexColor(hexColor);
+	if (!hex) return 0;
 
 	const r = parseInt(hex.slice(0, 2), 16) / 255;
 	const g = parseInt(hex.slice(2, 4), 16) / 255;
@@ -38,26 +46,4 @@ export function getCSSCustomProperty(
 	}
 
 	return getComputedStyle(element).getPropertyValue(propertyName).trim();
-}
-
-/**
- * Apply contrast class to swatch if contrast ratio is insufficient
- */
-export function applyContrastClass(
-	swatch: HTMLElement,
-	contrastThreshold: number = 3
-): void {
-	const canvasColor = getCSSCustomProperty('--vvd-color-canvas');
-	const swatchColor = swatch.style.getPropertyValue('--swatch-color')?.trim();
-
-	if (!canvasColor || !swatchColor) {
-		return;
-	}
-	const contrastRatio = getContrastRatio(swatchColor, canvasColor);
-
-	if (contrastRatio < contrastThreshold) {
-		swatch.classList.add('contrast');
-	} else {
-		swatch.classList.remove('contrast');
-	}
 }

@@ -163,6 +163,30 @@ describe('vwc-simple-color-picker', () => {
 			expect(swatchButtons?.[1]?.getAttribute('tabindex')).toBe('-1');
 			expect(swatchButtons?.[2]?.getAttribute('tabindex')).toBe('-1');
 		});
+
+		it('should apply contrast class based on host-scoped --vvd-color-canvas', async () => {
+			element.swatches = [
+				{ value: '#000000', label: 'Black' },
+				{ value: '#ffffff', label: 'White' },
+				{ value: '#111111', label: 'Dark Grey' },
+			];
+
+			(element as HTMLElement).style.setProperty(
+				'--vvd-color-canvas',
+				'#ffffff'
+			);
+
+			element.open = true;
+			await elementUpdated(element);
+
+			const swatches =
+				element.shadowRoot!.querySelectorAll<HTMLButtonElement>('.swatch');
+			expect(swatches.length).toBe(3);
+
+			expect(swatches[0].classList.contains('contrast')).toBe(false);
+			expect(swatches[1].classList.contains('contrast')).toBe(true);
+			expect(swatches[2].classList.contains('contrast')).toBe(false);
+		});
 	});
 
 	describe('swatchesPerRow', () => {
@@ -300,6 +324,12 @@ describe('vwc-simple-color-picker', () => {
 		});
 
 		it('should select swatch with Enter and Space keys', async () => {
+			// ensure anchor exists for focus return
+			const anchorElement = document.createElement('button');
+			anchorElement.slot = 'anchor';
+			element.appendChild(anchorElement);
+			await elementUpdated(element);
+
 			const changePromise = new Promise((resolve) =>
 				element.addEventListener('change', () => resolve(true))
 			);
@@ -315,6 +345,7 @@ describe('vwc-simple-color-picker', () => {
 			expect(element.value).toBe('#ff0000');
 			expect(element.open).toBe(false);
 			expect(await changePromise).toBe(true);
+			expect(document.activeElement).toBe(anchorElement);
 
 			element.open = true;
 			element.value = '';
@@ -330,6 +361,7 @@ describe('vwc-simple-color-picker', () => {
 
 			expect(element.value).toBe('#00ff00');
 			expect(element.open).toBe(false);
+			expect(document.activeElement).toBe(anchorElement);
 		});
 
 		describe.each([

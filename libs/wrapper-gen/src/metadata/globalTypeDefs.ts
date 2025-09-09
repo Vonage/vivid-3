@@ -103,5 +103,5 @@ export const globalTypeDefs: Record<string, TypeStr> = {
 		"'extra-large' | 'large' | 'normal' | 'small'",
 
 	// Color Picker:
-	'ColorSwatch[]': 'string',
+	'ColorSwatch[]': 'Array<{value: string, label?: string}>',
 };

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { applyContrastClass, getContrastRatio, getLuminance } from './utils';
+import { getContrastRatio, getCSSCustomProperty, getLuminance } from './utils';
 
 describe('color-picker-utils', () => {
 	describe('getLuminance', () => {
@@ -16,9 +16,12 @@ describe('color-picker-utils', () => {
 			expect(getLuminance('808080')).toBeCloseTo(0.2159, 3);
 		});
 
-		it('should handle malformed hex colors gracefully', () => {
-			expect(() => getLuminance('')).not.toThrow();
-			expect(() => getLuminance('invalid')).not.toThrow();
+		it('should coerce malformed inputs to black (0)', () => {
+			expect(getLuminance('')).toBe(0);
+			expect(getLuminance('invalid')).toBe(0);
+			expect(getLuminance('#abc')).toBe(0);
+			expect(getLuminance('#gggggg')).toBe(0);
+			expect(getLuminance('   #FFFFFF   ')).toBeCloseTo(1, 3);
 		});
 	});
 
@@ -40,58 +43,32 @@ describe('color-picker-utils', () => {
 		});
 
 		it('should work with colors without # prefix', () => {
-			expect(getContrastRatio('ffffff', '000000')).toBeCloseTo(21, 1);
+			expect(getContrastRatio('ffffff', 'ff0000')).toBeCloseTo(3.998, 3);
 		});
 
-		it('should handle malformed colors gracefully', () => {
-			expect(() => getContrastRatio('', '#ffffff')).not.toThrow();
-			expect(() => getContrastRatio('#ffffff', '')).not.toThrow();
+		it('should handle malformed inputs using coercion', () => {
+			expect(getContrastRatio('', '#ffffff')).toBeCloseTo(21, 1);
+			expect(getContrastRatio('#ffffff', '')).toBeCloseTo(21, 1);
+			expect(getContrastRatio('nope', 'nope')).toBeCloseTo(1, 2);
 		});
 	});
 
-	describe('applyContrastClass', () => {
-		let mockSwatch: HTMLElement;
+	describe('getCSSCustomProperty', () => {
+		it('falls back to .vvd-root, then documentElement when no element is provided', () => {
+			document.documentElement.style.setProperty(
+				'--vvd-color-canvas',
+				'#abcabc'
+			);
+			expect(getCSSCustomProperty('--vvd-color-canvas')).toBe('#abcabc');
 
-		beforeEach(() => {
-			mockSwatch = document.createElement('div');
-			vi.clearAllMocks();
-		});
+			const vividRoot = document.createElement('div');
+			vividRoot.className = 'vvd-root';
+			vividRoot.style.setProperty('--vvd-color-canvas', '#123456');
+			document.body.appendChild(vividRoot);
+			expect(getCSSCustomProperty('--vvd-color-canvas')).toBe('#123456');
 
-		it('should add contrast class when contrast ratio is below default threshold', () => {
-			mockSwatch.style.setProperty('--swatch-color', '#333333');
-
-			vi.spyOn(window, 'getComputedStyle').mockReturnValue({
-				getPropertyValue: vi.fn().mockReturnValue('#000000'),
-			} as any);
-			vi.spyOn(document, 'querySelector').mockReturnValue(null);
-
-			applyContrastClass(mockSwatch);
-
-			expect(mockSwatch.classList.contains('contrast')).toBe(true);
-		});
-
-		it('should remove contrast class when contrast ratio is above default threshold', () => {
-			mockSwatch.classList.add('contrast');
-			mockSwatch.style.setProperty('--swatch-color', '#ffffff');
-
-			vi.spyOn(window, 'getComputedStyle').mockReturnValue({
-				getPropertyValue: vi.fn().mockReturnValue('#000000'),
-			} as any);
-			vi.spyOn(document, 'querySelector').mockReturnValue(null);
-
-			applyContrastClass(mockSwatch);
-
-			expect(mockSwatch.classList.contains('contrast')).toBe(false);
-		});
-
-		it('should handle missing colors gracefully', () => {
-			vi.spyOn(window, 'getComputedStyle').mockReturnValue({
-				getPropertyValue: vi.fn().mockReturnValue(''),
-			} as any);
-			vi.spyOn(document, 'querySelector').mockReturnValue(null);
-
-			expect(() => applyContrastClass(mockSwatch)).not.toThrow();
-			expect(mockSwatch.classList.contains('contrast')).toBe(false);
+			vividRoot.remove();
+			document.documentElement.style.removeProperty('--vvd-color-canvas');
 		});
 	});
 });

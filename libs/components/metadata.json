@@ -7531,13 +7531,6 @@
 					"propertyName": "required"
 				},
 				{
-					"name": "swatches",
-					"description": "List of color swatches as JSON string\nCan be either:\n- Array of strings: '[\"#ff0000\", \"#00ff00\", \"#0000ff\"]'\n- Array of objects: '[{\"label\": \"Red\", \"value\": \"#ff0000\"}, {\"value\": \"#00ff00\"}]'",
-					"type": "string",
-					"attributeName": "swatches",
-					"propertyName": "swatches"
-				},
-				{
 					"name": "swatchesPerRow",
 					"description": "Number of swatches per row for grid layout",
 					"type": "number",
@@ -7609,8 +7602,7 @@
 					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
 					"args": [],
 					"returnType": "boolean"
-				},
-				{ "name": "swatchesChanged", "args": [], "returnType": "unknown" }
+				}
 			],
 			"slots": [
 				{

@@ -10,8 +10,9 @@ import { FormElement, Localized } from '../../shared/patterns';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import {
-	applyContrastClass,
 	type ColorSwatch,
+	getContrastRatio,
+	getCSSCustomProperty,
 } from '../../shared/color-picker';
 
 /**
@@ -48,6 +49,7 @@ export class SimpleColorPicker extends Localized(
 		}
 
 		if (this.open) {
+			this._refreshCanvasColor();
 			requestAnimationFrame(() => {
 				const selectedIndex = this.swatches.findIndex(
 					(swatch) => swatch.value === this.value
@@ -79,11 +81,6 @@ export class SimpleColorPicker extends Localized(
 	@observable
 	swatches: ColorSwatch[] = [];
 
-	swatchesChanged() {
-		this._swatchElements = undefined;
-		setTimeout(() => this.#applyContrastClasses(), 100);
-	}
-
 	/**
 	 * Number of swatches per row for grid layout
 	 * @public
@@ -97,26 +94,10 @@ export class SimpleColorPicker extends Localized(
 	})
 	swatchesPerRow: number = 7;
 
-	/**
-	 * Cache DOM querying of the swatch elements
-	 * @internal
-	 */
-	private _swatchElements?: NodeListOf<HTMLElement>;
-
-	/**
-	 * @internal
-	 */
-	private get swatchElements(): NodeListOf<HTMLElement> | undefined {
-		if (!this._swatchElements) {
-			this._swatchElements =
-				this.shadowRoot?.querySelectorAll('[role="gridcell"]');
-		}
-		return this._swatchElements;
-	}
-
 	override connectedCallback(): void {
 		super.connectedCallback();
 		this.#updateListeners();
+		this._refreshCanvasColor();
 	}
 
 	override disconnectedCallback(): void {
@@ -139,10 +120,22 @@ export class SimpleColorPicker extends Localized(
 	/**
 	 * @internal
 	 */
-	#applyContrastClasses() {
-		this.swatchElements?.forEach((swatch) => {
-			applyContrastClass(swatch as HTMLElement);
-		});
+	private _canvasColor: string = '';
+
+	/**
+	 * @internal
+	 */
+	private _refreshCanvasColor() {
+		this._canvasColor = getCSSCustomProperty('--vvd-color-canvas', this);
+	}
+
+	/**
+	 * @internal
+	 */
+	_applyContrastClass(swatchColor: string, threshold = 3): boolean {
+		if (!swatchColor || !this._canvasColor) return false;
+		const ratio = getContrastRatio(swatchColor, this._canvasColor);
+		return ratio < threshold;
 	}
 
 	/**
@@ -334,7 +327,10 @@ export class SimpleColorPicker extends Localized(
 	 */
 	#focusSwatchByIndex(index: number) {
 		if (index < 0 || index >= this.swatches.length) return;
-		const element = this.swatchElements?.[index] as HTMLElement;
+		const element =
+			this.shadowRoot?.querySelectorAll<HTMLElement>('[role="gridcell"]')?.[
+				index
+			];
 		element?.focus();
 	}
 
