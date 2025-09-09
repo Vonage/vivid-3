@@ -573,7 +573,7 @@
 		"accessibility": "./libs/components/src/lib/simple-color-picker/ACCESSIBILITY.md",
 		"hideGuidelines": "true",
 		"status": "alpha"
-  },
+	},
 	{
 		"title": "Contextual Help",
 		"description": "Adds contextual help nested in the Toggletip to the form label",
