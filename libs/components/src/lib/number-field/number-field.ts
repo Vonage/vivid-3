@@ -18,6 +18,7 @@ import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithFeedback } from '../../shared/feedback/mixins';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { WithContextualHelp } from '../../shared/patterns/form-elements/with-contextual-help';
 
 export type NumberFieldAppearance = ExtractFromEnum<
 	Appearance,
@@ -88,11 +89,13 @@ const validNumber = /^-?((\d*\.\d+)|(\d+))$/;
  * @testRef incrementButton shadowButton #add
  * @testRef decrementButton shadowButton #subtract
  */
-export class NumberField extends WithFeedback(
-	WithErrorText(
-		WithSuccessText(
-			FormElement(
-				AffixIcon(Localized(DelegatesAria(FormAssociated(VividElement))))
+export class NumberField extends WithContextualHelp(
+	WithFeedback(
+		WithErrorText(
+			WithSuccessText(
+				FormElement(
+					AffixIcon(Localized(DelegatesAria(FormAssociated(VividElement))))
+				)
 			)
 		)
 	)

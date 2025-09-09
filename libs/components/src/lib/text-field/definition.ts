@@ -3,6 +3,7 @@ import { createRegisterFunction } from '../../shared/design-system/createRegiste
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
 import { visuallyHiddenDefinition } from '../visually-hidden/definition';
+import { contextualHelpDefinition } from '../contextual-help/definition';
 import { TextField } from './text-field';
 import styles from './text-field.scss?inline';
 import { TextfieldTemplate as template } from './text-field.template';
@@ -16,7 +17,12 @@ export const textFieldDefinition = defineVividComponent(
 	'text-field',
 	TextField,
 	template,
-	[iconDefinition, feedbackMessageDefinition, visuallyHiddenDefinition],
+	[
+		iconDefinition,
+		feedbackMessageDefinition,
+		visuallyHiddenDefinition,
+		contextualHelpDefinition,
+	],
 	{
 		styles,
 		shadowOptions: {

@@ -1,4 +1,4 @@
-import { html, ref, when } from '@microsoft/fast-element';
+import { html, ref, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { delegateAria } from '../../shared/aria/delegates-aria';
@@ -34,10 +34,19 @@ function renderLabel() {
 export const TextAreaTemplate = (context: VividElementDefinitionContext) => {
 	return html`
 		<div class="${getClasses}">
-			${when(
-				(x) => x.charCount && x.maxlength,
-				(x) => x._getCharCountTemplate(context)
-			)}
+			<div
+				class="label-suffix"
+				?hidden=${(x) => !(x.charCount && x.maxlength) && !x._hasContextualHelp}
+			>
+				${when(
+					(x) => x.charCount && x.maxlength,
+					(x) => x._getCharCountTemplate(context)
+				)}
+				<slot
+					name="contextual-help"
+					${slotted('_contextualHelpSlottedContent')}
+				></slot>
+			</div>
 			${when((x) => x.label, renderLabel())}
 			<textarea
 				class="control"

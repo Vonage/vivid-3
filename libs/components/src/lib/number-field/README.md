@@ -99,6 +99,18 @@ Example showing a link in the helper text:
 </vwc-number-field>
 ```
 
+### Contextual-Help
+
+The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
+
+```html preview
+<vwc-number-field label="Wanted quantity">
+	<vwc-contextual-help slot="contextual-help"
+		>How many apples do you need</vwc-contextual-help
+	>
+</vwc-number-field>
+```
+
 ## Properties
 
 <div class="table-wrapper">
@@ -129,9 +141,10 @@ Example showing a link in the helper text:
 
 <div class="table-wrapper">
 
-| Name                     | Description                                        |
-| ------------------------ | -------------------------------------------------- |
-| **leading-action-items** | Add rich content as the number-field's helper text |
+| Name                     | Description                                                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| **leading-action-items** | Add rich content as the number-field's helper text                                                                 |
+| **contextual-help**      | Allows you to add the [Contextual Help](/components/contextual-help/) component to be displayed next to the label. |
 
 </div>
 

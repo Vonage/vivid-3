@@ -45,10 +45,19 @@ export const TextfieldTemplate = (context: VividElementDefinitionContext) => {
 
 	return html<TextField>`
 		<div class="base ${getStateClasses}">
-			${when(
-				(x) => x.charCount && x.maxlength,
-				(x) => x._getCharCountTemplate(context)
-			)}
+			<div
+				class="label-suffix"
+				?hidden=${(x) => !(x.charCount && x.maxlength) && !x._hasContextualHelp}
+			>
+				${when(
+					(x) => x.charCount && x.maxlength,
+					(x) => x._getCharCountTemplate(context)
+				)}
+				<slot
+					name="contextual-help"
+					${slotted('_contextualHelpSlottedContent')}
+				></slot>
+			</div>
 			<slot class="label" name="_label"></slot>
 			${renderInLightDOM(html<TextField>`
 				${when(
