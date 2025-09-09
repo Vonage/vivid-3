@@ -59,4 +59,16 @@ export class Fab extends AffixIconWithTrailing(VividFoundationButton) {
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;
+
+	/**
+	 * Handles click events.
+	 * Prevents interaction when disabled.
+	 */
+	clickHandler(event: Event) {
+		if (this.disabled) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			return;
+		}
+	}
 }

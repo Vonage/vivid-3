@@ -33,7 +33,6 @@ export const FabTemplate = (context: VividElementDefinitionContext) => {
 		<button
 			class="${getClasses} "
 			?autofocus="${(x) => x.autofocus}"
-			?disabled="${(x) => x.disabled}"
 			form="${(x) => x.formId}"
 			formaction="${(x) => x.formaction}"
 			formenctype="${(x) => x.formenctype}"
@@ -43,8 +42,11 @@ export const FabTemplate = (context: VividElementDefinitionContext) => {
 			name="${(x) => x.name}"
 			type="${(x) => x.type}"
 			value="${(x) => x.value}"
-			${delegateAria()}
+			${delegateAria({
+				ariaDisabled: (x) => x.disabled,
+			})}
 			${ref('control')}
+			@click="${(x, c) => x.clickHandler(c.event)}"
 		>
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}
 		</button>

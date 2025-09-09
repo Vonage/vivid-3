@@ -1409,6 +1409,12 @@
 					"returnType": "boolean"
 				},
 				{
+					"name": "clickHandler",
+					"description": "Handles click events.\nPrevents interaction when disabled or pending.",
+					"args": [{ "name": "event", "type": "Event" }],
+					"returnType": "unknown"
+				},
+				{
 					"name": "reportValidity",
 					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
 					"args": [],
@@ -3978,6 +3984,12 @@
 					"description": "Return the current validity of the element.",
 					"args": [],
 					"returnType": "boolean"
+				},
+				{
+					"name": "clickHandler",
+					"description": "Handles click events.\nPrevents interaction when disabled.",
+					"args": [{ "name": "event", "type": "Event" }],
+					"returnType": "unknown"
 				},
 				{
 					"name": "reportValidity",
@@ -7740,7 +7752,20 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [],
+			"methods": [
+				{
+					"name": "handleActionClick",
+					"description": "Handles action click events.\nPrevents interaction when disabled or pending.",
+					"args": [{ "name": "event", "type": "Event" }],
+					"returnType": "unknown"
+				},
+				{
+					"name": "handleIndicatorClick",
+					"description": "Handles indicator click events.\nPrevents interaction when disabled or pending.",
+					"args": [{ "name": "event", "type": "Event" }],
+					"returnType": "unknown"
+				}
+			],
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
 				{
