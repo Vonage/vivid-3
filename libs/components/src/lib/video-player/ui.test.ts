@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
@@ -21,24 +21,24 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<div class="layout">
 			<div class="spacer">
 				<vwc-video-player id="video-player" poster="/assets/ui-tests/ed-poster.jpeg">
-					<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
+					<source src="/assets/ui-tests/videos/example-5s/sample-5s.webm" type="video/webm">
 				</vwc-video-player>
 			</div>
 
 			<div class="spacer">
 				<vwc-video-player id="video-player-controls">
-					<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
+					<source src="/assets/ui-tests/videos/example-5s/sample-5s.webm" type="video/webm">
 				</vwc-video-player>
 			</div>
 
 			<div class="spacer">
 				<vwc-video-player id="video-player-controls-2">
-					<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
+					<source src="/assets/ui-tests/videos/example-5s/sample-5s.webm" type="video/webm">
 					<track kind="captions"
-						src="/assets/ui-tests/captions.en.vtt" srclang="en" label="English">
+						src="/assets/ui-tests/videos/example-5s/captions.en.vtt" srclang="en" label="English">
 					<track kind="descriptions"
-						src="/assets/ui-tests/descriptions.en.vtt" label="English" srclang="en">
-					<track kind="chapters" src="/assets/ui-tests/chapters.en.vtt" srclang="en">
+						src="/assets/ui-tests/videos/example-5s/descriptions.en.vtt" label="English" srclang="en">
+					<track kind="chapters" src="/assets/ui-tests/videos/example-5s/chapters.en.vtt" srclang="en">
 				</vwc-video-player>
 			</div>
 
@@ -115,7 +115,7 @@ test('should hide the track menu buttons when no track elements are provided', a
 }) => {
 	const template = `
 		<vwc-video-player>
-			<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
+			<source src="/assets/ui-tests/videos/example-5s/sample-5s.webm" type="video/webm">
 		</vwc-video-player>`;
 
 	await loadComponents({ page, components });
@@ -141,9 +141,9 @@ test('should show the button and populate the menu when adding audio description
 }) => {
 	const template = `
 		<vwc-video-player>
-			<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
+			<source src="/assets/ui-tests/videos/example-5s/sample-5s.webm" type="video/webm">
 			<track kind="descriptions"
-				src="/assets/ui-tests/descriptions.en.vtt" label="English" srclang="en">
+				src="/assets/ui-tests/videos/example-5s/descriptions.en.vtt" label="English" srclang="en">
 		</vwc-video-player>`;
 
 	await loadComponents({ page, components });
@@ -165,9 +165,9 @@ test('should show the button when adding caption tracks', async ({
 }) => {
 	const template = `
 		<vwc-video-player>
-			<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
+			<source src="/assets/ui-tests/videos/example-5s/sample-5s.webm" type="video/webm">
 			<track kind="captions"
-				src="/assets/ui-tests/captions.en.vtt" srclang="en" label="English">
+				src="/assets/ui-tests/videos/example-5s/captions.en.vtt" srclang="en" label="English">
 		</vwc-video-player>`;
 
 	await loadComponents({ page, components });
@@ -186,8 +186,8 @@ test('should show the button when adding a chapter track', async ({
 }) => {
 	const template = `
 		<vwc-video-player>
-			<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
-			<track kind="chapters" src="/assets/ui-tests/chapters.en.vtt" srclang="en">
+			<source src="/assets/ui-tests/videos/example-5s/sample-5s.webm" type="video/webm">
+			<track kind="chapters" src="/assets/ui-tests/videos/example-5s/chapters.en.vtt" srclang="en">
 		</vwc-video-player>`;
 
 	await loadComponents({ page, components });

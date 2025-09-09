@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
@@ -18,7 +18,7 @@ async function testMenuOpen({ page }: { page: Page }) {
 		</style>
 		<div class="wrapper">
 <vwc-audio-player
-src="https://download.samplelib.com/mp3/sample-6s.mp3"
+src="/assets/ui-tests/audio/example-6s.mp3"
 playback-rates="0.5, 1, 1.5, 2"
 >
 </vwc-audio-player>
@@ -51,70 +51,70 @@ playback-rates="0.5, 1, 1.5, 2"
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `<div style="margin: 5px;">
-		<vwc-audio-player 
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+		<vwc-audio-player
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
 	</div>
 	<div style="margin: 5px;">
-		<vwc-audio-player 
+		<vwc-audio-player
 			notime
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
 	</div>
 	<div style="margin: 5px;">
-		<vwc-audio-player 
+		<vwc-audio-player
 			skip-by="5"
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
-		<vwc-audio-player 
+		<vwc-audio-player
 			skip-by="10"
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
-		<vwc-audio-player 
+		<vwc-audio-player
 			skip-by="30"
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
 	</div>
 	<div style="margin: 5px; width: 500px">
-		<vwc-audio-player 
+		<vwc-audio-player
 			skip-by="5"
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
-		<vwc-audio-player 
+		<vwc-audio-player
 			skip-by="10"
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
-		<vwc-audio-player 
+		<vwc-audio-player
 			skip-by="30"
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
 	</div>
 	<div style="margin: 5px;">
-		<vwc-audio-player 
+		<vwc-audio-player
 			playback-rates="0.5, 1, 1.5, 2"
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
 	</div>
 	<div style="margin: 5px; width: 500px">
-		<vwc-audio-player 
+		<vwc-audio-player
 			playback-rates="0.5, 1, 1.5, 2"
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
 	</div>
 	<div style="margin: 5px;">
-		<vwc-audio-player 
+		<vwc-audio-player
 			connotation="cta"
 			playback-rates="0.75, 1, 1.5"
 			skip-by="5"
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
 	</div>
 	<div style="margin: 5px;">
-		<vwc-audio-player 
+		<vwc-audio-player
 			disabled
 			playback-rates="0.75, 1, 1.5"
 			skip-by="5"
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
 	</div>
 	<div style="margin: 5px; width: 350px;">
@@ -122,7 +122,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			playback-rates="0.75, 1, 1.5"
 			skip-by="5"
 			class="audio-player"
-			src="https://download.samplelib.com/mp3/sample-6s.mp3"
+			src="/assets/ui-tests/audio/example-6s.mp3"
 		></vwc-audio-player>
 	</div>`;
 

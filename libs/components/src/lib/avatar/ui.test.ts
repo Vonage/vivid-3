@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
@@ -58,7 +58,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-avatar shape="pill" connotation="cta">
 				<img
 				slot="graphic"
-				src="https://images.pexels.com/photos/762080/pexels-photo-762080.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				src="/assets/ui-tests/pictures/profile-picture-60x40.jpg"
 				alt="woman"
 				/>
 			</vwc-avatar>
@@ -212,7 +212,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				aria-label="Link to the Vivid documentation"
 			>
 				<vwc-icon slot="icon" name="chain-solid" label="Link"></vwc-icon>
-			</vwc-avatar>	
+			</vwc-avatar>
 			<vwc-avatar
 				slot="anchor"
 				appearance="subtle"
@@ -230,7 +230,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				id="focus-avatar"
 			>
 				<vwc-icon slot="icon" name="chain-solid" label="Link"></vwc-icon>
-			</vwc-avatar>	
+			</vwc-avatar>
 		</div>
 	`;
 

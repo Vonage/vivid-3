@@ -119,7 +119,7 @@ subtitle="Extra text below the card headline"
 >
 <img
 slot="media"
-src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540"
+src="/assets/ui-tests/illustrations/sitting-on-floor-300x150.png"
 alt="Sitting on Floor"
 style="width: 100%; height: 150px; object-fit: cover;"
 />
@@ -192,7 +192,7 @@ text="Neque porro quisquam est qui dolorem ipsum."
 >
 <div class="image-wrapper" slot="media">
 <img
-src="https://fastly.picsum.photos/id/48/367/267.jpg?hmac=fENUWb0yT2VgcvIXjwzBiAZ6QqdYG4rt2q8gok9VrZ0"
+src="/assets/ui-tests/pictures/macbook-367x267.jpg"
 alt=""
 />
 </div>
@@ -221,7 +221,7 @@ text="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu
 >
 <div class="image-wrapper" slot="media">
 <img
-src="https://fastly.picsum.photos/id/20/367/267.jpg?hmac=h8YwkzRUiuyBhJ-zQTrSCYop1hhNGtW00nITwHy1V4I"
+src="/assets/ui-tests/pictures/macbook-367x267.jpg"
 alt=""
 />
 </div>
@@ -252,7 +252,7 @@ text="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu
 >
 <div class="image-wrapper" slot="media">
 <img
-src="https://fastly.picsum.photos/id/180/367/267.jpg?hmac=XAmHD3CeF1SZodNhSTtrCVFsSUnlee5bjFyJsrqxyCM"
+src="/assets/ui-tests/pictures/macbook-367x267.jpg"
 alt=""
 />
 </div>
@@ -283,7 +283,7 @@ text="Neque porro quisquam est qui dolorem ipsum."
 >
 <div class="image-wrapper" slot="media">
 <img
-src="https://fastly.picsum.photos/id/48/367/267.jpg?hmac=fENUWb0yT2VgcvIXjwzBiAZ6QqdYG4rt2q8gok9VrZ0"
+src="/assets/ui-tests/pictures/macbook-367x267.jpg"
 alt=""
 />
 </div>
@@ -372,17 +372,17 @@ font-size: 40px;
 </div>
 
 <div class="wrapper-div">
-<vwc-card 
-id="card-link" 
-href="/example" 
-headline="Vivid Card Component" 
+<vwc-card
+id="card-link"
+href="/example"
+headline="Vivid Card Component"
 subtitle="Extra text below the card headline"
 >
 </vwc-card>
-<vwc-card 
-id="card-button" 
-clickable-card 
-headline="Vivid Clickable Card (Button)" 
+<vwc-card
+id="card-button"
+clickable-card
+headline="Vivid Clickable Card (Button)"
 subtitle="Extra text below the card headline"
 >
 </vwc-card>
