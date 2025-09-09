@@ -121,6 +121,9 @@
 
 .text {
 	font: var(#{constants.$vvd-typography-base});
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 	margin-inline-end: auto;
 }
 
