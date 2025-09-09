@@ -46,12 +46,7 @@ export const FabTemplate = (context: VividElementDefinitionContext) => {
 				ariaDisabled: (x) => x.disabled,
 			})}
 			${ref('control')}
-			@click="${(x, c) => {
-				if (x.disabled) {
-					c.event.preventDefault();
-					c.event.stopImmediatePropagation();
-				}
-			}}"
+			@click="${(x, c) => x.clickHandler(c.event)}"
 		>
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}
 		</button>

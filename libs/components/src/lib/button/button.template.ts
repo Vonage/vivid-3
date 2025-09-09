@@ -116,12 +116,7 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 			ariaDisabled: (x) => x.disabled || x.pending,
 		})}
 		${ref('control')}
-		@click="${(x, c) => {
-			if (x.disabled || x.pending) {
-				c.event.preventDefault();
-				c.event.stopImmediatePropagation();
-			}
-		}}"
+		@click="${(x, c) => x.clickHandler(c.event)}"
 	>
 		${buttonContent(context)}
 	</button>`;

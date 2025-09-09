@@ -38,16 +38,7 @@ function actionButton(context: VividElementDefinitionContext) {
 				ariaExpanded: null,
 				ariaDisabled: (x) => x.disabled,
 			})}
-			@click="${(x, c) => {
-				if (x.disabled) {
-					c.event.preventDefault();
-					c.event.stopImmediatePropagation();
-				} else {
-					x.$emit('action-click', undefined, {
-						bubbles: false,
-					});
-				}
-			}}"
+			@click="${(x, c) => x.handleActionClick(c.event)}"
 		>
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
 			<span class="text">${(x) => x.label}</span>
@@ -71,16 +62,7 @@ function indicatorButton(context: VividElementDefinitionContext) {
 				},
 				{ onlySpecified: true }
 			)}
-			@click="${(x, c) => {
-				if (x.disabled) {
-					c.event.preventDefault();
-					c.event.stopImmediatePropagation();
-				} else {
-					x.$emit('indicator-click', undefined, {
-						bubbles: false,
-					});
-				}
-			}}"
+			@click="${(x, c) => x.handleIndicatorClick(c.event)}"
 		>
 			${(x) => affixIconTemplate(x.splitIndicator)}
 		</button>

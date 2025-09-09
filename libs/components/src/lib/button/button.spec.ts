@@ -119,7 +119,7 @@ describe('vwc-button', () => {
 			expect(icon).toBeInstanceOf(Icon);
 		});
 
-		it('should not emit click when disabled', async () => {
+		it('should not emit click when pending', async () => {
 			const listener = vi.fn();
 			element.addEventListener('click', listener);
 
