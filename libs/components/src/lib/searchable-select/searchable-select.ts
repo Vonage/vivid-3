@@ -517,8 +517,12 @@ export class SearchableSelect extends WithFeedback(
 		this.#updateValuesThroughUserInteraction(newValues);
 
 		const optionMessage = isSelection
-			? this.locale.searchableSelect.optionSelectedMessage(option.text)
-			: this.locale.searchableSelect.optionDeselectedMessage(option.text);
+			? this.locale.searchableSelect.optionSelectedMessage(
+					option._getAccessibleName()
+			  )
+			: this.locale.searchableSelect.optionDeselectedMessage(
+					option._getAccessibleName()
+			  );
 		const maxSelectedMessage =
 			this.multiple && this.maxSelected && this.maxSelected >= 1
 				? this.locale.searchableSelect.maxSelectedMessage(
@@ -670,7 +674,7 @@ export class SearchableSelect extends WithFeedback(
 			scrollIntoView(highlightedOption, this._listbox!, 'nearest');
 			this._changeDescription =
 				this.locale.searchableSelect.optionFocusedMessage(
-					highlightedOption.text,
+					highlightedOption._getAccessibleName(),
 					this._highlightedOptionIndex + 1,
 					this._filteredEnabledOptions.length,
 					highlightedOption.selected

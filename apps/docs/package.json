@@ -26,6 +26,7 @@
 		"@repo/styles": "*",
 		"@vonage/vivid": "*",
 		"@vonage/vivid-vue": "*",
+		"@vonage/vivid-test-utils": "*",
 		"ramda": "^0.30.0"
 	},
 	"devDependencies": {
