@@ -1,16 +1,26 @@
 /* eslint-disable max-len */
-import { attr } from '@microsoft/fast-element';
-import type { DropzoneFile } from 'dropzone';
-import Dropzone from 'dropzone';
+import {
+	attr,
+	type BindingObserver,
+	defaultExecutionContext,
+	Observable,
+	observable,
+	volatile,
+} from '@microsoft/fast-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
-import type { Locale } from '../../shared/localization/Locale';
 import { FormElement, Localized, WithErrorText } from '../../shared/patterns';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
-import type { Button } from '../button/button';
 import type { Size } from '../enums';
 import { WithFeedback } from '../../shared/feedback/mixins';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { filesFromDataTransfer } from './data-transfer';
+import { isAcceptedFileType } from './accept';
+
+export type ValidatedFile = {
+	file: File;
+	validationError: string | null;
+};
 
 /**
  * Types of file uploader size.
@@ -19,97 +29,37 @@ import { FormAssociated } from '../../shared/foundation/form-associated/form-ass
  */
 export type FilePickerSize = ExtractFromEnum<Size, Size.Normal | Size.Expanded>;
 
-const isFormAssociatedTryingToSetFormValueToFakePath = (
-	value: File | string | FormData | null
-) => typeof value === 'string';
-
-const generateFilePreviewTemplate = (
-	buttonTag: string,
-	iconTag: string,
-	locale: Locale
-): string => {
-	return `<div class="dz-preview dz-file-preview">
-  <div class="dz-details">
-    <div class="dz-filename"><span data-dz-name></span></div>
-    <div class="dz-size"><span data-dz-size></span></div>
-  </div>
-  <div class="dz-error-message">
-  <${iconTag} name="info-line" size="-6"></${iconTag}>
-  <span data-dz-errormessage></span>
-  </div>
-  <${buttonTag} class="remove-btn" icon="delete-line" appearance="ghost-light" size="condensed" aria-label="${locale.filePicker.removeFileLabel}"></${buttonTag}>
-</div>`;
-};
 /**
  * @public
  * @component file-picker
  * @slot helper-text - Describes how to use the file-picker. Alternative to the `helper-text` attribute.
- * @event {CustomEvent<undefined>} change - Emitted when a file is added or removed.
+ * @event {CustomEvent<undefined>} change - Emitted when files are added or removed.
  */
 export class FilePicker extends WithFeedback(
 	WithErrorText(
 		FormElement(DelegatesAria(Localized(FormAssociated(VividElement))))
 	)
 ) {
-	#dropzone?: Dropzone;
-
 	/**
-	 * Files that have been added to the file picker and passed validation.
-	 *
-	 * @public
-	 */
-	get files(): File[] {
-		return this.#dropzone?.getAcceptedFiles() ?? [];
-	}
-
-	/**
-	 * Files that have been rejected by the file picker for failing validation.
-	 *
-	 * @public
-	 */
-	get rejectedFiles(): File[] {
-		return this.#dropzone?.getRejectedFiles() ?? [];
-	}
-
-	#syncSingleFileState() {
-		if (this.singleFile) {
-			this.#dropzone?.hiddenFileInput?.removeAttribute('multiple');
-		} else {
-			this.#dropzone?.hiddenFileInput?.setAttribute('multiple', 'multiple');
-		}
-	}
-
-	/**
-	 * Single file state.
+	 * Whether to allow only a single file. Subsequent added file will replace the current file.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: single-file
 	 */
 	@attr({ attribute: 'single-file', mode: 'boolean' }) singleFile = false;
-	singleFileChanged() {
-		this.#syncSingleFileState();
-	}
 
 	/**
-	 * The max files that can be selected.
+	 * The max number of files that can be selected. Additional files will be rejected.
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: max-files
 	 */
 	@attr({ attribute: 'max-files' }) maxFiles?: number;
-	maxFilesChanged(_oldValue: number, newValue: number): void {
-		if (!this.#dropzone) {
-			return;
-		}
-
-		this.#dropzone.options.maxFiles = newValue;
-		this.#updateHiddenFileInput();
-	}
 
 	/**
-	 * The max file size that can be selected.
+	 * The maximum file size (in megabytes) for each file.
 	 *
 	 * @public
 	 * @remarks
@@ -117,13 +67,6 @@ export class FilePicker extends WithFeedback(
 	 */
 	@attr({ mode: 'fromView', attribute: 'max-file-size' })
 	maxFileSize = 256;
-	maxFileSizeChanged(_oldValue: number, newValue: number): void {
-		if (!this.#dropzone) {
-			return;
-		}
-
-		this.#dropzone.options.maxFilesize = newValue;
-	}
 
 	/**
 	 * List of accepted files types
@@ -133,13 +76,6 @@ export class FilePicker extends WithFeedback(
 	 * HTML Attribute: accept
 	 */
 	@attr accept?: string;
-	acceptChanged(_oldValue: string, newValue: string): void {
-		if (!this.#dropzone) {
-			return;
-		}
-
-		this.#dropzone.options.acceptedFiles = newValue;
-	}
 
 	/**
 	 * The size the file-uploader should have.
@@ -158,11 +94,6 @@ export class FilePicker extends WithFeedback(
 	 * HTML Attribute: invalid-file-type-error
 	 */
 	@attr({ attribute: 'invalid-file-type-error' }) invalidFileTypeError?: string;
-	invalidFileTypeErrorChanged(_oldValue: string, newValue: string): void {
-		if (this.#dropzone)
-			this.#dropzone.options.dictInvalidFileType =
-				newValue || this.locale.filePicker.invalidFileTypeError;
-	}
 
 	/**
 	 * Overrides the localized error message for max file exceed
@@ -173,11 +104,6 @@ export class FilePicker extends WithFeedback(
 	 */
 	@attr({ attribute: 'max-files-exceeded-error' })
 	maxFilesExceededError?: string;
-	maxFilesExceededErrorChanged(_oldValue: string, newValue: string): void {
-		if (this.#dropzone)
-			this.#dropzone.options.dictMaxFilesExceeded =
-				newValue || this.locale.filePicker.maxFilesExceededError;
-	}
 
 	/**
 	 * Overrides the localized error message for file too big
@@ -187,12 +113,10 @@ export class FilePicker extends WithFeedback(
 	 * HTML Attribute: file-too-big-error
 	 */
 	@attr({ attribute: 'file-too-big-error' }) fileTooBigError?: string;
-	fileTooBigErrorChanged(_oldValue: string, newValue: string): void {
-		if (this.#dropzone)
-			this.#dropzone.options.dictFileTooBig =
-				newValue || this.locale.filePicker.fileTooBigError;
-	}
 
+	/**
+	 * @internal
+	 */
 	override nameChanged(previous: string, next: string) {
 		super.nameChanged!(previous, next);
 		this.#updateFormValue();
@@ -212,204 +136,6 @@ export class FilePicker extends WithFeedback(
 	 * @internal
 	 */
 	control!: HTMLElement;
-
-	/**
-	 * Used internally to hold the tag that button is registered at.
-	 */
-	private buttonTag = 'vwc-button';
-
-	/**
-	 * Used internally to hold the tag that icon is registered at.
-	 */
-	private iconTag = 'vwc-icon';
-
-	constructor() {
-		super();
-		Dropzone.autoDiscover = false;
-	}
-
-	#localizeErrorMessage = (file: DropzoneFile, message: string | any) => {
-		if (file.previewElement) {
-			file.previewElement.classList.add('dz-error');
-
-			if (typeof message !== 'string' && message.error) {
-				message = message.error;
-			}
-			for (const node of file.previewElement.querySelectorAll(
-				'[data-dz-errormessage]'
-			)) {
-				node.textContent = this.#formatNumbersInMessage(message);
-			}
-		}
-	};
-
-	#localizeFileSizeNumberAndUnits = () => {
-		(this.#dropzone as any).filesize = (size: number) => {
-			return this.#formatNumbersInMessage(
-				(Dropzone.prototype as any).filesize.call(this.#dropzone, size)
-			);
-		};
-	};
-
-	#addRemoveButtonToFilesPreview() {
-		this.#dropzone!.on('addedfiles', (files) => {
-			for (const file of files) {
-				if (file.previewElement) {
-					const removeButton = file.previewElement.querySelector(
-						'.remove-btn'
-					) as Button;
-					removeButton.addEventListener('click', (e) => {
-						e.preventDefault();
-						e.stopPropagation();
-						this.#dropzone!.removeFile(file as File as DropzoneFile);
-					});
-				}
-			}
-
-			this.#handleFilesChanged();
-		});
-	}
-
-	override connectedCallback() {
-		super.connectedCallback();
-
-		const control = this.shadowRoot!.querySelector(
-			'.control'
-		) as HTMLDivElement;
-		const previewList = this.shadowRoot!.querySelector(
-			'.preview-list'
-		) as HTMLDivElement;
-
-		// Add drag event handlers for enhanced visual feedback
-		this.#setupDragEventHandlers(control);
-
-		this.#dropzone = new Dropzone(control, {
-			url: '/', // dummy url, we do not use dropzone's upload functionality
-			maxFiles: this.maxFiles ?? (null as any),
-			maxFilesize: this.maxFileSize,
-			acceptedFiles: this.accept,
-			autoProcessQueue: false,
-			addRemoveLinks: false,
-			previewsContainer: previewList,
-			createImageThumbnails: false,
-			previewTemplate: generateFilePreviewTemplate(
-				this.buttonTag,
-				this.iconTag,
-				this.locale
-			),
-			dictInvalidFileType:
-				this.invalidFileTypeError ||
-				this.locale.filePicker.invalidFileTypeError,
-			dictMaxFilesExceeded:
-				this.maxFilesExceededError ||
-				this.locale.filePicker.maxFilesExceededError,
-			dictFileTooBig:
-				this.fileTooBigError || this.locale.filePicker.fileTooBigError,
-			error: this.#localizeErrorMessage,
-		});
-
-		this.#localizeFileSizeNumberAndUnits();
-
-		this.#addRemoveButtonToFilesPreview();
-
-		this.#dropzone.on('removedfile', () => {
-			this.#handleFilesChanged();
-		});
-
-		this.#syncSingleFileState();
-	}
-
-	/**
-	 * Sets up drag event handlers for enhanced visual feedback
-	 * @private
-	 */
-	#setupDragEventHandlers(control: HTMLDivElement): void {
-		control.addEventListener('dragenter', (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-			control.classList.add('dz-drag-hover');
-		});
-
-		control.addEventListener('dragover', (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-			control.classList.add('dz-drag-hover');
-		});
-
-		control.addEventListener('dragleave', (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-			// Only remove the class if we're leaving the control element itself
-			if (!control.contains(e.relatedTarget as Node)) {
-				control.classList.remove('dz-drag-hover');
-			}
-		});
-
-		control.addEventListener('drop', (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-			control.classList.remove('dz-drag-hover');
-		});
-	}
-
-	override disconnectedCallback() {
-		super.disconnectedCallback();
-		this.#dropzone!.destroy();
-	}
-	/**
-	 * Used internally to set the button tag.
-	 * @internal
-	 */
-	setButtonTag(tag: string) {
-		this.buttonTag = tag;
-	}
-
-	/**
-	 * Used internally to set the icon tag.
-	 * @internal
-	 */
-	setIconTag(tag: string) {
-		this.iconTag = tag;
-	}
-
-	/**
-	 * @internal
-	 */
-	handleKeydown(e: KeyboardEvent) {
-		if (e.key === 'Enter' || e.key === ' ') {
-			this.#chooseFile();
-		}
-		return true;
-	}
-
-	#chooseFile(): void {
-		if (this.#dropzone!.hiddenFileInput) {
-			this.#dropzone!.hiddenFileInput.click();
-		}
-	}
-
-	#updateHiddenFileInput(): void {
-		this.#dropzone!.hiddenFileInput!.dispatchEvent(
-			new Event('change', { bubbles: false })
-		);
-	}
-
-	#keepOnlyNewestFile() {
-		for (let i = 0; i < this.files.length - 1; i++) {
-			this.#dropzone!.removeFile(this.files[i] as File as DropzoneFile);
-		}
-	}
-
-	#handleFilesChanged(): void {
-		if (this.singleFile && this.files.length >= 1) {
-			this.#keepOnlyNewestFile();
-		}
-		this.$emit('change');
-		this.#updateFormValue();
-		this.validate();
-
-		requestAnimationFrame(() => this.#syncSingleFileState());
-	}
 
 	/**
 	 * @internal
@@ -437,16 +163,33 @@ export class FilePicker extends WithFeedback(
 			this.files.length > 0 ? `C:\\fakepath\\${this.files[0].name}` : '';
 	}
 
+	/**
+	 * @internal
+	 */
 	override setFormValue = (
 		value: File | string | FormData | null,
 		state?: File | string | FormData | null
 	) => {
-		if (isFormAssociatedTryingToSetFormValueToFakePath(value)) {
+		// Ignore calls from FormAssociated mixin which attempts to use `.value` as the form value
+		if (typeof value === 'string') {
 			return;
 		}
 
 		super.setFormValue(value, state);
 	};
+
+	/** @internal */
+	override validate() {
+		super.validate(this.control);
+	}
+
+	/**
+	 * @internal
+	 */
+	override formResetCallback() {
+		this.removeAllFiles();
+		super.formResetCallback();
+	}
 
 	#getCustomValidationError(): string | null {
 		if (this.rejectedFiles.length > 0) {
@@ -456,31 +199,267 @@ export class FilePicker extends WithFeedback(
 		return null;
 	}
 
-	/** {@inheritDoc (FormAssociated:interface).validate} */
-	override validate(): void {
+	/**
+	 * Stores the current error to be able to react to changes.
+	 * @internal
+	 */
+	@observable _customValidationError: string | null = null;
+	/**
+	 * @internal
+	 */
+	_customValidationErrorChanged() {
 		if (this.proxy) {
-			this.proxy.setCustomValidity(this.#getCustomValidationError() ?? '');
+			this.proxy.setCustomValidity(this._customValidationError ?? '');
 		}
-
-		super.validate(this.control);
+		this.validate();
 	}
 
-	override formResetCallback(): void {
-		super.formResetCallback();
-		this.#dropzone!.removeAllFiles();
+	// Use an observer to keep the validation error up to date
+	#customValidationChangeHandler = {
+		handleChange: () => {
+			this._customValidationError =
+				this.#customValidationChangeObserver.observe(
+					this,
+					defaultExecutionContext
+				);
+		},
+	};
+	#customValidationChangeObserver!: BindingObserver;
+	#startObservingCustomValidation() {
+		this.#customValidationChangeObserver = Observable.binding(
+			() => this.#getCustomValidationError(),
+			this.#customValidationChangeHandler,
+			true
+		);
+		this.#customValidationChangeHandler.handleChange();
+	}
+	#stopObservingCustomValidation() {
+		this.#customValidationChangeObserver.disconnect();
 	}
 
-	#formatNumbersInMessage(message: string) {
-		if (this.locale.common.useCommaAsDecimalSeparator) {
-			return message.replace(/(\d+)\.(\d+)/g, '$1,$2');
+	override connectedCallback() {
+		super.connectedCallback();
+		this.#startObservingCustomValidation();
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this.#stopObservingCustomValidation();
+	}
+
+	/**
+	 * @internal
+	 */
+	@observable _dragHover = false;
+
+	/**
+	 * @internal
+	 */
+	_onDragEnter() {
+		this._dragHover = true;
+		return true;
+	}
+
+	/**
+	 * @internal
+	 */
+	_onDragOver(e: DragEvent) {
+		if (!e.dataTransfer) {
+			return true;
 		}
-		return message;
+
+		// Makes it possible to drag files from chrome's download bar
+		// http://stackoverflow.com/questions/19526430/drag-and-drop-file-uploads-from-chrome-downloads-bar
+		const effect = e.dataTransfer.effectAllowed;
+		e.dataTransfer.dropEffect =
+			'move' === effect || 'linkMove' === effect ? 'move' : 'copy';
+
+		return false; // Prevent default to allow drop
+	}
+
+	/**
+	 * @internal
+	 */
+	_onDragLeave(e: DragEvent) {
+		// Only remove the class if we're leaving the control element itself
+		if (e.currentTarget === e.target) {
+			this._dragHover = false;
+		}
+		return true;
+	}
+
+	/**
+	 * @internal
+	 */
+	_onDrop(e: DragEvent) {
+		this._dragHover = false;
+
+		if (!e.dataTransfer) {
+			return true;
+		}
+
+		filesFromDataTransfer(e.dataTransfer)
+			.then((files) => this.#addFiles(files))
+			.catch((err) => {
+				// eslint-disable-next-line no-console
+				console.error(err);
+			});
+
+		return false; // Prevent browser default
+	}
+
+	/**
+	 * @internal
+	 */
+	_onDragEnd() {
+		this._dragHover = false;
+		return true;
+	}
+
+	/**
+	 * @internal
+	 */
+	_onControlClick() {
+		this._hiddenInput.click(); // Forward click to trigger the file dialog
+	}
+
+	/**
+	 * @internal
+	 */
+	_onRemoveFileClick(file: File) {
+		this._allFiles = this._allFiles.filter((f) => f !== file);
+		this.$emit('change');
+	}
+
+	/**
+	 * All files currently in the file picker, prior to validation.
+	 * @internal
+	 */
+	@observable _allFiles: File[] = [];
+	/**
+	 * @internal
+	 */
+	_allFilesChanged() {
+		this.#updateFormValue();
+	}
+
+	#addFiles(files: File[] | FileList) {
+		if (this.singleFile) {
+			if (files.length > 0) {
+				// Only keep the last file
+				this._allFiles = [files[files.length - 1]];
+			}
+		} else {
+			this._allFiles = [...this._allFiles, ...files];
+		}
+		this.$emit('change');
 	}
 
 	/**
 	 * Removes all files from the File Picker.
 	 */
 	removeAllFiles() {
-		this.#dropzone?.removeAllFiles();
+		this._allFiles = [];
+	}
+
+	/**
+	 * All files with their current validation status.
+	 * @internal
+	 */
+	@volatile
+	get _validatedFiles() {
+		const validationError = (file: File, validFileIndex: number) => {
+			if (this.maxFileSize && file.size > this.maxFileSize * 1024 * 1024) {
+				return (this.fileTooBigError || this.locale.filePicker.fileTooBigError)
+					.replace(
+						'{{filesize}}',
+						this._formatNumber(Math.round(file.size / 1024 / 10.24) / 100)
+					)
+					.replace('{{maxFilesize}}', this._formatNumber(this.maxFileSize));
+			} else if (!isAcceptedFileType(file, this.accept)) {
+				return (
+					this.invalidFileTypeError ||
+					this.locale.filePicker.invalidFileTypeError
+				);
+			} else if (
+				typeof this.maxFiles === 'number' &&
+				validFileIndex >= this.maxFiles
+			) {
+				return (
+					this.maxFilesExceededError ||
+					this.locale.filePicker.maxFilesExceededError
+				).replace('{{maxFiles}}', String(this.maxFiles));
+			} else {
+				return null;
+			}
+		};
+
+		const result: ValidatedFile[] = [];
+
+		let validFileIndex = 0;
+		for (const file of this._allFiles) {
+			const validatedFile = {
+				file,
+				validationError: validationError(file, validFileIndex),
+			};
+			result.push(validatedFile);
+
+			if (!validatedFile.validationError) {
+				validFileIndex++;
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Files that have been added to the file picker and passed validation.
+	 *
+	 * @public
+	 */
+	get files(): File[] {
+		return this._validatedFiles
+			.filter((f) => !f.validationError)
+			.map((f) => f.file);
+	}
+
+	/**
+	 * Files that have been rejected by the file picker for failing validation.
+	 *
+	 * @public
+	 */
+	get rejectedFiles(): File[] {
+		return this._validatedFiles
+			.filter((f) => !!f.validationError)
+			.map((f) => f.file);
+	}
+
+	/**
+	 * @internal
+	 */
+	_hiddenInput!: HTMLInputElement;
+
+	/**
+	 * @internal
+	 */
+	_onHiddenInputChange(e: InputEvent) {
+		this.#addFiles(this._hiddenInput.files!);
+
+		// Remove files from input
+		this._hiddenInput.value = '';
+
+		// Prevent the change event from bubbling into light DOM
+		e.stopPropagation();
+	}
+
+	/**
+	 * @internal
+	 */
+	_formatNumber(value: number) {
+		const str = String(value);
+		if (this.locale.common.useCommaAsDecimalSeparator) {
+			return str.replace('.', ',');
+		}
+		return str;
 	}
 }

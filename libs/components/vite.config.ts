@@ -98,7 +98,6 @@ export default mergeConfig(
 					'@microsoft/fast-web-utilities',
 					'video.js',
 					'@floating-ui/dom',
-					'dropzone',
 					'prosemirror-state',
 					'prosemirror-model',
 					'prosemirror-view',
