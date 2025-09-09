@@ -16,6 +16,24 @@ const kebabToPascal = (str: string): string => {
 export const camelToPascal = (camel: string) =>
 	camel[0].toUpperCase() + camel.slice(1);
 
+const parseQuery = (query: { name: string; args: string[] }) => {
+	let name = query.name;
+	let isNegation = false;
+	if (name.startsWith('!')) {
+		isNegation = true;
+		name = name.slice(1);
+	}
+	const isBoolean = query.args.length > 1;
+
+	name = isBoolean
+		? isNegation
+			? `notToBe${camelToPascal(name)}`
+			: `toBe${camelToPascal(name)}`
+		: `toHave${camelToPascal(query.name)}`;
+
+	return { name, isBoolean };
+};
+
 const dirname = new URL('.', import.meta.url).pathname;
 
 const metadata = loadMetadata();
@@ -166,17 +184,9 @@ export class ${kebabToPascal(def.name)}Expectations<D extends DriverT> {
 
   ${def.testUtils.queries
 		.map((query) => {
-			let name = query.name;
-			let isNegation = false;
-			if (name.startsWith('!')) {
-				isNegation = true;
-				name = name.slice(1);
-			}
-			const isBoolean = query.args.length > 1;
+			const { name, isBoolean } = parseQuery(query);
+
 			if (isBoolean) {
-				name = isNegation
-					? `notToBe${camelToPascal(name)}`
-					: `toBe${camelToPascal(name)}`;
 				return `
   ${name} = this.ctx.driver.wrapExpect(() => this.ctx.driver.expectEq(
 				{
@@ -190,7 +200,7 @@ export class ${kebabToPascal(def.name)}Expectations<D extends DriverT> {
 	`;
 			} else {
 				return `
-  toHave${camelToPascal(query.name)} = this.ctx.driver.wrapExpect((
+  ${name} = this.ctx.driver.wrapExpect((
 		value: any
 	) => this.ctx.driver.expectEq(
 				{
@@ -199,7 +209,7 @@ export class ${kebabToPascal(def.name)}Expectations<D extends DriverT> {
 					fn: queries.${query.args[0]},
 				},
 				value,
-				"toHave${camelToPascal(query.name)}(\${value})"
+				"${name}(\${value})"
 			));
 	`;
 			}
@@ -261,11 +271,9 @@ export class VividWrapper<D extends DriverT> {
 
 fs.writeFileSync(
 	path.join(dirname, '../API.md'),
-	`# Vivid Test Utils
-
-${metadata.componentDefs
-	.map(
-		(componentDef) => `## ${kebabToPascal(componentDef.name)}
+	`${metadata.componentDefs
+		.map(
+			(componentDef) => `### ${kebabToPascal(componentDef.name)}
 
 #### Selectors
 
@@ -289,29 +297,22 @@ ${componentDef.testUtils.actions
 ${
 	componentDef.testUtils.queries.length
 		? `
-#### Queries
+#### Expectations
 
+- \`toHaveProp\`
 ${componentDef.testUtils.queries
-	.map((query) => `- \`${query.name}\``)
+	.map((query) => {
+		const { name } = parseQuery(query);
+		return `- \`${name}\``;
+	})
 	.join('\n')}
 
 `
 		: ''
 }
 
-${
-	componentDef.testUtils.refs.length
-		? `
-#### Refs
-
-${componentDef.testUtils.refs.map((ref) => `- \`${ref.name}\``).join('\n')}
-
 `
-		: ''
-}
-
-`
-	)
-	.join('\n')}
+		)
+		.join('\n')}
 `
 );

@@ -94,7 +94,6 @@
 	{
 		"title": "Date Time Picker",
 		"description": "Combines an Input and a Calendar/Time Picker popover to allow users to enter or select a date and time.",
-		"status": "alpha",
 		"variations": "./libs/components/src/lib/date-time-picker/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/date-time-picker/GUIDELINES.md",
 		"hideGuidelines": "true",
@@ -574,5 +573,12 @@
 		"accessibility": "./libs/components/src/lib/simple-color-picker/ACCESSIBILITY.md",
 		"hideGuidelines": "true",
 		"status": "alpha"
+  },
+		"title": "Contextual Help",
+		"description": "Adds contextual help nested in the Toggletip to the form label",
+		"variations": "./libs/components/src/lib/contextual-help/VARIATIONS.md",
+		"code": "./libs/components/src/lib/contextual-help/README.md",
+		"hideGuidelines": "true",
+		"hideAccessibility": "true"
 	}
 ]

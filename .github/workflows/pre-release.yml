@@ -61,3 +61,13 @@ jobs:
       version: ${{ needs.get-version.outputs.version }}
       sha: ${{ github.event.pull_request.head.sha }}
     secrets: inherit
+
+  test-utils-publish:
+    needs: get-version
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: ./libs/test-utils
+      tag: preview
+      version: ${{ needs.get-version.outputs.version }}
+      sha: ${{ github.event.pull_request.head.sha }}
+    secrets: inherit

@@ -90,6 +90,18 @@ The `helper-text` slot allows you to use rich content as the Text Area's helper 
 </vwc-text-area>
 ```
 
+### Contextual-Help
+
+The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
+
+```html preview
+<vwc-text-area label="Your comments">
+	<vwc-contextual-help slot="contextual-help"
+		>This is the contextual help</vwc-contextual-help
+	>
+</vwc-text-area>
+```
+
 ## API Reference
 
 ### Properties
@@ -120,9 +132,10 @@ The `helper-text` slot allows you to use rich content as the Text Area's helper 
 
 <div class="table-wrapper">
 
-| Name            | Description                         |
-| --------------- | ----------------------------------- |
-| **helper-text** | Sets the input element's appearance |
+| Name                | Description                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **helper-text**     | Sets the input element's appearance                                                                                |
+| **contextual-help** | Allows you to add the [Contextual Help](/components/contextual-help/) component to be displayed next to the label. |
 
 </div>
 

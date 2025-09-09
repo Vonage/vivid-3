@@ -38,16 +38,17 @@
 		"cy": "concurrently -k -s first -n VITE,TEST \"npx vite src/tests/cases -c ./vite.config.ts --host\" \"npx wait-on http://localhost:5173 && npx cypress run\"",
 		"e2e:ui": "playwright test --ui",
 		"cy:ui": "cypress open",
-		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
+		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json",
+		"prepack": "tsx scripts/updateDependencyVersion.ts"
 	},
 	"dependencies": {
-		"@testing-library/user-event": "^14.6.1"
+		"@testing-library/user-event": "^14.6.1",
+		"@vonage/vivid": "*"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
 		"@repo/vitest-config": "*",
-		"@vonage/vivid": "*",
 		"@vonage/vivid-vue": "*",
 		"@vue/test-utils": "^2",
 		"cypress": "^14.5.1",

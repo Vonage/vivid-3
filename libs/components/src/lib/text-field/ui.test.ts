@@ -5,7 +5,13 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['text-field', 'button', 'select', 'divider'];
+const components = [
+	'text-field',
+	'button',
+	'select',
+	'divider',
+	'contextual-help',
+];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
@@ -49,6 +55,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			</vwc-layout>
 		</form>
 		<vwc-text-field icon="search-line" label="Condensed" current-value="value" scale="condensed"></vwc-text-field>
+		<vwc-text-field label="Field with Contextual Help">
+			<vwc-contextual-help slot="contextual-help">This is the contextual help</vwc-contextual-help>
+		</vwc-text-field>
 	</div>
 	`;
 
