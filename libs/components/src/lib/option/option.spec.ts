@@ -256,14 +256,11 @@ describe('vwc-option', () => {
 			expect(element._getAccessibleName()).toBe('aria label');
 		});
 
-		it('should return the text if aria-label is not set', async () => {
+		it('should return the text and text-secondary if aria-label is not set', async () => {
 			element.text = 'text';
+			element.textSecondary = 'text-secondary';
 
-			expect(element._getAccessibleName()).toBe('text');
-		});
-
-		it('should return empty string if neither aria-label nor text are set', async () => {
-			expect(element._getAccessibleName()).toBe('');
+			expect(element._getAccessibleName()).toBe('text text-secondary');
 		});
 	});
 
