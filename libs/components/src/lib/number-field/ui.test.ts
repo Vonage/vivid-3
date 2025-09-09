@@ -5,7 +5,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['number-field', 'divider'];
+const components = ['number-field', 'divider', 'contextual-help'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
@@ -30,6 +30,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 <vwc-number-field readonly="" value="8" label="fieldset" appearance="fieldset" current-value="8" step="1"></vwc-number-field>
 <vwc-number-field label="Timeout" current-value="" step="1">
 <span slot="helper-text">The timeout in seconds. <a href="#">Guide to setting timeouts</a></span>
+</vwc-number-field>
+<vwc-number-field label="Quantity" current-value="" step="1">
+	<vwc-contextual-help slot="contextual-help">This is the contextual help</vwc-contextual-help>
 </vwc-number-field>
 	</div>
 `;

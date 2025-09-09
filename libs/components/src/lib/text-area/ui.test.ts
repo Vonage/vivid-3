@@ -5,14 +5,14 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['text-area'];
+const components = ['text-area', 'contextual-help'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 			<style>
 				#wrapper {
 					width: 200px;
-					height: 1600px;
+					height: 1760px;
 					padding: 12px;
 				}
 				.wrapper-div {
@@ -67,15 +67,16 @@ maxlength="15"
 <vwc-text-area rows="2" value="2 rows text area"></vwc-text-area>
 <vwc-text-area rows="3" value="3 rows text area"></vwc-text-area>
 <vwc-text-area label="Description">
-<span slot="helper-text"
->Please ensure you provide the <a href="#">required details</a>.</span
->
+<span slot="helper-text">Please ensure you provide the <a href="#">required details</a>.</span>
+</vwc-text-area>
+<vwc-text-area label="My Label">
+<vwc-contextual-help slot="contextual-help">This is the contextual help</vwc-contextual-help>
 </vwc-text-area>
 
 </div>
 
 `;
-	await page.setViewportSize({ width: 300, height: 1600 });
+	await page.setViewportSize({ width: 300, height: 1760 });
 
 	await loadComponents({
 		page,

@@ -19,6 +19,7 @@ import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithLightDOMFeedback } from '../../shared/feedback/mixins';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { WithContextualHelp } from '../../shared/patterns/form-elements/with-contextual-help';
 
 export type TextFieldAppearance = ExtractFromEnum<
 	Appearance,
@@ -102,11 +103,13 @@ const installSafariWorkaroundStyleIfNeeded = (forElement: TextField) => {
  * @testAction blur blur #control
  * @testRef control light input[slot="_control"]
  */
-export class TextField extends WithLightDOMFeedback(
-	WithCharCount(
-		WithErrorText(
-			WithSuccessText(
-				FormElement(AffixIcon(DelegatesAria(FormAssociated(VividElement))))
+export class TextField extends WithContextualHelp(
+	WithLightDOMFeedback(
+		WithCharCount(
+			WithErrorText(
+				WithSuccessText(
+					FormElement(AffixIcon(DelegatesAria(FormAssociated(VividElement))))
+				)
 			)
 		)
 	)

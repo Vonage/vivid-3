@@ -564,5 +564,13 @@
 		"hideGuidelines": "true",
 		"hideAccessibility": "true",
 		"status": "underlying"
+	},
+	{
+		"title": "Contextual Help",
+		"description": "Adds contextual help nested in the Toggletip to the form label",
+		"variations": "./libs/components/src/lib/contextual-help/VARIATIONS.md",
+		"code": "./libs/components/src/lib/contextual-help/README.md",
+		"hideGuidelines": "true",
+		"hideAccessibility": "true"
 	}
 ]
