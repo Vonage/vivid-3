@@ -130,13 +130,13 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 ></vwc-simple-color-picker>
 
 <vwc-button
-	label="Different button"
+	id="button"
+	label="Toggle Color Picker"
 	size="normal"
 	shape="rounded"
 	appearance="filled"
-	connotation="cta"
 >
-	<vwc-icon slot="icon" name="help-solid"></vwc-icon>
+	<vwc-icon slot="icon" name="palette-solid"></vwc-icon>
 </vwc-button>
 
 <script>
