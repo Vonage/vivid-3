@@ -32,11 +32,11 @@ $state-aspect-selectors: (
 		disabled: '&:where(#{$disabled})',
 		readonly: '&:where(#{$readonly}):where(:not(#{$disabled}))',
 		selected: '&:where(#{$selected}):where(:not(#{$disabled}))',
-		selected-hover:
+		selectedAndHover:
 			'&:where(#{$selected}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
-		selected-disabled: '&:where(#{$selected}):where(#{$disabled})',
+		selectedAndDisabled: '&:where(#{$selected}):where(#{$disabled})',
 		checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
-		checked-hover:
+		checkedAndHover:
 			'&:where(#{$checked}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
 		active: '&:where(#{$active}):where(:not(#{$disabled}))',
 		error: '&:where(#{$error}):where(:not(#{$disabled}))',
@@ -44,8 +44,9 @@ $state-aspect-selectors: (
 	);
 }
 
-// keep all lowercase / kebab-case
-$hover-sensitive-states: (hover, selected-hover, checked-hover);
+/* stylelint-disable value-keyword-case */
+$hover-sensitive-states: (hover, selectedAndHover, checkedAndHover);
+/* stylelint-enable value-keyword-case */
 
 @mixin appearance($state-selectors: state-selectors($state-aspect-selectors)) {
 	@each $state in config.$states {

@@ -10,7 +10,7 @@
 @use '@repo/shared/mixins/connotation' as connotation;
 @use '@repo/shared/mixins/appearance/config' as appearance-config with (
 	$appearances: fieldset,
-	$states: idle hover checked checked-hover disabled readonly,
+	$states: idle hover checked checkedAndHover disabled readonly,
 	$default: fieldset
 );
 @use '@repo/shared/mixins/appearance' as appearance;

@@ -365,7 +365,7 @@ $states-mapping: (
 			outline: transparent,
 		),
 	),
-	selected-hover: (
+	selectedAndHover: (
 		filled: (
 			text: notset,
 			fill: notset,
@@ -432,7 +432,7 @@ $states-mapping: (
 			outline: transparent,
 		),
 	),
-	selected-disabled: (
+	selectedAndDisabled: (
 		filled: (
 			text: var(#{constants.$vvd-color-neutral-300}),
 			fill: var(#{constants.$vvd-color-neutral-100}),
@@ -541,7 +541,7 @@ $states-mapping: (
 			outline: transparent,
 		),
 	),
-	checked-hover: (
+	checkedAndHover: (
 		filled: (
 			text: notset,
 			fill: notset,
