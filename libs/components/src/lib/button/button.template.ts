@@ -9,16 +9,7 @@ import {
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { delegateAria } from '../../shared/aria/delegates-aria';
-import type { Button, ButtonAppearance, ButtonSize } from './button';
-
-const getAppearanceClassName = (
-	appearance: ButtonAppearance,
-	disabled: boolean
-) => {
-	let className = `appearance-${appearance}`;
-	disabled && (className += ' disabled');
-	return className;
-};
+import type { Button, ButtonSize } from './button';
 
 const getClasses = ({
 	connotation,
@@ -28,6 +19,7 @@ const getClasses = ({
 	icon,
 	label,
 	disabled,
+	pending,
 	stacked,
 	size,
 	iconSlottedContent,
@@ -38,10 +30,8 @@ const getClasses = ({
 	classNames(
 		'control',
 		[`connotation-${connotation}`, Boolean(connotation)],
-		[
-			getAppearanceClassName(appearance as ButtonAppearance, disabled),
-			Boolean(appearance),
-		],
+		[`appearance-${appearance}`, Boolean(appearance)],
+		['disabled', disabled || pending],
 		[`shape-${shape}`, Boolean(shape)],
 		[`size-${size}`, Boolean(size)],
 		[
@@ -111,7 +101,6 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 	return html` <button
 		class="${getClasses}"
 		?autofocus="${(x) => x.autofocus}"
-		?disabled="${(x) => x.disabled || x.pending}"
 		form="${(x) => x.formId}"
 		formaction="${(x) => x.formaction}"
 		formenctype="${(x) => x.formenctype}"
@@ -124,8 +113,10 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 		title="${(x) => x.title}"
 		${delegateAria({
 			ariaLabel: null,
+			ariaDisabled: (x) => x.disabled || x.pending,
 		})}
 		${ref('control')}
+		@click="${(x, c) => x.clickHandler(c.event)}"
 	>
 		${buttonContent(context)}
 	</button>`;

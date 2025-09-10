@@ -1,4 +1,5 @@
 {
 	"root": true,
-	"extends": ["@repo/eslint-config/base.js"]
+	"extends": ["@repo/eslint-config/base.js"],
+	"ignorePatterns": ["**/*.generated.ts"]
 }

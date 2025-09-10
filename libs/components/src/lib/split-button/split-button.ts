@@ -166,4 +166,36 @@ export class SplitButton extends AffixIcon(
 	@attr({ attribute: 'indicator-aria-label' }) indicatorAriaLabel:
 		| string
 		| null = null;
+
+	/**
+	 * Handles action click events.
+	 * Prevents interaction when disabled or pending.
+	 */
+	handleActionClick(event: Event) {
+		if (this.disabled) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			return;
+		} else {
+			this.$emit('action-click', undefined, {
+				bubbles: false,
+			});
+		}
+	}
+
+	/**
+	 * Handles indicator click events.
+	 * Prevents interaction when disabled or pending.
+	 */
+	handleIndicatorClick(event: Event) {
+		if (this.disabled) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			return;
+		} else {
+			this.$emit('indicator-click', undefined, {
+				bubbles: false,
+			});
+		}
+	}
 }

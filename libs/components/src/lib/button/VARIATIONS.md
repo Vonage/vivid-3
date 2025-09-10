@@ -333,6 +333,13 @@ The spinner is not displayed when using the `super-condensed` size.
 
 The `disabled` attribute disables the buttons and indicates that the action is not available.
 
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+	
+Disabled buttons should be used with caution. Read our [guidelines for when to disabled buttons](/components/button/guidelines/#disabled).
+
+</vwc-note>
+
 ```html preview 72px
 <div class="container">
 	<vwc-button appearance="filled" label="Disabled" disabled></vwc-button>

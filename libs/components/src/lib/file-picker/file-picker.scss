@@ -66,7 +66,7 @@ $low-ink-color: --_low-ink-color;
 		}
 	}
 
-	&.dz-drag-hover {
+	&.drag-hover {
 		.upload-text {
 			color: var(#{constants.$vvd-color-neutral-800});
 		}
@@ -99,7 +99,7 @@ $low-ink-color: --_low-ink-color;
 		transform: translateY(0);
 	}
 
-	&.dz-drag-hover {
+	&.drag-hover {
 		border-color: var(#{constants.$vvd-color-cta-200});
 		background-color: var(#{constants.$vvd-color-cta-200});
 		outline: 2px dashed var(#{constants.$vvd-color-cta-500});
@@ -123,7 +123,7 @@ $low-ink-color: --_low-ink-color;
 		transform: scale(1.05);
 	}
 
-	.control.dz-drag-hover & {
+	.control.drag-hover & {
 		animation: none;
 		color: var(#{constants.$vvd-color-neutral-800});
 		transform: scale(1.15);
@@ -146,7 +146,7 @@ $low-ink-color: --_low-ink-color;
 	pointer-events: none;
 }
 
-.dz-preview {
+.preview {
 	display: grid;
 	box-sizing: border-box;
 	padding: 8px;
@@ -160,13 +160,13 @@ $low-ink-color: --_low-ink-color;
 	grid-template-rows: auto auto;
 	inline-size: 100%;
 
-	.dz-details {
+	.details {
 		display: flex;
 		min-width: 0;
 		flex-direction: column;
 		max-inline-size: 100%;
 
-		.dz-filename {
+		.filename {
 			overflow: hidden;
 			color: var(#{constants.$vvd-color-canvas-text});
 			font: var(#{constants.$vvd-typography-base});
@@ -174,13 +174,13 @@ $low-ink-color: --_low-ink-color;
 			white-space: nowrap;
 		}
 
-		.dz-size {
+		.size {
 			color: var(#{constants.$vvd-color-neutral-600});
 			font: var(#{constants.$vvd-typography-base-condensed});
 		}
 	}
 
-	.dz-error-message {
+	.error-message {
 		display: flex;
 		align-items: center;
 		color: var(#{constants.$vvd-color-alert-600});
@@ -189,18 +189,17 @@ $low-ink-color: --_low-ink-color;
 		margin-block-start: 4px;
 	}
 
-	&:not(.dz-error) {
-		.dz-error-message {
+	&:not(.has-error) {
+		.error-message {
 			display: none;
 		}
 	}
 
-	&.dz-error {
+	&.has-error {
 		border: 1px solid var(#{constants.$vvd-color-alert-500});
 		background-color: var(#{constants.$vvd-color-alert-50});
 
-		.dz-details .dz-size,
-		.dz-progress {
+		.size {
 			display: none;
 		}
 	}
@@ -224,7 +223,16 @@ $low-ink-color: --_low-ink-color;
 		overflow-y: auto;
 	}
 
-	&:empty {
+	&:not(:has(.preview)) {
 		display: none;
 	}
+}
+
+.hidden-input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	visibility: hidden;
 }
