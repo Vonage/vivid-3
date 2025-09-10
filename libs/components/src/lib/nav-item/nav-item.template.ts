@@ -13,7 +13,7 @@ const getClasses = ({ text, connotation, appearance, current }: NavItem) =>
 		['icon-only', !text],
 		[`connotation-${connotation}`, Boolean(connotation)],
 		[`appearance-${appearance}`, Boolean(appearance)],
-		['current', Boolean(current)]
+		['current selected', Boolean(current)]
 	);
 
 export const NavItemTemplate = (context: VividElementDefinitionContext) => {

@@ -20,16 +20,7 @@
 
 .control {
 	@include connotation.connotation(nav-disclosure);
-	@include appearance.appearance(
-		appearance.state-selectors(
-			map.merge(
-				appearance.$state-aspect-selectors,
-				(
-					selected: '.current-closed',
-				)
-			)
-		)
-	);
+	@include appearance.appearance;
 
 	& {
 		$min-block-size: #{size.$vvd-size-normal};

@@ -1,6 +1,7 @@
 @use 'sass:selector';
 @use 'sass:list';
 @use 'sass:map';
+@use 'sass:string';
 @use 'functions' as functions;
 @use 'variables' as variables;
 @use 'config' as config;
@@ -17,52 +18,102 @@ $state-aspect-selectors: (
 );
 
 @function state-selectors($aspect-selectors) {
-	$hover: map.get($aspect-selectors, hover);
 	$disabled: map.get($aspect-selectors, disabled);
 	$readonly: map.get($aspect-selectors, readonly);
-	$checked: map.get($aspect-selectors, checked);
-	$selected: map.get($aspect-selectors, selected);
-	$active: map.get($aspect-selectors, active);
-	$error: map.get($aspect-selectors, error);
-	$success: map.get($aspect-selectors, success);
 
 	@return (
-		idle: '&',
-		hover: '&:where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
-		disabled: '&:where(#{$disabled})',
-		readonly: '&:where(#{$readonly}):where(:not(#{$disabled}))',
-		selected: '&:where(#{$selected}):where(:not(#{$disabled}))',
-		selectedAndHover:
-			'&:where(#{$selected}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
-		selectedAndDisabled: '&:where(#{$selected}):where(#{$disabled})',
-		checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
-		checkedAndHover:
-			'&:where(#{$checked}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
-		active: '&:where(#{$active}):where(:not(#{$disabled}))',
-		error: '&:where(#{$error}):where(:not(#{$disabled}))',
-		success: '&:where(#{$success}):where(:not(#{$disabled}))'
+		idle: (
+			'&',
+		),
+		hover: (
+			'&:hover:where(:not(#{$disabled}, #{$readonly}))',
+			'&.hover:where(:not(#{$disabled}, #{$readonly}))',
+		),
+		disabled: (
+			'&:disabled',
+			'&.disabled',
+		),
+		readonly: (
+			'&.readonly:where(:not(#{$disabled}))',
+		),
+		selected: (
+			'&.selected:where(:not(#{$disabled}))',
+		),
+		selectedAndHover: (
+			'&.selected:hover:where(:not(#{$disabled}, #{$readonly}))',
+			'&.selected.hover:where(:not(#{$disabled}, #{$readonly}))',
+		),
+		selectedAndDisabled: (
+			'&.selected:disabled',
+			'&.selected.disabled',
+		),
+		checked: (
+			'&:checked:where(:not(#{$disabled}))',
+			'&.checked:where(:not(#{$disabled}))',
+		),
+		checkedAndHover: (
+			'&:checked:hover:where(:not(#{$disabled}, #{$readonly}))',
+			'&.checked.hover:where(:not(#{$disabled}, #{$readonly}))',
+		),
+		active: (
+			'&:active:where(:not(#{$disabled}))',
+			'&.active:where(:not(#{$disabled}))',
+		),
+		error: (
+			'&.error:where(:not(#{$disabled}))',
+		),
+		success: (
+			'&.success:where(:not(#{$disabled}))',
+		)
 	);
 }
 
+/* stylelint-disable value-keyword-case */
+$hover-sensitive-states: (hover, selectedAndHover, checkedAndHover);
+/* stylelint-enable value-keyword-case */
+
 @mixin appearance($state-selectors: state-selectors($state-aspect-selectors)) {
 	@each $state in config.$states {
-		#{map.get($state-selectors, $state)} {
-			$state-mapping: map.get(variables.$states-mapping, $state);
+		$selectors: map.get($state-selectors, $state);
 
-			@each $appearance in config.$appearances {
-				$selector: if(
-					$appearance == config.$default,
-					'&',
-					'&.appearance-#{$appearance}'
-				);
-
-				#{$selector} {
-					$appearance-mapping: map.get($state-mapping, $appearance);
-
-					@each $type, $key in $appearance-mapping {
-						#{functions.get-appearance-token($type)}: $key;
+		@each $selector in $selectors {
+			@if list.index($hover-sensitive-states, $state) {
+				// Only wrap the pseudo-:hover selectors in a media query
+				@if string.index($selector, ':hover') {
+					@media (hover: hover) {
+						#{$selector} {
+							@include appearance-inner($state);
+						}
+					}
+				} @else {
+					#{$selector} {
+						@include appearance-inner($state);
 					}
 				}
+			} @else {
+				#{$selector} {
+					@include appearance-inner($state);
+				}
+			}
+		}
+	}
+}
+
+@mixin appearance-inner($state) {
+	$state-mapping: map.get(variables.$states-mapping, $state);
+
+	@each $appearance in config.$appearances {
+		$selector: if(
+			$appearance == config.$default,
+			'&',
+			'&.appearance-#{$appearance}'
+		);
+
+		#{$selector} {
+			$appearance-mapping: map.get($state-mapping, $appearance);
+
+			@each $type, $key in $appearance-mapping {
+				#{functions.get-appearance-token($type)}: $key;
 			}
 		}
 	}

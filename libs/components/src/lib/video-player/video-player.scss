@@ -43,8 +43,10 @@
 			@include focus.focus;
 		}
 
-		&:hover {
-			background-color: $control-background-color-hover;
+		@media (hover: hover) {
+			&:hover {
+				background-color: $control-background-color-hover;
+			}
 		}
 
 		&:active {
@@ -129,8 +131,10 @@
 			@include focus.focus;
 		}
 
-		&:hover {
-			background: $control-background-color-hover;
+		@media (hover: hover) {
+			&:hover {
+				background: $control-background-color-hover;
+			}
 		}
 
 		&:active {
@@ -173,14 +177,19 @@
 			}
 		}
 
-		li:not(.vjs-selected, .vjs-menu-title):hover {
-			background: variables.$video-player-neutral-900;
+		@media (hover: hover) {
+			li:not(.vjs-selected, .vjs-menu-title):hover {
+				background: variables.$video-player-neutral-900;
+			}
 		}
 
 		li.vjs-selected {
 			background: variables.$video-player-neutral-800;
-			&:hover {
-				color: variables.$video-player-canvas-text;
+
+			@media (hover: hover) {
+				&:hover {
+					color: variables.$video-player-canvas-text;
+				}
 			}
 		}
 	}
@@ -193,9 +202,11 @@
 		inset-inline-start: 40px;
 		isolation: isolate;
 
-		&:hover {
-			.vjs-play-progress .vjs-time-tooltip {
-				display: none;
+		@media (hover: hover) {
+			&:hover {
+				.vjs-play-progress .vjs-time-tooltip {
+					display: none;
+				}
 			}
 		}
 

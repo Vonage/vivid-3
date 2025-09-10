@@ -131,6 +131,9 @@ describe('vwc-nav-disclosure', () => {
 			expect(
 				getControlElement(element).classList.contains('current-closed')
 			).toBeTruthy();
+			expect(
+				getControlElement(element).classList.contains('selected')
+			).toBeTruthy();
 		});
 
 		it('should not delegate aria-current when open', async function () {

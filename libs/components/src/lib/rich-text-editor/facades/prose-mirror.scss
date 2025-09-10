@@ -140,8 +140,10 @@ img.ProseMirror-separator {
 	padding: 2px 8px 2px 4px;
 }
 
-.ProseMirror-menu-dropdown-item:hover {
-	background: #f2f2f2;
+@media (hover: hover) {
+	.ProseMirror-menu-dropdown-item:hover {
+		background: #f2f2f2;
+	}
 }
 
 .ProseMirror-menu-submenu-wrap {

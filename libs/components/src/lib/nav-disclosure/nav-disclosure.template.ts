@@ -19,7 +19,7 @@ const getClasses = ({
 		'control',
 		[`appearance-${appearance}`, Boolean(appearance)],
 		[`connotation-${connotation}`, Boolean(connotation)],
-		['current-closed', Boolean(current) && !open]
+		['current-closed selected', Boolean(current) && !open]
 	);
 
 export const NavDisclosureTemplate = (

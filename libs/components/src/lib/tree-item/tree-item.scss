@@ -87,11 +87,13 @@
 		margin: 4px;
 	}
 
-	&:hover {
-		background-color: var(#{constants.$vvd-color-neutral-100});
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(#{constants.$vvd-color-neutral-100});
 
-		.selected & {
-			background-color: var(#{constants.$vvd-color-neutral-700});
+			.selected & {
+				background-color: var(#{constants.$vvd-color-neutral-700});
+			}
 		}
 	}
 }

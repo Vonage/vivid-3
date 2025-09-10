@@ -60,9 +60,11 @@ $low-ink-color: --_low-ink-color;
 		transition: all 0.3s ease;
 	}
 
-	&:hover {
-		.upload-text {
-			color: var(#{constants.$vvd-color-neutral-800});
+	@media (hover: hover) {
+		&:hover {
+			.upload-text {
+				color: var(#{constants.$vvd-color-neutral-800});
+			}
 		}
 	}
 
@@ -85,13 +87,21 @@ $low-ink-color: --_low-ink-color;
 		@include focus.focus;
 	}
 
-	&:hover,
 	&:active,
 	&:focus-visible {
 		border-color: var(#{constants.$vvd-color-cta-400});
 		background-color: var(#{constants.$vvd-color-cta-100});
 		box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
 		transform: translateY(-1px);
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			border-color: var(#{constants.$vvd-color-cta-400});
+			background-color: var(#{constants.$vvd-color-cta-100});
+			box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+			transform: translateY(-1px);
+		}
 	}
 
 	&:active {
@@ -113,10 +123,12 @@ $low-ink-color: --_low-ink-color;
 	pointer-events: none; // Allow clicks to pass through to parent
 	transition: all 0.3s ease;
 
-	.control:hover & {
-		animation: none; // Stop animation on hover for better interaction feedback
-		color: var(#{constants.$vvd-color-cta-700});
-		transform: scale(1.1);
+	@media (hover: hover) {
+		.control:hover & {
+			animation: none; // Stop animation on hover for better interaction feedback
+			color: var(#{constants.$vvd-color-cta-700});
+			transform: scale(1.1);
+		}
 	}
 
 	.control:active & {

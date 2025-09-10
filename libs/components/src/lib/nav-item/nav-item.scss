@@ -57,16 +57,7 @@
 	}
 
 	@include connotation.connotation(nav-item);
-	@include appearance.appearance(
-		appearance.state-selectors(
-			map.merge(
-				appearance.$state-aspect-selectors,
-				(
-					selected: '.current',
-				)
-			)
-		)
-	);
+	@include appearance.appearance;
 
 	&.icon-only {
 		display: flex;

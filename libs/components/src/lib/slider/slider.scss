@@ -206,8 +206,10 @@ $track-thickness: 2px;
 	}
 
 	.control:not(.disabled) & {
-		&:hover {
-			#{variables.$thumb-interaction-indicator-alpha}: 0.12;
+		@media (hover: hover) {
+			&:hover {
+				#{variables.$thumb-interaction-indicator-alpha}: 0.12;
+			}
 		}
 		&:active {
 			#{variables.$thumb-interaction-indicator-alpha}: 0.25;
@@ -270,10 +272,17 @@ $track-thickness: 2px;
 			}
 		}
 
-		&:hover,
 		&:focus {
 			.thumb-container {
 				opacity: 1;
+			}
+		}
+
+		@media (hover: hover) {
+			&:hover {
+				.thumb-container {
+					opacity: 1;
+				}
 			}
 		}
 	}

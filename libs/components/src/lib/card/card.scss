@@ -52,8 +52,11 @@
 
 	@include appearance.appearance;
 	@include connotation.connotation(card);
-	.base:is(button, a):hover > & {
-		background-color: var(#{appearance.get-appearance-token(fill)});
+
+	@media (hover: hover) {
+		.base:is(button, a):hover > & {
+			background-color: var(#{appearance.get-appearance-token(fill)});
+		}
 	}
 }
 

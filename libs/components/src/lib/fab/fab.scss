@@ -121,8 +121,10 @@
 
 		cursor: pointer;
 
-		&:hover {
-			@include elevation.elevation(12);
+		@media (hover: hover) {
+			&:hover {
+				@include elevation.elevation(12);
+			}
 		}
 
 		&:active {
