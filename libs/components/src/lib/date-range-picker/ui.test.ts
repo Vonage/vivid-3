@@ -3,8 +3,8 @@ import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
-	useFakeTime,
 } from '../../visual-tests/visual-tests-utils.js';
+import { useFakeTime } from '../../visual-tests/time';
 
 const components = ['date-range-picker'];
 

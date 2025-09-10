@@ -20,7 +20,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</style>
 		<div class="layout">
 			<div class="spacer">
-				<vwc-video-player id="video-player" poster="/assets/ui-tests/ed-poster.jpeg">
+				<vwc-video-player id="video-player" poster="/assets/ui-tests/videos/example-5s/ed-poster.jpeg">
 					<source src="/assets/ui-tests/videos/example-5s/sample-5s.webm" type="video/webm">
 				</vwc-video-player>
 			</div>
