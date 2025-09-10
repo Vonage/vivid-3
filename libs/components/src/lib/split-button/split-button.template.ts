@@ -36,12 +36,9 @@ function actionButton(context: VividElementDefinitionContext) {
 			class="control ${getClasses}"
 			${delegateAria({
 				ariaExpanded: null,
+				ariaDisabled: (x) => x.disabled,
 			})}
-			?disabled="${(x) => x.disabled}"
-			@click="${(x) =>
-				x.$emit('action-click', undefined, {
-					bubbles: false,
-				})}"
+			@click="${(x, c) => x.handleActionClick(c.event)}"
 		>
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
 			<span class="text">${(x) => x.label}</span>
@@ -56,19 +53,16 @@ function indicatorButton(context: VividElementDefinitionContext) {
 		<button
 			${ref('_indicator')}
 			class="indicator ${getClasses}"
-			?disabled="${(x) => x.disabled}"
 			aria-label="${(x) =>
 				x.indicatorAriaLabel || x.locale.splitButton.showMoreActionsLabel}"
 			${delegateAria(
 				{
 					ariaExpanded: (x) => x.ariaExpanded,
+					ariaDisabled: (x) => x.disabled,
 				},
 				{ onlySpecified: true }
 			)}
-			@click="${(x) =>
-				x.$emit('indicator-click', undefined, {
-					bubbles: false,
-				})}"
+			@click="${(x, c) => x.handleIndicatorClick(c.event)}"
 		>
 			${(x) => affixIconTemplate(x.splitIndicator)}
 		</button>

@@ -156,12 +156,26 @@ describe('vwc-split-button', () => {
 	});
 
 	describe('disabled', function () {
-		it('should disable control and indicator buttons when disabled is true', async () => {
+		it('should set disabled class on control and indicator when disabled is true', async () => {
+			expect(element.action.classList.contains('disabled')).toBe(false);
+			expect(element.indicator.classList.contains('disabled')).toBe(false);
+
 			element.disabled = true;
 			await elementUpdated(element);
 
-			expect(element.action.disabled).toBe(true);
-			expect(element.indicator.disabled).toBe(true);
+			expect(element.action.classList.contains('disabled')).toBe(true);
+			expect(element.indicator.classList.contains('disabled')).toBe(true);
+		});
+
+		it('should disable control and indicator buttons when disabled is true', async () => {
+			expect(element.action.getAttribute('aria-disabled')).toBe('false');
+			expect(element.indicator.getAttribute('aria-disabled')).toBe('false');
+
+			element.disabled = true;
+			await elementUpdated(element);
+
+			expect(element.action.getAttribute('aria-disabled')).toBe('true');
+			expect(element.indicator.getAttribute('aria-disabled')).toBe('true');
 		});
 	});
 
@@ -184,6 +198,17 @@ describe('vwc-split-button', () => {
 				expect.objectContaining({ bubbles: false })
 			);
 		});
+
+		it('should not fire a non-bubbling action-click event when action button is clicked when disabled', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const spy = vi.fn();
+			element.addEventListener('action-click', spy);
+			element.action.click();
+
+			expect(spy).not.toHaveBeenCalled();
+		});
 	});
 
 	describe('indicator-click', () => {
@@ -196,6 +221,17 @@ describe('vwc-split-button', () => {
 			expect(spy).toHaveBeenCalledWith(
 				expect.objectContaining({ bubbles: false })
 			);
+		});
+
+		it('should not fire a non-bubbling indicator-click event when indicator button is clicked when disabled', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const spy = vi.fn();
+			element.addEventListener('indicator-click', spy);
+			element.indicator.click();
+
+			expect(spy).not.toHaveBeenCalled();
 		});
 	});
 

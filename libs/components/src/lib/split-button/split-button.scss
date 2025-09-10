@@ -83,11 +83,11 @@
 	}
 
 	/* Disabled */
-	&:not(:disabled) {
+	&:not(.disabled) {
 		cursor: pointer;
 	}
 
-	&:disabled {
+	&.disabled {
 		cursor: not-allowed;
 	}
 

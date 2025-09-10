@@ -152,6 +152,27 @@ describe('vwc-fab', () => {
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
 		});
+
+		it('should set aria-disabled on <button> when disabled', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const control = getControlElement(element);
+			expect(control?.getAttribute('aria-disabled')).toBe('true');
+		});
+
+		it('should not emit click when disabled', async () => {
+			const listener = vi.fn();
+			element.addEventListener('click', listener);
+
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const control = getControlElement(element);
+			control?.click();
+
+			expect(listener).not.toHaveBeenCalled();
+		});
 	});
 
 	describe('ARIA delegation', () => {
@@ -162,7 +183,6 @@ describe('vwc-fab', () => {
 				'ariaAtomic',
 				'ariaBusy',
 				'ariaCurrent',
-				'ariaDisabled',
 				'ariaExpanded',
 				'ariaHasPopup',
 				'ariaHidden',

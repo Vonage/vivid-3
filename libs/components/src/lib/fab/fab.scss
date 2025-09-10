@@ -110,13 +110,13 @@
 		#{variables.$icon-gap}: 10px;
 	}
 
-	&:disabled {
+	&.disabled {
 		@include elevation.elevation(none);
 
 		cursor: not-allowed;
 	}
 
-	&:not(:disabled) {
+	&:not(.disabled) {
 		@include elevation.elevation(4);
 
 		cursor: pointer;

@@ -65,11 +65,11 @@
 		inline-size: 100%;
 	}
 
-	&:not(:disabled) {
+	&:not(.disabled) {
 		cursor: pointer;
 	}
 
-	&:disabled {
+	&.disabled {
 		cursor: not-allowed;
 	}
 

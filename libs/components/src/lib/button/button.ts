@@ -176,4 +176,16 @@ export class Button extends AffixIconWithTrailing(
 		super();
 		this.title = '';
 	}
+
+	/**
+	 * Handles click events.
+	 * Prevents interaction when disabled or pending.
+	 */
+	clickHandler(event: Event) {
+		if (this.disabled || this.pending) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			return;
+		}
+	}
 }
