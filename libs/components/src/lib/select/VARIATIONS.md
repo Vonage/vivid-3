@@ -63,6 +63,33 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 </vwc-select>
 ```
 
+### Contextual Help
+
+You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
+
+```html preview 320px
+<vwc-select
+	label="What's your favorite club?"
+	placeholder="Select an option"
+	class="sport"
+>
+	<vwc-option value="friend" text="Ironclad Rovers FC"></vwc-option>
+	<vwc-option value="net" text="Stormhaven United"></vwc-option>
+	<vwc-option value="online-ad" text="Blackpeak Athletic"></vwc-option>
+	<vwc-option value="radio-ad" text="Crimson Harbor FC"></vwc-option>
+	<vwc-option value="other" text="Valewind Wanderers"></vwc-option>
+	<vwc-contextual-help slot="contextual-help"
+		>Choose your favorite club</vwc-contextual-help
+	>
+</vwc-select>
+
+<style>
+	.sport {
+		min-inline-size: 250px;
+	}
+</style>
+```
+
 ## Selected Option
 
 To provide a selected option, use the `selected` attribute on the selected [Option](/components/option/#selected).

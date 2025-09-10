@@ -26,6 +26,18 @@ To add HTML to the helper text, use the [helper-text slot](/components/date-pick
 ></vwc-date-picker>
 ```
 
+### Contextual Help
+
+You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
+
+```html preview 460px
+<vwc-date-picker label="Start date">
+	<vwc-contextual-help slot="contextual-help"
+		>Pick the start date</vwc-contextual-help
+	>
+</vwc-date-picker>
+```
+
 ## Validation Feedback
 
 ### Error Text

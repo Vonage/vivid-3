@@ -5,6 +5,7 @@ import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
 	FormElement,
+	WithContextualHelp,
 	WithErrorText,
 	WithSuccessText,
 } from '../../shared/patterns';
@@ -49,9 +50,11 @@ export type ComboboxSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @testAction selectOptionByValue selectOptionByValue
  * @testRef control shadow input.control
  */
-export class Combobox extends WithFeedback(
-	WithErrorText(
-		WithSuccessText(FormElement(AffixIcon(FormAssociated(Listbox))))
+export class Combobox extends WithContextualHelp(
+	WithFeedback(
+		WithErrorText(
+			WithSuccessText(FormElement(AffixIcon(FormAssociated(Listbox))))
+		)
 	)
 ) {
 	/**
@@ -288,7 +291,7 @@ export class Combobox extends WithFeedback(
 	 * @internal
 	 */
 	override clickHandler(e: MouseEvent): boolean | void {
-		if (this.disabled) {
+		if (this.disabled || this._isFromContextualHelp(e)) {
 			return;
 		}
 

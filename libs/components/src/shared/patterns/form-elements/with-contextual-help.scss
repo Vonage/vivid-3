@@ -1,17 +1,39 @@
-$label-suffix-gap: --_label-suffix-gap;
+@mixin label-suffix() {
+	$label-suffix-gap: --_label-suffix-gap;
 
-.label-suffix {
-	display: flex;
-	align-items: center;
-	gap: var(--label-suffix-gap, 8px);
-	grid-column-end: -1;
-	grid-row: 1;
-	&[hidden] {
-		display: none;
+	.label-suffix {
+		display: flex;
+		align-items: center;
+		gap: var(--label-suffix-gap, 8px);
+		grid-column-end: -1;
+		grid-row: 1;
+		&[hidden] {
+			display: none;
+		}
+	}
+	slot[name='contextual-help']::slotted([data-vvd-component='contextual-help']) {
+		grid-column-end: -1;
+		grid-row: 1;
 	}
 }
 
-slot[name='contextual-help']::slotted([data-vvd-component='contextual-help']) {
-	grid-column-end: -1;
-	grid-row: 1;
+@mixin label-wrapper() {
+	$label-wrapper-gap: --_label-wrapper-gap;
+
+	.label-wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--label-wrapper-gap, 8px);
+		&[hidden] {
+			display: none;
+		}
+		.label {
+			flex: 1 1 auto;
+		}
+		slot[name='contextual-help']::slotted([data-vvd-component='contextual-help']) {
+			margin-inline-start: auto;
+		}
+	}
 }

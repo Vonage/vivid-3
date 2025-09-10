@@ -6,7 +6,7 @@ import {
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['select', 'option', 'badge'];
+const components = ['select', 'option', 'badge', 'contextual-help'];
 
 async function testGhostSelect({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;">
@@ -56,7 +56,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 			<style>
 				#wrapper {
-					width: 2300px;
+					width: 2340px;
 					display: grid;
 					grid-auto-rows: 250px;
 					grid-template-columns: repeat(8, 1fr);
@@ -368,7 +368,28 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					</vwc-option>
 				</vwc-select>
 			</div>
-			`;
+			<div>
+				<style>
+					vwc-select {
+						width: 280px;
+					}
+				</style>
+				<vwc-select
+					label="What's your favorite club?"
+					placeholder="Select an option"
+					class="sport"
+				>
+					<vwc-option value="friend" text="Ironclad Rovers FC"></vwc-option>
+					<vwc-option value="net" text="Stormhaven United"></vwc-option>
+					<vwc-option value="online-ad" text="Blackpeak Athletic"></vwc-option>
+					<vwc-option value="radio-ad" text="Crimson Harbor FC"></vwc-option>
+					<vwc-option value="other" text="Valewind Wanderers"></vwc-option>
+					<vwc-contextual-help slot="contextual-help"
+						>Choose your favorite club</vwc-contextual-help
+					>
+				</vwc-select>
+			</div>
+		`;
 
 	await page.setViewportSize({ width: 2300, height: 720 });
 
