@@ -62,6 +62,16 @@ describe('vwc-option', () => {
 		});
 	});
 
+	describe('textSecondary', () => {
+		it('should add two-lines text class to base when both texts exist', async () => {
+			const base = getBaseElement(element);
+			element.text = 'text';
+			element.textSecondary = 'textSecondary';
+			await elementUpdated(element);
+			expect(base.classList.contains('two-lines')).toBe(true);
+		});
+	})
+
 	describe('selected', () => {
 		it('should set the `aria-selected` attribute with the `selected` value when provided', async () => {
 			element.selected = true;
