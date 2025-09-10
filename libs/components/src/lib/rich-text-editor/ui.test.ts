@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
@@ -96,6 +96,6 @@ test('should show text area and attachments slot with the same scroll', async ({
 	expect(isVisibleAfterScroll).toBe(true);
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'rich-text-editor-scroll-attachments.png'
+		'snapshots/rich-text-editor-scroll-attachments.png'
 	);
 });
