@@ -26,6 +26,11 @@ const config: PlaywrightTestConfig = {
 			},
 		},
 	],
+	expect: {
+		toMatchSnapshot: {
+			threshold: 0,
+		},
+	},
 	snapshotPathTemplate: isDocker
 		? `{testFilePath}-snapshots/{arg}-{projectName}-linux{ext}`
 		: undefined,
