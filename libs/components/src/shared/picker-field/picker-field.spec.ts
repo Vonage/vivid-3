@@ -343,4 +343,22 @@ export const pickerFieldSpec = (
 			() => textField.querySelector('input[slot=_control]')!
 		);
 	});
+
+	describe('contextual help slot', () => {
+		it('should forward the contextual help slot content to the text field if present', async () => {
+			const contextualHelpElement = document.createElement('div');
+			contextualHelpElement.setAttribute('slot', 'contextual-help');
+			contextualHelpElement.textContent = 'This is contextual help';
+
+			element.appendChild(contextualHelpElement);
+			await elementUpdated(element);
+
+			const contextualHelpSlot = textField.querySelector(
+				'slot[name="contextual-help"]'
+			);
+			expect(contextualHelpSlot).toBeTruthy();
+
+			expect(element._contextualHelpSlottedContent?.length).toBeGreaterThan(0);
+		});
+	});
 };
