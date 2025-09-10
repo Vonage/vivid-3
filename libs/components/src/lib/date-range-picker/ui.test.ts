@@ -2,7 +2,8 @@ import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 import { useFakeTime } from '../../visual-tests/time';
 
@@ -47,20 +48,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('#date-range-picker #picker-button').click();
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	await page.locator('#date-range-picker #picker-button').click();
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/date-range-picker.png'
-	);
+	await takeScreenshot(page, 'date-range-picker');
 });
 
 test('selecting a date range', async ({ page }: { page: Page }) => {
@@ -74,12 +70,10 @@ test('selecting a date range', async ({ page }: { page: Page }) => {
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	await page.waitForLoadState('networkidle');
 
 	await page.locator('vwc-date-range-picker #picker-button').click();
 
@@ -112,7 +106,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-range-picker required></vwc-date-range-picker>
@@ -132,7 +126,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-range-picker min="2012-12-12" start="2011-11-11" end="2011-11-11"></vwc-date-range-picker>
@@ -152,7 +146,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-range-picker max="2012-12-12" start="2013-11-11" end="2013-11-11"></vwc-date-range-picker>
@@ -172,7 +166,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-range-picker></vwc-date-range-picker>
@@ -193,7 +187,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-range-picker required></vwc-date-range-picker>

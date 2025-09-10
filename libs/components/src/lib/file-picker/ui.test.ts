@@ -2,9 +2,9 @@ import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
-import { InFlightRequests } from '../../visual-tests/requests';
 
 const components = ['file-picker', 'button', 'layout', 'text-field'];
 
@@ -43,46 +43,34 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</vwc-file-picker>
 	</vwc-layout>`;
 
-	page.setViewportSize({ width: 500, height: 1000 });
+	await page.setViewportSize({ width: 500, height: 1000 });
 
 	await loadComponents({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.keyboard.press('Tab');
+
+			await addFile(page, 'valid.png', 100, 'image/png');
+			await addFile(page, 'tooBig.png', 100000, 'image/png');
+			await addFile(page, 'wrongType.exe', 100, 'application/x-msdownload');
+
+			await page.evaluate(async () => {
+				await new Promise((resolve) => requestAnimationFrame(resolve));
+			});
+
+			// blur to show error
+			await page.mouse.click(0, 0);
+
+			await page.keyboard.press('Tab');
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.keyboard.press('Tab');
-
-	await page.waitForLoadState('networkidle');
-
-	const atLeastOneImageWasRequested = page.waitForRequest(
-		(request) => request.resourceType() === 'image'
-	);
-	const requests = new InFlightRequests(page);
-
-	await addFile(page, 'valid.png', 100, 'image/png');
-	await addFile(page, 'tooBig.png', 100000, 'image/png');
-	await addFile(page, 'wrongType.exe', 100, 'application/x-msdownload');
-
-	// blur show error
-	await page.mouse.click(0, 0);
-
-	await page.keyboard.press('Tab');
-
-	// Wait for icons to load
-	await atLeastOneImageWasRequested;
-	await requests.noneInFlight((request) => request.resourceType() === 'image');
-
-	expect(
-		await testWrapper?.screenshot({
-			animations: 'disabled',
-		})
-	).toMatchSnapshot('snapshots/file-picker.png');
+	await takeScreenshot(page, 'file-picker');
 });
 
 test.describe('form association', async () => {
@@ -109,7 +97,7 @@ test.describe('form association', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-file-picker name="file"></vwc-file-picker>
@@ -129,7 +117,7 @@ test.describe('form association', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-file-picker name="file" required></vwc-file-picker>

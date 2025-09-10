@@ -1,9 +1,10 @@
 import * as path from 'path';
 import type { Page } from '@playwright/test';
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 import { extractHTMLBlocksFromReadme } from '../../visual-tests/extract-code-examples';
 
@@ -23,16 +24,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/elevation.png'
-	);
+	await takeScreenshot(page, 'elevation');
 });

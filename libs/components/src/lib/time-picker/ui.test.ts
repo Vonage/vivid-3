@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['time-picker'];
@@ -54,33 +55,28 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			// Prevent opening the time pickers from closing each other
+			await page.evaluate(() => {
+				document
+					.querySelectorAll('vwc-time-picker')
+					.forEach((timePicker) =>
+						timePicker.addEventListener('click', (e) => e.stopPropagation())
+					);
+			});
+
+			await page.locator('#time-picker #picker-button').click();
+			await page.locator('#time-picker-seconds #picker-button').click();
+			await page.locator('#time-picker-24h #picker-button').click();
+
+			await page.keyboard.press('Tab');
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	// Prevent opening the time pickers from closing each other
-	await page.evaluate(() => {
-		document
-			.querySelectorAll('vwc-time-picker')
-			.forEach((timePicker) =>
-				timePicker.addEventListener('click', (e) => e.stopPropagation())
-			);
-	});
-
-	await page.locator('#time-picker #picker-button').click();
-	await page.locator('#time-picker-seconds #picker-button').click();
-	await page.locator('#time-picker-24h #picker-button').click();
-
-	await page.keyboard.press('Tab');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/time-picker.png'
-	);
+	await takeScreenshot(page, 'time-picker');
 });
 
 test('selecting a time', async ({ page }: { page: Page }) => {
@@ -93,12 +89,10 @@ test('selecting a time', async ({ page }: { page: Page }) => {
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	await page.waitForLoadState('networkidle');
 
 	await page.locator('vwc-time-picker #picker-button').click();
 
@@ -127,7 +121,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-time-picker name="time" required></vwc-time-picker>
@@ -145,7 +139,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-time-picker name="time" min="08:00:00" value="06:00:00"></vwc-time-picker>
@@ -163,7 +157,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-time-picker name="time" max="18:00:00" value="19:00:00"></vwc-time-picker>
@@ -181,7 +175,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-time-picker name="time"></vwc-time-picker>

@@ -4,7 +4,7 @@ export class InFlightRequests {
 	private inFlightRequests: Set<Request> = new Set();
 
 	private addRequest = (request: Request) => {
-		console.log(`Request started: ${request.url()}`);
+		// console.log(`Request started: ${request.url()}`);
 		this.inFlightRequests.add(request);
 	};
 	private removeRequest = (request: Request) =>

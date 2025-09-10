@@ -2,7 +2,8 @@ import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['video-player'];
@@ -53,59 +54,60 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	`;
 
 	await loadComponents({ page, components });
-	await loadTemplate({ page, template });
+	await renderTemplate({
+		page,
+		template,
+		setup: async () => {
+			// hide elements that could lead to a flakey test
+			await page.waitForSelector('#video-player-controls .vjs-tech');
+			await page.evaluate(async () => {
+				const videoEl = document
+					.querySelector('#video-player-controls')!
+					.shadowRoot!.querySelector('video')!;
+				const videoEl2 = document
+					.querySelector('#video-player-controls-2')!
+					.shadowRoot!.querySelector('video')!;
+				const loadProgressEl = document
+					.querySelector('#video-player-controls')!
+					.shadowRoot!.querySelector<HTMLElement>('.vjs-load-progress')!;
+				const loadProgressEl2 = document
+					.querySelector('#video-player-controls-2')!
+					.shadowRoot!.querySelector<HTMLElement>('.vjs-load-progress')!;
+				videoEl.style.visibility = 'hidden';
+				videoEl2.style.visibility = 'hidden';
+				loadProgressEl.style.visibility = 'hidden';
+				loadProgressEl2.style.visibility = 'hidden';
+				await videoEl.play();
+				videoEl.pause();
+				videoEl.currentTime = 0;
+				await videoEl2.play();
+				videoEl2.pause();
+				videoEl2.currentTime = 0;
+			});
 
-	const testWrapper = await page.$('#wrapper');
+			// activate menus
+			const videoWrapper = await page.$(
+				'#video-player-controls .vjs-controls-enabled'
+			);
+			videoWrapper?.evaluate((element) =>
+				element.classList.add('vjs-user-active')
+			);
+			const volumePanel = await page.$(
+				'#video-player-controls .vjs-volume-panel'
+			);
+			volumePanel?.evaluate((element) => element.classList.add('vjs-hover'));
+			const playbackRate = await page.$(
+				'#video-player-controls .vjs-playback-rate.vjs-control'
+			);
+			playbackRate?.evaluate((element) => element.classList.add('vjs-hover'));
+			const captions = await page.$(
+				'#video-player-controls-2 .vjs-subs-caps-button.vjs-control'
+			);
+			captions?.evaluate((element) => element.classList.add('vjs-hover'));
+		},
+	});
 
-	await page.waitForLoadState('domcontentloaded');
-
-	// Wait for the poster image to be fully loaded
-	const locator = page.locator('#video-player .vjs-poster img');
-	const promise = locator.evaluate(
-		(image: any) => image.complete || new Promise((f) => (image.onload = f))
-	);
-	await Promise.resolve(promise);
-
-	await page.waitForSelector('#video-player-controls .vjs-tech');
-	const videoEle = await page.$('#video-player-controls video');
-	const videoEle2 = await page.$('#video-player-controls-2 video');
-	const loadProgress = await page.$(
-		'#video-player-controls .vjs-load-progress'
-	);
-	const loadProgress2 = await page.$(
-		'#video-player-controls-2 .vjs-load-progress'
-	);
-	// hide elements that could lead to a flakey test
-	videoEle?.evaluate((element) => (element.style.visibility = 'hidden'));
-	videoEle2?.evaluate((element) => (element.style.visibility = 'hidden'));
-	loadProgress?.evaluate((element) => (element.style.visibility = 'hidden'));
-	loadProgress2?.evaluate((element) => (element.style.visibility = 'hidden'));
-
-	await videoEle!.evaluate((video) => (video as HTMLVideoElement)!.play());
-	await videoEle2!.evaluate((video) => (video as HTMLVideoElement)!.play());
-	await videoEle!.evaluate((video) => (video as HTMLVideoElement)!.pause());
-	await videoEle2!.evaluate((video) => (video as HTMLVideoElement)!.pause());
-
-	// activate menus
-	const videoWrapper = await page.$(
-		'#video-player-controls .vjs-controls-enabled'
-	);
-	videoWrapper?.evaluate((element) => element.classList.add('vjs-user-active'));
-	const volumePanel = await page.$('#video-player-controls .vjs-volume-panel');
-	volumePanel?.evaluate((element) => element.classList.add('vjs-hover'));
-	const playbackRate = await page.$(
-		'#video-player-controls .vjs-playback-rate.vjs-control'
-	);
-	playbackRate?.evaluate((element) => element.classList.add('vjs-hover'));
-	const captions = await page.$(
-		'#video-player-controls-2 .vjs-subs-caps-button.vjs-control'
-	);
-	captions?.evaluate((element) => element.classList.add('vjs-hover'));
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/video-player.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
+	await takeScreenshot(page, 'video-player');
 });
 
 test('should hide the track menu buttons when no track elements are provided', async ({
@@ -119,7 +121,7 @@ test('should hide the track menu buttons when no track elements are provided', a
 		</vwc-video-player>`;
 
 	await loadComponents({ page, components });
-	await loadTemplate({ page, template });
+	await renderTemplate({ page, template });
 	await page.waitForLoadState('domcontentloaded');
 	await page.waitForSelector('.vjs-tech');
 
@@ -147,7 +149,7 @@ test('should show the button and populate the menu when adding audio description
 		</vwc-video-player>`;
 
 	await loadComponents({ page, components });
-	await loadTemplate({ page, template });
+	await renderTemplate({ page, template });
 	await page.waitForLoadState('domcontentloaded');
 	await page.waitForSelector('.vjs-tech');
 	await expect(
@@ -171,7 +173,7 @@ test('should show the button when adding caption tracks', async ({
 		</vwc-video-player>`;
 
 	await loadComponents({ page, components });
-	await loadTemplate({ page, template });
+	await renderTemplate({ page, template });
 	await page.waitForLoadState('domcontentloaded');
 	await page.waitForSelector('.vjs-tech');
 	await expect(
@@ -191,7 +193,7 @@ test('should show the button when adding a chapter track', async ({
 		</vwc-video-player>`;
 
 	await loadComponents({ page, components });
-	await loadTemplate({ page, template });
+	await renderTemplate({ page, template });
 	await page.waitForLoadState('domcontentloaded');
 	await page.waitForSelector('.vjs-tech');
 	await expect(

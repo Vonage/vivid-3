@@ -1,17 +1,13 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['tooltip'];
 
-function changeAnchor() {
-	const tooltip = document.querySelector('#tooltip5');
-	(tooltip as any).anchor = 'anchor2';
-	(tooltip as any).open = true;
-}
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 <style>
@@ -51,20 +47,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('#tooltip5').evaluate((tooltip) => {
+				(tooltip as any).anchor = 'anchor2';
+				(tooltip as any).open = true;
+			});
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	await page.addScriptTag({
-		content: changeAnchor.toString() + 'changeAnchor();',
-	});
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/tooltip.png'
-	);
+	await takeScreenshot(page, 'tooltip');
 });

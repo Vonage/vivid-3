@@ -1,8 +1,9 @@
 import type { Page } from '@playwright/test';
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['card', 'button', 'layout', 'badge', 'selectable-box'];
@@ -395,20 +396,14 @@ subtitle="Extra text below the card headline"
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('#card-link').hover();
+			await page.locator('#card-button .base').focus();
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	const linkCard = await page.$('#card-link');
-	await linkCard?.hover();
-
-	const focusedCardEl = await page.$('#card-button .base');
-	await focusedCardEl?.focus();
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot('snapshots/card.png');
+	await takeScreenshot(page, 'card');
 });

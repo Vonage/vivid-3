@@ -1,8 +1,9 @@
 import type { Page } from '@playwright/test';
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['avatar', 'icon'];
@@ -238,18 +239,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('#focus-avatar .base').focus();
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-	const focusedAvatar = await page.$('#focus-avatar .base');
-	await focusedAvatar?.focus();
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/avatar.png'
-	);
+	await takeScreenshot(page, 'avatar');
 });

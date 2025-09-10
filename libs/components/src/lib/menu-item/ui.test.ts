@@ -1,8 +1,9 @@
 import type { Page } from '@playwright/test';
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['menu', 'menu-item', 'divider', 'badge'];
@@ -36,19 +37,12 @@ async function testSubMenu({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/sub-menu.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
+	await takeScreenshot(page, 'sub-menu');
 }
 
 test('should show the component', async ({ page }: { page: Page }) => {
@@ -151,20 +145,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('#focused').focus();
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.locator('#focused').focus();
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/menu-item.png'
-	);
+	await takeScreenshot(page, 'menu-item');
 });
 
 test('menu-item with submenu', testSubMenu);

@@ -1,8 +1,9 @@
 import type { Page } from '@playwright/test';
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 import type { VwcMenuElement, VwcSplitButtonElement } from '../components.js';
 
@@ -119,31 +120,26 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.evaluate(() => {
+				const splitButton = document.querySelector(
+					'#splitButton'
+				) as VwcSplitButtonElement;
+				const menu = document.querySelector('#menu') as VwcMenuElement;
+
+				menu.anchor = splitButton.indicator;
+
+				splitButton.addEventListener('indicator-click', () => {
+					menu.open = !menu.open;
+				});
+			});
+
+			await page.locator('#splitButton .indicator').click();
+		},
 	});
 
-	await page.evaluate(() => {
-		const splitButton = document.querySelector(
-			'#splitButton'
-		) as VwcSplitButtonElement;
-		const menu = document.querySelector('#menu') as VwcMenuElement;
-
-		menu.anchor = splitButton.indicator;
-
-		splitButton.addEventListener('indicator-click', () => {
-			menu.open = !menu.open;
-		});
-	});
-
-	const testWrapper = await page.$('#wrapper');
-	const buttonIndicator = await page.$('#splitButton .indicator');
-	await buttonIndicator?.click();
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/split-button.png'
-	);
+	await takeScreenshot(page, 'split-button');
 });

@@ -1,8 +1,9 @@
 import type { Page } from '@playwright/test';
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 import { ListboxOption } from './option';
 
@@ -15,7 +16,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template: `
 			<div role="listbox">
@@ -51,26 +52,21 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				</vwc-option>
 			</div>
 		`,
+		setup: async () => {
+			await page.evaluate(() => {
+				for (const option of document.querySelectorAll<ListboxOption>(
+					'.checkmark'
+				)) {
+					option._displayCheckmark = true;
+				}
+				for (const option of document.querySelectorAll<ListboxOption>(
+					'.highlighted'
+				)) {
+					option._highlighted = true;
+				}
+			});
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.evaluate(() => {
-		for (const option of document.querySelectorAll<ListboxOption>(
-			'.checkmark'
-		)) {
-			option._displayCheckmark = true;
-		}
-		for (const option of document.querySelectorAll<ListboxOption>(
-			'.highlighted'
-		)) {
-			option._highlighted = true;
-		}
-	});
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/option.png'
-	);
+	await takeScreenshot(page, 'option');
 });

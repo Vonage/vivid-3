@@ -1,8 +1,9 @@
 import type { Page } from '@playwright/test';
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['alert', 'button', 'switch'];
@@ -34,18 +35,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/alert.png'
-	);
+	await takeScreenshot(page, 'alert');
 });
 
 test('alert in mobile screens', async function ({ page }: { page: Page }) {
@@ -61,18 +56,12 @@ test('alert in mobile screens', async function ({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/alert-mobile.png'
-	);
+	await takeScreenshot(page, 'alert-mobile');
 });
 
 test('alert placement', async function ({ page }: { page: Page }) {
@@ -93,18 +82,12 @@ test('alert placement', async function ({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/alert-placement.png'
-	);
+	await takeScreenshot(page, 'alert-placement');
 });
 
 test('alert with main slot content', async function ({ page }: { page: Page }) {
@@ -125,16 +108,10 @@ test('alert with main slot content', async function ({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/alert-main-slot.png'
-	);
+	await takeScreenshot(page, 'alert-main-slot');
 });

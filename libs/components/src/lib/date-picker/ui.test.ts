@@ -2,7 +2,8 @@ import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 import { useFakeTime } from '../../visual-tests/time';
 import type { DatePicker } from './date-picker';
@@ -52,30 +53,27 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('#date-picker #picker-button').click();
+
+			// Prevent clicking the month picker from closing the date picker
+			await page.evaluate(() => {
+				const datePicker = document.querySelector(
+					'#month-picker'
+				) as DatePicker;
+				datePicker.addEventListener('click', (e) => e.stopPropagation());
+			});
+
+			await page.locator('#month-picker #picker-button').click();
+
+			await page.locator('#month-picker .title-action').click();
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	await page.locator('#date-picker #picker-button').click();
-
-	// Prevent clicking the month picker from closing the date picker
-	await page.evaluate(() => {
-		const datePicker = document.querySelector('#month-picker') as DatePicker;
-		datePicker.addEventListener('click', (e) => e.stopPropagation());
-	});
-
-	await page.locator('#month-picker #picker-button').click();
-
-	await page.locator('#month-picker .title-action').click();
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/date-picker.png'
-	);
+	await takeScreenshot(page, 'date-picker');
 });
 
 test('selecting a date', async ({ page }: { page: Page }) => {
@@ -89,12 +87,10 @@ test('selecting a date', async ({ page }: { page: Page }) => {
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	await page.waitForLoadState('networkidle');
 
 	await page.locator('vwc-date-picker #picker-button').click();
 
@@ -122,7 +118,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-picker name="date" required></vwc-date-picker>
@@ -140,7 +136,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-picker name="date" min="2012-12-12" value="2011-11-11"></vwc-date-picker>
@@ -158,7 +154,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-picker name="date" max="2011-11-11" value="2012-12-12"></vwc-date-picker>
@@ -176,7 +172,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-picker name="date"></vwc-date-picker>
