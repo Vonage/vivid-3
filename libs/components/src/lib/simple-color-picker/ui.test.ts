@@ -4,14 +4,13 @@ import {
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
-import type { SimpleColorPicker } from './simple-color-picker.js';
 
 const components = ['simple-color-picker', 'button', 'icon'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<div style="margin: 5px; min-height: 150px;">
-			<vwc-simple-color-picker id="picker" open>
+			<vwc-simple-color-picker open>
 				<vwc-button
 					aria-label="Pick color"
 					slot="anchor"
@@ -35,10 +34,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
+	const simpleColorPicker = await page.$('vwc-simple-color-picker');
 
-	await page.evaluate(() => {
-		const picker = document.querySelector('#picker') as SimpleColorPicker;
-		picker.swatches = [
+	await page.evaluate((picker) => {
+		(picker as any).swatches = [
 			{
 				label: 'Black',
 				value: '#000000',
@@ -96,7 +95,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				value: '#D6219C',
 			},
 		];
-	});
+	}, simpleColorPicker);
 
 	await page.waitForLoadState('networkidle');
 
