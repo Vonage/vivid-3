@@ -123,6 +123,9 @@ describe('vwc-nav-item', () => {
 			expect(
 				getControlElement(element).classList.contains('current')
 			).toBeTruthy();
+			expect(
+				getControlElement(element).classList.contains('selected')
+			).toBeTruthy();
 		});
 	});
 
