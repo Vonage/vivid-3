@@ -1,4 +1,5 @@
-import type { Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
+import { InFlightRequests } from './requests';
 
 const BASE_URL = Boolean(process.env.PW_TEST_CONNECT_WS_ENDPOINT)
 	? 'http://hostmachine:8080'
@@ -20,13 +21,13 @@ export async function loadComponents({
 	await page.goto(`${BASE_URL}/assets/ui-tests/index.html`);
 
 	await Promise.all([
-		components.map((component) =>
+		...components.map((component) =>
 			page.addScriptTag({
 				url: `${BASE_URL}/libs/components/dist/${component}/index.js`,
 				type: 'module',
 			})
 		),
-		defaultStyles.map((url) => page.addStyleTag({ url })),
+		...defaultStyles.map((url) => page.addStyleTag({ url })),
 	]);
 }
 
@@ -37,7 +38,10 @@ export async function loadTemplate({
 	page: Page;
 	template: string;
 }) {
+	const requests = new InFlightRequests(page);
 	await page.locator('body').evaluate((body, template) => {
 		body.innerHTML = `<div id="wrapper">${template}</div>`;
 	}, template);
+	await requests.noneInFlight();
+	requests.destroy();
 }
