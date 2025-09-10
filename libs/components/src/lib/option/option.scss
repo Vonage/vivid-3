@@ -64,7 +64,6 @@
 		}
 		&.two-lines {
 			gap: calc(#{size.$vvd-size-normal} / 2.5); // 16px
-
 			padding-block: calc(
 				#{size.$vvd-size-super-condensed} / 2
 			); // 12px (same as menu item)
@@ -100,7 +99,6 @@
 		}
 		&.two-lines {
 			gap: calc(#{size.$vvd-size-semi-condensed} / 3); // 12px
-
 			padding-block: calc(
 				#{size.$vvd-size-condensed} / 4
 			); // 8px (+2px, like normal size)
