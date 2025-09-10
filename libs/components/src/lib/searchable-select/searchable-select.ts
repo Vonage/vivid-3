@@ -10,6 +10,7 @@ import {
 	AffixIconWithTrailing,
 	FormElement,
 	Localized,
+	WithContextualHelp,
 	WithErrorText,
 	WithSuccessText,
 } from '../../shared/patterns';
@@ -64,12 +65,14 @@ const isFormAssociatedTryingToSetFormValue = (
  * @testQuery values values
  * @testQuery selectedOptions selectedOptionsText
  */
-export class SearchableSelect extends WithFeedback(
-	WithErrorText(
-		WithSuccessText(
-			FormElement(
-				DelegatesAria(
-					AffixIconWithTrailing(Localized(FormAssociated(VividElement)))
+export class SearchableSelect extends WithContextualHelp(
+	WithFeedback(
+		WithErrorText(
+			WithSuccessText(
+				FormElement(
+					DelegatesAria(
+						AffixIconWithTrailing(Localized(FormAssociated(VividElement)))
+					)
 				)
 			)
 		)
@@ -1092,6 +1095,13 @@ export class SearchableSelect extends WithFeedback(
 		}
 	}
 
+	/**
+	 * @internal
+	 */
+	get _hasSelectionCount() {
+		return this.multiple && this.maxSelected && this.maxSelected >= 1;
+	}
+
 	// --- Form handling ---
 
 	/**
@@ -1228,7 +1238,11 @@ export class SearchableSelect extends WithFeedback(
 	_onMouseDown(event: MouseEvent) {
 		// event.target has been retargeted at this point
 		const originalTarget = event.composedPath()[0];
-		if (!event.defaultPrevented && originalTarget !== this._input) {
+		if (
+			!event.defaultPrevented &&
+			originalTarget !== this._input &&
+			!this._isFromContextualHelp(event)
+		) {
 			this._input.focus();
 			return false;
 		}

@@ -75,6 +75,18 @@ The `helper-text` slot allows you to use rich content as the date picker's helpe
 </vwc-date-range-picker>
 ```
 
+### Contextual Help
+
+The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
+
+```html preview 460px
+<vwc-date-range-picker label="Event duration">
+	<vwc-contextual-help slot="contextual-help"
+		>Please see our opening times</vwc-contextual-help
+	>
+</vwc-date-range-picker>
+```
+
 ## API Reference
 
 ### Properties
@@ -100,9 +112,10 @@ The `helper-text` slot allows you to use rich content as the date picker's helpe
 
 <div class="table-wrapper">
 
-| Name            | Description                              |
-| --------------- | ---------------------------------------- |
-| **helper-text** | Add rich text for as field's helper text |
+| Name                | Description                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **helper-text**     | Add rich text for as field's helper text                                                                           |
+| **contextual-help** | Allows you to add the [Contextual Help](/components/contextual-help/) component to be displayed next to the label. |
 
 </div>
 

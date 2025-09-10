@@ -12,6 +12,7 @@ import {
 	FormElement,
 	Localized,
 	TrappedFocus,
+	WithContextualHelp,
 	WithErrorText,
 } from '../patterns';
 import { WithFeedback } from '../feedback/mixins';
@@ -26,9 +27,11 @@ import { VividElement } from '../foundation/vivid-element/vivid-element';
  * @testRef pickerButton shadowButton #picker-button
  * @testRef clearButton shadowButton #clear-button
  */
-export abstract class PickerField extends WithFeedback(
-	WithErrorText(
-		FormElement(TrappedFocus(Localized(FormAssociated(VividElement))))
+export abstract class PickerField extends WithContextualHelp(
+	WithFeedback(
+		WithErrorText(
+			FormElement(TrappedFocus(Localized(FormAssociated(VividElement))))
+		)
 	)
 ) {
 	// --- Attributes ---

@@ -5,7 +5,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['combobox', 'option', 'badge'];
+const components = ['combobox', 'option', 'badge', 'contextual-help'];
 
 async function testScaleOptions({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px; block-size: 400px">
@@ -77,6 +77,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				label="Where did you hear about us?" placeholder="Select an option"></vwc-combobox>
 				<vwc-combobox success-text="Rome is the correct answer" placeholder="Select an option" label="Success Text"></vwc-combobox>
 				<vwc-combobox error-text="Rome is the correct answer" placeholder="Select an option" label="Error Text"></vwc-combobox>
+			<vwc-combobox label="Combobox with contextual help">
+				<vwc-contextual-help slot="contextual-help">Example contextual help</vwc-contextual-help>
+			</vwc-combobox>
 			<vwc-combobox open style="margin-bottom: 100px">
 				<vwc-option text="Option 1"></vwc-option>
 				<vwc-option text="Option 2"></vwc-option>

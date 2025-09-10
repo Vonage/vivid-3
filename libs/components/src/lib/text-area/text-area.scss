@@ -17,7 +17,8 @@
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/tokens/scss/size.variables' as size;
 @use '@repo/shared/mixins/scrollbar' as scrollbar;
-@forward '../../shared/patterns/form-elements/with-contextual-help';
+@use '../../shared/patterns/form-elements/with-contextual-help' as
+	contextual-help;
 
 $low-ink-color: --_low-ink-color;
 $outline-width: 2px;
@@ -145,3 +146,5 @@ $outline-width: 2px;
 		resize: vertical;
 	}
 }
+
+@include contextual-help.label-suffix;

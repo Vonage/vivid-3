@@ -246,6 +246,21 @@ The `helper-text` slot allows you to use rich content as the helper text.
 </vwc-searchable-select>
 ```
 
+### Contextual Help
+
+The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
+
+```html preview 230px
+<vwc-searchable-select label="Business Type">
+	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
+	<vwc-option value="gov" text="Governmental Organization"></vwc-option>
+	<vwc-option value="edu" text="Educational Institution"></vwc-option>
+	<vwc-contextual-help slot="contextual-help"
+		>Please select the type of your business</vwc-contextual-help
+	>
+</vwc-searchable-select>
+```
+
 ## Custom Width
 
 You can specify width on the Searchable Select to control the width of the component. The default width is `300px`.
@@ -344,14 +359,15 @@ Use `--searchable-select-height` to set the max-height of the dropdown. The defa
 
 <div class="table-wrapper">
 
-| Name                | Description                                                                                   |
-| ------------------- | --------------------------------------------------------------------------------------------- |
-| **default**         | Holds the available options.                                                                  |
-| **icon**            | Slot to add an icon to the control.                                                           |
-| **meta**            | Slot to add meta content to the control.                                                      |
-| **helper-text**     | Describes how to use the component. Alternative to the `helper-text` attribute.               |
-| **no-options**      | Message that appears when no options are available.                                           |
-| **no-matches**      | Message that appears when no options match the search query.                                  |
-| **loading-options** | Message that appears there are no options to display and the component is in a loading state. |
+| Name                | Description                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **default**         | Holds the available options.                                                                                       |
+| **icon**            | Slot to add an icon to the control.                                                                                |
+| **meta**            | Slot to add meta content to the control.                                                                           |
+| **helper-text**     | Describes how to use the component. Alternative to the `helper-text` attribute.                                    |
+| **no-options**      | Message that appears when no options are available.                                                                |
+| **no-matches**      | Message that appears when no options match the search query.                                                       |
+| **loading-options** | Message that appears there are no options to display and the component is in a loading state.                      |
+| **contextual-help** | Allows you to add the [Contextual Help](/components/contextual-help/) component to be displayed next to the label. |
 
 </div>

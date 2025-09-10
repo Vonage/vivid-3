@@ -38,6 +38,14 @@ export const PickerFieldTemplate = (
 					name='helper-text'
 					${slotted('_helperTextSlottedContent')}
 				></slot>
+				<slot
+					slot='${(x) =>
+						x._contextualHelpSlottedContent?.length
+							? 'contextual-help'
+							: undefined}'
+					name='contextual-help'
+					${slotted('_contextualHelpSlottedContent')}
+				></slot>
 				<${buttonTag}
 					id='picker-button'
 					${ref('_pickerButtonEl')}

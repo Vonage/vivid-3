@@ -1,4 +1,4 @@
-import { html, ref, repeat, when } from '@microsoft/fast-element';
+import { html, ref, repeat, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Button } from '../button/button';
 import { Icon } from '../icon/icon';
@@ -48,7 +48,13 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 
 	return html<FilePicker>`
 		<div class="base">
-			${when((x) => x.label, html<FilePicker>`<label>${(x) => x.label}</label>`)}
+			<div class="label-wrapper" ?hidden=${(x) => !x.label && !x._hasContextualHelp}>
+				${when(
+					(x) => x.label,
+					html<FilePicker>`<label class="label">${(x) => x.label}</label>`
+				)}
+				<slot name="contextual-help" ${slotted('_contextualHelpSlottedContent')}></slot>
+			</div>
 			<div class="control-wrapper">
 				<button
 					type="button"

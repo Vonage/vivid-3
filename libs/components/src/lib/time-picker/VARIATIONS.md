@@ -26,6 +26,18 @@ To add HTML to the helper text, use the [helper-text slot](/components/time-pick
 ></vwc-time-picker>
 ```
 
+### Contextual Help
+
+You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
+
+```html preview 360px
+<vwc-time-picker label="Start time">
+	<vwc-contextual-help slot="contextual-help"
+		>Select a time for the event to start</vwc-contextual-help
+	>
+</vwc-time-picker>
+```
+
 ## Value
 
 The `value` attribute contains the currently selected time.
