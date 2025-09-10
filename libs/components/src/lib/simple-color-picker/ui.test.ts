@@ -10,8 +10,9 @@ const components = ['simple-color-picker', 'button', 'icon'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<div style="margin: 5px; min-height: 150px;">
-			<vwc-simple-color-picker open>
+			<vwc-simple-color-picker>
 				<vwc-button
+					id="button"
 					aria-label="Pick color"
 					slot="anchor"
 					size="super-condensed"
@@ -96,6 +97,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			},
 		];
 	}, simpleColorPicker);
+
+	const button = await page.$('#button');
+	button?.click();
 
 	await page.waitForLoadState('networkidle');
 
