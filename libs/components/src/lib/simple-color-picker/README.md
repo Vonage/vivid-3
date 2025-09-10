@@ -16,13 +16,74 @@ import { registerSimpleColorPicker' } from '@vonage/vivid';
 registerSimpleColorPicker('your-prefix');
 ```
 
-```html preview
+```html preview 120px
 <script type="module">
-	import { registerSimpleColorPicker } from '@vonage/vivid';
+	import {
+		registerSimpleColorPicker,
+		registerButton,
+		registerIcon,
+	} from 'vivid-bundle';
 	registerSimpleColorPicker('your-prefix');
+	registerButton('your-prefix');
+	registerIcon('your-prefix');
 </script>
 
-<your-prefix-simple-color-picker></your-prefix-simple-color-picker>
+<your-prefix-simple-color-picker id="picker">
+	<your-prefix-button
+		aria-label="Pick color"
+		slot="anchor"
+		size="super-condensed"
+		shape="pill"
+		appearance="outlined"
+	>
+		<your-prefix-icon
+			id="icon"
+			slot="icon"
+			name="textcolor-solid"
+		></your-prefix-icon>
+	</your-prefix-button>
+</your-prefix-simple-color-picker>
+
+<script>
+	const swatches = [
+		{
+			label: 'Black',
+			value: '#000000',
+		},
+		{
+			label: 'Red',
+			value: '#E61D1D',
+		},
+		{
+			label: 'Yellow',
+			value: '#FA9F00',
+		},
+		{
+			label: 'Green',
+			value: '#1C8731',
+		},
+		{
+			label: 'Blue',
+			value: '#0276D5',
+		},
+		{
+			label: 'Purple',
+			value: '#9941FF',
+		},
+		{
+			label: 'Pink',
+			value: '#D6219C',
+		},
+	];
+	const picker = document.getElementById('picker');
+	const buttonIcon = document.getElementById('icon');
+	picker.swatches = swatches;
+
+	picker.addEventListener('change', (e) => {
+		const selectedColor = e.target.value;
+		buttonIcon.setAttribute('style', `color: ${selectedColor}; `);
+	});
+</script>
 ```
 
 </vwc-tab-panel>
@@ -31,11 +92,22 @@ registerSimpleColorPicker('your-prefix');
 
 ```html
 <script setup lang="ts">
-	import { VSimpleColorPicker } from '@vonage/vivid-vue';
+	import { VSimpleColorPicker, VButton, VIcon } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VSimpleColorPicker>Simple Color Picker</VSimpleColorPicker>
+	<VSimpleColorPicker :swatches="[
+		{label: "Black", value: "#000000"},
+		{label: "White", value: "#ffffff"}
+	]">
+		<VButton
+			slot="anchor"
+			label="Toggle Color Picker"
+			shape="rounded"
+			appearance="filled">
+			<VIcon slot="icon" name="palette-solid" />
+		</VButton>
+	</VSimpleColorPicker>
 </template>
 ```
 
