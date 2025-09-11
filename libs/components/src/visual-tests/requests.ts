@@ -3,23 +3,30 @@ import type { Page, Request } from '@playwright/test';
 export class InFlightRequests {
 	private inFlightRequests: Set<Request> = new Set();
 
-	private addRequest = (request: Request) => {
-		// console.log(`Request started: ${request.url()}`);
+	private onRequest = (request: Request) => {
 		this.inFlightRequests.add(request);
 	};
-	private removeRequest = (request: Request) =>
+	private onRequestFinished = (request: Request) => {
 		this.inFlightRequests.delete(request);
+	};
+
+	private onRequestFailed = (request: Request) => {
+		console.warn(
+			`Request failed: ${request.url()} Reason: ${request.failure()}`
+		);
+		this.inFlightRequests.delete(request);
+	};
 
 	constructor(private page: Page) {
-		this.page.on('request', this.addRequest);
-		this.page.on('requestfinished', this.removeRequest);
-		this.page.on('requestfailed', this.removeRequest);
+		this.page.on('request', this.onRequest);
+		this.page.on('requestfinished', this.onRequestFinished);
+		this.page.on('requestfailed', this.onRequestFailed);
 	}
 
 	destroy() {
-		this.page.off('request', this.addRequest);
-		this.page.off('requestfinished', this.removeRequest);
-		this.page.off('requestfailed', this.removeRequest);
+		this.page.off('request', this.onRequest);
+		this.page.off('requestfinished', this.onRequestFinished);
+		this.page.off('requestfailed', this.onRequestFailed);
 	}
 
 	noneInFlight(predicate: (request: Request) => boolean = () => true) {
