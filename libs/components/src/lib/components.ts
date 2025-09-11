@@ -46,6 +46,7 @@ export * from './searchable-select/definition';
 export * from './select/definition';
 export * from './selectable-box/definition';
 export * from './side-drawer/definition';
+export * from './simple-color-picker/definition';
 export * from './slider/definition';
 export * from './split-button/definition';
 export * from './switch/definition';

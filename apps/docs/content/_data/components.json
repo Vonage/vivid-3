@@ -566,6 +566,15 @@
 		"status": "underlying"
 	},
 	{
+		"title": "Simple Color Picker",
+		"description": "The basic version of the Color Picker allows users to select a color from a predefined palette.",
+		"variations": "./libs/components/src/lib/simple-color-picker/VARIATIONS.md",
+		"code": "./libs/components/src/lib/simple-color-picker/README.md",
+		"accessibility": "./libs/components/src/lib/simple-color-picker/ACCESSIBILITY.md",
+		"hideGuidelines": "true",
+		"status": "alpha"
+	},
+	{
 		"title": "Contextual Help",
 		"description": "Adds contextual help nested in the Toggletip to the form label",
 		"variations": "./libs/components/src/lib/contextual-help/VARIATIONS.md",

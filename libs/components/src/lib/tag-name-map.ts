@@ -49,6 +49,7 @@ import type {
 	VwcSelectableBoxElement,
 	VwcSelectElement,
 	VwcSideDrawerElement,
+	VwcSimpleColorPickerElement,
 	VwcSliderElement,
 	VwcSplitButtonElement,
 	VwcSwitchElement,
@@ -118,6 +119,7 @@ type DefaultVividTagNameMap = {
 	'vwc-selectable-box': VwcSelectableBoxElement;
 	'vwc-select': VwcSelectElement;
 	'vwc-side-drawer': VwcSideDrawerElement;
+	'vwc-simple-color-picker': VwcSimpleColorPickerElement;
 	'vwc-slider': VwcSliderElement;
 	'vwc-split-button': VwcSplitButtonElement;
 	'vwc-switch': VwcSwitchElement;

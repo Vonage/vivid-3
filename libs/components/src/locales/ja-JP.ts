@@ -245,5 +245,19 @@ const jaJP: Locale = {
 		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
 			ariaLabel ? `さらに情報を表示 ${ariaLabel}` : `さらに情報を表示`,
 	},
+	simpleColorPicker: {
+		colorPaletteLabel: 'カラーパレット',
+		colorSwatchLabel: /* istanbul ignore next */ (
+			value: string,
+			label?: string,
+			selected?: boolean
+		) => {
+			let swatchLabel = label
+				? `${label}選択, 16 進数: ${value}`
+				: `${value}選択`;
+			if (selected) swatchLabel += `、選択済み。`;
+			return swatchLabel;
+		},
+	},
 };
 export default jaJP;
