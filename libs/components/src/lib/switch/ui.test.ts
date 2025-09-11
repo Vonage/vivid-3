@@ -48,7 +48,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
   	</vwc-layout>
   </div>`;
 
-	page.setViewportSize({ width: 250, height: 800 });
+	await page.setViewportSize({ width: 250, height: 800 });
 
 	await loadComponents({
 		page,

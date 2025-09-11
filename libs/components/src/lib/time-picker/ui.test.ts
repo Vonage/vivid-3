@@ -82,7 +82,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 test('selecting a time', async ({ page }: { page: Page }) => {
 	const template = '<vwc-time-picker></vwc-time-picker>';
 
-	page.setViewportSize({ width: 1100, height: 500 });
+	await page.setViewportSize({ width: 1100, height: 500 });
 
 	await loadComponents({
 		page,
@@ -108,7 +108,7 @@ test('selecting a time', async ({ page }: { page: Page }) => {
 
 test.describe('constraints validation', async () => {
 	test.beforeEach(async ({ page }: { page: Page }) => {
-		page.setViewportSize({ width: 1100, height: 500 });
+		await page.setViewportSize({ width: 1100, height: 500 });
 
 		await loadComponents({
 			page,

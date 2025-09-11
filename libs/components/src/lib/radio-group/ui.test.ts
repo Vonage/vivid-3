@@ -68,7 +68,7 @@ test.describe('radio-group', () => {
 	</vwc-radio-group>
 	</div>`;
 
-		page.setViewportSize({ width: 200, height: 580 });
+		await page.setViewportSize({ width: 200, height: 580 });
 
 		await loadComponents({
 			page,

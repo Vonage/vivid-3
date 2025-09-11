@@ -390,7 +390,7 @@ subtitle="Extra text below the card headline"
 </div>
 `;
 
-	page.setViewportSize({ width: 1000, height: 2900 });
+	await page.setViewportSize({ width: 1000, height: 2900 });
 
 	await loadComponents({
 		page,

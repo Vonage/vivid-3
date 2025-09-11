@@ -29,7 +29,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	  <vwc-progress-ring min="0" max="50" value="50" size="5"></vwc-progress-ring>
 	`;
 
-	page.setViewportSize({ width: 80, height: 720 });
+	await page.setViewportSize({ width: 80, height: 720 });
 
 	await loadComponents({
 		page,

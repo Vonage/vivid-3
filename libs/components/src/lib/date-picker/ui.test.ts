@@ -80,7 +80,7 @@ test('selecting a date', async ({ page }: { page: Page }) => {
 	const template = '<vwc-date-picker></vwc-date-picker>';
 
 	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
-	page.setViewportSize({ width: 1100, height: 500 });
+	await page.setViewportSize({ width: 1100, height: 500 });
 
 	await loadComponents({
 		page,
@@ -105,7 +105,7 @@ test('selecting a date', async ({ page }: { page: Page }) => {
 test.describe('constraints validation', async () => {
 	test.beforeEach(async ({ page }: { page: Page }) => {
 		await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
-		page.setViewportSize({ width: 1100, height: 500 });
+		await page.setViewportSize({ width: 1100, height: 500 });
 
 		await loadComponents({
 			page,

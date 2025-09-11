@@ -33,7 +33,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
     </vwc-calendar>
   `;
 
-	page.setViewportSize({ width: 1200, height: 720 });
+	await page.setViewportSize({ width: 1200, height: 720 });
 
 	await loadComponents({
 		page,

@@ -56,7 +56,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</vwc-badge>
 		<vwc-badge text='Expanded size' size="expanded"></vwc-badge>
 	</div>`;
-	page.setViewportSize({ width: 520, height: 200 });
+	await page.setViewportSize({ width: 520, height: 200 });
 
 	await loadComponents({
 		page,

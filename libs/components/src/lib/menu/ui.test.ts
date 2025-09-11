@@ -26,7 +26,7 @@ async function testAbsolutStrategy({ page }: { page: Page }) {
  </vwc-menu>
  </div></div>`;
 
-	page.setViewportSize({ width: 500, height: 400 });
+	await page.setViewportSize({ width: 500, height: 400 });
 
 	await loadComponents({
 		page,
@@ -57,7 +57,7 @@ async function testMobileInlineSize({ page }: { page: Page }) {
  </vwc-menu>
 </div>`;
 
-	page.setViewportSize({ width: 360, height: 400 });
+	await page.setViewportSize({ width: 360, height: 400 });
 
 	await loadComponents({
 		page,
@@ -95,7 +95,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			</vwc-menu>
 		</div>`;
 
-	page.setViewportSize({ width: 720, height: 720 });
+	await page.setViewportSize({ width: 720, height: 720 });
 
 	await loadComponents({
 		page,

@@ -31,7 +31,7 @@ async function testSubMenu({ page }: { page: Page }) {
 </vwc-menu>
  `;
 
-	page.setViewportSize({ width: 400, height: 300 });
+	await page.setViewportSize({ width: 400, height: 300 });
 
 	await loadComponents({
 		page,
@@ -139,7 +139,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-menu-item disabled control-type="checkbox" checked check-appearance="tick-only" text="Menu item 1"></vwc-menu-item>
 		</vwc-menu>`;
 
-	page.setViewportSize({ width: 200, height: 2300 });
+	await page.setViewportSize({ width: 200, height: 2300 });
 
 	await loadComponents({
 		page,

@@ -51,7 +51,7 @@ test('should show the default component', async ({ page }: { page: Page }) => {
 			</vwc-layout>
 		</div>`;
 
-	page.setViewportSize({
+	await page.setViewportSize({
 		width: 1100,
 		height: 580,
 	});
@@ -132,7 +132,7 @@ test('should apply column-basis', async ({ page }: { page: Page }) => {
 		</div>
 	`;
 
-	page.setViewportSize({
+	await page.setViewportSize({
 		width: 1100,
 		height: 2100,
 	});
@@ -210,7 +210,7 @@ test('should apply auto-sizing and custom gutters', async ({
 		</div>
 	`;
 
-	page.setViewportSize({
+	await page.setViewportSize({
 		width: 1100,
 		height: 1230,
 	});
@@ -257,7 +257,7 @@ test('should apply css variables', async ({ page }: { page: Page }) => {
 		</div>
 	`;
 
-	page.setViewportSize({
+	await page.setViewportSize({
 		width: 1100,
 		height: 370,
 	});
