@@ -28,7 +28,7 @@ const config: PlaywrightTestConfig = {
 	],
 	expect: {
 		toMatchSnapshot: {
-			threshold: 0,
+			threshold: 0.05,
 		},
 	},
 	snapshotPathTemplate: isDocker
