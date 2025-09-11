@@ -6,6 +6,11 @@
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**"]
 		},
+		"@vonage/vivid#build": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", "!**/*.md", "!**/**.spec.ts", "!**/*.test.ts"],
+			"outputs": ["dist/**"]
+		},
 		"@vonage/vivid-vue#build": {
 			"dependsOn": ["^build"],
 			"outputs": [
