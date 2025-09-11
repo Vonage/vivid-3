@@ -11,6 +11,7 @@ export class InFlightRequests {
 	};
 
 	private onRequestFailed = (request: Request) => {
+		// eslint-disable-next-line no-console
 		console.warn(
 			`Request failed: ${request.url()} Reason: ${request.failure()}`
 		);
