@@ -70,7 +70,7 @@ describe('vwc-option', () => {
 			await elementUpdated(element);
 			expect(base.classList.contains('two-lines')).toBe(true);
 		});
-	})
+	});
 
 	describe('selected', () => {
 		it('should set the `aria-selected` attribute with the `selected` value when provided', async () => {
