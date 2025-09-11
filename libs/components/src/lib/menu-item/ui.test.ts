@@ -8,43 +8,6 @@ import {
 
 const components = ['menu', 'menu-item', 'divider', 'badge'];
 
-async function testSubMenu({ page }: { page: Page }) {
-	const template = `
-<style>
-	#wrapper {
-		width: 100%;
-		height: 300px;
-	}
-</style>
-<vwc-menu open aria-label="Example menu">
-<vwc-menu-item text="Menu item 1">
-</vwc-menu-item>
-<vwc-menu-item text="Menu item 2">
-<vwc-menu slot="submenu" open>
-<vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
-<vwc-menu-item text="Menu item 2.2"></vwc-menu-item>
-<vwc-menu-item text="Menu item 2.3"></vwc-menu-item>
-</vwc-menu>
-</vwc-menu-item>
-<vwc-menu-item text="Menu item 3">
-</vwc-menu-item>
-</vwc-menu>
- `;
-
-	await page.setViewportSize({ width: 400, height: 300 });
-
-	await loadComponents({
-		page,
-		components,
-	});
-	await renderTemplate({
-		page,
-		template,
-	});
-
-	await takeScreenshot(page, 'sub-menu');
-}
-
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<style>
@@ -156,4 +119,40 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await takeScreenshot(page, 'menu-item');
 });
 
-test('menu-item with submenu', testSubMenu);
+test('menu-item with submenu', async ({ page }: { page: Page }) => {
+	await page.setViewportSize({ width: 400, height: 300 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await renderTemplate({
+		page,
+		template: `
+<style>
+	#wrapper {
+		width: 100%;
+		height: 300px;
+	}
+</style>
+<vwc-menu open aria-label="Example menu">
+<vwc-menu-item text="Menu item 1">
+</vwc-menu-item>
+<vwc-menu-item text="Menu item 2">
+<vwc-menu slot="submenu">
+<vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
+<vwc-menu-item text="Menu item 2.2"></vwc-menu-item>
+<vwc-menu-item text="Menu item 2.3"></vwc-menu-item>
+</vwc-menu>
+</vwc-menu-item>
+<vwc-menu-item text="Menu item 3">
+</vwc-menu-item>
+</vwc-menu>
+ `,
+		setup: async () => {
+			await page.locator('vwc-menu-item[text="Menu item 2"]').hover();
+		},
+	});
+
+	await takeScreenshot(page, 'sub-menu');
+});
