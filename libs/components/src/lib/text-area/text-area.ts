@@ -6,6 +6,7 @@ import {
 import {
 	FormElement,
 	WithCharCount,
+	WithContextualHelp,
 	WithErrorText,
 	WithSuccessText,
 } from '../../shared/patterns';
@@ -14,7 +15,6 @@ import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { WithFeedback } from '../../shared/feedback/mixins';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
-import { WithContextualHelp } from '../../shared/patterns/form-elements/with-contextual-help';
 
 export type TextAreaWrap = 'hard' | 'soft' | 'off';
 

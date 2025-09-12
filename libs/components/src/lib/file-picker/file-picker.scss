@@ -5,6 +5,8 @@
 @use '@repo/shared/mixins/focus' as focus;
 @use '@repo/shared/mixins/focus' as focus-variables;
 @use '@repo/shared/mixins/scrollbar' as scrollbar;
+@use '../../shared/patterns/form-elements/with-contextual-help' as
+	contextual-help;
 
 $low-ink-color: --_low-ink-color;
 
@@ -248,3 +250,5 @@ $low-ink-color: --_low-ink-color;
 	height: 0;
 	visibility: hidden;
 }
+
+@include contextual-help.label-wrapper;

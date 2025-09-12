@@ -91,7 +91,10 @@ function renderControl(context: VividElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
 	return html<Select>`
-			${when((x) => x.label, renderLabel())}
+			<div class="label-wrapper" ?hidden=${(x) => !x.label && !x._hasContextualHelp}>
+				${when((x) => x.label, renderLabel())}
+				<slot name="contextual-help" ${slotted('_contextualHelpSlottedContent')}></slot>
+			</div>
 			<div class="control-wrapper">
 				${when((x) => !x.multiple, selectValue(context))}
 				<${popupTag} class="popup"

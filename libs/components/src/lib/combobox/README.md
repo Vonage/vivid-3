@@ -182,14 +182,29 @@ Set the `meta` slot to show meta information after the Combobox text.
 The `helper-text` slot allows you to use rich content as the select's helper text.
 
 ```html preview 230px
-<vwc-select label="Business Type">
+<vwc-combobox label="Business Type">
 	<span slot="helper-text">
 		Please select the <a href="#">type of your business</a>.
 	</span>
 	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
 	<vwc-option value="gov" text="Governmental Organization"></vwc-option>
 	<vwc-option value="edu" text="Educational Institution"></vwc-option>
-</vwc-select>
+</vwc-combobox>
+```
+
+### Contextual Help Slot
+
+The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
+
+```html preview 230px
+<vwc-combobox label="Business Type">
+	<vwc-contextual-help slot="contextual-help"
+		>Please select the type of your business</vwc-contextual-help
+	>
+	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
+	<vwc-option value="gov" text="Governmental Organization"></vwc-option>
+	<vwc-option value="edu" text="Educational Institution"></vwc-option>
+</vwc-combobox>
 ```
 
 ## CSS Variables
@@ -253,13 +268,12 @@ Use `--combobox-height` to customize the `max-height` of the dropdown.
 
 <div class="table-wrapper">
 
-| Name        | Description                                                        |
-| ----------- | ------------------------------------------------------------------ |
-| **default** | Default slot meant for Option component to provide the option list |
-| **icon**    | Add an icon to the component.                                      |
-| **meta**    | Show meta information after the selected option label              |
+| Name                | Description                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **default**         | Default slot meant for Option component to provide the option list                                                 |
+| **helper-text**     | Add HTML content for helper text                                                                                   |
+| **icon**            | Add an icon to the component.                                                                                      |
+| **meta**            | Show meta information after the selected option label                                                              |
+| **contextual-help** | Allows you to add the [Contextual Help](/components/contextual-help/) component to be displayed next to the label. |
 
-<!--
-| **helper-text** | Add HTML content for helper text                                   |
--->
 </div>

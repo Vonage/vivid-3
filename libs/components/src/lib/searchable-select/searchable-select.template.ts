@@ -208,18 +208,19 @@ function renderControl(context: VividElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
 	return html<SearchableSelect>`
-		${when(
-			(x) => x.label || (x.multiple && x.maxSelected && x.maxSelected >= 1),
-			html<SearchableSelect>`
-				<div>
-					${when((x) => x.label, renderLabel())}
-					${when(
-						(x) => x.multiple && x.maxSelected && x.maxSelected >= 1,
-						renderSelectionCount()
-					)}
-				</div>
-			`
-		)}
+		<div class="label-wrapper" ?hidden=${(x) =>
+			!x.label && !x._hasContextualHelp && !x._hasSelectionCount}>
+			${when(
+				(x) => x.label || x._hasSelectionCount,
+				html<SearchableSelect>`
+					<div>
+						${when((x) => x.label, renderLabel())}
+						${when((x) => x._hasSelectionCount, renderSelectionCount())}
+					</div>
+				`
+			)}
+			<slot name="contextual-help" ${slotted('_contextualHelpSlottedContent')}></slot>
+		</div>
 		<span aria-live="assertive" aria-relevant="text" class="visually-hidden">
 			${(x) => x._changeDescription}
 		</span>

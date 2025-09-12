@@ -1,4 +1,4 @@
-import { html, ref, when } from '@microsoft/fast-element';
+import { html, ref, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Shape } from '../enums';
 import { Button } from '../button/button';
@@ -86,7 +86,7 @@ export const NumberFieldTemplate = (context: VividElementDefinitionContext) => {
 	return html<NumberField>`
 		<div class="base ${getStateClasses}">
 			${when((x) => x.label, renderLabel())}
-			<slot name="contextual-help"></slot>
+			<slot name="contextual-help" ${slotted('_contextualHelpSlottedContent')}></slot>
 			<div class="fieldset">
 				<div class="wrapper">
 					<input
