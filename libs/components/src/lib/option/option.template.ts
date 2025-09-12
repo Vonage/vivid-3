@@ -16,8 +16,34 @@ const getClasses = (x: ListboxOption) =>
 		['selected', Boolean(x.selected)],
 		['hover', Boolean(x._highlighted)],
 		['active', Boolean(x.checked)],
-		['icon', Boolean(x.icon)]
+		['icon', Boolean(x.icon)],
+		['two-lines', Boolean(x.text?.length) && Boolean(x.textSecondary?.length)]
 	);
+
+function text() {
+	return html<ListboxOption>`${when(
+		(x) => x.text || x.textSecondary,
+		html`<span class="text">
+			${when(
+				(x) => x.text,
+				html`<span class="text-primary">
+					${when(
+						(x) => x._hasMatchedText,
+						html<ListboxOption>`${(x) =>
+								x.text.slice(0, x._matchedRange.from)}<span class="match"
+								>${(x) =>
+									x.text.slice(x._matchedRange.from, x._matchedRange.to)}</span
+							>`
+					)}${(x) => x.text.slice(x._matchedRange.to)}
+				</span>`
+			)}
+			${when(
+				(x) => x.textSecondary,
+				html`<span class="text-secondary">${(x) => x.textSecondary}</span>`
+			)}
+		</span>`
+	)}`;
+}
 
 export const ListboxOptionTemplate = (
 	context: VividElementDefinitionContext
@@ -36,23 +62,7 @@ export const ListboxOptionTemplate = (
 			style="${(x) => (x._isNotMatching ? 'display: none' : '')}"
 		>
 			<div class="${getClasses}">
-				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
-				${when(
-					(x) => x.text,
-					html<ListboxOption>`<div class="text">
-						${when(
-							(x) => x._hasMatchedText,
-							html<ListboxOption>`${(x) =>
-									x.text.slice(0, x._matchedRange.from)}<span class="match"
-									>${(x) =>
-										x.text.slice(
-											x._matchedRange.from,
-											x._matchedRange.to
-										)}</span
-								>`
-						)}${(x) => x.text.slice(x._matchedRange.to)}
-					</div>`
-				)}
+				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${text()}
 				<slot name="trailing-meta"></slot>
 				${when(
 					(x) => x._displayCheckmark && x.selected,
