@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
@@ -50,7 +50,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</div>
 	</div>`;
 
-	await page.setViewportSize({ width: 1100, height: 500 });
+	await page.setViewportSize({ width: 1100, height: 800 });
 
 	await loadComponents({
 		page,
