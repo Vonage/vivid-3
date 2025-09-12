@@ -1,6 +1,7 @@
 {
-	"libs/components": "5.0.0",
-	"libs/vue-wrappers": "5.0.0",
+	"libs/components": "5.1.0",
+	"libs/vue-wrappers": "5.1.0",
 	"libs/test-wrappers": "5.0.0",
-	"libs/eslint-plugin": "1.5.0"
+	"libs/eslint-plugin": "1.5.0",
+	"libs/test-utils": "5.1.0"
 }
