@@ -62,6 +62,16 @@ describe('vwc-option', () => {
 		});
 	});
 
+	describe('textSecondary', () => {
+		it('should add two-lines text class to base when both texts exist', async () => {
+			const base = getBaseElement(element);
+			element.text = 'text';
+			element.textSecondary = 'textSecondary';
+			await elementUpdated(element);
+			expect(base.classList.contains('two-lines')).toBe(true);
+		});
+	});
+
 	describe('selected', () => {
 		it('should set the `aria-selected` attribute with the `selected` value when provided', async () => {
 			element.selected = true;
@@ -256,14 +266,11 @@ describe('vwc-option', () => {
 			expect(element._getAccessibleName()).toBe('aria label');
 		});
 
-		it('should return the text if aria-label is not set', async () => {
+		it('should return the text and text-secondary if aria-label is not set', async () => {
 			element.text = 'text';
+			element.textSecondary = 'text-secondary';
 
-			expect(element._getAccessibleName()).toBe('text');
-		});
-
-		it('should return empty string if neither aria-label nor text are set', async () => {
-			expect(element._getAccessibleName()).toBe('');
+			expect(element._getAccessibleName()).toBe('text text-secondary');
 		});
 	});
 

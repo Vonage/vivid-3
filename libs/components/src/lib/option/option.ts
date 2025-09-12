@@ -154,7 +154,7 @@ export class ListboxOption extends HostSemantics(
 	 *
 	 * @public
 	 *
-	 * HTML Attribute: text
+	 * HTML Attribute: label
 	 */
 	@attr({
 		attribute: 'label',
@@ -189,12 +189,22 @@ export class ListboxOption extends HostSemantics(
 	}
 
 	/**
+	 * @public
+	 * @remarks
+	 * HTML Attribute: text-secondary
+	 */
+	@attr({ attribute: 'text-secondary' }) textSecondary?: string;
+
+	/**
 	 * Provides an accessible name for use by parent components.
 	 * Note: Does not implement full accessible name computation, e.g. slotted content is missed.
 	 * @internal
 	 */
 	_getAccessibleName(): string {
-		return this.ariaLabel || this.text || '';
+		return (
+			this.ariaLabel ||
+			`${this.text}${this.textSecondary ? ` ${this.textSecondary}` : ''}`
+		);
 	}
 
 	get form(): HTMLFormElement | null {

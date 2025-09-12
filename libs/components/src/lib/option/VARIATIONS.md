@@ -16,6 +16,33 @@ The [label attribute](/components/option/code/#label) can be used to display dif
 </style>
 ```
 
+### Secondary Text
+
+The Option can be given extra context using the `text-secondary` attribute.
+
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+
+    To improve readability, **avoid long text and multiple lines** where possible.
+
+</vwc-note>
+
+```html preview
+<div class="container">
+	<vwc-option
+		text="Option text"
+		text-secondary="Secondary text"
+		value="option1"
+	></vwc-option>
+</div>
+
+<style>
+	.container {
+		width: 250px;
+	}
+</style>
+```
+
 ## Selected
 
 The `selected` attribute indicates that the option is selected.

@@ -50,6 +50,23 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						text="New"
 					></vwc-badge>
 				</vwc-option>
+				<vwc-option text="Option text" text-secondary="Secondary text" value="option1"></vwc-option>
+				<vwc-option text="Option text" text-secondary="Secondary text" value="option1" matched-text="pti"></vwc-option>
+				<vwc-option text="Option text" text-secondary="Secondary text" value="option1">
+					<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+				</vwc-option>
+				<vwc-option text="Option text" text-secondary="Secondary text" value="option1">
+					<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+					<vwc-icon slot="trailing-meta" name="chat-line"></vwc-icon>
+				</vwc-option>
+				<vwc-option class="checkmark" text="Option text" text-secondary="Secondary text" value="option1" selected>
+					<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+					<vwc-icon slot="trailing-meta" name="chat-line"></vwc-icon>
+				</vwc-option>
+				<vwc-option scale="condensed" class="checkmark" text="Option text" text-secondary="Secondary text" value="option1" selected>
+					<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+					<vwc-icon slot="trailing-meta" name="chat-line"></vwc-icon>
+				</vwc-option>
 			</div>
 		`,
 		setup: async () => {
