@@ -51,7 +51,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</div>
 	</div>`;
 
-	await page.setViewportSize({ width: 1100, height: 500 });
+	await page.setViewportSize({ width: 1100, height: 800 });
 
 	await loadComponents({
 		page,
