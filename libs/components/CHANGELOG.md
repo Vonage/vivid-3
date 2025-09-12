@@ -4,6 +4,26 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.1.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.0.0...vivid-v5.1.0) (2025-09-12)
+
+
+### Features
+
+* **components:** add contextual-help component and mixin (VIV-2755) ([#2507](https://github.com/Vonage/vivid-3/issues/2507)) ([1fa9168](https://github.com/Vonage/vivid-3/commit/1fa91680b32f1beb1468ab9e032705136e6c6346))
+* **components:** prevent hover state on touchscreen devices (VIV-2778) ([#2525](https://github.com/Vonage/vivid-3/issues/2525)) ([157929d](https://github.com/Vonage/vivid-3/commit/157929db1438a45ffc4c374834bd3644d3b047f8))
+* **empty-state:** icon border in empty state changed add transparency (VIV-2799) ([#2529](https://github.com/Vonage/vivid-3/issues/2529)) ([1449a78](https://github.com/Vonage/vivid-3/commit/1449a78b67efc00d40574da1e977ab008dc98587))
+* icon border in empty state changed add transparenct ([1449a78](https://github.com/Vonage/vivid-3/commit/1449a78b67efc00d40574da1e977ab008dc98587))
+* **option:** add `text-secondary` attribute (VIV-2747) ([#2526](https://github.com/Vonage/vivid-3/issues/2526)) ([05f0da7](https://github.com/Vonage/vivid-3/commit/05f0da79f2a2289a7106dd1e19854151c74464d5))
+* **option:** add `trailing-meta` slot (VIV-2792) ([#2524](https://github.com/Vonage/vivid-3/issues/2524)) ([6948f2b](https://github.com/Vonage/vivid-3/commit/6948f2be5e71e15f19fedf60c00bad98dea5ccb7))
+* **simple-color-picker:** add new component (VIV-2790) ([#2520](https://github.com/Vonage/vivid-3/issues/2520)) ([9c87b14](https://github.com/Vonage/vivid-3/commit/9c87b142b0f3383a825b8c4214d86a3f83d0fcc7))
+
+
+### Bug Fixes
+
+* **button:** accessible disabled button (VIV-2798) ([#2517](https://github.com/Vonage/vivid-3/issues/2517)) ([01583f9](https://github.com/Vonage/vivid-3/commit/01583f91add49cb093bac256fe4e1e340948b77a))
+* **file-picker:** fix file validation not updating (VIV-2784) ([#2521](https://github.com/Vonage/vivid-3/issues/2521)) ([b4406ec](https://github.com/Vonage/vivid-3/commit/b4406ecc9f36e2d0521c976fab4ba159dcf8f020))
+* **tabs:** fix activeid being reset (VIV-2795) ([#2514](https://github.com/Vonage/vivid-3/issues/2514)) ([246f952](https://github.com/Vonage/vivid-3/commit/246f952ede4b88bfac91b38023c8ba7f7570c51d))
+
 ## [5.0.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.31.0...vivid-v5.0.0) (2025-08-27)
 
 
