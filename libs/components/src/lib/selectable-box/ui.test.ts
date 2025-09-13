@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['selectable-box', 'checkbox', 'radio', 'layout', 'card'];
@@ -131,7 +132,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				>
 					<img
 						style="display: block"
-						src="https://doodleipsum.com/350x200?bg=C863D9&i=0b3f4112a9c5e358c439c4be74380e54"
+						src="/assets/ui-tests/illustrations/ideas-350x200.png"
 						alt="Lots of ideas"
 					/>
 				</vwc-selectable-box>
@@ -143,7 +144,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				>
 					<img
 						style="display: block"
-						src="https://doodleipsum.com/350x200/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540"
+						src="/assets/ui-tests/illustrations/sitting-on-floor-350x200.png"
 						alt="Sitting on Floor"
 					/>
 				</vwc-selectable-box>
@@ -155,7 +156,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				>
 					<img
 						style="display: block"
-						src="https://doodleipsum.com/350x200?bg=7463D9&i=6af2fcb146f3b99cfa1371242b2eee55"
+						src="/assets/ui-tests/illustrations/map-350x200.png"
 						alt="Get located"
 					/>
 				</vwc-selectable-box>
@@ -163,7 +164,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</div>
 		<style>
 			.wrapper{
-				padding: 16px 8px;	
+				padding: 16px 8px;
 			}
 		</style>
 	`;
@@ -172,18 +173,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('vwc-selectable-box').nth(0).focus();
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	await page.locator('vwc-selectable-box').nth(0).focus();
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/selectable-box.png'
-	);
+	await takeScreenshot(page, 'selectable-box');
 });

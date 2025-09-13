@@ -1,11 +1,10 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import type { ProgressRing } from '../progress-ring/progress-ring';
-import type { Button } from '../button/button';
-import type { DialPad } from '../dial-pad/dial-pad';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['dial-pad'];
@@ -62,31 +61,17 @@ test.describe('dial-pad', () => {
 			page,
 			components,
 		});
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template,
+			setup: async () => {
+				await page
+					.locator('vwc-progress-ring')
+					.evaluate((e) => ((e as ProgressRing).value = 50));
+			},
 		});
 
-		const testWrapper = await page.$('#wrapper');
-
-		await page.evaluate(() => {
-			const pendingDialPad = document.querySelector(
-				'vwc-dial-pad[pending]'
-			) as DialPad;
-			const pendingButton = pendingDialPad.shadowRoot?.querySelector(
-				'vwc-button[pending]'
-			) as Button;
-			const indicator = pendingButton.shadowRoot?.querySelector(
-				'vwc-progress-ring'
-			) as ProgressRing;
-			if (indicator) indicator.value = 50;
-		});
-
-		await page.waitForLoadState('networkidle');
-
-		expect(await testWrapper?.screenshot()).toMatchSnapshot(
-			'snapshots/dial-pad-01-default.png'
-		);
+		await takeScreenshot(page, 'dial-pad-01-default');
 	});
 
 	[
@@ -96,7 +81,7 @@ test.describe('dial-pad', () => {
 		test(`with autofocus ${s}`, async ({ page }: { page: Page }) => {
 			const template = `
 				<div style="margin: 5px;">
-					<vwc-dial-pad 
+					<vwc-dial-pad
 						value="1195"
 						autofocus
  						${noInput ? 'no-input' : ''} >
@@ -108,19 +93,14 @@ test.describe('dial-pad', () => {
 				page,
 				components,
 			});
-			await loadTemplate({
+			await renderTemplate({
 				page,
 				template,
 			});
 
-			const testWrapper = await page.$('#wrapper');
-
-			await page.waitForLoadState('networkidle');
-
-			expect(await testWrapper?.screenshot()).toMatchSnapshot(
-				`snapshots/dial-pad-02-0${index + 1}-with-autofocus${
-					s ? '-' + s : ''
-				}.png`
+			await takeScreenshot(
+				page,
+				`dial-pad-02-0${index + 1}-with-autofocus${s ? '-' + s : ''}`
 			);
 		});
 	});

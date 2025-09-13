@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['progress-ring'];
@@ -28,22 +29,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	  <vwc-progress-ring min="0" max="50" value="50" size="5"></vwc-progress-ring>
 	`;
 
-	page.setViewportSize({ width: 80, height: 720 });
+	await page.setViewportSize({ width: 80, height: 720 });
 
 	await loadComponents({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/progress-ring.png'
-	);
+	await takeScreenshot(page, 'progress-ring');
 });

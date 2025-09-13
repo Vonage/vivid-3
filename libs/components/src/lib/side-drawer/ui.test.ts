@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['side-drawer', 'layout'];
@@ -27,24 +28,18 @@ test('should show the component', async ({ page }: { page: Page }) => {
     </vwc-side-drawer>
   `;
 
-	page.setViewportSize({ width: 900, height: 300 });
+	await page.setViewportSize({ width: 900, height: 300 });
 
 	await loadComponents({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/side-drawer.png'
-	);
+	await takeScreenshot(page, 'side-drawer');
 });
 
 test('should show the component modal', async ({ page }: { page: Page }) => {
@@ -68,23 +63,17 @@ test('should show the component modal', async ({ page }: { page: Page }) => {
     </vwc-side-drawer>
   `;
 
-	page.setViewportSize({ width: 900, height: 300 });
+	await page.setViewportSize({ width: 900, height: 300 });
 
 	await loadComponents({
 		page,
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/side-drawer-modal.png'
-	);
+	await takeScreenshot(page, 'side-drawer-modal');
 });

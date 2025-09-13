@@ -1,55 +1,12 @@
 import type { Page } from '@playwright/test';
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['menu', 'menu-item', 'divider', 'badge'];
-
-async function testSubMenu({ page }: { page: Page }) {
-	const template = `
-<style>
-	#wrapper {
-		width: 100%;
-		height: 300px;
-	}
-</style>
-<vwc-menu open aria-label="Example menu">
-<vwc-menu-item text="Menu item 1">
-</vwc-menu-item>
-<vwc-menu-item text="Menu item 2">
-<vwc-menu slot="submenu" open>
-<vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
-<vwc-menu-item text="Menu item 2.2"></vwc-menu-item>
-<vwc-menu-item text="Menu item 2.3"></vwc-menu-item>
-</vwc-menu>
-</vwc-menu-item>
-<vwc-menu-item text="Menu item 3">
-</vwc-menu-item>
-</vwc-menu>
- `;
-
-	page.setViewportSize({ width: 400, height: 300 });
-
-	await loadComponents({
-		page,
-		components,
-	});
-	await loadTemplate({
-		page,
-		template,
-	});
-
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/sub-menu.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
-}
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
@@ -145,26 +102,57 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-menu-item disabled control-type="checkbox" checked check-appearance="tick-only" text="Menu item 1"></vwc-menu-item>
 		</vwc-menu>`;
 
-	page.setViewportSize({ width: 200, height: 2300 });
+	await page.setViewportSize({ width: 200, height: 2300 });
 
 	await loadComponents({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('#focused').focus();
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.locator('#focused').focus();
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/menu-item.png'
-	);
+	await takeScreenshot(page, 'menu-item');
 });
 
-test('menu-item with submenu', testSubMenu);
+test('menu-item with submenu', async ({ page }: { page: Page }) => {
+	await page.setViewportSize({ width: 400, height: 300 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await renderTemplate({
+		page,
+		template: `
+<style>
+	#wrapper {
+		width: 100%;
+		height: 300px;
+	}
+</style>
+<vwc-menu open aria-label="Example menu">
+<vwc-menu-item text="Menu item 1">
+</vwc-menu-item>
+<vwc-menu-item text="Menu item 2">
+<vwc-menu slot="submenu">
+<vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
+<vwc-menu-item text="Menu item 2.2"></vwc-menu-item>
+<vwc-menu-item text="Menu item 2.3"></vwc-menu-item>
+</vwc-menu>
+</vwc-menu-item>
+<vwc-menu-item text="Menu item 3">
+</vwc-menu-item>
+</vwc-menu>
+ `,
+		setup: async () => {
+			await page.locator('vwc-menu-item[text="Menu item 2"]').hover();
+		},
+	});
+
+	await takeScreenshot(page, 'sub-menu');
+});

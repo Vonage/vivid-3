@@ -2,7 +2,8 @@ import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['data-grid'];
@@ -16,14 +17,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
 
 	await page.addScriptTag({
 		content: `
@@ -48,10 +45,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const clickableCells = await page.locator('vwc-data-grid-cell');
 	await clickableCells.nth(3).click();
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/data-grid.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
+	await takeScreenshot(page, 'data-grid');
 });
 
 test('should use dynamic row height in data-cells by default', async ({
@@ -63,7 +57,7 @@ test('should use dynamic row height in data-cells by default', async ({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template: `
 			<vwc-data-grid>
@@ -108,13 +102,7 @@ test('should use dynamic row height in data-cells by default', async ({
 
 	await page.setViewportSize({ width: 400, height: 400 });
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/data-grid-multiline-text.png'
-	);
+	await takeScreenshot(page, 'data-grid-multiline-text');
 });
 
 test('single cell selection', async function ({ page }: { page: Page }) {
@@ -126,14 +114,10 @@ test('single cell selection', async function ({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
 
 	await page.addScriptTag({
 		content: `
@@ -160,10 +144,7 @@ test('single cell selection', async function ({ page }: { page: Page }) {
 	await clickableCell.nth(3).hover();
 	await clickableCell.nth(3).focus();
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/data-grid-single-cell-select.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
+	await takeScreenshot(page, 'data-grid-single-cell-select');
 });
 
 test('multi cell selection', async function ({ page }: { page: Page }) {
@@ -175,14 +156,10 @@ test('multi cell selection', async function ({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
 
 	await page.addScriptTag({
 		content: `
@@ -212,10 +189,7 @@ test('multi cell selection', async function ({ page }: { page: Page }) {
 		modifiers: ['Meta'],
 	});
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/data-grid-multi-cell-select.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
+	await takeScreenshot(page, 'data-grid-multi-cell-select');
 });
 
 test('single row selection', async function ({ page }: { page: Page }) {
@@ -228,14 +202,10 @@ test('single row selection', async function ({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
 
 	await page.addScriptTag({
 		content: `
@@ -263,10 +233,7 @@ test('single row selection', async function ({ page }: { page: Page }) {
 	await clickableCell.nth(1).hover();
 	await clickableCell.nth(2).focus();
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/data-grid-single-row-select.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
+	await takeScreenshot(page, 'data-grid-single-row-select');
 });
 
 test('multi row selection', async function ({ page }: { page: Page }) {
@@ -278,14 +245,10 @@ test('multi row selection', async function ({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
 
 	await page.addScriptTag({
 		content: `
@@ -315,10 +278,7 @@ test('multi row selection', async function ({ page }: { page: Page }) {
 	await clickableCell.nth(1).hover();
 	await clickableCell.nth(2).focus();
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/data-grid-multi-row-select.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
+	await takeScreenshot(page, 'data-grid-multi-row-select');
 });
 
 test('sort columns', async function ({ page }: { page: Page }) {
@@ -342,24 +302,17 @@ test('sort columns', async function ({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
 
 	const text = await page
 		.locator('vwc-data-grid-cell:has-text("data22")')
 		.nth(2);
 	await text.isVisible();
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/data-grid-sortable-headers.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
+	await takeScreenshot(page, 'data-grid-sortable-headers');
 });
 
 test('cell link click', async function ({ page }: { page: Page }) {
@@ -390,12 +343,10 @@ test('cell link click', async function ({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	await page.waitForLoadState('networkidle');
 
 	const link = await page.locator('vwc-data-grid-cell a');
 	await link.isVisible();
@@ -447,14 +398,10 @@ test('fixed columns', async function ({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
 
 	const grid = await page.locator('#fixed-columns-grid');
 	await grid.isVisible();
@@ -473,8 +420,5 @@ test('fixed columns', async function ({ page }: { page: Page }) {
 
 	await page.waitForTimeout(100);
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/data-grid-fixed-columns.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
+	await takeScreenshot(page, 'data-grid-fixed-columns');
 });

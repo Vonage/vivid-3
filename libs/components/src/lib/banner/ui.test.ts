@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['banner', 'icon', 'button'];
@@ -15,7 +16,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template: `
 <style>
@@ -186,16 +187,7 @@ gradientUnits="userSpaceOnUse"
 		`,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/banner.png',
-		{
-			maxDiffPixelRatio: 0.02,
-		}
-	);
+	await takeScreenshot(page, 'banner');
 });
 
 test('should remove the component when clicking on remove button', async ({
@@ -211,12 +203,10 @@ test('should remove the component when clicking on remove button', async ({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	await page.waitForLoadState('networkidle');
 
 	const removeButton = await page.locator('.dismiss-button');
 	const element = await page.locator('vwc-banner');

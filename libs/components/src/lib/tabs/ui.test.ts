@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = [
@@ -37,26 +38,19 @@ async function testScroll({ page }: { page: Page }) {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('.tablist-wrapper').evaluate((element) => {
+				if (element) {
+					element.scrollTo(95, 0);
+				}
+			});
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	const wrapperElement = await page.locator('.tablist-wrapper');
-	await wrapperElement.evaluate((element) => {
-		if (element) {
-			element.scrollTo(95, 0);
-		}
-	});
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/tabs-scroll.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
+	await takeScreenshot(page, 'tabs-scroll');
 }
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
@@ -257,16 +251,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot('snapshots/tabs.png');
+	await takeScreenshot(page, 'tabs');
 });
 
 test('should scroll only inside tabs', async ({ page }: { page: Page }) => {
@@ -293,14 +283,12 @@ test('should scroll only inside tabs', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
 	await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
 
 	const body = await page.$('body');
 

@@ -1,9 +1,10 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import type { ProgressRing } from '../progress-ring/progress-ring';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 import type { Button } from './button';
 
@@ -241,30 +242,25 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.evaluate(() => {
+				const pendingButtons = document.querySelectorAll(
+					'vwc-button[pending]'
+				) as NodeListOf<Button>;
+				pendingButtons.forEach((button) => {
+					const indicator = button.shadowRoot?.querySelector(
+						'vwc-progress-ring'
+					) as ProgressRing;
+					if (indicator) indicator.value = 66;
+				});
+			});
+
+			await page.locator('vwc-button').nth(0).focus();
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.evaluate(() => {
-		const pendingButtons = document.querySelectorAll(
-			'vwc-button[pending]'
-		) as NodeListOf<Button>;
-		pendingButtons.forEach((button) => {
-			const indicator = button.shadowRoot?.querySelector(
-				'vwc-progress-ring'
-			) as ProgressRing;
-			if (indicator) indicator.value = 66;
-		});
-	});
-
-	await page.locator('vwc-button').nth(0).focus();
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/button.png'
-	);
+	await takeScreenshot(page, 'button');
 });

@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['dialog'];
@@ -21,14 +22,12 @@ test('should set preventDefault to false on keydown event', async ({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
 	const input = await page.locator('#input');
-
-	await page.waitForLoadState('networkidle');
 
 	await input.focus();
 	const typedValue = 'abc';
@@ -149,18 +148,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	await page.waitForLoadState('networkidle');
-
-	const testWrapper = await page.locator('#wrapper');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/dialog.png'
-	);
+	await takeScreenshot(page, 'dialog');
 });
 
 test('should show the the dialog as a modal when calling .showModal()', async ({
@@ -184,18 +177,12 @@ test('should show the the dialog as a modal when calling .showModal()', async ({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.locator('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/dialog-modal.png'
-	);
+	await takeScreenshot(page, 'dialog-modal');
 });
 
 test('should leave the dialog open on pressing ESC twice when cancel event is cancelled', async ({
@@ -218,12 +205,10 @@ test('should leave the dialog open on pressing ESC twice when cancel event is ca
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	await page.waitForLoadState('networkidle');
 
 	await page.evaluate(() => {
 		const dialog = document.querySelector('vwc-dialog')!;

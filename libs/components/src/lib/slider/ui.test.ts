@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['slider'];
@@ -48,20 +49,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.keyboard.press('Tab');
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.keyboard.press('Tab');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/slider.png'
-	);
+	await takeScreenshot(page, 'slider');
 });
 
 test('should show a tooltip for horizontal slider', async ({
@@ -82,20 +78,15 @@ test('should show a tooltip for horizontal slider', async ({
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.keyboard.press('Tab');
+		},
 	});
 
-	await page.keyboard.press('Tab');
-
-	await page.waitForLoadState('networkidle');
-
-	const testWrapper = await page.$('#wrapper');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/slider-tooltip-horizontal.png'
-	);
+	await takeScreenshot(page, 'slider-tooltip-horizontal');
 });
 
 test('should show a tooltip for vertical slider', async ({
@@ -114,18 +105,13 @@ test('should show a tooltip for vertical slider', async ({
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.keyboard.press('Tab');
+		},
 	});
 
-	await page.keyboard.press('Tab');
-
-	await page.waitForLoadState('networkidle');
-
-	const testWrapper = await page.$('#wrapper');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/slider-tooltip-vertical.png'
-	);
+	await takeScreenshot(page, 'slider-tooltip-vertical');
 });

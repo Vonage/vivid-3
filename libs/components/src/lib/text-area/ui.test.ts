@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['text-area', 'contextual-help'];
@@ -82,18 +83,12 @@ maxlength="15"
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/text-area.png'
-	);
+	await takeScreenshot(page, 'text-area');
 });
 
 test.describe('max/min length validation', () => {
@@ -102,7 +97,7 @@ test.describe('max/min length validation', () => {
 			page,
 			components,
 		});
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `
 				<vwc-text-area minlength='3' value='t'></vwc-text-area>
