@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['range-slider'];
@@ -47,20 +48,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.keyboard.press('Tab');
+		},
 	});
 
-	await page.keyboard.press('Tab');
-
-	await page.waitForLoadState('networkidle');
-
-	const testWrapper = await page.$('#wrapper');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/range-slider.png'
-	);
+	await takeScreenshot(page, 'range-slider');
 });
 
 test('should show a tooltip for horizontal range slider', async ({
@@ -81,20 +77,15 @@ test('should show a tooltip for horizontal range slider', async ({
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.keyboard.press('Tab');
+		},
 	});
 
-	await page.keyboard.press('Tab');
-
-	await page.waitForLoadState('networkidle');
-
-	const testWrapper = await page.$('#wrapper');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/range-slider-tooltip-horizontal.png'
-	);
+	await takeScreenshot(page, 'range-slider-tooltip-horizontal');
 });
 
 test('should show a tooltip for vertical range slider', async ({
@@ -113,20 +104,15 @@ test('should show a tooltip for vertical range slider', async ({
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.keyboard.press('Tab');
+		},
 	});
 
-	await page.keyboard.press('Tab');
-
-	await page.waitForLoadState('networkidle');
-
-	const testWrapper = await page.$('#wrapper');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/range-slider-tooltip-vertical.png'
-	);
+	await takeScreenshot(page, 'range-slider-tooltip-vertical');
 });
 
 test('selecting a range', async ({ page }: { page: Page }) => {
@@ -140,12 +126,10 @@ test('selecting a range', async ({ page }: { page: Page }) => {
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	await page.waitForLoadState('networkidle');
 
 	await page.locator('vwc-range-slider .thumb-container').first().hover();
 	await page.mouse.down();

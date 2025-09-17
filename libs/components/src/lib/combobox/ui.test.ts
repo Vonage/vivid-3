@@ -1,46 +1,19 @@
-import { expect, test } from '@playwright/test';
-import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['combobox', 'option', 'badge'];
 
-async function testScaleOptions({ page }: { page: Page }) {
-	const template = `<div style="margin: 5px; block-size: 400px">
-			<vwc-combobox label="scale condensed" scale="condensed" open>
-			<vwc-option icon="chat-line" value="1" text="Option 1"></vwc-option>
-				<vwc-option value="2" text="Option 2"></vwc-option>
-			</vwc-combobox>
-	</div>`;
-
-	await page.setViewportSize({ width: 300, height: 400 });
-
+test('should show the component', async ({ page }) => {
 	await loadComponents({
 		page,
 		components,
 	});
-	await loadTemplate({
-		page,
-		template,
-	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/combobox-scale-condensed.png'
-	);
-}
-
-test('should show the component', async ({ page }: { page: Page }) => {
-	await loadComponents({
-		page,
-		components,
-	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template: `
 			<style>
@@ -77,21 +50,47 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				label="Where did you hear about us?" placeholder="Select an option"></vwc-combobox>
 				<vwc-combobox success-text="Rome is the correct answer" placeholder="Select an option" label="Success Text"></vwc-combobox>
 				<vwc-combobox error-text="Rome is the correct answer" placeholder="Select an option" label="Error Text"></vwc-combobox>
+		`,
+	});
+	await takeScreenshot(page, 'combobox');
+
+	// For some unknown reason firefox fails to render the popup ~10% of the time when included in main test
+	// Moving it to a separate one seems to fix the issue
+	await renderTemplate({
+		page,
+		template: `
+			<style>
+				#wrapper {
+					display: grid;
+					width: 300px;
+					gap: 8px;
+					padding: 8px;
+				}
+			</style>
 			<vwc-combobox open style="margin-bottom: 100px">
 				<vwc-option text="Option 1"></vwc-option>
 				<vwc-option text="Option 2"></vwc-option>
 			</vwc-combobox>
-
 		`,
 	});
+	await takeScreenshot(page, 'combobox-open');
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/combobox.png'
-	);
+	await renderTemplate({
+		page,
+		template: `
+			<style>
+				#wrapper {
+					display: grid;
+					width: 300px;
+					gap: 8px;
+					padding: 8px;
+				}
+			</style>
+			<vwc-combobox label="scale condensed" scale="condensed" open style="margin-bottom: 100px">
+				<vwc-option icon="chat-line" value="1" text="Option 1"></vwc-option>
+				<vwc-option value="2" text="Option 2"></vwc-option>
+			</vwc-combobox>
+		`,
+	});
+	await takeScreenshot(page, 'combobox-scale-condensed');
 });
-
-test('combobox scale', testScaleOptions);

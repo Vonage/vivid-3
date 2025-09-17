@@ -2,9 +2,10 @@ import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
-	useFakeTime,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
+import { useFakeTime } from '../../visual-tests/time';
 import type { DateTimePicker } from './date-time-picker';
 
 const components = ['date-time-picker'];
@@ -52,51 +53,44 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('#date-picker #picker-button').click();
+
+			// Prevent clicking the month picker from closing the date picker
+			await page.evaluate(() => {
+				const datePicker = document.querySelector(
+					'#month-picker'
+				) as DateTimePicker;
+				datePicker.addEventListener('click', (e) => e.stopPropagation());
+			});
+
+			await page.locator('#month-picker #picker-button').click();
+
+			await page.locator('#month-picker .title-action').click();
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	await page.locator('#date-picker #picker-button').click();
-
-	// Prevent clicking the month picker from closing the date picker
-	await page.evaluate(() => {
-		const datePicker = document.querySelector(
-			'#month-picker'
-		) as DateTimePicker;
-		datePicker.addEventListener('click', (e) => e.stopPropagation());
-	});
-
-	await page.locator('#month-picker #picker-button').click();
-
-	await page.locator('#month-picker .title-action').click();
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/date-time-picker.png'
-	);
+	await takeScreenshot(page, 'date-time-picker');
 });
 
 test('selecting a date and time', async ({ page }: { page: Page }) => {
 	const template = '<vwc-date-time-picker></vwc-date-time-picker>';
 
 	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
-	page.setViewportSize({ width: 1100, height: 500 });
+	await page.setViewportSize({ width: 1100, height: 500 });
 
 	await loadComponents({
 		page,
 		components,
 	});
 
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
-
-	await page.waitForLoadState('networkidle');
 
 	await page.locator('vwc-date-time-picker #picker-button').click();
 
@@ -115,7 +109,7 @@ test('selecting a date and time', async ({ page }: { page: Page }) => {
 test.describe('constraints validation', async () => {
 	test.beforeEach(async ({ page }: { page: Page }) => {
 		await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
-		page.setViewportSize({ width: 1100, height: 500 });
+		await page.setViewportSize({ width: 1100, height: 500 });
 
 		await loadComponents({
 			page,
@@ -128,7 +122,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-time-picker name="date" required></vwc-date-time-picker>
@@ -148,7 +142,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-time-picker name="date" min="2012-12-12T12:12:12" value="2011-11-11T11:11:11"></vwc-date-time-picker>
@@ -168,7 +162,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-time-picker name="date" max="2011-11-11T11:11:11" value="2012-12-12T12:12:12"></vwc-date-time-picker>
@@ -188,7 +182,7 @@ test.describe('constraints validation', async () => {
 	}: {
 		page: Page;
 	}) => {
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `<form>
 				<vwc-date-time-picker name="date"></vwc-date-time-picker>

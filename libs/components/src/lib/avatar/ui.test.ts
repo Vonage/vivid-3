@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['avatar', 'icon'];
@@ -58,7 +59,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-avatar shape="pill" connotation="cta">
 				<img
 				slot="graphic"
-				src="https://images.pexels.com/photos/762080/pexels-photo-762080.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				src="/assets/ui-tests/pictures/profile-picture-60x40.jpg"
 				alt="woman"
 				/>
 			</vwc-avatar>
@@ -212,7 +213,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				aria-label="Link to the Vivid documentation"
 			>
 				<vwc-icon slot="icon" name="chain-solid" label="Link"></vwc-icon>
-			</vwc-avatar>	
+			</vwc-avatar>
 			<vwc-avatar
 				slot="anchor"
 				appearance="subtle"
@@ -230,7 +231,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				id="focus-avatar"
 			>
 				<vwc-icon slot="icon" name="chain-solid" label="Link"></vwc-icon>
-			</vwc-avatar>	
+			</vwc-avatar>
 		</div>
 	`;
 
@@ -238,18 +239,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('#focus-avatar .base').focus();
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-	const focusedAvatar = await page.$('#focus-avatar .base');
-	await focusedAvatar?.focus();
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/avatar.png'
-	);
+	await takeScreenshot(page, 'avatar');
 });

@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['radio-group', 'radio', 'button'];
@@ -67,24 +68,18 @@ test.describe('radio-group', () => {
 	</vwc-radio-group>
 	</div>`;
 
-		page.setViewportSize({ width: 200, height: 580 });
+		await page.setViewportSize({ width: 200, height: 580 });
 
 		await loadComponents({
 			page,
 			components,
 		});
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template,
 		});
 
-		const testWrapper = await page.$('#wrapper');
-
-		await page.waitForLoadState('networkidle');
-
-		expect(await testWrapper?.screenshot()).toMatchSnapshot(
-			'snapshots/radio-group.png'
-		);
+		await takeScreenshot(page, 'radio-group');
 	});
 
 	test.describe('form association', async () => {
@@ -100,7 +95,7 @@ test.describe('radio-group', () => {
 		}: {
 			page: Page;
 		}) => {
-			await loadTemplate({
+			await renderTemplate({
 				page,
 				template: `
 				<form>

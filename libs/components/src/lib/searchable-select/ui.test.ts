@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['searchable-select', 'option', 'icon'];
@@ -20,7 +21,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template: `
 			<div style="display: flex; flex-direction: column; gap: 16px; padding: 8px; width: 300px;">
@@ -100,25 +101,20 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				</vwc-searchable-select>
 			</div>
 		`,
+		setup: async () => {
+			await page.evaluate(() => {
+				(
+					document
+						.querySelector('vwc-searchable-select[loading]')!
+						.shadowRoot!.querySelector('vwc-progress-ring') as any
+				).value = 66;
+			});
+		},
 	});
-
-	const testWrapper = await page.$('#wrapper');
 
 	await page.setViewportSize({ width: 350, height: 2000 });
 
-	await page.waitForLoadState('networkidle');
-
-	await page.evaluate(() => {
-		(
-			document
-				.querySelector('vwc-searchable-select[loading]')!
-				.shadowRoot!.querySelector('vwc-progress-ring') as any
-		).value = 66;
-	});
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/searchable-select.png'
-	);
+	await takeScreenshot(page, 'searchable-select');
 });
 
 test('should contribute values to form data', async ({
@@ -130,7 +126,7 @@ test('should contribute values to form data', async ({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template: `
 			<form id="form">
@@ -159,7 +155,7 @@ test.describe('focus management', () => {
 			page,
 			components,
 		});
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `
 			<button>before</button>

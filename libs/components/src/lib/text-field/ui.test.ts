@@ -2,7 +2,8 @@ import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = [
@@ -67,67 +68,49 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.locator('vwc-text-field input').nth(0).focus();
+			await page.keyboard.press('Tab');
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-	await page.locator('vwc-text-field input').nth(0).focus();
-	await page.keyboard.press('Tab');
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/text-field.png'
-	);
+	await takeScreenshot(page, 'text-field');
 });
 
 const testInvalidation = async ({
 	page,
-	browserName,
 }: {
 	page: Page;
 	browserName: string;
 }) => {
-	const selector =
-		browserName === 'chromium'
-			? 'input[name="submit-button"]'
-			: '#submit-button';
-
 	const template = `
 		<form onsubmit="return false" style="min-height: 150px;">
 			<vwc-text-field id="invalid-text-field"
 																		label="invalid"
 																		required
 																		name="invalid-text-field"></vwc-text-field>
-																		<input id="submit-button"
-																					 name="submit-button"
-																					 type="submit"
-																					 label="Submit"/>
+																		<button>Submit<submit>
 		</form>`;
+
+	await page.setViewportSize({ width: 300, height: 300 });
 
 	await loadComponents({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.getByRole('button', { name: 'Submit' }).click();
+			await page.waitForTimeout(1000);
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	const submitButton = await page.locator(selector);
-
-	await submitButton.click();
-
-	await page.setViewportSize({ width: 300, height: 300 });
-	await page.waitForLoadState('networkidle');
-	await page.waitForTimeout(500);
-
-	expect(
-		await testWrapper?.screenshot({ animations: 'disabled' })
-	).toMatchSnapshot('snapshots/text-field-invalidation.png');
+	await takeScreenshot(page, 'text-field-invalidation');
 };
 
 test('should invalidate component', testInvalidation);
@@ -138,7 +121,7 @@ test.describe('max/min length validation', () => {
 			page,
 			components,
 		});
-		await loadTemplate({
+		await renderTemplate({
 			page,
 			template: `
 				<vwc-text-field minlength='3' value='t'></vwc-text-field>

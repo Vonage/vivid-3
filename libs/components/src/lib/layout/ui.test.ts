@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['layout', 'card', 'divider'];
@@ -50,7 +51,7 @@ test('should show the default component', async ({ page }: { page: Page }) => {
 			</vwc-layout>
 		</div>`;
 
-	page.setViewportSize({
+	await page.setViewportSize({
 		width: 1100,
 		height: 580,
 	});
@@ -59,18 +60,12 @@ test('should show the default component', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/layout.png'
-	);
+	await takeScreenshot(page, 'layout');
 });
 
 test('should apply column-basis', async ({ page }: { page: Page }) => {
@@ -137,7 +132,7 @@ test('should apply column-basis', async ({ page }: { page: Page }) => {
 		</div>
 	`;
 
-	page.setViewportSize({
+	await page.setViewportSize({
 		width: 1100,
 		height: 2100,
 	});
@@ -146,18 +141,12 @@ test('should apply column-basis', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/layout-column-basis.png'
-	);
+	await takeScreenshot(page, 'layout-column-basis');
 });
 
 test('should apply auto-sizing and custom gutters', async ({
@@ -221,7 +210,7 @@ test('should apply auto-sizing and custom gutters', async ({
 		</div>
 	`;
 
-	page.setViewportSize({
+	await page.setViewportSize({
 		width: 1100,
 		height: 1230,
 	});
@@ -230,18 +219,12 @@ test('should apply auto-sizing and custom gutters', async ({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/layout-auto-sizing.png'
-	);
+	await takeScreenshot(page, 'layout-auto-sizing');
 });
 
 test('should apply css variables', async ({ page }: { page: Page }) => {
@@ -274,7 +257,7 @@ test('should apply css variables', async ({ page }: { page: Page }) => {
 		</div>
 	`;
 
-	page.setViewportSize({
+	await page.setViewportSize({
 		width: 1100,
 		height: 370,
 	});
@@ -283,16 +266,10 @@ test('should apply css variables', async ({ page }: { page: Page }) => {
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/layout-css-variables.png'
-	);
+	await takeScreenshot(page, 'layout-css-variables');
 });

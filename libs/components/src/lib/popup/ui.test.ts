@@ -1,8 +1,9 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 import type { Popup } from './popup';
 
@@ -202,13 +203,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</div>
 	`;
 
-	page.setViewportSize({ width: 800, height: 1300 });
+	await page.setViewportSize({ width: 800, height: 1300 });
 
 	await loadComponents({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
@@ -255,9 +256,5 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			});
 	});
 
-	const testWrapper = await page.$('#wrapper');
-	await page.waitForLoadState('networkidle');
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/popup.png'
-	);
+	await takeScreenshot(page, 'popup');
 });

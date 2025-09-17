@@ -1,88 +1,12 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate,
+	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['menu', 'menu-item', 'button', 'text-field'];
-
-async function testAbsolutStrategy({ page }: { page: Page }) {
-	const template = `
-<style>
-			.wrapper {
-				width: 100%;
-				height: 700px;
-				position: relative;
-			}
-		</style>
-		<div class="wrapper"><div style="container-type: inline-size">
- <vwc-menu id="menu-1" placement="right-start" open strategy-absolute>
-  <vwc-button slot="anchor" label="Toggle Menu" appearance="outlined"></vwc-button>
-  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
-  <vwc-menu-item text="Menu item 3"></vwc-menu-item>
- </vwc-menu>
- </div></div>`;
-
-	page.setViewportSize({ width: 500, height: 400 });
-
-	await loadComponents({
-		page,
-		components,
-	});
-	await loadTemplate({
-		page,
-		template,
-	});
-
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/absolute-menu.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
-}
-
-async function testMobileInlineSize({ page }: { page: Page }) {
-	const template = `
-<style>
-			.wrapper {
-				width: 360px;
-				height: 405px;
-				position: relative;
-			}
-		</style>
-<div class="wrapper">
- <vwc-menu open placement="bottom-start" position-strategy="absolute">
-  <vwc-menu-item text="Menu item 1 with long text that gets ellipsis"></vwc-menu-item>
-  <vwc-menu-item text="Menu item 2 with long text that gets ellipsis"></vwc-menu-item>
-  <vwc-menu-item text="Menu item 3 with long text that gets ellipsis"></vwc-menu-item>
- </vwc-menu>
-</div>`;
-
-	page.setViewportSize({ width: 360, height: 400 });
-
-	await loadComponents({
-		page,
-		components,
-	});
-	await loadTemplate({
-		page,
-		template,
-	});
-
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/mobile-menu.png',
-		{ maxDiffPixelRatio: 0.01 }
-	);
-}
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
@@ -108,23 +32,79 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			</vwc-menu>
 		</div>`;
 
-	page.setViewportSize({ width: 720, height: 720 });
+	await page.setViewportSize({ width: 720, height: 720 });
 
 	await loadComponents({
 		page,
 		components,
 	});
-	await loadTemplate({
+	await renderTemplate({
 		page,
 		template,
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot('snapshots/menu.png');
+	await takeScreenshot(page, 'menu');
 });
 
-test('menu with absolute strategy', testAbsolutStrategy);
-test('menu with max-inline-size in mobile', testMobileInlineSize);
+test('menu with absolute strategy', async function ({ page }: { page: Page }) {
+	const template = `
+		<style>
+			#wrapper {
+				width: 300px;
+				height: 200px;
+			}
+		</style>
+		<vwc-menu id="menu-1" placement="right-start" open strategy-absolute>
+			<vwc-button slot="anchor" label="Toggle Menu" appearance="outlined"></vwc-button>
+			<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+			<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+			<vwc-menu-item text="Menu item 3"></vwc-menu-item>
+		</vwc-menu>
+		`;
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await renderTemplate({
+		page,
+		template,
+	});
+
+	await takeScreenshot(page, 'absolute-menu');
+});
+
+test('menu with max-inline-size in mobile', async function ({
+	page,
+}: {
+	page: Page;
+}) {
+	const template = `
+<style>
+			.wrapper {
+				width: 360px;
+				height: 405px;
+				position: relative;
+			}
+		</style>
+<div class="wrapper">
+ <vwc-menu open placement="bottom-start" position-strategy="absolute">
+  <vwc-menu-item text="Menu item 1 with long text that gets ellipsis"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2 with long text that gets ellipsis"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 3 with long text that gets ellipsis"></vwc-menu-item>
+ </vwc-menu>
+</div>`;
+
+	await page.setViewportSize({ width: 360, height: 400 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await renderTemplate({
+		page,
+		template,
+	});
+
+	await takeScreenshot(page, 'mobile-menu');
+});
