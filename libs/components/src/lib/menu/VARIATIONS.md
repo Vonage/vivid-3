@@ -35,3 +35,21 @@ In such cases - prefer using `bottom-start` or `end` instead.
 	</vwc-menu>
 </div>
 ```
+
+### Offset
+
+Use the `offset` attribute to add a gap (in `px`) between the trigger element and the menu.
+
+```html preview 150px
+<div style="position: relative; text-align: end;">
+	<vwc-menu placement="left-start" open aria-label="Menu example" offset="16">
+		<vwc-button
+			slot="anchor"
+			label="Toggle Menu"
+			appearance="outlined"
+		></vwc-button>
+		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+	</vwc-menu>
+</div>
+```
