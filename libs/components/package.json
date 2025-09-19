@@ -58,7 +58,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@floating-ui/dom": "^1.6.13",
+		"@floating-ui/dom": "^1.7.4",
 		"@microsoft/fast-element": "^1.14.0",
 		"@microsoft/fast-web-utilities": "^6.0.0",
 		"date-fns": "^3.0.0",
