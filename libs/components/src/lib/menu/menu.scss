@@ -39,8 +39,7 @@
 }
 
 .header {
-	padding-block-start: 4px;
-	padding-inline: 8px;
+	padding: 4px;
 
 	.hide-header & {
 		display: none;

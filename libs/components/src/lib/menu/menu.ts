@@ -1,4 +1,9 @@
-import { attr, DOM, observable } from '@microsoft/fast-element';
+import {
+	attr,
+	DOM,
+	nullableNumberConverter,
+	observable,
+} from '@microsoft/fast-element';
 import type { Placement, Strategy } from '@floating-ui/dom';
 import {
 	keyArrowDown,
@@ -47,6 +52,15 @@ const isMenuItemElement = (el: Element): el is HTMLElement =>
  * @testQuery closed open false
  */
 export class Menu extends Anchored(DelegatesAria(VividElement)) {
+	/**
+	 * Adds offset to the popup
+	 *
+	 * @public
+	 * HTML Attribute: offset
+	 */
+	@attr({ attribute: 'offset', converter: nullableNumberConverter })
+	offset: number | null = null;
+
 	/**
 	 * @internal
 	 */
