@@ -57,10 +57,7 @@ Use the `offset` attribute to add a gap (in `px`) between the trigger element an
 			clickable
 		></vwc-avatar>
 		<vwc-menu-item text="My Profile" icon="profile-line"></vwc-menu-item>
-		<vwc-menu-item
-				text="My Addresses"
-				icon="address-book-line"
-			></vwc-menu-item>
+		<vwc-menu-item text="My Addresses" icon="address-book-line"></vwc-menu-item>
 		<vwc-menu-item text="Logout" icon="exit-line"></vwc-menu-item>
 	</vwc-menu>
 </vwc-header>
