@@ -14,6 +14,7 @@ import type { Size } from '../enums';
 import { WithFeedback } from '../../shared/feedback/mixins';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { WithContextualHelp } from '../../shared/patterns/form-elements/with-contextual-help';
 import { filesFromDataTransfer } from './data-transfer';
 import { isAcceptedFileType } from './accept';
 
@@ -35,9 +36,11 @@ export type FilePickerSize = ExtractFromEnum<Size, Size.Normal | Size.Expanded>;
  * @slot helper-text - Describes how to use the file-picker. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Emitted when files are added or removed.
  */
-export class FilePicker extends WithFeedback(
-	WithErrorText(
-		FormElement(DelegatesAria(Localized(FormAssociated(VividElement))))
+export class FilePicker extends WithContextualHelp(
+	WithFeedback(
+		WithErrorText(
+			FormElement(DelegatesAria(Localized(FormAssociated(VividElement))))
+		)
 	)
 ) {
 	/**

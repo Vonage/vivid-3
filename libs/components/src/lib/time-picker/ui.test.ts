@@ -6,7 +6,7 @@ import {
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['time-picker'];
+const components = ['time-picker', 'contextual-help'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
@@ -45,10 +45,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-time-picker value="12:34:56"></vwc-time-picker>
 			<vwc-time-picker disabled></vwc-time-picker>
 			<vwc-time-picker readonly></vwc-time-picker>
+			<vwc-time-picker label="Label">
+				<vwc-contextual-help slot="contextual-help">Example contextual help</vwc-contextual-help>
+			</vwc-time-picker>
 		</div>
 	</div>`;
 
-	await page.setViewportSize({ width: 1100, height: 450 });
+	await page.setViewportSize({ width: 1100, height: 800 });
 
 	await loadComponents({
 		page,

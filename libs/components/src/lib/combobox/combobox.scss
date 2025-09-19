@@ -12,6 +12,8 @@
 @use '@repo/shared/mixins/appearance' as appearance;
 @use 'partials/variables' as variables;
 @use '../../shared/patterns/chevron' as chevron;
+@use '../../shared/patterns/form-elements/with-contextual-help' as
+	contextual-help;
 
 $low-ink-color: --_low-ink-color;
 
@@ -125,3 +127,5 @@ $low-ink-color: --_low-ink-color;
 	@include focus.focus;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 }
+
+@include contextual-help.label-suffix;

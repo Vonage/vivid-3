@@ -17,7 +17,8 @@
 );
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/tokens/scss/size.variables' as size;
-@forward '../../shared/patterns/form-elements/with-contextual-help';
+@use '../../shared/patterns/form-elements/with-contextual-help' as
+	contextual-help;
 
 $low-ink-color: --_low-ink-color;
 
@@ -298,3 +299,5 @@ $low-ink-color: --_low-ink-color;
 slot[name='_mirrored-helper-text'] {
 	display: none;
 }
+
+@include contextual-help.label-suffix;
