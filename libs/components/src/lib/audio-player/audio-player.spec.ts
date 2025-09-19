@@ -256,10 +256,24 @@ describe('vwc-audio-player', () => {
 
 		describe('when duration-fallback is enabled', () => {
 			it('should use fallback duration  when native duration  calculation is not available', async () => {
-				// Mock fetch to return a fake ArrayBuffer
-				globalThis.fetch = vi.fn().mockResolvedValue({
-					arrayBuffer: () => Promise.resolve(new ArrayBuffer(8)),
-				}) as any;
+				// Create a mock Blob with arrayBuffer method
+				const arrayBuffer = new ArrayBuffer(8);
+				const mockBlob = {
+					size: 8,
+					type: 'audio/mp3',
+					arrayBuffer: () => Promise.resolve(arrayBuffer),
+					slice: () => mockBlob,
+					text: () => Promise.resolve('test'),
+					stream: () => new ReadableStream(),
+				} as unknown as Blob;
+
+				// Mock fetch to return our mock Blob
+				const mockResponse = {
+					ok: true,
+					status: 200,
+					blob: () => Promise.resolve(mockBlob),
+				};
+				globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
 
 				// Mock AudioContext and decodeAudioData
 				const closeMock = vi.fn();
