@@ -95,16 +95,62 @@ export class AudioPlayer extends Localized(VividElement) {
 
 	srcChanged() {
 		if (this.src === undefined) {
-			this.#playerEl.removeAttribute('src');
+			this.setSrc('');
 		} else {
-			this.#playerEl.src = this.src;
+			this.setSrc(this.src);
 		}
+	}
+
+	private revokeSrc() {
+		const src = this.getCurrentSrc();
+		if (src && src.startsWith('blob:')) {
+			URL.revokeObjectURL(src);
+		}
+	}
+
+	private getCurrentSrc(): string {
+		return this.#playerEl.currentSrc || this.#playerEl.src || '';
+	}
+
+	private canPlayType(type: string): boolean {
+		return this.#playerEl.canPlayType(type) !== '';
+	}
+
+	private setSrc(url: string, blob?: Blob) {
+		const prevSrc = this.getCurrentSrc();
+
+		// Clean up previous source
+		this.revokeSrc();
 		this.#audioBuffer = undefined;
 
+		// Cancel any pending fetch
 		if (this.#fetchAbortController) {
 			this.#fetchAbortController.abort();
+			this.#fetchAbortController = undefined;
 		}
-		this.#fetchAbortController = undefined;
+
+		// Create object URL if we have a blob and the browser can play it
+		const newSrc =
+			blob && (this.canPlayType(blob.type) || !url)
+				? URL.createObjectURL(blob)
+				: url;
+
+		// Reset the media element
+		if (prevSrc) {
+			this.#playerEl.removeAttribute('src');
+		}
+
+		// Set the new source with fallback
+		if (newSrc || url) {
+			try {
+				this.#playerEl.src = newSrc;
+			} catch (error) {
+				// eslint-disable-next-line no-console
+				console.log('Falling back to original URL due to error:', error);
+				// Fallback to the original URL if setting the new source fails
+				this.#playerEl.src = url;
+			}
+		}
 	}
 
 	get playbackRate() {
@@ -170,20 +216,28 @@ export class AudioPlayer extends Localized(VividElement) {
 	async #fetchAndCacheAudioBuffer() {
 		if (this.#audioBuffer || !this.src) return;
 
-		// Create a new AbortController for this fetch
 		this.#fetchAbortController = new AbortController();
 		const signal = this.#fetchAbortController.signal;
 
 		try {
 			const response = await fetch(this.src, { signal });
-			const arrayBuffer = await response.arrayBuffer();
+			const blob = await response.blob();
+
+			this.setSrc(this.src, blob);
+
+			// Decode audio data for duration calculation
+			const arrayBuffer = await blob.arrayBuffer();
 			const audioContext = new window.AudioContext();
 			const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
 			audioContext.close();
+
 			this.#audioBuffer = audioBuffer;
 			Observable.notify(this, 'duration');
-		} catch (e) {
-			// handle error
+		} catch (e: unknown) {
+			if (e instanceof Error && e.name !== 'AbortError') {
+				// eslint-disable-next-line no-console
+				console.error('Error loading audio:', e);
+			}
 		} finally {
 			this.#fetchAbortController = undefined;
 		}
