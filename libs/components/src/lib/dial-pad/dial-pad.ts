@@ -1,4 +1,4 @@
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
 import { TextField } from '../text-field/text-field';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -142,6 +142,14 @@ export class DialPad extends Localized(VividElement) {
 	 * @internal
 	 */
 	_onDial = () => {
+		const invalid = !this._textFieldEl.checkValidity();
+		if (invalid) {
+			this._announceValidationError(
+				this._textFieldEl.errorValidationMessage ?? ''
+			);
+		} else {
+			this._clearErrorAnnouncement();
+		}
 		this.callActive ? this.$emit('end-call') : this.$emit('dial');
 	};
 
@@ -165,5 +173,39 @@ export class DialPad extends Localized(VividElement) {
 		// focus either the text field or the first digit button
 		const firstFocusableEl = this._textFieldEl || digitBtns?.[0];
 		firstFocusableEl?.focus();
+	}
+
+	/**
+	 *
+	 * @internal
+	 */
+	@observable _errorAnnouncement: string = '';
+	private _forceAnnouncementToggle = false;
+
+	/**
+	 *
+	 * @internal
+	 */
+	private _announceValidationError(message: string) {
+		this._errorAnnouncement = '';
+		window.queueMicrotask(() => {
+			if (message) {
+				this._forceAnnouncementToggle = !this._forceAnnouncementToggle;
+				this._errorAnnouncement = `${message}${
+					this._forceAnnouncementToggle ? '\u200B' : ''
+				}`;
+			} else {
+				this._clearErrorAnnouncement();
+			}
+		});
+	}
+
+	/**
+	 *
+	 * @internal
+	 */
+	private _clearErrorAnnouncement() {
+		this._errorAnnouncement = '';
+		this._forceAnnouncementToggle = false;
 	}
 }

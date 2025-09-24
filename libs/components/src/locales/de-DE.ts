@@ -166,6 +166,7 @@ const deDE: Locale = {
 		digitAsteriskLabel: '*',
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
+		errorLabel: 'Fehler:',
 	},
 	tab: {
 		dismissButtonLabel:

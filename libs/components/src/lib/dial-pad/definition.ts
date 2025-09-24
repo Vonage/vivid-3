@@ -3,6 +3,7 @@ import { textFieldDefinition } from '../text-field/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { iconDefinition } from '../icon/definition';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { visuallyHiddenDefinition } from '../visually-hidden/definition';
 import styles from './dial-pad.scss?inline';
 import { DialPad } from './dial-pad';
 import { DialPadTemplate as template } from './dial-pad.template';
@@ -14,7 +15,12 @@ export const dialPadDefinition = defineVividComponent(
 	'dial-pad',
 	DialPad,
 	template,
-	[buttonDefinition, textFieldDefinition, iconDefinition],
+	[
+		buttonDefinition,
+		textFieldDefinition,
+		iconDefinition,
+		visuallyHiddenDefinition,
+	],
 	{
 		styles,
 	}
