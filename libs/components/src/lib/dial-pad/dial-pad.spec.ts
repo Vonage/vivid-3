@@ -681,7 +681,7 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
-	describe('validation', function () {
+	describe('announce validation errors', function () {
 		it('should announce validation error when dial is called with invalid input', async function () {
 			const mockCheckValidity = vi.fn().mockReturnValue(false);
 			const mockErrorMessage = 'Invalid characters entered';
@@ -694,18 +694,28 @@ describe('vwc-dial-pad', () => {
 
 			expect(mockCheckValidity).toHaveBeenCalled();
 			expect(element._errorAnnouncement).toBe(mockErrorMessage + '\u200B');
+
+			getCallButton(element).click();
+			await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
+
+			expect(element._errorAnnouncement).toBe(mockErrorMessage);
 		});
 
-		it('should clear error announcement when message is empty', async function () {
-			element._announceValidationError('test');
-			await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
-			expect(element._errorAnnouncement).toBe('test\u200B');
+		it('should handle undefined errorValidationMessage with null coalescing', async function () {
+			const mockCheckValidity = vi.fn().mockReturnValue(false);
+			const textField = getTextField(element);
+			textField.checkValidity = mockCheckValidity;
 
-			element._announceValidationError('');
+			Object.defineProperty(textField, 'errorValidationMessage', {
+				get: () => undefined,
+				configurable: true,
+			});
+
+			getCallButton(element).click();
 			await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
 
+			expect(mockCheckValidity).toHaveBeenCalled();
 			expect(element._errorAnnouncement).toBe('');
-			expect(element._forceAnnouncementToggle).toBe(false);
 		});
 	});
 });
