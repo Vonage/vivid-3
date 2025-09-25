@@ -680,4 +680,32 @@ describe('vwc-dial-pad', () => {
 			});
 		});
 	});
+
+	describe('validation', function () {
+		it('should announce validation error when dial is called with invalid input', async function () {
+			const mockCheckValidity = vi.fn().mockReturnValue(false);
+			const mockErrorMessage = 'Invalid characters entered';
+			const textField = getTextField(element);
+			textField.checkValidity = mockCheckValidity;
+			textField.errorValidationMessage = mockErrorMessage;
+
+			getCallButton(element).click();
+			await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
+
+			expect(mockCheckValidity).toHaveBeenCalled();
+			expect(element._errorAnnouncement).toBe(mockErrorMessage + '\u200B');
+		});
+
+		it('should clear error announcement when message is empty', async function () {
+			element._announceValidationError('test');
+			await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
+			expect(element._errorAnnouncement).toBe('test\u200B');
+
+			element._announceValidationError('');
+			await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
+
+			expect(element._errorAnnouncement).toBe('');
+			expect(element._forceAnnouncementToggle).toBe(false);
+		});
+	});
 });

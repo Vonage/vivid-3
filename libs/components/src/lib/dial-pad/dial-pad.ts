@@ -176,17 +176,19 @@ export class DialPad extends Localized(VividElement) {
 	}
 
 	/**
-	 *
 	 * @internal
 	 */
 	@observable _errorAnnouncement: string = '';
-	private _forceAnnouncementToggle = false;
 
 	/**
-	 *
 	 * @internal
 	 */
-	private _announceValidationError(message: string) {
+	_forceAnnouncementToggle = false;
+
+	/**
+	 * @internal
+	 */
+	_announceValidationError(message: string) {
 		this._errorAnnouncement = '';
 		window.queueMicrotask(() => {
 			if (message) {
@@ -201,7 +203,6 @@ export class DialPad extends Localized(VividElement) {
 	}
 
 	/**
-	 *
 	 * @internal
 	 */
 	private _clearErrorAnnouncement() {
