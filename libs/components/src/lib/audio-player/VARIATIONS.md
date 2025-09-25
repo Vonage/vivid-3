@@ -66,14 +66,3 @@ The `disabled` attribute disables the audio-player.
 	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3ßß"
 ></vwc-audio-player>
 ```
-
-## Duration Fallback
-
-The `disabled` attribute enables fallback logic to fetch and decode audio buffer for duration when metadata is missing.
-
-```html preview
-<vwc-audio-player
-	duration-fallback="true"
-	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
-></vwc-audio-player>
-```
