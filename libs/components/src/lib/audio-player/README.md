@@ -108,6 +108,17 @@ Duration of audio: <span id="output"></span>
 </script>
 ```
 
+## Duration Fallback
+
+The `duration-fallback` attribute enables fallback logic to fetch and decode audio buffer for duration when metadata is missing.
+
+```html preview
+<vwc-audio-player
+	duration-fallback
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
+></vwc-audio-player>
+```
+
 ## Paused
 
 The `paused` property indicates if the player is currently paused or not. The property is read only and returns a `boolean` value.

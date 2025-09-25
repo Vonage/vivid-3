@@ -10,6 +10,60 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-audio-player';
 
+// Store original implementations
+const originalCreateObjectURL = URL.createObjectURL;
+const originalRevokeObjectURL = URL.revokeObjectURL;
+const originalAudio = window.Audio;
+
+// Mock URL methods
+const mockCreateObjectURL = vi
+	.fn()
+	.mockImplementation((blob: Blob) => `blob:${blob.type}`);
+const mockRevokeObjectURL = vi.fn();
+
+// Global variables for test environment
+let nativeAudioElement: HTMLAudioElement;
+
+// Mock Audio class
+class AudioMock extends Audio {
+	constructor() {
+		super();
+		nativeAudioElement = this as unknown as HTMLAudioElement;
+	}
+}
+
+beforeAll(() => {
+	// Mock URL methods
+	Object.defineProperty(URL, 'createObjectURL', {
+		value: mockCreateObjectURL,
+		writable: true,
+	});
+	Object.defineProperty(URL, 'revokeObjectURL', {
+		value: mockRevokeObjectURL,
+		writable: true,
+	});
+
+	// Mock Audio constructor
+	window.Audio = AudioMock as any;
+});
+
+afterAll(() => {
+	// Restore original implementations
+	Object.defineProperty(URL, 'createObjectURL', {
+		value: originalCreateObjectURL,
+	});
+	Object.defineProperty(URL, 'revokeObjectURL', {
+		value: originalRevokeObjectURL,
+	});
+	window.Audio = originalAudio;
+});
+
+beforeEach(() => {
+	// Reset mocks before each test
+	mockCreateObjectURL.mockClear();
+	mockRevokeObjectURL.mockClear();
+});
+
 describe('vwc-audio-player', () => {
 	function getCurrentTimeElement() {
 		return getBaseElement(element).querySelector('.current-time');
@@ -76,7 +130,6 @@ describe('vwc-audio-player', () => {
 
 	let element: AudioPlayer;
 	let originalAudio: any;
-	let nativeAudioElement: HTMLAudioElement;
 	let pauseButton: Button;
 
 	beforeAll(() => {
@@ -184,6 +237,154 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 			expect(nativeAudioElement.src).toEqual('');
 		});
+
+		describe('setSrc', () => {
+			let mockBlob: Blob;
+			let canPlayTypeSpy: any;
+
+			beforeEach(() => {
+				mockBlob = new Blob(['test'], { type: 'audio/mp3' });
+				mockCreateObjectURL.mockClear();
+				mockRevokeObjectURL.mockClear();
+				// Reset the audio element src
+				nativeAudioElement.src = '';
+				// Mock canPlayType to return true by default
+				canPlayTypeSpy = vi
+					.spyOn(HTMLMediaElement.prototype, 'canPlayType')
+					.mockReturnValue('probably');
+			});
+
+			afterEach(() => {
+				canPlayTypeSpy.mockRestore();
+			});
+
+			it('should create and set blob URL when blob is provided and can be played', () => {
+				const mockUrl = 'blob:test-audio';
+				mockCreateObjectURL.mockReturnValue(mockUrl);
+
+				element['setSrc']('https://example.com/audio.mp3', mockBlob);
+
+				expect(mockCreateObjectURL).toHaveBeenCalledWith(mockBlob);
+				expect(nativeAudioElement.src).toContain(mockUrl);
+			});
+
+			it('should use original URL when blob type cannot be played', () => {
+				// Mock canPlayType to return empty string (cannot play)
+				canPlayTypeSpy.mockReturnValue('');
+
+				const originalUrl = 'https://example.com/audio.mp3';
+				element['setSrc'](originalUrl, mockBlob);
+
+				expect(mockCreateObjectURL).not.toHaveBeenCalled();
+				expect(nativeAudioElement.src).toContain(originalUrl);
+			});
+
+			it('should revoke previous blob URL when setting a new source', () => {
+				// Set initial blob URL
+				const firstUrl = 'blob:first-audio';
+				mockCreateObjectURL.mockReturnValueOnce(firstUrl);
+				element['setSrc']('https://example.com/first.mp3', mockBlob);
+
+				mockCreateObjectURL.mockClear();
+				mockRevokeObjectURL.mockClear();
+
+				// Set a new source with a different blob
+				const secondUrl = 'blob:second-audio';
+				mockCreateObjectURL.mockReturnValue(secondUrl);
+				const secondBlob = new Blob(['test2'], { type: 'audio/mp3' });
+				element['setSrc']('https://example.com/second.mp3', secondBlob);
+
+				expect(mockRevokeObjectURL).toHaveBeenCalledWith(firstUrl);
+				expect(mockCreateObjectURL).toHaveBeenCalledWith(secondBlob);
+			});
+
+			it('should handle error when setting source and fall back to original URL', () => {
+				const originalUrl = 'https://example.com/audio.mp3';
+				const error = new Error('Failed to set source');
+
+				const originalDescriptor = Object.getOwnPropertyDescriptor(
+					HTMLMediaElement.prototype,
+					'src'
+				)!;
+				const srcSetterSpy = vi
+					.spyOn(HTMLMediaElement.prototype, 'src', 'set')
+					.mockImplementationOnce(() => {
+						throw error;
+					})
+					.mockImplementation(function (this: HTMLAudioElement, value: string) {
+						// Store the URL for verification
+						this.setAttribute('src', value);
+					});
+
+				const consoleSpy = vi.spyOn(console, 'log');
+
+				element['setSrc'](originalUrl, mockBlob);
+
+				expect(consoleSpy).toHaveBeenCalledWith(
+					'Falling back to original URL due to error:',
+					error
+				);
+				expect(nativeAudioElement.getAttribute('src')).toBe(originalUrl);
+
+				// Restore the original descriptor
+				Object.defineProperty(
+					HTMLMediaElement.prototype,
+					'src',
+					originalDescriptor
+				);
+				consoleSpy.mockRestore();
+				srcSetterSpy.mockRestore();
+			});
+
+			it('should revoke object URL when setting a new source with blob', () => {
+				const firstBlob = new Blob(['test1'], { type: 'audio/mp3' });
+				const firstUrl = 'blob:test-audio-1';
+				mockCreateObjectURL.mockReturnValueOnce(firstUrl);
+
+				element['setSrc']('https://example.com/first.mp3', firstBlob);
+				expect(nativeAudioElement.src).toContain(firstUrl);
+
+				// Set a new source with a different blob
+				const secondBlob = new Blob(['test2'], { type: 'audio/mp3' });
+				const secondUrl = 'blob:test-audio-2';
+				mockCreateObjectURL.mockReturnValueOnce(secondUrl);
+
+				element['setSrc']('https://example.com/second.mp3', secondBlob);
+
+				expect(mockRevokeObjectURL).toHaveBeenCalledWith(firstUrl);
+				expect(nativeAudioElement.src).toContain(secondUrl);
+			});
+
+			it('should not revoke URL when setting a non-blob source', () => {
+				const url = 'https://example.com/audio.mp3';
+				element['setSrc'](url);
+
+				expect(mockRevokeObjectURL).not.toHaveBeenCalled();
+			});
+
+			it('should handle empty URL and blob correctly', () => {
+				element['setSrc']('');
+				expect(nativeAudioElement.src).toBe('');
+
+				element['setSrc']('', mockBlob);
+				expect(mockCreateObjectURL).toHaveBeenCalledWith(mockBlob);
+			});
+
+			it('should not throw when revoking an invalid URL', () => {
+				const invalidUrl = 'invalid-url';
+				const originalRevokeSrc = element['revokeSrc'].bind(element);
+
+				element['revokeSrc'] = vi.fn().mockImplementation(() => {
+					URL.revokeObjectURL(invalidUrl);
+				});
+
+				expect(() => {
+					element['setSrc']('https://example.com/audio.mp3', mockBlob);
+				}).not.toThrow();
+
+				element['revokeSrc'] = originalRevokeSrc;
+			});
+		});
 	});
 
 	describe('connotation', function () {
@@ -256,10 +457,24 @@ describe('vwc-audio-player', () => {
 
 		describe('when duration-fallback is enabled', () => {
 			it('should use fallback duration  when native duration  calculation is not available', async () => {
-				// Mock fetch to return a fake ArrayBuffer
-				globalThis.fetch = vi.fn().mockResolvedValue({
-					arrayBuffer: () => Promise.resolve(new ArrayBuffer(8)),
-				}) as any;
+				// Create a mock Blob with arrayBuffer method
+				const arrayBuffer = new ArrayBuffer(8);
+				const mockBlob = {
+					size: 8,
+					type: 'audio/mp3',
+					arrayBuffer: () => Promise.resolve(arrayBuffer),
+					slice: () => mockBlob,
+					text: () => Promise.resolve('test'),
+					stream: () => new ReadableStream(),
+				} as unknown as Blob;
+
+				// Mock fetch to return our mock Blob
+				const mockResponse = {
+					ok: true,
+					status: 200,
+					blob: () => Promise.resolve(mockBlob),
+				};
+				globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
 
 				// Mock AudioContext and decodeAudioData
 				const closeMock = vi.fn();
@@ -312,6 +527,82 @@ describe('vwc-audio-player', () => {
 
 				// The abort controller should be cleaned up
 				expect((element as any).fetchAbortController).toBeUndefined();
+			});
+
+			it('should call URL.createObjectURL when setting source with a blob', () => {
+				// Arrange
+				const mockBlob = new Blob(['test'], { type: 'audio/mp3' });
+				const mockUrl = 'blob:test-audio';
+				mockCreateObjectURL.mockReturnValue(mockUrl);
+
+				// Mock canPlayType to return true
+				const canPlayTypeSpy = vi
+					.spyOn(HTMLMediaElement.prototype, 'canPlayType')
+					.mockReturnValue('probably');
+
+				// Act - Call setSrc directly with a blob
+				element['setSrc']('https://example.com/audio.mp3', mockBlob);
+
+				// Assert
+				expect(mockCreateObjectURL).toHaveBeenCalledWith(mockBlob);
+				expect(nativeAudioElement.src).toContain(mockUrl);
+
+				// Clean up
+				canPlayTypeSpy.mockRestore();
+			});
+
+			let srcSpy: any;
+
+			afterEach(() => {
+				srcSpy?.mockRestore();
+			});
+
+			it('should handle error when setting source and fall back to original URL', async () => {
+				// Arrange
+				const originalSrc = 'https://example.com/original.mp3';
+				const mockBlob = new Blob(['test'], { type: 'audio/mp3' });
+				const mockUrl = 'blob:test-audio';
+				mockCreateObjectURL.mockReturnValue(mockUrl);
+
+				// Setup fetch to return our mock blob
+				const mockResponse = {
+					ok: true,
+					blob: () => Promise.resolve(mockBlob),
+				};
+				globalThis.fetch = vi.fn().mockResolvedValue(mockResponse);
+
+				// Store the original src setter
+				const originalSrcDescriptor = Object.getOwnPropertyDescriptor(
+					HTMLMediaElement.prototype,
+					'src'
+				)!;
+
+				// Track if the fallback was triggered
+				let fallbackTriggered = false;
+
+				// Mock the src setter to throw an error when setting the blob URL
+				srcSpy = vi
+					.spyOn(HTMLMediaElement.prototype, 'src', 'set')
+					.mockImplementation(function (this: HTMLMediaElement, value: string) {
+						if (value === mockUrl) {
+							throw new Error('Failed to set source');
+						}
+						if (value === originalSrc) {
+							fallbackTriggered = true;
+						}
+						return originalSrcDescriptor.set!.call(this, value);
+					});
+
+				// Act - Set the src property which will trigger the fetch and setSrc internally
+				element.durationFallback = true;
+				element.src = originalSrc;
+
+				// Wait for the fetch to complete
+				await new Promise((resolve) => setTimeout(resolve, 0));
+
+				// Assert - Verify the fallback URL was set
+				expect(fallbackTriggered).toBe(true);
+				expect(nativeAudioElement.src).toContain(originalSrc);
 			});
 
 			it('should abort ongoing fetch request when a new fetch is initiated on src change', async () => {
