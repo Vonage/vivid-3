@@ -276,6 +276,19 @@ The `helper-text` slot allows you to use rich content as the File Picker's helpe
 </vwc-file-picker>
 ```
 
+### Contextual Help
+
+The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
+
+```html preview
+<vwc-file-picker label="Upload file">
+	Drag & Drop the .csv file here or click to upload
+	<vwc-contextual-help slot="contextual-help"
+		>Max file size is 0.1MB.</vwc-contextual-help
+	>
+</vwc-file-picker>
+```
+
 ## CSS Variables
 
 ### file-picker-list-item-background-color
@@ -301,6 +314,17 @@ If needed, the background of the item can be changed using the `--file-picker-li
 | **max-file-size** | `string`                       | Sets the file picker max file size to upload                                             |
 | **single-file**   | `string`                       | Sets the file picker as a single file uploaded                                           |
 | **size**          | `normal` (default), `expanded` | Sets the display size of the input element                                               |
+
+</div>
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name                | Description                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **default**         | Use the default slot to set the content of the file picker.                                                        |
+| **contextual-help** | Allows you to add the [Contextual Help](/components/contextual-help/) component to be displayed next to the label. |
 
 </div>
 

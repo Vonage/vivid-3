@@ -8,7 +8,7 @@ import {
 import { useFakeTime } from '../../visual-tests/time';
 import type { DatePicker } from './date-picker';
 
-const components = ['date-picker'];
+const components = ['date-picker', 'contextual-help'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
@@ -42,11 +42,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-date-picker helper-text="Helper text"></vwc-date-picker>
 			<vwc-date-picker error-text="Error text"></vwc-date-picker>
 			<vwc-date-picker value="2011-11-11"></vwc-date-picker>
+			<vwc-date-picker label="Label">
+				<vwc-contextual-help slot="contextual-help">Example contextual help</vwc-contextual-help>
+			</vwc-date-picker>
 		</div>
 	</div>`;
 
 	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
-	await page.setViewportSize({ width: 1100, height: 500 });
+	await page.setViewportSize({ width: 1100, height: 550 });
 
 	await loadComponents({
 		page,

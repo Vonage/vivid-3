@@ -27,6 +27,19 @@ To add HTML to the helper text, use the [helper-text slot](/components/file-pick
 </vwc-file-picker>
 ```
 
+### Contextual Help
+
+You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
+
+```html preview
+<vwc-file-picker label="Label">
+	Drag & Drop or click to upload
+	<vwc-contextual-help slot="contextual-help"
+		>Acceptable formats: .jpg, .png, .gif</vwc-contextual-help
+	>
+</vwc-file-picker>
+```
+
 ## Validation Feedback
 
 ### Error Text

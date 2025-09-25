@@ -61,6 +61,21 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 </vwc-searchable-select>
 ```
 
+### Contextual Help
+
+You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
+
+```html preview 230px
+<vwc-searchable-select label="Country">
+	<vwc-contextual-help slot="contextual-help"
+		>Select the country where your company operates</vwc-contextual-help
+	>
+	<vwc-option value="AF" text="Afghanistan"></vwc-option>
+	<vwc-option value="AL" text="Albania"></vwc-option>
+	<vwc-option value="DZ" text="Algeria"></vwc-option>
+</vwc-searchable-select>
+```
+
 ## Validation Feedback
 
 ### Error Text

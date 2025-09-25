@@ -61,6 +61,10 @@ function renderInput(context: VividElementDefinitionContext) {
 
 	return html<Combobox>` <div class="${getStateClasses}" ${ref('_anchor')}>
 		${when((x) => x.label, renderLabel())}
+		<slot
+			name="contextual-help"
+			${slotted('_contextualHelpSlottedContent')}
+		></slot>
 		<div class="fieldset">
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
 			<div class="wrapper">

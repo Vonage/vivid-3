@@ -4496,6 +4496,13 @@
 					"propertyName": "autoDismiss"
 				},
 				{
+					"name": "offset",
+					"description": "Adds offset to the popup",
+					"type": "number",
+					"attributeName": "offset",
+					"propertyName": "offset"
+				},
+				{
 					"name": "open",
 					"description": "indicates whether the menu is open",
 					"type": "boolean",

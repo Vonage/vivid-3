@@ -6,7 +6,13 @@ import {
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['file-picker', 'button', 'layout', 'text-field'];
+const components = [
+	'file-picker',
+	'button',
+	'layout',
+	'text-field',
+	'contextual-help',
+];
 
 const addFile = async (
 	page: Page,
@@ -41,9 +47,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-file-picker label="Pick files" helper-text="multiple files of any type" error-text="error-text">
   	Drag & Drop or click to upload
 		</vwc-file-picker>
+  	<vwc-file-picker label="Pick files">
+			Drag & Drop or click to upload
+			<vwc-contextual-help slot="contextual-help">Example contextual help</vwc-contextual-help>
+		</vwc-file-picker>
 	</vwc-layout>`;
 
-	await page.setViewportSize({ width: 500, height: 1000 });
+	await page.setViewportSize({ width: 500, height: 1200 });
 
 	await loadComponents({
 		page,

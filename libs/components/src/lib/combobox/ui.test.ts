@@ -5,7 +5,7 @@ import {
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['combobox', 'option', 'badge'];
+const components = ['combobox', 'option', 'badge', 'contextual-help'];
 
 test('should show the component', async ({ page }) => {
 	await loadComponents({
@@ -50,6 +50,9 @@ test('should show the component', async ({ page }) => {
 				label="Where did you hear about us?" placeholder="Select an option"></vwc-combobox>
 				<vwc-combobox success-text="Rome is the correct answer" placeholder="Select an option" label="Success Text"></vwc-combobox>
 				<vwc-combobox error-text="Rome is the correct answer" placeholder="Select an option" label="Error Text"></vwc-combobox>
+				<vwc-combobox label="Combobox with contextual help">
+				<vwc-contextual-help slot="contextual-help">Example contextual help</vwc-contextual-help>
+			</vwc-combobox>
 		`,
 	});
 	await takeScreenshot(page, 'combobox');

@@ -7,7 +7,7 @@ import {
 } from '../../visual-tests/visual-tests-utils.js';
 import { useFakeTime } from '../../visual-tests/time';
 
-const components = ['date-range-picker'];
+const components = ['date-range-picker', 'contextual-help'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
@@ -37,11 +37,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-date-range-picker label="Label"></vwc-date-range-picker>
 			<vwc-date-range-picker helper-text="Helper text"></vwc-date-range-picker>
 			<vwc-date-range-picker error-text="Error text"></vwc-date-range-picker>
+			<vwc-date-range-picker label="Label">
+				<vwc-contextual-help slot="contextual-help">Example contextual help</vwc-contextual-help>
+			</vwc-date-range-picker>
 		</div>
 	</div>`;
 
 	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
-	await page.setViewportSize({ width: 1000, height: 500 });
+	await page.setViewportSize({ width: 1000, height: 550 });
 
 	await loadComponents({
 		page,

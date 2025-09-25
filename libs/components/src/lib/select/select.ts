@@ -20,6 +20,7 @@ import {
 import {
 	AffixIconWithTrailing,
 	FormElement,
+	WithContextualHelp,
 	WithErrorText,
 	WithSuccessText,
 } from '../../shared/patterns';
@@ -52,9 +53,13 @@ export type SelectSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @testAction selectOptionByText selectOptionByText
  */
 export class Select extends WithLightDOMFeedback(
-	WithErrorText(
-		WithSuccessText(
-			FormElement(HostSemantics(AffixIconWithTrailing(FormAssociated(Listbox))))
+	WithContextualHelp(
+		WithErrorText(
+			WithSuccessText(
+				FormElement(
+					HostSemantics(AffixIconWithTrailing(FormAssociated(Listbox)))
+				)
+			)
 		)
 	)
 ) {
@@ -526,7 +531,7 @@ export class Select extends WithLightDOMFeedback(
 	 */
 	override clickHandler(e: MouseEvent): boolean | void {
 		// do nothing if the select is disabled
-		if (this.disabled) {
+		if (this.disabled || this._isFromContextualHelp(e)) {
 			return;
 		}
 

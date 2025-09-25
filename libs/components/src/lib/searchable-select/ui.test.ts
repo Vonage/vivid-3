@@ -6,7 +6,7 @@ import {
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['searchable-select', 'option', 'icon'];
+const components = ['searchable-select', 'option', 'icon', 'contextual-help'];
 
 const genOptions = (count: number) => {
 	const options = [];
@@ -98,6 +98,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-searchable-select multiple disabled>
 					<vwc-option value="accent" text="accent" selected></vwc-option>
 					<vwc-option value="cta" text="cta" tag-connotation="cta" selected></vwc-option>
+				</vwc-searchable-select>
+				<vwc-searchable-select label="label">
+					<vwc-option value="1" text="Option 1" selected></vwc-option>
+					<vwc-contextual-help slot="contextual-help"
+						>Example Contextual Help</vwc-contextual-help
+					>
 				</vwc-searchable-select>
 			</div>
 		`,
