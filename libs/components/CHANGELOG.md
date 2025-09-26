@@ -4,6 +4,20 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.2.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.1.0...vivid-v5.2.0) (2025-09-26)
+
+
+### Features
+
+* **components:** add contextual-help slot to all form elements (VIV-2756) ([#2528](https://github.com/Vonage/vivid-3/issues/2528)) ([67a41da](https://github.com/Vonage/vivid-3/commit/67a41da2a7adcfbe84c3ac1307b508e1a007f382))
+* **menu:** adds offset attribute to menu (VIV-2839) ([#2534](https://github.com/Vonage/vivid-3/issues/2534)) ([d4da333](https://github.com/Vonage/vivid-3/commit/d4da333c5826d1f4db2be48be68008273dd04c9a))
+
+
+### Bug Fixes
+
+* **audio-player:** fix audio-player controls reset after playback ends (VIV-2777)  ([#2533](https://github.com/Vonage/vivid-3/issues/2533)) ([b4c570a](https://github.com/Vonage/vivid-3/commit/b4c570a85828b620b3ffc36233d94c18ef88bdfa))
+* **dial-pad:** add additional error screen reader announcement on validation (VIV-2785) ([#2536](https://github.com/Vonage/vivid-3/issues/2536)) ([0e74e98](https://github.com/Vonage/vivid-3/commit/0e74e984a2eadaf418dc10812bcb14bac133bb3a))
+
 ## [5.1.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.0.0...vivid-v5.1.0) (2025-09-12)
 
 
