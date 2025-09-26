@@ -15,4 +15,5 @@ export interface DialPadLocale {
 	digitAsteriskLabel: string;
 	digitZeroLabel: string;
 	digitHashtagLabel: string;
+	errorLabel: string;
 }

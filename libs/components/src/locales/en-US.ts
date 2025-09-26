@@ -165,6 +165,7 @@ const enUS: Locale = {
 		digitAsteriskLabel: '*',
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
+		errorLabel: 'Error:',
 	},
 	tab: {
 		dismissButtonLabel: 'Press the DELETE key to close this tab',

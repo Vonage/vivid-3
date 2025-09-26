@@ -165,6 +165,7 @@ const jaJP: Locale = {
 		digitAsteriskLabel: '*',
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
+		errorLabel: 'エラー：',
 	},
 	tab: {
 		dismissButtonLabel: 'このタブを閉じるにはDELETEキーを押してください',

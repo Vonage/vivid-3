@@ -165,6 +165,7 @@ const zhCN: Locale = {
 		digitAsteriskLabel: '*',
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
+		errorLabel: '错误：',
 	},
 	tab: {
 		dismissButtonLabel: '按 DELETE 键关闭此选项卡',

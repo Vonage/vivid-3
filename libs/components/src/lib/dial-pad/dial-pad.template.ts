@@ -11,7 +11,8 @@ import { Button } from '../button/button';
 import { TextField } from '../text-field/text-field';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import type { DialPad } from './dial-pad';
+import { VisuallyHidden } from '../visually-hidden/visually-hidden';
+import { DialPad } from './dial-pad';
 
 class DialPadButton {
 	value: string;
@@ -196,14 +197,22 @@ function renderDialButton(buttonTag: string) {
     </${buttonTag}>`;
 }
 
+function renderErrorAnnouncement(visuallyHiddenTag: string) {
+	return html<DialPad>`<${visuallyHiddenTag} role="alert" aria-atomic="true">
+		${(x) => `${x.locale.dialPad.errorLabel} ${x._errorAnnouncement}`}
+	</${visuallyHiddenTag}>`;
+}
+
 export const DialPadTemplate = (context: VividElementDefinitionContext) => {
 	const buttonTag = context.tagFor(Button);
 	const iconTag = context.tagFor(Icon);
 	const textFieldTag = context.tagFor(TextField);
+	const visuallyHiddenTag = context.tagFor(VisuallyHidden);
 
 	return html<DialPad>` <div class="${getClasses}">
 		${when((x) => !x.noInput, renderTextField(textFieldTag, buttonTag))}
 		<div class="digits">${renderDigits(buttonTag, iconTag)}</div>
 		${when((x) => !x.noCall, renderDialButton(buttonTag))}
+		${renderErrorAnnouncement(visuallyHiddenTag)}
 	</div>`;
 };
