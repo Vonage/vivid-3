@@ -1,10 +1,21 @@
 import {
-	createMetadataLocator,
 	type FASTElement,
 	Observable,
 	type Subscriber,
 } from '@microsoft/fast-element';
 import type { Constructor } from '../utils/mixins';
+
+// Simple metadata locator implementation
+function createMetadataLocator<TMetadata>(): (target: object) => TMetadata[] {
+	const metadataMap = new WeakMap<object, TMetadata[]>();
+
+	return (target: object) => {
+		if (!metadataMap.has(target)) {
+			metadataMap.set(target, []);
+		}
+		return metadataMap.get(target)!;
+	};
+}
 
 /*
  * Handling of props that deprecate other props in a backwards compatible way.

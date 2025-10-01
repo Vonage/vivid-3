@@ -1,17 +1,18 @@
 import {
-	type Behavior,
 	type Binding,
-	type BindingObserver,
 	DOM,
 	type ExecutionContext,
+	type ExpressionNotifier,
 	Observable,
 	type Subscriber,
+	type ViewBehavior,
+	type ViewController,
 } from '@microsoft/fast-element';
 
 /**
  * Binds a binding to an attribute of the target element.
  */
-export class AttributeBindingBehavior implements Behavior, Subscriber {
+export class AttributeBindingBehavior implements ViewBehavior, Subscriber {
 	constructor(
 		private target: HTMLElement,
 		private binding: Binding,
@@ -21,25 +22,26 @@ export class AttributeBindingBehavior implements Behavior, Subscriber {
 
 	private source: unknown | null = null;
 	private context: ExecutionContext | null = null;
-	private bindingObserver?: BindingObserver;
+	private bindingObserver?: ExpressionNotifier;
 
-	bind(source: unknown, context: ExecutionContext) {
-		this.source = source;
-		this.context = context;
+	bind(controller: ViewController) {
+		this.source = controller.source;
+		this.context = controller.context;
 
 		if (!this.bindingObserver) {
 			this.bindingObserver = Observable.binding(
-				this.binding,
+				this.binding.evaluate,
 				this,
 				this.isBindingVolatile
 			);
 		}
 
-		this.updateTarget(this.bindingObserver!.observe(source, context));
+		this.bindingObserver.observe(this.source, this.context);
+		this.updateTarget(this.bindingObserver.observe(this.source, this.context));
 	}
 
 	unbind() {
-		this.bindingObserver!.disconnect();
+		this.bindingObserver!.dispose();
 		this.source = null;
 		this.context = null;
 	}

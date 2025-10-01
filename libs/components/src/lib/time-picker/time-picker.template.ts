@@ -10,5 +10,5 @@ export const TimePickerTemplate = (
 	return PickerFieldTemplate(context, TimeSelectionPickerTemplate(context, 6), {
 		withSeparator: true,
 		padded: false,
-	});
+	}) as ViewTemplate<TimePicker>;
 };

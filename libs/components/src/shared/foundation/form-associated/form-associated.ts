@@ -1,4 +1,4 @@
-import { attr, DOM, emptyArray } from '@microsoft/fast-element';
+import { attr, emptyArray, Updates } from '@microsoft/fast-element';
 import { keyEnter } from '@microsoft/fast-web-utilities';
 import type { Constructor, MixinType } from '../../utils/mixins';
 import { VividElement } from '../vivid-element/vivid-element';
@@ -194,7 +194,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 				this.proxy.disabled = this.disabled;
 			}
 
-			DOM.queueUpdate(() => this.classList.toggle('disabled', this.disabled));
+			Updates.enqueue(() => this.classList.toggle('disabled', this.disabled));
 		}
 
 		/**
@@ -231,7 +231,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 				this.proxy.required = this.required;
 			}
 
-			DOM.queueUpdate(() => this.classList.toggle('required', this.required));
+			Updates.enqueue(() => this.classList.toggle('required', this.required));
 			this.validate();
 		}
 

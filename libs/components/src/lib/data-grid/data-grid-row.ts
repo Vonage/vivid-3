@@ -1,8 +1,8 @@
 import {
 	attr,
+	type HostBehavior,
+	type HostController,
 	observable,
-	type RepeatBehavior,
-	RepeatDirective,
 	type ViewTemplate,
 } from '@microsoft/fast-element';
 import {
@@ -19,6 +19,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
 import { HostSemantics } from '../../shared/aria/host-semantics';
 import { DataGridRowTypes } from './data-grid.options';
 import type { ColumnDefinition } from './data-grid';
+import type { DataGridCell } from './data-grid-cell';
 
 /**
  * @public
@@ -81,6 +82,15 @@ export class DataGridRow extends HostSemantics(VividElement) {
 	 */
 	@observable
 	columnDefinitions: ColumnDefinition[] | null = null;
+
+	/**
+	 * @internal
+	 */
+	columnDefinitionsChanged(): void {
+		if (this.$fastController.isConnected) {
+			this.updateCells();
+		}
+	}
 
 	/**
 	 * The template used to render cells in generated rows.
@@ -151,7 +161,7 @@ export class DataGridRow extends HostSemantics(VividElement) {
 	@observable
 	cellElements!: HTMLElement[];
 
-	private cellsRepeatBehavior: RepeatBehavior | null = null;
+	private cellsRepeatBehavior: HostBehavior<DataGridRow> | null = null;
 	private cellsPlaceholder: Node | null = null;
 
 	/**
@@ -178,13 +188,17 @@ export class DataGridRow extends HostSemantics(VividElement) {
 
 			this.updateItemTemplate();
 
-			this.cellsRepeatBehavior = new RepeatDirective(
-				(x) => x.columnDefinitions,
-				(x) => x.activeCellItemTemplate,
-				{ positioning: true }
-			).createBehavior(this.cellsPlaceholder);
+			// Create a custom HostBehavior to manage the repeat functionality
+			this.cellsRepeatBehavior = {
+				connectedCallback: (controller: HostController<DataGridRow>) => {
+					this.updateCells();
+				},
+				disconnectedCallback: (controller: HostController<DataGridRow>) => {
+					// Clean up if needed
+				},
+			};
 			/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-			this.$fastController.addBehaviors([this.cellsRepeatBehavior!]);
+			this.$fastController.addBehavior(this.cellsRepeatBehavior!);
 		}
 
 		this.addEventListener('cell-focused', this.handleCellFocus);
@@ -272,6 +286,36 @@ export class DataGridRow extends HostSemantics(VividElement) {
 				? this.headerCellItemTemplate
 				: this.defaultHeaderCellItemTemplate;
 	}
+
+	private updateCells = (): void => {
+		if (!this.cellsPlaceholder || !this.columnDefinitions) {
+			return;
+		}
+
+		// Clear existing cells
+		this.cellElements.forEach((cell) => {
+			if (cell.parentNode) {
+				cell.parentNode.removeChild(cell);
+			}
+		});
+		this.cellElements = [];
+
+		// Create new cells
+		this.columnDefinitions.forEach((columnDef, index) => {
+			const cellElement = document.createElement(
+				'vwc-data-grid-cell'
+			) as DataGridCell;
+			cellElement.columnDefinition = columnDef;
+			cellElement.rowData = this.rowData;
+			cellElement.gridColumn = (index + 1).toString();
+
+			this.cellsPlaceholder!.parentNode!.insertBefore(
+				cellElement,
+				this.cellsPlaceholder
+			);
+			this.cellElements.push(cellElement);
+		});
+	};
 
 	private updateRowStyle = (): void => {
 		this.style.gridTemplateColumns = this.gridTemplateColumns;

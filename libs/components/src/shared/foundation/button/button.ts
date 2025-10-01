@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
-import { attr, DOM } from '@microsoft/fast-element';
+import { attr, Updates } from '@microsoft/fast-element';
 import { DelegatesAria } from '../../aria/delegates-aria';
 import { VividElement } from '../vivid-element/vivid-element';
 import { FormAssociated } from '../form-associated/form-associated';
@@ -170,7 +170,7 @@ export class VividFoundationButton extends DelegatesAria(
 		this.handleUnsupportedDelegatesFocus();
 
 		if (this.autofocus) {
-			DOM.queueUpdate(() => {
+			Updates.enqueue(() => {
 				this.focus();
 			});
 		}

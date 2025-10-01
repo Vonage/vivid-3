@@ -138,6 +138,16 @@ export class DialPad extends Localized(VividElement) {
 		null;
 
 	/**
+	 * The aria-label for the delete button
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: delete-aria-label
+	 */
+	@attr({ attribute: 'delete-aria-label' }) deleteAriaLabel: string | null =
+		null;
+
+	/**
 	 *
 	 * @internal
 	 */

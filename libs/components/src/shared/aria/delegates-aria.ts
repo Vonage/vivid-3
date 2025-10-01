@@ -1,10 +1,12 @@
 import {
-	AttachedBehaviorHTMLDirective,
 	type CaptureType,
+	StatelessAttachedAttributeDirective,
+	type ViewController,
 } from '@microsoft/fast-element';
 import type { Constructor, MixinType } from '../utils/mixins';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import {
+	type AriaPropertyName,
 	type BoundAriaProperties,
 	DelegateAriaBehavior,
 } from './delegate-aria-behavior';
@@ -17,25 +19,42 @@ type DelegateAriaOptions = {
 /**
  * Directive to delegate ARIA properties to the target element.
  */
+class DelegateAriaDirective extends StatelessAttachedAttributeDirective<{
+	boundProperties: BoundAriaProperties<any>;
+	forwardedProperties: Set<AriaPropertyName>;
+}> {
+	override createBehavior(): DelegateAriaBehavior<any> {
+		return new DelegateAriaBehavior(
+			null as any, // Will be set in bind method
+			{
+				boundProperties: this.options.boundProperties,
+				forwardedProperties: this.options.forwardedProperties,
+			}
+		);
+	}
+
+	override bind(controller: ViewController): void {
+		// The behavior will handle the binding with the controller's source as target
+		const behavior = this.createBehavior();
+		behavior.bind(controller);
+	}
+}
+
 export function delegateAria<T>(
 	boundProperties: BoundAriaProperties<T> = {},
 	options: DelegateAriaOptions = {}
-): CaptureType<T> {
+): CaptureType<T, any> {
 	// Forward all other properties to the target element, unless onlySpecified is set
 	const forwardedProperties = new Set(
 		(options.onlySpecified ? [] : ariaMixinProperties).filter(
 			(p) => !(p in boundProperties)
-		)
+		) as AriaPropertyName[]
 	);
 
-	return new AttachedBehaviorHTMLDirective(
-		'vvd-delegate-aria',
-		DelegateAriaBehavior,
-		{
-			boundProperties,
-			forwardedProperties,
-		}
-	);
+	return new DelegateAriaDirective({
+		boundProperties,
+		forwardedProperties,
+	});
 }
 
 /**

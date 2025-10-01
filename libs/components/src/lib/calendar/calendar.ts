@@ -1,4 +1,4 @@
-import { attr, DOM } from '@microsoft/fast-element';
+import { attr, Updates } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { Sticky } from '../enums';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
@@ -211,7 +211,7 @@ export class Calendar extends VividElement {
 		const rowHeight = this.scrollHeight / this._hours;
 		const scrollPosition = rowHeight * (initialScrollHour - 1);
 
-		DOM.queueUpdate(() => {
+		Updates.enqueue(() => {
 			this.scrollTo({
 				top: scrollPosition,
 			});

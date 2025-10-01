@@ -1,11 +1,11 @@
 import {
 	attr,
-	DOM,
+	type HostBehavior,
+	type HostController,
 	nullableNumberConverter,
-	observable,
 	Observable,
-	RepeatBehavior,
-	RepeatDirective,
+	observable,
+	Updates,
 	type ViewTemplate,
 } from '@microsoft/fast-element';
 import {
@@ -217,6 +217,7 @@ export class DataGrid extends VividElement {
 		}
 		if (this.$fastController.isConnected) {
 			this.toggleGeneratedHeader();
+			this.updateRows();
 		}
 	}
 
@@ -385,7 +386,7 @@ export class DataGrid extends VividElement {
 	@observable
 	rowElements!: DataGridRow[];
 
-	private rowsRepeatBehavior: RepeatBehavior | null = null;
+	private rowsRepeatBehavior: HostBehavior<DataGrid> | null = null;
 	private rowsPlaceholder: Node | null = null;
 
 	private generatedHeader: DataGridRow | null = null;
@@ -416,14 +417,18 @@ export class DataGrid extends VividElement {
 
 		this.toggleGeneratedHeader();
 
-		this.rowsRepeatBehavior = new RepeatDirective(
-			(x) => x.rowsData,
-			(x) => x.rowItemTemplate,
-			{ positioning: true }
-		).createBehavior(this.rowsPlaceholder);
+		// Create a custom HostBehavior to manage the repeat functionality
+		this.rowsRepeatBehavior = {
+			connectedCallback: (controller: HostController<DataGrid>) => {
+				this.updateRows();
+			},
+			disconnectedCallback: (controller: HostController<DataGrid>) => {
+				// Clean up if needed
+			},
+		};
 
 		/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-		this.$fastController.addBehaviors([this.rowsRepeatBehavior!]);
+		this.$fastController.addBehavior(this.rowsRepeatBehavior!);
 
 		this.addEventListener('row-focused', this.handleRowFocus);
 		this.addEventListener(eventFocus, this.handleFocus as EventListener);
@@ -435,7 +440,7 @@ export class DataGrid extends VividElement {
 		this.observer.observe(this, { childList: true });
 		this.setupResizeObserver();
 
-		DOM.queueUpdate(this.queueRowIndexUpdate);
+		Updates.enqueue(this.queueRowIndexUpdate);
 
 		this.#setTabIndex();
 
@@ -669,7 +674,7 @@ export class DataGrid extends VividElement {
 		}
 		if (this.pendingFocusUpdate === false) {
 			this.pendingFocusUpdate = true;
-			DOM.queueUpdate(() => this.updateFocus());
+			Updates.enqueue(() => this.updateFocus());
 		}
 	}
 
@@ -731,7 +736,7 @@ export class DataGrid extends VividElement {
 	private queueRowIndexUpdate = (): void => {
 		if (!this.rowindexUpdateQueued) {
 			this.rowindexUpdateQueued = true;
-			DOM.queueUpdate(this.updateRowIndexes);
+			Updates.enqueue(this.updateRowIndexes);
 		}
 	};
 
@@ -766,6 +771,37 @@ export class DataGrid extends VividElement {
 
 		this.rowindexUpdateQueued = false;
 		this.columnDefinitionsStale = false;
+	};
+
+	private updateRows = (): void => {
+		if (!this.rowsPlaceholder || !this.rowsData) {
+			return;
+		}
+
+		// Clear existing rows
+		this.rowElements.forEach((row) => {
+			if (row.parentNode) {
+				row.parentNode.removeChild(row);
+			}
+		});
+		this.rowElements = [];
+
+		// Create new rows
+		this.rowsData.forEach((rowData, index) => {
+			const rowElement = document.createElement(
+				'vwc-data-grid-row'
+			) as DataGridRow;
+			rowElement.rowData = rowData;
+			rowElement.rowIndex = index;
+			rowElement.columnDefinitions = this.columnDefinitions;
+			rowElement.activeCellItemTemplate = this.rowItemTemplate;
+
+			this.rowsPlaceholder!.parentNode!.insertBefore(
+				rowElement,
+				this.rowsPlaceholder
+			);
+			this.rowElements.push(rowElement);
+		});
 	};
 
 	/**
@@ -813,7 +849,7 @@ export class DataGrid extends VividElement {
 
 	selectionModeChanged(oldValue: DataGridSelectionMode) {
 		if (oldValue === undefined) {
-			DOM.queueUpdate(this._resetSelection);
+			Updates.enqueue(this._resetSelection);
 			return;
 		}
 		this._resetSelection(true);

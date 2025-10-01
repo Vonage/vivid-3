@@ -3,6 +3,7 @@ import {
 	FASTElementDefinition,
 	html,
 	observable,
+	oneWay,
 } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@repo/shared';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
@@ -18,7 +19,7 @@ describe('renderInLightDom', () => {
 	};
 
 	it('should render a given template in the light DOM of the element', async () => {
-		new FASTElementDefinition(DummyElement(), {
+		FASTElementDefinition.compose(DummyElement(), {
 			template: html`
 				<div id="shadow">${(x) => x.prop}</div>
 				${renderInLightDOM(html`<div id="light">${(x) => x.prop}</div>`)}
@@ -37,7 +38,7 @@ describe('renderInLightDom', () => {
 	});
 
 	it('should bind template bindings to the host element', async () => {
-		new FASTElementDefinition(DummyElement(), {
+		FASTElementDefinition.compose(DummyElement(), {
 			template: html`${renderInLightDOM(html`
 				<div>${(x) => x.prop}</div>
 				${html`<div>${(x) => x.prop}</div>`}
@@ -53,11 +54,13 @@ describe('renderInLightDom', () => {
 	});
 
 	it('should be able to change templates dynamically with a binding', async () => {
-		new FASTElementDefinition(DummyElement(), {
-			template: html`${renderInLightDOM((x) =>
-				x.prop === 'Hello'
-					? html`<div>prop is Hello</div>`
-					: html`<div>prop is not Hello</div>`
+		FASTElementDefinition.compose(DummyElement(), {
+			template: html`${renderInLightDOM(
+				oneWay((x: any) =>
+					x.prop === 'Hello'
+						? html`<div>prop is Hello</div>`
+						: html`<div>prop is not Hello</div>`
+				)
 			)}`,
 			name: `dummy-3`,
 		}).define();

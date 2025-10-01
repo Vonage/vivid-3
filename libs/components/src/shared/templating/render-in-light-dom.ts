@@ -1,25 +1,29 @@
 import {
-	type Behavior,
+	type AddViewBehaviorFactory,
 	type Binding,
-	type BindingObserver,
 	type CaptureType,
-	DOM,
 	ExecutionContext,
+	type ExpressionNotifier,
 	HTMLDirective,
+	Markup,
 	Observable,
+	oneWay,
 	type Subscriber,
 	type SyntheticView,
 	type SyntheticViewTemplate,
+	type ViewBehavior,
+	type ViewBehaviorFactory,
+	type ViewController,
 } from '@microsoft/fast-element';
 import type { VividElement } from '../foundation/vivid-element/vivid-element';
 
 export class RenderInLightDomBehaviour<TSource extends VividElement>
-	implements Behavior, Subscriber
+	implements ViewBehavior, Subscriber
 {
 	private source: TSource | null = null;
 	private view?: SyntheticView;
 	private insertionPoint?: Node;
-	private templateBindingObserver: BindingObserver<
+	private templateBindingObserver: ExpressionNotifier<
 		TSource,
 		SyntheticViewTemplate
 	>;
@@ -30,21 +34,22 @@ export class RenderInLightDomBehaviour<TSource extends VividElement>
 		isTemplateBindingVolatile: boolean
 	) {
 		this.templateBindingObserver = Observable.binding(
-			templateBinding,
+			templateBinding.evaluate,
 			this,
 			isTemplateBindingVolatile
 		);
 	}
 
-	bind(source: TSource, context: ExecutionContext): void {
-		this.source = source;
-		this.context = context;
+	bind(controller: ViewController): void {
+		this.source = controller.source as TSource;
+		this.context = controller.context;
 
 		if (!this.insertionPoint) {
 			this.insertionPoint = document.createComment('');
-			source.appendChild(this.insertionPoint);
+			this.source.appendChild(this.insertionPoint);
 		}
 
+		this.templateBindingObserver.observe(this.source, this.context);
 		this.handleChange();
 	}
 
@@ -52,7 +57,7 @@ export class RenderInLightDomBehaviour<TSource extends VividElement>
 		this.source = null;
 
 		this.view!.unbind();
-		this.templateBindingObserver.disconnect();
+		this.templateBindingObserver.dispose();
 	}
 
 	/**
@@ -75,18 +80,23 @@ export class RenderInLightDomBehaviour<TSource extends VividElement>
 	}
 }
 
-export class RenderInLightDomDirective<
-	TSource extends VividElement
-> extends HTMLDirective {
-	createPlaceholder: (index: number) => string = DOM.createBlockPlaceholder;
+export class RenderInLightDomDirective<TSource extends VividElement>
+	implements HTMLDirective, ViewBehaviorFactory
+{
+	createPlaceholder: (index: number) => string = (index: number) =>
+		Markup.comment(`render-in-light-dom-${index}`);
 
 	private readonly isTemplateBindingVolatile: boolean;
 	constructor(
 		readonly templateBinding: Binding<TSource, SyntheticViewTemplate>
 	) {
-		super();
-		this.isTemplateBindingVolatile =
-			Observable.isVolatileBinding(templateBinding);
+		this.isTemplateBindingVolatile = Observable.isVolatileBinding(
+			templateBinding.evaluate
+		);
+	}
+
+	createHTML(add: AddViewBehaviorFactory): string {
+		return this.createPlaceholder(0);
 	}
 
 	createBehavior(): RenderInLightDomBehaviour<TSource> {
@@ -104,11 +114,11 @@ export function renderInLightDOM<TSource extends VividElement>(
 	templateOrTemplateBinding:
 		| SyntheticViewTemplate
 		| Binding<TSource, SyntheticViewTemplate>
-): CaptureType<TSource> {
+): CaptureType<TSource, any> {
 	const templateBinding =
 		typeof templateOrTemplateBinding === 'function'
-			? templateOrTemplateBinding
-			: (): SyntheticViewTemplate => templateOrTemplateBinding;
+			? oneWay(templateOrTemplateBinding)
+			: oneWay(() => templateOrTemplateBinding);
 
 	return new RenderInLightDomDirective<TSource>(templateBinding);
 }

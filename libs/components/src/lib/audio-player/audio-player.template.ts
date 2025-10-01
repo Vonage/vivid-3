@@ -108,12 +108,16 @@ function renderSlider(context: VividElementDefinitionContext) {
 
 function renderTimestamp() {
 	return html` <div class="time-stamp">
-		<span class="current-time">${(x) => formatTime(x.currentTime)}</span>
+		<span class="current-time"
+			>${(x) => formatTime((x as any).currentTime || 0)}</span
+		>
 		${when(
-			(x) => x.duration && x.duration !== Infinity,
+			(x) => (x as any).duration && (x as any).duration !== Infinity,
 			html`
 				<span>/</span>
-				<span class="total-time">${(x) => formatTime(x.duration)}</span>
+				<span class="total-time"
+					>${(x) => formatTime((x as any).duration || 0)}</span
+				>
 			`
 		)}
 	</div>`;
@@ -143,7 +147,7 @@ export const AudioPlayerTemplate = (context: VividElementDefinitionContext) => {
 					(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
 					renderForwardSkipButtons(context)
 				)}
-				${when((x) => !x.notime, renderTimestamp())}
+				${when((x) => !(x as any).notime, renderTimestamp())}
 			</div>
 			${renderSlider(context)}
 			${when(
