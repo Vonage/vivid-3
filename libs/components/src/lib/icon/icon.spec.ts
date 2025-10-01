@@ -9,10 +9,13 @@ describe('icon', function () {
 	function fakeFetch(requestTime = 4000) {
 		(global.fetch as any) = vi.fn((_, { signal }) => {
 			currentFetchSignal = signal;
-			return new Promise((res) => {
+			return new Promise((resolve, reject) => {
 				setTimeout(() => {
-					res(response);
+					resolve(response);
 				}, requestTime);
+				signal.addEventListener('abort', () => {
+					reject(signal.reason);
+				});
 			});
 		});
 	}
@@ -131,6 +134,18 @@ describe('icon', function () {
 			await vi.advanceTimersByTimeAsync(10);
 
 			expect(homeSignal.aborted).toBe(true);
+		});
+
+		it('should not cache aborted fetch requests', async function () {
+			fakeFetch(100);
+			const homeIcon = uniqueId();
+			const userIcon = uniqueId();
+			element.name = homeIcon;
+			element.name = userIcon;
+			element.name = homeIcon;
+			await vi.advanceTimersByTimeAsync(100);
+
+			expect(element._svg).toBe(svg);
 		});
 	});
 
