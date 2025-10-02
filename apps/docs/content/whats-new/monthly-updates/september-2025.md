@@ -5,7 +5,7 @@ month: 2025-09
 
 # September 2025 - Monthly Update
 
-Here’s what’s new and improved in the Vivid Design System for August 2025.
+Here’s what’s new and improved in the Vivid Design System for September 2025.
 
 ## Office Hours Meetings
 
