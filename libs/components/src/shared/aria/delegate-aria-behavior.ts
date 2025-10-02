@@ -1,10 +1,5 @@
-import {
-	DOM,
-	Observable,
-	oneWay,
-	type ViewBehavior,
-	type ViewController,
-} from '@microsoft/fast-element';
+import type { ViewBehavior, ViewController } from '@microsoft/fast-element';
+import { Observable, oneWay } from '@microsoft/fast-element';
 import { AttributeBindingBehavior } from '../templating/attribute-binding-behaviour';
 import {
 	subscribeToAriaPropertyChanges,
@@ -16,8 +11,6 @@ import {
 	type AriaMixinElement,
 	type AriaPropertyName,
 } from './aria-mixin';
-
-export type { AriaPropertyName };
 
 type BoundValue = string | null | undefined | boolean | number;
 type AriaBinding<T> = BoundValue | ((x: T) => BoundValue);
@@ -49,9 +42,12 @@ export class DelegateAriaBehavior<T> implements ViewBehavior {
 		const source = controller.source as DelegatesAriaElement;
 		this.source = source;
 
-		// Set target if not already set
+		// Don't override the target - use the one passed in constructor
+		// The target should be the element that the directive is attached to
 		if (!this.target) {
-			this.target = source;
+			throw new Error(
+				'Target element must be provided to DelegateAriaBehavior'
+			);
 		}
 
 		this.bindPropertiesToTarget(source, this.boundProperties, this.target);
@@ -83,21 +79,27 @@ export class DelegateAriaBehavior<T> implements ViewBehavior {
 			AriaBinding<T>
 		][]) {
 			const bindingFn = binding instanceof Function ? binding : () => binding;
-			const behavior = new AttributeBindingBehavior(
-				target,
-				oneWay(bindingFn),
-				Observable.isVolatileBinding(bindingFn),
-				ariaAttributeName(property)
+
+			this.bindingBehaviours.push(
+				new AttributeBindingBehavior(
+					target,
+					oneWay(bindingFn),
+					Observable.isVolatileBinding(bindingFn),
+					ariaAttributeName(property)
+				)
 			);
-			this.bindingBehaviours.push(behavior);
-			// Bind the behavior directly to the source
-			behavior.bind({ source, context: source.$fastController.context } as any);
+		}
+		for (const behavior of this.bindingBehaviours) {
+			(behavior as any).bind({
+				source,
+				context: source.$fastController.context,
+			} as any);
 		}
 	}
 
 	private releasePropertyBindings(source: DelegatesAriaElement) {
 		for (const behavior of this.bindingBehaviours) {
-			behavior.unbind();
+			(behavior as any).unbind(); // TODO: fix type
 		}
 		this.bindingBehaviours = [];
 	}
@@ -107,16 +109,22 @@ export class DelegateAriaBehavior<T> implements ViewBehavior {
 		delegatedProperties: Set<AriaPropertyName>,
 		target: HTMLElement
 	) {
+		// Only forward properties that are NOT bound (bound properties take precedence)
 		for (const key of delegatedProperties) {
-			this.forwardPropertyToTarget(target, key, source[key]);
+			if (!(key in this.boundProperties)) {
+				this.forwardPropertyToTarget(target, key, source[key]);
+			}
 		}
 
-		subscribeToAriaPropertyChanges(source, this.onSourceAriaPropertyChanged);
+		subscribeToAriaPropertyChanges(
+			source as AriaMixinElement,
+			this.onSourceAriaPropertyChanged
+		);
 	}
 
 	private stopForwardingPropertiesToTarget(source: DelegatesAriaElement) {
 		unsubscribeFromAriaPropertyChanges(
-			source,
+			source as AriaMixinElement,
 			this.onSourceAriaPropertyChanged
 		);
 	}
@@ -125,7 +133,12 @@ export class DelegateAriaBehavior<T> implements ViewBehavior {
 		source: AriaMixinElement,
 		property: AriaPropertyName
 	) => {
-		if (!this.forwardedProperties.has(property)) {
+		// Only forward properties that are NOT bound (bound properties take precedence)
+		// Bound properties should never be forwarded, even when they change
+		if (
+			!this.forwardedProperties.has(property) ||
+			property in this.boundProperties
+		) {
 			return;
 		}
 
@@ -137,6 +150,10 @@ export class DelegateAriaBehavior<T> implements ViewBehavior {
 		property: AriaPropertyName,
 		value: BoundValue
 	) {
-		DOM.setAttribute(target, ariaAttributeName(property), value);
+		if (value === null || value === undefined || value === false) {
+			target.removeAttribute(ariaAttributeName(property));
+		} else {
+			target.setAttribute(ariaAttributeName(property), String(value));
+		}
 	}
 }

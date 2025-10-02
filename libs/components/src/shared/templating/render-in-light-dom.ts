@@ -1,4 +1,5 @@
 import {
+	type AddViewBehaviorFactory,
 	type Binding,
 	type BindingDirective,
 	type CaptureType,
@@ -10,11 +11,10 @@ import {
 	normalizeBinding,
 	type Subscriber,
 	type SyntheticView,
-	type ViewTemplate,
 	type ViewBehavior,
 	type ViewBehaviorFactory,
 	type ViewController,
-	type AddViewBehaviorFactory,
+	type ViewTemplate,
 } from '@microsoft/fast-element';
 import type { VividElement } from '../foundation/vivid-element/vivid-element';
 

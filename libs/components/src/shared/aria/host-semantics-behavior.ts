@@ -29,19 +29,17 @@ export class HostSemanticsBehavior<T> implements ViewBehavior {
 
 	bind(controller: ViewController) {
 		const source = controller.source as HostSemanticsElement;
-
-		// Set target if not already set
 		if (!this.target) {
-			this.target = source;
+			this.target = source as HTMLElement;
 		}
-
 		if (this.target !== source) {
 			throw new Error('Target element must be the same as the source element');
 		}
 		this.bindPropertiesToTarget(source, this.boundProperties, this.target);
 	}
 
-	unbind(source: HostSemanticsElement) {
+	unbind(controller: ViewController) {
+		const source = controller.source as HostSemanticsElement;
 		this.releasePropertyBindings(source);
 	}
 
@@ -71,7 +69,10 @@ export class HostSemanticsBehavior<T> implements ViewBehavior {
 			);
 		}
 		for (const behavior of this.bindingBehaviours) {
-			behavior.bind({ source, context: source.$fastController.context } as any);
+			(behavior as any).bind({
+				source,
+				context: source.$fastController.context,
+			} as any);
 		}
 	}
 
