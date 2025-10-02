@@ -1,6 +1,6 @@
 ---
 title: September 2025
-month: 2025-08
+month: 2025-09
 ---
 
 # September 2025 - Monthly Update
