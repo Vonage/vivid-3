@@ -14,7 +14,7 @@ Here’s what’s new and improved in the Vivid Design System for August 2025.
 - [Empty State]: Changing border colors to add transparcy so it would fit on any background color
   - Team agreed to open a ticket for this change.
 
-\*30/09/2025\*\*: [Watch the recording](https://drive.google.com/file/d/1R2Jz21brN8Py8eGSsBBRSaO7697P1bzW/view)
+**30/09/2025**: [Watch the recording](https://drive.google.com/file/d/1R2Jz21brN8Py8eGSsBBRSaO7697P1bzW/view)
 
 - [Menu]: Achoring popup to caret position inside a Text Area.
   - Team agreed to investigate the posibilities of this request.
