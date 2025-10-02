@@ -34,3 +34,7 @@ We have added the ability to add [secondary text](/components/option/#secondary-
 ## [Menu]: Adds offset attribute
 
 We have added the [offset attribute](/components/menu/#offset) to the menu component to allow adding a space in `px` between the menu and the trigger element.
+
+## [Empty State]: Change Icon Border to Add Opacity
+
+The [ringed border around the icon](/components/empty-state/#connotation) now has opacity so the it can be used and seen on multiple background colors.
