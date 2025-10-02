@@ -3,7 +3,6 @@ import {
 	FASTElementDefinition,
 	html,
 	observable,
-	oneWay,
 } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@repo/shared';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
@@ -55,12 +54,10 @@ describe('renderInLightDom', () => {
 
 	it('should be able to change templates dynamically with a binding', async () => {
 		FASTElementDefinition.compose(DummyElement(), {
-			template: html`${renderInLightDOM(
-				oneWay((x: any) =>
-					x.prop === 'Hello'
-						? html`<div>prop is Hello</div>`
-						: html`<div>prop is not Hello</div>`
-				)
+			template: html`${renderInLightDOM((x) =>
+				x.prop === 'Hello'
+					? html`<div>prop is Hello</div>`
+					: html`<div>prop is not Hello</div>`
 			)}`,
 			name: `dummy-3`,
 		}).define();
