@@ -2,6 +2,7 @@ import {
 	children,
 	elements,
 	html,
+	InlineTemplateDirective,
 	ref,
 	repeat,
 	when,
@@ -53,7 +54,9 @@ function getButtonAppearance(
 	return parent.selectedIndex === Number(value) - 1 ? 'filled' : 'ghost';
 }
 
-const paginationButtonRenderer = (buttonTag: string) => html` ${when(
+const paginationButtonRenderer = (
+	buttonTag: InlineTemplateDirective
+) => html` ${when(
 	(value) => value !== '...',
 	html`
 		<${buttonTag} class="vwc-pagination-button"
@@ -102,6 +105,8 @@ const getPaginationButtonWidth = (value: string | number) => {
 
 export const PaginationTemplate = (context: VividElementDefinitionContext) => {
 	const buttonTag = context.tagFor(Button);
+	const buttonTagName = context.tagFor(Button, true);
+
 	const paginationButtonTemplate = paginationButtonRenderer(buttonTag);
 	return html<Pagination>`
 	<div class="${getClasses}">
@@ -116,7 +121,7 @@ export const PaginationTemplate = (context: VividElementDefinitionContext) => {
 		></${buttonTag}>
 		<div id="buttons-wrapper" class="buttons-wrapper" ${children({
 			property: 'paginationButtons',
-			filter: elements(buttonTag),
+			filter: elements(buttonTagName),
 		})}>
 			${repeat((x) => x.pagesList, paginationButtonTemplate, { positioning: true })}
 		</div>

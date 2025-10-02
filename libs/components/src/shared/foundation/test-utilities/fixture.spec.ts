@@ -10,6 +10,7 @@ import { fixture, uniqueElementName } from './fixture';
 
 describe('The fixture helper', () => {
 	const name = uniqueElementName();
+
 	const template = html<MyElement>`
 		${(x) => x.value}
 		<slot></slot>
@@ -68,9 +69,11 @@ describe('The fixture helper', () => {
 
 	it('can bind an element to data', async () => {
 		const source = new MyModel();
+		const nameTag = html.partial(name);
+
 		const { element, disconnect } = await fixture<MyElement>(
 			html<MyModel>`
-    <${name} value=${(x) => x.value}></${name}>
+    <${nameTag} value=${(x) => x.value}></${nameTag}>
   `,
 			{ source }
 		);

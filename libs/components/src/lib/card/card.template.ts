@@ -1,4 +1,10 @@
-import { html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
+import {
+	html,
+	InlineTemplateDirective,
+	slotted,
+	ViewTemplate,
+	when,
+} from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';
@@ -14,7 +20,7 @@ const getClasses = (_: Card) =>
 		['hide-header', shouldHideHeader(_)]
 	);
 
-function renderHeaderIcon(iconTag: string) {
+function renderHeaderIcon(iconTag: InlineTemplateDirective) {
 	return html<Card>`
 		<${iconTag} class="icon" inline name="${(x) => x.icon}"></${iconTag}>`;
 }
@@ -39,7 +45,7 @@ function headerContent() {
 /**
  header
  */
-function renderHeader(iconTag: string) {
+function renderHeader(iconTag: InlineTemplateDirective) {
 	return html<Card>` <div class="header">
 		<slot name="graphic" ${slotted('graphicSlottedContent')}
 			>${when((x) => x.icon, renderHeaderIcon(iconTag))}</slot
