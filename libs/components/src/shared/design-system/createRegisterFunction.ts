@@ -1,6 +1,7 @@
 import {
 	type Constructable,
 	FASTElementDefinition,
+	html,
 	type ViewTemplate,
 } from '@microsoft/fast-element';
 import type { VividElement } from '../foundation/vivid-element/vivid-element';
@@ -25,6 +26,8 @@ function resolve(
 const registeredTags = new Set<string>();
 // Map of registered class instances to the tag they were registered with
 const tagByType = new Map<Constructable, string>();
+// Global map of all registered component types to their tags
+const globalTagByType = new Map<Constructable, string>();
 
 /**
  * Creates a function that registers a component and its dependencies with the given prefix.
@@ -52,6 +55,7 @@ export const createRegisterFunction =
 			}
 			registeredTags.add(tag);
 			tagByType.set(type, tag);
+			globalTagByType.set(type, tag);
 
 			// Register dependencies before the component itself
 			// Order is important when elements are upgraded as the component might rely on its dependencies being registered
@@ -60,37 +64,30 @@ export const createRegisterFunction =
 				registerComponent(dependency);
 			}
 
-			const tagByDependencyType = new Map([
-				[componentDefinition.type, tag] as [Constructable, string],
-				...componentDefinition.dependencies.map(
-					(dependency) =>
-						[dependency.type, prefixed(dependency.name)] as [
-							Constructable,
-							string
-						]
-				),
-			]);
-
-			const elementDefinitionContext = {
-				tagFor(type: Constructable) {
-					if (!tagByDependencyType.has(type)) {
-						throw new Error(
-							`Could not get tag for ${type.name} as it is not a dependency of ${componentDefinition.name}.`
-						);
-					}
-					return tagByDependencyType.get(type)!;
-				},
-				tagForNonDependency(name: string) {
-					return prefixed(name);
-				},
-			};
-
 			FASTElementDefinition.compose(type as Constructable<HTMLElement>, {
 				...componentDefinition.options,
-				template: resolve(
-					componentDefinition.template,
-					elementDefinitionContext
-				),
+				template: resolve(componentDefinition.template, {
+					// @ts-expect-error - expected to return a string
+					tagFor(type: Constructable) {
+						// First check if this type is registered globally
+						if (globalTagByType.has(type)) {
+							return html.partial(globalTagByType.get(type)!);
+						}
+						// If not found globally, check if it's a dependency of this component
+						const dependency = componentDefinition.dependencies.find(
+							(dep) => dep.type === type
+						);
+						if (dependency) {
+							return prefixed(dependency.name);
+						}
+						throw new Error(
+							`Could not get tag for ${type.name} as it is not registered or a dependency of ${componentDefinition.name}.`
+						);
+					},
+					tagForNonDependency(name: string) {
+						return prefixed(name);
+					},
+				}),
 				name: `${prefix}-${componentDefinition.name}`,
 			}).define();
 		};
