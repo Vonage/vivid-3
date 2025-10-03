@@ -1,3 +1,3 @@
-// import { registerVisuallyHidden } from './definition';
+import { registerVisuallyHidden } from './definition';
 
-// registerVisuallyHidden();
+registerVisuallyHidden();

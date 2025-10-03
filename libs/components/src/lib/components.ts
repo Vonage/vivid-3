@@ -1,6 +1,3 @@
-// Export VisuallyHidden first to ensure it's registered before any components that depend on it
-export * from './visually-hidden/definition';
-
 export * from './accordion-item/definition';
 export * from './accordion/definition';
 export * from './action-group/definition';

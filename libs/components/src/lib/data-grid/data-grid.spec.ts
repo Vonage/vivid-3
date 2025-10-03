@@ -10,10 +10,13 @@ Element.prototype.scrollIntoView = vi.fn();
 
 function setMockRows(element: DataGrid) {
 	element.rowElementTag = 'div';
+
+	const rowElementTagDeclaration = html.partial(element.rowElementTag);
+
 	element.rowItemTemplate = html`
-			<${element.rowElementTag} role="row">
+			<${rowElementTagDeclaration} role="row">
 				<button class="first" role="cell"/><button class="second" role="cell"/>
-			</${element.rowElementTag}>`;
+			</${rowElementTagDeclaration}>`;
 }
 
 describe('vwc-data-grid', () => {
@@ -271,7 +274,9 @@ describe('vwc-data-grid', () => {
 
 	describe('rowItemTemplate', () => {
 		it('should use the given row template', async () => {
-			const rowTag = 'just-for-test';
+			const rowTagName = 'just-for-test';
+			const rowTag = html.partial(rowTagName);
+
 			element.rowItemTemplate = html`<${rowTag} role="row"></${rowTag}>`;
 			element.rowsData = [
 				{ id: '1', name: 'Person 1' },
@@ -280,7 +285,8 @@ describe('vwc-data-grid', () => {
 				{ id: '2', name: 'Person 2' },
 			];
 			await elementUpdated(element);
-			expect(element.querySelectorAll(rowTag).length).toEqual(
+
+			expect(element.querySelectorAll(rowTagName).length).toEqual(
 				element.rowsData.length
 			);
 		});
@@ -289,10 +295,13 @@ describe('vwc-data-grid', () => {
 	describe('focusRowIndex', () => {
 		it('should set the focused cell', async () => {
 			element.rowElementTag = 'div';
+			const rowElementTagDeclaration = html.partial(element.rowElementTag);
+
 			element.rowItemTemplate = html`
-			<${element.rowElementTag} role="row">
+			<${rowElementTagDeclaration} role="row">
 				<button class="first" role="cell"/><button class="second" role="cell"/>
-			</${element.rowElementTag}>`;
+			</${rowElementTagDeclaration}>`;
+
 			element.generateHeader = 'none';
 			element.rowsData = [
 				{ id: '1', name: 'Person 1' },
