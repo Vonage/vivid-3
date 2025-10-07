@@ -36,7 +36,7 @@
 		},
 		"@vonage/vivid-test-utils#build": {
 			"dependsOn": ["^build"],
-			"outputs": ["src/**/*.generated.ts", "dist/**"]
+			"outputs": ["src/**/*.generated.ts", "dist/**", "API.md"]
 		},
 		"dev": {
 			"dependsOn": ["^build"],
