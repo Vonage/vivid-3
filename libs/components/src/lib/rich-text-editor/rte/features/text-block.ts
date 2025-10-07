@@ -11,6 +11,8 @@ import {
 	RTEFeature,
 	type SchemaContribution,
 } from '../feature';
+import type { TextblockAttrs } from '../utils/textblock-attrs';
+import type { RTEInstance } from '../instance';
 import textBlockCss from './text-block.style.scss?inline';
 
 interface BlockTypeSpec {
@@ -95,7 +97,7 @@ export class RTETextBlockStructure extends RTEFeature {
 		return [{ css: textBlockCss }];
 	}
 
-	override getSchema(): SchemaContribution[] {
+	override getSchema(textblockAttrs: TextblockAttrs): SchemaContribution[] {
 		/* v8 ignore start */ // TODO: exercise all code paths in tests once types are configurable
 		const hasParagraph = this.blockTypes.some(
 			(bt) => bt.node.name === 'paragraph'
@@ -107,9 +109,17 @@ export class RTETextBlockStructure extends RTEFeature {
 					paragraph: {
 						content: 'inline*',
 						group: 'block',
-						parseDOM: [{ tag: 'p' }],
-						toDOM() {
-							return ['p', 0] as const;
+						attrs: { ...textblockAttrs.attrs },
+						parseDOM: [
+							{
+								tag: 'p',
+								getAttrs(dom: HTMLElement) {
+									return textblockAttrs.fromDOM(dom);
+								},
+							},
+						],
+						toDOM(node) {
+							return ['p', { style: textblockAttrs.getStyle(node) }, 0];
 						},
 					},
 			  }
@@ -136,6 +146,7 @@ export class RTETextBlockStructure extends RTEFeature {
 									}
 								},
 							},
+							...textblockAttrs.attrs,
 						},
 						content: 'inline*',
 						marks: '',
@@ -143,10 +154,16 @@ export class RTETextBlockStructure extends RTEFeature {
 						defining: true,
 						parseDOM: headingLevels.map((level) => ({
 							tag: `h${level}`,
-							attrs: { level },
+							getAttrs(dom: HTMLElement) {
+								return { level, ...textblockAttrs.fromDOM(dom) };
+							},
 						})),
 						toDOM(node) {
-							return ['h' + node.attrs.level, 0];
+							return [
+								'h' + node.attrs.level,
+								{ style: textblockAttrs.getStyle(node) },
+								0,
+							];
 						},
 					},
 			  }
@@ -190,7 +207,7 @@ export class RTETextBlockStructure extends RTEFeature {
 		/* v8 ignore end */
 	}
 
-	override getPlugins(): PluginContribution[] {
+	override getPlugins(rte: RTEInstance): PluginContribution[] {
 		const forceBreak: Command = (state, dispatch) => {
 			dispatch?.(
 				state.tr
@@ -210,7 +227,7 @@ export class RTETextBlockStructure extends RTEFeature {
 			(bt) => bt.node.name === 'paragraph'
 		);
 		if (paragraphBlock) {
-			keyBindings['Mod-Alt-0'] = this.setBlockType(paragraphBlock.id);
+			keyBindings['Mod-Alt-0'] = this.setBlockType(rte, paragraphBlock.id);
 		}
 
 		const headingBlocks = this.blockTypes.filter(
@@ -218,7 +235,7 @@ export class RTETextBlockStructure extends RTEFeature {
 		);
 		for (const headingBlock of headingBlocks) {
 			const level = (headingBlock.node as HeadingSpec).attrs.level;
-			keyBindings[`Mod-Alt-${level}`] = this.setBlockType(headingBlock.id);
+			keyBindings[`Mod-Alt-${level}`] = this.setBlockType(rte, headingBlock.id);
 		}
 
 		return [{ plugin: keymap(keyBindings) }];
@@ -242,7 +259,7 @@ export class RTETextBlockStructure extends RTEFeature {
 		return blockType.id;
 	}
 
-	setBlockType(id: string): Command {
+	setBlockType(rte: RTEInstance, id: string): Command {
 		return (state, dispatch) => {
 			const blockType = this.blockTypes.find((bt) => bt.id === id)!;
 			const { from, to } = state.selection;
@@ -251,14 +268,24 @@ export class RTETextBlockStructure extends RTEFeature {
 					from,
 					to,
 					state.schema.nodes[blockType.node.name],
-					blockType.node.name === 'heading' ? blockType.node.attrs : {}
+					(oldNode) => {
+						const oldAttrs = rte.textblockAttrs.extractFromNode(oldNode);
+						if (blockType.node.name === 'heading') {
+							return {
+								...oldAttrs,
+								...(blockType.node as HeadingSpec).attrs,
+							};
+						} else {
+							return oldAttrs;
+						}
+					}
 				)
 			);
 			return true;
 		};
 	}
 
-	override getToolbarItems(): ToolbarItemSpec[] {
+	override getToolbarItems(rte: RTEInstance): ToolbarItemSpec[] {
 		return [
 			{
 				section: 'font',
@@ -269,7 +296,7 @@ export class RTETextBlockStructure extends RTEFeature {
 						value: (ctx) => this.getCurrentBlockType(ctx.view.state) ?? '',
 						onSelect: (value: string) => {
 							const { state, dispatch } = ctx.view;
-							this.setBlockType(value)(state, dispatch);
+							this.setBlockType(rte, value)(state, dispatch);
 						},
 						children: this.blockTypes.map((bt) =>
 							createOption(ctx, {

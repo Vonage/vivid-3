@@ -1,0 +1,12 @@
+export { RTEConfig } from './config';
+export { RTECore } from './features/core';
+export { RTETextBlockStructure } from './features/text-block';
+export { RTEFreeformStructure } from './features/freeform';
+export { RTEToolbarFeature } from './features/toolbar';
+export { RTEFontSizeFeature } from './features/font-size';
+export { RTEBoldFeature } from './features/bold';
+export { RTEItalicFeature } from './features/italic';
+export { RTEUnderlineFeature } from './features/underline';
+export { RTEStrikethroughFeature } from './features/strikethrough';
+export { RTEMonospaceFeature } from './features/monospace';
+export { RTEAlignmentFeature } from './features/alignment';
