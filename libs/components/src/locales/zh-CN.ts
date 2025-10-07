@@ -205,6 +205,12 @@ const zhCN: Locale = {
 		monospace: '等宽字体',
 		undo: '撤销',
 		redo: '重做',
+		alignment: '对齐',
+		alignments: {
+			left: '左对齐',
+			center: '居中',
+			right: '右对齐',
+		},
 	},
 	button: {
 		pendingLabel: '加载中',

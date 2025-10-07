@@ -6,7 +6,7 @@ export const RichTextEditorTemplate = (
 	ctx: VividElementDefinitionContext
 ): ViewTemplate<RichTextEditor> => {
 	return html`<template :_ctx="${() => ctx}">
-		<div class="base">
+		<div class="rte">
 			<div class="editor" ${ref('_editorEl')}>
 		</div>
 	</template>`;

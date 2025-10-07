@@ -4,7 +4,8 @@
 	display: block;
 }
 
-.base {
+// Note: Cannot call this .base, as Select sets a base class on itself
+.rte {
 	display: flex;
 	flex-direction: column;
 	block-size: 100%;
