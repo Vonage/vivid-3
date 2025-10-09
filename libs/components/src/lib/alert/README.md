@@ -1,7 +1,7 @@
 ## Usage
 
-<vwc-tabs gutters="none">
-<vwc-tab label="Web component"></vwc-tab>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -23,16 +23,34 @@ registerAlert('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
 <vwc-tab-panel>
 
-```html
-<script setup lang="ts">
-	import { VAlert } from '@vonage/vivid-vue';
-</script>
+```vue preview 100px
 <template>
-	<VAlert text="Some important information for you" open />
+	<div class="example-container">
+		<VAlert text="An important information for you" :open="open" />
+		<VButton
+			appearance="outlined"
+			label="Show/Hide alert"
+			@click="open = !open"
+		/>
+	</div>
 </template>
+
+<script setup lang="ts">
+import { VAlert, VButton } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const open = ref(false);
+</script>
+
+<style lang="scss" scoped>
+.example-container {
+	height: 100px;
+	transform: translateX(0px);
+}
+</style>
 ```
 
 </vwc-tab-panel>

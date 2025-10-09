@@ -1,7 +1,7 @@
 ## Usage
 
-<vwc-tabs gutters="none">
-<vwc-tab label="Web component"></vwc-tab>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -35,16 +35,19 @@ registerBreadcrumbItem('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
 <vwc-tab-panel>
 
-```html
+```vue preview
 <script setup lang="ts">
-	import { VBreadcrumb, VBreadcrumbItem } from '@vonage/vivid-vue';
+import { VBreadcrumb, VBreadcrumbItem } from '@vonage/vivid-vue';
 </script>
 <template>
 	<VBreadcrumb>
-		<VBreadcrumbItem href="#" text="Breadcrumb"></VBreadcrumbItem>
+		<VBreadcrumbItem href="#" text="breadcrumb" />
+		<VBreadcrumbItem href="#" text="breadcrumb" />
+		<VBreadcrumbItem href="#" text="breadcrumb" />
+		<VBreadcrumbItem text="breadcrumb" />
 	</VBreadcrumb>
 </template>
 ```
