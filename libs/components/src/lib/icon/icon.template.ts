@@ -19,19 +19,19 @@ export const iconTemplate = (context: VividElementDefinitionContext) => {
 		<figure
 			class="${getClasses}"
 			?aria-hidden="${(x) => isDecorative(x)}"
-			?aria-busy="${(x) => !x.iconLoaded}"
+			?aria-busy="${(x) => !x?.iconLoaded}"
 		>
 			<slot>
 				${when(
-					(x) => !x.iconLoaded,
-					html<Icon>`<img alt="${(x) => x.name}" src="${(x) => x.iconUrl}" />`
+					(x) => !x?.iconLoaded,
+					html<Icon>`<img alt="${(x) => x?.name}" src="${(x) => x?.iconUrl}" />`
 				)}
 				${when(
-					(x) => x.iconLoaded && x._svg,
+					(x) => x?.iconLoaded && x?._svg,
 					(x) => html`${html.partial(x._svg!)}`
 				)}
 			</slot>
-			<${visuallyHiddenTag} class="label">${(x) => x.label}</${visuallyHiddenTag}>
+			<${visuallyHiddenTag} class="label">${(x) => x?.label}</${visuallyHiddenTag}>
 		</figure>
 	`;
 };

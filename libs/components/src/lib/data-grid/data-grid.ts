@@ -1,13 +1,15 @@
 import {
 	attr,
-	type HostBehavior,
-	type HostController,
+	normalizeBinding,
 	nullableNumberConverter,
 	Observable,
 	observable,
+	RepeatDirective,
 	Updates,
 	type ViewTemplate,
 } from '@microsoft/fast-element';
+import { ViewBehaviorOrchestrator } from '@microsoft/fast-element/utilities.js';
+
 import {
 	eventFocus,
 	eventFocusOut,
@@ -217,7 +219,6 @@ export class DataGrid extends VividElement {
 		}
 		if (this.$fastController.isConnected) {
 			this.toggleGeneratedHeader();
-			this.updateRows();
 		}
 	}
 
@@ -386,8 +387,7 @@ export class DataGrid extends VividElement {
 	@observable
 	rowElements!: DataGridRow[];
 
-	private rowsRepeatBehavior: HostBehavior<DataGrid> | null = null;
-	private rowsPlaceholder: Node | null = null;
+	private behaviorOrchestrator: ViewBehaviorOrchestrator | null = null;
 
 	private generatedHeader: DataGridRow | null = null;
 
@@ -412,23 +412,20 @@ export class DataGrid extends VividElement {
 			this.rowItemTemplate = this.defaultRowItemTemplate;
 		}
 
-		this.rowsPlaceholder = document.createComment('');
-		this.appendChild(this.rowsPlaceholder);
+		if (this.behaviorOrchestrator === null) {
+			this.behaviorOrchestrator = ViewBehaviorOrchestrator.create(this);
+			this.$fastController.addBehavior(this.behaviorOrchestrator);
+			this.behaviorOrchestrator.addBehaviorFactory(
+				new RepeatDirective<DataGrid>(
+					normalizeBinding((x: DataGrid) => x.rowsData),
+					normalizeBinding((x) => x.rowItemTemplate),
+					{ positioning: true }
+				),
+				this.appendChild(document.createComment(''))
+			);
+		}
 
 		this.toggleGeneratedHeader();
-
-		// Create a custom HostBehavior to manage the repeat functionality
-		this.rowsRepeatBehavior = {
-			connectedCallback: (controller: HostController<DataGrid>) => {
-				this.updateRows();
-			},
-			disconnectedCallback: (controller: HostController<DataGrid>) => {
-				// Clean up if needed
-			},
-		};
-
-		/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-		this.$fastController.addBehavior(this.rowsRepeatBehavior!);
 
 		this.addEventListener('row-focused', this.handleRowFocus);
 		this.addEventListener(eventFocus, this.handleFocus as EventListener);
@@ -471,7 +468,6 @@ export class DataGrid extends VividElement {
 			this.resizeObserver = undefined;
 		}
 
-		this.rowsPlaceholder = null;
 		this.generatedHeader = null;
 
 		Observable.getNotifier(this).unsubscribe(
@@ -771,37 +767,6 @@ export class DataGrid extends VividElement {
 
 		this.rowindexUpdateQueued = false;
 		this.columnDefinitionsStale = false;
-	};
-
-	private updateRows = (): void => {
-		if (!this.rowsPlaceholder || !this.rowsData) {
-			return;
-		}
-
-		// Clear existing rows
-		this.rowElements.forEach((row) => {
-			if (row.parentNode) {
-				row.parentNode.removeChild(row);
-			}
-		});
-		this.rowElements = [];
-
-		// Create new rows
-		this.rowsData.forEach((rowData, index) => {
-			const rowElement = document.createElement(
-				'vwc-data-grid-row'
-			) as DataGridRow;
-			rowElement.rowData = rowData;
-			rowElement.rowIndex = index;
-			rowElement.columnDefinitions = this.columnDefinitions;
-			rowElement.activeCellItemTemplate = this.rowItemTemplate;
-
-			this.rowsPlaceholder!.parentNode!.insertBefore(
-				rowElement,
-				this.rowsPlaceholder
-			);
-			this.rowElements.push(rowElement);
-		});
 	};
 
 	/**
