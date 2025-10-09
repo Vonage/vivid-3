@@ -566,13 +566,24 @@
 		"status": "underlying"
 	},
 	{
+		"title": "Color Picker",
+		"description": "Allows users to select any color using a dedicated Color Picker interface.",
+		"variations": "./libs/components/src/lib/color-picker/VARIATIONS.md",
+		"code": "./libs/components/src/lib/color-picker/README.md",
+		"accessibility": "./libs/components/src/lib/color-picker/ACCESSIBILITY.md",
+		"hideGuidelines": "true",
+		"status": "alpha",
+		"children": ["Simple Color Picker"]
+	},
+	{
 		"title": "Simple Color Picker",
 		"description": "The basic version of the Color Picker allows users to select a color from a predefined palette.",
 		"variations": "./libs/components/src/lib/simple-color-picker/VARIATIONS.md",
 		"code": "./libs/components/src/lib/simple-color-picker/README.md",
 		"accessibility": "./libs/components/src/lib/simple-color-picker/ACCESSIBILITY.md",
 		"hideGuidelines": "true",
-		"status": "alpha"
+		"status": "alpha",
+		"parent": "Color Picker"
 	},
 	{
 		"title": "Contextual Help",

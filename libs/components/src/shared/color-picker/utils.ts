@@ -1,8 +1,27 @@
 function parseHexColor(input: string): string | null {
 	if (!input) return null;
 	const hex = input.trim().replace(/^#/, '');
-	if (/^[0-9a-fA-F]{6}$/.test(hex)) return hex.toLowerCase();
+
+	if (/^[0-9a-fA-F]{3}$/.test(hex)) {
+		return hex
+			.split('')
+			.map((char) => char + char)
+			.join('')
+			.toLowerCase();
+	}
+
+	if (/^[0-9a-fA-F]{6}$/.test(hex)) {
+		return hex.toLowerCase();
+	}
+
 	return null;
+}
+
+/**
+ * Check if input value is valid hex color
+ */
+export function isValidHexColor(input: string): boolean {
+	return parseHexColor(input) !== null;
 }
 
 /**

@@ -246,8 +246,7 @@ const zhCN: Locale = {
 		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
 			ariaLabel ? `关于 ${ariaLabel} 的更多信息` : `显示更多信息`,
 	},
-	simpleColorPicker: {
-		colorPaletteLabel: '调色板',
+	baseColorPicker: {
 		colorSwatchLabel: /* istanbul ignore next */ (
 			value: string,
 			label?: string,
@@ -259,6 +258,18 @@ const zhCN: Locale = {
 			if (selected) swatchLabel += `，已选择。`;
 			return swatchLabel;
 		},
+	},
+	simpleColorPicker: {
+		colorPaletteLabel: '调色板',
+	},
+	colorPicker: {
+		popupLabel: '颜色选择器',
+		swatchesLabel: '已保存的颜色',
+		pickerButtonLabel: '打开颜色选择器',
+		saveButtonLabel: '保存当前颜色',
+		closeButtonLabel: '关闭颜色选择器',
+		copyButtonLabel: '将颜色复制到剪贴板',
+		copyErrorText: '复制失败。剪贴板访问已被阻止。请重试。',
 	},
 };
 

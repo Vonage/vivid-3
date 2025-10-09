@@ -1,0 +1,6 @@
+@use '@repo/tokens/scss/size.variables' as size;
+
+$button-size: #{size.$vvd-size-condensed};
+$color-swatches-gap: --_color-swatches-gap;
+$popup-min-inline-size: --_color-picker-popup-min-inline-size;
+$min-inline-size: --_color-picker-min-inline-size;

@@ -250,8 +250,7 @@ const deDE: Locale = {
 				? `Weitere Informationen zu ${ariaLabel} anzeigen`
 				: `Weitere Informationen anzeigen`,
 	},
-	simpleColorPicker: {
-		colorPaletteLabel: 'Farbpalette',
+	baseColorPicker: {
 		colorSwatchLabel: /* istanbul ignore next */ (
 			value: string,
 			label?: string,
@@ -263,6 +262,19 @@ const deDE: Locale = {
 			if (selected) swatchLabel += `, ausgewählt.`;
 			return swatchLabel;
 		},
+	},
+	simpleColorPicker: {
+		colorPaletteLabel: 'Farbpalette',
+	},
+	colorPicker: {
+		popupLabel: 'Farbwähler',
+		swatchesLabel: 'Gespeicherte Farben:',
+		pickerButtonLabel: 'Farbwähler öffnen',
+		saveButtonLabel: 'Aktuelle Farbe speichern',
+		closeButtonLabel: 'Farbwähler schließen',
+		copyButtonLabel: 'Farbe in die Zwischenablage kopieren',
+		copyErrorText:
+			'Kopieren fehlgeschlagen. Zugriff auf die Zwischenablage wurde blockiert. Versuchen Sie es erneut.',
 	},
 };
 
