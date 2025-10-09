@@ -14,6 +14,7 @@ apps/vue-docs/docs/components
 libs/vue-wrappers/web-types.json
 libs/vue-wrappers/stories
 libs/test-utils/**/*.generated.ts
+libs/test-utils/API.md
 generated
 
 /.nx/cache
