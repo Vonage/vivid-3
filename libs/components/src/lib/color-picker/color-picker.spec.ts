@@ -80,6 +80,19 @@ describe('vwc-color-picker', () => {
 			expect(element.value).toBe('#00ff00');
 		});
 
+		it('should set inner slot when helper-text content exists', async () => {
+			const helperText = document.createElement('span');
+			helperText.setAttribute('slot', 'helper-text');
+			helperText.textContent = 'Helper text';
+			element.appendChild(helperText);
+			await elementUpdated(element);
+
+			const innerSlot = element.shadowRoot?.querySelector(
+				'slot[name="helper-text"]'
+			) as HTMLSlotElement;
+			expect(innerSlot.getAttribute('slot')).toBe('helper-text');
+		});
+
 		it('should set inner slot when contextual-help content exists', async () => {
 			const contextualHelp = document.createElement('div');
 			contextualHelp.setAttribute('slot', 'contextual-help');
@@ -123,6 +136,34 @@ describe('vwc-color-picker', () => {
 					expect(docSpy).not.toHaveBeenCalled();
 				}
 			);
+		});
+	});
+
+	describe('picker button', () => {
+		it('should apply "contrast" class on picker button when _applyContrastClass returns true', async () => {
+			const contrastSpy = vi
+				.spyOn(element, '_applyContrastClass')
+				.mockReturnValue(true);
+
+			element.value = '#123456';
+			await elementUpdated(element);
+
+			const btn = getPickerButton()!;
+			expect(btn.classList.contains('contrast')).toBe(true);
+
+			contrastSpy.mockRestore();
+		});
+
+		it('should toggle "disabled" class with the component disabled state', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const btn = getPickerButton()!;
+			expect(btn.classList.contains('disabled')).toBe(true);
+
+			element.disabled = false;
+			await elementUpdated(element);
+			expect(btn.classList.contains('disabled')).toBe(false);
 		});
 	});
 
@@ -190,6 +231,19 @@ describe('vwc-color-picker', () => {
 			);
 			await elementUpdated(element);
 			expect(element.open).toBe(false);
+		});
+
+		it('should return false from _isInPath when el is null/undefined', async () => {
+			const res1 = (element as any)._isInPath(
+				new MouseEvent('mousedown'),
+				null
+			);
+			const res2 = (element as any)._isInPath(
+				new MouseEvent('mousedown'),
+				undefined
+			);
+			expect(res1).toBe(false);
+			expect(res2).toBe(false);
 		});
 	});
 
@@ -276,6 +330,16 @@ describe('vwc-color-picker', () => {
 			expect(element.copyIconName).toBe('copy-2-line');
 
 			alertSpy.mockRestore();
+		});
+
+		it('should clear previous icon reset timer when setting a new temporary icon', async () => {
+			const clearSpy = vi.spyOn(globalThis, 'clearTimeout');
+
+			element._setTemporaryCopyIcon('check-circle-line', 5000);
+			element._setTemporaryCopyIcon('error-line', 3000);
+
+			expect(clearSpy).toHaveBeenCalledTimes(1);
+			clearSpy.mockRestore();
 		});
 	});
 
@@ -468,6 +532,40 @@ describe('vwc-color-picker', () => {
 				expect(element.savedColors?.[0]?.value).toBe('#cccccc');
 			}
 		);
+
+		it('should map non-string labels to undefined and keep string labels in _loadSavedColors', async () => {
+			element.savedColorsKey = 'labels-key';
+			const key = element._savedColorsStorageKey;
+			localStorage.setItem(
+				key,
+				JSON.stringify([
+					{ value: '#aabbcc', label: 123 },
+					{ value: '#bbccdd', label: 'Nice' },
+				])
+			);
+
+			const list = element._loadSavedColors();
+			expect(list).toEqual([
+				{ value: '#aabbcc', label: undefined },
+				{ value: '#bbccdd', label: 'Nice' },
+			]);
+		});
+
+		it('should ignore invalid swatches or those without string value in allSwatches', async () => {
+			element.disableSavedColors = true;
+			element.swatches = [
+				undefined as any,
+				null as any,
+				{} as any,
+				{ value: 42 } as any,
+				{ value: '#zzzzzz' } as any,
+				{ value: '#112233' },
+			];
+			await elementUpdated(element);
+
+			const values = element.allSwatches.map((s) => s.value);
+			expect(values).toEqual(['#112233']);
+		});
 
 		describe('edge cases & error handling', () => {
 			it('should return 0 for non-finite value of maxSwatches', async () => {
