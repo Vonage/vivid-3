@@ -13,7 +13,7 @@ import type { ColorSwatch } from './types';
 export const BaseColorPicker = <T extends Constructor<VividElement>>(
 	Base: T
 ) => {
-	class ColorPickerElement extends Localized(
+	class BaseColorPickerElement extends Localized(
 		FormElement(FormAssociated(Base))
 	) {
 		/**
@@ -55,7 +55,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		protected _refreshCanvasColor() {
+		_refreshCanvasColor() {
 			this._canvasColor = getCSSCustomProperty('--vvd-color-canvas', this);
 		}
 
@@ -78,7 +78,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		protected _handleSwatchSelection(value: string) {
+		_handleSwatchSelection(value: string) {
 			if (this.value === value) {
 				this.value = '';
 			} else {
@@ -91,12 +91,12 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		protected _handleColorSaving(): void {}
+		_handleColorSaving(): void {}
 
 		/**
 		 * @internal
 		 */
-		protected _getFocusReturnEl(): HTMLElement | null {
+		_getFocusReturnEl(): HTMLElement | null {
 			return null;
 		}
 
@@ -126,7 +126,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		protected _handleCellKeydown(
+		_handleCellKeydown(
 			event: KeyboardEvent,
 			value: string,
 			index: number,
@@ -231,7 +231,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		protected _focusSwatchByIndex(index: number) {
+		_focusSwatchByIndex(index: number) {
 			const cells = this._getGridCells();
 			if (index < 0 || index >= cells.length) return;
 			cells[index]?.focus();
@@ -274,7 +274,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 		}
 	}
 
-	return ColorPickerElement;
+	return BaseColorPickerElement;
 };
 
-export type ColorPickerElement = MixinType<typeof BaseColorPicker>;
+export type BaseColorPickerElement = MixinType<typeof BaseColorPicker>;

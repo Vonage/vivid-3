@@ -612,6 +612,14 @@ describe('vwc-color-picker', () => {
 				expect(list).toEqual([]);
 			});
 
+			it('should load saved colors as [] when parsed JSON is not an array', async () => {
+				const key = element._savedColorsStorageKey;
+				localStorage.setItem(key, '{ "values": "list" }');
+				await elementUpdated(element);
+				const list = element._loadSavedColors();
+				expect(list).toEqual([]);
+			});
+
 			it('should load saved colors as [] when localStorage.getItem throws', async () => {
 				const spy = vi
 					.spyOn(Storage.prototype, 'getItem')

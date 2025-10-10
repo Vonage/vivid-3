@@ -75,7 +75,7 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	/**
 	 * @internal
 	 */
-	protected _updateListeners() {
+	_updateListeners() {
 		document.removeEventListener('click', this._closeOnClickOutside);
 		document.removeEventListener('keydown', this._closeOnEscape);
 		if (this.open && this.isConnected) {
@@ -87,7 +87,7 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	/**
 	 * @internal
 	 */
-	protected override _getFocusReturnEl(): HTMLElement | null {
+	override _getFocusReturnEl(): HTMLElement | null {
 		return this._anchorEl ?? null;
 	}
 

@@ -71,7 +71,7 @@ function renderTextField(textFieldTag: string, iconTag: string) {
 function renderPopupHeader(buttonTag: string, iconTag: string) {
 	return html<ColorPicker>`
 		<div class="header">
-			<span class="header-title">
+			<span class="header-title" id="color-picker-title">
 				<slot name="popup-text">${(x) => x.locale.colorPicker.popupLabel}</slot>
 			</span>
 			<${buttonTag} size="condensed" 
@@ -178,7 +178,7 @@ export const ColorPickerTemplate = (context: VividElementDefinitionContext) => {
 				<div class="dialog" 
 					role="dialog" 
 					aria-modal="true" 
-					aria-label="${(x) => x.locale.colorPicker.popupLabel}">
+					aria-labelledby="color-picker-title">
 					${renderPopupHeader(buttonTag, iconTag)}
 					${renderPopupBody(buttonTag, iconTag)}
 					${when(

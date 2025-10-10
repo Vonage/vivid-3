@@ -134,7 +134,7 @@ export class ColorPicker extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	protected override _handleColorSaving() {
+	override _handleColorSaving() {
 		this._saveCurrentColor();
 	}
 

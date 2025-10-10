@@ -582,7 +582,7 @@
 		"code": "./libs/components/src/lib/simple-color-picker/README.md",
 		"accessibility": "./libs/components/src/lib/simple-color-picker/ACCESSIBILITY.md",
 		"hideGuidelines": "true",
-		"status": "alpha",
+		"status": "underlying",
 		"parent": "Color Picker"
 	},
 	{
