@@ -107,7 +107,7 @@ function renderSlider(context: VividElementDefinitionContext) {
 }
 
 function renderTimestamp() {
-	return html` <div class="time-stamp">
+	return html<AudioPlayer>` <div class="time-stamp">
 		<span class="current-time"
 			>${(x) => formatTime((x as any).currentTime || 0)}</span
 		>
@@ -115,9 +115,7 @@ function renderTimestamp() {
 			(x) => (x as any).duration && (x as any).duration !== Infinity,
 			html`
 				<span>/</span>
-				<span class="total-time"
-					>${(x) => formatTime((x as any).duration || 0)}</span
-				>
+				<span class="total-time">${(x) => formatTime(x?.duration)}</span>
 			`
 		)}
 	</div>`;

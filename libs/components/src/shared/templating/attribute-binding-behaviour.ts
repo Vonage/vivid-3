@@ -40,11 +40,11 @@ export class AttributeBindingBehavior implements ViewBehavior, Subscriber {
 		this.updateTarget(this.bindingObserver.observe(this.source, this.context));
 	}
 
-	unbind() {
-		this.bindingObserver!.dispose();
-		this.source = null;
-		this.context = null;
-	}
+	// unbind() {
+	// 	this.bindingObserver!.dispose();
+	// 	this.source = null;
+	// 	this.context = null;
+	// }
 
 	handleChange() {
 		this.updateTarget(

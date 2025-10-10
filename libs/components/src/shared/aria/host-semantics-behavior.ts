@@ -29,19 +29,19 @@ export class HostSemanticsBehavior<T> implements ViewBehavior {
 
 	bind(controller: ViewController) {
 		const source = controller.source as HostSemanticsElement;
-		if (!this.target) {
-			this.target = source as HTMLElement;
-		}
+		// if (!this.target) {
+		// 	this.target = source as HTMLElement;
+		// }
 		if (this.target !== source) {
 			throw new Error('Target element must be the same as the source element');
 		}
 		this.bindPropertiesToTarget(source, this.boundProperties, this.target);
 	}
 
-	unbind(controller: ViewController) {
-		const source = controller.source as HostSemanticsElement;
-		this.releasePropertyBindings(source);
-	}
+	// unbind(controller: ViewController) {
+	// 	const source = controller.source as HostSemanticsElement;
+	// 	this.releasePropertyBindings(source);
+	// }
 
 	private bindingBehaviours: ViewBehavior[] = [];
 
@@ -76,10 +76,10 @@ export class HostSemanticsBehavior<T> implements ViewBehavior {
 		}
 	}
 
-	private releasePropertyBindings(source: HostSemanticsElement) {
-		for (const behavior of this.bindingBehaviours) {
-			(behavior as any).unbind();
-		}
-		this.bindingBehaviours = [];
-	}
+	// private releasePropertyBindings(source: HostSemanticsElement) {
+	// 	for (const behavior of this.bindingBehaviours) {
+	// 		(behavior as any).unbind();
+	// 	}
+	// 	this.bindingBehaviours = [];
+	// }
 }

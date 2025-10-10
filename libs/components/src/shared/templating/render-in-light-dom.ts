@@ -49,14 +49,14 @@ export class RenderInLightDomBehaviour<TSource extends VividElement>
 		this.handleChange(this.source, this.templateBindingObserver);
 	}
 
-	unbind(): void {
-		this.source = null;
+	// unbind(): void {
+	// 	this.source = null;
 
-		if (this.view) {
-			this.view.unbind();
-		}
-		// The observer will be automatically cleaned up when the behavior is destroyed
-	}
+	// 	if (this.view) {
+	// 		this.view.unbind();
+	// 	}
+	// 	// The observer will be automatically cleaned up when the behavior is destroyed
+	// }
 
 	/**
 	 * Handles change of the template itself.

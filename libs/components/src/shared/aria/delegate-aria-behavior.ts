@@ -3,7 +3,7 @@ import { Observable, oneWay } from '@microsoft/fast-element';
 import { AttributeBindingBehavior } from '../templating/attribute-binding-behaviour';
 import {
 	subscribeToAriaPropertyChanges,
-	unsubscribeFromAriaPropertyChanges,
+	// unsubscribeFromAriaPropertyChanges,
 } from './aria-change-subscription';
 import type { DelegatesAriaElement } from './delegates-aria';
 import {
@@ -36,36 +36,36 @@ export class DelegateAriaBehavior<T> implements ViewBehavior {
 		this.forwardedProperties = params.forwardedProperties;
 	}
 
-	private source: DelegatesAriaElement | null = null;
+	// private source: DelegatesAriaElement | null = null;
 
 	bind(controller: ViewController) {
 		const source = controller.source as DelegatesAriaElement;
-		this.source = source;
+		// this.source = source;
 
 		// Don't override the target - use the one passed in constructor
 		// The target should be the element that the directive is attached to
-		if (!this.target) {
-			throw new Error(
-				'Target element must be provided to DelegateAriaBehavior'
-			);
-		}
+		// if (!this.target) {
+		// 	throw new Error(
+		// 		'Target element must be provided to DelegateAriaBehavior'
+		// 	);
+		// }
 
-		this.bindPropertiesToTarget(source, this.boundProperties, this.target);
+		this.bindPropertiesToTarget(source, this.boundProperties, this.target!);
 		this.startForwardingPropertiesToTarget(
 			source,
 			this.forwardedProperties,
-			this.target
+			this.target!
 		);
 	}
 
-	unbind() {
-		if (this.source === null) {
-			return;
-		}
-		this.releasePropertyBindings(this.source);
-		this.stopForwardingPropertiesToTarget(this.source);
-		this.source = null;
-	}
+	// unbind() {
+	// 	if (this.source === null) {
+	// 		return;
+	// 	}
+	// 	this.releasePropertyBindings(this.source);
+	// 	this.stopForwardingPropertiesToTarget(this.source);
+	// 	this.source = null;
+	// }
 
 	private bindingBehaviours: AttributeBindingBehavior[] = [];
 
@@ -97,12 +97,12 @@ export class DelegateAriaBehavior<T> implements ViewBehavior {
 		}
 	}
 
-	private releasePropertyBindings(source: DelegatesAriaElement) {
-		for (const behavior of this.bindingBehaviours) {
-			(behavior as any).unbind(); // TODO: fix type
-		}
-		this.bindingBehaviours = [];
-	}
+	// private releasePropertyBindings(source: DelegatesAriaElement) {
+	// 	for (const behavior of this.bindingBehaviours) {
+	// 		(behavior as any).unbind(); // TODO: fix type
+	// 	}
+	// 	this.bindingBehaviours = [];
+	// }
 
 	private startForwardingPropertiesToTarget(
 		source: DelegatesAriaElement,
@@ -122,12 +122,12 @@ export class DelegateAriaBehavior<T> implements ViewBehavior {
 		);
 	}
 
-	private stopForwardingPropertiesToTarget(source: DelegatesAriaElement) {
-		unsubscribeFromAriaPropertyChanges(
-			source as AriaMixinElement,
-			this.onSourceAriaPropertyChanged
-		);
-	}
+	// private stopForwardingPropertiesToTarget(source: DelegatesAriaElement) {
+	// 	unsubscribeFromAriaPropertyChanges(
+	// 		source as AriaMixinElement,
+	// 		this.onSourceAriaPropertyChanged
+	// 	);
+	// }
 
 	private onSourceAriaPropertyChanged = (
 		source: AriaMixinElement,
