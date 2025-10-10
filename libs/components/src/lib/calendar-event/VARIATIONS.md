@@ -49,7 +49,7 @@ Use the `duration` attribute to indicate how long the event will last. Eg. 2 is 
 
 ## Appearance and Connotation
 
-Use the `appearance` attribute to choose between `filled` (defauilt) and `subtle` appearances.
+Use the `appearance` attribute to choose between `filled` (default) and `subtle` appearances.
 
 Use the `connotation` attribute to choose between: `information` (default), `accent`, `cta`, `success`, `alert` and `announcement` connotations.
 
