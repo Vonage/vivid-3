@@ -1,6 +1,6 @@
 ## Heading and Description
 
-Use the `heading` attribute to give the event a breif title.
+Use the `heading` attribute to give the event a brief title.
 
 Use the `description` attribute to give the event a breif description.
 
