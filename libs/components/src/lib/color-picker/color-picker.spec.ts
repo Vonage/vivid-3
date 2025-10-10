@@ -567,6 +567,15 @@ describe('vwc-color-picker', () => {
 			expect(values).toEqual(['#112233']);
 		});
 
+		it('should treat non-array swatches as empty in allSwatches', async () => {
+			element.savedColors = [{ value: '#010203' }];
+			(element as any).swatches = 'not-an-array';
+			await elementUpdated(element);
+
+			const values = element.allSwatches.map((s) => s.value);
+			expect(values).toEqual(['#010203']);
+		});
+
 		describe('edge cases & error handling', () => {
 			it('should return 0 for non-finite value of maxSwatches', async () => {
 				element.maxSwatches = Number.NaN;
