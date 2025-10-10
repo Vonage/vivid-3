@@ -1,0 +1,191 @@
+{
+  "vvd/elevation/regular/100": {
+    "$type": "shadow",
+    "$value": [
+      {
+        "blur": 0,
+        "color": "#c7c6c6eb",
+        "spread": 0,
+        "offsetX": -1,
+        "offsetY": 0
+      },
+      {
+        "blur": 0,
+        "color": "#c7c6c6eb",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": -1
+      },
+      {
+        "blur": 0,
+        "color": "#c7c6c6eb",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 1
+      },
+      {
+        "blur": 0,
+        "color": "#c7c6c6eb",
+        "spread": 0,
+        "offsetX": 1,
+        "offsetY": 0
+      }
+    ]
+  },
+  "vvd/elevation/regular/200": {
+    "$type": "shadow",
+    "$value": [
+      {
+        "blur": 4,
+        "color": "#c7c6c66b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 1
+      },
+      {
+        "blur": 2,
+        "color": "#c7c6c62b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 1
+      },
+      {
+        "blur": 1,
+        "color": "#c7c6c62b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 2
+      }
+    ]
+  },
+  "vvd/elevation/regular/300": {
+    "$type": "shadow",
+    "$value": [
+      {
+        "blur": 8,
+        "color": "#c7c6c66b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 2
+      },
+      {
+        "blur": 4,
+        "color": "#c7c6c62b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 2
+      },
+      {
+        "blur": 2,
+        "color": "#c7c6c62b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 4
+      }
+    ]
+  },
+  "vvd/elevation/regular/400": {
+    "$type": "shadow",
+    "$value": [
+      {
+        "blur": 16,
+        "color": "#c7c6c66b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 2
+      },
+      {
+        "blur": 8,
+        "color": "#c7c6c62b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 8
+      },
+      {
+        "blur": 4,
+        "color": "#c7c6c62b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 4
+      }
+    ]
+  },
+  "vvd/elevation/regular/500": {
+    "$type": "shadow",
+    "$value": [
+      {
+        "blur": 24,
+        "color": "#c7c6c66b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 4
+      },
+      {
+        "blur": 16,
+        "color": "#c7c6c62b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 12
+      },
+      {
+        "blur": 8,
+        "color": "#c7c6c62b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 6
+      }
+    ]
+  },
+  "vvd/elevation/regular/600": {
+    "$type": "shadow",
+    "$value": [
+      {
+        "blur": 32,
+        "color": "#c7c6c66b",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 6
+      },
+      {
+        "blur": 24,
+        "color": "#c7c6c630",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 16
+      },
+      {
+        "blur": 12,
+        "color": "#c7c6c630",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 8
+      }
+    ]
+  },
+  "vvd/elevation/regular/700": {
+    "$type": "shadow",
+    "$value": [
+      {
+        "blur": 48,
+        "color": "#c7c6c6e0",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 12
+      },
+      {
+        "blur": 32,
+        "color": "#c7c6c630",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 24
+      },
+      {
+        "blur": 16,
+        "color": "#c7c6c630",
+        "spread": 0,
+        "offsetX": 0,
+        "offsetY": 12
+      }
+    ]
+  }
+}
