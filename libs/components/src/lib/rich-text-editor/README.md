@@ -1,327 +1,324 @@
 ## Usage
 
+To use the Rich Text Editor, you first need to create a configuration with the features you want to include.
+
+```js
+import {
+	RTEConfig,
+	RTECore,
+	RTEFreeformStructure,
+	RTEToolbarFeature,
+	RTEBoldFeature,
+} from '@vonage/vivid';
+
+const config = new RTEConfig([
+	new RTECore(),
+	new RTEFreeformStructure(),
+	new RTEToolbarFeature(),
+	new RTEBoldFeature(),
+]);
+```
+
+See the [features documentation](#features) for a list of available features.
+
+To render an editor, create an editor instance from the config, optionally with an initial document.
+
+```js
+const instance = config.instantiateEditor([
+	{ type: 'text', text: 'Hello' },
+	{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
+]);
+```
+
+Then, pass the instance to the Rich Text Editor component.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```js
+import {
+	registerRichTextEditor,
+	RTEConfig,
+	RTECore,
+	RTEFreeformStructure,
+	RTEToolbarFeature,
+	RTEBoldFeature,
+} from '@vonage/vivid';
+
+registerRichTextEditor('your-prefix');
+
+const config = new RTEConfig([
+	new RTECore(),
+	new RTEFreeformStructure(),
+	new RTEToolbarFeature(),
+	new RTEBoldFeature(),
+]);
+
+const instance = config.instantiateEditor([
+	{ type: 'text', text: 'Hello' },
+	{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
+]);
+```
+
+```html preview
+<your-prefix-rich-text-editor></your-prefix-rich-text-editor>
+
+<script type="module">
+	import {
+		registerRichTextEditor,
+		RTEConfig,
+		RTECore,
+		RTEFreeformStructure,
+		RTEToolbarFeature,
+		RTEBoldFeature,
+	} from '@vonage/vivid';
+
+	registerRichTextEditor('your-prefix');
+
+	const config = new RTEConfig([
+		new RTECore(),
+		new RTEFreeformStructure(),
+		new RTEToolbarFeature(),
+		new RTEBoldFeature(),
+	]);
+
+	const instance = config.instantiateEditor([
+		{ type: 'text', text: 'Hello' },
+		{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
+	]);
+
+	const rteComponent = document.querySelector('your-prefix-rich-text-editor');
+	rteComponent.instance = instance;
+</script>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import {
+	RTEConfig,
+	RTECore,
+	RTEFreeformStructure,
+	RTEToolbarFeature,
+	RTEBoldFeature,
+} from '@vonage/vivid';
+
+const config = new RTEConfig([
+	new RTECore(),
+	new RTEFreeformStructure(),
+	new RTEToolbarFeature(),
+	new RTEBoldFeature(),
+]);
+
+const instance = config.instantiateEditor([
+	{ type: 'text', text: 'Hello' },
+	{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
+]);
+</script>
+<template>
+	<VRichTextEditor :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## Features
+
+The Core feature and a structure feature are required for the editor to work. All other features are optional and can be combined as needed.
+
+### RTECore
+
+Provides basic editing functionality and undo/redo functionality.
+
+Keyboard shortcuts:
+
+- **Undo**: <kbd>Ctrl</kbd> + <kbd>Z</kbd> / <kbd>Cmd</kbd> + <kbd>Z</kbd>
+- **Redo**: <kbd>Ctrl</kbd> + <kbd>Y</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>
+
+### RTEFreeformStructure
+
+Allows text input without any structure, similar to a regular text area.
+
+```html preview
+<vwc-rich-text-editor style="block-size: 150px"></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RTEConfig([
+			new RTECore(),
+			new RTEFreeformStructure(),
+			new RTEToolbarFeature(),
+		]);
+		rteComponent.instance = config.instantiateEditor();
+	});
+</script>
+```
+
+### RTETextBlockStructure
+
+Structures the document into text blocks, such as paragraphs and headings.
+
+Currently, the list of block types is predefined and cannot be changed. Headings cannot be styled with other text styles features.
+
+Keyboard shortcuts:
+
+- **Paragraph**: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>0</kbd> / <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>0</kbd>
+- **Heading Level &lt;X&gt;**: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>&lt;X&gt;</kbd> / <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>&lt;X&gt;</kbd>
+- **Hard Break**: <kbd>Shift</kbd> + <kbd>Enter</kbd>
+
+```html preview
+<vwc-rich-text-editor style="block-size: 200px"></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RTEConfig([
+			new RTECore(),
+			new RTETextBlockStructure(),
+			new RTEToolbarFeature(),
+		]);
+		rteComponent.instance = config.instantiateEditor([
+			{
+				type: 'heading',
+				attrs: { level: 1 },
+				content: [{ type: 'text', text: 'Title' }],
+			},
+			{
+				type: 'heading',
+				attrs: { level: 2 },
+				content: [{ type: 'text', text: 'Subtitle' }],
+			},
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'This is a paragraph.' }],
+			},
+		]);
+	});
+</script>
+```
+
+### RTEToolbarFeature
+
+Adds the toolbar to the editor, which provides controls for the available features.
+
+### RTEFontSizeFeature
+
+Adds the ability to change the text size.
+
+Currently, the list of font sizes is predefined and cannot be changed.
+
+Keyboard shortcuts:
+
+- **Increase Font Size**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd>
+- **Decrease Font Size**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>,</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>,</kbd>
+
+Known issues:
+
+- Cursor size does not adjust correctly when the cursor is in the middle of text.
+
+```html preview
+<vwc-rich-text-editor style="block-size: 150px"></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RTEConfig([
+			new RTECore(),
+			new RTETextBlockStructure(),
+			new RTEToolbarFeature(),
+			new RTEFontSizeFeature(),
+		]);
+		rteComponent.instance = config.instantiateEditor([
+			{
+				type: 'paragraph',
+				content: [
+					{
+						type: 'text',
+						text: 'small ',
+						marks: [{ type: 'fontSize', attrs: { size: 'small' } }],
+					},
+					{ type: 'text', text: 'normal ' },
+					{
+						type: 'text',
+						text: 'large ',
+						marks: [{ type: 'fontSize', attrs: { size: 'large' } }],
+					},
+					{
+						type: 'text',
+						text: 'extra large',
+						marks: [{ type: 'fontSize', attrs: { size: 'extra-large' } }],
+					},
+				],
+			},
+		]);
+	});
+</script>
+```
+
+### Text Style Features
+
+The `RTEBoldFeature`, `RTEItalicFeature`, `RTEUnderlineFeature`, `RTEStrikethroughFeature`, and `RTEMonospaceFeature` add the corresponding text styling options to the editor.
+
+Keyboard shortcuts:
+
+- **Bold**: <kbd>Ctrl</kbd> + <kbd>B</kbd> / <kbd>Cmd</kbd> + <kbd>B</kbd>
+- **Italic**: <kbd>Ctrl</kbd> + <kbd>I</kbd> / <kbd>Cmd</kbd> + <kbd>I</kbd>
+- **Underline**: <kbd>Ctrl</kbd> + <kbd>U</kbd> / <kbd>Cmd</kbd> + <kbd>U</kbd>
+- **Strikethrough**: <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>5</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>
+- **Monospace**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd>
+
 ```html preview
 <vwc-rich-text-editor></vwc-rich-text-editor>
-```
 
-## Members
-
-### Value
-
-The `value` property sets and gets the HTML content of the Rich Text Editor component.
-
-```html preview
-<vwc-rich-text-editor></vwc-rich-text-editor>
 <script>
-	rteComponent = document.querySelector('vwc-rich-text-editor');
-	const interval = setInterval(() => {
-		if (!rteComponent.value) return;
-		console.log(rteComponent.value);
-		clearInterval(interval);
-		rteComponent.value = '12345567';
-	}, 10);
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RTEConfig([
+			new RTECore(),
+			new RTETextBlockStructure(),
+			new RTEToolbarFeature(),
+			new RTEBoldFeature(),
+			new RTEItalicFeature(),
+			new RTEUnderlineFeature(),
+			new RTEStrikethroughFeature(),
+			new RTEMonospaceFeature(),
+		]);
+		rteComponent.instance = config.instantiateEditor([
+			{
+				type: 'paragraph',
+				content: [
+					{ type: 'text', text: 'bold ', marks: [{ type: 'bold' }] },
+					{ type: 'text', text: 'italic ', marks: [{ type: 'italic' }] },
+					{ type: 'text', text: 'underline ', marks: [{ type: 'underline' }] },
+					{
+						type: 'text',
+						text: 'strikethrough ',
+						marks: [{ type: 'strikethrough' }],
+					},
+					{ type: 'text', text: 'monospace ', marks: [{ type: 'monospace' }] },
+				],
+			},
+		]);
+	});
 </script>
 ```
 
-### Selection Start
+## API Reference
 
-Use the `selectionStart` attribute to get or set the starting point of the marker. To set the marker without selection, set `selectionStart` and `selectionEnd` to the same value.
-
-```html preview
-<p>Focus using the keyboard into the component to see the selection</p>
-<vwc-rich-text-editor></vwc-rich-text-editor>
-<script>
-	rteComponent = document.querySelector('vwc-rich-text-editor');
-	const interval = setInterval(() => {
-		if (!rteComponent.value) return;
-		console.log(rteComponent.value);
-		clearInterval(interval);
-		rteComponent.value = '12345567';
-
-		rteComponent.selectionStart = 4;
-		rteComponent.selectionEnd = 7;
-	}, 10);
-</script>
-```
-
-### Selection End
-
-Use the `selectionEnd` attribute to get or set the end point of the marker. To set the marker without selection, set `selectionStart` and `selectionEnd` to the same value.
-
-```html preview
-<p>Focus using the keyboard into the component to see the selection</p>
-<vwc-rich-text-editor></vwc-rich-text-editor>
-<script>
-	rteComponent = document.querySelector('vwc-rich-text-editor');
-	const interval = setInterval(() => {
-		if (!rteComponent.value) return;
-		console.log(rteComponent.value);
-		clearInterval(interval);
-		rteComponent.value = '12345567';
-
-		rteComponent.selectionStart = 4;
-		rteComponent.selectionEnd = 7;
-	}, 10);
-</script>
-```
-
-### Set Text Block
-
-Use the `setTextBlock` method to set the text block to one of three types: `title`, `subtitle` and `body`.
-
-```html preview
-<vwc-layout gutters="small" column-basis="block" row-spacing="small">
-	<div id="controls">
-		<vwc-button
-			appearance="filled"
-			label="Title"
-			onclick="setTextBlock('title')"
-		></vwc-button>
-		<vwc-button
-			appearance="filled"
-			label="Subtitle"
-			onclick="setTextBlock('subtitle')"
-		></vwc-button>
-		<vwc-button
-			appearance="filled"
-			label="Body"
-			onclick="setTextBlock('body')"
-		></vwc-button>
-	</div>
-	<vwc-rich-text-editor></vwc-rich-text-editor>
-</vwc-layout>
-<script>
-	function setTextBlock(blockType) {
-		rteComponent.setTextBlock(blockType);
-	}
-	async function waitForEditorReady() {
-		await new Promise((res) => {
-			const interval = setInterval(() => {
-				if (!rteComponent.value) return;
-				clearInterval(interval);
-				res();
-			});
-		});
-	}
-
-	async function start() {
-		await waitForEditorReady();
-		rteComponent.value = `
-            <p>Title</p>
-            <p>Sub Title</p>
-            <p>Body</p>
-        `;
-		moveMarkerToPosition(2);
-		rteComponent.setTextBlock('title');
-		moveMarkerToPosition(11);
-		rteComponent.setTextBlock('subtitle');
-		moveMarkerToPosition(20);
-		rteComponent.setTextBlock('body');
-	}
-
-	async function moveMarkerToPosition(moveTo) {
-		rteComponent.selectionStart = moveTo;
-		await new Promise((res) => requestAnimationFrame(res));
-	}
-
-	rteComponent = document.querySelector('vwc-rich-text-editor');
-	start();
-</script>
-```
-
-### Placeholder
-
-Use the `placeholder` property to set and get the placeholder text in case the editor is empty.
-
-```html preview
-<vwc-rich-text-editor
-	placeholder="Custom placeholder text"
-></vwc-rich-text-editor>
-```
-
-## Slots
-
-### Menu Bar
-
-Set the `menu-bar` slot to show `menubar` component. See the `menubar` documentation for more details. This slot will show only `menubar` components.
-
-```html preview 250px
-<vwc-layout gutters="small" column-basis="block" row-spacing="small">
-	<vwc-rich-text-editor>
-		<vwc-menubar
-			slot="menu-bar"
-			menu-items="textBlock textSize divider textDecoration divider"
-		></vwc-menubar>
-	</vwc-rich-text-editor>
-</vwc-layout>
-<script>
-	function setTextBlock(blockType) {
-		rteComponent.setTextBlock(blockType);
-	}
-	async function waitForEditorReady() {
-		await new Promise((res) => {
-			const interval = setInterval(() => {
-				if (!rteComponent.value) return;
-				clearInterval(interval);
-				res();
-			});
-		});
-	}
-
-	async function start() {
-		await waitForEditorReady();
-		rteComponent.value = `
-            <p>Title</p>
-            <p>Sub Title</p>
-            <p>Body</p>
-        `;
-		moveMarkerToPosition(2);
-		rteComponent.setTextBlock('title');
-		moveMarkerToPosition(11);
-		rteComponent.setTextBlock('subtitle');
-		moveMarkerToPosition(20);
-		rteComponent.setTextBlock('body');
-	}
-
-	async function moveMarkerToPosition(moveTo) {
-		rteComponent.selectionStart = moveTo;
-		await new Promise((res) => requestAnimationFrame(res));
-	}
-
-	rteComponent = document.querySelector('vwc-rich-text-editor');
-	start();
-</script>
-```
-
-### Attachments
-
-Set a component in the `attachments` slot to show them inside the editor area.
-
-```html preview 250px
-<style>
-	vwc-rich-text-editor {
-		block-size: 200px;
-
-		> div {
-			display: flex;
-			flex-direction: column;
-		}
-	}
-
-	#scroll-to-attachments {
-		position: fixed;
-		bottom: 20px;
-		right: 20px;
-		z-index: 1000;
-	}
-
-	.hidden {
-		display: none;
-	}
-</style>
-<vwc-layout gutters="small" column-basis="block" row-spacing="small">
-	<vwc-rich-text-editor>
-		<div slot="attachments">
-			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
-			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
-			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
-			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
-			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
-			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
-			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
-			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
-			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
-			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
-			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
-		</div>
-	</vwc-rich-text-editor>
-	<vwc-button
-		id="scroll-to-attachments"
-		hidden
-		onclick="scrollToAttachments()"
-		label="Scroll to Attachments"
-	></vwc-button>
-</vwc-layout>
-
-<script>
-	function scrollToAttachments() {
-		rteComponent.scrollToAttachments(32);
-	}
-
-	async function waitForEditorReady() {
-		await new Promise((res) => {
-			const interval = setInterval(() => {
-				if (!rteComponent.value) return;
-				clearInterval(interval);
-				res();
-			});
-		});
-	}
-
-	async function start() {
-		await waitForEditorReady();
-		console.log('adding value');
-		rteComponent.value = `
-            <p>Technically sound</p><p>everlasting peace</p><p>no matter what you do</p><p>I'll stay around with you</p><p>and noone ever dared</p><p>to hook my piece of ware</p><p>no matter how it goes</p><p>the matter usually blows</p>
-        `;
-	}
-
-	async function moveMarkerToPosition(moveTo) {
-		rteComponent.selectionStart = moveTo;
-		await new Promise((res) => requestAnimationFrame(res));
-	}
-
-	rteComponent = document.querySelector('vwc-rich-text-editor');
-
-	observer = new IntersectionObserver(
-		(entries) => {
-			const entry = entries[0];
-			document
-				.querySelector('#scroll-to-attachments')
-				.classList.toggle('hidden', entry.isIntersecting);
-		},
-		{
-			root: null,
-			threshold: 0.1,
-		}
-	);
-	slottedElement = rteComponent.querySelector('[slot="attachments"]');
-	observer.observe(slottedElement);
-	start();
-</script>
-```
-
-## Events
+### Properties
 
 <div class="table-wrapper">
 
-| Name                  | Type                     | Bubbles | Composed | Description                                                                                    |
-| --------------------- | ------------------------ | ------- | -------- | ---------------------------------------------------------------------------------------------- |
-| **input**             | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'input' event when the content was edited by the user                           |
-| **change**            | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the element is blurred and the content was edited           |
-| **selection-changed** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'selection-changed' event when the selection in the editor changes              |
-| **file-drop**         | `CustomEvent<FileList>`  | Yes     | Yes      | Fires when files are dropped onto the editor. The event’s `detail` contains the dropped files. |
+| Name            | Type          | Description                                                                             |
+| --------------- | ------------- | --------------------------------------------------------------------------------------- |
+| **instance**    | `RTEInstance` | The editor instance created from the RTEConfig. Without it, the editor will not render. |
+| **placeholder** | `string`      | A placeholder text to display when the editor is empty.                                 |
 
 </div>
-
-## Methods
-
-<div class="table-wrapper">
-
-| Name                       | Returns | Description                                                                                                                                                                                                                                                                      |
-| -------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **setTextBlock**           |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection. Logs a warning if the block type is invalid.                                                                                                                           |
-| **setSelectionDecoration** |         | Accepts a decoration type (`bold`, `italic`, `underline`, `strikethrough`, `monospace`) and applies it to the current selection in the editor. Logs a warning if the decoration type is invalid.                                                                                 |
-| **setSelectionTextSize**   |         | Accepts a text size (`extra-large`, `large`, `normal`, or `small`) and applies it to the current selection in the editor.                                                                                                                                                        |
-| **scrollToAttachments**    |         | Accepts `pixelsAddition` which defaults to 0 and scrolls to the top of the attachments area plus the `pixelsAddition` value.                                                                                                                                                     |
-| **addInlineImage**         |         | Accepts an object with `file: File`, optional `position?: number`, and optional `alt?: string`. Inserts an inline image at the given position or at the current marker position if not provided. If `alt` is not provided, it defaults to `inline image from file ${file.name}`. |
-
-</div>
-
-## CSS Variables
-
-## Menu Bar
-
-Use the `<vwc-menubar>` component in the `menu-bar` slot for adding style controls.  
-Supported menu bar items: `textBlock`, `textDecoration`, `textSize`, `divider`.  
-Menu bar options and tooltips are localized.

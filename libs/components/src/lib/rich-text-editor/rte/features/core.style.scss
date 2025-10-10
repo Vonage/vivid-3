@@ -1,0 +1,15 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/scrollbar' as scrollbar;
+
+.ProseMirror {
+	flex: 1;
+	padding: 8px 16px;
+	background-color: var(#{constants.$vvd-color-canvas});
+	color: var(#{constants.$vvd-color-canvas-text});
+	font: var(#{constants.$vvd-typography-base});
+	line-height: 20px; // Required for placeholder
+	outline: none;
+	overflow-y: auto;
+
+	@include scrollbar.scrollbar;
+}
