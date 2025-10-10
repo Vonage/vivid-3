@@ -2,7 +2,7 @@
 
 Use the `heading` attribute to give the event a brief title.
 
-Use the `description` attribute to give the event a breif description.
+Use the `description` attribute to give the event a brief description.
 
 ```html preview
 <vwc-calendar class="calendar">
