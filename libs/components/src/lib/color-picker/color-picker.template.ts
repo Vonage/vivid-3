@@ -115,7 +115,7 @@ function renderPopupBody(buttonTag: string, iconTag: string) {
 function renderPopupFooter(buttonTag: string, iconTag: string) {
 	return html<ColorPicker>`
 		<div class="footer">
-			<span class="footer-title"
+			<span class="footer-title" id="color-picker-footer-title"
 				><slot name="swatches-text"
 					>${(x) => x.locale.colorPicker.swatchesLabel}</slot
 				></span
@@ -127,7 +127,7 @@ function renderPopupFooter(buttonTag: string, iconTag: string) {
 					Math.ceil(x.allSwatches.length / x._getRowLength())}"
 				aria-colcount="${(x) => x._getRowLength()}"
 				style="--swatches-per-row: ${(x) => x._getRowLength()};"
-				aria-label="${(x) => x.locale.colorPicker.swatchesLabel}"
+				aria-labelledby="color-picker-footer-title"
 			>
 				${repeat(
 					(x) => x.allSwatches,
