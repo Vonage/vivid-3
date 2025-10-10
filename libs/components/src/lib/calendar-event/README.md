@@ -1,212 +1,78 @@
-# Calendar Event
+## Usage
 
-## Members
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
-### Heading
+```js
+import { registerCalendar, registerCalendarEvent } from '@vonage/vivid';
 
-Set the heading of the event.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-calendar>
-	<vwc-calendar-event
-		heading="Summer pool party"
-		slot="day-0"
-	></vwc-calendar-event>
-</vwc-calendar>
+registerCalendar('your-prefix');
+registerCalendarEvent('your-prefix');
 ```
 
-### Description
-
-Sets the description of the event.
-
-- Type: `string`
-- Default: `undefined`
-
 ```html preview
-<vwc-calendar>
-	<vwc-calendar-event
-		description="A party in which guests swim in a swimming pool"
+<script type="module">
+	import { registerCalendar, registerCalendarEvent } from '@vonage/vivid';
+	registerCalendar('your-prefix');
+	registerCalendarEvent('your-prefix');
+</script>
+
+<your-prefix-calendar class="calendar">
+	<your-prefix-calendar-event
+		heading="Enchantment under the sea dance"
 		slot="day-0"
-	></vwc-calendar-event>
-</vwc-calendar>
-```
-
-### Start
-
-Sets the time of day in which the event starts.
-
-- Type: `string`
-- Default: `undefined`
-
-### Duration
-
-Set the duration of the event in hours.
-
-- Type: `string`
-- Default: `undefined`
-
-### Appearance
-
-Set the `appearance` attribute to change the calendar event's appearance.
-
-- Type: `'filled'` | `'subtle'`
-- Default: `'filled'`
-
-```html preview
-<vwc-calendar>
-	<vwc-calendar-event
-		appearance="filled"
-		heading="filled"
-		slot="day-0"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		appearance="subtle"
-		heading="subtle"
-		slot="day-1"
-	></vwc-calendar-event>
-</vwc-calendar>
-```
-
-### Connotation
-
-Set the `connotation` attribute to change the calendar event's connotation.
-It accepts a subset of predefined values.
-
-- Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'information'` | `'announcement'`
-- Default: `'information'`
-
-#### Filled calendar event with connotation
-
-```html preview
-<vwc-calendar>
-	<vwc-calendar-event
-		connotation="accent"
-		appearance="filled"
-		heading="accent"
-		slot="day-0"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="cta"
-		appearance="filled"
-		heading="cta"
-		slot="day-1"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="success"
-		appearance="filled"
-		heading="success"
-		slot="day-2"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="alert"
-		appearance="filled"
-		heading="alert"
-		slot="day-3"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="warning"
-		appearance="filled"
-		heading="warning"
-		slot="day-4"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="information"
-		appearance="filled"
-		heading="information"
-		slot="day-5"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="announcement"
-		appearance="filled"
-		heading="announcement"
-		slot="day-6"
-	></vwc-calendar-event>
-</vwc-calendar>
-```
-
-#### Subtle calendar event with connotation
-
-```html preview
-<vwc-calendar>
-	<vwc-calendar-event
-		connotation="accent"
-		appearance="subtle"
-		heading="accent"
-		slot="day-0"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="cta"
-		appearance="subtle"
-		heading="cta"
-		slot="day-1"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="success"
-		appearance="subtle"
-		heading="success"
-		slot="day-2"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="alert"
-		appearance="subtle"
-		heading="alert"
-		slot="day-3"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="warning"
-		appearance="subtle"
-		heading="warning"
-		slot="day-4"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="information"
-		appearance="subtle"
-		heading="information"
-		slot="day-5"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="announcement"
-		appearance="subtle"
-		heading="announcement"
-		slot="day-6"
-	></vwc-calendar-event>
-</vwc-calendar>
-```
-
-### Overlap Count
-
-Sets an event display stacking context precedence and indentation where multiple events overlap.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-calendar>
-	<vwc-calendar-event
-		description="Another overlapping event"
-		connotation="success"
-		slot="day-0"
-		duration="3"
 		start="9"
-		overlap-count="3"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		description="An overlapping event"
-		connotation="announcement"
-		slot="day-0"
-		duration="3"
-		start="8"
-		overlap-count="2"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		description="A party in which guests swim in a swimming pool"
-		slot="day-0"
-		duration="7"
-		start="6"
-		overlap-count="1"
-	></vwc-calendar-event>
-</vwc-calendar>
+		duration="2"
+	></your-prefix-calendar-event>
+</your-prefix-calendar>
+
+<style>
+	.calendar {
+		max-inline-size: 100%;
+		max-block-size: 250px;
+	}
+</style>
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VCalendar, VCalendarEvent } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VCalendar>
+		<template #day-0>
+			<VCalendarEvent
+				heading="Enchantment under the sea dance"
+				start="9"
+				duration="2"
+			/>
+		</template>
+	</VCalendar>
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## API Reference
+
+### Properties
+
+<div class="table-wrapper">
+
+| Name              | Type                                                                         | Description                                                          |
+| ----------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| **appearance**    | `filled` (default), `subtle`                                                 | Sets the event's appearance                                          |
+| **connotation**   | `information` (default), `accent`, `cta`, `success`, `alert`, `announcement` | Sets the first day of the week to display                            |
+| **description**   | `string`                                                                     | Sets the event description                                           |
+| **duration**      | `string`                                                                     | Sets the event duration ("2" = 2 hours)                              |
+| **heading**       | `string`                                                                     | Sets the event heading                                               |
+| **overlap-count** | `string` (number)                                                            | Sets the stacking context of the event when it overlaps with another |
+| **start-time**    | `string`                                                                     | Sets the event start time (14 = 2pm)                                 |
+
+</div>
