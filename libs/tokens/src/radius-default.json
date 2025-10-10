@@ -1,0 +1,275 @@
+{
+  "vvd/radius/rectangle/100": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/200": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/300": {
+    "$type": "dimension",
+    "$value": {
+      "value": 2,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/400": {
+    "$type": "dimension",
+    "$value": {
+      "value": 4,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/500": {
+    "$type": "dimension",
+    "$value": {
+      "value": 5,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/600": {
+    "$type": "dimension",
+    "$value": {
+      "value": 6,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/700": {
+    "$type": "dimension",
+    "$value": {
+      "value": 8,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/800": {
+    "$type": "dimension",
+    "$value": {
+      "value": 10,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/900": {
+    "$type": "dimension",
+    "$value": {
+      "value": 12,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/1000": {
+    "$type": "dimension",
+    "$value": {
+      "value": 14,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/1100": {
+    "$type": "dimension",
+    "$value": {
+      "value": 16,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/1200": {
+    "$type": "dimension",
+    "$value": {
+      "value": 18,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/rectangle/1300": {
+    "$type": "dimension",
+    "$value": {
+      "value": 20,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/100": {
+    "$type": "dimension",
+    "$value": {
+      "value": 12,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/200": {
+    "$type": "dimension",
+    "$value": {
+      "value": 14,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/300": {
+    "$type": "dimension",
+    "$value": {
+      "value": 16,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/400": {
+    "$type": "dimension",
+    "$value": {
+      "value": 18,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/500": {
+    "$type": "dimension",
+    "$value": {
+      "value": 20,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/600": {
+    "$type": "dimension",
+    "$value": {
+      "value": 22,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/700": {
+    "$type": "dimension",
+    "$value": {
+      "value": 24,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/800": {
+    "$type": "dimension",
+    "$value": {
+      "value": 26,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/900": {
+    "$type": "dimension",
+    "$value": {
+      "value": 28,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/1000": {
+    "$type": "dimension",
+    "$value": {
+      "value": 30,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/1100": {
+    "$type": "dimension",
+    "$value": {
+      "value": 32,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/1200": {
+    "$type": "dimension",
+    "$value": {
+      "value": 34,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/pill/1300": {
+    "$type": "dimension",
+    "$value": {
+      "value": 36,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/100": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/200": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/300": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/400": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/500": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/600": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/700": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/800": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/900": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/1000": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/1100": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/1200": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  },
+  "vvd/radius/circle/1300": {
+    "$type": "dimension",
+    "$value": {
+      "value": 100,
+      "unit": "px"
+    }
+  }
+}

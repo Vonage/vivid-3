@@ -1,0 +1,1042 @@
+{
+  "vvd/typography/heading/100": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 4,
+        "unit": "px"
+      },
+      "lineHeight": 5.199999809265137,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/200": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 6,
+        "unit": "px"
+      },
+      "lineHeight": 7.799999713897705,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/300": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 8,
+        "unit": "px"
+      },
+      "lineHeight": 10.399999618530273,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/400": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 10,
+        "unit": "px"
+      },
+      "lineHeight": 12.999999523162842,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/500": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 12,
+        "unit": "px"
+      },
+      "lineHeight": 15.59999942779541,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/600": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 14,
+        "unit": "px"
+      },
+      "lineHeight": 18.19999933242798,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/700": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 16,
+        "unit": "px"
+      },
+      "lineHeight": 20.799999237060547,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/800": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 20,
+        "unit": "px"
+      },
+      "lineHeight": 25.999999046325684,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/900": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 24,
+        "unit": "px"
+      },
+      "lineHeight": 31.19999885559082,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/1000": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 28,
+        "unit": "px"
+      },
+      "lineHeight": 36.39999866485596,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/1100": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 32,
+        "unit": "px"
+      },
+      "lineHeight": 41.599998474121094,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/1200": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 36,
+        "unit": "px"
+      },
+      "lineHeight": 46.79999828338623,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/heading/1300": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 40,
+        "unit": "px"
+      },
+      "lineHeight": 51.99999809265137,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/body/100": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 2,
+        "unit": "px"
+      },
+      "lineHeight": 3,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/200": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 4,
+        "unit": "px"
+      },
+      "lineHeight": 6,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/300": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 6,
+        "unit": "px"
+      },
+      "lineHeight": 9,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/400": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 8,
+        "unit": "px"
+      },
+      "lineHeight": 12,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/500": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 10,
+        "unit": "px"
+      },
+      "lineHeight": 15,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/600": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 12,
+        "unit": "px"
+      },
+      "lineHeight": 18,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/700": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 14,
+        "unit": "px"
+      },
+      "lineHeight": 21,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/800": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 16,
+        "unit": "px"
+      },
+      "lineHeight": 24,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/900": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 18,
+        "unit": "px"
+      },
+      "lineHeight": 27,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/1000": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 20,
+        "unit": "px"
+      },
+      "lineHeight": 30,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/1100": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 22,
+        "unit": "px"
+      },
+      "lineHeight": 33,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/1200": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 24,
+        "unit": "px"
+      },
+      "lineHeight": 36,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/body/1300": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 26,
+        "unit": "px"
+      },
+      "lineHeight": 39,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/caption/100": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 2,
+        "unit": "px"
+      },
+      "lineHeight": 3,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/200": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 4,
+        "unit": "px"
+      },
+      "lineHeight": 6,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/300": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 6,
+        "unit": "px"
+      },
+      "lineHeight": 9,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/400": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 8,
+        "unit": "px"
+      },
+      "lineHeight": 12,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/500": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 10,
+        "unit": "px"
+      },
+      "lineHeight": 15,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/600": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 12,
+        "unit": "px"
+      },
+      "lineHeight": 18,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/700": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 14,
+        "unit": "px"
+      },
+      "lineHeight": 21,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/800": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 16,
+        "unit": "px"
+      },
+      "lineHeight": 24,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/900": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 18,
+        "unit": "px"
+      },
+      "lineHeight": 27,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/1000": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 20,
+        "unit": "px"
+      },
+      "lineHeight": 30,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/1100": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 22,
+        "unit": "px"
+      },
+      "lineHeight": 33,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/1200": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 24,
+        "unit": "px"
+      },
+      "lineHeight": 36,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/caption/1300": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 26,
+        "unit": "px"
+      },
+      "lineHeight": 39,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 500
+    }
+  },
+  "vvd/typography/input/100": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 2,
+        "unit": "px"
+      },
+      "lineHeight": 3,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/200": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 4,
+        "unit": "px"
+      },
+      "lineHeight": 6,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/300": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 6,
+        "unit": "px"
+      },
+      "lineHeight": 9,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/400": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 8,
+        "unit": "px"
+      },
+      "lineHeight": 12,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/500": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 10,
+        "unit": "px"
+      },
+      "lineHeight": 15,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/600": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 12,
+        "unit": "px"
+      },
+      "lineHeight": 18,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/700": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 14,
+        "unit": "px"
+      },
+      "lineHeight": 21,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/800": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 16,
+        "unit": "px"
+      },
+      "lineHeight": 24,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/900": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 18,
+        "unit": "px"
+      },
+      "lineHeight": 27,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/1000": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 20,
+        "unit": "px"
+      },
+      "lineHeight": 30,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/1100": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 22,
+        "unit": "px"
+      },
+      "lineHeight": 33,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/1200": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 24,
+        "unit": "px"
+      },
+      "lineHeight": 36,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/input/1300": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 26,
+        "unit": "px"
+      },
+      "lineHeight": 39,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/100": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 2,
+        "unit": "px"
+      },
+      "lineHeight": 3,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/200": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 4,
+        "unit": "px"
+      },
+      "lineHeight": 6,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/300": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 6,
+        "unit": "px"
+      },
+      "lineHeight": 9,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/400": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 8,
+        "unit": "px"
+      },
+      "lineHeight": 12,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/500": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 10,
+        "unit": "px"
+      },
+      "lineHeight": 15,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/600": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 12,
+        "unit": "px"
+      },
+      "lineHeight": 18,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/700": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 14,
+        "unit": "px"
+      },
+      "lineHeight": 21,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/800": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 16,
+        "unit": "px"
+      },
+      "lineHeight": 24,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/900": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 18,
+        "unit": "px"
+      },
+      "lineHeight": 27,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/1000": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 20,
+        "unit": "px"
+      },
+      "lineHeight": 30,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/1100": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 22,
+        "unit": "px"
+      },
+      "lineHeight": 33,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/1200": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 24,
+        "unit": "px"
+      },
+      "lineHeight": 36,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  },
+  "vvd/typography/code/1300": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Spezia",
+      "fontSize": {
+        "value": 26,
+        "unit": "px"
+      },
+      "lineHeight": 39,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "px"
+      },
+      "fontWeight": 400
+    }
+  }
+}
