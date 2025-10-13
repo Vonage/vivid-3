@@ -240,7 +240,7 @@ const zhCN: Locale = {
 			`转至第 ${index} 页`,
 	},
 	tag: {
-		remove: /* istanbul ignore next */ (label: string) => `移除 ${label}`,
+		remove: '按 DELETE 或 BACKSPACE 键删除。',
 	},
 	toggletip: {
 		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>

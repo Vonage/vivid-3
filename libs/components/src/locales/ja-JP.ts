@@ -240,7 +240,7 @@ const jaJP: Locale = {
 			`${index}ページへ`,
 	},
 	tag: {
-		remove: /* istanbul ignore next */ (label: string) => `削除する ${label}`,
+		remove: '削除するには、DELETE キーまたは BACKSPACE キーを押します。',
 	},
 	toggletip: {
 		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
