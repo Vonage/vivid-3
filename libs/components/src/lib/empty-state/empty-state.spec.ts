@@ -35,9 +35,12 @@ describe('vwc-empty-state', () => {
 			const headlineText = 'headline';
 			element.setAttribute('headline', headlineText);
 			await elementUpdated(element);
+			const headlineEle = element.shadowRoot?.querySelector('header');
+			expect(headlineEle?.id).toBe('empty-state-headline');
 			expect(
-				element.shadowRoot?.querySelector('header')?.textContent?.trim()
-			).toEqual(headlineText);
+				element.querySelector('.base')?.getAttribute('aria-labelledby')
+			).toBe('empty-state-headline');
+			expect(headlineEle?.textContent?.trim()).toEqual(headlineText);
 		});
 	});
 

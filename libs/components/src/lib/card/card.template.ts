@@ -20,7 +20,9 @@ function renderHeaderIcon(iconTag: string) {
 }
 
 function Headline() {
-	return html` <div class="header-headline">${(x) => x.headline}</div> `;
+	return html`
+		<div class="header-headline" id="card-headline">${(x) => x.headline}</div>
+	`;
 }
 
 function Subtitle() {
@@ -93,7 +95,10 @@ function renderCardContent(context: VividElementDefinitionContext) {
 		${(x) =>
 			renderCardBaseElement(
 				x,
-				html`<div class="wrapper">
+				html`<div
+					class="wrapper"
+					aria-labelledby="${(x) => (x.headline ? 'card-headline' : null)}"
+				>
 					<div class="vwc-card-media">
 						<slot name="media"></slot>
 					</div>

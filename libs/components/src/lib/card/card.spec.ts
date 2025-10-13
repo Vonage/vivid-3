@@ -42,6 +42,8 @@ describe('vwc-card', () => {
 
 			const headerTitle = element.shadowRoot?.querySelector('.header-headline');
 			expect(headerTitle?.textContent?.trim()).toEqual(headline);
+			expect(headerTitle?.id).toBe('card-headline');
+			expect(element.getAttribute('aria-labelledby')).toBe('card-headline');
 		});
 
 		it('should set subtitle property to .header-subtitle', async () => {
