@@ -240,7 +240,7 @@ const enUS: Locale = {
 			`Go to page ${index}`,
 	},
 	tag: {
-		remove: 'Drücken Sie zum Entfernen die ENTF- oder RÜCKTASTE.',
+		remove: 'Press DELETE or BACKSPACE to remove.',
 	},
 	toggletip: {
 		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
