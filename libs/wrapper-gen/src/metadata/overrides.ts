@@ -62,7 +62,17 @@ export const componentOverrides: ComponentSpecs[] = [
 			});
 		},
 	],
-
+	[
+		'simple-color-picker',
+		(component) => {
+			component.props.push({
+				name: 'swatches',
+				description: 'List of color swatches, has to be an array of objects.',
+				type: 'Array<{ value: string; label?: string }>',
+				propertyName: 'swatches',
+			});
+		},
+	],
 	[
 		'number-field',
 		(component) => {
