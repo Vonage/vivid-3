@@ -1,93 +1,54 @@
-# Calendar
+## Usage
 
-```html preview
-<vwc-calendar></vwc-calendar>
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```js
+import { registerCalendar } from '@vonage/vivid';
+
+registerCalendar('your-prefix');
 ```
 
-## Members
-
-### Datetime
-
-Use the `datetime` attribute to set date within a week of choice.
-
-- Type: any [`Date()` constructor acceptable parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date#parameters)
-- Default: `undefined` (will use the current date)
-
 ```html preview
-<vwc-calendar datetime="2022-01-01"></vwc-calendar>
-```
+<script type="module">
+	import { registerCalendar } from '@vonage/vivid';
+	registerCalendar('your-prefix');
+</script>
 
-### Start Day
-
-Use the `start-day` attribute (or `startDay` property) to set the first day of the week (e.g. work week starts on Monday).
-
-- Type: `'sunday'` | `'monday'`
-- Default: `undefined` (programmatically defaults to `'monday'` if not specified)
-
-```html preview
-<vwc-calendar start-day="sunday"></vwc-calendar>
-```
-
-### Locales
-
-Use `locales` to set a locale string or array of locale strings that contain one or more language or locale tags. If you include more than one locale string, list them in descending order of priority so that the first entry is the preferred locale. If you omit this parameter, the default locale of the JavaScript runtime is used. This parameter must conform to BCP 47 standards; see the [Intl.Collator object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator) for details. e.g. `en-US` | `en-US, he-IL`
-
-- Type: `string` | `String[]`
-- Default: `undefined` (will use the current locale)
-
-```html preview
-<vwc-calendar
-	locales="he-IL"
-	start-day="sunday"
-	style="direction: rtl"
-></vwc-calendar>
-```
-
-### Hour 12
-
-`hour12` sets the convention of displayed time in which the day runs from midnight to midnight and is divided into 24 or 12 hours.
-Unless provided, choice will be set according to local time preference (e.g. US = 12, IL = 24).
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-calendar hour12></vwc-calendar>
-```
-
-### Sticky Mode
-
-Set the `sticky-mode` attribute to make the days (`header`) or the time (`column`) or `both` sticky.  
-If no width or height is set on the calendar there will be no scroll, and no sticky elements.
-
-- Type: `'none'` | `'header'` | `'column'` | `'all'`
-
-```html preview
-<div class="wrapper">
-	<vwc-calendar sticky-mode="all"></vwc-calendar>
-</div>
+<your-prefix-calendar class="calendar"></your-prefix-calendar>
 
 <style>
-	.wrapper {
-		display: block;
-		max-inline-size: 550px;
-		max-block-size: 550px;
-		background-color: var(--vvd-color-canvas);
-		padding: 32px;
+	.calendar {
+		max-inline-size: 100%;
+		max-block-size: 250px;
 	}
 </style>
 ```
 
-<vwc-note connotation="warning" headline="Setting Sticky-Mode to all">
-	<vwc-icon slot="icon" name="warning-line" label="Warning"></vwc-icon>
-	<p>By default, sticky-mode is set to <code>none</code>. In the next breaking change it will be set to <code>all</code></p>
-</vwc-note>
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VCalendar } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VCalendar />
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## CSS Variables
 
 ### Calendar Column / Header Background Color
 
-When using Sticky-Mode for header or column or both, set the css-variable `--calendar-column-background-color` with background color if its other than `--vvd-color-canvas`
+When using `sticky-mode` (`header`, `column`, or `both`), set the CSS variable `--calendar-column-background-color` to define the background color of sticky elements.
+
+If not specified, it defaults to `--vvd-color-canvas`.
 
 ```html preview
 <div class="wrapper">
@@ -100,20 +61,99 @@ When using Sticky-Mode for header or column or both, set the css-variable `--cal
 		--calendar-column-background-color: var(--vvd-color-neutral-100);
 
 		display: block;
-		max-inline-size: 550px;
+		max-inline-size: 100%;
 		max-block-size: 550px;
 		background-color: var(--vvd-color-neutral-100);
-		padding: 32px;
+		padding: 16px;
 	}
 </style>
 ```
 
-## Accessibility
+## Slots
 
-<vwc-note connotation="success" headline="No issues found">
-  <vwc-icon name="check-solid" connotation="success" label="Passed Accessibility Testing" slot="icon" size="0"></vwc-icon>
-  <p>This component was tested and signed off by <a href="https://www.applause.com/">Applause</a> (external accessibility specialists).</p>
-</vwc-note>
+### Day[0-6] Slots
+
+Each day in the Calendar has a slot assigned to it. Use the Calendar Event component in these slots to arrange events around the weekly view.
+
+```html preview
+<vwc-calendar class="calendar">
+	<vwc-calendar-event
+		slot="day-0"
+		start="10"
+		duration="1"
+		heading="Backlog refinement"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		slot="day-0"
+		start="12"
+		duration="1"
+		heading="Gym Workout"
+		connotation="cta"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		slot="day-1"
+		start="10"
+		duration="0.5"
+		heading="Daily stand up"
+		appearance="subtle"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		slot="day-2"
+		start="10"
+		duration="0.5"
+		heading="Daily stand up"
+		appearance="subtle"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		slot="day-2"
+		start="12"
+		duration="1"
+		heading="Swim"
+		connotation="cta"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		slot="day-3"
+		start="10"
+		duration="0.5"
+		heading="Daily stand up"
+		appearance="subtle"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		slot="day-4"
+		start="10"
+		duration="0.5"
+		heading="Daily stand up"
+		appearance="subtle"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		slot="day-4"
+		start="14"
+		duration="0.75"
+		heading="Sprint demo"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		slot="day-4"
+		start="12"
+		duration="1"
+		heading="Gym Workout"
+		connotation="cta"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		slot="day-5"
+		start="9"
+		duration="1"
+		heading="Park run"
+		connotation="cta"
+	></vwc-calendar-event>
+</vwc-calendar>
+
+<style>
+	.calendar {
+		max-inline-size: 100%;
+		max-block-size: 550px;
+	}
+</style>
+```
 
 ## API Reference
 
@@ -121,9 +161,13 @@ When using Sticky-Mode for header or column or both, set the css-variable `--cal
 
 <div class="table-wrapper">
 
-| Name            | Type                                                  | Description                     |
-| --------------- | ----------------------------------------------------- | ------------------------------- |
-| **sticky-mode** | `'none'` , `'header'` , `'column'` , `'all'`(default) | Set the `sticky-mode` attribute |
+| Name            | Type                                                  | Description                               |
+| --------------- | ----------------------------------------------------- | ----------------------------------------- |
+| **datetime**    | `Date()` constructor acceptable parameter             | Sets the week to display                  |
+| **hour12**      | `boolean`                                             | Displays a time in 12 hour format         |
+| **locales**     | `string`, `String[]`                                  | Sets the locale to be displayed           |
+| **start**       | `sunday`, `monday`                                    | Sets the first day of the week to display |
+| **sticky-mode** | `'none'` , `'header'` , `'column'` , `'all'`(default) | Set the `sticky-mode` attribute           |
 
 </div>
 
@@ -131,9 +175,15 @@ When using Sticky-Mode for header or column or both, set the css-variable `--cal
 
 <div class="table-wrapper">
 
-| Name    | Description                                                                                                   |
-| ------- | ------------------------------------------------------------------------------------------------------------- |
-| **Day** | Day slot is created for each day of the week.<br>Assign elements to a day column using `'day-0'`...`'day-6'`. |
+| Name      | Description                                          |
+| --------- | ---------------------------------------------------- |
+| **day-0** | Adds a Calendar Event in the first day of the view   |
+| **day-1** | Adds a Calendar Event in the second day of the view  |
+| **day-2** | Adds a Calendar Event in the third day of the view   |
+| **day-3** | Adds a Calendar Event in the fourth day of the view  |
+| **day-4** | Adds a Calendar Event in the fifth day of the view   |
+| **day-5** | Adds a Calendar Event in the sixth day of the view   |
+| **day-6** | Adds a Calendar Event in the seventh day of the view |
 
 </div>
 
