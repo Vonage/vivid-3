@@ -54,6 +54,22 @@ Use the `--selectable-box-spacing` variable to set the amount of spacing applied
 </style>
 ```
 
+### Selected Background Color
+
+Use the `--selectable-box-selected-bg` variable to override the default background color applied to the selected state of the Selectable Box.
+
+```html preview
+<vwc-selectable-box checked class="box">Selected background is now white</vwc-selectable-box>
+
+<style>
+	.box {
+		--selectable-box-selected-bg: #ffffff;
+
+		max-inline-size: 450px;
+	}
+</style>
+```
+
 ## API Reference
 
 ### Properties
