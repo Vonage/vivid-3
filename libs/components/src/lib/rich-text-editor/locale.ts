@@ -14,4 +14,15 @@ export interface RichTextEditorLocale {
 		center: string;
 		right: string;
 	};
+	hyperlink: string;
+	linkText: string;
+	linkUrl: string;
+	linkTextPlaceholder: string;
+	linkUrlPlaceholder: string;
+	cancel: string;
+	apply: string;
+	close: string;
+	edit: string;
+	delete: string;
+	clickHere: string;
 }
