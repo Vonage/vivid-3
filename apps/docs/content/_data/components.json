@@ -59,14 +59,20 @@
 	},
 	{
 		"title": "Calendar",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/calendar/README.md",
+		"description": "The Calendar component displays events in a visual date grid in a week views, allowing users to view and interact with the displayed events.",
+		"variations": "./libs/components/src/lib/calendar/VARIATIONS.md",
+		"code": "./libs/components/src/lib/calendar/README.md",
+		"accessibility": "./libs/components/src/lib/calendar/ACCESSIBILITY.md",
+		"hideGuidelines": "true",
 		"children": ["Calendar Event"]
 	},
 	{
 		"title": "Calendar Event",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/calendar-event/README.md",
+		"description": "The Calendar Event component displays scheduled items within the weekly view of the Calendar component. It supports clickable, interactive events with customizable times and colors.",
+		"variations": "./libs/components/src/lib/calendar-event/VARIATIONS.md",
+		"code": "./libs/components/src/lib/calendar-event/README.md",
+		"accessibility": "./libs/components/src/lib/calendar-event/ACCESSIBILITY.md",
+		"hideGuidelines": "true",
 		"parent": "Calendar"
 	},
 	{

@@ -7503,6 +7503,12 @@
 					"propertyName": "required"
 				},
 				{
+					"name": "swatches",
+					"description": "List of color swatches, has to be an array of objects.",
+					"type": "Array<{ value: string; label?: string }>",
+					"propertyName": "swatches"
+				},
+				{
 					"name": "swatchesPerRow",
 					"description": "Number of swatches per row for grid layout",
 					"type": "number",

@@ -35,6 +35,7 @@ const toVuePropType = (type: TypeRef) => {
 		case 'string[]':
 		case 'Element[]':
 		case 'any[]':
+		case 'Array':
 			return 'Array';
 		case 'Date':
 		case 'HTMLElement':
