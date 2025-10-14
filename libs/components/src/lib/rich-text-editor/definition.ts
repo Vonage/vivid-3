@@ -7,11 +7,13 @@ import {
 	menuDefinition,
 	menuItemDefinition,
 	selectDefinition,
+	textFieldDefinition,
 	tooltipDefinition,
 } from '../components';
 import styles from './rich-text-editor.scss?inline';
 import { RichTextEditor } from './rich-text-editor';
 import { RichTextEditorTemplate as template } from './rich-text-editor.template';
+import { popoverDefinition } from './popover';
 
 export const richTextEditorDefinition = defineVividComponent(
 	'rich-text-editor',
@@ -25,6 +27,8 @@ export const richTextEditorDefinition = defineVividComponent(
 		tooltipDefinition,
 		menuDefinition,
 		menuItemDefinition,
+		textFieldDefinition,
+		popoverDefinition,
 	],
 	{
 		styles,

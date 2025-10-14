@@ -1,0 +1,56 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
+
+.link-popover {
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	inline-size: 450px;
+}
+
+.link-popover-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.link-popover-label {
+	font: var(constants.$vvd-typography-base-condensed);
+	color: var(constants.$vvd-color-neutral-600);
+}
+
+.link-popover-content {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.link, .editor a[href] {
+	color: var(constants.$vvd-color-cta-600);
+
+	&:visited {
+		color: var(constants.$vvd-color-cta-600);
+	}
+
+	&:hover {
+		color: var(constants.$vvd-color-cta-500);
+	}
+
+	&:active {
+		color: var(constants.$vvd-color-cta-400);
+	}
+}
+
+.link-action-bar {
+	display: flex;
+	gap: 8px;
+	justify-content: end;
+}
+
+.link-toolbar-menu {
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	inline-size: 400px - 16px * 2;
+}

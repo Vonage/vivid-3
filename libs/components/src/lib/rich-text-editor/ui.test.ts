@@ -19,6 +19,7 @@ let RTEUnderlineFeature: typeof rte.RTEUnderlineFeature;
 let RTEStrikethroughFeature: typeof rte.RTEStrikethroughFeature;
 let RTEMonospaceFeature: typeof rte.RTEMonospaceFeature;
 let RTEAlignmentFeature: typeof rte.RTEAlignmentFeature;
+let RTELinkFeature: typeof rte.RTELinkFeature;
 
 const components = ['rich-text-editor'];
 
@@ -60,6 +61,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					new RTEStrikethroughFeature(),
 					new RTEMonospaceFeature(),
 					new RTEAlignmentFeature(),
+					new RTELinkFeature(),
 				]);
 				rteElement.instance = config.instantiateEditor([
 					{
@@ -75,6 +77,43 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					{
 						type: 'paragraph',
 						content: [{ type: 'text', text: 'paragraph' }],
+					},
+					{
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'bold', marks: [{ type: 'bold' }] },
+							{ type: 'text', text: ' ' },
+							{ type: 'text', text: 'italic', marks: [{ type: 'italic' }] },
+							{ type: 'text', text: ' ' },
+							{
+								type: 'text',
+								text: 'underline',
+								marks: [{ type: 'underline' }],
+							},
+							{ type: 'text', text: ' ' },
+							{
+								type: 'text',
+								text: 'strikethrough',
+								marks: [{ type: 'strikethrough' }],
+							},
+							{ type: 'text', text: ' ' },
+							{
+								type: 'text',
+								text: 'monospace',
+								marks: [{ type: 'monospace' }],
+							},
+							{ type: 'text', text: ' ' },
+							{
+								type: 'text',
+								text: 'link',
+								marks: [
+									{
+										type: 'link',
+										attrs: { href: 'https://vonage.com' },
+									},
+								],
+							},
+						],
 					},
 				]);
 			});
