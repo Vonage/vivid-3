@@ -314,13 +314,18 @@ Keyboard shortcuts:
 
 Adds the ability to change the alignment of text blocks.
 
-Since there are no text blocks in the freeform structure, it is recommended to use this feature together with the `RTETextBlockStructure`.
-
 Keyboard shortcuts:
 
 - **Align Left**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
 - **Align Center**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd>
 - **Align Right**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>
+
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+
+Since there are no text blocks in the freeform structure, it is recommended to use this feature together with the `RTETextBlockStructure`.
+
+</vwc-note>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 200px"></vwc-rich-text-editor>
@@ -340,7 +345,8 @@ Keyboard shortcuts:
 				attrs: { level: 1, textAlign: 'center' },
 				content: [
 					{
-						type: 'text', text: "Centered Title"
+						type: 'text',
+						text: 'Centered Title',
 					},
 				],
 			},
@@ -349,7 +355,8 @@ Keyboard shortcuts:
 				attrs: { level: 2, textAlign: 'left' },
 				content: [
 					{
-						type: 'text', text: "Left-aligned Subtitle"
+						type: 'text',
+						text: 'Left-aligned Subtitle',
 					},
 				],
 			},
@@ -358,7 +365,8 @@ Keyboard shortcuts:
 				attrs: { textAlign: 'right' },
 				content: [
 					{
-						type: 'text', text: "This paragraph is right-aligned."
+						type: 'text',
+						text: 'This paragraph is right-aligned.',
 					},
 				],
 			},
