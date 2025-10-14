@@ -2159,6 +2159,12 @@
 					"propertyName": "successText"
 				},
 				{
+					"name": "swatches",
+					"description": "List of color swatches, has to be an array of objects.",
+					"type": "Array<{ value: string; label?: string }>",
+					"propertyName": "swatches"
+				},
+				{
 					"name": "value",
 					"description": "The current value of the element.",
 					"type": "string",
@@ -7689,6 +7695,12 @@
 					"type": "boolean",
 					"attributeName": "required",
 					"propertyName": "required"
+				},
+				{
+					"name": "swatches",
+					"description": "List of color swatches, has to be an array of objects.",
+					"type": "Array<{ value: string; label?: string }>",
+					"propertyName": "swatches"
 				},
 				{
 					"name": "swatchesPerRow",
