@@ -8,10 +8,12 @@ import { RTEConfig } from './config';
 import { hostBridgePlugin, type HostState } from './features/core';
 import { RTEFeature } from './feature';
 import type { RTEDocument } from './document';
+import type { TextblockAttrs } from './utils/textblock-attrs';
 
 export class RTEInstance {
 	state: EditorState;
 	readonly schema: Schema;
+	readonly textblockAttrs: TextblockAttrs;
 	readonly features: RTEFeature[];
 	readonly styles: ElementStyles;
 
@@ -25,6 +27,7 @@ export class RTEInstance {
 
 	constructor(readonly config: RTEConfig, initialDoc?: RTEDocument) {
 		this.schema = config.schema;
+		this.textblockAttrs = config.textblockAttrs;
 		this.features = config.features;
 
 		let doc = undefined;

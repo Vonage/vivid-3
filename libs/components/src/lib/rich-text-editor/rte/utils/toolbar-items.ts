@@ -42,11 +42,23 @@ export class ToolbarCtx {
 }
 
 export interface ToolbarItemSpec {
-	section: 'history' | 'font' | 'text-style';
+	section: 'history' | 'font' | 'text-style' | 'textblock';
 	order: number;
 
 	render(ctx: ToolbarCtx): HTMLElement | DocumentFragment;
 }
+
+export const createDiv = (
+	ctx: ToolbarCtx,
+	props: { className: string; children: Array<HTMLElement> }
+) => {
+	const div = document.createElement('div');
+	div.className = props.className;
+	for (const child of props.children) {
+		div.appendChild(child);
+	}
+	return div;
+};
 
 export const createTooltip = (
 	ctx: ToolbarCtx,
@@ -62,7 +74,10 @@ export const createButton = (
 	ctx: ToolbarCtx,
 	props: {
 		label: Prop<string>;
-		icon: string;
+		icon: Prop<string>;
+		noTooltip?: boolean;
+		autofocus?: Prop<boolean>;
+		slot?: string;
 		active?: Prop<boolean>;
 		disabled?: Prop<boolean>;
 		onClick?: () => void;
@@ -83,12 +98,25 @@ export const createButton = (
 			ctx.view.focus();
 		});
 	}
-	button.icon = props.icon;
+	ctx.bindProp(props.icon, (icon) => (button.icon = icon));
+	if (props.autofocus) {
+		ctx.bindProp(
+			props.autofocus,
+			(autofocus) => (button.autofocus = autofocus)
+		);
+	}
 	ctx.bindProp(props.label, (label) => (button.ariaLabel = label));
-	const tooltip = createTooltip(ctx, { label: props.label });
-	button.slot = 'anchor';
-	tooltip.appendChild(button);
-	return tooltip;
+	let element: HTMLElement = button;
+	if (!props.noTooltip) {
+		const tooltip = createTooltip(ctx, { label: props.label });
+		button.slot = 'anchor';
+		tooltip.appendChild(button);
+		element = tooltip;
+	}
+	if (props.slot) {
+		element.slot = props.slot;
+	}
+	return element;
 };
 
 export const createMenu = (

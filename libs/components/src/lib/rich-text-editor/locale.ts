@@ -8,4 +8,10 @@ export interface RichTextEditorLocale {
 	monospace: string;
 	undo: string;
 	redo: string;
+	alignment: string;
+	alignments: {
+		left: string;
+		center: string;
+		right: string;
+	};
 }
