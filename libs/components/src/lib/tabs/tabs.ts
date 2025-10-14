@@ -1,4 +1,4 @@
-import { attr, DOM, observable } from '@microsoft/fast-element';
+import { attr, observable, Updates } from '@microsoft/fast-element';
 import {
 	keyArrowDown,
 	keyArrowUp,
@@ -92,7 +92,7 @@ export class Tabs extends VividElement {
 
 		// Once the DOM has updated, move the active indicator into new place
 		if (this.$fastController.isConnected) {
-			DOM.queueUpdate(() => this.#moveActiveIndicator(false));
+			Updates.enqueue(() => this.#moveActiveIndicator(false));
 		}
 	}
 

@@ -1,4 +1,9 @@
-import { html, ViewTemplate, when } from '@microsoft/fast-element';
+import {
+	html,
+	InlineTemplateDirective,
+	ViewTemplate,
+	when,
+} from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import { delegateAria } from '../../shared/aria/delegates-aria';
@@ -18,7 +23,7 @@ const getClasses = ({ appearance, connotation, shape, size }: Avatar) =>
  * @deprecated To be fully replaced with icon slot
  * Avatar icon
  */
-function renderIcon(iconTag: string) {
+function renderIcon(iconTag: InlineTemplateDirective) {
 	return html<Avatar>`
 		<${iconTag} name="${(x) => (x.icon ? `${x.icon}` : 'user-line')}"></${iconTag}>
 	`;

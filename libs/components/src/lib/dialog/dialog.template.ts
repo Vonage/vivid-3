@@ -1,4 +1,9 @@
-import { html, slotted, when } from '@microsoft/fast-element';
+import {
+	html,
+	InlineTemplateDirective,
+	slotted,
+	when,
+} from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
@@ -27,7 +32,7 @@ const getClasses = ({
 		['scrollable-body', Boolean(scrollableBody)]
 	);
 
-function icon(iconTag: string) {
+function icon(iconTag: InlineTemplateDirective) {
 	return html<Dialog>`
 		<${iconTag} class="icon" name="${(x) => x.icon}"></${iconTag}>
 	`;
@@ -47,7 +52,7 @@ function renderHeaderText() {
 	`;
 }
 
-function renderDismissButton(buttonTag: string) {
+function renderDismissButton(buttonTag: InlineTemplateDirective) {
 	return html<Dialog>`
 	<${buttonTag}
 		aria-label="${(x) =>

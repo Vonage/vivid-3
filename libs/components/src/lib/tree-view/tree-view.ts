@@ -1,4 +1,4 @@
-import { attr, DOM, observable } from '@microsoft/fast-element';
+import { attr, observable, Updates } from '@microsoft/fast-element';
 import {
 	isHTMLElement,
 	keyArrowDown,
@@ -132,7 +132,7 @@ export class TreeView extends HostSemantics(VividElement) {
 	override connectedCallback(): void {
 		super.connectedCallback();
 		this.setAttribute('tabindex', '0');
-		DOM.queueUpdate(() => {
+		Updates.enqueue(() => {
 			this.setItems();
 		});
 	}

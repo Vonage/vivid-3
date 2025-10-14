@@ -1,9 +1,9 @@
 import {
 	attr,
-	DOM,
 	nullableNumberConverter,
-	Observable,
 	observable,
+	Observable,
+	Updates,
 } from '@microsoft/fast-element';
 import { Appearance, Shape } from '../enums';
 import {
@@ -944,7 +944,7 @@ export class SearchableSelect extends WithContextualHelp(
 			case 'Enter':
 			case ' ': {
 				this._onTagRemoved(this.values[tagIndex]);
-				DOM.processUpdates();
+				Updates.process();
 				this.#moveTagFocusTo(this.#nextTagIndexForRemoved(tagIndex));
 				break;
 			}

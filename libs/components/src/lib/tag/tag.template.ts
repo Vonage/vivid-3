@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html, InlineTemplateDirective, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
@@ -29,7 +29,7 @@ const getClasses = ({
 		[`shape-${shape}`, Boolean(shape)]
 	);
 
-function renderDismissButton(iconTag: string) {
+function renderDismissButton(iconTag: InlineTemplateDirective) {
 	return html<Tag>`
 	<button
 		class="dismiss-button"

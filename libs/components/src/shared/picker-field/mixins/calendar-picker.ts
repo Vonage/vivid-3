@@ -1,4 +1,4 @@
-import { DOM, observable, volatile } from '@microsoft/fast-element';
+import { observable, Updates, volatile } from '@microsoft/fast-element';
 import { PickerField } from '../picker-field';
 import {
 	addDays,
@@ -145,7 +145,7 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 			super._onPickerButtonClick();
 
 			if (this._popupOpen) {
-				DOM.processUpdates();
+				Updates.process();
 
 				const tabbableDate = this._tabbableDate;
 				if (tabbableDate)
@@ -406,7 +406,7 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 			if (newDate && this._isDateInValidRange(newDate)) {
 				if (this._adjustSelectedMonthToEnsureVisibilityOf(newDate)) {
 					// Update DOM immediately so that we can focus the new date
-					DOM.processUpdates();
+					Updates.process();
 				}
 
 				// Move focus to new date
@@ -520,7 +520,7 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 				if (newMonth.year !== this._monthPickerYear) {
 					this._monthPickerYear = newMonth.year;
 					// Update DOM immediately so that we can focus the new month
-					DOM.processUpdates();
+					Updates.process();
 				}
 
 				// Move focus to new month

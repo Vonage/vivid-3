@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
 import {
 	attr,
-	type BindingObserver,
-	defaultExecutionContext,
-	Observable,
+	ExecutionContext,
+	type ExpressionNotifier,
 	observable,
+	Observable,
 	volatile,
 } from '@microsoft/fast-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
@@ -223,11 +223,11 @@ export class FilePicker extends WithContextualHelp(
 			this._customValidationError =
 				this.#customValidationChangeObserver.observe(
 					this,
-					defaultExecutionContext
+					ExecutionContext.default
 				);
 		},
 	};
-	#customValidationChangeObserver!: BindingObserver;
+	#customValidationChangeObserver!: ExpressionNotifier;
 	#startObservingCustomValidation() {
 		this.#customValidationChangeObserver = Observable.binding(
 			() => this.#getCustomValidationError(),
@@ -237,7 +237,7 @@ export class FilePicker extends WithContextualHelp(
 		this.#customValidationChangeHandler.handleChange();
 	}
 	#stopObservingCustomValidation() {
-		this.#customValidationChangeObserver.disconnect();
+		this.#customValidationChangeObserver.dispose();
 	}
 
 	override connectedCallback() {

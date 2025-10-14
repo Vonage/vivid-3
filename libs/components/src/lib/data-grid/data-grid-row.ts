@@ -1,10 +1,11 @@
 import {
 	attr,
+	normalizeBinding,
 	observable,
-	type RepeatBehavior,
 	RepeatDirective,
 	type ViewTemplate,
 } from '@microsoft/fast-element';
+import { ViewBehaviorOrchestrator } from '@microsoft/fast-element/utilities.js';
 import {
 	eventFocusOut,
 	eventKeyDown,
@@ -151,8 +152,7 @@ export class DataGridRow extends HostSemantics(VividElement) {
 	@observable
 	cellElements!: HTMLElement[];
 
-	private cellsRepeatBehavior: RepeatBehavior | null = null;
-	private cellsPlaceholder: Node | null = null;
+	private behaviorOrchestrator: ViewBehaviorOrchestrator | null = null;
 
 	/**
 	 * @internal
@@ -172,19 +172,19 @@ export class DataGridRow extends HostSemantics(VividElement) {
 
 		// note that row elements can be reused with a different data object
 		// as the parent grid's repeat behavior reacts to changes in the data set.
-		if (this.cellsRepeatBehavior === null) {
-			this.cellsPlaceholder = document.createComment('');
-			this.appendChild(this.cellsPlaceholder);
-
+		if (this.behaviorOrchestrator === null) {
 			this.updateItemTemplate();
 
-			this.cellsRepeatBehavior = new RepeatDirective(
-				(x) => x.columnDefinitions,
-				(x) => x.activeCellItemTemplate,
-				{ positioning: true }
-			).createBehavior(this.cellsPlaceholder);
-			/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-			this.$fastController.addBehaviors([this.cellsRepeatBehavior!]);
+			this.behaviorOrchestrator = ViewBehaviorOrchestrator.create(this);
+			this.$fastController.addBehavior(this.behaviorOrchestrator);
+			this.behaviorOrchestrator.addBehaviorFactory(
+				new RepeatDirective<DataGridRow>(
+					normalizeBinding((x) => x.columnDefinitions),
+					normalizeBinding((x) => x.activeCellItemTemplate!),
+					{ positioning: true }
+				),
+				this.appendChild(document.createComment(''))
+			);
 		}
 
 		this.addEventListener('cell-focused', this.handleCellFocus);

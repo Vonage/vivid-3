@@ -62,7 +62,8 @@ function handleColumnSort<T extends DataGrid>(
 
 export const DataGridTemplate = (context: VividElementDefinitionContext) => {
 	const rowItemTemplate = createRowItemTemplate(context);
-	const rowTag = context.tagFor(DataGridRow);
+	const rowTag = context.tagFor(DataGridRow, true);
+
 	return html<DataGrid>`
 		<template
 			aria-multiselectable="${getMultiSelectAriaState}"

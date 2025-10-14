@@ -108,8 +108,7 @@ export const affixIconTemplateFactory: affixIconTemplateFactoryReturnType = (
 
 		const iconTemplate = html`<${iconTag} :name="${() => icon}" :label="${() =>
 			announcement?.label || undefined}"></${iconTag}>`;
-
-		const wrapperTag = slottedState ? 'span' : 'slot';
+		const wrapperTag = html.partial(slottedState ? 'span' : 'slot');
 
 		return html`<${wrapperTag}
 					class="${() => (slottedState ? 'icon' : undefined)}"

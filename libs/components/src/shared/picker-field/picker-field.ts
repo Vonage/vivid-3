@@ -1,9 +1,9 @@
 import {
 	attr,
-	type BindingObserver,
-	defaultExecutionContext,
-	observable,
+	ExecutionContext,
+	type ExpressionNotifier,
 	Observable,
+	observable,
 } from '@microsoft/fast-element';
 import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
@@ -142,16 +142,19 @@ export abstract class PickerField extends WithContextualHelp(
 			this._updatePresentationValue();
 		},
 	};
-	#localeChangeObserver!: BindingObserver;
+
+	#localeChangeObserver!: ExpressionNotifier;
+
 	#startObservingLocaleChanges() {
 		this.#localeChangeObserver = Observable.binding(
 			() => this.locale,
 			this.#localeChangeHandler
 		);
-		this.#localeChangeObserver.observe(this, defaultExecutionContext);
+		this.#localeChangeObserver.observe(this, ExecutionContext.default);
 	}
+
 	#stopObservingLocaleChanges() {
-		this.#localeChangeObserver.disconnect();
+		this.#localeChangeObserver.dispose();
 	}
 
 	// --- Popup ---

@@ -6,6 +6,8 @@ import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { RadioGroup } from './radio-group';
 
 export const RadioGroupTemplate = (context: VividElementDefinitionContext) => {
+	const radioTagName = context.tagFor(Radio, true);
+
 	return html<RadioGroup>`
 		<template
 			@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
@@ -34,7 +36,7 @@ export const RadioGroupTemplate = (context: VividElementDefinitionContext) => {
 					<slot
 						${slotted({
 							property: 'slottedRadioButtons',
-							filter: elements(context.tagFor(Radio)),
+							filter: elements(radioTagName),
 						})}
 						@slotchange="${(x) => x.handleSlotChange()}"
 					></slot>

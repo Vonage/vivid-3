@@ -1,4 +1,4 @@
-import { customElement, DOM, html } from '@microsoft/fast-element';
+import { customElement, DOM, html, Updates } from '@microsoft/fast-element';
 import { fixture } from '../test-utilities/fixture';
 import { VividElement } from '../vivid-element/vivid-element';
 import { CheckableFormAssociated, FormAssociated } from './form-associated';
@@ -543,7 +543,7 @@ export const checkableFormAssociatedCommonTests = () => {
 		);
 
 		await connect();
-		await DOM.nextUpdate();
+		await Updates.next();
 
 		assertChecked(element)(false);
 	});
@@ -553,18 +553,18 @@ export const checkableFormAssociatedCommonTests = () => {
 		);
 
 		await connect();
-		await DOM.nextUpdate();
+		await Updates.next();
 		const test = assertChecked(element);
 
 		test(false);
 
 		element.checked = true;
 
-		await DOM.nextUpdate();
+		await Updates.next();
 		test(true);
 
 		element.checked = false;
-		await DOM.nextUpdate();
+		await Updates.next();
 		test(false);
 	});
 	it('should align the `checked` property and `currentChecked` attribute with `current-checked` attribute changes', async () => {
@@ -573,18 +573,18 @@ export const checkableFormAssociatedCommonTests = () => {
 		);
 
 		await connect();
-		await DOM.nextUpdate();
+		await Updates.next();
 		const test = assertChecked(element);
 
 		test(false);
 
 		element.setAttribute('current-checked', 'true');
 
-		await DOM.nextUpdate();
+		await Updates.next();
 		test(true);
 
 		element.setAttribute('current-checked', 'false');
-		await DOM.nextUpdate();
+		await Updates.next();
 		test(false);
 	});
 
@@ -594,7 +594,7 @@ export const checkableFormAssociatedCommonTests = () => {
 				'checkable-form-associated'
 			);
 			await connect();
-			await DOM.nextUpdate();
+			await Updates.next();
 
 			element.checked = true;
 			expect(element.currentChecked).toBe(true);
@@ -610,7 +610,7 @@ export const checkableFormAssociatedCommonTests = () => {
 				'checkable-form-associated'
 			);
 			await connect();
-			await DOM.nextUpdate();
+			await Updates.next();
 
 			element.defaultChecked = true;
 			expect(element.checkedAttribute).toBe(true);
