@@ -33,8 +33,9 @@ function renderDismissButton(iconTag: string) {
 	return html<Tag>`
 	<button
 		class="dismiss-button"
-		aria-label="${(x) => x.locale.tag.remove(x.label as string)}"
 		?disabled="${(x) => x.disabled}"
+    aria-hidden="true"
+    tabindex="-1"
 		@click="${(x) => x.remove()}">
 		<${iconTag} name="close-line"></${iconTag}>
 	</button>`;
@@ -50,8 +51,12 @@ export const tagTemplate = (context: VividElementDefinitionContext) => {
 			role: 'option',
 			ariaDisabled: (x) => x.disabled,
 			ariaSelected: (x) => x.selected && x.selectable,
+			ariaLabel: (x) =>
+				x.removable && !x.disabled
+					? `${x.label ?? x.ariaLabel}. ${x.locale.tag.remove}`
+					: x.label ?? x.ariaLabel,
 		})}
-		tabindex="${(x) => (x.disabled || x.removable ? null : 0)}"
+		tabindex="${(x) => (x.disabled ? null : 0)}"
 		@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
 		@click="${(x) => x.handleClick()}"
 	>

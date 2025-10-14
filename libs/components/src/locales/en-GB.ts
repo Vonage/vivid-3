@@ -240,7 +240,7 @@ const enGB: Locale = {
 			`Go to page ${index}`,
 	},
 	tag: {
-		remove: /* istanbul ignore next */ (label: string) => `Remove ${label}`,
+		remove: 'Press DELETE or BACKSPACE to remove.',
 	},
 	toggletip: {
 		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
