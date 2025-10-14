@@ -37,9 +37,9 @@ describe('vwc-empty-state', () => {
 			await elementUpdated(element);
 			const headlineEle = element.shadowRoot?.querySelector('header');
 			expect(headlineEle?.id).toBe('empty-state-headline');
-			expect(
-				element.querySelector('.base')?.getAttribute('aria-labelledby')
-			).toBe('empty-state-headline');
+			expect(getBaseElement(element)?.getAttribute('aria-labelledby')).toBe(
+				'empty-state-headline'
+			);
 			expect(headlineEle?.textContent?.trim()).toEqual(headlineText);
 		});
 	});

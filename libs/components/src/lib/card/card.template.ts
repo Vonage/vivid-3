@@ -73,6 +73,7 @@ function renderButtonElement(content: ViewTemplate<Card>) {
 		class="${getClasses}"
 		type="button"
 		${delegateAria()}
+		aria-labelledby="${(x) => (x.headline ? 'card-headline' : null)}"
 	>
 		${content}
 	</button>`;
@@ -84,7 +85,12 @@ function renderCardBaseElement(x: Card, content: ViewTemplate<Card>) {
 	} else if (x.clickableCard) {
 		return renderButtonElement(content);
 	} else {
-		return html`<div class="${getClasses}">${content}</div>`;
+		return html`<div
+			class="${getClasses}"
+			aria-labelledby="${(x) => (x.headline ? 'card-headline' : null)}"
+		>
+			${content}
+		</div>`;
 	}
 }
 
@@ -95,10 +101,7 @@ function renderCardContent(context: VividElementDefinitionContext) {
 		${(x) =>
 			renderCardBaseElement(
 				x,
-				html`<div
-					class="wrapper"
-					aria-labelledby="${(x) => (x.headline ? 'card-headline' : null)}"
-				>
+				html`<div class="wrapper">
 					<div class="vwc-card-media">
 						<slot name="media"></slot>
 					</div>
