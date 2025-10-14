@@ -59,8 +59,8 @@ export class RTECore extends RTEFeature {
 			for (let i = 0; i < match.edgeCount; i++) {
 				const { type } = match.edge(i);
 				if (type.isTextblock && !type.hasRequiredAttrs()) return type;
+				/* v8 ignore next 2 */
 			}
-			/* v8 ignore next 1 */
 			throw new Error('No default textblock found.');
 		}
 
