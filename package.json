@@ -7,7 +7,7 @@
 	"scripts": {
 		"start": "turbo run dev --filter=@repo/docs --filter=@vonage/vivid --filter=@repo/styles",
 		"build": "turbo run build",
-		"test": "turbo run test:coverage --force && istanbul-merge ./libs/*/coverage/coverage-final.json ./apps/*/coverage/coverage-final.json --out /dev/stdout | istanbul report --include /dev/stdin --dir coverage html lcov",
+		"test": "turbo run test:coverage && istanbul-merge ./libs/*/coverage/coverage-final.json ./apps/*/coverage/coverage-final.json --out /dev/stdout | istanbul report --include /dev/stdin --dir coverage html lcov",
 		"test:ui": "npx turbo run @vonage/vivid#e2e:docker:ui",
 		"lint": "turbo run lint stylelint",
 		"lint:fix": "turbo run lint:fix stylelint:fix",
