@@ -14,6 +14,7 @@ import type {
 	VwcCalendarEventElement,
 	VwcCardElement,
 	VwcCheckboxElement,
+	VwcColorPickerElement,
 	VwcComboboxElement,
 	VwcDataGridCellElement,
 	VwcDataGridElement,
@@ -84,6 +85,7 @@ type DefaultVividTagNameMap = {
 	'vwc-calendar-event': VwcCalendarEventElement;
 	'vwc-card': VwcCardElement;
 	'vwc-checkbox': VwcCheckboxElement;
+	'vwc-color-picker': VwcColorPickerElement;
 	'vwc-combobox': VwcComboboxElement;
 	'vwc-data-grid-cell': VwcDataGridCellElement;
 	'vwc-data-grid': VwcDataGridElement;

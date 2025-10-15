@@ -13,6 +13,7 @@ export * from './calendar-event/definition';
 export * from './calendar/definition';
 export * from './card/definition';
 export * from './checkbox/definition';
+export * from './color-picker/definition';
 export * from './combobox/definition';
 export * from './data-grid/definition';
 export * from './date-picker/definition';

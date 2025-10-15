@@ -20,6 +20,7 @@ export default {
 		'src/shared/feedback/**/*.ts',
 		'src/shared/picker-field/**/*.ts',
 		'src/shared/deprecation/**/*.ts',
+		'src/shared/color-picker/**/*.ts',
 	],
 	/** Globs to exclude */
 	exclude: [

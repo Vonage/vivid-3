@@ -246,8 +246,7 @@ const jaJP: Locale = {
 		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
 			ariaLabel ? `さらに情報を表示 ${ariaLabel}` : `さらに情報を表示`,
 	},
-	simpleColorPicker: {
-		colorPaletteLabel: 'カラーパレット',
+	baseColorPicker: {
 		colorSwatchLabel: /* istanbul ignore next */ (
 			value: string,
 			label?: string,
@@ -259,6 +258,19 @@ const jaJP: Locale = {
 			if (selected) swatchLabel += `、選択済み。`;
 			return swatchLabel;
 		},
+	},
+	simpleColorPicker: {
+		colorPaletteLabel: 'カラーパレット',
+	},
+	colorPicker: {
+		popupLabel: 'カラーピッカー',
+		swatchesLabel: '保存された色:',
+		pickerButtonLabel: 'カラーピッカーを開く',
+		saveButtonLabel: '現在の色を保存',
+		closeButtonLabel: 'カラーピッカーを閉じる',
+		copyButtonLabel: '色をクリップボードにコピー',
+		copyErrorText:
+			'コピーに失敗しました。クリップボードへのアクセスがブロックされました。もう一度お試しください。',
 	},
 };
 export default jaJP;

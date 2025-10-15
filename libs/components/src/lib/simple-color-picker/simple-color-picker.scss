@@ -1,42 +1,15 @@
 @use '../../shared/patterns/anchored' as anchored;
-@use '@repo/shared/mixins/border-radius' as border-radius-variables;
-@use '@repo/shared/mixins/focus' as focus;
-@use '@repo/shared/mixins/focus' as focus-variables;
 @use 'partials/variables' as variables;
+@use '../../shared/color-picker/partials/variables' as color-picker-variables;
+@forward '../../shared/color-picker/base-color-picker';
 
 :host {
 	@include anchored.anchored;
 }
 
 .palette {
-	display: grid;
 	padding: var(#{variables.$color-palette-spacing}, 16px);
 	gap: var(#{variables.$color-palette-gap}, 12px);
-	grid-template-columns: repeat(var(--swatches-per-row, 7), 1fr);
-}
-
-.swatch {
-	position: relative;
-	padding: 0;
-	border: none;
-	border-radius: #{border-radius-variables.$border-radius-semi-condensed};
-	background-color: var(--swatch-color);
-	block-size: var(#{variables.$color-swatch-size}, 24px);
-	color: var(--vvd-color-canvas);
-	cursor: pointer;
-	inline-size: var(#{variables.$color-swatch-size}, 24px);
-
-	&.contrast {
-		color: var(--vvd-color-canvas-text);
-	}
-
-	&:focus-visible {
-		outline: none;
-
-		@include focus.focus;
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-		#{focus-variables.$focus-inset}: -3px;
-	}
 }
 
 ::part(popup-base) {
@@ -44,6 +17,6 @@
 	inline-size: max-content;
 	max-block-size: 100vh;
 	max-inline-size: 100vw;
-	min-block-size: var(#{variables.$color-swatch-size}, 24px);
-	min-inline-size: var(#{variables.$color-swatch-size}, 24px);
+	min-block-size: var(#{color-picker-variables.$color-swatch-size}, 24px);
+	min-inline-size: var(#{color-picker-variables.$color-swatch-size}, 24px);
 }
