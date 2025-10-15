@@ -31,6 +31,8 @@
 	"devDependencies": {
 		"@repo/typescript-config": "*",
 		"@repo/eslint-config": "*",
-		"@repo/vitest-config": "*"
+		"@repo/vitest-config": "*",
+		"vite": "5.4.15",
+		"vite-plugin-dts": "~2.3.0"
 	}
 }

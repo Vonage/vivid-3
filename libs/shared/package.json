@@ -39,9 +39,12 @@
 		"@repo/tokens": "*"
 	},
 	"devDependencies": {
+		"@microsoft/fast-element": "^2.7.0",
 		"@repo/typescript-config": "*",
 		"@repo/eslint-config": "*",
 		"@repo/stylelint-config": "*",
-		"@repo/vitest-config": "*"
+		"@repo/vitest-config": "*",
+		"vitest": "^2.1.8",
+		"vitest-axe": "^0.1.0"
 	}
 }

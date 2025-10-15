@@ -42,6 +42,10 @@
 		"@repo/typescript-config": "*",
 		"@repo/eslint-config": "*",
 		"@repo/vitest-config": "*",
-		"@repo/styles": "*"
+		"@repo/styles": "*",
+		"glob": "^7.2.0",
+		"vite": "5.4.15",
+		"vite-plugin-dts": "~2.3.0",
+		"vue3": "npm:vue@3.3.7"
 	}
 }
