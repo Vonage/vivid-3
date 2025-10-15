@@ -13,7 +13,7 @@ import { Icon } from '../icon/icon';
 import { Popup } from '../popup/popup';
 import { Button } from '../button/button';
 import { delegateAria } from '../../shared/aria/delegates-aria';
-import { ColorPicker } from './color-picker';
+import { ColorPicker, vcInputTag, vcPickerTag } from './color-picker';
 
 function renderTextField(
 	textFieldTag: InlineTemplateDirective,
@@ -102,22 +102,22 @@ function renderPopupBody(
 ) {
 	return html<ColorPicker>`
 		<div class="body">
-			<vvd-hex-picker
+			<${html.partial(vcPickerTag)}
 				part="hex-picker"
 				color="${(x) => x.value}"
 				@color-changed="${(x, c) =>
 					x._onPickerColorChanged(c.event as CustomEvent<{ value: string }>)}"
 				${ref('_vcHexPickerEl')}
-			></vvd-hex-picker>
+			></${html.partial(vcPickerTag)}>
 			<div class="hex-input-wrapper">
-				<vvd-hex-input
+				<${html.partial(vcInputTag)}
 					part="hex-input"
 					prefixed
 					color="${(x) => x.value}"
 					@color-changed="${(x, c) =>
 						x._onPickerColorChanged(c.event as CustomEvent<{ value: string }>)}"
 					${ref('_vcHexInputEl')}
-				></vvd-hex-input>
+				></${html.partial(vcInputTag)}>
 				<${buttonTag} size="normal" 
 					aria-label="${(x) => x.locale.colorPicker.copyButtonLabel}" 
 					@click="${(x) => x._copyValueToClipboard(x.value)}">

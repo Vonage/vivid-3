@@ -38,6 +38,9 @@ if (!customElements.get(VC_HEX_INPUT_TAG)) {
 	customElements.define(VC_HEX_INPUT_TAG, VvdHexInput);
 }
 
+export const vcPickerTag = VC_HEX_PICKER_TAG;
+export const vcInputTag = VC_HEX_INPUT_TAG;
+
 /**
  * @public
  * @component color-picker
