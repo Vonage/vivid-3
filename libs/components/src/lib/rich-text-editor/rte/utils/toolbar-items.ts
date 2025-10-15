@@ -10,6 +10,7 @@ import { MenuItem } from '../../../menu-item/menu-item';
 import { Select } from '../../../select/select';
 import { ListboxOption } from '../../../option/option';
 import { Divider } from '../../../divider/divider';
+import { TextField } from '../../../text-field/text-field';
 
 // Props can be static values or functions that derive values on each state update
 type Prop<T> = T | ((ctx: ToolbarCtx) => T);
@@ -42,7 +43,7 @@ export class ToolbarCtx {
 }
 
 export interface ToolbarItemSpec {
-	section: 'history' | 'font' | 'text-style' | 'textblock';
+	section: 'history' | 'font' | 'text-style' | 'textblock' | 'insert';
 	order: number;
 
 	render(ctx: ToolbarCtx): HTMLElement | DocumentFragment;
@@ -50,14 +51,46 @@ export interface ToolbarItemSpec {
 
 export const createDiv = (
 	ctx: ToolbarCtx,
-	props: { className: string; children: Array<HTMLElement> }
+	props: { className?: string; slot?: string; children: Array<Node> }
 ) => {
 	const div = document.createElement('div');
-	div.className = props.className;
+	if (props.className) {
+		div.className = props.className;
+	}
+	if (props.slot) {
+		div.slot = props.slot;
+	}
 	for (const child of props.children) {
 		div.appendChild(child);
 	}
 	return div;
+};
+
+export const createAnchor = (
+	ctx: ToolbarCtx,
+	props: {
+		href: Prop<string>;
+		target?: string;
+		rel?: string;
+		className?: string;
+		children: Array<Node>;
+	}
+) => {
+	const anchor = document.createElement('a');
+	ctx.bindProp(props.href, (href) => (anchor.href = href));
+	if (props.target) {
+		anchor.target = props.target;
+	}
+	if (props.rel) {
+		anchor.rel = props.rel;
+	}
+	if (props.className) {
+		anchor.className = props.className;
+	}
+	for (const child of props.children) {
+		anchor.appendChild(child);
+	}
+	return anchor;
 };
 
 export const createTooltip = (
@@ -74,17 +107,23 @@ export const createButton = (
 	ctx: ToolbarCtx,
 	props: {
 		label: Prop<string>;
-		icon: Prop<string>;
+		icon?: Prop<string>;
 		noTooltip?: boolean;
 		autofocus?: Prop<boolean>;
 		slot?: string;
 		active?: Prop<boolean>;
 		disabled?: Prop<boolean>;
-		onClick?: () => void;
+		connotation?: Prop<'alert'>;
+		appearance?: Prop<'outlined'>;
+		size?: Prop<'condensed'>;
+		onClick?: () => void | boolean;
 	}
 ) => {
 	const button = ctx.rte.createComponent(Button);
-	button.size = 'super-condensed';
+	ctx.bindProp(
+		props.size ?? ('super-condensed' as const),
+		(size) => (button.size = size)
+	);
 	ctx.bindProp(
 		props.active ?? false,
 		(active) => (button.appearance = active ? 'filled' : 'ghost-light')
@@ -94,8 +133,9 @@ export const createButton = (
 	}
 	if (props.onClick) {
 		button.addEventListener('click', () => {
-			props.onClick!();
-			ctx.view.focus();
+			if (!props.onClick!()) {
+				ctx.view.focus();
+			}
 		});
 	}
 	ctx.bindProp(props.icon, (icon) => (button.icon = icon));
@@ -105,9 +145,25 @@ export const createButton = (
 			(autofocus) => (button.autofocus = autofocus)
 		);
 	}
-	ctx.bindProp(props.label, (label) => (button.ariaLabel = label));
+	if (props.icon) {
+		ctx.bindProp(props.label, (label) => (button.ariaLabel = label));
+	} else {
+		ctx.bindProp(props.label, (label) => (button.label = label));
+	}
+	if (props.connotation) {
+		ctx.bindProp(
+			props.connotation,
+			(connotation) => (button.connotation = connotation)
+		);
+	}
+	if (props.appearance) {
+		ctx.bindProp(
+			props.appearance,
+			(appearance) => (button.appearance = appearance)
+		);
+	}
 	let element: HTMLElement = button;
-	if (!props.noTooltip) {
+	if (props.icon && !props.noTooltip) {
 		const tooltip = createTooltip(ctx, { label: props.label });
 		button.slot = 'anchor';
 		tooltip.appendChild(button);
@@ -251,4 +307,48 @@ export const createDivider = (ctx: ToolbarCtx) => {
 	divider.className = 'toolbar-divider';
 	divider.orientation = 'vertical';
 	return divider;
+};
+
+export const createTextField = (
+	ctx: ToolbarCtx,
+	props: {
+		label: Prop<string>;
+		value: Prop<string>;
+		placeholder?: Prop<string>;
+		slot?: string;
+		autofocus?: boolean;
+		type?: 'url';
+		onInput?: (value: string) => void;
+	}
+) => {
+	const textField = ctx.rte.createComponent(TextField);
+	ctx.bindProp(props.label, (label) => (textField.label = label));
+	ctx.bindProp(props.value, (value) => (textField.value = value));
+	if (props.placeholder) {
+		ctx.bindProp(
+			props.placeholder,
+			(placeholder) => (textField.placeholder = placeholder)
+		);
+	}
+	if (props.slot) {
+		textField.slot = props.slot;
+	}
+	if (props.autofocus) {
+		textField.autofocus = true;
+	}
+	if (props.type) {
+		textField.type = props.type;
+	}
+	if (props.onInput) {
+		textField.addEventListener('input', () => {
+			props.onInput!(textField.value);
+		});
+	}
+	return textField;
+};
+
+export const createText = (ctx: ToolbarCtx, props: { text: Prop<string> }) => {
+	const textNode = document.createTextNode('');
+	ctx.bindProp(props.text, (text) => (textNode.textContent = text));
+	return textNode;
 };

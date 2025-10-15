@@ -10,3 +10,4 @@ export { RTEUnderlineFeature } from './features/underline';
 export { RTEStrikethroughFeature } from './features/strikethrough';
 export { RTEMonospaceFeature } from './features/monospace';
 export { RTEAlignmentFeature } from './features/alignment';
+export { RTELinkFeature } from './features/link';

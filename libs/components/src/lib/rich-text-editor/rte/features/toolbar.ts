@@ -14,7 +14,13 @@ export class RTEToolbarFeature extends RTEFeature {
 	}
 
 	override getPlugins(rte: RTEInstance) {
-		const sections = ['history', 'font', 'text-style', 'textblock'] as const;
+		const sections = [
+			'history',
+			'font',
+			'text-style',
+			'textblock',
+			'insert',
+		] as const;
 		const itemsBySection = new Map(
 			sections.map((section) => [section, [] as ToolbarItemSpec[]])
 		);
@@ -35,8 +41,9 @@ export class RTEToolbarFeature extends RTEFeature {
 					view: (view) => {
 						const ctx = new ToolbarCtx(view, rte);
 
-						const toolbar = document.createElement('div');
-						toolbar.className = 'toolbar';
+						const toolbar = (
+							view.dom.getRootNode() as ShadowRoot
+						).querySelector('.toolbar')!;
 
 						let openSection = false;
 						for (const section of sections) {
@@ -52,14 +59,13 @@ export class RTEToolbarFeature extends RTEFeature {
 								openSection = true;
 							}
 						}
-						view.dom.parentElement!.after(toolbar);
 
 						return {
 							update() {
 								ctx.updateBindings();
 							},
 							destroy() {
-								toolbar.remove();
+								toolbar.innerHTML = '';
 							},
 						};
 					},
