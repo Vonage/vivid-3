@@ -59,6 +59,13 @@
 		padding: 0;
 	}
 
+	&.selected {
+		background-color: var(
+			#{variables.$selected-bg-var},
+			var(#{appearance.get-appearance-token(fill)})
+		);
+	}
+
 	&.clickable {
 		cursor: pointer;
 	}
