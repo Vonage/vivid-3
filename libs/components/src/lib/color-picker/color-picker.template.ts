@@ -18,7 +18,7 @@ function renderTextField(textFieldTag: string, iconTag: string) {
 			pattern="${ColorPicker.HEX_COLOR_PATTERN.source}"
 			maxlength="7"
 			label="${(x) => x.label}"
-			value="${(x) => x.value}"
+			:value="${(x) => x.value}"
 			placeholder="${(x) => x.placeholder}"
 			helper-text="${(x) => x.helperText}"
 			error-text="${(x) => x.errorValidationMessage}"
