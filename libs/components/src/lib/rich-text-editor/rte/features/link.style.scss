@@ -1,9 +1,9 @@
 @use '@repo/tokens/scss/tokens.constants' as constants;
 
 .link-popover {
-	padding: 16px;
 	display: flex;
 	flex-direction: column;
+	padding: 16px;
 	gap: 8px;
 	inline-size: 450px;
 }
@@ -15,8 +15,8 @@
 }
 
 .link-popover-label {
-	font: var(constants.$vvd-typography-base-condensed);
 	color: var(constants.$vvd-color-neutral-600);
+	font: var(constants.$vvd-typography-base-condensed);
 }
 
 .link-popover-content {
@@ -25,7 +25,8 @@
 	gap: 16px;
 }
 
-.link, .editor a[href] {
+.link,
+.editor a[href] {
 	color: var(constants.$vvd-color-cta-600);
 
 	&:visited {
@@ -43,14 +44,14 @@
 
 .link-action-bar {
 	display: flex;
-	gap: 8px;
 	justify-content: end;
+	gap: 8px;
 }
 
 .link-toolbar-menu {
-	padding: 8px;
 	display: flex;
 	flex-direction: column;
+	padding: 8px;
 	gap: 16px;
 	inline-size: 400px - 16px * 2;
 }
