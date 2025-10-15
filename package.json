@@ -107,7 +107,7 @@
 		"vite-plugin-dts": "~2.3.0",
 		"vite-plugin-static-copy": "^1.0.6",
 		"vitepress": "npm:is-odd@0.1.2",
-		"vitest": "^2.1.8",
+		"vitest": "^2.1.9",
 		"vitest-axe": "^0.1.0",
 		"vitest-fetch-mock": "^0.4.5",
 		"vue": "2.7.8",
@@ -126,7 +126,8 @@
 		"braces": "3.0.3",
 		"@11ty/eleventy-plugin-vite": {
 			"vite": "$vite"
-		}
+		},
+		"happy-dom": "^20.0.0"
 	},
 	"workspaces": [
 		"apps/*",
