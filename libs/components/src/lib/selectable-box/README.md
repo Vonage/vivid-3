@@ -56,7 +56,7 @@ Use the `--selectable-box-spacing` variable to set the amount of spacing applied
 
 ### Checked Background Color
 
-Use the `--selectable-box-checked-bg` variable to override the default background color applied to the selected state of the Selectable Box.
+Use the `--selectable-box-checked-bg` variable to override the default background color applied to the checked state of the Selectable Box.
 
 ```html preview
 <vwc-selectable-box checked class="box"
