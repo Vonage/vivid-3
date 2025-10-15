@@ -30,31 +30,34 @@
 		"releaseCompletionDate": "Q4 2025 S5"
 	},
 	{
-		"title": "Date Range Picker: predefined ranges",
-		"titleUrl": "https://jira.vonage.com/browse/VIV-2723",
+		"title": "Searchable Select: select-all option",
+		"titleUrl": "https://jira.vonage.com/browse/VIV-2730",
 		"discoveryStatus": "Done",
-		"discoveryUrl": "https://jira.vonage.com/browse/VIV-2723",
-		"releaseCompletionDate": "Q4 2025 S4"
+		"discoveryUrl": "https://jira.vonage.com/browse/VIV-2730",
+		"designStatus": "Done",
+		"designUrl": "https://www.figma.com/design/WMrYaUlURIyS4WuiWiTcHF/SearchableSelect---Select-Deselect-All?node-id=0-1&t=sKIOG9x1D7iLTzws-1",
+		"releaseStatus": "InProgress",
+		"releaseCompletionDate": "Q4 2025 S2"
 	},
 	{
 		"title": "Number Field: step improvements",
 		"titleUrl": "https://jira.vonage.com/browse/VIV-2744",
 		"discoveryStatus": "Done",
 		"discoveryUrl": "https://jira.vonage.com/browse/VIV-2744",
-		"releaseCompletionDate": "Q4 2025 S2"
+		"designStatus": "n/a",
+		"releaseCompletionDate": "Q4 2025 S4"
 	},
 	{
-		"title": "Searchable Select: select-all option",
-		"titleUrl": "https://jira.vonage.com/browse/VIV-2730",
+		"title": "Date Range Picker: predefined ranges",
+		"titleUrl": "https://jira.vonage.com/browse/VIV-2723",
 		"discoveryStatus": "Done",
-		"discoveryUrl": "https://jira.vonage.com/browse/VIV-2730",
-		"releaseStatus": "InProgress",
-		"releaseCompletionDate": "Q4 2025 S2"
+		"discoveryUrl": "https://jira.vonage.com/browse/VIV-2723",
+		"releaseCompletionDate": "Q4 2025 S5"
 	},
 	{
 		"title": "Design Token Architecture",
 		"titleUrl": "https://jira.vonage.com/browse/VIV-2815",
-		"discoveryStatus": "InProgress",
+		"discoveryStatus": "Done",
 		"discoveryUrl": "https://jira.vonage.com/browse/VIV-2249",
 		"releaseStatus": "InProgress",
 		"releaseCompletionDate": "Q4 2025 S5"
