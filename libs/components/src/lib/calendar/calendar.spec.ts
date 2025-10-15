@@ -1,5 +1,5 @@
 import { elementUpdated, fixture } from '@repo/shared';
-import { DOM } from '@microsoft/fast-element';
+import { Updates } from '@microsoft/fast-element';
 
 import { Calendar } from './calendar';
 import '.';
@@ -266,7 +266,7 @@ describe('vwc-calendar', () => {
 
 			fragment.appendChild(calendarEl);
 
-			await DOM.nextUpdate();
+			await Updates.next();
 
 			// Calculate row height and scroll position
 			const rowHeight = calendarEl.scrollHeight / calendarEl._hours;

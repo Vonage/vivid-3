@@ -1,4 +1,5 @@
-import type { Behavior } from '@microsoft/fast-element';
+import type { ViewBehavior, ViewController } from '@microsoft/fast-element';
+import { oneWay } from '@microsoft/fast-element';
 import { AttributeBindingBehavior } from '../templating/attribute-binding-behaviour';
 import { ariaAttributeName, type AriaPropertyName } from './aria-mixin';
 import type { HostSemanticsElement } from './host-semantics';
@@ -11,31 +12,38 @@ export type BoundAriaProperties<T> = Partial<{
 	[Property in AriaPropertyName]: AriaBinding<T>;
 }>;
 
-export class HostSemanticsBehavior<T> implements Behavior {
+export class HostSemanticsBehavior<T> implements ViewBehavior {
 	private readonly boundProperties: BoundAriaProperties<T>;
+	private target: HTMLElement | null = null;
 
 	constructor(
-		private target: HTMLElement,
+		target: HTMLElement | null,
 		params: {
 			boundProperties: BoundAriaProperties<T>;
 			forwardedProperties: Set<AriaPropertyName>;
 		}
 	) {
+		this.target = target;
 		this.boundProperties = params.boundProperties;
 	}
 
-	bind(source: HostSemanticsElement) {
+	bind(controller: ViewController) {
+		const source = controller.source as HostSemanticsElement;
+		// if (!this.target) {
+		// 	this.target = source as HTMLElement;
+		// }
 		if (this.target !== source) {
 			throw new Error('Target element must be the same as the source element');
 		}
 		this.bindPropertiesToTarget(source, this.boundProperties, this.target);
 	}
 
-	unbind(source: HostSemanticsElement) {
-		this.releasePropertyBindings(source);
-	}
+	// unbind(controller: ViewController) {
+	// 	const source = controller.source as HostSemanticsElement;
+	// 	this.releasePropertyBindings(source);
+	// }
 
-	private bindingBehaviours: Behavior[] = [];
+	private bindingBehaviours: ViewBehavior[] = [];
 
 	private bindPropertiesToTarget(
 		source: HostSemanticsElement,
@@ -54,17 +62,24 @@ export class HostSemanticsBehavior<T> implements Behavior {
 			this.bindingBehaviours.push(
 				new AttributeBindingBehavior(
 					target,
-					bindingFn,
+					oneWay(bindingFn),
 					true,
 					ariaAttributeName(property)
 				)
 			);
 		}
-		source.$fastController.addBehaviors(this.bindingBehaviours);
+		for (const behavior of this.bindingBehaviours) {
+			(behavior as any).bind({
+				source,
+				context: source.$fastController.context,
+			} as any);
+		}
 	}
 
-	private releasePropertyBindings(source: HostSemanticsElement) {
-		source.$fastController.removeBehaviors(this.bindingBehaviours);
-		this.bindingBehaviours = [];
-	}
+	// private releasePropertyBindings(source: HostSemanticsElement) {
+	// 	for (const behavior of this.bindingBehaviours) {
+	// 		(behavior as any).unbind();
+	// 	}
+	// 	this.bindingBehaviours = [];
+	// }
 }

@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html, InlineTemplateDirective, when } from '@microsoft/fast-element';
 
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
@@ -14,7 +14,7 @@ const getClasses = ({ shape, connotation, disabled, removable }: OptionTag) =>
 		[`connotation-${connotation}`, Boolean(connotation)]
 	);
 
-function renderRemoveButton(iconTag: string) {
+function renderRemoveButton(iconTag: InlineTemplateDirective) {
 	return html<OptionTag>`
 		<span
 			class="remove-button"

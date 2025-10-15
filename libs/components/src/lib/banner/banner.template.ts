@@ -1,4 +1,9 @@
-import { html, slotted, when } from '@microsoft/fast-element';
+import {
+	html,
+	InlineTemplateDirective,
+	slotted,
+	when,
+} from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
@@ -13,7 +18,7 @@ import type { Banner } from './banner';
 const getClasses = (_: Banner) =>
 	classNames('control', [`connotation-${_.connotation}`, !!_.connotation]);
 
-function renderDismissButton(buttonTag: string) {
+function renderDismissButton(buttonTag: InlineTemplateDirective) {
 	return html<Banner>`
 	  <${buttonTag}
 	  		aria-label="${(x) =>

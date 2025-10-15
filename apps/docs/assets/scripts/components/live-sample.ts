@@ -124,7 +124,7 @@ const locales = {
 									connotation="cta"
 									aria-label="View code"
 									icon="code-line"
-									aria-expanded="${(x) => (x.open ? 'true' : 'false')}"
+									aria-expanded="${(x) => (x.editorOpen ? 'true' : 'false')}"
 									aria-controls="details"
 									@click="${(x) => x.toggleEditorOpen()}"
 								></vwc-button>

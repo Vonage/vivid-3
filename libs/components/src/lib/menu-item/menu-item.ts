@@ -1,4 +1,4 @@
-import { attr, DOM, observable } from '@microsoft/fast-element';
+import { attr, observable, Updates } from '@microsoft/fast-element';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import {
 	keyArrowLeft,
@@ -168,7 +168,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	override connectedCallback(): void {
 		super.connectedCallback();
 
-		DOM.queueUpdate(() => {
+		Updates.enqueue(() => {
 			// Initialize _isPresentational after waiting for parent menu to set it:
 			this._isPresentational = this._isPresentational ?? true;
 			this.#ensureRoleMatchesPresentational();

@@ -1,4 +1,4 @@
-import { attr, DOM } from '@microsoft/fast-element';
+import { attr, Updates } from '@microsoft/fast-element';
 import type { Placement } from '@floating-ui/dom';
 import { Anchored } from '../../shared/patterns/anchored';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -105,9 +105,9 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 	}
 
 	#openIfClosed = () => {
-		// DOM.queueUpdate() is required to prevent the click event from
+		// Updates.enqueue() is required to prevent the click event from
 		// being caught by the document click handler (added by openChanged)
-		if (!this.open) DOM.queueUpdate(() => (this.open = true));
+		if (!this.open) Updates.enqueue(() => (this.open = true));
 	};
 
 	#updateListeners() {

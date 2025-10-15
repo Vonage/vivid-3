@@ -1,8 +1,8 @@
 import {
 	attr,
-	DOM,
 	nullableNumberConverter,
 	observable,
+	Updates,
 } from '@microsoft/fast-element';
 import type { Placement } from '@floating-ui/dom';
 import { Anchored } from '../../shared/patterns/anchored';
@@ -179,8 +179,8 @@ export class SimpleColorPicker extends Localized(
 	 * @internal
 	 */
 	#openPopup = () => {
-		// DOM.queueUpdate() prevents click event from being caught by document listener
-		if (!this.open) DOM.queueUpdate(() => (this.open = true));
+		// Updates.enqueue() prevents click event from being caught by document listener
+		if (!this.open) Updates.enqueue(() => (this.open = true));
 	};
 
 	/**
@@ -189,7 +189,7 @@ export class SimpleColorPicker extends Localized(
 	#handleAnchorKeydown = (event: KeyboardEvent) => {
 		if (event.key === 'Enter' || event.key === ' ') {
 			if (!this.open) {
-				DOM.queueUpdate(() => (this.open = true));
+				Updates.enqueue(() => (this.open = true));
 			}
 			event.preventDefault();
 		}
@@ -338,6 +338,6 @@ export class SimpleColorPicker extends Localized(
 	 * @internal
 	 */
 	#returnFocusToAnchor() {
-		DOM.queueUpdate(() => this._anchorEl?.focus());
+		Updates.enqueue(() => this._anchorEl?.focus());
 	}
 }

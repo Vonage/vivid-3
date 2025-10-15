@@ -18,7 +18,7 @@ describe('renderInLightDom', () => {
 	};
 
 	it('should render a given template in the light DOM of the element', async () => {
-		new FASTElementDefinition(DummyElement(), {
+		FASTElementDefinition.compose(DummyElement(), {
 			template: html`
 				<div id="shadow">${(x) => x.prop}</div>
 				${renderInLightDOM(html`<div id="light">${(x) => x.prop}</div>`)}
@@ -37,7 +37,7 @@ describe('renderInLightDom', () => {
 	});
 
 	it('should bind template bindings to the host element', async () => {
-		new FASTElementDefinition(DummyElement(), {
+		FASTElementDefinition.compose(DummyElement(), {
 			template: html`${renderInLightDOM(html`
 				<div>${(x) => x.prop}</div>
 				${html`<div>${(x) => x.prop}</div>`}
@@ -53,7 +53,7 @@ describe('renderInLightDom', () => {
 	});
 
 	it('should be able to change templates dynamically with a binding', async () => {
-		new FASTElementDefinition(DummyElement(), {
+		FASTElementDefinition.compose(DummyElement(), {
 			template: html`${renderInLightDOM((x) =>
 				x.prop === 'Hello'
 					? html`<div>prop is Hello</div>`

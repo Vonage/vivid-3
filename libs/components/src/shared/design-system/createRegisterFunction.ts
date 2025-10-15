@@ -1,6 +1,8 @@
 import {
 	type Constructable,
 	FASTElementDefinition,
+	html,
+	type InlineTemplateDirective,
 	type ViewTemplate,
 } from '@microsoft/fast-element';
 import type { VividElement } from '../foundation/vivid-element/vivid-element';
@@ -71,21 +73,30 @@ export const createRegisterFunction =
 				),
 			]);
 
-			const elementDefinitionContext = {
-				tagFor(type: Constructable) {
-					if (!tagByDependencyType.has(type)) {
-						throw new Error(
-							`Could not get tag for ${type.name} as it is not a dependency of ${componentDefinition.name}.`
-						);
-					}
-					return tagByDependencyType.get(type)!;
-				},
+			const tagFor = <T extends boolean = false>(
+				type: Constructable,
+				convertToString?: T
+			): T extends true ? string : InlineTemplateDirective => {
+				if (!tagByDependencyType.has(type)) {
+					throw new Error(
+						`Could not get tag for ${type.name} as it is not a dependency of ${componentDefinition.name}.`
+					);
+				}
+				const tagNameStr = tagByDependencyType.get(type)!;
+
+				return (
+					convertToString ? tagNameStr : html.partial(tagNameStr)
+				) as T extends true ? string : InlineTemplateDirective;
+			};
+
+			const elementDefinitionContext: VividElementDefinitionContext = {
+				tagFor,
 				tagForNonDependency(name: string) {
 					return prefixed(name);
 				},
 			};
 
-			new FASTElementDefinition(type, {
+			FASTElementDefinition.compose(type as Constructable<HTMLElement>, {
 				...componentDefinition.options,
 				template: resolve(
 					componentDefinition.template,

@@ -41,6 +41,7 @@ export const expandCollapseButton = (
 
 export const TreeItemTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+	const treeItemTagName = context.tagFor(TreeItem, true);
 
 	return html<TreeItem>` <template
 		slot="${(x) => (x.isNestedItem() ? 'item' : void 0)}"
@@ -56,7 +57,7 @@ export const TreeItemTemplate = (context: VividElementDefinitionContext) => {
 		@focusout="${(x, c) => x.handleBlur(c.event as FocusEvent)}"
 		${children({
 			property: 'childItems',
-			filter: elements(context.tagFor(TreeItem)),
+			filter: elements(treeItemTagName),
 		})}
 	>
 		<div class="${getClasses}">

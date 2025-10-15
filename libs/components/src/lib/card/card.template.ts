@@ -1,4 +1,10 @@
-import { html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
+import {
+	html,
+	InlineTemplateDirective,
+	slotted,
+	ViewTemplate,
+	when,
+} from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';
@@ -14,13 +20,15 @@ const getClasses = (_: Card) =>
 		['hide-header', shouldHideHeader(_)]
 	);
 
-function renderHeaderIcon(iconTag: string) {
+function renderHeaderIcon(iconTag: InlineTemplateDirective) {
 	return html<Card>`
 		<${iconTag} class="icon" inline name="${(x) => x.icon}"></${iconTag}>`;
 }
 
 function Headline() {
-	return html` <div class="header-headline">${(x) => x.headline}</div> `;
+	return html`
+		<div class="header-headline" id="card-headline">${(x) => x.headline}</div>
+	`;
 }
 
 function Subtitle() {
@@ -39,7 +47,7 @@ function headerContent() {
 /**
  header
  */
-function renderHeader(iconTag: string) {
+function renderHeader(iconTag: InlineTemplateDirective) {
 	return html<Card>` <div class="header">
 		<slot name="graphic" ${slotted('graphicSlottedContent')}
 			>${when((x) => x.icon, renderHeaderIcon(iconTag))}</slot
@@ -71,6 +79,7 @@ function renderButtonElement(content: ViewTemplate<Card>) {
 		class="${getClasses}"
 		type="button"
 		${delegateAria()}
+		aria-labelledby="${(x) => (x.headline ? 'card-headline' : null)}"
 	>
 		${content}
 	</button>`;
@@ -82,7 +91,12 @@ function renderCardBaseElement(x: Card, content: ViewTemplate<Card>) {
 	} else if (x.clickableCard) {
 		return renderButtonElement(content);
 	} else {
-		return html`<div class="${getClasses}">${content}</div>`;
+		return html`<div
+			class="${getClasses}"
+			aria-labelledby="${(x) => (x.headline ? 'card-headline' : null)}"
+		>
+			${content}
+		</div>`;
 	}
 }
 

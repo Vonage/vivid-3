@@ -5,8 +5,8 @@
 	<p>Dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"><code>native dialog</code></a> element.</p>
 </vwc-note>
 
-<vwc-tabs gutters="none">
-<vwc-tab label="Web component"></vwc-tab>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -25,17 +25,39 @@ registerDialog('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
 <vwc-tab-panel>
 
-```html
+```vue preview
+<template>
+	<div style="height: 250px">
+		<VDialog
+			open
+			headline="Dialog with footer"
+			subtitle="this is an example of the dialog with slotted buttons inside footer"
+		>
+			<template #footer>
+				<div class="demo-footer">
+					<VButton appearance="outlined" label="Cancel" />
+					<VButton appearance="filled" label="Action" />
+				</div>
+			</template>
+		</VDialog>
+	</div>
+</template>
+
 <script setup lang="ts">
-	import { VDialog } from '@vonage/vivid-vue';
+import { VDialog, VButton } from '@vonage/vivid-vue';
 </script>
 
-<template>
-	<VDialog headline="I'm a dialog" />
-</template>
+<style scoped>
+.demo-footer {
+	display: flex;
+	justify-content: flex-end;
+	column-gap: 8px;
+	margin-top: 16px;
+}
+</style>
 ```
 
 </vwc-tab-panel>

@@ -1,4 +1,9 @@
-import { html, slotted, when } from '@microsoft/fast-element';
+import {
+	html,
+	InlineTemplateDirective,
+	slotted,
+	when,
+} from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
@@ -27,14 +32,16 @@ const getClasses = ({
 		['scrollable-body', Boolean(scrollableBody)]
 	);
 
-function icon(iconTag: string) {
+function icon(iconTag: InlineTemplateDirective) {
 	return html<Dialog>`
 		<${iconTag} class="icon" name="${(x) => x.icon}"></${iconTag}>
 	`;
 }
 
 function headline() {
-	return html<Dialog>` <h2 class="headline">${(x) => x.headline}</h2> `;
+	return html<Dialog>`
+		<h2 class="headline" id="dialog-headline">${(x) => x.headline}</h2>
+	`;
 }
 
 function subtitle() {
@@ -47,7 +54,7 @@ function renderHeaderText() {
 	`;
 }
 
-function renderDismissButton(buttonTag: string) {
+function renderDismissButton(buttonTag: InlineTemplateDirective) {
 	return html<Dialog>`
 	<${buttonTag}
 		aria-label="${(x) =>
@@ -72,6 +79,7 @@ export const DialogTemplate = (context: VividElementDefinitionContext) => {
 				${delegateAria({
 					ariaModal: (x) => String(x._openedAsModal),
 				})}
+				aria-labelledby="${(x) => (x.headline ? 'dialog-headline' : null)}"
 		>
 			<slot name="main">
 				<div class="main-wrapper">

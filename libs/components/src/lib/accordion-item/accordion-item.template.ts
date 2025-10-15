@@ -14,8 +14,9 @@ const getClasses = ({ appearance, size }: AccordionItem) =>
 		[`size-${size}`, Boolean(size)]
 	);
 
-const header = (context: VividElementDefinitionContext, hTag: string) => {
+const header = (context: VividElementDefinitionContext, hTagName: string) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+	const hTag = html.partial(hTagName);
 
 	return html<AccordionItem>`
 		<${hTag} class="heading-container">

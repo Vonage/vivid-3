@@ -1,70 +1,75 @@
 import {
-	type Behavior,
+	type AddViewBehaviorFactory,
 	type Binding,
-	type BindingObserver,
+	type BindingDirective,
 	type CaptureType,
-	DOM,
 	ExecutionContext,
+	type Expression,
+	type ExpressionObserver,
 	HTMLDirective,
-	Observable,
+	Markup,
+	normalizeBinding,
 	type Subscriber,
 	type SyntheticView,
-	type SyntheticViewTemplate,
+	type ViewBehavior,
+	type ViewBehaviorFactory,
+	type ViewController,
+	type ViewTemplate,
 } from '@microsoft/fast-element';
 import type { VividElement } from '../foundation/vivid-element/vivid-element';
 
 export class RenderInLightDomBehaviour<TSource extends VividElement>
-	implements Behavior, Subscriber
+	implements ViewBehavior, Subscriber
 {
 	private source: TSource | null = null;
 	private view?: SyntheticView;
 	private insertionPoint?: Node;
-	private templateBindingObserver: BindingObserver<
-		TSource,
-		SyntheticViewTemplate
-	>;
+	private templateBindingObserver: ExpressionObserver<TSource, ViewTemplate>;
 	private context?: ExecutionContext;
+	private controller?: ViewController;
 
-	constructor(
-		templateBinding: Binding<TSource, SyntheticViewTemplate>,
-		isTemplateBindingVolatile: boolean
-	) {
-		this.templateBindingObserver = Observable.binding(
-			templateBinding,
+	constructor(directive: RenderInLightDomDirective<TSource>) {
+		this.templateBindingObserver = directive.templateBinding.createObserver(
 			this,
-			isTemplateBindingVolatile
+			directive as any
 		);
 	}
 
-	bind(source: TSource, context: ExecutionContext): void {
-		this.source = source;
-		this.context = context;
+	bind(controller: ViewController): void {
+		this.source = controller.source as TSource;
+		this.context = controller.context;
+		this.controller = controller;
 
 		if (!this.insertionPoint) {
 			this.insertionPoint = document.createComment('');
-			source.appendChild(this.insertionPoint);
+			this.source.appendChild(this.insertionPoint);
 		}
 
-		this.handleChange();
+		this.templateBindingObserver.bind(controller);
+		this.handleChange(this.source, this.templateBindingObserver);
 	}
 
-	unbind(): void {
-		this.source = null;
+	// unbind(): void {
+	// 	this.source = null;
 
-		this.view!.unbind();
-		this.templateBindingObserver.disconnect();
-	}
+	// 	if (this.view) {
+	// 		this.view.unbind();
+	// 	}
+	// 	// The observer will be automatically cleaned up when the behavior is destroyed
+	// }
 
 	/**
 	 * Handles change of the template itself.
 	 */
-	handleChange(): void {
-		this.instantiateTemplate(
-			this.templateBindingObserver.observe(this.source!, this.context!)
-		);
+	handleChange(source: any, args: any): void {
+		// Check if this is a template change notification
+		if (args === this.templateBindingObserver) {
+			const template = this.templateBindingObserver.bind(this.controller!);
+			this.instantiateTemplate(template);
+		}
 	}
 
-	private instantiateTemplate(template: SyntheticViewTemplate): void {
+	private instantiateTemplate(template: ViewTemplate): void {
 		if (this.view) {
 			this.view.dispose();
 		}
@@ -75,40 +80,44 @@ export class RenderInLightDomBehaviour<TSource extends VividElement>
 	}
 }
 
-export class RenderInLightDomDirective<
-	TSource extends VividElement
-> extends HTMLDirective {
-	createPlaceholder: (index: number) => string = DOM.createBlockPlaceholder;
+export class RenderInLightDomDirective<TSource extends VividElement>
+	implements HTMLDirective, ViewBehaviorFactory, BindingDirective
+{
+	readonly templateBinding: Binding<TSource, ViewTemplate>;
+	readonly dataBinding: Binding<TSource, ViewTemplate>;
+	/**
+	 * The structural id of the DOM node to which the created behavior will apply.
+	 */
+	targetNodeId: string = '';
 
-	private readonly isTemplateBindingVolatile: boolean;
-	constructor(
-		readonly templateBinding: Binding<TSource, SyntheticViewTemplate>
-	) {
-		super();
-		this.isTemplateBindingVolatile =
-			Observable.isVolatileBinding(templateBinding);
+	constructor(templateBinding: Binding<TSource, ViewTemplate>) {
+		this.templateBinding = templateBinding;
+		this.dataBinding = templateBinding; // For BindingDirective compatibility
+	}
+
+	createHTML(add: AddViewBehaviorFactory): string {
+		return Markup.comment(add(this));
 	}
 
 	createBehavior(): RenderInLightDomBehaviour<TSource> {
-		return new RenderInLightDomBehaviour<TSource>(
-			this.templateBinding,
-			this.isTemplateBindingVolatile
-		);
+		return new RenderInLightDomBehaviour<TSource>(this);
 	}
 }
+
+HTMLDirective.define(RenderInLightDomDirective);
 
 /**
  * Directive to render a template into the light DOM of the host element.
  */
-export function renderInLightDOM<TSource extends VividElement>(
+export function renderInLightDOM<
+	TSource extends VividElement = VividElement,
+	TParent = any
+>(
 	templateOrTemplateBinding:
-		| SyntheticViewTemplate
-		| Binding<TSource, SyntheticViewTemplate>
-): CaptureType<TSource> {
-	const templateBinding =
-		typeof templateOrTemplateBinding === 'function'
-			? templateOrTemplateBinding
-			: (): SyntheticViewTemplate => templateOrTemplateBinding;
-
+		| ViewTemplate<any, TSource>
+		| Expression<TSource, ViewTemplate<any, TSource>, TParent>
+		| Binding<TSource, ViewTemplate<any, TSource>, TParent>
+): CaptureType<TSource, TParent> {
+	const templateBinding = normalizeBinding(templateOrTemplateBinding);
 	return new RenderInLightDomDirective<TSource>(templateBinding);
 }
