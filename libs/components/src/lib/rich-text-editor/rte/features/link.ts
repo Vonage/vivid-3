@@ -194,10 +194,10 @@ export class RTELinkFeature extends RTEFeature {
 		}
 		const textNode = $from.parent.childAfter($from.parentOffset);
 		const start = $from.pos - $from.parentOffset + textNode.offset;
-		const end = start + (textNode.node!.nodeSize || 0);
+		const end = start + textNode.node!.nodeSize;
 
 		return {
-			text: textNode.node?.text || '',
+			text: textNode.node!.text!,
 			href: link.attrs.href,
 			start,
 			end,
