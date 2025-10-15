@@ -12,6 +12,7 @@
 		"@storybook/addon-links": "^7.6.20",
 		"@storybook/blocks": "^7.6.20",
 		"@storybook/builder-vite": "^7.6.20",
+		"@storybook/manager-api": "^7.6.20",
 		"@storybook/testing-library": "^0.2.2",
 		"@storybook/vue3": "^7.6.20",
 		"@storybook/vue3-vite": "^7.6.20",

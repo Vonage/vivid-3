@@ -17,6 +17,8 @@
 		"build": "vite build"
 	},
 	"devDependencies": {
-		"@repo/typescript-config": "*"
+		"@repo/typescript-config": "*",
+		"vite": "5.4.15",
+		"vite-plugin-dts": "~2.3.0"
 	}
 }

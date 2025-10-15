@@ -73,6 +73,9 @@
 		"video.js": "^8.23.3"
 	},
 	"devDependencies": {
+		"@microsoft/api-extractor": "^7.52.9",
+		"@microsoft/eslint-config-fast-dna": "^2.1.0",
+		"@playwright/test": "1.48.2",
 		"@repo/cem-analyzer-plugins": "*",
 		"@repo/consts": "*",
 		"@repo/eslint-config": "*",
@@ -81,6 +84,30 @@
 		"@repo/stylelint-config": "*",
 		"@repo/styles": "*",
 		"@repo/typescript-config": "*",
-		"@repo/vitest-config": "*"
+		"@repo/vitest-config": "*",
+		"@testing-library/dom": "^8.18.1",
+		"@testing-library/user-event": "^14.6.1",
+		"@types/node": "18.19.45",
+		"@types/uuid": "^10.0.0",
+		"@vonage/vivid-figma-tokens": "github:vonage/vivid-figma-tokens#v1.4.0",
+		"cem-plugin-async-function": "^0.0.5",
+		"cem-plugin-jsdoc-example": "^0.0.9",
+		"cem-plugin-jsdoc-function": "^0.0.5",
+		"cem-plugin-readonly": "^0.0.5",
+		"dialog-polyfill": "^0.5.6",
+		"element-internals-polyfill": "^1.3.13",
+		"esbuild": "0.23.0",
+		"jsdom": "^23.0.0",
+		"markdown-it": "^13.0.2",
+		"playwright": "1.48.2",
+		"sass": "^1.89.2",
+		"vite": "5.4.15",
+		"vite-plugin-dts": "~2.3.0",
+		"vite-plugin-static-copy": "^1.0.6",
+		"vitest": "^2.1.8",
+		"vitest-axe": "^0.1.0",
+		"vitest-fetch-mock": "^0.4.5",
+		"wait-on": "^8.0.4",
+		"concurrently": "^9.2.0"
 	}
 }
