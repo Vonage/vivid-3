@@ -61,7 +61,7 @@
 
 	&.selected {
 		background-color: var(
-			#{variables.$selected-bg-var},
+			#{variables.$checked-bg-var},
 			var(#{appearance.get-appearance-token(fill)})
 		);
 	}
