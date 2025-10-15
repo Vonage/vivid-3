@@ -1,4 +1,4 @@
-import { attr, DOM, html, observable, when } from '@microsoft/fast-element';
+import { attr, html, observable, Updates, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor, MixinType } from '../utils/mixins';
@@ -106,7 +106,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 		_returnFocusToAnchor() {
 			const el = this._getFocusReturnEl();
 			if (!el) return;
-			DOM.queueUpdate(() => el.focus());
+			Updates.enqueue(() => el.focus());
 		}
 
 		/**
