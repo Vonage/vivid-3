@@ -1,10 +1,10 @@
 import {
 	attr,
-	type BindingObserver,
-	defaultExecutionContext,
-	DOM,
+	ExecutionContext,
+	type ExpressionNotifier,
 	nullableNumberConverter,
 	Observable,
+	Updates,
 	volatile,
 } from '@microsoft/fast-element';
 import type { TimeStr } from '../../datetime/time';
@@ -113,16 +113,16 @@ export const TimeSelectionPicker = <
 				}
 			},
 		};
-		#clockChangeObserver!: BindingObserver;
+		#clockChangeObserver!: ExpressionNotifier;
 		#startObservingClockChanges() {
 			this.#clockChangeObserver = Observable.binding(
 				() => this._use12hClock,
 				this.#clockChangeHandler
 			);
-			this.#clockChangeObserver.observe(this, defaultExecutionContext);
+			this.#clockChangeObserver.observe(this, ExecutionContext.default);
 		}
 		#stopObservingClockChanges() {
-			this.#clockChangeObserver.disconnect();
+			this.#clockChangeObserver.dispose();
 		}
 
 		/**
@@ -149,7 +149,7 @@ export const TimeSelectionPicker = <
 		override _onPickerButtonClick() {
 			super._onPickerButtonClick();
 			if (this._popupOpen) {
-				DOM.processUpdates();
+				Updates.process();
 				this._inlineTimePickerEl.scrollSelectedOptionsToTop();
 			}
 		}

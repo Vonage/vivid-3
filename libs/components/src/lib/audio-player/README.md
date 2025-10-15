@@ -1,7 +1,7 @@
 ## Usage
 
-<vwc-tabs gutters="none">
-<vwc-tab label="Web component"></vwc-tab>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -22,15 +22,17 @@ registerAudioPlayer('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
 <vwc-tab-panel>
 
-```html
+```vue preview
 <script setup lang="ts">
-	import { VAudioPlayer } from '@vonage/vivid-vue';
+import { VAudioPlayer } from '@vonage/vivid-vue';
 </script>
 <template>
-	<VAudioPlayer src="audio-file.mp3" />
+	<VAudioPlayer
+		src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
+	/>
 </template>
 ```
 

@@ -1,4 +1,4 @@
-import { attr, DOM, type ValueConverter } from '@microsoft/fast-element';
+import { attr, Updates, type ValueConverter } from '@microsoft/fast-element';
 import { PickerField } from '../../shared/picker-field/picker-field';
 import { SingleValuePicker } from '../../shared/picker-field/mixins/single-value-picker';
 import { TimeSelectionPicker } from '../../shared/picker-field/mixins/time-selection-picker';
@@ -172,7 +172,7 @@ export class TimePicker extends TimeSelectionPicker(
 	override _onPickerButtonClick() {
 		super._onPickerButtonClick();
 		if (this._popupOpen) {
-			DOM.processUpdates();
+			Updates.process();
 			this._focusableElsWithinDialog()[0]?.focus();
 		}
 	}

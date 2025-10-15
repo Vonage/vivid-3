@@ -1,7 +1,7 @@
 ## Usage
 
-<vwc-tabs gutters="none">
-<vwc-tab label="Web component"></vwc-tab>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -20,16 +20,17 @@ registerIcon('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
 <vwc-tab-panel>
 
-```html
-<script setup lang="ts">
-	import { VIcon } from '@vonage/vivid-vue';
-</script>
+```vue preview
 <template>
-	<VIcon name="close-line" />
+	<p>I <VIcon name="heart-line" connotation="alert" /> VIVID!</p>
 </template>
+
+<script setup lang="ts">
+import { VIcon } from '@vonage/vivid-vue';
+</script>
 ```
 
 </vwc-tab-panel>

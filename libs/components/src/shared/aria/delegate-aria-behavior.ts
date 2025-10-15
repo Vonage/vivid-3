@@ -1,8 +1,9 @@
-import { type Behavior, DOM, Observable } from '@microsoft/fast-element';
+import type { ViewBehavior, ViewController } from '@microsoft/fast-element';
+import { Observable, oneWay } from '@microsoft/fast-element';
 import { AttributeBindingBehavior } from '../templating/attribute-binding-behaviour';
 import {
 	subscribeToAriaPropertyChanges,
-	unsubscribeFromAriaPropertyChanges,
+	// unsubscribeFromAriaPropertyChanges,
 } from './aria-change-subscription';
 import type { DelegatesAriaElement } from './delegates-aria';
 import {
@@ -18,41 +19,53 @@ export type BoundAriaProperties<T> = Partial<{
 	[Property in AriaPropertyName]: AriaBinding<T>;
 }>;
 
-export class DelegateAriaBehavior<T> implements Behavior {
+export class DelegateAriaBehavior<T> implements ViewBehavior {
 	private readonly boundProperties: BoundAriaProperties<T>;
 	private readonly forwardedProperties: Set<AriaPropertyName>;
+	private target: HTMLElement | null = null;
 
 	constructor(
-		private target: HTMLElement,
+		target: HTMLElement | null,
 		params: {
 			boundProperties: BoundAriaProperties<T>;
 			forwardedProperties: Set<AriaPropertyName>;
 		}
 	) {
+		this.target = target;
 		this.boundProperties = params.boundProperties;
 		this.forwardedProperties = params.forwardedProperties;
 	}
 
-	private source: DelegatesAriaElement | null = null;
+	// private source: DelegatesAriaElement | null = null;
 
-	bind(source: DelegatesAriaElement) {
-		this.source = source;
-		this.bindPropertiesToTarget(source, this.boundProperties, this.target);
+	bind(controller: ViewController) {
+		const source = controller.source as DelegatesAriaElement;
+		// this.source = source;
+
+		// Don't override the target - use the one passed in constructor
+		// The target should be the element that the directive is attached to
+		// if (!this.target) {
+		// 	throw new Error(
+		// 		'Target element must be provided to DelegateAriaBehavior'
+		// 	);
+		// }
+
+		this.bindPropertiesToTarget(source, this.boundProperties, this.target!);
 		this.startForwardingPropertiesToTarget(
 			source,
 			this.forwardedProperties,
-			this.target
+			this.target!
 		);
 	}
 
-	unbind() {
-		if (this.source === null) {
-			return;
-		}
-		this.releasePropertyBindings(this.source);
-		this.stopForwardingPropertiesToTarget(this.source);
-		this.source = null;
-	}
+	// unbind() {
+	// 	if (this.source === null) {
+	// 		return;
+	// 	}
+	// 	this.releasePropertyBindings(this.source);
+	// 	this.stopForwardingPropertiesToTarget(this.source);
+	// 	this.source = null;
+	// }
 
 	private bindingBehaviours: AttributeBindingBehavior[] = [];
 
@@ -66,51 +79,70 @@ export class DelegateAriaBehavior<T> implements Behavior {
 			AriaBinding<T>
 		][]) {
 			const bindingFn = binding instanceof Function ? binding : () => binding;
+
 			this.bindingBehaviours.push(
 				new AttributeBindingBehavior(
 					target,
-					bindingFn,
+					oneWay(bindingFn),
 					Observable.isVolatileBinding(bindingFn),
 					ariaAttributeName(property)
 				)
 			);
 		}
-		source.$fastController.addBehaviors(this.bindingBehaviours);
+		for (const behavior of this.bindingBehaviours) {
+			(behavior as any).bind({
+				source,
+				context: source.$fastController.context,
+			} as any);
+		}
 	}
 
-	private releasePropertyBindings(source: DelegatesAriaElement) {
-		source.$fastController.removeBehaviors(this.bindingBehaviours);
-		this.bindingBehaviours = [];
-	}
+	// private releasePropertyBindings(source: DelegatesAriaElement) {
+	// 	for (const behavior of this.bindingBehaviours) {
+	// 		(behavior as any).unbind(); // TODO: fix type
+	// 	}
+	// 	this.bindingBehaviours = [];
+	// }
 
 	private startForwardingPropertiesToTarget(
 		source: DelegatesAriaElement,
 		delegatedProperties: Set<AriaPropertyName>,
 		target: HTMLElement
 	) {
+		// Only forward properties that are NOT bound (bound properties take precedence)
 		for (const key of delegatedProperties) {
-			this.forwardPropertyToTarget(target, key, source[key]);
+			if (!(key in this.boundProperties)) {
+				this.forwardPropertyToTarget(target, key, source[key]);
+			}
 		}
 
-		subscribeToAriaPropertyChanges(source, this.onSourceAriaPropertyChanged);
-	}
-
-	private stopForwardingPropertiesToTarget(source: DelegatesAriaElement) {
-		unsubscribeFromAriaPropertyChanges(
-			source,
+		subscribeToAriaPropertyChanges(
+			source as AriaMixinElement,
 			this.onSourceAriaPropertyChanged
 		);
 	}
+
+	// private stopForwardingPropertiesToTarget(source: DelegatesAriaElement) {
+	// 	unsubscribeFromAriaPropertyChanges(
+	// 		source as AriaMixinElement,
+	// 		this.onSourceAriaPropertyChanged
+	// 	);
+	// }
 
 	private onSourceAriaPropertyChanged = (
 		source: AriaMixinElement,
 		property: AriaPropertyName
 	) => {
-		if (!this.forwardedProperties.has(property)) {
+		// Only forward properties that are NOT bound (bound properties take precedence)
+		// Bound properties should never be forwarded, even when they change
+		if (
+			!this.forwardedProperties.has(property) ||
+			property in this.boundProperties
+		) {
 			return;
 		}
 
-		this.forwardPropertyToTarget(this.target, property, source[property]);
+		this.forwardPropertyToTarget(this.target!, property, source[property]);
 	};
 
 	private forwardPropertyToTarget(
@@ -118,6 +150,10 @@ export class DelegateAriaBehavior<T> implements Behavior {
 		property: AriaPropertyName,
 		value: BoundValue
 	) {
-		DOM.setAttribute(target, ariaAttributeName(property), value);
+		if (value === null || value === undefined || value === false) {
+			target.removeAttribute(ariaAttributeName(property));
+		} else {
+			target.setAttribute(ariaAttributeName(property), String(value));
+		}
 	}
 }

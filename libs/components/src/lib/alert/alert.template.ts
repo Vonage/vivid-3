@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html, InlineTemplateDirective, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import {
@@ -41,7 +41,7 @@ function renderIcon(c: VividElementDefinitionContext, x: Alert) {
 	);
 }
 
-function renderDismissButton(buttonTag: string) {
+function renderDismissButton(buttonTag: InlineTemplateDirective) {
 	return html`
 		<${buttonTag}
 			aria-label="${(x) =>

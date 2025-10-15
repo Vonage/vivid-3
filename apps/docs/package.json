@@ -20,7 +20,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@microsoft/fast-element": "^1.14.0",
+		"@microsoft/fast-element": "^2.7.0",
 		"@microsoft/fast-web-utilities": "^6.0.0",
 		"@repo/consts": "*",
 		"@repo/styles": "*",

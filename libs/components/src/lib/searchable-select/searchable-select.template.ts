@@ -283,11 +283,11 @@ function renderControl(context: VividElementDefinitionContext) {
 export const SearchableSelectTemplate = (
 	context: VividElementDefinitionContext
 ) => {
-	const optionTagTag = context.tagFor(OptionTag);
+	const optionTagName = context.tagFor(OptionTag, true);
 
 	return html<SearchableSelect>`
 		<template
-			:_optionTagTagName="${() => optionTagTag}"
+			:_optionTagTagName="${() => optionTagName}"
 			@mousedown="${(x, c) => x._onMouseDown(c.event as MouseEvent)}"
 		>
 			<div class="control-wrapper">

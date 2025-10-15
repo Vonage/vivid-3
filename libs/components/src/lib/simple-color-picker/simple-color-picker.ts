@@ -1,4 +1,8 @@
-import { attr, DOM, nullableNumberConverter } from '@microsoft/fast-element';
+import {
+	attr,
+	nullableNumberConverter,
+	Updates,
+} from '@microsoft/fast-element';
 import type { Placement } from '@floating-ui/dom';
 import { Anchored } from '../../shared/patterns/anchored';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -132,8 +136,8 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	 * @internal
 	 */
 	#openPopup = () => {
-		// DOM.queueUpdate() prevents click event from being caught by document listener
-		if (!this.open) DOM.queueUpdate(() => (this.open = true));
+		// Updates.enqueue() prevents click event from being caught by document listener
+		if (!this.open) Updates.enqueue(() => (this.open = true));
 	};
 
 	/**
@@ -142,7 +146,7 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	#handleAnchorKeydown = (event: KeyboardEvent) => {
 		if (event.key === 'Enter' || event.key === ' ') {
 			if (!this.open) {
-				DOM.queueUpdate(() => (this.open = true));
+				Updates.enqueue(() => (this.open = true));
 			}
 			event.preventDefault();
 		}

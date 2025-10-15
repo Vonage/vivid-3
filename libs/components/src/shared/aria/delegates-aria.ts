@@ -1,6 +1,8 @@
 import {
-	AttachedBehaviorHTMLDirective,
 	type CaptureType,
+	HTMLDirective,
+	StatelessAttachedAttributeDirective,
+	type ViewController,
 } from '@microsoft/fast-element';
 import type { Constructor, MixinType } from '../utils/mixins';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
@@ -14,13 +16,44 @@ type DelegateAriaOptions = {
 	onlySpecified?: boolean; /// Delegate only the specified properties
 };
 
+class DelegateAriaDirective<T> extends StatelessAttachedAttributeDirective<T> {
+	/**
+	 * The structural id of the DOM node to which the created behavior will apply.
+	 */
+	targetNodeId: string = '';
+
+	constructor(
+		private boundProperties: BoundAriaProperties<T>,
+		private forwardedProperties: Set<string>
+	) {
+		super('vvd-delegate-aria' as any);
+	}
+
+	override bind(controller: ViewController): void {
+		// Get the target element (the element the directive is attached to)
+		const targetElement = controller.targets[this.targetNodeId] as HTMLElement;
+
+		// Create and bind the behavior
+		const behavior = new DelegateAriaBehavior(
+			targetElement, // Pass the target element as target
+			{
+				boundProperties: this.boundProperties,
+				forwardedProperties: this.forwardedProperties as any,
+			}
+		);
+		behavior.bind(controller);
+	}
+}
+
+HTMLDirective.define(DelegateAriaDirective);
+
 /**
  * Directive to delegate ARIA properties to the target element.
  */
 export function delegateAria<T>(
 	boundProperties: BoundAriaProperties<T> = {},
 	options: DelegateAriaOptions = {}
-): CaptureType<T> {
+): CaptureType<T, any> {
 	// Forward all other properties to the target element, unless onlySpecified is set
 	const forwardedProperties = new Set(
 		(options.onlySpecified ? [] : ariaMixinProperties).filter(
@@ -28,14 +61,7 @@ export function delegateAria<T>(
 		)
 	);
 
-	return new AttachedBehaviorHTMLDirective(
-		'vvd-delegate-aria',
-		DelegateAriaBehavior,
-		{
-			boundProperties,
-			forwardedProperties,
-		}
-	);
+	return new DelegateAriaDirective(boundProperties, forwardedProperties);
 }
 
 /**

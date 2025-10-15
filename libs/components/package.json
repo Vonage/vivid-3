@@ -59,7 +59,7 @@
 	},
 	"dependencies": {
 		"@floating-ui/dom": "^1.6.13",
-		"@microsoft/fast-element": "^1.14.0",
+		"@microsoft/fast-element": "^2.7.0",
 		"@microsoft/fast-web-utilities": "^6.0.0",
 		"date-fns": "^3.0.0",
 		"prosemirror-commands": "^1.7.1",

@@ -59,6 +59,13 @@
 		padding: 0;
 	}
 
+	&.selected {
+		background-color: var(
+			#{variables.$checked-bg-var},
+			var(#{appearance.get-appearance-token(fill)})
+		);
+	}
+
 	&.clickable {
 		cursor: pointer;
 	}

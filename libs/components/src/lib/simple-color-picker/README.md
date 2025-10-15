@@ -1,7 +1,7 @@
 ## Usage
 
-<vwc-tabs gutters="none">
-<vwc-tab label="Web component"></vwc-tab>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -87,25 +87,66 @@ registerSimpleColorPicker('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
 <vwc-tab-panel>
 
-```html
+```vue preview 120px
 <script setup lang="ts">
-	import { VSimpleColorPicker, VButton, VIcon } from '@vonage/vivid-vue';
+import { VSimpleColorPicker, VButton, VIcon } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const swatches = [
+	{
+		label: 'Black',
+		value: '#000000',
+	},
+	{
+		label: 'Red',
+		value: '#E61D1D',
+	},
+	{
+		label: 'Yellow',
+		value: '#FA9F00',
+	},
+	{
+		label: 'Green',
+		value: '#1C8731',
+	},
+	{
+		label: 'Blue',
+		value: '#0276D5',
+	},
+	{
+		label: 'Purple',
+		value: '#9941FF',
+	},
+	{
+		label: 'Pink',
+		value: '#D6219C',
+	},
+];
+
+const selectedColor = ref('#000000');
+
+const handleColorChange = (event: CustomEvent) => {
+	selectedColor.value = event.target.value;
+};
 </script>
 
 <template>
-	<VSimpleColorPicker :swatches="[
-		{label: "Black", value: "#000000"},
-		{label: "White", value: "#ffffff"}
-	]">
+	<VSimpleColorPicker :swatches="swatches" @change="handleColorChange">
 		<VButton
 			slot="anchor"
-			label="Toggle Color Picker"
-			shape="rounded"
-			appearance="filled">
-			<VIcon slot="icon" name="palette-solid" />
+			aria-label="Pick color"
+			size="super-condensed"
+			shape="pill"
+			appearance="outlined"
+		>
+			<VIcon
+				slot="icon"
+				name="textcolor-solid"
+				:style="{ color: selectedColor }"
+			/>
 		</VButton>
 	</VSimpleColorPicker>
 </template>

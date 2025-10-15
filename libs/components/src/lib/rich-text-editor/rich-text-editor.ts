@@ -1,4 +1,8 @@
-import { attr, DOM, nullableNumberConverter } from '@microsoft/fast-element';
+import {
+	attr,
+	nullableNumberConverter,
+	Updates,
+} from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { Localized } from '../../shared/patterns';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
@@ -183,7 +187,7 @@ export class RichTextEditor extends Localized(VividElement) {
 	}
 
 	scrollToAttachments(additionalPixels = 0) {
-		DOM.queueUpdate(() => {
+		Updates.enqueue(() => {
 			this.#editorWrapperElement.scrollTop =
 				this.#editableAreaElement.getBoundingClientRect().height -
 				this.#editorWrapperElement.getBoundingClientRect().height +

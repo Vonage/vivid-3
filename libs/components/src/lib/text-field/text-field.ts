@@ -1,9 +1,9 @@
 import {
 	attr,
-	DOM,
 	ElementStyles,
 	nullableNumberConverter,
 	observable,
+	Updates,
 } from '@microsoft/fast-element';
 import type { Appearance, Shape, Size } from '../enums';
 import {
@@ -71,7 +71,7 @@ export type TextFieldType = typeof TextFieldType[keyof typeof TextFieldType];
 // As a workaround we add a stylesheet to root of text-field to apply the styles
 // Once fixed in Safari we can remove the workaround (VIV-1413)
 const safariWorkaroundClassName = '_vvd-3-text-field-safari-workaround';
-const safariWorkaroundStyles = ElementStyles.create([
+const safariWorkaroundStyles = new ElementStyles([
 	`
 	.${safariWorkaroundClassName}::placeholder {
 		opacity: 1 !important;
@@ -402,7 +402,7 @@ export class TextField extends WithContextualHelp(
 		this.validate();
 
 		if (this.autofocus) {
-			DOM.queueUpdate(() => {
+			Updates.enqueue(() => {
 				this.focus();
 			});
 		}

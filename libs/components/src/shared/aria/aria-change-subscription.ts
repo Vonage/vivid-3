@@ -32,12 +32,12 @@ export const subscribeToAriaPropertyChanges = (
 	getSubscribers(source).push(listener);
 };
 
-export const unsubscribeFromAriaPropertyChanges = (
-	source: AriaMixinElement,
-	listener: AriaChangeSubscriber
-) => {
-	getSubscribers(source).splice(getSubscribers(source).indexOf(listener), 1);
-};
+// export const unsubscribeFromAriaPropertyChanges = (
+// 	source: AriaMixinElement,
+// 	listener: AriaChangeSubscriber
+// ) => {
+// 	getSubscribers(source).splice(getSubscribers(source).indexOf(listener), 1);
+// };
 
 export const publishAriaPropertyChange = (
 	source: AriaMixinElement,

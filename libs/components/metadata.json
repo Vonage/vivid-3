@@ -3507,6 +3507,13 @@
 					"propertyName": "callButtonLabel"
 				},
 				{
+					"name": "deleteAriaLabel",
+					"description": "The aria-label for the delete button",
+					"type": "string",
+					"attributeName": "delete-aria-label",
+					"propertyName": "deleteAriaLabel"
+				},
+				{
 					"name": "disabled",
 					"description": "Indicates the disabled state of the dial-pad.",
 					"type": "boolean",

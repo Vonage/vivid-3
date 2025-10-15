@@ -2,6 +2,7 @@
 import {
 	ExecutionContext,
 	html,
+	InlineTemplateDirective,
 	ref,
 	repeat,
 	when,
@@ -109,7 +110,10 @@ function deleteLastCharacter(dialPad: DialPad) {
 	}
 }
 
-function renderTextField(textFieldTag: string, buttonTag: string) {
+function renderTextField(
+	textFieldTag: InlineTemplateDirective,
+	buttonTag: InlineTemplateDirective
+) {
 	return html<DialPad>`<${textFieldTag} ${ref(
 		'_textFieldEl'
 	)} class="phone-field" internal-part type="tel"
@@ -150,7 +154,10 @@ function onDigitClick(
 	dialPad.$emit('change');
 }
 
-function renderDigits(buttonTag: string, iconTag: string) {
+function renderDigits(
+	buttonTag: InlineTemplateDirective,
+	iconTag: InlineTemplateDirective
+) {
 	return html<DialPad>`
 		${repeat(
 			(_: DialPad) => DIAL_PAD_BUTTONS,
@@ -181,7 +188,7 @@ function renderDigits(buttonTag: string, iconTag: string) {
 	`;
 }
 
-function renderDialButton(buttonTag: string) {
+function renderDialButton(buttonTag: InlineTemplateDirective) {
 	return html<DialPad>`<${buttonTag} class="call-btn"
         size="expanded"
         appearance="filled"
@@ -197,7 +204,7 @@ function renderDialButton(buttonTag: string) {
     </${buttonTag}>`;
 }
 
-function renderErrorAnnouncement(visuallyHiddenTag: string) {
+function renderErrorAnnouncement(visuallyHiddenTag: InlineTemplateDirective) {
 	return html<DialPad>`<${visuallyHiddenTag} role="alert" aria-atomic="true">
 		${(x) => `${x.locale.dialPad.errorLabel} ${x._errorAnnouncement}`}
 	</${visuallyHiddenTag}>`;

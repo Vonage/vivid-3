@@ -1,7 +1,7 @@
 ## Usage
 
-<vwc-tabs gutters="none">
-<vwc-tab label="Web component"></vwc-tab>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -20,12 +20,12 @@ registerSlider('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
 <vwc-tab-panel>
 
-```html
+```vue preview
 <script setup lang="ts">
-	import { VSlider } from '@vonage/vivid-vue';
+import { VSlider } from '@vonage/vivid-vue';
 </script>
 <template>
 	<VSlider aria-label="Vue Slider" />

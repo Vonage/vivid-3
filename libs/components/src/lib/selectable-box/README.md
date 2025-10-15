@@ -1,7 +1,7 @@
 ## Usage
 
-<vwc-tabs gutters="none">
-<vwc-tab label="Web component"></vwc-tab>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -20,12 +20,12 @@ registerSelectableBox('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
 <vwc-tab-panel>
 
-```html
+```vue preview
 <script setup lang="ts">
-	import { VSelectableBox } from '@vonage/vivid-vue';
+import { VSelectableBox } from '@vonage/vivid-vue';
 </script>
 
 <template>
@@ -48,6 +48,24 @@ Use the `--selectable-box-spacing` variable to set the amount of spacing applied
 <style>
 	.box {
 		--selectable-box-spacing: 8px;
+
+		max-inline-size: 450px;
+	}
+</style>
+```
+
+### Checked Background Color
+
+Use the `--selectable-box-checked-bg` variable to override the default background color applied to the checked state of the Selectable Box.
+
+```html preview
+<vwc-selectable-box checked class="box"
+	>Selected background is now white</vwc-selectable-box
+>
+
+<style>
+	.box {
+		--selectable-box-checked-bg: #ffffff;
 
 		max-inline-size: 450px;
 	}

@@ -1,15 +1,16 @@
 import {
 	attr,
 	customElement,
-	DOM,
 	FASTElement,
 	html,
 	observable,
+	Updates,
 } from '@microsoft/fast-element';
 import { fixture, uniqueElementName } from './fixture';
 
 describe('The fixture helper', () => {
 	const name = uniqueElementName();
+
 	const template = html<MyElement>`
 		${(x) => x.value}
 		<slot></slot>
@@ -68,9 +69,11 @@ describe('The fixture helper', () => {
 
 	it('can bind an element to data', async () => {
 		const source = new MyModel();
+		const nameTag = html.partial(name);
+
 		const { element, disconnect } = await fixture<MyElement>(
 			html<MyModel>`
-    <${name} value=${(x) => x.value}></${name}>
+    <${nameTag} value=${(x) => x.value}></${nameTag}>
   `,
 			{ source }
 		);
@@ -79,7 +82,7 @@ describe('The fixture helper', () => {
 
 		source.value = 'something else';
 
-		await DOM.nextUpdate();
+		await Updates.next();
 
 		expect(element.value).toEqual(source.value);
 

@@ -114,24 +114,30 @@ describe('vwc-data-grid-row', () => {
 	describe('cellItemTemplate and headerCellItemTemplate', () => {
 		it('should render cells according to number of columns', async () => {
 			const dataGridCellTagName = 'something-custom';
+			const dataGridCellTag = html.partial('something-custom');
+
 			element.columnDefinitions = [
 				{ columnDataKey: 'name' },
 				{ columnDataKey: 'age' },
 			];
-			element.cellItemTemplate = html`<${dataGridCellTagName}></${dataGridCellTagName}>`;
+			element.cellItemTemplate = html`<${dataGridCellTag}></${dataGridCellTag}>`;
 			await elementUpdated(element);
+
 			expect(element.querySelectorAll(dataGridCellTagName).length).toEqual(2);
 		});
 
 		it('should render header cells according to number of columns', async () => {
 			const dataGridCellTagName = 'something-custom';
+			const dataGridCellTag = html.partial('something-custom');
+
 			element.columnDefinitions = [
 				{ columnDataKey: 'name', isRowHeader: true },
 				{ columnDataKey: 'age' },
 			];
 			element.rowType = 'header';
-			element.headerCellItemTemplate = html`<${dataGridCellTagName}></${dataGridCellTagName}>`;
+			element.headerCellItemTemplate = html`<${dataGridCellTag}></${dataGridCellTag}>`;
 			await elementUpdated(element);
+
 			expect(element.querySelectorAll(dataGridCellTagName).length).toEqual(2);
 		});
 	});
@@ -148,11 +154,13 @@ describe('vwc-data-grid-row', () => {
 	describe('keyboard events', () => {
 		it('should move focus on arrow keys', async () => {
 			const dataGridCellTagName = 'button';
+			const dataGridCellTag = html.partial(dataGridCellTagName);
+
 			element.columnDefinitions = [
 				{ columnDataKey: 'name' },
 				{ columnDataKey: 'age' },
 			];
-			element.cellItemTemplate = html`<${dataGridCellTagName} role="cell"></${dataGridCellTagName}>`;
+			element.cellItemTemplate = html`<${dataGridCellTag} role="cell"></${dataGridCellTag}>`;
 			await elementUpdated(element);
 			const cells = Array.from(element.querySelectorAll(dataGridCellTagName));
 			const focusedElementBeforeArrowKey = document.activeElement;
@@ -221,13 +229,15 @@ describe('vwc-data-grid-row', () => {
 
 		it('should move focus edges on home or end keys press', async () => {
 			const dataGridCellTagName = 'button';
+			const dataGridCellTag = html.partial('button');
+
 			element.columnDefinitions = [
 				{ columnDataKey: 'name' },
 				{ columnDataKey: 'age' },
 				{ columnDataKey: 'set' },
 				{ columnDataKey: 'get' },
 			];
-			element.cellItemTemplate = html`<${dataGridCellTagName} role="cell"></${dataGridCellTagName}>`;
+			element.cellItemTemplate = html`<${dataGridCellTag} role="cell"></${dataGridCellTag}>`;
 			await elementUpdated(element);
 			const cells = Array.from(element.querySelectorAll(dataGridCellTagName));
 

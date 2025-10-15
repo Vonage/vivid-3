@@ -1,8 +1,8 @@
 import {
 	attr,
-	DOM,
 	nullableNumberConverter,
 	observable,
+	Updates,
 } from '@microsoft/fast-element';
 import type { Placement, Strategy } from '@floating-ui/dom';
 import {
@@ -94,7 +94,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	 */
 	override connectedCallback() {
 		super.connectedCallback();
-		DOM.queueUpdate(() => {
+		Updates.enqueue(() => {
 			// wait until children have had a chance to
 			// connect before setting/checking their props/attributes
 			this.setItems();
@@ -385,7 +385,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		}
 
 		const newValue = !this.open;
-		DOM.queueUpdate(() => (this.open = newValue));
+		Updates.enqueue(() => (this.open = newValue));
 	};
 
 	_onFocusout = (e: FocusEvent) => {

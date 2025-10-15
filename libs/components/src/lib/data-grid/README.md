@@ -1,7 +1,7 @@
 ## Usage
 
-<vwc-tabs gutters="none">
-<vwc-tab label="Web component"></vwc-tab>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -40,28 +40,32 @@ Data Grid Row and Data Grid Cell sub-components are registered automatically in 
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
 <vwc-tab-panel>
 
-```html
-<script setup lang="ts">
-	import { VDataGrid, VDataGridRow, VDataGridCell } from '@vonage/vivid-vue';
-</script>
-
+```vue preview
 <template>
-	<VDataGrid>
-		<VDataGridRow>
-			<VDataGridCell>Data 11</VDataGridCell>
-			<VDataGridCell>Data 12</VDataGridCell>
-			<VDataGridCell>Data 13</VDataGridCell>
-		</VDataGridRow>
-		<VDataGridRow>
-			<VDataGridCell>Data 21</VDataGridCell>
-			<VDataGridCell>Data 22</VDataGridCell>
-			<VDataGridCell>Data 23</VDataGridCell>
-		</VDataGridRow>
-	</VDataGrid>
+	<VSelect v-model="value" label="Selection Mode" class="select">
+		<VOption value="none" text="none" />
+		<VOption value="single-row" text="single-row" />
+		<VOption value="multi-row" text="multi-row" />
+		<VOption value="single-cell" text="single-cell" />
+		<VOption value="multi-cell" text="multi-cell" />
+	</VSelect>
+	<VDataGrid id="grid" :selection-mode="value" :rows-data="data" />
 </template>
+<script setup lang="ts">
+import { VDataGrid, VSelect, VOption } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const value = ref('none');
+const data = ref([
+	{ name: 'John', surname: 'Doe', age: 30 },
+	{ name: 'Jane', surname: 'Doe', age: 25 },
+	{ name: 'Bill', surname: 'Cave', age: 22 },
+	{ name: 'Jill', surname: 'Jane', age: 23 },
+]);
+</script>
 ```
 
 </vwc-tab-panel>

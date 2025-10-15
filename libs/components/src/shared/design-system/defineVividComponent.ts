@@ -1,5 +1,6 @@
 import type {
 	Constructable,
+	InlineTemplateDirective,
 	PartialFASTElementDefinition,
 	ViewTemplate,
 } from '@microsoft/fast-element';
@@ -12,7 +13,10 @@ export type VividElementDefinitionContext = {
 	/**
 	 * Gets the prefixed tag name for a dependency.
 	 */
-	tagFor(type: Constructable): string;
+	tagFor<T extends boolean = false>(
+		type: Constructable,
+		convertToString?: T
+	): T extends true ? string : InlineTemplateDirective;
 	/**
 	 * Gets the prefixed tag name without creating a dependency on the other element.
 	 */

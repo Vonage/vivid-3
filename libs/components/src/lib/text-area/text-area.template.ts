@@ -40,7 +40,7 @@ export const TextAreaTemplate = (context: VividElementDefinitionContext) => {
 			>
 				${when(
 					(x) => x.charCount && x.maxlength,
-					(x) => x._getCharCountTemplate(context)
+					(x) => x._getCharCountTemplate(context) as any
 				)}
 				<slot
 					name="contextual-help"
