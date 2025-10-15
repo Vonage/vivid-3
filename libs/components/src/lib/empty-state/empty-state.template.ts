@@ -14,7 +14,10 @@ const getClasses = ({ connotation, slottedActionItems }: EmptyState) =>
 export const EmptyStateTemplate = (context: VividElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 
-	return html<EmptyState>` <div class="${getClasses}">
+	return html<EmptyState>` <div
+		class="${getClasses}"
+		aria-labelledby="${(x) => (x.headline ? 'empty-state-headline' : null)}"
+	>
 		<slot name="graphic">
 			${when(
 				(x) => x.icon,
@@ -26,7 +29,9 @@ export const EmptyStateTemplate = (context: VividElementDefinitionContext) => {
 		<div class="content">
 			${when(
 				(x) => x.headline,
-				html<EmptyState>`<header>${(x) => x.headline}</header>`
+				html<EmptyState>`<header id="empty-state-headline">
+					${(x) => x.headline}
+				</header>`
 			)}
 			<slot></slot>
 		</div>

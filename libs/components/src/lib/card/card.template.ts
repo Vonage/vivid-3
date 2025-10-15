@@ -26,7 +26,9 @@ function renderHeaderIcon(iconTag: InlineTemplateDirective) {
 }
 
 function Headline() {
-	return html` <div class="header-headline">${(x) => x.headline}</div> `;
+	return html`
+		<div class="header-headline" id="card-headline">${(x) => x.headline}</div>
+	`;
 }
 
 function Subtitle() {
@@ -77,6 +79,7 @@ function renderButtonElement(content: ViewTemplate<Card>) {
 		class="${getClasses}"
 		type="button"
 		${delegateAria()}
+		aria-labelledby="${(x) => (x.headline ? 'card-headline' : null)}"
 	>
 		${content}
 	</button>`;
@@ -88,7 +91,12 @@ function renderCardBaseElement(x: Card, content: ViewTemplate<Card>) {
 	} else if (x.clickableCard) {
 		return renderButtonElement(content);
 	} else {
-		return html`<div class="${getClasses}">${content}</div>`;
+		return html`<div
+			class="${getClasses}"
+			aria-labelledby="${(x) => (x.headline ? 'card-headline' : null)}"
+		>
+			${content}
+		</div>`;
 	}
 }
 

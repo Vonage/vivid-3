@@ -39,7 +39,9 @@ function icon(iconTag: InlineTemplateDirective) {
 }
 
 function headline() {
-	return html<Dialog>` <h2 class="headline">${(x) => x.headline}</h2> `;
+	return html<Dialog>`
+		<h2 class="headline" id="dialog-headline">${(x) => x.headline}</h2>
+	`;
 }
 
 function subtitle() {
@@ -77,6 +79,7 @@ export const DialogTemplate = (context: VividElementDefinitionContext) => {
 				${delegateAria({
 					ariaModal: (x) => String(x._openedAsModal),
 				})}
+				aria-labelledby="${(x) => (x.headline ? 'dialog-headline' : null)}"
 		>
 			<slot name="main">
 				<div class="main-wrapper">

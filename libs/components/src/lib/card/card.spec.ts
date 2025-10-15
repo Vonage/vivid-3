@@ -42,6 +42,10 @@ describe('vwc-card', () => {
 
 			const headerTitle = element.shadowRoot?.querySelector('.header-headline');
 			expect(headerTitle?.textContent?.trim()).toEqual(headline);
+			expect(headerTitle?.id).toBe('card-headline');
+			expect(getBaseElement(element)?.getAttribute('aria-labelledby')).toBe(
+				'card-headline'
+			);
 		});
 
 		it('should set subtitle property to .header-subtitle', async () => {
@@ -255,6 +259,18 @@ describe('vwc-card', () => {
 		it('should render a card with clickable-card attribute as a button', async function () {
 			expect(getBaseElement(element)?.tagName).toEqual('BUTTON');
 			expect(getBaseElement(element)?.getAttribute('type')).toEqual('button');
+		});
+
+		it('should associate header with button using aria-labelledby', async () => {
+			const headline = 'card headline';
+			element.headline = headline;
+			await elementUpdated(element);
+
+			const headerTitle = element.shadowRoot?.querySelector('.header-headline');
+			expect(headerTitle?.id).toBe('card-headline');
+			expect(getBaseElement(element)?.getAttribute('aria-labelledby')).toBe(
+				'card-headline'
+			);
 		});
 
 		itShouldDelegateAriaAttributes(

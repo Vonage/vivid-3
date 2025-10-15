@@ -164,6 +164,8 @@ describe('vwc-dialog', () => {
 			expect(headlineElementWhenUndefined).toBeNull();
 			expect(headlineElement).toBeTruthy();
 			expect(headlineElement?.textContent?.trim()).toEqual(content);
+			expect(headlineElement?.id).toBe('dialog-headline');
+			expect(dialogEl.getAttribute('aria-labelledby')).toBe('dialog-headline');
 		});
 	});
 
