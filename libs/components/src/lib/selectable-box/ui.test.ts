@@ -66,7 +66,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				>
 					Checked CTA radio box
 				</vwc-selectable-box>
-				<vwc-selectable-box checked style="--selectable-box-selected-bg: #ffff00;">
+				<vwc-selectable-box checked style="--selectable-box-checked-bg: #ffff00;">
 					Custom selected background
 				</vwc-selectable-box>
 				<vwc-selectable-box tight>
