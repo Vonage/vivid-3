@@ -1,4 +1,11 @@
-import { html, ref, repeat, slotted, when } from '@microsoft/fast-element';
+import {
+	html,
+	InlineTemplateDirective,
+	ref,
+	repeat,
+	slotted,
+	when,
+} from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { TextField } from '../text-field/text-field';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
@@ -6,9 +13,12 @@ import { Icon } from '../icon/icon';
 import { Popup } from '../popup/popup';
 import { Button } from '../button/button';
 import { delegateAria } from '../../shared/aria/delegates-aria';
-import { ColorPicker, vcInputTag, vcPickerTag } from './color-picker';
+import { ColorPicker } from './color-picker';
 
-function renderTextField(textFieldTag: string, iconTag: string) {
+function renderTextField(
+	textFieldTag: InlineTemplateDirective,
+	iconTag: InlineTemplateDirective
+) {
 	const getClasses = (_: ColorPicker) => classNames('control');
 
 	return html<ColorPicker>`
@@ -68,7 +78,10 @@ function renderTextField(textFieldTag: string, iconTag: string) {
 	`;
 }
 
-function renderPopupHeader(buttonTag: string, iconTag: string) {
+function renderPopupHeader(
+	buttonTag: InlineTemplateDirective,
+	iconTag: InlineTemplateDirective
+) {
 	return html<ColorPicker>`
 		<div class="header">
 			<span class="header-title" id="color-picker-title">
@@ -83,25 +96,28 @@ function renderPopupHeader(buttonTag: string, iconTag: string) {
 	`;
 }
 
-function renderPopupBody(buttonTag: string, iconTag: string) {
+function renderPopupBody(
+	buttonTag: InlineTemplateDirective,
+	iconTag: InlineTemplateDirective
+) {
 	return html<ColorPicker>`
 		<div class="body">
-			<${vcPickerTag}
+			<vvd-hex-picker
 				part="hex-picker"
 				color="${(x) => x.value}"
 				@color-changed="${(x, c) =>
 					x._onPickerColorChanged(c.event as CustomEvent<{ value: string }>)}"
 				${ref('_vcHexPickerEl')}
-			></${vcPickerTag}>
+			></vvd-hex-picker>
 			<div class="hex-input-wrapper">
-				<${vcInputTag}
+				<vvd-hex-input
 					part="hex-input"
 					prefixed
 					color="${(x) => x.value}"
 					@color-changed="${(x, c) =>
 						x._onPickerColorChanged(c.event as CustomEvent<{ value: string }>)}"
 					${ref('_vcHexInputEl')}
-				></${vcInputTag}>
+				></vvd-hex-input>
 				<${buttonTag} size="normal" 
 					aria-label="${(x) => x.locale.colorPicker.copyButtonLabel}" 
 					@click="${(x) => x._copyValueToClipboard(x.value)}">
@@ -112,7 +128,10 @@ function renderPopupBody(buttonTag: string, iconTag: string) {
 	`;
 }
 
-function renderPopupFooter(buttonTag: string, iconTag: string) {
+function renderPopupFooter(
+	buttonTag: InlineTemplateDirective,
+	iconTag: InlineTemplateDirective
+) {
 	return html<ColorPicker>`
 		<div class="footer">
 			<span class="footer-title" id="color-picker-footer-title"

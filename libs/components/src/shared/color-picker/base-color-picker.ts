@@ -1,4 +1,11 @@
-import { attr, html, observable, Updates, when } from '@microsoft/fast-element';
+import {
+	attr,
+	html,
+	InlineTemplateDirective,
+	observable,
+	Updates,
+	when,
+} from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor, MixinType } from '../utils/mixins';
@@ -240,7 +247,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		_renderColorSwatch(iconTag: string) {
+		_renderColorSwatch(iconTag: InlineTemplateDirective) {
 			return html<ColorSwatch>`
 				<button
 					class="swatch ${(x, c) =>
