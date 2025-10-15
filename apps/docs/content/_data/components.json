@@ -578,8 +578,7 @@
 		"code": "./libs/components/src/lib/color-picker/README.md",
 		"accessibility": "./libs/components/src/lib/color-picker/ACCESSIBILITY.md",
 		"hideGuidelines": "true",
-		"status": "alpha",
-		"children": ["Simple Color Picker"]
+		"status": "underlying"
 	},
 	{
 		"title": "Simple Color Picker",
@@ -588,8 +587,7 @@
 		"code": "./libs/components/src/lib/simple-color-picker/README.md",
 		"accessibility": "./libs/components/src/lib/simple-color-picker/ACCESSIBILITY.md",
 		"hideGuidelines": "true",
-		"status": "alpha",
-		"parent": "Color Picker"
+		"status": "alpha"
 	},
 	{
 		"title": "Contextual Help",
