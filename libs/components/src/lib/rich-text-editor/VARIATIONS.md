@@ -1,7 +1,6 @@
 ## Freeform
 
 ```html preview
-
 <vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
 
 <script>

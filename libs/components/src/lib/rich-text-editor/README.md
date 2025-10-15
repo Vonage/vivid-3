@@ -393,7 +393,8 @@ Adds the ability to insert links.
 		]);
 		rteComponent.instance = config.instantiateEditor([
 			{
-				type: 'text', text: "Learn more on "
+				type: 'text',
+				text: 'Learn more on ',
 			},
 			{
 				type: 'text',
