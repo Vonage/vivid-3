@@ -117,9 +117,6 @@
 		"wait-on": "^8.0.4"
 	},
 	"overrides": {
-		"global": {
-			"min-document": "npm:is-odd@0.1.2"
-		},
 		"minimist": "1.2.8",
 		"path-to-regexp": "8.2.0",
 		"express": {
