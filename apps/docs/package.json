@@ -27,7 +27,7 @@
 		"@vonage/vivid": "*",
 		"@vonage/vivid-vue": "*",
 		"@vonage/vivid-test-utils": "*",
-		"ramda": "^0.30.0"
+		"ramda": "^0.32.0"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "*",
