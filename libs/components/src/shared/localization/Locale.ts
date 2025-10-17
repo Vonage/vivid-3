@@ -24,6 +24,8 @@ import type { TagLocale } from '../../lib/tag/locale';
 import type { Connotation } from '../../lib/enums';
 import type { ToggletipLocale } from '../../lib/toggletip/locale';
 import type { SimpleColorPickerLocale } from '../../lib/simple-color-picker/locale';
+import type { ColorPickerLocale } from '../../lib/color-picker/locale';
+import type { BaseColorPickerLocale } from '../color-picker/locale';
 
 type ConnotationAnnoncementLocale = {
 	[key in Connotation as `${key}Icon`]: string;
@@ -59,5 +61,7 @@ export interface Locale {
 	pagination: PaginationLocale;
 	tag: TagLocale;
 	toggletip: ToggletipLocale;
+	baseColorPicker: BaseColorPickerLocale;
 	simpleColorPicker: SimpleColorPickerLocale;
+	colorPicker: ColorPickerLocale;
 }

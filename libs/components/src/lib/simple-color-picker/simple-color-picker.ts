@@ -1,19 +1,12 @@
 import {
 	attr,
 	nullableNumberConverter,
-	observable,
 	Updates,
 } from '@microsoft/fast-element';
 import type { Placement } from '@floating-ui/dom';
 import { Anchored } from '../../shared/patterns/anchored';
-import { FormElement, Localized } from '../../shared/patterns';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
-import {
-	type ColorSwatch,
-	getContrastRatio,
-	getCSSCustomProperty,
-} from '../../shared/color-picker';
+import { BaseColorPicker } from '../../shared/color-picker';
 
 /**
  * @public
@@ -22,27 +15,12 @@ import {
  * @event {CustomEvent<undefined>} change - Fires when the value changes
  * @vueModel modelValue value input `event.currentTarget.value`
  */
-export class SimpleColorPicker extends Localized(
-	Anchored(FormElement(FormAssociated(VividElement)))
-) {
-	/**
-	 * @internal
-	 */
-	override proxy = document.createElement('input');
-
-	/**
-	 * Indicates whether the popup is open
-	 * @public
-	 * @remarks
-	 * HTML Attribute: open
-	 */
-	@attr({ mode: 'boolean' }) open = false;
-
+export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	/**
 	 * @internal
 	 */
 	openChanged(): void {
-		this.#updateListeners();
+		this._updateListeners();
 
 		if (this._anchorEl) {
 			this.#updateAnchor(this._anchorEl);
@@ -55,7 +33,7 @@ export class SimpleColorPicker extends Localized(
 					(swatch) => swatch.value === this.value
 				);
 				const targetIndex = selectedIndex >= 0 ? selectedIndex : 0;
-				this.#focusSwatchByIndex(targetIndex);
+				this._focusSwatchByIndex(targetIndex);
 			});
 		}
 	}
@@ -67,19 +45,6 @@ export class SimpleColorPicker extends Localized(
 	 * HTML Attribute: placement
 	 */
 	@attr({ mode: 'fromView' }) placement?: Placement = 'top-start';
-
-	/**
-	 * List of color swatches, has to be an array of objects
-	 *
-	 * @public
-	 * @example
-	 * colorPicker.swatches = [
-	 *   { value: '#ff0000', label: 'Red' },
-	 *   { value: '#00ff00', label: 'Green' }
-	 * ];
-	 */
-	@observable
-	swatches: ColorSwatch[] = [];
 
 	/**
 	 * Number of swatches per row for grid layout
@@ -94,48 +59,40 @@ export class SimpleColorPicker extends Localized(
 	})
 	swatchesPerRow: number = 7;
 
+	/**
+	 * @internal
+	 */
+	override _getRowLength(): number {
+		return this.swatchesPerRow;
+	}
+
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.#updateListeners();
-		this._refreshCanvasColor();
+		this._updateListeners();
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.#updateListeners();
+		this._updateListeners();
 	}
 
 	/**
 	 * @internal
 	 */
-	#updateListeners() {
-		document.removeEventListener('click', this.#closeOnClickOutside);
-		document.removeEventListener('keydown', this.#closeOnEscape);
+	_updateListeners() {
+		document.removeEventListener('click', this._closeOnClickOutside);
+		document.removeEventListener('keydown', this._closeOnEscape);
 		if (this.open && this.isConnected) {
-			document.addEventListener('click', this.#closeOnClickOutside);
-			document.addEventListener('keydown', this.#closeOnEscape);
+			document.addEventListener('click', this._closeOnClickOutside);
+			document.addEventListener('keydown', this._closeOnEscape);
 		}
 	}
 
 	/**
 	 * @internal
 	 */
-	private _canvasColor: string = '';
-
-	/**
-	 * @internal
-	 */
-	private _refreshCanvasColor() {
-		this._canvasColor = getCSSCustomProperty('--vvd-color-canvas', this);
-	}
-
-	/**
-	 * @internal
-	 */
-	_applyContrastClass(swatchColor: string, threshold = 3): boolean {
-		if (!swatchColor || !this._canvasColor) return false;
-		const ratio = getContrastRatio(swatchColor, this._canvasColor);
-		return ratio < threshold;
+	override _getFocusReturnEl(): HTMLElement | null {
+		return this._anchorEl ?? null;
 	}
 
 	/**
@@ -198,7 +155,7 @@ export class SimpleColorPicker extends Localized(
 	/**
 	 * @internal
 	 */
-	#closeOnClickOutside = (e: Event) => {
+	_closeOnClickOutside = (e: Event) => {
 		const clickedOutside = !this.contains(e.target as Node);
 		const clickedOnAnchor = this._anchorEl?.contains(e.target as Node);
 		if (clickedOutside || clickedOnAnchor) this.open = false;
@@ -207,137 +164,9 @@ export class SimpleColorPicker extends Localized(
 	/**
 	 * @internal
 	 */
-	#closeOnEscape = (e: KeyboardEvent) => {
+	_closeOnEscape = (e: KeyboardEvent) => {
 		if (e.key === 'Escape') {
 			this.open = false;
 		}
 	};
-
-	/**
-	 * @internal
-	 */
-	_handleSwatchSelection = (swatch: ColorSwatch) => {
-		if (this.value === swatch.value) {
-			this.value = '';
-		} else {
-			this.value = swatch.value;
-		}
-		this.$emit('change');
-		this.open = false;
-	};
-
-	/**
-	 * @internal
-	 */
-	_handleSwatchKeydown = (
-		event: KeyboardEvent,
-		swatch: ColorSwatch,
-		index: number
-	) => {
-		const rowLength = this.swatchesPerRow;
-		const totalCells = this.swatches.length;
-		const currentRow = Math.floor(index / rowLength);
-		const currentCol = index % rowLength;
-		const totalRows = Math.ceil(totalCells / rowLength);
-
-		switch (event.key) {
-			case 'ArrowRight':
-				if (currentCol < rowLength - 1 && index + 1 < totalCells) {
-					this.#focusSwatchByIndex(index + 1);
-				}
-				return false;
-
-			case 'ArrowLeft':
-				if (currentCol > 0) {
-					this.#focusSwatchByIndex(index - 1);
-				}
-				return false;
-
-			case 'ArrowDown':
-				if (currentRow < totalRows - 1 && index + rowLength < totalCells) {
-					this.#focusSwatchByIndex(index + rowLength);
-				}
-				return false;
-
-			case 'ArrowUp':
-				if (currentRow > 0) {
-					this.#focusSwatchByIndex(index - rowLength);
-				}
-				return false;
-
-			case 'PageDown': {
-				const lastRowStart = (totalRows - 1) * rowLength;
-				const targetIndex = Math.min(lastRowStart + currentCol, totalCells - 1);
-				if (index !== targetIndex) {
-					this.#focusSwatchByIndex(targetIndex);
-				}
-				return false;
-			}
-
-			case 'PageUp': {
-				const targetIndex = Math.min(currentCol, totalCells - 1);
-				if (index !== targetIndex) {
-					this.#focusSwatchByIndex(targetIndex);
-				}
-				return false;
-			}
-
-			case 'Home':
-				if (event.ctrlKey) {
-					this.#focusSwatchByIndex(0);
-				} else {
-					this.#focusSwatchByIndex(currentRow * rowLength);
-				}
-				return false;
-
-			case 'End':
-				if (event.ctrlKey) {
-					this.#focusSwatchByIndex(totalCells - 1);
-				} else {
-					const rowEnd = Math.min(
-						(currentRow + 1) * rowLength - 1,
-						totalCells - 1
-					);
-					this.#focusSwatchByIndex(rowEnd);
-				}
-				return false;
-
-			case 'Enter':
-			case ' ':
-				this._handleSwatchSelection(swatch);
-				this.#returnFocusToAnchor();
-				return false;
-
-			case 'Escape':
-				this.open = false;
-				this.#returnFocusToAnchor();
-				return false;
-
-			case 'Tab':
-				this.open = false;
-				return true;
-
-			default:
-				return true;
-		}
-	};
-
-	/**
-	 * @internal
-	 */
-	#focusSwatchByIndex(index: number) {
-		if (index < 0 || index >= this.swatches.length) return;
-		const element =
-			this.shadowRoot?.querySelectorAll<HTMLElement>('[role="gridcell"]')?.[
-				index
-			];
-		element?.focus();
-	}
-
-	/**
-	 * @internal
-	 */
-	#returnFocusToAnchor() {
-		Updates.enqueue(() => this._anchorEl?.focus());
-	}
 }

@@ -96,7 +96,6 @@ export default mergeConfig(
 				external: [
 					'@microsoft/fast-element',
 					'@microsoft/fast-web-utilities',
-					'video.js',
 					'@floating-ui/dom',
 					'prosemirror-state',
 					'prosemirror-model',

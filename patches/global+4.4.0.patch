@@ -1,0 +1,36 @@
+diff --git a/node_modules/global/document.js b/node_modules/global/document.js
+index 7c0f50d..49696b8 100644
+--- a/node_modules/global/document.js
++++ b/node_modules/global/document.js
+@@ -1,6 +1,5 @@
+ var topLevel = typeof global !== 'undefined' ? global :
+     typeof window !== 'undefined' ? window : {}
+-var minDoc = require('min-document');
+ 
+ var doccy;
+ 
+@@ -10,7 +9,7 @@ if (typeof document !== 'undefined') {
+     doccy = topLevel['__GLOBAL_DOCUMENT_CACHE@4'];
+ 
+     if (!doccy) {
+-        doccy = topLevel['__GLOBAL_DOCUMENT_CACHE@4'] = minDoc;
++        doccy = topLevel['__GLOBAL_DOCUMENT_CACHE@4'] = {};
+     }
+ }
+ 
+diff --git a/node_modules/global/package.json b/node_modules/global/package.json
+index 052726a..8909479 100644
+--- a/node_modules/global/package.json
++++ b/node_modules/global/package.json
+@@ -17,11 +17,9 @@
+     "email": "raynos2@gmail.com"
+   },
+   "browser": {
+-    "min-document": false,
+     "individual": false
+   },
+   "dependencies": {
+-    "min-document": "^2.19.0",
+     "process": "^0.11.10"
+   },
+   "devDependencies": {

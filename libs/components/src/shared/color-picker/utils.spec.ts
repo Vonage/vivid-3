@@ -2,6 +2,30 @@ import { describe, expect, it } from 'vitest';
 import { getContrastRatio, getCSSCustomProperty, getLuminance } from './utils';
 
 describe('color-picker-utils', () => {
+	describe('parseHexColor 3-digit expansion', () => {
+		it('expands 3-digit hex to 6-digit (lowercase) for #abc -> aabbcc', () => {
+			const luminanceAabbcc = getLuminance('#abc');
+			const expected = getLuminance('#aabbcc');
+			expect(luminanceAabbcc).toBeCloseTo(expected, 10);
+		});
+
+		it('handles 3-digit hex without # and with uppercase (#AbC -> aabbcc)', () => {
+			const expected = getLuminance('#aabbcc');
+			expect(getLuminance('AbC')).toBeCloseTo(expected, 10);
+		});
+
+		it('does not confuse 6-digit path (ensures branch specificity)', () => {
+			const expanded = getLuminance('#f3a');
+			const control = getLuminance('#ff33aa');
+			expect(expanded).toBeCloseTo(control, 10);
+		});
+
+		it('returns 0 for malformed 3-digit-like strings', () => {
+			expect(getLuminance('#g3a')).toBe(0);
+			expect(getLuminance('z0z')).toBe(0);
+		});
+	});
+
 	describe('getLuminance', () => {
 		it('should calculate correct luminance values for known colors', () => {
 			expect(getLuminance('#ffffff')).toBeCloseTo(1, 3); // White
@@ -19,7 +43,6 @@ describe('color-picker-utils', () => {
 		it('should coerce malformed inputs to black (0)', () => {
 			expect(getLuminance('')).toBe(0);
 			expect(getLuminance('invalid')).toBe(0);
-			expect(getLuminance('#abc')).toBe(0);
 			expect(getLuminance('#gggggg')).toBe(0);
 			expect(getLuminance('   #FFFFFF   ')).toBeCloseTo(1, 3);
 		});

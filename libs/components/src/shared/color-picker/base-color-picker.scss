@@ -1,0 +1,36 @@
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use 'partials/variables' as variables;
+
+.palette {
+	display: grid;
+	grid-template-columns: repeat(
+		var(--swatches-per-row, 7),
+		var(#{variables.$color-swatch-size}, 24px)
+	);
+}
+
+.swatch {
+	position: relative;
+	padding: 0;
+	border: none;
+	border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+	background-color: var(--swatch-color);
+	block-size: var(#{variables.$color-swatch-size}, 24px);
+	color: var(--vvd-color-canvas);
+	cursor: pointer;
+	inline-size: var(#{variables.$color-swatch-size}, 24px);
+
+	&.contrast {
+		color: var(--vvd-color-canvas-text);
+	}
+
+	&:focus-visible {
+		outline: none;
+
+		@include focus.focus;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+		#{focus-variables.$focus-inset}: -3px;
+	}
+}

@@ -1,4 +1,4 @@
-import { html, repeat, when } from '@microsoft/fast-element';
+import { html, repeat } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { Icon } from '../icon/icon';
@@ -34,42 +34,13 @@ export const SimpleColorPickerTemplate = (
 			}}"
 		>
 			<div class="palette" role="grid" 
-				aria-rowcount="${(x) => Math.ceil(x.swatches.length / x.swatchesPerRow)}"
-				aria-colcount="${(x) => x.swatchesPerRow}"
-				style="--swatches-per-row: ${(x) => x.swatchesPerRow};" 
+				aria-rowcount="${(x) => Math.ceil(x.swatches.length / x._getRowLength())}"
+				aria-colcount="${(x) => x._getRowLength()}"
+				style="--swatches-per-row: ${(x) => x._getRowLength()};"
 				aria-label="${(x) => x.locale.simpleColorPicker.colorPaletteLabel}">
 				${repeat(
 					(x) => x.swatches,
-					html`
-						<button
-							class="swatch ${(x, c) =>
-								classNames(
-									c.parent.value === x.value ? 'selected' : '',
-									c.parent._applyContrastClass(x.value) ? 'contrast' : ''
-								)}"
-							role="gridcell"
-							style="--swatch-color: ${(x) => x.value};"
-							tabindex="${(x, c) => (c.index === 0 ? '0' : '-1')}"
-							aria-label="${(x, c) =>
-								c.parent.locale.simpleColorPicker.colorSwatchLabel(
-									x.value,
-									x.label,
-									c.parent.value === x.value
-								)}"
-							@click="${(x, c) => c.parent._handleSwatchSelection(x)}"
-							@keydown="${(x, c) =>
-								c.parent._handleSwatchKeydown(
-									c.event as KeyboardEvent,
-									x,
-									c.index
-								)}"
-						>
-							${when(
-								(x, c) => c.parent.value === x.value,
-								html`<${iconTag} size="-6" name="check-solid" aria-hidden="true"></${iconTag}>`
-							)}
-						</button>
-					`,
+					(x) => x._renderColorSwatch(iconTag),
 					{ positioning: true }
 				)}
 			</div>
