@@ -1,10 +1,12 @@
 import { buttonDefinition } from '../button/definition';
 import { popupDefinition } from '../popup/definition';
 import { iconDefinition } from '../icon/definition';
+import { listboxOptionDefinition } from '../option/definition';
 import { progressRingDefinition } from '../progress-ring/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
+import { dividerDefinition } from '../components';
 import styles from './searchable-select.scss?inline';
 import optionTagStyles from './option-tag.scss?inline';
 import { SearchableSelect } from './searchable-select';
@@ -39,6 +41,8 @@ const searchableSelectDefinition = defineVividComponent(
 		optionTagDefinition,
 		progressRingDefinition,
 		feedbackMessageDefinition,
+		listboxOptionDefinition,
+		dividerDefinition,
 	],
 	{
 		styles,

@@ -174,6 +174,10 @@ const enUS: Locale = {
 		clearButtonLabel: 'Clear selection',
 		noOptionsMessage: 'No options',
 		noMatchesMessage: 'No options found',
+		selectAllLabel: 'Select All',
+		deselectAllLabel: 'Deselect All',
+		selectedAllMessage: 'All options selected',
+		deselectedAllMessage: 'All options deselected',
 		loadingOptionsMessage: 'Loading...',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`Remove ${label}`,

@@ -176,6 +176,10 @@ const deDE: Locale = {
 		clearButtonLabel: 'Auswahl löschen',
 		noOptionsMessage: 'Keine Optionen',
 		noMatchesMessage: 'Keine Optionen gefunden',
+		selectAllLabel: 'Alles auswählen',
+		deselectAllLabel: 'Auswahl aufheben',
+		selectedAllMessage: 'Alle Optionen ausgewählt',
+		deselectedAllMessage: 'Alle Optionen abgewählt',
 		loadingOptionsMessage: 'Laden...',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label} entfernen`,

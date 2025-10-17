@@ -189,11 +189,17 @@ slot[name='icon'] {
 	white-space: nowrap;
 }
 
-::slotted([data-vvd-component='option'][data-highlighted]) {
+::slotted([data-vvd-component='option'][data-highlighted]),
+[data-select-all][data-highlighted] {
 	border-radius: #{border-radius-variables.$border-radius-normal};
 
 	@include focus.focus;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
+}
+
+.divider {
+	margin-block: 10px;
+	margin-inline: 12px;
 }
 
 @include contextual-help.label-wrapper;

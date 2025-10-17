@@ -340,6 +340,9 @@ Use `--searchable-select-height` to set the max-height of the dropdown. The defa
 | **loading**                            | `boolean`                                                   | Whether the component is in a loading state.                                                                                      |
 | **searchText**                         | `string`                                                    | Read-only property containing the current search text.                                                                            |
 | **optionFilter**                       | `(option: VwcOptionElement, searchText: string) => boolean` | Function to filter the options to display.                                                                                        |
+| **enable-select-all**                  | `boolean`                                                   | Adds a "Select All" option at the top of the options list.                                                                        |
+| **select-all-text**                    | `string`                                                    | Overrides the default "Select All" text.                                                                                          |
+| **deselect-all-text**                  | `string`                                                    | Overrides the default "Deselect All" text.                                                                                        |
 
 </div>
 
