@@ -943,6 +943,29 @@ describe('vwc-searchable-select', () => {
 					['apple', 'banana', 'cherry'].sort()
 				);
 			});
+
+			describe('fallbacks', () => {
+				it('returns false from _isAllSelected when not multiple', async () => {
+					element.multiple = false;
+					await elementUpdated(element);
+					expect((element as any)._isAllSelected).toBe(false);
+				});
+
+				it('returns false from _isAllSelected when there are zero selectable options', async () => {
+					element.multiple = true;
+					await elementUpdated(element);
+					element
+						.querySelectorAll('vwc-option')
+						.forEach((o: any) => (o.disabled = true));
+					await elementUpdated(element);
+					expect((element as any)._isAllSelected).toBe(false);
+				});
+
+				it('returns [] from _selectableOptions before options are initialized', () => {
+					const el = document.createElement('vwc-searchable-select') as any;
+					expect(el._selectableOptions).toEqual([]);
+				});
+			});
 		});
 	});
 
