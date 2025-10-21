@@ -6,7 +6,7 @@ import { progressRingDefinition } from '../progress-ring/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
-import { dividerDefinition } from '../components';
+import { dividerDefinition } from '../divider/definition';
 import styles from './searchable-select.scss?inline';
 import optionTagStyles from './option-tag.scss?inline';
 import { SearchableSelect } from './searchable-select';
