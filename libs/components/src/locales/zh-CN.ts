@@ -205,6 +205,8 @@ const zhCN: Locale = {
 		monospace: '等宽字体',
 		undo: '撤销',
 		redo: '重做',
+		bulletList: '项目符号列表',
+		numberedList: '编号列表',
 		alignment: '对齐',
 		alignments: {
 			left: '左对齐',

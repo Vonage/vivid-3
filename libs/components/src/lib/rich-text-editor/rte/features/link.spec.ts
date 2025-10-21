@@ -1,8 +1,11 @@
 import { setup } from '../__tests__/test-utils';
+import { docFactories } from '../__tests__/doc-factories';
 import { RTECore } from './core';
 import { RTELinkFeature } from './link';
 import { RTEToolbarFeature } from './toolbar';
 import { RTEFreeformStructure } from './freeform';
+
+const { text_line: line, text, link } = docFactories;
 
 const features = [
 	new RTECore(),
@@ -14,17 +17,23 @@ const features = [
 describe('RTELinkFeature', () => {
 	it('should add a link mark to the schema', async () => {
 		const { docStr } = await setup(features, [
-			{ type: 'text', text: 'Visit ' },
-			{
-				type: 'text',
-				text: 'example.com',
-				marks: [{ type: 'link', attrs: { href: 'https://example.com' } }],
-			},
-			{ type: 'text', text: ' for more info' },
+			line(
+				'Visit ',
+				text.marks(link({ href: 'https://example.com' }))('example.com'),
+				' for more info'
+			),
 		]);
 
-		expect(docStr()).toBe(
-			`doc("Visit ", <link[href="https://example.com"]>"example.com", " for more info")`
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			text_line(
+				'Visit ',
+				<link[href="https://example.com"]>'example.com',
+				'| for more info'
+			)
+			"
+		`
 		);
 	});
 
@@ -37,8 +46,16 @@ describe('RTELinkFeature', () => {
 			)
 		);
 
-		expect(docStr()).toBe(
-			`doc("Visit ", <link[href="https://example.com"]>"example.com", " for more info")`
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			text_line(
+				'Visit ',
+				<link[href="https://example.com"]>'example.com',
+				' for more info|'
+			)
+			"
+		`
 		);
 	});
 
@@ -51,8 +68,8 @@ describe('RTELinkFeature', () => {
 		await input(textField(openMenu(), 'URL'), 'https://example.com');
 		await click(button(openMenu(), 'Apply'));
 
-		expect(docStr()).toBe(
-			'doc(<link[href="https://example.com"]>"Click here")'
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line(<link[href="https://example.com"]>'Click here|')"`
 		);
 
 		await click(toolbarButton('Hyperlink'));
@@ -64,7 +81,7 @@ describe('RTELinkFeature', () => {
 
 	it('should prefill text field with selected text', async () => {
 		const { toolbarButton, click, selectText, textField, openMenu } =
-			await setup(features, [{ type: 'text', text: 'Select some text first' }]);
+			await setup(features, [line('Select some text first')]);
 
 		selectText('Select [some text] first');
 		await click(toolbarButton('Hyperlink'));
@@ -83,12 +100,10 @@ describe('RTELinkFeature', () => {
 			button,
 			docStr,
 		} = await setup(features, [
-			{ type: 'text', text: 'Go to ' },
-			{
-				type: 'text',
-				text: 'our website',
-				marks: [{ type: 'link', attrs: { href: 'https://example.com' } }],
-			},
+			line(
+				'Go to ',
+				text.marks(link({ href: 'https://example.com' }))('our website')
+			),
 		]);
 
 		placeCursor('our web|site');
@@ -101,19 +116,24 @@ describe('RTELinkFeature', () => {
 		await input(textField(openMenu(), 'URL'), 'https://new.example.com');
 		await click(button(openMenu(), 'Apply'));
 
-		expect(docStr()).toBe(
-			'doc("Go to ", <link[href="https://new.example.com"]>"our new website")'
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			text_line(
+				'Go to ',
+				<link[href="https://new.example.com"]>'our new website|'
+			)
+			"
+		`
 		);
 	});
 
 	it('should show a popover with a clickable link when the cursor is inside a link', async () => {
 		const { openPopover, placeCursor } = await setup(features, [
-			{ type: 'text', text: 'Go to ' },
-			{
-				type: 'text',
-				text: 'our website',
-				marks: [{ type: 'link', attrs: { href: 'https://example.com' } }],
-			},
+			line(
+				'Go to ',
+				text.marks(link({ href: 'https://example.com' }))('our website')
+			),
 		]);
 
 		placeCursor('our web|site');
@@ -129,12 +149,10 @@ describe('RTELinkFeature', () => {
 
 	it('should close the popover when close is clicked', async () => {
 		const { openPopover, placeCursor, button, click } = await setup(features, [
-			{ type: 'text', text: 'Go to ' },
-			{
-				type: 'text',
-				text: 'our website',
-				marks: [{ type: 'link', attrs: { href: 'https://example.com' } }],
-			},
+			line(
+				'Go to ',
+				text.marks(link({ href: 'https://example.com' }))('our website')
+			),
 		]);
 
 		placeCursor('our websi|te');
@@ -147,30 +165,26 @@ describe('RTELinkFeature', () => {
 		const { openPopover, placeCursor, button, click, docStr } = await setup(
 			features,
 			[
-				{ type: 'text', text: 'Go to ' },
-				{
-					type: 'text',
-					text: 'our website',
-					marks: [{ type: 'link', attrs: { href: 'https://example.com' } }],
-				},
+				line(
+					'Go to ',
+					text.marks(link({ href: 'https://example.com' }))('our website')
+				),
 			]
 		);
 
 		placeCursor('our websi|te');
 		await click(button(openPopover()!, 'Delete'));
 
-		expect(docStr()).toBe('doc("Go to our website")');
+		expect(docStr()).toMatchInlineSnapshot(`"text_line('Go to our websi|te')"`);
 	});
 
 	it('should open the toolbar menu when edit button is clicked', async () => {
 		const { openPopover, placeCursor, button, openMenu, click, textField } =
 			await setup(features, [
-				{ type: 'text', text: 'Go to ' },
-				{
-					type: 'text',
-					text: 'our website',
-					marks: [{ type: 'link', attrs: { href: 'https://example.com' } }],
-				},
+				line(
+					'Go to ',
+					text.marks(link({ href: 'https://example.com' }))('our website')
+				),
 			]);
 		placeCursor('our web|site');
 		await click(button(openPopover()!, 'Edit'));

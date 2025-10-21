@@ -207,6 +207,8 @@ const deDE: Locale = {
 		monospace: 'Monospace',
 		undo: 'Rückgängig',
 		redo: 'Wiederholen',
+		bulletList: 'Aufzählung',
+		numberedList: 'Nummerierung',
 		alignment: 'Ausrichtung',
 		alignments: {
 			left: 'Linksbündig',
