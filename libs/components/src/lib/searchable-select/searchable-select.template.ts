@@ -7,8 +7,9 @@ import type { Select } from '../select/select';
 import { Button } from '../button/button';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { isListboxOption } from '../option/option';
+import { isListboxOption, ListboxOption } from '../option/option';
 import { delegateAria } from '../../shared/aria/delegates-aria';
+import { Divider } from '../divider/divider';
 import { OptionTag } from './option-tag';
 import type { SearchableSelect } from './searchable-select';
 
@@ -204,6 +205,23 @@ function setFixedDropdownVarWidth(x: Select) {
 		: null;
 }
 
+function renderSelectAll(context: VividElementDefinitionContext) {
+	const optionTag = context.tagFor(ListboxOption);
+	const dividerTag = context.tagFor(Divider);
+	return html<SearchableSelect>`
+    <${optionTag}
+      data-select-all
+      tabindex="-1"
+      :text="${(x) => x._selectAllLabel}"
+      :selected="${(x) => x._isAllSelected}"
+      :_displayCheckmark="${() => true}"
+      ?disabled="${(x) => x._selectableOptions.length === 0}"
+      ${ref('_selectAllOption')}>
+    </${optionTag}>
+		<${dividerTag} class="divider"></${dividerTag}>
+  `;
+}
+
 function renderControl(context: VividElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
@@ -243,6 +261,10 @@ function renderControl(context: VividElementDefinitionContext) {
 						@click="${(x, c) => x._onListboxClick(c.event as MouseEvent)}"
 						@mousedown="${() => false}"
 					>
+						${when(
+							(x) => x.enableSelectAll && x.multiple && !x.maxSelected,
+							renderSelectAll(context)
+						)}
 						<slot
 							${slotted({
 								filter: isListboxOption as any,

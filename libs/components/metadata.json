@@ -6904,11 +6904,25 @@
 					"propertyName": "clearable"
 				},
 				{
+					"name": "deselectAllText",
+					"description": "Overrides the default \"Deselect All\" text",
+					"type": "string",
+					"attributeName": "deselect-all-text",
+					"propertyName": "deselectAllText"
+				},
+				{
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
 					"attributeName": "disabled",
 					"propertyName": "disabled"
+				},
+				{
+					"name": "enableSelectAll",
+					"description": "Adds a \"Select All\" option at the top of the options list.",
+					"type": "boolean",
+					"attributeName": "enable-select-all",
+					"propertyName": "enableSelectAll"
 				},
 				{
 					"name": "errorText",
@@ -7020,6 +7034,13 @@
 					"type": "boolean",
 					"attributeName": "required",
 					"propertyName": "required"
+				},
+				{
+					"name": "selectAllText",
+					"description": "Overrides the default \"Select All\" text",
+					"type": "string",
+					"attributeName": "select-all-text",
+					"propertyName": "selectAllText"
 				},
 				{
 					"name": "shape",

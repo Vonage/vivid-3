@@ -318,6 +318,49 @@ The `tag-connotation` of Option attribute sets the connotation of the tags.
 </vwc-searchable-select>
 ```
 
+### Enable Select All
+
+Use the `enable-select-all` attribute to add **Select All** option at the top of the list.
+
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+	
+	Do not use **enable-select-all** together with **max-selected**. When max-selected is set to a positive number, the “Select All” option is hidden.
+
+</vwc-note>
+
+```html preview 270px
+<vwc-searchable-select
+	multiple
+	label="Countries"
+	enable-select-all
+	select-all-text="Select all countries"
+	deselect-all-text="Deselect all countries"
+>
+	<vwc-option value="afghanistan" text="Afghanistan">
+		<vwc-icon slot="icon" name="flag-afghanistan"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="albania" text="Albania">
+		<vwc-icon slot="icon" name="flag-albania"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="algeria" text="Algeria">
+		<vwc-icon slot="icon" name="flag-algeria"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="argentina" text="Argentina">
+		<vwc-icon slot="icon" name="flag-argentina"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="armenia" text="Armenia">
+		<vwc-icon slot="icon" name="flag-armenia"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="aruba" text="Aruba">
+		<vwc-icon slot="icon" name="flag-aruba"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="australia" text="Australia">
+		<vwc-icon slot="icon" name="flag-australia"></vwc-icon>
+	</vwc-option>
+</vwc-searchable-select>
+```
+
 ## Clearable
 
 Adds a clear button to the input field, which clears the selected value(s) when clicked.
