@@ -1,0 +1,12 @@
+{
+	"root": true,
+	"extends": ["@repo/eslint-config/base.js"],
+	"overrides": [
+		{
+			"files": ["*.ts", "scripts/**/*.ts"],
+			"rules": {
+				"@typescript-eslint/no-var-requires": "off"
+			}
+		}
+	]
+}
