@@ -40,6 +40,7 @@
 			new RTEUnderlineFeature(),
 			new RTEStrikethroughFeature(),
 			new RTEMonospaceFeature(),
+			new RTEAlignmentFeature(),
 		]);
 		rteComponent.instance = config.instantiateEditor();
 	});

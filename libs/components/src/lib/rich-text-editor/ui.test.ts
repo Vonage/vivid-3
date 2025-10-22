@@ -18,14 +18,21 @@ let RTEItalicFeature: typeof rte.RTEItalicFeature;
 let RTEUnderlineFeature: typeof rte.RTEUnderlineFeature;
 let RTEStrikethroughFeature: typeof rte.RTEStrikethroughFeature;
 let RTEMonospaceFeature: typeof rte.RTEMonospaceFeature;
+let RTEAlignmentFeature: typeof rte.RTEAlignmentFeature;
 
 const components = ['rich-text-editor'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = `<vwc-rich-text-editor style="width: 500px"></vwc-rich-text-editor>`;
 	await loadComponents({
 		page,
 		components,
+	});
+	await page.addStyleTag({
+		content: `
+			#wrapper {
+				display: inline-block;
+			}
+		`,
 	});
 	await page.addScriptTag({
 		type: 'module',
@@ -38,7 +45,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 	await renderTemplate({
 		page,
-		template,
+		template: `<vwc-rich-text-editor style="width: 500px"></vwc-rich-text-editor>`,
 		setup: async () => {
 			await page.evaluate(() => {
 				const rteElement = document.querySelector('vwc-rich-text-editor')!;
@@ -52,6 +59,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					new RTEUnderlineFeature(),
 					new RTEStrikethroughFeature(),
 					new RTEMonospaceFeature(),
+					new RTEAlignmentFeature(),
 				]);
 				rteElement.instance = config.instantiateEditor([
 					{
@@ -74,4 +82,54 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	await takeScreenshot(page, 'rich-text-editor');
+
+	await renderTemplate({
+		page,
+		template: `<vwc-rich-text-editor style="width: 300px" placeholder="Placeholder text..."></vwc-rich-text-editor>`,
+		setup: async () => {
+			await page.evaluate(() => {
+				const rteElement = document.querySelector('vwc-rich-text-editor')!;
+				const config = new RTEConfig([
+					new RTECore(),
+					new RTETextBlockStructure(),
+					new RTEAlignmentFeature(),
+				]);
+				rteElement.instance = config.instantiateEditor([
+					{
+						type: 'heading',
+						attrs: { level: 1 },
+						content: [],
+					},
+				]);
+			});
+		},
+	});
+
+	await takeScreenshot(page, 'placeholder-heading-left');
+
+	await page.evaluate(() => {
+		const rteElement = document.querySelector('vwc-rich-text-editor')!;
+		rteElement.instance!.setDoc([
+			{
+				type: 'heading',
+				attrs: { level: 1, textAlign: 'center' },
+				content: [],
+			},
+		]);
+	});
+
+	await takeScreenshot(page, 'placeholder-heading-center');
+
+	await page.evaluate(() => {
+		const rteElement = document.querySelector('vwc-rich-text-editor')!;
+		rteElement.instance!.setDoc([
+			{
+				type: 'heading',
+				attrs: { level: 1, textAlign: 'right' },
+				content: [],
+			},
+		]);
+	});
+
+	await takeScreenshot(page, 'placeholder-heading-right');
 });
