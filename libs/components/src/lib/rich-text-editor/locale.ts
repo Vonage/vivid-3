@@ -1,10 +1,11 @@
 export interface RichTextEditorLocale {
-	textBlockType: string;
+	paragraphStyles: string;
 	textSize: string;
 	bold: string;
-	italics: string;
+	italic: string;
 	underline: string;
 	strikethrough: string;
 	monospace: string;
-	dragAndDropFilesHere: string;
+	undo: string;
+	redo: string;
 }

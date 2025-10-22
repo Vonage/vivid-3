@@ -202,14 +202,15 @@ const deDE: Locale = {
 		) => `${total} von ${limit} ausgewählt.`,
 	},
 	richTextEditor: {
-		textBlockType: 'Textblocktyp',
+		paragraphStyles: 'Absatzstile',
 		textSize: 'Textgröße',
 		bold: 'Fett',
-		italics: 'Kursiv',
+		italic: 'Kursiv',
 		underline: 'Unterstrichen',
 		strikethrough: 'Durchgestrichen',
 		monospace: 'Monospace',
-		dragAndDropFilesHere: 'Dateien hierher ziehen & ablegen',
+		undo: 'Rückgängig',
+		redo: 'Wiederholen',
 	},
 	button: {
 		pendingLabel: 'Laden...',

@@ -1,101 +1,77 @@
 import type { Page } from '@playwright/test';
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
+	BASE_URL,
 	loadComponents,
 	renderTemplate,
+	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
+import type * as rte from './definition';
+
+let RTEConfig: typeof rte.RTEConfig;
+let RTECore: typeof rte.RTECore;
+let RTETextBlockStructure: typeof rte.RTETextBlockStructure;
+let RTEToolbarFeature: typeof rte.RTEToolbarFeature;
+let RTEFontSizeFeature: typeof rte.RTEFontSizeFeature;
+let RTEBoldFeature: typeof rte.RTEBoldFeature;
+let RTEItalicFeature: typeof rte.RTEItalicFeature;
+let RTEUnderlineFeature: typeof rte.RTEUnderlineFeature;
+let RTEStrikethroughFeature: typeof rte.RTEStrikethroughFeature;
+let RTEMonospaceFeature: typeof rte.RTEMonospaceFeature;
 
 const components = ['rich-text-editor'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = `<vwc-rich-text-editor></vwc-rich-text-editor>`;
+	const template = `<vwc-rich-text-editor style="width: 500px"></vwc-rich-text-editor>`;
 	await loadComponents({
 		page,
 		components,
 	});
+	await page.addScriptTag({
+		type: 'module',
+		content: `
+			import * as rte from "${BASE_URL}/libs/components/dist/rich-text-editor/index.js";
+			for (const key in rte) {
+				window[key] = rte[key];
+			}
+		`,
+	});
 	await renderTemplate({
 		page,
 		template,
+		setup: async () => {
+			await page.evaluate(() => {
+				const rteElement = document.querySelector('vwc-rich-text-editor')!;
+				const config = new RTEConfig([
+					new RTECore(),
+					new RTETextBlockStructure(),
+					new RTEToolbarFeature(),
+					new RTEFontSizeFeature(),
+					new RTEBoldFeature(),
+					new RTEItalicFeature(),
+					new RTEUnderlineFeature(),
+					new RTEStrikethroughFeature(),
+					new RTEMonospaceFeature(),
+				]);
+				rteElement.instance = config.instantiateEditor([
+					{
+						type: 'heading',
+						attrs: { level: 1 },
+						content: [{ type: 'text', text: 'heading-1' }],
+					},
+					{
+						type: 'heading',
+						attrs: { level: 2 },
+						content: [{ type: 'text', text: 'heading-2' }],
+					},
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'paragraph' }],
+					},
+				]);
+			});
+		},
 	});
 
-	const testWrapper = await page.$('#wrapper');
-
-	await page.waitForLoadState('networkidle');
-
-	const richTextEditor = await page.$('vwc-rich-text-editor');
-	await richTextEditor?.focus();
-	await page.keyboard.type('Title');
-	await page.evaluate(
-		(editor) => (editor as any).setTextBlock('title'),
-		richTextEditor
-	);
-	await page.keyboard.press('Enter');
-	await page.keyboard.type('Subtitle');
-	await page.evaluate(
-		(editor) => (editor as any).setTextBlock('subtitle'),
-		richTextEditor
-	);
-	await page.keyboard.press('Enter');
-	await page.keyboard.type('Body');
-	await page.evaluate(
-		(editor) => (editor as any).setTextBlock('body'),
-		richTextEditor
-	);
-	await page.keyboard.press('Enter');
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/rich-text-editor.png'
-	);
-});
-
-test('should show text area and attachments slot with the same scroll', async ({
-	page,
-}: {
-	page: Page;
-}) => {
-	async function isActuallyVisible() {
-		const attachmentsBox = await attachments!.boundingBox();
-		const scrollBox = await scrollContainer!.boundingBox();
-
-		const attachmentsBottom = attachmentsBox!.y + attachmentsBox!.height;
-		const scrollTop = scrollBox!.y;
-		const scrollBottom = scrollBox!.y + scrollBox!.height;
-
-		return attachmentsBottom <= scrollBottom && attachmentsBox!.y >= scrollTop;
-	}
-	const template = `
-        <vwc-rich-text-editor style="height:300px; display:block;">
-            <div slot="attachments" id="test-attachments" style="height:60px; background:#eee;">Attachments Area</div>
-        </vwc-rich-text-editor>
-    `;
-	await loadComponents({ page, components });
-	await renderTemplate({ page, template });
-
-	await page.waitForLoadState('networkidle');
-
-	const rte = await page.$('vwc-rich-text-editor');
-	const shadow = await rte!.evaluateHandle((el) => (el as any).shadowRoot);
-
-	await rte?.evaluate((el: any) => {
-		el.value = Array(50).fill('<p>Line</p>').join('');
-	});
-
-	const testWrapper = await page.$('#wrapper');
-
-	const scrollContainer = await shadow.$('#editor');
-	const attachments = await shadow.$('#attachments-wrapper');
-
-	const isVisibleBeforeScroll = await isActuallyVisible();
-	await scrollContainer?.evaluate((el: HTMLElement) => {
-		el.scrollTop = el.scrollHeight;
-	});
-
-	const isVisibleAfterScroll = await isActuallyVisible();
-
-	expect(isVisibleBeforeScroll).toBe(false);
-	expect(isVisibleAfterScroll).toBe(true);
-
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/rich-text-editor-scroll-attachments.png'
-	);
+	await takeScreenshot(page, 'rich-text-editor');
 });
