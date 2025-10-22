@@ -96,7 +96,7 @@ describe('RTEFontSizeFeature', () => {
 		await click(menuItem(openMenu(), 'Large'));
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <fontSize[size="large"]>'world|]')"`
+			`"text_line('Hello ', <fontSize[size="large"]>'[world|]')"`
 		);
 	});
 
@@ -126,8 +126,8 @@ describe('RTEFontSizeFeature', () => {
 			"
 			text_line(
 				'no',
-				<fontSize[size="small"]>'rmal lar|]',
-				<fontSize[size="large"]>'ge['
+				<fontSize[size="small"]>'[rmal lar|]',
+				<fontSize[size="large"]>'ge'
 			)
 			"
 		`
@@ -173,9 +173,9 @@ describe('RTEFontSizeFeature', () => {
 			"
 			paragraph(
 				'firs',
-				<fontSize[size="large"]>'t',
+				<fontSize[size="large"]>'[t',
 				hard_break<fontSize[size="large"]>(),
-				<fontSize[size="large"]>'af[ter break'
+				<fontSize[size="large"]>'after break'
 			),
 			paragraph(<fontSize[size="large"]>'seco|]', 'nd'),
 			paragraph('third')
@@ -244,7 +244,7 @@ describe('RTEFontSizeFeature', () => {
 		await click(toolbarButton('Text size'));
 		await click(menuItem(openMenu(), 'Large'));
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |world')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |<fontSize[size=\\"large\\"]>|world')"`);
 
 		await typeTextAtCursor('beautiful ');
 
@@ -281,7 +281,7 @@ describe('RTEFontSizeFeature', () => {
 		keydown('.', { ctrl: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <fontSize[size="large"]>'world|]')"`
+			`"text_line('Hello ', <fontSize[size="large"]>'[world|]')"`
 		);
 
 		keydown('.', { ctrl: true, shift: true });
@@ -289,7 +289,7 @@ describe('RTEFontSizeFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			text_line('Hello [', <fontSize[size="extra-large"]>'world|]')
+			text_line('Hello ', <fontSize[size="extra-large"]>'[world|]')
 			"
 		`
 		);
@@ -300,7 +300,7 @@ describe('RTEFontSizeFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			text_line('Hello [', <fontSize[size="extra-large"]>'world|]')
+			text_line('Hello ', <fontSize[size="extra-large"]>'[world|]')
 			"
 		`
 		);
@@ -316,14 +316,14 @@ describe('RTEFontSizeFeature', () => {
 		keydown(',', { ctrl: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <fontSize[size="small"]>'world|]')"`
+			`"text_line('Hello ', <fontSize[size="small"]>'[world|]')"`
 		);
 
 		// Cannot go smaller than small
 		keydown(',', { ctrl: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <fontSize[size="small"]>'world|]')"`
+			`"text_line('Hello ', <fontSize[size="small"]>'[world|]')"`
 		);
 	});
 
@@ -352,7 +352,7 @@ describe('RTEFontSizeFeature', () => {
 		placeCursor('Hello |world');
 		keydown('.', { ctrl: true, shift: true }); // Increase font size
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |world')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |<fontSize[size=\\"large\\"]>|world')"`);
 		expect(element.shadowRoot!.querySelector('.ProseMirror')!.innerHTML).toBe(
 			'<div>Hello <span style="font-size: 18px;" class="ProseMirror-widget"></span>world</div>'
 		);

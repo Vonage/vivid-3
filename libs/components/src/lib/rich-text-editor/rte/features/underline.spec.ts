@@ -31,7 +31,7 @@ describe('RTEUnderlineFeature', () => {
 		keydown('u', { ctrl: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <underline>'world|]')"`
+			`"text_line('Hello ', <underline>'[world|]')"`
 		);
 
 		keydown('u', { ctrl: true });
@@ -48,7 +48,7 @@ describe('RTEUnderlineFeature', () => {
 		placeCursor('Hello |world');
 		keydown('u', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |world')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |<underline>|world')"`);
 
 		await typeTextAtCursor('beautiful ');
 
@@ -67,7 +67,7 @@ describe('RTEUnderlineFeature', () => {
 		toolbarButton('Underline').click();
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <underline>'world|]')"`
+			`"text_line('Hello ', <underline>'[world|]')"`
 		);
 		expect(isActive(toolbarButton('Underline'))).toBe(true);
 

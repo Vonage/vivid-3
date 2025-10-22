@@ -28,9 +28,9 @@ describe('RTELinkFeature', () => {
 			`
 			"
 			text_line(
-				'Visit ',
+				'|Visit ',
 				<link[href="https://example.com"]>'example.com',
-				'| for more info'
+				' for more info'
 			)
 			"
 		`
