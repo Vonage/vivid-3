@@ -1,7 +1,7 @@
 ## Freeform
 
 ```html preview
-<vwc-rich-text-editor style="block-size: 150px"></vwc-rich-text-editor>
+<vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
 
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
@@ -16,6 +16,7 @@
 			new RTEUnderlineFeature(),
 			new RTEStrikethroughFeature(),
 			new RTEMonospaceFeature(),
+			new RTELinkFeature(),
 		]);
 		rteComponent.instance = config.instantiateEditor();
 	});
@@ -25,7 +26,7 @@
 ## Text Blocks
 
 ```html preview
-<vwc-rich-text-editor style="block-size: 150px"></vwc-rich-text-editor>
+<vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
 
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
@@ -41,6 +42,7 @@
 			new RTEStrikethroughFeature(),
 			new RTEMonospaceFeature(),
 			new RTEAlignmentFeature(),
+			new RTELinkFeature(),
 		]);
 		rteComponent.instance = config.instantiateEditor();
 	});
