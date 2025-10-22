@@ -150,10 +150,10 @@ Use the `closeAll` method on **Accordion** to programatically close all open Acc
 
 ```vue preview 425px
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useTemplateRef } from 'vue';
 import { VAccordion, VAccordionItem, VButton } from '@vonage/vivid-vue';
 
-const accordionRef = ref<InstanceType<typeof VAccordion> | null>(null);
+const accordionRef = useTemplateRef('accoridon');
 
 const closeAll = () => {
 	accordionRef.value?.closeAll();
@@ -161,7 +161,7 @@ const closeAll = () => {
 </script>
 
 <template>
-	<VAccordion ref="accordionRef" expand-mode="multi">
+	<VAccordion ref="accordion" expand-mode="multi">
 		<VAccordionItem heading="Accordion item 1" expanded>
 			This is the first item's accordion body.
 		</VAccordionItem>
