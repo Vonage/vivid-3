@@ -1,0 +1,27 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '../../../popup/partials/variables' as popupVariables;
+
+.toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 4px;
+	background-color: var(#{constants.$vvd-color-neutral-50});
+	gap: 8px;
+}
+
+// Prevent standalone tooltips from taking up space in the toolbar
+.toolbar > [data-vvd-component='tooltip'] {
+	display: contents;
+
+	#{popupVariables.$popup-display}: contents;
+}
+
+.toolbar-select {
+	// Arbitrary value since vivid select is incapable of determining width based on content
+	min-width: 120px;
+}
+
+.toolbar-divider {
+	height: 20px;
+}
