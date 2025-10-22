@@ -638,9 +638,14 @@ export class SearchableSelect extends WithContextualHelp(
 
 		this.#transitionHighlightedOptionTo(null);
 		this._filteredOptions = newFilteredOptions;
-		this._filteredEnabledOptions = newFilteredOptions.filter(
-			(option) => !option.disabled
-		);
+
+		const enabled = newFilteredOptions.filter((o) => !o.disabled);
+
+		if (this._selectAllOption) {
+			this._filteredEnabledOptions = [this._selectAllOption, ...enabled];
+		} else {
+			this._filteredEnabledOptions = enabled;
+		}
 	}
 
 	// --- Highlighted option (visual focus) ---
@@ -689,9 +694,15 @@ export class SearchableSelect extends WithContextualHelp(
 		if (this._highlightedOptionIndex === null) {
 			return;
 		}
-		this.#handleOptionInteraction(
-			this._filteredEnabledOptions[this._highlightedOptionIndex]
-		);
+		const highlightedOption =
+			this._filteredEnabledOptions[this._highlightedOptionIndex];
+
+		if (highlightedOption.getAttribute('data-select-all') !== null) {
+			this._toggleSelectAll();
+			return;
+		}
+
+		this.#handleOptionInteraction(highlightedOption);
 	}
 
 	#highlightFirstOption() {
@@ -1014,6 +1025,11 @@ export class SearchableSelect extends WithContextualHelp(
 			`option,[role=option],[data-vvd-component=option]`
 		) as ListboxOption | null;
 
+		if (capturedOption?.getAttribute('data-select-all') !== null) {
+			this._toggleSelectAll();
+			return;
+		}
+
 		if (capturedOption && !capturedOption.disabled) {
 			this.#handleOptionInteraction(capturedOption);
 		}
@@ -1100,6 +1116,93 @@ export class SearchableSelect extends WithContextualHelp(
 	 */
 	get _hasSelectionCount() {
 		return this.multiple && this.maxSelected && this.maxSelected >= 1;
+	}
+
+	// --- Select / Deselect All ---
+	/**
+	 * Adds a "Select All" option at the top of the options list.
+	 *
+	 * @public
+	 * HTML Attribute: enable-select-all
+	 */
+	@attr({ attribute: 'enable-select-all', mode: 'boolean' }) enableSelectAll =
+		false;
+
+	/**
+	 * Overrides the default "Select All" text
+	 * @public
+	 * HTML Attribute: select-all-text
+	 */
+	@attr({ attribute: 'select-all-text' }) selectAllText: string | undefined;
+
+	/**
+	 * Overrides the default "Deselect All" text
+	 * @public
+	 * HTML Attribute: deselect-all-text
+	 */
+	@attr({ attribute: 'deselect-all-text' }) deselectAllText: string | undefined;
+
+	/**
+	 * @internal
+	 */
+	@observable _selectAllOption?: ListboxOption;
+
+	/**
+	 * @internal
+	 */
+	get _selectableOptions(): ListboxOption[] {
+		return (
+			this._slottedOptions?.filter(
+				(o) => !this._slottedDisabledOptions.includes(o) && !o.disabled
+			) ?? []
+		);
+	}
+
+	/**
+	 * @internal
+	 */
+	get _selectAllLabel(): string {
+		return this._isAllSelected
+			? this.deselectAllText ?? this.locale.searchableSelect.deselectAllLabel
+			: this.selectAllText ?? this.locale.searchableSelect.selectAllLabel;
+	}
+
+	/**
+	 * @internal
+	 */
+	get _isAllSelected(): boolean {
+		const selectedValues = this.values;
+		if (!this.multiple || !this._slottedOptions) return false;
+
+		const selectable = this._selectableOptions;
+		if (selectable.length === 0) return false;
+
+		const selected = new Set(selectedValues);
+		return selectable.every((o) => selected.has(o.value));
+	}
+
+	/**
+	 * @internal
+	 */
+	_toggleSelectAll(): void {
+		const selectableValues = this._selectableOptions.map((o) => o.value);
+
+		if (this._isAllSelected) {
+			const updatedValues = this.values.filter(
+				(v) => !selectableValues.includes(v)
+			);
+			this.#updateValuesThroughUserInteraction(updatedValues);
+			this._changeDescription =
+				this.locale.searchableSelect.deselectedAllMessage;
+			return;
+		}
+
+		const missingValues = selectableValues.filter(
+			(v) => !this.values.includes(v)
+		);
+		const updatedValues = [...this.values, ...missingValues];
+		this.#updateValuesThroughUserInteraction(updatedValues);
+		this._changeDescription = this.locale.searchableSelect.selectedAllMessage;
 	}
 
 	// --- Form handling ---

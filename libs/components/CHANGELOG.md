@@ -4,6 +4,18 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.3.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.2.0...vivid-v5.3.0) (2025-10-16)
+
+
+### Features
+
+* **selectable-box:** adds selected background css variable (VIV-2888) ([#2552](https://github.com/Vonage/vivid-3/issues/2552)) ([e92c1c2](https://github.com/Vonage/vivid-3/commit/e92c1c2b3fb4cb1537439a0e238f4b7571af7a00))
+
+
+### Bug Fixes
+
+* **simple-color-picker:** Fix missing 'swatches' type (VIV-2873) ([#2550](https://github.com/Vonage/vivid-3/issues/2550)) ([4d636c4](https://github.com/Vonage/vivid-3/commit/4d636c4d4f817fc1d647811fc5eb3c168303dd8c))
+
 ## [5.2.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.1.0...vivid-v5.2.0) (2025-09-26)
 
 

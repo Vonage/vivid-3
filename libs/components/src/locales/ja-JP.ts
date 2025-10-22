@@ -174,7 +174,11 @@ const jaJP: Locale = {
 		clearButtonLabel: '選択をクリア',
 		noOptionsMessage: 'オプションがありません',
 		noMatchesMessage: 'オプションが見つかりません',
+		selectAllLabel: 'すべて選択',
+		deselectAllLabel: 'すべて選択解除',
 		loadingOptionsMessage: '読み込み中...',
+		selectedAllMessage: 'すべてのオプションが選択されました',
+		deselectedAllMessage: 'すべてのオプションの選択を解除',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label}を削除`,
 		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>
@@ -246,8 +250,7 @@ const jaJP: Locale = {
 		anchorLabel: /* istanbul ignore next */ (ariaLabel?: string) =>
 			ariaLabel ? `さらに情報を表示 ${ariaLabel}` : `さらに情報を表示`,
 	},
-	simpleColorPicker: {
-		colorPaletteLabel: 'カラーパレット',
+	baseColorPicker: {
 		colorSwatchLabel: /* istanbul ignore next */ (
 			value: string,
 			label?: string,
@@ -259,6 +262,19 @@ const jaJP: Locale = {
 			if (selected) swatchLabel += `、選択済み。`;
 			return swatchLabel;
 		},
+	},
+	simpleColorPicker: {
+		colorPaletteLabel: 'カラーパレット',
+	},
+	colorPicker: {
+		popupLabel: 'カラーピッカー',
+		swatchesLabel: '保存された色:',
+		pickerButtonLabel: 'カラーピッカーを開く',
+		saveButtonLabel: '現在の色を保存',
+		closeButtonLabel: 'カラーピッカーを閉じる',
+		copyButtonLabel: '色をクリップボードにコピー',
+		copyErrorText:
+			'コピーに失敗しました。クリップボードへのアクセスがブロックされました。もう一度お試しください。',
 	},
 };
 export default jaJP;

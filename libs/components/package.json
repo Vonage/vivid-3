@@ -1,6 +1,6 @@
 {
 	"name": "@vonage/vivid",
-	"version": "5.2.0",
+	"version": "5.3.0",
 	"type": "module",
 	"module": "./dist/index.js",
 	"main": "./dist/index.cjs",
@@ -69,8 +69,7 @@
 		"prosemirror-state": "^1.4.3",
 		"prosemirror-view": "^1.40.1",
 		"ramda": "^0.30.0",
-		"uuid": "^11.1.0",
-		"video.js": "^8.23.3"
+		"uuid": "^11.1.0"
 	},
 	"devDependencies": {
 		"@repo/cem-analyzer-plugins": "*",
@@ -81,6 +80,7 @@
 		"@repo/stylelint-config": "*",
 		"@repo/styles": "*",
 		"@repo/typescript-config": "*",
-		"@repo/vitest-config": "*"
+		"@repo/vitest-config": "*",
+		"video.js": "^8.23.3"
 	}
 }

@@ -105,6 +105,19 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						>Example Contextual Help</vwc-contextual-help
 					>
 				</vwc-searchable-select>
+				<div style="padding-bottom: 200px;">
+					<vwc-searchable-select multiple label="label" enable-select-all id="select-all" open>
+						<vwc-option value="afghanistan" text="Afghanistan">
+							<vwc-icon slot="icon" name="flag-afghanistan"></vwc-icon>
+						</vwc-option>
+						<vwc-option value="albania" text="Albania">
+							<vwc-icon slot="icon" name="flag-albania"></vwc-icon>
+						</vwc-option>
+						<vwc-option value="algeria" text="Algeria">
+							<vwc-icon slot="icon" name="flag-algeria"></vwc-icon>
+						</vwc-option>
+					</vwc-searchable-select>
+				</div>
 			</div>
 		`,
 		setup: async () => {
@@ -114,11 +127,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						.querySelector('vwc-searchable-select[loading]')!
 						.shadowRoot!.querySelector('vwc-progress-ring') as any
 				).value = 66;
+
+				document
+					.querySelector('vwc-searchable-select#select-all')!
+					.shadowRoot!.querySelector('input')
+					?.focus();
 			});
 		},
 	});
 
-	await page.setViewportSize({ width: 350, height: 2000 });
+	await page.setViewportSize({ width: 350, height: 2200 });
 
 	await takeScreenshot(page, 'searchable-select');
 });

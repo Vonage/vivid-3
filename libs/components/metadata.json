@@ -2062,6 +2062,207 @@
 			}
 		},
 		{
+			"name": "color-picker",
+			"className": "ColorPicker",
+			"registerFunctionName": "registerColorPicker",
+			"description": "",
+			"props": [
+				{
+					"name": "disableSavedColors",
+					"description": "Disables the saving colors functionality",
+					"type": "boolean",
+					"attributeName": "disable-saved-colors",
+					"propertyName": "disableSavedColors"
+				},
+				{
+					"name": "disabled",
+					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
+					"type": "boolean",
+					"attributeName": "disabled",
+					"propertyName": "disabled"
+				},
+				{
+					"name": "errorText",
+					"description": "Provides a custom error message. Any current error state will be overridden.",
+					"type": "string",
+					"attributeName": "error-text",
+					"propertyName": "errorText"
+				},
+				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
+				},
+				{
+					"name": "initialValue",
+					"description": "The default value of the element. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
+					"type": "string",
+					"attributeName": "value",
+					"propertyName": "initialValue"
+				},
+				{
+					"name": "label",
+					"description": "The label for the form element.",
+					"type": "string",
+					"attributeName": "label",
+					"propertyName": "label"
+				},
+				{
+					"name": "maxSwatches",
+					"description": "Limits number of swatches that can be saved.",
+					"type": "number",
+					"attributeName": "max-swatches",
+					"propertyName": "maxSwatches"
+				},
+				{
+					"name": "name",
+					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
+					"type": "string",
+					"attributeName": "name",
+					"propertyName": "name"
+				},
+				{
+					"name": "open",
+					"description": "Indicates whether the popup is open",
+					"type": "boolean",
+					"attributeName": "open",
+					"propertyName": "open"
+				},
+				{
+					"name": "placeholder",
+					"description": "Sets the placeholder value of the element, generally used to provide a hint to the user.",
+					"type": "string",
+					"attributeName": "placeholder",
+					"propertyName": "placeholder"
+				},
+				{
+					"name": "required",
+					"description": "Require the field to be completed prior to form submission.",
+					"type": "boolean",
+					"attributeName": "required",
+					"propertyName": "required"
+				},
+				{
+					"name": "savedColorsKey",
+					"description": "Sets the localStorage saved colors key explicitly.",
+					"type": "string",
+					"attributeName": "saved-colors-key",
+					"propertyName": "savedColorsKey"
+				},
+				{
+					"name": "successText",
+					"description": "Provides a custom success message. Any current error state will be overridden.",
+					"type": "string",
+					"attributeName": "success-text",
+					"propertyName": "successText"
+				},
+				{
+					"name": "swatches",
+					"description": "List of color swatches, has to be an array of objects.",
+					"type": "Array<{ value: string; label?: string }>",
+					"propertyName": "swatches"
+				},
+				{
+					"name": "value",
+					"description": "The current value of the element.",
+					"type": "string",
+					"attributeName": "current-value",
+					"propertyName": "value"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "change",
+					"description": "Fires when the value changes",
+					"type": "CustomEvent<undefined>"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [
+				{
+					"name": "modelValue",
+					"propName": "value",
+					"eventNames": ["input"],
+					"valueMapping": "event.currentTarget.value"
+				}
+			],
+			"methods": [
+				{
+					"name": "checkValidity",
+					"description": "Return the current validity of the element.",
+					"args": [],
+					"returnType": "boolean"
+				},
+				{
+					"name": "reportValidity",
+					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
+					"args": [],
+					"returnType": "boolean"
+				}
+			],
+			"slots": [
+				{
+					"name": "helper-text",
+					"description": "Describes how to use the text-field. Alternative to the `helper-text` attribute."
+				},
+				{
+					"name": "popup-text",
+					"description": "Overrides the default \"Color Picker\" title of the Popup window."
+				},
+				{
+					"name": "swatches-text",
+					"description": " Overrides the default \"Saved colors:\" text above color swatches."
+				}
+			],
+			"testUtils": {
+				"selectors": [
+					{ "name": "byTestId", "args": ["byTestId"] },
+					{ "name": "byLabel", "args": ["byLabel"] }
+				],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [
+					{ "name": "visibleError", "args": ["visibleError"] },
+					{ "name": "value", "args": ["value"] }
+				],
+				"refs": []
+			}
+		},
+		{
 			"name": "combobox",
 			"className": "Combobox",
 			"registerFunctionName": "registerCombobox",
@@ -6703,11 +6904,25 @@
 					"propertyName": "clearable"
 				},
 				{
+					"name": "deselectAllText",
+					"description": "Overrides the default \"Deselect All\" text",
+					"type": "string",
+					"attributeName": "deselect-all-text",
+					"propertyName": "deselectAllText"
+				},
+				{
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
 					"attributeName": "disabled",
 					"propertyName": "disabled"
+				},
+				{
+					"name": "enableSelectAll",
+					"description": "Adds a \"Select All\" option at the top of the options list.",
+					"type": "boolean",
+					"attributeName": "enable-select-all",
+					"propertyName": "enableSelectAll"
 				},
 				{
 					"name": "errorText",
@@ -6819,6 +7034,13 @@
 					"type": "boolean",
 					"attributeName": "required",
 					"propertyName": "required"
+				},
+				{
+					"name": "selectAllText",
+					"description": "Overrides the default \"Select All\" text",
+					"type": "string",
+					"attributeName": "select-all-text",
+					"propertyName": "selectAllText"
 				},
 				{
 					"name": "shape",

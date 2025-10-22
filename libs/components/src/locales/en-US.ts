@@ -174,6 +174,10 @@ const enUS: Locale = {
 		clearButtonLabel: 'Clear selection',
 		noOptionsMessage: 'No options',
 		noMatchesMessage: 'No options found',
+		selectAllLabel: 'Select All',
+		deselectAllLabel: 'Deselect All',
+		selectedAllMessage: 'All options selected',
+		deselectedAllMessage: 'All options deselected',
 		loadingOptionsMessage: 'Loading...',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`Remove ${label}`,
@@ -248,8 +252,7 @@ const enUS: Locale = {
 				? `Show more information about ${ariaLabel}`
 				: `Show more information`,
 	},
-	simpleColorPicker: {
-		colorPaletteLabel: 'Color palette',
+	baseColorPicker: {
 		colorSwatchLabel: /* istanbul ignore next */ (
 			value: string,
 			label?: string,
@@ -261,6 +264,18 @@ const enUS: Locale = {
 			if (selected) swatchLabel += `, selected.`;
 			return swatchLabel;
 		},
+	},
+	simpleColorPicker: {
+		colorPaletteLabel: 'Color palette',
+	},
+	colorPicker: {
+		popupLabel: 'Color Picker',
+		swatchesLabel: 'Saved colors:',
+		pickerButtonLabel: 'Open Color Picker',
+		saveButtonLabel: 'Save current color',
+		closeButtonLabel: 'Close Color Picker',
+		copyButtonLabel: 'Copy Color to Clipboard',
+		copyErrorText: 'Copy failed. Clipboard access was blocked. Try again.',
 	},
 };
 export default enUS;

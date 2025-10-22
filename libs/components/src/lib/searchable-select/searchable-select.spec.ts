@@ -893,6 +893,80 @@ describe('vwc-searchable-select', () => {
 				expect(element.shadowRoot!.activeElement).toBe(getTag('Banana'));
 			});
 		});
+
+		describe('selectAll', () => {
+			const getSelectAll = () =>
+				element.shadowRoot!.querySelector(
+					'vwc-option[data-select-all]'
+				) as ListboxOption | null;
+
+			beforeEach(async () => {
+				element.multiple = true;
+				element.enableSelectAll = true;
+				await elementUpdated(element);
+				focusInput();
+				pressKey('ArrowDown');
+				await elementUpdated(element);
+			});
+
+			it('should render the Select All option when enabled, without maxSelected', async () => {
+				expect(getSelectAll()).not.toBeNull();
+			});
+
+			it('should not render the Select All option when maxSelected is set', async () => {
+				element.maxSelected = 2;
+				await elementUpdated(element);
+				expect(getSelectAll()).toBeNull();
+			});
+
+			it('should select all options on click', async () => {
+				await simulateClick(getSelectAll()!);
+				await elementUpdated(element);
+				expect(element.values.sort()).toEqual(
+					['apple', 'banana', 'cherry'].sort()
+				);
+			});
+
+			it('should deselect all options on second click', async () => {
+				await simulateClick(getSelectAll()!);
+				await elementUpdated(element);
+				await simulateClick(getSelectAll()!);
+				await elementUpdated(element);
+				expect(element.values).toEqual([]);
+			});
+
+			it('should be accessible using keyboard navigation', async () => {
+				pressKey('ArrowDown');
+				pressKey('Enter');
+				await elementUpdated(element);
+				expect(element.values.sort()).toEqual(
+					['apple', 'banana', 'cherry'].sort()
+				);
+			});
+
+			describe('fallbacks', () => {
+				it('returns false from _isAllSelected when not multiple', async () => {
+					element.multiple = false;
+					await elementUpdated(element);
+					expect((element as any)._isAllSelected).toBe(false);
+				});
+
+				it('returns false from _isAllSelected when there are zero selectable options', async () => {
+					element.multiple = true;
+					await elementUpdated(element);
+					element
+						.querySelectorAll('vwc-option')
+						.forEach((o: any) => (o.disabled = true));
+					await elementUpdated(element);
+					expect((element as any)._isAllSelected).toBe(false);
+				});
+
+				it('returns [] from _selectableOptions before options are initialized', () => {
+					const el = document.createElement('vwc-searchable-select') as any;
+					expect(el._selectableOptions).toEqual([]);
+				});
+			});
+		});
 	});
 
 	describe('externalTags', () => {
