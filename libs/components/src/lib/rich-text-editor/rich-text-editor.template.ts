@@ -7,7 +7,9 @@ export const RichTextEditorTemplate = (
 ): ViewTemplate<RichTextEditor> => {
 	return html`<template :_ctx="${() => ctx}">
 		<div class="rte">
-			<div class="editor" ${ref('_editorEl')}>
+			<div class="editor" ${ref('_editorEl')}></div>
+			<div class="popovers"></div>
+			<div class="toolbar"></div>
 		</div>
 	</template>`;
 };
