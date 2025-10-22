@@ -14,7 +14,7 @@ export class RTEToolbarFeature extends RTEFeature {
 	}
 
 	override getPlugins(rte: RTEInstance) {
-		const sections = ['history', 'font', 'text-style'] as const;
+		const sections = ['history', 'font', 'text-style', 'textblock'] as const;
 		const itemsBySection = new Map(
 			sections.map((section) => [section, [] as ToolbarItemSpec[]])
 		);

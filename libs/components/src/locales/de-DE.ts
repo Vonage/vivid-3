@@ -211,6 +211,12 @@ const deDE: Locale = {
 		monospace: 'Monospace',
 		undo: 'Rückgängig',
 		redo: 'Wiederholen',
+		alignment: 'Ausrichtung',
+		alignments: {
+			left: 'Linksbündig',
+			center: 'Zentriert',
+			right: 'Rechtsbündig',
+		},
 	},
 	button: {
 		pendingLabel: 'Laden...',

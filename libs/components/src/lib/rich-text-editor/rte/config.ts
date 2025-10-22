@@ -6,9 +6,11 @@ import { RTEFeature } from './feature';
 import type { RTEDocument } from './document';
 import { RTETextBlockStructure } from './features/text-block';
 import { RTEFreeformStructure } from './features/freeform';
+import { TextblockAttrs } from './utils/textblock-attrs';
 
 export class RTEConfig {
 	schema: Schema;
+	textblockAttrs: TextblockAttrs;
 	featureMap: Map<Constructor<RTEFeature>, RTEFeature>;
 	features: RTEFeature[];
 
@@ -37,8 +39,12 @@ export class RTEConfig {
 			);
 		}
 
+		this.textblockAttrs = new TextblockAttrs(
+			features.flatMap((f) => f.getTextblockAttrs())
+		);
+
 		const schemaContributions = features
-			.flatMap((f) => f.getSchema())
+			.flatMap((f) => f.getSchema(this.textblockAttrs))
 			.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
 		const schemaSpec = {

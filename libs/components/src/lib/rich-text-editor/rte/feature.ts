@@ -2,6 +2,10 @@ import type { SchemaSpec } from 'prosemirror-model';
 import { Plugin } from 'prosemirror-state';
 import type { RTEInstance } from './instance';
 import type { ToolbarItemSpec } from './utils/toolbar-items';
+import {
+	TextblockAttrs,
+	type TextblockAttrSpec,
+} from './utils/textblock-attrs';
 
 // Since features are provided in any order, their contributions need to allow ordering in case it is relevant.
 
@@ -25,7 +29,11 @@ export abstract class RTEFeature {
 		return [];
 	}
 
-	getSchema(): SchemaContribution[] {
+	getSchema(textblockAttrs: TextblockAttrs): SchemaContribution[] {
+		return [];
+	}
+
+	getTextblockAttrs(): TextblockAttrSpec[] {
 		return [];
 	}
 

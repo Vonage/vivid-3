@@ -1,10 +1,15 @@
 @use '@repo/tokens/scss/tokens.constants' as constants;
 
+.placeholder {
+	display: contents;
+}
+
 .placeholder::before {
 	position: absolute;
 	color: var(#{constants.$vvd-color-neutral-600});
 	content: attr(data-placeholder);
 	font-size: var(--placeholder-font-size, inherit);
+	inset-inline: var(--editor-padding-inline);
 	line-height: inherit;
 	pointer-events: none;
 }

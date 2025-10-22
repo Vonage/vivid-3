@@ -209,6 +209,12 @@ const jaJP: Locale = {
 		monospace: '等幅フォント',
 		undo: '元に戻す',
 		redo: 'やり直し',
+		alignment: '配置',
+		alignments: {
+			left: '左揃え',
+			center: '中央揃え',
+			right: '右揃え',
+		},
 	},
 	button: {
 		pendingLabel: '読み込み中',
