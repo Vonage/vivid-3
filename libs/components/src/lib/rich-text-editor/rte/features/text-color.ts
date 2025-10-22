@@ -13,29 +13,17 @@ import {
 	type ToolbarItemSpec,
 } from '../utils/toolbar-items';
 
-// markApplies function taken from prosemirror-commands
+// markApplies function adapted from prosemirror-commands
 function markApplies(
 	doc: Node,
 	ranges: readonly SelectionRange[],
-	type: MarkType,
-	enterAtoms: boolean
+	type: MarkType
 ) {
 	for (let i = 0; i < ranges.length; i++) {
 		const { $from, $to } = ranges[i];
-		let can =
-			$from.depth == 0
-				? doc.inlineContent && doc.type.allowsMarkType(type)
-				: false;
-		doc.nodesBetween($from.pos, $to.pos, (node, pos) => {
-			if (
-				can ||
-				(!enterAtoms &&
-					node.isAtom &&
-					node.isInline &&
-					pos >= $from.pos &&
-					pos + node.nodeSize <= $to.pos)
-			)
-				return false;
+		let can = $from.depth == 0 ? doc.type.allowsMarkType(type) : false;
+		doc.nodesBetween($from.pos, $to.pos, (node) => {
+			if (can) return false;
 			can = node.inlineContent && node.type.allowsMarkType(type);
 			return true;
 		});
@@ -63,16 +51,12 @@ export class RTETextColorFeature extends RTEFeature {
 				{
 					tag: 'span[data-text-color]',
 					getAttrs: (dom) => {
-						const el = dom as HTMLElement;
-						const value = el.getAttribute('data-text-color');
-						if (!value) return false;
-						return { color: value };
+						return { color: dom.getAttribute('data-text-color') };
 					},
 				},
 				{
 					style: 'color',
 					getAttrs: (value) => {
-						if (typeof value !== 'string' || !value) return false;
 						return { color: value };
 					},
 				},
@@ -152,7 +136,7 @@ export class RTETextColorFeature extends RTEFeature {
 		const { from, to } = selection;
 		const mixed = Symbol('mixed');
 		let selectionColor: null | string | typeof mixed = null;
-		state.doc.nodesBetween(from, to, (node, pos) => {
+		state.doc.nodesBetween(from, to, (node) => {
 			if (selectionColor === mixed) return false;
 			if (!node.isText) return true;
 
@@ -165,9 +149,7 @@ export class RTETextColorFeature extends RTEFeature {
 			return true;
 		});
 
-		return selectionColor === mixed
-			? null
-			: selectionColor ?? this.config.defaultColor;
+		return selectionColor === mixed ? null : selectionColor;
 	}
 
 	setColor(color: string): Command {
@@ -175,7 +157,7 @@ export class RTETextColorFeature extends RTEFeature {
 			const { textColor } = state.schema.marks;
 			const { from, to, empty } = state.selection;
 
-			if (!markApplies(state.doc, state.selection.ranges, textColor, true)) {
+			if (!markApplies(state.doc, state.selection.ranges, textColor)) {
 				return false;
 			}
 

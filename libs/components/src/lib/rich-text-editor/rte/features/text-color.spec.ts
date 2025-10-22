@@ -88,8 +88,9 @@ describe('RTETextColorFeature', () => {
 			const rte = await setup(features, [
 				p(text.marks(color({ color: '#ff0000' }))('Red')),
 				p(text.marks(color({ color: '#00ff00' }))('Green')),
+				p(text.marks(color({ color: '#0000ff' }))('Blue')),
 			]);
-			rte.selectText('R[ed', 'Gree]n');
+			rte.selectText('R[ed', 'Blu]e');
 			expect(rte.pickerColor()).toBe('');
 		});
 
