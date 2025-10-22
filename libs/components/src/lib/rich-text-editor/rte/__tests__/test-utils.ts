@@ -11,6 +11,8 @@ import type { Select } from '../../../select/select';
 import type { ListboxOption } from '../../../option/option';
 import { RTEConfig } from '../config';
 import { RTEFeature } from '../feature';
+import type { TextField } from '../../../text-field/text-field';
+import type { Popover } from '../../popover';
 
 registerRichTextEditor();
 
@@ -160,8 +162,30 @@ export async function setup(features: RTEFeature[], initialDoc?: any) {
 			`[data-vvd-component="button"][data-vvd-aria-label="${ariaLabel}"]`
 		)!;
 
+	const button = (root: HTMLElement, label: string) =>
+		root.querySelector<Button>(
+			`[data-vvd-component="button"][label="${label}"],[data-vvd-component="button"][data-vvd-aria-label="${label}"]`
+		)!;
+
+	const textField = (root: HTMLElement, label: string) =>
+		root.querySelector<TextField>(
+			`[data-vvd-component="text-field"][label="${label}"]`
+		)!;
+
 	const click = async (el: Button | MenuItem) => {
 		el.click();
+		await elementUpdated(element);
+	};
+
+	const input = async (el: TextField, value: string) => {
+		el.value = value;
+		el.dispatchEvent(
+			new InputEvent('input', {
+				bubbles: true,
+				composed: true,
+				cancelable: true,
+			})
+		);
 		await elementUpdated(element);
 	};
 
@@ -171,6 +195,13 @@ export async function setup(features: RTEFeature[], initialDoc?: any) {
 		element.shadowRoot!.querySelector<Menu>(
 			`[data-vvd-component="menu"][open]`
 		)!;
+
+	const openPopover = () =>
+		Array.from(
+			element.shadowRoot!.querySelectorAll<Popover>(
+				`[data-vvd-component="popover"]`
+			)
+		).find((p) => p.open);
 
 	const menuItem = (menu: Menu, text: string) =>
 		menu.querySelector<MenuItem>(`[text="${text}"]`)!;
@@ -194,7 +225,10 @@ export async function setup(features: RTEFeature[], initialDoc?: any) {
 		typeTextAtCursor,
 		docStr,
 		toolbarButton,
+		button,
+		textField,
 		click,
+		input,
 		isActive,
 		openMenu,
 		menuItem,
@@ -202,5 +236,6 @@ export async function setup(features: RTEFeature[], initialDoc?: any) {
 		selectText,
 		toolbarSelect,
 		option,
+		openPopover,
 	};
 }
