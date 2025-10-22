@@ -125,4 +125,17 @@ export const componentOverrides: ComponentSpecs[] = [
 			});
 		},
 	],
+
+	[
+		'rich-text-editor',
+		(component) => {
+			component.props.push({
+				name: 'instance',
+				description:
+					'The editor instance created from the RTEConfig. Without it, the editor will not render.',
+				type: 'any',
+				propertyName: 'instance',
+			});
+		},
+	],
 ];
