@@ -115,7 +115,7 @@
 		"vue": "2.7.8",
 		"vue-tsc": "2.1.5",
 		"vue3": "npm:vue@3.3.7",
-		"wait-on": "^8.0.4"
+		"wait-on": "^8.0.5"
 	},
 	"overrides": {
 		"minimist": "1.2.8",
@@ -129,7 +129,7 @@
 		"@11ty/eleventy-plugin-vite": {
 			"vite": "$vite"
 		},
-		"happy-dom": "^20.0.0"
+		"happy-dom": "^20.0.2"
 	},
 	"workspaces": [
 		"apps/*",

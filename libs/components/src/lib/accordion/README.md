@@ -1,7 +1,32 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```js
+import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
+```
+
+```vue preview 250px
+<script setup lang="ts">
+import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAccordion>
+		<VAccordionItem heading="Accordion item 1">
+			This is the first item's accordion body.
+		</VAccordionItem>
+		<VAccordionItem heading="Accordion item 2">
+			This is the second item's accordion body.
+		</VAccordionItem>
+	</VAccordion>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -31,19 +56,38 @@ registerAccordionItem('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+</vwc-tabs>
+
+## Heading level
+
+Use the `heading-level` to set level of the **Accordion Item**'s headline element to ensure [accessible heading levels](/components/accordion/accessibility/#heading-levels).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
-```vue preview
+```vue preview 500px
 <script setup lang="ts">
 import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 </script>
+
 <template>
-	<VAccordion>
-		<VAccordionItem heading="Accordion item 1">
+	<h1>Level 1 heading</h1>
+	<VAccordion expand-mode="multi">
+		<VAccordionItem heading-level="2" heading="Accordion item 1" meta="Level 2">
 			This is the first item's accordion body.
 		</VAccordionItem>
-		<VAccordionItem heading="Accordion item 2">
+		<VAccordionItem heading-level="4" heading="Accordion item 2" meta="Level 2">
+			This is the second item's accordion body.
+		</VAccordionItem>
+	</VAccordion>
+
+	<h2>Level 2 heading</h2>
+	<VAccordion expand-mode="multi">
+		<VAccordionItem heading-level="3" heading="Accordion item 1" meta="Level 3">
+			This is the first item's accordion body.
+		</VAccordionItem>
+		<VAccordionItem heading-level="3" heading="Accordion item 2" meta="Level 3">
 			This is the second item's accordion body.
 		</VAccordionItem>
 	</VAccordion>
@@ -51,13 +95,10 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 ```
 
 </vwc-tab-panel>
-</vwc-tabs>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
-## Heading level
-
-Use the `heading-level` to set level of the **Accordion Item**'s headline element to ensure [accessible heading levels](/components/accordion/accessibility/#heading-levels).
-
-```html preview 450px
+```html preview 500px
 <h1>Level 1 heading</h1>
 <vwc-accordion expand-mode="multi">
 	<vwc-accordion-item
@@ -94,11 +135,46 @@ Use the `heading-level` to set level of the **Accordion Item**'s headline elemen
 </vwc-accordion>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Methods
 
 ### Close All
 
 Use the `closeAll` method on **Accordion** to programatically close all open Accordion Item's.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 425px
+<script setup lang="ts">
+import { useTemplateRef } from 'vue';
+import { VAccordion, VAccordionItem, VButton } from '@vonage/vivid-vue';
+
+const accordionRef =
+	useTemplateRef<InstanceType<typeof VAccordion>>('accordion');
+
+const closeAll = () => {
+	accordionRef.value?.closeAll();
+};
+</script>
+
+<template>
+	<VAccordion ref="accordion" expand-mode="multi">
+		<VAccordionItem heading="Accordion item 1" expanded />
+		<VAccordionItem heading="Accordion item 2" expanded />
+		<VAccordionItem heading="Accordion item 3" expanded />
+	</VAccordion>
+
+	<VButton label="Close All" appearance="outlined" @click="closeAll" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 425px
 <vwc-accordion id="expanded-accordion" expand-mode="multi">
@@ -130,6 +206,9 @@ Use the `closeAll` method on **Accordion** to programatically close all open Acc
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 <vwc-note connotation="warning" headline="Do not nest any interactive elements within heading content">
@@ -140,6 +219,94 @@ The HTML specification does not allow one interactive element to be nested withi
 </vwc-note>
 
 ### Icon Slot
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 220px
+<script setup lang="ts">
+import { VAccordion, VAccordionItem, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAccordion>
+		<VAccordionItem heading="Accordion item 1" expanded>
+			<template #icon><VIcon name="accessibility-line" /></template>
+			This is the first item's accordion body.
+		</VAccordionItem>
+
+		<VAccordionItem heading="Accordion item 2" expanded>
+			<template #icon>
+				<VIcon>
+					<svg
+						width="240"
+						height="160"
+						viewBox="0 0 240 160"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M177.534 159.87H73.2606C61.8297 159.87 49.1214 150.467 44.8824 138.873L1.38368 20.9962C-2.85533 9.40215 2.97167 0 14.4069 0H118.676C130.107 0 142.815 9.40215 147.054 20.9962L190.553 138.873C194.796 150.467 188.969 159.87 177.534 159.87Z"
+							fill="url(#paint0_linear_2889_5523)"
+						/>
+						<path
+							d="M226.296 31.1954H119.314C108.631 31.1954 96.7543 39.9808 92.791 50.8161L60.0819 140.245C56.1185 151.08 61.5649 159.865 72.2521 159.865H179.233C189.916 159.865 201.794 151.08 205.757 140.245L238.465 50.8161C242.428 39.9808 236.978 31.1954 226.296 31.1954Z"
+							fill="url(#paint1_linear_2889_5523)"
+						/>
+						<path
+							fill-rule="evenodd"
+							clip-rule="evenodd"
+							d="M72.5804 159.867H177.669C178.316 159.853 178.944 159.81 179.553 159.737C179.588 159.742 179.627 159.743 179.666 159.743C185.79 159.743 192.235 156.416 195.196 153.975C199.502 150.425 202.057 147.89 204.82 142.66C199.869 151.44 194.744 150.997 191.039 140.664C190.878 140.212 190.699 139.837 190.505 139.531C190.432 139.313 190.356 139.094 190.275 138.874L151.757 33.5565C151.464 32.7586 151.133 31.9711 150.764 31.1963H119.314C108.631 31.1963 96.7545 39.9815 92.7909 50.8169L60.082 140.246C59.9262 140.672 59.785 141.094 59.6581 141.513C55.9215 150.926 51.454 151.042 46.5389 142.415C49.3911 147.759 52.0279 150.349 56.4747 153.975C59.5319 156.469 66.1845 159.869 72.5073 159.869C72.5321 159.869 72.5565 159.867 72.5804 159.867Z"
+							fill="url(#paint2_linear_2889_5523)"
+						/>
+						<defs>
+							<linearGradient
+								id="paint0_linear_2889_5523"
+								x1="124.234"
+								y1="2.52581e-05"
+								x2="-0.165732"
+								y2="-27.4436"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop stop-color="#A662FF" />
+								<stop offset="1" stop-color="#57EDFD" />
+							</linearGradient>
+							<linearGradient
+								id="paint1_linear_2889_5523"
+								x1="160.269"
+								y1="137.843"
+								x2="247.837"
+								y2="35.6845"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop stop-color="#FC27F6" />
+								<stop offset="1" stop-color="#FFA694" />
+							</linearGradient>
+							<linearGradient
+								id="paint2_linear_2889_5523"
+								x1="97.1225"
+								y1="31.3288"
+								x2="204.541"
+								y2="31.3288"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop stop-color="#7600FF" />
+								<stop offset="1" stop-color="#FB2FFB" />
+							</linearGradient>
+						</defs>
+					</svg>
+				</VIcon>
+			</template>
+			This is the second item's accordion body.
+		</VAccordionItem>
+	</VAccordion>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 220px
 <vwc-accordion>
@@ -266,20 +433,55 @@ The HTML specification does not allow one interactive element to be nested withi
 </vwc-accordion>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Heading Slot
 
 Use the `heading` slot to add custom content to the Accordion Item's heading, allowing you to apply custom formatting.
 If set, the `heading` attribute is ignored.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 120px
+<script setup lang="ts">
+import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAccordion expand-mode="multi">
+		<VAccordionItem expanded>
+			<template #heading
+				>Accordion item <span class="highlight">(slotted)</span></template
+			>
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</VAccordionItem>
+	</VAccordion>
+</template>
+
+<style scoped>
+.highlight {
+	color: var(--vvd-color-cta-500);
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 120px
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item heading="Accordion item" expanded>
+	<vwc-accordion-item expanded>
 		<span slot="heading"
 			>Accordion item <span class="highlight">(slotted)</span></span
 		>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
+
 <style>
 	.highlight {
 		color: var(--vvd-color-cta-500);
@@ -287,10 +489,47 @@ If set, the `heading` attribute is ignored.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Meta Slot
 
 Set the `meta` slot to add additional content to the accordion item's heading.
 If set, the `meta` attribute is ignored.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 120px
+<script setup lang="ts">
+import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAccordion expand-mode="multi">
+		<VAccordionItem expanded>
+			<template #heading
+				>Accordion item <span class="highlight">(slotted)</span></template
+			>
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+			<template #meta
+				>Meta data <span class="highlight">(slotted)</span></template
+			>
+		</VAccordionItem>
+	</VAccordion>
+</template>
+
+<style scoped>
+.highlight {
+	color: var(--vvd-color-cta-500);
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 120px
 <vwc-accordion expand-mode="multi">
@@ -302,6 +541,7 @@ If set, the `meta` attribute is ignored.
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
+
 <style>
 	.highlight {
 		color: var(--vvd-color-cta-500);
@@ -309,15 +549,44 @@ If set, the `meta` attribute is ignored.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## CSS Variables
 
 ### Meta Data Inline Size
 
-Use the `--accordion-item-meta-inline-size` to control the width of the `meta-data` slot content.
+Use the `--accordion-item-meta-inline-size` to control the width of the `meta-data` slot content. The defaut value is `20%`
 
-- Default: `20%`
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-```html preview 140px
+```vue preview 120px
+<script setup lang="ts">
+import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAccordion expand-mode="multi" class="accordion">
+		<VAccordionItem heading="Accordion item" meta="meta-data with custom width">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</VAccordionItem>
+	</VAccordion>
+</template>
+
+<style scoped>
+.accordion {
+	--accordion-item-meta-inline-size: 230px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 120px
 <vwc-accordion expand-mode="multi" class="accordion">
 	<vwc-accordion-item
 		heading="Accordion item"
@@ -333,6 +602,9 @@ Use the `--accordion-item-meta-inline-size` to control the width of the `meta-da
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
