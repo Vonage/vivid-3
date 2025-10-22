@@ -375,6 +375,37 @@ Since there are no text blocks in the freeform structure, it is recommended to u
 </script>
 ```
 
+### RTELinkFeature
+
+Adds the ability to insert links.
+
+```html preview
+<vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RTEConfig([
+			new RTECore(),
+			new RTEFreeformStructure(),
+			new RTEToolbarFeature(),
+			new RTELinkFeature(),
+		]);
+		rteComponent.instance = config.instantiateEditor([
+			{
+				type: 'text',
+				text: 'Learn more on ',
+			},
+			{
+				type: 'text',
+				text: 'our website',
+				marks: [{ type: 'link', attrs: { href: 'https://www.vonage.com' } }],
+			},
+		]);
+	});
+</script>
+```
+
 ## API Reference
 
 ### Properties
