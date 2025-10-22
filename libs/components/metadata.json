@@ -6774,22 +6774,17 @@
 			"description": "",
 			"props": [
 				{
+					"name": "instance",
+					"description": "The editor instance created from the RTEConfig. Without it, the editor will not render.",
+					"type": "any",
+					"propertyName": "instance"
+				},
+				{
 					"name": "placeholder",
+					"description": "A placeholder text to display when the editor is empty.",
 					"type": "string",
 					"attributeName": "placeholder",
 					"propertyName": "placeholder"
-				},
-				{
-					"name": "selectionEnd",
-					"type": "number",
-					"attributeName": "selection-end",
-					"propertyName": "selectionEnd"
-				},
-				{
-					"name": "selectionStart",
-					"type": "number",
-					"attributeName": "selection-start",
-					"propertyName": "selectionStart"
 				}
 			],
 			"events": [
@@ -6825,53 +6820,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{
-					"name": "addInlineImage",
-					"args": [
-						{
-							"name": "imageProps",
-							"type": "{\n\t\tfile: File;\n\t\tposition?: number;\n\t\talt?: string;\n\t}"
-						}
-					],
-					"returnType": "unknown"
-				},
-				{ "name": "focus", "args": [], "returnType": "unknown" },
-				{ "name": "placeholderChanged", "args": [], "returnType": "unknown" },
-				{
-					"name": "scrollToAttachments",
-					"args": [{ "name": "additionalPixels", "type": "unknown" }],
-					"returnType": "unknown"
-				},
-				{ "name": "selectionEndChanged", "args": [], "returnType": "unknown" },
-				{
-					"name": "selectionStartChanged",
-					"args": [],
-					"returnType": "unknown"
-				},
-				{
-					"name": "setSelectionDecoration",
-					"args": [{ "name": "decoration", "type": "string" }],
-					"returnType": "unknown"
-				},
-				{
-					"name": "setSelectionTextSize",
-					"args": [
-						{
-							"name": "textSize",
-							"type": "'extra-large' | 'large' | 'normal' | 'small'"
-						}
-					],
-					"returnType": "unknown"
-				},
-				{
-					"name": "setTextBlock",
-					"args": [
-						{ "name": "blockType", "type": "'title' | 'subtitle' | 'body'" }
-					],
-					"returnType": "unknown"
-				}
-			],
+			"methods": [],
 			"slots": [],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
