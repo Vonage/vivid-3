@@ -129,7 +129,7 @@
 		"@11ty/eleventy-plugin-vite": {
 			"vite": "$vite"
 		},
-		"happy-dom": "^20.0.0"
+		"happy-dom": "^20.0.2"
 	},
 	"workspaces": [
 		"apps/*",
