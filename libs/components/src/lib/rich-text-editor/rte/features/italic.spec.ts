@@ -48,7 +48,9 @@ describe('RTEItalicFeature', () => {
 		placeCursor('Hello |world');
 		keydown('i', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |<italic>|world')"`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello |<italic>|world')"`
+		);
 
 		await typeTextAtCursor('beautiful ');
 

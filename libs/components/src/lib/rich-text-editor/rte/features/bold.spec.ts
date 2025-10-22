@@ -48,7 +48,9 @@ describe('RTEBoldFeature', () => {
 		placeCursor('Hello |world');
 		keydown('b', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |<bold>|world')"`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello |<bold>|world')"`
+		);
 
 		await typeTextAtCursor('beautiful ');
 

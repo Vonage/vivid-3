@@ -244,7 +244,9 @@ describe('RTEFontSizeFeature', () => {
 		await click(toolbarButton('Text size'));
 		await click(menuItem(openMenu(), 'Large'));
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |<fontSize[size=\\"large\\"]>|world')"`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello |<fontSize[size=\\"large\\"]>|world')"`
+		);
 
 		await typeTextAtCursor('beautiful ');
 
@@ -352,7 +354,9 @@ describe('RTEFontSizeFeature', () => {
 		placeCursor('Hello |world');
 		keydown('.', { ctrl: true, shift: true }); // Increase font size
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |<fontSize[size=\\"large\\"]>|world')"`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello |<fontSize[size=\\"large\\"]>|world')"`
+		);
 		expect(element.shadowRoot!.querySelector('.ProseMirror')!.innerHTML).toBe(
 			'<div>Hello <span style="font-size: 18px;" class="ProseMirror-widget"></span>world</div>'
 		);

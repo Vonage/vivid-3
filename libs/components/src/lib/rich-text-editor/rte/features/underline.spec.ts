@@ -48,7 +48,9 @@ describe('RTEUnderlineFeature', () => {
 		placeCursor('Hello |world');
 		keydown('u', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |<underline>|world')"`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello |<underline>|world')"`
+		);
 
 		await typeTextAtCursor('beautiful ');
 

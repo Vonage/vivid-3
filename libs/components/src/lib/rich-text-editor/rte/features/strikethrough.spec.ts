@@ -65,7 +65,9 @@ describe('RTEStrikethroughFeature', () => {
 		placeCursor('Hello |world');
 		toolbarButton('Strikethrough').click();
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |<strikethrough>|world')"`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello |<strikethrough>|world')"`
+		);
 
 		await typeTextAtCursor('beautiful ');
 

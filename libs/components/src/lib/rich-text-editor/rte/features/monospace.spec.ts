@@ -48,7 +48,9 @@ describe('RTEMonospaceFeature', () => {
 		placeCursor('Hello |world');
 		keydown('M', { ctrl: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |<monospace>|world')"`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello |<monospace>|world')"`
+		);
 
 		await typeTextAtCursor('beautiful ');
 
