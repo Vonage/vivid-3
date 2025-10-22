@@ -203,6 +203,7 @@ const zhCN: Locale = {
 		underline: '下划线',
 		strikethrough: '删除线',
 		monospace: '等宽字体',
+		textColor: '文字颜色',
 		undo: '撤销',
 		redo: '重做',
 		bulletList: '项目符号列表',

@@ -205,6 +205,7 @@ const deDE: Locale = {
 		underline: 'Unterstrichen',
 		strikethrough: 'Durchgestrichen',
 		monospace: 'Monospace',
+		textColor: 'Textfarbe',
 		undo: 'Rückgängig',
 		redo: 'Wiederholen',
 		bulletList: 'Aufzählung',
