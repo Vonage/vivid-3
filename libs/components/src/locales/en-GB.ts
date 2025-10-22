@@ -209,6 +209,12 @@ const enGB: Locale = {
 		monospace: 'Monospace',
 		undo: 'Undo',
 		redo: 'Redo',
+		alignment: 'Alignment',
+		alignments: {
+			left: 'Left',
+			center: 'Center',
+			right: 'Right',
+		},
 	},
 	button: {
 		pendingLabel: 'Loading...',
