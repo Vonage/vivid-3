@@ -36,6 +36,13 @@ describe('vwc-menu', () => {
 		);
 	}
 
+	function createMenuItem(type = 'menuitem') {
+		const div = document.createElement('div');
+		div.setAttribute('role', type);
+		element.appendChild(div);
+		return div;
+	}
+
 	beforeEach(async () => {
 		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Menu;
 		popup = element.shadowRoot?.querySelector('vwc-popup') as Popup;
@@ -167,6 +174,21 @@ describe('vwc-menu', () => {
 				});
 			}
 		);
+
+		it('should not close on change events from content in a named slot when trigger=auto', async () => {
+			createMenuItem();
+			const input = document.createElement('input');
+			input.slot = 'header';
+			element.appendChild(input);
+			element.open = true;
+			await elementUpdated(element);
+
+			input.dispatchEvent(
+				new CustomEvent('change', { bubbles: true, composed: true })
+			);
+
+			expect(element.open).toBe(true);
+		});
 	});
 
 	describe('auto-dismiss', () => {
@@ -262,13 +284,6 @@ describe('vwc-menu', () => {
 	});
 
 	describe('focus', () => {
-		function createMenuItem(type = 'menuitem') {
-			const div = document.createElement('div');
-			div.setAttribute('role', type);
-			element.appendChild(div);
-			return div;
-		}
-
 		it('should focus the first descendant with the autofocus attribute', async () => {
 			const input = document.createElement('input');
 			input.setAttribute('autofocus', '');
