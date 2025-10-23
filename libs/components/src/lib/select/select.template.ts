@@ -55,8 +55,7 @@ function renderPlaceholder(context: VividElementDefinitionContext) {
 	const optionTag = context.tagFor(ListboxOption);
 
 	return html<Select>`
-		<${optionTag} ${ref('placeholderOption')}
-			text="${(x) => x.placeholder}" hidden disabled>
+		<${optionTag} text="${(x) => x.placeholder}" hidden disabled>
 		</${optionTag}>`;
 }
 
