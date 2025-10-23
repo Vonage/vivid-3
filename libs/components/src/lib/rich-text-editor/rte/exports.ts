@@ -9,5 +9,6 @@ export { RTEItalicFeature } from './features/italic';
 export { RTEUnderlineFeature } from './features/underline';
 export { RTEStrikethroughFeature } from './features/strikethrough';
 export { RTEMonospaceFeature } from './features/monospace';
+export { RTEListFeature } from './features/list';
 export { RTEAlignmentFeature } from './features/alignment';
 export { RTELinkFeature } from './features/link';

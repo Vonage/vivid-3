@@ -252,11 +252,15 @@ export const createOption = (
 	props: {
 		text: Prop<string>;
 		value: string;
+		disabled?: Prop<boolean>;
 	}
 ) => {
 	const option = ctx.rte.createComponent(ListboxOption);
 	option.value = props.value;
 	ctx.bindProp(props.text, (text) => (option.text = text));
+	if (props.disabled) {
+		ctx.bindProp(props.disabled, (disabled) => (option.disabled = disabled));
+	}
 	return option;
 };
 
