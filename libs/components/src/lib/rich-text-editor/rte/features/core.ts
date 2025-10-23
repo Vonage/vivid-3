@@ -11,11 +11,11 @@ import {
 import { dropCursor } from 'prosemirror-dropcursor';
 import { gapCursor } from 'prosemirror-gapcursor';
 import proseMirrorCss from 'prosemirror-view/style/prosemirror.css?inline';
-import type { ContentMatch } from 'prosemirror-model';
 import { RTEFeature } from '../feature';
 import type { Locale } from '../../../../shared/localization/Locale';
 import type { VividElementDefinitionContext } from '../../../../shared/design-system/defineVividComponent';
 import type { RTEInstance } from '../instance';
+import { defaultTextblockForMatch } from '../utils/default-textblock';
 import coreCss from './core.style.scss?inline';
 import { RTEHistoryFeature } from './internal/history';
 import { RTEPlaceholderFeature } from './internal/placeholder';
@@ -55,15 +55,6 @@ export class RTECore extends RTEFeature {
 	}
 
 	override getPlugins(rte: RTEInstance) {
-		function defaultTextblockAt(match: ContentMatch) {
-			for (let i = 0; i < match.edgeCount; i++) {
-				const { type } = match.edge(i);
-				if (type.isTextblock && !type.hasRequiredAttrs()) return type;
-				/* v8 ignore next 2 */
-			}
-			throw new Error('No default textblock found.');
-		}
-
 		return [
 			{
 				plugin: keymap({
@@ -79,7 +70,7 @@ export class RTECore extends RTEFeature {
 							}
 							// Otherwise, create a default textblock
 							return {
-								type: defaultTextblockAt(
+								type: defaultTextblockForMatch(
 									$from.node($from.depth - 1).contentMatchAt($from.indexAfter())
 								)!,
 								attrs: rte.textblockAttrs.extractFromNode(node),

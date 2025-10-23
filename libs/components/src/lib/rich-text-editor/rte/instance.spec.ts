@@ -1,16 +1,17 @@
 import { RTEConfig } from './config';
 import { RTECore } from './features/core';
 import { RTEFreeformStructure } from './features/freeform';
+import { docFactories } from './__tests__/doc-factories';
+
+const { text_line: line } = docFactories;
 
 describe('RTEInstance', () => {
 	describe('getDoc', () => {
 		it('should return the current document', () => {
 			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
-			const instance = config.instantiateEditor([
-				{ type: 'text', text: 'Hello world' },
-			]);
+			const instance = config.instantiateEditor([line('Hello world')]);
 			expect(instance.getDoc()).toEqual([
-				{ type: 'text', text: 'Hello world' },
+				{ type: 'text_line', content: [{ type: 'text', text: 'Hello world' }] },
 			]);
 		});
 	});
@@ -18,12 +19,13 @@ describe('RTEInstance', () => {
 	describe('setDoc', () => {
 		it('should replace the current document', () => {
 			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
-			const instance = config.instantiateEditor([
-				{ type: 'text', text: 'Hello world' },
-			]);
-			instance.setDoc([{ type: 'text', text: 'Updated document' }]);
+			const instance = config.instantiateEditor([line('Hello world')]);
+			instance.setDoc([line('Updated document')]);
 			expect(instance.getDoc()).toEqual([
-				{ type: 'text', text: 'Updated document' },
+				{
+					type: 'text_line',
+					content: [{ type: 'text', text: 'Updated document' }],
+				},
 			]);
 		});
 	});

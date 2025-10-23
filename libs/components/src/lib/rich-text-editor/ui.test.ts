@@ -18,6 +18,7 @@ let RTEItalicFeature: typeof rte.RTEItalicFeature;
 let RTEUnderlineFeature: typeof rte.RTEUnderlineFeature;
 let RTEStrikethroughFeature: typeof rte.RTEStrikethroughFeature;
 let RTEMonospaceFeature: typeof rte.RTEMonospaceFeature;
+let RTEListFeature: typeof rte.RTEListFeature;
 let RTEAlignmentFeature: typeof rte.RTEAlignmentFeature;
 let RTELinkFeature: typeof rte.RTELinkFeature;
 
@@ -60,6 +61,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					new RTEUnderlineFeature(),
 					new RTEStrikethroughFeature(),
 					new RTEMonospaceFeature(),
+					new RTEListFeature(),
 					new RTEAlignmentFeature(),
 					new RTELinkFeature(),
 				]);
@@ -110,6 +112,60 @@ test('should show the component', async ({ page }: { page: Page }) => {
 									{
 										type: 'link',
 										attrs: { href: 'https://vonage.com' },
+									},
+								],
+							},
+						],
+					},
+					{
+						type: 'bullet_list',
+						content: [
+							{
+								type: 'list_item',
+								content: [{ type: 'text', text: 'Item 1' }],
+							},
+							{
+								type: 'bullet_list',
+								content: [
+									{
+										type: 'list_item',
+										content: [{ type: 'text', text: 'Nested Item 2' }],
+									},
+									{
+										type: 'bullet_list',
+										content: [
+											{
+												type: 'list_item',
+												content: [{ type: 'text', text: 'Nested Item 3' }],
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+					{
+						type: 'numbered_list',
+						content: [
+							{
+								type: 'list_item',
+								content: [{ type: 'text', text: 'Item 1' }],
+							},
+							{
+								type: 'numbered_list',
+								content: [
+									{
+										type: 'list_item',
+										content: [{ type: 'text', text: 'Nested Item 2' }],
+									},
+									{
+										type: 'numbered_list',
+										content: [
+											{
+												type: 'list_item',
+												content: [{ type: 'text', text: 'Nested Item 3' }],
+											},
+										],
 									},
 								],
 							},
