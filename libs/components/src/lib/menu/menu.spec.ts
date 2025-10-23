@@ -751,6 +751,22 @@ describe('vwc-menu', () => {
 			expect(item.checked).toBe(true);
 		});
 
+		it('should ignore hidden radiomenuitems', async () => {
+			const hiddenItem = document.createElement('vwc-menu-item');
+			hiddenItem.controlType = 'radio';
+			hiddenItem.hidden = true;
+			element.appendChild(hiddenItem);
+			const item = document.createElement('vwc-menu-item');
+			item.controlType = 'radio';
+			item.checked = true;
+			element.appendChild(item);
+			await elementUpdated(element);
+
+			hiddenItem.checked = true;
+
+			expect(item.checked).toBe(true);
+		});
+
 		it('should gracefully fail when a menu item is checked synchronously after connecting the menu', async () => {
 			const menu = document.createElement(COMPONENT_TAG) as Menu;
 			const menuItem1 = document.createElement('vwc-menu-item') as MenuItem;
