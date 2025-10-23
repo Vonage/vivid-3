@@ -58,7 +58,7 @@ function flatTreeOffsetParent(element: Element) {
 	for (
 		let ancestor = flatTreeParent(element);
 		ancestor;
-		ancestor = flatTreeParent(ancestor)
+		ancestor = flatTreeParent(ancestor as Element)
 	) {
 		if (!(ancestor instanceof Element)) continue;
 		const style = getComputedStyle(ancestor);
