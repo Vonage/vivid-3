@@ -310,6 +310,80 @@ Keyboard shortcuts:
 </script>
 ```
 
+### RTEListFeature
+
+Adds support for bullet and numbered lists.
+
+Keyboard shortcuts:
+
+- **Toggle bullet list**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>8</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>8</kbd>
+- **Toggle numbered list**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>7</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>7</kbd>
+
+```html preview
+<vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RTEConfig([
+			new RTECore(),
+			new RTEFreeformStructure(),
+			new RTEToolbarFeature(),
+			new RTEListFeature(),
+		]);
+		rteComponent.instance = config.instantiateEditor([
+			{
+				type: 'bullet_list',
+				content: [
+					{
+						type: 'list_item',
+						content: [{ type: 'text', text: 'Bullet list' }],
+					},
+					{
+						type: 'bullet_list',
+						content: [
+							{
+								type: 'list_item',
+								content: [{ type: 'text', text: 'Item 1' }],
+							},
+							{
+								type: 'list_item',
+								content: [{ type: 'text', text: 'Item 2' }],
+							},
+							{
+								type: 'list_item',
+								content: [{ type: 'text', text: 'Item 3' }],
+							},
+						],
+					},
+					{
+						type: 'list_item',
+						content: [{ type: 'text', text: 'Numbered list' }],
+					},
+					{
+						type: 'numbered_list',
+						content: [
+							{
+								type: 'list_item',
+								content: [{ type: 'text', text: 'Item 1' }],
+							},
+							{
+								type: 'list_item',
+								content: [{ type: 'text', text: 'Item 2' }],
+							},
+							{
+								type: 'list_item',
+								content: [{ type: 'text', text: 'Item 3' }],
+							},
+						],
+					},
+				],
+			},
+		]);
+	});
+</script>
+```
+
 ### RTEAlignmentFeature
 
 Adds the ability to change the alignment of text blocks.
@@ -323,7 +397,7 @@ Keyboard shortcuts:
 <vwc-note connotation="information">
 	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
-Since there are no text blocks in the freeform structure, it is recommended to use this feature together with the `RTETextBlockStructure`.
+The alignment feature cannot be used with `RTETextBlockStructure`, since there are no text blocks to align.
 
 </vwc-note>
 

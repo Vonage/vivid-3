@@ -1,33 +1,30 @@
 import { setup } from '../__tests__/test-utils';
+import { docFactories } from '../__tests__/doc-factories';
 import { RTECore } from './core';
 import { RTEFreeformStructure } from './freeform';
+
+const { text_line: line } = docFactories;
 
 const features = [new RTECore(), new RTEFreeformStructure()];
 
 describe('RTEFreeformStructure', () => {
-	it('should create a schema with text and hard breaks at the top level', async () => {
-		const { docStr } = await setup(features, [
-			{
-				type: 'text',
-				text: 'Hello',
-			},
-			{ type: 'hard_break' },
-			{
-				type: 'text',
-				text: 'world',
-			},
-		]);
-		expect(docStr()).toBe(`doc("Hello", hard_break(), "world")`);
+	it('should create a schema with text_line blocks at the top level', async () => {
+		const { docStr } = await setup(features, [line('Hello'), line('World')]);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('|Hello'), text_line('World')"`
+		);
 	});
 
-	it('should insert a hard break when pressing Enter', async () => {
+	it('should insert a new text line when pressing Enter', async () => {
 		const { placeCursor, keydown, docStr } = await setup(features, [
-			{ type: 'text', text: 'Hello world' },
+			line('Hello world'),
 		]);
 
 		placeCursor('Hello |world');
 		keydown('Enter');
 
-		expect(docStr()).toBe(`doc("Hello ", hard_break(), "world")`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello '), text_line('|world')"`
+		);
 	});
 });

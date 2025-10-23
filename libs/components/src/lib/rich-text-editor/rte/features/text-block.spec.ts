@@ -1,7 +1,12 @@
 import { setup } from '../__tests__/test-utils';
+import { docFactories } from '../__tests__/doc-factories';
 import { RTECore } from './core';
 import { RTETextBlockStructure } from './text-block';
 import { RTEToolbarFeature } from './toolbar';
+
+const { paragraph: p, hard_break: br } = docFactories;
+const h1 = docFactories.heading.attrs({ level: 1 });
+const h2 = docFactories.heading.attrs({ level: 2 });
 
 const features = [
 	new RTECore(),
@@ -12,27 +17,18 @@ const features = [
 describe('RTETextBlockStructure', () => {
 	it('should create a schema with paragraphs, headings and hard breaks', async () => {
 		const { docStr } = await setup(features, [
-			{
-				type: 'heading',
-				attrs: { level: 1 },
-				content: [{ type: 'text', text: 'heading-1' }],
-			},
-			{
-				type: 'heading',
-				attrs: { level: 2 },
-				content: [{ type: 'text', text: 'heading-2' }],
-			},
-			{
-				type: 'paragraph',
-				content: [
-					{ type: 'text', text: 'para' },
-					{ type: 'hard_break' },
-					{ type: 'text', text: 'graph' },
-				],
-			},
+			h1('heading-1'),
+			h2('heading-2'),
+			p('para', br(), 'graph'),
 		]);
-		expect(docStr()).toBe(
-			`doc(heading[level=1]("heading-1"), heading[level=2]("heading-2"), paragraph("para", hard_break(), "graph"))`
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			heading[level=1]('|heading-1'),
+			heading[level=2]('heading-2'),
+			paragraph('para', hard_break(), 'graph')
+			"
+		`
 		);
 	});
 
@@ -49,8 +45,16 @@ describe('RTETextBlockStructure', () => {
 				`.trim()
 			)
 		);
-		expect(docStr()).toBe(
-			'doc(heading[level=1]("heading-1"), heading[level=2]("heading-2"), paragraph("paragraph", hard_break(), "new line"), paragraph("other heading"), paragraph("other element"))'
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			heading[level=1]('heading-1'),
+			heading[level=2]('heading-2'),
+			paragraph('paragraph', hard_break(), 'new line'),
+			paragraph('other heading'),
+			paragraph('other element|')
+			"
+		`
 		);
 	});
 
@@ -59,80 +63,62 @@ describe('RTETextBlockStructure', () => {
 
 		keydown('Enter');
 
-		expect(docStr()).toBe(`doc(paragraph(), paragraph())`);
+		expect(docStr()).toMatchInlineSnapshot(`"paragraph(), paragraph(|)"`);
 	});
 
 	it('should insert a hard break when pressing Shift+Enter', async () => {
 		const { placeCursor, keydown, docStr } = await setup(features, [
-			{
-				type: 'paragraph',
-				content: [{ type: 'text', text: 'Hello world' }],
-			},
+			p('Hello world'),
 		]);
 
 		placeCursor('Hello |world');
 		keydown('Enter', { shift: true });
 
-		expect(docStr()).toBe(`doc(paragraph("Hello ", hard_break(), "world"))`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"paragraph('Hello ', hard_break(), 'w|orld')"`
+		);
 	});
 
 	it('should set paragraph block type with Mod+Alt+0', async () => {
-		const { keydown, docStr } = await setup(features, [
-			{
-				type: 'heading',
-				attrs: { level: 1 },
-				content: [{ type: 'text', text: 'Title' }],
-			},
-		]);
+		const { keydown, docStr } = await setup(features, [h1('Title')]);
 
 		keydown('0', { ctrl: true, alt: true });
 
-		expect(docStr()).toBe(`doc(paragraph("Title"))`);
+		expect(docStr()).toMatchInlineSnapshot(`"paragraph('|Title')"`);
 	});
 
 	it('should set heading level 1 with Mod+Alt+1', async () => {
-		const { keydown, docStr } = await setup(features, [
-			{
-				type: 'paragraph',
-				content: [{ type: 'text', text: 'Text' }],
-			},
-		]);
+		const { keydown, docStr } = await setup(features, [p('Text')]);
 
 		keydown('1', { ctrl: true, alt: true });
 
-		expect(docStr()).toBe(`doc(heading[level=1]("Text"))`);
+		expect(docStr()).toMatchInlineSnapshot(`"heading[level=1]('|Text')"`);
 	});
 
 	it('should set heading level 2 with Mod+Alt+2', async () => {
-		const { keydown, docStr } = await setup(features, [
-			{
-				type: 'paragraph',
-				content: [{ type: 'text', text: 'Text' }],
-			},
-		]);
+		const { keydown, docStr } = await setup(features, [p('Text')]);
 
 		keydown('2', { ctrl: true, alt: true });
 
-		expect(docStr()).toBe(`doc(heading[level=2]("Text"))`);
+		expect(docStr()).toMatchInlineSnapshot(`"heading[level=2]('|Text')"`);
 	});
 
 	it('should change block type across selection', async () => {
 		const { selectText, keydown, docStr } = await setup(features, [
-			{
-				type: 'paragraph',
-				content: [{ type: 'text', text: 'First paragraph' }],
-			},
-			{
-				type: 'paragraph',
-				content: [{ type: 'text', text: 'Second paragraph' }],
-			},
+			p('First paragraph'),
+			p('Second paragraph'),
 		]);
 
 		selectText('First [paragraph', 'Second] paragraph');
 		keydown('1', { ctrl: true, alt: true });
 
-		expect(docStr()).toBe(
-			`doc(heading[level=1]("First paragraph"), heading[level=1]("Second paragraph"))`
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			heading[level=1]('First [paragraph'),
+			heading[level=1]('Second|] paragraph')
+			"
+		`
 		);
 	});
 
@@ -152,7 +138,7 @@ describe('RTETextBlockStructure', () => {
 
 		option(toolbarSelect('Paragraph styles'), 'Title').click();
 
-		expect(docStr()).toBe(`doc(heading[level=1]())`);
+		expect(docStr()).toMatchInlineSnapshot(`"[heading[level=1]()|]"`);
 		expect(option(toolbarSelect('Paragraph styles'), 'Title').selected).toBe(
 			true
 		);
@@ -160,15 +146,8 @@ describe('RTETextBlockStructure', () => {
 
 	it('should have no selected option when cursor spans different block types', async () => {
 		const { toolbarSelect, selectText, selectAll } = await setup(features, [
-			{
-				type: 'heading',
-				attrs: { level: 1 },
-				content: [{ type: 'text', text: 'Title' }],
-			},
-			{
-				type: 'paragraph',
-				content: [{ type: 'text', text: 'Body' }],
-			},
+			h1('Title'),
+			p('Body'),
 		]);
 
 		selectText('Tit[le', 'Bo]dy');

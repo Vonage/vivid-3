@@ -1,9 +1,19 @@
 import { setup } from '../__tests__/test-utils';
+import { docFactories } from '../__tests__/doc-factories';
 import { RTECore } from './core';
 import { RTEFontSizeFeature } from './font-size';
 import { RTEToolbarFeature } from './toolbar';
 import { RTEFreeformStructure } from './freeform';
 import { RTETextBlockStructure } from './text-block';
+
+const {
+	text,
+	text_line: line,
+	fontSize: size,
+	paragraph: p,
+	hard_break: br,
+} = docFactories;
+const h1 = docFactories.heading.attrs({ level: 1 });
 
 const features = [
 	new RTECore(),
@@ -18,16 +28,15 @@ const textBlockFeatures = [
 	new RTEToolbarFeature(),
 	new RTEFontSizeFeature(),
 ];
+
 describe('RTEFontSizeFeature', () => {
 	it('should add a fontSize mark to the schema', async () => {
 		const { docStr } = await setup(features, [
-			{
-				type: 'text',
-				text: 'Hello',
-				marks: [{ type: 'fontSize', attrs: { size: 'large' } }],
-			},
+			line(text.marks(size({ size: 'large' }))('Hello')),
 		]);
-		expect(docStr()).toBe(`doc(<fontSize[size="large"]>"Hello")`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line(<fontSize[size="large"]>'|Hello')"`
+		);
 	});
 
 	it('should deserialize the mark from HTML', async () => {
@@ -43,20 +52,26 @@ describe('RTEFontSizeFeature', () => {
 				`.trim()
 			)
 		);
-		expect(docStr()).toBe(
-			'doc(<fontSize[size="small"]>"small", " normal ", <fontSize[size="large"]>"large", " ", <fontSize[size="extra-large"]>"extra-large", " other")'
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			text_line(
+				<fontSize[size="small"]>'small',
+				' normal ',
+				<fontSize[size="large"]>'large',
+				' ',
+				<fontSize[size="extra-large"]>'extra-large',
+				' other|'
+			)
+			"
+		`
 		);
 	});
 
 	it('should provide a menu with font size options where the current font size is checked', async () => {
 		const { toolbarButton, click, openMenu, menuItem, isChecked, placeCursor } =
 			await setup(features, [
-				{ type: 'text', text: 'normal ' },
-				{
-					type: 'text',
-					text: 'large',
-					marks: [{ type: 'fontSize', attrs: { size: 'large' } }],
-				},
+				line('normal ', text.marks(size({ size: 'large' }))('large')),
 			]);
 
 		await click(toolbarButton('Text size'));
@@ -74,13 +89,15 @@ describe('RTEFontSizeFeature', () => {
 
 	it('should change font size when choosing an option', async () => {
 		const { toolbarButton, click, openMenu, menuItem, docStr, selectText } =
-			await setup(features, [{ type: 'text', text: 'Hello world' }]);
+			await setup(features, [line('Hello world')]);
 
 		selectText('[world]');
 		await click(toolbarButton('Text size'));
 		await click(menuItem(openMenu(), 'Large'));
 
-		expect(docStr()).toBe(`doc("Hello ", <fontSize[size="large"]>"world")`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello [', <fontSize[size="large"]>'world|]')"`
+		);
 	});
 
 	it('should have no options selected when selection is mixed', async () => {
@@ -93,12 +110,7 @@ describe('RTEFontSizeFeature', () => {
 			docStr,
 			selectText,
 		} = await setup(features, [
-			{ type: 'text', text: 'normal ' },
-			{
-				type: 'text',
-				text: 'large',
-				marks: [{ type: 'fontSize', attrs: { size: 'large' } }],
-			},
+			line('normal ', text.marks(size({ size: 'large' }))('large')),
 		]);
 
 		selectText('no[rmal', 'lar]ge]');
@@ -109,21 +121,23 @@ describe('RTEFontSizeFeature', () => {
 
 		await click(menuItem(openMenu(), 'Small'));
 
-		expect(docStr()).toBe(
-			'doc("no", <fontSize[size="small"]>"rmal lar", <fontSize[size="large"]>"ge")'
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			text_line(
+				'no',
+				<fontSize[size="small"]>'rmal lar|]',
+				<fontSize[size="large"]>'ge['
+			)
+			"
+		`
 		);
 	});
 
 	it('should disable options when font size cannot be applied to selection', async () => {
 		const { toolbarButton, click, openMenu, menuItem } = await setup(
 			textBlockFeatures,
-			[
-				{
-					type: 'heading',
-					attrs: { level: 1 },
-					content: [{ type: 'text', text: 'normal ' }],
-				},
-			]
+			[h1('normal')]
 		);
 
 		await click(toolbarButton('Text size'));
@@ -142,22 +156,9 @@ describe('RTEFontSizeFeature', () => {
 			isChecked,
 			docStr,
 		} = await setup(textBlockFeatures, [
-			{
-				type: 'paragraph',
-				content: [
-					{ type: 'text', text: 'first' },
-					{ type: 'hard_break' },
-					{ type: 'text', text: 'after break' },
-				],
-			},
-			{
-				type: 'paragraph',
-				content: [{ type: 'text', text: 'second' }],
-			},
-			{
-				type: 'paragraph',
-				content: [{ type: 'text', text: 'third' }],
-			},
+			p('first', br(), 'after break'),
+			p('second'),
+			p('third'),
 		]);
 
 		selectText('firs[t', 'seco]nd');
@@ -167,8 +168,19 @@ describe('RTEFontSizeFeature', () => {
 
 		await click(menuItem(openMenu(), 'Large'));
 
-		expect(docStr()).toBe(
-			'doc(paragraph("firs", <fontSize[size="large"]>"t", hard_break<fontSize[size="large"]>(), <fontSize[size="large"]>"after break"), paragraph(<fontSize[size="large"]>"seco", "nd"), paragraph("third"))'
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			paragraph(
+				'firs',
+				<fontSize[size="large"]>'t',
+				hard_break<fontSize[size="large"]>(),
+				<fontSize[size="large"]>'af[ter break'
+			),
+			paragraph(<fontSize[size="large"]>'seco|]', 'nd'),
+			paragraph('third')
+			"
+		`
 		);
 
 		selectText('fir[s', 'third]'); // Mixed selection
@@ -180,10 +192,7 @@ describe('RTEFontSizeFeature', () => {
 
 	it('should consider empty paragraphs to have normal size', async () => {
 		const { toolbarButton, click, openMenu, menuItem, isChecked, selectAll } =
-			await setup(textBlockFeatures, [
-				{ type: 'paragraph', content: [] },
-				{ type: 'paragraph', content: [] },
-			]);
+			await setup(textBlockFeatures, [p(), p()]);
 
 		selectAll();
 		await click(toolbarButton('Text size'));
@@ -202,22 +211,14 @@ describe('RTEFontSizeFeature', () => {
 			selectText,
 			rte,
 			placeCursor,
-		} = await setup(textBlockFeatures, [
-			{ type: 'heading', attrs: { level: 1 }, content: [] },
-		]);
+		} = await setup(textBlockFeatures, [h1()]);
 
 		selectAll();
 		await click(toolbarButton('Text size'));
 
 		expect(isChecked(menuItem(openMenu(), 'Normal'))).toBe(false);
 
-		rte.setDoc([
-			{
-				type: 'heading',
-				attrs: { level: 1 },
-				content: [{ type: 'text', text: 'Heading' }],
-			},
-		]);
+		rte.setDoc([h1('Heading')]);
 		placeCursor('Head|ing');
 
 		expect(isChecked(menuItem(openMenu(), 'Normal'))).toBe(false);
@@ -236,34 +237,30 @@ describe('RTEFontSizeFeature', () => {
 			click,
 			menuItem,
 			openMenu,
-		} = await setup(features, [{ type: 'text', text: 'Hello world' }]);
+		} = await setup(features, [line('Hello world')]);
 
 		placeCursor('Hello |world');
 
 		await click(toolbarButton('Text size'));
 		await click(menuItem(openMenu(), 'Large'));
 
-		expect(docStr()).toBe(`doc("Hello world")`);
+		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |world')"`);
 
 		await typeTextAtCursor('beautiful ');
 
-		expect(docStr()).toBe(
-			`doc("Hello ", <fontSize[size="large"]>"beautiful ", "world")`
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			text_line('Hello ', <fontSize[size="large"]>'beautiful |', 'world')
+			"
+		`
 		);
 	});
 
 	it('should handle normal font size as removing the mark', async () => {
 		const { selectText, docStr, toolbarButton, click, openMenu, menuItem } =
 			await setup(features, [
-				{
-					type: 'text',
-					text: 'normal ',
-				},
-				{
-					type: 'text',
-					text: 'large',
-					marks: [{ type: 'fontSize', attrs: { size: 'large' } }],
-				},
+				line('normal ', text.marks(size({ size: 'large' }))('large')),
 			]);
 
 		selectText('[large]');
@@ -271,69 +268,72 @@ describe('RTEFontSizeFeature', () => {
 		await click(toolbarButton('Text size'));
 		await click(menuItem(openMenu(), 'Normal'));
 
-		expect(docStr()).toBe(`doc("normal large")`);
+		expect(docStr()).toMatchInlineSnapshot(`"text_line('normal [large|]')"`);
 	});
 
 	it('should increase font size when pressing Mod + Shift + .', async () => {
 		const { selectText, docStr, keydown } = await setup(features, [
-			{
-				type: 'text',
-				text: 'Hello world',
-			},
+			line('Hello world'),
 		]);
 
 		selectText('[world]');
 
 		keydown('.', { ctrl: true, shift: true });
 
-		expect(docStr()).toBe(`doc("Hello ", <fontSize[size="large"]>"world")`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello [', <fontSize[size="large"]>'world|]')"`
+		);
 
 		keydown('.', { ctrl: true, shift: true });
 
-		expect(docStr()).toBe(
-			`doc("Hello ", <fontSize[size="extra-large"]>"world")`
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			text_line('Hello [', <fontSize[size="extra-large"]>'world|]')
+			"
+		`
 		);
 
 		// Cannot go larger than extra-large
 		keydown('.', { ctrl: true, shift: true });
 
-		expect(docStr()).toBe(
-			`doc("Hello ", <fontSize[size="extra-large"]>"world")`
+		expect(docStr()).toMatchInlineSnapshot(
+			`
+			"
+			text_line('Hello [', <fontSize[size="extra-large"]>'world|]')
+			"
+		`
 		);
 	});
 
 	it('should decrease font size when pressing Mod + Shift + ,', async () => {
 		const { selectText, docStr, keydown } = await setup(features, [
-			{
-				type: 'text',
-				text: 'Hello world',
-			},
+			line('Hello world'),
 		]);
 
 		selectText('[world]');
 
 		keydown(',', { ctrl: true, shift: true });
 
-		expect(docStr()).toBe(`doc("Hello ", <fontSize[size="small"]>"world")`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello [', <fontSize[size="small"]>'world|]')"`
+		);
 
 		// Cannot go smaller than small
 		keydown(',', { ctrl: true, shift: true });
 
-		expect(docStr()).toBe(`doc("Hello ", <fontSize[size="small"]>"world")`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello [', <fontSize[size="small"]>'world|]')"`
+		);
 	});
 
 	it('should not adjust the font size when the selection is mixed', async () => {
 		const { selectText, docStr, keydown } = await setup(features, [
-			{ type: 'text', text: 'normal ' },
-			{
-				type: 'text',
-				text: 'large',
-				marks: [{ type: 'fontSize', attrs: { size: 'large' } }],
-			},
+			line('normal ', text.marks(size({ size: 'large' }))('large')),
 		]);
+		selectText('nor[mal', 'lar]ge]');
 		const initialDoc = docStr();
 
-		selectText('nor[mal', 'lar]ge]');
 		keydown('.', { ctrl: true, shift: true });
 
 		expect(docStr()).toBe(initialDoc);
@@ -346,20 +346,15 @@ describe('RTEFontSizeFeature', () => {
 	it('should adjust the cursor size based on the stored mark', async () => {
 		const { placeCursor, docStr, keydown, element, selectAll } = await setup(
 			features,
-			[
-				{
-					type: 'text',
-					text: 'Hello world',
-				},
-			]
+			[line('Hello world')]
 		);
 
 		placeCursor('Hello |world');
 		keydown('.', { ctrl: true, shift: true }); // Increase font size
 
-		expect(docStr()).toBe(`doc("Hello world")`);
+		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |world')"`);
 		expect(element.shadowRoot!.querySelector('.ProseMirror')!.innerHTML).toBe(
-			'Hello <span style="font-size: 18px;" class="ProseMirror-widget"></span>world'
+			'<div>Hello <span style="font-size: 18px;" class="ProseMirror-widget"></span>world</div>'
 		);
 
 		selectAll();
@@ -367,7 +362,7 @@ describe('RTEFontSizeFeature', () => {
 		placeCursor('Hello |world');
 		keydown(',', { ctrl: true, shift: true }); // Decrease font size back to normal
 		expect(element.shadowRoot!.querySelector('.ProseMirror')!.innerHTML).toBe(
-			'<span style="font-size: 18px;">Hello <span style="font-size: 14px;" class="ProseMirror-widget"></span>world</span>'
+			'<div><span style="font-size: 18px;">Hello <span style="font-size: 14px;" class="ProseMirror-widget"></span>world</span></div>'
 		);
 	});
 });
