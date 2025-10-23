@@ -45,7 +45,7 @@
 		"@vonage/vivid": "*"
 	},
 	"devDependencies": {
-		"@playwright/test": "1.56.1",
+		"@playwright/test": "1.48.2",
 		"@repo/eslint-config": "*",
 		"@repo/shared": "*",
 		"@repo/typescript-config": "*",

@@ -75,7 +75,7 @@
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.52.9",
 		"@microsoft/eslint-config-fast-dna": "^2.1.0",
-		"@playwright/test": "1.56.1",
+		"@playwright/test": "1.48.2",
 		"@repo/cem-analyzer-plugins": "*",
 		"@repo/consts": "*",
 		"@repo/eslint-config": "*",
@@ -100,7 +100,7 @@
 		"esbuild": "0.23.0",
 		"jsdom": "^23.0.0",
 		"markdown-it": "^13.0.2",
-		"playwright": "1.56.1",
+		"playwright": "1.48.2",
 		"sass": "^1.89.2",
 		"vite-plugin-static-copy": "^1.0.6",
 		"vitest": "^2.1.8",
