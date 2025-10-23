@@ -31,7 +31,7 @@ describe('RTEMonospaceFeature', () => {
 		keydown('M', { ctrl: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <monospace>'world|]')"`
+			`"text_line('Hello ', <monospace>'[world|]')"`
 		);
 
 		keydown('M', { ctrl: true, shift: true });
@@ -48,7 +48,9 @@ describe('RTEMonospaceFeature', () => {
 		placeCursor('Hello |world');
 		keydown('M', { ctrl: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |world')"`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello |<monospace>|world')"`
+		);
 
 		await typeTextAtCursor('beautiful ');
 
@@ -67,7 +69,7 @@ describe('RTEMonospaceFeature', () => {
 		toolbarButton('Monospace').click();
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <monospace>'world|]')"`
+			`"text_line('Hello ', <monospace>'[world|]')"`
 		);
 		expect(isActive(toolbarButton('Monospace'))).toBe(true);
 

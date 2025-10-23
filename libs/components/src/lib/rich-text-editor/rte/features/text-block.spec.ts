@@ -75,7 +75,7 @@ describe('RTETextBlockStructure', () => {
 		keydown('Enter', { shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"paragraph('Hello ', hard_break(), 'w|orld')"`
+			`"paragraph('Hello ', hard_break(), '|world')"`
 		);
 	});
 

@@ -203,6 +203,7 @@ const enUS: Locale = {
 		underline: 'Underline',
 		strikethrough: 'Strikethrough',
 		monospace: 'Monospace',
+		textColor: 'Text color',
 		undo: 'Undo',
 		redo: 'Redo',
 		bulletList: 'Bullet list',

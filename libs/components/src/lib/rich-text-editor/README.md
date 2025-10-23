@@ -262,6 +262,98 @@ Known issues:
 </script>
 ```
 
+### RTETextColorFeature
+
+Adds support for different text colors.
+
+This feature adds a `text-color-picker` slot in which you can place a [Simple Color Picker](/components/simple-color-picker).
+
+Configuration options:
+
+- `defaultColor: string` (required): The default color of unstyled text. The editor will not actually apply this color to any text, so you need to ensure that this matches the current CSS `color`.
+
+<vwc-note connotation="warning" headline="Colors in Alternate Theme">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+When using the alternate theme the colors may no longer have sufficient contrast.
+
+</vwc-note>
+
+```html preview
+<vwc-rich-text-editor style="block-size: 150px">
+	<vwc-simple-color-picker slot="text-color-picker"></vwc-simple-color-picker>
+</vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-simple-color-picker').then(() => {
+		document.querySelector('vwc-simple-color-picker').swatches = [
+			{
+				label: 'Black',
+				value: '#000000',
+			},
+			{
+				label: 'Red',
+				value: '#E61D1D',
+			},
+			{
+				label: 'Yellow',
+				value: '#FA9F00',
+			},
+			{
+				label: 'Green',
+				value: '#1C8731',
+			},
+			{
+				label: 'Blue',
+				value: '#0276D5',
+			},
+			{
+				label: 'Purple',
+				value: '#9941FF',
+			},
+			{
+				label: 'Pink',
+				value: '#D6219C',
+			},
+		];
+	});
+
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RTEConfig([
+			new RTECore(),
+			new RTEFreeformStructure(),
+			new RTEToolbarFeature(),
+			new RTETextColorFeature({
+				defaultColor: '#000000',
+			}),
+		]);
+		rteComponent.instance = config.instantiateEditor([
+			{
+				type: 'text_line',
+				content: [
+					{
+						type: 'text',
+						text: 'Red ',
+						marks: [{ type: 'textColor', attrs: { color: '#E61D1D' } }],
+					},
+					{
+						type: 'text',
+						text: 'Yellow ',
+						marks: [{ type: 'textColor', attrs: { color: '#FA9F00' } }],
+					},
+					{
+						type: 'text',
+						text: 'Green',
+						marks: [{ type: 'textColor', attrs: { color: '#1C8731' } }],
+					},
+				],
+			},
+		]);
+	});
+</script>
+```
+
 ### Text Style Features
 
 The `RTEBoldFeature`, `RTEItalicFeature`, `RTEUnderlineFeature`, `RTEStrikethroughFeature`, and `RTEMonospaceFeature` add the corresponding text styling options to the editor.

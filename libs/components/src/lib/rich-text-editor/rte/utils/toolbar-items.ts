@@ -356,3 +356,71 @@ export const createText = (ctx: ToolbarCtx, props: { text: Prop<string> }) => {
 	ctx.bindProp(props.text, (text) => (textNode.textContent = text));
 	return textNode;
 };
+
+/// Creates a slot expecting a single assigned element. Binds provided props and events to the slotted element.
+export const createSingleSlot = (
+	ctx: ToolbarCtx,
+	props: {
+		name: string;
+		assignedProps: Record<string, Prop<any>>;
+		assignedEvents: Record<string, (e: Event) => void>;
+	}
+) => {
+	const slot = document.createElement('slot');
+	slot.name = props.name;
+
+	let currentEl: Element | null = null;
+	const listeners: Array<{
+		el: Element;
+		type: string;
+		handler: EventListener;
+	}> = [];
+
+	function cleanup() {
+		for (const { el, type, handler } of listeners) {
+			el.removeEventListener(type, handler);
+		}
+		listeners.length = 0;
+		currentEl = null;
+	}
+
+	for (const [key, prop] of Object.entries(props.assignedProps)) {
+		ctx.bindProp(prop, (value) => {
+			if (currentEl) {
+				(currentEl as any)[key] = value;
+			}
+		});
+	}
+
+	function applyPropsAndEvents(el: Element) {
+		for (const [key, prop] of Object.entries(props.assignedProps)) {
+			(el as any)[key] = ctx.evalProp(prop);
+		}
+		for (const [type, handler] of Object.entries(props.assignedEvents)) {
+			const listener: EventListener = (e) => {
+				handler(e);
+				ctx.view.focus();
+			};
+			el.addEventListener(type, listener);
+			listeners.push({ el, type, handler: listener });
+		}
+	}
+
+	const processSlot = () => {
+		const assigned = slot.assignedElements({ flatten: true });
+		const first = assigned[0];
+		if (first === currentEl) return; // nothing changed
+		cleanup();
+		if (first) {
+			currentEl = first;
+			applyPropsAndEvents(first);
+		}
+	};
+
+	slot.addEventListener('slotchange', processSlot);
+
+	// Initial binding after microtask (in case slot content already present)
+	queueMicrotask(processSlot);
+
+	return slot;
+};

@@ -41,33 +41,33 @@ const marksToStr = (marks: readonly Mark[]) => {
 };
 
 type TextNodeOffset = { node: Node; offset: number };
-function getOffsetInTextNode($pos: ResolvedPos): TextNodeOffset | null {
+function getOffsetInTextNode(
+	$pos: ResolvedPos,
+	preferLast = false
+): TextNodeOffset | null {
 	const parent = $pos.parent;
 	const parentOffset = $pos.parentOffset;
 
-	let offsetInText = 0;
-	let foundTextNode = null;
-
 	// Iterate through children to find the text node containing the cursor
 	let accumulated = 0;
+
+	// Note: result could be found multiple times for adjacent text nodes
+	const results = [] as TextNodeOffset[];
 	parent.forEach((child, offset) => {
 		const start = accumulated;
 		const end = accumulated + child.nodeSize;
 
-		if (parentOffset >= start && parentOffset <= end) {
-			if (child.isText) {
-				foundTextNode = child;
-				offsetInText = parentOffset - start;
-			}
-			return false; // stop iterating
+		if (parentOffset >= start && parentOffset <= end && child.isText) {
+			results.push({
+				node: child,
+				offset: parentOffset - start,
+			});
 		}
 
 		accumulated = end;
-		return true;
 	});
 
-	if (!foundTextNode) return null;
-	return { node: foundTextNode, offset: offsetInText };
+	return results[preferLast ? results.length - 1 : 0] ?? null;
 }
 
 const docToStr = (state: EditorState) => {
@@ -77,8 +77,16 @@ const docToStr = (state: EditorState) => {
 	let head: TextNodeOffset | null = null;
 	const isBackwards = $head.pos < $anchor.pos;
 	if (state.selection instanceof TextSelection && !state.selection.empty) {
-		anchor = getOffsetInTextNode($anchor);
-		head = getOffsetInTextNode($head);
+		anchor = getOffsetInTextNode($anchor, !isBackwards);
+		head = getOffsetInTextNode($head, isBackwards);
+	}
+
+	// Render stored marks on the caret
+	let caret = '|';
+	if (state.storedMarks) {
+		caret = `|${
+			state.storedMarks.length ? marksToStr(state.storedMarks) : '<>'
+		}|`;
 	}
 
 	const nodeToStr = (node: Node): string => {
@@ -86,7 +94,7 @@ const docToStr = (state: EditorState) => {
 		if (node.isText) {
 			const decorations = [];
 			if (cursor?.node === node) {
-				decorations.push({ offset: cursor.offset, decoration: '|' });
+				decorations.push({ offset: cursor.offset, decoration: caret });
 			}
 			if (anchor?.node === node) {
 				decorations.push({
@@ -97,7 +105,7 @@ const docToStr = (state: EditorState) => {
 			if (head?.node === node) {
 				decorations.push({
 					offset: head.offset,
-					decoration: isBackwards ? '[|' : '|]',
+					decoration: isBackwards ? `[${caret}` : `${caret}]`,
 				});
 			}
 			decorations.sort((a, b) => a.offset - b.offset);
@@ -121,11 +129,11 @@ const docToStr = (state: EditorState) => {
 		let nodeContent = node.content!.content.map(nodeToStr);
 		if (!node.childCount) {
 			if ($cursor?.parent === node) {
-				nodeContent = [`|`];
+				nodeContent = [caret];
 			} else if ($anchor?.parent === node) {
 				nodeContent = [isBackwards ? ']' : '['];
 			} else if ($head?.parent === node) {
-				nodeContent = [isBackwards ? '[|' : '|]'];
+				nodeContent = [isBackwards ? `[${caret}` : `${caret}]`];
 			}
 		}
 		const shouldBreak =
@@ -142,7 +150,9 @@ const docToStr = (state: EditorState) => {
 			  '\n'
 			: nodeContent.join(', ');
 		if (isDoc && state.selection instanceof AllSelection) {
-			contentStr = isBackwards ? `[|${contentStr}]` : `[${contentStr}|]`;
+			contentStr = isBackwards
+				? `[${caret}${contentStr}]`
+				: `[${contentStr}${caret}]`;
 		}
 
 		const nodeClose = isDoc ? '' : `)`;

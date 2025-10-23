@@ -33,7 +33,7 @@ describe('RTEStrikethroughFeature', () => {
 		keydown('5', { alt: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <strikethrough>'world|]')"`
+			`"text_line('Hello ', <strikethrough>'[world|]')"`
 		);
 
 		keydown('5', { alt: true, shift: true });
@@ -50,7 +50,7 @@ describe('RTEStrikethroughFeature', () => {
 		keydown('X', { cmd: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <strikethrough>'world|]')"`
+			`"text_line('Hello ', <strikethrough>'[world|]')"`
 		);
 
 		keydown('X', { cmd: true, shift: true });
@@ -65,7 +65,9 @@ describe('RTEStrikethroughFeature', () => {
 		placeCursor('Hello |world');
 		toolbarButton('Strikethrough').click();
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |world')"`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello |<strikethrough>|world')"`
+		);
 
 		await typeTextAtCursor('beautiful ');
 
@@ -84,7 +86,7 @@ describe('RTEStrikethroughFeature', () => {
 		toolbarButton('Strikethrough').click();
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <strikethrough>'world|]')"`
+			`"text_line('Hello ', <strikethrough>'[world|]')"`
 		);
 		expect(isActive(toolbarButton('Strikethrough'))).toBe(true);
 

@@ -6,6 +6,7 @@ export interface RichTextEditorLocale {
 	underline: string;
 	strikethrough: string;
 	monospace: string;
+	textColor: string;
 	undo: string;
 	redo: string;
 	bulletList: string;

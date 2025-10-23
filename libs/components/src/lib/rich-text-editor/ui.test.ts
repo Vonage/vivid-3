@@ -18,6 +18,7 @@ let RTEItalicFeature: typeof rte.RTEItalicFeature;
 let RTEUnderlineFeature: typeof rte.RTEUnderlineFeature;
 let RTEStrikethroughFeature: typeof rte.RTEStrikethroughFeature;
 let RTEMonospaceFeature: typeof rte.RTEMonospaceFeature;
+let RTETextColorFeature: typeof rte.RTETextColorFeature;
 let RTEListFeature: typeof rte.RTEListFeature;
 let RTEAlignmentFeature: typeof rte.RTEAlignmentFeature;
 let RTELinkFeature: typeof rte.RTELinkFeature;
@@ -61,6 +62,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					new RTEUnderlineFeature(),
 					new RTEStrikethroughFeature(),
 					new RTEMonospaceFeature(),
+					new RTETextColorFeature({ defaultColor: '#000000' }),
 					new RTEListFeature(),
 					new RTEAlignmentFeature(),
 					new RTELinkFeature(),
@@ -168,6 +170,26 @@ test('should show the component', async ({ page }: { page: Page }) => {
 										],
 									},
 								],
+							},
+						],
+					},
+					{
+						type: 'paragraph',
+						content: [
+							{
+								type: 'text',
+								text: 'Red ',
+								marks: [{ type: 'textColor', attrs: { color: '#E61D1D' } }],
+							},
+							{
+								type: 'text',
+								text: 'Yellow ',
+								marks: [{ type: 'textColor', attrs: { color: '#FA9F00' } }],
+							},
+							{
+								type: 'text',
+								text: 'Green',
+								marks: [{ type: 'textColor', attrs: { color: '#1C8731' } }],
 							},
 						],
 					},
