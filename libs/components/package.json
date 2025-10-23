@@ -65,9 +65,9 @@
 		"vanilla-colorful": "^0.7.2",
 		"prosemirror-commands": "^1.7.1",
 		"prosemirror-keymap": "^1.2.3",
-		"prosemirror-model": "^1.25.2",
+		"prosemirror-model": "^1.25.4",
 		"prosemirror-schema-basic": "^1.2.3",
-		"prosemirror-state": "^1.4.3",
+		"prosemirror-state": "^1.4.4",
 		"prosemirror-view": "^1.40.1",
 		"ramda": "^0.30.0",
 		"uuid": "^11.1.0"
