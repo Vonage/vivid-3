@@ -2,6 +2,7 @@
 	"name": "@repo/generators",
 	"private": true,
 	"devDependencies": {
-		"@repo/typescript-config": "*"
+		"@repo/typescript-config": "*",
+		"@turbo/gen": "^2.5.5"
 	}
 }
