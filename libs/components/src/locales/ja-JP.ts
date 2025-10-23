@@ -209,6 +209,8 @@ const jaJP: Locale = {
 		monospace: '等幅フォント',
 		undo: '元に戻す',
 		redo: 'やり直し',
+		bulletList: '箇条書き',
+		numberedList: '番号付きリスト',
 		alignment: '配置',
 		alignments: {
 			left: '左揃え',

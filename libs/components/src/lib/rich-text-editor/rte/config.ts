@@ -7,6 +7,7 @@ import type { RTEDocument } from './document';
 import { RTETextBlockStructure } from './features/text-block';
 import { RTEFreeformStructure } from './features/freeform';
 import { TextblockAttrs } from './utils/textblock-attrs';
+import { RTEAlignmentFeature } from './features/alignment';
 
 export class RTEConfig {
 	schema: Schema;
@@ -36,6 +37,15 @@ export class RTEConfig {
 		) {
 			throw new Error(
 				'Either RTETextBlockStructure or RTEFreeformStructure feature is required'
+			);
+		}
+
+		if (
+			this.featureMap.has(RTEFreeformStructure) &&
+			this.featureMap.has(RTEAlignmentFeature)
+		) {
+			throw new Error(
+				'RTEAlignmentFeature cannot be used with RTEFreeformStructure'
 			);
 		}
 

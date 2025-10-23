@@ -1,5 +1,3 @@
-import { keymap } from 'prosemirror-keymap';
-import type { Command } from 'prosemirror-state';
 import { RTEFeature, type SchemaContribution } from '../feature';
 
 export class RTEFreeformStructure extends RTEFeature {
@@ -11,16 +9,16 @@ export class RTEFreeformStructure extends RTEFeature {
 						text: {
 							group: 'inline',
 						},
-						hard_break: {
-							inline: true,
-							group: 'inline',
-							selectable: false,
-							parseDOM: [{ tag: 'br' }],
+						// Since block and inline elements cannot be mixed, create a block for lines of text
+						text_line: {
+							group: 'block',
+							content: 'inline*',
+							parseDOM: [{ tag: 'div' }],
 							toDOM() {
-								return ['br'];
+								return ['div', 0];
 							},
 						},
-						doc: { content: 'inline*' },
+						doc: { content: 'block+' },
 					},
 				},
 			},
@@ -28,21 +26,6 @@ export class RTEFreeformStructure extends RTEFeature {
 	}
 
 	override getPlugins() {
-		const newLine: Command = (state, dispatch) => {
-			dispatch?.(
-				state.tr
-					.replaceSelectionWith(state.schema.nodes.hard_break.create()!, true)
-					.scrollIntoView()
-			);
-			return true;
-		};
-
-		return [
-			{
-				plugin: keymap({
-					Enter: newLine,
-				}),
-			},
-		];
+		return [];
 	}
 }

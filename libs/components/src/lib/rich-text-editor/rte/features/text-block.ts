@@ -263,24 +263,39 @@ export class RTETextBlockStructure extends RTEFeature {
 		return (state, dispatch) => {
 			const blockType = this.blockTypes.find((bt) => bt.id === id)!;
 			const { from, to } = state.selection;
-			dispatch?.(
-				state.tr.setBlockType(
-					from,
-					to,
-					state.schema.nodes[blockType.node.name],
-					(oldNode) => {
-						const oldAttrs = rte.textblockAttrs.extractFromNode(oldNode);
-						if (blockType.node.name === 'heading') {
-							return {
-								...oldAttrs,
-								...(blockType.node as HeadingSpec).attrs,
-							};
-						} else {
-							return oldAttrs;
+			const tr = state.tr;
+
+			let supportedNodeFound = false;
+
+			// Convert all supported block types
+			state.doc.nodesBetween(from, to, (node, pos) => {
+				if (nodeBlockKey(node)) {
+					supportedNodeFound = true;
+					tr.setBlockType(
+						pos,
+						pos + node.nodeSize,
+						state.schema.nodes[blockType.node.name],
+						(oldNode) => {
+							const oldAttrs = rte.textblockAttrs.extractFromNode(oldNode);
+							if (blockType.node.name === 'heading') {
+								return {
+									...oldAttrs,
+									...(blockType.node as HeadingSpec).attrs,
+								};
+							} else {
+								return oldAttrs;
+							}
 						}
-					}
-				)
-			);
+					);
+				}
+				return false; // Do not recurse over children
+			});
+
+			if (!supportedNodeFound) {
+				return false;
+			}
+
+			dispatch?.(tr);
 			return true;
 		};
 	}
@@ -302,6 +317,7 @@ export class RTETextBlockStructure extends RTEFeature {
 							createOption(ctx, {
 								text: bt.label,
 								value: bt.id,
+								disabled: () => !this.setBlockType(rte, bt.id)(ctx.view.state),
 							})
 						),
 					});

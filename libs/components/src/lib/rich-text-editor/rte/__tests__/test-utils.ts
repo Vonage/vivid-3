@@ -1,7 +1,17 @@
 import { elementUpdated, fixture } from '@repo/shared';
 import type { EditorView } from 'prosemirror-view';
-import { TextSelection } from 'prosemirror-state';
-import { type Attrs, type Mark, type Node } from 'prosemirror-model';
+import {
+	AllSelection,
+	type EditorState,
+	TextSelection,
+} from 'prosemirror-state';
+import {
+	type Attrs,
+	type Mark,
+	type Node,
+	type ResolvedPos,
+} from 'prosemirror-model';
+import { sum } from 'ramda';
 import type { RichTextEditor } from '../../rich-text-editor';
 import type { Button } from '../../../button/button';
 import { registerRichTextEditor } from '../../definition';
@@ -30,16 +40,119 @@ const marksToStr = (marks: readonly Mark[]) => {
 		.join(' ')}>`;
 };
 
-const nodeToStr = (node: Node): string => {
-	if (node.isText) {
-		return `${marksToStr(node.marks)}${JSON.stringify(node.text)}`;
+type TextNodeOffset = { node: Node; offset: number };
+function getOffsetInTextNode($pos: ResolvedPos): TextNodeOffset | null {
+	const parent = $pos.parent;
+	const parentOffset = $pos.parentOffset;
+
+	let offsetInText = 0;
+	let foundTextNode = null;
+
+	// Iterate through children to find the text node containing the cursor
+	let accumulated = 0;
+	parent.forEach((child, offset) => {
+		const start = accumulated;
+		const end = accumulated + child.nodeSize;
+
+		if (parentOffset >= start && parentOffset <= end) {
+			if (child.isText) {
+				foundTextNode = child;
+				offsetInText = parentOffset - start;
+			}
+			return false; // stop iterating
+		}
+
+		accumulated = end;
+		return true;
+	});
+
+	if (!foundTextNode) return null;
+	return { node: foundTextNode, offset: offsetInText };
+}
+
+const docToStr = (state: EditorState) => {
+	const { $cursor, $anchor, $head } = state.selection as TextSelection;
+	const cursor = $cursor && getOffsetInTextNode($cursor);
+	let anchor: TextNodeOffset | null = null;
+	let head: TextNodeOffset | null = null;
+	const isBackwards = $head.pos < $anchor.pos;
+	if (state.selection instanceof TextSelection && !state.selection.empty) {
+		anchor = getOffsetInTextNode($anchor);
+		head = getOffsetInTextNode($head);
 	}
-	return `${node.type.name}${marksToStr(node.marks)}${attrsToStr(
-		node.attrs
-	)}(${node.content!.content.map(nodeToStr).join(', ')})`;
+
+	const nodeToStr = (node: Node): string => {
+		const marks = marksToStr(node.marks);
+		if (node.isText) {
+			const decorations = [];
+			if (cursor?.node === node) {
+				decorations.push({ offset: cursor.offset, decoration: '|' });
+			}
+			if (anchor?.node === node) {
+				decorations.push({
+					offset: anchor.offset,
+					decoration: isBackwards ? ']' : '[',
+				});
+			}
+			if (head?.node === node) {
+				decorations.push({
+					offset: head.offset,
+					decoration: isBackwards ? '[|' : '|]',
+				});
+			}
+			decorations.sort((a, b) => a.offset - b.offset);
+			const text = node.text ?? '';
+			const fragments = [];
+			for (let i = 0; i <= decorations.length; i++) {
+				fragments.push(
+					text.slice(decorations[i - 1]?.offset ?? 0, decorations[i]?.offset)
+				);
+				if (decorations[i]) {
+					fragments.push(decorations[i].decoration);
+				}
+			}
+			return `${marks}'${JSON.stringify(fragments.join('')).slice(1, -1)}'`;
+		}
+		const isDoc = node.type === state.schema.nodes.doc;
+
+		const nodeOpen = isDoc
+			? ''
+			: `${node.type.name}${marks}${attrsToStr(node.attrs)}(`;
+		let nodeContent = node.content!.content.map(nodeToStr);
+		if (!node.childCount) {
+			if ($cursor?.parent === node) {
+				nodeContent = [`|`];
+			} else if ($anchor?.parent === node) {
+				nodeContent = [isBackwards ? ']' : '['];
+			} else if ($head?.parent === node) {
+				nodeContent = [isBackwards ? '[|' : '|]'];
+			}
+		}
+		const shouldBreak =
+			sum(nodeContent.map((c) => c.length)) > 60 ||
+			nodeContent.some((c) => c.includes('\n'));
+
+		let contentStr = shouldBreak
+			? '\n' +
+			  nodeContent
+					.join(',\n')
+					.split('\n')
+					.map((c) => `${isDoc ? '' : '\t'}${c}`)
+					.join('\n') +
+			  '\n'
+			: nodeContent.join(', ');
+		if (isDoc && state.selection instanceof AllSelection) {
+			contentStr = isBackwards ? `[|${contentStr}]` : `[${contentStr}|]`;
+		}
+
+		const nodeClose = isDoc ? '' : `)`;
+		return `${nodeOpen}${contentStr}${nodeClose}`;
+	};
+
+	return nodeToStr(state.doc);
 };
 
-export async function setup(features: RTEFeature[], initialDoc?: any) {
+export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
 	const config = new RTEConfig(features);
 	const rte = config.instantiateEditor(initialDoc);
 
@@ -101,18 +214,21 @@ export async function setup(features: RTEFeature[], initialDoc?: any) {
 	};
 
 	/// e.g. selectText("He[llo", "wor]ld")
+	/// optionally control head side by adding pipe ("[|" or "|]")
 	const selectText = (
 		startWithSelection: string,
 		endWithSection = startWithSelection
 	) => {
 		const startMatch = findFirstOccurrence(
-			startWithSelection.replace(/[[\]]/g, '')
+			startWithSelection.replace(/[[\]|]/g, '')
 		);
 		const from = startMatch + startWithSelection.indexOf('[');
-		const endMatch = findFirstOccurrence(endWithSection.replace(/[[\]]/g, ''));
-		const to = endMatch + endWithSection.replace(/\[/g, '').indexOf(']');
+		const endMatch = findFirstOccurrence(endWithSection.replace(/[[\]|]/g, ''));
+		const to = endMatch + endWithSection.replace(/[[|]/g, '').indexOf(']');
+		const isReversed = startWithSelection.includes('[|');
+		const [anchor, head] = isReversed ? [to, from] : [from, to];
 		const tr = view.state.tr.setSelection(
-			TextSelection.create(view.state.doc, from, to)
+			TextSelection.create(view.state.doc, anchor, head)
 		);
 		view.dispatch(tr);
 	};
@@ -155,7 +271,7 @@ export async function setup(features: RTEFeature[], initialDoc?: any) {
 		await elementUpdated(element);
 	};
 
-	const docStr = () => nodeToStr(view.state.doc);
+	const docStr = () => docToStr(view.state);
 
 	const toolbarButton = (ariaLabel: string) =>
 		element.shadowRoot!.querySelector<Button>(
