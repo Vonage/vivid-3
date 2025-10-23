@@ -36,8 +36,7 @@ export const MenuTemplate = (context: VividElementDefinitionContext) => {
 	}
 
 	return html<Menu>`
-		<template @change="${(x, c) => x._onChange(c.event)}"
-							@focusout="${(x, c) => x._onFocusout(c.event as FocusEvent)}">
+		<template @focusout="${(x, c) => x._onFocusout(c.event as FocusEvent)}">
 			${anchorSlotTemplate}
 			<${popupTag}
 				${ref('_popupEl')}
@@ -59,6 +58,7 @@ export const MenuTemplate = (context: VividElementDefinitionContext) => {
 					${delegateAria({
 						role: 'menu',
 					})}
+					@change="${(x, c) => x._onBodyChange(c.event)}"
 					@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
 					@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
 				>
