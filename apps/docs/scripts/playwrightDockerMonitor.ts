@@ -13,10 +13,10 @@ spawnSync(
 		'--rm',
 		'--init',
 		'--ipc=host',
-		'mcr.microsoft.com/playwright:v1.48.2-focal',
+		'mcr.microsoft.com/playwright:v1.56.1-focal',
 		'/bin/sh',
 		'-c',
-		'npx -y playwright@1.48.2 run-server --port 3000 --host 0.0.0.0',
+		'npx -y playwright@1.56.1 run-server --port 3000 --host 0.0.0.0',
 	],
 	{ stdio: 'inherit' }
 );
