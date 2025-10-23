@@ -32,11 +32,7 @@ A grid header can be provided by setting:
 - `cell-type` on [Data Grid Cells](/components/data-grid/code/#data-grid-cell) to `columnheader`
 
 ```html preview
-<vwc-select
-	label="Grid header row-type"
-	onchange="changeHeader()"
-	class="select"
->
+<vwc-select label="Grid header row-type" onchange="changeHeader()" class="select">
 	<vwc-option value="header" text="header" selected></vwc-option>
 	<vwc-option value="sticky-header" text="sticky-header"></vwc-option>
 </vwc-select>
@@ -114,16 +110,12 @@ Values match the CSS `grid-template-columns` property.
 	<vwc-data-grid-row>
 		<vwc-data-grid-cell>Data 11</vwc-data-grid-cell>
 		<vwc-data-grid-cell>Data 12</vwc-data-grid-cell>
-		<vwc-data-grid-cell
-			>Data 13 with more content to display</vwc-data-grid-cell
-		>
+		<vwc-data-grid-cell>Data 13 with more content to display</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
 		<vwc-data-grid-cell>Data 21</vwc-data-grid-cell>
 		<vwc-data-grid-cell>Data 22</vwc-data-grid-cell>
-		<vwc-data-grid-cell
-			>Data 23 with more content to display</vwc-data-grid-cell
-		>
+		<vwc-data-grid-cell>Data 23 with more content to display</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
 ```
@@ -305,18 +297,10 @@ This will add the right chevron(s) according to the state.
 ```html preview
 <vwc-data-grid>
 	<vwc-data-grid-row>
-		<vwc-data-grid-cell cell-type="columnheader" sort-direction="ascending"
-			>Ascending</vwc-data-grid-cell
-		>
-		<vwc-data-grid-cell cell-type="columnheader" sort-direction="descending"
-			>Descending</vwc-data-grid-cell
-		>
-		<vwc-data-grid-cell cell-type="columnheader" sort-direction="none"
-			>None</vwc-data-grid-cell
-		>
-		<vwc-data-grid-cell cell-type="columnheader" sort-direction="other"
-			>Other</vwc-data-grid-cell
-		>
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="ascending">Ascending</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="descending">Descending</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="none">None</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="other">Other</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
 ```

@@ -11,11 +11,7 @@ Use the `text` attribute to set the Alert's main text.
 Use the `headline` attribute to add a headline to the Alert.
 
 ```html preview 100px
-<vwc-alert
-	headline="This requires your attention"
-	text="Some important information for you"
-	open
-></vwc-alert>
+<vwc-alert headline="This requires your attention" text="Some important information for you" open></vwc-alert>
 ```
 
 ### Connotation
@@ -30,11 +26,7 @@ Each connotation comes with a default icon (that you can override with the `icon
 </vwc-note>
 
 ```html preview 350px
-<vwc-alert
-	text="Some important information for you"
-	connotation="accent"
-	open
-></vwc-alert>
+<vwc-alert text="Some important information for you" connotation="accent" open></vwc-alert>
 
 <vwc-select label="Connotation">
 	<vwc-option value="accent" text="accent"></vwc-option>
@@ -66,11 +58,7 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </vwc-note>
 
 ```html preview 100px
-<vwc-alert
-	text="Some important information for you"
-	open
-	icon="megaphone-solid"
-></vwc-alert>
+<vwc-alert text="Some important information for you" open icon="megaphone-solid"></vwc-alert>
 ```
 
 ### Placement
@@ -78,37 +66,12 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 Use the `placement` attribute to set the location of the Alert.
 
 ```html preview center 250px
-<vwc-alert
-	class="small-alert"
-	placement="top-start"
-	text="top-start"
-	open
-></vwc-alert>
+<vwc-alert class="small-alert" placement="top-start" text="top-start" open></vwc-alert>
 <vwc-alert class="small-alert" placement="top" text="top" open></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="top-end"
-	text="top-end"
-	open
-></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="bottom-start"
-	text="bottom-start"
-	open
-></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="bottom"
-	text="bottom"
-	open
-></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="bottom-end"
-	text="bottom-end"
-	open
-></vwc-alert>
+<vwc-alert class="small-alert" placement="top-end" text="top-end" open></vwc-alert>
+<vwc-alert class="small-alert" placement="bottom-start" text="bottom-start" open></vwc-alert>
+<vwc-alert class="small-alert" placement="bottom" text="bottom" open></vwc-alert>
+<vwc-alert class="small-alert" placement="bottom-end" text="bottom-end" open></vwc-alert>
 
 <style>
 	.small-alert {
@@ -124,11 +87,7 @@ Use the `removable` attribute to add a close button to the Alert.
 ```html preview 100px
 <vwc-alert removable text="Some important information for you" open></vwc-alert>
 
-<vwc-button
-	appearance="outlined"
-	label="Show alert"
-	onclick="openAlert()"
-></vwc-button>
+<vwc-button appearance="outlined" label="Show alert" onclick="openAlert()"></vwc-button>
 
 <script>
 	function openAlert() {

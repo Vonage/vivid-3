@@ -39,11 +39,7 @@ Set the `tight` attribute if no outer padding or gaps between slotted item are n
 
 ```html preview
 <vwc-action-group tight appearance="fieldset">
-	<vwc-audio-player
-		class="audio"
-		src="https://download.samplelib.com/mp3/sample-6s.mp3"
-	>
-	</vwc-audio-player>
+	<vwc-audio-player class="audio" src="https://download.samplelib.com/mp3/sample-6s.mp3"> </vwc-audio-player>
 	<vwc-button size="condensed" aria-label="delete" class="delete">
 		<vwc-icon slot="icon" name="delete-solid"></vwc-icon>
 	</vwc-button>

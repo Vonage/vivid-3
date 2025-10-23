@@ -23,12 +23,7 @@ The `helper-text` attribute provides additional information about the purpose of
 To add HTML to the helper text, use the [helper-text slot](/components/combobox/code/#helper-text-slot).
 
 ```html preview 320px
-<vwc-combobox
-	helper-text="We use this information in to help inform our marketing strategy"
-	label="Where did you hear about us?"
-	placeholder="Select an option"
-	class="marketing"
->
+<vwc-combobox helper-text="We use this information in to help inform our marketing strategy" label="Where did you hear about us?" placeholder="Select an option" class="marketing">
 	<vwc-option value="friend" text="A friend"></vwc-option>
 	<vwc-option value="net" text="Internet search"></vwc-option>
 	<vwc-option value="online-ad" text="Online advert"></vwc-option>
@@ -66,19 +61,13 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
 
 ```html preview 320px
-<vwc-combobox
-	label="What's your favorite club?"
-	placeholder="Select an option"
-	class="sport"
->
+<vwc-combobox label="What's your favorite club?" placeholder="Select an option" class="sport">
 	<vwc-option value="friend" text="Ironclad Rovers FC"></vwc-option>
 	<vwc-option value="net" text="Stormhaven United"></vwc-option>
 	<vwc-option value="online-ad" text="Blackpeak Athletic"></vwc-option>
 	<vwc-option value="radio-ad" text="Crimson Harbor FC"></vwc-option>
 	<vwc-option value="other" text="Valewind Wanderers"></vwc-option>
-	<vwc-contextual-help slot="contextual-help"
-		>Choose your favorite club</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Choose your favorite club</vwc-contextual-help>
 </vwc-combobox>
 
 <style>
@@ -95,12 +84,7 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
 
 ```html preview 270px
-<vwc-combobox
-	success-text="Rome is the correct answer"
-	placeholder="Select an option"
-	label="What is the capital of Italy?"
-	class="question"
->
+<vwc-combobox success-text="Rome is the correct answer" placeholder="Select an option" label="What is the capital of Italy?" class="question">
 	<vwc-option value="madrid" text="Madrid"></vwc-option>
 	<vwc-option value="paris" text="Paris"></vwc-option>
 	<vwc-option value="london" text="London"></vwc-option>
@@ -119,12 +103,7 @@ The `success-text` attribute provides a custom success message. Any current erro
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
 ```html preview 270px
-<vwc-combobox
-	error-text="Madrid is incorrect"
-	placeholder="Select an option"
-	label="What is the capital of Italy?"
-	class="question"
->
+<vwc-combobox error-text="Madrid is incorrect" placeholder="Select an option" label="What is the capital of Italy?" class="question">
 	<vwc-option value="madrid" text="Madrid" selected></vwc-option>
 	<vwc-option value="paris" text="Paris"></vwc-option>
 	<vwc-option value="london" text="London"></vwc-option>
@@ -152,36 +131,11 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </vwc-note>
 
 ```html preview 270px
-<vwc-combobox
-	label="Country code"
-	class="country-code"
-	id="country-code"
-	icon="search-line"
->
-	<vwc-option
-		value="1"
-		text="United States"
-		label="+1"
-		icon="flag-united-states"
-	></vwc-option>
-	<vwc-option
-		value="44"
-		text="United Kingdom"
-		label="+44"
-		icon="flag-united-kingdom"
-	></vwc-option>
-	<vwc-option
-		value="49"
-		text="Germany"
-		label="+49"
-		icon="flag-germany"
-	></vwc-option>
-	<vwc-option
-		value="355"
-		text="Albania"
-		label="+355"
-		icon="flag-albania"
-	></vwc-option>
+<vwc-combobox label="Country code" class="country-code" id="country-code" icon="search-line">
+	<vwc-option value="1" text="United States" label="+1" icon="flag-united-states"></vwc-option>
+	<vwc-option value="44" text="United Kingdom" label="+44" icon="flag-united-kingdom"></vwc-option>
+	<vwc-option value="49" text="Germany" label="+49" icon="flag-germany"></vwc-option>
+	<vwc-option value="355" text="Albania" label="+355" icon="flag-albania"></vwc-option>
 </vwc-combobox>
 
 <script>
@@ -206,11 +160,7 @@ Use `condensed` in situations when space is limited, for example, inside a Data 
 		<vwc-option value="ms" text="Ms"></vwc-option>
 	</vwc-combobox>
 
-	<vwc-combobox
-		scale="condensed"
-		label="Condensed"
-		placeholder="Select an option"
-	>
+	<vwc-combobox scale="condensed" label="Condensed" placeholder="Select an option">
 		<vwc-option value="mr" text="Mr"></vwc-option>
 		<vwc-option value="mrs" text="Mrs"></vwc-option>
 		<vwc-option value="miss" text="Miss"></vwc-option>
@@ -283,10 +233,7 @@ Placement options are: `top-start` , `top` , `top-end` , `bottom-start` (default
 
 ```html preview
 <div class="combobox-wrapper">
-	<vwc-combobox
-		placement="top-start"
-		aria-label="combobox with default placement of bottom-start"
-	>
+	<vwc-combobox placement="top-start" aria-label="combobox with default placement of bottom-start">
 		<vwc-option text="First Option"></vwc-option>
 		<vwc-option text="Second Option"></vwc-option>
 	</vwc-combobox>

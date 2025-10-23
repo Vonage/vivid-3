@@ -20,12 +20,8 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 <template>
 	<VAccordion>
-		<VAccordionItem heading="Accordion item 1">
-			This is the first item's accordion body.
-		</VAccordionItem>
-		<VAccordionItem heading="Accordion item 2">
-			This is the second item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem heading="Accordion item 1"> This is the first item's accordion body. </VAccordionItem>
+		<VAccordionItem heading="Accordion item 2"> This is the second item's accordion body. </VAccordionItem>
 	</VAccordion>
 </template>
 ```
@@ -36,12 +32,8 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 ```html preview 250px
 <vwc-accordion>
-	<vwc-accordion-item heading="Accordion item 1">
-		This is the first item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item heading="Accordion item 2">
-		This is the second item's accordion body.
-	</vwc-accordion-item>
+	<vwc-accordion-item heading="Accordion item 1"> This is the first item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item heading="Accordion item 2"> This is the second item's accordion body. </vwc-accordion-item>
 </vwc-accordion>
 ```
 
@@ -67,17 +59,11 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 <template>
 	<VAccordion expand-mode="single">
-		<VAccordionItem heading="Accordion item 1">
-			This is the first item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem heading="Accordion item 1"> This is the first item's accordion body. </VAccordionItem>
 
-		<VAccordionItem heading="Accordion item 2">
-			This is the second item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem heading="Accordion item 2"> This is the second item's accordion body. </VAccordionItem>
 
-		<VAccordionItem heading="Accordion item 3">
-			This is the third item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem heading="Accordion item 3"> This is the third item's accordion body. </VAccordionItem>
 	</VAccordion>
 </template>
 ```
@@ -88,15 +74,9 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 ```html preview 250px
 <vwc-accordion expand-mode="single">
-	<vwc-accordion-item heading="Accordion item 1">
-		This is the first item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item heading="Accordion item 2">
-		This is the second item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item heading="Accordion item 3">
-		This is the third item's accordion body.
-	</vwc-accordion-item>
+	<vwc-accordion-item heading="Accordion item 1"> This is the first item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item heading="Accordion item 2"> This is the second item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item heading="Accordion item 3"> This is the third item's accordion body. </vwc-accordion-item>
 </vwc-accordion>
 ```
 
@@ -118,17 +98,11 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 <template>
 	<VAccordion expand-mode="multi">
-		<VAccordionItem heading="Accordion item 1">
-			This is the first item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem heading="Accordion item 1"> This is the first item's accordion body. </VAccordionItem>
 
-		<VAccordionItem heading="Accordion item 2">
-			This is the second item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem heading="Accordion item 2"> This is the second item's accordion body. </VAccordionItem>
 
-		<VAccordionItem heading="Accordion item 3">
-			This is the third item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem heading="Accordion item 3"> This is the third item's accordion body. </VAccordionItem>
 	</VAccordion>
 </template>
 ```
@@ -139,15 +113,9 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 ```html preview 250px
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item heading="Accordion item 1">
-		This is the first item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item heading="Accordion item 2">
-		This is the second item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item heading="Accordion item 3">
-		This is the third item's accordion body.
-	</vwc-accordion-item>
+	<vwc-accordion-item heading="Accordion item 1"> This is the first item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item heading="Accordion item 2"> This is the second item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item heading="Accordion item 3"> This is the third item's accordion body. </vwc-accordion-item>
 </vwc-accordion>
 ```
 
@@ -169,12 +137,8 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 <template>
 	<VAccordion expand-mode="multi">
-		<VAccordionItem heading="Accordion item 1">
-			This is the first item's accordion body.
-		</VAccordionItem>
-		<VAccordionItem expanded heading="Accordion item 2 with expanded attribute">
-			This is the second item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem heading="Accordion item 1"> This is the first item's accordion body. </VAccordionItem>
+		<VAccordionItem expanded heading="Accordion item 2 with expanded attribute"> This is the second item's accordion body. </VAccordionItem>
 	</VAccordion>
 </template>
 ```
@@ -185,15 +149,8 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 ```html preview 250px
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item heading="Accordion item 1">
-		This is the first item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item
-		expanded
-		heading="Accordion item 2 with expanded attribute"
-	>
-		This is the second item's accordion body.
-	</vwc-accordion-item>
+	<vwc-accordion-item heading="Accordion item 1"> This is the first item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item expanded heading="Accordion item 2 with expanded attribute"> This is the second item's accordion body. </vwc-accordion-item>
 </vwc-accordion>
 ```
 
@@ -217,17 +174,11 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 <template>
 	<VAccordion expand-mode="multi">
-		<VAccordionItem heading="Ghost (default)">
-			This is the first item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem heading="Ghost (default)"> This is the first item's accordion body. </VAccordionItem>
 
-		<VAccordionItem appearance="ghost-light" heading="Ghost light">
-			This is the second item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem appearance="ghost-light" heading="Ghost light"> This is the second item's accordion body. </VAccordionItem>
 
-		<VAccordionItem appearance="filled" heading="Filled">
-			This is the third item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem appearance="filled" heading="Filled"> This is the third item's accordion body. </VAccordionItem>
 	</VAccordion>
 </template>
 ```
@@ -238,15 +189,9 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 ```html preview blocks
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item heading="Ghost (default)">
-		This is the first item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item heading="Ghost light" appearance="ghost-light">
-		This is the second item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item heading="Filled" appearance="filled">
-		This is the third item's accordion body.
-	</vwc-accordion-item>
+	<vwc-accordion-item heading="Ghost (default)"> This is the first item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item heading="Ghost light" appearance="ghost-light"> This is the second item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item heading="Filled" appearance="filled"> This is the third item's accordion body. </vwc-accordion-item>
 </vwc-accordion>
 ```
 
@@ -277,12 +222,8 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 <template>
 	<VAccordion>
-		<VAccordionItem icon="accessibility-line" heading="Accordion item 1">
-			This is the first item's accordion body.
-		</VAccordionItem>
-		<VAccordionItem icon="ai-line" heading="Accordion item 2">
-			This is the second item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem icon="accessibility-line" heading="Accordion item 1"> This is the first item's accordion body. </VAccordionItem>
+		<VAccordionItem icon="ai-line" heading="Accordion item 2"> This is the second item's accordion body. </VAccordionItem>
 	</VAccordion>
 </template>
 ```
@@ -293,12 +234,8 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 ```html preview 200px
 <vwc-accordion>
-	<vwc-accordion-item icon="accessibility-line" heading="Accordion item 1">
-		This is the first item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item icon="ai-line" heading="Accordion item 2">
-		This is the second item's accordion body.
-	</vwc-accordion-item>
+	<vwc-accordion-item icon="accessibility-line" heading="Accordion item 1"> This is the first item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item icon="ai-line" heading="Accordion item 2"> This is the second item's accordion body. </vwc-accordion-item>
 </vwc-accordion>
 ```
 
@@ -334,16 +271,7 @@ const handleChange = (index: number) => {
 
 <template>
 	<VAccordion expand-mode="multi">
-		<VAccordionItem
-			v-for="(item, index) in items"
-			:key="index"
-			class="accordion-item"
-			icon-trailing
-			:heading="item.heading"
-			:expanded="item.expanded"
-			:icon="item.icon"
-			@change="handleChange(index)"
-		>
+		<VAccordionItem v-for="(item, index) in items" :key="index" class="accordion-item" icon-trailing :heading="item.heading" :expanded="item.expanded" :icon="item.icon" @change="handleChange(index)">
 			<VIcon slot="icon" :name="item.icon" />
 			This is the accordion body.
 		</VAccordionItem>
@@ -357,24 +285,11 @@ const handleChange = (index: number) => {
 
 ```html preview 300px
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item
-		class="accordion-item"
-		icon-trailing
-		heading="Accordion item 1"
-		icon="minus-line"
-		expanded
-	>
+	<vwc-accordion-item class="accordion-item" icon-trailing heading="Accordion item 1" icon="minus-line" expanded>
 		<vwc-icon slot="icon" name="minus-line"></vwc-icon>
 		This is the accordion body.
 	</vwc-accordion-item>
-	<vwc-accordion-item
-		class="accordion-item"
-		icon-trailing
-		icon="plus-line"
-		heading="Accordion item 2"
-	>
-		This is the accordion body.
-	</vwc-accordion-item>
+	<vwc-accordion-item class="accordion-item" icon-trailing icon="plus-line" heading="Accordion item 2"> This is the accordion body. </vwc-accordion-item>
 </vwc-accordion>
 
 <script>
@@ -384,9 +299,7 @@ const handleChange = (index: number) => {
 				return;
 			}
 			const iconName = item.getAttribute('icon');
-			iconName === 'minus-line'
-				? item.setAttribute('icon', 'plus-line')
-				: item.setAttribute('icon', 'minus-line');
+			iconName === 'minus-line' ? item.setAttribute('icon', 'plus-line') : item.setAttribute('icon', 'minus-line');
 		});
 	});
 </script>
@@ -410,12 +323,8 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 <template>
 	<VAccordion>
-		<VAccordionItem meta="Meta 1" heading="Accordion item 1">
-			This is the first item's accordion body.
-		</VAccordionItem>
-		<VAccordionItem meta="Meta 2" heading="Accordion item 2">
-			This is the second item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem meta="Meta 1" heading="Accordion item 1"> This is the first item's accordion body. </VAccordionItem>
+		<VAccordionItem meta="Meta 2" heading="Accordion item 2"> This is the second item's accordion body. </VAccordionItem>
 	</VAccordion>
 </template>
 ```
@@ -426,12 +335,8 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 ```html preview 200px
 <vwc-accordion>
-	<vwc-accordion-item meta="Meta 1" heading="Accordion item 1">
-		This is the first item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item meta="Meta 2" heading="Accordion item 2">
-		This is the second item's accordion body.
-	</vwc-accordion-item>
+	<vwc-accordion-item meta="Meta 1" heading="Accordion item 1"> This is the first item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item meta="Meta 2" heading="Accordion item 2"> This is the second item's accordion body. </vwc-accordion-item>
 </vwc-accordion>
 ```
 
@@ -456,24 +361,16 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 		<div class="example">
 			<b>Normal</b>
 			<VAccordion class="accordion">
-				<VAccordionItem size="normal" heading="Accordion item 1">
-					This is the first item's accordion body.
-				</VAccordionItem>
-				<VAccordionItem size="normal" heading="Accordion item 2">
-					This is the second item's accordion body.
-				</VAccordionItem>
+				<VAccordionItem size="normal" heading="Accordion item 1"> This is the first item's accordion body. </VAccordionItem>
+				<VAccordionItem size="normal" heading="Accordion item 2"> This is the second item's accordion body. </VAccordionItem>
 			</VAccordion>
 		</div>
 
 		<div class="example">
 			<b>Condensed</b>
 			<VAccordion class="accordion">
-				<VAccordionItem size="condensed" heading="Accordion item 1">
-					This is the first item's accordion body.
-				</VAccordionItem>
-				<VAccordionItem size="condensed" heading="Accordion item 2">
-					This is the second item's accordion body.
-				</VAccordionItem>
+				<VAccordionItem size="condensed" heading="Accordion item 1"> This is the first item's accordion body. </VAccordionItem>
+				<VAccordionItem size="condensed" heading="Accordion item 2"> This is the second item's accordion body. </VAccordionItem>
 			</VAccordion>
 		</div>
 	</div>
@@ -508,23 +405,15 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 	<div class="example">
 		<b>Normal</b>
 		<vwc-accordion class="accordion">
-			<vwc-accordion-item size="normal" heading="Accordion item 1">
-				This is the first item's accordion body.
-			</vwc-accordion-item>
-			<vwc-accordion-item size="normal" heading="Accordion item 2">
-				This is the second item's accordion body.
-			</vwc-accordion-item>
+			<vwc-accordion-item size="normal" heading="Accordion item 1"> This is the first item's accordion body. </vwc-accordion-item>
+			<vwc-accordion-item size="normal" heading="Accordion item 2"> This is the second item's accordion body. </vwc-accordion-item>
 		</vwc-accordion>
 	</div>
 	<div class="example">
 		<b>Condensed</b>
 		<vwc-accordion class="accordion">
-			<vwc-accordion-item size="condensed" heading="Accordion item 1">
-				This is the first item's accordion body.
-			</vwc-accordion-item>
-			<vwc-accordion-item size="condensed" heading="Accordion item 2">
-				This is the second item's accordion body.
-			</vwc-accordion-item>
+			<vwc-accordion-item size="condensed" heading="Accordion item 1"> This is the first item's accordion body. </vwc-accordion-item>
+			<vwc-accordion-item size="condensed" heading="Accordion item 2"> This is the second item's accordion body. </vwc-accordion-item>
 		</vwc-accordion>
 	</div>
 </div>
@@ -565,17 +454,11 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 <template>
 	<VAccordion>
-		<VAccordionItem no-indicator heading="Accordion item 1">
-			This is the first item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem no-indicator heading="Accordion item 1"> This is the first item's accordion body. </VAccordionItem>
 
-		<VAccordionItem no-indicator heading="Accordion item 2">
-			This is the second item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem no-indicator heading="Accordion item 2"> This is the second item's accordion body. </VAccordionItem>
 
-		<VAccordionItem no-indicator heading="Accordion item 3">
-			This is the third item's accordion body.
-		</VAccordionItem>
+		<VAccordionItem no-indicator heading="Accordion item 3"> This is the third item's accordion body. </VAccordionItem>
 	</VAccordion>
 </template>
 ```
@@ -586,15 +469,9 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 
 ```html preview 250px
 <vwc-accordion>
-	<vwc-accordion-item no-indicator heading="Accordion item 1">
-		This is the first item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item no-indicator heading="Accordion item 2">
-		This is the second item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item no-indicator heading="Accordion item 3">
-		This is the third item's accordion body.
-	</vwc-accordion-item>
+	<vwc-accordion-item no-indicator heading="Accordion item 1"> This is the first item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item no-indicator heading="Accordion item 2"> This is the second item's accordion body. </vwc-accordion-item>
+	<vwc-accordion-item no-indicator heading="Accordion item 3"> This is the third item's accordion body. </vwc-accordion-item>
 </vwc-accordion>
 ```
 

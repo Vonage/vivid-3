@@ -77,9 +77,7 @@ Click on "Edit code" to be able to modify the variables.
 
 ```html variables-preview[accordion-item]
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item heading="Accordion item with heading">
-		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-	</vwc-accordion-item>
+	<vwc-accordion-item heading="Accordion item with heading"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </vwc-accordion-item>
 </vwc-accordion>
 ```
 
@@ -115,68 +113,31 @@ Click on "Edit code" to be able to modify the variables.
 ### Badge
 
 ```html variables-preview[badge]
-<vwc-badge
-	connotation="$CONNOTATION"
-	text="filled"
-	appearance="filled"
-></vwc-badge>
-<vwc-badge
-	connotation="$CONNOTATION"
-	text="subtle"
-	appearance="subtle"
-></vwc-badge>
-<vwc-badge
-	connotation="$CONNOTATION"
-	text="duotone"
-	appearance="duotone"
-></vwc-badge>
+<vwc-badge connotation="$CONNOTATION" text="filled" appearance="filled"></vwc-badge>
+<vwc-badge connotation="$CONNOTATION" text="subtle" appearance="subtle"></vwc-badge>
+<vwc-badge connotation="$CONNOTATION" text="duotone" appearance="duotone"></vwc-badge>
 ```
 
 ### Banner
 
 ```html variables-preview[banner]
-<vwc-banner
-	connotation="$CONNOTATION"
-	text="Here's some information that you may find important!"
-></vwc-banner>
+<vwc-banner connotation="$CONNOTATION" text="Here's some information that you may find important!"></vwc-banner>
 ```
 
 ### Button
 
 ```html variables-preview[button]
-<vwc-button
-	connotation="$CONNOTATION"
-	label="ghost"
-	appearance="ghost"
-></vwc-button>
-<vwc-button
-	connotation="$CONNOTATION"
-	label="filled"
-	appearance="filled"
-></vwc-button>
-<vwc-button
-	connotation="$CONNOTATION"
-	label="outlined"
-	appearance="outlined"
-></vwc-button>
+<vwc-button connotation="$CONNOTATION" label="ghost" appearance="ghost"></vwc-button>
+<vwc-button connotation="$CONNOTATION" label="filled" appearance="filled"></vwc-button>
+<vwc-button connotation="$CONNOTATION" label="outlined" appearance="outlined"></vwc-button>
 ```
 
 ### Calendar Event
 
 ```html variables-preview[calendar-event]
 <vwc-calendar>
-	<vwc-calendar-event
-		connotation="$CONNOTATION"
-		appearance="filled"
-		heading="filled"
-		slot="day-0"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		connotation="$CONNOTATION"
-		appearance="subtle"
-		heading="subtle"
-		slot="day-1"
-	></vwc-calendar-event>
+	<vwc-calendar-event connotation="$CONNOTATION" appearance="filled" heading="filled" slot="day-0"></vwc-calendar-event>
+	<vwc-calendar-event connotation="$CONNOTATION" appearance="subtle" heading="subtle" slot="day-1"></vwc-calendar-event>
 </vwc-calendar>
 ```
 
@@ -207,10 +168,7 @@ Click on "Edit code" to be able to modify the variables.
 
 ```html variables-preview[menu-item] 360px
 <vwc-menu open>
-	<vwc-menu-item
-		text="Menu item 1"
-		text-secondary="secondary text"
-	></vwc-menu-item>
+	<vwc-menu-item text="Menu item 1" text-secondary="secondary text"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
 	<vwc-menu-item control-type="checkbox" text="Checkbox 1"></vwc-menu-item>
 	<vwc-menu-item control-type="checkbox" text="Checkbox 2"></vwc-menu-item>
@@ -227,22 +185,9 @@ Click on "Edit code" to be able to modify the variables.
 
 ```html variables-preview[nav]
 <vwc-nav>
-	<vwc-nav-item
-		href="#"
-		text="1st level item"
-		onclick="onClick(event)"
-		current
-	></vwc-nav-item>
-	<vwc-nav-item
-		href="#"
-		text="1st level item"
-		onclick="onClick(event)"
-	></vwc-nav-item>
-	<vwc-nav-item
-		href="#"
-		text="1st level item"
-		onclick="onClick(event)"
-	></vwc-nav-item>
+	<vwc-nav-item href="#" text="1st level item" onclick="onClick(event)" current></vwc-nav-item>
+	<vwc-nav-item href="#" text="1st level item" onclick="onClick(event)"></vwc-nav-item>
+	<vwc-nav-item href="#" text="1st level item" onclick="onClick(event)"></vwc-nav-item>
 </vwc-nav>
 <script>
 	function onClick(event) {
@@ -269,12 +214,7 @@ Click on "Edit code" to be able to modify the variables.
 ```html variables-preview[nav-item]
 <vwc-nav>
 	<vwc-nav-item href="#" text="Account" onclick="onClick(event)"></vwc-nav-item>
-	<vwc-nav-item
-		href="#"
-		text="Shop"
-		onclick="onClick(event)"
-		current
-	></vwc-nav-item>
+	<vwc-nav-item href="#" text="Shop" onclick="onClick(event)" current></vwc-nav-item>
 	<vwc-nav-item href="#" text="My Cart" onclick="onClick(event)"></vwc-nav-item>
 </vwc-nav>
 
@@ -292,11 +232,7 @@ Click on "Edit code" to be able to modify the variables.
 ```html variables-preview[note]
 <vwc-note connotation="$CONNOTATION" headline="Pascal's theological argument">
 	<vwc-icon slot="icon" name="check-circle"></vwc-icon>
-	Pascal argues that a rational person should live as though God exists and seek
-	to believe in God. If God does not actually exist, such a person will have
-	only a finite loss (some pleasures, luxury, etc.), whereas if God does exist,
-	he stands to receive infinite gains (as represented by eternity in Heaven) and
-	avoid infinite losses (eternity in Hell).
+	Pascal argues that a rational person should live as though God exists and seek to believe in God. If God does not actually exist, such a person will have only a finite loss (some pleasures, luxury, etc.), whereas if God does exist, he stands to receive infinite gains (as represented by eternity in Heaven) and avoid infinite losses (eternity in Hell).
 </vwc-note>
 ```
 
@@ -313,12 +249,7 @@ Click on "Edit code" to be able to modify the variables.
 ### Progress
 
 ```html variables-preview[progress]
-<vwc-progress
-	connotation="$CONNOTATION"
-	min="0"
-	max="50"
-	value="12.5"
-></vwc-progress>
+<vwc-progress connotation="$CONNOTATION" min="0" max="50" value="12.5"></vwc-progress>
 ```
 
 ### Progress Ring
@@ -400,37 +331,21 @@ Click on "Edit code" to be able to modify the variables.
 
 ```html variables-preview[tag]
 <vwc-tag-group>
-	<vwc-tag
-		connotation="$CONNOTATION"
-		label="subtle"
-		appearance="subtle"
-	></vwc-tag>
-	<vwc-tag
-		connotation="$CONNOTATION"
-		label="duotone"
-		appearance="duotone"
-	></vwc-tag>
+	<vwc-tag connotation="$CONNOTATION" label="subtle" appearance="subtle"></vwc-tag>
+	<vwc-tag connotation="$CONNOTATION" label="duotone" appearance="duotone"></vwc-tag>
 </vwc-tag-group>
 ```
 
 ### Text Area
 
 ```html variables-preview[text-area] no-tabs
-<vwc-text-area
-	label="Helper text below"
-	helper-text="Help text"
-	placeholder="My Placeholder"
-></vwc-text-area>
+<vwc-text-area label="Helper text below" helper-text="Help text" placeholder="My Placeholder"></vwc-text-area>
 ```
 
 ### Text Field
 
 ```html variables-preview[text-field] no-tabs
-<vwc-text-field
-	label="Helper text below"
-	helper-text="Help text"
-	placeholder="My Placeholder"
-></vwc-text-field>
+<vwc-text-field label="Helper text below" helper-text="Help text" placeholder="My Placeholder"></vwc-text-field>
 ```
 
 ### Tree Item

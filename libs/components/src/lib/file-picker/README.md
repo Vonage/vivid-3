@@ -16,9 +16,7 @@ registerFilePicker('your-prefix');
 	registerFilePicker('your-prefix');
 </script>
 
-<your-prefix-file-picker label="Pick Files">
-	Drag & Drop or click to upload only one file
-</your-prefix-file-picker>
+<your-prefix-file-picker label="Pick Files"> Drag & Drop or click to upload only one file </your-prefix-file-picker>
 ```
 
 </vwc-tab-panel>
@@ -31,9 +29,7 @@ import { VFilePicker } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VFilePicker label="Title">
-		Drag & Drop or click to upload only one file
-	</VFilePicker>
+	<VFilePicker label="Title"> Drag & Drop or click to upload only one file </VFilePicker>
 </template>
 ```
 
@@ -45,9 +41,7 @@ import { VFilePicker } from '@vonage/vivid-vue';
 Use the `single-file` attribute to allow only a single file. Subsequent file uploads will replace the current file.
 
 ```html preview 230px
-<vwc-file-picker single-file>
-	Drag & Drop or click to upload only one file
-</vwc-file-picker>
+<vwc-file-picker single-file> Drag & Drop or click to upload only one file </vwc-file-picker>
 ```
 
 ## Max Files
@@ -62,9 +56,7 @@ If the user tries to upload more files than the maximum number of files, the fil
 </vwc-note>
 
 ```html preview 330px
-<vwc-file-picker helper-text="Maximum of 2 files" max-files="2">
-	Drag & Drop or click to upload
-</vwc-file-picker>
+<vwc-file-picker helper-text="Maximum of 2 files" max-files="2"> Drag & Drop or click to upload </vwc-file-picker>
 ```
 
 ### Max Files Exceeded Error
@@ -76,13 +68,7 @@ Note: localisation will need to be handled at the application level.
 - Type: `string`
 
 ```html preview 330px
-<vwc-file-picker
-	max-files-exceeded-error="Only 2 files allowed"
-	helper-text="Maximum of 2 files"
-	max-files="2"
->
-	Drag & Drop or click to upload
-</vwc-file-picker>
+<vwc-file-picker max-files-exceeded-error="Only 2 files allowed" helper-text="Maximum of 2 files" max-files="2"> Drag & Drop or click to upload </vwc-file-picker>
 ```
 
 ## Max File Size
@@ -93,9 +79,7 @@ The default max-file size is `256mb`
 If the user tries to upload a file that exceeds the maximum file size, the file picker displays an error message.
 
 ```html preview 230px
-<vwc-file-picker helper-text="Max file size is 0.1MB" max-file-size="0.1">
-	Drag & Drop or click to upload
-</vwc-file-picker>
+<vwc-file-picker helper-text="Max file size is 0.1MB" max-file-size="0.1"> Drag & Drop or click to upload </vwc-file-picker>
 ```
 
 ### File Too Big Error
@@ -107,13 +91,7 @@ Note: localisation will need to be handled at the application level.
 {% raw %}
 
 ```html preview 230px
-<vwc-file-picker
-	file-too-big-error="File too large ({{filesize}} MiB). The maximum file size is {{maxFilesize}} MiB."
-	helper-text="Max file size is 0.1MB"
-	max-file-size="0.1"
->
-	Drag & Drop or click to upload
-</vwc-file-picker>
+<vwc-file-picker file-too-big-error="File too large ({{filesize}} MiB). The maximum file size is {{maxFilesize}} MiB." helper-text="Max file size is 0.1MB" max-file-size="0.1"> Drag & Drop or click to upload </vwc-file-picker>
 ```
 
 {% endraw %}
@@ -131,9 +109,7 @@ Some examples of valid values are:
 If the user tries to upload a file that does not match the accepted files, the File Picker displays an error message.
 
 ```html preview 230px
-<vwc-file-picker helper-text=".jpg, .jpeg types only" accept=".jpg, .jpeg">
-	Drag & Drop or click to upload
-</vwc-file-picker>
+<vwc-file-picker helper-text=".jpg, .jpeg types only" accept=".jpg, .jpeg"> Drag & Drop or click to upload </vwc-file-picker>
 ```
 
 #### Invalid File Type Error
@@ -143,13 +119,7 @@ Use the `invalid-file-type-error` attribute to provide a custom error message to
 Note: localisation will need to be handled at the application level.
 
 ```html preview 230px
-<vwc-file-picker
-	invalid-file-type-error="This file is not a .jpg or .jpeg"
-	helper-text=".jpg, .jpeg types only"
-	accept=".jpg, .jpeg"
->
-	Drag & Drop or click to upload
-</vwc-file-picker>
+<vwc-file-picker invalid-file-type-error="This file is not a .jpg or .jpeg" helper-text=".jpg, .jpeg types only" accept=".jpg, .jpeg"> Drag & Drop or click to upload </vwc-file-picker>
 ```
 
 ## Block-Size
@@ -169,28 +139,10 @@ Use `files` or `rejectedFiles` to access the list of files that have been added 
 	<vwc-layout>
 		<vwc-card>
 			<vwc-layout slot="main" gutters="small">
-				<vwc-file-picker
-					name="files"
-					label="Pick files"
-					max-file-size="1"
-					max-files-exceeded-error="Only 2 files allowed"
-					helper-text="Maximum of 2 files"
-					max-files="2"
-					required
-				>
-					Drag & Drop or click to upload
-				</vwc-file-picker>
+				<vwc-file-picker name="files" label="Pick files" max-file-size="1" max-files-exceeded-error="Only 2 files allowed" helper-text="Maximum of 2 files" max-files="2" required> Drag & Drop or click to upload </vwc-file-picker>
 				<div class="buttons">
-					<vwc-button
-						label="Reset"
-						type="reset"
-						appearance="outlined"
-					></vwc-button>
-					<vwc-button
-						label="Submit"
-						appearance="filled"
-						type="submit"
-					></vwc-button>
+					<vwc-button label="Reset" type="reset" appearance="outlined"></vwc-button>
+					<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
 				</div>
 			</vwc-layout>
 		</vwc-card>
@@ -203,12 +155,10 @@ Use `files` or `rejectedFiles` to access the list of files that have been added 
 </form>
 <script>
 	window.addEventListener('load', function () {
-		document
-			.querySelector('vwc-file-picker')
-			.addEventListener('change', (e) => {
-				const note = document.querySelector('vwc-note');
-				note.headline = `files: ${event.target.files.length}, rejectedfiles: ${event.target.rejectedFiles.length}`;
-			});
+		document.querySelector('vwc-file-picker').addEventListener('change', (e) => {
+			const note = document.querySelector('vwc-note');
+			note.headline = `files: ${event.target.files.length}, rejectedfiles: ${event.target.rejectedFiles.length}`;
+		});
 
 		document.querySelector('form').addEventListener('submit', (e) => {
 			e.preventDefault();
@@ -252,9 +202,7 @@ Use `files` or `rejectedFiles` to access the list of files that have been added 
 Use the default slot to set the content of the file picker.
 
 ```html preview
-<vwc-file-picker label="Label">
-	Drag & Drop or <strong>Click</strong> to upload
-</vwc-file-picker>
+<vwc-file-picker label="Label"> Drag & Drop or <strong>Click</strong> to upload </vwc-file-picker>
 <style>
 	span {
 		white-space: pre-wrap;
@@ -269,10 +217,7 @@ The `helper-text` slot allows you to use rich content as the File Picker's helpe
 ```html preview
 <vwc-file-picker>
 	Drag & Drop the .csv file here or click to upload
-	<span slot="helper-text"
-		>Max file size is 0.1MB.
-		<a href="#">Learn how export your data to .csv</a></span
-	>
+	<span slot="helper-text">Max file size is 0.1MB. <a href="#">Learn how export your data to .csv</a></span>
 </vwc-file-picker>
 ```
 
@@ -283,9 +228,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 ```html preview
 <vwc-file-picker label="Upload file">
 	Drag & Drop the .csv file here or click to upload
-	<vwc-contextual-help slot="contextual-help"
-		>Max file size is 0.1MB.</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Max file size is 0.1MB.</vwc-contextual-help>
 </vwc-file-picker>
 ```
 

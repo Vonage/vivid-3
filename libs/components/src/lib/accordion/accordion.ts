@@ -30,7 +30,7 @@ export const AccordionExpandMode = {
  * @public
  */
 export type AccordionExpandMode =
-	typeof AccordionExpandMode[keyof typeof AccordionExpandMode];
+	(typeof AccordionExpandMode)[keyof typeof AccordionExpandMode];
 
 /**
  * @public

@@ -155,11 +155,7 @@ If set, the `icon` attribute is ignored.
 
 ```html preview 180px
 <vwc-combobox label="Combobox with custom icon" placeholder="placeholder">
-	<vwc-icon
-		slot="icon"
-		name="check-circle-solid"
-		connotation="success"
-	></vwc-icon>
+	<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	<vwc-option value="1" text="Option 1"></vwc-option>
 	<vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-combobox>
@@ -183,9 +179,7 @@ The `helper-text` slot allows you to use rich content as the select's helper tex
 
 ```html preview 230px
 <vwc-combobox label="Business Type">
-	<span slot="helper-text">
-		Please select the <a href="#">type of your business</a>.
-	</span>
+	<span slot="helper-text"> Please select the <a href="#">type of your business</a>. </span>
 	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
 	<vwc-option value="gov" text="Governmental Organization"></vwc-option>
 	<vwc-option value="edu" text="Educational Institution"></vwc-option>
@@ -198,9 +192,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 
 ```html preview 230px
 <vwc-combobox label="Business Type">
-	<vwc-contextual-help slot="contextual-help"
-		>Please select the type of your business</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Please select the type of your business</vwc-contextual-help>
 	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
 	<vwc-option value="gov" text="Governmental Organization"></vwc-option>
 	<vwc-option value="edu" text="Educational Institution"></vwc-option>

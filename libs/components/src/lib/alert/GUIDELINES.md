@@ -13,12 +13,7 @@ Use Alerts to display short-lived messages in response to user actions. Alerts m
 <docs-do slot="description" headline="Provide the close button" caption="The close button allows users to dismiss the Alert to access content behind it.">
 
 ```html preview example 100px
-<vwc-alert
-	connotation="success"
-	text="Data saved successfully."
-	open
-	removable
-></vwc-alert>
+<vwc-alert connotation="success" text="Data saved successfully." open removable></vwc-alert>
 ```
 
 </docs-do>

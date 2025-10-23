@@ -44,12 +44,8 @@ Here's an example of sorting when building the grid manually:
 ```html preview
 <vwc-data-grid class="data-grid">
 	<vwc-data-grid-row row-type="header">
-		<vwc-data-grid-cell cell-type="columnheader">
-			Not Sortable
-		</vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader" sort-direction="none">
-			Sortable
-		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader"> Not Sortable </vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="none"> Sortable </vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
 
@@ -147,12 +143,7 @@ Here's an example of sorting the data-grid when building it with `rowsData`:
 				column.sortDirection = 'none';
 				return;
 			}
-			column.sortDirection =
-				e.detail.sortDirection === 'ascending'
-					? 'descending'
-					: e.detail.sortDirection === 'descending'
-					? 'none'
-					: 'ascending';
+			column.sortDirection = e.detail.sortDirection === 'ascending' ? 'descending' : e.detail.sortDirection === 'descending' ? 'none' : 'ascending';
 		});
 
 		grid.rowsData = Array.from(data).sort((a, b) => {
@@ -192,26 +183,14 @@ If you cell contains multiple focusable elements or elements that require arrow 
 	<vwc-data-grid-row>
 		<vwc-data-grid-cell> Cell 1.1 </vwc-data-grid-cell>
 		<vwc-data-grid-cell id="single-action">
-			<vwc-button
-				appearance="outlined"
-				label="Action 1"
-				connotation="alert"
-			></vwc-button>
+			<vwc-button appearance="outlined" label="Action 1" connotation="alert"></vwc-button>
 		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
 		<vwc-data-grid-cell> Cell 2.1 </vwc-data-grid-cell>
 		<vwc-data-grid-cell id="multiple-actions">
-			<vwc-button
-				appearance="outlined"
-				label="Action 1"
-				connotation="alert"
-			></vwc-button>
-			<vwc-button
-				appearance="outlined"
-				label="Action 2"
-				connotation="success"
-			></vwc-button>
+			<vwc-button appearance="outlined" label="Action 1" connotation="alert"></vwc-button>
+			<vwc-button appearance="outlined" label="Action 2" connotation="success"></vwc-button>
 		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
@@ -238,21 +217,9 @@ If you cell contains multiple focusable elements or elements that require arrow 
 You can add and remove rows dynamically by manipulating the `rowsData`.
 
 ```html preview
-<vwc-button
-	label="Add item"
-	appearance="outlined"
-	onclick="push()"
-></vwc-button>
-<vwc-button
-	label="Remove last item"
-	appearance="outlined"
-	onclick="pop()"
-></vwc-button>
-<vwc-button
-	label="Remove first item"
-	appearance="outlined"
-	onclick="shift()"
-></vwc-button>
+<vwc-button label="Add item" appearance="outlined" onclick="push()"></vwc-button>
+<vwc-button label="Remove last item" appearance="outlined" onclick="pop()"></vwc-button>
+<vwc-button label="Remove first item" appearance="outlined" onclick="shift()"></vwc-button>
 <vwc-data-grid selection-mode="single-row" class="data-grid"></vwc-data-grid>
 
 <script>
@@ -296,10 +263,7 @@ Data grid supports selecting cells and rows by setting `selection-mode` attribut
 ### Single row
 
 ```html preview
-<vwc-data-grid
-	selection-mode="single-row"
-	id="data-grid-selection-single-row"
-></vwc-data-grid>
+<vwc-data-grid selection-mode="single-row" id="data-grid-selection-single-row"></vwc-data-grid>
 <script>
 	const grid = document.getElementById('data-grid-selection-single-row');
 
@@ -328,10 +292,7 @@ Data grid supports selecting cells and rows by setting `selection-mode` attribut
 Use a control / command key to select multiple rows.
 
 ```html preview
-<vwc-data-grid
-	selection-mode="multi-row"
-	id="data-grid-selection-multi-row"
-></vwc-data-grid>
+<vwc-data-grid selection-mode="multi-row" id="data-grid-selection-multi-row"></vwc-data-grid>
 <script>
 	const grid = document.getElementById('data-grid-selection-multi-row');
 
@@ -358,10 +319,7 @@ Use a control / command key to select multiple rows.
 ### Single cell
 
 ```html preview
-<vwc-data-grid
-	selection-mode="single-cell"
-	id="data-grid-selection-single-cell"
-></vwc-data-grid>
+<vwc-data-grid selection-mode="single-cell" id="data-grid-selection-single-cell"></vwc-data-grid>
 <script>
 	const grid = document.getElementById('data-grid-selection-single-cell');
 
@@ -390,10 +348,7 @@ Use a control / command key to select multiple rows.
 Use a control / command key to select multiple rows.
 
 ```html preview
-<vwc-data-grid
-	selection-mode="multi-cell"
-	id="data-grid-selection-multi-cell"
-></vwc-data-grid>
+<vwc-data-grid selection-mode="multi-cell" id="data-grid-selection-multi-cell"></vwc-data-grid>
 <script>
 	const grid = document.getElementById('data-grid-selection-multi-cell');
 

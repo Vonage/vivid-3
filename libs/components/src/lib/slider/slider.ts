@@ -43,7 +43,7 @@ export const SliderMode = {
  * The types for the selection mode of the slider
  * @public
  */
-export type SliderMode = typeof SliderMode[keyof typeof SliderMode];
+export type SliderMode = (typeof SliderMode)[keyof typeof SliderMode];
 
 /**
  * @public

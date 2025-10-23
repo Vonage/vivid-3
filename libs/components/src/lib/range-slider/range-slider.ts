@@ -31,7 +31,7 @@ const Direction = {
 	Increment: 1,
 	Decrement: -1,
 } as const;
-type Direction = typeof Direction[keyof typeof Direction];
+type Direction = (typeof Direction)[keyof typeof Direction];
 
 export type ThumbId = 'start' | 'end';
 

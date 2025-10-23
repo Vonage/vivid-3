@@ -76,23 +76,11 @@ const data = ref([
 Use the `no-tabbing` attribute to remove the component from the tab order.
 
 ```html preview 300px
-<vwc-button
-	label="No Tabbing"
-	onclick="changeTabbing(true)"
-	class="button"
-	appearance="filled"
-></vwc-button>
-<vwc-button
-	label="Tabbing"
-	onclick="changeTabbing(false)"
-	class="button"
-></vwc-button>
+<vwc-button label="No Tabbing" onclick="changeTabbing(true)" class="button" appearance="filled"></vwc-button>
+<vwc-button label="Tabbing" onclick="changeTabbing(false)" class="button"></vwc-button>
 
 <div id="active-element-content-display">
-	<p>
-		Hit <code>TAB</code> key to browse the tab queue. When in `no-tabbing` mode,
-		grid will never be focused.
-	</p>
+	<p>Hit <code>TAB</code> key to browse the tab queue. When in `no-tabbing` mode, grid will never be focused.</p>
 	<div id="active-element-content">Grid not focused</div>
 	<div id="focused-cell-content">&nbsp;</div>
 </div>
@@ -120,24 +108,19 @@ Use the `no-tabbing` attribute to remove the component from the tab order.
 
 	function changeTabbing(tabbing) {
 		event.currentTarget.appearance = 'filled';
-		Array.from(
-			event.currentTarget.parentElement.querySelectorAll('.button')
-		).filter((x) => x !== event.currentTarget)[0].appearance = null;
+		Array.from(event.currentTarget.parentElement.querySelectorAll('.button')).filter((x) => x !== event.currentTarget)[0].appearance = null;
 		grid.noTabbing = tabbing;
 	}
 
 	grid.addEventListener('focusin', () => {
-		document.getElementById('active-element-content').innerText =
-			'Grid Focused';
+		document.getElementById('active-element-content').innerText = 'Grid Focused';
 	});
 	grid.addEventListener('focusout', () => {
-		document.getElementById('active-element-content').innerText =
-			'Grid Not Focused';
+		document.getElementById('active-element-content').innerText = 'Grid Not Focused';
 		document.getElementById('focused-cell-content').innerText = '';
 	});
 	grid.addEventListener('cell-focused', (e) => {
-		document.getElementById('focused-cell-content').innerText =
-			'Focused Cell Content: ' + e.detail.innerText;
+		document.getElementById('focused-cell-content').innerText = 'Focused Cell Content: ' + e.detail.innerText;
 	});
 </script>
 ```
@@ -149,20 +132,8 @@ Use the `focusRowIndex` and `focusColumnIndex` to determine which row or cell to
 In the example below, change the value of the row / column index and then tab into the Data Grid.
 
 ```html preview
-<vwc-number-field
-	label="Row index"
-	id="row-index"
-	min="0"
-	value="0"
-	max="5"
-></vwc-number-field>
-<vwc-number-field
-	label="Column index"
-	id="col-index"
-	min="0"
-	value="0"
-	max="2"
-></vwc-number-field>
+<vwc-number-field label="Row index" id="row-index" min="0" value="0" max="5"></vwc-number-field>
+<vwc-number-field label="Column index" id="col-index" min="0" value="0" max="2"></vwc-number-field>
 <vwc-data-grid></vwc-data-grid>
 <script>
 	const activeRow = document.getElementById('row-index');
@@ -334,9 +305,7 @@ You need to use `html` from `fast-element`.
 	const grid = document.querySelector('.data-grid');
 	grid.rowItemTemplate = html`<div>All rows will look like me!</div>`;
 	grid.cellItemTemplate = html`<div>All cells will look like me!</div>`;
-	grid.headerCellItemTemplate = html`<div>
-		All header cells will look like me!
-	</div>`;
+	grid.headerCellItemTemplate = html`<div>All header cells will look like me!</div>`;
 	grid.rowsData = [
 		{ data1: 'data11', data2: 'data12' },
 		{ data1: 'data21', data2: 'data22' },
@@ -506,20 +475,10 @@ By default, header cells will not wrap text (`nowrap`), while data cells will wr
 		<vwc-data-grid-cell cell-type="columnheader"> Column 1 </vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
-		<vwc-data-grid-cell>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius
-			libero ipsum, ut rhoncus nulla varius sit amet. Vestibulum volutpat
-			feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim
-			metus.
-		</vwc-data-grid-cell>
+		<vwc-data-grid-cell> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius libero ipsum, ut rhoncus nulla varius sit amet. Vestibulum volutpat feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim metus. </vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row class="nowrap">
-		<vwc-data-grid-cell>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius
-			libero ipsum, ut rhoncus nulla varius sit amet. Vestibulum volutpat
-			feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim
-			metus.
-		</vwc-data-grid-cell>
+		<vwc-data-grid-cell> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius libero ipsum, ut rhoncus nulla varius sit amet. Vestibulum volutpat feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim metus. </vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
 

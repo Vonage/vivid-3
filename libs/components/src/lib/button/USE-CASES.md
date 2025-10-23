@@ -60,17 +60,9 @@ Use the `aria-pressed` attribute to indicate the state of the button to assistiv
 A button's width can be easily customised by attaching styles to the button component directly.
 
 ```html preview
-<vwc-button
-	appearance="filled"
-	label="Full width button"
-	class="full-width"
-></vwc-button>
+<vwc-button appearance="filled" label="Full width button" class="full-width"></vwc-button>
 <br />
-<vwc-button
-	appearance="outlined"
-	label="Custom width button"
-	class="custom-width"
-></vwc-button>
+<vwc-button appearance="outlined" label="Custom width button" class="custom-width"></vwc-button>
 
 <style>
 	.full-width {
@@ -110,13 +102,7 @@ Toolbars can be created using ghost buttons contained inside an [action-group](/
 			</vwc-button>
 		</vwc-tooltip>
 		<vwc-tooltip text="Italic">
-			<vwc-button
-				aria-pressed="true"
-				slot="anchor"
-				size="condensed"
-				appearance="filled"
-				onclick="onClick(event)"
-			>
+			<vwc-button aria-pressed="true" slot="anchor" size="condensed" appearance="filled" onclick="onClick(event)">
 				<vwc-icon slot="icon" name="italic-solid"></vwc-icon>
 			</vwc-button>
 		</vwc-tooltip>

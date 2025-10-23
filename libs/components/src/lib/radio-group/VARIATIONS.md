@@ -34,11 +34,7 @@ The `helper-text` attribute provides additional information to help the user ent
 To add HTML to the helper text, use the [helper-text slot](/components/radio-group/code/#helper-text-slot).
 
 ```html preview
-<vwc-radio-group
-	helper-text="Please choose wisely"
-	label="Pick a number"
-	name="number"
->
+<vwc-radio-group helper-text="Please choose wisely" label="Pick a number" name="number">
 	<vwc-radio label="Number one" value="1"></vwc-radio>
 	<vwc-radio label="Number two" value="2"></vwc-radio>
 	<vwc-radio label="Number three" value="3"></vwc-radio>
@@ -50,11 +46,7 @@ To add HTML to the helper text, use the [helper-text slot](/components/radio-gro
 The `error-text` attribute provides a custom error message.
 
 ```html preview
-<vwc-radio-group
-	error-text="Please, select one of the options"
-	label="Pick a number"
-	name="number"
->
+<vwc-radio-group error-text="Please, select one of the options" label="Pick a number" name="number">
 	<vwc-radio label="Number one" value="1"></vwc-radio>
 	<vwc-radio label="Number two" value="2"></vwc-radio>
 	<vwc-radio label="Number three" value="3"></vwc-radio>

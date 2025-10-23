@@ -32,10 +32,7 @@ Use the `open` attribute to indicate whether the popup is open.
 ```html preview center 150px
 <vwc-button id="anchor" appearance="outlined" label="Click me!"></vwc-button>
 <vwc-popup id="popup" open>
-	<vwc-layout gutters="small">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua.
-	</vwc-layout>
+	<vwc-layout gutters="small"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </vwc-layout>
 </vwc-popup>
 
 <script>
@@ -54,9 +51,7 @@ Add the `dismissible` attribute to add a close button to the popup.
 ```html preview center 150px
 <vwc-button id="anchor" appearance="outlined" label="Click on me!"></vwc-button>
 <vwc-popup id="popup" open dismissible>
-	<vwc-layout gutters="small">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-	</vwc-layout>
+	<vwc-layout gutters="small"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. </vwc-layout>
 </vwc-popup>
 
 <script>
@@ -75,10 +70,7 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
 ```html preview center 150px
 <vwc-icon id="anchor" name="info-line"></vwc-icon>
 <vwc-popup id="popup" open arrow>
-	<vwc-layout gutters="small" style="200px">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua.
-	</vwc-layout>
+	<vwc-layout gutters="small" style="200px"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </vwc-layout>
 </vwc-popup>
 <script>
 	popup.anchor = anchor;
@@ -95,10 +87,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 ```html preview center 150px
 <vwc-icon id="anchor" name="info-line"></vwc-icon>
 <vwc-popup id="popup" open alternate>
-	<vwc-layout gutters="small" style="200px">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua.
-	</vwc-layout>
+	<vwc-layout gutters="small" style="200px"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </vwc-layout>
 </vwc-popup>
 <script>
 	popup.anchor = anchor;
@@ -140,9 +129,7 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 <vwc-popup class="popup" open placement="bottom">bottom</vwc-popup>
 <vwc-popup class="popup" open placement="bottom-start">bottom-start</vwc-popup>
 <script>
-	document
-		.querySelectorAll('.popup')
-		.forEach((popup) => (popup.anchor = anchor));
+	document.querySelectorAll('.popup').forEach((popup) => (popup.anchor = anchor));
 </script>
 ```
 

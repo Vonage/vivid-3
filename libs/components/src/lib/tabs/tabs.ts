@@ -39,7 +39,7 @@ export const TabsGutters = {
 	Small: 'small',
 } as const;
 
-export type TabsGutters = typeof TabsGutters[keyof typeof TabsGutters];
+export type TabsGutters = (typeof TabsGutters)[keyof typeof TabsGutters];
 
 export const TabsOrientation = {
 	vertical: 'vertical',
@@ -47,7 +47,7 @@ export const TabsOrientation = {
 } as const;
 
 export type TabsOrientation =
-	typeof TabsOrientation[keyof typeof TabsOrientation];
+	(typeof TabsOrientation)[keyof typeof TabsOrientation];
 
 const oppositeOrientation = (orientation: TabsOrientation) =>
 	orientation === TabsOrientation.horizontal

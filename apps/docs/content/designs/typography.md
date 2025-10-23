@@ -33,15 +33,11 @@ Vivid defines a set of typefaces presets that are used by the components.
 <div style="font: var(--vvd-typography-heading-3)">heading-3</div>
 <div style="font: var(--vvd-typography-heading-4)">heading-4</div>
 <div style="font: var(--vvd-typography-base-condensed)">base-condensed</div>
-<div style="font: var(--vvd-typography-base-condensed-bold)">
-	base-condensed-bold
-</div>
+<div style="font: var(--vvd-typography-base-condensed-bold)">base-condensed-bold</div>
 <div style="font: var(--vvd-typography-base)">base</div>
 <div style="font: var(--vvd-typography-base-bold)">base-bold</div>
 <div style="font: var(--vvd-typography-base-extended)">base-extended</div>
-<div style="font: var(--vvd-typography-base-extended-bold)">
-	base-extended-bold
-</div>
+<div style="font: var(--vvd-typography-base-extended-bold)">base-extended-bold</div>
 <div style="font: var(--vvd-typography-base-code)">base-code</div>
 ```
 
@@ -156,16 +152,11 @@ Set the font custom properties of your choice (or all) to override the default t
 		--vvd-typography-base-bold: 500 16px Georgia;
 	}
 </style>
-<vwc-header>
-	This header typeface is set by '--vvd-typography-heading-4'
-</vwc-header>
+<vwc-header> This header typeface is set by '--vvd-typography-heading-4' </vwc-header>
 <pre>
 /*
  * This block of code typeface is set by '--vvd-typography-base-code'
  */
 </pre>
-<vwc-button
-	appearance="filled"
-	label="This button typeface is set by '--vvd-typography-base-bold'"
-></vwc-button>
+<vwc-button appearance="filled" label="This button typeface is set by '--vvd-typography-base-bold'"></vwc-button>
 ```

@@ -25,11 +25,7 @@ In such cases - prefer using `bottom-start` or `end` instead.
 ```html preview 150px
 <div style="position: relative; text-align: end;">
 	<vwc-menu placement="left-start" open aria-label="Menu example">
-		<vwc-button
-			slot="anchor"
-			label="Toggle Menu"
-			appearance="outlined"
-		></vwc-button>
+		<vwc-button slot="anchor" label="Toggle Menu" appearance="outlined"></vwc-button>
 		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 	</vwc-menu>
@@ -43,19 +39,8 @@ Use the `offset` attribute to add a gap (in `px`) between the trigger element an
 ```html preview 250px
 <vwc-header alternate>
 	Application Title
-	<vwc-menu
-		placement="bottom-end"
-		open
-		aria-label="Menu example"
-		offset="12"
-		slot="action-items"
-	>
-		<vwc-avatar
-			slot="anchor"
-			aria-label="Open profile menu"
-			appearance="subtle"
-			clickable
-		></vwc-avatar>
+	<vwc-menu placement="bottom-end" open aria-label="Menu example" offset="12" slot="action-items">
+		<vwc-avatar slot="anchor" aria-label="Open profile menu" appearance="subtle" clickable></vwc-avatar>
 		<vwc-menu-item text="My Profile" icon="profile-line"></vwc-menu-item>
 		<vwc-menu-item text="My Addresses" icon="address-book-line"></vwc-menu-item>
 		<vwc-menu-item text="Logout" icon="exit-line"></vwc-menu-item>

@@ -13,13 +13,7 @@ It accepts an array of objects with `value` and `label` properties: `[{"label": 
 
 ```html preview 180px
 <vwc-simple-color-picker id="picker">
-	<vwc-button
-		aria-label="Pick color"
-		slot="anchor"
-		size="super-condensed"
-		shape="pill"
-		appearance="outlined"
-	>
+	<vwc-button aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
 		<vwc-icon id="icon" slot="icon" name="textcolor-solid"></vwc-icon>
 	</vwc-button>
 </vwc-simple-color-picker>
@@ -103,13 +97,7 @@ The `swatches-per-row` attribute controls how many swatches should be displayed 
 
 ```html preview 160px
 <vwc-simple-color-picker id="picker" swatches-per-row="3">
-	<vwc-button
-		aria-label="Pick color"
-		slot="anchor"
-		size="super-condensed"
-		shape="pill"
-		appearance="outlined"
-	>
+	<vwc-button aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
 		<vwc-icon id="icon" slot="icon" name="textcolor-solid"></vwc-icon>
 	</vwc-button>
 </vwc-simple-color-picker>
@@ -163,13 +151,7 @@ The `placement` attribute sets the default placement of the Simple Color Picker'
 ```html preview center 160px
 <div class="wrapper">
 	<vwc-simple-color-picker id="picker" placement="top">
-		<vwc-button
-			aria-label="Pick color"
-			slot="anchor"
-			size="super-condensed"
-			shape="pill"
-			appearance="outlined"
-		>
+		<vwc-button aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
 			<vwc-icon id="icon" slot="icon" name="textcolor-solid"></vwc-icon>
 		</vwc-button>
 	</vwc-simple-color-picker>

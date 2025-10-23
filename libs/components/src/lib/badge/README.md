@@ -50,18 +50,8 @@ For [informative icons](/components/icon/accessibility//#informative-vs-decorati
 </vwc-note>
 
 ```html preview
-<vwc-badge
-	text="Accessibility testing"
-	appearance="subtle-light"
-	connotation="success"
-	size="expanded"
->
-	<vwc-icon
-		label="Done:"
-		slot="icon"
-		name="check-circle-solid"
-		connotation="success"
-	></vwc-icon>
+<vwc-badge text="Accessibility testing" appearance="subtle-light" connotation="success" size="expanded">
+	<vwc-icon label="Done:" slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 </vwc-badge>
 ```
 

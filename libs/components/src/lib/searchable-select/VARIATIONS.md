@@ -24,11 +24,7 @@ The `helper-text` attribute provides additional information about the purpose of
 To add HTML to the helper text, use the [helper-text slot](/components/searchable-select/code/#helper-text-slot).
 
 ```html preview 320px
-<vwc-searchable-select
-	helper-text="Select the countries that your company operates in"
-	label="Country"
-	multiple
->
+<vwc-searchable-select helper-text="Select the countries that your company operates in" label="Country" multiple>
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
 	<vwc-option value="AL" text="Albania"></vwc-option>
 	<vwc-option value="DZ" text="Algeria"></vwc-option>
@@ -50,11 +46,7 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 	<vwc-option value="AL" text="Albania"></vwc-option>
 	<vwc-option value="DZ" text="Algeria"></vwc-option>
 </vwc-searchable-select>
-<vwc-searchable-select
-	label="Countries"
-	placeholder="Select countries..."
-	multiple
->
+<vwc-searchable-select label="Countries" placeholder="Select countries..." multiple>
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
 	<vwc-option value="AL" text="Albania"></vwc-option>
 	<vwc-option value="DZ" text="Algeria"></vwc-option>
@@ -67,9 +59,7 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 
 ```html preview 230px
 <vwc-searchable-select label="Country">
-	<vwc-contextual-help slot="contextual-help"
-		>Select the country where your company operates</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Select the country where your company operates</vwc-contextual-help>
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
 	<vwc-option value="AL" text="Albania"></vwc-option>
 	<vwc-option value="DZ" text="Algeria"></vwc-option>
@@ -83,10 +73,7 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
 ```html preview 270px
-<vwc-searchable-select
-	error-text="Madrid is incorrect"
-	label="What is the capital of Italy?"
->
+<vwc-searchable-select error-text="Madrid is incorrect" label="What is the capital of Italy?">
 	<vwc-option value="madrid" text="Madrid" selected></vwc-option>
 	<vwc-option value="paris" text="Paris"></vwc-option>
 	<vwc-option value="london" text="London"></vwc-option>
@@ -99,10 +86,7 @@ The `error-text` attribute provides a custom error message. Any current error st
 The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
 
 ```html preview 270px
-<vwc-searchable-select
-	success-text="Rome is correct"
-	label="What is the capital of Italy?"
->
+<vwc-searchable-select success-text="Rome is correct" label="What is the capital of Italy?">
 	<vwc-option value="madrid" text="Madrid"></vwc-option>
 	<vwc-option value="paris" text="Paris"></vwc-option>
 	<vwc-option value="london" text="London"></vwc-option>
@@ -283,15 +267,11 @@ When set, the selected tags will not be displayed inside the component.
 		select.addEventListener('change', updateTags);
 	}
 	updateTags();
-	document
-		.querySelector('vwc-tag-group')
-		.addEventListener('removed', (event) => {
-			const option = document.querySelector(
-				`vwc-option[value="${event.target.dataset.value}"]`
-			);
-			option.selected = false;
-			updateTags();
-		});
+	document.querySelector('vwc-tag-group').addEventListener('removed', (event) => {
+		const option = document.querySelector(`vwc-option[value="${event.target.dataset.value}"]`);
+		option.selected = false;
+		updateTags();
+	});
 </script>
 
 <style>
@@ -309,12 +289,7 @@ The `tag-connotation` of Option attribute sets the connotation of the tags.
 ```html preview 270px
 <vwc-searchable-select multiple>
 	<vwc-option value="accent" text="accent" selected></vwc-option>
-	<vwc-option
-		tag-connotation="cta"
-		value="cta"
-		text="cta"
-		selected
-	></vwc-option>
+	<vwc-option tag-connotation="cta" value="cta" text="cta" selected></vwc-option>
 </vwc-searchable-select>
 ```
 
@@ -330,13 +305,7 @@ Use the `enable-select-all` attribute to add **Select All** option at the top of
 </vwc-note>
 
 ```html preview 270px
-<vwc-searchable-select
-	multiple
-	label="Countries"
-	enable-select-all
-	select-all-text="Select all countries"
-	deselect-all-text="Deselect all countries"
->
+<vwc-searchable-select multiple label="Countries" enable-select-all select-all-text="Select all countries" deselect-all-text="Deselect all countries">
 	<vwc-option value="afghanistan" text="Afghanistan">
 		<vwc-icon slot="icon" name="flag-afghanistan"></vwc-icon>
 	</vwc-option>
@@ -420,13 +389,7 @@ The `no-options` slot allows you to customize the message when there are no opti
 	<span slot="no-options">You do not have any numbers.</span>
 </vwc-searchable-select>
 <vwc-searchable-select label="Connect number">
-	<vwc-empty-state
-		slot="no-options"
-		icon="phone-number-line"
-		headline="No numbers"
-	>
-		You do not have any numbers yet.
-	</vwc-empty-state>
+	<vwc-empty-state slot="no-options" icon="phone-number-line" headline="No numbers"> You do not have any numbers yet. </vwc-empty-state>
 </vwc-searchable-select>
 ```
 

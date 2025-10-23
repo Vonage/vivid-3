@@ -16,9 +16,7 @@ registerRangeSlider('your-prefix');
 	registerRangeSlider('your-prefix');
 </script>
 
-<your-prefix-range-slider
-	aria-label="Default range slider"
-></your-prefix-range-slider>
+<your-prefix-range-slider aria-label="Default range slider"></your-prefix-range-slider>
 ```
 
 </vwc-tab-panel>
@@ -44,11 +42,7 @@ The default value of `min` is `0`.
 
 ```html preview blocks
 <div>
-	<vwc-range-slider
-		min="-10"
-		id="slider"
-		aria-label="Min value example"
-	></vwc-range-slider>
+	<vwc-range-slider min="-10" id="slider" aria-label="Min value example"></vwc-range-slider>
 </div>
 <div>
 	Current range:
@@ -79,11 +73,7 @@ The default value `max` of is `10`.
 
 ```html preview blocks
 <div>
-	<vwc-range-slider
-		max="20"
-		id="slider"
-		aria-label="Max value example"
-	></vwc-range-slider>
+	<vwc-range-slider max="20" id="slider" aria-label="Max value example"></vwc-range-slider>
 </div>
 <div>
 	Current range:
@@ -114,12 +104,7 @@ The default value `step` of is `1`.
 
 ```html preview blocks
 <div>
-	<vwc-range-slider
-		step="0.5"
-		id="slider"
-		markers
-		aria-label="Step example"
-	></vwc-range-slider>
+	<vwc-range-slider step="0.5" id="slider" markers aria-label="Step example"></vwc-range-slider>
 </div>
 <div>
 	Current range:
@@ -149,11 +134,7 @@ Use the `start` attribute to set the lower position of the range indicator.
 The default value of `start` is [`min`](/components/range-slider/code/#min).
 
 ```html preview blocks
-<vwc-range-slider
-	start="5"
-	markers
-	aria-label="Start value example"
-></vwc-range-slider>
+<vwc-range-slider start="5" markers aria-label="Start value example"></vwc-range-slider>
 ```
 
 ## End
@@ -162,11 +143,7 @@ Use the `end` attribute to set the upper position of the range indicator.
 The default value of `end` is [`max`](/components/range-slider/code/#max).
 
 ```html preview blocks
-<vwc-range-slider
-	end="5"
-	markers
-	aria-label="End value example"
-></vwc-range-slider>
+<vwc-range-slider end="5" markers aria-label="End value example"></vwc-range-slider>
 ```
 
 ## Value Text Formatter

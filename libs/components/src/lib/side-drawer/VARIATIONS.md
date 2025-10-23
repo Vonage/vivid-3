@@ -9,15 +9,7 @@ Use the `open` attribute to indicate whether the side drawer is open.
 	</vwc-layout>
 
 	<vwc-layout gutters="small" slot="app-content">
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-			veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-			commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-			velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-			cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-			est laborum.
-		</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	</vwc-layout>
 </vwc-side-drawer>
 ```
@@ -31,24 +23,10 @@ Use the `modal` attribute to set the side drawer's type to modal.
 	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 
 	<vwc-layout gutters="small" slot="app-content">
-		<div class="content">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-			veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-			commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-			velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-			cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-			est laborum.
-		</div>
+		<div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
 	</vwc-layout>
 </vwc-side-drawer>
-<vwc-fab
-	aria-label="Close side drawer"
-	class="fab"
-	id="fab"
-	connotation="accent"
-	onclick="toggleSideDrawer()"
->
+<vwc-fab aria-label="Close side drawer" class="fab" id="fab" connotation="accent" onclick="toggleSideDrawer()">
 	<vwc-icon slot="icon" name="menu-solid"></vwc-icon>
 </vwc-fab>
 
@@ -83,14 +61,7 @@ Use `alternate` to apply an alternate color-scheme, alternate applies on all ass
 <vwc-side-drawer alternate open>
 	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 
-	<vwc-layout gutters="small" slot="app-content">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</vwc-layout>
+	<vwc-layout gutters="small" slot="app-content"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </vwc-layout>
 </vwc-side-drawer>
 ```
 
@@ -102,13 +73,6 @@ Use the `trailing` attribute to set the side of the drawer.
 <vwc-side-drawer trailing open>
 	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 
-	<vwc-layout gutters="small" slot="app-content">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</vwc-layout>
+	<vwc-layout gutters="small" slot="app-content"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </vwc-layout>
 </vwc-side-drawer>
 ```

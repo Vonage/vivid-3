@@ -16,10 +16,7 @@ registerSplitButton('your-prefix');
 	registerSplitButton('your-prefix');
 </script>
 
-<your-prefix-split-button
-	label="My Button"
-	indicator-aria-label="More actions"
-></your-prefix-split-button>
+<your-prefix-split-button label="My Button" indicator-aria-label="More actions"></your-prefix-split-button>
 ```
 
 </vwc-tab-panel>
@@ -31,11 +28,7 @@ registerSplitButton('your-prefix');
 import { VSplitButton } from '@vonage/vivid-vue';
 </script>
 <template>
-	<VSplitButton
-		appearance="filled"
-		label="My Button"
-		indicator-aria-label="More actions"
-	/>
+	<VSplitButton appearance="filled" label="My Button" indicator-aria-label="More actions" />
 </template>
 ```
 
@@ -49,11 +42,7 @@ import { VSplitButton } from '@vonage/vivid-vue';
 Use the default slot to add content to be openned when clicking the secondary action.
 
 ```html preview 180px
-<vwc-split-button
-	id="splitButton"
-	appearance="outlined"
-	label="A default split button"
->
+<vwc-split-button id="splitButton" appearance="outlined" label="A default split button">
 	<vwc-menu id="menu" placement="bottom-end" open>
 		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
@@ -79,11 +68,7 @@ Use the `icon` slot add custom icons. If set, the icon attribute is ignored.
 
 ```html preview
 <vwc-split-button appearance="outlined" label="submit">
-	<vwc-icon
-		slot="icon"
-		name="check-circle-solid"
-		connotation="success"
-	></vwc-icon>
+	<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 </vwc-split-button>
 ```
 

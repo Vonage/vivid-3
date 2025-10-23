@@ -27,16 +27,7 @@ const handleChange = (index: number) => {
 
 <template>
 	<VAccordion expand-mode="multi">
-		<VAccordionItem
-			v-for="(item, index) in items"
-			:key="index"
-			class="accordion-item"
-			icon-trailing
-			:heading="item.heading"
-			:expanded="item.expanded"
-			:icon="item.icon"
-			@change="handleChange(index)"
-		>
+		<VAccordionItem v-for="(item, index) in items" :key="index" class="accordion-item" icon-trailing :heading="item.heading" :expanded="item.expanded" :icon="item.icon" @change="handleChange(index)">
 			<VIcon slot="icon" :name="item.icon" />
 			This is the accordion body.
 		</VAccordionItem>
@@ -50,24 +41,11 @@ const handleChange = (index: number) => {
 
 ```html preview 300px
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item
-		class="accordion-item"
-		icon-trailing
-		heading="Accordion item 1"
-		icon="minus-line"
-		expanded
-	>
+	<vwc-accordion-item class="accordion-item" icon-trailing heading="Accordion item 1" icon="minus-line" expanded>
 		<vwc-icon slot="icon" name="minus-line"></vwc-icon>
 		This is the accordion body.
 	</vwc-accordion-item>
-	<vwc-accordion-item
-		class="accordion-item"
-		icon-trailing
-		icon="plus-line"
-		heading="Accordion item 2"
-	>
-		This is the accordion body.
-	</vwc-accordion-item>
+	<vwc-accordion-item class="accordion-item" icon-trailing icon="plus-line" heading="Accordion item 2"> This is the accordion body. </vwc-accordion-item>
 </vwc-accordion>
 
 <script>
@@ -77,9 +55,7 @@ const handleChange = (index: number) => {
 				return;
 			}
 			const iconName = item.getAttribute('icon');
-			iconName === 'minus-line'
-				? item.setAttribute('icon', 'plus-line')
-				: item.setAttribute('icon', 'minus-line');
+			iconName === 'minus-line' ? item.setAttribute('icon', 'plus-line') : item.setAttribute('icon', 'minus-line');
 		});
 	});
 </script>
@@ -103,9 +79,7 @@ import { VAccordion, VAccordionItem, VActionGroup } from '@vonage/vivid-vue';
 
 <template>
 	<VActionGroup class="action-group">
-		<VAccordionItem class="accordion-item" heading="Expandable Section">
-			This is the content for the expandable section.
-		</VAccordionItem>
+		<VAccordionItem class="accordion-item" heading="Expandable Section"> This is the content for the expandable section. </VAccordionItem>
 	</VActionGroup>
 </template>
 
@@ -124,9 +98,7 @@ import { VAccordion, VAccordionItem, VActionGroup } from '@vonage/vivid-vue';
 
 ```html preview 160px
 <vwc-action-group class="action-group">
-	<vwc-accordion-item class="accordion-item" heading="Expandable Section">
-		This is the content for the expandable section.
-	</vwc-accordion-item>
+	<vwc-accordion-item class="accordion-item" heading="Expandable Section"> This is the content for the expandable section. </vwc-accordion-item>
 </vwc-action-group>
 
 <style>

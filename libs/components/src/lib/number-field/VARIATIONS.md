@@ -33,10 +33,7 @@ The `helper-text` attribute provides additional information to help the user ent
 To add HTML to the helper text, use the [helper-text slot](/components/number-field/code/#helper-text-slot).
 
 ```html preview
-<vwc-number-field
-	label="Helper text below"
-	helper-text="Help text"
-></vwc-number-field>
+<vwc-number-field label="Helper text below" helper-text="Help text"></vwc-number-field>
 ```
 
 ### Contextual Help
@@ -45,9 +42,7 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 
 ```html preview
 <vwc-number-field label="Wanted quantity">
-	<vwc-contextual-help slot="contextual-help"
-		>How many apples do you need</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">How many apples do you need</vwc-contextual-help>
 </vwc-number-field>
 ```
 
@@ -78,8 +73,7 @@ Use the `valueAsNumber` property to get or set the value as a number. If no vali
 
 <script>
 	function update() {
-		document.getElementById('value').textContent =
-			document.querySelector('vwc-number-field').valueAsNumber;
+		document.getElementById('value').textContent = document.querySelector('vwc-number-field').valueAsNumber;
 	}
 
 	customElements.whenDefined('vwc-number-field').then(update);
@@ -94,10 +88,7 @@ Use the `valueAsNumber` property to get or set the value as a number. If no vali
 The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
 
 ```html preview
-<vwc-number-field
-	label="Valid value"
-	success-text="Great success"
-></vwc-number-field>
+<vwc-number-field label="Valid value" success-text="Great success"></vwc-number-field>
 ```
 
 ## Scale
@@ -149,16 +140,8 @@ Use `ghost` in combination with a containing element which provides a border, fo
 
 ```html preview
 <div class="container">
-	<vwc-number-field
-		appearance="fieldset"
-		placeholder="appearance"
-		label="fieldset"
-	></vwc-number-field>
-	<vwc-number-field
-		appearance="ghost"
-		placeholder="appearance"
-		label="ghost"
-	></vwc-number-field>
+	<vwc-number-field appearance="fieldset" placeholder="appearance" label="fieldset"></vwc-number-field>
+	<vwc-number-field appearance="ghost" placeholder="appearance" label="ghost"></vwc-number-field>
 </div>
 
 <style>
@@ -174,12 +157,7 @@ Use `ghost` in combination with a containing element which provides a border, fo
 Add the `disabled` attribute to disable the Number field input element.
 
 ```html preview
-<vwc-number-field
-	disabled
-	value="disabled"
-	label="fieldset"
-	appearance="fieldset"
-></vwc-number-field>
+<vwc-number-field disabled value="disabled" label="fieldset" appearance="fieldset"></vwc-number-field>
 ```
 
 ### Readonly
@@ -187,10 +165,5 @@ Add the `disabled` attribute to disable the Number field input element.
 The `readonly` attribute prevents the user from changing the Number Field input element value.
 
 ```html preview
-<vwc-number-field
-	readonly
-	value="8"
-	label="fieldset"
-	appearance="fieldset"
-></vwc-number-field>
+<vwc-number-field readonly value="8" label="fieldset" appearance="fieldset"></vwc-number-field>
 ```

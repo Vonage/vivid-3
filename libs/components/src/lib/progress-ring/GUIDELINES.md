@@ -27,10 +27,7 @@ It's bad for UX and accessibility.<br />[The problem with placeholders](https://
 <docs-do slot="description" headline="Use helper text to provide extra information about the field" caption="It is visible to the user at all times and it is read out by screen readers when the user focuses on the input element.">
 
 ```html preview example
-<vwc-number-field
-	label="Wanted quantity"
-	helper-text="set a number higher than 1 less than 10"
-></vwc-number-field>
+<vwc-number-field label="Wanted quantity" helper-text="set a number higher than 1 less than 10"></vwc-number-field>
 ```
 
 </docs-do>
@@ -52,10 +49,7 @@ The `condensed` Text Field is useful when used inside other components (inside [
 	<vwc-data-grid>
 		<vwc-data-grid-row row-type="header">
 			<vwc-data-grid-cell cell-type="columnheader">User</vwc-data-grid-cell>
-			<vwc-data-grid-cell
-				class="controls"
-				cell-type="columnheader"
-			></vwc-data-grid-cell>
+			<vwc-data-grid-cell class="controls" cell-type="columnheader"></vwc-data-grid-cell>
 		</vwc-data-grid-row>
 		<vwc-data-grid-row>
 			<vwc-data-grid-cell>
@@ -65,14 +59,7 @@ The `condensed` Text Field is useful when used inside other components (inside [
 				<vwc-button appearance="outlined" size="condensed" aria-label="Edit">
 					<vwc-icon slot="icon" name="edit-line"></vwc-icon>
 				</vwc-button>
-				<vwc-button
-					appearance="outlined"
-					size="condensed"
-					aria-label="Delete"
-					connotation="alert"
-				>
-					<vwc-icon slot="icon" name="delete-line"></vwc-icon
-				></vwc-button>
+				<vwc-button appearance="outlined" size="condensed" aria-label="Delete" connotation="alert"> <vwc-icon slot="icon" name="delete-line"></vwc-icon></vwc-button>
 			</vwc-data-grid-cell>
 		</vwc-data-grid-row>
 	</vwc-data-grid>

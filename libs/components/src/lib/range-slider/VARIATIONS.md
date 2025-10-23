@@ -3,14 +3,7 @@
 Use the `connotation` attribute on Range Slider to control the color of the selected range.
 
 ```html preview blocks>
-<vwc-range-slider
-	connotation="accent"
-	aria-label="Accent connotation example"
-></vwc-range-slider>
-<vwc-range-slider
-	connotation="cta"
-	aria-label="CTA connotation example"
-></vwc-range-slider>
+<vwc-range-slider connotation="accent" aria-label="Accent connotation example"></vwc-range-slider> <vwc-range-slider connotation="cta" aria-label="CTA connotation example"></vwc-range-slider>
 ```
 
 ## Markers
@@ -33,10 +26,7 @@ Below is an example of vertical alignment.
 </vwc-note>
 
 ```html preview center 300px
-<vwc-range-slider
-	orientation="vertical"
-	aria-label="Vertical orientation example"
-></vwc-range-slider>
+<vwc-range-slider orientation="vertical" aria-label="Vertical orientation example"></vwc-range-slider>
 ```
 
 ## Pin
@@ -45,17 +35,8 @@ Use `pin` attribute to display a tooltip at the start and end values.
 Use the [`valueTextFormatter`](/components/range-slider/code/#value-text-formatter) member to customize the format of the values.
 
 ```html preview
-<vwc-range-slider
-	pin
-	id="slider"
-	aria-label="Horizontal example with pins"
-></vwc-range-slider>
-<vwc-range-slider
-	orientation="vertical"
-	style="height: 200px"
-	pin
-	aria-label="Vertical example with pins"
-></vwc-range-slider>
+<vwc-range-slider pin id="slider" aria-label="Horizontal example with pins"></vwc-range-slider>
+<vwc-range-slider orientation="vertical" style="height: 200px" pin aria-label="Vertical example with pins"></vwc-range-slider>
 <script>
 	for (const slider of document.querySelectorAll('#slider')) {
 		slider.valueTextFormatter = (value) => `${value} units`;

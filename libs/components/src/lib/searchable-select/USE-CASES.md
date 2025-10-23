@@ -378,26 +378,7 @@ Already selected options need to stay present, even if they are no longer in the
 </vwc-searchable-select>
 
 <script>
-	const fruitsDatabase = [
-		'Apple',
-		'Banana',
-		'Cherry',
-		'Date',
-		'Elderberry',
-		'Fig',
-		'Grape',
-		'Jackfruit',
-		'Kiwi',
-		'Lemon',
-		'Mango',
-		'Nectarine',
-		'Orange',
-		'Passion fruit',
-		'Quince',
-		'Raspberry',
-		'Strawberry',
-		'Watermelon',
-	];
+	const fruitsDatabase = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape', 'Jackfruit', 'Kiwi', 'Lemon', 'Mango', 'Nectarine', 'Orange', 'Passion fruit', 'Quince', 'Raspberry', 'Strawberry', 'Watermelon'];
 
 	async function fetchOptions(searchText) {
 		return new Promise((resolve) => {
@@ -405,9 +386,7 @@ Already selected options need to stay present, even if they are no longer in the
 				() =>
 					resolve(
 						fruitsDatabase
-							.filter((fruit) =>
-								fruit.toLowerCase().includes(searchText.toLowerCase())
-							)
+							.filter((fruit) => fruit.toLowerCase().includes(searchText.toLowerCase()))
 							.map((fruit) => ({
 								value: fruit,
 								text: fruit,
@@ -431,9 +410,7 @@ Already selected options need to stay present, even if they are no longer in the
 			};
 
 			function MyComponent(state) {
-				const retainedOptions = state.selectedOptions.filter(
-					(s) => !state.currentSearchResults.some((o) => o.value === s.value)
-				);
+				const retainedOptions = state.selectedOptions.filter((s) => !state.currentSearchResults.some((o) => o.value === s.value));
 				return [
 					// Render options that are selected but no longer in the current search results
 					...retainedOptions.map((option) => {
@@ -506,11 +483,7 @@ Already selected options need to stay present, even if they are no longer in the
 			select.addEventListener('input', (e) => {
 				updateState({
 					...componentState,
-					selectedOptions: e.currentTarget.values.map(
-						(v) =>
-							componentState.currentSearchResults.find((o) => o.value === v) ||
-							componentState.selectedOptions.find((o) => o.value === v)
-					),
+					selectedOptions: e.currentTarget.values.map((v) => componentState.currentSearchResults.find((o) => o.value === v) || componentState.selectedOptions.find((o) => o.value === v)),
 				});
 			});
 		});
@@ -539,9 +512,7 @@ Already selected options need to stay present, even if they are no longer in the
 		for (let i = 0; i < newRenderedOptions.length; i++) {
 			const newNode = newRenderedOptions[i];
 			const oldNode = oldRenderedOptions.find((o) => o.key === newNode.key);
-			const el =
-				select.querySelector(`[data-key="${newNode.key}"]`) ||
-				document.createElement('vwc-option');
+			const el = select.querySelector(`[data-key="${newNode.key}"]`) || document.createElement('vwc-option');
 			el.dataset.key = newNode.key;
 			for (const key of Object.keys(newNode.props)) {
 				if (!oldNode || newNode.props[key] !== oldNode.props[key]) {

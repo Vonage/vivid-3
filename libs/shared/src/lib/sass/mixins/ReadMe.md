@@ -87,8 +87,7 @@ In the component file, we need to import the connotation with the shades that ar
 ```css
 @use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta success alert,
-	$shades: primary primary-text primary-increment contrast fierce firm soft
-		faint,
+	$shades: primary primary-text primary-increment contrast fierce firm soft faint,
 	$default: accent
 );
 @use '@repo/shared/mixins/connotation' as connotation;

@@ -11,7 +11,7 @@ export const AccordionExpandMode = {
 } as const;
 
 export type AccordionExpandMode =
-	typeof AccordionExpandMode[keyof typeof AccordionExpandMode];
+	(typeof AccordionExpandMode)[keyof typeof AccordionExpandMode];
 
 /**
  * @internal

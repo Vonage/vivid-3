@@ -16,9 +16,7 @@ registerAudioPlayer('your-prefix');
 	registerAudioPlayer('your-prefix');
 </script>
 
-<your-prefix-audio-player
-	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
-></your-prefix-audio-player>
+<your-prefix-audio-player src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"></your-prefix-audio-player>
 ```
 
 </vwc-tab-panel>
@@ -30,9 +28,7 @@ registerAudioPlayer('your-prefix');
 import { VAudioPlayer } from '@vonage/vivid-vue';
 </script>
 <template>
-	<VAudioPlayer
-		src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
-	/>
+	<VAudioPlayer src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3" />
 </template>
 ```
 
@@ -44,9 +40,7 @@ import { VAudioPlayer } from '@vonage/vivid-vue';
 Use the `src` attribute to add an audio track to the Audio Player.
 
 ```html preview
-<vwc-audio-player
-	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
-></vwc-audio-player>
+<vwc-audio-player src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"></vwc-audio-player>
 ```
 
 ## Current Time
@@ -54,18 +48,10 @@ Use the `src` attribute to add an audio track to the Audio Player.
 Use the `currentTime` property change or get the Audio Player's current time. The property accepts and returns a `number` representing the time in seconds.
 
 ```html preview
-<vwc-audio-player
-	id="audio"
-	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
-></vwc-audio-player>
+<vwc-audio-player id="audio" src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"></vwc-audio-player>
 
-<vwc-button
-	id="current"
-	label="Get current time"
-	appearance="outlined"
-></vwc-button>
-<vwc-button id="skip" label="Skip to 30s" appearance="outlined"></vwc-button
->&nbsp; Current time: <span id="output"></span>
+<vwc-button id="current" label="Get current time" appearance="outlined"></vwc-button>
+<vwc-button id="skip" label="Skip to 30s" appearance="outlined"></vwc-button>&nbsp; Current time: <span id="output"></span>
 
 <script>
 	const audio = document.getElementById('audio');
@@ -87,17 +73,9 @@ Use the `currentTime` property change or get the Audio Player's current time. Th
 The `duration` property indicates the duration of the loaded audio. The property is read only and returns a `number` representing the time in seconds.
 
 ```html preview
-<vwc-audio-player
-	notime
-	id="audio"
-	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
-></vwc-audio-player>
+<vwc-audio-player notime id="audio" src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"></vwc-audio-player>
 
-<vwc-button
-	id="duration"
-	label="Get duration"
-	appearance="outlined"
-></vwc-button>
+<vwc-button id="duration" label="Get duration" appearance="outlined"></vwc-button>
 Duration of audio: <span id="output"></span>
 
 <script>
@@ -115,10 +93,7 @@ Duration of audio: <span id="output"></span>
 The `duration-fallback` attribute enables fallback logic to fetch and decode audio buffer for duration when metadata is missing.
 
 ```html preview
-<vwc-audio-player
-	duration-fallback
-	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
-></vwc-audio-player>
+<vwc-audio-player duration-fallback src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"></vwc-audio-player>
 ```
 
 ## Paused
@@ -126,16 +101,9 @@ The `duration-fallback` attribute enables fallback logic to fetch and decode aud
 The `paused` property indicates if the player is currently paused or not. The property is read only and returns a `boolean` value.
 
 ```html preview
-<vwc-audio-player
-	id="audio"
-	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
-></vwc-audio-player>
+<vwc-audio-player id="audio" src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"></vwc-audio-player>
 
-<vwc-button
-	id="paused"
-	label="Is the audio paused?"
-	appearance="outlined"
-></vwc-button>
+<vwc-button id="paused" label="Is the audio paused?" appearance="outlined"></vwc-button>
 <span id="output"></span>
 
 <script>
@@ -153,10 +121,7 @@ The `paused` property indicates if the player is currently paused or not. The pr
 The audio can be played and paused programatically using the `play()` and `pause()` methods.
 
 ```html preview
-<vwc-audio-player
-	id="audio"
-	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
-></vwc-audio-player>
+<vwc-audio-player id="audio" src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"></vwc-audio-player>
 
 <vwc-button id="control" label="Play" appearance="outlined"></vwc-button>
 
@@ -184,12 +149,7 @@ By default, Audio Player's `max-inline-size` is`100%`.
 You can specify a different value with setting `max-inline-size` on the `vwc-audio-player.`
 
 ```html preview 250px
-<vwc-audio-player
-	playback-rates="0.75, 1, 1.5"
-	skip-by="5"
-	class="audio-player"
-	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
-></vwc-audio-player>
+<vwc-audio-player playback-rates="0.75, 1, 1.5" skip-by="5" class="audio-player" src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"></vwc-audio-player>
 
 <style>
 	.audio-player {

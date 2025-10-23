@@ -44,20 +44,11 @@ Use the `name` and `value` attribute when including the Switch as part of a form
 	<form id="settings">
 		<vwc-layout row-spacing="small" column-basis="block">
 			<div>Marketing settings</div>
-			<vwc-switch
-				value="yes"
-				name="email"
-				label="Email notifications"
-			></vwc-switch>
+			<vwc-switch value="yes" name="email" label="Email notifications"></vwc-switch>
 			<vwc-switch value="yes" name="text" label="Text messages"></vwc-switch>
 			<vwc-switch value="yes" name="phone" label="Phone calls"></vwc-switch>
 			<div>
-				<vwc-button
-					type="submit"
-					label="Submit"
-					appearance="filled"
-					connotation="cta"
-				></vwc-button>
+				<vwc-button type="submit" label="Submit" appearance="filled" connotation="cta"></vwc-button>
 			</div>
 		</vwc-layout>
 	</form>

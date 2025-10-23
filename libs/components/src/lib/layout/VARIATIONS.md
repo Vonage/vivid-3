@@ -30,11 +30,7 @@ Use the `row-spacing` attribute to choose a predefined value for the [row-gap](h
 	<vwc-card elevation="2" text="small (16px)"></vwc-card>
 	<vwc-card elevation="2" text="small (16px)"></vwc-card>
 </vwc-layout>
-<vwc-layout
-	gutters="small"
-	row-spacing="medium - default (24px)"
-	column-basis="block"
->
+<vwc-layout gutters="small" row-spacing="medium - default (24px)" column-basis="block">
 	<vwc-card elevation="2" text="medium - default (24px)"></vwc-card>
 	<vwc-card elevation="2" text="medium - default (24px)"></vwc-card>
 	<vwc-card elevation="2" text="medium - default (24px)"></vwc-card>

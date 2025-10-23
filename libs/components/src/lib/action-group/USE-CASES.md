@@ -21,12 +21,7 @@ Use [Divider](/components/divider/) for adding separator between the action elem
 	<vwc-button aria-label="Text Align Left" onclick="onClick(event)">
 		<vwc-icon slot="icon" name="align-left-line"></vwc-icon>
 	</vwc-button>
-	<vwc-button
-		aria-pressed="true"
-		aria-label="Text Align Center"
-		appearance="filled"
-		onclick="onClick(event)"
-	>
+	<vwc-button aria-pressed="true" aria-label="Text Align Center" appearance="filled" onclick="onClick(event)">
 		<vwc-icon slot="icon" name="align-center-line"></vwc-icon>
 	</vwc-button>
 	<vwc-button aria-label="Text Align Right" onclick="onClick(event)">
@@ -53,12 +48,7 @@ Use [Divider](/components/divider/) for adding separator between the action elem
 		<vwc-icon slot="icon" name="chevron-down-solid"></vwc-icon>
 	</vwc-button>
 	<vwc-divider orientation="vertical"></vwc-divider>
-	<vwc-text-field
-		placeholder="Search..."
-		appearance="ghost"
-		shape="pill"
-		style="min-width: 160px;"
-	>
+	<vwc-text-field placeholder="Search..." appearance="ghost" shape="pill" style="min-width: 160px;">
 		<vwc-icon slot="icon" name="search-line"></vwc-icon>
 	</vwc-text-field>
 </vwc-action-group>

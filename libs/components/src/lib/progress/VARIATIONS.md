@@ -54,15 +54,9 @@ Providing a numeric value to the `value` attribute sets the amount of progress t
 
 ```html preview
 <p>Determinate</p>
-<vwc-progress
-	value="50"
-	aria-label="You are 50% through the process"
-></vwc-progress>
+<vwc-progress value="50" aria-label="You are 50% through the process"></vwc-progress>
 <p>Indeterminate</p>
-<vwc-progress
-	value="loading"
-	aria-label="Loading search results"
-></vwc-progress>
+<vwc-progress value="loading" aria-label="Loading search results"></vwc-progress>
 ```
 
 ## Min / Max

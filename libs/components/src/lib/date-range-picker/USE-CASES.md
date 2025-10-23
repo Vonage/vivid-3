@@ -4,11 +4,7 @@
 <form>
 	<vwc-layout column-spacing="small" column-basis="block">
 		<div>
-			<vwc-date-range-picker
-				name="date"
-				label="Event duration"
-				required
-			></vwc-date-range-picker>
+			<vwc-date-range-picker name="date" label="Event duration" required></vwc-date-range-picker>
 		</div>
 		<div class="buttons">
 			<vwc-button label="Reset" type="reset"></vwc-button>

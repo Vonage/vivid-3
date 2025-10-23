@@ -107,21 +107,10 @@ Set the `connotation` attribute to change the nav-item's connotation.
 
 ```html preview
 <vwc-nav>
-	<vwc-nav-item
-		appearance="ghost-light"
-		connotation="cta"
-		href="#"
-		text="Account"
-	>
+	<vwc-nav-item appearance="ghost-light" connotation="cta" href="#" text="Account">
 		<vwc-icon slot="icon" name="profile"></vwc-icon>
 	</vwc-nav-item>
-	<vwc-nav-item
-		appearance="ghost-light"
-		connotation="cta"
-		href="#"
-		text="Settings"
-		current
-	>
+	<vwc-nav-item appearance="ghost-light" connotation="cta" href="#" text="Settings" current>
 		<vwc-icon slot="icon" name="gear-line"></vwc-icon>
 	</vwc-nav-item>
 </vwc-nav>
@@ -136,13 +125,7 @@ Use the `meta` slot to add additional content to the nav item.
 ```html preview
 <vwc-nav>
 	<vwc-nav-item href="#" text="Account">
-		<vwc-badge
-			slot="meta"
-			text="beta"
-			connotation="success"
-			appearance="subtle"
-			shape="pill"
-		></vwc-badge>
+		<vwc-badge slot="meta" text="beta" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
 	</vwc-nav-item>
 </vwc-nav>
 ```
@@ -155,18 +138,10 @@ If set, the `icon`_(deprecated)_ attribute is ignored.
 ```html preview
 <vwc-nav>
 	<vwc-nav-item href="#" text="Account">
-		<vwc-icon
-			slot="icon"
-			name="check-circle-solid"
-			connotation="success"
-		></vwc-icon>
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	</vwc-nav-item>
 	<vwc-nav-item href="#">
-		<vwc-icon
-			slot="icon"
-			name="check-circle-solid"
-			connotation="success"
-		></vwc-icon>
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	</vwc-nav-item>
 </vwc-nav>
 ```

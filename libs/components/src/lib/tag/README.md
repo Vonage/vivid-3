@@ -84,11 +84,7 @@ It accepts a subset of predefined values.
 </vwc-tag-group>
 <p>Subtle-Light Tag with connotation</p>
 <vwc-tag-group>
-	<vwc-tag
-		label="Accent"
-		appearance="subtle-light"
-		connotation="accent"
-	></vwc-tag>
+	<vwc-tag label="Accent" appearance="subtle-light" connotation="accent"></vwc-tag>
 	<vwc-tag label="CTA" appearance="subtle-light" connotation="cta"></vwc-tag>
 </vwc-tag-group>
 <p>Duotone Tag with connotation</p>
@@ -131,12 +127,7 @@ Toggle the `selected` attribute to select and deselect the tag.
 ```html preview
 <vwc-tag-group>
 	<vwc-tag appearance="subtle" label="First tag" selectable selected></vwc-tag>
-	<vwc-tag
-		appearance="subtle-light"
-		label="Second tag"
-		selectable
-		selected
-	></vwc-tag>
+	<vwc-tag appearance="subtle-light" label="Second tag" selectable selected></vwc-tag>
 	<vwc-tag appearance="duotone" label="Third tag" selectable selected></vwc-tag>
 </vwc-tag-group>
 ```

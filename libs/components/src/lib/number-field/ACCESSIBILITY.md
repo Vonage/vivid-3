@@ -9,11 +9,7 @@
 - The add / subtract buttons are automatically given a localized version of the words "Increment" and "Decrement" respectively. These can be overriden using `increment-button-aria-label` and `decrement-button-aria-label`.
 
 ```html
-<vwc-number-field
-	aria-label="choose a number"
-	increment-button-aria-label="Add"
-	decrement-button-aria-label="Subtract"
-></vwc-number-field>
+<vwc-number-field aria-label="choose a number" increment-button-aria-label="Add" decrement-button-aria-label="Subtract"></vwc-number-field>
 ```
 
 ## Resources

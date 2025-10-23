@@ -61,20 +61,8 @@ Below, the Select is `required` but it has no selected option. The `checkedValid
 The Select component is used in the example below as the dialing code part of an international phone number input field.
 
 ```html preview 240px
-<vwc-text-field
-	aria-label="Telephone number"
-	type="tel"
-	inputmode="tel"
-	size="12"
->
-	<vwc-select
-		fixed-dropdown
-		aria-label="Country code"
-		appearance="ghost"
-		class="country-code"
-		id="country-code"
-		slot="leading-action-items"
-	>
+<vwc-text-field aria-label="Telephone number" type="tel" inputmode="tel" size="12">
+	<vwc-select fixed-dropdown aria-label="Country code" appearance="ghost" class="country-code" id="country-code" slot="leading-action-items">
 		<vwc-icon slot="icon" name="flag-united-states"></vwc-icon>
 		<vwc-option value="1" text="United States" label="+1">
 			<vwc-icon slot="icon" name="flag-united-states"></vwc-icon>
@@ -162,45 +150,20 @@ The Select component can be used Avatar to implement a user selector.
 
 ```html preview 250px
 <vwc-select label="User">
-	<vwc-avatar
-		slot="icon"
-		shape="pill"
-		size="condensed"
-		appearance="duotone"
-		initials="AL"
-	></vwc-avatar>
+	<vwc-avatar slot="icon" shape="pill" size="condensed" appearance="duotone" initials="AL"></vwc-avatar>
 	<vwc-option value="1" text="Ada Lovelace">
-		<vwc-avatar
-			slot="icon"
-			shape="pill"
-			size="condensed"
-			appearance="duotone"
-			initials="AL"
-		></vwc-avatar>
+		<vwc-avatar slot="icon" shape="pill" size="condensed" appearance="duotone" initials="AL"></vwc-avatar>
 	</vwc-option>
 	<vwc-option value="2" text="Alan Turing">
-		<vwc-avatar
-			slot="icon"
-			shape="pill"
-			size="condensed"
-			appearance="duotone"
-			initials="AT"
-		></vwc-avatar>
+		<vwc-avatar slot="icon" shape="pill" size="condensed" appearance="duotone" initials="AT"></vwc-avatar>
 	</vwc-option>
 	<vwc-option value="3" text="Grace Hopper">
-		<vwc-avatar
-			slot="icon"
-			shape="pill"
-			size="condensed"
-			appearance="duotone"
-			initials="GH"
-		></vwc-avatar>
+		<vwc-avatar slot="icon" shape="pill" size="condensed" appearance="duotone" initials="GH"></vwc-avatar>
 	</vwc-option>
 </vwc-select>
 <script>
 	document.querySelector('vwc-select').addEventListener('change', (e) => {
-		document.querySelector('vwc-select > vwc-avatar').initials =
-			e.currentTarget.selectedOptions[0].querySelector('vwc-avatar').initials;
+		document.querySelector('vwc-select > vwc-avatar').initials = e.currentTarget.selectedOptions[0].querySelector('vwc-avatar').initials;
 	});
 </script>
 ```

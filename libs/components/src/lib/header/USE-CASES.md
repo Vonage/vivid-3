@@ -15,29 +15,9 @@ A _fixed_ header as primary element containing a [side drawer](/components/side-
 			<vwc-layout gutters="small" column-basis="block">
 				<h2>Scroll this window</h2>
 
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis
-					ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est
-					erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor
-					orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel
-					nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus.
-					Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit
-					nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet
-					ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque
-					pellentesque id tortor at ornare.
-				</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.</p>
 
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis
-					ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est
-					erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor
-					orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel
-					nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus.
-					Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit
-					nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet
-					ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque
-					pellentesque id tortor at ornare.
-				</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.</p>
 			</vwc-layout>
 		</main>
 	</vwc-side-drawer>
@@ -77,29 +57,9 @@ A [side drawer](/components/side-drawer/) as primary element containing a header
 		<!-- main element assigned to header's 'app-content' slot -->
 		<main slot="app-content">
 			<vwc-layout gutters="small" column-basis="block">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis
-					ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est
-					erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor
-					orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel
-					nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus.
-					Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit
-					nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet
-					ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque
-					pellentesque id tortor at ornare.
-				</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.</p>
 
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis
-					ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est
-					erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor
-					orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel
-					nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus.
-					Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit
-					nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet
-					ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque
-					pellentesque id tortor at ornare.
-				</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.</p>
 			</vwc-layout>
 		</main>
 	</vwc-header>
@@ -121,35 +81,14 @@ In this example, the banner sticks to the top of the window.
 <vwc-header>
 	Header with Banner
 
-	<vwc-banner
-		slot="app-content"
-		text="Here's some information that you may find important!"
-	></vwc-banner>
+	<vwc-banner slot="app-content" text="Here's some information that you may find important!"></vwc-banner>
 
 	<vwc-layout slot="app-content" column-basis="block" gutters="medium">
 		<h1>Page Header</h1>
 
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante
-			est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat,
-			gravida sed velit id, tempus tempus metus. Proin mollis auctor orci.
-			Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor
-			sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel
-			ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut
-			ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse
-			potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-		</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.</p>
 
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante
-			est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat,
-			gravida sed velit id, tempus tempus metus. Proin mollis auctor orci.
-			Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor
-			sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel
-			ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut
-			ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse
-			potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-		</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.</p>
 	</vwc-layout>
 </vwc-header>
 

@@ -6,12 +6,8 @@ When `control-type` is set to `radio`, it is the consuming app's responsibility 
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-selectable-box control-type="checkbox" class="box">
-		Checkbox control
-	</vwc-selectable-box>
-	<vwc-selectable-box control-type="radio" class="box">
-		Radio control
-	</vwc-selectable-box>
+	<vwc-selectable-box control-type="checkbox" class="box"> Checkbox control </vwc-selectable-box>
+	<vwc-selectable-box control-type="radio" class="box"> Radio control </vwc-selectable-box>
 </vwc-layout>
 
 <style>
@@ -27,18 +23,10 @@ Use the `control-placement` attribute to change the box's selectable control pla
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="medium">
-	<vwc-selectable-box>
-		Control placement: <strong>end-stacked (default)</strong>
-	</vwc-selectable-box>
-	<vwc-selectable-box control-placement="start-stacked">
-		Control placement: <strong>start-stacked</strong>
-	</vwc-selectable-box>
-	<vwc-selectable-box control-placement="end">
-		Control placement: <strong>end</strong>
-	</vwc-selectable-box>
-	<vwc-selectable-box control-placement="start">
-		Control placement: <strong>start</strong>
-	</vwc-selectable-box>
+	<vwc-selectable-box> Control placement: <strong>end-stacked (default)</strong> </vwc-selectable-box>
+	<vwc-selectable-box control-placement="start-stacked"> Control placement: <strong>start-stacked</strong> </vwc-selectable-box>
+	<vwc-selectable-box control-placement="end"> Control placement: <strong>end</strong> </vwc-selectable-box>
+	<vwc-selectable-box control-placement="start"> Control placement: <strong>start</strong> </vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -49,12 +37,8 @@ It accepts a subset of predefined values.
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-selectable-box connotation="accent" class="box">
-		Accent box
-	</vwc-selectable-box>
-	<vwc-selectable-box connotation="cta" class="box">
-		CTA box
-	</vwc-selectable-box>
+	<vwc-selectable-box connotation="accent" class="box"> Accent box </vwc-selectable-box>
+	<vwc-selectable-box connotation="cta" class="box"> CTA box </vwc-selectable-box>
 </vwc-layout>
 
 <style>
@@ -71,12 +55,8 @@ Setting the `clickable-box` attribute makes the whole box clickable, just make s
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-selectable-box clickable-box class="box">
-		Clickable accent box
-	</vwc-selectable-box>
-	<vwc-selectable-box clickable-box connotation="cta" class="box">
-		Clickable CTA box
-	</vwc-selectable-box>
+	<vwc-selectable-box clickable-box class="box"> Clickable accent box </vwc-selectable-box>
+	<vwc-selectable-box clickable-box connotation="cta" class="box"> Clickable CTA box </vwc-selectable-box>
 </vwc-layout>
 
 <style>
@@ -92,16 +72,8 @@ Set the `checked` attribute to indicate the checked state of the box.
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-selectable-box
-		control-type="checkbox"
-		checked
-		style="max-inline-size: 450px"
-	>
-		Checked checkbox box
-	</vwc-selectable-box>
-	<vwc-selectable-box control-type="radio" checked class="box">
-		Checked radio box
-	</vwc-selectable-box>
+	<vwc-selectable-box control-type="checkbox" checked style="max-inline-size: 450px"> Checked checkbox box </vwc-selectable-box>
+	<vwc-selectable-box control-type="radio" checked class="box"> Checked radio box </vwc-selectable-box>
 </vwc-layout>
 <style>
 	.box {
@@ -116,8 +88,6 @@ By default, the Selectable Box is styled in a spacious manner. Enabling the `tig
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-selectable-box tight style="max-inline-size: 450px">
-		Tight box
-	</vwc-selectable-box>
+	<vwc-selectable-box tight style="max-inline-size: 450px"> Tight box </vwc-selectable-box>
 </vwc-layout>
 ```
