@@ -10,8 +10,7 @@ export const TagGroupTemplate = html<TagGroup>`
 	<div
 		class="${getClasses}"
 		${delegateAria({
-			role: 'listbox',
-			ariaOrientation: 'horizontal',
+			role: 'group',
 		})}
 	>
 		<slot></slot>

@@ -46,11 +46,7 @@ export const tagTemplate = (context: VividElementDefinitionContext) => {
 
 	return html<Tag>` <span
 		class="${getClasses}"
-		${delegateAria({
-			role: 'option',
-			ariaDisabled: (x) => x.disabled,
-			ariaSelected: (x) => x.selected && x.selectable,
-		})}
+		${delegateAria()}
 		tabindex="${(x) => (x.disabled || x.removable ? null : 0)}"
 		@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
 		@click="${(x) => x.handleClick()}"
