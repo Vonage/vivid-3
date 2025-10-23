@@ -35,15 +35,6 @@ export class Listbox extends VividElement {
 	}
 
 	/**
-	 * Returns true if there is one or more selectable option.
-	 *
-	 * @internal
-	 */
-	protected get hasSelectableOptions(): boolean {
-		return this.options.length > 0 && !this.options.every((o) => o.disabled);
-	}
-
-	/**
 	 * The number of options.
 	 *
 	 * @public
@@ -63,8 +54,20 @@ export class Listbox extends VividElement {
 	}
 
 	set options(value: ListboxOption[]) {
+		const prev = this._options;
 		this._options = value;
 		Observable.notify(this, 'options');
+
+		if (this.$fastController.isConnected) {
+			const newSelectedIndex = this._newDefaultSelectedIndex(
+				prev,
+				value,
+				this.selectedIndex
+			);
+			if (newSelectedIndex !== null) {
+				this.selectedIndex = newSelectedIndex;
+			}
+		}
 	}
 
 	/**
@@ -216,47 +219,14 @@ export class Listbox extends VividElement {
 		return this.options.filter((o: ListboxOption) => o.text.trim().match(re));
 	}
 
-	/**
-	 * Determines the index of the next option which is selectable, if any.
-	 *
-	 * @param prev - the previous selected index
-	 * @param next - the next index to select
-	 *
-	 * @internal
-	 */
-	protected getSelectableIndex(prev: number, next: number) {
-		const direction = prev > next ? -1 : 1;
-		const potentialDirection = prev + direction;
-
-		let nextSelectableOption: ListboxOption | null = null;
-
-		switch (direction) {
-			case -1: {
-				nextSelectableOption = this.options.reduceRight<ListboxOption | null>(
-					(nextSelectableOption, thisOption, index) =>
-						!nextSelectableOption &&
-						!thisOption.disabled &&
-						index < potentialDirection
-							? thisOption
-							: nextSelectableOption,
-					nextSelectableOption
-				);
-				break;
-			}
-
-			case 1: {
-				nextSelectableOption = this.options.reduce<ListboxOption | null>(
-					(nextSelectableOption, thisOption, index) =>
-						!nextSelectableOption &&
-						!thisOption.disabled &&
-						index > potentialDirection
-							? thisOption
-							: nextSelectableOption,
-					nextSelectableOption
-				);
-				break;
-			}
-		}
+	protected getNextSelectableIndex(fromIndex: number) {
+		const nextSelectableOption = this.options.reduce<ListboxOption | null>(
+			(nextSelectableOption, thisOption, index) =>
+				!nextSelectableOption && !thisOption.disabled && index >= fromIndex
+					? thisOption
+					: nextSelectableOption,
+			null
+		);
 
 		return this.options.indexOf(nextSelectableOption as any);
 	}
@@ -401,22 +371,17 @@ export class Listbox extends VividElement {
 	 * @internal
 	 */
 	selectedIndexChanged(prev: number | undefined, next: number): void {
-		if (!this.hasSelectableOptions) {
-			this.selectedIndex = -1;
+		const validNext = this._validSelectedIndex(next);
+		if (next !== validNext) {
+			this.selectedIndex = validNext;
 			return;
 		}
-
-		if (
-			this.options[this.selectedIndex]?.disabled &&
-			typeof prev === 'number'
-		) {
-			const selectableIndex = this.getSelectableIndex(prev, next);
-			const newNext = selectableIndex > -1 ? selectableIndex : prev;
-			this.selectedIndex = newNext;
-			return;
-		}
-
 		this.setSelectedOptions();
+	}
+
+	protected _validSelectedIndex(index: number): number {
+		const outOfRange = index > this.options.length - 1 || index < -1;
+		return outOfRange ? -1 : index;
 	}
 
 	/**
@@ -481,13 +446,24 @@ export class Listbox extends VividElement {
 		}
 	}
 
-	/**
-	 * Updates the selected index to match the first selected option.
-	 *
-	 * @internal
-	 */
-	protected setDefaultSelectedOption() {
-		this.selectedIndex = this.options.findIndex((el) => el.defaultSelected);
+	/// For this options change, determine if selectedIndex should change based on defaultSelected. Otherwise, returns null.
+	protected _newDefaultSelectedIndex(
+		prev: ListboxOption[],
+		next: ListboxOption[],
+		currentSelectedIndex: number
+	): number | null {
+		// When a new option with defaultSelected=true is added, select it
+		for (const [index, newOption] of next.entries()) {
+			if (this._isDefaultSelected(newOption) && !prev.includes(newOption)) {
+				return index;
+			}
+		}
+		return null;
+	}
+
+	/// Whether an option should be considered defaultSelected
+	protected _isDefaultSelected(option: ListboxOption) {
+		return option.defaultSelected;
 	}
 
 	/**
@@ -501,11 +477,10 @@ export class Listbox extends VividElement {
 	 * @public
 	 */
 	protected setSelectedOptions() {
-		if (this.options.length) {
-			this.selectedOptions = [this.options[this.selectedIndex]];
-			this._activeDescendant = this.firstSelectedOption?.id ?? '';
-			this.focusAndScrollOptionIntoView();
-		}
+		this.selectedOptions =
+			this.selectedIndex !== -1 ? [this.options[this.selectedIndex]] : [];
+		this._activeDescendant = this.firstSelectedOption?.id ?? '';
+		this.focusAndScrollOptionIntoView();
 	}
 
 	/**
@@ -529,11 +504,6 @@ export class Listbox extends VividElement {
 			option.ariaPosInSet = `${index + 1}`;
 			option.ariaSetSize = setSize;
 		});
-
-		if (this.$fastController.isConnected) {
-			this.setSelectedOptions();
-			this.setDefaultSelectedOption();
-		}
 	}
 
 	/**

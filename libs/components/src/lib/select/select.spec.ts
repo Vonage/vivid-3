@@ -48,6 +48,17 @@ describe('vwc-select', () => {
 
 	const getListbox = () => element.shadowRoot!.querySelector('.listbox')!;
 
+	const getPlaceholder = () => {
+		if (getControlElement(element).classList.contains('shows-placeholder')) {
+			return (
+				getControlElement(element)
+					.querySelector('.selected-value')
+					?.textContent?.trim() ?? null
+			);
+		}
+		return null;
+	};
+
 	let element: Select;
 
 	beforeAll(() => {
@@ -161,9 +172,9 @@ describe('vwc-select', () => {
 	describe('selectedIndex', () => {
 		beforeEach(async () => {
 			element.innerHTML = `
+				<vwc-option value="0" text="0"></vwc-option>
 				<vwc-option value="1" text="1"></vwc-option>
 				<vwc-option value="2" text="2"></vwc-option>
-				<vwc-option value="3" text="3"></vwc-option>
 				`;
 			await elementUpdated(element);
 		});
@@ -176,33 +187,29 @@ describe('vwc-select', () => {
 		it('should change selection when changed', async () => {
 			element.selectedIndex = 2;
 			await elementUpdated(element);
-			expect(element.selectedOptions).toEqual([getOption('3')]);
+			expect(element.selectedOptions).toEqual([getOption('2')]);
 		});
 
 		it('should update value when selectedIndex is set', async () => {
 			element.selectedIndex = 2;
 			await elementUpdated(element);
-			expect(element.value).toEqual('3');
+			expect(element.value).toEqual('2');
 		});
 
-		it('should choose the next selectable option when selecting a disabled option', async () => {
-			getOption('2').disabled = true;
+		it('should allow selecting a disabled option through selectedIndex', async () => {
+			getOption('1').disabled = true;
 			element.selectedIndex = 1;
-			expect(element.selectedIndex).toEqual(2);
-		});
-
-		it('should search for the next selectable option in reverse order when the new index ist smaller than the current one', async () => {
-			getOption('2').disabled = true;
-			element.selectedIndex = 2;
-			element.selectedIndex = 1;
-			expect(element.selectedIndex).toEqual(0);
-		});
-
-		it('should revert to the previous value if no selectable option can be found', async () => {
-			getOption('3').disabled = true;
-			element.selectedIndex = 1;
-			element.selectedIndex = 2;
 			expect(element.selectedIndex).toEqual(1);
+		});
+
+		it('should set selectedIndex to -1 when selectedIndex is set to value out of range', async () => {
+			element.selectedIndex = 100;
+			expect(element.selectedIndex).toEqual(-1);
+		});
+
+		it('should set selectedIndex to -1 when selectedIndex is set to a negative value', async () => {
+			element.selectedIndex = -100;
+			expect(element.selectedIndex).toEqual(-1);
 		});
 	});
 
@@ -663,20 +670,20 @@ describe('vwc-select', () => {
 	});
 
 	describe('options', () => {
-		beforeEach(async () => {
+		it('should return the option elements', async () => {
 			element.innerHTML = `
-			<option value="1">1</option>
-			<option value="2" selected>2</option>
-			<option value="3">3</option>
+			<option id="option"></option>
+			<vwc-option id="listbox-option"></vwc-option>
+			<div id="role" role="option"></div>
+			<span id="other"></span>
 			`;
 			await elementUpdated(element);
-		});
 
-		it('should recieve array of options', async () => {
-			await elementUpdated(element);
-			expect(element.options[1]).toEqual(
-				element.querySelector('option:nth-child(2)')
-			);
+			expect(element.options).toEqual([
+				element.querySelector('#option'),
+				element.querySelector('#listbox-option'),
+				element.querySelector('#role'),
+			]);
 		});
 	});
 
@@ -736,14 +743,7 @@ describe('vwc-select', () => {
 			)) as Select;
 
 			await elementUpdated(element);
-			expect(
-				getControlElement(element)
-					.querySelector('.selected-value')
-					?.textContent?.trim()
-			).toEqual('placeholder');
-			expect(getControlElement(element).classList).toContain(
-				'shows-placeholder'
-			);
+			expect(getPlaceholder()).toBe('placeholder');
 		});
 
 		it('should display a selected option instead of the placeholder', async () => {
@@ -766,6 +766,22 @@ describe('vwc-select', () => {
 			);
 		});
 
+		it('should display the placeholder when the value is changed to a non-option and no valid options are available', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} placeholder="placeholder">
+					<option value="1">1</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+			element.value = '1';
+			await elementUpdated(element);
+
+			element.querySelector('option')!.disabled = true;
+			element.value = '';
+			await elementUpdated(element);
+
+			expect(getPlaceholder()).toBe('placeholder');
+		});
+
 		it('should be invalid if required and no value selected', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} required placeholder="placeholder">
@@ -779,9 +795,8 @@ describe('vwc-select', () => {
 		});
 
 		it('should display placeholder if form resets and placeholder exists', async () => {
-			const placeholderText = 'placeholder';
 			const form = (await fixture(
-				`<form><${COMPONENT_TAG} name="select" required placeholder="${placeholderText}">
+				`<form><${COMPONENT_TAG} name="select" required placeholder="placeholder">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -795,9 +810,7 @@ describe('vwc-select', () => {
 			await elementUpdated(element);
 
 			expect(element.selectedIndex).toBe(-1);
-			expect(
-				element.shadowRoot?.querySelector('.selected-value .text')?.textContent
-			).toBe(placeholderText);
+			expect(getPlaceholder()).toBe('placeholder');
 		});
 	});
 
@@ -835,6 +848,79 @@ describe('vwc-select', () => {
 			element.value = '3';
 
 			expect(element.value).toBe('');
+		});
+	});
+
+	describe('default value', () => {
+		it('should use the first defaultSelected option as initial value', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}>
+					<option value="1">1</option>
+					<option value="2" selected>2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+
+			expect(element.value).toBe('2');
+		});
+
+		it('should use the first non-disabled option as initial value when no option is defaultSelected', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}>
+					<option value="1" disabled>1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+
+			expect(element.value).toBe('2');
+		});
+
+		it('should have an empty value when there are no non-disabled options', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}>
+					<option value="1" disabled>1</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+
+			expect(element.value).toBe('');
+		});
+
+		it('should set update value when new defaultSelected option is added', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}>
+					<option value="1">1</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+			await elementUpdated(element);
+
+			const option = document.createElement('option');
+			option.value = '2';
+			option.textContent = '2';
+			option.setAttribute('selected', '');
+			element.appendChild(option);
+			await elementUpdated(element);
+
+			expect(element.value).toBe('2');
+		});
+
+		it('should not update its value when a new non-defaultSelected option is added', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}>
+					<option value="1">1</option>
+					<option value="2">2</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+			element.value = '2';
+			await elementUpdated(element);
+
+			const option = document.createElement('option');
+			option.value = '3';
+			option.textContent = '3';
+			element.appendChild(option);
+			await elementUpdated(element);
+
+			expect(element.value).toBe('2');
 		});
 	});
 
