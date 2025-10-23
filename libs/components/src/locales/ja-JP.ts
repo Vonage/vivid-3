@@ -207,6 +207,7 @@ const jaJP: Locale = {
 		underline: '下線',
 		strikethrough: '取り消し線',
 		monospace: '等幅フォント',
+		textColor: '文字色',
 		undo: '元に戻す',
 		redo: 'やり直し',
 		bulletList: '箇条書き',
