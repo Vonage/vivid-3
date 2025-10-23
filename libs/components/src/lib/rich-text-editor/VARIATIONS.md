@@ -16,6 +16,7 @@
 			new RTEUnderlineFeature(),
 			new RTEStrikethroughFeature(),
 			new RTEMonospaceFeature(),
+			new RTEListFeature(),
 			new RTELinkFeature(),
 		]);
 		rteComponent.instance = config.instantiateEditor();
@@ -41,6 +42,7 @@
 			new RTEUnderlineFeature(),
 			new RTEStrikethroughFeature(),
 			new RTEMonospaceFeature(),
+			new RTEListFeature(),
 			new RTEAlignmentFeature(),
 			new RTELinkFeature(),
 		]);

@@ -3,6 +3,7 @@ import { RTEBoldFeature } from './features/bold';
 import { RTEConfig } from './config';
 import { RTEFreeformStructure } from './features/freeform';
 import { RTETextBlockStructure } from './features/text-block';
+import { RTEAlignmentFeature } from './features/alignment';
 
 describe('RTEConfig', () => {
 	it('should throw an error when required core feature is missing', () => {
@@ -41,10 +42,21 @@ describe('RTEConfig', () => {
 		);
 	});
 
+	it('should throw an error when both RTEFreeformStructure and RTEAlignmentFeature are provided', () => {
+		expect(
+			() =>
+				new RTEConfig([
+					new RTECore(),
+					new RTEFreeformStructure(),
+					new RTEAlignmentFeature(),
+				])
+		).toThrow('RTEAlignmentFeature cannot be used with RTEFreeformStructure');
+	});
+
 	it('should initialise with an empty doc by default', () => {
 		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
 		const rte = config.instantiateEditor();
-		expect(rte.state.doc.toString()).toBe('doc');
+		expect(rte.state.doc.toString()).toBe('doc(text_line)');
 	});
 
 	it('should allow passing an initial doc', () => {
@@ -85,13 +97,18 @@ describe('RTEConfig', () => {
 			new RTEBoldFeature(),
 		]);
 		expect(config.parseHTML('Hello <strong>world</strong>')).toEqual([
-			{ type: 'text', text: 'Hello ' },
 			{
-				type: 'text',
-				text: 'world',
-				marks: [
+				type: 'text_line',
+				content: [
+					{ type: 'text', text: 'Hello ' },
 					{
-						type: 'bold',
+						type: 'text',
+						text: 'world',
+						marks: [
+							{
+								type: 'bold',
+							},
+						],
 					},
 				],
 			},

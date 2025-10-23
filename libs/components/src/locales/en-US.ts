@@ -205,6 +205,8 @@ const enUS: Locale = {
 		monospace: 'Monospace',
 		undo: 'Undo',
 		redo: 'Redo',
+		bulletList: 'Bullet list',
+		numberedList: 'Numbered list',
 		alignment: 'Alignment',
 		alignments: {
 			left: 'Left',
