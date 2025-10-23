@@ -31,7 +31,7 @@ describe('RTEBoldFeature', () => {
 		keydown('b', { ctrl: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <bold>'world|]')"`
+			`"text_line('Hello ', <bold>'[world|]')"`
 		);
 
 		keydown('b', { ctrl: true });
@@ -48,7 +48,9 @@ describe('RTEBoldFeature', () => {
 		placeCursor('Hello |world');
 		keydown('b', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |world')"`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello |<bold>|world')"`
+		);
 
 		await typeTextAtCursor('beautiful ');
 
@@ -67,7 +69,7 @@ describe('RTEBoldFeature', () => {
 		toolbarButton('Bold').click();
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <bold>'world|]')"`
+			`"text_line('Hello ', <bold>'[world|]')"`
 		);
 		expect(isActive(toolbarButton('Bold'))).toBe(true);
 
