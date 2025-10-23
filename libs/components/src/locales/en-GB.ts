@@ -207,6 +207,7 @@ const enGB: Locale = {
 		underline: 'Underline',
 		strikethrough: 'Strikethrough',
 		monospace: 'Monospace',
+		textColor: 'Text colour',
 		undo: 'Undo',
 		redo: 'Redo',
 		bulletList: 'Bullet list',

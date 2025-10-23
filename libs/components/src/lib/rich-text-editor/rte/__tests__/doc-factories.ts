@@ -50,5 +50,6 @@ export const docFactories = {
 	strikethrough: markFactory('strikethrough'),
 	monospace: markFactory('monospace'),
 	fontSize: markFactory('fontSize'),
+	textColor: markFactory('textColor'),
 	link: markFactory('link'),
 };

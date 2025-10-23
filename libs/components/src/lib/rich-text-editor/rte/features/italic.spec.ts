@@ -31,7 +31,7 @@ describe('RTEItalicFeature', () => {
 		keydown('i', { ctrl: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <italic>'world|]')"`
+			`"text_line('Hello ', <italic>'[world|]')"`
 		);
 
 		keydown('i', { ctrl: true });
@@ -48,7 +48,9 @@ describe('RTEItalicFeature', () => {
 		placeCursor('Hello |world');
 		keydown('i', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello |world')"`);
+		expect(docStr()).toMatchInlineSnapshot(
+			`"text_line('Hello |<italic>|world')"`
+		);
 
 		await typeTextAtCursor('beautiful ');
 
@@ -67,7 +69,7 @@ describe('RTEItalicFeature', () => {
 		toolbarButton('Italic').click();
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello [', <italic>'world|]')"`
+			`"text_line('Hello ', <italic>'[world|]')"`
 		);
 		expect(isActive(toolbarButton('Italic'))).toBe(true);
 
