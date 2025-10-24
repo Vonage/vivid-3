@@ -68,7 +68,7 @@ export const cssConfig: Hooks = {
 						(stop: any) =>
 							`${stop.offsetX}px ${stop.offsetY}px ${stop.blur} ${
 								stop.spread
-							} ${getHex(stop.color)}`,
+							} ${getHex(stop.color)}`
 					)
 					.join(', ');
 			},

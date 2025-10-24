@@ -27,7 +27,7 @@ describe('CSS Features', () => {
 			const out = cssConfig.transforms['vvd/value/css/dimension'].transform(
 				token,
 				{},
-				{},
+				{}
 			);
 
 			expect(out).toEqual('4px');
@@ -58,11 +58,11 @@ describe('CSS Features', () => {
 				{
 					basePxFontSize: 14,
 				},
-				{},
+				{}
 			);
 
 			expect(out).toEqual(
-				'500 0.42857142857142855rem/0.5714285714285714rem "Spezia"',
+				'500 0.42857142857142855rem/0.5714285714285714rem "Spezia"'
 			);
 		});
 	});
@@ -119,11 +119,11 @@ describe('CSS Features', () => {
 			const out = cssConfig.transforms['vvd/value/css/shadow'].transform(
 				token,
 				{},
-				{},
+				{}
 			);
 
 			expect(out).toEqual(
-				'0px 1px 4 0 #c7c6c66b, 0px 1px 2 0 #c7c6c62b, 0px 2px 1 0 #c7c6c62b',
+				'0px 1px 4 0 #c7c6c66b, 0px 1px 2 0 #c7c6c62b, 0px 2px 1 0 #c7c6c62b'
 			);
 		});
 	});
@@ -138,7 +138,7 @@ describe('CSS Features', () => {
 			const out = cssConfig.transforms['vvd/value/css/roundRems'].transform(
 				token,
 				{},
-				{},
+				{}
 			);
 			expect(out).toEqual('1.12rem');
 		});
@@ -151,7 +151,7 @@ describe('CSS Features', () => {
 			const out = cssConfig.transforms['vvd/value/css/roundRems'].transform(
 				token,
 				{},
-				{},
+				{}
 			);
 			expect(out).toEqual('12px');
 		});
