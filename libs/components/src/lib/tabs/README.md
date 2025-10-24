@@ -62,18 +62,10 @@ The `icon` slot on the **Tab** component can be used to display a custom icon. I
 ```html preview
 <vwc-tabs>
 	<vwc-tab label="Tab one">
-		<vwc-icon
-			slot="icon"
-			name="check-circle-solid"
-			connotation="success"
-		></vwc-icon>
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	</vwc-tab>
 	<vwc-tab label="Tab two">
-		<vwc-icon
-			slot="icon"
-			name="close-circle-solid"
-			connotation="alert"
-		></vwc-icon>
+		<vwc-icon slot="icon" name="close-circle-solid" connotation="alert"></vwc-icon>
 	</vwc-tab>
 	<vwc-tab-panel>Tab Panel one</vwc-tab-panel>
 	<vwc-tab-panel>Tab Panel two</vwc-tab-panel>
@@ -92,12 +84,7 @@ In the example below, a Button is provided that adds a new Tab when clicked.
 	<vwc-tab label="Tab two"></vwc-tab>
 	<vwc-tab-panel>Tab Panel one</vwc-tab-panel>
 	<vwc-tab-panel>Tab Panel two</vwc-tab-panel>
-	<vwc-button
-		slot="action-items"
-		shape="pill"
-		size="condensed"
-		onclick="addTab()"
-	>
+	<vwc-button slot="action-items" shape="pill" size="condensed" onclick="addTab()">
 		<vwc-icon slot="icon" name="plus-line"></vwc-icon>
 	</vwc-button>
 </vwc-tabs>
@@ -134,12 +121,7 @@ When using Tabs inside flex structure, setting `--tabs-block-size: 100%` with `f
 			<vwc-icon slot="icon" name="star-line"></vwc-icon>
 		</vwc-tab>
 		<vwc-tab-panel>
-			<vwc-empty-state
-				icon="error-solid"
-				headline="No results"
-				connotation="alert"
-			>
-			</vwc-empty-state>
+			<vwc-empty-state icon="error-solid" headline="No results" connotation="alert"> </vwc-empty-state>
 		</vwc-tab-panel>
 		<vwc-tab-panel>Playlist</vwc-tab-panel>
 		<vwc-tab-panel>Favourites</vwc-tab-panel>

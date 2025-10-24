@@ -27,11 +27,7 @@ It's bad for UX and accessibility.<br />[The problem with placeholders](https://
 <docs-do slot="description" headline="Use helper text to provide extra information about the field" caption="It is visible to the user at all times and it is read out by screen readers when the user focuses on the input element.">
 
 ```html preview example
-<vwc-text-field
-	helper-text="Must be at least six chars and contain both letters and numbers"
-	label="Password"
-	type="password"
-></vwc-text-field>
+<vwc-text-field helper-text="Must be at least six chars and contain both letters and numbers" label="Password" type="password"></vwc-text-field>
 ```
 
 </docs-do>

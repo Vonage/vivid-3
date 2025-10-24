@@ -20,10 +20,7 @@ The `helper-text` attribute provides additional information to help the user ent
 To add HTML to the helper text, use the [helper-text slot](/components/time-picker/code/#helper-text-slot).
 
 ```html preview 360px
-<vwc-time-picker
-	label="Start time"
-	helper-text="Select a time for the event to start"
-></vwc-time-picker>
+<vwc-time-picker label="Start time" helper-text="Select a time for the event to start"></vwc-time-picker>
 ```
 
 ### Contextual Help
@@ -32,9 +29,7 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 
 ```html preview 360px
 <vwc-time-picker label="Start time">
-	<vwc-contextual-help slot="contextual-help"
-		>Select a time for the event to start</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Select a time for the event to start</vwc-contextual-help>
 </vwc-time-picker>
 ```
 
@@ -57,10 +52,7 @@ It will always contain a valid time in the format `HH:MM:SS` when a time is sele
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
 ```html preview 360px
-<vwc-time-picker
-	error-text="Please select a time for the event to start"
-	label="Start time"
-></vwc-time-picker>
+<vwc-time-picker error-text="Please select a time for the event to start" label="Start time"></vwc-time-picker>
 ```
 
 ## Clock

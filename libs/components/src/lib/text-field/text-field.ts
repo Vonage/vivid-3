@@ -64,7 +64,7 @@ export const TextFieldType = {
  * Types for the text field sub-types
  * @public
  */
-export type TextFieldType = typeof TextFieldType[keyof typeof TextFieldType];
+export type TextFieldType = (typeof TextFieldType)[keyof typeof TextFieldType];
 
 // Safari does not support styling the `::placeholder` pseudo-element on slotted input
 // See bug: https://bugs.webkit.org/show_bug.cgi?id=223814

@@ -28,7 +28,7 @@ export const SKIP_DIRECTIONS = {
 };
 
 export type SKIP_DIRECTIONS_TYPE =
-	typeof SKIP_DIRECTIONS[keyof typeof SKIP_DIRECTIONS];
+	(typeof SKIP_DIRECTIONS)[keyof typeof SKIP_DIRECTIONS];
 
 export function formatTime(time: number) {
 	if (!time || Number.isNaN(time)) {

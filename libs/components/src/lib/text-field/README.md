@@ -60,16 +60,8 @@ The `inputmode` attribute hints at the type of data that might be entered by the
 
 ```html preview
 <div>
-	<vwc-text-field
-		type="tel"
-		inputmode="tel"
-		label="Telephone number"
-	></vwc-text-field>
-	<vwc-text-field
-		type="email"
-		inputmode="email"
-		label="Email address"
-	></vwc-text-field>
+	<vwc-text-field type="tel" inputmode="tel" label="Telephone number"></vwc-text-field>
+	<vwc-text-field type="email" inputmode="email" label="Email address"></vwc-text-field>
 </div>
 
 <style>
@@ -143,16 +135,8 @@ In the example below a Select is added to implement a category filtered search f
 The `helper-text` slot allows you to use rich content as the text-field's helper text.
 
 ```html preview
-<vwc-text-field
-	label="EIN"
-	maxlength="12"
-	char-count
-	pattern="[0-9]*"
-	inputmode="numeric"
->
-	<span slot="helper-text">
-		<a href="#">Employer Identification Number</a> should be 12 characters
-	</span>
+<vwc-text-field label="EIN" maxlength="12" char-count pattern="[0-9]*" inputmode="numeric">
+	<span slot="helper-text"> <a href="#">Employer Identification Number</a> should be 12 characters </span>
 </vwc-text-field>
 
 <style>
@@ -168,9 +152,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 
 ```html preview
 <vwc-text-field label="First name">
-	<vwc-contextual-help slot="contextual-help"
-		>This is the contextual help</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">This is the contextual help</vwc-contextual-help>
 </vwc-text-field>
 ```
 

@@ -16,23 +16,16 @@ registerDateRangePicker('your-prefix');
 	registerDateRangePicker('your-prefix');
 </script>
 
-<your-prefix-date-range-picker
-	label="Event duration"
-	class="date-range-picker"
-></your-prefix-date-range-picker>
+<your-prefix-date-range-picker label="Event duration" class="date-range-picker"></your-prefix-date-range-picker>
 
 <script>
-	document
-		.querySelector('.date-range-picker')
-		.addEventListener('input:start', (e) => {
-			console.log('start changed:', e.target.start);
-		});
+	document.querySelector('.date-range-picker').addEventListener('input:start', (e) => {
+		console.log('start changed:', e.target.start);
+	});
 
-	document
-		.querySelector('.date-range-picker')
-		.addEventListener('input:end', (e) => {
-			console.log('end changed:', e.target.end);
-		});
+	document.querySelector('.date-range-picker').addEventListener('input:end', (e) => {
+		console.log('end changed:', e.target.end);
+	});
 </script>
 ```
 
@@ -81,9 +74,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 
 ```html preview 460px
 <vwc-date-range-picker label="Event duration">
-	<vwc-contextual-help slot="contextual-help"
-		>Please see our opening times</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Please see our opening times</vwc-contextual-help>
 </vwc-date-range-picker>
 ```
 

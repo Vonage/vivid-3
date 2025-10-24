@@ -4,42 +4,19 @@
 <vwc-side-drawer id="sideDrawer" class="vwc-side-drawer" alternate open>
 	<vwc-layout gutters="small" column-basis="block">
 		<vwc-nav id="sideNav">
-			<vwc-nav-item
-				href="#"
-				text="Calls"
-				data-value="Calls"
-				onclick="onClick(this)"
-				current
-			>
+			<vwc-nav-item href="#" text="Calls" data-value="Calls" onclick="onClick(this)" current>
 				<vwc-icon slot="icon" name="call-line"></vwc-icon>
 			</vwc-nav-item>
-			<vwc-nav-item
-				href="#"
-				text="Voicemail"
-				data-value="Voicemail"
-				onclick="onClick(this)"
-			>
+			<vwc-nav-item href="#" text="Voicemail" data-value="Voicemail" onclick="onClick(this)">
 				<vwc-icon slot="icon" name="voicemail-line"></vwc-icon>
 			</vwc-nav-item>
-			<vwc-nav-item
-				href="#"
-				text="SMS"
-				data-value="SMS"
-				onclick="onClick(this)"
-			>
+			<vwc-nav-item href="#" text="SMS" data-value="SMS" onclick="onClick(this)">
 				<vwc-icon slot="icon" name="chat-line"></vwc-icon>
 			</vwc-nav-item>
 		</vwc-nav>
 	</vwc-layout>
-	<vwc-layout slot="app-content" gutters="medium">
-		Toggle the side drawer by clicking the FAB.
-	</vwc-layout>
-	<vwc-fab
-		aria-label="Toggle Side Drawer"
-		class="vwc-fab"
-		slot="app-content"
-		onclick="onToggle()"
-	>
+	<vwc-layout slot="app-content" gutters="medium"> Toggle the side drawer by clicking the FAB. </vwc-layout>
+	<vwc-fab aria-label="Toggle Side Drawer" class="vwc-fab" slot="app-content" onclick="onToggle()">
 		<vwc-icon slot="icon" name="menu-solid"></vwc-icon>
 	</vwc-fab>
 </vwc-side-drawer>
@@ -90,14 +67,7 @@
 ```html preview full 250px
 <vwc-side-drawer class="side-drawer" open>
 	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
-	<div class="content" slot="app-content">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</div>
+	<div class="content" slot="app-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
 </vwc-side-drawer>
 
 <style>
@@ -125,13 +95,7 @@
 		Notice that the side drawer overlaps the application content.
 	</vwc-layout>
 
-	<vwc-fab
-		aria-label="Toggle Side Drawer"
-		class="vwc-fab"
-		connotation="accent"
-		slot="app-content"
-		onclick="sidedrawer.open = !sidedrawer.open"
-	>
+	<vwc-fab aria-label="Toggle Side Drawer" class="vwc-fab" connotation="accent" slot="app-content" onclick="sidedrawer.open = !sidedrawer.open">
 		<vwc-icon slot="icon" name="menu-solid"></vwc-icon>
 	</vwc-fab>
 </vwc-side-drawer>

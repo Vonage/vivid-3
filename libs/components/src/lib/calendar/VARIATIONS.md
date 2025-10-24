@@ -10,21 +10,9 @@ The week displayed is the week that includes the provided date.
 ```html preview
 <vwc-select label="Set calendar date" class="selector">
 	<vwc-option value="" selected text-secondary="Today"></vwc-option>
-	<vwc-option
-		value="1985-07-03"
-		text="3 July 1985"
-		text-secondary="Back to the Future is released"
-	></vwc-option>
-	<vwc-option
-		value="1955-11-05"
-		text="5 November 1955"
-		text-secondary="Doc Brown invents time travel"
-	></vwc-option>
-	<vwc-option
-		value="2015-10-21"
-		text="21 October 2015"
-		text-secondary="Doc travels to the future"
-	></vwc-option>
+	<vwc-option value="1985-07-03" text="3 July 1985" text-secondary="Back to the Future is released"></vwc-option>
+	<vwc-option value="1955-11-05" text="5 November 1955" text-secondary="Doc Brown invents time travel"></vwc-option>
+	<vwc-option value="2015-10-21" text="21 October 2015" text-secondary="Doc travels to the future"></vwc-option>
 </vwc-select>
 
 <vwc-calendar class="calendar"></vwc-calendar>
@@ -47,9 +35,7 @@ The week displayed is the week that includes the provided date.
 	const todayOption = document.querySelector('vwc-option[value=""]');
 	setTodayOption();
 
-	selector.addEventListener('change', (e) =>
-		calendar.setAttribute('datetime', e.detail.value)
-	);
+	selector.addEventListener('change', (e) => calendar.setAttribute('datetime', e.detail.value));
 
 	function formatDate(dateStr) {
 		const date = new Date(dateStr);
@@ -86,27 +72,10 @@ The `sticky-mode` attribute controls which parts of the Calendar remain fixed wh
 
 ```html preview
 <vwc-select label="Select sticky mode" class="selector">
-	<vwc-option
-		value="all"
-		selected
-		text="All"
-		text-secondary="Keeps both time column and day header sticky"
-	></vwc-option>
-	<vwc-option
-		value="header"
-		text="Header"
-		text-secondary="Keeps the day headers sticky"
-	></vwc-option>
-	<vwc-option
-		value="column"
-		text="Column"
-		text-secondary="Keeps the time column sticky"
-	></vwc-option>
-	<vwc-option
-		value="none"
-		text="None"
-		text-secondary="Nothing is sticky"
-	></vwc-option>
+	<vwc-option value="all" selected text="All" text-secondary="Keeps both time column and day header sticky"></vwc-option>
+	<vwc-option value="header" text="Header" text-secondary="Keeps the day headers sticky"></vwc-option>
+	<vwc-option value="column" text="Column" text-secondary="Keeps the time column sticky"></vwc-option>
+	<vwc-option value="none" text="None" text-secondary="Nothing is sticky"></vwc-option>
 </vwc-select>
 
 <vwc-calendar class="calendar"></vwc-calendar>
@@ -132,9 +101,7 @@ The `sticky-mode` attribute controls which parts of the Calendar remain fixed wh
 	const selector = document.querySelector('.selector');
 	const calendar = document.querySelector('.calendar');
 
-	selector.addEventListener('change', (e) =>
-		calendar.setAttribute('sticky-mode', e.detail.value)
-	);
+	selector.addEventListener('change', (e) => calendar.setAttribute('sticky-mode', e.detail.value));
 </script>
 ```
 
@@ -177,12 +144,7 @@ The `locales` attribute lets you specify a **locale string** or an **array of lo
 - Locale strings must conform to [BCP 47](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator) standards. Eg. `en-US` or `en-US, he-IL`.
 
 ```html preview
-<vwc-calendar
-	class="calendar"
-	locales="he-IL"
-	start-day="sunday"
-	style="direction: rtl"
-></vwc-calendar>
+<vwc-calendar class="calendar" locales="he-IL" start-day="sunday" style="direction: rtl"></vwc-calendar>
 
 <style>
 	.calendar {

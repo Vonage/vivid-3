@@ -115,12 +115,9 @@ You can access the current search text through the `searchText` property and lis
 
 <script>
 	customElements.whenDefined('vwc-searchable-select').then(() => {
-		document
-			.querySelector('vwc-searchable-select')
-			.addEventListener('search-text-change', (e) => {
-				document.querySelector('#search-text').innerText =
-					e.currentTarget.searchText;
-			});
+		document.querySelector('vwc-searchable-select').addEventListener('search-text-change', (e) => {
+			document.querySelector('#search-text').innerText = e.currentTarget.searchText;
+		});
 	});
 </script>
 ```
@@ -201,11 +198,7 @@ If set, the `icon`_(deprecated)_ attribute is ignored.
 
 ```html preview 230px
 <vwc-searchable-select label="Country" multiple>
-	<vwc-icon
-		slot="icon"
-		name="check-circle-solid"
-		connotation="success"
-	></vwc-icon>
+	<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	<vwc-option value="AF" text="Afghanistan" selected></vwc-option>
 	<vwc-option value="AL" text="Albania" selected></vwc-option>
 	<vwc-option value="DZ" text="Algeria" selected></vwc-option>
@@ -240,9 +233,7 @@ The `helper-text` slot allows you to use rich content as the helper text.
 	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
 	<vwc-option value="gov" text="Governmental Organization"></vwc-option>
 	<vwc-option value="edu" text="Educational Institution"></vwc-option>
-	<span slot="helper-text">
-		Please select the <a href="#">type of your business</a>.
-	</span>
+	<span slot="helper-text"> Please select the <a href="#">type of your business</a>. </span>
 </vwc-searchable-select>
 ```
 
@@ -255,9 +246,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
 	<vwc-option value="gov" text="Governmental Organization"></vwc-option>
 	<vwc-option value="edu" text="Educational Institution"></vwc-option>
-	<vwc-contextual-help slot="contextual-help"
-		>Please select the type of your business</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Please select the type of your business</vwc-contextual-help>
 </vwc-searchable-select>
 ```
 

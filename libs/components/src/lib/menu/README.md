@@ -13,12 +13,7 @@ registerMenuItem('your-prefix');
 
 ```html preview 200px
 <script type="module">
-	import {
-		registerMenu,
-		registerMenuItem,
-		registerButton,
-		registerIcon,
-	} from '@vonage/vivid';
+	import { registerMenu, registerMenuItem, registerButton, registerIcon } from '@vonage/vivid';
 	const prefix = 'your-prefix';
 	registerMenu(prefix);
 	registerMenuItem(prefix);
@@ -28,11 +23,7 @@ registerMenuItem('your-prefix');
 </script>
 
 <your-prefix-menu open aria-label="Menu example" placement="bottom-end">
-	<your-prefix-button
-		slot="anchor"
-		aria-label="Open menu"
-		appearance="outlined"
-	>
+	<your-prefix-button slot="anchor" aria-label="Open menu" appearance="outlined">
 		<your-prefix-icon slot="icon" name="more-vertical-line"></your-prefix-icon>
 	</your-prefix-button>
 	<your-prefix-menu-item text="Menu item 1"></your-prefix-menu-item>
@@ -50,12 +41,7 @@ import { VMenu, VMenuItem, VButton } from '@vonage/vivid-vue';
 </script>
 <template>
 	<VMenu open ariaLabel="Menu example" placement="bottom-end">
-		<VButton
-			slot="anchor"
-			icon="more-vertical-line"
-			aria-Label="Open menu"
-			appearance="outlined"
-		/>
+		<VButton slot="anchor" icon="more-vertical-line" aria-Label="Open menu" appearance="outlined" />
 		<VMenuItem text="Menu item 1" />
 		<VMenuItem text="Menu item 2" />
 	</VMenu>
@@ -96,12 +82,7 @@ The `auto-dismiss` attribute sets it to automatically close when focus is moved 
 ```html preview 200px
 <div style="position: relative">
 	<vwc-menu auto-dismiss id="menu" open aria-label="Menu example">
-		<vwc-button
-			slot="anchor"
-			label="Toggle Menu"
-			appearance="outlined"
-			dropdown-indicator
-		></vwc-button>
+		<vwc-button slot="anchor" label="Toggle Menu" appearance="outlined" dropdown-indicator></vwc-button>
 		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 	</vwc-menu>
@@ -123,11 +104,7 @@ In vivid version 4.12.0, popover attribute was added to menu, using the power of
 
 ```html preview 200px
 <div style="position: absolute; container-type: inline-size;">
-	<vwc-menu
-		position-strategy="absolute"
-		aria-label="Menu example"
-		placement="bottom-end"
-	>
+	<vwc-menu position-strategy="absolute" aria-label="Menu example" placement="bottom-end">
 		<vwc-button slot="anchor" aria-label="Open menu" appearance="outlined">
 			<vwc-icon slot="icon" name="more-vertical-line"></vwc-icon>
 		</vwc-button>
@@ -162,11 +139,7 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 		<vwc-menu-item text="My anchor is an ID"></vwc-menu-item>
 	</vwc-menu>
 
-	<vwc-button
-		id="button2"
-		label="HTMLElement anchor"
-		appearance="outlined"
-	></vwc-button>
+	<vwc-button id="button2" label="HTMLElement anchor" appearance="outlined"></vwc-button>
 	<vwc-menu id="menu2" aria-label="HTML element menu example" auto-dismiss>
 		<vwc-menu-item text="My anchor is an HTMLElement"></vwc-menu-item>
 	</vwc-menu>
@@ -216,11 +189,7 @@ Use the `header` slot to add additional content to the top of the menu.
 
 ```html preview 200px
 <vwc-menu open aria-label="Menu example">
-	<vwc-text-field
-		slot="header"
-		placeholder="Search"
-		icon="search"
-	></vwc-text-field>
+	<vwc-text-field slot="header" placeholder="Search" icon="search"></vwc-text-field>
 	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
@@ -234,11 +203,7 @@ The `action-items` slot allows the addition of action items (in this case, a But
 <vwc-menu open aria-label="Menu example">
 	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
-	<vwc-button
-		slot="action-items"
-		appearance="filled"
-		label="Action"
-	></vwc-button>
+	<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
 </vwc-menu>
 ```
 
@@ -264,9 +229,7 @@ Use the `--menu-max-inline-size` variable to set the maximum inline size.
 </style>
 
 <vwc-menu open aria-label="Menu example">
-	<vwc-menu-item
-		text="Lorem ipsum dolor sit amet conse ctetur adipisicing elit"
-	></vwc-menu-item>
+	<vwc-menu-item text="Lorem ipsum dolor sit amet conse ctetur adipisicing elit"></vwc-menu-item>
 </vwc-menu>
 ```
 

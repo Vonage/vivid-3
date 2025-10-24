@@ -3,9 +3,7 @@
 The `text` attribute sets the banner's text.
 
 ```html preview full
-<vwc-banner
-	text="Here's some information that you may find important!"
-></vwc-banner>
+<vwc-banner text="Here's some information that you may find important!"></vwc-banner>
 ```
 
 ## Connotation
@@ -19,26 +17,11 @@ The Banner icon, if not specifically set, defaults to a connotation-associated i
 </vwc-note>
 
 ```html preview
-<vwc-banner
-	connotation="information"
-	text="Banner with connotation information (default conntation)"
-></vwc-banner>
-<vwc-banner
-	connotation="announcement"
-	text="Banner with connotation announcement"
-></vwc-banner>
-<vwc-banner
-	connotation="success"
-	text="Banner with connotation success"
-></vwc-banner>
-<vwc-banner
-	connotation="warning"
-	text="Banner with connotation warning"
-></vwc-banner>
-<vwc-banner
-	connotation="alert"
-	text="Banner with connotation alert"
-></vwc-banner>
+<vwc-banner connotation="information" text="Banner with connotation information (default conntation)"></vwc-banner>
+<vwc-banner connotation="announcement" text="Banner with connotation announcement"></vwc-banner>
+<vwc-banner connotation="success" text="Banner with connotation success"></vwc-banner>
+<vwc-banner connotation="warning" text="Banner with connotation warning"></vwc-banner>
+<vwc-banner connotation="alert" text="Banner with connotation alert"></vwc-banner>
 ```
 
 ## Icon
@@ -55,10 +38,7 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </vwc-note>
 
 ```html preview full
-<vwc-banner
-	text="Banner with icon set by icon attribute"
-	icon="home-line"
-></vwc-banner>
+<vwc-banner text="Banner with icon set by icon attribute" icon="home-line"></vwc-banner>
 ```
 
 ## Removable

@@ -35,11 +35,7 @@ It's bad for UX and accessibility.<br />[The problem with placeholders](https://
 <docs-do slot="description" headline="Use helper text to provide extra information about the field" caption="It is visible to the user at all times and it is read out by screen readers when the user focuses on the input element.">
 
 ```html preview example 320px
-<vwc-searchable-select
-	helper-text="Select the countries that your company operates in"
-	label="Country"
-	multiple
->
+<vwc-searchable-select helper-text="Select the countries that your company operates in" label="Country" multiple>
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
 	<vwc-option value="AL" text="Albania"></vwc-option>
 	<vwc-option value="DZ" text="Algeria"></vwc-option>

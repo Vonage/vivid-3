@@ -15,11 +15,7 @@ import { VCalendar, VCalendarEvent } from '@vonage/vivid-vue';
 <template>
 	<VCalendar class="calendar">
 		<template #day-0>
-			<VCalendarEvent
-				heading="Enchantment under the sea dance"
-				start="9"
-				duration="2"
-			/>
+			<VCalendarEvent heading="Enchantment under the sea dance" start="9" duration="2" />
 		</template>
 	</VCalendar>
 </template>
@@ -51,12 +47,7 @@ registerCalendarEvent('your-prefix');
 </script>
 
 <your-prefix-calendar class="calendar">
-	<your-prefix-calendar-event
-		heading="Enchantment under the sea dance"
-		slot="day-0"
-		start="9"
-		duration="2"
-	></your-prefix-calendar-event>
+	<your-prefix-calendar-event heading="Enchantment under the sea dance" slot="day-0" start="9" duration="2"></your-prefix-calendar-event>
 </your-prefix-calendar>
 
 <style>

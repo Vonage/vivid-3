@@ -58,15 +58,11 @@ When set, the selected Tags are displayed outside of Searchable Select component
 		select.addEventListener('change', updateTags);
 	}
 	updateTags();
-	document
-		.querySelector('vwc-tag-group')
-		.addEventListener('removed', (event) => {
-			const option = document.querySelector(
-				`vwc-option[value="${event.target.dataset.value}"]`
-			);
-			option.selected = false;
-			updateTags();
-		});
+	document.querySelector('vwc-tag-group').addEventListener('removed', (event) => {
+		const option = document.querySelector(`vwc-option[value="${event.target.dataset.value}"]`);
+		option.selected = false;
+		updateTags();
+	});
 </script>
 
 <style>

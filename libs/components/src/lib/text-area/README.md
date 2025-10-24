@@ -18,10 +18,7 @@ registerTextArea('your-prefix');
 	registerTextArea('your-prefix');
 </script>
 
-<your-prefix-text-area
-	label="Description"
-	value="This is the text we want to see!"
-></your-prefix-text-area>
+<your-prefix-text-area label="Description" value="This is the text we want to see!"></your-prefix-text-area>
 ```
 
 </vwc-tab-panel>
@@ -53,11 +50,7 @@ Set the `resize` attribute to control how the text area can be resized by the us
 		<vwc-option value="horizontal" text="horizontal"></vwc-option>
 		<vwc-option value="both" text="both"></vwc-option>
 	</vwc-select>
-	<vwc-text-area
-		value="default"
-		id="vwc-text-area"
-		label="text-area"
-	></vwc-text-area>
+	<vwc-text-area value="default" id="vwc-text-area" label="text-area"></vwc-text-area>
 </div>
 
 <script>
@@ -84,9 +77,7 @@ The `helper-text` slot allows you to use rich content as the Text Area's helper 
 
 ```html preview
 <vwc-text-area label="Description">
-	<span slot="helper-text"
-		>Please ensure you provide the <a href="#">required details</a>.</span
-	>
+	<span slot="helper-text">Please ensure you provide the <a href="#">required details</a>.</span>
 </vwc-text-area>
 ```
 
@@ -96,9 +87,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 
 ```html preview
 <vwc-text-area label="Your comments">
-	<vwc-contextual-help slot="contextual-help"
-		>This is the contextual help</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">This is the contextual help</vwc-contextual-help>
 </vwc-text-area>
 ```
 

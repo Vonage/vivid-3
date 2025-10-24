@@ -5,11 +5,7 @@
 <vwc-tab-panel>
 
 ```js
-import {
-	registerNav,
-	registerNavItem,
-	registerNavDisclosure,
-} from '@vonage/vivid';
+import { registerNav, registerNavItem, registerNavDisclosure } from '@vonage/vivid';
 
 registerNav('your-prefix');
 registerNavItem('your-prefix');
@@ -18,11 +14,7 @@ registerNavDisclosure('your-prefix');
 
 ```html preview 160px
 <script type="module">
-	import {
-		registerNav,
-		registerNavItem,
-		registerNavDisclosure,
-	} from '@vonage/vivid';
+	import { registerNav, registerNavItem, registerNavDisclosure } from '@vonage/vivid';
 	registerNav('your-prefix');
 	registerNavItem('your-prefix');
 	registerNavDisclosure('your-prefix');
@@ -119,21 +111,9 @@ Use the `meta` slot to add additional content to the **Nav Item** and the **Nav 
 ```html preview 150px
 <vwc-nav>
 	<vwc-nav-disclosure label="1st level item" open>
-		<vwc-badge
-			slot="meta"
-			text="beta"
-			connotation="success"
-			appearance="subtle"
-			shape="pill"
-		></vwc-badge>
+		<vwc-badge slot="meta" text="beta" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
 		<vwc-nav-item href="#" text="2nd level item">
-			<vwc-badge
-				slot="meta"
-				text="in progress"
-				connotation="warning"
-				appearance="subtle"
-				shape="pill"
-			></vwc-badge>
+			<vwc-badge slot="meta" text="in progress" connotation="warning" appearance="subtle" shape="pill"></vwc-badge>
 		</vwc-nav-item>
 	</vwc-nav-disclosure>
 	<vwc-nav></vwc-nav>

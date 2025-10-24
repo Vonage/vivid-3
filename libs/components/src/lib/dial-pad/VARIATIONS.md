@@ -11,10 +11,7 @@
 The `helper-text` attribute allows you give extra context to the number that is being displayed. The helper text is displayed under the phone number input element.
 
 ```html preview
-<vwc-dial-pad
-	helper-text="58 Meeting Room - Extension"
-	value="1158"
-></vwc-dial-pad>
+<vwc-dial-pad helper-text="58 Meeting Room - Extension" value="1158"></vwc-dial-pad>
 ```
 
 ### Call Button Label

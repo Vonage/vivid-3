@@ -9,4 +9,4 @@ export const MenuItemRole = {
  * The types for menu item roles
  * @public
  */
-export type MenuItemRole = typeof MenuItemRole[keyof typeof MenuItemRole];
+export type MenuItemRole = (typeof MenuItemRole)[keyof typeof MenuItemRole];

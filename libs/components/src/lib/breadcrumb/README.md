@@ -19,18 +19,9 @@ registerBreadcrumbItem('your-prefix');
 </script>
 
 <your-prefix-breadcrumb>
-	<your-prefix-breadcrumb-item
-		href="#"
-		text="Breadcrumb"
-	></your-prefix-breadcrumb-item>
-	<your-prefix-breadcrumb-item
-		href="#"
-		text="Breadcrumb"
-	></your-prefix-breadcrumb-item>
-	<your-prefix-breadcrumb-item
-		href="#"
-		text="Breadcrumb"
-	></your-prefix-breadcrumb-item>
+	<your-prefix-breadcrumb-item href="#" text="Breadcrumb"></your-prefix-breadcrumb-item>
+	<your-prefix-breadcrumb-item href="#" text="Breadcrumb"></your-prefix-breadcrumb-item>
+	<your-prefix-breadcrumb-item href="#" text="Breadcrumb"></your-prefix-breadcrumb-item>
 </your-prefix-breadcrumb>
 ```
 

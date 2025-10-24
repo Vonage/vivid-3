@@ -120,10 +120,7 @@ You will need to add the `vvd-component` class to every component to avoid a col
 If you are using Vivid Vue, this is done automatically for you.
 
 ```html
-<vwc-3-button
-	class="vvd-component"
-	label="Scoped Vivid 3.x Button"
-></vwc-3-button>
+<vwc-3-button class="vvd-component" label="Scoped Vivid 3.x Button"></vwc-3-button>
 ```
 
 ### Cleanup: Once the Migration Is Complete

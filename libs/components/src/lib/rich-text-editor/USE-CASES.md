@@ -3,10 +3,7 @@
 ```html preview 250px
 <vwc-layout gutters="small" column-basis="block" row-spacing="small">
 	<vwc-rich-text-editor>
-		<vwc-menubar
-			slot="menu-bar"
-			menu-items="textBlock textSize divider textDecoration divider"
-		></vwc-menubar>
+		<vwc-menubar slot="menu-bar" menu-items="textBlock textSize divider textDecoration divider"></vwc-menubar>
 	</vwc-rich-text-editor>
 </vwc-layout>
 <script>

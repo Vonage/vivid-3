@@ -8,17 +8,11 @@ Set the `appearance` attribute to change the avatar's appearance.
 		<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon>
 	</vwc-avatar>
 	<span>filled (default) </span>
-	<vwc-avatar appearance="subtle">
-		<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-	></vwc-avatar>
+	<vwc-avatar appearance="subtle"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 	<span>subtle</span>
-	<vwc-avatar appearance="duotone">
-		<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-	></vwc-avatar>
+	<vwc-avatar appearance="duotone"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 	<span>duotone</span>
-	<vwc-avatar appearance="outlined">
-		<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-	></vwc-avatar>
+	<vwc-avatar appearance="outlined"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 	<span>outlined</span>
 </div>
 
@@ -40,51 +34,35 @@ Avatar has `accent` connotation (default) and `cta`.
 ```html preview
 <div class="grid">
 	<div>
-		<vwc-avatar connotation="accent">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+		<vwc-avatar connotation="accent"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 		<span>filled, accent</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="cta">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+		<vwc-avatar connotation="cta"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 		<span>filled, cta</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="accent" appearance="subtle">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+		<vwc-avatar connotation="accent" appearance="subtle"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 		<span>subtle, accent</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="cta" appearance="subtle">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+		<vwc-avatar connotation="cta" appearance="subtle"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 		<span>subtle, cta</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="accent" appearance="duotone">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+		<vwc-avatar connotation="accent" appearance="duotone"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 		<span>duotone, accent</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="cta" appearance="duotone">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+		<vwc-avatar connotation="cta" appearance="duotone"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 		<span>duotone, cta</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="accent" appearance="outlined">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+		<vwc-avatar connotation="accent" appearance="outlined"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 		<span>outlined, accent</span>
 	</div>
 	<div>
-		<vwc-avatar connotation="cta" appearance="outlined">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+		<vwc-avatar connotation="cta" appearance="outlined"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 		<span>outlined, cta</span>
 	</div>
 </div>
@@ -104,10 +82,7 @@ Avatar has `accent` connotation (default) and `cta`.
 Set the `shape` attribute to change the avatar's edges.
 
 ```html preview
-<div class="grid">
-	<vwc-avatar shape="rounded"></vwc-avatar><span>rounded</span>
-	<vwc-avatar shape="pill"></vwc-avatar><span>pill</span>
-</div>
+<div class="grid"><vwc-avatar shape="rounded"></vwc-avatar><span>rounded</span> <vwc-avatar shape="pill"></vwc-avatar><span>pill</span></div>
 
 <style>
 	.grid {
@@ -153,9 +128,7 @@ Use the `size` attribute/property to set the avatar's size.
 		<span>condensed (initials)</span>
 	</div>
 	<div>
-		<vwc-avatar size="condensed" shape="pill">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+		<vwc-avatar size="condensed" shape="pill"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 		<span>condensed (icon)</span>
 	</div>
 	<div>
@@ -163,9 +136,7 @@ Use the `size` attribute/property to set the avatar's size.
 		<span>normal (initials)</span>
 	</div>
 	<div>
-		<vwc-avatar size="normal" shape="pill">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+		<vwc-avatar size="normal" shape="pill"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 		<span>normal (icon)</span>
 	</div>
 	<div>
@@ -173,9 +144,7 @@ Use the `size` attribute/property to set the avatar's size.
 		<span>expanded (initials)</span>
 	</div>
 	<div>
-		<vwc-avatar size="expanded" shape="pill">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+		<vwc-avatar size="expanded" shape="pill"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 		<span>expanded (icon)</span>
 	</div>
 </div>
@@ -197,11 +166,7 @@ Use the `size` attribute/property to set the avatar's size.
 Use the `href` attribute to change the avatar wrapper to a link. When doing so, all of the native attributes of `<a>` are supported, including target.
 
 ```html preview
-<vwc-avatar
-	href="https://vivid.deno.dev"
-	target="_blank"
-	aria-label="Link to the Vivid documentation"
->
+<vwc-avatar href="https://vivid.deno.dev" target="_blank" aria-label="Link to the Vivid documentation">
 	<vwc-icon slot="icon" name="chain-solid" label="Link"></vwc-icon>
 </vwc-avatar>
 ```
@@ -212,12 +177,7 @@ Setting the `clickable-avatar` attribute switches the avatar wrapper to a `<butt
 
 ```html preview 200px
 <vwc-menu aria-label="Menu example" placement="bottom-end">
-	<vwc-avatar
-		slot="anchor"
-		appearance="subtle"
-		aria-label="Open menu"
-		clickable
-	>
+	<vwc-avatar slot="anchor" appearance="subtle" aria-label="Open menu" clickable>
 		<vwc-icon slot="icon" name="more-vertical-solid" label="Menu"></vwc-icon>
 	</vwc-avatar>
 	<vwc-menu-item text="Menu item 1"></vwc-menu-item>

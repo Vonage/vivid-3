@@ -28,15 +28,7 @@ If you need to use the badge together with buttons (e.g. in toolbars), use an `e
 
 ```html preview
 <vwc-action-group>
-	<vwc-badge
-		appearance="subtle"
-		size="expanded"
-		text="Example badge"
-	></vwc-badge>
-	<vwc-button
-		size="super-condensed"
-		label="Example button"
-		appearance="filled"
-	></vwc-button>
+	<vwc-badge appearance="subtle" size="expanded" text="Example badge"></vwc-badge>
+	<vwc-button size="super-condensed" label="Example button" appearance="filled"></vwc-button>
 </vwc-action-group>
 ```

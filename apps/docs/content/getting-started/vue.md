@@ -93,11 +93,7 @@ import App from './App.vue';
 
 createApp(App)
 	.use(vividVue, {
-		styles: [
-			optionalStyles.theme,
-			optionalStyles.typography,
-			optionalStyles.vivid2Compat,
-		],
+		styles: [optionalStyles.theme, optionalStyles.typography, optionalStyles.vivid2Compat],
 	})
 	.mount('#app');
 ```
@@ -210,10 +206,7 @@ Add the following to your `<head>` to load them from Google Fonts:
 	<!-- ... -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link
-		href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
-		rel="stylesheet"
-	/>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
 	<!-- ... -->
 </head>
 ```
@@ -272,11 +265,7 @@ The `v-model` syntax allows us to implement a two-way binding in between a varia
 This is an example of a two-way binding implementation for a web component:
 
 ```html
-<vwc-text-field
-	label="Search"
-	:value="searchText"
-	@input="searchText = $event.currentTarget.value"
-/>
+<vwc-text-field label="Search" :value="searchText" @input="searchText = $event.currentTarget.value" />
 ```
 
 This works fine, but with Vivid Vue we can use the `v-model` syntax to shorten this to:
@@ -313,18 +302,8 @@ While the default slots work the same, the web component's named slots are mappe
 
 ```html
 <vwc-banner text="A banner with an action button">
-	<vwc-button
-		slot="action-items"
-		appearance="filled"
-		connotation="accent"
-		label="Filled"
-	/>
-	<vwc-button
-		slot="action-items"
-		appearance="outlined"
-		connotation="accent"
-		label="Outlined"
-	/>
+	<vwc-button slot="action-items" appearance="filled" connotation="accent" label="Filled" />
+	<vwc-button slot="action-items" appearance="outlined" connotation="accent" label="Outlined" />
 </vwc-banner>
 ```
 

@@ -55,22 +55,12 @@ Using this slot sets the icon, checkbox or radio to be trailing.
 ```html preview 200px
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item text="Available" control-type="radio">
-		<vwc-badge
-			slot="meta"
-			appearance="filled"
-			connotation="success"
-			shape="pill"
-		>
+		<vwc-badge slot="meta" appearance="filled" connotation="success" shape="pill">
 			<vwc-icon slot="icon" name="check-solid"></vwc-icon>
 		</vwc-badge>
 	</vwc-menu-item>
 	<vwc-menu-item text="Away" control-type="radio">
-		<vwc-badge
-			slot="meta"
-			appearance="filled"
-			connotation="warning"
-			shape="pill"
-		>
+		<vwc-badge slot="meta" appearance="filled" connotation="warning" shape="pill">
 			<vwc-icon slot="icon" name="clock-line"></vwc-icon>
 		</vwc-badge>
 	</vwc-menu-item>
@@ -90,12 +80,7 @@ Use the `trailing-meta` slot to add an element (like a badge or an additional ic
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item control-type="checkbox" text="Checkbox 1"> </vwc-menu-item>
 	<vwc-menu-item control-type="checkbox" text="Checkbox 2">
-		<vwc-badge
-			slot="trailing-meta"
-			appearance="subtle"
-			connotation="cta"
-			text="New"
-		></vwc-badge>
+		<vwc-badge slot="trailing-meta" appearance="subtle" connotation="cta" text="New"></vwc-badge>
 	</vwc-menu-item>
 </vwc-menu>
 ```
@@ -168,10 +153,7 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 </style>
 
 <vwc-menu open aria-label="Example menu" class="menu">
-	<vwc-menu-item
-		text="primary text with long text and auto line clamp"
-		text-secondary="secondary text and auto line clamp"
-	></vwc-menu-item>
+	<vwc-menu-item text="primary text with long text and auto line clamp" text-secondary="secondary text and auto line clamp"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -199,12 +181,7 @@ If you are using a framework, just wrap the menu item in any routing component/d
 
 ```html preview 100px
 <vwc-menu open aria-label="Example menu">
-	<a
-		role="menuitem"
-		href="https://www.vonage.com"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
+	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
 		<vwc-menu-item text="Go to Vonage" icon="vonage-solid">
 			<vwc-icon name="open-line" slot="trailing-meta" size="-5"></vwc-icon>
 		</vwc-menu-item>

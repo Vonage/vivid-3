@@ -48,11 +48,7 @@ Despite the fact that card-based design has been around for a decade now it is s
 <div>
 
 ```html preview center example 150px
-<vwc-card
-	appearance="outlined"
-	headline="Card with Outlined Appearance"
-	class="card-appearance"
-></vwc-card>
+<vwc-card appearance="outlined" headline="Card with Outlined Appearance" class="card-appearance"></vwc-card>
 
 <style>
 	.card-appearance {
@@ -70,18 +66,8 @@ Despite the fact that card-based design has been around for a decade now it is s
 <docs-do slot="description" caption="use ghost appearance when using the card inside selectable box">
 
 ```html preview center example 170px
-<vwc-selectable-box
-	tight
-	clickable-box
-	connotation="cta"
-	checked
-	class="selectable-box"
->
-	<vwc-card
-		appearance="ghost"
-		headline="Card with Ghost Appearance"
-		subtitle="slotted inside selectable box"
-	></vwc-card>
+<vwc-selectable-box tight clickable-box connotation="cta" checked class="selectable-box">
+	<vwc-card appearance="ghost" headline="Card with Ghost Appearance" subtitle="slotted inside selectable box"></vwc-card>
 </vwc-selectable-box>
 
 <style>
@@ -96,11 +82,7 @@ Despite the fact that card-based design has been around for a decade now it is s
 <docs-do dont caption="don't use ghost appearance when not slotted, this will make the card noticeable">
 
 ```html preview center example 150px
-<vwc-card
-	appearance="ghost"
-	headline="Card with Ghost Appearance"
-	class="card-appearance"
-></vwc-card>
+<vwc-card appearance="ghost" headline="Card with Ghost Appearance" class="card-appearance"></vwc-card>
 
 <style>
 	.card-appearance {

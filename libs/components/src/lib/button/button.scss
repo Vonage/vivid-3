@@ -136,7 +136,12 @@
 	/* stylelint-enable */
 
 	&.shape-pill {
-		&:not(.icon-only, .stacked.size-super-condensed, .stacked.size-condensed, .stacked.normal) {
+		&:not(
+				.icon-only,
+				.stacked.size-super-condensed,
+				.stacked.size-condensed,
+				.stacked.normal
+			) {
 			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 		}
 

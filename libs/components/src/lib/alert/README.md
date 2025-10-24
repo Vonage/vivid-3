@@ -16,10 +16,7 @@ registerAlert('your-prefix');
 	registerAlert('your-prefix');
 </script>
 
-<your-prefix-alert
-	text="Some important information for you"
-	open
-></your-prefix-alert>
+<your-prefix-alert text="Some important information for you" open></your-prefix-alert>
 ```
 
 </vwc-tab-panel>
@@ -30,11 +27,7 @@ registerAlert('your-prefix');
 <template>
 	<div class="example-container">
 		<VAlert text="An important information for you" :open="open" />
-		<VButton
-			appearance="outlined"
-			label="Show/Hide alert"
-			@click="open = !open"
-		/>
+		<VButton appearance="outlined" label="Show/Hide alert" @click="open = !open" />
 	</div>
 </template>
 
@@ -65,11 +58,7 @@ Use the `open` attribute to toggle the Alert open state.
 ```html preview
 <vwc-alert text="Some important information for you"></vwc-alert>
 
-<vwc-button
-	appearance="outlined"
-	label="Show/Hide Alert"
-	onclick="toggleAlert()"
-></vwc-button>
+<vwc-button appearance="outlined" label="Show/Hide Alert" onclick="toggleAlert()"></vwc-button>
 
 <script>
 	alert = document.querySelector('vwc-alert');
@@ -86,16 +75,9 @@ Use the `timeoutms` attribute to set the time in milliseconds after which the Al
 The default value is `0`, which means the Alert will not close automatically.
 
 ```html preview
-<vwc-alert
-	text="Some important information for you"
-	timeoutms="2000"
-></vwc-alert>
+<vwc-alert text="Some important information for you" timeoutms="2000"></vwc-alert>
 
-<vwc-button
-	appearance="outlined"
-	label="Show an Alert for 2 seconds"
-	onclick="openAlert()"
-></vwc-button>
+<vwc-button appearance="outlined" label="Show an Alert for 2 seconds" onclick="openAlert()"></vwc-button>
 
 <script>
 	alert = document.querySelector('vwc-alert');
@@ -135,12 +117,7 @@ You can add action items elements using the `action-items` slot. They will be di
 
 ```html preview 100px
 <vwc-alert text="Some important information for you" open>
-	<vwc-button
-		slot="action-items"
-		appearance="outlined"
-		shape="pill"
-		label="Action"
-	></vwc-button>
+	<vwc-button slot="action-items" appearance="outlined" shape="pill" label="Action"></vwc-button>
 </vwc-alert>
 ```
 
@@ -150,12 +127,7 @@ Set the `icon` slot to add an icon to the Alert. If set, the `icon` attribute (_
 
 ```html preview 100px
 <vwc-alert text="Some important information for you" open>
-	<vwc-icon
-		slot="icon"
-		name="megaphone-solid"
-		connotation="cta"
-		label="Announcement:"
-	></vwc-icon>
+	<vwc-icon slot="icon" name="megaphone-solid" connotation="cta" label="Announcement:"></vwc-icon>
 </vwc-alert>
 ```
 
@@ -166,11 +138,7 @@ Set the `icon` slot to add an icon to the Alert. If set, the `icon` attribute (_
 Use the `--alert-min-inline-size` variable to set the Alert's minimum inline size. The default value is `420px`.
 
 ```html preview 100px
-<vwc-alert
-	style="--alert-min-inline-size: auto;"
-	text="Very fitting!"
-	open
-></vwc-alert>
+<vwc-alert style="--alert-min-inline-size: auto;" text="Very fitting!" open></vwc-alert>
 ```
 
 ### Maximum inline Size
@@ -181,11 +149,7 @@ This is helpful to prevent the Alert from becoming too wide when displaying a lo
 The default value is `fit-content`, which allows the Alert to grow as needed.
 
 ```html preview 100px
-<vwc-alert
-	style="--alert-min-inline-size: auto; --alert-max-inline-size: 300px;"
-	text="This text is very long and will wrap to the next line."
-	open
-></vwc-alert>
+<vwc-alert style="--alert-min-inline-size: auto; --alert-max-inline-size: 300px;" text="This text is very long and will wrap to the next line." open></vwc-alert>
 ```
 
 ## API Reference

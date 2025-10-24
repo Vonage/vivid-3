@@ -20,10 +20,7 @@ The `helper-text` attribute provides additional information to help the user ent
 To add HTML to the helper text, use the [helper-text slot](/components/text-area/code/#helper-text-slot).
 
 ```html preview
-<vwc-text-area
-	helper-text="Help text"
-	label="Helper text below"
-></vwc-text-area>
+<vwc-text-area helper-text="Help text" label="Helper text below"></vwc-text-area>
 ```
 
 ### Placeholder Text
@@ -36,10 +33,7 @@ The `placeholder` attribute provides an example of the type of input the user ne
 </vwc-note>
 
 ```html preview
-<vwc-text-area
-	placeholder="My Placeholder"
-	label="Text Area with placeholder"
-></vwc-text-area>
+<vwc-text-area placeholder="My Placeholder" label="Text Area with placeholder"></vwc-text-area>
 ```
 
 ### Character Count
@@ -47,11 +41,7 @@ The `placeholder` attribute provides an example of the type of input the user ne
 The `char-count` attribute can be use in combination with the `maxlength` attribute to provide a visual character count.
 
 ```html preview
-<vwc-text-area
-	label="Char count example"
-	char-count
-	maxlength="15"
-></vwc-text-area>
+<vwc-text-area label="Char count example" char-count maxlength="15"></vwc-text-area>
 ```
 
 ### Contextual Help
@@ -60,9 +50,7 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 
 ```html preview
 <vwc-text-area label="Your comments">
-	<vwc-contextual-help slot="contextual-help"
-		>This is the contextual help</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">This is the contextual help</vwc-contextual-help>
 </vwc-text-area>
 ```
 
@@ -81,11 +69,7 @@ The `value` attribute can be used the set the default value for the Text Area in
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
 ```html preview
-<vwc-text-area
-	value="some text"
-	label="Enter some text"
-	error-text="Please take this seriously"
-></vwc-text-area>
+<vwc-text-area value="some text" label="Enter some text" error-text="Please take this seriously"></vwc-text-area>
 ```
 
 ### Success Text
@@ -93,10 +77,7 @@ The `error-text` attribute provides a custom error message. Any current error st
 The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
 
 ```html preview
-<vwc-text-area
-	label="Success text below"
-	success-text="Success text"
-></vwc-text-area>
+<vwc-text-area label="Success text below" success-text="Success text"></vwc-text-area>
 ```
 
 ## Rows
@@ -109,21 +90,9 @@ Use the `rows` attribute to set the number of visible rows of text in the Text A
 </vwc-note>
 
 ```html preview
-<vwc-text-area
-	rows="1"
-	value="1 row text area (36px)"
-	label="text-area label"
-></vwc-text-area>
-<vwc-text-area
-	rows="2"
-	value="2 rows text area are the default (56px)"
-	label="text-area label"
-></vwc-text-area>
-<vwc-text-area
-	rows="3"
-	value="3 rows text area (76px)"
-	label="text-area label"
-></vwc-text-area>
+<vwc-text-area rows="1" value="1 row text area (36px)" label="text-area label"></vwc-text-area>
+<vwc-text-area rows="2" value="2 rows text area are the default (56px)" label="text-area label"></vwc-text-area>
+<vwc-text-area rows="3" value="3 rows text area (76px)" label="text-area label"></vwc-text-area>
 ```
 
 ## Disabled

@@ -114,31 +114,11 @@
 
 ```html preview example 72px
 <div class="container">
-	<vwc-button
-		connotation="accent"
-		appearance="filled"
-		label="Accent"
-	></vwc-button>
-	<vwc-button
-		connotation="accent"
-		appearance="outlined"
-		label="Accent"
-	></vwc-button>
-	<vwc-button
-		connotation="accent"
-		appearance="ghost"
-		label="Accent"
-	></vwc-button>
-	<vwc-button
-		connotation="accent"
-		appearance="outlined-light"
-		label="Accent"
-	></vwc-button>
-	<vwc-button
-		connotation="accent"
-		appearance="ghost-light"
-		label="Accent"
-	></vwc-button>
+	<vwc-button connotation="accent" appearance="filled" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="outlined" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="ghost" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="outlined-light" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="ghost-light" label="Accent"></vwc-button>
 </div>
 
 <style>
@@ -168,16 +148,8 @@
 	<vwc-button connotation="cta" appearance="filled" label="CTA"></vwc-button>
 	<vwc-button connotation="cta" appearance="outlined" label="CTA"></vwc-button>
 	<vwc-button connotation="cta" appearance="ghost" label="CTA"></vwc-button>
-	<vwc-button
-		connotation="cta"
-		appearance="outlined-light"
-		label="CTA"
-	></vwc-button>
-	<vwc-button
-		connotation="cta"
-		appearance="ghost-light"
-		label="CTA"
-	></vwc-button>
+	<vwc-button connotation="cta" appearance="outlined-light" label="CTA"></vwc-button>
+	<vwc-button connotation="cta" appearance="ghost-light" label="CTA"></vwc-button>
 </div>
 
 <style>
@@ -203,31 +175,11 @@
 
 ```html preview example 72px
 <div class="container">
-	<vwc-button
-		connotation="announcement"
-		appearance="filled"
-		label="Announcement"
-	></vwc-button>
-	<vwc-button
-		connotation="announcement"
-		appearance="outlined"
-		label="Announcement"
-	></vwc-button>
-	<vwc-button
-		connotation="announcement"
-		appearance="ghost"
-		label="Announcement"
-	></vwc-button>
-	<vwc-button
-		connotation="announcement"
-		appearance="outlined-light"
-		label="Announcement"
-	></vwc-button>
-	<vwc-button
-		connotation="announcement"
-		appearance="ghost-light"
-		label="Announcement"
-	></vwc-button>
+	<vwc-button connotation="announcement" appearance="filled" label="Announcement"></vwc-button>
+	<vwc-button connotation="announcement" appearance="outlined" label="Announcement"></vwc-button>
+	<vwc-button connotation="announcement" appearance="ghost" label="Announcement"></vwc-button>
+	<vwc-button connotation="announcement" appearance="outlined-light" label="Announcement"></vwc-button>
+	<vwc-button connotation="announcement" appearance="ghost-light" label="Announcement"></vwc-button>
 </div>
 
 <style>
@@ -254,31 +206,11 @@
 
 ```html preview example 72px
 <div class="container">
-	<vwc-button
-		connotation="success"
-		appearance="filled"
-		label="Success"
-	></vwc-button>
-	<vwc-button
-		connotation="success"
-		appearance="outlined"
-		label="Success"
-	></vwc-button>
-	<vwc-button
-		connotation="success"
-		appearance="ghost"
-		label="Success"
-	></vwc-button>
-	<vwc-button
-		connotation="success"
-		appearance="outlined-light"
-		label="Success"
-	></vwc-button>
-	<vwc-button
-		connotation="success"
-		appearance="ghost-light"
-		label="Success"
-	></vwc-button>
+	<vwc-button connotation="success" appearance="filled" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="outlined" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="ghost" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="outlined-light" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="ghost-light" label="Success"></vwc-button>
 </div>
 
 <style>
@@ -305,27 +237,11 @@
 
 ```html preview example 72px
 <div class="container">
-	<vwc-button
-		connotation="alert"
-		appearance="filled"
-		label="Alert"
-	></vwc-button>
-	<vwc-button
-		connotation="alert"
-		appearance="outlined"
-		label="Alert"
-	></vwc-button>
+	<vwc-button connotation="alert" appearance="filled" label="Alert"></vwc-button>
+	<vwc-button connotation="alert" appearance="outlined" label="Alert"></vwc-button>
 	<vwc-button connotation="alert" appearance="ghost" label="Alert"></vwc-button>
-	<vwc-button
-		connotation="alert"
-		appearance="outlined-light"
-		label="Alert"
-	></vwc-button>
-	<vwc-button
-		connotation="alert"
-		appearance="ghost-light"
-		label="Alert"
-	></vwc-button>
+	<vwc-button connotation="alert" appearance="outlined-light" label="Alert"></vwc-button>
+	<vwc-button connotation="alert" appearance="ghost-light" label="Alert"></vwc-button>
 </div>
 
 <style>
@@ -367,12 +283,7 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 			</vwc-button>
 		</vwc-tooltip>
 		<vwc-tooltip text="Center">
-			<vwc-button
-				aria-pressed="true"
-				slot="anchor"
-				appearance="filled"
-				onclick="onClick(event)"
-			>
+			<vwc-button aria-pressed="true" slot="anchor" appearance="filled" onclick="onClick(event)">
 				<vwc-icon slot="icon" name="align-center-line"></vwc-icon>
 			</vwc-button>
 		</vwc-tooltip>
@@ -475,10 +386,7 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 	<vwc-data-grid>
 		<vwc-data-grid-row row-type="header">
 			<vwc-data-grid-cell cell-type="columnheader">User</vwc-data-grid-cell>
-			<vwc-data-grid-cell
-				class="controls"
-				cell-type="columnheader"
-			></vwc-data-grid-cell>
+			<vwc-data-grid-cell class="controls" cell-type="columnheader"></vwc-data-grid-cell>
 		</vwc-data-grid-row>
 		<vwc-data-grid-row>
 			<vwc-data-grid-cell>Joe</vwc-data-grid-cell>
@@ -486,12 +394,7 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 				<vwc-button appearance="outlined" size="condensed" aria-label="Edit">
 					<vwc-icon slot="icon" name="edit-line"></vwc-icon>
 				</vwc-button>
-				<vwc-button
-					appearance="outlined"
-					size="condensed"
-					aria-label="Delete"
-					connotation="alert"
-				>
+				<vwc-button appearance="outlined" size="condensed" aria-label="Delete" connotation="alert">
 					<vwc-icon slot="icon" name="delete-line"></vwc-icon>
 				</vwc-button>
 			</vwc-data-grid-cell>
@@ -518,25 +421,10 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 <docs-do slot="description" headline="Use same button size for adjacent buttons">
 
 ```html preview center example 290px
-<vwc-dialog
-	open
-	headline="Delete appointment"
-	icon="delete-line"
-	icon-placement="side"
-	class="dialog"
->
+<vwc-dialog open headline="Delete appointment" icon="delete-line" icon-placement="side" class="dialog">
 	<div slot="body">Are you sure you want to delete this appointment?</div>
-	<vwc-button
-		appearance="outlined"
-		label="Cancel"
-		slot="action-items"
-	></vwc-button>
-	<vwc-button
-		label="Delete"
-		appearance="filled"
-		connotation="alert"
-		slot="action-items"
-	></vwc-button>
+	<vwc-button appearance="outlined" label="Cancel" slot="action-items"></vwc-button>
+	<vwc-button label="Delete" appearance="filled" connotation="alert" slot="action-items"></vwc-button>
 </vwc-dialog>
 
 <style>
@@ -550,26 +438,11 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 <docs-do dont headline="Don't use different size buttons for adjacent buttons">
 
 ```html preview center example 290px
-<vwc-dialog
-	open
-	headline="Delete appointment"
-	icon-placement="side"
-	class="dialog"
->
+<vwc-dialog open headline="Delete appointment" icon-placement="side" class="dialog">
 	<vwc-icon slot="icon" name="delete-line"></vwc-icon>
 	<div slot="body">Are you sure you want to delete this appointment?</div>
-	<vwc-button
-		size="condensed"
-		appearance="outlined"
-		label="Cancel"
-		slot="action-items"
-	></vwc-button>
-	<vwc-button
-		label="Delete"
-		appearance="filled"
-		connotation="alert"
-		slot="action-items"
-	></vwc-button>
+	<vwc-button size="condensed" appearance="outlined" label="Cancel" slot="action-items"></vwc-button>
+	<vwc-button label="Delete" appearance="filled" connotation="alert" slot="action-items"></vwc-button>
 </vwc-dialog>
 
 <style>

@@ -72,21 +72,9 @@ Use the `setTextBlock` method to set the text block to one of three types: `titl
 ```html preview
 <vwc-layout gutters="small" column-basis="block" row-spacing="small">
 	<div id="controls">
-		<vwc-button
-			appearance="filled"
-			label="Title"
-			onclick="setTextBlock('title')"
-		></vwc-button>
-		<vwc-button
-			appearance="filled"
-			label="Subtitle"
-			onclick="setTextBlock('subtitle')"
-		></vwc-button>
-		<vwc-button
-			appearance="filled"
-			label="Body"
-			onclick="setTextBlock('body')"
-		></vwc-button>
+		<vwc-button appearance="filled" label="Title" onclick="setTextBlock('title')"></vwc-button>
+		<vwc-button appearance="filled" label="Subtitle" onclick="setTextBlock('subtitle')"></vwc-button>
+		<vwc-button appearance="filled" label="Body" onclick="setTextBlock('body')"></vwc-button>
 	</div>
 	<vwc-rich-text-editor></vwc-rich-text-editor>
 </vwc-layout>
@@ -134,9 +122,7 @@ Use the `setTextBlock` method to set the text block to one of three types: `titl
 Use the `placeholder` property to set and get the placeholder text in case the editor is empty.
 
 ```html preview
-<vwc-rich-text-editor
-	placeholder="Custom placeholder text"
-></vwc-rich-text-editor>
+<vwc-rich-text-editor placeholder="Custom placeholder text"></vwc-rich-text-editor>
 ```
 
 ## Slots
@@ -148,10 +134,7 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 ```html preview 250px
 <vwc-layout gutters="small" column-basis="block" row-spacing="small">
 	<vwc-rich-text-editor>
-		<vwc-menubar
-			slot="menu-bar"
-			menu-items="textBlock textSize divider textDecoration divider"
-		></vwc-menubar>
+		<vwc-menubar slot="menu-bar" menu-items="textBlock textSize divider textDecoration divider"></vwc-menubar>
 	</vwc-rich-text-editor>
 </vwc-layout>
 <script>
@@ -235,12 +218,7 @@ Set a component in the `attachments` slot to show them inside the editor area.
 			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
 		</div>
 	</vwc-rich-text-editor>
-	<vwc-button
-		id="scroll-to-attachments"
-		hidden
-		onclick="scrollToAttachments()"
-		label="Scroll to Attachments"
-	></vwc-button>
+	<vwc-button id="scroll-to-attachments" hidden onclick="scrollToAttachments()" label="Scroll to Attachments"></vwc-button>
 </vwc-layout>
 
 <script>
@@ -276,9 +254,7 @@ Set a component in the `attachments` slot to show them inside the editor area.
 	observer = new IntersectionObserver(
 		(entries) => {
 			const entry = entries[0];
-			document
-				.querySelector('#scroll-to-attachments')
-				.classList.toggle('hidden', entry.isIntersecting);
+			document.querySelector('#scroll-to-attachments').classList.toggle('hidden', entry.isIntersecting);
 		},
 		{
 			root: null,

@@ -3,10 +3,7 @@
 ```html preview
 <form method="post" action="">
 	<vwc-layout column-spacing="small" column-basis="block">
-		<vwc-checkbox
-			required
-			label="I agree to the terms and conditions"
-		></vwc-checkbox>
+		<vwc-checkbox required label="I agree to the terms and conditions"></vwc-checkbox>
 		<div class="buttons">
 			<vwc-button label="Reset" appearance="outlined" type="reset"></vwc-button>
 			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
@@ -38,12 +35,8 @@
 <script>
 	document.querySelector('.options').addEventListener('change', () => {
 		const checkboxes = document.querySelectorAll('.options vwc-checkbox');
-		const allChecked = Array.from(checkboxes).every(
-			(checkbox) => checkbox.checked
-		);
-		const allUnchecked = Array.from(checkboxes).every(
-			(checkbox) => !checkbox.checked
-		);
+		const allChecked = Array.from(checkboxes).every((checkbox) => checkbox.checked);
+		const allUnchecked = Array.from(checkboxes).every((checkbox) => !checkbox.checked);
 		const selectAll = document.querySelector('#select-all');
 		selectAll.checked = allChecked;
 		selectAll.indeterminate = !allChecked && !allUnchecked;
@@ -51,9 +44,7 @@
 
 	document.querySelector('#select-all').addEventListener('change', () => {
 		const checkboxes = document.querySelectorAll('.options vwc-checkbox');
-		const allChecked = Array.from(checkboxes).every(
-			(checkbox) => checkbox.checked
-		);
+		const allChecked = Array.from(checkboxes).every((checkbox) => checkbox.checked);
 		const newState = event.target.checked;
 
 		if (allChecked !== newState) {

@@ -141,10 +141,7 @@ Usage of these props is discouraged. To set the current value, you should use th
 ```html
 <VTextField v-model="value" />
 <!-- Which is syntactic sugar for: -->
-<VTextField
-	:model-value="value"
-	@update:modelValue="$event => (value = $event)"
-/>
+<VTextField :model-value="value" @update:modelValue="$event => (value = $event)" />
 ```
 
 Code using `v-model` or `modelValue` is not affected.

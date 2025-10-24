@@ -69,9 +69,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 
 ```html preview 360px
 <vwc-time-picker label="Start time">
-	<vwc-contextual-help slot="contextual-help"
-		>Please see our opening times</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Please see our opening times</vwc-contextual-help>
 </vwc-time-picker>
 ```
 

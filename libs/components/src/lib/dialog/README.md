@@ -31,11 +31,7 @@ registerDialog('your-prefix');
 ```vue preview
 <template>
 	<div style="height: 250px">
-		<VDialog
-			open
-			headline="Dialog with footer"
-			subtitle="this is an example of the dialog with slotted buttons inside footer"
-		>
+		<VDialog open headline="Dialog with footer" subtitle="this is an example of the dialog with slotted buttons inside footer">
 			<template #footer>
 				<div class="demo-footer">
 					<VButton appearance="outlined" label="Cancel" />
@@ -81,27 +77,13 @@ Use the `modal` attribute to set the dialog as Modal
 		<vwc-radio label="Non-modal" value="false" checked></vwc-radio>
 		<vwc-radio label="Modal" value="true"></vwc-radio>
 	</vwc-radio-group>
-	<vwc-button
-		appearance="filled"
-		label="Open Dialog"
-		onclick="openDialog()"
-	></vwc-button>
+	<vwc-button appearance="filled" label="Open Dialog" onclick="openDialog()"></vwc-button>
 </div>
 
 <vwc-dialog id="vwc-dialog" icon="info" headline="Headline" subtitle="subtitle">
 	<vwc-checkbox slot="footer" label="Checkbox"></vwc-checkbox>
-	<vwc-button
-		slot="action-items"
-		label="Cancel"
-		appearance="outlined"
-		onclick="closeDialog()"
-	></vwc-button>
-	<vwc-button
-		slot="action-items"
-		label="Ok"
-		appearance="filled"
-		onclick="closeDialog()"
-	></vwc-button>
+	<vwc-button slot="action-items" label="Cancel" appearance="outlined" onclick="closeDialog()"></vwc-button>
+	<vwc-button slot="action-items" label="Ok" appearance="filled" onclick="closeDialog()"></vwc-button>
 </vwc-dialog>
 
 <script>
@@ -134,16 +116,7 @@ Use the `modal` attribute to set the dialog as Modal
 Sets or returns whether a dialog should be open or not.
 
 ```html preview 230px
-<vwc-button
-	label="Toggle Dialog Open"
-	onclick="dialog.open = !dialog.open"
-	appearance="outlined"
-></vwc-button>
-<vwc-dialog
-	id="dialog"
-	headline="I'm a Dialog"
-	subtitle="subtitle"
-></vwc-dialog>
+<vwc-button label="Toggle Dialog Open" onclick="dialog.open = !dialog.open" appearance="outlined"></vwc-button> <vwc-dialog id="dialog" headline="I'm a Dialog" subtitle="subtitle"></vwc-dialog>
 ```
 
 ## Dismiss
@@ -158,12 +131,7 @@ Sets or returns whether a dialog should be open or not.
 Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismissed by clicking outside it.
 
 ```html preview 230px
-<vwc-button
-	label="Open modal dialog"
-	onclick="document.querySelector('vwc-dialog').open = true"
-	appearance="outlined"
-></vwc-button>
-<vwc-dialog no-light-dismiss headline="Headline" modal></vwc-dialog>
+<vwc-button label="Open modal dialog" onclick="document.querySelector('vwc-dialog').open = true" appearance="outlined"></vwc-button> <vwc-dialog no-light-dismiss headline="Headline" modal></vwc-dialog>
 ```
 
 ### No-Dismiss-On-Esc
@@ -171,12 +139,7 @@ Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismis
 Use the `no-dismiss-on-esc` attribute to prevent a modal dialog from being dismissed by pressing ESC.
 
 ```html preview 230px
-<vwc-button
-	label="Open modal dialog"
-	onclick="document.querySelector('vwc-dialog').open = true"
-	appearance="outlined"
-></vwc-button>
-<vwc-dialog no-dismiss-on-esc headline="Headline" modal></vwc-dialog>
+<vwc-button label="Open modal dialog" onclick="document.querySelector('vwc-dialog').open = true" appearance="outlined"></vwc-button> <vwc-dialog no-dismiss-on-esc headline="Headline" modal></vwc-dialog>
 ```
 
 ### No-Dismiss-Button
@@ -184,12 +147,7 @@ Use the `no-dismiss-on-esc` attribute to prevent a modal dialog from being dismi
 Use the `no-dismiss-button` attribute to remove the dismiss button from the dialog.
 
 ```html preview 230px
-<vwc-button
-	label="Open modal dialog"
-	onclick="document.querySelector('vwc-dialog').open = true"
-	appearance="outlined"
-></vwc-button>
-<vwc-dialog no-dismiss-button headline="Headline" modal></vwc-dialog>
+<vwc-button label="Open modal dialog" onclick="document.querySelector('vwc-dialog').open = true" appearance="outlined"></vwc-button> <vwc-dialog no-dismiss-button headline="Headline" modal></vwc-dialog>
 ```
 
 ### Non-Dismissible
@@ -197,12 +155,7 @@ Use the `no-dismiss-button` attribute to remove the dismiss button from the dial
 The `non-dismissible` attribute combines `no-light-dismiss`, `no-dismiss-on-esc`, and `no-dismiss-button`.
 
 ```html preview 230px
-<vwc-button
-	label="Open modal dialog"
-	onclick="document.querySelector('vwc-dialog').open = true"
-	appearance="outlined"
-></vwc-button>
-<vwc-dialog non-dismissible headline="Headline" modal></vwc-dialog>
+<vwc-button label="Open modal dialog" onclick="document.querySelector('vwc-dialog').open = true" appearance="outlined"></vwc-button> <vwc-dialog non-dismissible headline="Headline" modal></vwc-dialog>
 ```
 
 ### Dismiss-Button-Aria-Label
@@ -221,23 +174,11 @@ Often used to indicate which button the user pressed to close it.
 		Returned Value:
 		<span id="dialog-output"></span>
 	</div>
-	<vwc-button
-		label="Open Dialog"
-		appearance="outlined"
-		onclick="openDialog()"
-	></vwc-button>
+	<vwc-button label="Open Dialog" appearance="outlined" onclick="openDialog()"></vwc-button>
 </div>
 <vwc-dialog open headline="Returning Dialog">
-	<vwc-button
-		slot="action-items"
-		appearance="outlined"
-		label="Cancel"
-	></vwc-button>
-	<vwc-button
-		slot="action-items"
-		appearance="filled"
-		label="Action"
-	></vwc-button>
+	<vwc-button slot="action-items" appearance="outlined" label="Cancel"></vwc-button>
+	<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
 </vwc-dialog>
 
 <script>
@@ -255,10 +196,7 @@ Often used to indicate which button the user pressed to close it.
 		dialogOutput = document.querySelector('#dialog-output');
 
 		cancelButton.onclick = actionButton.onclick = handleClick;
-		dialog.addEventListener(
-			'close',
-			(e) => (dialogOutput.innerText = dialog.returnValue)
-		);
+		dialog.addEventListener('close', (e) => (dialogOutput.innerText = dialog.returnValue));
 		window.handleClick = handleClick;
 	})();
 
@@ -279,10 +217,7 @@ Use the slot if a colored icon is needed or an icon with different dimensions.
 
 ```html preview 200px
 <vwc-dialog headline="Dialog With Graphic Slot" open icon-placement="side">
-	<img
-		slot="graphic"
-		src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5"
-	/>
+	<img slot="graphic" src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5" />
 </vwc-dialog>
 ```
 
@@ -315,29 +250,13 @@ To remove the body inline padding use `full-width-body`.
 Use `full-width-body` if Progress-Bar or Tabs are needed in the Dialog.
 
 ```html preview 400px
-<vwc-dialog
-	open
-	icon-placement="side"
-	icon="info"
-	headline="Dialog Headline"
-	full-width-body
->
+<vwc-dialog open icon-placement="side" icon="info" headline="Dialog Headline" full-width-body>
 	<div slot="body" class="dialog-body">
-		<vwc-progress
-			min="0"
-			max="50"
-			value="12.5"
-			shape="sharp"
-			connotation="pacific"
-		></vwc-progress>
+		<vwc-progress min="0" max="50" value="12.5" shape="sharp" connotation="pacific"></vwc-progress>
 		<vwc-layout column-basis="block" gutters="medium-inline">
 			<form>
 				<vwc-layout column-basis="block">
-					<vwc-text-field
-						label="Agent Name"
-						placeholder="Search for an agent"
-						icon="search-line"
-					></vwc-text-field>
+					<vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
 					<vwc-text-area label="Additional Note (Optional)"></vwc-text-area>
 				</vwc-layout>
 			</form>
@@ -359,21 +278,9 @@ Use `full-width-body` if Progress-Bar or Tabs are needed in the Dialog.
 Use the `action-items` slot to add action items to the bottom of the dialog.
 
 ```html preview 250px
-<vwc-dialog
-	open
-	headline="Dialog with primary and secondary actions"
-	subtitle="This is an example of the dialog with slotted buttons"
->
-	<vwc-button
-		slot="action-items"
-		appearance="outlined"
-		label="Cancel"
-	></vwc-button>
-	<vwc-button
-		slot="action-items"
-		appearance="filled"
-		label="Action"
-	></vwc-button>
+<vwc-dialog open headline="Dialog with primary and secondary actions" subtitle="This is an example of the dialog with slotted buttons">
+	<vwc-button slot="action-items" appearance="outlined" label="Cancel"></vwc-button>
+	<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
 </vwc-dialog>
 ```
 
@@ -388,11 +295,7 @@ Use the `footer` slot in order to add additional content to the bottom of the di
 </vwc-note>
 
 ```html preview 250px
-<vwc-dialog
-	open
-	headline="Dialog with footer"
-	subtitle="This is an example of the dialog with a checkbox inside footer"
->
+<vwc-dialog open headline="Dialog with footer" subtitle="This is an example of the dialog with a checkbox inside footer">
 	<vwc-checkbox slot="footer" label="I agree"></vwc-checkbox>
 	<vwc-button slot="action-items" appearance="filled" label="Ok"></vwc-button>
 </vwc-dialog>
@@ -405,9 +308,7 @@ Use the main slot to fully override a Dialog's predefined template with your own
 
 ```html preview 130px
 <vwc-dialog open>
-	<vwc-layout slot="main" column-basis="block" gutters="medium">
-		Use main slot for your own layout and content
-	</vwc-layout>
+	<vwc-layout slot="main" column-basis="block" gutters="medium"> Use main slot for your own layout and content </vwc-layout>
 </vwc-dialog>
 ```
 
@@ -436,13 +337,7 @@ Setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-s
 </vwc-note>
 
 ```html preview 230px
-<vwc-dialog
-	class="dialog"
-	icon="info"
-	headline="Headline"
-	subtitle="Subtitle content"
-	open
-></vwc-dialog>
+<vwc-dialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
 
 <style>
 	.dialog {
@@ -456,13 +351,7 @@ Setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-s
 The dialog has a default `--dialog-max-block-size`. If the content is larger, the dialog will be scrollable.
 
 ```html preview 250px
-<vwc-dialog
-	class="dialog"
-	icon="info"
-	headline="Headline"
-	subtitle="Subtitle content"
-	open
-></vwc-dialog>
+<vwc-dialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
 
 <style>
 	.dialog {
@@ -476,13 +365,7 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 When the dialog is not used as a modal, you can overwrite default inset values using `--dialog-inset-inline` and `--dialog-inset-block` variables.
 
 ```html preview 250px
-<vwc-dialog
-	class="dialog"
-	icon="info"
-	headline="Headline"
-	subtitle="Subtitle content"
-	open
-></vwc-dialog>
+<vwc-dialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
 
 <style>
 	.dialog {

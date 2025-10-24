@@ -13,10 +13,7 @@ Add a `headline` attribute to add card headline title.
 Add a `subtitle` attribute to add card subtitle.
 
 ```html preview
-<vwc-card
-	subtitle="Extra text below the card headline"
-	headline="Vivid Card Component"
-></vwc-card>
+<vwc-card subtitle="Extra text below the card headline" headline="Vivid Card Component"></vwc-card>
 ```
 
 ### Text
@@ -24,11 +21,7 @@ Add a `subtitle` attribute to add card subtitle.
 Add a `text` attribute to add text to the card.
 
 ```html preview
-<vwc-card
-	text="The card can contain multiple lines of text."
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-></vwc-card>
+<vwc-card text="The card can contain multiple lines of text." headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
 ```
 
 ## Icon
@@ -44,11 +37,7 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </vwc-note>
 
 ```html preview
-<vwc-card
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-	icon="chat-line"
-></vwc-card>
+<vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline" icon="chat-line"></vwc-card>
 ```
 
 ## Clickable Cards
@@ -60,13 +49,7 @@ Card component supports two **clickable** modes:
 Use the `href` attribute to change the card wrapper to a link. When doing so, all of the native attributes of [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) are supported, including `target`.
 
 ```html preview
-<vwc-card
-	headline="Vivid Card as a Link"
-	subtitle="Clicking on this card will navigate you to the documentation homepage"
-	href="https://vivid.deno.dev"
-	target="_blank"
->
-</vwc-card>
+<vwc-card headline="Vivid Card as a Link" subtitle="Clicking on this card will navigate you to the documentation homepage" href="https://vivid.deno.dev" target="_blank"> </vwc-card>
 ```
 
 <vwc-note connotation="information" headline="Usage With Vue Router">
@@ -81,14 +64,7 @@ See [Client-Side Navigation](/getting-started/vue/#client-side-navigation) for m
 Setting the `clickable-card` attribute switches the card wrapper to a `<button>`, allowing you to trigger programmatic actions e.g. using the `click` event.
 
 ```html preview
-<vwc-card
-	headline="Vivid Card as a Button"
-	subtitle="Clicking on this card will trigger displaying its headline as an alert"
-	type="button"
-	clickable-card
-	onclick="onClick(event)"
->
-</vwc-card>
+<vwc-card headline="Vivid Card as a Button" subtitle="Clicking on this card will trigger displaying its headline as an alert" type="button" clickable-card onclick="onClick(event)"> </vwc-card>
 
 <script>
 	function onClick(event) {
@@ -111,21 +87,9 @@ The `appearance` attribute to change the card's appearance.
 
 ```html preview
 <vwc-layout>
-	<vwc-card
-		appearance="elevated"
-		headline="Elevated"
-		subtitle="this is the card default appearance"
-	></vwc-card>
-	<vwc-card
-		appearance="outlined"
-		headline="Outlined"
-		subtitle="this appearance set a border to the card same as elevation='0' "
-	></vwc-card>
-	<vwc-card
-		appearance="ghost"
-		headline="Ghost"
-		subtitle="present the card template without background or shadow"
-	></vwc-card>
+	<vwc-card appearance="elevated" headline="Elevated" subtitle="this is the card default appearance"></vwc-card>
+	<vwc-card appearance="outlined" headline="Outlined" subtitle="this appearance set a border to the card same as elevation='0' "></vwc-card>
+	<vwc-card appearance="ghost" headline="Ghost" subtitle="present the card template without background or shadow"></vwc-card>
 </vwc-layout>
 ```
 
@@ -136,36 +100,12 @@ The elevation is applied only with the default appearance (`appearance='elevated
 
 ```html preview
 <vwc-layout>
-	<vwc-card
-		elevation="2"
-		headline="Elevation 2"
-		class="card-elevated"
-	></vwc-card>
-	<vwc-card
-		elevation="4"
-		headline="Elevation 4 - default"
-		class="card-elevated"
-	></vwc-card>
-	<vwc-card
-		elevation="8"
-		headline="Elevation 8"
-		class="card-elevated"
-	></vwc-card>
-	<vwc-card
-		elevation="12"
-		headline="Elevation 12"
-		class="card-elevated"
-	></vwc-card>
-	<vwc-card
-		elevation="16"
-		headline="Elevation 16"
-		class="card-elevated"
-	></vwc-card>
-	<vwc-card
-		elevation="24"
-		headline="Elevation 24"
-		class="card-elevated"
-	></vwc-card>
+	<vwc-card elevation="2" headline="Elevation 2" class="card-elevated"></vwc-card>
+	<vwc-card elevation="4" headline="Elevation 4 - default" class="card-elevated"></vwc-card>
+	<vwc-card elevation="8" headline="Elevation 8" class="card-elevated"></vwc-card>
+	<vwc-card elevation="12" headline="Elevation 12" class="card-elevated"></vwc-card>
+	<vwc-card elevation="16" headline="Elevation 16" class="card-elevated"></vwc-card>
+	<vwc-card elevation="24" headline="Elevation 24" class="card-elevated"></vwc-card>
 </vwc-layout>
 
 <style>

@@ -21,10 +21,7 @@ The Menu Item can be given extra context using the `text-secondary` attribute.
 
 ```html preview 150px
 <vwc-menu open aria-label="Example menu">
-	<vwc-menu-item
-		text="Menu item"
-		text-secondary="Secondary text"
-	></vwc-menu-item>
+	<vwc-menu-item text="Menu item" text-secondary="Secondary text"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -89,37 +86,13 @@ If the `icon` attribute is present, the indicator will be trailing by default.
 
 ```html preview 280px
 <vwc-menu open aria-label="Example menu">
-	<vwc-menu-item
-		control-type="checkbox"
-		text="Checkbox 1"
-		check-trailing
-	></vwc-menu-item>
-	<vwc-menu-item
-		control-type="checkbox"
-		text="Checkbox 2"
-		check-trailing
-	></vwc-menu-item>
-	<vwc-menu-item
-		icon="image-line"
-		control-type="checkbox"
-		text="Checkbox 3"
-	></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Checkbox 1" check-trailing></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Checkbox 2" check-trailing></vwc-menu-item>
+	<vwc-menu-item icon="image-line" control-type="checkbox" text="Checkbox 3"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item
-		control-type="radio"
-		text="Radio 1"
-		check-trailing
-	></vwc-menu-item>
-	<vwc-menu-item
-		control-type="radio"
-		text="Radio 2"
-		check-trailing
-	></vwc-menu-item>
-	<vwc-menu-item
-		icon="image-line"
-		control-type="radio"
-		text="Radio 3"
-	></vwc-menu-item>
+	<vwc-menu-item control-type="radio" text="Radio 1" check-trailing></vwc-menu-item>
+	<vwc-menu-item control-type="radio" text="Radio 2" check-trailing></vwc-menu-item>
+	<vwc-menu-item icon="image-line" control-type="radio" text="Radio 3"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -131,35 +104,12 @@ In the example below it is set to `tick-only` (default is `normal`).
 
 ```html preview 250px
 <vwc-menu open aria-label="Example menu">
-	<vwc-menu-item
-		control-type="checkbox"
-		text="Checkbox 1"
-		check-appearance="tick-only"
-		checked
-	></vwc-menu-item>
-	<vwc-menu-item
-		control-type="checkbox"
-		text="Checkbox 2"
-		check-appearance="tick-only"
-		checked
-	></vwc-menu-item>
-	<vwc-menu-item
-		control-type="checkbox"
-		text="Checkbox 3"
-		check-appearance="tick-only"
-	></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Checkbox 1" check-appearance="tick-only" checked></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Checkbox 2" check-appearance="tick-only" checked></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" text="Checkbox 3" check-appearance="tick-only"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item
-		control-type="radio"
-		text="Radio 1"
-		check-appearance="tick-only"
-	></vwc-menu-item>
-	<vwc-menu-item
-		control-type="radio"
-		text="Radio 2"
-		check-appearance="tick-only"
-		checked
-	></vwc-menu-item>
+	<vwc-menu-item control-type="radio" text="Radio 1" check-appearance="tick-only"></vwc-menu-item>
+	<vwc-menu-item control-type="radio" text="Radio 2" check-appearance="tick-only" checked></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -169,17 +119,9 @@ When `control-type` is set, the `checked` attribute sets the checked state.
 
 ```html preview 100px
 <vwc-menu open aria-label="Example menu">
-	<vwc-menu-item
-		checked
-		control-type="checkbox"
-		text="Checked Checkbox Menu Item"
-	></vwc-menu-item>
+	<vwc-menu-item checked control-type="checkbox" text="Checked Checkbox Menu Item"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item
-		checked
-		control-type="radio"
-		text="Checked Radio Menu Item"
-	></vwc-menu-item>
+	<vwc-menu-item checked control-type="radio" text="Checked Radio Menu Item"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -189,17 +131,8 @@ The `connotation` attribute controls the checked color.
 
 ```html preview 110px
 <vwc-menu open aria-label="Example menu" style="--menu-block-size: auto;">
-	<vwc-menu-item
-		control-type="checkbox"
-		checked
-		text="Accent (default)"
-	></vwc-menu-item>
-	<vwc-menu-item
-		connotation="cta"
-		control-type="checkbox"
-		checked
-		text="CTA"
-	></vwc-menu-item>
+	<vwc-menu-item control-type="checkbox" checked text="Accent (default)"></vwc-menu-item>
+	<vwc-menu-item connotation="cta" control-type="checkbox" checked text="CTA"></vwc-menu-item>
 </vwc-menu>
 ```
 
