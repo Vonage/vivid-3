@@ -7387,11 +7387,6 @@
 					"returnType": "void"
 				},
 				{
-					"name": "setDefaultSelectedOption",
-					"args": [],
-					"returnType": "void"
-				},
-				{
 					"name": "setSelectedOptions",
 					"description": "Sets an option as selected and gives it focus.",
 					"args": [],

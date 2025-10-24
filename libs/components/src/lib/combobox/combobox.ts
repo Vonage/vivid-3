@@ -149,14 +149,13 @@ export class Combobox extends WithContextualHelp(
 	@observable metaSlottedContent?: Node[];
 
 	/**
-	 * Reset the element to its first selectable option when its parent form is reset.
-	 *
 	 * @internal
 	 */
 	override formResetCallback(): void {
 		super.formResetCallback();
-		this.setDefaultSelectedOption();
-		this.updateValue();
+		this.selectedIndex =
+			this._newDefaultSelectedIndex([], this.options, -1) ?? -1;
+		this.value = this.firstSelectedOption?.text || '';
 	}
 
 	/** {@inheritDoc (FormAssociated:interface).validate} */
@@ -238,8 +237,7 @@ export class Combobox extends WithContextualHelp(
 	}
 
 	override set options(value: ListboxOption[]) {
-		this._options = value;
-		Observable.notify(this, 'options');
+		super.options = value;
 	}
 
 	/**
@@ -552,25 +550,11 @@ export class Combobox extends WithContextualHelp(
 		}
 	}
 
-	/**
-	 * Set the default selected options at initialization or reset.
-	 *
-	 * @internal
-	 * @remarks
-	 * Overrides `Listbox.setDefaultSelectedOption`
-	 */
-	override setDefaultSelectedOption(): void {
-		if (this.$fastController.isConnected && this.options) {
-			const selectedIndex = this.options.findIndex(
-				(el) => el.getAttribute('selected') !== null || el.selected
-			);
-
-			this.selectedIndex = selectedIndex;
-			if (!this.dirtyValue && this.firstSelectedOption) {
-				this.value = this.firstSelectedOption.text;
-			}
-			this.setSelectedOptions();
-		}
+	override _isDefaultSelected(option: ListboxOption): boolean {
+		return (
+			super._isDefaultSelected(option) ||
+			(option.text !== '' && option.text === this.initialValue)
+		);
 	}
 
 	/**
@@ -671,7 +655,6 @@ export class Combobox extends WithContextualHelp(
 	private updateValue(shouldEmit?: boolean) {
 		if (this.$fastController.isConnected) {
 			this.value = this.firstSelectedOption?.text || this.control.value;
-			this.control.value = this.value;
 		}
 
 		if (shouldEmit) {
