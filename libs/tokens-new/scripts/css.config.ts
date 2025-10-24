@@ -1,18 +1,18 @@
 import type { Hooks, PlatformConfig } from 'style-dictionary/types';
 import { fileHeader } from 'style-dictionary/utils';
 
-const hexify = (num: number) => {
-	return Math.round(num * 255)
-		.toString(16)
-		.padStart(2, '0');
-};
-
 interface ColorValue {
 	colorSpace: string;
 	components: [number, number, number];
 	alpha: number;
 	hex: string;
 }
+
+const hexify = (num: number) => {
+	return Math.round(num * 255)
+		.toString(16)
+		.padStart(2, '0');
+};
 
 function getHex(token: ColorValue) {
 	const [r, g, b] = token.components;
@@ -68,7 +68,7 @@ export const cssConfig: Hooks = {
 						(stop: any) =>
 							`${stop.offsetX}px ${stop.offsetY}px ${stop.blur} ${
 								stop.spread
-							} ${getHex(stop.color)}`
+							} ${getHex(stop.color)}`,
 					)
 					.join(', ');
 			},
