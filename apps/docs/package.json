@@ -28,7 +28,7 @@
 		"@vonage/vivid-test-utils": "*",
 		"@vonage/vivid-vue": "*",
 		"lodash": "^4.17.21",
-		"ramda": "^0.30.0"
+		"ramda": "^0.32.0"
 	},
 	"devDependencies": {
 		"@11ty/eleventy": "^3.1.2",
