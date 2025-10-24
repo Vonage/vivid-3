@@ -66,7 +66,9 @@ export const cssConfig: Hooks = {
 				return token.$value
 					.map(
 						(stop: any) =>
-							`${stop.offsetX}px ${stop.offsetY}px ${stop.blur} ${stop.spread} ${getHex(stop.color)}`,
+							`${stop.offsetX}px ${stop.offsetY}px ${stop.blur} ${
+								stop.spread
+							} ${getHex(stop.color)}`
 					)
 					.join(', ');
 			},
