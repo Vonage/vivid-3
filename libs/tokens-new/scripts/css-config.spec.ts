@@ -24,7 +24,7 @@ describe('CSS Features', () => {
 				},
 			});
 
-			const out = cssConfig.transforms['vvd/css/value/dimension'].transform(
+			const out = cssConfig.transforms['vvd/value/css/dimension'].transform(
 				token,
 				{},
 				{}
@@ -34,7 +34,7 @@ describe('CSS Features', () => {
 		});
 	});
 
-	describe('vvd/css/value/typography', () => {
+	describe('vvd/value/css/typography', () => {
 		it('Should build font shorthand', () => {
 			const token = buildToken('vvd/typography/heading/200', {
 				$type: 'typography',
@@ -53,7 +53,7 @@ describe('CSS Features', () => {
 				},
 			});
 
-			const out = cssConfig.transforms['vvd/css/value/typography'].transform(
+			const out = cssConfig.transforms['vvd/value/css/typography'].transform(
 				token,
 				{
 					basePxFontSize: 14,
@@ -67,35 +67,56 @@ describe('CSS Features', () => {
 		});
 	});
 
-	describe('vvd/css/value/shadow', () => {
+	describe('vvd/value/css/shadow', () => {
 		it('Should build box-shadow stops', () => {
 			const token = buildToken('vvd/elevation/regular/200', {
 				$type: 'shadow',
 				$value: [
 					{
 						blur: 4,
-						color: '#c7c6c66b',
+						color: {
+							colorSpace: 'srgb',
+							components: [
+								0.7803921699523926, 0.7764706015586853, 0.7764706015586853,
+							],
+							alpha: 0.41999998688697815,
+							hex: '#c7c6c6',
+						},
 						spread: 0,
 						offsetX: 0,
 						offsetY: 1,
 					},
 					{
 						blur: 2,
-						color: '#c7c6c62b',
+						color: {
+							colorSpace: 'srgb',
+							components: [
+								0.7803921699523926, 0.7764706015586853, 0.7764706015586853,
+							],
+							alpha: 0.17000000178813934,
+							hex: '#c7c6c6',
+						},
 						spread: 0,
 						offsetX: 0,
 						offsetY: 1,
 					},
 					{
 						blur: 1,
-						color: '#c7c6c62b',
+						color: {
+							colorSpace: 'srgb',
+							components: [
+								0.7803921699523926, 0.7764706015586853, 0.7764706015586853,
+							],
+							alpha: 0.17000000178813934,
+							hex: '#c7c6c6',
+						},
 						spread: 0,
 						offsetX: 0,
 						offsetY: 2,
 					},
 				],
 			});
-			const out = cssConfig.transforms['vvd/css/value/shadow'].transform(
+			const out = cssConfig.transforms['vvd/value/css/shadow'].transform(
 				token,
 				{},
 				{}
@@ -107,14 +128,14 @@ describe('CSS Features', () => {
 		});
 	});
 
-	describe('vvd/css/value/roundRems', () => {
+	describe('vvd/value/css/roundRems', () => {
 		it('Should round rems value', () => {
 			const token = buildToken('vvd/size/medium/800', {
 				$type: 'dimension',
 				$value: '1.1234567890rem',
 			});
 
-			const out = cssConfig.transforms['vvd/css/value/roundRems'].transform(
+			const out = cssConfig.transforms['vvd/value/css/roundRems'].transform(
 				token,
 				{},
 				{}
@@ -127,7 +148,7 @@ describe('CSS Features', () => {
 				$type: 'dimension',
 				$value: '12px',
 			});
-			const out = cssConfig.transforms['vvd/css/value/roundRems'].transform(
+			const out = cssConfig.transforms['vvd/value/css/roundRems'].transform(
 				token,
 				{},
 				{}
@@ -136,11 +157,11 @@ describe('CSS Features', () => {
 		});
 	});
 
-	describe('vvd/css/name', () => {
+	describe('vvd/name/css', () => {
 		it('Should replace slashes with dashes in tokens name');
 		const token = buildToken('vvd/color/critical/500', {});
 
-		const out = cssConfig.transforms['vvd/css/name'].transform(token, {}, {});
+		const out = cssConfig.transforms['vvd/name/css'].transform(token, {}, {});
 		expect(out).toEqual('vvd-color-critical-500');
 	});
 });
