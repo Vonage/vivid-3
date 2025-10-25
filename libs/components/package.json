@@ -75,7 +75,7 @@
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.52.9",
 		"@microsoft/eslint-config-fast-dna": "^2.1.0",
-		"@playwright/test": "1.48.2",
+		"@playwright/test": "1.56.1",
 		"@repo/cem-analyzer-plugins": "*",
 		"@repo/consts": "*",
 		"@repo/eslint-config": "*",

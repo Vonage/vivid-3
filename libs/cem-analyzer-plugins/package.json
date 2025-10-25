@@ -17,7 +17,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"@custom-elements-manifest/analyzer": "^0.5.7",
+		"@custom-elements-manifest/analyzer": "^0.10.0",
 		"@microsoft/fast-element": "^2.7.0",
 		"@repo/typescript-config": "*",
 		"@repo/eslint-config": "*",
