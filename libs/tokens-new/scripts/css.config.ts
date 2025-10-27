@@ -1,9 +1,28 @@
 import type { Hooks, PlatformConfig } from 'style-dictionary/types';
 import { fileHeader } from 'style-dictionary/utils';
 
+interface ColorValue {
+	colorSpace: string;
+	components: [number, number, number];
+	alpha: number;
+	hex: string;
+}
+
+const hexify = (num: number) => {
+	return Math.round(num * 255)
+		.toString(16)
+		.padStart(2, '0');
+};
+
+function getHex(token: ColorValue) {
+	const [r, g, b] = token.components;
+	const a = token.alpha;
+	return `#${hexify(r)}${hexify(g)}${hexify(b)}${hexify(a)}`;
+}
+
 export const cssConfig: Hooks = {
 	actions: {
-		'vvd/createIndex': {
+		'vvd/css/createIndex': {
 			do: async function (_, platform, options, volume) {
 				let out = await fileHeader({ options });
 				out += platform.files
@@ -20,14 +39,14 @@ export const cssConfig: Hooks = {
 		},
 	},
 	transforms: {
-		'vvd/css/value/dimension': {
+		'vvd/value/css/dimension': {
 			type: 'value',
 			filter: (token) => token.$type === 'dimension',
 			transform(token) {
 				return `${token.$value.value}px`;
 			},
 		},
-		'vvd/css/value/typography': {
+		'vvd/value/css/typography': {
 			type: 'value',
 			filter: (token) => token.$type === 'typography',
 			transform(token, platform) {
@@ -40,19 +59,21 @@ export const cssConfig: Hooks = {
 				return `${token.$value.fontWeight} ${fontSize}/${lineHeight} "${token.$value.fontFamily}"`;
 			},
 		},
-		'vvd/css/value/shadow': {
+		'vvd/value/css/shadow': {
 			type: 'value',
 			filter: (token) => token.$type === 'shadow',
 			transform(token) {
 				return token.$value
 					.map(
 						(stop: any) =>
-							`${stop.offsetX}px ${stop.offsetY}px ${stop.blur} ${stop.spread} ${stop.color}`
+							`${stop.offsetX}px ${stop.offsetY}px ${stop.blur} ${
+								stop.spread
+							} ${getHex(stop.color)}`
 					)
 					.join(', ');
 			},
 		},
-		'vvd/css/value/roundRems': {
+		'vvd/value/css/roundRems': {
 			type: 'value',
 			transform(token) {
 				if (typeof token.$value !== 'string') return;
@@ -61,7 +82,7 @@ export const cssConfig: Hooks = {
 				});
 			},
 		},
-		'vvd/css/name': {
+		'vvd/name/css': {
 			type: 'name',
 			transform(token) {
 				return token.name.replace(/\//g, '-');
@@ -76,12 +97,12 @@ export const cssPlatform: PlatformConfig = {
 	},
 	basePxFontSize: 14,
 	transforms: [
-		'vvd/css/name',
-		'vvd/css/value/dimension',
-		'vvd/css/value/shadow', // 'shadow/css/shorthand' - // Format mismatch, as StyleDictionary uses WIP format version
-		'vvd/css/value/typography', //'typography/css/shorthand' - // Format mismatch, as StyleDictionary uses WIP format version
+		'vvd/name/css',
+		'vvd/value/css/dimension',
+		'vvd/value/css/shadow',
+		'vvd/value/css/typography',
 		'size/pxToRem',
-		'vvd/css/value/roundRems',
+		'vvd/value/css/roundRems',
 	],
 	buildPath: './dist/',
 	files: [
@@ -111,5 +132,5 @@ export const cssPlatform: PlatformConfig = {
 			filter: (token) => token.filePath.includes('typography'),
 		},
 	],
-	actions: ['vvd/createIndex'],
+	actions: ['vvd/css/createIndex'],
 };
