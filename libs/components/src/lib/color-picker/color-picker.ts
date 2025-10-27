@@ -15,6 +15,7 @@ import {
 	isValidHexColor,
 } from '../../shared/color-picker';
 import {
+	TrappedFocus,
 	WithContextualHelp,
 	WithErrorText,
 	WithSuccessText,
@@ -52,7 +53,11 @@ export const vcInputTag = VC_HEX_INPUT_TAG;
  */
 export class ColorPicker extends WithContextualHelp(
 	WithFeedback(
-		WithErrorText(WithSuccessText(DelegatesAria(BaseColorPicker(VividElement))))
+		WithErrorText(
+			WithSuccessText(
+				DelegatesAria(TrappedFocus(BaseColorPicker(VividElement)))
+			)
+		)
 	)
 ) {
 	/**

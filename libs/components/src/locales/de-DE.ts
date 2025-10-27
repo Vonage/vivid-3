@@ -273,7 +273,7 @@ const deDE: Locale = {
 	colorPicker: {
 		popupLabel: 'Farbwähler',
 		swatchesLabel: 'Gespeicherte Farben:',
-		pickerButtonLabel: 'Farbwähler öffnen',
+		pickerButtonLabel: 'Farbwähler',
 		saveButtonLabel: 'Aktuelle Farbe speichern',
 		closeButtonLabel: 'Farbwähler schließen',
 		copyButtonLabel: 'Farbe in die Zwischenablage kopieren',

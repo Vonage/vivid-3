@@ -269,7 +269,7 @@ const jaJP: Locale = {
 	colorPicker: {
 		popupLabel: 'カラーピッカー',
 		swatchesLabel: '保存された色:',
-		pickerButtonLabel: 'カラーピッカーを開く',
+		pickerButtonLabel: 'カラーピッカー',
 		saveButtonLabel: '現在の色を保存',
 		closeButtonLabel: 'カラーピッカーを閉じる',
 		copyButtonLabel: '色をクリップボードにコピー',

@@ -48,6 +48,8 @@ function renderTextField(
 		>
 			<button 
 				aria-label="${(x) => x.locale.colorPicker.pickerButtonLabel}"
+				aria-expanded="${(x) => x.open}"
+  			aria-haspopup="dialog"
 				class="button ${(x) =>
 					classNames(
 						x._applyContrastClass(x._buttonColor) ? 'contrast' : '',
@@ -84,9 +86,9 @@ function renderPopupHeader(
 ) {
 	return html<ColorPicker>`
 		<div class="header">
-			<span class="header-title" id="color-picker-title">
+			<h2 class="header-title" id="color-picker-title">
 				<slot name="popup-text">${(x) => x.locale.colorPicker.popupLabel}</slot>
-			</span>
+			</h2>
 			<${buttonTag} size="condensed" 
 				aria-label="${(x) => x.locale.colorPicker.closeButtonLabel}" 
 				@click="${(x) => x._handleCloseRequest()}">

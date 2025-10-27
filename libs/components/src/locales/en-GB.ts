@@ -271,7 +271,7 @@ const enGB: Locale = {
 	colorPicker: {
 		popupLabel: 'Colour Picker',
 		swatchesLabel: 'Saved colours:',
-		pickerButtonLabel: 'Open Colour Picker',
+		pickerButtonLabel: 'Colour Picker',
 		saveButtonLabel: 'Save current colour',
 		closeButtonLabel: 'Close Colour Picker',
 		copyButtonLabel: 'Copy Colour to Clipboard',
