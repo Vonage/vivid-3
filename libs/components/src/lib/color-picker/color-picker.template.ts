@@ -119,7 +119,10 @@ function renderPopupBody(
 					@color-changed="${(x, c) =>
 						x._onPickerColorChanged(c.event as CustomEvent<{ value: string }>)}"
 					${ref('_vcHexInputEl')}
-				></${html.partial(vcInputTag)}>
+				>
+					<input name="hex-code-input" aria-label="${(x) =>
+						x.locale.colorPicker.hexInputLabel}" part="input">
+				</${html.partial(vcInputTag)}>
 				<${buttonTag} size="normal" 
 					aria-label="${(x) => x.locale.colorPicker.copyButtonLabel}" 
 					@click="${(x) => x._copyValueToClipboard(x.value)}">

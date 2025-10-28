@@ -274,6 +274,7 @@ const deDE: Locale = {
 		popupLabel: 'Farbwähler',
 		swatchesLabel: 'Gespeicherte Farben:',
 		pickerButtonLabel: 'Farbwähler',
+		hexInputLabel: 'HEX-Farbcode',
 		saveButtonLabel: 'Aktuelle Farbe speichern',
 		closeButtonLabel: 'Farbwähler schließen',
 		copyButtonLabel: 'Farbe in die Zwischenablage kopieren',

@@ -272,6 +272,7 @@ const enUS: Locale = {
 		popupLabel: 'Color Picker',
 		swatchesLabel: 'Saved colors:',
 		pickerButtonLabel: 'Color Picker',
+		hexInputLabel: 'HEX color code',
 		saveButtonLabel: 'Save current color',
 		closeButtonLabel: 'Close Color Picker',
 		copyButtonLabel: 'Copy Color to Clipboard',

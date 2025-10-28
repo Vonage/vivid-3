@@ -106,7 +106,8 @@
 vvd-hex-input {
 	min-width: 0;
 	flex: 1 1 auto;
-	&::part(input) {
+	&::part(input),
+	> input {
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;

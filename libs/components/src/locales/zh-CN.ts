@@ -270,6 +270,7 @@ const zhCN: Locale = {
 		popupLabel: '颜色选择器',
 		swatchesLabel: '已保存的颜色',
 		pickerButtonLabel: '颜色选择器',
+		hexInputLabel: '十六进制颜色代码',
 		saveButtonLabel: '保存当前颜色',
 		closeButtonLabel: '关闭颜色选择器',
 		copyButtonLabel: '将颜色复制到剪贴板',

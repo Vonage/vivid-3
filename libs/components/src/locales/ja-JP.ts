@@ -270,6 +270,7 @@ const jaJP: Locale = {
 		popupLabel: 'カラーピッカー',
 		swatchesLabel: '保存された色:',
 		pickerButtonLabel: 'カラーピッカー',
+		hexInputLabel: 'HEXカラーコード',
 		saveButtonLabel: '現在の色を保存',
 		closeButtonLabel: 'カラーピッカーを閉じる',
 		copyButtonLabel: '色をクリップボードにコピー',
