@@ -188,7 +188,8 @@ export const ColorPickerTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 	const buttonTag = context.tagFor(Button);
 	return html<ColorPicker>`
-		<div class="base">
+		<div class="base" @keydown="${(x, { event }) =>
+			x._onBaseKeydown(event as KeyboardEvent)}">
 			${renderTextField(textFieldTag, iconTag)}
 			<${popupTag}
 				:open="${(x) => x.open}"

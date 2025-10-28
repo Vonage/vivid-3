@@ -21,6 +21,7 @@ import {
 	WithSuccessText,
 } from '../../shared/patterns';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 
 const VC_HEX_PICKER_TAG = 'vvd-hex-picker';
 const VC_HEX_INPUT_TAG = 'vvd-hex-input';
@@ -302,7 +303,6 @@ export class ColorPicker extends WithContextualHelp(
 		this._refreshCanvasColor();
 		this.savedColors = this._loadSavedColors();
 		document.addEventListener('mousedown', this.#closeOnPointerOutside, true);
-		document.addEventListener('keydown', this.#closeOnEscape);
 	}
 
 	override disconnectedCallback(): void {
@@ -312,7 +312,6 @@ export class ColorPicker extends WithContextualHelp(
 			this.#closeOnPointerOutside,
 			true
 		);
-		document.removeEventListener('keydown', this.#closeOnEscape);
 	}
 
 	/**
@@ -323,15 +322,6 @@ export class ColorPicker extends WithContextualHelp(
 			return;
 		}
 		this.open = false;
-	};
-
-	/**
-	 * @internal
-	 */
-	#closeOnEscape = (e: KeyboardEvent) => {
-		if (e.key === 'Escape') {
-			this.open = false;
-		}
 	};
 
 	/**
@@ -413,5 +403,58 @@ export class ColorPicker extends WithContextualHelp(
 		predefinedColors.forEach(appendIfUniqueAndValid);
 
 		return merged.slice(0, this._maxSwatchesNormalized);
+	}
+
+	/**
+	 * @internal
+	 */
+	_onBaseKeydown(event: KeyboardEvent) {
+		if (this.open && handleEscapeKeyAndStopPropogation(event)) {
+			this.open = false;
+			return false;
+		}
+
+		if (this._trappedFocus(event, () => this._focusableElsWithinDialog())) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * @internal
+	 */
+	_focusableElsWithinDialog(): NodeListOf<HTMLElement> {
+		return this._popupEl.querySelectorAll(
+			'button:not([role="gridcell"]), [data-vvd-component="button"], vwc-button:not([role="gridcell"])'
+		);
+	}
+
+	/**
+	 * @internal
+	 */
+	override _handleCellKeydown(
+		event: KeyboardEvent,
+		value: string,
+		index: number,
+		isSaveCell?: boolean
+	) {
+		if (event.key === 'Tab') {
+			event.preventDefault();
+			const focusableEls = this._focusableElsWithinDialog();
+			const idx = Array.prototype.indexOf.call(
+				focusableEls,
+				event.currentTarget as HTMLElement
+			);
+
+			const nextIdx = event.shiftKey
+				? (idx - 1 + focusableEls.length) % focusableEls.length
+				: (idx + 1) % focusableEls.length;
+
+			focusableEls[nextIdx]?.focus();
+			return false;
+		}
+
+		return super._handleCellKeydown(event, value, index, isSaveCell);
 	}
 }

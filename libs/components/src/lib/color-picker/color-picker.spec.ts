@@ -1,5 +1,5 @@
 import 'element-internals-polyfill';
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import type { HexColorPicker } from 'vanilla-colorful/hex-color-picker.js';
 import type { HexInput } from 'vanilla-colorful/hex-input.js';
 import type { TextField } from '../text-field/text-field';
@@ -37,6 +37,13 @@ describe('vwc-color-picker', () => {
 		element.shadowRoot?.querySelector(
 			'vwc-button[size="normal"]'
 		) as Button | null;
+
+	const pressKey = (key: string, options: KeyboardEventInit = {}) => {
+		const active = element.shadowRoot!.activeElement!;
+		active.dispatchEvent(
+			new KeyboardEvent('keydown', { key, bubbles: true, ...options })
+		);
+	};
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-color-picker', async () => {
@@ -195,14 +202,18 @@ describe('vwc-color-picker', () => {
 			expect(element.open).toBe(false);
 		});
 
-		it('should close on Escape (document keydown listener)', async () => {
+		it('should close and stop propagation on Escape (component keydown listener)', async () => {
 			element.open = true;
 			await elementUpdated(element);
-			document.dispatchEvent(
+
+			const spy = vi.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+			getBaseElement(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })
 			);
 			await elementUpdated(element);
 			expect(element.open).toBe(false);
+			expect(spy.mock.calls.length).toBe(0);
 		});
 
 		it('should not close when clicking inside popup or button (composedPath guard)', async () => {
@@ -525,9 +536,7 @@ describe('vwc-color-picker', () => {
 				await openAndRender();
 				const saveBtn = getSaveButton()!;
 				saveBtn.focus();
-				saveBtn.dispatchEvent(
-					new KeyboardEvent('keydown', { key, bubbles: true })
-				);
+				pressKey(key);
 				await elementUpdated(element);
 				expect(element.savedColors?.[0]?.value).toBe('#cccccc');
 			}
@@ -643,6 +652,49 @@ describe('vwc-color-picker', () => {
 				).not.toThrow();
 				spy.mockRestore();
 			});
+		});
+	});
+
+	describe('trapped focus', () => {
+		let firstFocusable: HTMLElement;
+		let lastFocusable: HTMLElement;
+
+		const getFocusableElements = () => {
+			const focusableEls = Array.from(
+				element._popupEl.querySelectorAll<HTMLElement>(
+					'button:not([role="gridcell"]), [data-vvd-component="button"], vwc-button:not([role="gridcell"])'
+				)
+			);
+			return {
+				firstFocusable: focusableEls[0],
+				lastFocusable: focusableEls[focusableEls.length - 1],
+			};
+		};
+
+		beforeEach(async () => {
+			element.open = true;
+			await elementUpdated(element);
+			({ firstFocusable, lastFocusable } = getFocusableElements());
+		});
+
+		it('should move focus to first focusable element when pressing tab on the last focusable element', () => {
+			lastFocusable.focus();
+			pressKey('Tab');
+			expect(element.shadowRoot!.activeElement).toBe(firstFocusable);
+		});
+
+		it('should move focus to last focusable element when pressing shift + tab on the first focusable element', () => {
+			firstFocusable.focus();
+			pressKey('Tab', { shiftKey: true });
+			expect(element.shadowRoot!.activeElement).toBe(lastFocusable);
+		});
+
+		it('should keep default of unrelated keydown event', () => {
+			firstFocusable.focus();
+			const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true });
+			event.preventDefault = vi.fn();
+			element.shadowRoot!.activeElement!.dispatchEvent(event);
+			expect(event.preventDefault).not.toHaveBeenCalled();
 		});
 	});
 });
