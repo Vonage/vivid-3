@@ -25,6 +25,9 @@
 				"dist/**"
 			]
 		},
+		"@repo/vivid-design-tokens#build": {
+			"outputs": ["dist/**"]
+		},
 		"@repo/vue-docs#build": {
 			"dependsOn": ["^build"],
 			"outputs": [

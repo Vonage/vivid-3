@@ -8,22 +8,86 @@ interface ColorValue {
 	hex: string;
 }
 
-const hexify = (num: number) => {
+function hexify(num: number): string {
 	return Math.round(num * 255)
 		.toString(16)
 		.padStart(2, '0');
-};
+}
 
-function getHex(token: ColorValue) {
+function getHex(token: ColorValue): string {
 	const [r, g, b] = token.components;
 	const a = token.alpha;
 	return `#${hexify(r)}${hexify(g)}${hexify(b)}${hexify(a)}`;
 }
 
+const fontFaceDeclaration = `@font-face {
+\tfont-display: block;
+\tfont-family: SpeziaCompleteVariableUpright;
+\tfont-stretch: 50% 200%;
+\tfont-weight: 1 1000;
+\tsrc: url('https://fonts.resources.vonage.com/fonts/v2/SpeziaCompleteVariableUprightWeb.woff2')
+\t\tformat('woff2');
+}
+
+@font-face {
+\tfont-display: block;
+\tfont-family: SpeziaMonoCompleteVariable;
+\tfont-stretch: 50% 200%;
+\tfont-weight: 1 1000;
+\tsrc: url('https://fonts.resources.vonage.com/fonts/v2/SpeziaMonoCompleteVariableWeb.woff2')
+\t\tformat('woff2');
+}`;
+
 export const cssConfig: Hooks = {
 	actions: {
+		'vvd/css/addFontsLinks': {
+			do(_dictionary, platform, _options, volume): void {
+				const files = platform.files.filter((file) =>
+					file.destination.includes('typography')
+				);
+
+				for (const file of files) {
+					const content = volume.readFileSync(
+						`${platform.buildPath}/${file.destination}`,
+						'utf-8'
+					) as string;
+
+					const updatedContent = content.replace(
+						platform.options.selector,
+						`${fontFaceDeclaration}\n\n${platform.options.selector}`
+					);
+
+					volume.writeFileSync(
+						`${platform.buildPath}/${file.destination}`,
+						updatedContent
+					);
+				}
+			},
+			undo(_dictionary, platform, _options, volume) {
+				const files = platform.files.filter((file) =>
+					file.destination.includes('typography')
+				);
+
+				for (const file of files) {
+					const content = volume.readFileSync(
+						`${platform.buildPath}/${file.destination}`,
+						'utf-8'
+					) as string;
+
+					const updatedContent = content.replace(
+						`${fontFaceDeclaration}\n\n${platform.options.selector}`,
+						platform.options.selector
+					);
+
+					volume.writeFileSync(
+						`${platform.buildPath}/${file.destination}`,
+						updatedContent
+					);
+				}
+			},
+		},
 		'vvd/css/createIndex': {
-			do: async function (_, platform, options, volume) {
+			async do(_dictionary, platform, options, volume): Promise<void> {
 				let out = await fileHeader({ options });
 				out += platform.files
 					.map((file) => `@import '${file.destination}';`)
@@ -31,7 +95,7 @@ export const cssConfig: Hooks = {
 
 				volume.writeFileSync(`${platform.buildPath}index.css`, out);
 			},
-			undo(_, platform, options, volume): void | Promise<void> {
+			undo(_dictionary, platform, _options, volume): void {
 				if (volume.existsSync(`${platform.buildPath}index.css`)) {
 					volume.unlinkSync(`${platform.buildPath}index.css`);
 				}
@@ -39,6 +103,13 @@ export const cssConfig: Hooks = {
 		},
 	},
 	transforms: {
+		'vvd/value/css/color': {
+			type: 'value',
+			filter: (token) => token.$type === 'color',
+			transform(token) {
+				return getHex(token.$value);
+			},
+		},
 		'vvd/value/css/dimension': {
 			type: 'value',
 			filter: (token) => token.$type === 'dimension',
@@ -56,7 +127,13 @@ export const cssConfig: Hooks = {
 				const lineHeight = `${
 					token.$value.lineHeight / platform.basePxFontSize
 				}rem`;
-				return `${token.$value.fontWeight} ${fontSize}/${lineHeight} "${token.$value.fontFamily}"`;
+				const fontFamily = token.$value.fontFamily
+					.toLocaleLowerCase()
+					.includes('mono')
+					? 'SpeziaMonoCompleteVariable'
+					: 'SpeziaCompleteVariableUpright';
+				return `${token.$value.fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`;
+				// return `${token.$value.fontWeight} ${fontSize}/${lineHeight} SpeziaMonoCompleteVariable`;
 			},
 		},
 		'vvd/value/css/shadow': {
@@ -66,9 +143,9 @@ export const cssConfig: Hooks = {
 				return token.$value
 					.map(
 						(stop: any) =>
-							`${stop.offsetX}px ${stop.offsetY}px ${stop.blur} ${
+							`${stop.offsetX}px ${stop.offsetY}px ${stop.blur}px ${
 								stop.spread
-							} ${getHex(stop.color)}`
+							}px ${getHex(stop.color)}`
 					)
 					.join(', ');
 			},
@@ -97,6 +174,7 @@ export const cssPlatform: PlatformConfig = {
 	},
 	basePxFontSize: 14,
 	transforms: [
+		'vvd/value/css/color',
 		'vvd/name/css',
 		'vvd/value/css/dimension',
 		'vvd/value/css/shadow',
@@ -106,6 +184,11 @@ export const cssPlatform: PlatformConfig = {
 	],
 	buildPath: './dist/',
 	files: [
+		{
+			destination: 'color-default.css',
+			format: 'css/variables',
+			filter: (token) => token.filePath.includes('color'),
+		},
 		{
 			destination: 'density-default.css',
 			format: 'css/variables',
@@ -132,5 +215,5 @@ export const cssPlatform: PlatformConfig = {
 			filter: (token) => token.filePath.includes('typography'),
 		},
 	],
-	actions: ['vvd/css/createIndex'],
+	actions: ['vvd/css/createIndex', 'vvd/css/addFontsLinks'],
 };

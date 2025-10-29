@@ -17,3 +17,35 @@ By keeping token generation inside Figma and using DTCG for cross-platform excha
 Once exported from Figma in the DTCG-compliant JSON format, the token data is transformed into platform-specific outputs that can be directly used in design and development environments. These outputs include formats such as CSS or Flutter variables, and other platform-specific representations.
 
 This conversion ensures that every platform receives exactly the same tokens in a structure optimized for its ecosystem—while still maintaining a single, unified source of truth in Figma. As a result, design decisions flow seamlessly into implementation, preserving consistency across web, mobile, and design tools without manual duplication or drift.
+
+## Usage
+
+It's important to note, that design-tokens package provides only design tokens. It does not provide additional base styles.
+
+Regardless the platform, the tokens can be applied globally or for a given scope.
+
+With this assumption, you are able for example to apply the light theme for the whole view, and at the same time, apply the dark theme only for the sidebar.
+
+### Web
+
+1. Install the package:
+
+```bash
+npm i @vonage/vivid-design-tokens
+```
+
+2. import styles
+
+```css
+@import '@vonage/vivid-design-tokens';
+```
+
+3. Add `vvd-root` class
+
+```html
+<html class="vvd-root"></html>
+```
+
+### Flutter
+
+To be done.

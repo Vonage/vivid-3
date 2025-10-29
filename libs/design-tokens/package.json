@@ -1,7 +1,7 @@
 {
-	"name": "@repo/tokens-new",
-	"private": true,
+	"name": "@vonage/vivid-design-tokens",
 	"type": "module",
+	"main": "dist/index.css",
 	"files": [
 		"dist"
 	],
