@@ -304,6 +304,8 @@ describe('vwc-color-picker', () => {
 			await elementUpdated(element);
 
 			const copyBtn = getCopyButton();
+			const visuallyHidden =
+				element.shadowRoot?.querySelector('.visually-hidden');
 			copyBtn?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
@@ -311,6 +313,9 @@ describe('vwc-color-picker', () => {
 				'#abcdef'
 			);
 			expect(element.copyIconName).toBe('check-circle-line');
+			expect(visuallyHidden?.textContent).toContain(
+				'Color #abcdef copied to clipboard.'
+			);
 
 			await vi.advanceTimersByTimeAsync(2100);
 			await elementUpdated(element);
@@ -456,6 +461,28 @@ describe('vwc-color-picker', () => {
 			expect(element.savedColors.length).toBe(2);
 			expect(getSwatches().length).toBe(2);
 			expect(getSwatchColors()).toEqual(['#303030', '#202020']);
+		});
+
+		it('should update component value and aria-live region on swatch click', async () => {
+			await openAndRender();
+			await saveColor('#112233');
+			await saveColor('#abcdef');
+			await saveColor('#cccccc');
+			await elementUpdated(element);
+
+			const swatches = getSwatches();
+			const targetSwatch = swatches.find(
+				(el) => el.style.getPropertyValue('--swatch-color') === '#112233'
+			)!;
+			const visuallyHidden =
+				element.shadowRoot?.querySelector('.visually-hidden');
+
+			expect(targetSwatch).toBeTruthy();
+			targetSwatch.click();
+			await elementUpdated(element);
+			expect(element.value).toBe('#112233');
+			expect(element.open).toBe(false);
+			expect(visuallyHidden?.textContent).toContain('Color #112233 selected.');
 		});
 
 		it('should persist across new instance when saved-colors-key is provided', async () => {
@@ -660,21 +687,19 @@ describe('vwc-color-picker', () => {
 		let lastFocusable: HTMLElement;
 
 		const getFocusableElements = () => {
-			const focusableEls = Array.from(
+			return Array.from(
 				element._popupEl.querySelectorAll<HTMLElement>(
 					'button:not([role="gridcell"]), [data-vvd-component="button"], vwc-button:not([role="gridcell"])'
 				)
 			);
-			return {
-				firstFocusable: focusableEls[0],
-				lastFocusable: focusableEls[focusableEls.length - 1],
-			};
 		};
 
 		beforeEach(async () => {
 			element.open = true;
 			await elementUpdated(element);
-			({ firstFocusable, lastFocusable } = getFocusableElements());
+			const focusableEls = getFocusableElements();
+			firstFocusable = focusableEls[0];
+			lastFocusable = focusableEls[focusableEls.length - 1];
 		});
 
 		it('should move focus to first focusable element when pressing tab on the last focusable element', () => {
@@ -687,6 +712,14 @@ describe('vwc-color-picker', () => {
 			firstFocusable.focus();
 			pressKey('Tab', { shiftKey: true });
 			expect(element.shadowRoot!.activeElement).toBe(lastFocusable);
+		});
+
+		it('should move focus to previous focusable element when pressing shift + tab on the last focusable element', () => {
+			lastFocusable.focus();
+			pressKey('Tab', { shiftKey: true });
+			const focusableEls = getFocusableElements();
+			const preLastFocusable = focusableEls[focusableEls.length - 2];
+			expect(element.shadowRoot!.activeElement).toBe(preLastFocusable);
 		});
 
 		it('should keep default of unrelated keydown event', () => {

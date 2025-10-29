@@ -280,6 +280,11 @@ const deDE: Locale = {
 		copyButtonLabel: 'Farbe in die Zwischenablage kopieren',
 		copyErrorText:
 			'Kopieren fehlgeschlagen. Zugriff auf die Zwischenablage wurde blockiert. Versuchen Sie es erneut.',
+		copySuccessMessage: /* istanbul ignore next */ (value: string): string =>
+			`Farbe ${value} in die Zwischenablage kopiert.`,
+		selectionSuccessMessage: /* istanbul ignore next */ (
+			value: string
+		): string => `Farbe ${value} ausgewählt.`,
 	},
 };
 

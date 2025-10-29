@@ -7,4 +7,6 @@ export interface ColorPickerLocale {
 	closeButtonLabel: string;
 	copyButtonLabel: string;
 	copyErrorText: string;
+	copySuccessMessage: (value: string) => string;
+	selectionSuccessMessage: (value: string) => string;
 }

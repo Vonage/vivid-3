@@ -276,6 +276,11 @@ const jaJP: Locale = {
 		copyButtonLabel: '色をクリップボードにコピー',
 		copyErrorText:
 			'コピーに失敗しました。クリップボードへのアクセスがブロックされました。もう一度お試しください。',
+		copySuccessMessage: /* istanbul ignore next */ (value: string): string =>
+			`カラー ${value} がクリップボードにコピーされました。`,
+		selectionSuccessMessage: /* istanbul ignore next */ (
+			value: string
+		): string => `色 ${value} が選択されました。`,
 	},
 };
 export default jaJP;

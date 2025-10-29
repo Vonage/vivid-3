@@ -275,6 +275,11 @@ const zhCN: Locale = {
 		closeButtonLabel: '关闭颜色选择器',
 		copyButtonLabel: '将颜色复制到剪贴板',
 		copyErrorText: '复制失败。剪贴板访问已被阻止。请重试。',
+		copySuccessMessage: /* istanbul ignore next */ (value: string): string =>
+			`颜色 ${value} 已复制到剪贴板。`,
+		selectionSuccessMessage: /* istanbul ignore next */ (
+			value: string
+		): string => `已选择颜色 ${value}。`,
 	},
 };
 

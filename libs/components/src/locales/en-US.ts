@@ -277,6 +277,11 @@ const enUS: Locale = {
 		closeButtonLabel: 'Close Color Picker',
 		copyButtonLabel: 'Copy Color to Clipboard',
 		copyErrorText: 'Copy failed. Clipboard access was blocked. Try again.',
+		copySuccessMessage: /* istanbul ignore next */ (value: string): string =>
+			`Color ${value} copied to clipboard.`,
+		selectionSuccessMessage: /* istanbul ignore next */ (
+			value: string
+		): string => `Color ${value} selected.`,
 	},
 };
 export default enUS;

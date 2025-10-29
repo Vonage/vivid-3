@@ -121,7 +121,8 @@ function renderPopupBody(
 					${ref('_vcHexInputEl')}
 				>
 					<input name="hex-code-input" aria-label="${(x) =>
-						x.locale.colorPicker.hexInputLabel}" part="input">
+						x.locale.colorPicker.hexInputLabel}" 
+						placeholder="${(x) => x.placeholder}" part="input">
 				</${html.partial(vcInputTag)}>
 				<${buttonTag} size="normal" 
 					aria-label="${(x) => x.locale.colorPicker.copyButtonLabel}" 
@@ -193,6 +194,9 @@ export const ColorPickerTemplate = (context: VividElementDefinitionContext) => {
 	return html<ColorPicker>`
 		<div class="base" @keydown="${(x, { event }) =>
 			x._onBaseKeydown(event as KeyboardEvent)}">
+			<span aria-live="assertive" aria-relevant="text" class="visually-hidden">
+				${(x) => x._ariaLiveDescription}
+			</span>
 			${renderTextField(textFieldTag, iconTag)}
 			<${popupTag}
 				:open="${(x) => x.open}"
