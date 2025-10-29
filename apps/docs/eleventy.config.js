@@ -171,68 +171,39 @@ module.exports = async (eleventyConfig) => {
 
 	eleventyConfig.on('eleventy.before', resetExampleIndex);
 
-	eleventyConfig.on('eleventy.before', async ({ runMode }) => {
-		if (runMode === 'serve') {
-			spawn(
-				'npx',
-				[
-					'esbuild',
-					'../../libs/components/dist/index.js',
-					'--bundle',
-					'--outfile=tmp/components-bundle.js',
-					'--format=esm',
-					'--watch',
-				],
-				{
-					windowsHide: true,
-					stdio: [process.stdin, process.stdout, process.stderr],
-				}
-			);
-			spawn(
-				'npx',
-				[
-					'esbuild',
-					'assets/scripts/locales-bundle.js',
-					'--bundle',
-					'--outfile=tmp/locales-bundle.js',
-					'--format=esm',
-					'--watch',
-				],
-				{
-					windowsHide: true,
-					stdio: [process.stdin, process.stdout, process.stderr],
-				}
-			);
-		} else {
-			spawnSync(
-				'npx',
-				[
-					'esbuild',
-					'../../libs/components/dist/index.js',
-					'--bundle',
-					'--outfile=tmp/components-bundle.js',
-					'--format=esm',
-				],
-				{
-					windowsHide: true,
-					stdio: [process.stdin, process.stdout, process.stderr],
-				}
-			);
-			spawnSync(
-				'npx',
-				[
-					'esbuild',
-					'assets/scripts/locales-bundle.js',
-					'--bundle',
-					'--outfile=tmp/locales-bundle.js',
-					'--format=esm',
-				],
-				{
-					windowsHide: true,
-					stdio: [process.stdin, process.stdout, process.stderr],
-				}
-			);
+	const runEsbuild = (inputFile, outputFile, watch) => {
+		const args = [
+			'esbuild',
+			inputFile,
+			'--bundle',
+			`--outfile=${outputFile}`,
+			'--format=esm',
+		];
+		if (watch) {
+			args.push('--watch');
 		}
+		return (watch ? spawn : spawnSync)('npx', args, {
+			windowsHide: true,
+			stdio: [process.stdin, process.stdout, process.stderr],
+		});
+	};
+	let isWatcherStarted = false;
+	eleventyConfig.on('eleventy.before', async ({ runMode }) => {
+		if (isWatcherStarted) {
+			return;
+		}
+		const shouldWatch = runMode === 'serve';
+		runEsbuild(
+			'../../libs/components/dist/index.js',
+			'tmp/components-bundle.js',
+			shouldWatch
+		);
+		runEsbuild(
+			'assets/scripts/locales-bundle.js',
+			'tmp/locales-bundle.js',
+			shouldWatch
+		);
+		isWatcherStarted = shouldWatch;
 	});
 
 	eleventyConfig.on('eleventy.after', async ({ dir, runMode }) => {
