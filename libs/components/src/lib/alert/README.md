@@ -1,6 +1,20 @@
 ## Usage
 
 <vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VAlert } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAlert text="Some important information for you" open />
+</template>
+```
+
+</vwc-tab-panel>
 <vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
@@ -20,33 +34,6 @@ registerAlert('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview 100px
-<template>
-	<div class="example-container">
-		<VAlert text="An important information for you" :open="open" />
-		<VButton appearance="outlined" label="Show/Hide alert" @click="open = !open" />
-	</div>
-</template>
-
-<script setup lang="ts">
-import { VAlert, VButton } from '@vonage/vivid-vue';
-import { ref } from 'vue';
-
-const open = ref(false);
-</script>
-
-<style lang="scss" scoped>
-.example-container {
-	height: 100px;
-	transform: translateX(0px);
-}
-</style>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Opening and Closing
@@ -55,7 +42,29 @@ const open = ref(false);
 
 Use the `open` attribute to toggle the Alert open state.
 
-```html preview
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VAlert, VButton } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const open = ref(false);
+</script>
+
+<template>
+	<VAlert text="An important information for you" :open="open" />
+	<VButton appearance="outlined" label="Show/Hide alert" @click="open = !open" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 100px
 <vwc-alert text="Some important information for you"></vwc-alert>
 
 <vwc-button appearance="outlined" label="Show/Hide Alert" onclick="toggleAlert()"></vwc-button>
@@ -68,13 +77,38 @@ Use the `open` attribute to toggle the Alert open state.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Timeoutms
 
 Use the `timeoutms` attribute to set the time in milliseconds after which the Alert will automatically close.
 
 The default value is `0`, which means the Alert will not close automatically.
 
-```html preview
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VAlert, VButton } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const open = ref(false);
+</script>
+
+<template>
+	<VAlert text="An important information for you" :open="open" timeoutms="2000" />
+	<VButton appearance="outlined" label="Show an Alert for 2 seconds" @click="open = true" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 100px
 <vwc-alert text="Some important information for you" timeoutms="2000"></vwc-alert>
 
 <vwc-button appearance="outlined" label="Show an Alert for 2 seconds" onclick="openAlert()"></vwc-button>
@@ -87,17 +121,43 @@ The default value is `0`, which means the Alert will not close automatically.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Position Strategy
 
 The `strategy` attribute controls the position strategy of the Alert. The default is `fixed`, which will position the Alert relative to the viewport.
 
 When set to `static`, placement will have no effect, and the Alert will behave as an element in page flow.
 
-```html preview
-<vwc-alert strategy="static" text="This Alert has position set to static" open>
-	<vwc-icon slot="icon" name="megaphone-solid" label="Announcement"></vwc-icon>
-</vwc-alert>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 180px
+<script setup lang="ts">
+import { VAlert } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<p>Content above</p>
+	<VAlert strategy="static" text="This Alert has position set to static" open />
+	<p>Content below</p>
+</template>
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 180px
+<p>Content above</p>
+<vwc-alert strategy="static" text="This Alert has position set to static" open></vwc-alert>
+<p>Content below</p>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Slots
 
@@ -105,15 +165,62 @@ When set to `static`, placement will have no effect, and the Alert will behave a
 
 If you want to add rich content to an Alert, you can use the main slot.
 
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VAlert, VSwitch } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAlert open>
+		<template #main>
+			<VSwitch label="Do not show more Alerts" />
+		</template>
+	</VAlert>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 100px
 <vwc-alert open>
 	<vwc-switch slot="main" label="Do not show more Alerts"></vwc-switch>
 </vwc-alert>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Action Items Slot
 
 You can add action items elements using the `action-items` slot. They will be displayed at the inline-end of the Alert.
+
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VAlert, VButton } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAlert text="Some important information for you" open>
+		<template #action-items>
+			<VButton label="Action" appearance="outlined" shape="pill" />
+		</template>
+	</VAlert>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 100px
 <vwc-alert text="Some important information for you" open>
@@ -121,9 +228,34 @@ You can add action items elements using the `action-items` slot. They will be di
 </vwc-alert>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Icon Slot
 
 Set the `icon` slot to add an icon to the Alert. If set, the `icon` attribute (_deprecated_) is ignored.
+
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VAlert, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAlert text="Some important information for you" open>
+		<template #icon>
+			<VIcon name="megaphone-solid" connotation="cta" label="Announcement:" />
+		</template>
+	</VAlert>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 100px
 <vwc-alert text="Some important information for you" open>
@@ -131,15 +263,39 @@ Set the `icon` slot to add an icon to the Alert. If set, the `icon` attribute (_
 </vwc-alert>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## CSS Variables
 
 ### Minimum inline Size
 
 Use the `--alert-min-inline-size` variable to set the Alert's minimum inline size. The default value is `420px`.
 
-```html preview 100px
-<vwc-alert style="--alert-min-inline-size: auto;" text="Very fitting!" open></vwc-alert>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VAlert } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAlert style="--alert-min-inline-size: auto" text="Very fitting!" open />
+</template>
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 100px
+<vwc-alert style="--alert-min-inline-size: auto" text="Very fitting!" open></vwc-alert>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Maximum inline Size
 
@@ -148,9 +304,30 @@ This is helpful to prevent the Alert from becoming too wide when displaying a lo
 
 The default value is `fit-content`, which allows the Alert to grow as needed.
 
-```html preview 100px
-<vwc-alert style="--alert-min-inline-size: auto; --alert-max-inline-size: 300px;" text="This text is very long and will wrap to the next line." open></vwc-alert>
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VAlert } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAlert style="--alert-max-inline-size: 300px;" text="This text is very long and will wrap to the next line." open />
+</template>
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 100px
+<vwc-alert style="--alert-max-inline-size: 300px;" text="This text is very long and will wrap to the next line." open></vwc-alert>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 

@@ -4,6 +4,22 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.4.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.3.0...vivid-v5.4.0) (2025-10-27)
+
+
+### Features
+
+* **searchable-select:** add "select all" option (VIV-2730) ([#2562](https://github.com/Vonage/vivid-3/issues/2562)) ([332f3a8](https://github.com/Vonage/vivid-3/commit/332f3a8167805a24b37cdd5785409b65c4a55d5b))
+
+
+### Bug Fixes
+
+* **deps:** update dependency ramda to ^0.32.0 ([e2da27e](https://github.com/Vonage/vivid-3/commit/e2da27e0add58a09f5e92e9562b7a2b879db3440))
+* **deps:** update dependency ramda to ^0.32.0 (VIV-000) ([#2522](https://github.com/Vonage/vivid-3/issues/2522)) ([e2da27e](https://github.com/Vonage/vivid-3/commit/e2da27e0add58a09f5e92e9562b7a2b879db3440))
+* **dialog:** fix issue with scrollable-body modal in Safari (VIV-2884) ([#2569](https://github.com/Vonage/vivid-3/issues/2569)) ([aacc04a](https://github.com/Vonage/vivid-3/commit/aacc04a5c2f548c4710961b2eca58dbce9877c99))
+* **menu:** fix menu closing on change from non-default slots (VIV-2897) ([#2574](https://github.com/Vonage/vivid-3/issues/2574)) ([225f819](https://github.com/Vonage/vivid-3/commit/225f81981afc2c8e950d983f20c47ba8d377d654))
+* **select:** fix placeholder not appearing in certain cases (VIV-2902) ([#2576](https://github.com/Vonage/vivid-3/issues/2576)) ([4c3a279](https://github.com/Vonage/vivid-3/commit/4c3a279262cf94013ad98629e20ed809de33a8cb))
+
 ## [5.3.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.2.0...vivid-v5.3.0) (2025-10-16)
 
 
