@@ -93,11 +93,11 @@ export const cssConfig: Hooks = {
 					.map((file) => `@import '${file.destination}';`)
 					.join('\n');
 
-				volume.writeFileSync(`${platform.buildPath}index.css`, out);
+				volume.writeFileSync(`${platform.buildPath}/index.css`, out);
 			},
 			undo(_dictionary, platform, _options, volume): void {
-				if (volume.existsSync(`${platform.buildPath}index.css`)) {
-					volume.unlinkSync(`${platform.buildPath}index.css`);
+				if (volume.existsSync(`${platform.buildPath}/index.css`)) {
+					volume.unlinkSync(`${platform.buildPath}/index.css`);
 				}
 			},
 		},
