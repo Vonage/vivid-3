@@ -217,6 +217,21 @@ describe('CSS Features', () => {
 		});
 
 		describe('vvd/value/css/roundRems', () => {
+			it('should work only for values that are strings', () => {
+				const token = buildToken('vvd/size/medium/800', {
+					$type: 'dimension',
+					$value: 42,
+				});
+
+				const out = cssConfig.transforms['vvd/value/css/roundRems'].transform(
+					token,
+					{},
+					{}
+				);
+
+				expect(out).toBeUndefined();
+			});
+
 			it('Should round rems value', () => {
 				const token = buildToken('vvd/size/medium/800', {
 					$type: 'dimension',
