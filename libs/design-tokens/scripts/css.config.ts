@@ -20,7 +20,7 @@ function getHex(token: ColorValue): string {
 	return `#${hexify(r)}${hexify(g)}${hexify(b)}${hexify(a)}`;
 }
 
-const fontFaceDeclaration = `@font-face {
+export const fontFaceDeclaration = `@font-face {
 \tfont-display: block;
 \tfont-family: SpeziaCompleteVariableUpright;
 \tfont-stretch: 50% 200%;
@@ -133,7 +133,6 @@ export const cssConfig: Hooks = {
 					? 'SpeziaMonoCompleteVariable'
 					: 'SpeziaCompleteVariableUpright';
 				return `${token.$value.fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`;
-				// return `${token.$value.fontWeight} ${fontSize}/${lineHeight} SpeziaMonoCompleteVariable`;
 			},
 		},
 		'vvd/value/css/shadow': {

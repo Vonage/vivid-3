@@ -1,5 +1,5 @@
-import type { TransformedToken } from 'style-dictionary/types';
-import { cssConfig } from './css.config';
+import type { Dictionary, TransformedToken } from 'style-dictionary/types';
+import { cssConfig, fontFaceDeclaration } from './css.config';
 
 function buildToken(name: string, token: any): TransformedToken {
 	return {
@@ -29,7 +29,7 @@ describe('CSS Features', () => {
 			const out = cssConfig.transforms['vvd/value/css/color'].transform(
 				token,
 				{},
-				{}
+				{},
 			);
 
 			expect(out).toEqual('#00000000');
@@ -49,7 +49,7 @@ describe('CSS Features', () => {
 			const out = cssConfig.transforms['vvd/value/css/color'].transform(
 				token,
 				{},
-				{}
+				{},
 			);
 
 			expect(out).toEqual('#ffffff80');
@@ -68,7 +68,7 @@ describe('CSS Features', () => {
 			const out = cssConfig.transforms['vvd/value/css/dimension'].transform(
 				token,
 				{},
-				{}
+				{},
 			);
 
 			expect(out).toEqual('4px');
@@ -99,11 +99,11 @@ describe('CSS Features', () => {
 				{
 					basePxFontSize: 14,
 				},
-				{}
+				{},
 			);
 
 			expect(out).toEqual(
-				'500 0.42857142857142855rem/0.5714285714285714rem SpeziaCompleteVariableUpright'
+				'500 0.42857142857142855rem/0.5714285714285714rem SpeziaCompleteVariableUpright',
 			);
 		});
 
@@ -124,7 +124,7 @@ describe('CSS Features', () => {
 				{
 					basePxFontSize: 14,
 				},
-				{}
+				{},
 			);
 
 			expect(out).include('SpeziaCompleteVariableUpright');
@@ -147,7 +147,7 @@ describe('CSS Features', () => {
 				{
 					basePxFontSize: 14,
 				},
-				{}
+				{},
 			);
 
 			expect(out).include('SpeziaMonoCompleteVariable');
@@ -206,11 +206,11 @@ describe('CSS Features', () => {
 			const out = cssConfig.transforms['vvd/value/css/shadow'].transform(
 				token,
 				{},
-				{}
+				{},
 			);
 
 			expect(out).toEqual(
-				'0px 1px 4px 0px #c7c6c66b, 0px 1px 2px 0px #c7c6c62b, 0px 2px 1px 0px #c7c6c62b'
+				'0px 1px 4px 0px #c7c6c66b, 0px 1px 2px 0px #c7c6c62b, 0px 2px 1px 0px #c7c6c62b',
 			);
 		});
 	});
@@ -225,7 +225,7 @@ describe('CSS Features', () => {
 			const out = cssConfig.transforms['vvd/value/css/roundRems'].transform(
 				token,
 				{},
-				{}
+				{},
 			);
 			expect(out).toEqual('1.12rem');
 		});
@@ -238,7 +238,7 @@ describe('CSS Features', () => {
 			const out = cssConfig.transforms['vvd/value/css/roundRems'].transform(
 				token,
 				{},
-				{}
+				{},
 			);
 			expect(out).toEqual('12px');
 		});
@@ -250,5 +250,70 @@ describe('CSS Features', () => {
 
 		const out = cssConfig.transforms['vvd/name/css'].transform(token, {}, {});
 		expect(out).toEqual('vvd-color-critical-500');
+	});
+
+	describe('vvd/css/addFontsLinks', () => {
+		const fileContents = `:root {\n\t--vvd-color-canvas: #ffffff;\n}\n`;
+		const mockedVolume = {
+			writeFileSync: vi.fn(),
+			readFileSync: vi.fn().mockReturnValue(fileContents),
+		};
+
+		const platformConfig = {
+			options: {
+				selector: ':root',
+			},
+			files: [
+				{
+					destination: 'typography.css',
+				},
+				{
+					destination: 'colors.css',
+				},
+			],
+			buildPath: '.',
+		};
+
+		it('Should affect only typography styles', () => {
+			// do(_dictionary, platform, _options, volume): void {
+			cssConfig.actions['vvd/css/addFontsLinks'].do(
+				{} as Dictionary,
+				platformConfig,
+				{},
+				mockedVolume as any,
+			);
+
+			expect(mockedVolume.writeFileSync).toHaveBeenCalledOnce();
+		});
+
+		it('Should affect only typography styles', () => {
+			// do(_dictionary, platform, _options, volume): void {
+			cssConfig.actions['vvd/css/addFontsLinks'].do(
+				{} as Dictionary,
+				platformConfig,
+				{},
+				mockedVolume as any,
+			);
+
+			expect(mockedVolume.writeFileSync).toHaveBeenCalledWith(
+				'./typography.css',
+				`${fontFaceDeclaration}\n\n${fileContents}`,
+			);
+		});
+
+		it('Should be able to undo changes it does', () => {
+			// do(_dictionary, platform, _options, volume): void {
+			cssConfig.actions['vvd/css/addFontsLinks'].undo(
+				{} as Dictionary,
+				platformConfig,
+				{},
+				mockedVolume as any,
+			);
+
+			expect(mockedVolume.writeFileSync).toHaveBeenCalledWith(
+				'./typography.css',
+				fileContents,
+			);
+		});
 	});
 });
