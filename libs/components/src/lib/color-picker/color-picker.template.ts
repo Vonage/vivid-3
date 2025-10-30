@@ -48,6 +48,8 @@ function renderTextField(
 		>
 			<button 
 				aria-label="${(x) => x.locale.colorPicker.pickerButtonLabel}"
+				aria-expanded="${(x) => x.open}"
+  			aria-haspopup="dialog"
 				class="button ${(x) =>
 					classNames(
 						x._applyContrastClass(x._buttonColor) ? 'contrast' : '',
@@ -84,9 +86,9 @@ function renderPopupHeader(
 ) {
 	return html<ColorPicker>`
 		<div class="header">
-			<span class="header-title" id="color-picker-title">
+			<h2 class="header-title" id="color-picker-title">
 				<slot name="popup-text">${(x) => x.locale.colorPicker.popupLabel}</slot>
-			</span>
+			</h2>
 			<${buttonTag} size="condensed" 
 				aria-label="${(x) => x.locale.colorPicker.closeButtonLabel}" 
 				@click="${(x) => x._handleCloseRequest()}">
@@ -117,7 +119,11 @@ function renderPopupBody(
 					@color-changed="${(x, c) =>
 						x._onPickerColorChanged(c.event as CustomEvent<{ value: string }>)}"
 					${ref('_vcHexInputEl')}
-				></${html.partial(vcInputTag)}>
+				>
+					<input name="hex-code-input" aria-label="${(x) =>
+						x.locale.colorPicker.hexInputLabel}" 
+						placeholder="${(x) => x.placeholder}" part="input">
+				</${html.partial(vcInputTag)}>
 				<${buttonTag} size="normal" 
 					aria-label="${(x) => x.locale.colorPicker.copyButtonLabel}" 
 					@click="${(x) => x._copyValueToClipboard(x.value)}">
@@ -186,7 +192,11 @@ export const ColorPickerTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 	const buttonTag = context.tagFor(Button);
 	return html<ColorPicker>`
-		<div class="base">
+		<div class="base" @keydown="${(x, { event }) =>
+			x._onBaseKeydown(event as KeyboardEvent)}">
+			<span aria-live="assertive" aria-relevant="text" class="visually-hidden">
+				${(x) => x._ariaLiveDescription}
+			</span>
 			${renderTextField(textFieldTag, iconTag)}
 			<${popupTag}
 				:open="${(x) => x.open}"
