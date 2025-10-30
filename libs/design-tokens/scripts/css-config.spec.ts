@@ -14,6 +14,47 @@ function buildToken(name: string, token: any): TransformedToken {
 }
 
 describe('CSS Features', () => {
+	describe('vvd/value/css/color', () => {
+		it('Should build hex color from components', () => {
+			const token = buildToken('vvd/color/neutral/700', {
+				$type: 'color',
+				$value: {
+					colorSpace: 'srgb',
+					components: [0, 0, 0],
+					alpha: 0,
+					hex: '#e6e6e6',
+				},
+			});
+
+			const out = cssConfig.transforms['vvd/value/css/color'].transform(
+				token,
+				{},
+				{}
+			);
+
+			expect(out).toEqual('#00000000');
+		});
+
+		it('Should apply alpha on the color', () => {
+			const token = buildToken('vvd/color/neutral/700', {
+				$type: 'color',
+				$value: {
+					colorSpace: 'srgb',
+					components: [1, 1, 1],
+					alpha: 0.5,
+					hex: '#e6e6e6',
+				},
+			});
+
+			const out = cssConfig.transforms['vvd/value/css/color'].transform(
+				token,
+				{},
+				{}
+			);
+
+			expect(out).toEqual('#ffffff80');
+		});
+	});
 	describe('vvd/css/value/dimension', () => {
 		it('Should add px to the value', () => {
 			const token = buildToken('vvd/size/medium/500', {
@@ -39,7 +80,7 @@ describe('CSS Features', () => {
 			const token = buildToken('vvd/typography/heading/200', {
 				$type: 'typography',
 				$value: {
-					fontFamily: 'Spezia',
+					fontFamily: 'Spezia - Regular',
 					fontSize: {
 						value: 6,
 						unit: 'px',
@@ -62,8 +103,54 @@ describe('CSS Features', () => {
 			);
 
 			expect(out).toEqual(
-				'500 0.42857142857142855rem/0.5714285714285714rem "Spezia"'
+				'500 0.42857142857142855rem/0.5714285714285714rem SpeziaCompleteVariableUpright'
 			);
+		});
+
+		it('Should set up regular font face for non-mono typography', () => {
+			const token = buildToken('vvd/typography/heading/200', {
+				$type: 'typography',
+				$value: {
+					fontFamily: 'Spezia - Regular',
+					fontSize: {},
+					lineHeight: 8,
+					letterSpacing: {},
+					fontWeight: 0,
+				},
+			});
+
+			const out = cssConfig.transforms['vvd/value/css/typography'].transform(
+				token,
+				{
+					basePxFontSize: 14,
+				},
+				{}
+			);
+
+			expect(out).include('SpeziaCompleteVariableUpright');
+		});
+
+		it('Should set up mono font face for mono styles', () => {
+			const token = buildToken('vvd/typography/heading/200', {
+				$type: 'typography',
+				$value: {
+					fontFamily: 'Spezia - SemiMono Regular',
+					fontSize: {},
+					lineHeight: 8,
+					letterSpacing: {},
+					fontWeight: 0,
+				},
+			});
+
+			const out = cssConfig.transforms['vvd/value/css/typography'].transform(
+				token,
+				{
+					basePxFontSize: 14,
+				},
+				{}
+			);
+
+			expect(out).include('SpeziaMonoCompleteVariable');
 		});
 	});
 
@@ -123,7 +210,7 @@ describe('CSS Features', () => {
 			);
 
 			expect(out).toEqual(
-				'0px 1px 4 0 #c7c6c66b, 0px 1px 2 0 #c7c6c62b, 0px 2px 1 0 #c7c6c62b'
+				'0px 1px 4px 0px #c7c6c66b, 0px 1px 2px 0px #c7c6c62b, 0px 2px 1px 0px #c7c6c62b'
 			);
 		});
 	});
