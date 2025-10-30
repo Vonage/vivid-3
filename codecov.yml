@@ -12,3 +12,4 @@ ignore:
   - 'libs/internal-eslint-plugin'
   - 'libs/components/src/visual-tests'
   - 'libs/components/src/locales'
+  - 'libs/design-tokens/scripts/build.ts'
