@@ -19,7 +19,7 @@ The `helper-text` attribute provides additional information about the purpose of
 To add HTML to the helper text, use the [helper-text slot](/components/color-picker/code/#helper-text-slot).
 
 ```html preview 480px
-<vwc-color-picker label="Primary color" helper-text="Choose the Primary Color" saved-colors-key="vvd-color-picker-helper-text"></vwc-color-picker>
+<vwc-color-picker label="Primary color" helper-text="Use the HEX color code (e.g. #ffffff)" saved-colors-key="vvd-color-picker-helper-text"></vwc-color-picker>
 ```
 
 ### Placeholder Text

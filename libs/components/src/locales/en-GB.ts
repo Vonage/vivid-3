@@ -271,11 +271,17 @@ const enGB: Locale = {
 	colorPicker: {
 		popupLabel: 'Colour Picker',
 		swatchesLabel: 'Saved colours:',
-		pickerButtonLabel: 'Open Colour Picker',
+		pickerButtonLabel: 'Colour Picker',
+		hexInputLabel: 'HEX color code',
 		saveButtonLabel: 'Save current colour',
 		closeButtonLabel: 'Close Colour Picker',
 		copyButtonLabel: 'Copy Colour to Clipboard',
 		copyErrorText: 'Copy failed. Clipboard access was blocked. Try again.',
+		copySuccessMessage: /* istanbul ignore next */ (value: string): string =>
+			`Colour ${value} copied to clipboard.`,
+		selectionSuccessMessage: /* istanbul ignore next */ (
+			value: string
+		): string => `Colour ${value} selected.`,
 	},
 };
 
