@@ -112,5 +112,10 @@
 		"title": "Data Table: basic table functionality",
 		"titleUrl": "https://jira.vonage.com/browse/VIV-2978",
 		"releaseCompletionDate": "Q1 2026"
+	},
+	{
+		"title": "International Phone Number Input",
+		"titleUrl": "https://jira.vonage.com/browse/VIV-2506",
+		"releaseCompletionDate": "Q1 2026"
 	}
 ]
