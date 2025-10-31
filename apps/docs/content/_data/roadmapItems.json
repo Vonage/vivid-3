@@ -36,7 +36,7 @@
 		"discoveryUrl": "https://jira.vonage.com/browse/VIV-2730",
 		"designStatus": "Done",
 		"designUrl": "https://www.figma.com/design/WMrYaUlURIyS4WuiWiTcHF/SearchableSelect---Select-Deselect-All?node-id=0-1&t=sKIOG9x1D7iLTzws-1",
-		"releaseStatus": "InProgress",
+		"releaseStatus": "Done",
 		"releaseCompletionDate": "Q4 2025 S2"
 	},
 	{
@@ -45,7 +45,7 @@
 		"discoveryStatus": "Done",
 		"discoveryUrl": "https://jira.vonage.com/browse/VIV-2744",
 		"designStatus": "n/a",
-		"releaseCompletionDate": "Q4 2025 S4"
+		"releaseCompletionDate": "Q4 2025 S5"
 	},
 	{
 		"title": "Date Range Picker: predefined ranges",
@@ -66,7 +66,7 @@
 		"title": "Icon: imports",
 		"titleUrl": "https://jira.vonage.com/browse/VIV-2816",
 		"discoveryStatus": "InProgress",
-		"releaseCompletionDate": "Q4 2025 S6"
+		"releaseCompletionDate": "TBD"
 	},
 	{
 		"title": "Selectable Box: control placement",
@@ -107,5 +107,10 @@
 		"designUrl": "https://www.figma.com/design/Zau4yNbnfBCBT53FZDoLr2/%C2%A0Multiselect-Combobox?t=1eypiLWAVp5ZFKgS-0",
 		"releaseStatus": "Done",
 		"releaseCompletionDate": "Q2 2025"
+	},
+	{
+		"title": "Data Table: basic table functionality",
+		"titleUrl": "https://jira.vonage.com/browse/VIV-2978",
+		"releaseCompletionDate": "Q1 2026"
 	}
 ]
