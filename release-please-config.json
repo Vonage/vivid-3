@@ -5,6 +5,10 @@
 			"component": "vivid",
 			"package-name": "vivid"
 		},
+		"libs/design-tokens": {
+			"component": "vivid-design-tokens",
+			"package-name": "vivid-design-tokens"
+		},
 		"libs/vue-wrappers": {
 			"component": "vivid-vue",
 			"skip-github-release": true
@@ -22,7 +26,7 @@
 		{
 			"type": "linked-versions",
 			"groupName": "vivid",
-			"components": ["vivid", "vivid-vue", "test-utils"]
+			"components": ["vivid", "vivid-design-tokens", "vivid-vue", "test-utils"]
 		}
 	]
 }

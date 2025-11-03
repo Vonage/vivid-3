@@ -2,7 +2,7 @@
 	"vvd/typography/heading/100": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 4,
 				"unit": "px"
@@ -18,7 +18,7 @@
 	"vvd/typography/heading/200": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 6,
 				"unit": "px"
@@ -34,7 +34,7 @@
 	"vvd/typography/heading/300": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 8,
 				"unit": "px"
@@ -50,7 +50,7 @@
 	"vvd/typography/heading/400": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 10,
 				"unit": "px"
@@ -66,7 +66,7 @@
 	"vvd/typography/heading/500": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 12,
 				"unit": "px"
@@ -82,7 +82,7 @@
 	"vvd/typography/heading/600": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 14,
 				"unit": "px"
@@ -98,7 +98,7 @@
 	"vvd/typography/heading/700": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 16,
 				"unit": "px"
@@ -114,7 +114,7 @@
 	"vvd/typography/heading/800": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 20,
 				"unit": "px"
@@ -130,7 +130,7 @@
 	"vvd/typography/heading/900": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 24,
 				"unit": "px"
@@ -146,7 +146,7 @@
 	"vvd/typography/heading/1000": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 28,
 				"unit": "px"
@@ -162,7 +162,7 @@
 	"vvd/typography/heading/1100": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 32,
 				"unit": "px"
@@ -178,7 +178,7 @@
 	"vvd/typography/heading/1200": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 36,
 				"unit": "px"
@@ -194,7 +194,7 @@
 	"vvd/typography/heading/1300": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Wide Medium",
 			"fontSize": {
 				"value": 40,
 				"unit": "px"
@@ -210,7 +210,7 @@
 	"vvd/typography/body/100": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 2,
 				"unit": "px"
@@ -226,7 +226,7 @@
 	"vvd/typography/body/200": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 4,
 				"unit": "px"
@@ -242,7 +242,7 @@
 	"vvd/typography/body/300": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 6,
 				"unit": "px"
@@ -258,7 +258,7 @@
 	"vvd/typography/body/400": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 8,
 				"unit": "px"
@@ -274,7 +274,7 @@
 	"vvd/typography/body/500": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 10,
 				"unit": "px"
@@ -290,7 +290,7 @@
 	"vvd/typography/body/600": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 12,
 				"unit": "px"
@@ -306,7 +306,7 @@
 	"vvd/typography/body/700": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 14,
 				"unit": "px"
@@ -322,7 +322,7 @@
 	"vvd/typography/body/800": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 16,
 				"unit": "px"
@@ -338,7 +338,7 @@
 	"vvd/typography/body/900": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 18,
 				"unit": "px"
@@ -354,7 +354,7 @@
 	"vvd/typography/body/1000": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 20,
 				"unit": "px"
@@ -370,7 +370,7 @@
 	"vvd/typography/body/1100": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 22,
 				"unit": "px"
@@ -386,7 +386,7 @@
 	"vvd/typography/body/1200": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 24,
 				"unit": "px"
@@ -402,7 +402,7 @@
 	"vvd/typography/body/1300": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 26,
 				"unit": "px"
@@ -418,7 +418,7 @@
 	"vvd/typography/caption/100": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 2,
 				"unit": "px"
@@ -434,7 +434,7 @@
 	"vvd/typography/caption/200": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 4,
 				"unit": "px"
@@ -450,7 +450,7 @@
 	"vvd/typography/caption/300": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 6,
 				"unit": "px"
@@ -466,7 +466,7 @@
 	"vvd/typography/caption/400": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 8,
 				"unit": "px"
@@ -482,7 +482,7 @@
 	"vvd/typography/caption/500": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 10,
 				"unit": "px"
@@ -498,7 +498,7 @@
 	"vvd/typography/caption/600": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 12,
 				"unit": "px"
@@ -514,7 +514,7 @@
 	"vvd/typography/caption/700": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 14,
 				"unit": "px"
@@ -530,7 +530,7 @@
 	"vvd/typography/caption/800": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 16,
 				"unit": "px"
@@ -546,7 +546,7 @@
 	"vvd/typography/caption/900": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 18,
 				"unit": "px"
@@ -562,7 +562,7 @@
 	"vvd/typography/caption/1000": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 20,
 				"unit": "px"
@@ -578,7 +578,7 @@
 	"vvd/typography/caption/1100": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 22,
 				"unit": "px"
@@ -594,7 +594,7 @@
 	"vvd/typography/caption/1200": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 24,
 				"unit": "px"
@@ -610,7 +610,7 @@
 	"vvd/typography/caption/1300": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Medium",
 			"fontSize": {
 				"value": 26,
 				"unit": "px"
@@ -626,7 +626,7 @@
 	"vvd/typography/input/100": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 2,
 				"unit": "px"
@@ -642,7 +642,7 @@
 	"vvd/typography/input/200": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 4,
 				"unit": "px"
@@ -658,7 +658,7 @@
 	"vvd/typography/input/300": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 6,
 				"unit": "px"
@@ -674,7 +674,7 @@
 	"vvd/typography/input/400": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 8,
 				"unit": "px"
@@ -690,7 +690,7 @@
 	"vvd/typography/input/500": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 10,
 				"unit": "px"
@@ -706,7 +706,7 @@
 	"vvd/typography/input/600": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 12,
 				"unit": "px"
@@ -722,7 +722,7 @@
 	"vvd/typography/input/700": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 14,
 				"unit": "px"
@@ -738,7 +738,7 @@
 	"vvd/typography/input/800": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 16,
 				"unit": "px"
@@ -754,7 +754,7 @@
 	"vvd/typography/input/900": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 18,
 				"unit": "px"
@@ -770,7 +770,7 @@
 	"vvd/typography/input/1000": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 20,
 				"unit": "px"
@@ -786,7 +786,7 @@
 	"vvd/typography/input/1100": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 22,
 				"unit": "px"
@@ -802,7 +802,7 @@
 	"vvd/typography/input/1200": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 24,
 				"unit": "px"
@@ -818,7 +818,7 @@
 	"vvd/typography/input/1300": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - Regular",
 			"fontSize": {
 				"value": 26,
 				"unit": "px"
@@ -834,7 +834,7 @@
 	"vvd/typography/code/100": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 2,
 				"unit": "px"
@@ -850,7 +850,7 @@
 	"vvd/typography/code/200": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 4,
 				"unit": "px"
@@ -866,7 +866,7 @@
 	"vvd/typography/code/300": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 6,
 				"unit": "px"
@@ -882,7 +882,7 @@
 	"vvd/typography/code/400": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 8,
 				"unit": "px"
@@ -898,7 +898,7 @@
 	"vvd/typography/code/500": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 10,
 				"unit": "px"
@@ -914,7 +914,7 @@
 	"vvd/typography/code/600": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 12,
 				"unit": "px"
@@ -930,7 +930,7 @@
 	"vvd/typography/code/700": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 14,
 				"unit": "px"
@@ -946,7 +946,7 @@
 	"vvd/typography/code/800": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 16,
 				"unit": "px"
@@ -962,7 +962,7 @@
 	"vvd/typography/code/900": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 18,
 				"unit": "px"
@@ -978,7 +978,7 @@
 	"vvd/typography/code/1000": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 20,
 				"unit": "px"
@@ -994,7 +994,7 @@
 	"vvd/typography/code/1100": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 22,
 				"unit": "px"
@@ -1010,7 +1010,7 @@
 	"vvd/typography/code/1200": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 24,
 				"unit": "px"
@@ -1026,7 +1026,7 @@
 	"vvd/typography/code/1300": {
 		"$type": "typography",
 		"$value": {
-			"fontFamily": "Spezia",
+			"fontFamily": "Spezia - SemiMono Regular",
 			"fontSize": {
 				"value": 26,
 				"unit": "px"
