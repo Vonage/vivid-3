@@ -45,6 +45,12 @@ export const resolveIcon = (
 ): Promise<string> => {
 	const key = normalizeKey(iconId);
 	if (!key) return Promise.resolve('');
+	if (signal.aborted) {
+		iconCache.delete(key);
+		return Promise.reject(
+			signal.reason ?? new DOMException('Aborted', 'AbortError')
+		);
+	}
 
 	const cached = iconCache.get(key);
 	if (cached && cached.signal === signal) {
