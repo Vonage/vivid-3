@@ -1,6 +1,6 @@
 import { elementUpdated, fixture, getControlElement } from '@repo/shared';
 import { ICONS_VERSION as ICON_SET_VERSION } from '@repo/consts';
-import type { Icon } from './icon';
+import { type Icon, resolveIcon } from './icon';
 import '.';
 
 const COMPONENT_TAG = 'vwc-icon';
@@ -125,27 +125,15 @@ describe('icon', function () {
 		});
 
 		it('should abort additional fetch requests', async function () {
-			const originalAbort = AbortController.prototype.abort;
-			AbortController.prototype.abort = function (reason) {
-				if (reason instanceof DOMException && reason.name === 'AbortError') {
-					throw new Error('abortWithReasonNotSupported');
-				}
-				return originalAbort.call(this);
-			};
+			fakeFetch(100);
+			element.name = uniqueId();
+			await vi.advanceTimersByTimeAsync(50);
+			const homeSignal = currentFetchSignal;
 
-			try {
-				fakeFetch(100);
-				element.name = uniqueId();
-				await vi.advanceTimersByTimeAsync(50);
-				const homeSignal = currentFetchSignal;
+			element.name = 'user';
+			await vi.advanceTimersByTimeAsync(10);
 
-				element.name = 'user';
-				await vi.advanceTimersByTimeAsync(10);
-
-				expect(homeSignal.aborted).toBe(true);
-			} finally {
-				AbortController.prototype.abort = originalAbort;
-			}
+			expect(homeSignal.aborted).toBe(true);
 		});
 
 		it('should not cache aborted fetch requests', async function () {
@@ -158,6 +146,21 @@ describe('icon', function () {
 			await vi.advanceTimersByTimeAsync(100);
 
 			expect(element._svg).toBe(svg);
+		});
+
+		it('should return the cached promise when called again with the same key and same signal', async () => {
+			fakeFetch(1000);
+			const controller = new AbortController();
+			const key = uniqueId();
+
+			const p1 = (resolveIcon as any)(key, controller.signal);
+			const p2 = (resolveIcon as any)(key, controller.signal);
+
+			expect(global.fetch as any).toHaveBeenCalledTimes(1);
+			expect(p2).toBe(p1);
+
+			await vi.advanceTimersByTimeAsync(1000);
+			await expect(p1).resolves.toBe('svg');
 		});
 	});
 

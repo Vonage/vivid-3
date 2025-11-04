@@ -36,30 +36,30 @@ const loadSvg = (iconId: string, signal: AbortSignal) =>
 
 const normalizeKey = (iconId: string | undefined) => (iconId ?? '').trim();
 
-const iconCache = new Map<string, Promise<string>>();
-const iconControllers = new Map<string, AbortController>();
+type CacheEntry = { promise: Promise<string>; signal: AbortSignal };
+const iconCache = new Map<string, CacheEntry>();
 
-const resolveIcon = (iconId: string | undefined): Promise<string> => {
+export const resolveIcon = (
+	iconId: string | undefined,
+	signal: AbortSignal
+): Promise<string> => {
 	const key = normalizeKey(iconId);
 	if (!key) return Promise.resolve('');
 
 	const cached = iconCache.get(key);
-	if (cached) return cached;
+	if (cached && cached.signal === signal) {
+		return cached.promise;
+	}
 
-	const controller = new AbortController();
-	iconControllers.set(key, controller);
-
-	const promise = loadSvg(key, controller.signal)
-		.then((svg) => svg)
-		.catch((err) => {
+	const promise = loadSvg(key, signal).catch((err) => {
+		const entry = iconCache.get(key);
+		if (entry && entry.promise === promise) {
 			iconCache.delete(key);
-			throw err;
-		})
-		.finally(() => {
-			iconControllers.delete(key);
-		});
+		}
+		throw err;
+	});
 
-	iconCache.set(key, promise);
+	iconCache.set(key, { promise, signal });
 	return promise;
 };
 
@@ -136,30 +136,19 @@ export class Icon extends VividElement {
 
 	@volatile
 	get iconUrl() {
-		return !this.name
-			? this._svg
-			: baseUrlTemplate(`${this.name}.svg`, ICON_SET_VERSION);
+		const key = normalizeKey(this.name);
+		return key ? baseUrlTemplate(`${key}.svg`, ICON_SET_VERSION) : this._svg;
 	}
+
+	#abortController: AbortController | null = null;
 
 	async nameChanged() {
 		const requestId = ++this.#currentRequestId;
-		const targetKey = normalizeKey(this.name);
 
-		// Abort all in-progress requests except the current target and remove cache entries
-		for (const key of iconControllers.keys()) {
-			if (key !== targetKey) {
-				const ctrl = iconControllers.get(key);
-				if (ctrl) {
-					try {
-						ctrl.abort(new DOMException('Aborted', 'AbortError'));
-					} catch {
-						ctrl.abort();
-					}
-				}
-				iconControllers.delete(key);
-				iconCache.delete(key);
-			}
+		if (this.#abortController) {
+			this.#abortController.abort();
 		}
+		this.#abortController = new AbortController();
 
 		this._svg = undefined;
 		this.iconLoaded = false;
@@ -179,10 +168,14 @@ export class Icon extends VividElement {
 		}, PLACEHOLDER_DELAY);
 
 		try {
-			const svg = await resolveIcon(targetKey);
-			if (this.#currentRequestId === requestId) this._svg = svg;
+			const svg = await resolveIcon(this.name, this.#abortController.signal);
+			if (this.#currentRequestId === requestId) {
+				this._svg = svg;
+			}
 		} catch {
-			if (this.#currentRequestId === requestId) this._svg = undefined;
+			if (this.#currentRequestId === requestId) {
+				this._svg = undefined;
+			}
 		} finally {
 			if (this.#currentRequestId === requestId) {
 				clearTimeout(timeout);
