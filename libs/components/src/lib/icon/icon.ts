@@ -183,4 +183,12 @@ export class Icon extends VividElement {
 			}
 		}
 	}
+
+	override disconnectedCallback() {
+		if (this.#abortController) {
+			this.#abortController.abort();
+			this.#abortController = null;
+		}
+		super.disconnectedCallback?.();
+	}
 }
