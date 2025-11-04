@@ -1,5 +1,4 @@
 import { attr, observable, volatile } from '@microsoft/fast-element';
-import { identity, memoizeWith } from 'ramda';
 import {
 	ICONS_BASE_URL as BASE_URL,
 	ICONS_VERSION as ICON_SET_VERSION,
@@ -35,11 +34,34 @@ const loadSvg = (iconId: string, signal: AbortSignal) =>
 		signal,
 	}).then(extractSvg);
 
-const resolveIcon = memoizeWith(
-	identity as () => string,
-	(iconId, signal: AbortSignal) =>
-		iconId.trim() ? loadSvg(iconId, signal) : Promise.resolve('')
-) as (iconId: string, signal: AbortSignal) => Promise<string>;
+const normalizeKey = (iconId: string | undefined) => (iconId ?? '').trim();
+
+const iconCache = new Map<string, Promise<string>>();
+const iconControllers = new Map<string, AbortController>();
+
+const resolveIcon = (iconId: string | undefined): Promise<string> => {
+	const key = normalizeKey(iconId);
+	if (!key) return Promise.resolve('');
+
+	const cached = iconCache.get(key);
+	if (cached) return cached;
+
+	const controller = new AbortController();
+	iconControllers.set(key, controller);
+
+	const promise = loadSvg(key, controller.signal)
+		.then((svg) => svg)
+		.catch((err) => {
+			iconCache.delete(key);
+			throw err;
+		})
+		.finally(() => {
+			iconControllers.delete(key);
+		});
+
+	iconCache.set(key, promise);
+	return promise;
+};
 
 /**
  * Types of icon connotation.
@@ -92,6 +114,8 @@ export class Icon extends VividElement {
 	 */
 	@observable _svg?: string;
 	@observable iconLoaded = false;
+	#currentRequestId = 0;
+
 	/**
 	 * Provides a (screen reader only) descriptive label for the icon.
 	 *
@@ -117,35 +141,53 @@ export class Icon extends VividElement {
 			: baseUrlTemplate(`${this.name}.svg`, ICON_SET_VERSION);
 	}
 
-	#abortController: AbortController | null = null;
-
 	async nameChanged() {
-		if (this.#abortController) {
-			this.#abortController.abort();
+		const requestId = ++this.#currentRequestId;
+		const targetKey = normalizeKey(this.name);
+
+		// Abort all in-progress requests except the current target and remove cache entries
+		for (const key of iconControllers.keys()) {
+			if (key !== targetKey) {
+				const ctrl = iconControllers.get(key);
+				if (ctrl) {
+					try {
+						ctrl.abort(new DOMException('Aborted', 'AbortError'));
+					} catch {
+						ctrl.abort();
+					}
+				}
+				iconControllers.delete(key);
+				iconCache.delete(key);
+			}
 		}
-		this.#abortController = new AbortController();
+
 		this._svg = undefined;
 		this.iconLoaded = false;
 
 		let timeout = setTimeout(() => {
-			this._svg = PLACEHOLDER_ICON;
-			timeout = setTimeout(() => {
-				if (this._svg === PLACEHOLDER_ICON) {
-					this._svg = undefined;
-				}
-			}, PLACEHOLDER_TIMEOUT);
+			if (this.#currentRequestId === requestId) {
+				this._svg = PLACEHOLDER_ICON;
+				timeout = setTimeout(() => {
+					if (
+						this.#currentRequestId === requestId &&
+						this._svg === PLACEHOLDER_ICON
+					) {
+						this._svg = undefined;
+					}
+				}, PLACEHOLDER_TIMEOUT);
+			}
 		}, PLACEHOLDER_DELAY);
 
-		await resolveIcon(this.name ? this.name : '', this.#abortController.signal)
-			.then((svg) => {
-				this._svg = svg;
-			})
-			.catch(() => {
-				this._svg = undefined;
-			})
-			.finally(() => {
+		try {
+			const svg = await resolveIcon(targetKey);
+			if (this.#currentRequestId === requestId) this._svg = svg;
+		} catch {
+			if (this.#currentRequestId === requestId) this._svg = undefined;
+		} finally {
+			if (this.#currentRequestId === requestId) {
 				clearTimeout(timeout);
 				this.iconLoaded = true;
-			});
+			}
+		}
 	}
 }

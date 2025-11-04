@@ -9,10 +9,13 @@ describe('icon', function () {
 	function fakeFetch(requestTime = 4000) {
 		(global.fetch as any) = vi.fn((_, { signal }) => {
 			currentFetchSignal = signal;
-			return new Promise((res) => {
+			return new Promise((resolve, reject) => {
 				setTimeout(() => {
-					res(response);
+					resolve(response);
 				}, requestTime);
+				signal.addEventListener('abort', () => {
+					reject(signal.reason);
+				});
 			});
 		});
 	}
@@ -122,15 +125,39 @@ describe('icon', function () {
 		});
 
 		it('should abort additional fetch requests', async function () {
+			const originalAbort = AbortController.prototype.abort;
+			AbortController.prototype.abort = function (reason) {
+				if (reason instanceof DOMException && reason.name === 'AbortError') {
+					throw new Error('abortWithReasonNotSupported');
+				}
+				return originalAbort.call(this);
+			};
+
+			try {
+				fakeFetch(100);
+				element.name = uniqueId();
+				await vi.advanceTimersByTimeAsync(50);
+				const homeSignal = currentFetchSignal;
+
+				element.name = 'user';
+				await vi.advanceTimersByTimeAsync(10);
+
+				expect(homeSignal.aborted).toBe(true);
+			} finally {
+				AbortController.prototype.abort = originalAbort;
+			}
+		});
+
+		it('should not cache aborted fetch requests', async function () {
 			fakeFetch(100);
-			element.name = uniqueId();
-			await vi.advanceTimersByTimeAsync(50);
-			const homeSignal = currentFetchSignal;
+			const homeIcon = uniqueId();
+			const userIcon = uniqueId();
+			element.name = homeIcon;
+			element.name = userIcon;
+			element.name = homeIcon;
+			await vi.advanceTimersByTimeAsync(100);
 
-			element.name = 'user';
-			await vi.advanceTimersByTimeAsync(10);
-
-			expect(homeSignal.aborted).toBe(true);
+			expect(element._svg).toBe(svg);
 		});
 	});
 
