@@ -162,6 +162,30 @@ describe('icon', function () {
 			await vi.advanceTimersByTimeAsync(1000);
 			await expect(p1).resolves.toBe('svg');
 		});
+
+		it('should delete from cache and throw if fetch resolves after being aborted', async () => {
+			const key = uniqueId();
+			let resolveFetch!: (r: any) => void;
+
+			(global.fetch as any) = vi.fn((_) => {
+				return new Promise((resolve) => {
+					resolveFetch = resolve;
+				});
+			});
+
+			const controller = new AbortController();
+			const promise = resolveIcon(key, controller.signal);
+			controller.abort();
+
+			resolveFetch({
+				ok: true,
+				headers: { get: () => 'image/svg+xml' },
+				text: () => Promise.resolve('svg'),
+			});
+
+			await expect(promise).rejects.toThrowError(DOMException);
+			await expect(promise).rejects.toHaveProperty('name', 'AbortError');
+		});
 	});
 
 	describe('iconLoaded', function () {

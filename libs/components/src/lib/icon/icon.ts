@@ -30,13 +30,13 @@ const extractSvg = (response: Response) => {
 };
 
 const loadSvg = (iconId: string, signal: AbortSignal) =>
-	fetch(baseUrlTemplate([iconId, 'svg'].join('.'), ICON_SET_VERSION), {
-		signal,
-	}).then(extractSvg);
+	fetch(baseUrlTemplate(`${iconId}.svg`, ICON_SET_VERSION), { signal }).then(
+		extractSvg
+	);
 
 const normalizeKey = (iconId: string | undefined) => (iconId ?? '').trim();
 
-type CacheEntry = { promise: Promise<string>; signal: AbortSignal };
+type CacheEntry = { promise: Promise<string>; signal?: AbortSignal };
 const iconCache = new Map<string, CacheEntry>();
 
 export const resolveIcon = (
@@ -45,25 +45,30 @@ export const resolveIcon = (
 ): Promise<string> => {
 	const key = normalizeKey(iconId);
 	if (!key) return Promise.resolve('');
-	if (signal.aborted) {
-		iconCache.delete(key);
-		return Promise.reject(
-			signal.reason ?? new DOMException('Aborted', 'AbortError')
-		);
-	}
 
 	const cached = iconCache.get(key);
-	if (cached && cached.signal === signal) {
+	if (cached && !cached.signal?.aborted) {
 		return cached.promise;
 	}
 
-	const promise = loadSvg(key, signal).catch((err) => {
-		const entry = iconCache.get(key);
-		if (entry && entry.promise === promise) {
-			iconCache.delete(key);
-		}
-		throw err;
-	});
+	const promise = loadSvg(key, signal)
+		.then((svg) => {
+			// Delete aborted entries from cache, keep successful ones
+			const entry = iconCache.get(key);
+			if (entry && entry.promise === promise && signal.aborted) {
+				iconCache.delete(key);
+				throw signal.reason ?? new DOMException('Aborted', 'AbortError');
+			}
+			return svg;
+		})
+		.catch((err) => {
+			// Remove aborted or failed fetches from cache
+			const entry = iconCache.get(key);
+			if (entry && entry.promise === promise) {
+				iconCache.delete(key);
+			}
+			throw err;
+		});
 
 	iconCache.set(key, { promise, signal });
 	return promise;
@@ -188,13 +193,5 @@ export class Icon extends VividElement {
 				this.iconLoaded = true;
 			}
 		}
-	}
-
-	override disconnectedCallback() {
-		if (this.#abortController) {
-			this.#abortController.abort();
-			this.#abortController = null;
-		}
-		super.disconnectedCallback?.();
 	}
 }
