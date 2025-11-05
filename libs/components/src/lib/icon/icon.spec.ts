@@ -135,6 +135,27 @@ describe('icon', function () {
 
 			expect(homeSignal.aborted).toBe(true);
 		});
+	});
+
+	describe('fetch caching', function () {
+		// Helper to create a fetch mock with manual control over resolution
+		function createManualFetch() {
+			let resolveFetch!: (r: any) => void;
+			(global.fetch as any) = vi.fn(
+				() =>
+					new Promise((resolve) => {
+						resolveFetch = resolve;
+					})
+			);
+			return {
+				resolve: (svg: string = 'svg') =>
+					resolveFetch({
+						ok: true,
+						headers: { get: () => 'image/svg+xml' },
+						text: () => Promise.resolve(svg),
+					}),
+			};
+		}
 
 		it('should not cache aborted fetch requests', async function () {
 			fakeFetch(100);
@@ -148,13 +169,13 @@ describe('icon', function () {
 			expect(element._svg).toBe(svg);
 		});
 
-		it('should return the cached promise when called again with the same key and same signal', async () => {
+		it('should return the cached promise when called again with the same key', async () => {
 			fakeFetch(1000);
 			const controller = new AbortController();
-			const key = uniqueId();
+			element.name = uniqueId();
 
-			const p1 = (resolveIcon as any)(key, controller.signal);
-			const p2 = (resolveIcon as any)(key, controller.signal);
+			const p1 = resolveIcon(element.name, controller.signal);
+			const p2 = resolveIcon(element.name, controller.signal);
 
 			expect(global.fetch as any).toHaveBeenCalledTimes(1);
 			expect(p2).toBe(p1);
@@ -163,28 +184,30 @@ describe('icon', function () {
 			await expect(p1).resolves.toBe('svg');
 		});
 
-		it('should delete from cache and throw if fetch resolves after being aborted', async () => {
-			const key = uniqueId();
-			let resolveFetch!: (r: any) => void;
-
-			(global.fetch as any) = vi.fn((_) => {
-				return new Promise((resolve) => {
-					resolveFetch = resolve;
-				});
-			});
-
+		it('should throw custom abort reason when fetch resolves after abort', async () => {
+			const fetch = createManualFetch();
+			const customReason = new Error('Custom abort reason');
 			const controller = new AbortController();
-			const promise = resolveIcon(key, controller.signal);
-			controller.abort();
 
-			resolveFetch({
-				ok: true,
-				headers: { get: () => 'image/svg+xml' },
-				text: () => Promise.resolve('svg'),
-			});
+			const promise = resolveIcon(uniqueId(), controller.signal);
+			controller.abort(customReason);
+			fetch.resolve();
+
+			await expect(promise).rejects.toThrow(customReason);
+		});
+
+		it('should throw default DOMException when signal.reason is null', async () => {
+			const fetch = createManualFetch();
+			const controller = new AbortController();
+
+			const promise = resolveIcon(uniqueId(), controller.signal);
+			controller.abort();
+			Object.defineProperty(controller.signal, 'reason', { value: null });
+			fetch.resolve();
 
 			await expect(promise).rejects.toThrowError(DOMException);
 			await expect(promise).rejects.toHaveProperty('name', 'AbortError');
+			await expect(promise).rejects.toHaveProperty('message', 'Aborted');
 		});
 	});
 
