@@ -25,7 +25,7 @@ registerSimpleColorPicker('your-prefix');
 </script>
 
 <your-prefix-simple-color-picker id="picker">
-	<your-prefix-button aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
+	<your-prefix-button id="button" aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
 		<your-prefix-icon id="icon" slot="icon" name="textcolor-solid"></your-prefix-icon>
 	</your-prefix-button>
 </your-prefix-simple-color-picker>
@@ -62,12 +62,14 @@ registerSimpleColorPicker('your-prefix');
 		},
 	];
 	const picker = document.getElementById('picker');
+	const button = document.getElementById('button');
 	const buttonIcon = document.getElementById('icon');
 	picker.swatches = swatches;
 
 	picker.addEventListener('change', (e) => {
 		const selectedColor = e.target.value;
 		buttonIcon.setAttribute('style', `color: ${selectedColor}; `);
+		selectedColor ? button.setAttribute('aria-label', `Pick color, ${selectedColor} selected.`) : button.setAttribute('aria-label', 'Pick color');
 	});
 </script>
 ```
@@ -113,15 +115,17 @@ const swatches = [
 ];
 
 const selectedColor = ref('#000000');
+const buttonLabel = ref('Pick color');
 
 const handleColorChange = (event: CustomEvent) => {
 	selectedColor.value = event.target.value;
+	buttonLabel.value = event.target.value ? `Pick color, ${event.target.value} selected.` : 'Pick color';
 };
 </script>
 
 <template>
 	<VSimpleColorPicker :swatches="swatches" @change="handleColorChange">
-		<VButton slot="anchor" aria-label="Pick color" size="super-condensed" shape="pill" appearance="outlined">
+		<VButton :aria-label="buttonLabel" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
 			<VIcon slot="icon" name="textcolor-solid" :style="{ color: selectedColor }" />
 		</VButton>
 	</VSimpleColorPicker>
@@ -140,7 +144,7 @@ Use the `open` attribute to indicate whether the Simple Color Picker's popup sho
 
 ```html preview 120px
 <vwc-simple-color-picker open id="picker">
-	<vwc-button aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
+	<vwc-button id="button" aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
 		<vwc-icon id="icon" slot="icon" name="textcolor-solid"></vwc-icon>
 	</vwc-button>
 </vwc-simple-color-picker>
@@ -177,12 +181,14 @@ Use the `open` attribute to indicate whether the Simple Color Picker's popup sho
 		},
 	];
 	const picker = document.getElementById('picker');
+	const button = document.getElementById('button');
 	const buttonIcon = document.getElementById('icon');
 	picker.swatches = swatches;
 
 	picker.addEventListener('change', (e) => {
 		const selectedColor = e.target.value;
 		buttonIcon.setAttribute('style', `color: ${selectedColor}; `);
+		selectedColor ? button.setAttribute('aria-label', `Pick color, ${selectedColor} selected.`) : button.setAttribute('aria-label', 'Pick color');
 	});
 </script>
 ```

@@ -12,6 +12,7 @@ import type { VividElementDefinitionContext } from '../../shared/design-system/d
 import { Icon } from '../icon/icon';
 import { Popup } from '../popup/popup';
 import { Button } from '../button/button';
+import { Tooltip } from '../tooltip/tooltip';
 import { delegateAria } from '../../shared/aria/delegates-aria';
 import { ColorPicker, vcInputTag, vcPickerTag } from './color-picker';
 
@@ -100,7 +101,8 @@ function renderPopupHeader(
 
 function renderPopupBody(
 	buttonTag: InlineTemplateDirective,
-	iconTag: InlineTemplateDirective
+	iconTag: InlineTemplateDirective,
+	tooltipTag: InlineTemplateDirective
 ) {
 	return html<ColorPicker>`
 		<div class="body">
@@ -124,11 +126,16 @@ function renderPopupBody(
 						x.locale.colorPicker.hexInputLabel}" 
 						placeholder="${(x) => x.placeholder}" part="input">
 				</${html.partial(vcInputTag)}>
-				<${buttonTag} size="normal" 
-					aria-label="${(x) => x.locale.colorPicker.copyButtonLabel}" 
-					@click="${(x) => x._copyValueToClipboard(x.value)}">
-					<${iconTag} slot="icon" name="${(x) => x.copyIconName}"></${iconTag}>
-				</${buttonTag}>
+				<${tooltipTag} placement="top" 
+					text="${(x) => x.locale.colorPicker.copyButtonLabel}" 
+					exportparts="vvd-theme-alternate">
+					<${buttonTag} 
+						slot="anchor" size="normal" 
+						aria-label="${(x) => x.locale.colorPicker.copyButtonLabel}" 
+						@click="${(x) => x._copyValueToClipboard(x.value)}">
+						<${iconTag} slot="icon" name="${(x) => x.copyIconName}"></${iconTag}>
+					</${buttonTag}>
+				</${tooltipTag}>
 			</div>
 		</div>
 	`;
@@ -136,7 +143,8 @@ function renderPopupBody(
 
 function renderPopupFooter(
 	buttonTag: InlineTemplateDirective,
-	iconTag: InlineTemplateDirective
+	iconTag: InlineTemplateDirective,
+	tooltipTag: InlineTemplateDirective
 ) {
 	return html<ColorPicker>`
 		<div class="footer">
@@ -156,30 +164,35 @@ function renderPopupFooter(
 			>
 				${repeat(
 					(x) => x.allSwatches,
-					(x) => x._renderColorSwatch(iconTag),
+					(x) => x._renderColorSwatch(iconTag, tooltipTag),
 					{ positioning: true }
 				)}
 				${when(
 					(x) => !x.disableSavedColors,
 					html`
-					<${buttonTag}
-						appearance="outlined"
-						size="super-condensed"
-						role="gridcell"
-						tabindex="${(x) => (x.allSwatches.length ? '-1' : '0')}"
-						aria-label="${(x) => x.locale.colorPicker.saveButtonLabel}"
-						@click="${(x) => x._saveCurrentColor()}"
-						@keydown="${(x, c) =>
-							x._handleCellKeydown(
-								c.event as KeyboardEvent,
-								x.value,
-								x.allSwatches.length,
-								true
-							)}">
-					>
-						<${iconTag} slot="icon" name="plus-line"></${iconTag}>
-					</${buttonTag}>
-				`
+						<${tooltipTag} placement="top" 
+							text="${(x) => x.locale.colorPicker.saveButtonLabel}" 
+							exportparts="vvd-theme-alternate">
+							<${buttonTag}
+								slot="anchor"
+								appearance="outlined"
+								size="super-condensed"
+								role="gridcell"
+								tabindex="${(x) => (x.allSwatches.length ? '-1' : '0')}"
+								aria-label="${(x) => x.locale.colorPicker.saveButtonLabel}"
+								@click="${(x) => x._saveCurrentColor()}"
+								@keydown="${(x, c) =>
+									x._handleCellKeydown(
+										c.event as KeyboardEvent,
+										x.value,
+										x.allSwatches.length,
+										true
+									)}">
+							>
+								<${iconTag} slot="icon" name="plus-line"></${iconTag}>
+							</${buttonTag}>
+						</${tooltipTag}>
+					`
 				)}
 			</div>
 		</div>
@@ -191,6 +204,7 @@ export const ColorPickerTemplate = (context: VividElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 	const popupTag = context.tagFor(Popup);
 	const buttonTag = context.tagFor(Button);
+	const tooltipTag = context.tagFor(Tooltip);
 	return html<ColorPicker>`
 		<div class="base" @keydown="${(x, { event }) =>
 			x._onBaseKeydown(event as KeyboardEvent)}">
@@ -209,10 +223,10 @@ export const ColorPickerTemplate = (context: VividElementDefinitionContext) => {
 					aria-modal="true" 
 					aria-labelledby="color-picker-title">
 					${renderPopupHeader(buttonTag, iconTag)}
-					${renderPopupBody(buttonTag, iconTag)}
+					${renderPopupBody(buttonTag, iconTag, tooltipTag)}
 					${when(
 						(x) => !x.disableSavedColors || x.allSwatches.length > 0,
-						renderPopupFooter(buttonTag, iconTag)
+						renderPopupFooter(buttonTag, iconTag, tooltipTag)
 					)}
 				</div>
 			</${popupTag}>
