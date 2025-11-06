@@ -138,10 +138,12 @@ export class Tag extends Localized(DelegatesAria(AffixIcon(VividElement))) {
 	};
 
 	handleKeydown(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
 			this.#select();
 		}
 		if (e.key === 'Delete' || e.key === 'Backspace') {
+			e.preventDefault();
 			this.remove();
 		}
 		return true;

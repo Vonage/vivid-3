@@ -129,6 +129,23 @@ describe('vwc-tag', () => {
 			expect(element.hasAttribute('selectable')).toEqual(false);
 		});
 
+		it('should render as a button element when selectable is true', async () => {
+			await toggleSelectable(element, true);
+			expect(getBaseElement(element).tagName.toLowerCase()).toBe('button');
+		});
+
+		it('should have aria-pressed attribute when selectable is true', async () => {
+			await toggleSelectable(element, true);
+			expect(getBaseElement(element).hasAttribute('aria-pressed')).toBe(true);
+		});
+
+		it('should set aria-pressed to true when selected', async () => {
+			await toggleSelectable(element, true);
+			element.selected = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-pressed')).toBe('true');
+		});
+
 		it('should toggle attribute on host', async () => {
 			await toggleSelectable(element);
 			const removeAttributeExistsWhenTrue = element.hasAttribute('selectable');
