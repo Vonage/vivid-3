@@ -64,9 +64,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 
 ```html preview 460px
 <vwc-date-picker label="Start date">
-	<vwc-contextual-help slot="contextual-help"
-		>Pick the start date</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Pick the start date</vwc-contextual-help>
 </vwc-date-picker>
 ```
 

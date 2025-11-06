@@ -25,15 +25,9 @@ registerCard('your-prefix');
 
 ```vue preview
 <template>
-	<VCard
-		headline="Vivid Card Component"
-		subtitle="extra text to the card headline"
-	>
+	<VCard headline="Vivid Card Component" subtitle="extra text to the card headline">
 		<template #graphic>
-			<VIcon
-				name="android-mono"
-				style="font-size: 44px; color: var(--vvd-color-sucess)"
-			/>
+			<VIcon name="android-mono" style="font-size: 44px; color: var(--vvd-color-sucess)" />
 		</template>
 	</VCard>
 </template>
@@ -54,15 +48,8 @@ The graphic slot overrides the icon property.
 Use the slot if a colored icon is needed or an icon with different dimensions.
 
 ```html preview
-<vwc-card
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
->
-	<vwc-icon
-		slot="graphic"
-		name="android-mono"
-		style="font-size: 44px; color: #A4C439"
-	></vwc-icon>
+<vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline">
+	<vwc-icon slot="graphic" name="android-mono" style="font-size: 44px; color: #A4C439"></vwc-icon>
 </vwc-card>
 ```
 
@@ -71,17 +58,8 @@ Use the slot if a colored icon is needed or an icon with different dimensions.
 The media slot can be used to display images or video content above the card header.
 
 ```html preview
-<vwc-card
-	headline="Card with Media Slot"
-	subtitle="Extra text below the card headline"
-	class="card-media"
->
-	<img
-		slot="media"
-		src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540"
-		alt="Sitting on Floor"
-		style="width: 100%; height: 150px; object-fit: cover;"
-	/>
+<vwc-card headline="Card with Media Slot" subtitle="Extra text below the card headline" class="card-media">
+	<img slot="media" src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540" alt="Sitting on Floor" style="width: 100%; height: 150px; object-fit: cover;" />
 </vwc-card>
 
 <style>
@@ -96,10 +74,7 @@ The media slot can be used to display images or video content above the card hea
 The meta slot is for action content in the card header.
 
 ```html preview 220px
-<vwc-card
-	headline="Card with Meta Slot"
-	subtitle="Extra text below the card headline"
->
+<vwc-card headline="Card with Meta Slot" subtitle="Extra text below the card headline">
 	<div slot="meta">
 		<vwc-menu aria-label="Card options" placement="bottom-start">
 			<vwc-button slot="anchor" aria-label="Open menu" appearance="outlined">
@@ -119,17 +94,8 @@ Use it for adding buttons or action items.
 By default - items inside footer slot are aligned to the end.
 
 ```html preview
-<vwc-card
-	headline="Card with Footer Slot"
-	subtitle="Extra text below the card headline"
->
-	<vwc-button
-		slot="footer"
-		shape="pill"
-		label="Action"
-		appearance="outlined"
-		icon-trailing
-	>
+<vwc-card headline="Card with Footer Slot" subtitle="Extra text below the card headline">
+	<vwc-button slot="footer" shape="pill" label="Action" appearance="outlined" icon-trailing>
 		<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
 	</vwc-button>
 </vwc-card>
@@ -142,9 +108,7 @@ Use the `main` slot to fully override a card's predefined template with your own
 
 ```html preview
 <vwc-card>
-	<vwc-layout gutters="small" slot="main">
-		Assign custom template using "main" slot.
-	</vwc-layout>
+	<vwc-layout gutters="small" slot="main"> Assign custom template using "main" slot. </vwc-layout>
 </vwc-card>
 ```
 
@@ -156,10 +120,7 @@ The card headline can be trimmed to your preferable number of lines.
 The number of lines is controlled by the css variable `--headline-line-clamp`.
 
 ```html preview
-<vwc-card
-	class="vwc-card"
-	headline="Card with long headline that has trim into one line"
-></vwc-card>
+<vwc-card class="vwc-card" headline="Card with long headline that has trim into one line"></vwc-card>
 
 <style>
 	.vwc-card {
@@ -175,11 +136,7 @@ The card subtitle can be trimmed to your preferable number of lines.
 The number of lines is controlled by css variable `--subtitle-line-clamp`.
 
 ```html preview
-<vwc-card
-	class="vwc-card"
-	headline="Card with Trimmed Subtitle"
-	subtitle="This subtitle is extremely long and will be trimmed after 2 lines. This way you can control the size of the card."
-></vwc-card>
+<vwc-card class="vwc-card" headline="Card with Trimmed Subtitle" subtitle="This subtitle is extremely long and will be trimmed after 2 lines. This way you can control the size of the card."></vwc-card>
 
 <style>
 	.vwc-card {

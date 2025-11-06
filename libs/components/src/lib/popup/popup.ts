@@ -23,7 +23,7 @@ export const PlacementStrategy = {
 	AutoPlacementVertical: 'auto-placement-vertical',
 } as const;
 type PlacementStrategyId =
-	typeof PlacementStrategy[keyof typeof PlacementStrategy];
+	(typeof PlacementStrategy)[keyof typeof PlacementStrategy];
 const placementStrategyMiddlewares = {
 	[PlacementStrategy.Flip]: flip(),
 	[PlacementStrategy.AutoPlacementHorizontal]: autoPlacement({

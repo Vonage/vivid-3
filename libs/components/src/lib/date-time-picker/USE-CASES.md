@@ -4,11 +4,7 @@
 <form>
 	<vwc-layout column-spacing="small" column-basis="block">
 		<div>
-			<vwc-date-time-picker
-				name="date"
-				label="Start date time"
-				required
-			></vwc-date-time-picker>
+			<vwc-date-time-picker name="date" label="Start date time" required></vwc-date-time-picker>
 		</div>
 		<div class="buttons">
 			<vwc-button label="Reset" type="reset"></vwc-button>

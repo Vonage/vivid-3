@@ -2,21 +2,59 @@
 
 Use the `text` attribute to set the Alert's main text.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VAlert } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAlert text="Some important information for you" open />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 100px
 <vwc-alert text="Some important information for you" open></vwc-alert>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Headline
 
 Use the `headline` attribute to add a headline to the Alert.
 
-```html preview 100px
-<vwc-alert
-	headline="This requires your attention"
-	text="Some important information for you"
-	open
-></vwc-alert>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 120px
+<script setup lang="ts">
+import { VAlert } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAlert headline="This requires your attention" text="Some important information for you" open />
+</template>
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 120px
+<vwc-alert headline="This requires your attention" text="Some important information for you" open></vwc-alert>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Connotation
 
@@ -29,12 +67,40 @@ Each connotation comes with a default icon (that you can override with the `icon
 
 </vwc-note>
 
-```html preview 350px
-<vwc-alert
-	text="Some important information for you"
-	connotation="accent"
-	open
-></vwc-alert>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 300px
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VAlert, VSelect, VOption } from '@vonage/vivid-vue';
+
+const connotation = ref('accent');
+</script>
+
+<template>
+	<div>
+		<VAlert text="Some important information for you" :connotation="connotation" open />
+
+		<VSelect label="Connotation" v-model="connotation">
+			<VOption value="accent" text="accent" />
+			<VOption value="success" text="success" />
+			<VOption value="warning" text="warning" />
+			<VOption value="alert" text="alert" />
+			<VOption value="information" text="information" />
+			<VOption value="announcement" text="announcement" />
+		</VSelect>
+	</div>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 300px
+<vwc-alert text="Some important information for you" connotation="accent" open></vwc-alert>
 
 <vwc-select label="Connotation">
 	<vwc-option value="accent" text="accent"></vwc-option>
@@ -52,6 +118,9 @@ Each connotation comes with a default icon (that you can override with the `icon
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Icon
 
 The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery) and takes precedence over the connotation's icon, if any.
@@ -65,50 +134,73 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 </vwc-note>
 
-```html preview 100px
-<vwc-alert
-	text="Some important information for you"
-	open
-	icon="megaphone-solid"
-></vwc-alert>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VAlert } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VAlert icon="megaphone-solid" text="Some important information for you" open />
+</template>
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 100px
+<vwc-alert icon="megaphone-solid" text="Some important information for you" open></vwc-alert>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Placement
 
 Use the `placement` attribute to set the location of the Alert.
 
-```html preview center 250px
-<vwc-alert
-	class="small-alert"
-	placement="top-start"
-	text="top-start"
-	open
-></vwc-alert>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 250px
+<script setup lang="ts">
+import { VAlert } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div>
+		<VAlert class="small-alert" placement="top-start" text="top-start" open />
+		<VAlert class="small-alert" placement="top" text="top" open />
+		<VAlert class="small-alert" placement="top-end" text="top-end" open />
+		<VAlert class="small-alert" placement="bottom-start" text="bottom-start" open />
+		<VAlert class="small-alert" placement="bottom" text="bottom" open />
+		<VAlert class="small-alert" placement="bottom-end" text="bottom-end" open />
+	</div>
+</template>
+
+<style scoped>
+.small-alert {
+	--alert-min-inline-size: 200px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 250px
+<vwc-alert class="small-alert" placement="top-start" text="top-start" open></vwc-alert>
 <vwc-alert class="small-alert" placement="top" text="top" open></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="top-end"
-	text="top-end"
-	open
-></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="bottom-start"
-	text="bottom-start"
-	open
-></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="bottom"
-	text="bottom"
-	open
-></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="bottom-end"
-	text="bottom-end"
-	open
-></vwc-alert>
+<vwc-alert class="small-alert" placement="top-end" text="top-end" open></vwc-alert>
+<vwc-alert class="small-alert" placement="bottom-start" text="bottom-start" open></vwc-alert>
+<vwc-alert class="small-alert" placement="bottom" text="bottom" open></vwc-alert>
+<vwc-alert class="small-alert" placement="bottom-end" text="bottom-end" open></vwc-alert>
 
 <style>
 	.small-alert {
@@ -117,18 +209,48 @@ Use the `placement` attribute to set the location of the Alert.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Removable
 
 Use the `removable` attribute to add a close button to the Alert.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VAlert, VButton } from '@vonage/vivid-vue';
+
+const showAlert = ref(true);
+
+function openAlert() {
+	// Force Vue to recreate the alert
+	showAlert.value = false;
+	requestAnimationFrame(() => (showAlert.value = true));
+}
+</script>
+
+<template>
+	<div>
+		<VAlert v-if="showAlert" removable text="Some important information for you" open />
+
+		<VButton appearance="outlined" label="Show alert" @click="openAlert" />
+	</div>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 100px
 <vwc-alert removable text="Some important information for you" open></vwc-alert>
 
-<vwc-button
-	appearance="outlined"
-	label="Show alert"
-	onclick="openAlert()"
-></vwc-button>
+<vwc-button appearance="outlined" label="Show alert" onclick="openAlert()"></vwc-button>
 
 <script>
 	function openAlert() {
@@ -136,3 +258,6 @@ Use the `removable` attribute to add a close button to the Alert.
 	}
 </script>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>

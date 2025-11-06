@@ -93,17 +93,10 @@ Below, the Radio Field is marked as `required` and is validated when the `form` 
 Use the `helper-text` slot on Radio Group to add rich text to provide additional context to the user.
 
 ```html preview
-<vwc-radio-group
-	label="What is the capital of Khazakstan?"
-	name="khaz"
-	orientation="vertical"
->
+<vwc-radio-group label="What is the capital of Khazakstan?" name="khaz" orientation="vertical">
 	<span slot="helper-text">
 		Need some help?
-		<a
-			href="https://www.google.com/search?q=capital+of+kazakhstan&rlz=1C5CHFA_enGB1094GB1095&oq=capital+of+khaz"
-			>Try looking here</a
-		>.
+		<a href="https://www.google.com/search?q=capital+of+kazakhstan&rlz=1C5CHFA_enGB1094GB1095&oq=capital+of+khaz">Try looking here</a>.
 	</span>
 	<vwc-radio label="Tashkent" value="tashkent"></vwc-radio>
 	<vwc-radio label="Astana" value="astana"></vwc-radio>
@@ -119,12 +112,7 @@ You can use the `checkValidity()` method on one of the Radio's to validate it.
 Below, the Radio Group is `required` but it has no checked options. `checkValidity` was called which triggered the validation.
 
 ```html preview
-<vwc-radio-group
-	orientation="vertical"
-	name="chosenValue"
-	required
-	label="Pick an option"
->
+<vwc-radio-group orientation="vertical" name="chosenValue" required label="Pick an option">
 	<vwc-radio label="option 1" value="1"></vwc-radio>
 	<vwc-radio label="option 2" value="2"></vwc-radio>
 	<vwc-radio label="option 3" value="3"></vwc-radio>

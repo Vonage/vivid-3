@@ -277,11 +277,7 @@ Add the class `vvd-theme-alternate` to the component.
 	}
 </style>
 <div class="wrapper">
-	<vwc-button
-		label="filled"
-		appearance="filled"
-		class="vvd-theme-alternate"
-	></vwc-button>
+	<vwc-button label="filled" appearance="filled" class="vvd-theme-alternate"></vwc-button>
 </div>
 ```
 
@@ -301,9 +297,7 @@ Neutral-Tint color comes with elevation custom colors. In order to use them the 
 		border-radius: 6px;
 	}
 </style>
-<div
-	style="display: flex; gap: 50px; padding: 32px; background-color: var(--vvd-color-neutral-tint-50); "
->
+<div style="display: flex; gap: 50px; padding: 32px; background-color: var(--vvd-color-neutral-tint-50); ">
 	<div style="display: flex; flex-direction: column; gap: 40px;">
 		<vwc-elevation dp="0" class="vvd-neutral-tint-elevation">
 			<div class="card">Neutral-Tint elevation with DP 0</div>

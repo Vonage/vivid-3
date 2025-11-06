@@ -61,11 +61,7 @@ order: 4
 ## Live Examples
 
 ```html preview
-<vwc-button
-	label="Live Example"
-	appearance="filled"
-	connotation="cta"
-></vwc-button>
+<vwc-button label="Live Example" appearance="filled" connotation="cta"></vwc-button>
 ```
 
 A live code example can be added to a page using the following markdown:

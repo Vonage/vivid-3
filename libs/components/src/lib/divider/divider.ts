@@ -37,7 +37,7 @@ export const DividerRole = {
  * The types for Divider roles
  * @public
  */
-type DividerRole = typeof DividerRole[keyof typeof DividerRole];
+type DividerRole = (typeof DividerRole)[keyof typeof DividerRole];
 
 /**
  * @public

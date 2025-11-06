@@ -20,11 +20,7 @@ The `helper-text` attribute provides additional information to help the user ent
 To add HTML to the helper text, use the [helper-text slot](/components/text-field/code/#helper-text-slot).
 
 ```html preview
-<vwc-text-field
-	helper-text="Must be at least six chars and contain both letters and numbers"
-	label="Password"
-	type="password"
-></vwc-text-field>
+<vwc-text-field helper-text="Must be at least six chars and contain both letters and numbers" label="Password" type="password"></vwc-text-field>
 ```
 
 ### Placeholder Text
@@ -37,11 +33,7 @@ The `placeholder` attribute provides an example of the type of input the user ne
 </vwc-note>
 
 ```html preview
-<vwc-text-field
-	placeholder="name@domain.com"
-	label="Email address"
-	type="email"
-></vwc-text-field>
+<vwc-text-field placeholder="name@domain.com" label="Email address" type="email"></vwc-text-field>
 ```
 
 ### Character Count
@@ -49,12 +41,7 @@ The `placeholder` attribute provides an example of the type of input the user ne
 The `char-count` attribute can be use in combination with the `maxlength` attribute to provide a visual character count.
 
 ```html preview
-<vwc-text-field
-	char-count
-	maxlength="15"
-	label="Username"
-	helper-text="Maximum of 15 characters"
-></vwc-text-field>
+<vwc-text-field char-count maxlength="15" label="Username" helper-text="Maximum of 15 characters"></vwc-text-field>
 ```
 
 ### Contextual Help
@@ -63,9 +50,7 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 
 ```html preview
 <vwc-text-field label="First name">
-	<vwc-contextual-help slot="contextual-help"
-		>This is the contextual help</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">This is the contextual help</vwc-contextual-help>
 </vwc-text-field>
 ```
 
@@ -84,11 +69,7 @@ The `value` attribute can be used the set the default value for the Text Field i
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
 ```html preview
-<vwc-text-field
-	error-text="Username is already taken"
-	value="Joe"
-	label="Username"
-></vwc-text-field>
+<vwc-text-field error-text="Username is already taken" value="Joe" label="Username"></vwc-text-field>
 ```
 
 ### Success Text
@@ -96,11 +77,7 @@ The `error-text` attribute provides a custom error message. Any current error st
 The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
 
 ```html preview
-<vwc-text-field
-	success-text="Username is available"
-	value="JoeB_89"
-	label="Username"
-></vwc-text-field>
+<vwc-text-field success-text="Username is available" value="JoeB_89" label="Username"></vwc-text-field>
 ```
 
 ## Icon
@@ -117,11 +94,7 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </vwc-note>
 
 ```html preview
-<vwc-text-field
-	icon="search-line"
-	label="Search"
-	type="search"
-></vwc-text-field>
+<vwc-text-field icon="search-line" label="Search" type="search"></vwc-text-field>
 ```
 
 ## Scale
@@ -173,16 +146,8 @@ Use `ghost` in combination with a containing element which provides a border, fo
 
 ```html preview
 <div class="container">
-	<vwc-text-field
-		appearance="fieldset"
-		label="Fieldset"
-		placeholder="Appearance"
-	></vwc-text-field>
-	<vwc-text-field
-		appearance="ghost"
-		label="Ghost"
-		placeholder="Appearance"
-	></vwc-text-field>
+	<vwc-text-field appearance="fieldset" label="Fieldset" placeholder="Appearance"></vwc-text-field>
+	<vwc-text-field appearance="ghost" label="Ghost" placeholder="Appearance"></vwc-text-field>
 </div>
 
 <style>

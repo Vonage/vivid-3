@@ -12,12 +12,8 @@
   - Must set the `label` attribute on informative icons to provide an accessible name.
 
 ```html preview
-<div class="number">
-	<vwc-icon name="telephone-line" label="Telephone:"></vwc-icon> 0123 456 7890
-</div>
-<div class="number">
-	<vwc-icon name="fax-line" label="Fax:"></vwc-icon> 0123 456 7890
-</div>
+<div class="number"><vwc-icon name="telephone-line" label="Telephone:"></vwc-icon> 0123 456 7890</div>
+<div class="number"><vwc-icon name="fax-line" label="Fax:"></vwc-icon> 0123 456 7890</div>
 
 <style>
 	.number {

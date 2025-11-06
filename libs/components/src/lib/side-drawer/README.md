@@ -34,15 +34,7 @@ registerSideDrawer('your-prefix');
 
 		<template #app-content>
 			<VLayout gutters="small">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-					minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum.
-				</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			</VLayout>
 		</template>
 	</VSideDrawer>
@@ -76,12 +68,7 @@ Use the `app-content` slot for the main application content, the side drawer is 
 <vwc-side-drawer open>
 	<vwc-layout gutters="small" slot="app-content">
 		<h3>App Content</h3>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	</vwc-layout>
 </vwc-side-drawer>
 ```
@@ -113,9 +100,7 @@ This is needed if a custom width is set on the side-drawer, or if side-drawer ne
 
 ```html preview full 150px
 <vwc-side-drawer class="side-drawer" open>
-	<vwc-layout slot="app-content" gutters="medium">
-		narrow side drawer with 100px width
-	</vwc-layout>
+	<vwc-layout slot="app-content" gutters="medium"> narrow side drawer with 100px width </vwc-layout>
 </vwc-side-drawer>
 
 <style>

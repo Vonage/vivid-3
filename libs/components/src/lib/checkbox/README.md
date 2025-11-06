@@ -76,9 +76,7 @@ The default slot allows you to use rich content as the Checkbox's label.
 ```html preview
 <vwc-checkbox error-text="You need to accept the Terms of service">
 	I agree to
-	<a href="https://www.vonage.com/legal/" target="_blank">
-		Vonage Terms of Service
-	</a>
+	<a href="https://www.vonage.com/legal/" target="_blank"> Vonage Terms of Service </a>
 </vwc-checkbox>
 ```
 
@@ -93,10 +91,7 @@ The `helper-text` slot allows you to use rich content as the Checkbox's helper t
 	}
 </style>
 <vwc-checkbox class="checkbox" label="Use Signed Webhooks">
-	<span slot="helper-text"
-		><a href="#">Signed Webhooks</a> are a way to verify that the request is
-		coming from Vonage.</span
-	>
+	<span slot="helper-text"><a href="#">Signed Webhooks</a> are a way to verify that the request is coming from Vonage.</span>
 </vwc-checkbox>
 ```
 

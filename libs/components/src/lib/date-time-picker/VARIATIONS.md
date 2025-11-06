@@ -20,10 +20,7 @@ The `helper-text` attribute provides additional information to help the user ent
 To add HTML to the helper text, use the [helper-text slot](/components/date-time-picker/code/#helper-text-slot).
 
 ```html preview 460px
-<vwc-date-time-picker
-	helper-text="Select a date and time for the event to start"
-	label="Start date and time"
-></vwc-date-time-picker>
+<vwc-date-time-picker helper-text="Select a date and time for the event to start" label="Start date and time"></vwc-date-time-picker>
 ```
 
 ### Contextual Help
@@ -32,9 +29,7 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 
 ```html preview 460px
 <vwc-date-time-picker label="Start date and time">
-	<vwc-contextual-help slot="contextual-help"
-		>Select a date and time for the event to start</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Select a date and time for the event to start</vwc-contextual-help>
 </vwc-date-time-picker>
 ```
 
@@ -45,10 +40,7 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
 ```html preview 460px
-<vwc-date-time-picker
-	error-text="Please select a date and time for the event to start"
-	label="Start date and time"
-></vwc-date-time-picker>
+<vwc-date-time-picker error-text="Please select a date and time for the event to start" label="Start date and time"></vwc-date-time-picker>
 ```
 
 ## Value
@@ -62,10 +54,7 @@ It will always contain a valid value in the format `YYYY-MM-DDTHH:MM:SS` when a 
 The Date Time Picker is time zone agnostic. You need to ensure that `value` is interpreted correctly in your application.
 
 ```html preview 460px
-<vwc-date-time-picker
-	value="2023-01-01T12:00:00"
-	label="Select date and time"
-></vwc-date-time-picker>
+<vwc-date-time-picker value="2023-01-01T12:00:00" label="Select date and time"></vwc-date-time-picker>
 ```
 
 ## Min
@@ -73,12 +62,7 @@ The Date Time Picker is time zone agnostic. You need to ensure that `value` is i
 Set the `min` attribute to configure the earliest value to accept. The user will be prevented from choosing an earlier value, however it is still possible to manually enter one.
 
 ```html preview 460px
-<vwc-date-time-picker
-	min="2023-06-10T09:00:00"
-	label="Select date and time"
-	value="2023-06-10T09:00:00"
-	clock="24h"
-></vwc-date-time-picker>
+<vwc-date-time-picker min="2023-06-10T09:00:00" label="Select date and time" value="2023-06-10T09:00:00" clock="24h"></vwc-date-time-picker>
 ```
 
 ## Min Date
@@ -88,12 +72,7 @@ Set the `min-date` attribute to configure the earliest date to accept. The user 
 The `min-date` attribute will take precedence over the `min` attribute.
 
 ```html preview 460px
-<vwc-date-time-picker
-	min-date="2023-06-10"
-	label="Select date and time"
-	value="2023-06-15T12:00:00"
-	clock="24h"
-></vwc-date-time-picker>
+<vwc-date-time-picker min-date="2023-06-10" label="Select date and time" value="2023-06-15T12:00:00" clock="24h"></vwc-date-time-picker>
 ```
 
 ## Min Time
@@ -103,11 +82,7 @@ Set the `min-time` attribute to configure the earliest time to accept. The user 
 The `min-time` attribute will take precedence over the min attribute.
 
 ```html preview 460px
-<vwc-date-time-picker
-	min-time="09:00:00"
-	label="Select date and time"
-	clock="24h"
-></vwc-date-time-picker>
+<vwc-date-time-picker min-time="09:00:00" label="Select date and time" clock="24h"></vwc-date-time-picker>
 ```
 
 ## Max
@@ -115,12 +90,7 @@ The `min-time` attribute will take precedence over the min attribute.
 Set the `max` attribute to configure the latest date to accept. The user will be prevented from choosing an later date, however it is still possible to manually enter one.
 
 ```html preview 460px
-<vwc-date-time-picker
-	max="2023-06-10T17:00:00"
-	label="Select date and time"
-	value="2023-06-10T12:00:00"
-	clock="24h"
-></vwc-date-time-picker>
+<vwc-date-time-picker max="2023-06-10T17:00:00" label="Select date and time" value="2023-06-10T12:00:00" clock="24h"></vwc-date-time-picker>
 ```
 
 ## Max Date
@@ -130,12 +100,7 @@ Set the `max-date` attribute to configure the latest date to accept. The user wi
 The `max-date` attribute will take precedence over the `max` attribute.
 
 ```html preview 460px
-<vwc-date-time-picker
-	max-date="2023-06-20"
-	label="Select date and time"
-	value="2023-06-15T12:00:00"
-	clock="24h"
-></vwc-date-time-picker>
+<vwc-date-time-picker max-date="2023-06-20" label="Select date and time" value="2023-06-15T12:00:00" clock="24h"></vwc-date-time-picker>
 ```
 
 ## Max Time
@@ -145,11 +110,7 @@ Set the `max-time` attribute to configure the latest time to accept. The user wi
 The `max-time` attribute will take precedence over the `max` attribute.
 
 ```html preview 460px
-<vwc-date-time-picker
-	max-time="17:00:00"
-	label="Select date and time"
-	clock="24h"
-></vwc-date-time-picker>
+<vwc-date-time-picker max-time="17:00:00" label="Select date and time" clock="24h"></vwc-date-time-picker>
 ```
 
 ## Clock
@@ -159,10 +120,7 @@ The Date Time Picker will display the time in 12h or 24h format depending on the
 Use the `clock` attribute to override this behavior.
 
 ```html preview 460px
-<vwc-date-time-picker
-	clock="24h"
-	label="Select date and time"
-></vwc-date-time-picker>
+<vwc-date-time-picker clock="24h" label="Select date and time"></vwc-date-time-picker>
 ```
 
 ## Minutes Step
@@ -170,10 +128,7 @@ Use the `clock` attribute to override this behavior.
 Use the `minutes-step` attribute to configure the step between minutes in the Date Time Picker.
 
 ```html preview 460px
-<vwc-date-time-picker
-	minutes-step="15"
-	label="Select date and time"
-></vwc-date-time-picker>
+<vwc-date-time-picker minutes-step="15" label="Select date and time"></vwc-date-time-picker>
 ```
 
 ## Seconds Step
@@ -187,10 +142,7 @@ If not set, the Date Time Picker will not display seconds.
 </vwc-note>
 
 ```html preview 460px
-<vwc-date-time-picker
-	seconds-step="15"
-	label="Select date and time"
-></vwc-date-time-picker>
+<vwc-date-time-picker seconds-step="15" label="Select date and time"></vwc-date-time-picker>
 ```
 
 ## Disabled
@@ -198,10 +150,7 @@ If not set, the Date Time Picker will not display seconds.
 Add the `disabled` attribute to disable the Date Time Picker.
 
 ```html preview
-<vwc-date-time-picker
-	disabled
-	label="Start date and time"
-></vwc-date-time-picker>
+<vwc-date-time-picker disabled label="Start date and time"></vwc-date-time-picker>
 ```
 
 ## Readonly
@@ -209,8 +158,5 @@ Add the `disabled` attribute to disable the Date Time Picker.
 Add the `readonly` attribute to make the Date Time Picker readonly.
 
 ```html preview
-<vwc-date-time-picker
-	readonly
-	label="Start date and time"
-></vwc-date-time-picker>
+<vwc-date-time-picker readonly label="Start date and time"></vwc-date-time-picker>
 ```

@@ -1,6 +1,6 @@
 {
 	"name": "@vonage/vivid-vue",
-	"version": "5.3.0",
+	"version": "5.4.0",
 	"description": "A Vue wrapper library for Vivid components.",
 	"author": "Vonage",
 	"license": "ISC",
@@ -42,6 +42,9 @@
 		"@repo/typescript-config": "*",
 		"@repo/eslint-config": "*",
 		"@repo/vitest-config": "*",
-		"@repo/styles": "*"
+		"@repo/styles": "*",
+		"glob": "^7.2.0",
+		"vue": "2.7.8",
+		"vue3": "npm:vue@3.5.22"
 	}
 }

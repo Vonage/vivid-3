@@ -14,4 +14,4 @@ export const ComboboxAutocomplete = {
  * @public
  */
 export type ComboboxAutocomplete =
-	typeof ComboboxAutocomplete[keyof typeof ComboboxAutocomplete];
+	(typeof ComboboxAutocomplete)[keyof typeof ComboboxAutocomplete];

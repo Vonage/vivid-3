@@ -27,11 +27,7 @@ The `connotation` attribute controls the color of the switch.
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
 	<vwc-switch connotation="primary" label="Primary" checked></vwc-switch>
 	<vwc-switch connotation="cta" label="CTA" checked></vwc-switch>
-	<vwc-switch
-		connotation="announcement"
-		label="Announcement"
-		checked
-	></vwc-switch>
+	<vwc-switch connotation="announcement" label="Announcement" checked></vwc-switch>
 	<vwc-switch connotation="success" label="Success" checked></vwc-switch>
 	<vwc-switch connotation="alert" label="Alert" checked></vwc-switch>
 </vwc-layout>

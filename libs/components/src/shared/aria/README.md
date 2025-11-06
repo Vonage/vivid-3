@@ -59,10 +59,7 @@ html`<button
 Which is equivalent to:
 
 ```ts
-html`<button
-	aria-label="Button"
-	aria-disabled="${(x) => x.disabled}"
-></button>`;
+html`<button aria-label="Button" aria-disabled="${(x) => x.disabled}"></button>`;
 ```
 
 Therefore, to set a default value you must explicitly do so:

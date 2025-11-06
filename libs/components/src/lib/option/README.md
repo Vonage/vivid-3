@@ -90,12 +90,7 @@ If set, the `icon` attribute is ignored.
 ```html preview
 <div class="container">
 	<vwc-option text="Option" value="my-value">
-		<vwc-icon
-			slot="icon"
-			name="check-circle-solid"
-			connotation="success"
-			label="Selected"
-		></vwc-icon>
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success" label="Selected"></vwc-icon>
 	</vwc-option>
 </div>
 
@@ -113,18 +108,8 @@ Use the `trailing-meta` slot to add an element (like a badge or an additional ic
 ```html preview
 <div class="container">
 	<vwc-option text="Option" value="my-value">
-		<vwc-icon
-			slot="icon"
-			name="check-circle-solid"
-			connotation="success"
-			label="Selected"
-		></vwc-icon>
-		<vwc-badge
-			slot="trailing-meta"
-			appearance="subtle"
-			connotation="cta"
-			text="New"
-		></vwc-badge>
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success" label="Selected"></vwc-icon>
+		<vwc-badge slot="trailing-meta" appearance="subtle" connotation="cta" text="New"></vwc-badge>
 	</vwc-option>
 </div>
 

@@ -15,11 +15,13 @@ import {
 	isValidHexColor,
 } from '../../shared/color-picker';
 import {
+	TrappedFocus,
 	WithContextualHelp,
 	WithErrorText,
 	WithSuccessText,
 } from '../../shared/patterns';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 
 const VC_HEX_PICKER_TAG = 'vvd-hex-picker';
 const VC_HEX_INPUT_TAG = 'vvd-hex-input';
@@ -52,7 +54,11 @@ export const vcInputTag = VC_HEX_INPUT_TAG;
  */
 export class ColorPicker extends WithContextualHelp(
 	WithFeedback(
-		WithErrorText(WithSuccessText(DelegatesAria(BaseColorPicker(VividElement))))
+		WithErrorText(
+			WithSuccessText(
+				DelegatesAria(TrappedFocus(BaseColorPicker(VividElement)))
+			)
+		)
 	)
 ) {
 	/**
@@ -88,6 +94,8 @@ export class ColorPicker extends WithContextualHelp(
 	handleChange(): void {
 		this.$emit('change');
 	}
+
+	// --- Saved Colors ---
 
 	/**
 	 * Sets the localStorage saved colors key explicitly.
@@ -137,197 +145,6 @@ export class ColorPicker extends WithContextualHelp(
 	override _handleColorSaving() {
 		this._saveCurrentColor();
 	}
-
-	/**
-	 * Limits number of swatches that can be saved.
-	 * @public
-	 * @remarks
-	 * HTML Attribute: max-swatches
-	 */
-	@attr({
-		attribute: 'max-swatches',
-		mode: 'fromView',
-		converter: nullableNumberConverter,
-	})
-	maxSwatches: number = 6;
-
-	/**
-	 * @internal
-	 */
-	get _maxSwatchesNormalized(): number {
-		return Number.isFinite(this.maxSwatches)
-			? Math.max(0, Math.floor(this.maxSwatches))
-			: 0;
-	}
-
-	/**
-	 * @internal
-	 */
-	maxSwatchesChanged() {
-		const maxCount = this._maxSwatchesNormalized;
-		if (this.savedColors?.length > maxCount) {
-			this.savedColors = this.savedColors.slice(0, maxCount);
-			this._setSavedColors(this.savedColors);
-		}
-	}
-
-	/**
-	 * @internal
-	 */
-	_vcHexPickerEl!: HexColorPicker;
-
-	/**
-	 * @internal
-	 */
-	_vcHexInputEl!: HexInput;
-
-	/**
-	 * @internal
-	 */
-	_onPickerColorChanged(e: CustomEvent<{ value: string }>) {
-		if (typeof e.detail?.value === 'string') {
-			this.value = e.detail?.value;
-		}
-	}
-
-	/**
-	 * @internal
-	 */
-	override valueChanged(_oldVal?: string, newVal?: string) {
-		if (this._vcHexPickerEl && typeof newVal === 'string') {
-			this._vcHexPickerEl.color = newVal;
-		}
-		if (this._vcHexInputEl && typeof newVal === 'string') {
-			this._vcHexInputEl.color = newVal;
-		}
-	}
-
-	/**
-	 * @internal
-	 */
-	_textFieldEl!: TextField;
-
-	/**
-	 * @internal
-	 */
-	_onTextFieldInput(event: Event) {
-		const textField = event.currentTarget as TextField;
-		this.value = textField.value;
-	}
-
-	/**
-	 * @internal
-	 */
-	_buttonEl!: HTMLButtonElement;
-
-	/**
-	 * @internal
-	 */
-	get _buttonColor(): string {
-		if (!this._canvasColor) {
-			this._refreshCanvasColor();
-		}
-		if (this.value && isValidHexColor(this.value)) {
-			return this.value;
-		}
-		return 'var(--vvd-color-canvas-text)';
-	}
-
-	/**
-	 * @internal
-	 */
-	_onButtonClick() {
-		this.open = !this.open;
-	}
-
-	/**
-	 * @internal
-	 */
-	_popupEl!: Popup;
-
-	/**
-	 * @internal
-	 */
-	_handleCloseRequest() {
-		this.open = false;
-	}
-
-	/**
-	 * @internal
-	 */
-	private _isInPath(e: Event, el?: EventTarget | null): boolean {
-		if (!el) return false;
-		const path = (e as any).composedPath?.() as EventTarget[] | undefined;
-		return !!(path && path.includes(el));
-	}
-
-	/**
-	 * @internal
-	 */
-	@observable copyIconName = 'copy-2-line';
-	#iconResetTimer: ReturnType<typeof setTimeout> | null = null;
-
-	/**
-	 * @internal
-	 */
-	_setTemporaryCopyIcon(name: string, ms = 2000) {
-		this.copyIconName = name;
-		if (this.#iconResetTimer) clearTimeout(this.#iconResetTimer);
-		this.#iconResetTimer = setTimeout(() => {
-			this.copyIconName = 'copy-2-line';
-			this.#iconResetTimer = null;
-		}, ms);
-	}
-
-	/**
-	 * @internal
-	 */
-	_copyValueToClipboard = async (value: string) => {
-		try {
-			await navigator.clipboard.writeText(value);
-			this._setTemporaryCopyIcon('check-circle-line');
-		} catch {
-			alert(this.locale?.colorPicker?.copyErrorText);
-			this._setTemporaryCopyIcon('error-line');
-		}
-	};
-
-	override connectedCallback(): void {
-		super.connectedCallback();
-		this._refreshCanvasColor();
-		this.savedColors = this._loadSavedColors();
-		document.addEventListener('mousedown', this.#closeOnPointerOutside, true);
-		document.addEventListener('keydown', this.#closeOnEscape);
-	}
-
-	override disconnectedCallback(): void {
-		super.disconnectedCallback();
-		document.removeEventListener(
-			'mousedown',
-			this.#closeOnPointerOutside,
-			true
-		);
-		document.removeEventListener('keydown', this.#closeOnEscape);
-	}
-
-	/**
-	 * @internal
-	 */
-	#closeOnPointerOutside = (e: Event) => {
-		if (this._isInPath(e, this._buttonEl) || this._isInPath(e, this._popupEl)) {
-			return;
-		}
-		this.open = false;
-	};
-
-	/**
-	 * @internal
-	 */
-	#closeOnEscape = (e: KeyboardEvent) => {
-		if (e.key === 'Escape') {
-			this.open = false;
-		}
-	};
 
 	/**
 	 * @internal
@@ -408,5 +225,274 @@ export class ColorPicker extends WithContextualHelp(
 		predefinedColors.forEach(appendIfUniqueAndValid);
 
 		return merged.slice(0, this._maxSwatchesNormalized);
+	}
+
+	// --- Max Swatches ---
+
+	/**
+	 * Limits number of swatches that can be saved.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: max-swatches
+	 */
+	@attr({
+		attribute: 'max-swatches',
+		mode: 'fromView',
+		converter: nullableNumberConverter,
+	})
+	maxSwatches: number = 6;
+
+	/**
+	 * @internal
+	 */
+	get _maxSwatchesNormalized(): number {
+		return Number.isFinite(this.maxSwatches)
+			? Math.max(0, Math.floor(this.maxSwatches))
+			: 0;
+	}
+
+	/**
+	 * @internal
+	 */
+	maxSwatchesChanged() {
+		const maxCount = this._maxSwatchesNormalized;
+		if (this.savedColors?.length > maxCount) {
+			this.savedColors = this.savedColors.slice(0, maxCount);
+			this._setSavedColors(this.savedColors);
+		}
+	}
+
+	// --- Vanilla Colorful Elements ---
+
+	/**
+	 * @internal
+	 */
+	_vcHexPickerEl!: HexColorPicker;
+
+	/**
+	 * @internal
+	 */
+	_vcHexInputEl!: HexInput;
+
+	/**
+	 * @internal
+	 */
+	_onPickerColorChanged(e: CustomEvent<{ value: string }>) {
+		if (typeof e.detail?.value === 'string') {
+			this.value = e.detail?.value;
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	override valueChanged(_oldVal?: string, newVal?: string) {
+		if (this._vcHexPickerEl && typeof newVal === 'string') {
+			this._vcHexPickerEl.color = newVal;
+		}
+		if (this._vcHexInputEl && typeof newVal === 'string') {
+			this._vcHexInputEl.color = newVal;
+		}
+	}
+
+	// --- Text Field ---
+
+	/**
+	 * @internal
+	 */
+	_textFieldEl!: TextField;
+
+	/**
+	 * @internal
+	 */
+	_onTextFieldInput(event: Event) {
+		const textField = event.currentTarget as TextField;
+		this.value = textField.value;
+	}
+
+	// --- Picker Button ---
+
+	/**
+	 * @internal
+	 */
+	_buttonEl!: HTMLButtonElement;
+
+	/**
+	 * @internal
+	 */
+	get _buttonColor(): string {
+		if (!this._canvasColor) {
+			this._refreshCanvasColor();
+		}
+		if (this.value && isValidHexColor(this.value)) {
+			return this.value;
+		}
+		return 'var(--vvd-color-canvas-text)';
+	}
+
+	/**
+	 * @internal
+	 */
+	_onButtonClick() {
+		this.open = !this.open;
+	}
+
+	// --- Popup ---
+
+	/**
+	 * @internal
+	 */
+	_popupEl!: Popup;
+
+	/**
+	 * @internal
+	 */
+	_handleCloseRequest() {
+		this.open = false;
+	}
+
+	/**
+	 * @internal
+	 */
+	private _isInPath(e: Event, el?: EventTarget | null): boolean {
+		if (!el) return false;
+		const path = (e as any).composedPath?.() as EventTarget[] | undefined;
+		return !!(path && path.includes(el));
+	}
+
+	/**
+	 * @internal
+	 */
+	#closeOnPointerOutside = (e: Event) => {
+		if (this._isInPath(e, this._buttonEl) || this._isInPath(e, this._popupEl)) {
+			return;
+		}
+		this.open = false;
+	};
+
+	override connectedCallback(): void {
+		super.connectedCallback();
+		this._refreshCanvasColor();
+		this.savedColors = this._loadSavedColors();
+		document.addEventListener('mousedown', this.#closeOnPointerOutside, true);
+	}
+
+	override disconnectedCallback(): void {
+		super.disconnectedCallback();
+		document.removeEventListener(
+			'mousedown',
+			this.#closeOnPointerOutside,
+			true
+		);
+	}
+
+	// --- Copy To Clipboard ---
+
+	/**
+	 * @internal
+	 */
+	@observable copyIconName = 'copy-2-line';
+	#iconResetTimer: ReturnType<typeof setTimeout> | null = null;
+
+	/**
+	 * @internal
+	 */
+	_setTemporaryCopyIcon(name: string, ms = 2000) {
+		this.copyIconName = name;
+		if (this.#iconResetTimer) clearTimeout(this.#iconResetTimer);
+		this.#iconResetTimer = setTimeout(() => {
+			this.copyIconName = 'copy-2-line';
+			this.#iconResetTimer = null;
+		}, ms);
+	}
+
+	/**
+	 * @internal
+	 */
+	_copyValueToClipboard = async (value: string) => {
+		try {
+			await navigator.clipboard.writeText(value);
+			this._setTemporaryCopyIcon('check-circle-line');
+			this._ariaLiveDescription =
+				this.locale.colorPicker.copySuccessMessage(value);
+		} catch {
+			alert(this.locale.colorPicker.copyErrorText);
+			this._setTemporaryCopyIcon('error-line');
+			this._ariaLiveDescription = this.locale.colorPicker.copyErrorText;
+		}
+	};
+
+	// --- Trapped focus ---
+
+	/**
+	 * @internal
+	 */
+	_onBaseKeydown(event: KeyboardEvent) {
+		if (this.open && handleEscapeKeyAndStopPropogation(event)) {
+			this.open = false;
+			return false;
+		}
+
+		if (this._trappedFocus(event, () => this._focusableElsWithinDialog())) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * @internal
+	 */
+	_focusableElsWithinDialog(): NodeListOf<HTMLElement> {
+		return this._popupEl.querySelectorAll(
+			'button:not([role="gridcell"]), [data-vvd-component="button"], vwc-button:not([role="gridcell"])'
+		);
+	}
+
+	/**
+	 * @internal
+	 */
+	override _handleCellKeydown(
+		event: KeyboardEvent,
+		value: string,
+		index: number,
+		isSaveCell?: boolean
+	) {
+		if (event.key === 'Tab') {
+			event.preventDefault();
+			const focusableEls = this._focusableElsWithinDialog();
+			const idx = Array.prototype.indexOf.call(
+				focusableEls,
+				event.currentTarget as HTMLElement
+			);
+
+			const nextIdx = event.shiftKey
+				? (idx - 1 + focusableEls.length) % focusableEls.length
+				: (idx + 1) % focusableEls.length;
+
+			focusableEls[nextIdx]?.focus();
+			return false;
+		}
+
+		return super._handleCellKeydown(event, value, index, isSaveCell);
+	}
+
+	// --- Accessibility ---
+
+	/**
+	 * Used to announce changes to the component's state via an aria live region.
+	 * @internal
+	 */
+	@observable _ariaLiveDescription = '';
+
+	/**
+	 * @internal
+	 */
+	override _handleSwatchSelection(value: string) {
+		if (this.value !== value) {
+			this._ariaLiveDescription =
+				this.locale.colorPicker.selectionSuccessMessage(value);
+		}
+		super._handleSwatchSelection(value);
 	}
 }

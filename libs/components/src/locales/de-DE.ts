@@ -273,12 +273,18 @@ const deDE: Locale = {
 	colorPicker: {
 		popupLabel: 'Farbwähler',
 		swatchesLabel: 'Gespeicherte Farben:',
-		pickerButtonLabel: 'Farbwähler öffnen',
+		pickerButtonLabel: 'Farbwähler',
+		hexInputLabel: 'HEX-Farbcode',
 		saveButtonLabel: 'Aktuelle Farbe speichern',
 		closeButtonLabel: 'Farbwähler schließen',
 		copyButtonLabel: 'Farbe in die Zwischenablage kopieren',
 		copyErrorText:
 			'Kopieren fehlgeschlagen. Zugriff auf die Zwischenablage wurde blockiert. Versuchen Sie es erneut.',
+		copySuccessMessage: /* istanbul ignore next */ (value: string): string =>
+			`Farbe ${value} in die Zwischenablage kopiert.`,
+		selectionSuccessMessage: /* istanbul ignore next */ (
+			value: string
+		): string => `Farbe ${value} ausgewählt.`,
 	},
 };
 

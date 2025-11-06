@@ -18,71 +18,23 @@ registerLayout('your-prefix');
 </script>
 
 <your-prefix-layout gutters="small">
-	<your-prefix-card
-		headline="Lorem ipsum"
-		text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-	>
-		<img
-			slot="media"
-			src="https://picsum.photos/id/1015/300/200"
-			alt="landscape"
-			style="width: 100%; height: 150px; object-fit: cover;"
-		/>
+	<your-prefix-card headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+		<img slot="media" src="https://picsum.photos/id/1015/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" />
 	</your-prefix-card>
-	<your-prefix-card
-		headline="Lorem ipsum"
-		text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-	>
-		<img
-			slot="media"
-			src="https://picsum.photos/id/1016/300/200"
-			alt="landscape"
-			style="width: 100%; height: 150px; object-fit: cover;"
-		/>
+	<your-prefix-card headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+		<img slot="media" src="https://picsum.photos/id/1016/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" />
 	</your-prefix-card>
-	<your-prefix-card
-		headline="Lorem ipsum"
-		text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-	>
-		<img
-			slot="media"
-			src="https://picsum.photos/id/1018/300/200"
-			alt="landscape"
-			style="width: 100%; height: 150px; object-fit: cover;"
-		/>
+	<your-prefix-card headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+		<img slot="media" src="https://picsum.photos/id/1018/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" />
 	</your-prefix-card>
-	<your-prefix-card
-		headline="Lorem ipsum"
-		text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-	>
-		<img
-			slot="media"
-			src="https://picsum.photos/id/1019/300/200"
-			alt="landscape"
-			style="width: 100%; height: 150px; object-fit: cover;"
-		/>
+	<your-prefix-card headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+		<img slot="media" src="https://picsum.photos/id/1019/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" />
 	</your-prefix-card>
-	<your-prefix-card
-		headline="Lorem ipsum"
-		text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-	>
-		<img
-			slot="media"
-			src="https://picsum.photos/id/1055/300/200"
-			alt="landscape"
-			style="width: 100%; height: 150px; object-fit: cover;"
-		/>
+	<your-prefix-card headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+		<img slot="media" src="https://picsum.photos/id/1055/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" />
 	</your-prefix-card>
-	<your-prefix-card
-		headline="Lorem ipsum"
-		text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-	>
-		<img
-			slot="media"
-			src="https://picsum.photos/id/1050/300/200"
-			alt="landscape"
-			style="width: 100%; height: 150px; object-fit: cover;"
-		/>
+	<your-prefix-card headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+		<img slot="media" src="https://picsum.photos/id/1050/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" />
 	</your-prefix-card>
 </your-prefix-layout>
 ```
@@ -97,18 +49,9 @@ import { VLayout, VCard } from '@vonage/vivid-vue';
 </script>
 <template>
 	<VLayout>
-		<VCard
-			headline="Lorem ipsum"
-			text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-		/>
-		<VCard
-			headline="Lorem ipsum"
-			text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-		/>
-		<VCard
-			headline="Lorem ipsum"
-			text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-		/>
+		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
+		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
+		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
 	</VLayout>
 </template>
 ```
@@ -138,10 +81,7 @@ This will override the `auto-sizing` and `column-basis` attributes. The default 
 Control the [grid-template-rows](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows) of the layout by setting `--layout-grid-template-rows`. The default value is `min-content`.
 
 ```html preview full
-<vwc-layout
-	style="--layout-grid-template-rows: 80px 40px auto;"
-	gutters="small"
->
+<vwc-layout style="--layout-grid-template-rows: 80px 40px auto;" gutters="small">
 	<vwc-card elevation="2"></vwc-card>
 	<vwc-card elevation="2"></vwc-card>
 	<vwc-card elevation="2"></vwc-card>
@@ -166,10 +106,7 @@ Use a custom [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap)
 This will override the `row-spacing` attribute.
 
 ```html preview full
-<vwc-layout
-	style="--layout-column-gap: 0; --layout-row-gap: 0;"
-	gutters="small"
->
+<vwc-layout style="--layout-column-gap: 0; --layout-row-gap: 0;" gutters="small">
 	<vwc-card elevation="2"></vwc-card>
 	<vwc-card elevation="2"></vwc-card>
 	<vwc-card elevation="2"></vwc-card>

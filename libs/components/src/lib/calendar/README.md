@@ -1,6 +1,30 @@
 ## Usage
 
 <vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```js
+import { VCalendar } from '@vonage/vivid-vue';
+```
+
+```vue preview
+<script setup lang="ts">
+import { VCalendar } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VCalendar class="calendar" />
+</template>
+
+<style scoped>
+.calendar {
+	max-inline-size: 100%;
+	max-block-size: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -24,19 +48,6 @@ registerCalendar('your-prefix');
 		max-block-size: 250px;
 	}
 </style>
-```
-
-</vwc-tab-panel>
-<vwc-tab label="Vue"></vwc-tab>
-<vwc-tab-panel>
-
-```html
-<script setup lang="ts">
-	import { VCalendar } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VCalendar />
-</template>
 ```
 
 </vwc-tab-panel>
@@ -77,74 +88,16 @@ Each day in the Calendar has a slot assigned to it. Use the Calendar Event compo
 
 ```html preview
 <vwc-calendar class="calendar">
-	<vwc-calendar-event
-		slot="day-0"
-		start="10"
-		duration="1"
-		heading="Backlog refinement"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		slot="day-0"
-		start="12"
-		duration="1"
-		heading="Gym Workout"
-		connotation="cta"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		slot="day-1"
-		start="10"
-		duration="0.5"
-		heading="Daily stand up"
-		appearance="subtle"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		slot="day-2"
-		start="10"
-		duration="0.5"
-		heading="Daily stand up"
-		appearance="subtle"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		slot="day-2"
-		start="12"
-		duration="1"
-		heading="Swim"
-		connotation="cta"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		slot="day-3"
-		start="10"
-		duration="0.5"
-		heading="Daily stand up"
-		appearance="subtle"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		slot="day-4"
-		start="10"
-		duration="0.5"
-		heading="Daily stand up"
-		appearance="subtle"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		slot="day-4"
-		start="14"
-		duration="0.75"
-		heading="Sprint demo"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		slot="day-4"
-		start="12"
-		duration="1"
-		heading="Gym Workout"
-		connotation="cta"
-	></vwc-calendar-event>
-	<vwc-calendar-event
-		slot="day-5"
-		start="9"
-		duration="1"
-		heading="Park run"
-		connotation="cta"
-	></vwc-calendar-event>
+	<vwc-calendar-event slot="day-0" start="10" duration="1" heading="Backlog refinement"></vwc-calendar-event>
+	<vwc-calendar-event slot="day-0" start="12" duration="1" heading="Gym Workout" connotation="cta"></vwc-calendar-event>
+	<vwc-calendar-event slot="day-1" start="10" duration="0.5" heading="Daily stand up" appearance="subtle"></vwc-calendar-event>
+	<vwc-calendar-event slot="day-2" start="10" duration="0.5" heading="Daily stand up" appearance="subtle"></vwc-calendar-event>
+	<vwc-calendar-event slot="day-2" start="12" duration="1" heading="Swim" connotation="cta"></vwc-calendar-event>
+	<vwc-calendar-event slot="day-3" start="10" duration="0.5" heading="Daily stand up" appearance="subtle"></vwc-calendar-event>
+	<vwc-calendar-event slot="day-4" start="10" duration="0.5" heading="Daily stand up" appearance="subtle"></vwc-calendar-event>
+	<vwc-calendar-event slot="day-4" start="14" duration="0.75" heading="Sprint demo"></vwc-calendar-event>
+	<vwc-calendar-event slot="day-4" start="12" duration="1" heading="Gym Workout" connotation="cta"></vwc-calendar-event>
+	<vwc-calendar-event slot="day-5" start="9" duration="1" heading="Park run" connotation="cta"></vwc-calendar-event>
 </vwc-calendar>
 
 <style>

@@ -29,11 +29,7 @@ The Option can be given extra context using the `text-secondary` attribute.
 
 ```html preview
 <div class="container">
-	<vwc-option
-		text="Option text"
-		text-secondary="Secondary text"
-		value="option1"
-	></vwc-option>
+	<vwc-option text="Option text" text-secondary="Secondary text" value="option1"></vwc-option>
 </div>
 
 <style>
@@ -101,11 +97,7 @@ The `matched-text` attribute highlights a part of text as matching a search quer
 
 ```html preview
 <div class="container">
-	<vwc-option
-		matched-text="text"
-		text="Option text"
-		value="option1"
-	></vwc-option>
+	<vwc-option matched-text="text" text="Option text" value="option1"></vwc-option>
 </div>
 
 <style>

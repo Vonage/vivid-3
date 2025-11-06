@@ -108,20 +108,8 @@ To avoid FOIT (Flash Of Invisible Text), you can also preload the fonts in your 
 
 ```html
 <head>
-	<link
-		rel="preload"
-		href="https://fonts.resources.vonage.com/fonts/v2/SpeziaCompleteVariableUprightWeb.woff2"
-		type="font/woff2"
-		as="font"
-		crossorigin="anonymous"
-	/>
-	<link
-		rel="preload"
-		href="https://fonts.resources.vonage.com/fonts/v2/SpeziaMonoCompleteVariableWeb.woff2"
-		type="font/woff2"
-		as="font"
-		crossorigin="anonymous"
-	/>
+	<link rel="preload" href="https://fonts.resources.vonage.com/fonts/v2/SpeziaCompleteVariableUprightWeb.woff2" type="font/woff2" as="font" crossorigin="anonymous" />
+	<link rel="preload" href="https://fonts.resources.vonage.com/fonts/v2/SpeziaMonoCompleteVariableWeb.woff2" type="font/woff2" as="font" crossorigin="anonymous" />
 </head>
 ```
 

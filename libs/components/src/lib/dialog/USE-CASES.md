@@ -6,11 +6,7 @@ You can use a `form` with `method=dialog` inside a dialog. This will make the di
 <vwc-dialog headline="Dialog With Form" open>
 	<form slot="body" method="dialog">
 		<vwc-layout column-basis="block">
-			<vwc-text-field
-				label="Agent Name"
-				placeholder="Search for an agent"
-				icon="search-line"
-			></vwc-text-field>
+			<vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
 			<vwc-text-area label="Additional Note (Optional)"></vwc-text-area>
 			<vwc-button type="submit" label="Submit" appearance="filled"></vwc-button>
 		</vwc-layout>
@@ -28,45 +24,13 @@ You can use a `form` with `method=dialog` inside a dialog. This will make the di
 </style>
 <vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
 <vwc-dialog id="dialog" headline="Dialog" modal open>
-	<vwc-text-area
-		id="input"
-		slot="body"
-		label="Important Data"
-		value="Some important data"
-	></vwc-text-area>
-	<vwc-button
-		slot="action-items"
-		label="Cancel"
-		appearance="outlined"
-		onclick="closeDialog()"
-	></vwc-button>
-	<vwc-button
-		slot="action-items"
-		label="Save"
-		appearance="filled"
-		onclick="closeDialog()"
-	></vwc-button>
+	<vwc-text-area id="input" slot="body" label="Important Data" value="Some important data"></vwc-text-area>
+	<vwc-button slot="action-items" label="Cancel" appearance="outlined" onclick="closeDialog()"></vwc-button>
+	<vwc-button slot="action-items" label="Save" appearance="filled" onclick="closeDialog()"></vwc-button>
 </vwc-dialog>
-<vwc-dialog
-	id="confirm"
-	headline="Unsaved Changes"
-	subtitle="Are you sure you want to discard your changes?"
-	modal
->
-	<vwc-button
-		slot="action-items"
-		label="Cancel"
-		appearance="outlined"
-		onclick="closeConfirm()"
-	></vwc-button>
-	<vwc-button
-		autofocus
-		slot="action-items"
-		label="Discard"
-		appearance="filled"
-		connotation="alert"
-		onclick="discardChanges()"
-	></vwc-button>
+<vwc-dialog id="confirm" headline="Unsaved Changes" subtitle="Are you sure you want to discard your changes?" modal>
+	<vwc-button slot="action-items" label="Cancel" appearance="outlined" onclick="closeConfirm()"></vwc-button>
+	<vwc-button autofocus slot="action-items" label="Discard" appearance="filled" connotation="alert" onclick="discardChanges()"></vwc-button>
 </vwc-dialog>
 <script>
 	document.querySelector('#dialog').addEventListener('cancel', (e) => {

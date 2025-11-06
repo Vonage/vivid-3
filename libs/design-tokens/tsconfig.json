@@ -1,0 +1,8 @@
+{
+	"extends": "@repo/typescript-config/tsc.json",
+	"compilerOptions": {
+		"strict": false,
+		"noImplicitReturns": false
+	},
+	"include": ["scripts/**/*.ts", "*.ts"]
+}

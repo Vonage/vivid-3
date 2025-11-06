@@ -20,14 +20,7 @@ Due to a11y and design constraints, the density can only be set to one of the fo
 	}
 </style>
 
-<vwc-number-field
-	label="Choose density"
-	helper-text="Change density value"
-	min="-1"
-	max="2"
-	value="1"
-	style="justify-self: flex-start; width: 105px;"
-></vwc-number-field>
+<vwc-number-field label="Choose density" helper-text="Change density value" min="-1" max="2" value="1" style="justify-self: flex-start; width: 105px;"></vwc-number-field>
 
 <vwc-divider></vwc-divider>
 
@@ -46,8 +39,6 @@ Due to a11y and design constraints, the density can only be set to one of the fo
 <script>
 	root = document.querySelector('#scoped-region');
 	numberfield = document.querySelector('vwc-number-field');
-	numberfield.addEventListener('change', (e) =>
-		root.style.setProperty('--vvd-size-density', e.target.value)
-	);
+	numberfield.addEventListener('change', (e) => root.style.setProperty('--vvd-size-density', e.target.value));
 </script>
 ```

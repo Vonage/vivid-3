@@ -99,11 +99,7 @@ If set, the `icon` attribute is ignored.
 ```html preview
 <vwc-tree-view>
 	<vwc-tree-item text="Tree Item">
-		<vwc-icon
-			slot="icon"
-			name="check-circle-solid"
-			connotation="success"
-		></vwc-icon>
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	</vwc-tree-item>
 </vwc-tree-view>
 ```

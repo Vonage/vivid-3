@@ -129,11 +129,7 @@ The disabled state of the element.
 <vwc-tabs>
 	<vwc-tab disabled label="Disabled Tab" id="tab"></vwc-tab>
 	<vwc-tab-panel id="tab" slot="tabpanel">
-		<vwc-icon
-			slot="icon"
-			name="check-circle-solid"
-			connotation="success"
-		></vwc-icon>
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	</vwc-tab-panel>
 </vwc-tabs>
 ```
@@ -148,11 +144,7 @@ If set, the `icon`_(deprecated)_ attribute is ignored.
 ```html preview
 <vwc-tabs>
 	<vwc-tab label="Tab with custom icon" id="tab">
-		<vwc-icon
-			slot="icon"
-			name="check-circle-solid"
-			connotation="success"
-		></vwc-icon>
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	</vwc-tab>
 	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>

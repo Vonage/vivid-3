@@ -83,13 +83,7 @@ The default appearance is `ghost`. Below it is set to `ghost-light`.
 
 ```html preview
 <vwc-nav>
-	<vwc-nav-disclosure
-		appearance="ghost-light"
-		open
-		href="#"
-		label="Settings"
-		current
-	>
+	<vwc-nav-disclosure appearance="ghost-light" open href="#" label="Settings" current>
 		<vwc-icon slot="icon" name="gear-line"></vwc-icon>
 		<vwc-nav-item appearance="ghost-light" href="#" text="Ghost Light" current>
 			<vwc-icon slot="icon" name="edit-line"></vwc-icon>
@@ -108,60 +102,24 @@ The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure**
 ```html preview
 <div class="wrapper">
 	<vwc-nav class="navigation">
-		<vwc-nav-disclosure
-			connotation="accent"
-			appearance="ghost-light"
-			open
-			href="#"
-			label="Settings"
-			current
-		>
+		<vwc-nav-disclosure connotation="accent" appearance="ghost-light" open href="#" label="Settings" current>
 			<vwc-icon slot="icon" name="gear-line"></vwc-icon>
-			<vwc-nav-item
-				connotation="accent"
-				appearance="ghost-light"
-				href="#"
-				text="Cta connotation"
-				current
-			>
+			<vwc-nav-item connotation="accent" appearance="ghost-light" href="#" text="Cta connotation" current>
 				<vwc-icon slot="icon" name="edit-line"></vwc-icon>
 			</vwc-nav-item>
 		</vwc-nav-disclosure>
-		<vwc-nav-item
-			connotation="accent"
-			appearance="ghost-light"
-			href="#"
-			text="Account"
-		>
+		<vwc-nav-item connotation="accent" appearance="ghost-light" href="#" text="Account">
 			<vwc-icon slot="icon" name="profile"></vwc-icon>
 		</vwc-nav-item>
 	</vwc-nav>
 	<vwc-nav class="navigation">
-		<vwc-nav-disclosure
-			connotation="cta"
-			appearance="ghost-light"
-			open
-			href="#"
-			label="Settings"
-			current
-		>
+		<vwc-nav-disclosure connotation="cta" appearance="ghost-light" open href="#" label="Settings" current>
 			<vwc-icon slot="icon" name="gear-line"></vwc-icon>
-			<vwc-nav-item
-				connotation="cta"
-				appearance="ghost-light"
-				href="#"
-				text="Accent connotation"
-				current
-			>
+			<vwc-nav-item connotation="cta" appearance="ghost-light" href="#" text="Accent connotation" current>
 				<vwc-icon slot="icon" name="edit-line"></vwc-icon>
 			</vwc-nav-item>
 		</vwc-nav-disclosure>
-		<vwc-nav-item
-			connotation="cta"
-			appearance="ghost-light"
-			href="#"
-			text="Account"
-		>
+		<vwc-nav-item connotation="cta" appearance="ghost-light" href="#" text="Account">
 			<vwc-icon slot="icon" name="profile"></vwc-icon>
 		</vwc-nav-item>
 	</vwc-nav>

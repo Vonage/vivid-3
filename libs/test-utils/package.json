@@ -1,6 +1,6 @@
 {
 	"name": "@vonage/vivid-test-utils",
-	"version": "5.3.0",
+	"version": "5.4.0",
 	"type": "module",
 	"exports": {
 		"./dom": {
@@ -45,12 +45,18 @@
 		"@vonage/vivid": "*"
 	},
 	"devDependencies": {
+		"@playwright/test": "1.48.2",
 		"@repo/eslint-config": "*",
+		"@repo/shared": "*",
 		"@repo/typescript-config": "*",
 		"@repo/vitest-config": "*",
 		"@vonage/vivid-vue": "*",
+		"@vitejs/plugin-vue": "^5.2.1",
 		"@vue/test-utils": "^2",
+		"concurrently": "^9.2.0",
 		"cypress": "^14.5.1",
-		"vue": "^3"
+		"vue": "^3",
+		"vitest": "^2.1.8",
+		"wait-on": "^8.0.5"
 	}
 }

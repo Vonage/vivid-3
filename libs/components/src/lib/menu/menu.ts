@@ -400,7 +400,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	/**
 	 * @internal
 	 */
-	_onChange(e: Event) {
+	_onBodyChange(e: Event) {
 		if (this.menuItems === undefined || !(e.target instanceof Element)) {
 			return;
 		}

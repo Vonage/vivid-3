@@ -12,11 +12,7 @@ registerToggletip('your-prefix');
 
 ```html preview
 <script type="module">
-	import {
-		registerToggletip,
-		registerButton,
-		registerIcon,
-	} from '@vonage/vivid';
+	import { registerToggletip, registerButton, registerIcon } from '@vonage/vivid';
 	registerToggletip('your-prefix');
 	registerButton('your-prefix');
 	registerIcon('your-prefix');
@@ -71,9 +67,7 @@ It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you ca
 	<vwc-button id="button" appearance="filled" shape="pill">
 		<vwc-icon slot="icon" name="help-line"></vwc-icon>
 	</vwc-button>
-	<vwc-toggletip anchor="button" placement="left"
-		>I'm a Toggletip</vwc-toggletip
-	>
+	<vwc-toggletip anchor="button" placement="left">I'm a Toggletip</vwc-toggletip>
 
 	<vwc-button id="button2" appearance="filled" shape="pill">
 		<vwc-icon slot="icon" name="help-line"></vwc-icon>
@@ -82,8 +76,7 @@ It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you ca
 </div>
 
 <script>
-	document.querySelector('#toggletip2').anchor =
-		document.querySelector('#button2').id;
+	document.querySelector('#toggletip2').anchor = document.querySelector('#button2').id;
 </script>
 
 <style>
@@ -130,18 +123,8 @@ You can add action items elements (Buttons) using the `action-items` slot. They 
 		<vwc-icon slot="icon" name="help-line"></vwc-icon>
 	</vwc-button>
 	This is a Toggletip with action items
-	<vwc-button
-		appearance="outlined"
-		label="Action"
-		shape="pill"
-		slot="action-items"
-	></vwc-button>
-	<vwc-button
-		appearance="filled"
-		label="Action"
-		shape="pill"
-		slot="action-items"
-	></vwc-button>
+	<vwc-button appearance="outlined" label="Action" shape="pill" slot="action-items"></vwc-button>
+	<vwc-button appearance="filled" label="Action" shape="pill" slot="action-items"></vwc-button>
 </vwc-toggletip>
 ```
 
@@ -158,8 +141,7 @@ The `--toggletip-max-inline-size` variable sets the toggletip's max inline size.
 	<vwc-button slot="anchor" shape="pill" appearance="filled">
 		<vwc-icon slot="icon" name="help-line"></vwc-icon>
 	</vwc-button>
-	Turn on to receive notifications for important updates and alerts directly to
-	your email or mobile device.
+	Turn on to receive notifications for important updates and alerts directly to your email or mobile device.
 </vwc-toggletip>
 
 <style>

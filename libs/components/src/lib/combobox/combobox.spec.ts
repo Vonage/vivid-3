@@ -452,7 +452,7 @@ describe('vwc-combobox', () => {
 			await elementUpdated(element);
 		});
 
-		it('should set selectedIndex to 1 when first option is selected', async () => {
+		it('should set selectedIndex to 1 when second option is selected', async () => {
 			await elementUpdated(element);
 			expect(element.selectedIndex).toEqual(1);
 		});
@@ -685,6 +685,23 @@ describe('vwc-combobox', () => {
 			await elementUpdated(element);
 			expect(element.value).toEqual('2');
 		});
+
+		it('should clear the value when there is no default value', async () => {
+			const form = (await fixture(
+				`<form><${COMPONENT_TAG} name="combobox" required>
+					<option value="1">1</option>
+				</${COMPONENT_TAG}></form>`
+			)) as HTMLFormElement;
+			element = form.children[0] as Combobox;
+			await elementUpdated(element);
+			expect(element.value).toEqual('');
+			element.value = '1';
+			await elementUpdated(element);
+
+			form.reset();
+			await elementUpdated(element);
+			expect(element.value).toEqual('');
+		});
 	});
 
 	describe('when an option is selected', () => {
@@ -896,8 +913,8 @@ describe('vwc-combobox', () => {
 
 		it("should set the aria-activedescendant attribute to the selected option id when the listbox is open, but this doesn't actually work because the option is in light DOM", async () => {
 			element.innerHTML = `
-				<vwc-option value="1">1</vwc-option>
-				<vwc-option value="2" id="option-2" selected>2</vwc-option>
+				<vwc-option value="1" text="1"></vwc-option>
+				<vwc-option value="2" text="2" id="option-2" selected></vwc-option>
 				`;
 			await elementUpdated(element);
 

@@ -135,26 +135,13 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 	<docs-appearance-ui selected appearance="ghost" hovered></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<docs-appearance-ui
-		disabled
-		appearance="ghost"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui disabled appearance="ghost" class="one-example"></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
-	<docs-appearance-ui
-		selected
-		appearance="ghost"
-		disabled
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui selected appearance="ghost" disabled class="one-example"></docs-appearance-ui>
 
 	<span><b>readonly</b></span>
-	<docs-appearance-ui
-		readonly
-		appearance="ghost"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui readonly appearance="ghost" class="one-example"></docs-appearance-ui>
 </div>
 ```
 
@@ -200,20 +187,12 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 	<span class="one-example" class="one-example">not set</span>
 
 	<span><b>disabled</b></span>
-	<docs-appearance-ui
-		disabled
-		appearance="outlined"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui disabled appearance="outlined" class="one-example"></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
 	<span class="one-example" class="one-example">not set</span>
 	<span><b>readonly</b></span>
-	<docs-appearance-ui
-		readonly
-		appearance="outlined"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui readonly appearance="outlined" class="one-example"></docs-appearance-ui>
 </div>
 ```
 
@@ -256,18 +235,10 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 	<docs-appearance-ui selected appearance="duotone"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<docs-appearance-ui
-		selected
-		hovered
-		appearance="duotone"
-	></docs-appearance-ui>
+	<docs-appearance-ui selected hovered appearance="duotone"></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<docs-appearance-ui
-		disabled
-		appearance="duotone"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui disabled appearance="duotone" class="one-example"></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
 	<span class="one-example" class="one-example">not set</span>
@@ -319,11 +290,7 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 	<span class="one-example" class="one-example">not set</span>
 
 	<span><b>disabled</b></span>
-	<docs-appearance-ui
-		disabled
-		appearance="subtle"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui disabled appearance="subtle" class="one-example"></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
 	<span class="one-example" class="one-example">not set</span>
@@ -372,33 +339,16 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 	<docs-appearance-ui selected appearance="fieldset"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<docs-appearance-ui
-		selected
-		appearance="fieldset"
-		hovered
-	></docs-appearance-ui>
+	<docs-appearance-ui selected appearance="fieldset" hovered></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<docs-appearance-ui
-		disabled
-		appearance="fieldset"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui disabled appearance="fieldset" class="one-example"></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
-	<docs-appearance-ui
-		selected
-		appearance="fieldset"
-		disabled
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui selected appearance="fieldset" disabled class="one-example"></docs-appearance-ui>
 
 	<span><b>readonly</b></span>
-	<docs-appearance-ui
-		readonly
-		appearance="fieldset"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui readonly appearance="fieldset" class="one-example"></docs-appearance-ui>
 </div>
 ```
 
@@ -447,33 +397,16 @@ only `accent` is being used
 	<docs-appearance-ui selected appearance="listitem"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<docs-appearance-ui
-		selected
-		appearance="listitem"
-		hovered
-	></docs-appearance-ui>
+	<docs-appearance-ui selected appearance="listitem" hovered></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<docs-appearance-ui
-		disabled
-		appearance="listitem"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui disabled appearance="listitem" class="one-example"></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
-	<docs-appearance-ui
-		selected
-		appearance="listitem"
-		disabled
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui selected appearance="listitem" disabled class="one-example"></docs-appearance-ui>
 
 	<span><b>readonly</b></span>
-	<docs-appearance-ui
-		readonly
-		appearance="listitem"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui readonly appearance="listitem" class="one-example"></docs-appearance-ui>
 </div>
 ```
 
@@ -520,33 +453,16 @@ currently ghost-light appearance is being used only with `accent` connotation
 	<docs-appearance-ui selected appearance="ghost-light"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<docs-appearance-ui
-		selected
-		appearance="ghost-light"
-		hovered
-	></docs-appearance-ui>
+	<docs-appearance-ui selected appearance="ghost-light" hovered></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<docs-appearance-ui
-		disabled
-		appearance="ghost-light"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui disabled appearance="ghost-light" class="one-example"></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
-	<docs-appearance-ui
-		selected
-		appearance="ghost-light"
-		disabled
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui selected appearance="ghost-light" disabled class="one-example"></docs-appearance-ui>
 
 	<span><b>readonly</b></span>
-	<docs-appearance-ui
-		readonly
-		appearance="ghost-light"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui readonly appearance="ghost-light" class="one-example"></docs-appearance-ui>
 </div>
 ```
 
@@ -589,33 +505,16 @@ currently ghost-light appearance is being used only with `accent` connotation
 	<docs-appearance-ui selected appearance="outlined-light"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<docs-appearance-ui
-		selected
-		appearance="outlined-light"
-		hovered
-	></docs-appearance-ui>
+	<docs-appearance-ui selected appearance="outlined-light" hovered></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<docs-appearance-ui
-		disabled
-		appearance="outlined-light"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui disabled appearance="outlined-light" class="one-example"></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
-	<docs-appearance-ui
-		selected
-		appearance="outlined-light"
-		disabled
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui selected appearance="outlined-light" disabled class="one-example"></docs-appearance-ui>
 
 	<span><b>readonly</b></span>
-	<docs-appearance-ui
-		readonly
-		appearance="outlined-light"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui readonly appearance="outlined-light" class="one-example"></docs-appearance-ui>
 </div>
 ```
 
@@ -658,18 +557,10 @@ currently ghost-light appearance is being used only with `accent` connotation
 	<docs-appearance-ui selected appearance="subtle-light"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<docs-appearance-ui
-		selected
-		hovered
-		appearance="subtle-light"
-	></docs-appearance-ui>
+	<docs-appearance-ui selected hovered appearance="subtle-light"></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<docs-appearance-ui
-		disabled
-		appearance="subtle-light"
-		class="one-example"
-	></docs-appearance-ui>
+	<docs-appearance-ui disabled appearance="subtle-light" class="one-example"></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
 	<span class="one-example" class="one-example">not set</span>

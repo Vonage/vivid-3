@@ -1,0 +1,23 @@
+{
+	"name": "@vonage/vivid-design-tokens",
+	"type": "module",
+	"main": "dist/index.css",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsx scripts/build.ts",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@repo/eslint-config": "*",
+		"@repo/typescript-config": "*",
+		"@repo/vitest-config": "*",
+		"style-dictionary": "^5.1.1",
+		"tsx": "^4.19.4"
+	}
+}

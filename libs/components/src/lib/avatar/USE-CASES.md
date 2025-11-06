@@ -2,46 +2,17 @@
 
 ```html preview 300px
 <vwc-menu aria-label="Menu example" placement="bottom-start">
-	<vwc-button
-		slot="anchor"
-		label="Select a User's avatar"
-		appearance="outlined"
-		dropdown-indicator
-		size="expanded"
-	>
-		<vwc-avatar slot="icon" shape="pill" size="condensed">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+	<vwc-button slot="anchor" label="Select a User's avatar" appearance="outlined" dropdown-indicator size="expanded">
+		<vwc-avatar slot="icon" shape="pill" size="condensed"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 	</vwc-button>
-	<vwc-menu-item
-		text="Stone John"
-		control-type="radio"
-		check-appearance="tick-only"
-		text-secondary="236521"
-	>
-		<vwc-avatar slot="meta" size="condensed" shape="pill">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+	<vwc-menu-item text="Stone John" control-type="radio" check-appearance="tick-only" text-secondary="236521">
+		<vwc-avatar slot="meta" size="condensed" shape="pill"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 	</vwc-menu-item>
-	<vwc-menu-item
-		text="Stanbrige Peter"
-		control-type="radio"
-		check-appearance="tick-only"
-		text-secondary="963851"
-	>
-		<vwc-avatar slot="meta" size="condensed" shape="pill">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+	<vwc-menu-item text="Stanbrige Peter" control-type="radio" check-appearance="tick-only" text-secondary="963851">
+		<vwc-avatar slot="meta" size="condensed" shape="pill"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 	</vwc-menu-item>
-	<vwc-menu-item
-		text="Kazantzis John"
-		control-type="radio"
-		check-appearance="tick-only"
-		text-secondary="784632"
-	>
-		<vwc-avatar slot="meta" size="condensed" shape="pill">
-			<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon
-		></vwc-avatar>
+	<vwc-menu-item text="Kazantzis John" control-type="radio" check-appearance="tick-only" text-secondary="784632">
+		<vwc-avatar slot="meta" size="condensed" shape="pill"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
 	</vwc-menu-item>
 </vwc-menu>
 ```
@@ -50,32 +21,16 @@
 
 ```html preview 200px
 <vwc-menu aria-label="Menu example" placement="right-start">
-	<vwc-avatar
-		slot="anchor"
-		shape="pill"
-		aria-label="See user details"
-		class="avatar-status"
-		clickable
-	>
+	<vwc-avatar slot="anchor" shape="pill" aria-label="See user details" class="avatar-status" clickable>
 		<vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon>
 	</vwc-avatar>
 	<vwc-menu-item text="Available">
-		<vwc-badge
-			slot="meta"
-			appearance="filled"
-			connotation="success"
-			shape="pill"
-		>
+		<vwc-badge slot="meta" appearance="filled" connotation="success" shape="pill">
 			<vwc-icon slot="icon" name="check-solid"></vwc-icon>
 		</vwc-badge>
 	</vwc-menu-item>
 	<vwc-menu-item text="Away">
-		<vwc-badge
-			slot="meta"
-			appearance="filled"
-			connotation="warning"
-			shape="pill"
-		>
+		<vwc-badge slot="meta" appearance="filled" connotation="warning" shape="pill">
 			<vwc-icon slot="icon" name="clock-line"></vwc-icon>
 		</vwc-badge>
 	</vwc-menu-item>

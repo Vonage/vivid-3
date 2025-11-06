@@ -37,44 +37,12 @@ The `icon-decoration` prop is deprecated (as of 05/25) with the previous `outlin
 
 ```html preview 300px
 <div class="wrapper">
-	<vwc-empty-state icon="search-line" headline="Accent connotation">
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon="check-solid"
-		headline="Success connotation"
-		connotation="success"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon="error-solid"
-		headline="Alert connotation"
-		connotation="alert"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon="sparkles-solid"
-		headline="Cta connotation"
-		connotation="cta"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon="envelope-solid"
-		headline="Information connotation"
-		connotation="information"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon="warning-solid"
-		headline="Warning connotation"
-		connotation="warning"
-	>
-		No results
-	</vwc-empty-state>
+	<vwc-empty-state icon="search-line" headline="Accent connotation"> No results </vwc-empty-state>
+	<vwc-empty-state icon="check-solid" headline="Success connotation" connotation="success"> No results </vwc-empty-state>
+	<vwc-empty-state icon="error-solid" headline="Alert connotation" connotation="alert"> No results </vwc-empty-state>
+	<vwc-empty-state icon="sparkles-solid" headline="Cta connotation" connotation="cta"> No results </vwc-empty-state>
+	<vwc-empty-state icon="envelope-solid" headline="Information connotation" connotation="information"> No results </vwc-empty-state>
+	<vwc-empty-state icon="warning-solid" headline="Warning connotation" connotation="warning"> No results </vwc-empty-state>
 </div>
 
 <style>

@@ -25,90 +25,34 @@ The `connotation` attribute controls the purpose of the badge, expressed in its 
 <p>Filled badge with connotation (default)</p>
 <vwc-badge text="accent" connotation="accent" appearance="filled"></vwc-badge>
 <vwc-badge text="cta" connotation="cta" appearance="filled"></vwc-badge>
-<vwc-badge
-	text="information"
-	connotation="information"
-	appearance="filled"
-></vwc-badge>
-<vwc-badge
-	text="announcement"
-	connotation="announcement"
-	appearance="filled"
-></vwc-badge>
+<vwc-badge text="information" connotation="information" appearance="filled"></vwc-badge>
+<vwc-badge text="announcement" connotation="announcement" appearance="filled"></vwc-badge>
 <vwc-badge text="success" connotation="success"></vwc-badge>
 <vwc-badge text="warning" connotation="warning"></vwc-badge>
 <vwc-badge text="alert" connotation="alert"></vwc-badge>
 <p>Subtle badge with connotation</p>
 <vwc-badge text="accent" appearance="subtle" connotation="accent"></vwc-badge>
 <vwc-badge text="cta" appearance="subtle" connotation="cta"></vwc-badge>
-<vwc-badge
-	text="information"
-	appearance="subtle"
-	connotation="information"
-></vwc-badge>
-<vwc-badge
-	text="announcement"
-	appearance="subtle"
-	connotation="announcement"
-></vwc-badge>
+<vwc-badge text="information" appearance="subtle" connotation="information"></vwc-badge>
+<vwc-badge text="announcement" appearance="subtle" connotation="announcement"></vwc-badge>
 <vwc-badge text="success" appearance="subtle" connotation="success"></vwc-badge>
 <vwc-badge text="warning" appearance="subtle" connotation="warning"></vwc-badge>
 <vwc-badge text="alert" appearance="subtle" connotation="alert"></vwc-badge>
 <p>Subtle-Light badge with connotation</p>
-<vwc-badge
-	text="accent"
-	appearance="subtle-light"
-	connotation="accent"
-></vwc-badge>
+<vwc-badge text="accent" appearance="subtle-light" connotation="accent"></vwc-badge>
 <vwc-badge text="cta" appearance="subtle-light" connotation="cta"></vwc-badge>
-<vwc-badge
-	text="information"
-	appearance="subtle-light"
-	connotation="information"
-></vwc-badge>
-<vwc-badge
-	text="announcement"
-	appearance="subtle-light"
-	connotation="announcement"
-></vwc-badge>
-<vwc-badge
-	text="success"
-	appearance="subtle-light"
-	connotation="success"
-></vwc-badge>
-<vwc-badge
-	text="warning"
-	appearance="subtle-light"
-	connotation="warning"
-></vwc-badge>
-<vwc-badge
-	text="alert"
-	appearance="subtle-light"
-	connotation="alert"
-></vwc-badge>
+<vwc-badge text="information" appearance="subtle-light" connotation="information"></vwc-badge>
+<vwc-badge text="announcement" appearance="subtle-light" connotation="announcement"></vwc-badge>
+<vwc-badge text="success" appearance="subtle-light" connotation="success"></vwc-badge>
+<vwc-badge text="warning" appearance="subtle-light" connotation="warning"></vwc-badge>
+<vwc-badge text="alert" appearance="subtle-light" connotation="alert"></vwc-badge>
 <p>Duotone badge with connotation</p>
 <vwc-badge text="accent" appearance="duotone" connotation="accent"></vwc-badge>
 <vwc-badge text="cta" appearance="duotone" connotation="cta"></vwc-badge>
-<vwc-badge
-	text="information"
-	appearance="duotone"
-	connotation="information"
-></vwc-badge>
-<vwc-badge
-	text="announcement"
-	appearance="duotone"
-	connotation="announcement"
-></vwc-badge>
-<vwc-badge
-	text="success"
-	appearance="duotone"
-	connotation="success"
-></vwc-badge>
-<vwc-badge
-	text="warning"
-	appearance="duotone"
-	connotation="warning"
-></vwc-badge>
+<vwc-badge text="information" appearance="duotone" connotation="information"></vwc-badge>
+<vwc-badge text="announcement" appearance="duotone" connotation="announcement"></vwc-badge>
+<vwc-badge text="success" appearance="duotone" connotation="success"></vwc-badge>
+<vwc-badge text="warning" appearance="duotone" connotation="warning"></vwc-badge>
 <vwc-badge text="alert" appearance="duotone" connotation="alert"></vwc-badge>
 ```
 
@@ -117,8 +61,7 @@ The `connotation` attribute controls the purpose of the badge, expressed in its 
 Use the `shape` attribute to change the badge's edges.
 
 ```html preview
-<vwc-badge text="rounded (default)" shape="rounded"></vwc-badge>
-<vwc-badge text="pill" shape="pill"></vwc-badge>
+<vwc-badge text="rounded (default)" shape="rounded"></vwc-badge> <vwc-badge text="pill" shape="pill"></vwc-badge>
 ```
 
 ## Size
@@ -126,8 +69,7 @@ Use the `shape` attribute to change the badge's edges.
 The `size` attribute controls the size of the badge.
 
 ```html preview
-<vwc-badge text="normal" size="normal"></vwc-badge>
-<vwc-badge text="expanded" size="expanded"></vwc-badge>
+<vwc-badge text="normal" size="normal"></vwc-badge> <vwc-badge text="expanded" size="expanded"></vwc-badge>
 ```
 
 ## Icon
@@ -172,10 +114,6 @@ When an element has no visible text, provide an accessible name using the <nobr>
 
 ```html preview
 <vwc-badge appearance="filled">
-	<vwc-icon
-		slot="icon"
-		name="accessibility-line"
-		label="Checked for accessibility"
-	></vwc-icon>
+	<vwc-icon slot="icon" name="accessibility-line" label="Checked for accessibility"></vwc-icon>
 </vwc-badge>
 ```

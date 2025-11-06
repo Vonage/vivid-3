@@ -13,10 +13,7 @@ Use the `label` attribute to provide a visible label for the Checkbox.
 Use the `helper-text` attribute or slot to provide additional context or instructions for the Checkbox.
 
 ```html preview
-<vwc-checkbox
-	label="Use signed Webhooks"
-	helper-text="Signed Webhooks are a way to verify that the request is coming from Vonage."
-></vwc-checkbox>
+<vwc-checkbox label="Use signed Webhooks" helper-text="Signed Webhooks are a way to verify that the request is coming from Vonage."></vwc-checkbox>
 ```
 
 ## States
@@ -50,8 +47,7 @@ Use the `indeterminate` property to set the Checkbox to indeterminate.
 Toggle the `disabled` member to disable/enable the Checkbox.
 
 ```html preview
-<vwc-checkbox disabled></vwc-checkbox>
-<vwc-checkbox disabled checked></vwc-checkbox>
+<vwc-checkbox disabled></vwc-checkbox> <vwc-checkbox disabled checked></vwc-checkbox>
 ```
 
 ### Read Only
@@ -60,8 +56,7 @@ Set the `readonly` member to specify a Checkbox is read-only.
 A read-only Checkbox cannot be modified (however it can be focused and tabbed into).
 
 ```html preview
-<vwc-checkbox readonly></vwc-checkbox>
-<vwc-checkbox readonly checked></vwc-checkbox>
+<vwc-checkbox readonly></vwc-checkbox> <vwc-checkbox readonly checked></vwc-checkbox>
 ```
 
 ## Validation Feedback
@@ -71,10 +66,7 @@ A read-only Checkbox cannot be modified (however it can be focused and tabbed in
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
 ```html preview
-<vwc-checkbox
-	label="I agree to the terms and conditions"
-	error-text="You must agree to the terms and conditions to proceed"
-></vwc-checkbox>
+<vwc-checkbox label="I agree to the terms and conditions" error-text="You must agree to the terms and conditions to proceed"></vwc-checkbox>
 ```
 
 ### Success Text
@@ -82,11 +74,7 @@ The `error-text` attribute provides a custom error message. Any current error st
 The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
 
 ```html preview
-<vwc-checkbox
-	label="A default checkbox"
-	success-text="Success text"
-	checked
-></vwc-checkbox>
+<vwc-checkbox label="A default checkbox" success-text="Success text" checked></vwc-checkbox>
 ```
 
 ## Connotation

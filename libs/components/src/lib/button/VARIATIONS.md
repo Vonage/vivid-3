@@ -38,123 +38,39 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 
 ```html preview 300px
 <div class="container">
-	<vwc-button
-		connotation="accent"
-		appearance="filled"
-		label="Accent"
-	></vwc-button>
-	<vwc-button
-		connotation="accent"
-		appearance="outlined"
-		label="Accent"
-	></vwc-button>
-	<vwc-button
-		connotation="accent"
-		appearance="outlined-light"
-		label="Accent"
-	></vwc-button>
-	<vwc-button
-		connotation="accent"
-		appearance="ghost"
-		label="Accent"
-	></vwc-button>
-	<vwc-button
-		connotation="accent"
-		appearance="ghost-light"
-		label="Accent"
-	></vwc-button>
+	<vwc-button connotation="accent" appearance="filled" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="outlined" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="outlined-light" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="ghost" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="ghost-light" label="Accent"></vwc-button>
 </div>
 <div class="container">
 	<vwc-button connotation="cta" appearance="filled" label="CTA"></vwc-button>
 	<vwc-button connotation="cta" appearance="outlined" label="CTA"></vwc-button>
-	<vwc-button
-		connotation="cta"
-		appearance="outlined-light"
-		label="CTA"
-	></vwc-button>
+	<vwc-button connotation="cta" appearance="outlined-light" label="CTA"></vwc-button>
 	<vwc-button connotation="cta" appearance="ghost" label="CTA"></vwc-button>
-	<vwc-button
-		connotation="cta"
-		appearance="ghost-light"
-		label="CTA"
-	></vwc-button>
+	<vwc-button connotation="cta" appearance="ghost-light" label="CTA"></vwc-button>
 </div>
 <div class="container">
-	<vwc-button
-		connotation="announcement"
-		appearance="filled"
-		label="Announcement"
-	></vwc-button>
-	<vwc-button
-		connotation="announcement"
-		appearance="outlined"
-		label="Announcement"
-	></vwc-button>
-	<vwc-button
-		connotation="announcement"
-		appearance="outlined-light"
-		label="Announcement"
-	></vwc-button>
-	<vwc-button
-		connotation="announcement"
-		appearance="ghost"
-		label="Announcement"
-	></vwc-button>
-	<vwc-button
-		connotation="announcement"
-		appearance="ghost-light"
-		label="Announcement"
-	></vwc-button>
+	<vwc-button connotation="announcement" appearance="filled" label="Announcement"></vwc-button>
+	<vwc-button connotation="announcement" appearance="outlined" label="Announcement"></vwc-button>
+	<vwc-button connotation="announcement" appearance="outlined-light" label="Announcement"></vwc-button>
+	<vwc-button connotation="announcement" appearance="ghost" label="Announcement"></vwc-button>
+	<vwc-button connotation="announcement" appearance="ghost-light" label="Announcement"></vwc-button>
 </div>
 <div class="container">
-	<vwc-button
-		connotation="success"
-		appearance="filled"
-		label="Success"
-	></vwc-button>
-	<vwc-button
-		connotation="success"
-		appearance="outlined"
-		label="Success"
-	></vwc-button>
-	<vwc-button
-		connotation="success"
-		appearance="outlined-light"
-		label="Success"
-	></vwc-button>
-	<vwc-button
-		connotation="success"
-		appearance="ghost"
-		label="Success"
-	></vwc-button>
-	<vwc-button
-		connotation="success"
-		appearance="ghost-light"
-		label="Success"
-	></vwc-button>
+	<vwc-button connotation="success" appearance="filled" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="outlined" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="outlined-light" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="ghost" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="ghost-light" label="Success"></vwc-button>
 </div>
 <div class="container">
-	<vwc-button
-		connotation="alert"
-		appearance="filled"
-		label="Alert"
-	></vwc-button>
-	<vwc-button
-		connotation="alert"
-		appearance="outlined"
-		label="Alert"
-	></vwc-button>
-	<vwc-button
-		connotation="alert"
-		appearance="outlined-light"
-		label="Alert"
-	></vwc-button>
+	<vwc-button connotation="alert" appearance="filled" label="Alert"></vwc-button>
+	<vwc-button connotation="alert" appearance="outlined" label="Alert"></vwc-button>
+	<vwc-button connotation="alert" appearance="outlined-light" label="Alert"></vwc-button>
 	<vwc-button connotation="alert" appearance="ghost" label="Alert"></vwc-button>
-	<vwc-button
-		connotation="alert"
-		appearance="ghost-light"
-		label="Alert"
-	></vwc-button>
+	<vwc-button connotation="alert" appearance="ghost-light" label="Alert"></vwc-button>
 </div>
 
 <style>
@@ -183,17 +99,8 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 ```html preview 72px
 <div class="container">
-	<vwc-button
-		appearance="outlined"
-		label="Copy document"
-		icon="copy-line"
-	></vwc-button>
-	<vwc-button
-		appearance="outlined"
-		label="Continue"
-		icon="chevron-right-line"
-		icon-trailing
-	></vwc-button>
+	<vwc-button appearance="outlined" label="Copy document" icon="copy-line"></vwc-button>
+	<vwc-button appearance="outlined" label="Continue" icon="chevron-right-line" icon-trailing></vwc-button>
 </div>
 
 <style>
@@ -217,12 +124,7 @@ When an element has no visible text, provide an accessible name using the <nobr>
 
 ```html preview 72px
 <vwc-tooltip text="Send Message" placement="right-start">
-	<vwc-button
-		slot="anchor"
-		appearance="filled"
-		connotation="cta"
-		aria-label="Send Message"
-	>
+	<vwc-button slot="anchor" appearance="filled" connotation="cta" aria-label="Send Message">
 		<vwc-icon name="message-sent-line" slot="icon"></vwc-icon>
 	</vwc-button>
 </vwc-tooltip>
@@ -256,16 +158,8 @@ The `size` attribute controls the size of the button.
 
 ```html preview 100px
 <div class="container">
-	<vwc-button
-		size="super-condensed"
-		appearance="filled"
-		label="Super-condensed"
-	></vwc-button>
-	<vwc-button
-		size="condensed"
-		appearance="filled"
-		label="Condensed"
-	></vwc-button>
+	<vwc-button size="super-condensed" appearance="filled" label="Super-condensed"></vwc-button>
+	<vwc-button size="condensed" appearance="filled" label="Condensed"></vwc-button>
 	<vwc-button size="normal" appearance="filled" label="Normal"></vwc-button>
 	<vwc-button size="expanded" appearance="filled" label="Expanded"></vwc-button>
 </div>
@@ -389,12 +283,7 @@ When the button is used to trigger a menu / dropdown, you can set `dropdown-indi
 
 ```html preview 220px
 <vwc-menu auto-dismiss placement="bottom-start">
-	<vwc-button
-		slot="anchor"
-		appearance="outlined-light"
-		label="Menu"
-		dropdown-indicator
-	></vwc-button>
+	<vwc-button slot="anchor" appearance="outlined-light" label="Menu" dropdown-indicator></vwc-button>
 	<vwc-menu-item icon="copy-line" text="Copy"></vwc-menu-item>
 	<vwc-menu-item icon="inbox-line" text="Share"></vwc-menu-item>
 	<vwc-menu-item icon="delete-line" text="Archive"></vwc-menu-item>

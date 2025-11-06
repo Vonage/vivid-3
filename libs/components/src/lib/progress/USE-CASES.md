@@ -11,8 +11,5 @@ Determinate state can be used to display how much of a process has been complete
 Indeterminate state can be used to indicated that something is loading.
 
 ```html preview
-<vwc-progress
-	value="loading"
-	aria-label="Loading search results"
-></vwc-progress>
+<vwc-progress value="loading" aria-label="Loading search results"></vwc-progress>
 ```

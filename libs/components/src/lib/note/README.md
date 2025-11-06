@@ -35,11 +35,7 @@ import { VNote } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VNote
-		headline="Changes Saved Successfully"
-		icon="check-circle"
-		connotation="success"
-	/>
+	<VNote headline="Changes Saved Successfully" icon="check-circle" connotation="success" />
 </template>
 ```
 
@@ -66,12 +62,7 @@ If set, the `icon`_(deprecated)_ attribute is ignored.
 
 ```html preview
 <vwc-note headline="Task in my todo list">
-	<vwc-icon
-		slot="icon"
-		name="check-circle-solid"
-		connotation="success"
-		label="Done"
-	></vwc-icon>
+	<vwc-icon slot="icon" name="check-circle-solid" connotation="success" label="Done"></vwc-icon>
 </vwc-note>
 ```
 

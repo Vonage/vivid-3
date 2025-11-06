@@ -18,29 +18,15 @@ registerSimpleColorPicker('your-prefix');
 
 ```html preview 120px
 <script type="module">
-	import {
-		registerSimpleColorPicker,
-		registerButton,
-		registerIcon,
-	} from 'vivid-bundle';
+	import { registerSimpleColorPicker, registerButton, registerIcon } from 'vivid-bundle';
 	registerSimpleColorPicker('your-prefix');
 	registerButton('your-prefix');
 	registerIcon('your-prefix');
 </script>
 
 <your-prefix-simple-color-picker id="picker">
-	<your-prefix-button
-		aria-label="Pick color"
-		slot="anchor"
-		size="super-condensed"
-		shape="pill"
-		appearance="outlined"
-	>
-		<your-prefix-icon
-			id="icon"
-			slot="icon"
-			name="textcolor-solid"
-		></your-prefix-icon>
+	<your-prefix-button aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
+		<your-prefix-icon id="icon" slot="icon" name="textcolor-solid"></your-prefix-icon>
 	</your-prefix-button>
 </your-prefix-simple-color-picker>
 
@@ -135,18 +121,8 @@ const handleColorChange = (event: CustomEvent) => {
 
 <template>
 	<VSimpleColorPicker :swatches="swatches" @change="handleColorChange">
-		<VButton
-			slot="anchor"
-			aria-label="Pick color"
-			size="super-condensed"
-			shape="pill"
-			appearance="outlined"
-		>
-			<VIcon
-				slot="icon"
-				name="textcolor-solid"
-				:style="{ color: selectedColor }"
-			/>
+		<VButton slot="anchor" aria-label="Pick color" size="super-condensed" shape="pill" appearance="outlined">
+			<VIcon slot="icon" name="textcolor-solid" :style="{ color: selectedColor }" />
 		</VButton>
 	</VSimpleColorPicker>
 </template>
@@ -164,13 +140,7 @@ Use the `open` attribute to indicate whether the Simple Color Picker's popup sho
 
 ```html preview 120px
 <vwc-simple-color-picker open id="picker">
-	<vwc-button
-		aria-label="Pick color"
-		slot="anchor"
-		size="super-condensed"
-		shape="pill"
-		appearance="outlined"
-	>
+	<vwc-button aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
 		<vwc-icon id="icon" slot="icon" name="textcolor-solid"></vwc-icon>
 	</vwc-button>
 </vwc-simple-color-picker>
@@ -236,19 +206,9 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 </vwc-note>
 
 ```html preview 130px
-<vwc-simple-color-picker
-	anchor="button"
-	swatches-per-row="6"
-	id="picker"
-></vwc-simple-color-picker>
+<vwc-simple-color-picker anchor="button" swatches-per-row="6" id="picker"></vwc-simple-color-picker>
 
-<vwc-button
-	id="button"
-	label="Toggle Color Picker"
-	size="normal"
-	shape="rounded"
-	appearance="filled"
->
+<vwc-button id="button" label="Toggle Color Picker" size="normal" shape="rounded" appearance="filled">
 	<vwc-icon slot="icon" name="palette-solid"></vwc-icon>
 </vwc-button>
 
@@ -292,13 +252,7 @@ Simple Color Picker needs to be anchored to an element. Place the anchor element
 
 ```html preview 130px
 <vwc-simple-color-picker id="picker" swatches-per-row="6">
-	<vwc-button
-		slot="anchor"
-		label="Toggle Color Picker"
-		size="normal"
-		shape="rounded"
-		appearance="filled"
-	>
+	<vwc-button slot="anchor" label="Toggle Color Picker" size="normal" shape="rounded" appearance="filled">
 		<vwc-icon slot="icon" name="palette-solid"></vwc-icon>
 	</vwc-button>
 </vwc-simple-color-picker>

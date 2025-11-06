@@ -55,7 +55,7 @@ export const ariaMixinProperties = [
 	'ariaRelevant', // Non-standard
 ] as const;
 
-export type AriaPropertyName = typeof ariaMixinProperties[number];
+export type AriaPropertyName = (typeof ariaMixinProperties)[number];
 
 type AriaMixinProperties = {
 	[Property in AriaPropertyName]: string | null;

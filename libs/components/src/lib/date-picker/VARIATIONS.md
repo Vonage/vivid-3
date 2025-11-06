@@ -20,10 +20,7 @@ The `helper-text` attribute provides additional information to help the user ent
 To add HTML to the helper text, use the [helper-text slot](/components/date-picker/code/#helper-text-slot).
 
 ```html preview 460px
-<vwc-date-picker
-	helper-text="Select a date for the event to start"
-	label="Start date"
-></vwc-date-picker>
+<vwc-date-picker helper-text="Select a date for the event to start" label="Start date"></vwc-date-picker>
 ```
 
 ### Contextual Help
@@ -32,9 +29,7 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 
 ```html preview 460px
 <vwc-date-picker label="Start date">
-	<vwc-contextual-help slot="contextual-help"
-		>Pick the start date</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Pick the start date</vwc-contextual-help>
 </vwc-date-picker>
 ```
 
@@ -45,10 +40,7 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
 ```html preview 460px
-<vwc-date-picker
-	error-text="Please select a date for the event to start"
-	label="Start date"
-></vwc-date-picker>
+<vwc-date-picker error-text="Please select a date for the event to start" label="Start date"></vwc-date-picker>
 ```
 
 ## Value
@@ -68,11 +60,7 @@ It will always contain a valid date in the format `YYYY-MM-DD` when a date is se
 Set the `min` attribute to configure the earliest date to accept. The user will be prevented from choosing an earlier date, however it is still possible to manually enter one.
 
 ```html preview 460px
-<vwc-date-picker
-	min="2023-06-10"
-	label="Start date"
-	value="2023-06-15"
-></vwc-date-picker>
+<vwc-date-picker min="2023-06-10" label="Start date" value="2023-06-15"></vwc-date-picker>
 ```
 
 ## Max
@@ -80,11 +68,7 @@ Set the `min` attribute to configure the earliest date to accept. The user will 
 Set the `max` attribute to configure the latest date to accept. The user will be prevented from choosing an later date, however it is still possible to manually enter one.
 
 ```html preview 460px
-<vwc-date-picker
-	max="2023-06-20"
-	label="Start date"
-	value="2023-06-15"
-></vwc-date-picker>
+<vwc-date-picker max="2023-06-20" label="Start date" value="2023-06-15"></vwc-date-picker>
 ```
 
 ## Disabled

@@ -76,20 +76,9 @@ In the example below, if `fixed-dropdown` was not set on the Select, the select 
 Also, see [the Grid Select example](/components/data-grid/#select-in-a-grid)).
 
 ```html preview 320px
-<vwc-dialog
-	open
-	headline="Telephone Number"
-	icon="call-line"
-	icon-placement="side"
->
+<vwc-dialog open headline="Telephone Number" icon="call-line" icon-placement="side">
 	<vwc-action-group slot="body">
-		<vwc-select
-			fixed-dropdown
-			aria-label="Country code"
-			appearance="ghost"
-			class="country-code"
-			id="country-code"
-		>
+		<vwc-select fixed-dropdown aria-label="Country code" appearance="ghost" class="country-code" id="country-code">
 			<vwc-icon slot="icon" name="flag-united-states"></vwc-icon>
 			<vwc-option value="1" text="+1">
 				<vwc-icon slot="icon" name="flag-united-states"></vwc-icon>
@@ -105,18 +94,9 @@ Also, see [the Grid Select example](/components/data-grid/#select-in-a-grid)).
 			</vwc-option>
 		</vwc-select>
 		<vwc-divider orientation="vertical"></vwc-divider>
-		<vwc-text-field
-			aria-label="Telephone number"
-			type="tel"
-			inputmode="tel"
-			appearance="ghost"
-		></vwc-text-field>
+		<vwc-text-field aria-label="Telephone number" type="tel" inputmode="tel" appearance="ghost"></vwc-text-field>
 	</vwc-action-group>
-	<vwc-button
-		slot="action-items"
-		appearance="filled"
-		label="Submit"
-	></vwc-button>
+	<vwc-button slot="action-items" appearance="filled" label="Submit"></vwc-button>
 </vwc-dialog>
 
 <script>
@@ -201,11 +181,7 @@ If set, the `icon` attribute is ignored.
 
 ```html preview 230px
 <vwc-select aria-label="Options Selector" class="select">
-	<vwc-icon
-		slot="icon"
-		name="check-circle-solid"
-		connotation="success"
-	></vwc-icon>
+	<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 	<vwc-option value="1" text="Option 1"></vwc-option>
 	<vwc-option value="2" text="Option 2"></vwc-option>
 	<vwc-option value="3" text="Option 3"></vwc-option>
@@ -224,9 +200,7 @@ The `helper-text` slot allows you to use rich content as the select's helper tex
 
 ```html preview 230px
 <vwc-select label="Business Type">
-	<span slot="helper-text">
-		Please select the <a href="#">type of your business</a>.
-	</span>
+	<span slot="helper-text"> Please select the <a href="#">type of your business</a>. </span>
 	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
 	<vwc-option value="gov" text="Governmental Organization"></vwc-option>
 	<vwc-option value="edu" text="Educational Institution"></vwc-option>
@@ -239,9 +213,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 
 ```html preview 230px
 <vwc-select label="Business Type">
-	<vwc-contextual-help slot="contextual-help"
-		>Please select the type of your business</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Please select the type of your business</vwc-contextual-help>
 	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
 	<vwc-option value="gov" text="Governmental Organization"></vwc-option>
 	<vwc-option value="edu" text="Educational Institution"></vwc-option>

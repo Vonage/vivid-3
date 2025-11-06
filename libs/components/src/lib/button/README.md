@@ -46,14 +46,7 @@ Semantically, buttons are usually used for triggering actions, while links are u
 </vwc-note>
 
 ```html preview
-<vwc-button
-	label="Button as a link"
-	href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"
-	target="_blank"
-	icon-trailing
-	appearance="filled"
-	connotation="cta"
->
+<vwc-button label="Button as a link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_blank" icon-trailing appearance="filled" connotation="cta">
 	<vwc-icon slot="icon" name="chevron-right-line"></vwc-icon>
 </vwc-button>
 ```
@@ -74,28 +67,11 @@ Use the `icon` slot to customise icons. If set, the icon attribute is ignored.
 ```html preview
 <vwc-button aria-label="Mute" appearance="outlined">
 	<vwc-icon slot="icon">
-		<svg
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="currentColor"
-			xmlns="http://www.w3.org/2000/svg"
-		>
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 			<g>
-				<path
-					d="M5.5 9.6C5.5 13.1344 8.41037 16 12 16C15.5896 16 18.5 13.1344 18.5 9.6V6.4C18.5 2.8656 15.5896 0 12 0C8.41037 0 5.5 2.8656 5.5 6.4V9.6Z"
-					fill="var(--vvd-color-success-400)"
-				/>
-				<path
-					d="M5.5 9.6C5.5 13.1344 8.41037 16 12 16C15.5896 16 18.5 13.1344 18.5 9.6V6.4C18.5 2.8656 15.5896 0 12 0C8.41037 0 5.5 2.8656 5.5 6.4V9.6Z"
-					fill="currentColor"
-					id="animation"
-					class="color-animation"
-				/>
-				<path
-					d="M3 10.3333C3 9.59695 2.32843 9 1.5 9C0.671573 9 0 9.59695 0 10.3333C0 15.7728 4.58052 20.2613 10.5 20.9175V24H13.5V20.9175C19.4195 20.2613 24 15.7728 24 10.3333C24 9.59695 23.3284 9 22.5 9C21.6716 9 21 9.59695 21 10.3333C21 14.7516 16.9706 18.3333 12 18.3333C7.02943 18.3333 3 14.7516 3 10.3333Z"
-					fill="currentColor"
-				/>
+				<path d="M5.5 9.6C5.5 13.1344 8.41037 16 12 16C15.5896 16 18.5 13.1344 18.5 9.6V6.4C18.5 2.8656 15.5896 0 12 0C8.41037 0 5.5 2.8656 5.5 6.4V9.6Z" fill="var(--vvd-color-success-400)" />
+				<path d="M5.5 9.6C5.5 13.1344 8.41037 16 12 16C15.5896 16 18.5 13.1344 18.5 9.6V6.4C18.5 2.8656 15.5896 0 12 0C8.41037 0 5.5 2.8656 5.5 6.4V9.6Z" fill="currentColor" id="animation" class="color-animation" />
+				<path d="M3 10.3333C3 9.59695 2.32843 9 1.5 9C0.671573 9 0 9.59695 0 10.3333C0 15.7728 4.58052 20.2613 10.5 20.9175V24H13.5V20.9175C19.4195 20.2613 24 15.7728 24 10.3333C24 9.59695 23.3284 9 22.5 9C21.6716 9 21 9.59695 21 10.3333C21 14.7516 16.9706 18.3333 12 18.3333C7.02943 18.3333 3 14.7516 3 10.3333Z" fill="currentColor" />
 			</g>
 		</svg>
 	</vwc-icon>
@@ -130,18 +106,8 @@ When `dropdown-indicator` is set button, the content alignment is set to start.
 If center is needed, set `--button-content-alignment: center;`.
 
 ```html preview
-<vwc-button
-	class="button"
-	dropdown-indicator
-	appearance="outlined-light"
-	label="Aligned to start content"
-></vwc-button>
-<vwc-button
-	class="button button-center"
-	dropdown-indicator
-	appearance="outlined-light"
-	label="Centered content"
-></vwc-button>
+<vwc-button class="button" dropdown-indicator appearance="outlined-light" label="Aligned to start content"></vwc-button>
+<vwc-button class="button button-center" dropdown-indicator appearance="outlined-light" label="Centered content"></vwc-button>
 
 <style>
 	.button {

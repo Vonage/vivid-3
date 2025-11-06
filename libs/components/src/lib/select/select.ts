@@ -443,24 +443,16 @@ export class Select extends WithLightDOMFeedback(
 	 * @internal
 	 */
 	override valueChanged(prev: string, next: string) {
-		let nextValue = next;
-		if (this.length) {
-			const selectedIndex = this._options.findIndex((el) => el.value === next);
-			const prevSelectedValue =
-				this._options[this.selectedIndex]?.value ?? null;
-			const nextSelectedValue = this._options[selectedIndex]?.value ?? null;
+		const nextSelectedIndex = this.options.findIndex((el) => el.value === next);
+		const validNextSelectedIndex = this._validSelectedIndex(nextSelectedIndex);
+		const nextValue = this.options[validNextSelectedIndex]?.value ?? '';
 
-			if (selectedIndex === -1 || prevSelectedValue !== nextSelectedValue) {
-				nextValue = '';
-				this.selectedIndex = selectedIndex;
-			}
-
-			nextValue = this.firstSelectedOption?.value ?? nextValue;
+		if (this.selectedIndex !== validNextSelectedIndex) {
+			this.selectedIndex = validNextSelectedIndex;
 		}
 
 		if (next !== nextValue) {
-			this.value = nextValue;
-			return;
+			return; // value will be updated again due to selectedIndex change
 		}
 
 		super.valueChanged(prev, next);
@@ -879,13 +871,6 @@ export class Select extends WithLightDOMFeedback(
 	@attr placeholder: string | undefined;
 
 	/**
-	 * The ref to the internal placeholder option.
-	 *
-	 * @internal
-	 */
-	@observable placeholderOption: ListboxOption | null = null;
-
-	/**
 	 * @internal
 	 */
 	@observable _feedbackWrapper: HTMLElement | null = null;
@@ -909,27 +894,33 @@ export class Select extends WithLightDOMFeedback(
 		);
 	}
 
-	override setDefaultSelectedOption(): void {
-		const options = Array.from(this.children).filter(
-			Listbox.slottedOptionFilter as any
+	override _newDefaultSelectedIndex(
+		prev: ListboxOption[],
+		next: ListboxOption[],
+		currentSelectIndex: number
+	) {
+		const defaultSelectedIndex = super._newDefaultSelectedIndex(
+			prev,
+			next,
+			currentSelectIndex
 		);
+		if (
+			defaultSelectedIndex === null &&
+			currentSelectIndex === -1 &&
+			!this.placeholder
+		) {
+			const firstSelectableIndex = this.getNextSelectableIndex(0);
+			if (firstSelectableIndex !== -1) {
+				return firstSelectableIndex;
+			}
+		}
+		return defaultSelectedIndex;
+	}
 
-		const selectedIndex = options.findIndex(
-			(el) =>
-				el.hasAttribute('selected') ||
-				(el as ListboxOption).selected ||
-				(el as ListboxOption).value === this.value
+	override _isDefaultSelected(option: ListboxOption) {
+		return (
+			super._isDefaultSelected(option) || option.value === this.initialValue
 		);
-
-		if (selectedIndex === -1 && !this.placeholderOption) {
-			this.selectedIndex = 0;
-			return;
-		}
-
-		if (selectedIndex !== -1 || this.placeholder !== '') {
-			this.selectedIndex = selectedIndex;
-			return;
-		}
 	}
 
 	/*
@@ -968,15 +959,8 @@ export class Select extends WithLightDOMFeedback(
 
 	override formResetCallback() {
 		this.setProxyOptions();
-		// Call the base class's implementation setDefaultSelectedOption instead of the select's
-		// override, in order to reset the selectedIndex without using the value property.
-		super.setDefaultSelectedOption();
-		if (this.selectedIndex === -1) {
-			this.selectedIndex = 0;
-		}
 
-		if (this.placeholder) {
-			this.selectedIndex = -1;
-		}
+		this.selectedIndex =
+			this._newDefaultSelectedIndex([], this.options, -1) ?? -1;
 	}
 }

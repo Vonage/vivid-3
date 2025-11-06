@@ -9,7 +9,5 @@
 - If no label is set - it is highly recommended to add a `aria-label` as below.
 
 ```html
-<vwc-file-picker aria-label="Upload Files">
-	Drag & Drop or click to upload
-</vwc-file-picker>
+<vwc-file-picker aria-label="Upload Files"> Drag & Drop or click to upload </vwc-file-picker>
 ```

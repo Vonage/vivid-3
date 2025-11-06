@@ -19,10 +19,12 @@ $dialog-space-size: 24px;
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	background-color: transparent;
 	color: var(#{constants.$vvd-color-canvas-text});
+	max-block-size: none;
 	max-inline-size: var(
 		#{variables.$dialog-max-inline-size},
 		var(#{variables.$dialog-default-max-inline-size})
 	);
+	min-block-size: fit-content;
 	min-inline-size: var(#{variables.$dialog-min-inline-size}, 280px);
 
 	@media not all and (width >= 600px) {

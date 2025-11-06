@@ -50,11 +50,7 @@ Use the `open` attribute to indicate whether the Simple Color Picker's popup sho
 - Default: `false`
 
 ```html preview 480px
-<vwc-color-picker
-	label="Primary color"
-	saved-colors-key="vvd-color-picker-open"
-	open
-></vwc-color-picker>
+<vwc-color-picker label="Primary color" saved-colors-key="vvd-color-picker-open" open></vwc-color-picker>
 ```
 
 ## Saved Colors
@@ -66,10 +62,7 @@ Saved colors are stored in the browser’s `localStorage` by default, using a ke
 To ensure persistence and uniqueness, it’s good practice to specify a custom key using the `saved-colors-key` attribute.
 
 ```html preview 480px
-<vwc-color-picker
-	label="Primary color"
-	saved-colors-key="vvd-color-picker-unique-key"
-></vwc-color-picker>
+<vwc-color-picker label="Primary color" saved-colors-key="vvd-color-picker-unique-key"></vwc-color-picker>
 ```
 
 ### Disable Saved Colors
@@ -90,13 +83,8 @@ You can use the `disabled-saved-colors` attribute to disable saving colors by th
 The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
 
 ```html preview 480px
-<vwc-color-picker
-	label="Color Picker"
-	saved-colors-key="vvd-color-picker-contextual-help"
->
-	<vwc-contextual-help slot="contextual-help"
-		>Choose your brand color</vwc-contextual-help
-	>
+<vwc-color-picker label="Color Picker" saved-colors-key="vvd-color-picker-contextual-help">
+	<vwc-contextual-help slot="contextual-help">Choose your brand color</vwc-contextual-help>
 </vwc-color-picker>
 ```
 
@@ -105,10 +93,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 The `helper-text` slot allows you to use rich content as the Color Picker's helper text.
 
 ```html preview 480px
-<vwc-color-picker
-	label="Primary color"
-	saved-colors-key="vvd-color-picker-helper-text"
->
+<vwc-color-picker label="Primary color" saved-colors-key="vvd-color-picker-helper-text">
 	<span slot="helper-text">Choose the Primary Color</span>
 </vwc-color-picker>
 ```
@@ -118,10 +103,7 @@ The `helper-text` slot allows you to use rich content as the Color Picker's help
 The `popup-text` slot allows you to override the default **"Color Picker"** title displayed in the Color Picker's popup.
 
 ```html preview 480px
-<vwc-color-picker
-	label="Primary color"
-	saved-colors-key="vvd-color-picker-popup-text"
->
+<vwc-color-picker label="Primary color" saved-colors-key="vvd-color-picker-popup-text">
 	<span slot="popup-text">Brand Color</span>
 </vwc-color-picker>
 ```
@@ -131,12 +113,7 @@ The `popup-text` slot allows you to override the default **"Color Picker"** titl
 The `swatches-text` slot allows you to override the default **"Saved Colors:"** text displayed above the color swatches.
 
 ```html preview 480px
-<vwc-color-picker
-	id="picker"
-	label="Brand color"
-	value="#D6219C"
-	disable-saved-colors
->
+<vwc-color-picker id="picker" label="Brand color" value="#D6219C" disable-saved-colors>
 	<span slot="swatches-text">Brand Colors:</span>
 </vwc-color-picker>
 

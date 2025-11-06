@@ -16,32 +16,11 @@ registerVideoPlayer('your-prefix');
 	registerVideoPlayer('your-prefix');
 </script>
 
-<your-prefix-video-player
-	poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg"
->
-	<source
-		src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"
-		type="application/x-mpegURL"
-	/>
-	<track
-		kind="captions"
-		src="/assets/images/captions.en.vtt"
-		srclang="en"
-		label="English"
-		default
-	/>
-	<track
-		kind="subtitles"
-		src="/assets/images/captions.jp.vtt"
-		srclang="jp"
-		label="Japanese"
-	/>
-	<track
-		kind="descriptions"
-		src="/assets/images/descriptions.en.vtt"
-		label="English"
-		srclang="en"
-	/>
+<your-prefix-video-player poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg">
+	<source src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8" type="application/x-mpegURL" />
+	<track kind="captions" src="/assets/images/captions.en.vtt" srclang="en" label="English" default />
+	<track kind="subtitles" src="/assets/images/captions.jp.vtt" srclang="jp" label="Japanese" />
+	<track kind="descriptions" src="/assets/images/descriptions.en.vtt" label="English" srclang="en" />
 	<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
 </your-prefix-video-player>
 ```
@@ -56,29 +35,10 @@ import { VVideoPlayer } from '@vonage/vivid-vue';
 </script>
 <template>
 	<VVideoPlayer poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg">
-		<source
-			src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"
-			type="application/x-mpegURL"
-		/>
-		<track
-			kind="captions"
-			src="/assets/images/captions.en.vtt"
-			srclang="en"
-			label="English"
-			default
-		/>
-		<track
-			kind="subtitles"
-			src="/assets/images/captions.jp.vtt"
-			srclang="jp"
-			label="Japanese"
-		/>
-		<track
-			kind="descriptions"
-			src="/assets/images/descriptions.en.vtt"
-			label="English"
-			srclang="en"
-		/>
+		<source src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8" type="application/x-mpegURL" />
+		<track kind="captions" src="/assets/images/captions.en.vtt" srclang="en" label="English" default />
+		<track kind="subtitles" src="/assets/images/captions.jp.vtt" srclang="jp" label="Japanese" />
+		<track kind="descriptions" src="/assets/images/descriptions.en.vtt" label="English" srclang="en" />
 		<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
 	</VVideoPlayer>
 </template>
@@ -93,25 +53,9 @@ The `src` attribute provides a video source to the component.
 
 ```html preview
 <vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8">
-	<track
-		kind="captions"
-		src="/assets/images/captions.en.vtt"
-		srclang="en"
-		label="English"
-		default
-	/>
-	<track
-		kind="subtitles"
-		src="/assets/images/captions.jp.vtt"
-		srclang="jp"
-		label="Japanese"
-	/>
-	<track
-		kind="descriptions"
-		src="/assets/images/descriptions.en.vtt"
-		label="English"
-		srclang="en"
-	/>
+	<track kind="captions" src="/assets/images/captions.en.vtt" srclang="en" label="English" default />
+	<track kind="subtitles" src="/assets/images/captions.jp.vtt" srclang="jp" label="Japanese" />
+	<track kind="descriptions" src="/assets/images/descriptions.en.vtt" label="English" srclang="en" />
 	<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
 </vwc-video-player>
 ```
@@ -159,42 +103,15 @@ Timed text requires a text file in [WebVTT format](https://developer.mozilla.org
 Text tracks can be provided using the `track` element.
 
 ```html
-<track
-	src="../elephantsdream/captions.en.vtt"
-	kind="captions"
-	srclang="en"
-	label="English"
-	default
-/>
+<track src="../elephantsdream/captions.en.vtt" kind="captions" srclang="en" label="English" default />
 ```
 
 ```html preview
-<vwc-video-player
-	poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg"
->
-	<source
-		src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"
-		type="application/x-mpegURL"
-	/>
-	<track
-		kind="captions"
-		src="/assets/images/captions.en.vtt"
-		srclang="en"
-		label="English"
-		default
-	/>
-	<track
-		kind="subtitles"
-		src="/assets/images/captions.jp.vtt"
-		srclang="jp"
-		label="Japanese"
-	/>
-	<track
-		kind="descriptions"
-		src="/assets/images/descriptions.en.vtt"
-		label="English"
-		srclang="en"
-	/>
+<vwc-video-player poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg">
+	<source src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8" type="application/x-mpegURL" />
+	<track kind="captions" src="/assets/images/captions.en.vtt" srclang="en" label="English" default />
+	<track kind="subtitles" src="/assets/images/captions.jp.vtt" srclang="jp" label="Japanese" />
+	<track kind="descriptions" src="/assets/images/descriptions.en.vtt" label="English" srclang="en" />
 	<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
 </vwc-video-player>
 ```
@@ -234,10 +151,7 @@ When `loop` is set, the video will restart automatically when it reaches the end
 
 ```html preview
 <vwc-video-player autoplay loop>
-	<source
-		src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8"
-		type="application/x-mpegURL"
-	/>
+	<source src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL" />
 </vwc-video-player>
 ```
 

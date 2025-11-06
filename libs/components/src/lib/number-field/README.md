@@ -16,10 +16,7 @@ registerNumberField('your-prefix');
 	registerNumberField('your-prefix');
 </script>
 
-<your-prefix-number-field
-	label="First name"
-	autofocus
-></your-prefix-number-field>
+<your-prefix-number-field label="First name" autofocus></your-prefix-number-field>
 ```
 
 </vwc-tab-panel>
@@ -93,9 +90,7 @@ Example showing a link in the helper text:
 
 ```html preview
 <vwc-number-field label="Timeout">
-	<span slot="helper-text"
-		>The timeout in seconds. <a href="#">Guide to setting timeouts</a></span
-	>
+	<span slot="helper-text">The timeout in seconds. <a href="#">Guide to setting timeouts</a></span>
 </vwc-number-field>
 ```
 
@@ -105,9 +100,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 
 ```html preview
 <vwc-number-field label="Wanted quantity">
-	<vwc-contextual-help slot="contextual-help"
-		>How many apples do you need</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">How many apples do you need</vwc-contextual-help>
 </vwc-number-field>
 ```
 

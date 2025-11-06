@@ -16,9 +16,7 @@ registerDateTimePicker('your-prefix');
 	registerDateTimePicker('your-prefix');
 </script>
 
-<your-prefix-date-time-picker
-	label="Start date and time"
-></your-prefix-date-time-picker>
+<your-prefix-date-time-picker label="Start date and time"></your-prefix-date-time-picker>
 ```
 
 </vwc-tab-panel>
@@ -66,9 +64,7 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 
 ```html preview 460px
 <vwc-date-time-picker label="Start date and time">
-	<vwc-contextual-help slot="contextual-help"
-		>Please see our opening times</vwc-contextual-help
-	>
+	<vwc-contextual-help slot="contextual-help">Please see our opening times</vwc-contextual-help>
 </vwc-date-time-picker>
 ```
 

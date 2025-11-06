@@ -41,8 +41,7 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </vwc-note>
 
 ```html preview
-<vwc-fab icon="plus-line" label="Add Action"></vwc-fab>
-<vwc-fab icon="cart-line" icon-trailing label="icon-trailing"></vwc-fab>
+<vwc-fab icon="plus-line" label="Add Action"></vwc-fab> <vwc-fab icon="cart-line" icon-trailing label="icon-trailing"></vwc-fab>
 ```
 
 ### Icon Only

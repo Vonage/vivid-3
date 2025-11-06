@@ -3,14 +3,7 @@
 Use the `connotation` attribute on Slider to control the Slider track.
 
 ```html preview blocks>
-<vwc-slider
-	aria-label="Slider with the accent connotation"
-	connotation="accent"
-></vwc-slider>
-<vwc-slider
-	aria-label="Slider with the cta connotation"
-	connotation="cta"
-></vwc-slider>
+<vwc-slider aria-label="Slider with the accent connotation" connotation="accent"></vwc-slider> <vwc-slider aria-label="Slider with the cta connotation" connotation="cta"></vwc-slider>
 ```
 
 ## Markers
@@ -43,12 +36,7 @@ Use the [`valueTextFormatter`](/components/slider/code/#value-text-formatter) me
 
 ```html preview
 <vwc-slider aria-label="Slider with a pin" pin></vwc-slider>
-<vwc-slider
-	aria-label="Vertical slider with a pin"
-	orientation="vertical"
-	style="height: 200px"
-	pin
-></vwc-slider>
+<vwc-slider aria-label="Vertical slider with a pin" orientation="vertical" style="height: 200px" pin></vwc-slider>
 
 <script>
 	for (const slider of document.querySelectorAll('vwc-slider')) {
