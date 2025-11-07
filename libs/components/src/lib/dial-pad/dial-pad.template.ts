@@ -109,7 +109,7 @@ function handleKeyUp(x: DialPad, e: KeyboardEvent) {
 			e.preventDefault();
 
 			const wasLongPress = x._endKeyboardLongPress();
-			if (!wasLongPress) {
+			if (!wasLongPress && !x.disabled && !x.callActive) {
 				// Short press - add space character (normal space input)
 				x.value += ' ';
 				x.$emit('input');

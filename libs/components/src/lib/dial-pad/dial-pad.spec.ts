@@ -34,6 +34,10 @@ describe('vwc-dial-pad', () => {
 		return getTextField(component).querySelector('vwc-button')!;
 	}
 
+	function getZeroButton(component: HTMLElement) {
+		return getDigitButtons(component)[10] as Button;
+	}
+
 	async function setValue(value: string) {
 		element.value = value;
 		await Updates.next();
@@ -565,10 +569,6 @@ describe('vwc-dial-pad', () => {
 	});
 
 	describe('long press on 0', () => {
-		function getZeroButton(component: HTMLElement) {
-			return getDigitButtons(component)[10] as Button;
-		}
-
 		it('should add "0" when tapping 0', async () => {
 			getZeroButton(element).click();
 			await Updates.next();
@@ -904,6 +904,72 @@ describe('vwc-dial-pad', () => {
 			await Updates.next();
 
 			expect(getTextField(element).value).toEqual('  ');
+		});
+
+		it('should not start keyboard long press when disabled', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			element.disabled = true;
+			await Updates.next();
+			const inputEl = getInput(element);
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(inputEl, { pressDuration: 650 });
+			});
+			await Updates.next();
+
+			expect(getTextField(element).value).toEqual('');
+		});
+
+		it('should handle edge cases: prevent timer restart and reset "skip next click" flag when click does not fire', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+
+			// keyboard long press timer should not restart if already running
+			const inputEl = getInput(element);
+			withFakeTimers(() => {
+				// Start first long press
+				const keyDown1 = new KeyboardEvent('keydown', {
+					key: ' ',
+					bubbles: true,
+					repeat: false,
+				});
+				inputEl.dispatchEvent(keyDown1);
+				vi.advanceTimersByTime(300);
+				// start another long press while timer is running (should be prevented)
+				const keyDown2 = new KeyboardEvent('keydown', {
+					key: ' ',
+					bubbles: true,
+					repeat: false,
+				});
+				inputEl.dispatchEvent(keyDown2);
+				vi.advanceTimersByTime(350);
+				const keyUp = new KeyboardEvent('keyup', {
+					key: ' ',
+					bubbles: true,
+				});
+				inputEl.dispatchEvent(keyUp);
+				vi.runAllTimers();
+			});
+			await Updates.next();
+
+			// Should only add one '+' from the first long press
+			expect(getTextField(element).value).toEqual('+');
+
+			// pointer long press should reset suppressNextClick flag when click does not fire
+			element.value = '';
+			await Updates.next();
+			const btn = getDigitButtons(element)[10] as Button;
+			withFakeTimers(() => {
+				simulatePointerLongPress(btn, {
+					duration: 600,
+				});
+				// advance timers to execute the setTimeout in _endLongPress
+				vi.advanceTimersByTime(1);
+			});
+			await Updates.next();
+
+			btn.click();
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('+0');
 		});
 	});
 });
