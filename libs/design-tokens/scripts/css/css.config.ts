@@ -2,13 +2,6 @@ import type { Hooks, PlatformConfig } from 'style-dictionary/types';
 import { fileHeader } from 'style-dictionary/utils';
 import { getHex } from '../utils/hexify.util';
 
-interface ColorValue {
-	colorSpace: string;
-	components: [number, number, number];
-	alpha: number;
-	hex: string;
-}
-
 export const fontFaceDeclaration = `@font-face {
 \tfont-display: block;
 \tfont-family: SpeziaCompleteVariableUpright;
