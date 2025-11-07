@@ -6,7 +6,7 @@
 
 ## International Numbers
 
-To support international numbers, you can use the pattern like `^\+?[0-9#*]*$` which allows an optional `+` at the beginning. Users can **long press** the `0` button to insert a `+` symbol (commonly used for international numbers).
+To support international numbers, you can use the pattern like `^\+?[0-9#*]*$` which allows an optional `+` at the beginning. Users can **long press** the `0` button or **long press the Space key** on the keyboard (when the input field is active) to insert a `+` symbol (commonly used for international numbers).
 
 ```html preview
 <vwc-dial-pad pattern="^\+?[0-9#*]*$"></vwc-dial-pad>

@@ -47,6 +47,96 @@ describe('vwc-dial-pad', () => {
 		return activeEl;
 	}
 
+	function withFakeTimers(callback: () => void) {
+		vi.useFakeTimers();
+		try {
+			callback();
+		} finally {
+			vi.useRealTimers();
+		}
+	}
+
+	function createPointerEvent(
+		type: string,
+		options: EventInit = {}
+	): PointerEvent {
+		// Create a mock PointerEvent for test environment
+		const event = new Event(type, options) as PointerEvent;
+		Object.defineProperty(event, 'pointerType', {
+			value: 'mouse',
+			writable: true,
+		});
+		Object.defineProperty(event, 'pointerId', {
+			value: 1,
+			writable: true,
+		});
+		return event;
+	}
+
+	function simulatePointerLongPress(
+		button: HTMLElement,
+		options: {
+			duration?: number;
+			onComplete?: () => void;
+			onLeave?: () => void;
+		} = {}
+	) {
+		const { duration = 600, onComplete, onLeave } = options;
+		const pointerDown = createPointerEvent('pointerdown', {
+			bubbles: true,
+		});
+		const pointerUp = createPointerEvent('pointerup', {
+			bubbles: true,
+		});
+
+		Object.defineProperty(pointerDown, 'currentTarget', {
+			value: button,
+			writable: true,
+		});
+		button.dispatchEvent(pointerDown);
+		vi.advanceTimersByTime(duration);
+
+		if (onLeave) {
+			onLeave();
+		}
+		button.dispatchEvent(pointerUp);
+
+		if (onComplete) {
+			onComplete();
+		}
+		vi.runAllTimers();
+	}
+
+	function simulateKeyboardLongPress(
+		input: HTMLInputElement,
+		options: {
+			key?: string;
+			pressDuration?: number;
+			releaseAfter?: number;
+		} = {}
+	) {
+		const {
+			key = ' ',
+			pressDuration = 650,
+			releaseAfter: providedReleaseAfter,
+		} = options;
+		const releaseAfter =
+			providedReleaseAfter !== undefined ? providedReleaseAfter : pressDuration;
+		const keyDown = new KeyboardEvent('keydown', {
+			key,
+			bubbles: true,
+			repeat: false,
+		});
+		input.dispatchEvent(keyDown);
+		vi.advanceTimersByTime(releaseAfter);
+		const keyUp = new KeyboardEvent('keyup', {
+			key,
+			bubbles: true,
+		});
+		input.dispatchEvent(keyUp);
+		vi.runAllTimers();
+	}
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
@@ -479,23 +569,6 @@ describe('vwc-dial-pad', () => {
 			return getDigitButtons(component)[10] as Button;
 		}
 
-		function createPointerEvent(
-			type: string,
-			options: EventInit = {}
-		): PointerEvent {
-			// Create a mock PointerEvent for test environment
-			const event = new Event(type, options) as PointerEvent;
-			Object.defineProperty(event, 'pointerType', {
-				value: 'mouse',
-				writable: true,
-			});
-			Object.defineProperty(event, 'pointerId', {
-				value: 1,
-				writable: true,
-			});
-			return event;
-		}
-
 		it('should add "0" when tapping 0', async () => {
 			getZeroButton(element).click();
 			await Updates.next();
@@ -506,30 +579,16 @@ describe('vwc-dial-pad', () => {
 			element.pattern = '^\\+?[0-9#*]*$';
 			await Updates.next();
 			const btn = getZeroButton(element);
-			vi.useFakeTimers();
-			try {
-				const pointerDown = createPointerEvent('pointerdown', {
-					bubbles: true,
+			withFakeTimers(() => {
+				simulatePointerLongPress(btn, {
+					duration: 600,
+					onComplete: () => {
+						btn.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+					},
 				});
-				Object.defineProperty(pointerDown, 'currentTarget', {
-					value: btn,
-					writable: true,
-				});
-				btn.dispatchEvent(pointerDown);
-				vi.advanceTimersByTime(600);
-				btn.dispatchEvent(
-					createPointerEvent('pointerup', {
-						bubbles: true,
-					})
-				);
-				vi.runAllTimers();
-			} finally {
-				vi.useRealTimers();
-			}
+			});
 			await Updates.next();
 
-			// Simulate potential click following pointerup; should be suppressed
-			btn.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await Updates.next();
 			expect(getTextField(element).value).toEqual('+');
 		});
@@ -539,21 +598,9 @@ describe('vwc-dial-pad', () => {
 			element.disabled = true;
 			await Updates.next();
 			const btn = getZeroButton(element);
-			vi.useFakeTimers();
-			try {
-				const pointerDown = createPointerEvent('pointerdown', {
-					bubbles: true,
-				});
-				Object.defineProperty(pointerDown, 'currentTarget', {
-					value: btn,
-					writable: true,
-				});
-				btn.dispatchEvent(pointerDown);
-				vi.advanceTimersByTime(600);
-				vi.runAllTimers();
-			} finally {
-				vi.useRealTimers();
-			}
+			withFakeTimers(() => {
+				simulatePointerLongPress(btn, { duration: 600 });
+			});
 			await Updates.next();
 			expect(getTextField(element).value).toEqual('');
 		});
@@ -562,28 +609,20 @@ describe('vwc-dial-pad', () => {
 			element.pattern = '^\\+?[0-9#*]*$';
 			await Updates.next();
 			const btn = getZeroButton(element);
-			vi.useFakeTimers();
-			try {
-				const pointerDown = createPointerEvent('pointerdown', {
-					bubbles: true,
+			withFakeTimers(() => {
+				simulatePointerLongPress(btn, {
+					duration: 300,
+					onLeave: () => {
+						// Leave before long press completes
+						btn.dispatchEvent(
+							createPointerEvent('pointerleave', {
+								bubbles: true,
+							})
+						);
+					},
 				});
-				Object.defineProperty(pointerDown, 'currentTarget', {
-					value: btn,
-					writable: true,
-				});
-				btn.dispatchEvent(pointerDown);
 				vi.advanceTimersByTime(300);
-				// Leave before long press completes
-				btn.dispatchEvent(
-					createPointerEvent('pointerleave', {
-						bubbles: true,
-					})
-				);
-				vi.advanceTimersByTime(300);
-				vi.runAllTimers();
-			} finally {
-				vi.useRealTimers();
-			}
+			});
 			await Updates.next();
 			expect(getTextField(element).value).toEqual('');
 		});
@@ -831,6 +870,40 @@ describe('vwc-dial-pad', () => {
 
 			expect(mockCheckValidity).toHaveBeenCalled();
 			expect(element._errorAnnouncement).toBe('');
+		});
+	});
+
+	describe('keyboard events', function () {
+		it('should add "+" when long pressing Space in input field', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const inputEl = getInput(element);
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(inputEl, { pressDuration: 650 });
+			});
+			await Updates.next();
+
+			expect(getTextField(element).value).toEqual('+');
+		});
+
+		it('should add space when short pressing Space in input field', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const inputEl = getInput(element);
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(inputEl, { pressDuration: 300 });
+			});
+			await Updates.next();
+
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(inputEl, {
+					key: 'Space',
+					pressDuration: 300,
+				});
+			});
+			await Updates.next();
+
+			expect(getTextField(element).value).toEqual('  ');
 		});
 	});
 });

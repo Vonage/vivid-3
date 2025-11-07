@@ -77,6 +77,16 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 		e.target instanceof HTMLInputElement
 	) {
 		x._onDial();
+	} else if (e.key === ' ' || e.key === 'Space') {
+		// Handle long-press Space for '0' button when input is active
+		if (e.target instanceof HTMLInputElement) {
+			e.preventDefault();
+			// Only start on first keydown, ignore repeat events
+			// keydown events repeat while key is held, so we only start the timer once
+			if (!e.repeat) {
+				x._startKeyboardLongPress();
+			}
+		}
 	} else {
 		const elementIndex = DIAL_PAD_BUTTONS.findIndex((x) => x.value === e.key);
 		if (elementIndex > -1) {
@@ -87,6 +97,23 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 				setTimeout(() => {
 					digit.active = false;
 				}, 200);
+			}
+		}
+	}
+	return true;
+}
+
+function handleKeyUp(x: DialPad, e: KeyboardEvent) {
+	if (e.key === ' ' || e.key === 'Space') {
+		if (e.target instanceof HTMLInputElement) {
+			e.preventDefault();
+
+			const wasLongPress = x._endKeyboardLongPress();
+			if (!wasLongPress) {
+				// Short press - add space character (normal space input)
+				x.value += ' ';
+				x.$emit('input');
+				x.$emit('change');
 			}
 		}
 	}
@@ -122,6 +149,7 @@ function renderTextField(
 		x.helperText}" pattern="${(x) => x.pattern}"
             aria-label="${(x) => x.locale.dialPad.inputLabel}"
             @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
+            @keyup="${(x, c) => handleKeyUp(x, c.event as KeyboardEvent)}"
             @input="${syncFieldAndPadValues}"
 			@change="${syncFieldAndPadValues}"
 			@focus="${stopPropagation}"
@@ -157,11 +185,6 @@ function onDigitClick(
 	dialPad.$emit('keypad-click', event.currentTarget);
 	dialPad.$emit('input');
 	dialPad.$emit('change');
-	// Reset suppress flag after a delay to handle cases where click doesn't fire.
-	// This ensures the next click won't be incorrectly suppressed
-	window.setTimeout(() => {
-		dialPad._suppressNextClick = false;
-	}, 0);
 }
 
 function renderDigits(

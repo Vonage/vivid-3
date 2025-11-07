@@ -157,6 +157,11 @@ export class DialPad extends Localized(VividElement) {
 	 * @internal
 	 */
 	_suppressNextClick = false;
+	/**
+	 * Tracks if long press completed for keyboard events
+	 * @internal
+	 */
+	private _keyboardLongPressCompleted = false;
 
 	/**
 	 * @internal
@@ -179,11 +184,48 @@ export class DialPad extends Localized(VividElement) {
 	/**
 	 * @internal
 	 */
+	_startKeyboardLongPress() {
+		if (this.disabled || this.callActive) return;
+		// If timer is already running, don't restart it (keydown events repeat while key is held)
+		if (this._longPressTimeoutId !== null) return;
+
+		this._keyboardLongPressCompleted = false;
+
+		this._longPressTimeoutId = window.setTimeout(() => {
+			this._keyboardLongPressCompleted = true;
+
+			this.value += '+';
+			this.$emit('input');
+			this.$emit('change');
+		}, 650);
+	}
+
+	/**
+	 * @internal
+	 */
 	_endLongPress() {
 		this._clearLongPressTimer();
-		// Don't reset suppress flag here - let the click handler reset it
-		// This ensures the click event can check the flag and suppress if needed
-		// If click doesn't fire, the flag will be reset on the next click
+		// Reset suppress flag after a delay to handle cases where click doesn't fire.
+		// This ensures the next click won't be incorrectly suppressed.
+		window.setTimeout(() => {
+			if (this._suppressNextClick) {
+				this._suppressNextClick = false;
+			}
+		}, 0);
+	}
+
+	/**
+	 * @internal
+	 * @returns true if long press completed (timer fired), false otherwise
+	 */
+	_endKeyboardLongPress(): boolean {
+		const wasLongPress = this._keyboardLongPressCompleted;
+		this._clearLongPressTimer();
+
+		window.setTimeout(() => {
+			this._keyboardLongPressCompleted = false;
+		}, 0);
+		return wasLongPress;
 	}
 
 	/**
