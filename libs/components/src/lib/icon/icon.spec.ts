@@ -1,6 +1,6 @@
 import { elementUpdated, fixture, getControlElement } from '@repo/shared';
 import { ICONS_VERSION as ICON_SET_VERSION } from '@repo/consts';
-import type { Icon } from './icon';
+import { type Icon, resolveIcon } from './icon';
 import '.';
 
 const COMPONENT_TAG = 'vwc-icon';
@@ -9,10 +9,13 @@ describe('icon', function () {
 	function fakeFetch(requestTime = 4000) {
 		(global.fetch as any) = vi.fn((_, { signal }) => {
 			currentFetchSignal = signal;
-			return new Promise((res) => {
+			return new Promise((resolve, reject) => {
 				setTimeout(() => {
-					res(response);
+					resolve(response);
 				}, requestTime);
+				signal.addEventListener('abort', () => {
+					reject(signal.reason);
+				});
 			});
 		});
 	}
@@ -131,6 +134,80 @@ describe('icon', function () {
 			await vi.advanceTimersByTimeAsync(10);
 
 			expect(homeSignal.aborted).toBe(true);
+		});
+	});
+
+	describe('fetch caching', function () {
+		// Helper to create a fetch mock with manual control over resolution
+		function createManualFetch() {
+			let resolveFetch!: (r: any) => void;
+			(global.fetch as any) = vi.fn(
+				() =>
+					new Promise((resolve) => {
+						resolveFetch = resolve;
+					})
+			);
+			return {
+				resolve: (svg: string = 'svg') =>
+					resolveFetch({
+						ok: true,
+						headers: { get: () => 'image/svg+xml' },
+						text: () => Promise.resolve(svg),
+					}),
+			};
+		}
+
+		it('should not cache aborted fetch requests', async function () {
+			fakeFetch(100);
+			const homeIcon = uniqueId();
+			const userIcon = uniqueId();
+			element.name = homeIcon;
+			element.name = userIcon;
+			element.name = homeIcon;
+			await vi.advanceTimersByTimeAsync(100);
+
+			expect(element._svg).toBe(svg);
+		});
+
+		it('should return the cached promise when called again with the same key', async () => {
+			fakeFetch(1000);
+			const controller = new AbortController();
+			element.name = uniqueId();
+
+			const p1 = resolveIcon(element.name, controller.signal);
+			const p2 = resolveIcon(element.name, controller.signal);
+
+			expect(global.fetch as any).toHaveBeenCalledTimes(1);
+			expect(p2).toBe(p1);
+
+			await vi.advanceTimersByTimeAsync(1000);
+			await expect(p1).resolves.toBe('svg');
+		});
+
+		it('should throw custom abort reason when fetch resolves after abort', async () => {
+			const fetch = createManualFetch();
+			const customReason = new Error('Custom abort reason');
+			const controller = new AbortController();
+
+			const promise = resolveIcon(uniqueId(), controller.signal);
+			controller.abort(customReason);
+			fetch.resolve();
+
+			await expect(promise).rejects.toThrow(customReason);
+		});
+
+		it('should throw default DOMException when signal.reason is null', async () => {
+			const fetch = createManualFetch();
+			const controller = new AbortController();
+
+			const promise = resolveIcon(uniqueId(), controller.signal);
+			controller.abort();
+			Object.defineProperty(controller.signal, 'reason', { value: null });
+			fetch.resolve();
+
+			await expect(promise).rejects.toThrowError(DOMException);
+			await expect(promise).rejects.toHaveProperty('name', 'AbortError');
+			await expect(promise).rejects.toHaveProperty('message', 'Aborted');
 		});
 	});
 
