@@ -121,21 +121,29 @@ describe('vwc-tag', () => {
 				getBaseElement(element).classList.contains('disabled');
 			expect(baseElementContainsDisabledClass).toBeTruthy();
 		});
-
-		it('should reflect as aria-disabled on the base element', async () => {
-			element.disabled = true;
-			await elementUpdated(element);
-
-			expect(getBaseElement(element).getAttribute('aria-disabled')).toEqual(
-				'true'
-			);
-		});
 	});
 
 	describe('selectable', () => {
 		it('should init to false', async () => {
 			expect(element.selectable).toEqual(false);
 			expect(element.hasAttribute('selectable')).toEqual(false);
+		});
+
+		it('should render as a button element when selectable is true', async () => {
+			await toggleSelectable(element, true);
+			expect(getBaseElement(element).tagName.toLowerCase()).toBe('button');
+		});
+
+		it('should have aria-pressed attribute when selectable is true', async () => {
+			await toggleSelectable(element, true);
+			expect(getBaseElement(element).hasAttribute('aria-pressed')).toBe(true);
+		});
+
+		it('should set aria-pressed to true when selected', async () => {
+			await toggleSelectable(element, true);
+			element.selected = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-pressed')).toBe('true');
 		});
 
 		it('should toggle attribute on host', async () => {
@@ -206,18 +214,6 @@ describe('vwc-tag', () => {
 			await elementUpdated(element);
 
 			expect(spy).toBeCalled();
-		});
-	});
-
-	describe('selected', () => {
-		it('should reflect as aria-selected on the base element when selectable is true', async () => {
-			element.selectable = true;
-			element.selected = true;
-			await elementUpdated(element);
-
-			expect(getBaseElement(element).getAttribute('aria-selected')).toEqual(
-				'true'
-			);
 		});
 	});
 
@@ -355,7 +351,7 @@ describe('vwc-tag', () => {
 		itShouldDelegateAriaAttributes(
 			() => element,
 			() => getBaseElement(element),
-			allAriaPropertiesExcept(['ariaDisabled', 'ariaSelected'])
+			allAriaPropertiesExcept([])
 		);
 	});
 });
