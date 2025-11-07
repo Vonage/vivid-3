@@ -4,8 +4,27 @@ import { buildToken } from '../utils/build-token';
 describe('Flutter Features', () => {
 	describe('Transforms', () => {
 		describe('vvd/value/flutter/borderRadius', () => {
+			it('Should be applied only to the radius tokens', () => {
+				const rightToken = buildToken('vvd/radius/rectangle/700', {
+					$type: 'dimension',
+				});
+				const wrongToken = buildToken('vvd/size/regular/700', {
+					$type: 'dimension',
+				});
+
+				const rightOut = flutterConfig.transforms[
+					'vvd/value/flutter/borderRadius'
+				].filter(rightToken, {});
+				const wrongOut = flutterConfig.transforms[
+					'vvd/value/flutter/borderRadius'
+				].filter(wrongToken, {});
+
+				expect(rightOut).toEqual(true);
+				expect(wrongOut).toEqual(false);
+			});
+
 			it('Should build Radius.circular from dimension', () => {
-				const token = buildToken('vvd/radius/small', {
+				const token = buildToken('vvd/radius/rectangle/700', {
 					$type: 'dimension',
 					$value: 4,
 				});
