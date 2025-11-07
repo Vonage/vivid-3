@@ -105,10 +105,6 @@ $low-ink-color: --_low-ink-color;
 	&.shape-pill {
 		#{variables.$select-control-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
-
-	:host(:focus-visible) & {
-		@include focus.focus;
-	}
 }
 
 .listbox {
@@ -166,6 +162,21 @@ $low-ink-color: --_low-ink-color;
 	:host([multiple]) & {
 		position: static;
 	}
+}
+
+// focus styles
+:host(:focus-within) .control:not(.has-activedescendant) {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	@include focus.focus;
+}
+
+:host(:not([multiple]))
+	::slotted([data-vvd-component='option'][current-selected]) {
+	border-radius: #{border-radius-variables.$border-radius-normal};
+
+	@include focus.focus;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
 }
 
 @include contextual-help.label-wrapper;

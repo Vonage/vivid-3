@@ -29,8 +29,11 @@ const getStateClasses = ({
 	placeholder,
 	value,
 	scale,
+	_activeDescendant,
+	open,
 }: Select) =>
 	classNames(
+		['has-activedescendant', Boolean(_activeDescendant) && open],
 		['disabled', disabled],
 		[`appearance-${appearance}`, Boolean(appearance)],
 		[`shape-${shape}`, Boolean(shape)],
@@ -152,7 +155,7 @@ export const SelectTemplate = (context: VividElementDefinitionContext) => {
 				ariaDisabled: (x) => x.disabled,
 			})}
 			aria-controls="${(x) => x.listboxId}"
-			aria-activedescendant="${(x) => x._activeDescendant}"
+			aria-activedescendant="${(x) => (x.open ? x._activeDescendant : null)}"
 			aria-describedby="${(x) => x._feedbackDescribedBy}"
 			tabindex="${(x) => (!x.disabled ? '0' : null)}"
 			@click="${ifNotFromFeedback<MouseEvent>((x, e) => x.clickHandler(e))}"
