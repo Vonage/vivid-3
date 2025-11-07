@@ -1,23 +1,12 @@
 import type { Hooks, PlatformConfig } from 'style-dictionary/types';
 import { fileHeader } from 'style-dictionary/utils';
+import { getHex } from '../utils/hexify.util';
 
 interface ColorValue {
 	colorSpace: string;
 	components: [number, number, number];
 	alpha: number;
 	hex: string;
-}
-
-function hexify(num: number): string {
-	return Math.round(num * 255)
-		.toString(16)
-		.padStart(2, '0');
-}
-
-function getHex(token: ColorValue): string {
-	const [r, g, b] = token.components;
-	const a = token.alpha;
-	return `#${hexify(r)}${hexify(g)}${hexify(b)}${hexify(a)}`;
 }
 
 export const fontFaceDeclaration = `@font-face {
