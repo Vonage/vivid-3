@@ -21,7 +21,7 @@ describe('a11y: vwc-tag', () => {
 			element.selectable = true;
 			await elementUpdated(element);
 			const exposedHTMLString = `
-        <div role="listbox" aria-label="tag group">
+        <div role="group" aria-label="tag group">
           ${element.shadowRoot?.innerHTML}
         </div>
       `;
@@ -35,7 +35,7 @@ describe('a11y: vwc-tag', () => {
 			element.removable = true;
 			await elementUpdated(element);
 			const exposedHTMLString = `
-        <div role="listbox" aria-label="tag group">
+        <div role="group" aria-label="tag group">
           ${element.shadowRoot?.innerHTML}
         </div>
       `;

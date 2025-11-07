@@ -2,6 +2,7 @@ import { createRegisterFunction } from '../../shared/design-system/createRegiste
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { popupDefinition } from '../popup/definition';
 import { iconDefinition } from '../icon/definition';
+import { tooltipDefinition } from '../tooltip/definition';
 import styles from './simple-color-picker.scss?inline';
 
 import { SimpleColorPicker } from './simple-color-picker';
@@ -11,7 +12,7 @@ export const simpleColorPickerDefinition = defineVividComponent(
 	'simple-color-picker',
 	SimpleColorPicker,
 	template,
-	[popupDefinition, iconDefinition],
+	[popupDefinition, iconDefinition, tooltipDefinition],
 	{
 		styles,
 	}

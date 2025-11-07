@@ -2,7 +2,11 @@ import { createRegisterFunction } from '../../shared/design-system/createRegiste
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { popupDefinition } from '../popup/definition';
 import { iconDefinition } from '../icon/definition';
-import { buttonDefinition, textFieldDefinition } from '../components';
+import {
+	buttonDefinition,
+	textFieldDefinition,
+	tooltipDefinition,
+} from '../components';
 import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
 import styles from './color-picker.scss?inline';
 
@@ -18,6 +22,7 @@ export const colorPickerDefinition = defineVividComponent(
 		iconDefinition,
 		textFieldDefinition,
 		buttonDefinition,
+		tooltipDefinition,
 		feedbackMessageDefinition,
 	],
 	{
