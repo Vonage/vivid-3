@@ -474,6 +474,121 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
+	describe('long press on 0', () => {
+		function getZeroButton(component: HTMLElement) {
+			return getDigitButtons(component)[10] as Button;
+		}
+
+		function createPointerEvent(
+			type: string,
+			options: EventInit = {}
+		): PointerEvent {
+			// Create a mock PointerEvent for test environment
+			const event = new Event(type, options) as PointerEvent;
+			Object.defineProperty(event, 'pointerType', {
+				value: 'mouse',
+				writable: true,
+			});
+			Object.defineProperty(event, 'pointerId', {
+				value: 1,
+				writable: true,
+			});
+			return event;
+		}
+
+		it('should add "0" when tapping 0', async () => {
+			getZeroButton(element).click();
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('0');
+		});
+
+		it('should add "+" when long pressing 0 and suppress subsequent click', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const btn = getZeroButton(element);
+			vi.useFakeTimers();
+			try {
+				const pointerDown = createPointerEvent('pointerdown', {
+					bubbles: true,
+				});
+				Object.defineProperty(pointerDown, 'currentTarget', {
+					value: btn,
+					writable: true,
+				});
+				btn.dispatchEvent(pointerDown);
+				vi.advanceTimersByTime(600);
+				btn.dispatchEvent(
+					createPointerEvent('pointerup', {
+						bubbles: true,
+					})
+				);
+				vi.runAllTimers();
+			} finally {
+				vi.useRealTimers();
+			}
+			await Updates.next();
+
+			// Simulate potential click following pointerup; should be suppressed
+			btn.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('+');
+		});
+
+		it('should not trigger long press on 0 when disabled', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			element.disabled = true;
+			await Updates.next();
+			const btn = getZeroButton(element);
+			vi.useFakeTimers();
+			try {
+				const pointerDown = createPointerEvent('pointerdown', {
+					bubbles: true,
+				});
+				Object.defineProperty(pointerDown, 'currentTarget', {
+					value: btn,
+					writable: true,
+				});
+				btn.dispatchEvent(pointerDown);
+				vi.advanceTimersByTime(600);
+				vi.runAllTimers();
+			} finally {
+				vi.useRealTimers();
+			}
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('');
+		});
+
+		it('should not add "+" when pointer leaves 0 button before long press completes', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const btn = getZeroButton(element);
+			vi.useFakeTimers();
+			try {
+				const pointerDown = createPointerEvent('pointerdown', {
+					bubbles: true,
+				});
+				Object.defineProperty(pointerDown, 'currentTarget', {
+					value: btn,
+					writable: true,
+				});
+				btn.dispatchEvent(pointerDown);
+				vi.advanceTimersByTime(300);
+				// Leave before long press completes
+				btn.dispatchEvent(
+					createPointerEvent('pointerleave', {
+						bubbles: true,
+					})
+				);
+				vi.advanceTimersByTime(300);
+				vi.runAllTimers();
+			} finally {
+				vi.useRealTimers();
+			}
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('');
+		});
+	});
+
 	describe('Methods', () => {
 		describe('focus', function () {
 			it('should set the focus on the text field', async function () {

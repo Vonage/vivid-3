@@ -4,6 +4,14 @@
 <vwc-dial-pad aria-label="Dial a telephone number"></vwc-dial-pad>
 ```
 
+## International Numbers
+
+To support international numbers, you can use the pattern like `^\+?[0-9#*]*$` which allows an optional `+` at the beginning. Users can **long press** the `0` button to insert a `+` symbol (commonly used for international numbers).
+
+```html preview
+<vwc-dial-pad pattern="^\+?[0-9#*]*$"></vwc-dial-pad>
+```
+
 ## Labelling
 
 ### Helper Text

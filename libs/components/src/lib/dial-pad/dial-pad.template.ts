@@ -147,11 +147,21 @@ function onDigitClick(
 	digit: DialPadButton,
 	{ parent: dialPad, event }: { parent: DialPad; event: MouseEvent }
 ) {
+	if (dialPad._suppressNextClick) {
+		// Skip the click insertion if a long-press already handled it
+		dialPad._suppressNextClick = false;
+		return;
+	}
 	dialPad.value += digit.value;
 
 	dialPad.$emit('keypad-click', event.currentTarget);
 	dialPad.$emit('input');
 	dialPad.$emit('change');
+	// Reset suppress flag after a delay to handle cases where click doesn't fire.
+	// This ensures the next click won't be incorrectly suppressed
+	window.setTimeout(() => {
+		dialPad._suppressNextClick = false;
+	}, 0);
 }
 
 function renderDigits(
@@ -175,6 +185,11 @@ function renderDigits(
 							c.parent.autofocus && c.parent.noInput && c.index === 0}"
 					  aria-label="${(x, c) => c.parent.locale.dialPad[x.ariaLabel]}"
 					  ?disabled="${(_, c) => c.parent.disabled}"
+					  @pointerdown="${(x, c) =>
+							c.parent._startLongPress(x.value, c.event as PointerEvent)}"
+					  @pointerup="${(_, c) => c.parent._endLongPress()}"
+					  @pointercancel="${(_, c) => c.parent._cancelLongPress()}"
+					  @pointerleave="${(_, c) => c.parent._cancelLongPress()}"
 					  @click="${onDigitClick}">
 					  	<${iconTag} slot="icon"
 									name="${(x) => x.icon}"

@@ -148,6 +148,59 @@ export class DialPad extends Localized(VividElement) {
 		null;
 
 	/**
+	 * Long-press handling for digit '0' to insert '+'
+	 * @internal
+	 */
+	private _longPressTimeoutId: number | null = null;
+	/**
+	 * Suppresses the next click handler after a long press has already handled input
+	 * @internal
+	 */
+	_suppressNextClick = false;
+
+	/**
+	 * @internal
+	 */
+	_startLongPress(digit: string, event: PointerEvent) {
+		if (this.disabled || this.callActive || digit !== '0') return;
+
+		this._clearLongPressTimer();
+		const target = event.currentTarget as HTMLElement | null;
+
+		this._longPressTimeoutId = window.setTimeout(() => {
+			this._suppressNextClick = true;
+			this.value += '+';
+			this.$emit('keypad-click', target);
+			this.$emit('input');
+			this.$emit('change');
+		}, 600);
+	}
+
+	/**
+	 * @internal
+	 */
+	_endLongPress() {
+		this._clearLongPressTimer();
+		// Don't reset suppress flag here - let the click handler reset it
+		// This ensures the click event can check the flag and suppress if needed
+		// If click doesn't fire, the flag will be reset on the next click
+	}
+
+	/**
+	 * @internal
+	 */
+	_cancelLongPress() {
+		this._clearLongPressTimer();
+	}
+
+	private _clearLongPressTimer() {
+		if (this._longPressTimeoutId !== null) {
+			clearTimeout(this._longPressTimeoutId);
+			this._longPressTimeoutId = null;
+		}
+	}
+
+	/**
 	 *
 	 * @internal
 	 */
