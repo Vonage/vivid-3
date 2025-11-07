@@ -13,7 +13,7 @@ It accepts an array of objects with `value` and `label` properties: `[{"label": 
 
 ```html preview 180px
 <vwc-simple-color-picker id="picker">
-	<vwc-button aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
+	<vwc-button aria-label="Pick color" id="button" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
 		<vwc-icon id="icon" slot="icon" name="textcolor-solid"></vwc-icon>
 	</vwc-button>
 </vwc-simple-color-picker>
@@ -78,12 +78,14 @@ It accepts an array of objects with `value` and `label` properties: `[{"label": 
 	];
 
 	const picker = document.getElementById('picker');
+	const button = document.getElementById('button');
 	const buttonIcon = document.getElementById('icon');
 	picker.swatches = swatches;
 
 	picker.addEventListener('change', (e) => {
 		const selectedColor = e.target.value;
 		buttonIcon.setAttribute('style', `color: ${selectedColor}; `);
+		selectedColor ? button.setAttribute('aria-label', `Pick color, ${selectedColor} selected.`) : button.setAttribute('aria-label', 'Pick color');
 	});
 </script>
 ```
@@ -97,7 +99,7 @@ The `swatches-per-row` attribute controls how many swatches should be displayed 
 
 ```html preview 160px
 <vwc-simple-color-picker id="picker" swatches-per-row="3">
-	<vwc-button aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
+	<vwc-button id="button" aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
 		<vwc-icon id="icon" slot="icon" name="textcolor-solid"></vwc-icon>
 	</vwc-button>
 </vwc-simple-color-picker>
@@ -131,12 +133,14 @@ The `swatches-per-row` attribute controls how many swatches should be displayed 
 	];
 
 	const picker = document.getElementById('picker');
+	const button = document.getElementById('button');
 	const buttonIcon = document.getElementById('icon');
 	picker.swatches = swatches;
 
 	picker.addEventListener('change', (e) => {
 		const selectedColor = e.target.value;
 		buttonIcon.setAttribute('style', `color: ${selectedColor}; `);
+		selectedColor ? button.setAttribute('aria-label', `Pick color, ${selectedColor} selected.`) : button.setAttribute('aria-label', 'Pick color');
 	});
 </script>
 ```
@@ -151,7 +155,7 @@ The `placement` attribute sets the default placement of the Simple Color Picker'
 ```html preview center 160px
 <div class="wrapper">
 	<vwc-simple-color-picker id="picker" placement="top">
-		<vwc-button aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
+		<vwc-button id="button" aria-label="Pick color" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
 			<vwc-icon id="icon" slot="icon" name="textcolor-solid"></vwc-icon>
 		</vwc-button>
 	</vwc-simple-color-picker>
@@ -224,12 +228,14 @@ The `placement` attribute sets the default placement of the Simple Color Picker'
 	];
 
 	const picker = document.getElementById('picker');
+	const button = document.getElementById('button');
 	const buttonIcon = document.getElementById('icon');
 	picker.swatches = swatches;
 
 	picker.addEventListener('change', (e) => {
 		const selectedColor = e.target.value;
 		buttonIcon.setAttribute('style', `color: ${selectedColor}; `);
+		selectedColor ? button.setAttribute('aria-label', `Pick color, ${selectedColor} selected.`) : button.setAttribute('aria-label', 'Pick color');
 	});
 </script>
 ```

@@ -247,36 +247,44 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		_renderColorSwatch(iconTag: InlineTemplateDirective) {
+		_renderColorSwatch(
+			iconTag: InlineTemplateDirective,
+			tooltipTag: InlineTemplateDirective
+		) {
 			return html<ColorSwatch>`
-				<button
-					class="swatch ${(x, c) =>
-						classNames(
-							c.parent.value === x.value ? 'selected' : '',
-							c.parent._applyContrastClass(x.value) ? 'contrast' : ''
-						)}"
-					role="gridcell"
-					style="--swatch-color: ${(x) => x.value};"
-					tabindex="${(x, c) => (c.index === 0 ? '0' : '-1')}"
-					aria-label="${(x, c) =>
-						c.parent.locale.baseColorPicker.colorSwatchLabel(
-							x.value,
-							x.label,
-							c.parent.value === x.value
-						)}"
-					@click="${(x, c) => c.parent._handleSwatchSelection(x.value)}"
-					@keydown="${(x, c) =>
-						c.parent._handleCellKeydown(
-							c.event as KeyboardEvent,
-							x.value,
-							c.index
-						)}"
-				>
-					${when(
-						(x, c) => c.parent.value === x.value,
-						html`<${iconTag} size="-6" name="check-solid" aria-hidden="true"></${iconTag}>`
-					)}
-				</button>
+				<${tooltipTag} placement="top" 
+					text="${(x) => x.label ?? x.value}" 
+					exportparts="vvd-theme-alternate">
+					<button
+						slot="anchor"
+						class="swatch ${(x, c) =>
+							classNames(
+								c.parent.value === x.value ? 'selected' : '',
+								c.parent._applyContrastClass(x.value) ? 'contrast' : ''
+							)}"
+						role="gridcell"
+						style="--swatch-color: ${(x) => x.value};"
+						tabindex="${(x, c) => (c.index === 0 ? '0' : '-1')}"
+						aria-label="${(x, c) =>
+							c.parent.locale.baseColorPicker.colorSwatchLabel(
+								x.value,
+								x.label,
+								c.parent.value === x.value
+							)}"
+						@click="${(x, c) => c.parent._handleSwatchSelection(x.value)}"
+						@keydown="${(x, c) =>
+							c.parent._handleCellKeydown(
+								c.event as KeyboardEvent,
+								x.value,
+								c.index
+							)}"
+					>
+						${when(
+							(x, c) => c.parent.value === x.value,
+							html`<${iconTag} size="-6" name="check-solid" aria-hidden="true"></${iconTag}>`
+						)}
+					</button>
+				</${tooltipTag}>
 			`;
 		}
 	}

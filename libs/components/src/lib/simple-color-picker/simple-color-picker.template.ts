@@ -5,6 +5,7 @@ import { Icon } from '../icon/icon';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { Tooltip } from '../tooltip/tooltip';
 import { SimpleColorPicker } from './simple-color-picker';
 
 const getClasses = (_: SimpleColorPicker) => classNames('control');
@@ -14,6 +15,7 @@ export const SimpleColorPickerTemplate = (
 ) => {
 	const popupTag = context.tagFor(Popup);
 	const iconTag = context.tagFor(Icon);
+	const tooltipTag = context.tagFor(Tooltip);
 	const anchorSlotTemplate = anchorSlotTemplateFactory();
 	return html<SimpleColorPicker>`
 		${anchorSlotTemplate}
@@ -40,7 +42,7 @@ export const SimpleColorPickerTemplate = (
 				aria-label="${(x) => x.locale.simpleColorPicker.colorPaletteLabel}">
 				${repeat(
 					(x) => x.swatches,
-					(x) => x._renderColorSwatch(iconTag),
+					(x) => x._renderColorSwatch(iconTag, tooltipTag),
 					{ positioning: true }
 				)}
 			</div>
