@@ -44,17 +44,7 @@ export const tagTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
-	return html<Tag>` <span
-		class="${getClasses}"
-		${delegateAria({
-			role: 'option',
-			ariaDisabled: (x) => x.disabled,
-			ariaSelected: (x) => x.selected && x.selectable,
-		})}
-		tabindex="${(x) => (x.disabled || x.removable ? null : 0)}"
-		@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
-		@click="${(x) => x.handleClick()}"
-	>
+	const content = html<Tag>`
 		${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
 		${when(
 			(x) => x.label,
@@ -65,5 +55,34 @@ export const tagTemplate = (context: VividElementDefinitionContext) => {
 			(x) => x.selectable && x.selected,
 			html<Tag>`<${iconTag} class="selectable-icon" name="check-circle-solid"></${iconTag}>`
 		)}
-	</span>`;
+	`;
+
+	return html<Tag>`
+		${when(
+			(x) => x.selectable,
+			html<Tag>`<button
+				class="${getClasses}"
+				${delegateAria({
+					ariaPressed: (x) => x.selected,
+				})}
+				?disabled="${(x) => x.disabled}"
+				@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
+				@click="${(x) => x.handleClick()}"
+			>
+				${content}
+			</button>`
+		)}
+		${when(
+			(x) => !x.selectable,
+			html<Tag>`<span
+				class="${getClasses}"
+				${delegateAria()}
+				tabindex="${(x) => (x.disabled || x.removable ? null : 0)}"
+				@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
+				@click="${(x) => x.handleClick()}"
+			>
+				${content}
+			</span>`
+		)}
+	`;
 };

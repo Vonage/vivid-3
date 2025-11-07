@@ -275,7 +275,7 @@ const enGB: Locale = {
 		hexInputLabel: 'HEX color code',
 		saveButtonLabel: 'Save current colour',
 		closeButtonLabel: 'Close Colour Picker',
-		copyButtonLabel: 'Copy Colour to Clipboard',
+		copyButtonLabel: 'Copy colour to clipboard',
 		copyErrorText: 'Copy failed. Clipboard access was blocked. Try again.',
 		copySuccessMessage: /* istanbul ignore next */ (value: string): string =>
 			`Colour ${value} copied to clipboard.`,

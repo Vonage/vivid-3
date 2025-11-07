@@ -93,5 +93,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		},
 	});
 
+	const swatches = await page.locator('#swatches-picker .swatch');
+	await swatches.nth(3).hover();
+
 	await takeScreenshot(page, 'color-picker');
 });
