@@ -112,7 +112,7 @@ describe('vwc-dial-pad', () => {
 	}
 
 	function simulateKeyboardLongPress(
-		input: HTMLInputElement,
+		element: HTMLElement,
 		options: {
 			key?: string;
 			pressDuration?: number;
@@ -131,13 +131,13 @@ describe('vwc-dial-pad', () => {
 			bubbles: true,
 			repeat: false,
 		});
-		input.dispatchEvent(keyDown);
+		element.dispatchEvent(keyDown);
 		vi.advanceTimersByTime(releaseAfter);
 		const keyUp = new KeyboardEvent('keyup', {
 			key,
 			bubbles: true,
 		});
-		input.dispatchEvent(keyUp);
+		element.dispatchEvent(keyUp);
 		vi.runAllTimers();
 	}
 
@@ -917,6 +917,35 @@ describe('vwc-dial-pad', () => {
 			await Updates.next();
 
 			expect(getTextField(element).value).toEqual('');
+		});
+
+		it('should add "+" when long pressing Space on focused "0" button', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const btn = getDigitButtons(element)[10] as Button;
+			btn.focus();
+			await Updates.next();
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(btn, { key: 'Space', pressDuration: 650 });
+			});
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(btn, { key: ' ', pressDuration: 650 });
+			});
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('++');
+		});
+
+		it('should add "0" when short pressing Space on focused "0" button', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const btn = getDigitButtons(element)[10] as Button;
+			btn.focus();
+			await Updates.next();
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(btn, { pressDuration: 300 });
+			});
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('0');
 		});
 
 		it('should handle edge cases: prevent timer restart and reset "skip next click" flag when click does not fire', async () => {
