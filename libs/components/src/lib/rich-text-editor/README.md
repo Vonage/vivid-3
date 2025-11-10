@@ -3,20 +3,9 @@
 To use the Rich Text Editor, you first need to create a configuration with the features you want to include.
 
 ```js
-import {
-	RTEConfig,
-	RTECore,
-	RTEFreeformStructure,
-	RTEToolbarFeature,
-	RTEBoldFeature,
-} from '@vonage/vivid';
+import { RTEConfig, RTECore, RTEFreeformStructure, RTEToolbarFeature, RTEBoldFeature } from '@vonage/vivid';
 
-const config = new RTEConfig([
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEToolbarFeature(),
-	new RTEBoldFeature(),
-]);
+const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEBoldFeature()]);
 ```
 
 See the [features documentation](#features) for a list of available features.
@@ -37,23 +26,11 @@ Then, pass the instance to the Rich Text Editor component.
 <vwc-tab-panel>
 
 ```js
-import {
-	registerRichTextEditor,
-	RTEConfig,
-	RTECore,
-	RTEFreeformStructure,
-	RTEToolbarFeature,
-	RTEBoldFeature,
-} from '@vonage/vivid';
+import { registerRichTextEditor, RTEConfig, RTECore, RTEFreeformStructure, RTEToolbarFeature, RTEBoldFeature } from '@vonage/vivid';
 
 registerRichTextEditor('your-prefix');
 
-const config = new RTEConfig([
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEToolbarFeature(),
-	new RTEBoldFeature(),
-]);
+const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEBoldFeature()]);
 
 const instance = config.instantiateEditor([
 	{ type: 'text', text: 'Hello' },
@@ -65,23 +42,11 @@ const instance = config.instantiateEditor([
 <your-prefix-rich-text-editor></your-prefix-rich-text-editor>
 
 <script type="module">
-	import {
-		registerRichTextEditor,
-		RTEConfig,
-		RTECore,
-		RTEFreeformStructure,
-		RTEToolbarFeature,
-		RTEBoldFeature,
-	} from '@vonage/vivid';
+	import { registerRichTextEditor, RTEConfig, RTECore, RTEFreeformStructure, RTEToolbarFeature, RTEBoldFeature } from '@vonage/vivid';
 
 	registerRichTextEditor('your-prefix');
 
-	const config = new RTEConfig([
-		new RTECore(),
-		new RTEFreeformStructure(),
-		new RTEToolbarFeature(),
-		new RTEBoldFeature(),
-	]);
+	const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEBoldFeature()]);
 
 	const instance = config.instantiateEditor([
 		{ type: 'text', text: 'Hello' },
@@ -100,20 +65,9 @@ const instance = config.instantiateEditor([
 ```vue
 <script setup lang="ts">
 import { VRichTextEditor } from '@vonage/vivid-vue';
-import {
-	RTEConfig,
-	RTECore,
-	RTEFreeformStructure,
-	RTEToolbarFeature,
-	RTEBoldFeature,
-} from '@vonage/vivid';
+import { RTEConfig, RTECore, RTEFreeformStructure, RTEToolbarFeature, RTEBoldFeature } from '@vonage/vivid';
 
-const config = new RTEConfig([
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEToolbarFeature(),
-	new RTEBoldFeature(),
-]);
+const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEBoldFeature()]);
 
 const instance = config.instantiateEditor([
 	{ type: 'text', text: 'Hello' },
@@ -151,11 +105,7 @@ Allows text input without any structure, similar to a regular text area.
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTEFreeformStructure(),
-			new RTEToolbarFeature(),
-		]);
+		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature()]);
 		rteComponent.instance = config.instantiateEditor();
 	});
 </script>
@@ -179,11 +129,7 @@ Keyboard shortcuts:
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure(),
-			new RTEToolbarFeature(),
-		]);
+		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature()]);
 		rteComponent.instance = config.instantiateEditor([
 			{
 				type: 'heading',
@@ -229,12 +175,7 @@ Known issues:
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure(),
-			new RTEToolbarFeature(),
-			new RTEFontSizeFeature(),
-		]);
+		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature(), new RTEFontSizeFeature()]);
 		rteComponent.instance = config.instantiateEditor([
 			{
 				type: 'paragraph',
@@ -372,16 +313,7 @@ Keyboard shortcuts:
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure(),
-			new RTEToolbarFeature(),
-			new RTEBoldFeature(),
-			new RTEItalicFeature(),
-			new RTEUnderlineFeature(),
-			new RTEStrikethroughFeature(),
-			new RTEMonospaceFeature(),
-		]);
+		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature(), new RTEBoldFeature(), new RTEItalicFeature(), new RTEUnderlineFeature(), new RTEStrikethroughFeature(), new RTEMonospaceFeature()]);
 		rteComponent.instance = config.instantiateEditor([
 			{
 				type: 'paragraph',
@@ -417,12 +349,7 @@ Keyboard shortcuts:
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTEFreeformStructure(),
-			new RTEToolbarFeature(),
-			new RTEListFeature(),
-		]);
+		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEListFeature()]);
 		rteComponent.instance = config.instantiateEditor([
 			{
 				type: 'bullet_list',
@@ -499,12 +426,7 @@ The alignment feature cannot be used with `RTETextBlockStructure`, since there a
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure(),
-			new RTEToolbarFeature(),
-			new RTEAlignmentFeature(),
-		]);
+		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature(), new RTEAlignmentFeature()]);
 		rteComponent.instance = config.instantiateEditor([
 			{
 				type: 'heading',
@@ -551,12 +473,7 @@ Adds the ability to insert links.
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTEFreeformStructure(),
-			new RTEToolbarFeature(),
-			new RTELinkFeature(),
-		]);
+		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTELinkFeature()]);
 		rteComponent.instance = config.instantiateEditor([
 			{
 				type: 'text',
