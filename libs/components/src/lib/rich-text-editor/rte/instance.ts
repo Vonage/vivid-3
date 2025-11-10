@@ -47,7 +47,7 @@ export class RTEInstance {
 				.map((p) => p.plugin),
 		});
 
-		this.styles = ElementStyles.create(
+		this.styles = new ElementStyles(
 			config.features
 				.flatMap((f) => f.getStyles())
 				.sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
@@ -78,7 +78,7 @@ export class RTEInstance {
 
 	createComponent<T>(type: Constructor<T>): T {
 		return document.createElement(
-			this.hostState().ctx.tagFor(type as Constructable)
+			this.hostState().ctx.tagFor(type as Constructable, true)
 		) as T;
 	}
 
