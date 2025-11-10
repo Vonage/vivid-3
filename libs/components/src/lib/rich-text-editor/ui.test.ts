@@ -8,20 +8,20 @@ import {
 } from '../../visual-tests/visual-tests-utils.js';
 import type * as rte from './definition';
 
-let RTEConfig: typeof rte.RTEConfig;
-let RTECore: typeof rte.RTECore;
-let RTETextBlockStructure: typeof rte.RTETextBlockStructure;
-let RTEToolbarFeature: typeof rte.RTEToolbarFeature;
-let RTEFontSizeFeature: typeof rte.RTEFontSizeFeature;
-let RTEBoldFeature: typeof rte.RTEBoldFeature;
-let RTEItalicFeature: typeof rte.RTEItalicFeature;
-let RTEUnderlineFeature: typeof rte.RTEUnderlineFeature;
-let RTEStrikethroughFeature: typeof rte.RTEStrikethroughFeature;
-let RTEMonospaceFeature: typeof rte.RTEMonospaceFeature;
-let RTETextColorFeature: typeof rte.RTETextColorFeature;
-let RTEListFeature: typeof rte.RTEListFeature;
-let RTEAlignmentFeature: typeof rte.RTEAlignmentFeature;
-let RTELinkFeature: typeof rte.RTELinkFeature;
+let RTEConfig!: typeof rte.RTEConfig;
+let RTECore!: typeof rte.RTECore;
+let RTETextBlockStructure!: typeof rte.RTETextBlockStructure;
+let RTEToolbarFeature!: typeof rte.RTEToolbarFeature;
+let RTEFontSizeFeature!: typeof rte.RTEFontSizeFeature;
+let RTEBoldFeature!: typeof rte.RTEBoldFeature;
+let RTEItalicFeature!: typeof rte.RTEItalicFeature;
+let RTEUnderlineFeature!: typeof rte.RTEUnderlineFeature;
+let RTEStrikethroughFeature!: typeof rte.RTEStrikethroughFeature;
+let RTEMonospaceFeature!: typeof rte.RTEMonospaceFeature;
+let RTETextColorFeature!: typeof rte.RTETextColorFeature;
+let RTEListFeature!: typeof rte.RTEListFeature;
+let RTEAlignmentFeature!: typeof rte.RTEAlignmentFeature;
+let RTELinkFeature!: typeof rte.RTELinkFeature;
 
 const components = ['rich-text-editor'];
 
