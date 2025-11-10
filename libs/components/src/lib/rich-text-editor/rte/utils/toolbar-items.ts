@@ -282,7 +282,10 @@ export const createSelect = (
 	for (const child of props.children) {
 		select.appendChild(child);
 	}
-	ctx.bindProp(props.value, (value) => (select.value = value));
+	queueMicrotask(() => {
+		// Wait until select has recognized its options before setting value
+		ctx.bindProp(props.value, (value) => (select.value = value));
+	});
 	select.addEventListener('change', () => {
 		const value = select.value;
 		if (value) {

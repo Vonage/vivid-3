@@ -248,7 +248,7 @@ export class RTETextBlockStructure extends RTEFeature {
 		const toTopBlock =
 			$to.depth === 0 ? state.doc.childBefore($to.pos).node! : $to.node(1);
 		if (fromTopBlock !== toTopBlock) {
-			return 'mixed';
+			return null; // mixed block types
 		}
 		const key = nodeBlockKey(fromTopBlock);
 		const blockType = key ? this.blockTypeByKey.get(key) : null;
