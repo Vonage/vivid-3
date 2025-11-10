@@ -1,5 +1,7 @@
 import {
-	ExecutionContext, type ExpressionNotifier, Observable
+	ExecutionContext,
+	type ExpressionNotifier,
+	Observable,
 } from '@microsoft/fast-element';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor } from '../utils/mixins';
