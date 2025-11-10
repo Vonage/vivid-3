@@ -1,7 +1,5 @@
 import {
-	type BindingObserver,
-	defaultExecutionContext,
-	Observable,
+	ExecutionContext, type ExpressionNotifier, Observable
 } from '@microsoft/fast-element';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor } from '../utils/mixins';
@@ -25,7 +23,7 @@ export const Localized = <T extends Constructor<VividElement>>(Base: T) => {
 };
 
 /**
- * Mixin for elements that need to access the current locale.
+ * Mixin for Localized elements that need to observe locale changes.
  */
 export const WithObservableLocale = <T extends Constructor<VividElement>>(
 	Base: T
@@ -52,16 +50,16 @@ export const WithObservableLocale = <T extends Constructor<VividElement>>(
 				this.localeChanged();
 			},
 		};
-		#localeChangeObserver!: BindingObserver;
+		#localeChangeObserver!: ExpressionNotifier;
 		#startObservingLocaleChanges() {
 			this.#localeChangeObserver = Observable.binding(
 				() => this.locale,
 				this.#localeChangeHandler
 			);
-			this.#localeChangeObserver.observe(this, defaultExecutionContext);
+			this.#localeChangeObserver.observe(this, ExecutionContext.default);
 		}
 		#stopObservingLocaleChanges() {
-			this.#localeChangeObserver.disconnect();
+			this.#localeChangeObserver.dispose();
 		}
 	}
 
