@@ -16,8 +16,13 @@
 @use '@repo/shared/mixins/border-radius' as border-radius-variables;
 
 .segments {
-	display: inline-flex;
 	gap: 24px;
+}
+
+@media (width >= 648px) {
+	.segments {
+		display: inline-flex;
+	}
 }
 
 .segment {
