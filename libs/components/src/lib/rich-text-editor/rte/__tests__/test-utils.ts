@@ -3,6 +3,7 @@ import type { EditorView } from 'prosemirror-view';
 import {
 	AllSelection,
 	type EditorState,
+	NodeSelection,
 	TextSelection,
 } from 'prosemirror-state';
 import {
@@ -23,6 +24,7 @@ import { RTEConfig } from '../config';
 import { RTEFeature } from '../feature';
 import type { TextField } from '../../../text-field/text-field';
 import type { Popover } from '../../popover';
+import { mockTransfer } from '../../../file-picker/__mocks__/data-transfer';
 
 registerRichTextEditor();
 
@@ -80,6 +82,8 @@ const docToStr = (state: EditorState) => {
 		anchor = getOffsetInTextNode($anchor, !isBackwards);
 		head = getOffsetInTextNode($head, isBackwards);
 	}
+	const selectedNode =
+		state.selection instanceof NodeSelection && state.selection.node;
 
 	// Render stored marks on the caret
 	let caret = '|';
@@ -125,7 +129,9 @@ const docToStr = (state: EditorState) => {
 
 		const nodeOpen = isDoc
 			? ''
-			: `${node.type.name}${marks}${attrsToStr(node.attrs)}(`;
+			: `${node === selectedNode ? '[|' : ''}${
+					node.type.name
+			  }${marks}${attrsToStr(node.attrs)}(`;
 		let nodeContent = node.content!.content.map(nodeToStr);
 		if (!node.childCount) {
 			if ($cursor?.parent === node) {
@@ -155,7 +161,7 @@ const docToStr = (state: EditorState) => {
 				: `[${contentStr}${caret}]`;
 		}
 
-		const nodeClose = isDoc ? '' : `)`;
+		const nodeClose = isDoc ? '' : `)${node === selectedNode ? '|]' : ''}`;
 		return `${nodeOpen}${contentStr}${nodeClose}`;
 	};
 
@@ -243,13 +249,45 @@ export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
 		view.dispatch(tr);
 	};
 
-	// e.g. placeCursor("Hello |world")
-	const placeCursor = (textWithCursor: string) => {
+	const getImageWrapper = () => {
+		return view.dom.querySelector<HTMLDivElement>(`.inline-image-wrapper`);
+	};
+
+	const getImage = (altText: string) => {
+		return view.dom.querySelector<HTMLImageElement>(
+			`img.inline-image[alt="${altText}"]`
+		);
+	};
+
+	const selectImage = (altText: string) => {
+		const tr = view.state.tr.setSelection(
+			NodeSelection.create(view.state.doc, view.posAtDOM(getImage(altText)!, 0))
+		);
+		view.dispatch(tr);
+	};
+
+	const simulateImageLoaded = (
+		altText: string,
+		naturalWidth: number,
+		naturalHeight: number
+	) => {
+		const img = getImage(altText)!;
+		Object.defineProperty(img, 'naturalWidth', { value: naturalWidth });
+		Object.defineProperty(img, 'naturalHeight', { value: naturalHeight });
+		img.dispatchEvent(new Event('load'));
+	};
+
+	const getPos = (textWithCursor: string) => {
 		const [before, after] = textWithCursor.split('|');
 		const text = before + after;
 
 		const index = findFirstOccurrence(text);
-		const caret = index + before.length;
+		return index + before.length;
+	};
+
+	// e.g. placeCursor("Hello |world")
+	const placeCursor = (textWithCursor: string) => {
+		const caret = getPos(textWithCursor);
 		const tr = view.state.tr.setSelection(
 			TextSelection.create(view.state.doc, caret)
 		);
@@ -340,6 +378,42 @@ export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
 	const option = (select: Select, text: string) =>
 		select.querySelector<ListboxOption>(`[text="${text}"]`)!;
 
+	const pasteFiles = (items: DataTransferItem[]) => {
+		const pasteEvent = new CustomEvent('paste', {
+			bubbles: true,
+			cancelable: true,
+		}) as any;
+		pasteEvent.clipboardData = mockTransfer(items);
+		view.dom.dispatchEvent(pasteEvent);
+		// await elementUpdated(element);
+	};
+
+	const dropFiles = (atPos: number, items: DataTransferItem[]) => {
+		const dropEvent = new DragEvent('drop', {
+			dataTransfer: mockTransfer(items),
+			bubbles: true,
+			cancelable: true,
+		});
+		view.posAtCoords = () => ({ pos: atPos, inside: 0 });
+		view.dom.dispatchEvent(dropEvent);
+		// await elementUpdated(element);
+	};
+
+	const dispatchDragEvent = (
+		type: string,
+		init: DragEventInit = {},
+		target = element.editorViewportElement!
+	) => {
+		const event = new DragEvent(type, {
+			bubbles: true,
+			cancelable: true,
+			composed: true,
+			...init,
+		});
+		target.dispatchEvent(event);
+		return event;
+	};
+
 	return {
 		rte,
 		element,
@@ -347,6 +421,7 @@ export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
 		config,
 		keydown,
 		selectAll,
+		getPos,
 		placeCursor,
 		typeTextAtCursor,
 		docStr,
@@ -360,8 +435,15 @@ export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
 		menuItem,
 		isChecked,
 		selectText,
+		selectImage,
+		simulateImageLoaded,
+		getImageWrapper,
+		getImage,
 		toolbarSelect,
 		option,
 		openPopover,
+		pasteFiles,
+		dropFiles,
+		dispatchDragEvent,
 	};
 }

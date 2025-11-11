@@ -1,4 +1,7 @@
 @use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/scrollbar' as scrollbar;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
 
 :host {
 	display: block;
@@ -13,4 +16,26 @@
 
 .editor {
 	display: contents;
+}
+
+.editor-viewport {
+	position: relative;
+	overflow: hidden;
+	flex: 1;
+	contain: layout; // for display fixed
+}
+
+.editor-scroll-area {
+	--editor-padding-block: 8px;
+	--editor-padding-inline: 16px;
+
+	display: flex;
+	flex-direction: column;
+	background-color: var(#{constants.$vvd-color-canvas});
+	block-size: 100%;
+	color: var(#{constants.$vvd-color-canvas-text});
+	font: var(#{constants.$vvd-typography-base});
+	overflow-y: auto;
+
+	@include scrollbar.scrollbar;
 }

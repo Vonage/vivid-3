@@ -1,3 +1,4 @@
+import { elementUpdated } from '@repo/shared';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
 import { RTECore } from './core';
@@ -129,7 +130,7 @@ describe('RTELinkFeature', () => {
 	});
 
 	it('should show a popover with a clickable link when the cursor is inside a link', async () => {
-		const { openPopover, placeCursor } = await setup(features, [
+		const { openPopover, placeCursor, element } = await setup(features, [
 			line(
 				'Go to ',
 				text.marks(link({ href: 'https://example.com' }))('our website')
@@ -137,6 +138,7 @@ describe('RTELinkFeature', () => {
 		]);
 
 		placeCursor('our web|site');
+		await elementUpdated(element);
 
 		expect(openPopover()!.open).toBe(true);
 		expect(openPopover()!.querySelector('a')!.href).toBe(
@@ -148,21 +150,7 @@ describe('RTELinkFeature', () => {
 	});
 
 	it('should close the popover when close is clicked', async () => {
-		const { openPopover, placeCursor, button, click } = await setup(features, [
-			line(
-				'Go to ',
-				text.marks(link({ href: 'https://example.com' }))('our website')
-			),
-		]);
-
-		placeCursor('our websi|te');
-		await click(button(openPopover()!, 'Close'));
-
-		expect(openPopover()).toBe(undefined);
-	});
-
-	it('should remove the link when delete button is clicked', async () => {
-		const { openPopover, placeCursor, button, click, docStr } = await setup(
+		const { element, openPopover, placeCursor, button, click } = await setup(
 			features,
 			[
 				line(
@@ -173,20 +161,45 @@ describe('RTELinkFeature', () => {
 		);
 
 		placeCursor('our websi|te');
-		await click(button(openPopover()!, 'Delete'));
+		await elementUpdated(element);
+		await click(button(openPopover()!, 'Close'));
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Go to our websi|te')"`);
+		expect(openPopover()).toBe(undefined);
 	});
 
-	it('should open the toolbar menu when edit button is clicked', async () => {
-		const { openPopover, placeCursor, button, openMenu, click, textField } =
+	it('should remove the link when delete button is clicked', async () => {
+		const { element, openPopover, placeCursor, button, click, docStr } =
 			await setup(features, [
 				line(
 					'Go to ',
 					text.marks(link({ href: 'https://example.com' }))('our website')
 				),
 			]);
+
+		placeCursor('our websi|te');
+		await elementUpdated(element);
+		await click(button(openPopover()!, 'Delete'));
+
+		expect(docStr()).toMatchInlineSnapshot(`"text_line('Go to our websi|te')"`);
+	});
+
+	it('should open the toolbar menu when edit button is clicked', async () => {
+		const {
+			element,
+			openPopover,
+			placeCursor,
+			button,
+			openMenu,
+			click,
+			textField,
+		} = await setup(features, [
+			line(
+				'Go to ',
+				text.marks(link({ href: 'https://example.com' }))('our website')
+			),
+		]);
 		placeCursor('our web|site');
+		await elementUpdated(element);
 		await click(button(openPopover()!, 'Edit'));
 
 		expect(textField(openMenu(), 'Text').value).toBe('our website');

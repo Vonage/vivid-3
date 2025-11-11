@@ -44,6 +44,7 @@ export const docFactories = {
 	heading: nodeFactory('heading'),
 	hard_break: nodeFactory('hard_break'),
 	text_line: nodeFactory('text_line'),
+	inline_image: nodeFactory('inline_image'),
 	bold: markFactory('bold'),
 	italic: markFactory('italic'),
 	underline: markFactory('underline'),

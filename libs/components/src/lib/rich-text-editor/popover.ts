@@ -1,4 +1,4 @@
-import { html, observable } from '@microsoft/fast-element';
+import { html, observable, volatile } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import {
 	defineVividComponent,
@@ -10,18 +10,48 @@ import { popupDefinition } from '../popup/definition';
 const popoverTemplate = (context: VividElementDefinitionContext) => {
 	const popup = context.tagFor(Popup);
 	return html`<${popup}
-			:anchor="${(x) => x.anchorEl}"
-			:placementStrategy="${() => PlacementStrategy.AutoPlacementHorizontal}"
-			:open="${(x) => x.open}"
-			exportparts="vvd-theme-alternate"
-		>
-			<slot></slot>
-		</${popup}>`;
+		:anchor="${(x) => x.anchorEl}"
+		:placementStrategy="${() => PlacementStrategy.AutoPlacementHorizontal}"
+		:open="${(x) => x.open}"
+		:offset="${(x) => x.offset}"
+		strategy="absolute"
+		exportparts="vvd-theme-alternate"
+	>
+		<slot></slot>
+	</${popup}>`;
 };
 
 export class Popover extends VividElement {
-	@observable open = false;
+	static setBlockPopover(onElement: HTMLElement, block: boolean) {
+		onElement.dataset.blockPopover = block ? 'true' : 'false';
+		const event = new CustomEvent('block-popover-changed', {
+			bubbles: false,
+			composed: false,
+		});
+		onElement.dispatchEvent(event);
+	}
+
+	@observable offset?: number;
+
+	@observable anchorBlocksPopover = false;
+	onAnchorBlockPopoverChanged = () => {
+		this.anchorBlocksPopover =
+			this.anchorEl?.dataset.blockPopover === 'true' || false;
+	};
+
 	@observable anchorEl?: HTMLElement;
+	anchorElChanged(prev?: HTMLElement, next?: HTMLElement) {
+		prev?.removeEventListener(
+			'block-popover-changed',
+			this.onAnchorBlockPopoverChanged
+		);
+		next?.addEventListener(
+			'block-popover-changed',
+			this.onAnchorBlockPopoverChanged
+		);
+		this.onAnchorBlockPopoverChanged();
+	}
+
 	@observable anchorId?: string;
 	anchorIdChanged() {
 		this.updateAnchor();
@@ -35,6 +65,17 @@ export class Popover extends VividElement {
 		} else {
 			this.anchorEl = undefined;
 		}
+	}
+
+	@observable requestedOpenState = false;
+	requestOpenState(open: boolean) {
+		this.requestedOpenState = open;
+	}
+
+	@volatile get open() {
+		return (
+			this.requestedOpenState && !!this.anchorEl && !this.anchorBlocksPopover
+		);
 	}
 
 	#observer?: MutationObserver;

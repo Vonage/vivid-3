@@ -229,6 +229,11 @@ const jaJP: Locale = {
 		edit: '編集',
 		delete: '削除',
 		clickHere: 'ここをクリック',
+		imageSizes: {
+			small: '小',
+			fit: 'フィット',
+			original: '元のサイズ',
+		},
 	},
 	button: {
 		pendingLabel: '読み込み中',

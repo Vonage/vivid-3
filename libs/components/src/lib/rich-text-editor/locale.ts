@@ -28,4 +28,9 @@ export interface RichTextEditorLocale {
 	edit: string;
 	delete: string;
 	clickHere: string;
+	imageSizes: {
+		small: string;
+		fit: string;
+		original: string;
+	};
 }
