@@ -28,7 +28,7 @@ Functionality:
 
 <vwc-rich-text-editor style="block-size: 600px">
 	<div slot="editor-end" id="attachments-start"></div>
-	<div slot="editor-end" id="attachments-bar" style="position: sticky; inset-block-end: 0; padding-inline: var(--editor-padding-inline); background: var(--vvd-color-canvas);">
+	<div slot="editor-end" id="attachments-bar" style="position: sticky; inset-inline: 0; inset-block-end: 0; padding-inline: var(--editor-padding-inline); background: var(--vvd-color-canvas);">
 		<vwc-divider style="position: absolute; inset-block-end: 100%; inset-inline: var(--editor-padding-inline);"></vwc-divider>
 		<div style="padding-block: var(--editor-padding-block); background: var(--vvd-color-canvas); display: flex; align-items: center; justify-content: space-between">
 			<span style="font-weight: bold;">Attachments</span>
@@ -37,7 +37,7 @@ Functionality:
 			</vwc-button>
 		</div>
 	</div>
-	<div slot="editor-end" id="attachments" style="padding-inline: var(--editor-padding-inline); padding-block-end: var(--editor-padding-block); display: grid; grid-template-columns: 1fr 1fr; gap: 8px;"></div>
+	<div slot="editor-end" id="attachments" style="position: sticky; inset-inline: 0; padding-inline: var(--editor-padding-inline); padding-block-end: var(--editor-padding-block); display: grid; grid-template-columns: 1fr 1fr; gap: 8px;"></div>
 	<div slot="editor-end" id="drop-zone" style="display: none; position: fixed; inset-inline: 0; inset-block-end: 0;">
 		<div class="drop-area">Drag & drop files here</div>
 	</div>
