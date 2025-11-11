@@ -155,6 +155,9 @@ export function mockTransfer(items: DataTransferItem[]): DataTransfer {
 		files: items
 			.map((item) => item.getAsFile())
 			.filter((file): file is File => !!file),
+		getData() {
+			return '';
+		},
 	} as unknown as DataTransfer;
 }
 

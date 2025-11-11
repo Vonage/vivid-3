@@ -71,7 +71,9 @@ export class RTECore extends RTEFeature {
 							// Otherwise, create a default textblock
 							return {
 								type: defaultTextblockForMatch(
-									$from.node($from.depth - 1).contentMatchAt($from.indexAfter())
+									$from
+										.node($from.depth - 1)
+										.contentMatchAt($from.indexAfter($from.depth - 1))
 								)!,
 								attrs: rte.textblockAttrs.extractFromNode(node),
 							};
