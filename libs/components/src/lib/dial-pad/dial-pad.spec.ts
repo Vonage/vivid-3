@@ -34,6 +34,10 @@ describe('vwc-dial-pad', () => {
 		return getTextField(component).querySelector('vwc-button')!;
 	}
 
+	function getZeroButton(component: HTMLElement) {
+		return getDigitButtons(component)[10] as Button;
+	}
+
 	async function setValue(value: string) {
 		element.value = value;
 		await Updates.next();
@@ -45,6 +49,96 @@ describe('vwc-dial-pad', () => {
 			return getActiveElement(activeEl.shadowRoot);
 		}
 		return activeEl;
+	}
+
+	function withFakeTimers(callback: () => void) {
+		vi.useFakeTimers();
+		try {
+			callback();
+		} finally {
+			vi.useRealTimers();
+		}
+	}
+
+	function createPointerEvent(
+		type: string,
+		options: EventInit = {}
+	): PointerEvent {
+		// Create a mock PointerEvent for test environment
+		const event = new Event(type, options) as PointerEvent;
+		Object.defineProperty(event, 'pointerType', {
+			value: 'mouse',
+			writable: true,
+		});
+		Object.defineProperty(event, 'pointerId', {
+			value: 1,
+			writable: true,
+		});
+		return event;
+	}
+
+	function simulatePointerLongPress(
+		button: HTMLElement,
+		options: {
+			duration?: number;
+			onComplete?: () => void;
+			onLeave?: () => void;
+		} = {}
+	) {
+		const { duration = 600, onComplete, onLeave } = options;
+		const pointerDown = createPointerEvent('pointerdown', {
+			bubbles: true,
+		});
+		const pointerUp = createPointerEvent('pointerup', {
+			bubbles: true,
+		});
+
+		Object.defineProperty(pointerDown, 'currentTarget', {
+			value: button,
+			writable: true,
+		});
+		button.dispatchEvent(pointerDown);
+		vi.advanceTimersByTime(duration);
+
+		if (onLeave) {
+			onLeave();
+		}
+		button.dispatchEvent(pointerUp);
+
+		if (onComplete) {
+			onComplete();
+		}
+		vi.runAllTimers();
+	}
+
+	function simulateKeyboardLongPress(
+		element: HTMLElement,
+		options: {
+			key?: string;
+			pressDuration?: number;
+			releaseAfter?: number;
+		} = {}
+	) {
+		const {
+			key = ' ',
+			pressDuration = 650,
+			releaseAfter: providedReleaseAfter,
+		} = options;
+		const releaseAfter =
+			providedReleaseAfter !== undefined ? providedReleaseAfter : pressDuration;
+		const keyDown = new KeyboardEvent('keydown', {
+			key,
+			bubbles: true,
+			repeat: false,
+		});
+		element.dispatchEvent(keyDown);
+		vi.advanceTimersByTime(releaseAfter);
+		const keyUp = new KeyboardEvent('keyup', {
+			key,
+			bubbles: true,
+		});
+		element.dispatchEvent(keyUp);
+		vi.runAllTimers();
 	}
 
 	beforeEach(async () => {
@@ -474,6 +568,66 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
+	describe('long press on 0', () => {
+		it('should add "0" when tapping 0', async () => {
+			getZeroButton(element).click();
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('0');
+		});
+
+		it('should add "+" when long pressing 0 and suppress subsequent click', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const btn = getZeroButton(element);
+			withFakeTimers(() => {
+				simulatePointerLongPress(btn, {
+					duration: 600,
+					onComplete: () => {
+						btn.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+					},
+				});
+			});
+			await Updates.next();
+
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('+');
+		});
+
+		it('should not trigger long press on 0 when disabled', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			element.disabled = true;
+			await Updates.next();
+			const btn = getZeroButton(element);
+			withFakeTimers(() => {
+				simulatePointerLongPress(btn, { duration: 600 });
+			});
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('');
+		});
+
+		it('should not add "+" when pointer leaves 0 button before long press completes', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const btn = getZeroButton(element);
+			withFakeTimers(() => {
+				simulatePointerLongPress(btn, {
+					duration: 300,
+					onLeave: () => {
+						// Leave before long press completes
+						btn.dispatchEvent(
+							createPointerEvent('pointerleave', {
+								bubbles: true,
+							})
+						);
+					},
+				});
+				vi.advanceTimersByTime(300);
+			});
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('');
+		});
+	});
+
 	describe('Methods', () => {
 		describe('focus', function () {
 			it('should set the focus on the text field', async function () {
@@ -716,6 +870,135 @@ describe('vwc-dial-pad', () => {
 
 			expect(mockCheckValidity).toHaveBeenCalled();
 			expect(element._errorAnnouncement).toBe('');
+		});
+	});
+
+	describe('keyboard events', function () {
+		it('should add "+" when long pressing Space in input field', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const inputEl = getInput(element);
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(inputEl, { pressDuration: 650 });
+			});
+			await Updates.next();
+
+			expect(getTextField(element).value).toEqual('+');
+		});
+
+		it('should add space when short pressing Space in input field', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const inputEl = getInput(element);
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(inputEl, { pressDuration: 300 });
+			});
+			await Updates.next();
+
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(inputEl, {
+					key: 'Space',
+					pressDuration: 300,
+				});
+			});
+			await Updates.next();
+
+			expect(getTextField(element).value).toEqual('  ');
+		});
+
+		it('should not start keyboard long press when disabled', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			element.disabled = true;
+			await Updates.next();
+			const inputEl = getInput(element);
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(inputEl, { pressDuration: 650 });
+			});
+			await Updates.next();
+
+			expect(getTextField(element).value).toEqual('');
+		});
+
+		it('should add "+" when long pressing Space on focused "0" button', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const btn = getDigitButtons(element)[10] as Button;
+			btn.focus();
+			await Updates.next();
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(btn, { key: 'Space', pressDuration: 650 });
+			});
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(btn, { key: ' ', pressDuration: 650 });
+			});
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('++');
+		});
+
+		it('should add "0" when short pressing Space on focused "0" button', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const btn = getDigitButtons(element)[10] as Button;
+			btn.focus();
+			await Updates.next();
+			withFakeTimers(() => {
+				simulateKeyboardLongPress(btn, { pressDuration: 300 });
+			});
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('0');
+		});
+
+		it('should handle edge cases: prevent timer restart and reset "skip next click" flag when click does not fire', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+
+			// keyboard long press timer should not restart if already running
+			const inputEl = getInput(element);
+			withFakeTimers(() => {
+				// Start first long press
+				const keyDown1 = new KeyboardEvent('keydown', {
+					key: ' ',
+					bubbles: true,
+					repeat: false,
+				});
+				inputEl.dispatchEvent(keyDown1);
+				vi.advanceTimersByTime(300);
+				// start another long press while timer is running (should be prevented)
+				const keyDown2 = new KeyboardEvent('keydown', {
+					key: ' ',
+					bubbles: true,
+					repeat: false,
+				});
+				inputEl.dispatchEvent(keyDown2);
+				vi.advanceTimersByTime(350);
+				const keyUp = new KeyboardEvent('keyup', {
+					key: ' ',
+					bubbles: true,
+				});
+				inputEl.dispatchEvent(keyUp);
+				vi.runAllTimers();
+			});
+			await Updates.next();
+
+			// Should only add one '+' from the first long press
+			expect(getTextField(element).value).toEqual('+');
+
+			// pointer long press should reset suppressNextClick flag when click does not fire
+			element.value = '';
+			await Updates.next();
+			const btn = getDigitButtons(element)[10] as Button;
+			withFakeTimers(() => {
+				simulatePointerLongPress(btn, {
+					duration: 600,
+				});
+				// advance timers to execute the setTimeout in _endLongPress
+				vi.advanceTimersByTime(1);
+			});
+			await Updates.next();
+
+			btn.click();
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('+0');
 		});
 	});
 });

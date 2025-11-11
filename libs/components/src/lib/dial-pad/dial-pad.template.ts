@@ -77,6 +77,16 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 		e.target instanceof HTMLInputElement
 	) {
 		x._onDial();
+	} else if (e.key === ' ' || e.key === 'Space') {
+		// Handle long-press Space for '0' button when input is active
+		if (e.target instanceof HTMLInputElement) {
+			e.preventDefault();
+			// Only start on first keydown, ignore repeat events
+			// keydown events repeat while key is held, so we only start the timer once
+			if (!e.repeat) {
+				x._startKeyboardLongPress();
+			}
+		}
 	} else {
 		const elementIndex = DIAL_PAD_BUTTONS.findIndex((x) => x.value === e.key);
 		if (elementIndex > -1) {
@@ -88,6 +98,56 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 					digit.active = false;
 				}, 200);
 			}
+		}
+	}
+	return true;
+}
+
+function handleKeyUp(x: DialPad, e: KeyboardEvent) {
+	if (e.key === ' ' || e.key === 'Space') {
+		if (e.target instanceof HTMLInputElement) {
+			e.preventDefault();
+
+			const wasLongPress = x._endKeyboardLongPress();
+			if (!wasLongPress && !x.disabled && !x.callActive) {
+				// Short press - add space character (normal space input)
+				x.value += ' ';
+				x.$emit('input');
+				x.$emit('change');
+			}
+		}
+	}
+	return true;
+}
+
+function handleButtonKeyDown(
+	digit: DialPadButton,
+	{ parent: dialPad, event }: { parent: DialPad; event: KeyboardEvent }
+) {
+	// Handle Space key long press on '0' button when it has focus
+	if ((event.key === ' ' || event.key === 'Space') && digit.value === '0') {
+		event.preventDefault();
+		if (!event.repeat) {
+			dialPad._startKeyboardLongPress();
+		}
+	}
+	return true;
+}
+
+function handleButtonKeyUp(
+	digit: DialPadButton,
+	{ parent: dialPad, event }: { parent: DialPad; event: KeyboardEvent }
+) {
+	// Handle Space key long press release on '0' button when it has focus
+	if ((event.key === ' ' || event.key === 'Space') && digit.value === '0') {
+		event.preventDefault();
+		const wasLongPress = dialPad._endKeyboardLongPress();
+		if (!wasLongPress && !dialPad.disabled && !dialPad.callActive) {
+			// Short press
+			onDigitClick(digit, {
+				parent: dialPad,
+				event: new MouseEvent('click', { bubbles: true }),
+			});
 		}
 	}
 	return true;
@@ -122,6 +182,7 @@ function renderTextField(
 		x.helperText}" pattern="${(x) => x.pattern}"
             aria-label="${(x) => x.locale.dialPad.inputLabel}"
             @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
+            @keyup="${(x, c) => handleKeyUp(x, c.event as KeyboardEvent)}"
             @input="${syncFieldAndPadValues}"
 			@change="${syncFieldAndPadValues}"
 			@focus="${stopPropagation}"
@@ -147,6 +208,11 @@ function onDigitClick(
 	digit: DialPadButton,
 	{ parent: dialPad, event }: { parent: DialPad; event: MouseEvent }
 ) {
+	if (dialPad._suppressNextClick) {
+		// Skip the click insertion if a long-press already handled it
+		dialPad._suppressNextClick = false;
+		return;
+	}
 	dialPad.value += digit.value;
 
 	dialPad.$emit('keypad-click', event.currentTarget);
@@ -175,6 +241,21 @@ function renderDigits(
 							c.parent.autofocus && c.parent.noInput && c.index === 0}"
 					  aria-label="${(x, c) => c.parent.locale.dialPad[x.ariaLabel]}"
 					  ?disabled="${(_, c) => c.parent.disabled}"
+					  @pointerdown="${(x, c) =>
+							c.parent._startLongPress(x.value, c.event as PointerEvent)}"
+					  @pointerup="${(_, c) => c.parent._endLongPress()}"
+					  @pointercancel="${(_, c) => c.parent._cancelLongPress()}"
+					  @pointerleave="${(_, c) => c.parent._cancelLongPress()}"
+					  @keydown="${(x, c) =>
+							handleButtonKeyDown(x, {
+								parent: c.parent,
+								event: c.event as KeyboardEvent,
+							})}"
+					  @keyup="${(x, c) =>
+							handleButtonKeyUp(x, {
+								parent: c.parent,
+								event: c.event as KeyboardEvent,
+							})}"
 					  @click="${onDigitClick}">
 					  	<${iconTag} slot="icon"
 									name="${(x) => x.icon}"

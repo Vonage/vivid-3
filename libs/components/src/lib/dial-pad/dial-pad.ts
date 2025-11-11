@@ -148,6 +148,101 @@ export class DialPad extends Localized(VividElement) {
 		null;
 
 	/**
+	 * Long-press handling for digit '0' to insert '+'
+	 * @internal
+	 */
+	private _longPressTimeoutId: number | null = null;
+	/**
+	 * Suppresses the next click handler after a long press has already handled input
+	 * @internal
+	 */
+	_suppressNextClick = false;
+	/**
+	 * Tracks if long press completed for keyboard events
+	 * @internal
+	 */
+	private _keyboardLongPressCompleted = false;
+
+	/**
+	 * @internal
+	 */
+	_startLongPress(digit: string, event: PointerEvent) {
+		if (this.disabled || this.callActive || digit !== '0') return;
+
+		this._clearLongPressTimer();
+		const target = event.currentTarget as HTMLElement | null;
+
+		this._longPressTimeoutId = window.setTimeout(() => {
+			this._suppressNextClick = true;
+			this.value += '+';
+			this.$emit('keypad-click', target);
+			this.$emit('input');
+			this.$emit('change');
+		}, 600);
+	}
+
+	/**
+	 * @internal
+	 */
+	_startKeyboardLongPress() {
+		if (this.disabled || this.callActive) return;
+		// If timer is already running, don't restart it (keydown events repeat while key is held)
+		if (this._longPressTimeoutId !== null) return;
+
+		this._keyboardLongPressCompleted = false;
+
+		this._longPressTimeoutId = window.setTimeout(() => {
+			this._keyboardLongPressCompleted = true;
+
+			this.value += '+';
+			this.$emit('input');
+			this.$emit('change');
+		}, 650);
+	}
+
+	/**
+	 * @internal
+	 */
+	_endLongPress() {
+		this._clearLongPressTimer();
+		// Reset suppress flag after a delay to handle cases where click doesn't fire.
+		// This ensures the next click won't be incorrectly suppressed.
+		window.setTimeout(() => {
+			if (this._suppressNextClick) {
+				this._suppressNextClick = false;
+			}
+		}, 0);
+	}
+
+	/**
+	 * @internal
+	 * @returns true if long press completed (timer fired), false otherwise
+	 */
+	_endKeyboardLongPress(): boolean {
+		const wasLongPress = this._keyboardLongPressCompleted;
+		this._clearLongPressTimer();
+
+		window.setTimeout(() => {
+			this._keyboardLongPressCompleted = false;
+		}, 0);
+		return wasLongPress;
+	}
+
+	/**
+	 * @internal
+	 */
+	_cancelLongPress() {
+		this._clearLongPressTimer();
+	}
+
+	private _clearLongPressTimer() {
+		if (this._longPressTimeoutId !== null) {
+			clearTimeout(this._longPressTimeoutId);
+			this._longPressTimeoutId = null;
+		}
+	}
+
+	/**
 	 *
 	 * @internal
 	 */
