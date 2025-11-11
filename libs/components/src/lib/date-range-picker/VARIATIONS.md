@@ -9,7 +9,7 @@ The `label` attribute provides a short description of the purpose of the Date Pi
 <p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
-```html preview 600px
+```html preview 460px
 <vwc-date-range-picker label="Event duration"></vwc-date-range-picker>
 ```
 
