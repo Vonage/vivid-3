@@ -1,17 +1,6 @@
-import type { Dictionary, TransformedToken } from 'style-dictionary/types';
+import type { Dictionary } from 'style-dictionary/types';
 import { cssConfig, fontFaceDeclaration } from './css.config';
-
-function buildToken(name: string, token: any): TransformedToken {
-	return {
-		name,
-		filePath: 'virtual-file',
-		isSource: false,
-		path: [name],
-		original: {},
-		$value: token.$value,
-		$type: token.$type,
-	};
-}
+import { buildToken } from '../utils/build-token';
 
 describe('CSS Features', () => {
 	describe('Transforms', () => {

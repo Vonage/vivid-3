@@ -2,6 +2,7 @@
 
 # compiled output
 dist
+flutter-dist
 tmp
 /out-tsc
 .11ty-vite
