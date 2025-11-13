@@ -28,9 +28,7 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 
 		if (newValue && this.isConnected) {
 			requestAnimationFrame(() => {
-				requestAnimationFrame(() => {
-					this._refreshCanvasColor();
-				});
+				this._refreshCanvasColor();
 				const selectedIndex = this.swatches.findIndex(
 					(swatch) => swatch.value === this.value
 				);

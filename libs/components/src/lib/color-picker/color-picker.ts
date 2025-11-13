@@ -101,9 +101,7 @@ export class ColorPicker extends WithContextualHelp(
 	openChanged(_oldValue: boolean, newValue: boolean) {
 		if (newValue && this.isConnected) {
 			requestAnimationFrame(() => {
-				requestAnimationFrame(() => {
-					this._refreshCanvasColor();
-				});
+				this._refreshCanvasColor();
 			});
 		}
 	}

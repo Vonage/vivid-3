@@ -52,9 +52,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 		override connectedCallback(): void {
 			super.connectedCallback();
 			requestAnimationFrame(() => {
-				requestAnimationFrame(() => {
-					this._refreshCanvasColor();
-				});
+				this._refreshCanvasColor();
 			});
 		}
 
