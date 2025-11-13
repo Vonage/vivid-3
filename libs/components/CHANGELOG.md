@@ -4,6 +4,24 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.5.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.4.0...vivid-v5.5.0) (2025-11-13)
+
+
+### Features
+
+* **color-picker, simple-color-picker:** add tooltips to swatches and buttons (VIV-2970) ([#2590](https://github.com/Vonage/vivid-3/issues/2590)) ([cdffaa4](https://github.com/Vonage/vivid-3/commit/cdffaa42513e59dc1d4b3b4d37503c34c05d3300))
+* **dial-pad:** add long press on '0' button to render '+' (VIV-2876) ([#2585](https://github.com/Vonage/vivid-3/issues/2585)) ([feed143](https://github.com/Vonage/vivid-3/commit/feed14364c62c27c2685f3116ca5a70b91d041fb))
+
+
+### Bug Fixes
+
+* **color-picker, simple-color-picker:** accessibility fixes (VIV-2984) ([#2597](https://github.com/Vonage/vivid-3/issues/2597)) ([058057c](https://github.com/Vonage/vivid-3/commit/058057cb7d0de97c2d6622a733b8f24fa937a091))
+* **color-picker, simple-color-picker:** add tooltips to swatches and buttons (VIV-2970) ([cdffaa4](https://github.com/Vonage/vivid-3/commit/cdffaa42513e59dc1d4b3b4d37503c34c05d3300))
+* **color-picker:** accessibility fixes(VIV-2891) ([#2584](https://github.com/Vonage/vivid-3/issues/2584)) ([c97b0f8](https://github.com/Vonage/vivid-3/commit/c97b0f885fba22a62925610491286fe6ac6e1237))
+* **icon:** do not cache aborted requests (VIV-2880) ([#2588](https://github.com/Vonage/vivid-3/issues/2588)) ([420a2bf](https://github.com/Vonage/vivid-3/commit/420a2bff8cd2e9d77e968b975c0725a0908be118))
+* **select:** sync focus styles on options with combobox & menu in select widget (VIV-2877)  ([#2589](https://github.com/Vonage/vivid-3/issues/2589)) ([5e29acf](https://github.com/Vonage/vivid-3/commit/5e29acf781caa0aca6e501bd169ec7606da37e0f))
+* **tag, tag-group:** apply accessibility suggestions (VIV-2849) ([#2573](https://github.com/Vonage/vivid-3/issues/2573)) ([7acea8e](https://github.com/Vonage/vivid-3/commit/7acea8e455152adc6bd1a32fb8cf9b05078ef9eb))
+
 ## [5.4.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.3.0...vivid-v5.4.0) (2025-10-27)
 
 
