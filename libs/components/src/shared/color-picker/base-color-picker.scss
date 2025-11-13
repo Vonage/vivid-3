@@ -14,7 +14,6 @@
 .swatch {
 	position: relative;
 	padding: 0;
-	border: none;
 	border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 	background-color: var(--swatch-color);
 	block-size: var(#{variables.$color-swatch-size}, 24px);
@@ -22,7 +21,12 @@
 	cursor: pointer;
 	inline-size: var(#{variables.$color-swatch-size}, 24px);
 
+	&:not(.contrast) {
+		border: none;
+	}
+
 	&.contrast {
+		border: 1px solid var(--vvd-color-neutral-400);
 		color: var(--vvd-color-canvas-text);
 	}
 
