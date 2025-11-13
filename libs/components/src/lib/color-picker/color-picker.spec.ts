@@ -722,6 +722,12 @@ describe('vwc-color-picker', () => {
 				).not.toThrow();
 				spy.mockRestore();
 			});
+
+			it('should return false from _applyContrastClass when color is empty or falsy', () => {
+				expect(element._applyContrastClass('')).toBe(false);
+				expect(element._applyContrastClass(null as any)).toBe(false);
+				expect(element._applyContrastClass(undefined as any)).toBe(false);
+			});
 		});
 	});
 
