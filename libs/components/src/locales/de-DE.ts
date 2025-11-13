@@ -272,7 +272,7 @@ const deDE: Locale = {
 	},
 	colorPicker: {
 		popupLabel: 'Farbwähler',
-		swatchesLabel: 'Gespeicherte Farben:',
+		swatchesLabel: 'Gespeicherte Farben',
 		pickerButtonLabel: 'Farbwähler',
 		hexInputLabel: 'HEX-Farbcode',
 		saveButtonLabel: 'Aktuelle Farbe speichern',
@@ -285,6 +285,8 @@ const deDE: Locale = {
 		selectionSuccessMessage: /* istanbul ignore next */ (
 			value: string
 		): string => `Farbe ${value} ausgewählt.`,
+		maxSwatchesMessage: /* istanbul ignore next */ (total, limit): string =>
+			`${total} von ${limit} Farben gespeichert.`,
 	},
 };
 

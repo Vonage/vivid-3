@@ -19,16 +19,18 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	/**
 	 * @internal
 	 */
-	openChanged(): void {
+	openChanged(_oldValue: boolean, newValue: boolean): void {
 		this._updateListeners();
 
 		if (this._anchorEl) {
 			this.#updateAnchor(this._anchorEl);
 		}
 
-		if (this.open) {
-			this._refreshCanvasColor();
+		if (newValue && this.isConnected) {
 			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					this._refreshCanvasColor();
+				});
 				const selectedIndex = this.swatches.findIndex(
 					(swatch) => swatch.value === this.value
 				);

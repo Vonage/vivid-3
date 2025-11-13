@@ -6,8 +6,11 @@
 @use 'partials/variables' as variables;
 @forward '../../shared/color-picker/base-color-picker';
 
+$low-ink-color: --_low-ink-color;
+
 :host {
 	display: inline-block;
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
 }
 
 .base {
@@ -94,9 +97,12 @@
 		padding: 16px;
 		border-top: 1px solid var(#{constants.$vvd-color-neutral-200});
 	}
-	.footer-title {
-		display: block;
+	.footer-header {
 		margin-block-end: 8px;
+	}
+	.swatches-count {
+		color: var(#{$low-ink-color});
+		font: var(#{constants.$vvd-typography-base});
 	}
 	.palette {
 		gap: var(#{variables.$color-swatches-gap}, 8px);

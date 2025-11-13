@@ -268,7 +268,7 @@ const jaJP: Locale = {
 	},
 	colorPicker: {
 		popupLabel: 'カラーピッカー',
-		swatchesLabel: '保存された色:',
+		swatchesLabel: '保存された色',
 		pickerButtonLabel: 'カラーピッカー',
 		hexInputLabel: 'HEXカラーコード',
 		saveButtonLabel: '現在の色を保存',
@@ -281,6 +281,8 @@ const jaJP: Locale = {
 		selectionSuccessMessage: /* istanbul ignore next */ (
 			value: string
 		): string => `色 ${value} が選択されました。`,
+		maxSwatchesMessage: /* istanbul ignore next */ (total, limit): string =>
+			`${limit} 色中 ${total} 色を保存しました。`,
 	},
 };
 export default jaJP;

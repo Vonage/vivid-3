@@ -612,6 +612,49 @@ describe('vwc-color-picker', () => {
 			expect(values).toEqual(['#010203']);
 		});
 
+		describe('swatches count display', () => {
+			it('should display swatches count when disableSavedColors is false', async () => {
+				element.maxSwatches = 5;
+				await elementUpdated(element);
+				await openAndRender();
+
+				await saveColor('#112233');
+				await saveColor('#445566');
+
+				const swatchesCount =
+					element.shadowRoot?.querySelector('#swatches-count');
+				expect(swatchesCount).toBeTruthy();
+				expect(swatchesCount?.textContent?.trim()).toBe('2/5');
+			});
+
+			it('should update swatches count when adding colors', async () => {
+				element.maxSwatches = 10;
+				await elementUpdated(element);
+				await openAndRender();
+
+				await saveColor('#111111');
+				const swatchesCount =
+					element.shadowRoot?.querySelector('#swatches-count');
+				expect(swatchesCount?.textContent?.trim()).toBe('1/10');
+
+				await saveColor('#222222');
+				await saveColor('#333333');
+				expect(swatchesCount?.textContent?.trim()).toBe('3/10');
+				expect(swatchesCount?.ariaLabel?.trim()).toBe('3 of 10 colors saved.');
+			});
+
+			it('should not display swatches count when disableSavedColors is true', async () => {
+				element.maxSwatches = 5;
+				element.disableSavedColors = true;
+				await elementUpdated(element);
+				await openAndRender();
+
+				const swatchesCount =
+					element.shadowRoot?.querySelector('#swatches-count');
+				expect(swatchesCount).toBeNull();
+			});
+		});
+
 		describe('edge cases & error handling', () => {
 			it('should return 0 for non-finite value of maxSwatches', async () => {
 				element.maxSwatches = Number.NaN;

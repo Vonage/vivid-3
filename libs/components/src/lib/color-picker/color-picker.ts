@@ -95,6 +95,19 @@ export class ColorPicker extends WithContextualHelp(
 		this.$emit('change');
 	}
 
+	/**
+	 * @internal
+	 */
+	openChanged(_oldValue: boolean, newValue: boolean) {
+		if (newValue && this.isConnected) {
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					this._refreshCanvasColor();
+				});
+			});
+		}
+	}
+
 	// --- Saved Colors ---
 
 	/**
@@ -372,7 +385,6 @@ export class ColorPicker extends WithContextualHelp(
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this._refreshCanvasColor();
 		this.savedColors = this._loadSavedColors();
 		document.addEventListener('mousedown', this.#closeOnPointerOutside, true);
 	}

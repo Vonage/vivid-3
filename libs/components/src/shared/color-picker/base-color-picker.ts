@@ -51,13 +51,28 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 
 		override connectedCallback(): void {
 			super.connectedCallback();
-			this._refreshCanvasColor();
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					this._refreshCanvasColor();
+				});
+			});
 		}
 
 		/**
 		 * @internal
 		 */
+		@observable
 		_canvasColor: string = '';
+
+		/**
+		 * @internal
+		 */
+		get _computedCanvasColor(): string {
+			if (!this._canvasColor) {
+				this._canvasColor = getCSSCustomProperty('--vvd-color-canvas', this);
+			}
+			return this._canvasColor;
+		}
 
 		/**
 		 * @internal
@@ -70,8 +85,10 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 		 * @internal
 		 */
 		_applyContrastClass(color: string, threshold = 3): boolean {
-			if (!color || !this._canvasColor) return false;
-			const ratio = getContrastRatio(color, this._canvasColor);
+			if (!color) return false;
+			const canvasColor = this._computedCanvasColor;
+			if (!canvasColor) return false;
+			const ratio = getContrastRatio(color, canvasColor);
 			return ratio < threshold;
 		}
 

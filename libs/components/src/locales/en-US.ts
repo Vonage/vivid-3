@@ -270,7 +270,7 @@ const enUS: Locale = {
 	},
 	colorPicker: {
 		popupLabel: 'Color Picker',
-		swatchesLabel: 'Saved colors:',
+		swatchesLabel: 'Saved colors',
 		pickerButtonLabel: 'Color Picker',
 		hexInputLabel: 'HEX color code',
 		saveButtonLabel: 'Save current color',
@@ -282,6 +282,8 @@ const enUS: Locale = {
 		selectionSuccessMessage: /* istanbul ignore next */ (
 			value: string
 		): string => `Color ${value} selected.`,
+		maxSwatchesMessage: /* istanbul ignore next */ (total, limit): string =>
+			`${total} of ${limit} colors saved.`,
 	},
 };
 export default enUS;
