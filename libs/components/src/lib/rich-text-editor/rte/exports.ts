@@ -16,3 +16,5 @@ export { RTELinkFeature } from './features/link';
 export { RTEInlineImageFeature } from './features/inline-image';
 export { RTEFileHandlerFeature } from './features/file-handler';
 export { RTEDropHandlerFeature } from './features/drop-handler';
+
+export type { RTEDocument, RTEFragment, RTENode, RTEMark } from './document';

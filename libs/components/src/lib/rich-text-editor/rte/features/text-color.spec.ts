@@ -51,15 +51,15 @@ describe('RTETextColorFeature', () => {
 		);
 	});
 
-	it('should deserialize textColor from HTML style', async () => {
+	it('should deserialize textColor from HTML', async () => {
 		const rte = await setup(features);
-		rte.rte.setDoc(
+		rte.instance.replaceDocument(
 			rte.config.parseHTML(
 				'<p><span data-text-color="#123456">Colored</span> Plain</p>'
 			)
 		);
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"paragraph(<textColor[color="#123456"]>'Colored', ' Plain|')"`
+			`"paragraph(<textColor[color="#123456"]>'|Colored', ' Plain')"`
 		);
 	});
 
@@ -84,7 +84,7 @@ describe('RTETextColorFeature', () => {
 			expect(rte.pickerColor()).toBe('#ff0000');
 		});
 
-		it('should be the empty when selected range of mixed color', async () => {
+		it('should be empty when selected range is mixed color', async () => {
 			const rte = await setup(features, [
 				p(text.marks(color({ color: '#ff0000' }))('Red')),
 				p(text.marks(color({ color: '#00ff00' }))('Green')),
@@ -156,7 +156,7 @@ describe('RTETextColorFeature', () => {
 
 		it('should apply the mark to an all selection', async () => {
 			const rte = await setup(features, [p('Hello'), p('World')]);
-			rte.keydown('a', { ctrl: true }); // Select all
+			rte.selectAll();
 
 			rte.pickColor('#ff0000');
 

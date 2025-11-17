@@ -10,7 +10,7 @@ import {
 } from './inline-image';
 import { RTEToolbarFeature } from './toolbar';
 
-const { paragraph: p, inline_image: img, text } = docFactories;
+const { doc, paragraph: p, inline_image: img, text } = docFactories;
 
 const featuresWithConfig = (config?: RTEInlineImageFeatureConfig) => [
 	new RTECore(),
@@ -45,7 +45,7 @@ describe('RTEInlineImageFeature', () => {
 
 	it('should deserialize images from HTML', async () => {
 		const rte = await setup(featuresWithConfig());
-		rte.rte.setDoc(
+		rte.instance.replaceDocument(
 			rte.config.parseHTML(
 				'<p><img src="image.jpg" alt="Image" width="100" height="200" style="max-width: 100%"></p>'
 			)
@@ -61,7 +61,9 @@ describe('RTEInlineImageFeature', () => {
 		`
 		);
 
-		rte.rte.setDoc(rte.config.parseHTML('<p><img src="minimal.jpg"></p>'));
+		rte.instance.replaceDocument(
+			rte.config.parseHTML('<p><img src="minimal.jpg"></p>')
+		);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
@@ -87,23 +89,25 @@ describe('RTEInlineImageFeature', () => {
 			),
 		]);
 
-		expect(rte.config.toHTML(rte.rte.getDoc())).toMatchInlineSnapshot(
+		expect(rte.config.toHTML(rte.instance.getDocument())).toMatchInlineSnapshot(
 			`"<p style=""><img src="/image.jpg" alt="Image" style="max-width: 100%;" width="100" height="200"></p>"`
 		);
 
-		rte.rte.setDoc([
-			p(
-				img.attrs({
-					imageUrl: '/minimal.jpg',
-					alt: '',
-					size: null,
-					naturalWidth: null,
-					naturalHeight: null,
-				})()
-			),
-		]);
+		rte.instance.replaceDocument(
+			doc(
+				p(
+					img.attrs({
+						imageUrl: '/minimal.jpg',
+						alt: '',
+						size: null,
+						naturalWidth: null,
+						naturalHeight: null,
+					})()
+				)
+			)
+		);
 
-		expect(rte.config.toHTML(rte.rte.getDoc())).toMatchInlineSnapshot(
+		expect(rte.config.toHTML(rte.instance.getDocument())).toMatchInlineSnapshot(
 			`"<p style=""><img src="/minimal.jpg" alt=""></p>"`
 		);
 	});
@@ -404,7 +408,7 @@ describe('RTEInlineImageFeature', () => {
 					),
 				]
 			);
-			expect(rte.config.toHTML(rte.rte.getDoc())).toBe(
+			expect(rte.config.toHTML(rte.instance.getDocument())).toBe(
 				'<p style=""><img src="serialized:/image.jpg" alt="Image"></p>'
 			);
 		});
@@ -423,7 +427,9 @@ describe('RTEInlineImageFeature', () => {
 					),
 				]
 			);
-			expect(rte.config.toHTML(rte.rte.getDoc())).toBe('<p style=""></p>');
+			expect(rte.config.toHTML(rte.instance.getDocument())).toBe(
+				'<p style=""></p>'
+			);
 		});
 	});
 

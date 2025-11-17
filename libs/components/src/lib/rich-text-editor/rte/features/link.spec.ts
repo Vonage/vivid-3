@@ -39,25 +39,23 @@ describe('RTELinkFeature', () => {
 	});
 
 	it('should parse link marks from HTML', async () => {
-		const { rte, docStr } = await setup(features);
+		const { instance, docStr } = await setup(features);
 
-		rte.setDoc(
-			rte.config.parseHTML(
+		instance.replaceDocument(
+			instance.config.parseHTML(
 				'Visit <a href="https://example.com">example.com</a> for more info'
 			)
 		);
 
-		expect(docStr()).toMatchInlineSnapshot(
-			`
+		expect(docStr()).toMatchInlineSnapshot(`
 			"
 			text_line(
-				'Visit ',
+				'|Visit ',
 				<link[href="https://example.com"]>'example.com',
-				' for more info|'
+				' for more info'
 			)
 			"
-		`
-		);
+		`);
 	});
 
 	it('should add a link menu to the toolbar to insert links', async () => {

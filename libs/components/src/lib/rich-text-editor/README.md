@@ -13,10 +13,20 @@ See the [features documentation](#features) for a list of available features.
 To render an editor, create an editor instance from the config, optionally with an initial document.
 
 ```js
-const instance = config.instantiateEditor([
-	{ type: 'text', text: 'Hello' },
-	{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
-]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'text_line',
+				content: [
+					{ type: 'text', text: 'Hello' },
+					{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
+				],
+			},
+		],
+	},
+});
 ```
 
 Then, pass the instance to the Rich Text Editor component.
@@ -32,10 +42,20 @@ registerRichTextEditor('your-prefix');
 
 const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEBoldFeature()]);
 
-const instance = config.instantiateEditor([
-	{ type: 'text', text: 'Hello' },
-	{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
-]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'text_line',
+				content: [
+					{ type: 'text', text: 'Hello' },
+					{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
+				],
+			},
+		],
+	},
+});
 ```
 
 ```html preview
@@ -48,10 +68,20 @@ const instance = config.instantiateEditor([
 
 	const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEBoldFeature()]);
 
-	const instance = config.instantiateEditor([
-		{ type: 'text', text: 'Hello' },
-		{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
-	]);
+	const instance = config.instantiateEditor({
+		initialDocument: {
+			type: 'doc',
+			content: [
+				{
+					type: 'text_line',
+					content: [
+						{ type: 'text', text: 'Hello' },
+						{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
+					],
+				},
+			],
+		},
+	});
 
 	const rteComponent = document.querySelector('your-prefix-rich-text-editor');
 	rteComponent.instance = instance;
@@ -69,10 +99,20 @@ import { RTEConfig, RTECore, RTEFreeformStructure, RTEToolbarFeature, RTEBoldFea
 
 const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEBoldFeature()]);
 
-const instance = config.instantiateEditor([
-	{ type: 'text', text: 'Hello' },
-	{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
-]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'text_line',
+				content: [
+					{ type: 'text', text: 'Hello' },
+					{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
+				],
+			},
+		],
+	},
+});
 </script>
 <template>
 	<VRichTextEditor :instance="instance" />
@@ -81,6 +121,123 @@ const instance = config.instantiateEditor([
 
 </vwc-tab-panel>
 </vwc-tabs>
+
+## Editor Instance API
+
+```html preview
+<vwc-rich-text-editor style="block-size: 150px"></vwc-rich-text-editor>
+<vwc-button id="replaceSelection" label="replaceSelection"></vwc-button>
+<vwc-button id="replaceDocument" label="replaceDocument"></vwc-button>
+<vwc-button id="reset" label="reset"></vwc-button>
+<output style="display: block; block-size: 300px"><pre id="output"></pre></output>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const output = document.querySelector('#output');
+		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature()]);
+		const instance = config.instantiateEditor({
+			onChange: () => {
+				console.log('Document changed:', instance.getDocument());
+				output.textContent = JSON.stringify(instance.getDocument(), null, 2);
+			},
+		});
+		rteComponent.instance = instance;
+
+		document.querySelector('#replaceSelection').addEventListener('click', () => {
+			instance.replaceSelection([{ type: 'text', text: 'Replaced selection' }]);
+		});
+
+		document.querySelector('#replaceDocument').addEventListener('click', () => {
+			instance.replaceDocument({
+				type: 'doc',
+				content: [{ type: 'text_line', content: [{ type: 'text', text: 'Replaced document content' }] }],
+			});
+		});
+
+		document.querySelector('#reset').addEventListener('click', () => {
+			instance.reset([{ type: 'text_line', content: [{ type: 'text', text: 'Reset content' }] }]);
+		});
+	});
+</script>
+```
+
+### Configuration Options
+
+#### onChange
+
+The `onChange` callback is called whenever the document changes.
+
+```ts
+const instance = config.instantiate([], {
+	onChange: () => {
+		console.log('Document changed:', instance.getDocument());
+	},
+});
+```
+
+### Methods
+
+### getDocument
+
+```ts
+/**
+ * Returns the current document state.
+ */
+getDocument(): RTEDocument;
+```
+
+### replaceSelection
+
+```ts
+/**
+ * Replaces the current selection with the given content. If no text is selected, this inserts the content at the cursor position.
+ */
+replaceSelection(
+	content: RTEFragment,
+	options?: {
+		/**
+		 * Controls where the cursor is placed after the replacement:
+		 * - 'end': places the cursor at the end of the inserted content (default)
+		 * - 'start': places the cursor at the start of the inserted content
+		 */
+		cursorPlacement?: 'end' | 'start';
+		/**
+		 * If true, selects the inserted content after replacement. Defaults to false.
+		 */
+		selectContent?: boolean;
+	}
+): void;
+```
+
+### replaceDocument
+
+```ts
+replaceDocument(
+	newDocument: RTEDocument,
+	options?: {
+		/**
+		 * Controls where the cursor is placed after the replacement:
+		 * - 'start': places the cursor at the start of document (default)
+		 * - 'end': places the cursor at the end of the document
+		 */
+		cursorPlacement?: 'start' | 'end';
+		/**
+		 * If true, selects the whole document after replacement. Defaults to false.
+		 */
+		selectContent?: boolean;
+	}
+): void;
+```
+
+#### reset
+
+```ts
+/**
+ * Reset the editor to its initial state. Optionally, an initial document can be provided.
+ */
+reset(initialDocument?: RTEDocument): void;
+```
 
 ## Features
 
@@ -130,22 +287,27 @@ Keyboard shortcuts:
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature()]);
-		rteComponent.instance = config.instantiateEditor([
-			{
-				type: 'heading',
-				attrs: { level: 1 },
-				content: [{ type: 'text', text: 'Title' }],
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'heading',
+						attrs: { level: 1 },
+						content: [{ type: 'text', text: 'Title' }],
+					},
+					{
+						type: 'heading',
+						attrs: { level: 2 },
+						content: [{ type: 'text', text: 'Subtitle' }],
+					},
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'This is a paragraph.' }],
+					},
+				],
 			},
-			{
-				type: 'heading',
-				attrs: { level: 2 },
-				content: [{ type: 'text', text: 'Subtitle' }],
-			},
-			{
-				type: 'paragraph',
-				content: [{ type: 'text', text: 'This is a paragraph.' }],
-			},
-		]);
+		});
 	});
 </script>
 ```
@@ -176,29 +338,34 @@ Known issues:
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature(), new RTEFontSizeFeature()]);
-		rteComponent.instance = config.instantiateEditor([
-			{
-				type: 'paragraph',
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
 				content: [
 					{
-						type: 'text',
-						text: 'small ',
-						marks: [{ type: 'fontSize', attrs: { size: 'small' } }],
-					},
-					{ type: 'text', text: 'normal ' },
-					{
-						type: 'text',
-						text: 'large ',
-						marks: [{ type: 'fontSize', attrs: { size: 'large' } }],
-					},
-					{
-						type: 'text',
-						text: 'extra large',
-						marks: [{ type: 'fontSize', attrs: { size: 'extra-large' } }],
+						type: 'paragraph',
+						content: [
+							{
+								type: 'text',
+								text: 'small ',
+								marks: [{ type: 'fontSize', attrs: { size: 'small' } }],
+							},
+							{ type: 'text', text: 'normal ' },
+							{
+								type: 'text',
+								text: 'large ',
+								marks: [{ type: 'fontSize', attrs: { size: 'large' } }],
+							},
+							{
+								type: 'text',
+								text: 'extra large',
+								marks: [{ type: 'fontSize', attrs: { size: 'extra-large' } }],
+							},
+						],
 					},
 				],
 			},
-		]);
+		});
 	});
 </script>
 ```
@@ -269,28 +436,33 @@ When using the alternate theme the colors may no longer have sufficient contrast
 				defaultColor: '#000000',
 			}),
 		]);
-		rteComponent.instance = config.instantiateEditor([
-			{
-				type: 'text_line',
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
 				content: [
 					{
-						type: 'text',
-						text: 'Red ',
-						marks: [{ type: 'textColor', attrs: { color: '#E61D1D' } }],
-					},
-					{
-						type: 'text',
-						text: 'Yellow ',
-						marks: [{ type: 'textColor', attrs: { color: '#FA9F00' } }],
-					},
-					{
-						type: 'text',
-						text: 'Green',
-						marks: [{ type: 'textColor', attrs: { color: '#1C8731' } }],
+						type: 'text_line',
+						content: [
+							{
+								type: 'text',
+								text: 'Red ',
+								marks: [{ type: 'textColor', attrs: { color: '#E61D1D' } }],
+							},
+							{
+								type: 'text',
+								text: 'Yellow ',
+								marks: [{ type: 'textColor', attrs: { color: '#FA9F00' } }],
+							},
+							{
+								type: 'text',
+								text: 'Green',
+								marks: [{ type: 'textColor', attrs: { color: '#1C8731' } }],
+							},
+						],
 					},
 				],
 			},
-		]);
+		});
 	});
 </script>
 ```
@@ -314,22 +486,27 @@ Keyboard shortcuts:
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature(), new RTEBoldFeature(), new RTEItalicFeature(), new RTEUnderlineFeature(), new RTEStrikethroughFeature(), new RTEMonospaceFeature()]);
-		rteComponent.instance = config.instantiateEditor([
-			{
-				type: 'paragraph',
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
 				content: [
-					{ type: 'text', text: 'bold ', marks: [{ type: 'bold' }] },
-					{ type: 'text', text: 'italic ', marks: [{ type: 'italic' }] },
-					{ type: 'text', text: 'underline ', marks: [{ type: 'underline' }] },
 					{
-						type: 'text',
-						text: 'strikethrough ',
-						marks: [{ type: 'strikethrough' }],
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'bold ', marks: [{ type: 'bold' }] },
+							{ type: 'text', text: 'italic ', marks: [{ type: 'italic' }] },
+							{ type: 'text', text: 'underline ', marks: [{ type: 'underline' }] },
+							{
+								type: 'text',
+								text: 'strikethrough ',
+								marks: [{ type: 'strikethrough' }],
+							},
+							{ type: 'text', text: 'monospace ', marks: [{ type: 'monospace' }] },
+						],
 					},
-					{ type: 'text', text: 'monospace ', marks: [{ type: 'monospace' }] },
 				],
 			},
-		]);
+		});
 	});
 </script>
 ```
@@ -350,55 +527,60 @@ Keyboard shortcuts:
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEListFeature()]);
-		rteComponent.instance = config.instantiateEditor([
-			{
-				type: 'bullet_list',
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
 				content: [
-					{
-						type: 'list_item',
-						content: [{ type: 'text', text: 'Bullet list' }],
-					},
 					{
 						type: 'bullet_list',
 						content: [
 							{
 								type: 'list_item',
-								content: [{ type: 'text', text: 'Item 1' }],
+								content: [{ type: 'text', text: 'Bullet list' }],
+							},
+							{
+								type: 'bullet_list',
+								content: [
+									{
+										type: 'list_item',
+										content: [{ type: 'text', text: 'Item 1' }],
+									},
+									{
+										type: 'list_item',
+										content: [{ type: 'text', text: 'Item 2' }],
+									},
+									{
+										type: 'list_item',
+										content: [{ type: 'text', text: 'Item 3' }],
+									},
+								],
 							},
 							{
 								type: 'list_item',
-								content: [{ type: 'text', text: 'Item 2' }],
+								content: [{ type: 'text', text: 'Numbered list' }],
 							},
 							{
-								type: 'list_item',
-								content: [{ type: 'text', text: 'Item 3' }],
-							},
-						],
-					},
-					{
-						type: 'list_item',
-						content: [{ type: 'text', text: 'Numbered list' }],
-					},
-					{
-						type: 'numbered_list',
-						content: [
-							{
-								type: 'list_item',
-								content: [{ type: 'text', text: 'Item 1' }],
-							},
-							{
-								type: 'list_item',
-								content: [{ type: 'text', text: 'Item 2' }],
-							},
-							{
-								type: 'list_item',
-								content: [{ type: 'text', text: 'Item 3' }],
+								type: 'numbered_list',
+								content: [
+									{
+										type: 'list_item',
+										content: [{ type: 'text', text: 'Item 1' }],
+									},
+									{
+										type: 'list_item',
+										content: [{ type: 'text', text: 'Item 2' }],
+									},
+									{
+										type: 'list_item',
+										content: [{ type: 'text', text: 'Item 3' }],
+									},
+								],
 							},
 						],
 					},
 				],
 			},
-		]);
+		});
 	});
 </script>
 ```
@@ -427,38 +609,43 @@ The alignment feature cannot be used with `RTETextBlockStructure`, since there a
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature(), new RTEAlignmentFeature()]);
-		rteComponent.instance = config.instantiateEditor([
-			{
-				type: 'heading',
-				attrs: { level: 1, textAlign: 'center' },
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
 				content: [
 					{
-						type: 'text',
-						text: 'Centered Title',
+						type: 'heading',
+						attrs: { level: 1, textAlign: 'center' },
+						content: [
+							{
+								type: 'text',
+								text: 'Centered Title',
+							},
+						],
+					},
+					{
+						type: 'heading',
+						attrs: { level: 2, textAlign: 'left' },
+						content: [
+							{
+								type: 'text',
+								text: 'Left-aligned Subtitle',
+							},
+						],
+					},
+					{
+						type: 'paragraph',
+						attrs: { textAlign: 'right' },
+						content: [
+							{
+								type: 'text',
+								text: 'This paragraph is right-aligned.',
+							},
+						],
 					},
 				],
 			},
-			{
-				type: 'heading',
-				attrs: { level: 2, textAlign: 'left' },
-				content: [
-					{
-						type: 'text',
-						text: 'Left-aligned Subtitle',
-					},
-				],
-			},
-			{
-				type: 'paragraph',
-				attrs: { textAlign: 'right' },
-				content: [
-					{
-						type: 'text',
-						text: 'This paragraph is right-aligned.',
-					},
-				],
-			},
-		]);
+		});
 	});
 </script>
 ```
@@ -474,17 +661,27 @@ Adds the ability to insert links.
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTELinkFeature()]);
-		rteComponent.instance = config.instantiateEditor([
-			{
-				type: 'text',
-				text: 'Learn more on ',
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'text_line',
+						content: [
+							{
+								type: 'text',
+								text: 'Learn more on ',
+							},
+							{
+								type: 'text',
+								text: 'our website',
+								marks: [{ type: 'link', attrs: { href: 'https://www.vonage.com' } }],
+							},
+						],
+					},
+				],
 			},
-			{
-				type: 'text',
-				text: 'our website',
-				marks: [{ type: 'link', attrs: { href: 'https://www.vonage.com' } }],
-			},
-		]);
+		});
 	});
 </script>
 ```
@@ -501,22 +698,27 @@ Adds support for inline images. This feature does not provide any UI for adding 
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 
 		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature(), new RTEInlineImageFeature()]);
-		rteComponent.instance = config.instantiateEditor([
-			{
-				type: 'paragraph',
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
 				content: [
-					{ type: 'text', text: 'Image: ' },
 					{
-						type: 'inline_image',
-						attrs: {
-							imageUrl: '/assets/images/large.jpg',
-							alt: 'Landscape image',
-							size: '100%',
-						},
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'Image: ' },
+							{
+								type: 'inline_image',
+								attrs: {
+									imageUrl: '/assets/images/large.jpg',
+									alt: 'Landscape image',
+									size: '100%',
+								},
+							},
+						],
 					},
 				],
 			},
-		]);
+		});
 	});
 </script>
 ```
@@ -762,12 +964,15 @@ In this example, we display a drop zone overlay when files are dragged over the 
 				},
 			}),
 		]);
-		rteComponent.instance = config.instantiateEditor([
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
 			{
 				type: 'paragraph',
 				content: [{ type: 'text', text: 'Drag files into the editor.' }],
 			},
-		]);
+		]});
 	});
 </script>
 ```
@@ -791,14 +996,17 @@ You can use the `--editor-padding-inline` and `--editor-padding-block` CSS varia
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 
 		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature()]);
-		rteComponent.instance = config.instantiateEditor(
-			Array(10)
-				.fill(null)
-				.map((_, i) => ({
-					type: 'paragraph',
-					content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
-				}))
-		);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: Array(10)
+					.fill(null)
+					.map((_, i) => ({
+						type: 'paragraph',
+						content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
+					})),
+			},
+		});
 	});
 </script>
 ```
@@ -816,14 +1024,17 @@ Content with `position` of `sticky` / `fixed` / `absolute` is positioned relativ
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 
 		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature()]);
-		rteComponent.instance = config.instantiateEditor(
-			Array(10)
-				.fill(null)
-				.map((_, i) => ({
-					type: 'paragraph',
-					content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
-				}))
-		);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: Array(10)
+					.fill(null)
+					.map((_, i) => ({
+						type: 'paragraph',
+						content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
+					})),
+			},
+		});
 	});
 </script>
 ```
@@ -842,14 +1053,17 @@ Content placed in this slot is displayed between the editor viewport and the too
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 
 		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature()]);
-		rteComponent.instance = config.instantiateEditor(
-			Array(10)
-				.fill(null)
-				.map((_, i) => ({
-					type: 'paragraph',
-					content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
-				}))
-		);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: Array(10)
+					.fill(null)
+					.map((_, i) => ({
+						type: 'paragraph',
+						content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
+					})),
+			},
+		});
 	});
 </script>
 ```
@@ -871,14 +1085,17 @@ The `editorViewportElement` property provides access to the scrollable editor vi
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 
 		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature()]);
-		rteComponent.instance = config.instantiateEditor(
-			Array(10)
-				.fill(null)
-				.map((_, i) => ({
-					type: 'paragraph',
-					content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
-				}))
-		);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: Array(10)
+					.fill(null)
+					.map((_, i) => ({
+						type: 'paragraph',
+						content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
+					})),
+			},
+		});
 
 		const slottedContent = document.querySelector('[slot="editor-start"]');
 		const status = document.querySelector('[slot="status"]');

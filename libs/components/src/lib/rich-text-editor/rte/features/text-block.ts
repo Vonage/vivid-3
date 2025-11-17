@@ -1,15 +1,12 @@
 import { Node, type NodeSpec } from 'prosemirror-model';
 import { type Command, EditorState } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
-import {
-	createOption,
-	createSelect,
-	type ToolbarItemSpec,
-} from '../utils/toolbar-items';
+import { createOption, createSelect } from '../utils/toolbar-items';
 import {
 	type PluginContribution,
 	RTEFeature,
 	type SchemaContribution,
+	type ToolbarItemContribution,
 } from '../feature';
 import type { TextblockAttrs } from '../utils/textblock-attrs';
 import type { RTEInstance } from '../instance';
@@ -56,6 +53,8 @@ const specBlockKey = (spec: ParagraphSpec | HeadingSpec): string => {
 };
 
 export class RTETextBlockStructure extends RTEFeature {
+	protected name = 'RTETextBlockStructure';
+
 	private blockTypeByKey = new Map<string, BlockTypeSpec>();
 	private defaultBlockType: BlockTypeSpec;
 	private blockTypes: BlockTypeSpec[];
@@ -94,7 +93,7 @@ export class RTETextBlockStructure extends RTEFeature {
 	}
 
 	override getStyles() {
-		return [{ css: textBlockCss }];
+		return [this.contribution(textBlockCss)];
 	}
 
 	override getSchema(textblockAttrs: TextblockAttrs): SchemaContribution[] {
@@ -170,39 +169,37 @@ export class RTETextBlockStructure extends RTEFeature {
 			: {};
 
 		return [
-			{
-				schema: {
-					nodes: {
-						// First block in schema becomes the default block type
-						...(isParagraphDefault
-							? {
-									...paragraphNode,
-									...headingNode,
-							  }
-							: {
-									...headingNode,
-									...paragraphNode,
-							  }),
+			this.contribution({
+				nodes: {
+					// First block in schema becomes the default block type
+					...(isParagraphDefault
+						? {
+								...paragraphNode,
+								...headingNode,
+						  }
+						: {
+								...headingNode,
+								...paragraphNode,
+						  }),
 
-						text: {
-							group: 'inline',
-						},
-						hard_break: {
-							inline: true,
-							group: 'inline',
-							selectable: false,
-							parseDOM: [{ tag: 'br' }],
-							toDOM() {
-								return ['br'];
-							},
-						},
-
-						doc: {
-							content: 'block+',
+					text: {
+						group: 'inline',
+					},
+					hard_break: {
+						inline: true,
+						group: 'inline',
+						selectable: false,
+						parseDOM: [{ tag: 'br' }],
+						toDOM() {
+							return ['br'];
 						},
 					},
+
+					doc: {
+						content: 'block+',
+					},
 				},
-			},
+			}),
 		];
 		/* v8 ignore end */
 	}
@@ -238,7 +235,36 @@ export class RTETextBlockStructure extends RTEFeature {
 			keyBindings[`Mod-Alt-${level}`] = this.setBlockType(rte, headingBlock.id);
 		}
 
-		return [{ plugin: keymap(keyBindings) }];
+		return [this.contribution(keymap(keyBindings))];
+	}
+
+	override getToolbarItems(rte: RTEInstance): ToolbarItemContribution[] {
+		return [
+			this.contribution(
+				{
+					section: 'font',
+					render: (ctx) => {
+						return createSelect(ctx, {
+							label: () => ctx.rte.getLocale().richTextEditor.paragraphStyles,
+							value: (ctx) => this.getCurrentBlockType(ctx.view.state) ?? '',
+							onSelect: (value: string) => {
+								const { state, dispatch } = ctx.view;
+								this.setBlockType(rte, value)(state, dispatch);
+							},
+							children: this.blockTypes.map((bt) =>
+								createOption(ctx, {
+									text: bt.label,
+									value: bt.id,
+									disabled: () =>
+										!this.setBlockType(rte, bt.id)(ctx.view.state),
+								})
+							),
+						});
+					},
+				},
+				1
+			),
+		];
 	}
 
 	getCurrentBlockType(state: EditorState) {
@@ -298,31 +324,5 @@ export class RTETextBlockStructure extends RTEFeature {
 			dispatch?.(tr);
 			return true;
 		};
-	}
-
-	override getToolbarItems(rte: RTEInstance): ToolbarItemSpec[] {
-		return [
-			{
-				section: 'font',
-				order: 1,
-				render: (ctx) => {
-					return createSelect(ctx, {
-						label: () => ctx.rte.getLocale().richTextEditor.paragraphStyles,
-						value: (ctx) => this.getCurrentBlockType(ctx.view.state) ?? '',
-						onSelect: (value: string) => {
-							const { state, dispatch } = ctx.view;
-							this.setBlockType(rte, value)(state, dispatch);
-						},
-						children: this.blockTypes.map((bt) =>
-							createOption(ctx, {
-								text: bt.label,
-								value: bt.id,
-								disabled: () => !this.setBlockType(rte, bt.id)(ctx.view.state),
-							})
-						),
-					});
-				},
-			},
-		];
 	}
 }

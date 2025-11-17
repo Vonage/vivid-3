@@ -553,7 +553,7 @@
 	},
 	{
 		"title": "Rich Text Editor",
-		"description": "Represents a rich-text-editor custom element.",
+		"description": "Lets users create and format styled text content, and embed rich media such as links and images.",
 		"variations": "./libs/components/src/lib/rich-text-editor/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/rich-text-editor/GUIDELINES.md",
 		"hideGuidelines": "true",

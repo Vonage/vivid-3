@@ -44,8 +44,6 @@ export class ToolbarCtx {
 
 export interface ToolbarItemSpec {
 	section: 'history' | 'font' | 'text-style' | 'textblock' | 'insert';
-	order: number;
-
 	render(ctx: ToolbarCtx): HTMLElement | DocumentFragment;
 }
 
