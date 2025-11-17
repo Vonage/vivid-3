@@ -280,6 +280,8 @@ const zhCN: Locale = {
 		selectionSuccessMessage: /* istanbul ignore next */ (
 			value: string
 		): string => `已选择颜色 ${value}。`,
+		maxSwatchesMessage: /* istanbul ignore next */ (total, limit): string =>
+			`已保存 ${limit} 种颜色中的 ${total} 种。`,
 	},
 };
 

@@ -124,7 +124,9 @@ function renderPopupBody(
 				>
 					<input name="hex-code-input" aria-label="${(x) =>
 						x.locale.colorPicker.hexInputLabel}" 
-						placeholder="${(x) => x.placeholder}" part="input">
+						placeholder="${(x) => x.placeholder}"
+    				@blur="${(x, c) => c.event.stopImmediatePropagation()}"
+						part="input">
 				</${html.partial(vcInputTag)}>
 				<${tooltipTag} placement="top" 
 					text="${(x) => x.locale.colorPicker.copyButtonLabel}" 
@@ -148,11 +150,14 @@ function renderPopupFooter(
 ) {
 	return html<ColorPicker>`
 		<div class="footer">
-			<span class="footer-title" id="color-picker-footer-title"
-				><slot name="swatches-text"
-					>${(x) => x.locale.colorPicker.swatchesLabel}</slot
-				></span
-			>
+			<div class="footer-header">
+				<span class="footer-title" id="color-picker-footer-title"
+					><slot name="swatches-text"
+						>${(x) => x.locale.colorPicker.swatchesLabel}</slot
+					></span
+				>
+				${when((x) => !x.disableSavedColors, renderSwatchesCount())}
+			</div>
 			<div
 				class="palette"
 				role="grid"
@@ -188,7 +193,6 @@ function renderPopupFooter(
 										x.allSwatches.length,
 										true
 									)}">
-							>
 								<${iconTag} slot="icon" name="plus-line"></${iconTag}>
 							</${buttonTag}>
 						</${tooltipTag}>
@@ -196,6 +200,21 @@ function renderPopupFooter(
 				)}
 			</div>
 		</div>
+	`;
+}
+
+function renderSwatchesCount() {
+	return html<ColorPicker>`
+		<span
+			id="swatches-count"
+			class="swatches-count"
+			aria-label="${(x) =>
+				x.locale.colorPicker.maxSwatchesMessage(
+					x.allSwatches.length,
+					x.maxSwatches!
+				)}"
+			>${(x) => `${x.allSwatches.length}/${x.maxSwatches}`}</span
+		>
 	`;
 }
 

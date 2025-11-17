@@ -19,5 +19,6 @@
 		"@repo/vitest-config": "*",
 		"style-dictionary": "^5.1.1",
 		"tsx": "^4.19.4"
-	}
+	},
+	"version": "5.5.0"
 }
