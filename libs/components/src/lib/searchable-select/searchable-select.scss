@@ -18,8 +18,7 @@
 @use 'partials/variables' as variables;
 @use '@repo/shared/mixins/border-radius' as border-radius-variables;
 @use '../../shared/patterns/chevron' as chevron;
-@use '../../shared/patterns/form-elements/with-contextual-help' as
-	contextual-help;
+@forward '../../shared/patterns/form-elements/with-contextual-help';
 
 $low-ink-color: --_low-ink-color;
 
@@ -201,5 +200,3 @@ slot[name='icon'] {
 	margin-block: 10px;
 	margin-inline: 12px;
 }
-
-@include contextual-help.label-wrapper;

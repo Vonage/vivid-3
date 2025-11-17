@@ -34,20 +34,20 @@ function renderLabel() {
 export const TextAreaTemplate = (context: VividElementDefinitionContext) => {
 	return html`
 		<div class="${getClasses}">
+			${when(
+				(x) => x.charCount && x.maxlength,
+				(x) => x._getCharCountTemplate(context) as any
+			)}
 			<div
-				class="label-suffix"
-				?hidden=${(x) => !(x.charCount && x.maxlength) && !x._hasContextualHelp}
+				class="label-wrapper"
+				?hidden=${(x) => !x.label && !x._hasContextualHelp}
 			>
-				${when(
-					(x) => x.charCount && x.maxlength,
-					(x) => x._getCharCountTemplate(context) as any
-				)}
+				${when((x) => x.label, renderLabel())}
 				<slot
 					name="contextual-help"
 					${slotted('_contextualHelpSlottedContent')}
 				></slot>
 			</div>
-			${when((x) => x.label, renderLabel())}
 			<textarea
 				class="control"
 				id="control"

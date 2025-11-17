@@ -60,11 +60,16 @@ function renderInput(context: VividElementDefinitionContext) {
 	const chevronTemplate = chevronTemplateFactory(context);
 
 	return html<Combobox>` <div class="${getStateClasses}" ${ref('_anchor')}>
-		${when((x) => x.label, renderLabel())}
-		<slot
-			name="contextual-help"
-			${slotted('_contextualHelpSlottedContent')}
-		></slot>
+		<div
+			class="label-wrapper"
+			?hidden=${(x) => !x.label && !x._hasContextualHelp}
+		>
+			${when((x) => x.label, renderLabel())}
+			<slot
+				name="contextual-help"
+				${slotted('_contextualHelpSlottedContent')}
+			></slot>
+		</div>
 		<div class="fieldset">
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
 			<div class="wrapper">
