@@ -1,18 +1,21 @@
-@use '@repo/tokens/scss/tokens.constants' as constants;
-@use '@repo/shared/mixins/scrollbar' as scrollbar;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
 
 .ProseMirror {
-	--editor-padding-block: 8px;
-	--editor-padding-inline: 16px;
-
 	flex: 1;
 	padding: var(--editor-padding-block) var(--editor-padding-inline);
-	background-color: var(#{constants.$vvd-color-canvas});
-	color: var(#{constants.$vvd-color-canvas-text});
-	font: var(#{constants.$vvd-typography-base});
 	line-height: 20px; // Required for placeholder
 	outline: none;
-	overflow-y: auto;
+}
 
-	@include scrollbar.scrollbar;
+.ProseMirror-selectednode {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+	#{focus-variables.$focus-border-radius}: 2px;
+
+	position: relative;
+	outline: none;
+
+	&::after {
+		@include focus.focus-in-pseudo-element;
+	}
 }

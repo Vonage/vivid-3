@@ -231,6 +231,11 @@ const deDE: Locale = {
 		edit: 'Bearbeiten',
 		delete: 'Löschen',
 		clickHere: 'Hier klicken',
+		imageSizes: {
+			small: 'Klein',
+			fit: 'Anpassen',
+			original: 'Originalgröße',
+		},
 	},
 	button: {
 		pendingLabel: 'Laden...',

@@ -45,6 +45,11 @@ export class RichTextEditor extends WithObservableLocale(VividElement) {
 	 */
 	_editorEl!: HTMLDivElement;
 
+	/**
+	 * The viewport wraps the scrollable content of the editor.
+	 */
+	editorViewportElement?: HTMLElement;
+
 	private _view?: EditorView;
 
 	private _initViewIfNeeded() {

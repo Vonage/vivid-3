@@ -77,6 +77,17 @@ export class RTEConfig {
 			.toJSON().content;
 	}
 
+	parseHTMLSlice(html: string): RTEDocument {
+		const parser = DOMParser.fromSchema(this.schema);
+		return (
+			parser
+				.parseSlice(
+					new window.DOMParser().parseFromString(html, 'text/html').body
+				)
+				.toJSON()?.content ?? []
+		);
+	}
+
 	toHTML(doc: RTEDocument): string {
 		const serializer = DOMSerializer.fromSchema(this.schema);
 		const node = this.schema.nodeFromJSON({
