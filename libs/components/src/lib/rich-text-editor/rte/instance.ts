@@ -61,7 +61,7 @@ export class RTEInstance {
 	}
 
 	getDoc(): RTEDocument {
-		return this.state.doc.toJSON().content;
+		return this.state.doc.content.toJSON();
 	}
 
 	setDoc(newDoc: RTEDocument) {
@@ -90,11 +90,11 @@ export class RTEInstance {
 		return this.state.tr;
 	}
 
-	dispatchTransaction(tr: any) {
+	dispatchTransaction = (tr: any) => {
 		this.state = this.state.apply(tr);
 		this.view?.updateState(this.state);
 		return this.state;
-	}
+	};
 
 	hostState(): HostState {
 		const state = hostBridgePlugin.getState(this.state);

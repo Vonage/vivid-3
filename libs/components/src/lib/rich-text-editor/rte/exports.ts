@@ -13,3 +13,6 @@ export { RTETextColorFeature } from './features/text-color';
 export { RTEListFeature } from './features/list';
 export { RTEAlignmentFeature } from './features/alignment';
 export { RTELinkFeature } from './features/link';
+export { RTEInlineImageFeature } from './features/inline-image';
+export { RTEFileHandlerFeature } from './features/file-handler';
+export { RTEDropHandlerFeature } from './features/drop-handler';

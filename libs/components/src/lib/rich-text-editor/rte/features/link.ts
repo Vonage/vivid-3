@@ -103,7 +103,7 @@ export class RTELinkFeature extends RTEFeature {
 											label: () => ctx.rte.getLocale().richTextEditor.close,
 											noTooltip: true,
 											onClick: () => {
-												popup.open = false;
+												popup.requestOpenState(false);
 											},
 										}),
 									],
@@ -146,7 +146,7 @@ export class RTELinkFeature extends RTEFeature {
 													noTooltip: true,
 													onClick: () => {
 														this.toolbarMenu!.open = true;
-														popup.open = false;
+														popup.requestOpenState(false);
 														return true;
 													},
 												}),
@@ -165,7 +165,7 @@ export class RTELinkFeature extends RTEFeature {
 								const state = view.state;
 								ctx.updateBindings();
 								const link = this.getCurrentLink(state);
-								popup.open = Boolean(link);
+								popup.requestOpenState(Boolean(link));
 							},
 							destroy: () => {
 								popup.remove();
