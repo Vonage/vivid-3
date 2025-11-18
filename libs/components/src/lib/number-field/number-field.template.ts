@@ -85,8 +85,10 @@ export const NumberFieldTemplate = (context: VividElementDefinitionContext) => {
 	const visuallyHiddenTag = context.tagFor(VisuallyHidden);
 	return html<NumberField>`
 		<div class="base ${getStateClasses}">
-			${when((x) => x.label, renderLabel())}
-			<slot name="contextual-help" ${slotted('_contextualHelpSlottedContent')}></slot>
+			<div class="label-wrapper" ?hidden=${(x) => !x.label && !x._hasContextualHelp}>
+				${when((x) => x.label, renderLabel())}
+				<slot name="contextual-help" ${slotted('_contextualHelpSlottedContent')}></slot>
+			</div>
 			<div class="fieldset">
 				<div class="wrapper">
 					<input

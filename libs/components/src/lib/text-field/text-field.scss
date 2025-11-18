@@ -17,8 +17,7 @@
 );
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/tokens/scss/size.variables' as size;
-@use '../../shared/patterns/form-elements/with-contextual-help' as
-	contextual-help;
+@forward '../../shared/patterns/form-elements/with-contextual-help';
 
 $low-ink-color: --_low-ink-color;
 
@@ -89,7 +88,6 @@ $low-ink-color: --_low-ink-color;
 	padding: initial !important;
 	margin: initial !important;
 	color: var(#{constants.$vvd-color-canvas-text}) !important;
-	contain: inline-size !important;
 	font: var(#{constants.$vvd-typography-base});
 	grid-column: 1 / 4;
 	grid-row: 1;
@@ -102,6 +100,15 @@ $low-ink-color: --_low-ink-color;
 .char-count {
 	color: var(#{$low-ink-color});
 	font: var(#{constants.$vvd-typography-base});
+}
+
+.label-wrapper {
+	grid-column: 1 / 4;
+	grid-row: 1;
+
+	.char-count + & {
+		grid-column: 1 / 3;
+	}
 }
 
 .fieldset {
@@ -299,5 +306,3 @@ $low-ink-color: --_low-ink-color;
 slot[name='_mirrored-helper-text'] {
 	display: none;
 }
-
-@include contextual-help.label-suffix;

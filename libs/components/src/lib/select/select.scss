@@ -18,8 +18,7 @@
 @use 'partials/variables' as variables;
 @use '@repo/shared/mixins/border-radius' as border-radius-variables;
 @use '../../shared/patterns/chevron' as chevron;
-@use '../../shared/patterns/form-elements/with-contextual-help' as
-	contextual-help;
+@forward '../../shared/patterns/form-elements/with-contextual-help';
 @include chevron.chevron;
 
 $low-ink-color: --_low-ink-color;
@@ -43,7 +42,6 @@ $low-ink-color: --_low-ink-color;
 
 .label {
 	color: var(#{constants.$vvd-color-canvas-text});
-	contain: inline-size;
 	font: var(#{constants.$vvd-typography-base});
 }
 
@@ -178,5 +176,3 @@ $low-ink-color: --_low-ink-color;
 	@include focus.focus;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 }
-
-@include contextual-help.label-wrapper;

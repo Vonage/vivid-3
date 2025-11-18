@@ -17,8 +17,7 @@
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/tokens/scss/size.variables' as size;
 @use '@repo/shared/mixins/scrollbar' as scrollbar;
-@use '../../shared/patterns/form-elements/with-contextual-help' as
-	contextual-help;
+@forward '../../shared/patterns/form-elements/with-contextual-help';
 
 $low-ink-color: --_low-ink-color;
 $outline-width: 2px;
@@ -54,11 +53,13 @@ $outline-width: 2px;
 
 .label {
 	color: var(#{constants.$vvd-color-canvas-text});
-	contain: inline-size;
 	font: var(#{constants.$vvd-typography-base});
+	line-height: 20px;
+}
+
+.label-wrapper {
 	grid-column: 1 / 2;
 	grid-row: 1;
-	line-height: 20px;
 }
 
 .char-count {
@@ -146,5 +147,3 @@ $outline-width: 2px;
 		resize: vertical;
 	}
 }
-
-@include contextual-help.label-suffix;
