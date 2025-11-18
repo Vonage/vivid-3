@@ -229,6 +229,11 @@ const enUS: Locale = {
 		edit: 'Edit',
 		delete: 'Delete',
 		clickHere: 'Click here',
+		imageSizes: {
+			small: 'Small',
+			fit: 'Fit',
+			original: 'Original size',
+		},
 	},
 	button: {
 		pendingLabel: 'Loading...',

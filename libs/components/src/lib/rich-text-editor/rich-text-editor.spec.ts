@@ -39,6 +39,17 @@ describe('vwc-rich-text-editor', () => {
 		});
 	});
 
+	describe('editorViewportElement', () => {
+		it('should be the viewport element', async () => {
+			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
+			element.instance = config.instantiateEditor();
+
+			expect(element.editorViewportElement).toBe(
+				element.shadowRoot!.querySelector('.editor-viewport')
+			);
+		});
+	});
+
 	describe('instance', () => {
 		it('should not render an editor without instance', async () => {
 			expect(getEditor().childElementCount).toBe(0);
