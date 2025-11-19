@@ -4,7 +4,11 @@ import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { VisuallyHidden } from '../visually-hidden/visually-hidden';
 import { applyHostSemantics } from '../../shared/aria/host-semantics';
-import { DataGridCellRole, DataGridCellSortStates } from './data-grid.options';
+import {
+	DataGridCellRole,
+	DataGridCellSortStates,
+	DataGridCellTypes,
+} from './data-grid.options';
 import type { DataGridCell } from './data-grid-cell';
 
 function shouldShowSortIcons(x: DataGridCell): boolean {
@@ -49,6 +53,42 @@ function renderSortIcons<T extends DataGridCell>(
 	`;
 }
 
+function shouldAnnounceSortState(x: DataGridCell): boolean {
+	return (
+		x.cellType === DataGridCellTypes.columnHeader &&
+		x.sortDirection !== undefined
+	);
+}
+
+function getSortStateKey(x: DataGridCell): DataGridCellSortStates {
+	return x.sortDirection ?? DataGridCellSortStates.none;
+}
+
+function getLocalizedSortStatus(x: DataGridCell): string {
+	const direction = getSortStateKey(x);
+	const sortStatus = x.locale.dataGrid.cell.sortStatus;
+	return (
+		sortStatus?.[direction] ?? sortStatus?.[DataGridCellSortStates.none] ?? ''
+	);
+}
+
+function getLocalizedSortInstruction(x: DataGridCell): string {
+	const direction = getSortStateKey(x);
+	const sortInstruction = x.locale.dataGrid.cell.sortInstruction;
+	return (
+		sortInstruction?.[direction] ??
+		sortInstruction?.[DataGridCellSortStates.none] ??
+		''
+	);
+}
+
+function getSortAnnouncement(x: DataGridCell): string {
+	return [getLocalizedSortStatus(x), getLocalizedSortInstruction(x)]
+		.filter((part) => !!part)
+		.join(' ')
+		.trim();
+}
+
 function handleKeyDown<T extends DataGridCell>(x: T, e: KeyboardEvent) {
 	if (e.key === keyEnter || e.key === keySpace) {
 		x._handleInteraction();
@@ -79,15 +119,30 @@ export const DataGridCellTemplate = (
 			>
 				${(x) =>
 					x.selected
-						? html`<${visuallyHiddenTagName}>${(x) =>
-								x.locale.dataGrid.cell.selected}</${visuallyHiddenTagName}>`
+						? html`<${visuallyHiddenTagName}
+								data-announcement="selection"
+							>
+								${(x) => x.locale.dataGrid.cell.selected}
+							</${visuallyHiddenTagName}>`
 						: null}
 				<slot></slot>
 				${when(
 					shouldShowSortIcons,
-					html`<${visuallyHiddenTagName}>${(x: DataGridCell) =>
-						x.locale.dataGrid.cell.button}</${visuallyHiddenTagName}>
+					html`<${visuallyHiddenTagName}
+							data-announcement="button-role"
+						>
+							${(x: DataGridCell) => x.locale.dataGrid.cell.button}
+						</${visuallyHiddenTagName}>
 					`
+				)}
+				${when(
+					shouldAnnounceSortState,
+					html`<${visuallyHiddenTagName}
+							aria-live="polite"
+							data-announcement="sort-state"
+						>
+							${getSortAnnouncement}
+						</${visuallyHiddenTagName}>`
 				)}
 				${(_) => renderSortIcons(context)}
 			</div>

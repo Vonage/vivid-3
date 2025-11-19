@@ -235,6 +235,18 @@ const enUS: Locale = {
 		cell: {
 			selected: 'Selected',
 			button: '(button)',
+			sortStatus: {
+				ascending: 'Sorted ascending.',
+				descending: 'Sorted descending.',
+				none: 'Not sorted.',
+				other: 'Custom sort applied.',
+			},
+			sortInstruction: {
+				ascending: 'Click to sort descending.',
+				descending: 'Click to un-sort.',
+				none: 'Click to sort ascending.',
+				other: 'Click to reset sorting.',
+			},
 		},
 	},
 	pagination: {

@@ -235,6 +235,18 @@ const jaJP: Locale = {
 		cell: {
 			selected: '選択済み',
 			button: '（ボタン）',
+			sortStatus: {
+				ascending: '昇順で並べ替えています。',
+				descending: '降順で並べ替えています。',
+				none: '並べ替えは適用されていません。',
+				other: 'カスタムの並べ替えが適用されています。',
+			},
+			sortInstruction: {
+				ascending: 'クリックすると降順で並べ替えます。',
+				descending: 'クリックすると並べ替えを解除します。',
+				none: 'クリックすると昇順で並べ替えます。',
+				other: 'クリックすると並べ替えをリセットします。',
+			},
 		},
 	},
 	pagination: {
