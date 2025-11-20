@@ -6,7 +6,7 @@ import {
 	type TagParseRule,
 } from 'prosemirror-model';
 import DOMPurify from 'dompurify';
-import type { RTEConfig } from './config';
+import { type RTEConfig, RTEConfigImpl } from './config';
 import type { RTEDocument, RTEFragment } from './document';
 import { impl } from './utils/impl';
 
@@ -55,7 +55,7 @@ export class RTEHtmlParser {
 	[impl]: RTEHtmlParserImpl;
 
 	constructor(config: RTEConfig, options?: RTEHtmlParserOptions) {
-		this[impl] = new RTEHtmlParserImpl(config, options);
+		this[impl] = new RTEHtmlParserImpl(config[impl], options);
 	}
 
 	/**
@@ -96,7 +96,7 @@ export class RTEHtmlParser {
 class RTEHtmlParserImpl {
 	parser: DOMParser;
 
-	constructor(config: RTEConfig, options?: RTEHtmlParserOptions) {
+	constructor(config: RTEConfigImpl, options?: RTEHtmlParserOptions) {
 		const rules = parseRulesFromSchema(config.schema);
 		options?.modifyParseRules?.(rules);
 		this.parser = buildDomParser(config.schema, rules);

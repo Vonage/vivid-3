@@ -7,7 +7,11 @@ import { RTELinkFeature } from './features/link';
 import { docFactories } from './__tests__/doc-factories';
 import { RTEItalicFeature } from './features/italic';
 import { RTEInlineImageFeature } from './features/inline-image';
-import { RTEFeature, type SchemaContribution } from './feature';
+import {
+	featureFacade,
+	RTEFeatureImpl,
+	type SchemaContribution,
+} from './feature';
 
 const config = new RTEConfig([
 	new RTECore(),
@@ -94,7 +98,7 @@ describe('RTEHtmlParser', () => {
 	});
 
 	it('should default nodes and marks with no default parse to an empty array', async () => {
-		class DummyFeature extends RTEFeature {
+		class DummyFeatureImpl extends RTEFeatureImpl {
 			protected name = 'DummyFeature';
 
 			override getSchema(): SchemaContribution[] {
@@ -110,6 +114,7 @@ describe('RTEHtmlParser', () => {
 				];
 			}
 		}
+		const DummyFeature = featureFacade(DummyFeatureImpl);
 		let parseRules;
 		// eslint-disable-next-line no-new
 		new RTEHtmlParser(

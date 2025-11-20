@@ -3,6 +3,7 @@ import { RTECore } from './features/core';
 import { RTEFreeformStructure } from './features/freeform';
 import { docFactories } from './__tests__/doc-factories';
 import { setup } from './__tests__/test-utils';
+import { impl } from './utils/impl';
 
 const { doc, text_line: line, text } = docFactories;
 const features = [new RTECore(), new RTEFreeformStructure()];
@@ -190,7 +191,7 @@ describe('RTEInstance', () => {
 	describe('hostState', () => {
 		it('should throw an error when host state has not been set', () => {
 			const config = new RTEConfig(features);
-			const instance = config.instantiateEditor();
+			const instance = config.instantiateEditor()[impl];
 			expect(() => instance.hostState()).toThrowError(
 				'No host state available'
 			);
@@ -198,7 +199,7 @@ describe('RTEInstance', () => {
 
 		it('should return host state when it has been set', () => {
 			const config = new RTEConfig(features);
-			const instance = config.instantiateEditor();
+			const instance = config.instantiateEditor()[impl];
 			const hostState = {} as any;
 
 			instance.updateHostState(hostState);

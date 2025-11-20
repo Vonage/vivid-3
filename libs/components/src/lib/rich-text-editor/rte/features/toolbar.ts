@@ -4,18 +4,18 @@ import {
 	ToolbarCtx,
 	type ToolbarItemSpec,
 } from '../utils/toolbar-items';
-import { RTEInstance } from '../instance';
-import { RTEFeature, sortedContributions } from '../feature';
+import { RTEInstanceImpl } from '../instance';
+import { featureFacade, RTEFeatureImpl, sortedContributions } from '../feature';
 import toolbarCss from './toolbar.style.scss?inline';
 
-export class RTEToolbarFeature extends RTEFeature {
+export class RTEToolbarFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEToolbarFeature';
 
 	override getStyles() {
 		return [this.contribution(toolbarCss)];
 	}
 
-	override getPlugins(rte: RTEInstance) {
+	override getPlugins(rte: RTEInstanceImpl) {
 		const sections = [
 			'history',
 			'font',
@@ -72,3 +72,5 @@ export class RTEToolbarFeature extends RTEFeature {
 		];
 	}
 }
+
+export const RTEToolbarFeature = featureFacade(RTEToolbarFeatureImpl);

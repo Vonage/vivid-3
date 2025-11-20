@@ -14,10 +14,11 @@ import {
 	createTextField,
 	ToolbarCtx,
 } from '../utils/toolbar-items';
-import { RTEInstance } from '../instance';
+import { RTEInstanceImpl } from '../instance';
 import {
+	featureFacade,
 	type PluginContribution,
-	RTEFeature,
+	RTEFeatureImpl,
 	type SchemaContribution,
 	type StyleContribution,
 	type ToolbarItemContribution,
@@ -27,7 +28,7 @@ import type { Menu } from '../../../menu/menu';
 import type { Button } from '../../../button/button';
 import linkCss from './link.style.scss?inline';
 
-export class RTELinkFeature extends RTEFeature {
+export class RTELinkFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTELinkFeature';
 
 	override getStyles(): StyleContribution[] {
@@ -63,7 +64,7 @@ export class RTELinkFeature extends RTEFeature {
 		];
 	}
 
-	override getPlugins(rte: RTEInstance): PluginContribution[] {
+	override getPlugins(rte: RTEInstanceImpl): PluginContribution[] {
 		return [
 			this.contribution(
 				new Plugin({
@@ -179,7 +180,7 @@ export class RTELinkFeature extends RTEFeature {
 
 	protected toolbarMenu?: Menu;
 
-	override getToolbarItems(rte: RTEInstance): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
 		const getSelectionText = (state: EditorState) => {
 			const { from, to } = state.selection;
 			if (from === to) {
@@ -334,7 +335,7 @@ export class RTELinkFeature extends RTEFeature {
 		return true;
 	};
 
-	insertLink(rte: RTEInstance, href: string, text: string): Command {
+	insertLink(rte: RTEInstanceImpl, href: string, text: string): Command {
 		return (state, dispatch) => {
 			let { from, to } = state.selection;
 			const tr = state.tr;
@@ -357,3 +358,5 @@ export class RTELinkFeature extends RTEFeature {
 		};
 	}
 }
+
+export const RTELinkFeature = featureFacade(RTELinkFeatureImpl);

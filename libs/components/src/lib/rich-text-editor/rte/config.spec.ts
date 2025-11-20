@@ -5,6 +5,7 @@ import { RTEFreeformStructure } from './features/freeform';
 import { RTETextBlockStructure } from './features/text-block';
 import { RTEAlignmentFeature } from './features/alignment';
 import { docFactories } from './__tests__/doc-factories';
+import { impl } from './utils/impl';
 
 const { doc, text_line: line } = docFactories;
 
@@ -59,16 +60,16 @@ describe('RTEConfig', () => {
 	describe('instantiateEditor', () => {
 		it('should initialise with an empty document by default', () => {
 			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
-			const rte = config.instantiateEditor();
-			expect(rte.state.doc.toString()).toBe('doc(text_line)');
+			const instance = config.instantiateEditor()[impl];
+			expect(instance.state.doc.toString()).toBe('doc(text_line)');
 		});
 
 		it('should allow passing instance options', () => {
 			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
-			const features = config.instantiateEditor({
+			const instance = config.instantiateEditor({
 				initialDocument: doc(line('Hello world')),
-			});
-			expect(features.state.doc.toString()).toBe(
+			})[impl];
+			expect(instance.state.doc.toString()).toBe(
 				'doc(text_line("Hello world"))'
 			);
 		});

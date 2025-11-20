@@ -3,7 +3,7 @@ import { MarkType } from 'prosemirror-model';
 import { EditorState } from 'prosemirror-state';
 import { toggleMark } from 'prosemirror-commands';
 import { Button } from '../../../button/button';
-import { RTEInstance } from '../instance';
+import { RTEInstanceImpl } from '../instance';
 import { Tooltip } from '../../../tooltip/tooltip';
 import { Menu } from '../../../menu/menu';
 import { MenuItem } from '../../../menu-item/menu-item';
@@ -18,7 +18,7 @@ const isPropBinding = <T>(prop: Prop<T>): prop is (ctx: ToolbarCtx) => T =>
 	typeof prop === 'function';
 
 export class ToolbarCtx {
-	constructor(readonly view: EditorView, readonly rte: RTEInstance) {}
+	constructor(readonly view: EditorView, readonly rte: RTEInstanceImpl) {}
 
 	private bindings: Array<() => void> = [];
 	bindProp<T>(prop: Prop<T>, bindFn: (value: T) => void) {

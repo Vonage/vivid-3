@@ -8,9 +8,10 @@ import {
 	createMenu,
 	createMenuItem,
 } from '../utils/toolbar-items';
-import { RTEInstance } from '../instance';
+import { RTEInstanceImpl } from '../instance';
 import {
-	RTEFeature,
+	featureFacade,
+	RTEFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
@@ -21,7 +22,7 @@ export interface FontSizeSpec {
 	size: string; // CSS font-size value
 }
 
-export class RTEFontSizeFeature extends RTEFeature {
+export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEFontSizeFeature';
 
 	fontSizes: FontSizeSpec[];
@@ -78,7 +79,7 @@ export class RTEFontSizeFeature extends RTEFeature {
 		];
 	}
 
-	override getPlugins(rte: RTEInstance) {
+	override getPlugins(rte: RTEInstanceImpl) {
 		return [
 			/**
 			 * Plugin to adapt the caret height based on a stored fontSize mark.
@@ -127,7 +128,7 @@ export class RTEFontSizeFeature extends RTEFeature {
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstance): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -251,3 +252,5 @@ export class RTEFontSizeFeature extends RTEFeature {
 		};
 	}
 }
+
+export const RTEFontSizeFeature = featureFacade(RTEFontSizeFeatureImpl);

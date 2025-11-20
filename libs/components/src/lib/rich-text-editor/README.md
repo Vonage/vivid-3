@@ -303,7 +303,10 @@ You can use the instance to get and modify the document programmatically.
 		});
 
 		document.querySelector('#reset').addEventListener('click', () => {
-			instance.reset([{ type: 'text_line', content: [{ type: 'text', text: 'Reset content' }] }]);
+			instance.reset({
+				type: 'doc',
+				content: [{ type: 'text_line', content: [{ type: 'text', text: 'Reset content' }] }],
+			});
 		});
 	});
 </script>
