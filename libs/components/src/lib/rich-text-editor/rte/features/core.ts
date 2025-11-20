@@ -19,6 +19,7 @@ import { defaultTextblockForMatch } from '../utils/default-textblock';
 import coreCss from './core.style.scss?inline';
 import { RTEHistoryFeature } from './internal/history';
 import { RTEPlaceholderFeature } from './internal/placeholder';
+import { RTEForeignHtmlFeature } from './internal/foreign-html';
 
 export interface HostState {
 	ctx: VividElementDefinitionContext;
@@ -90,6 +91,11 @@ export class RTECore extends RTEFeature {
 	}
 
 	override getFeatures(): RTEFeature[] {
-		return [this, new RTEHistoryFeature(), new RTEPlaceholderFeature()];
+		return [
+			this,
+			new RTEHistoryFeature(),
+			new RTEPlaceholderFeature(),
+			new RTEForeignHtmlFeature(),
+		];
 	}
 }

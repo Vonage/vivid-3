@@ -43,19 +43,20 @@
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEFontSizeFeature(), new RTEBoldFeature(), new RTEItalicFeature(), new RTEUnderlineFeature(), new RTEStrikethroughFeature(), new RTEMonospaceFeature(), new RTETextColorFeature({ defaultColor: '#000000' }), new RTEListFeature(), new RTELinkFeature()]);
 		rteComponent.instance = config.instantiateEditor({
-		initialDocument: {
+			initialDocument: {
 				type: 'doc',
 				content: [
 					{
 						type: 'text_line',
 						content: [{ type: 'text', text: 'First line' }],
-					}
-			{
-				type: 'text_line',
-				content: [{ type: 'text', text: 'Second line' }],
+					},
+					{
+						type: 'text_line',
+						content: [{ type: 'text', text: 'Second line' }],
+					},
+				],
 			},
-		]
-	}});
+		});
 	});
 </script>
 ```
