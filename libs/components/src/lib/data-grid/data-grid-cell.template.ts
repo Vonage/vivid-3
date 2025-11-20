@@ -67,19 +67,13 @@ function getSortStateKey(x: DataGridCell): DataGridCellSortStates {
 function getLocalizedSortStatus(x: DataGridCell): string {
 	const direction = getSortStateKey(x);
 	const sortStatus = x.locale.dataGrid.cell.sortStatus;
-	return (
-		sortStatus?.[direction] ?? sortStatus?.[DataGridCellSortStates.none] ?? ''
-	);
+	return sortStatus?.[direction];
 }
 
 function getLocalizedSortInstruction(x: DataGridCell): string {
 	const direction = getSortStateKey(x);
 	const sortInstruction = x.locale.dataGrid.cell.sortInstruction;
-	return (
-		sortInstruction?.[direction] ??
-		sortInstruction?.[DataGridCellSortStates.none] ??
-		''
-	);
+	return sortInstruction?.[direction];
 }
 
 function getSortAnnouncement(x: DataGridCell): string {

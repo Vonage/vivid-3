@@ -1,7 +1,8 @@
 import { html } from '@microsoft/fast-element';
 import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import type { Mock } from 'vitest';
-import { currentLocale } from '../../shared/localization';
+import { currentLocale, setLocale } from '../../shared/localization';
+import enUS from '../../locales/en-US';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellSortStates } from './data-grid.options';
 import '.';
@@ -566,6 +567,7 @@ describe('vwc-data-grid-cell', () => {
 
 	describe('sort announcements', () => {
 		beforeEach(() => {
+			setLocale(enUS);
 			element.cellType = 'columnheader';
 			element.columnDefinition = {
 				columnDataKey: 'Name',
