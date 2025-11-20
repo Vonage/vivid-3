@@ -3,22 +3,22 @@
 const textFactory = (marks: any[] = []) => {
 	const factory = (text: string) => ({
 		type: 'text',
-		marks,
+		...(marks.length ? { marks } : {}),
 		text,
 	});
 	factory.marks = (...newMarks: any[]) => textFactory([...marks, ...newMarks]);
 	return factory;
 };
 
-const nodeFactory = (
-	type: string,
+const nodeFactory = <TName extends string>(
+	type: TName,
 	attrs: Record<string, any> = {},
 	marks: any[] = []
 ) => {
 	const factory = (...content: any[]) => ({
 		type,
-		attrs,
-		marks,
+		...(Object.keys(attrs).length ? { attrs } : {}),
+		...(marks.length ? { marks } : {}),
 		content: content.map((v) =>
 			typeof v === 'string' ? { type: 'text', text: v } : v
 		),
@@ -36,6 +36,7 @@ const markFactory = (type: string) => (attrs?: Record<string, any>) => ({
 });
 
 export const docFactories = {
+	doc: nodeFactory('doc'),
 	text: textFactory(),
 	bullet_list: nodeFactory('bullet_list'),
 	numbered_list: nodeFactory('numbered_list'),

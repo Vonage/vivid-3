@@ -1,7 +1,7 @@
 import { Node } from 'prosemirror-model';
 
 /**
- * An attribute applies to all textblock nodes.
+ * An attribute that applies to all textblock nodes.
  */
 export interface TextblockAttrSpec {
 	name: string;

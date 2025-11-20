@@ -1,4 +1,3 @@
-import { type MarkSpec } from 'prosemirror-model';
 import {
 	type Command,
 	type EditorState,
@@ -14,13 +13,14 @@ import {
 	createText,
 	createTextField,
 	ToolbarCtx,
-	type ToolbarItemSpec,
 } from '../utils/toolbar-items';
 import { RTEInstance } from '../instance';
 import {
 	type PluginContribution,
 	RTEFeature,
+	type SchemaContribution,
 	type StyleContribution,
+	type ToolbarItemContribution,
 } from '../feature';
 import { Popover } from '../../popover';
 import type { Menu } from '../../../menu/menu';
@@ -28,45 +28,45 @@ import type { Button } from '../../../button/button';
 import linkCss from './link.style.scss?inline';
 
 export class RTELinkFeature extends RTEFeature {
+	protected name = 'RTELinkFeature';
+
 	override getStyles(): StyleContribution[] {
-		return [{ css: linkCss }];
+		return [this.contribution(linkCss)];
 	}
 
-	override getSchema() {
+	override getSchema(): SchemaContribution[] {
 		return [
-			{
-				schema: {
-					marks: {
-						link: {
-							attrs: {
-								href: { validate: 'string' },
-							},
-							inclusive: false,
-							parseDOM: [
-								{
-									tag: 'a[href]',
-									getAttrs(dom: HTMLElement) {
-										return {
-											href: dom.getAttribute('href'),
-										};
-									},
+			this.contribution({
+				marks: {
+					link: {
+						attrs: {
+							href: { validate: 'string' },
+						},
+						inclusive: false,
+						parseDOM: [
+							{
+								tag: 'a[href]',
+								getAttrs(dom: HTMLElement) {
+									return {
+										href: dom.getAttribute('href'),
+									};
 								},
-							],
-							toDOM(node) {
-								const { href } = node.attrs;
-								return ['a', { href }, 0];
 							},
-						} as MarkSpec,
+						],
+						toDOM(node) {
+							const { href } = node.attrs;
+							return ['a', { href }, 0];
+						},
 					},
 				},
-			},
+			}),
 		];
 	}
 
 	override getPlugins(rte: RTEInstance): PluginContribution[] {
 		return [
-			{
-				plugin: new Plugin({
+			this.contribution(
+				new Plugin({
 					props: {
 						decorations: (state) => {
 							const link = this.getCurrentLink(state);
@@ -172,8 +172,126 @@ export class RTELinkFeature extends RTEFeature {
 							},
 						};
 					},
-				}),
-			},
+				})
+			),
+		];
+	}
+
+	protected toolbarMenu?: Menu;
+
+	override getToolbarItems(rte: RTEInstance): ToolbarItemContribution[] {
+		const getSelectionText = (state: EditorState) => {
+			const { from, to } = state.selection;
+			if (from === to) {
+				return '';
+			}
+			return state.doc.textBetween(from, to, ' ');
+		};
+
+		const isValidUrl = (url: string): boolean => {
+			try {
+				// eslint-disable-next-line no-new
+				new URL(url);
+				return true;
+			} catch (e) {
+				return false;
+			}
+		};
+
+		return [
+			this.contribution(
+				{
+					section: 'insert',
+					render: (ctx) => {
+						const textField = createTextField(ctx, {
+							label: () => ctx.rte.getLocale().richTextEditor.linkText,
+							placeholder: () =>
+								ctx.rte.getLocale().richTextEditor.linkTextPlaceholder,
+							slot: 'header',
+							autofocus: true,
+							value: () =>
+								this.getCurrentLink(ctx.view.state)?.text ||
+								getSelectionText(ctx.view.state) ||
+								'',
+							onInput: () => {
+								updateValidation();
+							},
+						});
+
+						const urlField = createTextField(ctx, {
+							label: () => ctx.rte.getLocale().richTextEditor.linkUrl,
+							type: 'url',
+							placeholder: () =>
+								ctx.rte.getLocale().richTextEditor.linkUrlPlaceholder,
+							slot: 'header',
+							value: () => this.getCurrentLink(ctx.view.state)?.href || '',
+							onInput: () => {
+								updateValidation();
+							},
+						});
+
+						const applyButton = createButton(ctx, {
+							label: () => ctx.rte.getLocale().richTextEditor.apply,
+							size: 'condensed',
+							appearance: 'outlined',
+							disabled: () => {
+								const link = this.getCurrentLink(ctx.view.state);
+								return !(link && link.text.length && isValidUrl(link.href));
+							},
+							onClick: () => {
+								const { state, dispatch } = ctx.view;
+								this.insertLink(
+									rte,
+									urlField.value,
+									textField.value
+								)(state, dispatch);
+							},
+						});
+
+						const updateValidation = () => {
+							(applyButton as Button).disabled = !(
+								textField.value.length && isValidUrl(urlField.value)
+							);
+						};
+
+						this.toolbarMenu = createMenu(ctx, {
+							label: () => ctx.rte.getLocale().richTextEditor.hyperlink,
+							trigger: createButton(ctx, {
+								label: () => ctx.rte.getLocale().richTextEditor.hyperlink,
+								icon: 'link-line',
+							}),
+							children: [
+								createDiv(ctx, {
+									className: 'link-toolbar-menu',
+									slot: 'header',
+									children: [
+										textField,
+										urlField,
+										createDiv(ctx, {
+											className: 'link-action-bar',
+											slot: 'header',
+											children: [
+												createButton(ctx, {
+													label: () =>
+														ctx.rte.getLocale().richTextEditor.cancel,
+													size: 'condensed',
+													onClick: () => {
+														this.toolbarMenu!.open = false;
+													},
+												}),
+												applyButton,
+											],
+										}),
+									],
+								}),
+							],
+						});
+
+						return this.toolbarMenu;
+					},
+				},
+				1
+			),
 		];
 	}
 
@@ -237,120 +355,5 @@ export class RTELinkFeature extends RTEFeature {
 			dispatch?.(tr.scrollIntoView());
 			return true;
 		};
-	}
-
-	toolbarMenu?: Menu;
-
-	override getToolbarItems(rte: RTEInstance): ToolbarItemSpec[] {
-		const getSelectionText = (state: EditorState) => {
-			const { from, to } = state.selection;
-			if (from === to) {
-				return '';
-			}
-			return state.doc.textBetween(from, to, ' ');
-		};
-
-		const isValidUrl = (url: string): boolean => {
-			try {
-				// eslint-disable-next-line no-new
-				new URL(url);
-				return true;
-			} catch (e) {
-				return false;
-			}
-		};
-
-		return [
-			{
-				section: 'insert',
-				order: 1,
-				render: (ctx) => {
-					const textField = createTextField(ctx, {
-						label: () => ctx.rte.getLocale().richTextEditor.linkText,
-						placeholder: () =>
-							ctx.rte.getLocale().richTextEditor.linkTextPlaceholder,
-						slot: 'header',
-						autofocus: true,
-						value: () =>
-							this.getCurrentLink(ctx.view.state)?.text ||
-							getSelectionText(ctx.view.state) ||
-							'',
-						onInput: () => {
-							updateValidation();
-						},
-					});
-
-					const urlField = createTextField(ctx, {
-						label: () => ctx.rte.getLocale().richTextEditor.linkUrl,
-						type: 'url',
-						placeholder: () =>
-							ctx.rte.getLocale().richTextEditor.linkUrlPlaceholder,
-						slot: 'header',
-						value: () => this.getCurrentLink(ctx.view.state)?.href || '',
-						onInput: () => {
-							updateValidation();
-						},
-					});
-
-					const applyButton = createButton(ctx, {
-						label: () => ctx.rte.getLocale().richTextEditor.apply,
-						size: 'condensed',
-						appearance: 'outlined',
-						disabled: () => {
-							const link = this.getCurrentLink(ctx.view.state);
-							return !(link && link.text.length && isValidUrl(link.href));
-						},
-						onClick: () => {
-							const { state, dispatch } = ctx.view;
-							this.insertLink(
-								rte,
-								urlField.value,
-								textField.value
-							)(state, dispatch);
-						},
-					});
-
-					const updateValidation = () => {
-						(applyButton as Button).disabled = !(
-							textField.value.length && isValidUrl(urlField.value)
-						);
-					};
-
-					this.toolbarMenu = createMenu(ctx, {
-						label: () => ctx.rte.getLocale().richTextEditor.hyperlink,
-						trigger: createButton(ctx, {
-							label: () => ctx.rte.getLocale().richTextEditor.hyperlink,
-							icon: 'link-line',
-						}),
-						children: [
-							createDiv(ctx, {
-								className: 'link-toolbar-menu',
-								slot: 'header',
-								children: [
-									textField,
-									urlField,
-									createDiv(ctx, {
-										className: 'link-action-bar',
-										slot: 'header',
-										children: [
-											createButton(ctx, {
-												label: () => ctx.rte.getLocale().richTextEditor.cancel,
-												size: 'condensed',
-												onClick: () => {
-													this.toolbarMenu!.open = false;
-												},
-											}),
-											applyButton,
-										],
-									}),
-								],
-							}),
-						],
-					});
-
-					return this.toolbarMenu;
-				},
-			},
-		];
 	}
 }

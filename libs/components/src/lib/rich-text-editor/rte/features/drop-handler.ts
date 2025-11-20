@@ -1,5 +1,5 @@
 import { Plugin } from 'prosemirror-state';
-import { type PluginContribution, RTEFeature } from '../feature';
+import { contributionPriority, RTEFeature } from '../feature';
 import type { RTEInstance } from '../instance';
 import type { RichTextEditor } from '../../rich-text-editor';
 
@@ -20,11 +20,13 @@ export interface RTEDropHandlerFeatureConfig {
 }
 
 export class RTEDropHandlerFeature extends RTEFeature {
+	protected name = 'RTEDebugFeature';
+
 	constructor(readonly config: RTEDropHandlerFeatureConfig) {
 		super();
 	}
 
-	override getPlugins(rte: RTEInstance): PluginContribution[] {
+	override getPlugins(rte: RTEInstance) {
 		const dragOverResults = new WeakMap<Event, boolean>();
 		let lastResult = false;
 
@@ -60,8 +62,8 @@ export class RTEDropHandlerFeature extends RTEFeature {
 		};
 
 		return [
-			{
-				plugin: new Plugin({
+			this.contribution(
+				new Plugin({
 					view: (view) => {
 						const viewport = ((view.root as ShadowRoot).host as RichTextEditor)
 							.editorViewportElement!;
@@ -80,11 +82,10 @@ export class RTEDropHandlerFeature extends RTEFeature {
 							},
 						};
 					},
-				}),
-			},
-			{
-				order: -1, // Needs to run before dropcursor
-				plugin: new Plugin({
+				})
+			),
+			this.contribution(
+				new Plugin({
 					props: {
 						handleDOMEvents: {
 							dragover: (view, event) => {
@@ -105,7 +106,8 @@ export class RTEDropHandlerFeature extends RTEFeature {
 						},
 					},
 				}),
-			},
+				contributionPriority.high // Needs to run before dropcursor
+			),
 		];
 	}
 }

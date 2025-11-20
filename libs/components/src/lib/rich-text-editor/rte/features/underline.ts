@@ -1,49 +1,55 @@
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark } from 'prosemirror-commands';
-import { createMarkToggle, type ToolbarItemSpec } from '../utils/toolbar-items';
+import { createMarkToggle } from '../utils/toolbar-items';
 import { RTEInstance } from '../instance';
-import { RTEFeature } from '../feature';
+import {
+	RTEFeature,
+	type SchemaContribution,
+	type ToolbarItemContribution,
+} from '../feature';
 
 export class RTEUnderlineFeature extends RTEFeature {
-	override getSchema() {
+	protected name = 'RTEUnderlineFeature';
+
+	override getSchema(): SchemaContribution[] {
 		return [
-			{
-				schema: {
-					marks: {
-						underline: {
-							parseDOM: [{ tag: 'u' }],
-							toDOM() {
-								return ['u', 0] as const;
-							},
+			this.contribution({
+				marks: {
+					underline: {
+						parseDOM: [{ tag: 'u' }],
+						toDOM() {
+							return ['u', 0];
 						},
 					},
 				},
-			},
+			}),
 		];
 	}
 
 	override getPlugins(rte: RTEInstance) {
 		return [
-			{
-				plugin: keymap({
+			this.contribution(
+				keymap({
 					'Mod-u': toggleMark(rte.schema.marks.underline),
-				}),
-			},
+				})
+			),
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstance): ToolbarItemSpec[] {
+	override getToolbarItems(rte: RTEInstance): ToolbarItemContribution[] {
 		return [
-			{
-				section: 'text-style',
-				order: 3,
-				render: (ctx) =>
-					createMarkToggle(ctx, {
-						label: () => ctx.rte.getLocale().richTextEditor.underline,
-						icon: 'underline-line',
-						markType: rte.schema.marks.underline,
-					}),
-			},
+			this.contribution(
+				{
+					section: 'text-style',
+					render: (ctx) =>
+						createMarkToggle(ctx, {
+							label: () => ctx.rte.getLocale().richTextEditor.underline,
+							icon: 'underline-line',
+							markType: rte.schema.marks.underline,
+						}),
+				},
+				3
+			),
 		];
 	}
 }

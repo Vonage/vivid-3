@@ -1,8 +1,8 @@
 import { DOMParser, DOMSerializer, Schema } from 'prosemirror-model';
 import type { Constructor } from '../../../shared/utils/mixins';
 import { RTECore } from './features/core';
-import { RTEInstance } from './instance';
-import { RTEFeature } from './feature';
+import { RTEInstance, type RTEInstanceOptions } from './instance';
+import { RTEFeature, sortedContributions } from './feature';
 import type { RTEDocument } from './document';
 import { RTETextBlockStructure } from './features/text-block';
 import { RTEFreeformStructure } from './features/freeform';
@@ -50,19 +50,19 @@ export class RTEConfig {
 		}
 
 		this.textblockAttrs = new TextblockAttrs(
-			features.flatMap((f) => f.getTextblockAttrs())
+			sortedContributions(features.flatMap((f) => f.getTextblockAttrs()))
 		);
 
-		const schemaContributions = features
-			.flatMap((f) => f.getSchema(this.textblockAttrs))
-			.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+		const schemaContributions = sortedContributions(
+			features.flatMap((f) => f.getSchema(this.textblockAttrs))
+		);
 
 		const schemaSpec = {
 			nodes: {},
 			marks: {},
 		};
 
-		for (const { schema } of schemaContributions) {
+		for (const schema of schemaContributions) {
 			Object.assign(schemaSpec.nodes, schema.nodes ?? {});
 			Object.assign(schemaSpec.marks, schema.marks ?? {});
 		}
@@ -74,7 +74,7 @@ export class RTEConfig {
 		const parser = DOMParser.fromSchema(this.schema);
 		return parser
 			.parse(new window.DOMParser().parseFromString(html, 'text/html').body)
-			.toJSON().content;
+			.toJSON();
 	}
 
 	parseHTMLSlice(html: string): RTEDocument {
@@ -90,16 +90,13 @@ export class RTEConfig {
 
 	toHTML(doc: RTEDocument): string {
 		const serializer = DOMSerializer.fromSchema(this.schema);
-		const node = this.schema.nodeFromJSON({
-			type: 'doc',
-			content: doc,
-		});
+		const node = this.schema.nodeFromJSON(doc);
 		const container = document.createElement('div');
 		container.appendChild(serializer.serializeFragment(node.content));
 		return container.innerHTML;
 	}
 
-	instantiateEditor(initialDoc?: RTEDocument) {
-		return new RTEInstance(this, initialDoc);
+	instantiateEditor(options?: RTEInstanceOptions): RTEInstance {
+		return new RTEInstance(this, options);
 	}
 }

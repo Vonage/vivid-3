@@ -1,16 +1,14 @@
-import {
-	type Mark,
-	type MarkSpec,
-	type MarkType,
-	type Node,
-} from 'prosemirror-model';
+import { type Mark, type MarkType, type Node } from 'prosemirror-model';
 import { type Command, EditorState, SelectionRange } from 'prosemirror-state';
-import { RTEFeature } from '../feature';
+import {
+	RTEFeature,
+	type SchemaContribution,
+	type ToolbarItemContribution,
+} from '../feature';
 import {
 	createButton,
 	createDiv,
 	createSingleSlot,
-	type ToolbarItemSpec,
 } from '../utils/toolbar-items';
 
 // markApplies function adapted from prosemirror-commands
@@ -37,87 +35,87 @@ export interface TextColorFeatureConfig {
 }
 
 export class RTETextColorFeature extends RTEFeature {
+	protected name = 'RTETextColorFeature';
+
 	constructor(protected readonly config: TextColorFeatureConfig) {
 		super();
 	}
 
-	override getSchema() {
-		const textColorMark: MarkSpec = {
-			attrs: {
-				color: { validate: 'string' },
-			},
-			parseDOM: [
-				// Browser normalise CSS style (e.g. hex to rgb()), so we store original value in data attribute
-				{
-					tag: 'span[data-text-color]',
-					getAttrs: (dom) => {
-						return { color: dom.getAttribute('data-text-color') };
-					},
-				},
-				{
-					style: 'color',
-					getAttrs: (value) => {
-						return { color: value };
-					},
-				},
-			],
-			toDOM(node) {
-				const { color } = node.attrs;
-				return [
-					'span',
-					{
-						style: `color: ${color}`,
-						'data-text-color': color,
-					},
-					0,
-				];
-			},
-			inclusive: true,
-		};
-
+	override getSchema(): SchemaContribution[] {
 		return [
-			{
-				schema: {
-					marks: {
-						textColor: textColorMark,
+			this.contribution({
+				marks: {
+					textColor: {
+						attrs: {
+							color: { validate: 'string' },
+						},
+						parseDOM: [
+							// Browser normalise CSS style (e.g. hex to rgb()), so we store original value in data attribute
+							{
+								tag: 'span[data-text-color]',
+								getAttrs: (dom) => {
+									return { color: dom.getAttribute('data-text-color') };
+								},
+							},
+							{
+								style: 'color',
+								getAttrs: (value) => {
+									return { color: value };
+								},
+							},
+						],
+						toDOM(node) {
+							const { color } = node.attrs;
+							return [
+								'span',
+								{
+									style: `color: ${color}`,
+									'data-text-color': color,
+								},
+								0,
+							];
+						},
+						inclusive: true,
 					},
 				},
-			},
+			}),
 		];
 	}
 
-	override getToolbarItems(): ToolbarItemSpec[] {
+	override getToolbarItems(): ToolbarItemContribution[] {
 		return [
-			{
-				section: 'text-style',
-				order: 6,
-				render: (ctx) => {
-					const tooltipButton = createButton(ctx, {
-						label: () => ctx.rte.getLocale().richTextEditor.textColor,
-						disabled: () => !this.setColor('any')(ctx.view.state),
-						icon: 'textcolor-line',
-					});
-					const button = tooltipButton.firstElementChild!;
-					return createDiv(ctx, {
-						children: [
-							tooltipButton,
-							createSingleSlot(ctx, {
-								name: 'text-color-picker',
-								assignedProps: {
-									anchor: button,
-									value: () => this.getSelectionColor(ctx.view.state) || '',
-								},
-								assignedEvents: {
-									change: (e: Event) => {
-										const value = (e.currentTarget as any).value as string;
-										this.setColor(value)(ctx.view.state, ctx.view.dispatch);
+			this.contribution(
+				{
+					section: 'text-style',
+					render: (ctx) => {
+						const tooltipButton = createButton(ctx, {
+							label: () => ctx.rte.getLocale().richTextEditor.textColor,
+							disabled: () => !this.setColor('any')(ctx.view.state),
+							icon: 'textcolor-line',
+						});
+						const button = tooltipButton.firstElementChild!;
+						return createDiv(ctx, {
+							children: [
+								tooltipButton,
+								createSingleSlot(ctx, {
+									name: 'text-color-picker',
+									assignedProps: {
+										anchor: button,
+										value: () => this.getSelectionColor(ctx.view.state) || '',
 									},
-								},
-							}),
-						],
-					});
+									assignedEvents: {
+										change: (e: Event) => {
+											const value = (e.currentTarget as any).value as string;
+											this.setColor(value)(ctx.view.state, ctx.view.dispatch);
+										},
+									},
+								}),
+							],
+						});
+					},
 				},
-			},
+				6
+			),
 		];
 	}
 

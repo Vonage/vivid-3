@@ -47,7 +47,7 @@ describe('RTEListFeature', () => {
 
 	it('should deserialize lists from HTML', async () => {
 		const rte = await setup(textBlockFeatures);
-		rte.rte.setDoc(
+		rte.instance.replaceDocument(
 			rte.config.parseHTML(
 				`
 					<ul>
@@ -66,14 +66,12 @@ describe('RTEListFeature', () => {
 			)
 		);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(
-			`
+		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			bullet_list(list_item('Item 1'), bullet_list(list_item('Item 2'))),
-			numbered_list(list_item('Item 1'), numbered_list(list_item('Item 2|')))
+			bullet_list(list_item('|Item 1'), bullet_list(list_item('Item 2'))),
+			numbered_list(list_item('Item 1'), numbered_list(list_item('Item 2')))
 			"
-		`
-		);
+		`);
 	});
 
 	describe('toolbar button', () => {
@@ -269,7 +267,7 @@ describe('RTEListFeature', () => {
 		describe('with all selection', () => {
 			it('should toggle wrapping selected textblocks in list', async () => {
 				const rte = await setup(textBlockFeatures, [p('Item 1'), p('Item 2')]);
-				rte.keydown('a', { ctrl: true });
+				rte.selectAll();
 
 				expect(rte.isActive(rte.toolbarButton('Bullet list'))).toBe(false);
 

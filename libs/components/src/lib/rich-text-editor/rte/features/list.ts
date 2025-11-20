@@ -2,7 +2,6 @@ import {
 	Fragment,
 	type Node,
 	NodeRange,
-	type NodeSpec,
 	NodeType,
 	ResolvedPos,
 	Slice,
@@ -19,12 +18,15 @@ import {
 import { ReplaceAroundStep } from 'prosemirror-transform';
 import { autoJoin } from 'prosemirror-commands';
 import {
+	contributionPriority,
 	type PluginContribution,
 	RTEFeature,
+	type SchemaContribution,
 	type StyleContribution,
+	type ToolbarItemContribution,
 } from '../feature';
 import { RTEInstance } from '../instance';
-import { createButton, type ToolbarItemSpec } from '../utils/toolbar-items';
+import { createButton } from '../utils/toolbar-items';
 import type { TextblockAttrs } from '../utils/textblock-attrs';
 import { defaultTextblockForMatch } from '../utils/default-textblock';
 import listCss from './list.style.scss?inline';
@@ -245,47 +247,49 @@ const sinkNode = (
 };
 
 export class RTEListFeature extends RTEFeature {
+	protected name = 'RTEListFeature';
+
 	override getStyles(): StyleContribution[] {
-		return [{ css: listCss }];
+		return [this.contribution(listCss)];
 	}
 
-	override getSchema(textblockAttrs: TextblockAttrs) {
-		const schema = {
-			nodes: {
-				list_item: {
-					content: 'inline*',
-					attrs: textblockAttrs.attrs,
-					defining: true,
-					parseDOM: [
-						{
-							tag: 'li',
-							getAttrs: (dom) => textblockAttrs.fromDOM(dom),
+	override getSchema(textblockAttrs: TextblockAttrs): SchemaContribution[] {
+		return [
+			this.contribution({
+				nodes: {
+					list_item: {
+						content: 'inline*',
+						attrs: textblockAttrs.attrs,
+						defining: true,
+						parseDOM: [
+							{
+								tag: 'li',
+								getAttrs: (dom) => textblockAttrs.fromDOM(dom),
+							},
+						],
+						toDOM(node) {
+							return ['li', { style: textblockAttrs.getStyle(node) }, 0];
 						},
-					],
-					toDOM(node) {
-						return ['li', { style: textblockAttrs.getStyle(node) }, 0];
 					},
-				} as NodeSpec,
-				bullet_list: {
-					group: 'block list',
-					content: '(list_item | list)+',
-					parseDOM: [{ tag: 'ul' }],
-					toDOM() {
-						return ['ul', 0];
+					bullet_list: {
+						group: 'block list',
+						content: '(list_item | list)+',
+						parseDOM: [{ tag: 'ul' }],
+						toDOM() {
+							return ['ul', 0];
+						},
 					},
-				} as NodeSpec,
-				numbered_list: {
-					group: 'block list',
-					content: '(list_item | list)+',
-					parseDOM: [{ tag: 'ol' }],
-					toDOM() {
-						return ['ol', 0];
+					numbered_list: {
+						group: 'block list',
+						content: '(list_item | list)+',
+						parseDOM: [{ tag: 'ol' }],
+						toDOM() {
+							return ['ol', 0];
+						},
 					},
-				} as NodeSpec,
-			},
-		};
-
-		return [{ schema }];
+				},
+			}),
+		];
 	}
 
 	protected rte!: RTEInstance;
@@ -346,9 +350,8 @@ export class RTEListFeature extends RTEFeature {
 		};
 
 		return [
-			{
-				order: -1, // Must apply before default handling of core
-				plugin: keymap({
+			this.contribution(
+				keymap({
 					Enter: enterCommand,
 					Backspace: backspaceCommand,
 					Tab: tabCommand,
@@ -356,7 +359,56 @@ export class RTEListFeature extends RTEFeature {
 					'Mod-Shift-8': this.toggleList(rte.schema.nodes.bullet_list),
 					'Mod-Shift-7': this.toggleList(rte.schema.nodes.numbered_list),
 				}),
-			},
+				contributionPriority.high // Must apply before default handling of core
+			),
+		];
+	}
+
+	override getToolbarItems(rte: RTEInstance): ToolbarItemContribution[] {
+		return [
+			this.contribution(
+				{
+					section: 'textblock',
+					render: (ctx) =>
+						createButton(ctx, {
+							label: () => ctx.rte.getLocale().richTextEditor.bulletList,
+							icon: 'bullet-list-2-line',
+							active: () =>
+								this.isSelectionInList(
+									rte.schema.nodes.bullet_list,
+									ctx.rte.state
+								),
+							onClick: () => {
+								const { state, dispatch } = ctx.view;
+								this.toggleList(rte.schema.nodes.bullet_list)(state, dispatch);
+							},
+						}),
+				},
+				1
+			),
+			this.contribution(
+				{
+					section: 'textblock',
+					render: (ctx) =>
+						createButton(ctx, {
+							label: () => ctx.rte.getLocale().richTextEditor.numberedList,
+							icon: 'list-numbered-line',
+							active: () =>
+								this.isSelectionInList(
+									rte.schema.nodes.numbered_list,
+									ctx.rte.state
+								),
+							onClick: () => {
+								const { state, dispatch } = ctx.view;
+								this.toggleList(rte.schema.nodes.numbered_list)(
+									state,
+									dispatch
+								);
+							},
+						}),
+				},
+				2
+			),
 		];
 	}
 
@@ -420,46 +472,5 @@ export class RTEListFeature extends RTEFeature {
 		} else {
 			return false;
 		}
-	}
-
-	override getToolbarItems(rte: RTEInstance): ToolbarItemSpec[] {
-		return [
-			{
-				section: 'textblock',
-				order: 1,
-				render: (ctx) =>
-					createButton(ctx, {
-						label: () => ctx.rte.getLocale().richTextEditor.bulletList,
-						icon: 'bullet-list-2-line',
-						active: () =>
-							this.isSelectionInList(
-								rte.schema.nodes.bullet_list,
-								ctx.rte.state
-							),
-						onClick: () => {
-							const { state, dispatch } = ctx.view;
-							this.toggleList(rte.schema.nodes.bullet_list)(state, dispatch);
-						},
-					}),
-			},
-			{
-				section: 'textblock',
-				order: 2,
-				render: (ctx) =>
-					createButton(ctx, {
-						label: () => ctx.rte.getLocale().richTextEditor.numberedList,
-						icon: 'list-numbered-line',
-						active: () =>
-							this.isSelectionInList(
-								rte.schema.nodes.numbered_list,
-								ctx.rte.state
-							),
-						onClick: () => {
-							const { state, dispatch } = ctx.view;
-							this.toggleList(rte.schema.nodes.numbered_list)(state, dispatch);
-						},
-					}),
-			},
-		];
 	}
 }

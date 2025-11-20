@@ -55,7 +55,7 @@ describe('createSelect', () => {
 
 describe('createSingleSlot', () => {
 	const setupForSlot = async () => {
-		const { element, view, rte } = await setup([
+		const { element, view, instance } = await setup([
 			new RTECore(),
 			new RTETextBlockStructure(),
 			new RTEToolbarFeature(),
@@ -84,7 +84,7 @@ describe('createSingleSlot', () => {
 				};
 			},
 			renderSlot: async (slotName: string, initialValue: string) => {
-				const ctx = new ToolbarCtx(view, rte);
+				const ctx = new ToolbarCtx(view, instance);
 				let value = initialValue;
 				const onChange = vitest.fn();
 				element.shadowRoot!.appendChild(

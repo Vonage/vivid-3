@@ -42,16 +42,20 @@
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEFontSizeFeature(), new RTEBoldFeature(), new RTEItalicFeature(), new RTEUnderlineFeature(), new RTEStrikethroughFeature(), new RTEMonospaceFeature(), new RTETextColorFeature({ defaultColor: '#000000' }), new RTEListFeature(), new RTELinkFeature()]);
-		rteComponent.instance = config.instantiateEditor([
-			{
-				type: 'text_line',
-				content: [{ type: 'text', text: 'First line' }],
-			},
+		rteComponent.instance = config.instantiateEditor({
+		initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'text_line',
+						content: [{ type: 'text', text: 'First line' }],
+					}
 			{
 				type: 'text_line',
 				content: [{ type: 'text', text: 'Second line' }],
 			},
-		]);
+		]
+	}});
 	});
 </script>
 ```
@@ -100,22 +104,27 @@
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature(), new RTEFontSizeFeature(), new RTEBoldFeature(), new RTEItalicFeature(), new RTEUnderlineFeature(), new RTEStrikethroughFeature(), new RTEMonospaceFeature(), new RTETextColorFeature({ defaultColor: '#000000' }), new RTEListFeature(), new RTEAlignmentFeature(), new RTELinkFeature()]);
-		rteComponent.instance = config.instantiateEditor([
-			{
-				type: 'heading',
-				attrs: { level: 1 },
-				content: [{ type: 'text', text: 'Title' }],
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'heading',
+						attrs: { level: 1 },
+						content: [{ type: 'text', text: 'Title' }],
+					},
+					{
+						type: 'heading',
+						attrs: { level: 2 },
+						content: [{ type: 'text', text: 'Subtitle' }],
+					},
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'Body' }],
+					},
+				],
 			},
-			{
-				type: 'heading',
-				attrs: { level: 2 },
-				content: [{ type: 'text', text: 'Subtitle' }],
-			},
-			{
-				type: 'paragraph',
-				content: [{ type: 'text', text: 'Body' }],
-			},
-		]);
+		});
 	});
 </script>
 ```
