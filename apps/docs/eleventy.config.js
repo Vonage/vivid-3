@@ -64,7 +64,7 @@ module.exports = async (eleventyConfig) => {
 					 * While importing @vonage/vivid works fine, it will load too many files in dev mode.
 					 * Therefore, we bundle it into a single file and reference it here.
 					 */
-					'vivid-bundle': path.resolve('.', 'tmp/components-bundle.js'),
+					'@vonage/vivid': path.resolve('.', 'tmp/components-bundle.js'),
 					'vivid-locales': path.resolve('.', 'tmp/locales-bundle.js'),
 				},
 			},

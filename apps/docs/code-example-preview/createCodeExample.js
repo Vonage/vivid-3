@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 const components = require('../content/_data/components.json');
-const { replaceVividImports } = require('./replaceVividImports');
 
 const FONTS =
 	'<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">';
@@ -41,8 +40,6 @@ function resetExampleIndex() {
 }
 
 function createCodeExample({ code, options, cssProperties, url, lang }) {
-	code = replaceVividImports(code);
-
 	const id = getExampleId(url);
 	const src = createExample(code, options, id, lang);
 	return renderLiveSample(src, code, options, cssProperties, lang);
