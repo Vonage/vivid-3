@@ -82,9 +82,9 @@ Here's an example of sorting when building the grid manually:
 
 		if (sortDirection === 'none') return 0;
 		if (sortDirection === 'ascending') {
-			return nameA > nameB ? -1 : 1;
+			return nameA > nameB ? 1 : -1;
 		} else {
-			return nameA < nameB ? -1 : 1;
+			return nameA < nameB ? 1 : -1;
 		}
 		return 0;
 	};
@@ -152,9 +152,9 @@ Here's an example of sorting the data-grid when building it with `rowsData`:
 
 			if (sortedColumnHeaderDef.sortDirection === 'none') return 0;
 			if (sortedColumnHeaderDef.sortDirection === 'ascending') {
-				return nameA > nameB ? -1 : 1;
+				return nameA > nameB ? 1 : -1;
 			} else {
-				return nameA < nameB ? -1 : 1;
+				return nameA < nameB ? 1 : -1;
 			}
 			return 0;
 		});

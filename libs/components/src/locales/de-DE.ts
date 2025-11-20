@@ -237,6 +237,18 @@ const deDE: Locale = {
 		cell: {
 			selected: 'Ausgewählt',
 			button: '(Schaltfläche)',
+			sortStatus: {
+				ascending: 'Aufsteigend sortiert.',
+				descending: 'Absteigend sortiert.',
+				none: 'Nicht sortiert.',
+				other: 'Benutzerdefinierte Sortierung aktiv.',
+			},
+			sortInstruction: {
+				ascending: 'Zum Absteigend sortieren klicken.',
+				descending: 'Zum Entfernen der Sortierung klicken.',
+				none: 'Zum Aufsteigend sortieren klicken.',
+				other: 'Zum Zurücksetzen der Sortierung klicken.',
+			},
 		},
 	},
 	pagination: {
