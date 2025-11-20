@@ -425,6 +425,16 @@ Keyboard shortcuts:
 
 Allows text input without any structure, similar to a regular text area.
 
+<rte-schema>
+	<rte-schema-node name="doc">
+		<rte-schema-content>block+</rte-schema-content>
+	</rte-schema-node>
+	<rte-schema-node name="text_line">
+		<rte-schema-group>block</rte-schema-group>
+		<rte-schema-content>inline*</rte-schema-content>
+	</rte-schema-node>
+</rte-schema>
+
 ```html preview
 <vwc-rich-text-editor style="block-size: 150px"></vwc-rich-text-editor>
 
@@ -448,6 +458,31 @@ Keyboard shortcuts:
 - **Paragraph**: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>0</kbd> / <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>0</kbd>
 - **Heading Level &lt;X&gt;**: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>&lt;X&gt;</kbd> / <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>&lt;X&gt;</kbd>
 - **Hard Break**: <kbd>Shift</kbd> + <kbd>Enter</kbd>
+
+<rte-schema>
+	<rte-schema-node name="doc">
+		<rte-schema-content>block+</rte-schema-content>
+	</rte-schema-node>
+	<rte-schema-node name="heading">
+		<rte-schema-group>block</rte-schema-group>
+		<rte-schema-attrs>
+			<rte-schema-attr name="level" type="number" required description="The heading level (1-6)."></rte-schema-attr>
+			<rte-schema-textblock-attrs></rte-schema-textblock-attrs>
+		</rte-schema-attrs>
+		<rte-schema-marks>None</rte-schema-marks>
+		<rte-schema-content>inline*</rte-schema-content>
+	</rte-schema-node>
+	<rte-schema-node name="paragraph">
+		<rte-schema-group>block</rte-schema-group>
+		<rte-schema-attrs>
+			<rte-schema-textblock-attrs></rte-schema-textblock-attrs>
+		</rte-schema-attrs>
+		<rte-schema-content>inline*</rte-schema-content>
+	</rte-schema-node>
+	<rte-schema-node name="hard_break">
+		<rte-schema-group>inline</rte-schema-group>
+	</rte-schema-node>
+</rte-schema>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 200px"></vwc-rich-text-editor>
@@ -495,6 +530,14 @@ Keyboard shortcuts:
 
 - **Increase Font Size**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd>
 - **Decrease Font Size**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>,</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>,</kbd>
+
+<rte-schema>
+	<rte-schema-mark name="fontSize">
+		<rte-schema-attrs>
+			<rte-schema-attr name="size" type="'small' | 'normal' | 'large' | 'extra-large'" default="'normal'"></rte-schema-attr>
+		</rte-schema-attrs>
+	</rte-schema-mark>
+</rte-schema>
 
 Known issues:
 
@@ -548,6 +591,14 @@ This feature adds a `text-color-picker` slot in which you can place a [Simple Co
 Configuration options:
 
 - `defaultColor: string` (required): The default color of unstyled text. The editor will not actually apply this color to any text, so you need to ensure that this matches the current CSS `color`.
+
+<rte-schema>
+	<rte-schema-mark name="textColor">
+		<rte-schema-attrs>
+			<rte-schema-attr name="color" type="string" required description="The text color as a CSS color value (e.g., '#FF0000', 'rgb(255, 0, 0)')."></rte-schema-attr>
+		</rte-schema-attrs>
+	</rte-schema-mark>
+</rte-schema>
 
 <vwc-note connotation="warning" headline="Colors in Alternate Theme">
 	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
@@ -648,6 +699,24 @@ Keyboard shortcuts:
 - **Strikethrough**: <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>5</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>
 - **Monospace**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd>
 
+<rte-schema>
+	<rte-schema-mark name="bold">
+		<rte-schema-empty></rte-schema-empty>
+	</rte-schema-mark>
+	<rte-schema-mark name="italic">
+		<rte-schema-empty></rte-schema-empty>
+	</rte-schema-mark>
+	<rte-schema-mark name="underline">
+		<rte-schema-empty></rte-schema-empty>
+	</rte-schema-mark>
+	<rte-schema-mark name="strikethrough">
+		<rte-schema-empty></rte-schema-empty>
+	</rte-schema-mark>
+	<rte-schema-mark name="monospace">
+		<rte-schema-empty></rte-schema-empty>
+	</rte-schema-mark>
+</rte-schema>
+
 ```html preview
 <vwc-rich-text-editor></vwc-rich-text-editor>
 
@@ -688,6 +757,23 @@ Keyboard shortcuts:
 
 - **Toggle bullet list**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>8</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>8</kbd>
 - **Toggle numbered list**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>7</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>7</kbd>
+
+<rte-schema>
+	<rte-schema-node name="bullet_list">
+		<rte-schema-group>block list</rte-schema-group>
+		<rte-schema-content>(list_item | list)+</rte-schema-content>
+	</rte-schema-node>
+	<rte-schema-node name="numbered_list">
+		<rte-schema-group>block list</rte-schema-group>
+		<rte-schema-content>(list_item | list)+</rte-schema-content>
+	</rte-schema-node>
+	<rte-schema-node name="list_item">
+		<rte-schema-attrs>
+			<rte-schema-textblock-attrs></rte-schema-textblock-attrs>
+		</rte-schema-attrs>
+		<rte-schema-content>inline*</rte-schema-content>
+	</rte-schema-node>
+</rte-schema>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
@@ -764,6 +850,14 @@ Keyboard shortcuts:
 - **Align Center**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd>
 - **Align Right**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>
 
+<rte-schema>
+	<rte-schema-textblock-attr name="textAlign">
+		<rte-schema-attrs>
+			<rte-schema-attr name="textAlign" type="'left' | 'center' | 'right'" default="'left'" description="The text alignment of the block."></rte-schema-attr>
+		</rte-schema-attrs>
+	</rte-schema-textblock-attr>
+</rte-schema>
+
 <vwc-note connotation="information">
 	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
@@ -823,6 +917,14 @@ The alignment feature cannot be used with `RTETextBlockStructure`, since there a
 
 Adds the ability to insert links.
 
+<rte-schema>
+	<rte-schema-mark name="link">
+		<rte-schema-attrs>
+			<rte-schema-attr name="href" type="string" required description="The URL the link points to."></rte-schema-attr>
+		</rte-schema-attrs>
+	</rte-schema-mark>
+</rte-schema>
+
 ```html preview
 <vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
 
@@ -858,6 +960,19 @@ Adds the ability to insert links.
 ### RTEInlineImageFeature
 
 Adds support for inline images. This feature does not provide any UI for adding images by itself, however the user can paste HTML content containing images into the editor.
+
+<rte-schema>
+	<rte-schema-node name="inline_image">
+		<rte-schema-group>inline</rte-schema-group>
+		<rte-schema-attrs>
+			<rte-schema-attr name="imageUrl" type="string" required description="A URL representing the image to display."></rte-schema-attr>
+			<rte-schema-attr name="alt" type="string" default="''" description="The alt text for the image."></rte-schema-attr>
+			<rte-schema-attr name="naturalWidth" type="number | null" default="null" description="The original width of the image in pixels. Automatically updated when the image loads."></rte-schema-attr>
+			<rte-schema-attr name="naturalHeight" type="number | null" default="null" description="The original height of the image in pixels. Automatically updated when the image loads."></rte-schema-attr>
+			<rte-schema-attr name="size" type="string | null" default="null" description="The max width of the image as a CSS value (e.g., '100px' or '50%'). If null, uses natural dimensions."></rte-schema-attr>
+		</rte-schema-attrs>
+	</rte-schema-node>
+</rte-schema>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 500px"> </vwc-rich-text-editor>
