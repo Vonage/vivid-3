@@ -1,52 +1,58 @@
 import { history, redo, undo } from 'prosemirror-history';
 import { keymap } from 'prosemirror-keymap';
-import { createButton, type ToolbarItemSpec } from '../../utils/toolbar-items';
-import { RTEFeature } from '../../feature';
+import { createButton } from '../../utils/toolbar-items';
+import { RTEFeature, type ToolbarItemContribution } from '../../feature';
 
 export class RTEHistoryFeature extends RTEFeature {
+	protected name = 'RTEHistoryFeature';
+
 	override getPlugins() {
 		return [
-			{ plugin: history() },
-			{
-				plugin: keymap({
+			this.contribution(history()),
+			this.contribution(
+				keymap({
 					'Mod-z': undo,
 					'Ctrl-y': redo,
 					'Cmd-Z': redo,
-				}),
-			},
+				})
+			),
 		];
 	}
 
-	override getToolbarItems(): ToolbarItemSpec[] {
+	override getToolbarItems(): ToolbarItemContribution[] {
 		return [
-			{
-				section: 'history',
-				order: 1,
-				render: (ctx) =>
-					createButton(ctx, {
-						label: (ctx) => ctx.rte.getLocale().richTextEditor.undo,
-						icon: 'undo-line',
-						disabled: (ctx) => !undo(ctx.view.state),
-						onClick: () => {
-							const { state, dispatch } = ctx.view;
-							undo(state, dispatch);
-						},
-					}),
-			},
-			{
-				section: 'history',
-				order: 2,
-				render: (ctx) =>
-					createButton(ctx, {
-						label: (ctx) => ctx.rte.getLocale().richTextEditor.redo,
-						icon: 'redo-line',
-						disabled: (ctx) => !redo(ctx.view.state),
-						onClick: () => {
-							const { state, dispatch } = ctx.view;
-							redo(state, dispatch);
-						},
-					}),
-			},
+			this.contribution(
+				{
+					section: 'history',
+					render: (ctx) =>
+						createButton(ctx, {
+							label: (ctx) => ctx.rte.getLocale().richTextEditor.undo,
+							icon: 'undo-line',
+							disabled: (ctx) => !undo(ctx.view.state),
+							onClick: () => {
+								const { state, dispatch } = ctx.view;
+								undo(state, dispatch);
+							},
+						}),
+				},
+				1
+			),
+			this.contribution(
+				{
+					section: 'history',
+					render: (ctx) =>
+						createButton(ctx, {
+							label: (ctx) => ctx.rte.getLocale().richTextEditor.redo,
+							icon: 'redo-line',
+							disabled: (ctx) => !redo(ctx.view.state),
+							onClick: () => {
+								const { state, dispatch } = ctx.view;
+								redo(state, dispatch);
+							},
+						}),
+				},
+				2
+			),
 		];
 	}
 }

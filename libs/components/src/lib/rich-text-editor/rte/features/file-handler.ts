@@ -2,7 +2,7 @@ import { type EditorState, Plugin, type Transaction } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import { dropPoint } from 'prosemirror-transform';
 import { Fragment, Slice } from 'prosemirror-model';
-import { type PluginContribution, RTEFeature } from '../feature';
+import { RTEFeature } from '../feature';
 import type { RTEInstance } from '../instance';
 import type { RTEFragment } from '../document';
 import { generateRandomId } from '../../../../shared/utils/randomId';
@@ -19,11 +19,13 @@ export interface RTEFileHandlerFeatureConfig {
 type InsertPoint = { type: 'pos'; pos: number } | { type: 'selection' };
 
 export class RTEFileHandlerFeature extends RTEFeature {
+	protected name = 'RTEFileHandlerFeature';
+
 	constructor(readonly config: RTEFileHandlerFeatureConfig) {
 		super();
 	}
 
-	override getPlugins(rte: RTEInstance): PluginContribution[] {
+	override getPlugins(rte: RTEInstance) {
 		const insertPointPlaceholderPlugin = new Plugin({
 			state: {
 				init() {
@@ -159,9 +161,9 @@ export class RTEFileHandlerFeature extends RTEFeature {
 		};
 
 		return [
-			{ plugin: insertPointPlaceholderPlugin },
-			{
-				plugin: new Plugin({
+			this.contribution(insertPointPlaceholderPlugin),
+			this.contribution(
+				new Plugin({
 					props: {
 						handlePaste: (view, event) => {
 							const files = Array.from(event.clipboardData!.files);
@@ -193,8 +195,8 @@ export class RTEFileHandlerFeature extends RTEFeature {
 							return true;
 						},
 					},
-				}),
-			},
+				})
+			),
 		];
 	}
 }

@@ -7,6 +7,7 @@ import { RTEFreeformStructure } from './freeform';
 import { RTETextBlockStructure } from './text-block';
 
 const {
+	doc,
 	text,
 	text_line: line,
 	fontSize: size,
@@ -40,8 +41,8 @@ describe('RTEFontSizeFeature', () => {
 	});
 
 	it('should deserialize the mark from HTML', async () => {
-		const { rte, config, docStr } = await setup(features);
-		rte.setDoc(
+		const { instance, config, docStr } = await setup(features);
+		instance.replaceDocument(
 			config.parseHTML(
 				`
 					<span style="font-size: 12px;">small</span>
@@ -52,20 +53,18 @@ describe('RTEFontSizeFeature', () => {
 				`.trim()
 			)
 		);
-		expect(docStr()).toMatchInlineSnapshot(
-			`
+		expect(docStr()).toMatchInlineSnapshot(`
 			"
 			text_line(
-				<fontSize[size="small"]>'small',
+				<fontSize[size="small"]>'|small',
 				' normal ',
 				<fontSize[size="large"]>'large',
 				' ',
 				<fontSize[size="extra-large"]>'extra-large',
-				' other|'
+				' other'
 			)
 			"
-		`
-		);
+		`);
 	});
 
 	it('should provide a menu with font size options where the current font size is checked', async () => {
@@ -209,7 +208,7 @@ describe('RTEFontSizeFeature', () => {
 			isChecked,
 			selectAll,
 			selectText,
-			rte,
+			instance,
 			placeCursor,
 		} = await setup(textBlockFeatures, [h1()]);
 
@@ -218,7 +217,7 @@ describe('RTEFontSizeFeature', () => {
 
 		expect(isChecked(menuItem(openMenu(), 'Normal'))).toBe(false);
 
-		rte.setDoc([h1('Heading')]);
+		instance.replaceDocument(doc(h1('Heading')));
 		placeCursor('Head|ing');
 
 		expect(isChecked(menuItem(openMenu(), 'Normal'))).toBe(false);
