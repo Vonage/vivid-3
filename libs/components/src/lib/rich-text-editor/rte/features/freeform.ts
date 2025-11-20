@@ -1,6 +1,10 @@
-import { RTEFeature, type SchemaContribution } from '../feature';
+import {
+	featureFacade,
+	RTEFeatureImpl,
+	type SchemaContribution,
+} from '../feature';
 
-export class RTEFreeformStructure extends RTEFeature {
+export class RTEFreeformStructureImpl extends RTEFeatureImpl {
 	protected name = 'RTEFreeformStructure';
 
 	override getSchema(): SchemaContribution[] {
@@ -25,3 +29,5 @@ export class RTEFreeformStructure extends RTEFeature {
 		];
 	}
 }
+
+export const RTEFreeformStructure = featureFacade(RTEFreeformStructureImpl);

@@ -1,5 +1,4 @@
 import { elementUpdated, fixture } from '@repo/shared';
-import type { EditorView } from 'prosemirror-view';
 import {
 	AllSelection,
 	type EditorState,
@@ -31,6 +30,7 @@ import type { Popover } from '../../popover';
 import { mockTransfer } from '../../../file-picker/__mocks__/data-transfer';
 import type { RTEFragment } from '../document';
 import type { RTEInstanceOptions } from '../instance';
+import { impl } from '../utils/impl';
 
 registerRichTextEditor();
 
@@ -194,7 +194,7 @@ export async function setup(
 	element.instance = instance;
 	await elementUpdated(element);
 
-	const view = (element as any)._view as EditorView;
+	const view = instance[impl].view!;
 
 	const htmlParser = new RTEHtmlParser(config);
 	const setHtml = (html: string) =>

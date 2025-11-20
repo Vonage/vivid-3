@@ -1,6 +1,10 @@
 import { Plugin } from 'prosemirror-state';
-import { contributionPriority, RTEFeature } from '../feature';
-import type { RTEInstance } from '../instance';
+import {
+	contributionPriority,
+	featureFacade,
+	RTEFeatureImpl,
+} from '../feature';
+import type { RTEInstanceImpl } from '../instance';
 import type { RichTextEditor } from '../../rich-text-editor';
 
 export interface RTEDropHandlerFeatureConfig {
@@ -19,14 +23,14 @@ export interface RTEDropHandlerFeatureConfig {
 	onViewportDragFinish?: () => void;
 }
 
-export class RTEDropHandlerFeature extends RTEFeature {
+export class RTEDropHandlerFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEDebugFeature';
 
 	constructor(readonly config: RTEDropHandlerFeatureConfig) {
 		super();
 	}
 
-	override getPlugins(rte: RTEInstance) {
+	override getPlugins(rte: RTEInstanceImpl) {
 		const dragOverResults = new WeakMap<Event, boolean>();
 		let lastResult = false;
 
@@ -111,3 +115,5 @@ export class RTEDropHandlerFeature extends RTEFeature {
 		];
 	}
 }
+
+export const RTEDropHandlerFeature = featureFacade(RTEDropHandlerFeatureImpl);

@@ -5,6 +5,7 @@ import { RTECore } from '../features/core';
 import { setup } from '../__tests__/test-utils';
 import type { Tooltip } from '../../../tooltip/tooltip';
 import { createSingleSlot, ToolbarCtx } from './toolbar-items';
+import { impl } from './impl';
 
 describe('ToolbarCtx', () => {
 	describe('evalProp', () => {
@@ -84,7 +85,7 @@ describe('createSingleSlot', () => {
 				};
 			},
 			renderSlot: async (slotName: string, initialValue: string) => {
-				const ctx = new ToolbarCtx(view, instance);
+				const ctx = new ToolbarCtx(view, instance[impl]);
 				let value = initialValue;
 				const onChange = vitest.fn();
 				element.shadowRoot!.appendChild(

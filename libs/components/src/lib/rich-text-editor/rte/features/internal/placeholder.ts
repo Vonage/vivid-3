@@ -1,19 +1,19 @@
 import { type MarkType } from 'prosemirror-model';
 import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
-import { RTEFeature } from '../../feature';
-import type { RTEInstance } from '../../instance';
+import { RTEFeatureImpl } from '../../feature';
+import type { RTEInstanceImpl } from '../../instance';
 import type { FontSizeSpec } from '../font-size';
 import placeholderCss from './placeholder.style.scss?inline';
 
-export class RTEPlaceholderFeature extends RTEFeature {
+export class RTEPlaceholderFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEPlaceholderFeature';
 
 	override getStyles() {
 		return [this.contribution(placeholderCss)];
 	}
 
-	override getPlugins(rte: RTEInstance) {
+	override getPlugins(rte: RTEInstanceImpl) {
 		const placeholderPlugin = new Plugin({
 			props: {
 				decorations: (state) => {

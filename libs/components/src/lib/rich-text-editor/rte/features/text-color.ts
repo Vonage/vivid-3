@@ -1,7 +1,8 @@
 import { type Mark, type MarkType, type Node } from 'prosemirror-model';
 import { type Command, EditorState, SelectionRange } from 'prosemirror-state';
 import {
-	RTEFeature,
+	featureFacade,
+	RTEFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
@@ -34,7 +35,7 @@ export interface TextColorFeatureConfig {
 	defaultColor: string;
 }
 
-export class RTETextColorFeature extends RTEFeature {
+export class RTETextColorFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTETextColorFeature';
 
 	constructor(protected readonly config: TextColorFeatureConfig) {
@@ -184,3 +185,5 @@ export class RTETextColorFeature extends RTEFeature {
 		};
 	}
 }
+
+export const RTETextColorFeature = featureFacade(RTETextColorFeatureImpl);

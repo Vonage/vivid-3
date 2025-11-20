@@ -1,9 +1,9 @@
 import { attr, observable } from '@microsoft/fast-element';
-import { EditorView } from 'prosemirror-view';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { WithObservableLocale } from '../../shared/patterns';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import type { RTEInstance } from './rte/instance';
+import { RTEInstance } from './rte/instance';
+import { impl } from './rte/utils/impl';
 
 /**
  * @public
@@ -20,11 +20,10 @@ export class RichTextEditor extends WithObservableLocale(VividElement) {
 	 * @internal
 	 */
 	instanceChanged(prevInstance?: RTEInstance) {
-		prevInstance?.setView(null);
-		this._destroyViewIfNeeded();
+		prevInstance?.[impl].destroyViewIfNeeded();
 		this._initViewIfNeeded();
-		prevInstance?.styles.removeStylesFrom(this.shadowRoot!);
-		this.instance?.styles.addStylesTo(this.shadowRoot!);
+		prevInstance?.[impl].styles.removeStylesFrom(this.shadowRoot!);
+		this.instance?.[impl].styles.addStylesTo(this.shadowRoot!);
 	}
 
 	/**
@@ -50,28 +49,16 @@ export class RichTextEditor extends WithObservableLocale(VividElement) {
 	 */
 	editorViewportElement?: HTMLElement;
 
-	private _view?: EditorView;
-
 	private _initViewIfNeeded() {
-		if (this.instance && this.$fastController.isConnected && !this._view) {
-			const instance = this.instance;
+		const instance = this.instance?.[impl];
+		if (instance && this.$fastController.isConnected && !instance.view) {
 			this._syncStateIfNeeded();
-			const view = new EditorView(this._editorEl, {
-				state: instance.state,
-				dispatchTransaction(transaction) {
-					instance.dispatchTransaction(transaction);
-				},
-			});
-			instance.setView(view);
-			this._view = view;
+			instance.createView(this._editorEl);
 		}
 	}
 
 	private _destroyViewIfNeeded() {
-		if (this._view) {
-			this._view.destroy();
-			this._view = undefined;
-		}
+		this.instance?.[impl].destroyViewIfNeeded();
 	}
 
 	override connectedCallback() {
@@ -99,12 +86,10 @@ export class RichTextEditor extends WithObservableLocale(VividElement) {
 	_ctx!: VividElementDefinitionContext;
 
 	private _syncStateIfNeeded() {
-		if (this.instance) {
-			this.instance.updateHostState({
-				placeholder: this.placeholder,
-				locale: this.locale,
-				ctx: this._ctx,
-			});
-		}
+		this.instance?.[impl].updateHostState({
+			placeholder: this.placeholder,
+			locale: this.locale,
+			ctx: this._ctx,
+		});
 	}
 }
