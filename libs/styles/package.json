@@ -12,8 +12,9 @@
 		"stylelint:fix": "stylelint src --fix"
 	},
 	"dependencies": {
-		"@repo/stylelint-config": "*",
-		"@repo/shared": "*",
-		"@repo/tokens": "*"
+		"@repo/shared": "workspace:*",
+		"@repo/stylelint-config": "workspace:*",
+		"@repo/tokens": "workspace:*",
+		"sass": "catalog:"
 	}
 }

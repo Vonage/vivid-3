@@ -21,9 +21,9 @@ export const renderComponent = (
 		{ name: 'defineComponent', fromModule: vueModule },
 		{ name: 'ref', fromModule: vueModule },
 		{ name: 'h', fromModule: vueModule },
+		{ name: 'VNodeData', fromModule: vueModule },
 		{ name: 'isVue2', fromModule: '../../utils/vue' },
 		{ name: 'handleVue3Props', fromModule: '../../utils/ssr' },
-		{ name: 'VNodeData', fromModule: vueModule },
 		{ name: componentDef.registerFunctionName, fromModule: '@vonage/vivid' },
 		{ name: 'registerComponent', fromModule: '../../utils/register' },
 	];

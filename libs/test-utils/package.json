@@ -30,33 +30,36 @@
 	"scripts": {
 		"prebuild": "tsx scripts/codegen.ts",
 		"build": "vite build",
+		"cy": "concurrently -k -s first -n VITE,TEST \"npx vite src/tests/cases -c ./vite.config.ts --host\" \"npx wait-on http://localhost:5173 && npx cypress run\"",
+		"cy:ui": "cypress open",
+		"e2e": "concurrently -k -s first -n VITE,TEST \"npx vite src/tests/cases -c ./vite.config.ts --host\" \"npx wait-on http://localhost:5173 && npx playwright test\"",
+		"e2e:ui": "playwright test --ui",
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"prepack": "tsx scripts/updateDependencyVersion.ts",
 		"test": "vitest run",
-		"e2e": "concurrently -k -s first -n VITE,TEST \"npx vite src/tests/cases -c ./vite.config.ts --host\" \"npx wait-on http://localhost:5173 && npx playwright test\"",
-		"cy": "concurrently -k -s first -n VITE,TEST \"npx vite src/tests/cases -c ./vite.config.ts --host\" \"npx wait-on http://localhost:5173 && npx cypress run\"",
-		"e2e:ui": "playwright test --ui",
-		"cy:ui": "cypress open",
-		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json",
-		"prepack": "tsx scripts/updateDependencyVersion.ts"
+		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},
 	"dependencies": {
 		"@testing-library/user-event": "^14.6.1",
-		"@vonage/vivid": "*"
+		"@vonage/vivid": "workspace:*"
 	},
 	"devDependencies": {
-		"@playwright/test": "1.48.2",
-		"@repo/eslint-config": "*",
-		"@repo/shared": "*",
-		"@repo/typescript-config": "*",
-		"@repo/vitest-config": "*",
-		"@vonage/vivid-vue": "*",
+		"@playwright/test": "catalog:",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/shared": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"@repo/wrapper-gen": "workspace:*",
 		"@vitejs/plugin-vue": "^5.2.1",
+		"@vonage/vivid-vue": "workspace:*",
 		"@vue/test-utils": "^2",
 		"concurrently": "^9.2.0",
-		"cypress": "^14.5.1",
-		"vue": "^3.5.24",
-		"vitest": "^2.1.8",
+		"cypress": "catalog:",
+		"tsx": "catalog:",
+		"vite": "catalog:",
+		"vitest": "catalog:",
+		"vue": "catalog:vue3",
 		"wait-on": "^8.0.5"
 	}
 }

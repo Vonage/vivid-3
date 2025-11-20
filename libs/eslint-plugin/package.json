@@ -2,8 +2,6 @@
 	"name": "@vonage/eslint-plugin-vivid",
 	"version": "1.5.0",
 	"type": "module",
-	"module": "./index.js",
-	"main": "./index.cjs",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -11,6 +9,8 @@
 			"require": "./dist/index.cjs"
 		}
 	},
+	"main": "./index.cjs",
+	"module": "./index.js",
 	"files": [
 		"dist"
 	],
@@ -25,12 +25,13 @@
 	"dependencies": {
 		"eslint-plugin-vue": "^9.0.0"
 	},
+	"devDependencies": {
+		"@repo/eslint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"vitest": "catalog:"
+	},
 	"peerDependencies": {
 		"eslint": ">=0.8.0"
-	},
-	"devDependencies": {
-		"@repo/typescript-config": "*",
-		"@repo/eslint-config": "*",
-		"@repo/vitest-config": "*"
 	}
 }

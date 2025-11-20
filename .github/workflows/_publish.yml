@@ -42,16 +42,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: '20'
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
 
       - name: Set version
         if: ${{ inputs.version != '' }}
@@ -84,10 +86,12 @@ jobs:
         with:
           ref: ${{ inputs.sha }}
 
-      - uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: '20'
+          cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Cache turbo build setup
@@ -99,10 +103,10 @@ jobs:
             ${{ runner.os }}-turbo-
 
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
 
       - name: Set version
         if: ${{ inputs.version != '' }}

@@ -4,10 +4,11 @@
 		"dev": "storybook dev -p 6002"
 	},
 	"dependencies": {
-		"@repo/styles": "*",
-		"@vonage/vivid-vue": "*"
+		"@repo/styles": "workspace:*",
+		"@vonage/vivid-vue": "workspace:*"
 	},
 	"devDependencies": {
+		"@repo/styles": "workspace:*",
 		"@storybook/addon-essentials": "^7.0.2",
 		"@storybook/addon-interactions": "^7.0.2",
 		"@storybook/addon-links": "^7.0.2",
@@ -22,6 +23,7 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"storybook": "^7.0.2",
-		"vue": "2.7.8"
+		"vite": "catalog:",
+		"vue": "catalog:vue2"
 	}
 }

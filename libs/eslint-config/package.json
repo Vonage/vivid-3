@@ -2,6 +2,6 @@
 	"name": "@repo/eslint-config",
 	"private": true,
 	"dependencies": {
-		"@repo/eslint-plugin-repo": "*"
+		"@repo/eslint-plugin-repo": "workspace:*"
 	}
 }

@@ -1,5 +1,6 @@
 {
 	"name": "@vonage/vivid-design-tokens",
+	"version": "5.5.0",
 	"type": "module",
 	"main": "dist/index.css",
 	"files": [
@@ -14,11 +15,11 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"@repo/eslint-config": "*",
-		"@repo/typescript-config": "*",
-		"@repo/vitest-config": "*",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
 		"style-dictionary": "^5.1.1",
-		"tsx": "^4.19.4"
-	},
-	"version": "5.5.0"
+		"tsx": "catalog:",
+		"vitest": "catalog:"
+	}
 }
