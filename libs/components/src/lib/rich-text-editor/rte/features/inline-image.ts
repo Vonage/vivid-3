@@ -6,12 +6,7 @@ import {
 	Plugin,
 } from 'prosemirror-state';
 import type { EditorView, NodeView } from 'prosemirror-view';
-import {
-	type PluginContribution,
-	RTEFeature,
-	type SchemaContribution,
-	type StyleContribution,
-} from '../feature';
+import { RTEFeature, type SchemaContribution } from '../feature';
 import type { RTEInstance } from '../instance';
 import { Popover } from '../../popover';
 import {
@@ -180,12 +175,14 @@ class InlineImageView implements NodeView {
 }
 
 export class RTEInlineImageFeature extends RTEFeature {
+	protected name = 'RTEInlineImageFeature';
+
 	constructor(protected readonly config: RTEInlineImageFeatureConfig = {}) {
 		super();
 	}
 
-	override getStyles(): StyleContribution[] {
-		return [{ css: inlineImageCss }];
+	override getStyles() {
+		return [this.contribution(inlineImageCss)];
 	}
 
 	override getSchema(): SchemaContribution[] {
@@ -248,20 +245,18 @@ export class RTEInlineImageFeature extends RTEFeature {
 		};
 
 		return [
-			{
-				schema: {
-					nodes: {
-						inline_image: inlineImage,
-					},
+			this.contribution({
+				nodes: {
+					inline_image: inlineImage,
 				},
-			},
+			}),
 		];
 	}
 
-	override getPlugins(rte: RTEInstance): PluginContribution[] {
+	override getPlugins(rte: RTEInstance) {
 		return [
-			{
-				plugin: new Plugin({
+			this.contribution(
+				new Plugin({
 					props: {
 						nodeViews: {
 							// eslint-disable-next-line @typescript-eslint/naming-convention
@@ -343,8 +338,8 @@ export class RTEInlineImageFeature extends RTEFeature {
 							},
 						};
 					},
-				}),
-			},
+				})
+			),
 		];
 	}
 

@@ -4,7 +4,9 @@ import { TextblockAttrs } from './utils/textblock-attrs';
 
 describe('RTEFeature', () => {
 	it('should have default stub implementations for all methods', () => {
-		class TestFeature extends RTEFeature {}
+		class TestFeature extends RTEFeature {
+			name = 'TestFeature';
+		}
 		const feature = new TestFeature();
 
 		expect(feature.getStyles()).toEqual([]);

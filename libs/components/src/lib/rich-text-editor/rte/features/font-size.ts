@@ -1,4 +1,4 @@
-import { Mark, type MarkSpec } from 'prosemirror-model';
+import { Mark } from 'prosemirror-model';
 import { type Command, EditorState, Plugin } from 'prosemirror-state';
 import { toggleMark } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
@@ -7,10 +7,13 @@ import {
 	createButton,
 	createMenu,
 	createMenuItem,
-	type ToolbarItemSpec,
 } from '../utils/toolbar-items';
 import { RTEInstance } from '../instance';
-import { type PluginContribution, RTEFeature } from '../feature';
+import {
+	RTEFeature,
+	type SchemaContribution,
+	type ToolbarItemContribution,
+} from '../feature';
 
 export interface FontSizeSpec {
 	text: string;
@@ -19,6 +22,8 @@ export interface FontSizeSpec {
 }
 
 export class RTEFontSizeFeature extends RTEFeature {
+	protected name = 'RTEFontSizeFeature';
+
 	fontSizes: FontSizeSpec[];
 
 	constructor() {
@@ -35,53 +40,51 @@ export class RTEFontSizeFeature extends RTEFeature {
 		this.fontSizes = fontSizes;
 	}
 
-	override getSchema() {
-		const fontSizeMark: MarkSpec = {
-			attrs: { size: { default: 'normal' } },
-			parseDOM: [
-				{
-					tag: "span[style*='font-size']",
-					getAttrs: (node: HTMLElement) => {
-						const style = node.getAttribute('style');
-
-						const fontSize = style!
-							.match(/font-size:\s*([^;]+)/)?.[1]
-							?.trim() as string;
-
-						const size = this.fontSizes.find(
-							(fs) => fs.size === fontSize
-						)?.value;
-						if (size) return { size };
-						return false;
-					},
-				},
-			],
-			toDOM: (mark: Mark) => {
-				const size = mark.attrs.size;
-				const fontSize = this.fontSizes.find((fs) => fs.value === size)?.size;
-				return ['span', { style: `font-size: ${fontSize};` }, 0] as const;
-			},
-			fontSizes: this.fontSizes,
-		};
-
+	override getSchema(): SchemaContribution[] {
 		return [
-			{
-				schema: {
-					marks: {
-						fontSize: fontSizeMark,
+			this.contribution({
+				marks: {
+					fontSize: {
+						attrs: { size: { default: 'normal' } },
+						parseDOM: [
+							{
+								tag: "span[style*='font-size']",
+								getAttrs: (node: HTMLElement) => {
+									const style = node.getAttribute('style');
+
+									const fontSize = style!
+										.match(/font-size:\s*([^;]+)/)?.[1]
+										?.trim() as string;
+
+									const size = this.fontSizes.find(
+										(fs) => fs.size === fontSize
+									)?.value;
+									if (size) return { size };
+									return false;
+								},
+							},
+						],
+						toDOM: (mark: Mark) => {
+							const size = mark.attrs.size;
+							const fontSize = this.fontSizes.find(
+								(fs) => fs.value === size
+							)?.size;
+							return ['span', { style: `font-size: ${fontSize};` }, 0] as const;
+						},
+						fontSizes: this.fontSizes,
 					},
 				},
-			},
+			}),
 		];
 	}
 
-	override getPlugins(rte: RTEInstance): PluginContribution[] {
+	override getPlugins(rte: RTEInstance) {
 		return [
-			{
-				/**
-				 * Plugin to adapt the caret height based on a stored fontSize mark.
-				 */
-				plugin: new Plugin({
+			/**
+			 * Plugin to adapt the caret height based on a stored fontSize mark.
+			 */
+			this.contribution(
+				new Plugin({
 					props: {
 						decorations: (state) => {
 							const { $from } = state.selection;
@@ -113,14 +116,45 @@ export class RTEFontSizeFeature extends RTEFeature {
 							return null;
 						},
 					},
-				}),
-			},
-			{
-				plugin: keymap({
+				})
+			),
+			this.contribution(
+				keymap({
 					'Mod-Shift-.': this.adjustFontSize(-1),
 					'Mod-Shift-,': this.adjustFontSize(1),
-				}),
-			},
+				})
+			),
+		];
+	}
+
+	override getToolbarItems(rte: RTEInstance): ToolbarItemContribution[] {
+		return [
+			this.contribution(
+				{
+					section: 'font',
+					render: (ctx) =>
+						createMenu(ctx, {
+							label: () => rte.getLocale().richTextEditor.textSize,
+							trigger: createButton(ctx, {
+								label: () => rte.getLocale().richTextEditor.textSize,
+								icon: 'text-size-line',
+							}),
+							children: this.fontSizes.map((fs) =>
+								createMenuItem(ctx, {
+									text: fs.text,
+									checked: () =>
+										this.getFontSizeFromSelection(ctx.view.state) === fs.value,
+									disabled: () => !this.setFontSize(fs.value)(ctx.view.state),
+									onSelect: () => {
+										const { state, dispatch } = ctx.view;
+										this.setFontSize(fs.value)(state, dispatch);
+									},
+								})
+							),
+						}),
+				},
+				2
+			),
 		];
 	}
 
@@ -215,34 +249,5 @@ export class RTEFontSizeFeature extends RTEFeature {
 			}
 			return this.setFontSize(this.fontSizes[nextIndex].value)(state, dispatch);
 		};
-	}
-
-	override getToolbarItems(rte: RTEInstance): ToolbarItemSpec[] {
-		return [
-			{
-				section: 'font',
-				order: 1,
-				render: (ctx) =>
-					createMenu(ctx, {
-						label: () => rte.getLocale().richTextEditor.textSize,
-						trigger: createButton(ctx, {
-							label: () => rte.getLocale().richTextEditor.textSize,
-							icon: 'text-size-line',
-						}),
-						children: this.fontSizes.map((fs) =>
-							createMenuItem(ctx, {
-								text: fs.text,
-								checked: () =>
-									this.getFontSizeFromSelection(ctx.view.state) === fs.value,
-								disabled: () => !this.setFontSize(fs.value)(ctx.view.state),
-								onSelect: () => {
-									const { state, dispatch } = ctx.view;
-									this.setFontSize(fs.value)(state, dispatch);
-								},
-							})
-						),
-					}),
-			},
-		];
 	}
 }

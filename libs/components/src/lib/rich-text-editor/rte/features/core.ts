@@ -8,9 +8,9 @@ import {
 	newlineInCode,
 	splitBlockAs,
 } from 'prosemirror-commands';
+import proseMirrorCss from 'prosemirror-view/style/prosemirror.css?inline';
 import { dropCursor } from 'prosemirror-dropcursor';
 import { gapCursor } from 'prosemirror-gapcursor';
-import proseMirrorCss from 'prosemirror-view/style/prosemirror.css?inline';
 import { RTEFeature } from '../feature';
 import type { Locale } from '../../../../shared/localization/Locale';
 import type { VividElementDefinitionContext } from '../../../../shared/design-system/defineVividComponent';
@@ -50,14 +50,16 @@ export const hostBridgePlugin = new Plugin<HostState | null>({
  * The core feature is required and provides basic editor functionality.
  */
 export class RTECore extends RTEFeature {
+	protected name = 'RTECore';
+
 	override getStyles() {
-		return [{ css: proseMirrorCss }, { css: coreCss }];
+		return [this.contribution(proseMirrorCss), this.contribution(coreCss)];
 	}
 
 	override getPlugins(rte: RTEInstance) {
 		return [
-			{
-				plugin: keymap({
+			this.contribution(
+				keymap({
 					...baseKeymap,
 					Enter: chainCommands(
 						newlineInCode,
@@ -79,15 +81,15 @@ export class RTECore extends RTEFeature {
 							};
 						})
 					),
-				}),
-			},
-			{ plugin: dropCursor() },
-			{ plugin: gapCursor() },
-			{ plugin: hostBridgePlugin },
+				})
+			),
+			this.contribution(dropCursor()),
+			this.contribution(gapCursor()),
+			this.contribution(hostBridgePlugin),
 		];
 	}
 
-	override getFeatures() {
+	override getFeatures(): RTEFeature[] {
 		return [this, new RTEHistoryFeature(), new RTEPlaceholderFeature()];
 	}
 }

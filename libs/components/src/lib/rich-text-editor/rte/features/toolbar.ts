@@ -5,12 +5,14 @@ import {
 	type ToolbarItemSpec,
 } from '../utils/toolbar-items';
 import { RTEInstance } from '../instance';
-import { RTEFeature } from '../feature';
+import { RTEFeature, sortedContributions } from '../feature';
 import toolbarCss from './toolbar.style.scss?inline';
 
 export class RTEToolbarFeature extends RTEFeature {
+	protected name = 'RTEToolbarFeature';
+
 	override getStyles() {
-		return [{ css: toolbarCss }];
+		return [this.contribution(toolbarCss)];
 	}
 
 	override getPlugins(rte: RTEInstance) {
@@ -25,19 +27,15 @@ export class RTEToolbarFeature extends RTEFeature {
 			sections.map((section) => [section, [] as ToolbarItemSpec[]])
 		);
 
-		for (const toolbarItem of rte.features.flatMap((f) =>
-			f.getToolbarItems(rte)
+		for (const toolbarItem of sortedContributions(
+			rte.features.flatMap((f) => f.getToolbarItems(rte))
 		)) {
 			itemsBySection.get(toolbarItem.section)!.push(toolbarItem);
 		}
 
-		for (const section of itemsBySection.values()) {
-			section.sort((a, b) => a.order - b.order);
-		}
-
 		return [
-			{
-				plugin: new Plugin({
+			this.contribution(
+				new Plugin({
 					view: (view) => {
 						const ctx = new ToolbarCtx(view, rte);
 
@@ -69,8 +67,8 @@ export class RTEToolbarFeature extends RTEFeature {
 							},
 						};
 					},
-				}),
-			},
+				})
+			),
 		];
 	}
 }

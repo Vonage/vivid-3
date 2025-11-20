@@ -25,6 +25,8 @@ import { RTEFeature } from '../feature';
 import type { TextField } from '../../../text-field/text-field';
 import type { Popover } from '../../popover';
 import { mockTransfer } from '../../../file-picker/__mocks__/data-transfer';
+import type { RTEFragment } from '../document';
+import type { RTEInstanceOptions } from '../instance';
 
 registerRichTextEditor();
 
@@ -168,14 +170,24 @@ const docToStr = (state: EditorState) => {
 	return nodeToStr(state.doc);
 };
 
-export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
+export async function setup(
+	features: RTEFeature[],
+	initialContent?: RTEFragment,
+	options?: RTEInstanceOptions
+) {
 	const config = new RTEConfig(features);
-	const rte = config.instantiateEditor(initialDoc);
+	const instance = config.instantiateEditor({
+		initialDocument: initialContent && {
+			type: 'doc',
+			content: initialContent,
+		},
+		...options,
+	});
 
 	const element = fixture(
 		`<vwc-rich-text-editor></vwc-rich-text-editor>`
 	) as RichTextEditor;
-	element.instance = rte;
+	element.instance = instance;
 	await elementUpdated(element);
 
 	const view = (element as any)._view as EditorView;
@@ -204,6 +216,10 @@ export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
 
 	const selectAll = () => {
 		keydown('a', { ctrl: true });
+	};
+
+	const undo = () => {
+		keydown('z', { ctrl: true });
 	};
 
 	/**
@@ -295,15 +311,14 @@ export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
 	};
 
 	const typeTextAtCursor = async (text: string) => {
-		if (
-			!(
-				view.state.selection instanceof TextSelection &&
-				view.state.selection.empty
-			)
-		) {
+		const { selection } = view.state;
+		const { $cursor } = selection as TextSelection;
+		if (!$cursor) {
 			throw new Error('Selection must be a caret');
 		}
-		const { node, offset } = view.domAtPos(view.state.selection.anchor, 1)!;
+		// Need to look on right side to find text node instead of the parent node
+		const side = $cursor.parent.nodeSize - 2 === $cursor.parentOffset ? -1 : 1;
+		const { node, offset } = view.domAtPos(selection.anchor, side)!;
 		if (node.nodeType === window.Node.TEXT_NODE) {
 			const prevContent = node.nodeValue ?? '';
 			const newContent =
@@ -385,7 +400,6 @@ export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
 		}) as any;
 		pasteEvent.clipboardData = mockTransfer(items);
 		view.dom.dispatchEvent(pasteEvent);
-		// await elementUpdated(element);
 	};
 
 	const dropFiles = (atPos: number, items: DataTransferItem[]) => {
@@ -396,7 +410,6 @@ export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
 		});
 		view.posAtCoords = () => ({ pos: atPos, inside: 0 });
 		view.dom.dispatchEvent(dropEvent);
-		// await elementUpdated(element);
 	};
 
 	const dispatchDragEvent = (
@@ -415,12 +428,13 @@ export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
 	};
 
 	return {
-		rte,
+		instance,
 		element,
 		view,
 		config,
 		keydown,
 		selectAll,
+		undo,
 		getPos,
 		placeCursor,
 		typeTextAtCursor,

@@ -1,43 +1,51 @@
 import { marks as basicMarks } from 'prosemirror-schema-basic';
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark } from 'prosemirror-commands';
-import { createMarkToggle, type ToolbarItemSpec } from '../utils/toolbar-items';
+import { createMarkToggle } from '../utils/toolbar-items';
 import { RTEInstance } from '../instance';
-import { RTEFeature } from '../feature';
+import {
+	RTEFeature,
+	type SchemaContribution,
+	type ToolbarItemContribution,
+} from '../feature';
 
 export class RTEItalicFeature extends RTEFeature {
-	override getSchema() {
-		const schema = {
-			marks: {
-				italic: basicMarks.em,
-			},
-		};
+	protected name = 'RTEItalicFeature';
 
-		return [{ schema }];
+	override getSchema(): SchemaContribution[] {
+		return [
+			this.contribution({
+				marks: {
+					italic: basicMarks.em,
+				},
+			}),
+		];
 	}
 
 	override getPlugins(rte: RTEInstance) {
 		return [
-			{
-				plugin: keymap({
+			this.contribution(
+				keymap({
 					'Mod-i': toggleMark(rte.schema.marks.italic),
-				}),
-			},
+				})
+			),
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstance): ToolbarItemSpec[] {
+	override getToolbarItems(rte: RTEInstance): ToolbarItemContribution[] {
 		return [
-			{
-				section: 'text-style',
-				order: 2,
-				render: (ctx) =>
-					createMarkToggle(ctx, {
-						label: () => ctx.rte.getLocale().richTextEditor.italic,
-						icon: 'italic-line',
-						markType: rte.schema.marks.italic,
-					}),
-			},
+			this.contribution(
+				{
+					section: 'text-style',
+					render: (ctx) =>
+						createMarkToggle(ctx, {
+							label: () => ctx.rte.getLocale().richTextEditor.italic,
+							icon: 'italic-line',
+							markType: rte.schema.marks.italic,
+						}),
+				},
+				2
+			),
 		];
 	}
 }
