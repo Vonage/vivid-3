@@ -22,6 +22,25 @@ describe('RTEBoldFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(`"text_line(<bold>'|Hello')"`);
 	});
 
+	it('should deserialize bold from HTML', async () => {
+		const rte = await setup(features);
+		rte.setHtml(
+			`<div><strong>bold</strong><b>bold</b><span style="font-weight: bold">bold</span></div>`
+		);
+
+		expect(rte.docStr()).toMatchInlineSnapshot(
+			`"text_line(<bold>'|boldboldbold')"`
+		);
+	});
+
+	it('should serialize bold to HTML', async () => {
+		const rte = await setup(features, [line(text.marks(bold())('bold'))]);
+
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<div><strong>bold</strong></div>"`
+		);
+	});
+
 	it('should toggle bold mark of selected text on Mod-b', async () => {
 		const { selectText, keydown, docStr } = await setup(features, [
 			line('Hello world'),

@@ -1,6 +1,9 @@
 ## Usage
 
-To use the Rich Text Editor, you first need to create a configuration with the features you want to include.
+The Rich Text Editor provides composable and customizable rich text editing features built on top of the [ProseMirror](https://prosemirror.net/) library.
+Each feature adds specific functionality to the editor (e.g. formatting, lists, links) and you can individually enable or configure it.
+
+To use it, first create a configuration with the features you want to include.
 
 ```js
 import { RTEConfig, RTECore, RTEFreeformStructure, RTEToolbarFeature, RTEBoldFeature } from '@vonage/vivid';
@@ -10,52 +13,29 @@ const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTE
 
 See the [features documentation](#features) for a list of available features.
 
-To render an editor, create an editor instance from the config, optionally with an initial document.
+Then, create an editor instance from the config, optionally with an initial document.
 
 ```js
 const instance = config.instantiateEditor({
 	initialDocument: {
-		type: 'doc',
-		content: [
-			{
-				type: 'text_line',
-				content: [
-					{ type: 'text', text: 'Hello' },
-					{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
-				],
-			},
-		],
+		/* ... */
 	},
 });
 ```
 
-Then, pass the instance to the Rich Text Editor component.
+To render it, pass the instance to the Rich Text Editor component.
 
 <vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
-import { registerRichTextEditor, RTEConfig, RTECore, RTEFreeformStructure, RTEToolbarFeature, RTEBoldFeature } from '@vonage/vivid';
+import { registerRichTextEditor } from '@vonage/vivid';
 
 registerRichTextEditor('your-prefix');
 
-const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEBoldFeature()]);
-
-const instance = config.instantiateEditor({
-	initialDocument: {
-		type: 'doc',
-		content: [
-			{
-				type: 'text_line',
-				content: [
-					{ type: 'text', text: 'Hello' },
-					{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
-				],
-			},
-		],
-	},
-});
+const rteComponent = document.querySelector('your-prefix-rich-text-editor');
+rteComponent.instance = instance;
 ```
 
 ```html preview
@@ -122,7 +102,174 @@ const instance = config.instantiateEditor({
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Guide
+
+### Document Model
+
+Documents are represented as JSON objects following the ProseMirror document model.
+
+An example document could look like this:
+
+```json
+{
+	"type": "doc",
+	"content": [
+		{
+			"type": "paragraph",
+			"content": [
+				{
+					"type": "text",
+					"text": "Hello"
+				},
+				{
+					"type": "text",
+					"text": " world!",
+					"marks": [
+						{
+							"type": "bold"
+						}
+					]
+				},
+				{
+					"type": "text",
+					"text": "Click me",
+					"marks": [
+						{
+							"type": "link",
+							"attrs": {
+								"href": "https://vonage.com"
+							}
+						}
+					]
+				},
+				{
+					"type": "inline_image",
+					"attrs": {
+						"imageUrl": "/vonage.png",
+						"alt": "Vonage Logo",
+						"size": null,
+						"natualWidth": 100,
+						"naturalHeight": 50
+					}
+				}
+			]
+		}
+	]
+}
+```
+
+It is a tree structure of nodes similar to HTML. However, unlike HTML, markup like `bold` is attached to nodes as "marks". You can learn more about the format in the [ProseMirror documentation](https://prosemirror.net/docs/guide/#doc).
+
+The exact schema of which nodes and marks can be in the document depends on the features you have enabled. Each feature documents how it extends the document model.
+
+A document is a single `doc` node and has the type `RTEDocument`.
+
+A part of a document is represented as an array of nodes and has the type `RTEFragment`:
+
+```json
+[{ "type": "text", "text": "Hello" }]
+```
+
+### Persisting Documents
+
+Since documents are JSON-serializable, they can be stored directly in a database or sent over the network. This allows loading them into the editor again or rendering them in different contexts.
+
+The schema of a specific `RTEConfig` will be stable across minor versions of Vivid. We will consider modifications to the schema as breaking changes in line with our [Release Policy](/resources/release-policy/).
+
+However, if you make changes to your `RTEConfig`, you should ensure that the editor remains compatible with previously stored documents or migrate them accordingly.
+
+### Rendering Documents
+
+To render documents inside a web application, you will be able to use the Rich Text component. It will allow you to use custom components for rendering specific nodes or marks.
+
+### HTML Conversion
+
+Documents can be converted to and from HTML using the `RTEHtmlParser` and `RTEHtmlSerializer` classes:
+
+```ts
+import { RTEHtmlParser, RTEHtmlSerializer } from '@vonage/vivid';
+
+const parser = new RTEHtmlParser(config);
+const doc = parser.parseDocument('<p>Hello <strong>World</strong></p>'); // -> { type: 'doc', content: [...] }
+const frag = parser.parseFragment('<p>Hello <strong>World</strong></p>'); // -> { type: 'paragraph', content: [...] }
+
+const serializer = new RTEHtmlSerializer(config);
+serializer.serializeDocument(doc); // -> '<p>Hello <strong>World</strong></p>'
+serializer.serializeFragment(frag); // -> '<p>Hello <strong>World</strong></p>'
+```
+
+When parsing HTML, the input will be sanitized using the [DOMPurify](https://github.com/cure53/DOMPurify) library to strip out potentially dangerous HTML.
+
+The default parser will make a best-effort attempt to parse arbitrary HTML, ignoring unsupported tags and attributes. The default serializer attempts to produce idiomatic and widely compatible HTML that can be converted back into the same document.
+
+Their exact behaviour and output is undefined and may change between minor versions.
+
+It's guaranteed that parsing the output of the serializer will yield the original document, even across minor versions.
+If we make a change that break this guarantee, we will consider it a breaking change in line with our [Release Policy](/resources/release-policy/).
+
+#### Customizing HTML Conversion
+
+You can provide a `modifyDom` function to manipulate the DOM before it is parsed or serialized:
+
+```ts
+const fragment = parser.parseFragment('<img data-attachment-id="1">', {
+	modifyDom: (dom) => {
+		for (const img of dom.querySelectorAll('img[data-attachment-id]').values()) {
+			img.setAttribute('src', `attachment://${img.getAttribute('data-attachment-id')}`);
+		}
+	},
+}); /* -> [{
+	"type": "inline_image",
+	"attrs": {
+		"imageUrl": "attachment://1",
+		...
+	},
+}] */
+
+serializer.serializeFragment(fragment, {
+	modifyDom: (dom) => {
+		for (const img of dom.querySelectorAll('img[src]').values()) {
+			const url = new URL(img.getAttribute('src')!);
+			img.setAttribute('data-attachment-id', url.hostname);
+		}
+	},
+}); // -> '<img src="attachment://1" alt="" data-attachment-id="1">'
+```
+
+You can also customize the ProseMirror parsing and serialization logic directly.
+
+For parsing, the `modifyParseRules` function allows you to modify the ProseMirror [ParseRules](https://prosemirror.net/docs/ref/#model.ParseRule) used:
+
+```ts
+const parser = new RTEHtmlParser(config, {
+	modifyParseRules: (rules) => {
+		rules.nodes.paragraph.push({ tag: 'div.paragraph' });
+		rules.marks.bold.push({ tag: 'span.bold' });
+	},
+});
+parser.parseFragment("<div class='paragraph'><span class='bold'>Hello</span> world</div>"); // -> { type: 'paragraph', content: [...] }
+```
+
+For serialization, you can override the default serializers for nodes and marks. Serializers need to return a ProseMirror [DOMOutputSpec](https://prosemirror.net/docs/ref/#model.DOMOutputSpec):
+
+```ts
+const serializer = new RTEHtmlSerializer(config, {
+	serializers: {
+		nodes: {
+			paragraph: () => ['div', { class: 'paragraph' }, 0],
+		},
+		marks: {
+			bold: () => ['span', { class: 'bold' }, 0],
+		},
+	},
+});
+```
+
 ## Editor Instance API
+
+The editor instance holds all the state and functionality of the editor, but does not render anything on its own. To display it, pass it to a Rich Text Editor component.
+
+You can use the instance to get and modify the document programmatically.
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 150px"></vwc-rich-text-editor>
@@ -169,10 +316,29 @@ const instance = config.instantiateEditor({
 The `onChange` callback is called whenever the document changes.
 
 ```ts
-const instance = config.instantiate([], {
+const instance = config.instantiateEditor([], {
 	onChange: () => {
 		console.log('Document changed:', instance.getDocument());
 	},
+});
+```
+
+#### foreignHtmlParser / foreignHtmlSerializer
+
+Users can copy or drag arbitrary HTML content in or out of the editor.
+
+The editor uses the `foreignHtmlParser` and `foreignHtmlSerializer` to handle this content.
+
+When not provided, it uses a default parser and serializer.
+
+```ts
+config.instantiateEditor({
+	foreignHtmlParser: new RTEHtmlParser(config, {
+		/* ... */
+	}),
+	foreignHtmlSerializer: new RTEHtmlSerializer(config, {
+		/* ... */
+	}),
 });
 ```
 
@@ -968,11 +1134,13 @@ In this example, we display a drop zone overlay when files are dragged over the 
 			initialDocument: {
 				type: 'doc',
 				content: [
-			{
-				type: 'paragraph',
-				content: [{ type: 'text', text: 'Drag files into the editor.' }],
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'Drag files into the editor.' }],
+					},
+				],
 			},
-		]});
+		});
 	});
 </script>
 ```

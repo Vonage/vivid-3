@@ -33,6 +33,11 @@ export class TextblockAttrs {
 		return this.specs.flatMap((s) => s.toStyles(node)).join('; ');
 	}
 
+	getDOMAttrs(node: Node) {
+		if (!this.specs.length) return [];
+		return [{ style: this.getStyle(node) }];
+	}
+
 	extractFromNode(node: Node) {
 		return Object.assign(
 			{},

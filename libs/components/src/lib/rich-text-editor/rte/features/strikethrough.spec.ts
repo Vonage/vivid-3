@@ -24,6 +24,25 @@ describe('RTEStrikethroughFeature', () => {
 		);
 	});
 
+	it('should deserialize strikethrough from HTML', async () => {
+		const rte = await setup(features);
+		rte.setHtml(`<div><s>strikethrough</s><del>strikethrough</del></div>`);
+
+		expect(rte.docStr()).toMatchInlineSnapshot(
+			`"text_line(<strikethrough>'|strikethroughstrikethrough')"`
+		);
+	});
+
+	it('should serialize strikethrough to HTML', async () => {
+		const rte = await setup(features, [
+			line(text.marks(strikethrough())('strikethrough')),
+		]);
+
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<div><s>strikethrough</s></div>"`
+		);
+	});
+
 	it('should toggle strikethrough mark of selected text on Alt+Shift+5', async () => {
 		const { selectText, docStr, keydown } = await setup(features, [
 			line('Hello world'),

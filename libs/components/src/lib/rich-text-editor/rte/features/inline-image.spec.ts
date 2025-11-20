@@ -45,10 +45,8 @@ describe('RTEInlineImageFeature', () => {
 
 	it('should deserialize images from HTML', async () => {
 		const rte = await setup(featuresWithConfig());
-		rte.instance.replaceDocument(
-			rte.config.parseHTML(
-				'<p><img src="image.jpg" alt="Image" width="100" height="200" style="max-width: 100%"></p>'
-			)
+		rte.setHtml(
+			'<p><img src="image.jpg" alt="Image" width="100" height="200" style="max-width: 100%"></p>'
 		);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
@@ -61,9 +59,7 @@ describe('RTEInlineImageFeature', () => {
 		`
 		);
 
-		rte.instance.replaceDocument(
-			rte.config.parseHTML('<p><img src="minimal.jpg"></p>')
-		);
+		rte.setHtml('<p><img src="minimal.jpg"></p>');
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
@@ -89,8 +85,8 @@ describe('RTEInlineImageFeature', () => {
 			),
 		]);
 
-		expect(rte.config.toHTML(rte.instance.getDocument())).toMatchInlineSnapshot(
-			`"<p style=""><img src="/image.jpg" alt="Image" style="max-width: 100%;" width="100" height="200"></p>"`
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<p><img src="/image.jpg" alt="Image" style="max-width: 100%;" width="100" height="200"></p>"`
 		);
 
 		rte.instance.replaceDocument(
@@ -107,8 +103,8 @@ describe('RTEInlineImageFeature', () => {
 			)
 		);
 
-		expect(rte.config.toHTML(rte.instance.getDocument())).toMatchInlineSnapshot(
-			`"<p style=""><img src="/minimal.jpg" alt=""></p>"`
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<p><img src="/minimal.jpg" alt=""></p>"`
 		);
 	});
 
@@ -361,22 +357,16 @@ describe('RTEInlineImageFeature', () => {
 					parseUrlFromHtml: (src: string) => `parsed:${src}`,
 				})
 			);
-			expect(
-				rte.config.parseHTMLSlice(
-					'<img src="image.jpg" alt="Image" width="100" height="200" style="max-width: 100%">'
+			rte.setHtml(
+				'<img src="image.jpg" alt="Image" width="100" height="200" style="max-width: 100%">'
+			);
+			expect(rte.docStr()).toMatchInlineSnapshot(`
+				"
+				paragraph(
+					inline_image[imageUrl="parsed:image.jpg" alt="Image" size="100%" naturalWidth=100 naturalHeight=200]()
 				)
-			).toEqual([
-				{
-					type: 'inline_image',
-					attrs: {
-						imageUrl: 'parsed:image.jpg',
-						alt: 'Image',
-						size: '100%',
-						naturalWidth: 100,
-						naturalHeight: 200,
-					},
-				},
-			]);
+				"
+			`);
 		});
 
 		it('should drop img when result is null', async () => {
@@ -386,7 +376,7 @@ describe('RTEInlineImageFeature', () => {
 				})
 			);
 			expect(
-				rte.config.parseHTMLSlice(
+				rte.htmlParser.parseFragment(
 					'<img src="image.jpg" alt="Image" width="100" height="200" style="max-width: 100%">'
 				)
 			).toEqual([]);
@@ -408,8 +398,8 @@ describe('RTEInlineImageFeature', () => {
 					),
 				]
 			);
-			expect(rte.config.toHTML(rte.instance.getDocument())).toBe(
-				'<p style=""><img src="serialized:/image.jpg" alt="Image"></p>'
+			expect(rte.getHtml()).toMatchInlineSnapshot(
+				`"<p><img src="serialized:/image.jpg" alt="Image"></p>"`
 			);
 		});
 
@@ -427,9 +417,7 @@ describe('RTEInlineImageFeature', () => {
 					),
 				]
 			);
-			expect(rte.config.toHTML(rte.instance.getDocument())).toBe(
-				'<p style=""></p>'
-			);
+			expect(rte.getHtml()).toMatchInlineSnapshot(`"<p></p>"`);
 		});
 	});
 

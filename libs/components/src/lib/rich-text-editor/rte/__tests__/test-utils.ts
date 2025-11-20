@@ -15,7 +15,11 @@ import {
 import { sum } from 'ramda';
 import type { RichTextEditor } from '../../rich-text-editor';
 import type { Button } from '../../../button/button';
-import { registerRichTextEditor } from '../../definition';
+import {
+	registerRichTextEditor,
+	RTEHtmlParser,
+	RTEHtmlSerializer,
+} from '../../definition';
 import type { Menu } from '../../../menu/menu';
 import type { MenuItem } from '../../../menu-item/menu-item';
 import type { Select } from '../../../select/select';
@@ -173,7 +177,7 @@ const docToStr = (state: EditorState) => {
 export async function setup(
 	features: RTEFeature[],
 	initialContent?: RTEFragment,
-	options?: RTEInstanceOptions
+	options?: (config: RTEConfig) => RTEInstanceOptions
 ) {
 	const config = new RTEConfig(features);
 	const instance = config.instantiateEditor({
@@ -181,7 +185,7 @@ export async function setup(
 			type: 'doc',
 			content: initialContent,
 		},
-		...options,
+		...options?.(config),
 	});
 
 	const element = fixture(
@@ -191,6 +195,13 @@ export async function setup(
 	await elementUpdated(element);
 
 	const view = (element as any)._view as EditorView;
+
+	const htmlParser = new RTEHtmlParser(config);
+	const setHtml = (html: string) =>
+		instance.replaceDocument(htmlParser.parseDocument(html));
+	const htmlSerializer = new RTEHtmlSerializer(config);
+	const getHtml = () =>
+		htmlSerializer.serializeDocument(instance.getDocument());
 
 	const keydown = (
 		key: string,
@@ -402,12 +413,56 @@ export async function setup(
 		view.dom.dispatchEvent(pasteEvent);
 	};
 
+	const pasteHtml = (html: string) => {
+		const pasteEvent = new CustomEvent('paste', {
+			bubbles: true,
+			cancelable: true,
+		}) as any;
+		const transfer = new DataTransfer();
+		transfer.setData('text/html', html);
+		pasteEvent.clipboardData = transfer;
+		view.dom.dispatchEvent(pasteEvent);
+	};
+
+	const copy = (): DataTransfer => {
+		const copyEvent = new CustomEvent('copy', {
+			bubbles: true,
+			cancelable: true,
+		}) as any;
+		const transfer = new DataTransfer();
+		copyEvent.clipboardData = transfer;
+		view.dom.dispatchEvent(copyEvent);
+		return transfer;
+	};
+
+	const startDrag = (atPos: number): DataTransfer => {
+		const copyEvent = new DragEvent('dragstart', {
+			dataTransfer: new DataTransfer(),
+			bubbles: true,
+			cancelable: true,
+		});
+		view.posAtCoords = () => ({ pos: atPos, inside: 0 });
+		view.dom.dispatchEvent(copyEvent);
+		return copyEvent.dataTransfer!;
+	};
+
 	const dropFiles = (atPos: number, items: DataTransferItem[]) => {
 		const dropEvent = new DragEvent('drop', {
 			dataTransfer: mockTransfer(items),
 			bubbles: true,
 			cancelable: true,
 		});
+		view.posAtCoords = () => ({ pos: atPos, inside: 0 });
+		view.dom.dispatchEvent(dropEvent);
+	};
+
+	const dropHtml = (atPos: number, html: string) => {
+		const dropEvent = new DragEvent('drop', {
+			dataTransfer: new DataTransfer(),
+			bubbles: true,
+			cancelable: true,
+		});
+		dropEvent.dataTransfer!.setData('text/html', html);
 		view.posAtCoords = () => ({ pos: atPos, inside: 0 });
 		view.dom.dispatchEvent(dropEvent);
 	};
@@ -432,6 +487,10 @@ export async function setup(
 		element,
 		view,
 		config,
+		htmlParser,
+		htmlSerializer,
+		getHtml,
+		setHtml,
 		keydown,
 		selectAll,
 		undo,
@@ -457,7 +516,11 @@ export async function setup(
 		option,
 		openPopover,
 		pasteFiles,
+		pasteHtml,
+		copy,
 		dropFiles,
+		dropHtml,
+		startDrag,
 		dispatchDragEvent,
 	};
 }

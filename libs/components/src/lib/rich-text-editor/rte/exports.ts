@@ -17,4 +17,7 @@ export { RTEInlineImageFeature } from './features/inline-image';
 export { RTEFileHandlerFeature } from './features/file-handler';
 export { RTEDropHandlerFeature } from './features/drop-handler';
 
+export { RTEHtmlParser } from './html-parser';
+export { RTEHtmlSerializer } from './html-serializer';
+
 export type { RTEDocument, RTEFragment, RTENode, RTEMark } from './document';

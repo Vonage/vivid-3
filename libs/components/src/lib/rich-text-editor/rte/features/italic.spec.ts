@@ -22,6 +22,21 @@ describe('RTEItalicFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(`"text_line(<italic>'|Hello')"`);
 	});
 
+	it('should deserialize italic from HTML', async () => {
+		const rte = await setup(features);
+		rte.setHtml(`<div><em>italic</em><i>italic</i></div>`);
+
+		expect(rte.docStr()).toMatchInlineSnapshot(
+			`"text_line(<italic>'|italicitalic')"`
+		);
+	});
+
+	it('should serialize italic to HTML', async () => {
+		const rte = await setup(features, [line(text.marks(italic())('italic'))]);
+
+		expect(rte.getHtml()).toMatchInlineSnapshot(`"<div><em>italic</em></div>"`);
+	});
+
 	it('should toggle italic mark of selected text on Mod-i', async () => {
 		const { selectText, keydown, docStr } = await setup(features, [
 			line('Hello world'),

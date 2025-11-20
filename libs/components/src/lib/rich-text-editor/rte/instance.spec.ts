@@ -176,9 +176,9 @@ describe('RTEInstance', () => {
 	describe('onChange', () => {
 		it('should call onChange callback when document changes', async () => {
 			const onChange = vitest.fn();
-			const rte = await setup(features, [], {
+			const rte = await setup(features, [], () => ({
 				onChange,
-			});
+			}));
 			expect(onChange).not.toHaveBeenCalled();
 			await rte.typeTextAtCursor('H');
 			expect(onChange).toHaveBeenCalledTimes(1);

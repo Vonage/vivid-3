@@ -22,6 +22,25 @@ describe('RTEUnderlineFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(`"text_line(<underline>'|Hello')"`);
 	});
 
+	it('should deserialize underline from HTML', async () => {
+		const rte = await setup(features);
+		rte.setHtml(`<div><u>underline</u></div>`);
+
+		expect(rte.docStr()).toMatchInlineSnapshot(
+			`"text_line(<underline>'|underline')"`
+		);
+	});
+
+	it('should serialize underline to HTML', async () => {
+		const rte = await setup(features, [
+			line(text.marks(underline())('underline')),
+		]);
+
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<div><u>underline</u></div>"`
+		);
+	});
+
 	it('should toggle underline mark of selected text on Mod-u', async () => {
 		const { selectText, keydown, docStr } = await setup(features, [
 			line('Hello world'),

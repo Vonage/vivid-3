@@ -118,7 +118,7 @@ export class RTETextBlockStructure extends RTEFeature {
 							},
 						],
 						toDOM(node) {
-							return ['p', { style: textblockAttrs.getStyle(node) }, 0];
+							return ['p', ...textblockAttrs.getDOMAttrs(node), 0];
 						},
 					},
 			  }
@@ -160,7 +160,7 @@ export class RTETextBlockStructure extends RTEFeature {
 						toDOM(node) {
 							return [
 								'h' + node.attrs.level,
-								{ style: textblockAttrs.getStyle(node) },
+								...textblockAttrs.getDOMAttrs(node),
 								0,
 							];
 						},

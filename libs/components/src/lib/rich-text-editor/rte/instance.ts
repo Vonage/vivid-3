@@ -9,13 +9,23 @@ import { hostBridgePlugin, type HostState } from './features/core';
 import { RTEFeature, sortedContributions } from './feature';
 import type { RTEDocument, RTEFragment } from './document';
 import type { TextblockAttrs } from './utils/textblock-attrs';
+import { RTEHtmlParser } from './html-parser';
+import { RTEHtmlSerializer } from './html-serializer';
 
 export type RTEInstanceOptions = {
+	initialDocument?: RTEDocument;
 	/**
 	 * Called whenever the document content changes.
 	 */
-	initialDocument?: RTEDocument;
 	onChange?: () => void;
+	/**
+	 * Used when parsing foreign HTML (e.g., pasted or dropped content).
+	 */
+	foreignHtmlParser?: RTEHtmlParser;
+	/**
+	 * Used when serializing content to foreign HTML (e.g., for copy/drag).
+	 */
+	foreignHtmlSerializer?: RTEHtmlSerializer;
 };
 
 export class RTEInstance {
@@ -24,6 +34,8 @@ export class RTEInstance {
 	readonly textblockAttrs: TextblockAttrs;
 	readonly features: RTEFeature[];
 	readonly styles: ElementStyles;
+	readonly foreignHtmlParser: RTEHtmlParser;
+	readonly foreignHtmlSerializer: RTEHtmlSerializer;
 
 	getFeature<T extends RTEFeature>(constr: Constructor<T>): T {
 		const f = this.config.featureMap.get(constr) as T;
@@ -40,6 +52,10 @@ export class RTEInstance {
 		this.schema = config.schema;
 		this.textblockAttrs = config.textblockAttrs;
 		this.features = config.features;
+		this.foreignHtmlParser =
+			options?.foreignHtmlParser ?? new RTEHtmlParser(config);
+		this.foreignHtmlSerializer =
+			options?.foreignHtmlSerializer ?? new RTEHtmlSerializer(config);
 
 		this.styles = new ElementStyles(
 			sortedContributions(config.features.flatMap((f) => f.getStyles()))
