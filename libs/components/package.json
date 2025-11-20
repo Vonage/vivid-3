@@ -103,7 +103,7 @@
 		"playwright": "1.48.2",
 		"sass": "^1.89.2",
 		"vite-plugin-static-copy": "^1.0.6",
-		"vitest": "^2.1.8",
+		"vitest": "^3.2.4",
 		"vitest-axe": "^0.1.0",
 		"vitest-fetch-mock": "^0.4.5",
 		"wait-on": "^8.0.5",

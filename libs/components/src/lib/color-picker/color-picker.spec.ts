@@ -293,6 +293,7 @@ describe('vwc-color-picker', () => {
 			globalThis.navigator.clipboard = {
 				writeText: vi.fn().mockResolvedValue(undefined),
 			};
+			window.alert = vi.fn();
 			vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
 		});
 

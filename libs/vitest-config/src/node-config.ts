@@ -28,5 +28,16 @@ export default defineConfig({
 			provider: 'v8',
 		},
 		passWithNoTests: true,
+		fakeTimers: {
+			toFake: [
+				'setTimeout',
+				'clearTimeout',
+				'setInterval',
+				'clearInterval',
+				'setImmediate',
+				'clearImmediate',
+				'Date',
+			],
+		},
 	},
 });

@@ -360,7 +360,7 @@ describe('vwc-popup', () => {
 
 	describe('animationFrame', () => {
 		function resetMethodCallCount(property: any) {
-			vi.spyOn(element, property).mockReset();
+			vi.spyOn(element, property).mockClear();
 		}
 
 		async function openPopup() {
@@ -404,7 +404,7 @@ describe('vwc-popup', () => {
 		it('should disable recursive calls to requestAnimationFrame when false', async () => {
 			await openPopup();
 			const cb = getLastFrameCallback();
-			rAFStub.mockReset();
+			rAFStub.mockClear();
 			cb();
 
 			expect(rAFStub).toHaveBeenCalledTimes(0);
@@ -414,7 +414,7 @@ describe('vwc-popup', () => {
 			element.animationFrame = true;
 			await openPopup();
 			const cb = getLastFrameCallback();
-			rAFStub.mockReset();
+			rAFStub.mockClear();
 			cb();
 			cb();
 			expect(rAFStub).toHaveBeenCalledTimes(2);

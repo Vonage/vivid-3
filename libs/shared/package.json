@@ -44,7 +44,7 @@
 		"@repo/eslint-config": "*",
 		"@repo/stylelint-config": "*",
 		"@repo/vitest-config": "*",
-		"vitest": "^2.1.8",
+		"vitest": "^3.2.4",
 		"vitest-axe": "^0.1.0"
 	}
 }
