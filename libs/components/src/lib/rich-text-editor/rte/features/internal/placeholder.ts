@@ -7,8 +7,10 @@ import type { FontSizeSpec } from '../font-size';
 import placeholderCss from './placeholder.style.scss?inline';
 
 export class RTEPlaceholderFeature extends RTEFeature {
+	protected name = 'RTEPlaceholderFeature';
+
 	override getStyles() {
-		return [{ css: placeholderCss }];
+		return [this.contribution(placeholderCss)];
 	}
 
 	override getPlugins(rte: RTEInstance) {
@@ -53,6 +55,6 @@ export class RTEPlaceholderFeature extends RTEFeature {
 			},
 		});
 
-		return [{ plugin: placeholderPlugin }];
+		return [this.contribution(placeholderPlugin)];
 	}
 }

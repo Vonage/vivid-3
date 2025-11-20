@@ -35,8 +35,8 @@ describe('RTEAlignmentFeature', () => {
 	});
 
 	it('should deserialize the attribute from HTML', async () => {
-		const { rte, config, docStr } = await setup(features);
-		rte.setDoc(
+		const { instance, config, docStr } = await setup(features);
+		instance.replaceDocument(
 			config.parseHTML(
 				`
 					<h1 style="text-align: center">center</h1>
@@ -47,16 +47,14 @@ describe('RTEAlignmentFeature', () => {
 			)
 		);
 
-		expect(docStr()).toMatchInlineSnapshot(
-			`
+		expect(docStr()).toMatchInlineSnapshot(`
 			"
-			heading[level=1 textAlign="center"]('center'),
+			heading[level=1 textAlign="center"]('|center'),
 			heading[level=2 textAlign="right"]('right'),
 			paragraph[textAlign="left"]('left'),
-			paragraph[textAlign="left"]('default|')
+			paragraph[textAlign="left"]('default')
 			"
-		`
-		);
+		`);
 	});
 
 	it('should set left alignment with Mod+Shift+L', async () => {

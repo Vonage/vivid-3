@@ -360,14 +360,17 @@ Functionality:
 				},
 			}),
 		]);
-		rteComponent.instance = config.instantiateEditor(
-			Array(20)
-				.fill(null)
-				.map((_, i) => ({
-					type: 'paragraph',
-					content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
-				}))
-		);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: Array(20)
+					.fill(null)
+					.map((_, i) => ({
+						type: 'paragraph',
+						content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
+					})),
+			},
+		});
 
 		dropZone.addEventListener('drop', (event) => {
 			const files = Array.from(event.dataTransfer.files);
