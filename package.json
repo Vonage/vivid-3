@@ -7,7 +7,7 @@
 	"scripts": {
 		"start": "turbo run dev --filter=@repo/docs --filter=@vonage/vivid --filter=@repo/styles",
 		"build": "turbo run build",
-		"test": "turbo run test:coverage && istanbul-merge ./libs/*/coverage/coverage-final.json ./apps/*/coverage/coverage-final.json --out /dev/stdout | istanbul report --include /dev/stdin --dir coverage html lcov",
+    "test": "turbo run test:coverage && istanbul-merge ./libs/*/coverage/coverage-final.json ./apps/*/coverage/coverage-final.json --out .nyc_output/coverage.json && nyc report --temp-dir .nyc_output --reporter html --reporter lcov --report-dir coverage",
 		"test:ui": "npx turbo run @vonage/vivid#e2e:docker:ui",
 		"lint": "turbo run lint stylelint",
 		"lint:fix": "turbo run lint:fix stylelint:fix",
@@ -17,12 +17,10 @@
 		"postinstall": "patch-package"
 	},
 	"devDependencies": {
+		"@types/eslint": "^8.56.12",
 		"@typescript-eslint/eslint-plugin": "7.18.0",
-		"vite": "5.4.15",
-		"vite-plugin-dts": "~2.3.0",
 		"@typescript-eslint/parser": "7.18.0",
 		"@typescript-eslint/utils": "7.18.0",
-		"@types/eslint": "^8.56.12",
 		"@vitest/coverage-v8": "^2.1.9",
 		"@vitest/ui": "^2.1.9",
 		"eslint": "8.57.1",
@@ -31,15 +29,17 @@
 		"eslint-plugin-compat": "^4.0.2",
 		"eslint-plugin-import": "^2.32.0",
 		"eslint-plugin-tsdoc": "^0.4.0",
-		"patch-package": "^8.0.1",
 		"eslint-plugin-unused-imports": "^3.2.0",
 		"eslint-plugin-vue": "^9.33.0",
-		"istanbul": "^0.4.5",
 		"istanbul-merge": "^2.0.0",
+		"nyc": "^17.1.0",
+		"patch-package": "^8.0.1",
 		"prettier": "2.8.8",
 		"stylelint": "^16.22.0",
 		"turbo": "^2.5.5",
-		"typescript": "5.9.3"
+		"typescript": "5.9.3",
+		"vite": "5.4.15",
+		"vite-plugin-dts": "~2.3.0"
 	},
 	"overrides": {
 		"minimist": "1.2.8",
