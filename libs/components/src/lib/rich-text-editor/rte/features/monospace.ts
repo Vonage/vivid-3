@@ -1,15 +1,16 @@
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark } from 'prosemirror-commands';
 import { createMarkToggle } from '../utils/toolbar-items';
-import { RTEInstance } from '../instance';
+import { RTEInstanceImpl } from '../instance';
 import {
-	RTEFeature,
+	featureFacade,
+	RTEFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
 import monospaceCss from './monospace.style.scss?inline';
 
-export class RTEMonospaceFeature extends RTEFeature {
+export class RTEMonospaceFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEMonospaceFeature';
 
 	override getStyles() {
@@ -31,7 +32,7 @@ export class RTEMonospaceFeature extends RTEFeature {
 		];
 	}
 
-	override getPlugins(rte: RTEInstance) {
+	override getPlugins(rte: RTEInstanceImpl) {
 		return [
 			this.contribution(
 				keymap({
@@ -43,7 +44,7 @@ export class RTEMonospaceFeature extends RTEFeature {
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstance): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -60,3 +61,5 @@ export class RTEMonospaceFeature extends RTEFeature {
 		];
 	}
 }
+
+export const RTEMonospaceFeature = featureFacade(RTEMonospaceFeatureImpl);

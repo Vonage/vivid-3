@@ -19,13 +19,14 @@ import { ReplaceAroundStep } from 'prosemirror-transform';
 import { autoJoin } from 'prosemirror-commands';
 import {
 	contributionPriority,
+	featureFacade,
 	type PluginContribution,
-	RTEFeature,
+	RTEFeatureImpl,
 	type SchemaContribution,
 	type StyleContribution,
 	type ToolbarItemContribution,
 } from '../feature';
-import { RTEInstance } from '../instance';
+import { RTEInstanceImpl } from '../instance';
 import { createButton } from '../utils/toolbar-items';
 import type { TextblockAttrs } from '../utils/textblock-attrs';
 import { defaultTextblockForMatch } from '../utils/default-textblock';
@@ -119,7 +120,7 @@ const allListItemsAreOfType = (
 };
 
 /// Decrease a list item's nesting level
-const lift = (rte: RTEInstance, $li: ResolvedPos, tr: Transaction) => {
+const lift = (rte: RTEInstanceImpl, $li: ResolvedPos, tr: Transaction) => {
 	if (isNested($li)) {
 		liftToOuterList($li, tr);
 	} else {
@@ -138,7 +139,11 @@ const liftToOuterList = ($li: ResolvedPos, tr: Transaction) => {
 };
 
 /// Lift an unnested list item out of the list, converting it into a default text block node
-const liftOutOfList = (rte: RTEInstance, $li: ResolvedPos, tr: Transaction) => {
+const liftOutOfList = (
+	rte: RTEInstanceImpl,
+	$li: ResolvedPos,
+	tr: Transaction
+) => {
 	const list = getList($li);
 	const listIndex = $li.index(outOfListDepth($li));
 	const defaultTextblock = defaultTextblockForMatch(
@@ -179,7 +184,7 @@ const liftOutOfList = (rte: RTEInstance, $li: ResolvedPos, tr: Transaction) => {
 
 /// Increase the nesting level of a textblock node
 const sink = (
-	rte: RTEInstance,
+	rte: RTEInstanceImpl,
 	listType: NodeType,
 	$node: ResolvedPos,
 	tr: Transaction
@@ -216,7 +221,7 @@ const sinkLi = (listType: NodeType, $li: ResolvedPos, tr: Transaction) => {
 
 /// Convert a textblock node into a list
 const sinkNode = (
-	rte: RTEInstance,
+	rte: RTEInstanceImpl,
 	listType: NodeType,
 	$node: ResolvedPos,
 	tr: Transaction
@@ -246,7 +251,7 @@ const sinkNode = (
 	);
 };
 
-export class RTEListFeature extends RTEFeature {
+export class RTEListFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEListFeature';
 
 	override getStyles(): StyleContribution[] {
@@ -292,8 +297,8 @@ export class RTEListFeature extends RTEFeature {
 		];
 	}
 
-	protected rte!: RTEInstance;
-	override getPlugins(rte: RTEInstance): PluginContribution[] {
+	protected rte!: RTEInstanceImpl;
+	override getPlugins(rte: RTEInstanceImpl): PluginContribution[] {
 		this.rte = rte;
 
 		const tabCommand: Command = (state, dispatch) => {
@@ -364,7 +369,7 @@ export class RTEListFeature extends RTEFeature {
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstance): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -474,3 +479,5 @@ export class RTEListFeature extends RTEFeature {
 		}
 	}
 }
+
+export const RTEListFeature = featureFacade(RTEListFeatureImpl);

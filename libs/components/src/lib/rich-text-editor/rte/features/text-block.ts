@@ -3,13 +3,14 @@ import { type Command, EditorState } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 import { createOption, createSelect } from '../utils/toolbar-items';
 import {
+	featureFacade,
 	type PluginContribution,
-	RTEFeature,
+	RTEFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
 import type { TextblockAttrs } from '../utils/textblock-attrs';
-import type { RTEInstance } from '../instance';
+import type { RTEInstanceImpl } from '../instance';
 import textBlockCss from './text-block.style.scss?inline';
 
 interface BlockTypeSpec {
@@ -52,7 +53,7 @@ const specBlockKey = (spec: ParagraphSpec | HeadingSpec): string => {
 	}
 };
 
-export class RTETextBlockStructure extends RTEFeature {
+export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 	protected name = 'RTETextBlockStructure';
 
 	private blockTypeByKey = new Map<string, BlockTypeSpec>();
@@ -204,7 +205,7 @@ export class RTETextBlockStructure extends RTEFeature {
 		/* v8 ignore end */
 	}
 
-	override getPlugins(rte: RTEInstance): PluginContribution[] {
+	override getPlugins(rte: RTEInstanceImpl): PluginContribution[] {
 		const forceBreak: Command = (state, dispatch) => {
 			dispatch?.(
 				state.tr
@@ -238,7 +239,7 @@ export class RTETextBlockStructure extends RTEFeature {
 		return [this.contribution(keymap(keyBindings))];
 	}
 
-	override getToolbarItems(rte: RTEInstance): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -285,7 +286,7 @@ export class RTETextBlockStructure extends RTEFeature {
 		return blockType.id;
 	}
 
-	setBlockType(rte: RTEInstance, id: string): Command {
+	setBlockType(rte: RTEInstanceImpl, id: string): Command {
 		return (state, dispatch) => {
 			const blockType = this.blockTypes.find((bt) => bt.id === id)!;
 			const { from, to } = state.selection;
@@ -326,3 +327,5 @@ export class RTETextBlockStructure extends RTEFeature {
 		};
 	}
 }
+
+export const RTETextBlockStructure = featureFacade(RTETextBlockStructureImpl);
