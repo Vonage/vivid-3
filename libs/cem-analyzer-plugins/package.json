@@ -18,7 +18,7 @@
 	},
 	"devDependencies": {
 		"@custom-elements-manifest/analyzer": "^0.5.7",
-		"@microsoft/fast-element": "^2.7.0",
+		"@microsoft/fast-element": "^2.8.3",
 		"@repo/typescript-config": "*",
 		"@repo/eslint-config": "*",
 		"@repo/vitest-config": "*",
