@@ -63,14 +63,14 @@ catalog:
   prettier-plugin-packagejson: ^2.5.19
 
   # Style
-  sass: ^1.89.2
+  sass: ^1.94.2
   stylelint: ^16.22.0
   stylelint-config-idiomatic-order: ^10.0.0
   stylelint-config-standard-scss: ^15.0.1
   stylelint-no-unsupported-browser-features: ^8.0.4
 
   # FAST
-  '@microsoft/fast-element': ^2.7.0
+  '@microsoft/fast-element': ^2.8.3
   '@microsoft/fast-web-utilities': ^6.0.0
   '@microsoft/eslint-config-fast-dna': ^2.1.0
   '@microsoft/fast-foundation': ^2.50.0
@@ -92,8 +92,8 @@ catalog:
 
 catalogs:
   vue3:
-    vue: ^3.5.13
-    vue3: npm:vue@^3.5.13
+    vue: ^3.5.24
+    vue3: npm:vue@^3.5.24
   vue2:
     vue: 2.7.8
 
