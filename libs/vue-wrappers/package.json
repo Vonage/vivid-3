@@ -40,7 +40,7 @@
 		"@repo/vitest-config": "workspace:*",
 		"@repo/wrapper-gen": "workspace:*",
 		"@types/glob": "^7.2.0",
-		"glob": "^7.2.0",
+		"glob": "^7.2.3",
 		"tsx": "catalog:",
 		"vitest": "catalog:",
 		"vue": "catalog:vue2",

@@ -47,12 +47,12 @@
 		"@repo/vitest-config": "workspace:*",
 		"@types/jsdom": "catalog:",
 		"@types/markdown-table": "catalog:",
-		"@types/node-fetch": "^2.6.12",
+		"@types/node-fetch": "^2.6.13",
 		"@vonage/vivid": "workspace:*",
 		"custom-elements-manifest": "catalog:",
 		"jsdom": "catalog:",
 		"markdown-table": "catalog:",
-		"node-fetch": "^2.6.12",
+		"node-fetch": "^2.7.0",
 		"tsx": "catalog:",
 		"vitest": "catalog:"
 	}

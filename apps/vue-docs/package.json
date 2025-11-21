@@ -17,7 +17,7 @@
 		"@repo/eslint-config": "workspace:*",
 		"@repo/wrapper-gen": "workspace:*",
 		"tsx": "catalog:",
-		"vitepress": "^2.0.0-alpha.14",
+		"vitepress": "2.0.0-alpha.14",
 		"vue": "catalog:vue3"
 	}
 }

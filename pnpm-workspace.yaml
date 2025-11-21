@@ -3,103 +3,80 @@ packages:
   - libs/*
   - turbo/generators
 
+catalog:
+  '@custom-elements-manifest/analyzer': ^0.5.7
+  '@microsoft/eslint-config-fast-dna': ^2.1.0
+  '@microsoft/fast-element': ^2.8.3
+  '@microsoft/fast-foundation': ^2.50.0
+  '@microsoft/fast-web-utilities': ^6.0.0
+  '@playwright/test': 1.48.2
+  '@types/eslint': ^8.56.12
+  '@types/jsdom': ^21.1.7
+  '@types/markdown-it': ^13.0.9
+  '@types/markdown-table': ^2.0.0
+  '@types/node': ^20.19.25
+  '@typescript-eslint/eslint-plugin': 7.18.0
+  '@typescript-eslint/parser': 7.18.0
+  '@typescript-eslint/utils': 7.18.0
+  '@vitejs/plugin-vue': ^5.2.4
+  '@vitest/coverage-v8': ^2.1.9
+  '@vitest/ui': ^2.1.9
+  cem-plugin-async-function: ^0.0.5
+  cem-plugin-jsdoc-example: ^0.0.9
+  cem-plugin-jsdoc-function: ^0.0.5
+  cem-plugin-readonly: ^0.0.5
+  custom-elements-manifest: ^2.1.0
+  cypress: ^14.5.4
+  esbuild: ^0.25.12
+  eslint: 8.57.1
+  eslint-config-prettier: 9.1.2
+  eslint-plugin-ban: ^1.6.0
+  eslint-plugin-compat: ^4.2.0
+  eslint-plugin-import: ^2.32.0
+  eslint-plugin-tsdoc: ^0.4.0
+  eslint-plugin-unused-imports: ^3.2.0
+  eslint-plugin-vue: ^9.33.0
+  istanbul: ^0.4.5
+  istanbul-merge: ^2.0.0
+  jsdom: ^23.2.0
+  markdown-it: ^13.0.2
+  markdown-it-anchor: ^8.6.7
+  markdown-table: ^2.0.0
+  playwright: 1.48.2
+  prettier: 2.8.8
+  prettier-plugin-packagejson: ^2.5.19
+  sass: ^1.94.2
+  stylelint: ^16.25.0
+  stylelint-config-idiomatic-order: ^10.0.0
+  stylelint-config-standard-scss: ^15.0.1
+  stylelint-no-unsupported-browser-features: ^8.0.5
+  tsx: ^4.20.6
+  typescript: 5.9.3
+  vite: 5.4.15
+  vite-plugin-dts: ~2.3.0
+  vite-plugin-static-copy: ^1.0.6
+  vitest: ^2.1.9
+  vitest-axe: ^0.1.0
+  vitest-fetch-mock: ^0.4.5
+
+catalogs:
+  vue2:
+    vue: ^2.7.16
+  vue3:
+    vue: ^3.5.24
+    vue3: npm:vue@^3.5.24
+
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - core-js-pure
   - cypress
   - esbuild
 
-patchedDependencies:
-  # Temporary patch for security issue in 'global' package
-  # When removing, also move video.js dep back from devDependencies to dependencies
-  global@4.4.0: patches/global@4.4.0.patch
-
-catalog:
-  # Node
-  '@types/node': ^20
-
-  # TypeScript
-  typescript: 5.9.3
-  tsx: ^4.20.6
-
-  # Building
-  vite: 5.4.15
-  vite-plugin-dts: ~2.3.0
-  vite-plugin-static-copy: ^1.0.6
-  esbuild: ^0.25.0
-
-  # Vitest
-  vitest: ^2.1.8
-  vitest-axe: ^0.1.0
-  vitest-fetch-mock: ^0.4.5
-  '@vitest/coverage-v8': ^2.1.8
-  '@vitest/ui': ^2.1.8
-  jsdom: ^23.0.0
-  '@types/jsdom': ^21.1.7
-  istanbul: ^0.4.5
-  istanbul-merge: ^2.0.0
-
-  # E2E
-  '@playwright/test': 1.48.2
-  playwright: 1.48.2
-  cypress: ^14.5.1
-
-  # Linting
-  eslint: 8.57.1
-  '@types/eslint': ^8.56.12
-  eslint-config-prettier: 9.1.2
-  eslint-plugin-ban: ^1.6.0
-  eslint-plugin-compat: ^4.0.2
-  eslint-plugin-import: ^2.32.0
-  eslint-plugin-tsdoc: ^0.4.0
-  eslint-plugin-unused-imports: ^3.2.0
-  eslint-plugin-vue: ^9.33.0
-  '@typescript-eslint/eslint-plugin': 7.18.0
-  '@typescript-eslint/parser': 7.18.0
-  '@typescript-eslint/utils': 7.18.0
-
-  # Prettier
-  prettier: 2.8.8
-  prettier-plugin-packagejson: ^2.5.19
-
-  # Style
-  sass: ^1.94.2
-  stylelint: ^16.22.0
-  stylelint-config-idiomatic-order: ^10.0.0
-  stylelint-config-standard-scss: ^15.0.1
-  stylelint-no-unsupported-browser-features: ^8.0.4
-
-  # FAST
-  '@microsoft/fast-element': ^2.8.3
-  '@microsoft/fast-web-utilities': ^6.0.0
-  '@microsoft/eslint-config-fast-dna': ^2.1.0
-  '@microsoft/fast-foundation': ^2.50.0
-
-  # Custom Elements Manifest
-  '@custom-elements-manifest/analyzer': ^0.5.7
-  cem-plugin-async-function: ^0.0.5
-  cem-plugin-jsdoc-example: ^0.0.9
-  cem-plugin-jsdoc-function: ^0.0.5
-  cem-plugin-readonly: ^0.0.5
-  custom-elements-manifest: ^2.1.0
-
-  # Markdown
-  markdown-it: ^13.0.2
-  '@types/markdown-it': ^13.0.1
-  markdown-it-anchor: ^8.6.4
-  markdown-table: ^2.0.0
-  '@types/markdown-table': ^2.0.0
-
-catalogs:
-  vue3:
-    vue: ^3.5.24
-    vue3: npm:vue@^3.5.24
-  vue2:
-    vue: 2.7.8
-
 overrides:
-  # Override due to security issues:
   braces: 3.0.3
   minimist: 1.2.8
   nconf: 0.13.0
   path-to-regexp: 0.2.5
+
+patchedDependencies:
+  global@4.4.0: patches/global@4.4.0.patch
