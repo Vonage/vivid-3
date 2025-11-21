@@ -1,10 +1,36 @@
 export interface RichTextEditorLocale {
-	textBlockType: string;
+	paragraphStyles: string;
 	textSize: string;
 	bold: string;
-	italics: string;
+	italic: string;
 	underline: string;
 	strikethrough: string;
 	monospace: string;
-	dragAndDropFilesHere: string;
+	textColor: string;
+	undo: string;
+	redo: string;
+	bulletList: string;
+	numberedList: string;
+	alignment: string;
+	alignments: {
+		left: string;
+		center: string;
+		right: string;
+	};
+	hyperlink: string;
+	linkText: string;
+	linkUrl: string;
+	linkTextPlaceholder: string;
+	linkUrlPlaceholder: string;
+	cancel: string;
+	apply: string;
+	close: string;
+	edit: string;
+	delete: string;
+	clickHere: string;
+	imageSizes: {
+		small: string;
+		fit: string;
+		original: string;
+	};
 }

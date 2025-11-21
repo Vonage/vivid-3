@@ -1,0 +1,28 @@
+.inline-image-wrapper {
+	display: inline-block;
+	vertical-align: text-bottom;
+}
+
+.inline-image {
+	display: block;
+	block-size: auto;
+}
+
+.inline-image-popover {
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	gap: 4px;
+}
+
+.inline-image-placeholder {
+	color: var(--vvd-color-canvas-text);
+	font: var(--vvd-typography-base);
+
+	// Reset inherited font styles from ProseMirror for slotted content:
+	font-feature-settings: normal;
+	font-variant-ligatures: normal;
+	overflow-wrap: normal;
+	pointer-events: none; // Content cannot be interactive, it breaks contenteditable functionality
+	white-space: normal;
+}

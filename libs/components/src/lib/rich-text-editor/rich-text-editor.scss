@@ -1,69 +1,41 @@
-@use '@repo/shared/mixins/scrollbar' as scrollbar;
 @use '@repo/tokens/scss/tokens.constants' as constants;
-@forward 'facades/prose-mirror';
-@forward 'prose-mirror-overrides';
-
-h2 {
-	font: var(#{constants.$vvd-typography-heading-4});
-}
-
-h3 {
-	font: var(#{constants.$vvd-typography-base-extended});
-}
-
-p {
-	font: var(#{constants.$vvd-typography-base});
-}
+@use '@repo/shared/mixins/scrollbar' as scrollbar;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
 
 :host {
 	display: block;
 }
 
-#editor {
-	@include scrollbar.scrollbar;
-
-	& {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		block-size: 100%;
-		overflow-y: auto;
-	}
-}
-
-[contenteditable='true'] {
-	overflow: unset;
-	block-size: unset;
-}
-
-#attachments-wrapper {
-	order: 1;
-
-	.divider {
-		padding: 0 12px;
-	}
-}
-
-.hidden {
-	display: none;
-}
-
-.drag-overlay {
-	position: absolute;
-	z-index: 10;
-	display: none;
-	align-items: center;
-	justify-content: center;
-	border: 1px dashed var(#{constants.$vvd-color-cta-400});
-	border-radius: 8px;
-	background: var(#{constants.$vvd-color-cta-100});
-	font: var(#{constants.$vvd-typography-base});
-	inset: 0;
-	opacity: 0.8;
-	pointer-events: none;
-	transition: opacity 0.2s;
-}
-
-.drag-over .drag-overlay {
+// Note: Cannot call this .base, as Select sets a base class on itself
+.rte {
 	display: flex;
+	flex-direction: column;
+	block-size: 100%;
+}
+
+.editor {
+	display: contents;
+}
+
+.editor-viewport {
+	position: relative;
+	overflow: hidden;
+	flex: 1;
+	contain: layout; // for display fixed
+}
+
+.editor-scroll-area {
+	--editor-padding-block: 8px;
+	--editor-padding-inline: 16px;
+
+	display: flex;
+	flex-direction: column;
+	background-color: var(#{constants.$vvd-color-canvas});
+	block-size: 100%;
+	color: var(#{constants.$vvd-color-canvas-text});
+	font: var(#{constants.$vvd-typography-base});
+	overflow-y: auto;
+
+	@include scrollbar.scrollbar;
 }
