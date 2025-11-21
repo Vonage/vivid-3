@@ -1,4 +1,4 @@
-import * as vivid from 'vivid-bundle';
+import * as vivid from '@vonage/vivid';
 
 window.setLocale = vivid.setLocale;
 

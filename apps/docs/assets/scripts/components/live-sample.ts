@@ -16,7 +16,7 @@ import {
 } from '@microsoft/fast-element';
 import _ from 'lodash';
 import { getCurrentThemeCss } from '../theme-handler';
-import { deDE, enGB, enUS, jaJP, zhCN } from '../locales-bundle';
+import { deDE, enGB, enUS, jaJP, zhCN } from 'vivid-locales';
 import type { ViewUpdate } from '@codemirror/view';
 
 const locales = {

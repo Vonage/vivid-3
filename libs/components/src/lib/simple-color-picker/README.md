@@ -11,14 +11,14 @@ import '@vonage/vivid/simple-color-picker';
 or, if you need to use a unique prefix:
 
 ```js
-import { registerSimpleColorPicker' } from '@vonage/vivid';
+import { registerSimpleColorPicker } from '@vonage/vivid';
 
 registerSimpleColorPicker('your-prefix');
 ```
 
 ```html preview 120px
 <script type="module">
-	import { registerSimpleColorPicker, registerButton, registerIcon } from 'vivid-bundle';
+	import { registerSimpleColorPicker, registerButton, registerIcon } from '@vonage/vivid';
 	registerSimpleColorPicker('your-prefix');
 	registerButton('your-prefix');
 	registerIcon('your-prefix');
