@@ -29,6 +29,7 @@
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
+		"eslint": "catalog:",
 		"vitest": "catalog:"
 	},
 	"peerDependencies": {

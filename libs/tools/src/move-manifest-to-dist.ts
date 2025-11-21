@@ -1,6 +1,9 @@
 #!/usr/bin/env -S pnpm tsx
 
-// For packages that publish to 'dist/', this script moves the package.json into 'dist/'
+// While some could publish directly from the package folder, we need to maintain backwards compatibility of the
+// package structure (where there is no 'dist' folder). For this reason, we will build the package in 'dist' and publish
+// from there.
+// For these packages, this script moves the package.json into 'dist/'
 // It removes the 'dist/' prefix from paths and resolves 'workspace:' and 'catalog:' dependencies using pnpm
 
 import { createExportableManifest } from '@pnpm/exportable-manifest';
@@ -67,7 +70,7 @@ const moveManifestToDist = async (
 	);
 };
 
-const [_, __, projectDir] = process.argv;
+const [, , projectDir] = process.argv;
 const dirname = path.dirname(new URL(import.meta.url).pathname);
 const workspaceRoot = path.resolve(dirname, '../../..');
 
