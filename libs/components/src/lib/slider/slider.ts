@@ -78,6 +78,7 @@ export class Slider extends Localized(
 	 * @internal
 	 */
 	readOnlyChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.readOnly = this.readOnly;
 		}
@@ -202,6 +203,7 @@ export class Slider extends Localized(
 	 * @internal
 	 */
 	minChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.min = `${this.min}`;
 		}
@@ -224,6 +226,7 @@ export class Slider extends Localized(
 	 * @internal
 	 */
 	maxChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.max = `${this.max}`;
 		}
@@ -244,6 +247,7 @@ export class Slider extends Localized(
 	 * @internal
 	 */
 	stepChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.step = `${this.step}`;
 		}

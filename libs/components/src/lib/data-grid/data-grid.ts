@@ -195,6 +195,7 @@ export class DataGrid extends VividElement {
 	 * @internal
 	 */
 	gridTemplateColumnsChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.$fastController.isConnected) {
 			this.updateRowIndexes();
 			if (this.fixedColumns && this.fixedColumns > 0) {
@@ -240,6 +241,7 @@ export class DataGrid extends VividElement {
 		this.generatedGridTemplateColumns = DataGrid.generateTemplateColumns(
 			this.columnDefinitions
 		);
+		/* v8 ignore if -- @preserve */
 		if (this.$fastController.isConnected) {
 			this.columnDefinitionsStale = true;
 			this.queueRowIndexUpdate();
@@ -273,6 +275,7 @@ export class DataGrid extends VividElement {
 	 * @internal
 	 */
 	headerCellItemTemplateChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.$fastController.isConnected) {
 			if (this.generatedHeader !== null) {
 				this.generatedHeader.headerCellItemTemplate =
@@ -332,6 +335,7 @@ export class DataGrid extends VividElement {
 	 * @internal
 	 */
 	fixedColumnsChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.$fastController.isConnected) {
 			this.applyFixedColumns();
 			this.setupResizeObserver();

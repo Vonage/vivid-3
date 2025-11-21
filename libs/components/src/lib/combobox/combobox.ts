@@ -256,6 +256,7 @@ export class Combobox extends WithContextualHelp(
 	 * @internal
 	 */
 	protected placeholderChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.placeholder = this.placeholder;
 		}

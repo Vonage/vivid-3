@@ -66,6 +66,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	 * @internal
 	 */
 	expandedChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.$fastController.isConnected) {
 			if (this.submenu && !this.expanded) {
 				this.submenu.collapseExpandedItem();

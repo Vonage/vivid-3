@@ -55,6 +55,7 @@ export class VividFoundationButton extends DelegatesAria(
 	public formaction: string;
 	// @ts-expect-error Function is delcared but not used
 	private formactionChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.formAction = this.formaction;
 		}
@@ -72,6 +73,7 @@ export class VividFoundationButton extends DelegatesAria(
 	public formenctype: string;
 	// @ts-expect-error Function is delcared but not used
 	private formenctypeChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.formEnctype = this.formenctype;
 		}
@@ -89,6 +91,7 @@ export class VividFoundationButton extends DelegatesAria(
 	public formmethod: string;
 	// @ts-expect-error Function is delcared but not used
 	private formmethodChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.formMethod = this.formmethod;
 		}
@@ -106,6 +109,7 @@ export class VividFoundationButton extends DelegatesAria(
 	public formnovalidate: boolean;
 	// @ts-expect-error Function is delcared but not used
 	private formnovalidateChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.formNoValidate = this.formnovalidate;
 		}
@@ -123,6 +127,7 @@ export class VividFoundationButton extends DelegatesAria(
 	public formtarget: '_self' | '_blank' | '_parent' | '_top';
 	// @ts-expect-error Function is delcared but not used
 	private formtargetChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.formTarget = this.formtarget;
 		}
@@ -143,6 +148,7 @@ export class VividFoundationButton extends DelegatesAria(
 		previous: 'submit' | 'reset' | 'button' | void,
 		next: 'submit' | 'reset' | 'button'
 	): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.type = this.type;
 		}

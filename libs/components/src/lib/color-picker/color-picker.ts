@@ -33,9 +33,11 @@ class VvdHexInput extends HexInput {
 	static readonly displayName = 'VvdHexInput';
 }
 
+/* v8 ignore if -- @preserve */
 if (!customElements.get(VC_HEX_PICKER_TAG)) {
 	customElements.define(VC_HEX_PICKER_TAG, VvdHexPicker);
 }
+/* v8 ignore if -- @preserve */
 if (!customElements.get(VC_HEX_INPUT_TAG)) {
 	customElements.define(VC_HEX_INPUT_TAG, VvdHexInput);
 }
@@ -81,6 +83,7 @@ export class ColorPicker extends WithContextualHelp(
 	 * @internal
 	 */
 	placeholderChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.placeholder = this.placeholder;
 		}

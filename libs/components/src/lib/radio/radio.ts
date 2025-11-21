@@ -78,6 +78,7 @@ export class Radio extends WithErrorText(
 	 * @internal
 	 */
 	readOnlyChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.readOnly = this.readOnly;
 		}

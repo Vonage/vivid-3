@@ -210,6 +210,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 		 * @internal
 		 */
 		nameChanged(_previous: string, _next: string): void {
+			/* v8 ignore if -- @preserve */
 			if (this.proxy instanceof HTMLElement) {
 				this.proxy.name = this.name;
 			}

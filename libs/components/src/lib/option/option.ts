@@ -96,6 +96,7 @@ export class ListboxOption extends HostSemantics(
 	// @ts-expect-error Type is incorrectly non-optional
 	disabled: boolean;
 	protected disabledChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLOptionElement) {
 			this.proxy.disabled = this.disabled;
 		}

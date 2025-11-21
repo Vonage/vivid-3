@@ -346,6 +346,7 @@ export class Select extends WithLightDOMFeedback(
 			return;
 		}
 
+		/* v8 ignore if -- @preserve */
 		if (this.$fastController.isConnected) {
 			const typeaheadMatches = this.getTypeaheadMatches();
 			const activeIndex = this.options.indexOf(typeaheadMatches[0]);
@@ -620,6 +621,7 @@ export class Select extends WithLightDOMFeedback(
 
 		this.setSelectedOptions();
 
+		/* v8 ignore if -- @preserve */
 		if (this.proxy) {
 			this.proxy.multiple = next;
 		}

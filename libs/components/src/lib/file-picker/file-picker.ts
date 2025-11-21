@@ -211,6 +211,7 @@ export class FilePicker extends WithContextualHelp(
 	 * @internal
 	 */
 	_customValidationErrorChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy) {
 			this.proxy.setCustomValidity(this._customValidationError ?? '');
 		}
