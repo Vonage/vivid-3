@@ -110,6 +110,7 @@
 		"typescript": "catalog:",
 		"video.js": "^8.23.4",
 		"vite": "catalog:",
+		"vite-plugin-dts": "catalog:",
 		"vite-plugin-static-copy": "catalog:",
 		"vitest": "catalog:",
 		"vitest-axe": "catalog:",
