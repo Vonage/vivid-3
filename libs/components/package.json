@@ -40,7 +40,7 @@
 	"scripts": {
 		"prebuild": "cem analyze --config ./cem.config.mjs",
 		"build": "vite build && vite build -c ./vite.config.bundled.ts",
-		"postbuild": "api-extractor run -c ./dist/api-extractor.json && tsx scripts/copyPackageJson.ts",
+		"postbuild": "api-extractor run -c ./dist/api-extractor.json && move-manifest-to-dist .",
 		"dev": "WATCH_MODE=true vite build -w -c ./vite.config.ts",
 		"dev:bundled": "WATCH_MODE=true vite build -w -c ./vite.config.bundled.ts",
 		"e2e": "playwright test",
@@ -84,6 +84,7 @@
 		"@repo/stylelint-config": "workspace:*",
 		"@repo/styles": "workspace:*",
 		"@repo/tokens": "workspace:*",
+		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@testing-library/dom": "^8.20.1",

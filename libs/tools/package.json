@@ -1,0 +1,27 @@
+{
+	"name": "@repo/tools",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"bin": {
+		"move-manifest-to-dist": "src/move-manifest-to-dist.ts"
+	},
+	"scripts": {
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@pnpm/catalogs.config": "^1000.0.5",
+		"@pnpm/exportable-manifest": "^1000.2.1",
+		"@pnpm/read-project-manifest": "^1001.2.1",
+		"@pnpm/workspace.read-manifest": "^1000.2.7"
+	},
+	"devDependencies": {
+		"@repo/eslint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"tsx": "catalog:",
+		"vitest": "catalog:"
+	}
+}

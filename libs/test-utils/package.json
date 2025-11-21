@@ -36,7 +36,6 @@
 		"e2e:ui": "playwright test --ui",
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
-		"prepack": "tsx scripts/updateDependencyVersion.ts",
 		"test": "vitest run",
 		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},

@@ -75,7 +75,7 @@ jobs:
 
       - name: Publish to npm registry
         if: steps.check.outputs.published == 'false'
-        run: npm publish --tag ${{ inputs.tag }} ${{ inputs.path }} --//registry.npmjs.org/:_authToken=$AUTH_TOKEN
+        run: pnpm publish --no-git-checks --tag ${{ inputs.tag }} ${{ inputs.path }} --//registry.npmjs.org/:_authToken=$AUTH_TOKEN
         env:
           AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
@@ -130,6 +130,6 @@ jobs:
 
       - name: Publish to GitHub registry
         if: steps.check.outputs.published == 'false'
-        run: npm publish --tag ${{ inputs.tag }} ${{ inputs.path }} --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$AUTH_TOKEN
+        run: pnpm publish --no-git-checks --tag ${{ inputs.tag }} ${{ inputs.path }} --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$AUTH_TOKEN
         env:
           AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}

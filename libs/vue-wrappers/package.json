@@ -25,7 +25,6 @@
 		"postbuild": "tsc --emitDeclarationOnly && tsx scripts/buildTypings.ts",
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
-		"prepack": "tsx scripts/updateDependencyVersion.ts",
 		"test": "vitest run",
 		"test:coverage": "vitest run --coverage",
 		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"

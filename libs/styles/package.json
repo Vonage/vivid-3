@@ -1,5 +1,6 @@
 {
 	"name": "@repo/styles",
+	"version": "1.0.0",
 	"private": true,
 	"exports": {
 		"./dist": "./dist",
