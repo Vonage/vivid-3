@@ -1,5 +1,6 @@
 {
 	"name": "@repo/shared",
+	"version": "1.0.0",
 	"private": true,
 	"type": "module",
 	"exports": {
@@ -36,15 +37,15 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@repo/tokens": "*"
+		"@repo/tokens": "workspace:*"
 	},
 	"devDependencies": {
-		"@microsoft/fast-element": "^2.8.3",
-		"@repo/typescript-config": "*",
-		"@repo/eslint-config": "*",
-		"@repo/stylelint-config": "*",
-		"@repo/vitest-config": "*",
-		"vitest": "^2.1.8",
-		"vitest-axe": "^0.1.0"
+		"@microsoft/fast-element": "catalog:",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/stylelint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"vitest": "catalog:",
+		"vitest-axe": "catalog:"
 	}
 }

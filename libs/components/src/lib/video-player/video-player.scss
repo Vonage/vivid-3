@@ -4,7 +4,7 @@
 @use '@repo/shared/mixins/focus' as focus;
 @use '@repo/shared/mixins/focus' as focus-variables;
 @use '@repo/shared/mixins/scrollbar' as scrollbar;
-@import '../../../../../node_modules/video.js/dist/video-js.css';
+@import '../../../node_modules/video.js/dist/video-js.css';
 
 :host {
 	display: block;

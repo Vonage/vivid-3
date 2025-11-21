@@ -1,5 +1,6 @@
 {
 	"name": "@repo/consts",
+	"version": "1.0.0",
 	"private": true,
 	"type": "module",
 	"exports": {
@@ -14,7 +15,8 @@
 		"lint:fix": "eslint . --max-warnings=0 --fix"
 	},
 	"devDependencies": {
-		"@repo/typescript-config": "*",
-		"@repo/eslint-config": "*"
+		"@repo/eslint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"vitest": "catalog:"
 	}
 }

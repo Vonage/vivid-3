@@ -7,12 +7,12 @@ SD.registerFormat(scssConstants);
 
 export default {
 	source: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/themes/light/semantics.tokens.json',
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/themes/light/elevation.tokens.json',
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/typography.tokens.json',
+		'../../node_modules/@vonage/vivid-figma-tokens/data/themes/light/semantics.tokens.json',
+		'../../node_modules/@vonage/vivid-figma-tokens/data/themes/light/elevation.tokens.json',
+		'../../node_modules/@vonage/vivid-figma-tokens/data/typography.tokens.json',
 	],
 	include: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/**/*.tokens.json',
+		'../../node_modules/@vonage/vivid-figma-tokens/data/globals/**/*.tokens.json',
 	],
 	platforms: {
 		scss: {

@@ -6,7 +6,7 @@ SD.registerFormat(cssAtRuleProperty);
 
 export default {
 	source: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/**/*.tokens.json',
+		'../../node_modules/@vonage/vivid-figma-tokens/data/globals/**/*.tokens.json',
 	],
 	platforms: {
 		scss: {

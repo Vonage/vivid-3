@@ -1,5 +1,6 @@
 import { axe, fixture } from '@repo/shared';
 import { AppearanceUi } from './appearance-ui';
+import { expect } from 'vitest';
 
 const COMPONENT_TAG = 'docs-appearance-ui';
 

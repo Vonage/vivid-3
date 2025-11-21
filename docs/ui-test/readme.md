@@ -21,7 +21,7 @@ Each component folder should contain a `ui.test.ts` file.
 
 You can run the tests by running:
 
-`npx turbo run @vonage/vivid#e2e:docker:ui`
+`pnpm turbo run @vonage/vivid#e2e:docker:ui`
 
 This will launch playwright in a docker container in remote connection mode, and the UI locally. This is the recommended way to run the tests locally, as it will ensure consistency with the CI environment.
 
@@ -31,13 +31,13 @@ Without `:docker`, the tests will run locally without a container.
 
 When you drop the `:ui` suffix from the command, it will run playwright normally. Use the `--update-snapshots` flag to update the snapshots. For example:
 
-`npx turbo run @vonage/vivid#e2e:docker -- --update-snapshots <optionally specify component name to run only that component>`
+`pnpm turbo run @vonage/vivid#e2e:docker -- --update-snapshots <optionally specify component name to run only that component>`
 
 ### Development notes
 
 #### Reflect changes without restarting
 
-When you run the Playwright UI and want to see code changes reflected without restarting the command, you can run `npx turbo run @vonage/vivid#dev:bundled`.
+When you run the Playwright UI and want to see code changes reflected without restarting the command, you can run `pnpm turbo run @vonage/vivid#dev:bundled`.
 
 This will watch for changes and rebuild the components.
 
@@ -49,7 +49,7 @@ This will watch for changes and rebuild the components.
 
 ### Running the docs tests
 
-The visual tests for the documentation are run separately from the components. They are run the same way as the components, but with a different command: `npx turbo run @repo/docs#e2e`. The config file is located in `./apps/docs/playwright.config.ts`.
+The visual tests for the documentation are run separately from the components. They are run the same way as the components, but with a different command: `pnpm turbo run @repo/docs#e2e`. The config file is located in `./apps/docs/playwright.config.ts`.
 
 ## Checking the tests
 

@@ -11,5 +11,5 @@ Vue wrapper library for Vivid web components.
 You can run storybook to preview the components for both Vue 2 and Vue 3 by running:
 
 ```sh
-npx turbo run dev --filter=@repo/storybook-vue2 --filter=@repo/storybook-vue3 --filter=@vonage/vivid --filter=@repo/styles
+pnpm turbo run dev --filter=@repo/storybook-vue2 --filter=@repo/storybook-vue3 --filter=@vonage/vivid --filter=@repo/styles
 ```

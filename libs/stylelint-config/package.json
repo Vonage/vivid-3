@@ -1,10 +1,11 @@
 {
 	"name": "@repo/stylelint-config",
+	"version": "1.0.0",
 	"private": true,
 	"type": "module",
 	"devDependencies": {
-		"stylelint-config-idiomatic-order": "^10.0.0",
-		"stylelint-config-standard-scss": "^15.0.1",
-		"stylelint-no-unsupported-browser-features": "^8.0.4"
+		"stylelint-config-idiomatic-order": "catalog:",
+		"stylelint-config-standard-scss": "catalog:",
+		"stylelint-no-unsupported-browser-features": "catalog:"
 	}
 }

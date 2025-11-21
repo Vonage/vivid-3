@@ -1,24 +1,26 @@
 {
-	"name": "@vonage/vivid-design-tokens",
-	"version": "5.5.0",
+	"name": "@repo/tools",
+	"version": "1.0.0",
+	"private": true,
 	"type": "module",
-	"main": "dist/index.css",
-	"files": [
-		"dist"
-	],
+	"bin": {
+		"move-manifest-to-dist": "src/move-manifest-to-dist.ts"
+	},
 	"scripts": {
-		"build": "tsx scripts/build.ts",
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
-		"test": "vitest run",
-		"test:coverage": "vitest run --coverage",
 		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@pnpm/catalogs.config": "^1000.0.5",
+		"@pnpm/exportable-manifest": "^1000.2.1",
+		"@pnpm/read-project-manifest": "^1001.2.1",
+		"@pnpm/workspace.read-manifest": "^1000.2.7"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
-		"style-dictionary": "^5.1.1",
 		"tsx": "catalog:",
 		"vitest": "catalog:"
 	}

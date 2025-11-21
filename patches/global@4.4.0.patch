@@ -1,7 +1,7 @@
-diff --git a/node_modules/global/document.js b/node_modules/global/document.js
-index 7c0f50d..49696b8 100644
---- a/node_modules/global/document.js
-+++ b/node_modules/global/document.js
+diff --git a/document.js b/document.js
+index 7c0f50dc53a02bd432788099748f6a87b5d64b3c..49696b86ca51a852a8e9271c24075447a1a675d1 100644
+--- a/document.js
++++ b/document.js
 @@ -1,6 +1,5 @@
  var topLevel = typeof global !== 'undefined' ? global :
      typeof window !== 'undefined' ? window : {}
@@ -18,10 +18,10 @@ index 7c0f50d..49696b8 100644
      }
  }
  
-diff --git a/node_modules/global/package.json b/node_modules/global/package.json
-index 052726a..8909479 100644
---- a/node_modules/global/package.json
-+++ b/node_modules/global/package.json
+diff --git a/package.json b/package.json
+index 052726a208918fc64397e23e7e36501666c8fb5f..8909479ab2900f4664f228ad4951081246fc19e8 100644
+--- a/package.json
++++ b/package.json
 @@ -17,11 +17,9 @@
      "email": "raynos2@gmail.com"
    },

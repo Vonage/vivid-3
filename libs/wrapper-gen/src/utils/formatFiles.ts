@@ -1,8 +1,8 @@
 import { execSync } from 'child_process';
 
 export function formatFiles(filesArg: string, lint = true) {
-	execSync(`npx prettier --write ${filesArg}`);
+	execSync(`pnpm prettier --write ${filesArg}`);
 	if (lint) {
-		execSync(`npx eslint --fix ${filesArg}`);
+		execSync(`pnpm eslint --fix ${filesArg}`);
 	}
 }

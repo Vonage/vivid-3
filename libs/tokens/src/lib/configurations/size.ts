@@ -28,10 +28,10 @@ SD.registerTransform({
 
 export default {
 	source: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/size.tokens.json',
+		'../../node_modules/@vonage/vivid-figma-tokens/data/size.tokens.json',
 	],
 	include: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/size.tokens.json',
+		'../../node_modules/@vonage/vivid-figma-tokens/data/globals/size.tokens.json',
 	],
 	platforms: {
 		scss: {

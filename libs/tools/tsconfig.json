@@ -1,0 +1,16 @@
+{
+	"extends": "@repo/typescript-config/tsc.json",
+	"compilerOptions": {
+		"verbatimModuleSyntax": false,
+		"declaration": true,
+
+		"outDir": "dist",
+		"rootDir": "src"
+	},
+	"include": ["src"],
+	"references": [
+		{
+			"path": "./tsconfig.tools.json"
+		}
+	]
+}

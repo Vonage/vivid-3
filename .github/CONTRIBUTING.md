@@ -12,17 +12,17 @@ Never made an open source contribution before? Wondering how contributions work 
 
 - Create a new branch for your issue `git checkout -b branch-name-here`
 
-- Run `npm install`
+- Run `pnpm install`
 
 - Building and developing the documentation:
 
-  - Development: `npm start`
-  - Build: `npx run build`
+  - Development: `pnpm start`
+  - Build: `pnpm run build`
 
 - Building and developing the components:
 
   - Unit Tests
-    - `npm test`
+    - `pnpm test`
   - Visual tests: see the [ui-tests documentation](../docs/ui-test/readme.md)
 
 - Once you are done developing the change, commit your changes with a meaningful commit message.

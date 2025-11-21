@@ -10,13 +10,14 @@
 		"lint:fix": "eslint . --max-warnings=0 --fix"
 	},
 	"dependencies": {
-		"@repo/styles": "*",
-		"@vonage/vivid-vue": "*"
+		"@repo/styles": "workspace:*",
+		"@vonage/vivid-vue": "workspace:*"
 	},
 	"devDependencies": {
-		"@repo/eslint-config": "*",
-		"@repo/wrapper-gen": "*",
-		"vitepress": "^2.0.0-alpha.14",
-		"vue": "^3.5.24"
+		"@repo/eslint-config": "workspace:*",
+		"@repo/wrapper-gen": "workspace:*",
+		"tsx": "catalog:",
+		"vitepress": "2.0.0-alpha.14",
+		"vue": "catalog:vue3"
 	}
 }

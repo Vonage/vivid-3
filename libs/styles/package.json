@@ -1,5 +1,6 @@
 {
 	"name": "@repo/styles",
+	"version": "1.0.0",
 	"private": true,
 	"exports": {
 		"./dist": "./dist",
@@ -12,8 +13,9 @@
 		"stylelint:fix": "stylelint src --fix"
 	},
 	"dependencies": {
-		"@repo/stylelint-config": "*",
-		"@repo/shared": "*",
-		"@repo/tokens": "*"
+		"@repo/shared": "workspace:*",
+		"@repo/stylelint-config": "workspace:*",
+		"@repo/tokens": "workspace:*",
+		"sass": "catalog:"
 	}
 }
