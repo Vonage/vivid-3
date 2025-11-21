@@ -30,9 +30,9 @@
 	"scripts": {
 		"prebuild": "tsx scripts/codegen.ts",
 		"build": "vite build",
-		"cy": "concurrently -k -s first -n VITE,TEST \"npx vite src/tests/cases -c ./vite.config.ts --host\" \"npx wait-on http://localhost:5173 && npx cypress run\"",
+		"cy": "concurrently -k -s first -n VITE,TEST \"pnpm vite src/tests/cases -c ./vite.config.ts --host\" \"pnpm wait-on http://localhost:5173 && pnpm cypress run\"",
 		"cy:ui": "cypress open",
-		"e2e": "concurrently -k -s first -n VITE,TEST \"npx vite src/tests/cases -c ./vite.config.ts --host\" \"npx wait-on http://localhost:5173 && npx playwright test\"",
+		"e2e": "concurrently -k -s first -n VITE,TEST \"pnpm vite src/tests/cases -c ./vite.config.ts --host\" \"pnpm wait-on http://localhost:5173 && pnpm playwright test\"",
 		"e2e:ui": "playwright test --ui",
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",

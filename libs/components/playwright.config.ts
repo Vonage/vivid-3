@@ -36,8 +36,8 @@ const config: PlaywrightTestConfig = {
 		: undefined,
 	webServer: {
 		command: isDocker
-			? 'npx concurrently "npx tsx scripts/launchPlaywrightDocker.ts" "npx wait-on tcp:localhost:3000 && npx turbo run @vonage/vivid#build && npx http-server ../.."'
-			: 'npx turbo run @vonage/vivid#build && npx http-server ../..',
+			? 'pnpm concurrently "pnpm tsx scripts/launchPlaywrightDocker.ts" "pnpm wait-on tcp:localhost:3000 && pnpm turbo run @vonage/vivid#build && pnpm http-server ../.."'
+			: 'pnpm turbo run @vonage/vivid#build && npx http-server ../..',
 		url: 'http://localhost:8080',
 		stdout: 'ignore',
 		stderr: 'pipe',

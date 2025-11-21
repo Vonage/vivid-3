@@ -35,7 +35,7 @@ jobs:
 
       - name: Build docs
         run: |
-          npx turbo run build '--filter=./apps/*'
+          pnpm turbo run build '--filter=./apps/*'
           mv ./apps/vue-docs/dist ./apps/docs/dist/vivid-vue
 
       - name: Upload to Deno Deploy

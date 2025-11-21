@@ -29,8 +29,8 @@ const config: PlaywrightTestConfig = {
 		: undefined,
 	webServer: {
 		command: isDocker
-			? 'npx concurrently "npx tsx scripts/launchPlaywrightDocker.ts" "npx wait-on tcp:localhost:3000 && npx turbo run @repo/docs#build && http-server dist"'
-			: 'npx turbo run @repo/docs#build && http-server dist',
+			? 'pnpm concurrently "pnpm tsx scripts/launchPlaywrightDocker.ts" "pnpm wait-on tcp:localhost:3000 && pnpm turbo run @repo/docs#build && http-server dist"'
+			: 'pnpm turbo run @repo/docs#build && http-server dist',
 		url: 'http://localhost:8080',
 		stdout: 'ignore',
 		stderr: 'pipe',
