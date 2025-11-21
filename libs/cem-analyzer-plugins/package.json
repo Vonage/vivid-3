@@ -26,6 +26,6 @@
 		"custom-elements-manifest": "^2.1.0",
 		"glob": "^7.2.0",
 		"resolve.exports": "^2.0.3",
-		"sass": "^1.89.2"
+		"sass": "^1.94.2"
 	}
 }

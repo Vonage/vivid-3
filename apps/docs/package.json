@@ -62,7 +62,7 @@
 		"markdown-it": "^13.0.2",
 		"markdown-it-anchor": "^8.6.4",
 		"pagefind": "^1.4.0",
-		"sass": "^1.89.2",
+		"sass": "^1.94.2",
 		"slugify": "^1.6.5",
 		"vitest": "^2.1.8",
 		"vitest-axe": "^0.1.0",
