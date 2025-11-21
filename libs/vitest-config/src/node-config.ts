@@ -9,6 +9,7 @@ export default defineConfig({
 		include: ['src/**/*.spec.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
 		reporters: ['default'],
 		coverage: {
+			experimentalAstAwareRemapping: true,
 			exclude: [
 				'**/coverage/**',
 				'**/dist/**',
@@ -28,5 +29,16 @@ export default defineConfig({
 			provider: 'v8',
 		},
 		passWithNoTests: true,
+		fakeTimers: {
+			toFake: [
+				'setTimeout',
+				'clearTimeout',
+				'setInterval',
+				'clearInterval',
+				'setImmediate',
+				'clearImmediate',
+				'Date',
+			],
+		},
 	},
 });
