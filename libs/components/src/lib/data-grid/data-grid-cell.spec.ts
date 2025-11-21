@@ -1,7 +1,8 @@
 import { html } from '@microsoft/fast-element';
 import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import type { Mock } from 'vitest';
-import { currentLocale } from '../../shared/localization';
+import { currentLocale, setLocale } from '../../shared/localization';
+import enUS from '../../locales/en-US';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellSortStates } from './data-grid.options';
 import '.';
@@ -315,11 +316,11 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 
 			const visuallyHiddenElement = element.shadowRoot?.querySelector(
-				'vwc-visually-hidden'
+				'vwc-visually-hidden[data-announcement="selection"]'
 			);
 
 			expect(visuallyHiddenElement).toBeTruthy();
-			expect(visuallyHiddenElement?.textContent).toEqual(
+			expect(visuallyHiddenElement?.textContent?.trim()).toEqual(
 				currentLocale.locale.dataGrid.cell.selected
 			);
 		});
@@ -329,7 +330,7 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 
 			const visuallyHiddenElement = element.shadowRoot?.querySelector(
-				'vwc-visually-hidden'
+				'vwc-visually-hidden[data-announcement="selection"]'
 			);
 
 			expect(visuallyHiddenElement).toBeFalsy();
@@ -561,6 +562,114 @@ describe('vwc-data-grid-cell', () => {
 			};
 			await elementUpdated(element);
 			expect(element.sortDirection).toEqual(undefined);
+		});
+	});
+
+	describe('sort announcements', () => {
+		beforeEach(() => {
+			setLocale(enUS);
+			element.cellType = 'columnheader';
+			element.columnDefinition = {
+				columnDataKey: 'Name',
+				sortable: true,
+			};
+		});
+
+		function getExpectedAnnouncement(
+			direction: DataGridCellSortStates
+		): string {
+			const status = currentLocale.locale.dataGrid.cell.sortStatus[direction];
+			const instruction =
+				currentLocale.locale.dataGrid.cell.sortInstruction[direction];
+			return `${status} ${instruction}`.trim();
+		}
+
+		function queryAnnouncement(target: DataGridCell) {
+			return target.shadowRoot?.querySelector(
+				'vwc-visually-hidden[data-announcement="sort-state"]'
+			);
+		}
+
+		it('should render localized sort announcement for unsorted state', async () => {
+			element.sortDirection = DataGridCellSortStates.none;
+			await elementUpdated(element);
+
+			const announcement = queryAnnouncement(element);
+			expect(announcement?.textContent?.trim()).toEqual(
+				getExpectedAnnouncement(DataGridCellSortStates.none)
+			);
+		});
+
+		it('should update announcement when sort direction changes', async () => {
+			element.sortDirection = DataGridCellSortStates.none;
+			await elementUpdated(element);
+
+			element.sortDirection = DataGridCellSortStates.ascending;
+			await elementUpdated(element);
+
+			const announcement = queryAnnouncement(element);
+			expect(announcement?.textContent?.trim()).toEqual(
+				getExpectedAnnouncement(DataGridCellSortStates.ascending)
+			);
+		});
+
+		it('should render localized sort announcement for descending state', async () => {
+			element.sortDirection = DataGridCellSortStates.descending;
+			await elementUpdated(element);
+
+			const announcement = queryAnnouncement(element);
+			expect(announcement?.textContent?.trim()).toEqual(
+				getExpectedAnnouncement(DataGridCellSortStates.descending)
+			);
+		});
+
+		it('should render localized sort announcement for "other" state', async () => {
+			element.sortDirection = DataGridCellSortStates.other;
+			await elementUpdated(element);
+
+			const announcement = queryAnnouncement(element);
+			expect(announcement?.textContent?.trim()).toEqual(
+				getExpectedAnnouncement(DataGridCellSortStates.other)
+			);
+		});
+
+		it('should not show announcement when sortDirection is undefined', async () => {
+			element.sortDirection = undefined;
+			await elementUpdated(element);
+
+			expect(queryAnnouncement(element)).toBeNull();
+		});
+
+		it('should handle null sortDirection by falling back to none', async () => {
+			element.sortDirection = null as any;
+			await elementUpdated(element);
+
+			const announcement = queryAnnouncement(element);
+			expect(announcement?.textContent?.trim()).toEqual(
+				getExpectedAnnouncement(DataGridCellSortStates.none)
+			);
+		});
+
+		it('should remove announcement when column is not sortable', async () => {
+			element.sortDirection = DataGridCellSortStates.ascending;
+			await elementUpdated(element);
+
+			element.columnDefinition = {
+				columnDataKey: 'Name',
+				sortable: false,
+			};
+			element.sortDirection = undefined;
+			await elementUpdated(element);
+
+			expect(queryAnnouncement(element)).toBeNull();
+		});
+
+		it('should not show announcement when cell type is not columnheader', async () => {
+			element.cellType = 'default';
+			element.sortDirection = DataGridCellSortStates.ascending;
+			await elementUpdated(element);
+
+			expect(queryAnnouncement(element)).toBeNull();
 		});
 	});
 

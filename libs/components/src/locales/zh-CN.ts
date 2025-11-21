@@ -235,6 +235,18 @@ const zhCN: Locale = {
 		cell: {
 			selected: '已选择',
 			button: '（按钮）',
+			sortStatus: {
+				ascending: '已按升序排序。',
+				descending: '已按降序排序。',
+				none: '未排序。',
+				other: '已应用自定义排序。',
+			},
+			sortInstruction: {
+				ascending: '单击以按降序排序。',
+				descending: '单击以取消排序。',
+				none: '单击以按升序排序。',
+				other: '单击以重置排序。',
+			},
 		},
 	},
 	pagination: {
