@@ -4,6 +4,14 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.6.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.5.0...vivid-v5.6.0) (2025-11-21)
+
+
+### Features
+
+* **components:** adjust position of the contextual-help slot (VIV-2976) ([#2601](https://github.com/Vonage/vivid-3/issues/2601)) ([fd8cf69](https://github.com/Vonage/vivid-3/commit/fd8cf69e5bdc4281c91b7a8fe79c5c569b9473ae))
+* **data-grid:** ensure sort state is announced on header cell focus (VIV-2796) ([#2603](https://github.com/Vonage/vivid-3/issues/2603)) ([c13a47a](https://github.com/Vonage/vivid-3/commit/c13a47acc7ec071d4bc753a7dbb7003d1fb77716))
+
 ## [5.5.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.4.0...vivid-v5.5.0) (2025-11-13)
 
 
