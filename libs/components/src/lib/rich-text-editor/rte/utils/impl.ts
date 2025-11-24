@@ -1,3 +1,3 @@
-// To hide internal implementation on public classes, we use a unique symbol as a property key.
+// To hide internal implementation on public classes, we store it under a unique symbol
 
 export const impl = Symbol('rte-internal-impl');
