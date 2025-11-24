@@ -6,8 +6,12 @@ import {
 	Plugin,
 } from 'prosemirror-state';
 import type { EditorView, NodeView } from 'prosemirror-view';
-import { RTEFeature, type SchemaContribution } from '../feature';
-import type { RTEInstance } from '../instance';
+import {
+	featureFacade,
+	RTEFeatureImpl,
+	type SchemaContribution,
+} from '../feature';
+import type { RTEInstanceImpl } from '../instance';
 import { Popover } from '../../popover';
 import {
 	createButton,
@@ -174,7 +178,7 @@ class InlineImageView implements NodeView {
 	}
 }
 
-export class RTEInlineImageFeature extends RTEFeature {
+export class RTEInlineImageFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEInlineImageFeature';
 
 	constructor(protected readonly config: RTEInlineImageFeatureConfig = {}) {
@@ -253,7 +257,7 @@ export class RTEInlineImageFeature extends RTEFeature {
 		];
 	}
 
-	override getPlugins(rte: RTEInstance) {
+	override getPlugins(rte: RTEInstanceImpl) {
 		return [
 			this.contribution(
 				new Plugin({
@@ -403,3 +407,5 @@ export class RTEInlineImageFeature extends RTEFeature {
 		return null;
 	}
 }
+
+export const RTEInlineImageFeature = featureFacade(RTEInlineImageFeatureImpl);
