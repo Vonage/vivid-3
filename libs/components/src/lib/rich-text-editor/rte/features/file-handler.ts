@@ -2,8 +2,8 @@ import { type EditorState, Plugin, type Transaction } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import { dropPoint } from 'prosemirror-transform';
 import { Fragment, Slice } from 'prosemirror-model';
-import { RTEFeature } from '../feature';
-import type { RTEInstance } from '../instance';
+import { featureFacade, RTEFeatureImpl } from '../feature';
+import type { RTEInstanceImpl } from '../instance';
 import type { RTEFragment } from '../document';
 import { generateRandomId } from '../../../../shared/utils/randomId';
 import { resolvePromise } from '../../../../shared/utils/promise';
@@ -18,14 +18,14 @@ export interface RTEFileHandlerFeatureConfig {
 
 type InsertPoint = { type: 'pos'; pos: number } | { type: 'selection' };
 
-export class RTEFileHandlerFeature extends RTEFeature {
+export class RTEFileHandlerFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEFileHandlerFeature';
 
 	constructor(readonly config: RTEFileHandlerFeatureConfig) {
 		super();
 	}
 
-	override getPlugins(rte: RTEInstance) {
+	override getPlugins(rte: RTEInstanceImpl) {
 		const insertPointPlaceholderPlugin = new Plugin({
 			state: {
 				init() {
@@ -200,3 +200,5 @@ export class RTEFileHandlerFeature extends RTEFeature {
 		];
 	}
 }
+
+export const RTEFileHandlerFeature = featureFacade(RTEFileHandlerFeatureImpl);

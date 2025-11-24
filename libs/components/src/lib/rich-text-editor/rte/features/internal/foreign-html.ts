@@ -1,12 +1,12 @@
 import { Plugin } from 'prosemirror-state';
-import { RTEFeature } from '../../feature';
-import type { RTEInstance } from '../../instance';
+import { RTEFeatureImpl } from '../../feature';
+import type { RTEInstanceImpl } from '../../instance';
 import { impl } from '../../utils/impl';
 
-export class RTEForeignHtmlFeature extends RTEFeature {
-	protected name = 'RTEHtmlConversionFeature';
+export class RTEForeignHtmlFeatureImpl extends RTEFeatureImpl {
+	protected name = 'RTEForeignHtmlFeature';
 
-	override getPlugins(rte: RTEInstance) {
+	override getPlugins(rte: RTEInstanceImpl) {
 		return [
 			this.contribution(
 				new Plugin({

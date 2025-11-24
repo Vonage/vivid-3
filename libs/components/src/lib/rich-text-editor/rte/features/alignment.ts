@@ -2,7 +2,8 @@ import { type Command, EditorState } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 import { createButton, createDiv, createMenu } from '../utils/toolbar-items';
 import {
-	RTEFeature,
+	featureFacade,
+	RTEFeatureImpl,
 	type TextblockAttrContribution,
 	type ToolbarItemContribution,
 } from '../feature';
@@ -27,7 +28,7 @@ const alignments = [
 	},
 ] as const;
 
-export class RTEAlignmentFeature extends RTEFeature {
+export class RTEAlignmentFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEAlignmentFeature';
 
 	override getTextblockAttrs(): TextblockAttrContribution[] {
@@ -153,3 +154,5 @@ export class RTEAlignmentFeature extends RTEFeature {
 		};
 	}
 }
+
+export const RTEAlignmentFeature = featureFacade(RTEAlignmentFeatureImpl);

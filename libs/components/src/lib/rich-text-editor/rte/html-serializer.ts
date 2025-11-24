@@ -6,7 +6,7 @@ import {
 	type Node,
 	type Schema,
 } from 'prosemirror-model';
-import type { RTEConfig } from './config';
+import type { RTEConfig, RTEConfigImpl } from './config';
 import type { RTEDocument, RTEFragment } from './document';
 import { impl } from './utils/impl';
 
@@ -38,7 +38,7 @@ export class RTEHtmlSerializer {
 	[impl]: RTEHtmlSerializerImpl;
 
 	constructor(config: RTEConfig, options?: RTEHtmlSerializerOptions) {
-		this[impl] = new RTEHtmlSerializerImpl(config, options);
+		this[impl] = new RTEHtmlSerializerImpl(config[impl], options);
 	}
 
 	/**
@@ -60,7 +60,7 @@ export class RTEHtmlSerializerImpl {
 	serializer: DOMSerializer;
 
 	constructor(
-		protected readonly config: RTEConfig,
+		protected readonly config: RTEConfigImpl,
 		options?: RTEHtmlSerializerOptions
 	) {
 		const serializers = RTEHtmlSerializerImpl.domSerializersFromSchema(

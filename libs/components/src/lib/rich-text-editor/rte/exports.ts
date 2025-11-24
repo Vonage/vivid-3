@@ -20,4 +20,5 @@ export { RTEDropHandlerFeature } from './features/drop-handler';
 export { RTEHtmlParser } from './html-parser';
 export { RTEHtmlSerializer } from './html-serializer';
 
+export type { RTEInstance } from './instance';
 export type { RTEDocument, RTEFragment, RTENode, RTEMark } from './document';
