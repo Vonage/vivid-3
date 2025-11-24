@@ -41,7 +41,7 @@
 	},
 	"dependencies": {
 		"@testing-library/user-event": "^14.6.1",
-		"@vonage/vivid": "workspace:*"
+		"@vonage/vivid": "workspace:^"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",

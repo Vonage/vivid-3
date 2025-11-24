@@ -30,7 +30,7 @@
 		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},
 	"dependencies": {
-		"@vonage/vivid": "workspace:*"
+		"@vonage/vivid": "workspace:^"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
