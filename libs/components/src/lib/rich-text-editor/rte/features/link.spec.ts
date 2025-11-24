@@ -38,16 +38,13 @@ describe('RTELinkFeature', () => {
 		);
 	});
 
-	it('should parse link marks from HTML', async () => {
-		const { instance, docStr } = await setup(features);
-
-		instance.replaceDocument(
-			instance.config.parseHTML(
-				'Visit <a href="https://example.com">example.com</a> for more info'
-			)
+	it('should deserialize link from HTML', async () => {
+		const rte = await setup(features);
+		rte.setHtml(
+			'<div>Visit <a href="https://example.com">example.com</a> for more info</div>'
 		);
 
-		expect(docStr()).toMatchInlineSnapshot(`
+		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
 			text_line(
 				'|Visit ',
@@ -56,6 +53,20 @@ describe('RTELinkFeature', () => {
 			)
 			"
 		`);
+	});
+
+	it('should serialize link to HTML', async () => {
+		const rte = await setup(features, [
+			line(
+				'Visit ',
+				text.marks(link({ href: 'https://example.com' }))('example.com'),
+				' for more info'
+			),
+		]);
+
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<div>Visit <a href="https://example.com">example.com</a> for more info</div>"`
+		);
 	});
 
 	it('should add a link menu to the toolbar to insert links', async () => {

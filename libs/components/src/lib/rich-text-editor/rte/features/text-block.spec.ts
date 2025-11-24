@@ -33,19 +33,18 @@ describe('RTETextBlockStructure', () => {
 	});
 
 	it('should deserialize blocks from HTML', async () => {
-		const { instance, config, docStr } = await setup(features);
-		instance.replaceDocument(
-			config.parseHTML(
-				`
-					<h1>heading-1</h1>
-					<h2>heading-2</h2>
-					<p>paragraph<br>new line</p>
-					<h3>other heading</h3>
-					<div>other element</div>
-				`.trim()
-			)
+		const rte = await setup(features);
+		rte.setHtml(
+			`
+				<h1>heading-1</h1>
+				<h2>heading-2</h2>
+				<p>paragraph<br>new line</p>
+				<h3>other heading</h3>
+				<div>other element</div>
+			`.trim()
 		);
-		expect(docStr()).toMatchInlineSnapshot(`
+
+		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
 			heading[level=1]('|heading-1'),
 			heading[level=2]('heading-2'),
@@ -54,6 +53,18 @@ describe('RTETextBlockStructure', () => {
 			paragraph('other element')
 			"
 		`);
+	});
+
+	it('should serialize blocks to HTML', async () => {
+		const rte = await setup(features, [
+			h1('heading-1'),
+			h2('heading-2'),
+			p('paragraph', br(), 'new line'),
+		]);
+
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<h1>heading-1</h1><h2>heading-2</h2><p>paragraph<br>new line</p>"`
+		);
 	});
 
 	it('should insert a new paragraph when pressing Enter', async () => {
