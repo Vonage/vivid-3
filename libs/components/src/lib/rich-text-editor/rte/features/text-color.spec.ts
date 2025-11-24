@@ -53,13 +53,20 @@ describe('RTETextColorFeature', () => {
 
 	it('should deserialize textColor from HTML', async () => {
 		const rte = await setup(features);
-		rte.instance.replaceDocument(
-			rte.config.parseHTML(
-				'<p><span data-text-color="#123456">Colored</span> Plain</p>'
-			)
-		);
+		rte.setHtml('<p><span data-text-color="#123456">Colored</span> Plain</p>');
+
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph(<textColor[color="#123456"]>'|Colored', ' Plain')"`
+		);
+	});
+
+	it('should serialize textColor to HTML', async () => {
+		const rte = await setup(features, [
+			p(text.marks(color({ color: '#123456' }))('Colored'), ' Plain'),
+		]);
+
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<p><span style="color: rgb(18, 52, 86);" data-text-color="#123456">Colored</span> Plain</p>"`
 		);
 	});
 

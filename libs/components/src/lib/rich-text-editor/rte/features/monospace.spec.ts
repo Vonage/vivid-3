@@ -22,6 +22,25 @@ describe('RTEMonospaceFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(`"text_line(<monospace>'|Hello')"`);
 	});
 
+	it('should deserialize monospace from HTML', async () => {
+		const rte = await setup(features);
+		rte.setHtml(`<div><tt>monospace</tt><code>monospace</code></div>`);
+
+		expect(rte.docStr()).toMatchInlineSnapshot(
+			`"text_line(<monospace>'|monospacemonospace')"`
+		);
+	});
+
+	it('should serialize monospace to HTML', async () => {
+		const rte = await setup(features, [
+			line(text.marks(monospace())('monospace')),
+		]);
+
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<div><tt>monospace</tt></div>"`
+		);
+	});
+
 	it('should toggle monospace mark of selected text on Mod-M', async () => {
 		const { selectText, keydown, docStr } = await setup(features, [
 			line('Hello world'),

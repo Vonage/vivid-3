@@ -47,23 +47,21 @@ describe('RTEListFeature', () => {
 
 	it('should deserialize lists from HTML', async () => {
 		const rte = await setup(textBlockFeatures);
-		rte.instance.replaceDocument(
-			rte.config.parseHTML(
-				`
+		rte.setHtml(
+			`
+				<ul>
+					<li>Item 1</li>
 					<ul>
-						<li>Item 1</li>
-						<ul>
-							<li>Item 2</li>
-						</ul>
+						<li>Item 2</li>
 					</ul>
+				</ul>
+				<ol>
+					<li>Item 1</li>
 					<ol>
-						<li>Item 1</li>
-						<ol>
-							<li>Item 2</li>
-						</ol>
+						<li>Item 2</li>
 					</ol>
-				`.trim()
-			)
+				</ol>
+			`.trim()
 		);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
@@ -72,6 +70,17 @@ describe('RTEListFeature', () => {
 			numbered_list(list_item('Item 1'), numbered_list(list_item('Item 2')))
 			"
 		`);
+	});
+
+	it('should serialize lists to HTML', async () => {
+		const rte = await setup(textBlockFeatures, [
+			ul(li('Item 1'), ul(li('Nested Item 2'))),
+			ol(li('Item 1'), ol(li('Nested Item 2'))),
+		]);
+
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<ul><li>Item 1</li><ul><li>Nested Item 2</li></ul></ul><ol><li>Item 1</li><ol><li>Nested Item 2</li></ol></ol>"`
+		);
 	});
 
 	describe('toolbar button', () => {

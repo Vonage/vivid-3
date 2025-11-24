@@ -41,30 +41,41 @@ describe('RTEFontSizeFeature', () => {
 	});
 
 	it('should deserialize the mark from HTML', async () => {
-		const { instance, config, docStr } = await setup(features);
-		instance.replaceDocument(
-			config.parseHTML(
-				`
-					<span style="font-size: 12px;">small</span>
-					normal
-					<span style="font-size: 18px;">large</span>
-					<span style="font-size: 24px;">extra-large</span>
-					<span style="font-size: 10px;">other</span>
-				`.trim()
-			)
+		const rte = await setup(features);
+		rte.setHtml(
+			'<span style="font-size: 12px;">small</span>' +
+				'normal' +
+				'<span style="font-size: 18px;">large</span>' +
+				'<span style="font-size: 24px;">extra-large</span>' +
+				'<span style="font-size: 10px;">other</span>'
 		);
-		expect(docStr()).toMatchInlineSnapshot(`
+
+		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
 			text_line(
 				<fontSize[size="small"]>'|small',
-				' normal ',
+				'normal',
 				<fontSize[size="large"]>'large',
-				' ',
 				<fontSize[size="extra-large"]>'extra-large',
-				' other'
+				'other'
 			)
 			"
 		`);
+	});
+
+	it('should serialize the mark to HTML', async () => {
+		const rte = await setup(features, [
+			line(
+				text.marks(size({ size: 'small' }))('small'),
+				'normal',
+				text.marks(size({ size: 'large' }))('large'),
+				text.marks(size({ size: 'extra-large' }))('extra-large')
+			),
+		]);
+
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<div><span style="font-size: 12px;">small</span>normal<span style="font-size: 18px;">large</span><span style="font-size: 24px;">extra-large</span></div>"`
+		);
 	});
 
 	it('should provide a menu with font size options where the current font size is checked', async () => {
