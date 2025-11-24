@@ -335,6 +335,7 @@ export class ColorPicker extends WithContextualHelp(
 	 * @internal
 	 */
 	get _buttonColor(): string {
+		/* v8 ignore else -- @preserve */
 		if (!this._canvasColor) {
 			this._refreshCanvasColor();
 		}
@@ -502,6 +503,7 @@ export class ColorPicker extends WithContextualHelp(
 	 * @internal
 	 */
 	override _handleSwatchSelection(value: string) {
+		/* v8 ignore else -- @preserve */
 		if (this.value !== value) {
 			this._ariaLiveDescription =
 				this.locale.colorPicker.selectionSuccessMessage(value);

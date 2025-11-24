@@ -274,7 +274,7 @@ describe('vwc-color-picker', () => {
 			expect((getHexInput() as any).color).toBe('#112233');
 		});
 
-		it('should update element value on color-changed event', async () => {
+		it('should update element value on color-changed event from hex-picker', async () => {
 			element.open = true;
 			await elementUpdated(element);
 			const event = new CustomEvent('color-changed', {
@@ -284,6 +284,48 @@ describe('vwc-color-picker', () => {
 			getHexPicker()?.dispatchEvent(event);
 			await elementUpdated(element);
 			expect(element.value).toBe('#445566');
+		});
+
+		it('should update element value on color-changed from hex-input', async () => {
+			element.open = true;
+			await elementUpdated(element);
+			const event = new CustomEvent('color-changed', {
+				detail: { value: '#445566' },
+				bubbles: true,
+			});
+			getHexInput()?.dispatchEvent(event);
+			await elementUpdated(element);
+			expect(element.value).toBe('#445566');
+		});
+
+		it('should stop immediate propagation on blur of internal vc input', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			const popupInput = element.shadowRoot?.querySelector('[part="input"]');
+			const blurEvent = new FocusEvent('blur', { bubbles: true });
+			const sipSpy = vi.spyOn(blurEvent, 'stopImmediatePropagation');
+
+			popupInput?.dispatchEvent(blurEvent);
+			await elementUpdated(element);
+
+			expect(sipSpy).toHaveBeenCalled();
+		});
+
+		it('should ignore color-changed events with non-string value', async () => {
+			element.open = true;
+			await elementUpdated(element);
+			element.value = '#112233';
+
+			const invalidEvent = new CustomEvent('color-changed', {
+				detail: { value: 123 as any },
+				bubbles: true,
+			});
+
+			getHexPicker()?.dispatchEvent(invalidEvent);
+			await elementUpdated(element);
+
+			expect(element.value).toBe('#112233');
 		});
 	});
 
