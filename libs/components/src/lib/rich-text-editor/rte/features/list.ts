@@ -268,7 +268,7 @@ export class RTEListFeature extends RTEFeature {
 							},
 						],
 						toDOM(node) {
-							return ['li', { style: textblockAttrs.getStyle(node) }, 0];
+							return ['li', ...textblockAttrs.getDOMAttrs(node), 0];
 						},
 					},
 					bullet_list: {
