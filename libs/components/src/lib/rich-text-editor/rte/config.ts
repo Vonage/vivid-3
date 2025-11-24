@@ -1,9 +1,8 @@
-import { DOMParser, DOMSerializer, Schema } from 'prosemirror-model';
+import { Schema } from 'prosemirror-model';
 import type { Constructor } from '../../../shared/utils/mixins';
 import { RTECore } from './features/core';
 import { RTEInstance, type RTEInstanceOptions } from './instance';
 import { RTEFeature, sortedContributions } from './feature';
-import type { RTEDocument } from './document';
 import { RTETextBlockStructure } from './features/text-block';
 import { RTEFreeformStructure } from './features/freeform';
 import { TextblockAttrs } from './utils/textblock-attrs';
@@ -68,32 +67,6 @@ export class RTEConfig {
 		}
 
 		this.schema = new Schema(schemaSpec);
-	}
-
-	parseHTML(html: string): RTEDocument {
-		const parser = DOMParser.fromSchema(this.schema);
-		return parser
-			.parse(new window.DOMParser().parseFromString(html, 'text/html').body)
-			.toJSON();
-	}
-
-	parseHTMLSlice(html: string): RTEDocument {
-		const parser = DOMParser.fromSchema(this.schema);
-		return (
-			parser
-				.parseSlice(
-					new window.DOMParser().parseFromString(html, 'text/html').body
-				)
-				.toJSON()?.content ?? []
-		);
-	}
-
-	toHTML(doc: RTEDocument): string {
-		const serializer = DOMSerializer.fromSchema(this.schema);
-		const node = this.schema.nodeFromJSON(doc);
-		const container = document.createElement('div');
-		container.appendChild(serializer.serializeFragment(node.content));
-		return container.innerHTML;
 	}
 
 	instantiateEditor(options?: RTEInstanceOptions): RTEInstance {

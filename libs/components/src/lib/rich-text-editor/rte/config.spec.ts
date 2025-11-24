@@ -6,7 +6,7 @@ import { RTETextBlockStructure } from './features/text-block';
 import { RTEAlignmentFeature } from './features/alignment';
 import { docFactories } from './__tests__/doc-factories';
 
-const { doc, text_line: line, text, bold } = docFactories;
+const { doc, text_line: line } = docFactories;
 
 describe('RTEConfig', () => {
 	it('should throw an error when required core feature is missing', () => {
@@ -72,30 +72,5 @@ describe('RTEConfig', () => {
 				'doc(text_line("Hello world"))'
 			);
 		});
-	});
-
-	it('should serialize HTML based on the schema', () => {
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTEFreeformStructure(),
-			new RTEBoldFeature(),
-		]);
-		const features = config.instantiateEditor({
-			initialDocument: doc(line('Hello ', text.marks(bold())('world'))),
-		});
-		expect(config.toHTML(features.getDocument())).toBe(
-			'<div>Hello <strong>world</strong></div>'
-		);
-	});
-
-	it('should parse HTML based on the schema', () => {
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTEFreeformStructure(),
-			new RTEBoldFeature(),
-		]);
-		expect(config.parseHTML('<div>Hello <strong>world</strong></div>')).toEqual(
-			doc(line('Hello ', text.marks(bold())('world')))
-		);
 	});
 });

@@ -62,7 +62,7 @@
 		"@microsoft/fast-element": "^2.7.0",
 		"@microsoft/fast-web-utilities": "^6.0.0",
 		"date-fns": "^3.0.0",
-		"vanilla-colorful": "^0.7.2",
+		"dompurify": "^3.3.0",
 		"prosemirror-commands": "^1.7.1",
 		"prosemirror-dropcursor": "^1.8.2",
 		"prosemirror-gapcursor": "^1.3.2",
@@ -73,7 +73,8 @@
 		"prosemirror-state": "^1.4.4",
 		"prosemirror-view": "^1.40.1",
 		"ramda": "^0.32.0",
-		"uuid": "^11.1.0"
+		"uuid": "^11.1.0",
+		"vanilla-colorful": "^0.7.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.52.9",
@@ -88,7 +89,6 @@
 		"@repo/styles": "*",
 		"@repo/typescript-config": "*",
 		"@repo/vitest-config": "*",
-		"video.js": "^8.23.3",
 		"@testing-library/dom": "^8.18.1",
 		"@testing-library/user-event": "^14.6.1",
 		"@types/node": "18.19.130",
@@ -98,6 +98,7 @@
 		"cem-plugin-jsdoc-example": "^0.0.9",
 		"cem-plugin-jsdoc-function": "^0.0.5",
 		"cem-plugin-readonly": "^0.0.5",
+		"concurrently": "^9.2.0",
 		"dialog-polyfill": "^0.5.6",
 		"element-internals-polyfill": "^1.3.13",
 		"esbuild": "0.23.0",
@@ -105,11 +106,11 @@
 		"markdown-it": "^13.0.2",
 		"playwright": "1.48.2",
 		"sass": "^1.89.2",
+		"video.js": "^8.23.3",
 		"vite-plugin-static-copy": "^1.0.6",
 		"vitest": "^2.1.8",
 		"vitest-axe": "^0.1.0",
 		"vitest-fetch-mock": "^0.4.5",
-		"wait-on": "^8.0.5",
-		"concurrently": "^9.2.0"
+		"wait-on": "^8.0.5"
 	}
 }

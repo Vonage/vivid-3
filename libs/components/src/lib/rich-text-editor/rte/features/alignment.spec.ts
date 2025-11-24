@@ -7,6 +7,7 @@ import { RTEToolbarFeature } from './toolbar';
 
 const { paragraph: p } = docFactories;
 const h1 = docFactories.heading.attrs({ level: 1 });
+const h2 = docFactories.heading.attrs({ level: 2 });
 
 const features = [
 	new RTECore(),
@@ -35,19 +36,17 @@ describe('RTEAlignmentFeature', () => {
 	});
 
 	it('should deserialize the attribute from HTML', async () => {
-		const { instance, config, docStr } = await setup(features);
-		instance.replaceDocument(
-			config.parseHTML(
-				`
-					<h1 style="text-align: center">center</h1>
-					<h2 style="text-align: right">right</h2>
-					<p style="text-align: left">left</p>
-					<p>default</p>
-				`.trim()
-			)
+		const rte = await setup(features);
+		rte.setHtml(
+			`
+				<h1 style="text-align: center">center</h1>
+				<h2 style="text-align: right">right</h2>
+				<p style="text-align: left">left</p>
+				<p>default</p>
+			`.trim()
 		);
 
-		expect(docStr()).toMatchInlineSnapshot(`
+		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
 			heading[level=1 textAlign="center"]('|center'),
 			heading[level=2 textAlign="right"]('right'),
@@ -55,6 +54,18 @@ describe('RTEAlignmentFeature', () => {
 			paragraph[textAlign="left"]('default')
 			"
 		`);
+	});
+
+	it('should serialize the attribute to HTML', async () => {
+		const rte = await setup(features, [
+			h1.attrs({ textAlign: 'center' })('center'),
+			h2.attrs({ textAlign: 'right' })('right'),
+			p.attrs({ textAlign: 'left' })('left'),
+		]);
+
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<h1 style="text-align: center;">center</h1><h2 style="text-align: right;">right</h2><p style="text-align: left;">left</p>"`
+		);
 	});
 
 	it('should set left alignment with Mod+Shift+L', async () => {
