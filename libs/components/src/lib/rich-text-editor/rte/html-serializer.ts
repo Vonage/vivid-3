@@ -84,7 +84,8 @@ export class RTEHtmlSerializerImpl {
 			}
 		}
 		for (const name in schema.nodes) {
-			const toDOM = schema.nodes[name].spec.toDOM;
+			const toDOM =
+				schema.nodes[name].spec.serializeToDOM ?? schema.nodes[name].spec.toDOM;
 			if (toDOM) {
 				result.nodes[name] = toDOM;
 			}

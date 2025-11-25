@@ -45,13 +45,17 @@ describe('RTEPlaceholder', () => {
 		it('should add placeholder inside the block element', async () => {
 			const { element } = await setup([
 				new RTECore(),
-				new RTETextBlockStructure(),
+				new RTETextBlockStructure({
+					blocks: [
+						{ id: 'heading', label: 'Heading', semanticRole: 'heading-1' },
+					],
+				}),
 			]);
 
 			element.placeholder = 'Type here...';
 
 			expect(
-				element.shadowRoot!.querySelector('p > .placeholder')
+				element.shadowRoot!.querySelector('h1 > .placeholder')
 			).toBeInstanceOf(HTMLElement);
 		});
 	});

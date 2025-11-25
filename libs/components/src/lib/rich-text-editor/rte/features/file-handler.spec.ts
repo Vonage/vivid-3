@@ -6,12 +6,12 @@ import { docFactories } from '../__tests__/doc-factories';
 import type { RTEFragment } from '../document';
 import { promiseWithResolvers } from '../__tests__/promise';
 import { RTECore } from './core';
-import { RTETextBlockStructure } from './text-block';
 import { RTEToolbarFeature } from './toolbar';
 import {
 	RTEFileHandlerFeature,
 	type RTEFileHandlerFeatureConfig,
 } from './file-handler';
+import { RTEFreeformStructure } from './freeform';
 
 vi.mock('prosemirror-transform', () => ({
 	dropPoint: vitest.fn(),
@@ -24,11 +24,11 @@ const mockProseMirrorDropPointReturn = async (value: number | null) => {
 	).dropPoint.mockReturnValue(value);
 };
 
-const { paragraph: p, text } = docFactories;
+const { text_line: p, text } = docFactories;
 
 const featuresWithConfig = (config: RTEFileHandlerFeatureConfig) => [
 	new RTECore(),
-	new RTETextBlockStructure(),
+	new RTEFreeformStructure(),
 	new RTEToolbarFeature(),
 	new RTEFileHandlerFeature(config),
 ];
@@ -45,7 +45,7 @@ describe('RTEFileHandlerFeature', () => {
 		rte.selectText('Hello [World]');
 		rte.pasteFiles([mockFile('world.txt')]);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('Hello [World|]')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('Hello [World|]')"`);
 	});
 
 	it('should insert returned content at caret on paste', async () => {
@@ -60,7 +60,7 @@ describe('RTEFileHandlerFeature', () => {
 		rte.pasteFiles([mockFile('world.txt')]);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"paragraph('Hello PASTED|World')"`
+			`"text_line('Hello PASTED|World')"`
 		);
 	});
 
@@ -75,7 +75,7 @@ describe('RTEFileHandlerFeature', () => {
 		rte.selectText('Hello [World]');
 		rte.pasteFiles([mockFile('world.txt')]);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('Hello PASTED|')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('Hello PASTED|')"`);
 	});
 
 	it('should insert asynchronously returned content at cursor position on paste', async () => {
@@ -96,7 +96,7 @@ describe('RTEFileHandlerFeature', () => {
 		await elementUpdated(rte.element);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"paragraph('Hello very| beautiful World')"`
+			`"text_line('Hello very| beautiful World')"`
 		);
 	});
 
@@ -118,7 +118,7 @@ describe('RTEFileHandlerFeature', () => {
 		await elementUpdated(rte.element);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"paragraph('Hello very| beautiful new World')"`
+			`"text_line('Hello very| beautiful new World')"`
 		);
 	});
 
@@ -139,7 +139,7 @@ describe('RTEFileHandlerFeature', () => {
 		resolve([text('result')]);
 		await elementUpdated(rte.element);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph(|)"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line(|)"`);
 	});
 
 	it('should insert content at cursor position on drop', async () => {
@@ -153,7 +153,7 @@ describe('RTEFileHandlerFeature', () => {
 		rte.dropFiles(rte.getPos('Hello |'), [mockFile('hello.txt')]);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"paragraph('|Hello PASTEDWorld')"`
+			`"text_line('|Hello PASTEDWorld')"`
 		);
 	});
 
@@ -172,14 +172,14 @@ describe('RTEFileHandlerFeature', () => {
 		rte.dropFiles(rte.getPos('He|llo'), [mockFile('hello.txt')]);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"paragraph('|Hello PASTEDWorld')"`
+			`"text_line('|Hello PASTEDWorld')"`
 		);
 
 		await mockProseMirrorDropPointReturn(null);
 		rte.dropFiles(rte.getPos('He|llo'), [mockFile('hello.txt')]);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"paragraph('|HePASTEDllo PASTEDWorld')"`
+			`"text_line('|HePASTEDllo PASTEDWorld')"`
 		);
 	});
 
@@ -215,10 +215,10 @@ describe('RTEFileHandlerFeature', () => {
 
 		rte.pasteFiles([]);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('|Hello World')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('|Hello World')"`);
 
 		rte.dropFiles(rte.getPos('Hello |'), []);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('|Hello World')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('|Hello World')"`);
 	});
 });

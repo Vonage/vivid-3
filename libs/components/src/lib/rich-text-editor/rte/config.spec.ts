@@ -6,6 +6,7 @@ import { RTETextBlockStructure } from './features/text-block';
 import { RTEAlignmentFeature } from './features/alignment';
 import { docFactories } from './__tests__/doc-factories';
 import { impl } from './utils/impl';
+import { basicTextBlocks } from './__tests__/text-blocks';
 
 const { doc, text_line: line } = docFactories;
 
@@ -39,7 +40,7 @@ describe('RTEConfig', () => {
 				new RTEConfig([
 					new RTECore(),
 					new RTEFreeformStructure(),
-					new RTETextBlockStructure(),
+					new RTETextBlockStructure({ blocks: basicTextBlocks }),
 				])
 		).toThrow(
 			'Either RTETextBlockStructure or RTEFreeformStructure feature is required'

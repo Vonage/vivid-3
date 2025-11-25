@@ -55,7 +55,29 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				const rteElement = document.querySelector('vwc-rich-text-editor')!;
 				const config = new RTEConfig([
 					new RTECore(),
-					new RTETextBlockStructure(),
+					new RTETextBlockStructure({
+						blocks: [
+							{
+								id: 'title',
+								label: 'Title',
+								semanticRole: 'heading-1',
+								stylePreset: 'h5',
+							},
+							{
+								id: 'subtitle',
+								label: 'Subtitle',
+								semanticRole: 'heading-2',
+								stylePreset: 'h6',
+							},
+							{
+								id: 'body',
+								label: 'Body',
+								semanticRole: 'paragraph',
+								stylePreset: 'body-2',
+								marksAllowed: true,
+							},
+						],
+					}),
 					new RTEToolbarFeature(),
 					new RTEFontSizeFeature(),
 					new RTEBoldFeature(),
@@ -74,21 +96,19 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						type: 'doc',
 						content: [
 							{
-								type: 'heading',
-								attrs: { level: 1 },
-								content: [{ type: 'text', text: 'heading-1' }],
+								type: 'title',
+								content: [{ type: 'text', text: 'title' }],
 							},
 							{
-								type: 'heading',
-								attrs: { level: 2 },
-								content: [{ type: 'text', text: 'heading-2' }],
+								type: 'subtitle',
+								content: [{ type: 'text', text: 'subtitle' }],
 							},
 							{
-								type: 'paragraph',
-								content: [{ type: 'text', text: 'paragraph' }],
+								type: 'body',
+								content: [{ type: 'text', text: 'body' }],
 							},
 							{
-								type: 'paragraph',
+								type: 'body',
 								content: [
 									{ type: 'text', text: 'bold', marks: [{ type: 'bold' }] },
 									{ type: 'text', text: ' ' },
@@ -179,7 +199,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 								],
 							},
 							{
-								type: 'paragraph',
+								type: 'body',
 								content: [
 									{
 										type: 'text',
@@ -199,7 +219,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 								],
 							},
 							{
-								type: 'paragraph',
+								type: 'body',
 								content: [
 									{
 										type: 'inline_image',
@@ -224,13 +244,22 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await renderTemplate({
 		page,
-		template: `<vwc-rich-text-editor style="width: 300px" placeholder="Placeholder text..."></vwc-rich-text-editor>`,
+		template: `<vwc-rich-text-editor style="width: 400px" placeholder="Placeholder text..."></vwc-rich-text-editor>`,
 		setup: async () => {
 			await page.evaluate(() => {
 				const rteElement = document.querySelector('vwc-rich-text-editor')!;
 				const config = new RTEConfig([
 					new RTECore(),
-					new RTETextBlockStructure(),
+					new RTETextBlockStructure({
+						blocks: [
+							{
+								id: 'title',
+								label: 'Title',
+								semanticRole: 'heading-1',
+								stylePreset: 'h5',
+							},
+						],
+					}),
 					new RTEAlignmentFeature(),
 				]);
 				rteElement.instance = config.instantiateEditor({
@@ -238,8 +267,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						type: 'doc',
 						content: [
 							{
-								type: 'heading',
-								attrs: { level: 1 },
+								type: 'title',
 								content: [],
 							},
 						],
@@ -257,8 +285,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			type: 'doc',
 			content: [
 				{
-					type: 'heading',
-					attrs: { level: 1, textAlign: 'center' },
+					type: 'title',
+					attrs: { textAlign: 'center' },
 					content: [],
 				},
 			],
@@ -273,8 +301,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			type: 'doc',
 			content: [
 				{
-					type: 'heading',
-					attrs: { level: 1, textAlign: 'right' },
+					type: 'title',
+					attrs: { textAlign: 'right' },
 					content: [],
 				},
 			],
