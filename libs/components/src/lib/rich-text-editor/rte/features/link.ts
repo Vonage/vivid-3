@@ -12,8 +12,8 @@ import {
 	createMenu,
 	createText,
 	createTextField,
-	ToolbarCtx,
-} from '../utils/toolbar-items';
+	UiCtx,
+} from '../utils/ui';
 import { RTEInstanceImpl } from '../instance';
 import {
 	featureFacade,
@@ -81,7 +81,7 @@ export class RTELinkFeatureImpl extends RTEFeatureImpl {
 						},
 					},
 					view: (view) => {
-						const ctx = new ToolbarCtx(view, rte);
+						const ctx = new UiCtx(view, rte);
 						const popup = rte.createComponent(Popover);
 						popup.anchorId = 'current-link';
 						const content = createDiv(ctx, {
@@ -133,7 +133,7 @@ export class RTELinkFeatureImpl extends RTEFeatureImpl {
 													label: () =>
 														ctx.rte.getLocale().richTextEditor.delete,
 													connotation: 'alert',
-													size: 'condensed',
+													variant: 'popover',
 													noTooltip: true,
 													onClick: () => {
 														const { state, dispatch } = ctx.view;
@@ -143,7 +143,7 @@ export class RTELinkFeatureImpl extends RTEFeatureImpl {
 												createButton(ctx, {
 													icon: 'edit-line',
 													label: () => ctx.rte.getLocale().richTextEditor.edit,
-													size: 'condensed',
+													variant: 'popover',
 													noTooltip: true,
 													onClick: () => {
 														this.toolbarMenu!.open = true;
@@ -233,8 +233,7 @@ export class RTELinkFeatureImpl extends RTEFeatureImpl {
 
 						const applyButton = createButton(ctx, {
 							label: () => ctx.rte.getLocale().richTextEditor.apply,
-							size: 'condensed',
-							appearance: 'outlined',
+							variant: 'popover-primary',
 							disabled: () => {
 								const link = this.getCurrentLink(ctx.view.state);
 								return !(link && link.text.length && isValidUrl(link.href));
@@ -250,12 +249,14 @@ export class RTELinkFeatureImpl extends RTEFeatureImpl {
 						});
 
 						const updateValidation = () => {
-							(applyButton as Button).disabled = !(
+							applyButton.querySelector<Button>(
+								'[data-vvd-component="button"]'
+							)!.disabled = !(
 								textField.value.length && isValidUrl(urlField.value)
 							);
 						};
 
-						this.toolbarMenu = createMenu(ctx, {
+						const menu = createMenu(ctx, {
 							label: () => ctx.rte.getLocale().richTextEditor.hyperlink,
 							trigger: createButton(ctx, {
 								label: () => ctx.rte.getLocale().richTextEditor.hyperlink,
@@ -275,7 +276,7 @@ export class RTELinkFeatureImpl extends RTEFeatureImpl {
 												createButton(ctx, {
 													label: () =>
 														ctx.rte.getLocale().richTextEditor.cancel,
-													size: 'condensed',
+													variant: 'popover',
 													onClick: () => {
 														this.toolbarMenu!.open = false;
 													},
@@ -288,7 +289,9 @@ export class RTELinkFeatureImpl extends RTEFeatureImpl {
 							],
 						});
 
-						return this.toolbarMenu;
+						this.toolbarMenu = menu.lastElementChild as Menu;
+
+						return menu;
 					},
 				},
 				1

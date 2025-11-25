@@ -89,6 +89,26 @@ describe('RTELinkFeature', () => {
 		expect(menu.open).toBe(false);
 	});
 
+	it('should disable Apply button when input text is empty', async () => {
+		const { toolbarButton, click, textField, openMenu, input, button } =
+			await setup(features);
+
+		await click(toolbarButton('Hyperlink'));
+		await input(textField(openMenu(), 'Text'), '');
+		await input(textField(openMenu(), 'URL'), 'https://example.com');
+		expect(button(openMenu(), 'Apply').disabled).toBe(true);
+	});
+
+	it('should disable Apply button when input URL is not a valid', async () => {
+		const { toolbarButton, click, textField, openMenu, input, button } =
+			await setup(features);
+
+		await click(toolbarButton('Hyperlink'));
+		await input(textField(openMenu(), 'Text'), 'Click here');
+		await input(textField(openMenu(), 'URL'), 'invalid');
+		expect(button(openMenu(), 'Apply').disabled).toBe(true);
+	});
+
 	it('should prefill text field with selected text', async () => {
 		const { toolbarButton, click, selectText, textField, openMenu } =
 			await setup(features, [line('Select some text first')]);

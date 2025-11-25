@@ -1,6 +1,6 @@
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark } from 'prosemirror-commands';
-import { createMarkToggle } from '../utils/toolbar-items';
+import { createMarkToggle } from '../utils/ui';
 import { RTEInstanceImpl } from '../instance';
 import {
 	featureFacade,

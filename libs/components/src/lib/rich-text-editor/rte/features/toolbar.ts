@@ -1,12 +1,13 @@
 import { Plugin } from 'prosemirror-state';
-import {
-	createDivider,
-	ToolbarCtx,
-	type ToolbarItemSpec,
-} from '../utils/toolbar-items';
+import { createDivider, UiCtx } from '../utils/ui';
 import { RTEInstanceImpl } from '../instance';
 import { featureFacade, RTEFeatureImpl, sortedContributions } from '../feature';
 import toolbarCss from './toolbar.style.scss?inline';
+
+export interface ToolbarItemSpec {
+	section: 'history' | 'font' | 'text-style' | 'textblock' | 'insert';
+	render(ctx: UiCtx): HTMLElement | DocumentFragment;
+}
 
 export class RTEToolbarFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEToolbarFeature';
@@ -37,7 +38,7 @@ export class RTEToolbarFeatureImpl extends RTEFeatureImpl {
 			this.contribution(
 				new Plugin({
 					view: (view) => {
-						const ctx = new ToolbarCtx(view, rte);
+						const ctx = new UiCtx(view, rte);
 
 						const toolbar = (
 							view.dom.getRootNode() as ShadowRoot

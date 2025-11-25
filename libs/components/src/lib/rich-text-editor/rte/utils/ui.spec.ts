@@ -4,18 +4,18 @@ import { RTEToolbarFeature } from '../features/toolbar';
 import { RTECore } from '../features/core';
 import { setup } from '../__tests__/test-utils';
 import type { Tooltip } from '../../../tooltip/tooltip';
-import { createSingleSlot, ToolbarCtx } from './toolbar-items';
+import { createSingleSlot, UiCtx } from './ui';
 import { impl } from './impl';
 
-describe('ToolbarCtx', () => {
+describe('UiCtx', () => {
 	describe('evalProp', () => {
 		it('should evaluate a property function with the editor state', async () => {
-			const ctx = new ToolbarCtx(null as any, null as any);
+			const ctx = new UiCtx(null as any, null as any, null as any);
 			expect(ctx.evalProp(() => 'value')).toBe('value');
 		});
 
 		it('should return static property value directly', async () => {
-			const ctx = new ToolbarCtx(null as any, null as any);
+			const ctx = new UiCtx(null as any, null as any, null as any);
 			expect(ctx.evalProp('value')).toBe('value');
 		});
 	});
@@ -85,7 +85,9 @@ describe('createSingleSlot', () => {
 				};
 			},
 			renderSlot: async (slotName: string, initialValue: string) => {
-				const ctx = new ToolbarCtx(view, instance[impl]);
+				const ctx = new UiCtx(view, instance[impl], {
+					popupPlacement: 'bottom',
+				});
 				let value = initialValue;
 				const onChange = vitest.fn();
 				element.shadowRoot!.appendChild(

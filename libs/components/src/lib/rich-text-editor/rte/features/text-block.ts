@@ -1,7 +1,7 @@
 import { Node, type NodeSpec } from 'prosemirror-model';
 import { type Command, EditorState } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
-import { createOption, createSelect } from '../utils/toolbar-items';
+import { createOption, createSelect } from '../utils/ui';
 import {
 	featureFacade,
 	type PluginContribution,

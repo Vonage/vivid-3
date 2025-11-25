@@ -3,11 +3,7 @@ import { type Command, EditorState, Plugin } from 'prosemirror-state';
 import { toggleMark } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
 import { Decoration, DecorationSet } from 'prosemirror-view';
-import {
-	createButton,
-	createMenu,
-	createMenuItem,
-} from '../utils/toolbar-items';
+import { createButton, createMenu, createMenuItem } from '../utils/ui';
 import { RTEInstanceImpl } from '../instance';
 import {
 	featureFacade,
