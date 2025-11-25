@@ -21,15 +21,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: '20'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Run tests
-        run: npx turbo run --concurrency=1 e2e
+        run: pnpm turbo run --concurrency=1 e2e
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
@@ -67,15 +70,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cypress-
 
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: '20'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Install cypress
-        run: npx cypress install
+        run: pnpm --filter @vonage/vivid-test-utils exec cypress install
 
       - name: Run tests
-        run: npx turbo run --concurrency=1 cy
+        run: pnpm turbo run --concurrency=1 cy

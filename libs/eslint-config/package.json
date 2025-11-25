@@ -1,7 +1,8 @@
 {
 	"name": "@repo/eslint-config",
+	"version": "1.0.0",
 	"private": true,
 	"dependencies": {
-		"@repo/eslint-plugin-repo": "*"
+		"@repo/eslint-plugin-repo": "workspace:*"
 	}
 }

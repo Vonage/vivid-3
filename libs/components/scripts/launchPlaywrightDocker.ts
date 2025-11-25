@@ -6,7 +6,7 @@ import path from 'node:path';
 const dirname = path.dirname(new URL(import.meta.url).pathname);
 
 spawn(
-	'npx',
+	'pnpm',
 	['tsx', path.join(dirname, 'playwrightDockerMonitor.ts'), `${process.pid}`],
 	{
 		detached: true,
