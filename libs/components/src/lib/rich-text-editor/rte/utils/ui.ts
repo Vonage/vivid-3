@@ -35,8 +35,17 @@ const on = <E extends keyof HTMLElementEventMap, T>(
 	handler: (value: T) => (event: HTMLElementEventMap[E]) => void
 ): EventBinding => [event, prop, handler as any];
 
+/// Props available to all elements inside the context
+type CtxProps = {
+	popupPlacement: 'top' | 'bottom';
+};
+
 export class UiCtx {
-	constructor(readonly view: EditorView, readonly rte: RTEInstanceImpl) {}
+	constructor(
+		readonly view: EditorView,
+		readonly rte: RTEInstanceImpl,
+		readonly props: Props<CtxProps>
+	) {}
 
 	/// Evaluates a prop, returning its current value.
 	evalProp<T>(prop: Prop<T>): T {
@@ -45,7 +54,6 @@ export class UiCtx {
 
 	private bindings: Array<() => void> = [];
 
-	/// Binds a prop. On every state change, prop is re-evaluated and passed to bindFn.
 	/// On every state change, prop is re-evaluated and passed to bindFn.
 	bindProp<T>(prop: Prop<T> | undefined, bindFn: (value: T) => void) {
 		if (prop === undefined) {
@@ -148,6 +156,7 @@ export const createOptionalTooltip = (
 	ctx.bindToEl(tooltip, {
 		className: 'ui-tooltip',
 		text: props.label,
+		placement: ctx.props.popupPlacement,
 	});
 
 	ctx.bindProp(props.enabled, (enabled) => {
@@ -235,6 +244,7 @@ export const createMenu = (
 			autoDismiss: true,
 			ariaLabel: props.label,
 			anchor: wrapperTargets.get(props.trigger) ?? props.trigger,
+			placement: ctx.props.popupPlacement,
 		},
 		[],
 		props.children

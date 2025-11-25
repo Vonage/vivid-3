@@ -9,8 +9,20 @@ export interface ToolbarItemSpec {
 	render(ctx: UiCtx): HTMLElement | DocumentFragment;
 }
 
+export interface RTEToolbarFeatureConfig {
+	/**
+	 * Whether tooltips and other popups prefer to open towards or away from the main text-editing area.
+	 * Default: 'inward'
+	 */
+	popupDirection?: 'inward' | 'outward';
+}
+
 export class RTEToolbarFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEToolbarFeature';
+
+	constructor(protected config?: RTEToolbarFeatureConfig) {
+		super();
+	}
 
 	override getStyles() {
 		return [this.contribution(toolbarCss)];
@@ -38,7 +50,10 @@ export class RTEToolbarFeatureImpl extends RTEFeatureImpl {
 			this.contribution(
 				new Plugin({
 					view: (view) => {
-						const ctx = new UiCtx(view, rte);
+						const ctx = new UiCtx(view, rte, {
+							popupPlacement:
+								this.config?.popupDirection === 'outward' ? 'bottom' : 'top',
+						});
 
 						const toolbar = (
 							view.dom.getRootNode() as ShadowRoot

@@ -264,7 +264,9 @@ export class RTEInlineImageFeatureImpl extends RTEFeatureImpl {
 						},
 					},
 					view: (view) => {
-						const ctx = new UiCtx(view, rte);
+						const ctx = new UiCtx(view, rte, {
+							popupPlacement: 'bottom',
+						});
 						const popover = rte.createComponent(Popover);
 						popover.offset = 4;
 						const content = createDiv(ctx, {

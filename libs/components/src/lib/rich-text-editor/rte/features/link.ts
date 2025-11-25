@@ -81,7 +81,9 @@ export class RTELinkFeatureImpl extends RTEFeatureImpl {
 						},
 					},
 					view: (view) => {
-						const ctx = new UiCtx(view, rte);
+						const ctx = new UiCtx(view, rte, {
+							popupPlacement: 'bottom',
+						});
 						const popup = rte.createComponent(Popover);
 						popup.anchorId = 'current-link';
 						const content = createDiv(ctx, {
