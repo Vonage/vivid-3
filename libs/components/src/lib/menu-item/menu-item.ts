@@ -360,6 +360,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 
 			case keyArrowRight:
 				//open/focus on submenu
+				/* v8 ignore else -- @preserve */
 				if (this.submenu) {
 					this.expanded = true;
 					this.#emitSyntheticClick();

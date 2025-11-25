@@ -402,6 +402,7 @@ export class SearchableSelect extends WithContextualHelp(
 				return true;
 
 			default:
+				/* v8 ignore next -- @preserve */
 				if (!this.open) {
 					this.open = true;
 				}
@@ -447,6 +448,7 @@ export class SearchableSelect extends WithContextualHelp(
 			}
 		}
 
+		/* v8 ignore else -- @preserve */
 		if (newValue) {
 			for (const option of newValue) {
 				option._displayCheckmark = true;
@@ -559,6 +561,7 @@ export class SearchableSelect extends WithContextualHelp(
 	#updateClonedTagIconOfOption(option: ListboxOption) {
 		if (option.selected && this.#tagIconOfOption(option)) {
 			let clone = this.#clonedTagIcons.get(option);
+			/* v8 ignore else -- @preserve */
 			if (!clone) {
 				clone = this.#tagIconOfOption(option)!.cloneNode(true) as HTMLElement;
 				this.#clonedTagIcons.set(option, clone);

@@ -88,6 +88,59 @@ describe('vwc-radio', () => {
 			await sendEventAndVerifyChecked(
 				new KeyboardEvent('keypress', { key: ' ' })
 			));
+
+		it('should not check on Space when already checked or readonly', async () => {
+			element.checked = true;
+			await elementUpdated(element);
+
+			element.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
+			await elementUpdated(element);
+			expect(element.checked).toBe(true);
+
+			element.checked = false;
+			element.readOnly = true;
+			await elementUpdated(element);
+
+			element.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
+			await elementUpdated(element);
+			expect(element.checked).toBe(false);
+		});
+
+		it('should not check on click when disabled / readonly / already checked', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+			element.dispatchEvent(new MouseEvent('click'));
+			await elementUpdated(element);
+			expect(element.checked).toBe(false);
+
+			element.disabled = false;
+			element.readOnly = true;
+			await elementUpdated(element);
+			element.dispatchEvent(new MouseEvent('click'));
+			await elementUpdated(element);
+			expect(element.checked).toBe(false);
+
+			element.readOnly = false;
+			element.checked = true;
+			await elementUpdated(element);
+			element.dispatchEvent(new MouseEvent('click'));
+			await elementUpdated(element);
+			expect(element.checked).toBe(true);
+		});
+
+		it('should not sync checked from defaultChecked when inside a radio group', async () => {
+			const group = document.createElement('div');
+			group.setAttribute('data-vvd-component', 'radio-group');
+			group.appendChild(element);
+			await elementUpdated(element);
+
+			element.checked = false;
+			element.defaultChecked = true;
+			await elementUpdated(element);
+
+			expect(element.checked).toBe(false);
+			group.replaceWith(element);
+		});
 	});
 
 	describe('connotation', function () {

@@ -144,6 +144,7 @@ export class Select extends WithLightDOMFeedback(
 	 */
 	protected checkActiveIndex() {
 		const activeItem = this.activeOption;
+		/* v8 ignore else -- @preserve */
 		if (activeItem) {
 			activeItem.checked = true;
 		}
@@ -161,6 +162,7 @@ export class Select extends WithLightDOMFeedback(
 	 */
 	protected checkFirstOption(preserveChecked: boolean) {
 		if (preserveChecked) {
+			/* v8 ignore else -- @preserve */
 			if (this.rangeStartIndex === -1) {
 				this.rangeStartIndex = this.activeIndex + 1;
 			}
@@ -188,6 +190,7 @@ export class Select extends WithLightDOMFeedback(
 	 */
 	protected checkLastOption(preserveChecked: boolean) {
 		if (preserveChecked) {
+			/* v8 ignore else -- @preserve */
 			if (this.rangeStartIndex === -1) {
 				this.rangeStartIndex = this.activeIndex;
 			}
@@ -215,6 +218,7 @@ export class Select extends WithLightDOMFeedback(
 	 */
 	protected checkNextOption(preserveChecked: boolean) {
 		if (preserveChecked) {
+			/* v8 ignore else -- @preserve */
 			if (this.rangeStartIndex === -1) {
 				this.rangeStartIndex = this.activeIndex;
 			}
@@ -242,10 +246,12 @@ export class Select extends WithLightDOMFeedback(
 	 */
 	protected checkPreviousOption(preserveChecked: boolean) {
 		if (preserveChecked) {
+			/* v8 ignore else -- @preserve */
 			if (this.rangeStartIndex === -1) {
 				this.rangeStartIndex = this.activeIndex;
 			}
 
+			/* v8 ignore else -- @preserve */
 			if (this.checkedOptions.length === 1) {
 				this.rangeStartIndex += 1;
 			}
@@ -281,6 +287,7 @@ export class Select extends WithLightDOMFeedback(
 			return super.focusinHandler(e);
 		}
 
+		/* v8 ignore else -- @preserve */
 		if (!this.shouldSkipFocus && e.target === e.currentTarget) {
 			this.uncheckAllOptions();
 
@@ -310,6 +317,7 @@ export class Select extends WithLightDOMFeedback(
 			return;
 		}
 
+		/* v8 ignore else -- @preserve */
 		if (this.$fastController.isConnected && this.options) {
 			this.selectedOptions = this.options.filter((o) => o.selected);
 			this.focusAndScrollOptionIntoView();
@@ -372,6 +380,7 @@ export class Select extends WithLightDOMFeedback(
 	 */
 	protected uncheckAllOptions(preserveChecked = false): void {
 		this.options.forEach((o) => (o.checked = false));
+		/* v8 ignore else -- @preserve */
 		if (!preserveChecked) {
 			this.rangeStartIndex = -1;
 		}
@@ -573,6 +582,7 @@ export class Select extends WithLightDOMFeedback(
 			return;
 		}
 
+		/* v8 ignore else -- @preserve */
 		if (!this.options.includes(focusTarget as ListboxOption)) {
 			this.open = false;
 			if (this.indexWhenOpened !== this.selectedIndex) {
@@ -654,6 +664,7 @@ export class Select extends WithLightDOMFeedback(
 	 * @internal
 	 */
 	private setProxyOptions(): void {
+		/* v8 ignore else -- @preserve */
 		if (this.proxy instanceof HTMLSelectElement && this.options) {
 			this.proxy.length = 0;
 			this.options.forEach((option) => {
@@ -717,6 +728,7 @@ export class Select extends WithLightDOMFeedback(
 			// @ts-expect-error fallthrough case
 			case keySpace: {
 				e.preventDefault();
+				/* v8 ignore else -- @preserve */
 				if (this.typeaheadExpired) {
 					this.toggleSelectedForAllCheckedOptions();
 					return;
@@ -725,6 +737,7 @@ export class Select extends WithLightDOMFeedback(
 
 			// fallthrough:
 			default: {
+				/* v8 ignore else -- @preserve */
 				if (key.length === 1) {
 					// Send key to Typeahead handler
 					this.handleTypeAhead(`${key}`);

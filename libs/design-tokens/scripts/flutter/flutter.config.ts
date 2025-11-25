@@ -14,7 +14,7 @@ export const flutterConfig: Hooks = {
 	transforms: {
 		'vvd/value/flutter/borderRadius': {
 			type: 'value',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) =>
 				token.$type === 'dimension' && token.name.includes('radius'),
 			transform(token) {
@@ -23,7 +23,7 @@ export const flutterConfig: Hooks = {
 		},
 		'vvd/value/flutter/color': {
 			type: 'value',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.$type === 'color',
 			transform: function (token) {
 				return color(token.$value);
@@ -31,7 +31,7 @@ export const flutterConfig: Hooks = {
 		},
 		'vvd/value/flutter/dimension': {
 			type: 'value',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.$type === 'dimension',
 			transform(token) {
 				return double(token.$value.value);
@@ -39,7 +39,7 @@ export const flutterConfig: Hooks = {
 		},
 		'vvd/value/flutter/typography': {
 			type: 'value',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.$type === 'typography',
 			transform(token) {
 				const fontFamily = token.$value.fontFamily
@@ -72,7 +72,7 @@ export const flutterConfig: Hooks = {
 
 		'vvd/value/flutter/shadow': {
 			type: 'value',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.$type === 'shadow',
 			transform(token) {
 				const stops = token.$value.map((stop) => {

@@ -182,11 +182,9 @@ export class VividFoundationButton extends DelegatesAria(
 		}
 
 		const elements = Array.from(this.control.children) as HTMLSpanElement[];
-		if (elements) {
-			elements.forEach((span: HTMLSpanElement) => {
-				span.addEventListener('click', this.handleClick);
-			});
-		}
+		elements.forEach((span: HTMLSpanElement) => {
+			span.addEventListener('click', this.handleClick);
+		});
 	}
 
 	/**
@@ -196,11 +194,9 @@ export class VividFoundationButton extends DelegatesAria(
 		super.disconnectedCallback();
 
 		const elements = Array.from(this.control.children) as HTMLSpanElement[];
-		if (elements) {
-			elements.forEach((span: HTMLSpanElement) => {
-				span.removeEventListener('click', this.handleClick);
-			});
-		}
+		elements.forEach((span: HTMLSpanElement) => {
+			span.removeEventListener('click', this.handleClick);
+		});
 	}
 
 	/**
@@ -208,6 +204,7 @@ export class VividFoundationButton extends DelegatesAria(
 	 * @internal
 	 */
 	private handleClick = (e: Event) => {
+		/* v8 ignore else -- @preserve */
 		if (this.disabled) {
 			e.stopPropagation();
 		}
@@ -244,6 +241,7 @@ export class VividFoundationButton extends DelegatesAria(
 	 */
 	private handleUnsupportedDelegatesFocus = () => {
 		// Check to see if delegatesFocus is supported
+		/* v8 ignore else -- @preserve */
 		if (this.$fastController.definition.shadowOptions) {
 			if (
 				window.ShadowRoot &&

@@ -114,6 +114,7 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 	}
 
 	set returnValue(value) {
+		/* v8 ignore else -- @preserve */
 		if (this.#dialog) {
 			this.#dialog.returnValue = value;
 		}

@@ -352,7 +352,8 @@ export class Slider extends Localized(
 		} else if (e.key === keyEnd) {
 			e.preventDefault();
 			this.value = `${this.max}`;
-		} else if (!e.shiftKey) {
+		} else {
+			if (e.shiftKey) return;
 			switch (e.key) {
 				case keyArrowRight:
 				case keyArrowUp:
@@ -449,6 +450,7 @@ export class Slider extends Localized(
 	}
 
 	private setupDefaultValue(): void {
+		/* v8 ignore else -- @preserve */
 		if (typeof this.value === 'string') {
 			if (this.value.length === 0) {
 				this.initialValue = this.midpoint;

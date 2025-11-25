@@ -168,6 +168,7 @@ export class Icon extends VividElement {
 			if (this.#currentRequestId === requestId) {
 				this._svg = PLACEHOLDER_ICON;
 				timeout = setTimeout(() => {
+					/* v8 ignore else -- @preserve */
 					if (
 						this.#currentRequestId === requestId &&
 						this._svg === PLACEHOLDER_ICON

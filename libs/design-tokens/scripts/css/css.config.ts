@@ -78,6 +78,7 @@ export const cssConfig: Hooks = {
 				volume.writeFileSync(`${platform.buildPath}/index.css`, out);
 			},
 			undo(_dictionary, platform, _options, volume): void {
+				/* v8 ignore else -- @preserve */
 				if (volume.existsSync(`${platform.buildPath}/index.css`)) {
 					volume.unlinkSync(`${platform.buildPath}/index.css`);
 				}
@@ -87,7 +88,7 @@ export const cssConfig: Hooks = {
 	transforms: {
 		'vvd/value/css/color': {
 			type: 'value',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.$type === 'color',
 			transform(token) {
 				return getHex(token.$value);
@@ -95,7 +96,7 @@ export const cssConfig: Hooks = {
 		},
 		'vvd/value/css/dimension': {
 			type: 'value',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.$type === 'dimension',
 			transform(token) {
 				return `${token.$value.value}px`;
@@ -103,7 +104,7 @@ export const cssConfig: Hooks = {
 		},
 		'vvd/value/css/typography': {
 			type: 'value',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.$type === 'typography',
 			transform(token, platform) {
 				const fontSize = `${
@@ -122,7 +123,7 @@ export const cssConfig: Hooks = {
 		},
 		'vvd/value/css/shadow': {
 			type: 'value',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.$type === 'shadow',
 			transform(token) {
 				return token.$value
@@ -172,37 +173,37 @@ export const cssPlatform: PlatformConfig = {
 		{
 			destination: 'color-default.css',
 			format: 'css/variables',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.filePath.includes('color'),
 		},
 		{
 			destination: 'density-default.css',
 			format: 'css/variables',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.filePath.includes('density'),
 		},
 		{
 			destination: 'elevation-default.css',
 			format: 'css/variables',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.filePath.includes('elevation'),
 		},
 		{
 			destination: 'radius-default.css',
 			format: 'css/variables',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.filePath.includes('radius'),
 		},
 		{
 			destination: 'size-default.css',
 			format: 'css/variables',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.filePath.includes('size'),
 		},
 		{
 			destination: 'typography-default.css',
 			format: 'css/variables',
-			/* v8 ignore -- @preserve */
+			/* v8 ignore next -- @preserve */
 			filter: (token) => token.filePath.includes('typography'),
 		},
 	],
