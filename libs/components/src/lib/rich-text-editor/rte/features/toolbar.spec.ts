@@ -2,6 +2,7 @@ import { setup } from '../__tests__/test-utils';
 import { Divider } from '../../../divider/divider';
 import type { Tooltip } from '../../../tooltip/tooltip';
 import type { Menu } from '../../../menu/menu';
+import { basicFontSizeOptions } from '../__tests__/font-sizes';
 import { RTECore } from './core';
 import { RTEToolbarFeature, type RTEToolbarFeatureConfig } from './toolbar';
 import { RTEFontSizeFeature } from './font-size';
@@ -10,7 +11,7 @@ import { RTEFreeformStructure } from './freeform';
 const features = (config?: RTEToolbarFeatureConfig) => [
 	new RTECore(),
 	new RTEFreeformStructure(),
-	new RTEFontSizeFeature(),
+	new RTEFontSizeFeature(basicFontSizeOptions),
 	new RTEToolbarFeature(config),
 ];
 

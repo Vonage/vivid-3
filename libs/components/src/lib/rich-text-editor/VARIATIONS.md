@@ -41,7 +41,28 @@
 
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEFontSizeFeature(), new RTEBoldFeature(), new RTEItalicFeature(), new RTEUnderlineFeature(), new RTEStrikethroughFeature(), new RTEMonospaceFeature(), new RTETextColorFeature({ defaultColor: '#000000' }), new RTEListFeature(), new RTELinkFeature()]);
+		const config = new RTEConfig([
+			new RTECore(),
+			new RTEFreeformStructure(),
+			new RTEToolbarFeature(),
+			new RTEFontSizeFeature({
+				options: [
+					{ size: '24px', label: 'Extra Large' },
+					{ size: '18px', label: 'Large' },
+					{ size: '14px', label: 'Normal' },
+					{ size: '12px', label: 'Small' },
+				],
+				defaultSize: '14px',
+			}),
+			new RTEBoldFeature(),
+			new RTEItalicFeature(),
+			new RTEUnderlineFeature(),
+			new RTEStrikethroughFeature(),
+			new RTEMonospaceFeature(),
+			new RTETextColorFeature({ defaultColor: '#000000' }),
+			new RTEListFeature(),
+			new RTELinkFeature(),
+		]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
 				type: 'doc',
@@ -114,7 +135,15 @@
 				],
 			}),
 			new RTEToolbarFeature(),
-			new RTEFontSizeFeature(),
+			new RTEFontSizeFeature({
+				options: [
+					{ size: '24px', label: 'Extra Large' },
+					{ size: '18px', label: 'Large' },
+					{ size: '14px', label: 'Normal' },
+					{ size: '12px', label: 'Small' },
+				],
+				defaultSize: '14px',
+			}),
 			new RTEBoldFeature(),
 			new RTEItalicFeature(),
 			new RTEUnderlineFeature(),
@@ -167,7 +196,15 @@ The `placeholder` attribute allows you to set a placeholder text that will be di
 					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
 				],
 			}),
-			new RTEFontSizeFeature(),
+			new RTEFontSizeFeature({
+				options: [
+					{ size: '24px', label: 'Extra Large' },
+					{ size: '18px', label: 'Large' },
+					{ size: '14px', label: 'Normal' },
+					{ size: '12px', label: 'Small' },
+				],
+				defaultSize: '14px',
+			}),
 			new RTEBoldFeature(),
 			new RTEItalicFeature(),
 			new RTEUnderlineFeature(),

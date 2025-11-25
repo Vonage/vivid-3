@@ -27,7 +27,13 @@ describe('RTEPlaceholder', () => {
 		const { element, keydown } = await setup([
 			new RTECore(),
 			new RTEFreeformStructure(),
-			new RTEFontSizeFeature(),
+			new RTEFontSizeFeature({
+				options: [
+					{ size: '100px', label: 'Large' },
+					{ size: '10px', label: 'Small' },
+				],
+				defaultSize: '10px',
+			}),
 		]);
 		element.placeholder = 'Type here...';
 
@@ -37,7 +43,7 @@ describe('RTEPlaceholder', () => {
 			'.placeholder'
 		) as HTMLElement;
 		expect(placeholder.style.getPropertyValue('--placeholder-font-size')).toBe(
-			'18px'
+			'100px'
 		);
 	});
 

@@ -79,7 +79,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						],
 					}),
 					new RTEToolbarFeature(),
-					new RTEFontSizeFeature(),
+					new RTEFontSizeFeature({
+						options: [
+							{ label: 'Extra Large', size: '24px' },
+							{ label: 'Large', size: '18px' },
+							{ label: 'Normal', size: '14px' },
+							{ label: 'Small', size: '12px' },
+						],
+						defaultSize: '14px',
+					}),
 					new RTEBoldFeature(),
 					new RTEItalicFeature(),
 					new RTEUnderlineFeature(),
@@ -141,6 +149,30 @@ test('should show the component', async ({ page }: { page: Page }) => {
 												attrs: { href: 'https://vonage.com' },
 											},
 										],
+									},
+								],
+							},
+							{
+								type: 'body',
+								content: [
+									{
+										type: 'text',
+										text: 'small',
+										marks: [{ type: 'fontSize', attrs: { size: '12px' } }],
+									},
+									{ type: 'text', text: ' ' },
+									{ type: 'text', text: 'normal' },
+									{ type: 'text', text: ' ' },
+									{
+										type: 'text',
+										text: 'large',
+										marks: [{ type: 'fontSize', attrs: { size: '18px' } }],
+									},
+									{ type: 'text', text: ' ' },
+									{
+										type: 'text',
+										text: 'extra large',
+										marks: [{ type: 'fontSize', attrs: { size: '24px' } }],
 									},
 								],
 							},
