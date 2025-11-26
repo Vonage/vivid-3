@@ -1,5 +1,6 @@
 {
 	"name": "@repo/tokens",
+	"version": "1.0.0",
 	"private": true,
 	"type": "module",
 	"exports": {
@@ -19,12 +20,14 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"@repo/eslint-config": "*",
-		"@repo/typescript-config": "*",
-		"@repo/vitest-config": "*",
-		"@types/node": "18.19.130",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"@types/node": "catalog:",
+		"@vonage/vivid-figma-tokens": "github:vonage/vivid-figma-tokens#v1.4.0",
 		"expr-eval": "^2.0.2",
 		"style-dictionary": "^3.9.2",
-		"tsx": "^4.20.3"
+		"tsx": "catalog:",
+		"vitest": "catalog:"
 	}
 }

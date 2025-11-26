@@ -26,16 +26,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: '20'
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Build Metadata
-        run: npx turbo run @repo/wrapper-gen#buildMetadata
+        run: pnpm turbo run @repo/wrapper-gen#buildMetadata
 
       - name: Check Components Metadata
         id: diff

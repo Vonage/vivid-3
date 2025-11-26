@@ -1,5 +1,6 @@
 {
 	"name": "@repo/wrapper-gen",
+	"version": "1.0.0",
 	"private": true,
 	"type": "module",
 	"exports": {
@@ -38,17 +39,22 @@
 		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},
 	"devDependencies": {
-		"@microsoft/fast-foundation": "^2.50.0",
-		"@microsoft/fast-web-utilities": "^6.0.0",
-		"@vonage/vivid": "*",
-		"@repo/typescript-config": "*",
-		"@repo/eslint-config": "*",
-		"@repo/vitest-config": "*",
-		"@repo/consts": "*",
-		"@repo/shared": "*",
-		"custom-elements-manifest": "^2.1.0",
-		"jsdom": "^23.0.0",
-		"markdown-table": "^2.0.0",
-		"node-fetch": "^2.6.12"
+		"@microsoft/fast-foundation": "catalog:",
+		"@microsoft/fast-web-utilities": "catalog:",
+		"@repo/consts": "workspace:*",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/shared": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"@types/jsdom": "catalog:",
+		"@types/markdown-table": "catalog:",
+		"@types/node-fetch": "^2.6.13",
+		"@vonage/vivid": "workspace:*",
+		"custom-elements-manifest": "catalog:",
+		"jsdom": "catalog:",
+		"markdown-table": "catalog:",
+		"node-fetch": "^2.7.0",
+		"tsx": "catalog:",
+		"vitest": "catalog:"
 	}
 }
