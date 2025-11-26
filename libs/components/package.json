@@ -70,6 +70,7 @@
 		"prosemirror-model": "^1.25.4",
 		"prosemirror-schema-basic": "^1.2.3",
 		"prosemirror-state": "^1.4.4",
+		"prosemirror-transform": "^1.10.5",
 		"prosemirror-view": "^1.40.1",
 		"ramda": "^0.32.0",
 		"uuid": "^11.1.0",
