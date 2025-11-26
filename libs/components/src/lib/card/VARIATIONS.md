@@ -276,9 +276,9 @@ import { VCard, VLayout } from '@vonage/vivid-vue';
 </template>
 
 <style scoped>
-	.card-elevated {
-		margin: 16px;
-	}
+.card-elevated {
+	margin: 16px;
+}
 </style>
 ```
 

@@ -43,7 +43,7 @@ registerCard('your-prefix');
 ## Slots
 
 ### Graphic Slot
-  
+
 Use the `graphic` slot for **Icons** or custom images.
 The `graphic` slot overrides the icon property.
 
@@ -100,9 +100,9 @@ import { VCard } from '@vonage/vivid-vue';
 </template>
 
 <style scoped>
-	.card-media {
-		max-inline-size: 300px;
-	}
+.card-media {
+	max-inline-size: 300px;
+}
 </style>
 ```
 
@@ -272,10 +272,10 @@ import { VCard } from '@vonage/vivid-vue';
 </template>
 
 <style scoped>
-	.vwc-card {
-		--headline-line-clamp: 1;
-		max-inline-size: 42ch;
-	}
+.vwc-card {
+	--headline-line-clamp: 1;
+	max-inline-size: 42ch;
+}
 </style>
 ```
 
@@ -316,10 +316,10 @@ import { VCard } from '@vonage/vivid-vue';
 </template>
 
 <style scoped>
-	.vwc-card {
-		--subtitle-line-clamp: 2;
-		max-inline-size: 42ch;
-	}
+.vwc-card {
+	--subtitle-line-clamp: 2;
+	max-inline-size: 42ch;
+}
 </style>
 ```
 
