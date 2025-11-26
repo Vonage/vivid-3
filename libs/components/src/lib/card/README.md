@@ -1,6 +1,24 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```js
+import { VCard } from '@vonage/vivid-vue';
+```
+
+```vue preview
+<template>
+	<VCard headline="I'm a card"></VCard>
+</template>
+
+<script setup lang="ts">
+import { VCard } from '@vonage/vivid-vue';
+</script>
+```
+
+</vwc-tab-panel>
 <vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
@@ -20,32 +38,36 @@ registerCard('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<template>
-	<VCard headline="Vivid Card Component" subtitle="extra text to the card headline">
-		<template #graphic>
-			<VIcon name="android-mono" style="font-size: 44px; color: var(--vvd-color-sucess)" />
-		</template>
-	</VCard>
-</template>
-
-<script setup lang="ts">
-import { VCard, VIcon } from '@vonage/vivid-vue';
-</script>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Slots
 
 ### Graphic Slot
+  
+Use the `graphic` slot for **Icons** or custom images.
+The `graphic` slot overrides the icon property.
 
-The graphic slot overrides the icon property.  
-Use the slot if a colored icon is needed or an icon with different dimensions.
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCard, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCard headline="Vivid Card Component" subtitle="Extra text below the card headline">
+		<template #graphic>
+			<VIcon name="android-mono" style="font-size: 44px; color: #A4C439"></VIcon>
+		</template>
+	</VCard>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline">
@@ -53,9 +75,40 @@ Use the slot if a colored icon is needed or an icon with different dimensions.
 </vwc-card>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Media Slot
 
 The media slot can be used to display images or video content above the card header.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCard } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCard headline="Card with Media Slot" subtitle="Extra text below the card headline" class="card-media">
+		<template #media>
+			<img src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540" alt="Sitting on Floor" style="width: 100%; height: 150px; object-fit: cover;" />
+		</template>
+	</VCard>
+</template>
+
+<style scoped>
+	.card-media {
+		max-inline-size: 300px;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-card headline="Card with Media Slot" subtitle="Extra text below the card headline" class="card-media">
@@ -69,9 +122,40 @@ The media slot can be used to display images or video content above the card hea
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Meta Slot
 
 The meta slot is for action content in the card header.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 220px
+<script setup lang="ts">
+import { VCard, VMenu, VMenuItem, VButton, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCard headline="Card with Meta Slot" subtitle="Extra text below the card headline">
+		<template #meta>
+			<VMenu aria-label="Card options" placement="bottom-start">
+				<VButton slot="anchor" aria-label="Open menu" appearance="outlined">
+					<VIcon slot="icon" name="more-vertical-line"></VIcon>
+				</VButton>
+				<VMenuItem text="save card"></VMenuItem>
+				<VMenuItem text="remove card"></VMenuItem>
+			</VMenu>
+		</template>
+	</VCard>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 220px
 <vwc-card headline="Card with Meta Slot" subtitle="Extra text below the card headline">
@@ -87,11 +171,38 @@ The meta slot is for action content in the card header.
 </vwc-card>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Footer Slot
 
 The footer slot is for content in the card footer.  
 Use it for adding buttons or action items.  
 By default - items inside footer slot are aligned to the end.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCard, VButton, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCard headline="Card with Footer Slot" subtitle="Extra text below the card headline">
+		<template #footer>
+			<VButton shape="pill" label="Action" appearance="outlined" icon-trailing>
+				<VIcon slot="icon" name="arrow-bold-right-line"></VIcon>
+			</VButton>
+		</template>
+	</VCard>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-card headline="Card with Footer Slot" subtitle="Extra text below the card headline">
@@ -101,10 +212,35 @@ By default - items inside footer slot are aligned to the end.
 </vwc-card>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Main Slot
 
 Card has predefined content style template.  
 Use the `main` slot to fully override a card's predefined template with your own. When using main - only appearance and elevation are applied on the card.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCard, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCard>
+		<template #main>
+			<VLayout gutters="small"> Assign custom template using "main" slot. </VLayout>
+		</template>
+	</VCard>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-card>
@@ -112,12 +248,40 @@ Use the `main` slot to fully override a card's predefined template with your own
 </vwc-card>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## CSS Variables
 
 ### Trim headline
 
 The card headline can be trimmed to your preferable number of lines.
 The number of lines is controlled by the css variable `--headline-line-clamp`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCard } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCard class="vwc-card" headline="Card with long headline that has trim into one line"></VCard>
+</template>
+
+<style scoped>
+	.vwc-card {
+		--headline-line-clamp: 1;
+		max-inline-size: 42ch;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-card class="vwc-card" headline="Card with long headline that has trim into one line"></vwc-card>
@@ -130,10 +294,38 @@ The number of lines is controlled by the css variable `--headline-line-clamp`.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Trim subtitle
 
 The card subtitle can be trimmed to your preferable number of lines.
 The number of lines is controlled by css variable `--subtitle-line-clamp`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCard } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCard class="vwc-card" headline="Card with Trimmed Subtitle" subtitle="This subtitle is extremely long and will be trimmed after 2 lines. This way you can control the size of the card."></VCard>
+</template>
+
+<style scoped>
+	.vwc-card {
+		--subtitle-line-clamp: 2;
+		max-inline-size: 42ch;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-card class="vwc-card" headline="Card with Trimmed Subtitle" subtitle="This subtitle is extremely long and will be trimmed after 2 lines. This way you can control the size of the card."></vwc-card>
@@ -145,6 +337,9 @@ The number of lines is controlled by css variable `--subtitle-line-clamp`.
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
