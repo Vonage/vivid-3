@@ -95,18 +95,9 @@ import { VCheckbox } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview
-<div class="container">
-	<vwc-checkbox aria-checked="true"></vwc-checkbox>
-	<vwc-checkbox aria-checked="false"></vwc-checkbox>
-	<vwc-checkbox aria-checked="mixed"></vwc-checkbox>
-</div>
-
-<style>
-	.container {
-		display: flex;
-		gap: 2px;
-	}
-</style>
+<vwc-checkbox aria-checked="true"></vwc-checkbox>
+<vwc-checkbox aria-checked="false"></vwc-checkbox>
+<vwc-checkbox aria-checked="mixed"></vwc-checkbox>
 ```
 
 </vwc-tab-panel>

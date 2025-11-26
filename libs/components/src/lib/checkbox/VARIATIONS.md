@@ -276,19 +276,10 @@ import { VCheckbox } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview
-<div class="container">
-	<vwc-checkbox connotation="accent"></vwc-checkbox>
-	<vwc-checkbox connotation="accent" checked></vwc-checkbox>
-	<vwc-checkbox connotation="cta"></vwc-checkbox>
-	<vwc-checkbox connotation="cta" checked></vwc-checkbox>
-</div>
-
-<style>
-	.container {
-		display: flex;
-		gap: 2px;
-	}
-</style>
+<vwc-checkbox connotation="accent"></vwc-checkbox>
+<vwc-checkbox connotation="accent" checked></vwc-checkbox>
+<vwc-checkbox connotation="cta"></vwc-checkbox>
+<vwc-checkbox connotation="cta" checked></vwc-checkbox>
 ```
 
 </vwc-tab-panel>
