@@ -4,6 +4,33 @@ Use the `heading` attribute to give the event a brief title.
 
 Use the `description` attribute to give the event a brief description.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCalendar, VCalendarEvent } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCalendar class="calendar">
+		<VCalendarEvent heading="Enchantment under the sea dance" description="Rhythmic ceremonial ritual" slot="day-0" start="9" duration="2.5"></VCalendarEvent>
+	</VCalendar>
+</template>
+
+<style scoped>
+.calendar {
+	max-inline-size: 100%;
+	max-block-size: 300px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-calendar class="calendar">
 	<vwc-calendar-event heading="Enchantment under the sea dance" description="Rhythmic ceremonial ritual" slot="day-0" start="9" duration="2.5"></vwc-calendar-event>
@@ -17,11 +44,41 @@ Use the `description` attribute to give the event a brief description.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Start Time and Duration
 
 Use the `start` attribute to set the time the event starts. The time is expressed as a number. Eg. 12.5 is 12:30pm, 18.75 is 6:45pm.
 
 Use the `duration` attribute to indicate how long the event will last. Eg. 2 is 2 hours, 0.75 is 45 munites.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCalendar, VCalendarEvent } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCalendar class="calendar">
+		<VCalendarEvent heading="Enchantment under the sea dance" slot="day-0" start="9.75" duration="2.5"></VCalendarEvent>
+	</VCalendar>
+</template>
+
+<style scoped>
+.calendar {
+	max-inline-size: 100%;
+	max-block-size: 300px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-calendar class="calendar">
@@ -36,11 +93,52 @@ Use the `duration` attribute to indicate how long the event will last. Eg. 2 is 
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Appearance and Connotation
 
 Use the `appearance` attribute to choose between `filled` (default) and `subtle` appearances.
 
 Use the `connotation` attribute to choose between: `information` (default), `accent`, `cta`, `success`, `alert` and `announcement` connotations.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCalendar, VCalendarEvent } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCalendar class="calendar">
+		<VCalendarEvent heading="Information" description="Filled" slot="day-0" start="9"></VCalendarEvent>
+		<VCalendarEvent appearance="subtle" heading="Information" description="Subtle" slot="day-0" start="10"></VCalendarEvent>
+		<VCalendarEvent connotation="accent" heading="Accent" description="Filled" slot="day-1" start="9"></VCalendarEvent>
+		<VCalendarEvent connotation="accent" appearance="subtle" heading="Accent" description="Subtle" slot="day-1" start="10"></VCalendarEvent>
+		<VCalendarEvent connotation="cta" heading="CTA" description="Filled" slot="day-2" start="9"></VCalendarEvent>
+		<VCalendarEvent connotation="cta" appearance="subtle" heading="CTA" description="Subtle" slot="day-2" start="10"></VCalendarEvent>
+		<VCalendarEvent connotation="success" heading="Success" description="Filled" slot="day-3" start="9"></VCalendarEvent>
+		<VCalendarEvent connotation="success" appearance="subtle" heading="Success" description="Subtle" slot="day-3" start="10"></VCalendarEvent>
+		<VCalendarEvent connotation="alert" heading="Alert" description="Filled" slot="day-4" start="9"></VCalendarEvent>
+		<VCalendarEvent connotation="alert" appearance="subtle" heading="Alert" description="Subtle" slot="day-4" start="10"></VCalendarEvent>
+		<VCalendarEvent connotation="announcement" heading="Announcement" description="Filled" slot="day-5" start="9"></VCalendarEvent>
+		<VCalendarEvent connotation="announcement" appearance="subtle" heading="Announcement" description="Subtle" slot="day-5" start="10"></VCalendarEvent>
+	</VCalendar>
+</template>
+
+<style scoped>
+.calendar {
+	max-inline-size: 100%;
+	max-block-size: 300px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-calendar class="calendar">
@@ -66,11 +164,43 @@ Use the `connotation` attribute to choose between: `information` (default), `acc
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Overlapping Events
 
 Use the `overlap-count` when events overlap each other.
 
 The number you provide sets the stacking context of the event. The event you need to be at the bottom (usually the longest event) should have a `overlap-count` of `0`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCalendar, VCalendarEvent } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCalendar class="calendar">
+		<VCalendarEvent overlap-count="0" heading="Enchantment under the sea dance" slot="day-0" start="8" duration="4"></VCalendarEvent>
+		<VCalendarEvent overlap-count="1" heading="Marty plays with the Marvyn Berry band" connotation="accent" appearance="subtle" slot="day-0" start="9.15" duration="2.75"></VCalendarEvent>
+		<VCalendarEvent overlap-count="2" description="George kisses Lorainne" connotation="success" slot="day-0" start="10.5" duration="1.25"></VCalendarEvent>
+	</VCalendar>
+</template>
+
+<style scoped>
+.calendar {
+	max-inline-size: 100%;
+	max-block-size: 300px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-calendar class="calendar">
@@ -86,3 +216,6 @@ The number you provide sets the stacking context of the event. The event you nee
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>

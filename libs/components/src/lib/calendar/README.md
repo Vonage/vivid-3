@@ -61,6 +61,39 @@ When using `sticky-mode` (`header`, `column`, or `both`), set the CSS variable `
 
 If not specified, it defaults to `--vvd-color-canvas`.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCalendar } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="wrapper">
+		<VCalendar sticky-mode="all"></VCalendar>
+	</div>
+</template>
+
+<style scoped>
+.wrapper {
+	--calendar-header-background-color: var(--vvd-color-neutral-100);
+	--calendar-column-background-color: var(--vvd-color-neutral-100);
+
+	display: block;
+	max-inline-size: 100%;
+	max-block-size: 550px;
+	background-color: var(--vvd-color-neutral-100);
+	padding: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <div class="wrapper">
 	<vwc-calendar sticky-mode="all"></vwc-calendar>
@@ -80,11 +113,50 @@ If not specified, it defaults to `--vvd-color-canvas`.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 ### Day[0-6] Slots
 
 Each day in the Calendar has a slot assigned to it. Use the Calendar Event component in these slots to arrange events around the weekly view.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCalendar, VCalendarEvent } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCalendar class="calendar">
+		<VCalendarEvent slot="day-0" start="10" duration="1" heading="Backlog refinement"></VCalendarEvent>
+		<VCalendarEvent slot="day-0" start="12" duration="1" heading="Gym Workout" connotation="cta"></VCalendarEvent>
+		<VCalendarEvent slot="day-1" start="10" duration="0.5" heading="Daily stand up" appearance="subtle"></VCalendarEvent>
+		<VCalendarEvent slot="day-2" start="10" duration="0.5" heading="Daily stand up" appearance="subtle"></VCalendarEvent>
+		<VCalendarEvent slot="day-2" start="12" duration="1" heading="Swim" connotation="cta"></VCalendarEvent>
+		<VCalendarEvent slot="day-3" start="10" duration="0.5" heading="Daily stand up" appearance="subtle"></VCalendarEvent>
+		<VCalendarEvent slot="day-4" start="10" duration="0.5" heading="Daily stand up" appearance="subtle"></VCalendarEvent>
+		<VCalendarEvent slot="day-4" start="14" duration="0.75" heading="Sprint demo"></VCalendarEvent>
+		<VCalendarEvent slot="day-4" start="12" duration="1" heading="Gym Workout" connotation="cta"></VCalendarEvent>
+		<VCalendarEvent slot="day-5" start="9" duration="1" heading="Park run" connotation="cta"></VCalendarEvent>
+	</VCalendar>
+</template>
+
+<style scoped>
+.calendar {
+	max-inline-size: 100%;
+	max-block-size: 550px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-calendar class="calendar">
@@ -107,6 +179,9 @@ Each day in the Calendar has a slot assigned to it. Use the Calendar Event compo
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
