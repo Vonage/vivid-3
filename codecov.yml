@@ -13,3 +13,4 @@ ignore:
   - 'libs/components/src/visual-tests'
   - 'libs/components/src/locales'
   - 'libs/design-tokens/scripts/build.ts'
+  - 'libs/design-tokens/scripts/style-dictionary.ts'
