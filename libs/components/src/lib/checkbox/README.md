@@ -1,7 +1,25 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```js
+import { VCheckbox } from '@vonage/vivid-vue';
+```
+
+```vue preview
+<script setup lang="ts">
+import { VCheckbox } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCheckbox label="Use signed Webhooks" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -17,20 +35,6 @@ registerCheckbox('your-prefix');
 </script>
 
 <your-prefix-checkbox label="Use signed Webhooks"></your-prefix-checkbox>
-```
-
-</vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VCheckbox } from '@vonage/vivid-vue';
-</script>
-
-<template>
-	<VCheckbox label="Use signed Webhooks" />
-</template>
 ```
 
 </vwc-tab-panel>
@@ -61,17 +65,79 @@ The `aria-checked` prop will no longer set the state (as of 06/25) . It is still
 
 </vwc-note>
 
-```html preview
-<vwc-checkbox aria-checked="true"></vwc-checkbox>
-<vwc-checkbox aria-checked="false"></vwc-checkbox>
-<vwc-checkbox aria-checked="mixed"></vwc-checkbox>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCheckbox } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VCheckbox aria-checked="true"></VCheckbox>
+		<VCheckbox aria-checked="false"></VCheckbox>
+		<VCheckbox aria-checked="mixed"></VCheckbox>
+	</div>
+</template>
+
+<style scoped>
+.container {
+	display: flex;
+	gap: 2px;
+}
+</style>
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<div class="container">
+	<vwc-checkbox aria-checked="true"></vwc-checkbox>
+	<vwc-checkbox aria-checked="false"></vwc-checkbox>
+	<vwc-checkbox aria-checked="mixed"></vwc-checkbox>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 2px;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Slots
 
 ### Default
 
 The default slot allows you to use rich content as the Checkbox's label.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCheckbox } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCheckbox error-text="You need to accept the Terms of service">
+		I agree to
+		<a href="https://www.vonage.com/legal/" target="_blank"> Vonage Terms of Service </a>
+	</VCheckbox>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-checkbox error-text="You need to accept the Terms of service">
@@ -80,9 +146,40 @@ The default slot allows you to use rich content as the Checkbox's label.
 </vwc-checkbox>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Helper Text
 
 The `helper-text` slot allows you to use rich content as the Checkbox's helper text.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCheckbox } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCheckbox class="checkbox" label="Use Signed Webhooks">
+		<template #helper-text>
+			<span><a href="#">Signed Webhooks</a> are a way to verify that the request is coming from Vonage.</span>
+		</template>
+	</VCheckbox>
+</template>
+
+<style scoped>
+.checkbox {
+	width: 300px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <style>
@@ -94,6 +191,9 @@ The `helper-text` slot allows you to use rich content as the Checkbox's helper t
 	<span slot="helper-text"><a href="#">Signed Webhooks</a> are a way to verify that the request is coming from Vonage.</span>
 </vwc-checkbox>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
