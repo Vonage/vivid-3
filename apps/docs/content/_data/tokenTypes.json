@@ -1,0 +1,32 @@
+[
+	{
+		"name": "Color",
+		"slug": "colors",
+		"category": "color"
+	},
+	{
+		"name": "Typography",
+		"slug": "typography",
+		"category": "typography"
+	},
+	{
+		"name": "Size",
+		"slug": "size",
+		"category": "size"
+	},
+	{
+		"name": "Density",
+		"slug": "density",
+		"category": "density"
+	},
+	{
+		"name": "Elevation",
+		"slug": "elevation",
+		"category": "elevation"
+	},
+	{
+		"name": "Border Radius",
+		"slug": "radius",
+		"category": "radius"
+	}
+]
