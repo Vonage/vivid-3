@@ -1,6 +1,6 @@
 import { history, redo, undo } from 'prosemirror-history';
 import { keymap } from 'prosemirror-keymap';
-import { createButton } from '../../utils/toolbar-items';
+import { createButton } from '../../utils/ui';
 import { RTEFeatureImpl, type ToolbarItemContribution } from '../../feature';
 
 export class RTEHistoryFeatureImpl extends RTEFeatureImpl {

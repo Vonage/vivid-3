@@ -2,12 +2,12 @@ import type { SchemaSpec } from 'prosemirror-model';
 import type { Plugin } from 'prosemirror-state';
 import type { Constructor } from '../../../shared/utils/mixins';
 import type { RTEInstanceImpl } from './instance';
-import type { ToolbarItemSpec } from './utils/toolbar-items';
 import {
 	TextblockAttrs,
 	type TextblockAttrSpec,
 } from './utils/textblock-attrs';
 import { impl } from './utils/impl';
+import type { ToolbarItemSpec } from './features/toolbar';
 
 // Features bundle everything related to a specific editor capability together.
 // They can contribute styles, schema additions, ProseMirror plugins, toolbar items, etc.

@@ -1,6 +1,6 @@
 import { type Command, EditorState } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
-import { createButton, createDiv, createMenu } from '../utils/toolbar-items';
+import { createButton, createButtonGroup, createMenu } from '../utils/ui';
 import {
 	featureFacade,
 	RTEFeatureImpl,
@@ -79,8 +79,7 @@ export class RTEAlignmentFeatureImpl extends RTEFeatureImpl {
 								},
 							}),
 							children: [
-								createDiv(ctx, {
-									className: 'toolbar-menu-buttons',
+								createButtonGroup(ctx, {
 									children: alignments.map((align, index) =>
 										createButton(ctx, {
 											icon: align.icon,

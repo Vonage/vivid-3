@@ -520,6 +520,39 @@ Keyboard shortcuts:
 
 Adds the toolbar to the editor, which provides controls for the available features.
 
+Configuration options:
+
+- `popupDirection?: 'inward' | 'outward'`: Whether tooltips and other popups prefer to be open towards or away from the main text-editing area. Defaults to 'inward'.
+
+```html preview
+<vwc-rich-text-editor style="block-size: 250px; margin-block-end: 250px;"></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RTEConfig([
+			new RTECore(),
+			new RTEFreeformStructure(),
+			new RTEToolbarFeature({
+				popupDirection: 'outward',
+			}),
+			new RTEFontSizeFeature(),
+		]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'text_line',
+						content: [{ type: 'text', text: 'Tooltips and menus open outwards in this editor.' }],
+					},
+				],
+			},
+		});
+	});
+</script>
+```
+
 ### RTEFontSizeFeature
 
 Adds the ability to change the text size.

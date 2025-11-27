@@ -1,0 +1,26 @@
+@use '../../../popup/partials/variables' as popupVariables;
+
+[data-class='ui-select'] {
+	// Arbitrary value since vivid select is incapable of determining width based on content
+	min-inline-size: 120px;
+}
+
+.ui-divider {
+	block-size: 20px;
+}
+
+.ui-button-group {
+	display: flex;
+	gap: 4px;
+}
+
+.ui-tooltip,
+.ui-menu {
+	// Prevent standalone tooltips/menus from taking up space in the toolbar
+	display: contents;
+	#{popupVariables.$popup-display}: contents;
+}
+
+.ui-tooltip-wrapper {
+	display: contents;
+}
