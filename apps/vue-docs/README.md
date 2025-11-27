@@ -11,5 +11,5 @@ Vitepress site hosting the Vivid Vue examples and API reference.
 ## Building the Docs
 
 ```sh
-npx turbo run @repo/vue-docs#build
+turbo run @repo/vue-docs#build
 ```

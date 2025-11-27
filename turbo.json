@@ -107,6 +107,9 @@
 		"typecheck": {
 			"dependsOn": ["^build", "^typecheck"]
 		},
+		"@vonage/vivid-vue#typecheck": {
+			"dependsOn": ["build", "^build", "^typecheck"]
+		},
 		"@vonage/vivid-test-utils#typecheck": {
 			"dependsOn": ["build", "^build", "^typecheck"]
 		},

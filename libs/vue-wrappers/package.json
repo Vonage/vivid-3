@@ -2,13 +2,19 @@
 	"name": "@vonage/vivid-vue",
 	"version": "5.5.0",
 	"description": "A Vue wrapper library for Vivid components.",
-	"author": "Vonage",
 	"license": "ISC",
+	"author": "Vonage",
 	"type": "module",
-	"module": "./dist/index.js",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
+		}
+	},
 	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"web-types": "./web-types.json",
 	"files": [
 		"dist",
 		"web-types.json"
@@ -21,30 +27,26 @@
 		"lint:fix": "eslint . --max-warnings=0 --fix",
 		"test": "vitest run",
 		"test:coverage": "vitest run --coverage",
-		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json",
-		"prepack": "tsx scripts/updateDependencyVersion.ts"
+		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js",
-			"require": "./dist/index.cjs"
-		}
+	"dependencies": {
+		"@vonage/vivid": "workspace:^"
+	},
+	"devDependencies": {
+		"@repo/eslint-config": "workspace:*",
+		"@repo/styles": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"@repo/wrapper-gen": "workspace:*",
+		"@types/glob": "^7.2.0",
+		"glob": "^7.2.3",
+		"tsx": "catalog:",
+		"vitest": "catalog:",
+		"vue": "catalog:vue2",
+		"vue3": "catalog:vue3"
 	},
 	"peerDependencies": {
 		"vue": "^2.7.0 || >=3.0.0"
 	},
-	"dependencies": {
-		"@vonage/vivid": "*"
-	},
-	"devDependencies": {
-		"@repo/wrapper-gen": "*",
-		"@repo/typescript-config": "*",
-		"@repo/eslint-config": "*",
-		"@repo/vitest-config": "*",
-		"@repo/styles": "*",
-		"glob": "^7.2.0",
-		"vue": "2.7.8",
-		"vue3": "npm:vue@3.5.22"
-	}
+	"web-types": "./web-types.json"
 }

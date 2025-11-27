@@ -6,6 +6,7 @@ tmp
 
 # Ignore auto-generated files:
 package-lock.json
+pnpm-lock.yaml
 **/CHANGELOG.md
 .vitepress
 .11ty-vite

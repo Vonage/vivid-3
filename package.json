@@ -1,64 +1,44 @@
 {
 	"name": "vivid-nx",
-	"private": true,
 	"version": "0.0.0",
-	"license": "MIT",
+	"private": true,
 	"repository": "github:Vonage/vivid-3",
+	"license": "MIT",
 	"scripts": {
-		"start": "turbo run dev --filter=@repo/docs --filter=@vonage/vivid --filter=@repo/styles",
 		"build": "turbo run build",
-		"test": "turbo run test:coverage && istanbul-merge ./libs/*/coverage/coverage-final.json ./apps/*/coverage/coverage-final.json --out .nyc_output/coverage.json && nyc report --temp-dir .nyc_output --reporter html --reporter lcov --report-dir coverage",
-		"test:ui": "npx turbo run @vonage/vivid#e2e:docker:ui",
-		"lint": "turbo run lint stylelint",
-		"lint:fix": "turbo run lint:fix stylelint:fix",
-		"typecheck": "turbo run typecheck",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
-		"postinstall": "patch-package"
+		"lint": "turbo run lint stylelint",
+		"lint:fix": "turbo run lint:fix stylelint:fix",
+		"start": "turbo run dev --filter=@repo/docs --filter=@vonage/vivid --filter=@repo/styles",
+		"test": "turbo run test:coverage && istanbul-merge ./libs/*/coverage/coverage-final.json ./apps/*/coverage/coverage-final.json --out .nyc_output/coverage.json && nyc report --temp-dir .nyc_output --reporter html --reporter lcov --report-dir coverage",
+		"test:ui": "turbo run @vonage/vivid#e2e:docker:ui",
+		"typecheck": "turbo run typecheck"
 	},
 	"devDependencies": {
-		"@types/eslint": "^8.56.12",
-		"@typescript-eslint/eslint-plugin": "7.18.0",
-		"@typescript-eslint/parser": "7.18.0",
-		"@typescript-eslint/utils": "7.18.0",
-		"@vitest/coverage-v8": "^3.2.4",
-		"@vitest/ui": "^3.2.4",
-		"eslint": "8.57.1",
-		"eslint-config-prettier": "9.1.2",
-		"eslint-plugin-ban": "^1.6.0",
-		"eslint-plugin-compat": "^4.0.2",
-		"eslint-plugin-import": "^2.32.0",
-		"eslint-plugin-tsdoc": "^0.4.0",
-		"eslint-plugin-unused-imports": "^3.2.0",
-		"eslint-plugin-vue": "^9.33.0",
-		"istanbul-merge": "^2.0.0",
-		"nyc": "^17.1.0",
-		"patch-package": "^8.0.1",
-		"prettier": "2.8.8",
-		"stylelint": "^16.22.0",
-		"turbo": "^2.5.5",
-		"typescript": "5.9.3",
-		"vite": "5.4.15",
-		"vite-plugin-dts": "~2.3.0"
+		"@types/eslint": "catalog:",
+		"@typescript-eslint/eslint-plugin": "catalog:",
+		"@typescript-eslint/parser": "catalog:",
+		"@typescript-eslint/utils": "catalog:",
+		"@vitest/coverage-v8": "catalog:",
+		"@vitest/ui": "catalog:",
+		"eslint": "catalog:",
+		"eslint-config-prettier": "catalog:",
+		"eslint-plugin-ban": "catalog:",
+		"eslint-plugin-compat": "catalog:",
+		"eslint-plugin-import": "catalog:",
+		"eslint-plugin-tsdoc": "catalog:",
+		"eslint-plugin-unused-imports": "catalog:",
+		"eslint-plugin-vue": "catalog:",
+		"istanbul-merge": "catalog:",
+		"nyc": "catalog:",
+		"prettier": "catalog:",
+		"prettier-plugin-packagejson": "catalog:",
+		"stylelint": "catalog:",
+		"turbo": "^2.6.1",
+		"typescript": "catalog:",
+		"vite": "catalog:",
+		"vite-plugin-dts": "catalog:"
 	},
-	"overrides": {
-		"minimist": "1.2.8",
-		"path-to-regexp": "8.2.0",
-		"express": {
-			"path-to-regexp": "0.2.5"
-		},
-		"nconf": "0.13.0",
-		"rollup": "^4.22.4",
-		"braces": "3.0.3",
-		"@11ty/eleventy-plugin-vite": {
-			"vite": "5.4.15"
-		},
-		"happy-dom": "^20.0.2"
-	},
-	"workspaces": [
-		"apps/*",
-		"libs/*",
-		"turbo/generators"
-	],
-	"packageManager": "npm@10.9.4+sha512.3a7506f37e85c1ba1021baad79f0cd9724748131f321fc117c4dc3ba235ec01be7327584a41d15117c01945560aa9373220628fcc1e1dddd877a5fe9b336a900"
+	"packageManager": "pnpm@10.23.0+sha512.21c4e5698002ade97e4efe8b8b4a89a8de3c85a37919f957e7a0f30f38fbc5bbdd05980ffe29179b2fb6e6e691242e098d945d1601772cad0fef5fb6411e2a4b"
 }

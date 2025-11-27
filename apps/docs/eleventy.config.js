@@ -64,7 +64,7 @@ module.exports = async (eleventyConfig) => {
 					 * While importing @vonage/vivid works fine, it will load too many files in dev mode.
 					 * Therefore, we bundle it into a single file and reference it here.
 					 */
-					'vivid-bundle': path.resolve('.', 'tmp/components-bundle.js'),
+					'@vonage/vivid': path.resolve('.', 'tmp/components-bundle.js'),
 					'vivid-locales': path.resolve('.', 'tmp/locales-bundle.js'),
 				},
 			},
@@ -182,7 +182,7 @@ module.exports = async (eleventyConfig) => {
 		if (watch) {
 			args.push('--watch');
 		}
-		return (watch ? spawn : spawnSync)('npx', args, {
+		return (watch ? spawn : spawnSync)('pnpm', args, {
 			windowsHide: true,
 			stdio: [process.stdin, process.stdout, process.stderr],
 		});
@@ -208,7 +208,7 @@ module.exports = async (eleventyConfig) => {
 
 	eleventyConfig.on('eleventy.after', async ({ dir, runMode }) => {
 		if (runMode === 'serve') {
-			spawnSync('npx', ['pagefind', '--site', dir.output], {
+			spawnSync('pnpm', ['pagefind', '--site', dir.output], {
 				windowsHide: true,
 				stdio: [process.stdin, process.stdout, process.stderr],
 			});

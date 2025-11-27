@@ -9,9 +9,9 @@ SD.registerTransform(typographyShorthand);
 
 export default {
 	source: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/font.tokens.json',
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/typography-scale.tokens.json',
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/typography.tokens.json',
+		'../../node_modules/@vonage/vivid-figma-tokens/data/globals/font.tokens.json',
+		'../../node_modules/@vonage/vivid-figma-tokens/data/globals/typography-scale.tokens.json',
+		'../../node_modules/@vonage/vivid-figma-tokens/data/typography.tokens.json',
 	],
 	platforms: {
 		css: {

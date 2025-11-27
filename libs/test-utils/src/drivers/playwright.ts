@@ -1,4 +1,4 @@
-import type { expect as pwExpect } from 'playwright/test';
+import type { expect as pwExpect } from '@playwright/test';
 import type { Driver, PlaywrightDriverT } from './driver';
 import type { VwcRangeSliderElement, VwcSliderElement } from '@vonage/vivid';
 

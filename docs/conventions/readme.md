@@ -5,7 +5,7 @@ Please read the following conventions guidelines before starting to work on a ne
 ## Template Guide
 
 Use the new component generator to create a new component, and it will also generate the proper documentation structure:
-`npx turbo gen component`
+`pnpm turbo gen component`
 
 ## Components Terminology
 

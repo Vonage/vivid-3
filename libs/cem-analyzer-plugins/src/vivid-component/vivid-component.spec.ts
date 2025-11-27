@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import * as glob from 'glob';
-import * as ts from '@custom-elements-manifest/analyzer/node_modules/typescript';
+import * as ts from 'typescript-cem-version';
 import { create } from '@custom-elements-manifest/analyzer/src/create.js';
 import { vividComponentPlugin } from './vivid-component';
 
