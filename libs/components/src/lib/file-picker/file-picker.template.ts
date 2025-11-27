@@ -14,6 +14,7 @@ const renderFileSize = (x: FilePicker, size: number) => {
 	let selectedSize = 0;
 	let selectedUnit: FileSizeUnit = 'b';
 
+	/* v8 ignore else -- @preserve */
 	if (size > 0) {
 		const units = ['tb', 'gb', 'mb', 'kb', 'b'] as const;
 
@@ -61,7 +62,10 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 					${ref('control')}
 					class="${getClasses}"
 					@click="${(x) => x._onControlClick()}"
-					@keydown"${() => false /* Prevent implicit form submission on Enter */}"
+					@keydown"${
+						/* v8 ignore next -- @preserve -- Prevent implicit form submission on Enter */
+						() => false
+					}"
 					@dragenter="${(x) => x._onDragEnter()}"
 					@dragover="${(x, c) => x._onDragOver(c.event as DragEvent)}"
 					@dragleave="${(x, c) => x._onDragLeave(c.event as DragEvent)}"

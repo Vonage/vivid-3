@@ -401,12 +401,13 @@ export class SearchableSelect extends WithContextualHelp(
 				}
 				return true;
 
-			default:
+			default: {
 				/* v8 ignore next -- @preserve */
 				if (!this.open) {
 					this.open = true;
 				}
 				return true;
+			}
 		}
 
 		return true;

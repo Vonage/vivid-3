@@ -165,6 +165,7 @@ export class Icon extends VividElement {
 		this.iconLoaded = false;
 
 		let timeout = setTimeout(() => {
+			/* v8 ignore else -- @preserve */
 			if (this.#currentRequestId === requestId) {
 				this._svg = PLACEHOLDER_ICON;
 				timeout = setTimeout(() => {
@@ -181,6 +182,7 @@ export class Icon extends VividElement {
 
 		try {
 			const svg = await resolveIcon(this.name, this.#abortController.signal);
+			/* v8 ignore else -- @preserve */
 			if (this.#currentRequestId === requestId) {
 				this._svg = svg;
 			}

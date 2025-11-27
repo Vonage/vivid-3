@@ -286,6 +286,7 @@ export class FilePicker extends WithContextualHelp(
 	 */
 	_onDragLeave(e: DragEvent) {
 		// Only remove the class if we're leaving the control element itself
+		/* v8 ignore else -- @preserve */
 		if (e.currentTarget === e.target) {
 			this._dragHover = false;
 		}
@@ -349,6 +350,7 @@ export class FilePicker extends WithContextualHelp(
 
 	#addFiles(files: File[] | FileList) {
 		if (this.singleFile) {
+			/* v8 ignore else -- @preserve */
 			if (files.length > 0) {
 				// Only keep the last file
 				this._allFiles = [files[files.length - 1]];

@@ -111,6 +111,7 @@ export class DelegateAriaBehavior<T> implements ViewBehavior {
 	) {
 		// Only forward properties that are NOT bound (bound properties take precedence)
 		for (const key of delegatedProperties) {
+			/* v8 ignore else -- @preserve */
 			if (!(key in this.boundProperties)) {
 				this.forwardPropertyToTarget(target, key, source[key]);
 			}

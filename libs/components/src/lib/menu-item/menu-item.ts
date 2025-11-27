@@ -358,7 +358,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 				}
 				return false;
 
-			case keyArrowRight:
+			case keyArrowRight: {
 				//open/focus on submenu
 				/* v8 ignore else -- @preserve */
 				if (this.submenu) {
@@ -366,6 +366,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 					this.#emitSyntheticClick();
 				}
 				return false;
+			}
 
 			case keyArrowLeft:
 				//close submenu

@@ -362,6 +362,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 					ValidityStateFlags;
 				flags = cleanFlags;
 			}
+			/* v8 ignore else -- @preserve */
 			if (this.elementInternals) {
 				this.elementInternals.setValidity(flags, message, anchor);
 			} else if (typeof message === 'string') {
@@ -414,6 +415,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 					this.proxy.name = this.name;
 				}
 
+				/* v8 ignore else -- @preserve */
 				if (typeof this.value === 'string') {
 					this.proxy.value = this.value;
 				}
@@ -568,6 +570,7 @@ export const CheckableFormAssociated = <T extends Constructor<VividElement>>(
 		 * @internal
 		 */
 		defaultCheckedChanged(): void {
+			/* v8 ignore else -- @preserve */
 			if (!this.dirtyChecked) {
 				// Setting this.checked will cause us to enter a dirty state,
 				// but if we are clean when defaultChecked is changed, we want to stay

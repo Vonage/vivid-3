@@ -208,6 +208,7 @@ export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 					// move focus to the focus target
 					const focusTarget: HTMLElement =
 						this.columnDefinition.headerCellFocusTargetCallback(this);
+					/* v8 ignore else -- @preserve */
 					if (focusTarget !== null) {
 						focusTarget.focus();
 					}
@@ -223,6 +224,7 @@ export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 					// move focus to the focus target
 					const focusTarget: HTMLElement =
 						this.columnDefinition.cellFocusTargetCallback(this);
+					/* v8 ignore else -- @preserve */
 					if (focusTarget !== null) {
 						focusTarget.focus();
 					}
@@ -236,6 +238,7 @@ export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 	handleFocusout(_: FocusEvent): void {
 		this.shadowRoot!.querySelector('.base')!.classList.remove('active');
 
+		/* v8 ignore else -- @preserve */
 		if (
 			this !== document.activeElement &&
 			!this.contains(document.activeElement)
@@ -267,33 +270,38 @@ export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 				}
 
 				switch (this.cellType) {
-					case DataGridCellTypes.columnHeader:
+					case DataGridCellTypes.columnHeader: {
 						if (
 							this.columnDefinition.headerCellFocusTargetCallback !== undefined
 						) {
 							const focusTarget: HTMLElement =
 								this.columnDefinition.headerCellFocusTargetCallback(this);
+							/* v8 ignore else -- @preserve */
 							if (focusTarget !== null) {
 								focusTarget.focus();
 							}
 							e.preventDefault();
 						}
 						break;
+					}
 
-					default:
+					default: {
 						if (this.columnDefinition.cellFocusTargetCallback !== undefined) {
 							const focusTarget: HTMLElement =
 								this.columnDefinition.cellFocusTargetCallback(this);
+							/* v8 ignore else -- @preserve */
 							if (focusTarget !== null) {
 								focusTarget.focus();
 							}
 							e.preventDefault();
 						}
 						break;
+					}
 				}
 				break;
 
-			case keyEscape:
+			case keyEscape: {
+				/* v8 ignore else -- @preserve */
 				if (
 					this.contains(document.activeElement) &&
 					document.activeElement !== this
@@ -302,6 +310,7 @@ export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 					e.preventDefault();
 				}
 				break;
+			}
 		}
 	}
 

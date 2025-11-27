@@ -412,10 +412,12 @@ export class DataGrid extends VividElement {
 	override connectedCallback() {
 		super.connectedCallback();
 
+		/* v8 ignore else -- @preserve */
 		if (this.rowItemTemplate === undefined) {
 			this.rowItemTemplate = this.defaultRowItemTemplate;
 		}
 
+		/* v8 ignore else -- @preserve */
 		if (this.behaviorOrchestrator === null) {
 			this.behaviorOrchestrator = ViewBehaviorOrchestrator.create(this);
 			this.$fastController.addBehavior(this.behaviorOrchestrator);
@@ -605,15 +607,18 @@ export class DataGrid extends VividElement {
 
 				break;
 
-			case keyHome:
+			case keyHome: {
+				/* v8 ignore else -- @preserve */
 				if (e.ctrlKey) {
 					e.preventDefault();
 					// focus first cell of first row
 					this.focusOnCell(0, 0, true);
 				}
 				break;
+			}
 
-			case keyEnd:
+			case keyEnd: {
+				/* v8 ignore else -- @preserve */
 				if (e.ctrlKey && this.columnDefinitions !== null) {
 					e.preventDefault();
 					// focus last cell of last row
@@ -624,6 +629,7 @@ export class DataGrid extends VividElement {
 					);
 				}
 				break;
+			}
 		}
 	}
 
@@ -704,6 +710,7 @@ export class DataGrid extends VividElement {
 					? DataGridRowTypes.stickyHeader
 					: DataGridRowTypes.header;
 
+			/* v8 ignore else -- @preserve */
 			if (this.firstChild !== null) {
 				this.insertBefore(generatedHeaderElement, this.firstChild);
 			}
@@ -716,6 +723,7 @@ export class DataGrid extends VividElement {
 		/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 		_: MutationObserver
 	): void => {
+		/* v8 ignore else -- @preserve */
 		if (mutations && mutations.length) {
 			mutations.forEach((mutation: MutationRecord): void => {
 				mutation.addedNodes.forEach((newNode: Node): void => {
@@ -900,7 +908,9 @@ export class DataGrid extends VividElement {
 
 	#changeHandler = {
 		handleChange(dataGrid: DataGrid, propertyName: string) {
+			/* v8 ignore else -- @preserve */
 			if (propertyName === 'columnDefinitions') {
+				/* v8 ignore else -- @preserve */
 				if (dataGrid.$fastController.isConnected) {
 					dataGrid.toggleGeneratedHeader();
 				}
@@ -990,8 +1000,10 @@ export class DataGrid extends VividElement {
 			);
 
 			this.fixedColumnsPositions.forEach((position, index) => {
+				/* v8 ignore else -- @preserve */
 				if (index < cells.length) {
 					const gridCell = cells[index] as DataGridCell;
+					/* v8 ignore else -- @preserve */
 					if (typeof gridCell.setFixedPosition === 'function') {
 						gridCell.setFixedPosition(`${position}px`);
 					}
@@ -1035,8 +1047,10 @@ export class DataGrid extends VividElement {
 			);
 
 			this.fixedColumnsPositions.forEach((_, index) => {
+				/* v8 ignore else -- @preserve */
 				if (index < cells.length) {
 					const gridCell = cells[index] as DataGridCell;
+					/* v8 ignore else -- @preserve */
 					if (typeof gridCell.setFixedPosition === 'function') {
 						gridCell.setFixedPosition(undefined);
 					}

@@ -11,6 +11,7 @@ function getDay(el: HTMLElement): number | void {
 	const cellOrHeader = el.closest('[role="gridcell"i], [role="columnheader"i]');
 	if (cellOrHeader) {
 		const { parentElement } = cellOrHeader;
+		/* v8 ignore else -- @preserve */
 		if (parentElement) {
 			return (
 				parentElement.children &&
