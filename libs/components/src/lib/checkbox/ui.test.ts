@@ -1,4 +1,3 @@
-import * as path from 'path';
 import type { Page } from '@playwright/test';
 import { test } from '@playwright/test';
 import {
@@ -6,7 +5,6 @@ import {
 	renderTemplate,
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
-import { extractHTMLBlocksFromReadme } from '../../visual-tests/extract-code-examples';
 
 const components = ['checkbox', 'button', 'divider', 'layout'];
 
