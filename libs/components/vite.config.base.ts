@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
-import { NodePackageImporter } from 'sass';
 import * as path from 'path';
 import * as fs from 'fs';
+import { defineConfig } from 'vite';
+import { NodePackageImporter } from 'sass';
 
 export const packageVersion = JSON.parse(
 	fs.readFileSync(path.join(__dirname, 'package.json'), 'utf-8')

@@ -1,6 +1,6 @@
 import { defineConfig, mergeConfig } from 'vitest/config';
-import { packageVersion } from './vite.config.base';
 import vitestBaseConfig from '@repo/vitest-config/ui';
+import { packageVersion } from './vite.config.base';
 
 export default mergeConfig(
 	vitestBaseConfig,
