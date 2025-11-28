@@ -71,7 +71,7 @@ export const AlertTemplate = (context: VividElementDefinitionContext) => {
 				class="${getClasses}"
 				role="alert"
 				aria-hidden="${(x) => (x.open ? 'false' : 'true')}"
-				hidden="${(x) => (!x.open ? '' : null)}"
+				?hidden="${(x) => !x.open}"
 			>
 				${(x) => renderIcon(context, x)}
 				<div class="alert-text">
