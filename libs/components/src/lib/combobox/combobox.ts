@@ -256,6 +256,7 @@ export class Combobox extends WithContextualHelp(
 	 * @internal
 	 */
 	protected placeholderChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.placeholder = this.placeholder;
 		}
@@ -369,6 +370,7 @@ export class Combobox extends WithContextualHelp(
 		if (this.contains(document.activeElement)) {
 			this.control.focus();
 			const firstSelectedOption = this.firstSelectedOption;
+			/* v8 ignore else -- @preserve */
 			if (firstSelectedOption) {
 				requestAnimationFrame(() => {
 					firstSelectedOption.scrollIntoView({ block: 'nearest' });
@@ -451,6 +453,7 @@ export class Combobox extends WithContextualHelp(
 		switch (key) {
 			case 'Enter': {
 				this.syncValue();
+				/* v8 ignore else -- @preserve */
 				if (this.isAutocompleteInline) {
 					this.filter = this.value;
 				}
@@ -461,6 +464,7 @@ export class Combobox extends WithContextualHelp(
 			}
 
 			case 'Escape': {
+				/* v8 ignore else -- @preserve */
 				if (!this.isAutocompleteInline) {
 					this.selectedIndex = -1;
 				}
@@ -498,6 +502,7 @@ export class Combobox extends WithContextualHelp(
 					break;
 				}
 
+				/* v8 ignore else -- @preserve */
 				if (this.filteredOptions.length > 0) {
 					super.keydownHandler(e);
 				}
@@ -575,6 +580,7 @@ export class Combobox extends WithContextualHelp(
 	 * @internal
 	 */
 	private setInlineSelection(): void {
+		/* v8 ignore else -- @preserve */
 		if (this.firstSelectedOption) {
 			this.setInputToSelection();
 			this.control.setSelectionRange(

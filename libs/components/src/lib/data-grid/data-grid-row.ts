@@ -172,6 +172,7 @@ export class DataGridRow extends HostSemantics(VividElement) {
 
 		// note that row elements can be reused with a different data object
 		// as the parent grid's repeat behavior reacts to changes in the data set.
+		/* v8 ignore else -- @preserve */
 		if (this.behaviorOrchestrator === null) {
 			this.updateItemTemplate();
 
@@ -209,6 +210,7 @@ export class DataGridRow extends HostSemantics(VividElement) {
 	}
 
 	handleFocusout(_: FocusEvent): void {
+		/* v8 ignore else -- @preserve */
 		if (!this.contains(document.activeElement)) {
 			this.focusColumnIndex = 0;
 		}

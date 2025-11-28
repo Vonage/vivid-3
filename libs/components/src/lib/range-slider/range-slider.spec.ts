@@ -400,6 +400,20 @@ describe('vwc-range-slider', () => {
 			}
 		);
 
+		it.each(['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'])(
+			'should not change value when pressing %s with shift',
+			async (key) => {
+				element[thumb] = '5';
+				thumbs[thumb].focus();
+
+				thumbs[thumb].dispatchEvent(
+					new KeyboardEvent('keydown', { key, shiftKey: true })
+				);
+
+				expect(element[thumb]).toBe('5');
+			}
+		);
+
 		it(`should not decrement below ${lowerBound}`, async () => {
 			element[thumb] = '5';
 			element[lowerBound] = 5;

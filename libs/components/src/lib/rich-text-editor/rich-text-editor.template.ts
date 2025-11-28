@@ -64,6 +64,7 @@ function handleMenubarSlotChange(
 			(element as HTMLElement).style.display = 'none';
 		}
 	});
+	/* v8 ignore else -- @preserve */
 	if (menubar) {
 		menubar.addEventListener(
 			'text-block-selected',

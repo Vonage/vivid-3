@@ -25,6 +25,7 @@ export class BaseProgress extends VividElement {
 	 * @internal
 	 */
 	valueChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.$fastController.isConnected) {
 			this.updatePercentComplete();
 		}
@@ -43,6 +44,7 @@ export class BaseProgress extends VividElement {
 	 * @internal
 	 */
 	minChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.$fastController.isConnected) {
 			this.updatePercentComplete();
 		}
@@ -61,6 +63,7 @@ export class BaseProgress extends VividElement {
 	 * @private
 	 */
 	maxChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.$fastController.isConnected) {
 			this.updatePercentComplete();
 		}

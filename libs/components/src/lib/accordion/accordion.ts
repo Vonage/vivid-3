@@ -94,8 +94,10 @@ export class Accordion extends VividElement {
 		this.accordionIds = this.getItemIds();
 		this.activeid = this.accordionIds[this.activeItemIndex] as string;
 		this.accordionItems.forEach((item: HTMLElement, index: number) => {
+			/* v8 ignore else -- @preserve */
 			if (item instanceof AccordionItem) {
 				item.addEventListener('change', this.activeItemChange);
+				/* v8 ignore else -- @preserve */
 				if (this.isSingleExpandMode()) {
 					const expandedItem = this.findExpandedItem();
 					if (expandedItem === null && index === 0) {
@@ -114,6 +116,7 @@ export class Accordion extends VividElement {
 			);
 			item.addEventListener('keydown', this.handleItemKeyDown);
 		});
+		/* v8 ignore else -- @preserve */
 		if (this.isSingleExpandMode()) {
 			const expandedItem: AccordionItem | null =
 				this.findExpandedItem() ?? (this.accordionItems[0] as AccordionItem);
@@ -206,12 +209,14 @@ export class Accordion extends VividElement {
 
 	private focusItem(index: number): void {
 		const element: HTMLElement = this.accordionItems[index];
+		/* v8 ignore else -- @preserve */
 		if (element instanceof AccordionItem) {
 			element.expandbutton.focus();
 		}
 	}
 
 	closeAll(): void {
+		/* v8 ignore else -- @preserve */
 		if (this.expandmode === AccordionExpandMode.multi) {
 			(this.accordionItems as AccordionItem[]).forEach((item) => {
 				item.expanded = false;

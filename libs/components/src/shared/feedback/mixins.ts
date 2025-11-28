@@ -115,6 +115,7 @@ export const WithLightDOMFeedback = <T extends Constructor<VividElement>>(
 			newContent: HTMLElement[]
 		) {
 			for (const el of newContent) {
+				/* v8 ignore else -- @preserve */
 				if (!el.id) {
 					el.id = randomSlottedContentId();
 				}

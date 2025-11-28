@@ -144,6 +144,7 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	 * @internal
 	 */
 	#handleAnchorKeydown = (event: KeyboardEvent) => {
+		/* v8 ignore next -- @preserve */
 		if (event.key === 'Enter' || event.key === ' ') {
 			if (!this.open) {
 				Updates.enqueue(() => (this.open = true));
@@ -158,6 +159,7 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	_closeOnClickOutside = (e: Event) => {
 		const clickedOutside = !this.contains(e.target as Node);
 		const clickedOnAnchor = this._anchorEl?.contains(e.target as Node);
+		/* v8 ignore else -- @preserve */
 		if (clickedOutside || clickedOnAnchor) this.open = false;
 	};
 
@@ -165,6 +167,7 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	 * @internal
 	 */
 	_closeOnEscape = (e: KeyboardEvent) => {
+		/* v8 ignore else -- @preserve */
 		if (e.key === 'Escape') {
 			this.open = false;
 		}

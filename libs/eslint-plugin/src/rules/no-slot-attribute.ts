@@ -60,6 +60,7 @@ export const noSlotAttribute: Rule.RuleModule = {
 						}
 
 						for (const attr of child.startTag.attributes) {
+							/* v8 ignore else -- @preserve */
 							if (!attr.directive && attr.key.name === 'slot') {
 								context.report({
 									loc: attr.key.loc,

@@ -332,7 +332,7 @@ describe('vwc-tabs', () => {
 			tab.disabled = true;
 			await elementUpdated(element);
 
-			element.activeid = 'entrees';
+			tab.click();
 			await elementUpdated(element);
 
 			expect(element.activeid).toBe('apps');

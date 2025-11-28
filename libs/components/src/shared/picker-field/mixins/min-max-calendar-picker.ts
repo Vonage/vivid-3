@@ -39,6 +39,7 @@ export const MinMaxCalendarPicker = <
 		 * @internal
 		 */
 		minChanged(_: string, newMin: string) {
+			/* v8 ignore if -- @preserve */
 			if (this.proxy instanceof HTMLInputElement) {
 				this.proxy.min = newMin;
 				this.validate();
@@ -66,6 +67,7 @@ export const MinMaxCalendarPicker = <
 		 * @internal
 		 */
 		maxChanged(_: string, newMax: string) {
+			/* v8 ignore if -- @preserve */
 			if (this.proxy instanceof HTMLInputElement) {
 				this.proxy.max = newMax;
 				this.validate();

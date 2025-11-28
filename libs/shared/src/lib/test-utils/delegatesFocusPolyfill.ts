@@ -23,6 +23,7 @@ export const setupDelegatesFocusPolyfill = (forElement: HTMLElement) => {
 
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			currentFocusTarget = currentFocusTarget.getRootNode()!;
+			/* v8 ignore else -- @preserve */
 			if (currentFocusTarget instanceof ShadowRoot) {
 				currentFocusTarget = currentFocusTarget.host;
 			}

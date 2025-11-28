@@ -626,6 +626,27 @@ describe('vwc-dial-pad', () => {
 			await Updates.next();
 			expect(getTextField(element).value).toEqual('');
 		});
+
+		it('should cancel long press on 0 when pointer is cancelled', async () => {
+			element.pattern = '^\\+?[0-9#*]*$';
+			await Updates.next();
+			const btn = getZeroButton(element);
+			withFakeTimers(() => {
+				simulatePointerLongPress(btn, {
+					duration: 300,
+					onLeave: () => {
+						btn.dispatchEvent(
+							createPointerEvent('pointercancel', {
+								bubbles: true,
+							})
+						);
+					},
+				});
+				vi.advanceTimersByTime(300);
+			});
+			await Updates.next();
+			expect(getTextField(element).value).toEqual('');
+		});
 	});
 
 	describe('Methods', () => {

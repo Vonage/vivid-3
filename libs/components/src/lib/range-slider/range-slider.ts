@@ -664,7 +664,8 @@ export class RangeSlider extends Localized(
 		} else if (e.key === keyEnd) {
 			e.preventDefault();
 			this.#updateValues({ [thumb]: `${this.#thumbConstraints[thumb].max}` });
-		} else if (!e.shiftKey) {
+		} else {
+			if (e.shiftKey) return;
 			switch (e.key) {
 				case keyArrowRight:
 				case keyArrowDown:

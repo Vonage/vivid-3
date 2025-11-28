@@ -11,7 +11,7 @@
 		"lint": "turbo run lint stylelint",
 		"lint:fix": "turbo run lint:fix stylelint:fix",
 		"start": "turbo run dev --filter=@repo/docs --filter=@vonage/vivid --filter=@repo/styles",
-		"test": "turbo run test:coverage && istanbul-merge ./libs/*/coverage/coverage-final.json ./apps/*/coverage/coverage-final.json --out /dev/stdout | istanbul report --include /dev/stdin --dir coverage html lcov",
+		"test": "turbo run test:coverage && istanbul-merge ./libs/*/coverage/coverage-final.json ./apps/*/coverage/coverage-final.json --out .nyc_output/coverage.json && nyc report --temp-dir .nyc_output --reporter html --reporter lcov --report-dir coverage",
 		"test:ui": "turbo run @vonage/vivid#e2e:docker:ui",
 		"typecheck": "turbo run typecheck"
 	},
@@ -30,8 +30,8 @@
 		"eslint-plugin-tsdoc": "catalog:",
 		"eslint-plugin-unused-imports": "catalog:",
 		"eslint-plugin-vue": "catalog:",
-		"istanbul": "catalog:",
 		"istanbul-merge": "catalog:",
+		"nyc": "catalog:",
 		"prettier": "catalog:",
 		"prettier-plugin-packagejson": "catalog:",
 		"stylelint": "catalog:",

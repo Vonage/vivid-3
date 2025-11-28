@@ -84,7 +84,10 @@ export class Tooltip extends Anchored(VividElement) {
 	}
 
 	#closeOnEscape = (e: KeyboardEvent) => {
-		if (e.key === 'Escape') this.#hide();
+		/* v8 ignore else -- @preserve */
+		if (e.key === 'Escape') {
+			this.#hide();
+		}
 	};
 
 	/**

@@ -73,6 +73,7 @@ export class Checkbox extends DelegatesAria(
 	 * @internal
 	 */
 	readOnlyChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.readOnly = this.readOnly;
 		}

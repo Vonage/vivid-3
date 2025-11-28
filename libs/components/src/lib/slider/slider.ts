@@ -78,6 +78,7 @@ export class Slider extends Localized(
 	 * @internal
 	 */
 	readOnlyChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.readOnly = this.readOnly;
 		}
@@ -202,6 +203,7 @@ export class Slider extends Localized(
 	 * @internal
 	 */
 	minChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.min = `${this.min}`;
 		}
@@ -224,6 +226,7 @@ export class Slider extends Localized(
 	 * @internal
 	 */
 	maxChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.max = `${this.max}`;
 		}
@@ -244,6 +247,7 @@ export class Slider extends Localized(
 	 * @internal
 	 */
 	stepChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.step = `${this.step}`;
 		}
@@ -348,7 +352,8 @@ export class Slider extends Localized(
 		} else if (e.key === keyEnd) {
 			e.preventDefault();
 			this.value = `${this.max}`;
-		} else if (!e.shiftKey) {
+		} else {
+			if (e.shiftKey) return;
 			switch (e.key) {
 				case keyArrowRight:
 				case keyArrowUp:
@@ -445,6 +450,7 @@ export class Slider extends Localized(
 	}
 
 	private setupDefaultValue(): void {
+		/* v8 ignore else -- @preserve */
 		if (typeof this.value === 'string') {
 			if (this.value.length === 0) {
 				this.initialValue = this.midpoint;

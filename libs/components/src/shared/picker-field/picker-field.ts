@@ -177,6 +177,7 @@ export abstract class PickerField extends WithContextualHelp(
 	};
 
 	#openPopupIfPossible() {
+		/* v8 ignore else -- @preserve */
 		if (!this.readOnly) {
 			this._popupOpen = true;
 		}

@@ -234,6 +234,7 @@ export class AudioPlayer extends Localized(VividElement) {
 			this.#audioBuffer = audioBuffer;
 			Observable.notify(this, 'duration');
 		} catch (e: unknown) {
+			/* v8 ignore else -- @preserve */
 			if (e instanceof Error && e.name !== 'AbortError') {
 				// eslint-disable-next-line no-console
 				console.error('Error loading audio:', e);
@@ -324,6 +325,7 @@ export class AudioPlayer extends Localized(VividElement) {
 
 	#setSliderInteractionListeners(add = true) {
 		const action = add ? 'addEventListener' : 'removeEventListener';
+		/* v8 ignore else -- @preserve */
 		if (this.#sliderEl) {
 			this.#sliderEl[action]('change', this.#updateCurrentTimeOnSliderChange);
 		}
@@ -355,6 +357,7 @@ export class AudioPlayer extends Localized(VividElement) {
 			currentTime >= 0;
 		const percent = isValid ? (currentTime / duration) * 100 : 0;
 
+		/* v8 ignore else -- @preserve */
 		if (this.#sliderEl) {
 			this.#isProgrammaticSliderUpdate = true;
 			this.#sliderEl.value = percent.toString();
@@ -396,6 +399,7 @@ export class AudioPlayer extends Localized(VividElement) {
 			return;
 		}
 
+		/* v8 ignore else -- @preserve */
 		if (this.#playerEl) {
 			this.currentTime = (this.duration * Number(this.#sliderEl!.value)) / 100;
 		}

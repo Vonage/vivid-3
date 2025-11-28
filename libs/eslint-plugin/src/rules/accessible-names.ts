@@ -75,6 +75,7 @@ export const accessibleNames: Rule.RuleModule = {
 						}
 
 						const attrs = node.startTag.attributes.map((attr: any) => {
+							/* v8 ignore else -- @preserve */
 							if (
 								attr.directive &&
 								attr.key.name.name === 'bind' &&

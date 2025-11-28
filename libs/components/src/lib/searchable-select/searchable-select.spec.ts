@@ -1420,6 +1420,17 @@ describe('vwc-searchable-select', () => {
 			expect(popup.open).toBe(false);
 		});
 
+		it('should prevent default on mousedown via inline handler', async () => {
+			const chevron = getChevronIcon();
+			const mousedown = new MouseEvent('mousedown', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			chevron!.dispatchEvent(mousedown);
+			expect(mousedown.defaultPrevented).toBe(true);
+		});
+
 		describe('when popup is open', () => {
 			beforeEach(async () => {
 				focusInput();

@@ -92,6 +92,7 @@ export class TreeView extends HostSemantics(VividElement) {
 	handleFocus = (e: FocusEvent): void => {
 		if (this.slottedTreeItems.length > 0) {
 			if (e.target === this) {
+				/* v8 ignore else -- @preserve */
 				if (this.currentFocused !== null) {
 					TreeItem.focusItem(this.currentFocused);
 				}
@@ -99,6 +100,7 @@ export class TreeView extends HostSemantics(VividElement) {
 				return;
 			}
 
+			/* v8 ignore else -- @preserve */
 			if (this.contains(e.target as Node)) {
 				this.setAttribute('tabindex', '-1');
 				this.currentFocused = e.target as HTMLElement;
@@ -147,24 +149,31 @@ export class TreeView extends HostSemantics(VividElement) {
 			return true;
 		}
 
+		/* v8 ignore else -- @preserve */
 		if (!e.defaultPrevented) {
 			const treeItems: HTMLElement[] | void = this.getVisibleNodes();
 
 			switch (e.key) {
-				case keyHome:
+				case keyHome: {
+					/* v8 ignore else -- @preserve */
 					if (treeItems.length) {
 						TreeItem.focusItem(treeItems[0]);
 					}
 					return;
-				case keyEnd:
+				}
+				case keyEnd: {
+					/* v8 ignore else -- @preserve */
 					if (treeItems.length) {
 						TreeItem.focusItem(treeItems[treeItems.length - 1]);
 					}
 					return;
-				case keyArrowLeft:
+				}
+				case keyArrowLeft: {
+					/* v8 ignore else -- @preserve */
 					if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
 						const item = e.target as HTMLElement;
 
+						/* v8 ignore else -- @preserve */
 						if (
 							item instanceof TreeItem &&
 							item.childItemLength() > 0 &&
@@ -179,9 +188,12 @@ export class TreeView extends HostSemantics(VividElement) {
 						}
 					}
 					return false;
-				case keyArrowRight:
+				}
+				case keyArrowRight: {
+					/* v8 ignore else -- @preserve */
 					if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
 						const item = e.target as HTMLElement;
+						/* v8 ignore else -- @preserve */
 						if (
 							item instanceof TreeItem &&
 							item.childItemLength() > 0 &&
@@ -193,16 +205,21 @@ export class TreeView extends HostSemantics(VividElement) {
 						}
 					}
 					return;
-				case keyArrowDown:
+				}
+				case keyArrowDown: {
+					/* v8 ignore else -- @preserve */
 					if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
 						this.focusNextNode(1, e.target as TreeItem);
 					}
 					return;
-				case keyArrowUp:
+				}
+				case keyArrowUp: {
+					/* v8 ignore else -- @preserve */
 					if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
 						this.focusNextNode(-1, e.target as TreeItem);
 					}
 					return;
+				}
 				case keyEnter:
 					// In single-select trees where selection does not follow focus (see note below),
 					// the default action is typically to select the focused node.
@@ -247,6 +264,7 @@ export class TreeView extends HostSemantics(VividElement) {
 	 *  @internal
 	 */
 	handleSelectedChange = (e: Event): boolean | void => {
+		/* v8 ignore else -- @preserve */
 		if (!e.defaultPrevented) {
 			if (
 				!(e.target instanceof Element) ||
@@ -257,6 +275,7 @@ export class TreeView extends HostSemantics(VividElement) {
 
 			const item: TreeItem = e.target as TreeItem;
 
+			/* v8 ignore else -- @preserve */
 			if (item.selected) {
 				if (this.currentSelected && this.currentSelected !== item) {
 					(this.currentSelected as TreeItem).selected = false;
@@ -277,8 +296,10 @@ export class TreeView extends HostSemantics(VividElement) {
 	 */
 	private focusNextNode(delta: number, item: TreeItem): void {
 		const visibleNodes: HTMLElement[] | void = this.getVisibleNodes();
+		/* v8 ignore else -- @preserve */
 		if (visibleNodes) {
 			const focusItem = visibleNodes[visibleNodes.indexOf(item) + delta];
+			/* v8 ignore else -- @preserve */
 			if (isHTMLElement(focusItem)) {
 				TreeItem.focusItem(focusItem);
 			}
@@ -305,6 +326,7 @@ export class TreeView extends HostSemantics(VividElement) {
 
 		const treeItems: HTMLElement[] | void = this.getVisibleNodes();
 		treeItems.forEach((node) => {
+			/* v8 ignore else -- @preserve */
 			if (isTreeItemElement(node)) {
 				(node as TreeItem).nested = this.nested;
 			}

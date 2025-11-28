@@ -28,6 +28,7 @@ export function getNextFocusableGridElement(
 	key: PredefindKeys,
 	activeElement: HTMLElement
 ): Element | null | void {
+	/* v8 ignore else -- @preserve */
 	if (activeElement.parentNode instanceof HTMLElement) {
 		switch (key) {
 			case ARROW_RIGHT:

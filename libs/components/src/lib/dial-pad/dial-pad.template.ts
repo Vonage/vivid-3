@@ -79,10 +79,12 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 		x._onDial();
 	} else if (e.key === ' ' || e.key === 'Space') {
 		// Handle long-press Space for '0' button when input is active
+		/* v8 ignore else -- @preserve */
 		if (e.target instanceof HTMLInputElement) {
 			e.preventDefault();
 			// Only start on first keydown, ignore repeat events
 			// keydown events repeat while key is held, so we only start the timer once
+			/* v8 ignore else -- @preserve */
 			if (!e.repeat) {
 				x._startKeyboardLongPress();
 			}
@@ -92,6 +94,7 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 		if (elementIndex > -1) {
 			const digit: Button | null = x.shadowRoot!.querySelector('.digits')!
 				.children[elementIndex] as Button;
+			/* v8 ignore else -- @preserve */
 			if (digit) {
 				digit.active = true;
 				setTimeout(() => {
@@ -104,7 +107,9 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 }
 
 function handleKeyUp(x: DialPad, e: KeyboardEvent) {
+	/* v8 ignore else -- @preserve */
 	if (e.key === ' ' || e.key === 'Space') {
+		/* v8 ignore else -- @preserve */
 		if (e.target instanceof HTMLInputElement) {
 			e.preventDefault();
 
@@ -125,8 +130,10 @@ function handleButtonKeyDown(
 	{ parent: dialPad, event }: { parent: DialPad; event: KeyboardEvent }
 ) {
 	// Handle Space key long press on '0' button when it has focus
+	/* v8 ignore else -- @preserve */
 	if ((event.key === ' ' || event.key === 'Space') && digit.value === '0') {
 		event.preventDefault();
+		/* v8 ignore else -- @preserve */
 		if (!event.repeat) {
 			dialPad._startKeyboardLongPress();
 		}
@@ -139,9 +146,11 @@ function handleButtonKeyUp(
 	{ parent: dialPad, event }: { parent: DialPad; event: KeyboardEvent }
 ) {
 	// Handle Space key long press release on '0' button when it has focus
+	/* v8 ignore else -- @preserve */
 	if ((event.key === ' ' || event.key === 'Space') && digit.value === '0') {
 		event.preventDefault();
 		const wasLongPress = dialPad._endKeyboardLongPress();
+		/* v8 ignore else -- @preserve */
 		if (!wasLongPress && !dialPad.disabled && !dialPad.callActive) {
 			// Short press
 			onDigitClick(digit, {

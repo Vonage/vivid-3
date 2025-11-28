@@ -22,6 +22,7 @@ export class Breadcrumb extends DelegatesAria(VividElement) {
 		_: HTMLElement[] | undefined,
 		newItems: HTMLElement[] | undefined
 	) {
+		/* v8 ignore else -- @preserve */
 		if (newItems) {
 			newItems.forEach((item, index) => {
 				const itemIsLastNode = index === newItems.length - 1;

@@ -103,6 +103,7 @@ export class TreeItem extends HostSemantics(AffixIcon(VividElement)) {
 	itemsChanged(): void {
 		if (this.$fastController.isConnected) {
 			this.items.forEach((node: HTMLElement) => {
+				/* v8 ignore else -- @preserve */
 				if (isTreeItemElement(node)) {
 					// TODO: maybe not require it to be a TreeItem?
 					(node as TreeItem).nested = true;

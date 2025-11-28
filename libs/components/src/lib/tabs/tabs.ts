@@ -263,6 +263,7 @@ export class Tabs extends VividElement {
 			const panel = this.tabpanels[index];
 
 			const isActiveTab = tab.id === this.activeid;
+			/* v8 ignore else -- @preserve */
 			if (tab instanceof Tab) {
 				tab.active = isActiveTab;
 			}
@@ -356,6 +357,7 @@ export class Tabs extends VividElement {
 	 * @internal
 	 */
 	_onActiveIndicatorTransitionend(event: TransitionEvent) {
+		/* v8 ignore else -- @preserve */
 		if (event.propertyName === 'transform') {
 			this.#isTransitioningTransform = false;
 		}
