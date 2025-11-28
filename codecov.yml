@@ -2,9 +2,6 @@ codecov:
   allow_coverage_offsets: true
   max_report_age: off
   token: ${{ secrets.CODECOV_TOKEN }}
-parsers:
-  javascript:
-    enable_partials: yes
 ignore:
   - 'apps'
   - 'libs/components/scripts'
