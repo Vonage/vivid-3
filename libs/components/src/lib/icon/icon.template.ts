@@ -23,10 +23,6 @@ export const iconTemplate = (context: VividElementDefinitionContext) => {
 		>
 			<slot>
 				${when(
-					(x) => !x?.iconLoaded,
-					html<Icon>`<img alt="${(x) => x?.name}" src="${(x) => x?.iconUrl}" />`
-				)}
-				${when(
 					(x) => x?.iconLoaded && x?._svg,
 					(x) => html`${html.partial(x._svg!)}`
 				)}

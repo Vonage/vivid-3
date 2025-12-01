@@ -19,6 +19,7 @@ describe('a11y: vwc-fab', () => {
 		const icon = 'home-line';
 		element.icon = icon;
 		element.iconTrailing = true;
+		element.setAttribute('aria-label', 'Home');
 		await elementUpdated(element);
 
 		expect(await axe(element)).toHaveNoViolations();
