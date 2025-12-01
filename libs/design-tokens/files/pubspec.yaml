@@ -1,0 +1,13 @@
+name: vivid_design_tokens
+description: Vivid design tokens package for flutter
+version: 5.5.0
+homepage: https://vivid.deno.dev
+documentation: https://vivid.deno.dev
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
