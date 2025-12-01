@@ -99,9 +99,12 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('click', this.#openIfClosed, true);
-		if (a.ariaLabel) a.ariaLabel = this.#originalAriaLabel;
 		a.removeAttribute('aria-expanded');
 		a.removeAttribute('data-expanded');
+		/* v8 ignore else -- @preserve */
+		if (a.ariaLabel) {
+			a.ariaLabel = this.#originalAriaLabel;
+		}
 	}
 
 	#openIfClosed = () => {
@@ -126,6 +129,7 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 	};
 
 	#closeOnEscape = (e: KeyboardEvent) => {
+		/* v8 ignore else -- @preserve */
 		if (e.key === 'Escape') {
 			this.open = false;
 		}

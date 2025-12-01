@@ -91,6 +91,28 @@ describe('vwc-switch', () => {
 			expect(element.checked).toEqual(false);
 		});
 
+		it('should not change when other keys are pressed', async () => {
+			element.checked = false;
+			const control = getControlElement(element);
+
+			control.dispatchEvent(new KeyboardEvent('keypress', { key: 'a' }));
+			await elementUpdated(element);
+
+			expect(element.checked).toEqual(false);
+		});
+
+		it('should not toggle when readOnly', async () => {
+			element.checked = false;
+			element.readOnly = true;
+			await elementUpdated(element);
+
+			const control = getControlElement(element);
+			control.click();
+			await elementUpdated(element);
+
+			expect(element.checked).toEqual(false);
+		});
+
 		it('should set aria-checked on the control', async function () {
 			const control = getControlElement(element);
 			const ariaCheckedWhenNotChecked = control.getAttribute('aria-checked');

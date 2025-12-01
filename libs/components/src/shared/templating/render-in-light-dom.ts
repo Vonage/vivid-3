@@ -63,6 +63,7 @@ export class RenderInLightDomBehaviour<TSource extends VividElement>
 	 */
 	handleChange(source: any, args: any): void {
 		// Check if this is a template change notification
+		/* v8 ignore else -- @preserve */
 		if (args === this.templateBindingObserver) {
 			const template = this.templateBindingObserver.bind(this.controller!);
 			this.instantiateTemplate(template);

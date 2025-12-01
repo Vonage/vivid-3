@@ -80,6 +80,19 @@ describe('vwc-tree-view', () => {
 			expect(slot?.childNodes.length).toBe(0);
 			expect(element.contains(document.activeElement)).toBeFalsy();
 		});
+
+		it('should restore focus to last focused item when the tree gets focus', async () => {
+			treeItem2.focus();
+			await elementUpdated(element);
+
+			(document.body as HTMLElement).focus();
+			await elementUpdated(element);
+
+			element.handleFocus(new FocusEvent('focus', { target: element } as any));
+			await elementUpdated(element);
+
+			expect(document.activeElement).toBe(treeItem2);
+		});
 	});
 
 	describe('tree-view blur', () => {
@@ -166,11 +179,13 @@ describe('vwc-tree-view', () => {
 			await elementUpdated(element);
 
 			expect(treeItem1.selected).toBe(true);
+			expect(element.currentSelected).toBe(treeItem1);
 
 			treeItem1.click();
 			await elementUpdated(element);
 
 			expect(treeItem1.selected).toBe(false);
+			expect(element.currentSelected).toBeNull();
 		});
 
 		it('should dispatch selected-changed', async () => {
@@ -190,6 +205,16 @@ describe('vwc-tree-view', () => {
 
 		it('should return true if the click comes from a element that is not a tree-item', async () => {
 			expect(element.handleClick({ target: {} } as Event)).toBe(true);
+		});
+
+		it('should not toggle selection when clicking a disabled item', async () => {
+			treeItem1.disabled = true;
+			await elementUpdated(element);
+
+			treeItem1.click();
+			await elementUpdated(element);
+
+			expect(treeItem1.selected).toBe(false);
 		});
 	});
 
@@ -341,7 +366,7 @@ describe('vwc-tree-view', () => {
 			).toBeTruthy();
 		});
 
-		it('shouold return true if there are no tree-item supplied', async () => {
+		it('should return true if there are no tree-item supplied', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 			)) as TreeView;

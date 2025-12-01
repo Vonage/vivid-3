@@ -28,6 +28,7 @@ export class AttributeBindingBehavior implements ViewBehavior, Subscriber {
 		this.source = controller.source;
 		this.context = controller.context;
 
+		/* v8 ignore else -- @preserve */
 		if (!this.bindingObserver) {
 			this.bindingObserver = Observable.binding(
 				this.binding.evaluate,

@@ -104,11 +104,6 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 	@attr connotation?: AlertConnotation;
 
 	/**
-	 * @internal
-	 */
-	controlEl?: HTMLDivElement;
-
-	/**
 	 * Controls the `position` of the Alert.
 	 *
 	 * @public
@@ -139,14 +134,15 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 		}
 	}
 
+	/**
+	 * @internal
+	 */
+	_controlEl!: HTMLDivElement;
+
 	override connectedCallback(): void {
 		super.connectedCallback();
 		this.addEventListener('keydown', this.#closeOnEscape);
-		this.controlEl = this.shadowRoot!.querySelector(
-			'.control'
-		) as HTMLDivElement;
-		if (this.controlEl)
-			this.controlEl.addEventListener('transitionend', this.#onTransitionEnd);
+		this._controlEl.addEventListener('transitionend', this.#onTransitionEnd);
 		this.#setupTimeout();
 	}
 
@@ -154,11 +150,7 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 		super.disconnectedCallback();
 		if (this.#timeoutID) clearTimeout(this.#timeoutID);
 		this.removeEventListener('keydown', this.#closeOnEscape);
-		if (this.controlEl)
-			this.controlEl.removeEventListener(
-				'transitionend',
-				this.#onTransitionEnd
-			);
+		this._controlEl.removeEventListener('transitionend', this.#onTransitionEnd);
 	}
 
 	get conditionedIcon() {

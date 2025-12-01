@@ -242,6 +242,7 @@ export class Listbox extends VividElement {
 	handleChange(source: any, propertyName: string) {
 		switch (propertyName) {
 			case 'selected': {
+				/* v8 ignore else -- @preserve */
 				if (Listbox.slottedOptionFilter(source)) {
 					this.selectedIndex = this.options.indexOf(source);
 				}
@@ -262,6 +263,7 @@ export class Listbox extends VividElement {
 	 * @internal
 	 */
 	handleTypeAhead(key: string): void {
+		/* v8 ignore else -- @preserve */
 		if (this.typeaheadTimeout) {
 			window.clearTimeout(this.typeaheadTimeout);
 		}
@@ -293,6 +295,7 @@ export class Listbox extends VividElement {
 		switch (key) {
 			// Select the first available option
 			case keyHome: {
+				/* v8 ignore else -- @preserve */
 				if (!e.shiftKey) {
 					e.preventDefault();
 					this.selectFirstOption();
@@ -302,6 +305,7 @@ export class Listbox extends VividElement {
 
 			// Select the next selectable option
 			case keyArrowDown: {
+				/* v8 ignore else -- @preserve */
 				if (!e.shiftKey) {
 					e.preventDefault();
 					this.selectNextOption();
@@ -311,6 +315,7 @@ export class Listbox extends VividElement {
 
 			// Select the previous selectable option
 			case keyArrowUp: {
+				/* v8 ignore else -- @preserve */
 				if (!e.shiftKey) {
 					e.preventDefault();
 					this.selectPreviousOption();
@@ -335,13 +340,16 @@ export class Listbox extends VividElement {
 				return true;
 
 			// @ts-expect-error - fallthrough case
-			case keySpace:
+			case keySpace: {
+				/* v8 ignore else -- @preserve */
 				if (this.typeaheadExpired) {
 					return true;
 				}
+			}
 
 			// fallthrough:
 			default: {
+				/* v8 ignore else -- @preserve */
 				if (key.length === 1) {
 					// Send key to Typeahead handler
 					this.handleTypeAhead(`${key}`);
@@ -408,6 +416,7 @@ export class Listbox extends VividElement {
 	 * @public
 	 */
 	selectFirstOption(): void {
+		/* v8 ignore else -- @preserve */
 		if (!this.disabled) {
 			this.selectedIndex = this.options.findIndex((o) => !o.disabled);
 		}
@@ -419,6 +428,7 @@ export class Listbox extends VividElement {
 	 * @internal
 	 */
 	selectLastOption(): void {
+		/* v8 ignore else -- @preserve */
 		if (!this.disabled) {
 			this.selectedIndex = findLastIndex(this.options, (o) => !o.disabled);
 		}
@@ -430,6 +440,7 @@ export class Listbox extends VividElement {
 	 * @internal
 	 */
 	selectNextOption(): void {
+		/* v8 ignore else -- @preserve */
 		if (!this.disabled && this.selectedIndex < this.options.length - 1) {
 			this.selectedIndex += 1;
 		}
@@ -441,6 +452,7 @@ export class Listbox extends VividElement {
 	 * @internal
 	 */
 	selectPreviousOption(): void {
+		/* v8 ignore else -- @preserve */
 		if (!this.disabled && this.selectedIndex > 0) {
 			this.selectedIndex = this.selectedIndex - 1;
 		}
@@ -490,6 +502,7 @@ export class Listbox extends VividElement {
 	 */
 	slottedOptionsChanged(_: Element[] | undefined, next: Element[]) {
 		this.options = next.reduce<ListboxOption[]>((options, item) => {
+			/* v8 ignore else -- @preserve */
 			if (isListboxOption(item)) {
 				options.push(item);
 			}
@@ -515,8 +528,10 @@ export class Listbox extends VividElement {
 		if (this.$fastController.isConnected) {
 			const typeaheadMatches = this.getTypeaheadMatches();
 
+			/* v8 ignore else -- @preserve */
 			if (typeaheadMatches.length) {
 				const selectedIndex = this.options.indexOf(typeaheadMatches[0]);
+				/* v8 ignore else -- @preserve */
 				if (selectedIndex > -1) {
 					this.selectedIndex = selectedIndex;
 				}

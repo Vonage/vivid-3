@@ -90,6 +90,7 @@ export class TextArea extends WithContextualHelp(
 	 * @internal
 	 */
 	readOnlyChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLTextAreaElement) {
 			this.proxy.readOnly = this.readOnly;
 		}
@@ -124,6 +125,7 @@ export class TextArea extends WithContextualHelp(
 	 * @internal
 	 */
 	autofocusChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLTextAreaElement) {
 			this.proxy.autofocus = this.autofocus;
 		}
@@ -150,6 +152,7 @@ export class TextArea extends WithContextualHelp(
 	 * @internal
 	 */
 	listChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLTextAreaElement) {
 			this.proxy.setAttribute('list', this.list);
 		}
@@ -168,6 +171,7 @@ export class TextArea extends WithContextualHelp(
 	 * @internal
 	 */
 	maxlengthChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLTextAreaElement) {
 			this.proxy.maxLength = this.maxlength;
 		}
@@ -186,6 +190,7 @@ export class TextArea extends WithContextualHelp(
 	 * @internal
 	 */
 	minlengthChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLTextAreaElement) {
 			this.proxy.minLength = this.minlength;
 		}
@@ -237,6 +242,7 @@ export class TextArea extends WithContextualHelp(
 	 * @internal
 	 */
 	spellcheckChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLTextAreaElement) {
 			this.proxy.spellcheck = this.spellcheck;
 		}

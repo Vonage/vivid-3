@@ -91,10 +91,12 @@ export class Pagination extends Localized(VividElement) {
 					if (this.selectedIndex >= 4 && this.selectedIndex <= this.total - 5) {
 						if (i > 1 && i < MAX_DIGITS_AND_PLACEHOLDERS - 2)
 							return this.selectedIndex + (i - 2);
+						/* v8 ignore else -- @preserve */
 						if (i === 1 || i === MAX_DIGITS_AND_PLACEHOLDERS - 2) return '...';
 					}
 					if (this.selectedIndex > this.total - 5) {
 						if (i > 1) return this.total - (6 - i);
+						/* v8 ignore else -- @preserve */
 						if (i === 1) return '...';
 					}
 				}

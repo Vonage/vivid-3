@@ -44,6 +44,25 @@ describe('vwc-alert', () => {
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
+
+		it('should set controlEl using the template ref', async () => {
+			await elementUpdated(element);
+			expect(element._controlEl).toBeInstanceOf(HTMLDivElement);
+		});
+	});
+
+	describe('visibility / hidden binding', () => {
+		it('should set hidden when closed', async () => {
+			element.open = false;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('hidden')).toBe('');
+		});
+
+		it('should remove hidden when open', async () => {
+			element.open = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('hidden')).toBeNull();
+		});
 	});
 
 	describe('headline', function () {

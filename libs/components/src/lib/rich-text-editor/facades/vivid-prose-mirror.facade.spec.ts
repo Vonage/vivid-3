@@ -50,7 +50,7 @@ describe('ProseMirrorFacade', () => {
 
 	beforeEach(async () => {
 		EditorViewMock = vi.mocked(EditorView);
-		EditorViewMock.mockReset();
+		EditorViewMock.mockClear();
 		Object.defineProperty(EditorView.prototype, 'dom', {
 			value: document.createElement('div'),
 			writable: true,
