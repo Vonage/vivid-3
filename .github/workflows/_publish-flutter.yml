@@ -1,26 +1,6 @@
 name: 🚀 Flutter publish
 
 on:
-  workflow_dispatch:
-    inputs:
-      sha:
-        description: The revision to build and publish
-        required: true
-        type: string
-      path:
-        description: The path to call npm publish on
-        required: true
-        type: string
-      tag:
-        required: false
-        description: Tag for the release
-        default: latest
-        type: string
-      version:
-        description: If provided, updates the packages version before publishing.
-        required: false
-        default: ''
-        type: string
   workflow_call:
     inputs:
       sha:
@@ -50,9 +30,10 @@ jobs:
   publish-flutter:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
         with:
-          ref: ${{ inputs.sha }}
+          ref: ${{ github.event.inputs.sha }}
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
@@ -62,9 +43,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - uses: pnpm/action-setup@v4
+      - name: Pnpm setup
+        uses: pnpm/action-setup@v4
 
-      - uses: actions/setup-node@v6
+      - name: Node Setup
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -73,13 +56,14 @@ jobs:
         run: pnpm install
 
       - name: Build
+        working-directory: './libs/design-tokens/'
         run: pnpm run build
 
       - name: Set version
-        if: ${{ inputs.version != '' }}
-        working-directory: ${{ inputs.path }}
+        if: ${{ github.event.inputs.version != '' }}
+        working-directory: ${{ github.event.inputs.path }}
         run: |
-          sed -i 's/^version:.*/version: ${{ inputs.version }}/' pubspec.yaml
+          sed -i 's/^version:.*/version: ${{ github.event.inputs.version }}/' pubspec.yaml
           cat pubspec.yaml
 
       - name: Commit and push changes
@@ -87,10 +71,10 @@ jobs:
           git clone https://github.x-access-token:${GITHUB_TOKEN}@github.com/Vonage/vivid-flutter-design-tokens.git deploy
           cd deploy
           rm -rf *
-          cp -R ../${{ inputs.path }}* .
+          cp -R ../${{ github.event.inputs.path }}* .
           git add .
-          git commit -m "Release v${{ inputs.version }}"
-          git tag v${{ inputs.version }}
+          git commit -m "Release v${{ github.event.inputs.version }}"
+          git tag v${{ github.event.inputs.version }}
           git push --force origin main --tags
         env:
           GIT_AUTHOR_NAME: github-actions

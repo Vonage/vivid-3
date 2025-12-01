@@ -96,6 +96,7 @@ jobs:
     with:
       path: ./libs/design-tokens/flutter-dist
       sha: ${{ needs.should-release.outputs.release_sha }}
+      version: ${{ env.VIVID_VERSION }}
     secrets: inherit
 
   vivid-vue-publish:
