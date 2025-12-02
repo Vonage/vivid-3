@@ -1,27 +1,27 @@
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
-import { RTECore } from './core';
+import { RteCore } from './core';
 import {
-	RTETextBlockStructure,
-	type RTETextBlockStructureConfig,
+	RteTextBlockStructure,
+	type RteTextBlockStructureConfig,
 } from './text-block';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEBoldFeature } from './bold';
-import { RTEItalicFeature } from './italic';
-import { RTEListFeature } from './list';
-import { RTEAlignmentFeature } from './alignment';
+import { RteToolbarFeature } from './toolbar';
+import { RteBoldFeature } from './bold';
+import { RteItalicFeature } from './italic';
+import { RteListFeature } from './list';
+import { RteAlignmentFeature } from './alignment';
 
 const { node, doc, bullet_list, list_item, bold, italic, text } = docFactories;
 
-const features = (config: RTETextBlockStructureConfig) => [
-	new RTECore(),
-	new RTETextBlockStructure(config),
-	new RTEToolbarFeature(),
-	new RTEBoldFeature(),
-	new RTEItalicFeature(),
+const features = (config: RteTextBlockStructureConfig) => [
+	new RteCore(),
+	new RteTextBlockStructure(config),
+	new RteToolbarFeature(),
+	new RteBoldFeature(),
+	new RteItalicFeature(),
 ];
 
-describe('RTETextBlockStructure', () => {
+describe('RteTextBlockStructure', () => {
 	describe('block definition', () => {
 		it('should create a node for each block type', async () => {
 			const rte = await setup(
@@ -42,7 +42,7 @@ describe('RTETextBlockStructure', () => {
 		it('should throw an error for invalid block type IDs', () => {
 			expect(
 				() =>
-					new RTETextBlockStructure({
+					new RteTextBlockStructure({
 						blocks: [
 							{
 								id: 'invalid id',
@@ -576,8 +576,8 @@ describe('RTETextBlockStructure', () => {
 	it('should show no selection cursor is in a non-text-block node', async () => {
 		const { toolbarSelect } = await setup(
 			[
-				new RTECore(),
-				new RTETextBlockStructure({
+				new RteCore(),
+				new RteTextBlockStructure({
 					blocks: [
 						{
 							id: 'paragraph',
@@ -586,8 +586,8 @@ describe('RTETextBlockStructure', () => {
 						},
 					],
 				}),
-				new RTEListFeature(),
-				new RTEToolbarFeature(),
+				new RteListFeature(),
+				new RteToolbarFeature(),
 			],
 			[bullet_list(list_item('item'))]
 		);
@@ -598,8 +598,8 @@ describe('RTETextBlockStructure', () => {
 	it('should should not convert non-text-blocks', async () => {
 		const { keydown, docStr } = await setup(
 			[
-				new RTECore(),
-				new RTETextBlockStructure({
+				new RteCore(),
+				new RteTextBlockStructure({
 					blocks: [
 						{
 							id: 'paragraph',
@@ -613,8 +613,8 @@ describe('RTETextBlockStructure', () => {
 						},
 					],
 				}),
-				new RTEListFeature(),
-				new RTEToolbarFeature(),
+				new RteListFeature(),
+				new RteToolbarFeature(),
 			],
 			[bullet_list(list_item('item'))]
 		);
@@ -627,8 +627,8 @@ describe('RTETextBlockStructure', () => {
 	it('should render textblock attributes in the DOM', async () => {
 		const { view } = await setup(
 			[
-				new RTECore(),
-				new RTETextBlockStructure({
+				new RteCore(),
+				new RteTextBlockStructure({
 					blocks: [
 						{
 							id: 'paragraph',
@@ -637,8 +637,8 @@ describe('RTETextBlockStructure', () => {
 						},
 					],
 				}),
-				new RTEAlignmentFeature(),
-				new RTEToolbarFeature(),
+				new RteAlignmentFeature(),
+				new RteToolbarFeature(),
 			],
 			[node('paragraph').attrs({ textAlign: 'center' })('Centered')]
 		);

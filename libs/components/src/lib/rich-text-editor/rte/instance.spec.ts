@@ -1,17 +1,17 @@
-import { RTEConfig } from './config';
-import { RTECore } from './features/core';
-import { RTEFreeformStructure } from './features/freeform';
+import { RteConfig } from './config';
+import { RteCore } from './features/core';
+import { RteFreeformStructure } from './features/freeform';
 import { docFactories } from './__tests__/doc-factories';
 import { setup } from './__tests__/test-utils';
 import { impl } from './utils/impl';
 
 const { doc, text_line: line, text } = docFactories;
-const features = [new RTECore(), new RTEFreeformStructure()];
+const features = [new RteCore(), new RteFreeformStructure()];
 
-describe('RTEInstance', () => {
+describe('RteInstance', () => {
 	describe('initialization', () => {
 		it('should throw an error when initial document is invalid', async () => {
-			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
+			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
 			expect(() =>
 				config.instantiateEditor({
 					initialDocument: doc(text('Top level text')),
@@ -190,7 +190,7 @@ describe('RTEInstance', () => {
 
 	describe('hostState', () => {
 		it('should throw an error when host state has not been set', () => {
-			const config = new RTEConfig(features);
+			const config = new RteConfig(features);
 			const instance = config.instantiateEditor()[impl];
 			expect(() => instance.hostState()).toThrowError(
 				'No host state available'
@@ -198,7 +198,7 @@ describe('RTEInstance', () => {
 		});
 
 		it('should return host state when it has been set', () => {
-			const config = new RTEConfig(features);
+			const config = new RteConfig(features);
 			const instance = config.instantiateEditor()[impl];
 			const hostState = {} as any;
 

@@ -1,16 +1,16 @@
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark } from 'prosemirror-commands';
 import { createMarkToggle } from '../utils/ui';
-import { RTEInstanceImpl } from '../instance';
+import { RteInstanceImpl } from '../instance';
 import {
 	featureFacade,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
 
-export class RTEUnderlineFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEUnderlineFeature';
+export class RteUnderlineFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteUnderlineFeature';
 
 	override getSchema(): SchemaContribution[] {
 		return [
@@ -27,7 +27,7 @@ export class RTEUnderlineFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getPlugins(rte: RTEInstanceImpl) {
+	override getPlugins(rte: RteInstanceImpl) {
 		return [
 			this.contribution(
 				keymap({
@@ -37,7 +37,7 @@ export class RTEUnderlineFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -55,4 +55,4 @@ export class RTEUnderlineFeatureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEUnderlineFeature = featureFacade(RTEUnderlineFeatureImpl);
+export const RteUnderlineFeature = featureFacade(RteUnderlineFeatureImpl);

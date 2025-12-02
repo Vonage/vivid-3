@@ -1,20 +1,20 @@
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
-import { RTECore } from './core';
-import { RTEBoldFeature } from './bold';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
+import { RteCore } from './core';
+import { RteBoldFeature } from './bold';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
 
 const { text, text_line: line, bold } = docFactories;
 
 const features = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEBoldFeature(),
-	new RTEToolbarFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteBoldFeature(),
+	new RteToolbarFeature(),
 ];
 
-describe('RTEBoldFeature', () => {
+describe('RteBoldFeature', () => {
 	it('should add a bold mark to the schema', async () => {
 		const { docStr } = await setup(features, [
 			line(text.marks(bold())('Hello')),

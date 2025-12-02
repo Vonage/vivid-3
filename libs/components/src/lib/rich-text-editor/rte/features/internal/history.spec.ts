@@ -1,17 +1,17 @@
-import { RTECore } from '../core';
-import { RTEToolbarFeature } from '../toolbar';
-import { RTEFreeformStructure } from '../freeform';
+import { RteCore } from '../core';
+import { RteToolbarFeature } from '../toolbar';
+import { RteFreeformStructure } from '../freeform';
 import { setup } from '../../__tests__/test-utils';
-import { RTEBoldFeature } from '../bold';
+import { RteBoldFeature } from '../bold';
 
 const features = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEBoldFeature(),
-	new RTEToolbarFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteBoldFeature(),
+	new RteToolbarFeature(),
 ];
 
-describe('RTEHistoryFeature', () => {
+describe('RteHistoryFeature', () => {
 	it('should undo changes with Mod-z and redo them with Ctrl-y or Cmd+Shift+z', async () => {
 		const { typeTextAtCursor, keydown, docStr, selectAll } = await setup(
 			features

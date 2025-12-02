@@ -41,11 +41,11 @@
 
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTEFreeformStructure(),
-			new RTEToolbarFeature(),
-			new RTEFontSizeFeature({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteFreeformStructure(),
+			new RteToolbarFeature(),
+			new RteFontSizeFeature({
 				options: [
 					{ size: '24px', label: 'Extra Large' },
 					{ size: '18px', label: 'Large' },
@@ -54,14 +54,14 @@
 				],
 				defaultSize: '14px',
 			}),
-			new RTEBoldFeature(),
-			new RTEItalicFeature(),
-			new RTEUnderlineFeature(),
-			new RTEStrikethroughFeature(),
-			new RTEMonospaceFeature(),
-			new RTETextColorFeature({ defaultColor: '#000000' }),
-			new RTEListFeature(),
-			new RTELinkFeature(),
+			new RteBoldFeature(),
+			new RteItalicFeature(),
+			new RteUnderlineFeature(),
+			new RteStrikethroughFeature(),
+			new RteMonospaceFeature(),
+			new RteTextColorFeature({ defaultColor: '#000000' }),
+			new RteListFeature(),
+			new RteLinkFeature(),
 		]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
@@ -125,17 +125,17 @@
 
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteTextBlockStructure({
 				blocks: [
 					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
 					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
 					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
 				],
 			}),
-			new RTEToolbarFeature(),
-			new RTEFontSizeFeature({
+			new RteToolbarFeature(),
+			new RteFontSizeFeature({
 				options: [
 					{ size: '24px', label: 'Extra Large' },
 					{ size: '18px', label: 'Large' },
@@ -144,15 +144,15 @@
 				],
 				defaultSize: '14px',
 			}),
-			new RTEBoldFeature(),
-			new RTEItalicFeature(),
-			new RTEUnderlineFeature(),
-			new RTEStrikethroughFeature(),
-			new RTEMonospaceFeature(),
-			new RTETextColorFeature({ defaultColor: '#000000' }),
-			new RTEListFeature(),
-			new RTEAlignmentFeature(),
-			new RTELinkFeature(),
+			new RteBoldFeature(),
+			new RteItalicFeature(),
+			new RteUnderlineFeature(),
+			new RteStrikethroughFeature(),
+			new RteMonospaceFeature(),
+			new RteTextColorFeature({ defaultColor: '#000000' }),
+			new RteListFeature(),
+			new RteAlignmentFeature(),
+			new RteLinkFeature(),
 		]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
@@ -187,16 +187,16 @@ The `placeholder` attribute allows you to set a placeholder text that will be di
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteTextBlockStructure({
 				blocks: [
 					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
 					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
 					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
 				],
 			}),
-			new RTEFontSizeFeature({
+			new RteFontSizeFeature({
 				options: [
 					{ size: '24px', label: 'Extra Large' },
 					{ size: '18px', label: 'Large' },
@@ -205,12 +205,12 @@ The `placeholder` attribute allows you to set a placeholder text that will be di
 				],
 				defaultSize: '14px',
 			}),
-			new RTEBoldFeature(),
-			new RTEItalicFeature(),
-			new RTEUnderlineFeature(),
-			new RTEStrikethroughFeature(),
-			new RTEMonospaceFeature(),
-			new RTEToolbarFeature(),
+			new RteBoldFeature(),
+			new RteItalicFeature(),
+			new RteUnderlineFeature(),
+			new RteStrikethroughFeature(),
+			new RteMonospaceFeature(),
+			new RteToolbarFeature(),
 		]);
 		rteComponent.instance = config.instantiateEditor();
 	});

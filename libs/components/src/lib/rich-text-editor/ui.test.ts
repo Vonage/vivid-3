@@ -8,21 +8,21 @@ import {
 } from '../../visual-tests/visual-tests-utils.js';
 import type * as rte from './definition';
 
-let RTEConfig!: typeof rte.RTEConfig;
-let RTECore!: typeof rte.RTECore;
-let RTETextBlockStructure!: typeof rte.RTETextBlockStructure;
-let RTEToolbarFeature!: typeof rte.RTEToolbarFeature;
-let RTEFontSizeFeature!: typeof rte.RTEFontSizeFeature;
-let RTEBoldFeature!: typeof rte.RTEBoldFeature;
-let RTEItalicFeature!: typeof rte.RTEItalicFeature;
-let RTEUnderlineFeature!: typeof rte.RTEUnderlineFeature;
-let RTEStrikethroughFeature!: typeof rte.RTEStrikethroughFeature;
-let RTEMonospaceFeature!: typeof rte.RTEMonospaceFeature;
-let RTETextColorFeature!: typeof rte.RTETextColorFeature;
-let RTEListFeature!: typeof rte.RTEListFeature;
-let RTEAlignmentFeature!: typeof rte.RTEAlignmentFeature;
-let RTELinkFeature!: typeof rte.RTELinkFeature;
-let RTEInlineImageFeature!: typeof rte.RTEInlineImageFeature;
+let RteConfig!: typeof rte.RteConfig;
+let RteCore!: typeof rte.RteCore;
+let RteTextBlockStructure!: typeof rte.RteTextBlockStructure;
+let RteToolbarFeature!: typeof rte.RteToolbarFeature;
+let RteFontSizeFeature!: typeof rte.RteFontSizeFeature;
+let RteBoldFeature!: typeof rte.RteBoldFeature;
+let RteItalicFeature!: typeof rte.RteItalicFeature;
+let RteUnderlineFeature!: typeof rte.RteUnderlineFeature;
+let RteStrikethroughFeature!: typeof rte.RteStrikethroughFeature;
+let RteMonospaceFeature!: typeof rte.RteMonospaceFeature;
+let RteTextColorFeature!: typeof rte.RteTextColorFeature;
+let RteListFeature!: typeof rte.RteListFeature;
+let RteAlignmentFeature!: typeof rte.RteAlignmentFeature;
+let RteLinkFeature!: typeof rte.RteLinkFeature;
+let RteInlineImageFeature!: typeof rte.RteInlineImageFeature;
 
 const components = ['rich-text-editor'];
 
@@ -53,9 +53,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		setup: async () => {
 			await page.evaluate(() => {
 				const rteElement = document.querySelector('vwc-rich-text-editor')!;
-				const config = new RTEConfig([
-					new RTECore(),
-					new RTETextBlockStructure({
+				const config = new RteConfig([
+					new RteCore(),
+					new RteTextBlockStructure({
 						blocks: [
 							{
 								id: 'title',
@@ -78,8 +78,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 							},
 						],
 					}),
-					new RTEToolbarFeature(),
-					new RTEFontSizeFeature({
+					new RteToolbarFeature(),
+					new RteFontSizeFeature({
 						options: [
 							{ label: 'Extra Large', size: '24px' },
 							{ label: 'Large', size: '18px' },
@@ -88,16 +88,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						],
 						defaultSize: '14px',
 					}),
-					new RTEBoldFeature(),
-					new RTEItalicFeature(),
-					new RTEUnderlineFeature(),
-					new RTEStrikethroughFeature(),
-					new RTEMonospaceFeature(),
-					new RTETextColorFeature({ defaultColor: '#000000' }),
-					new RTEListFeature(),
-					new RTEAlignmentFeature(),
-					new RTELinkFeature(),
-					new RTEInlineImageFeature(),
+					new RteBoldFeature(),
+					new RteItalicFeature(),
+					new RteUnderlineFeature(),
+					new RteStrikethroughFeature(),
+					new RteMonospaceFeature(),
+					new RteTextColorFeature({ defaultColor: '#000000' }),
+					new RteListFeature(),
+					new RteAlignmentFeature(),
+					new RteLinkFeature(),
+					new RteInlineImageFeature(),
 				]);
 				rteElement.instance = config.instantiateEditor({
 					initialDocument: {
@@ -280,9 +280,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		setup: async () => {
 			await page.evaluate(() => {
 				const rteElement = document.querySelector('vwc-rich-text-editor')!;
-				const config = new RTEConfig([
-					new RTECore(),
-					new RTETextBlockStructure({
+				const config = new RteConfig([
+					new RteCore(),
+					new RteTextBlockStructure({
 						blocks: [
 							{
 								id: 'title',
@@ -292,7 +292,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 							},
 						],
 					}),
-					new RTEAlignmentFeature(),
+					new RteAlignmentFeature(),
 				]);
 				rteElement.instance = config.instantiateEditor({
 					initialDocument: {

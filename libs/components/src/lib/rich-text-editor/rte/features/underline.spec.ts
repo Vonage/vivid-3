@@ -1,20 +1,20 @@
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
-import { RTECore } from './core';
-import { RTEUnderlineFeature } from './underline';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
+import { RteCore } from './core';
+import { RteUnderlineFeature } from './underline';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
 
 const { text, text_line: line, underline } = docFactories;
 
 const features = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEUnderlineFeature(),
-	new RTEToolbarFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteUnderlineFeature(),
+	new RteToolbarFeature(),
 ];
 
-describe('RTEUnderlineFeature', () => {
+describe('RteUnderlineFeature', () => {
 	it('should add an underline mark to the schema', async () => {
 		const { docStr } = await setup(features, [
 			line(text.marks(underline())('Hello')),

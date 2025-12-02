@@ -4,10 +4,10 @@ import { toggleMark } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import { createButton, createMenu, createMenuItem } from '../utils/ui';
-import { RTEInstanceImpl } from '../instance';
+import { RteInstanceImpl } from '../instance';
 import {
 	featureFacade,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
@@ -17,7 +17,7 @@ export interface FontSizeOption {
 	label: string;
 }
 
-export type RTEFontSizeFeatureConfig = {
+export type RteFontSizeFeatureConfig = {
 	options: FontSizeOption[];
 	defaultSize: string;
 };
@@ -25,12 +25,12 @@ export type RTEFontSizeFeatureConfig = {
 const mixedFontSize = Symbol('mixedFontSize');
 type MixedFontSize = typeof mixedFontSize;
 
-export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEFontSizeFeature';
+export class RteFontSizeFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteFontSizeFeature';
 
 	fontSizes: FontSizeOption[];
 
-	constructor(protected config: RTEFontSizeFeatureConfig) {
+	constructor(protected config: RteFontSizeFeatureConfig) {
 		super();
 
 		this.fontSizes = config.options;
@@ -71,7 +71,7 @@ export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getPlugins(rte: RTEInstanceImpl) {
+	override getPlugins(rte: RteInstanceImpl) {
 		return [
 			/**
 			 * Plugin to adapt the caret height based on a stored fontSize mark.
@@ -119,7 +119,7 @@ export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -247,4 +247,4 @@ export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEFontSizeFeature = featureFacade(RTEFontSizeFeatureImpl);
+export const RteFontSizeFeature = featureFacade(RteFontSizeFeatureImpl);

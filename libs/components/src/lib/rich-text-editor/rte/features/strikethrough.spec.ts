@@ -1,20 +1,20 @@
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
-import { RTECore } from './core';
-import { RTEStrikethroughFeature } from './strikethrough';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
+import { RteCore } from './core';
+import { RteStrikethroughFeature } from './strikethrough';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
 
 const { text, text_line: line, strikethrough } = docFactories;
 
 const features = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEStrikethroughFeature(),
-	new RTEToolbarFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteStrikethroughFeature(),
+	new RteToolbarFeature(),
 ];
 
-describe('RTEStrikethroughFeature', () => {
+describe('RteStrikethroughFeature', () => {
 	it('should add a strikethrough mark to the schema', async () => {
 		const { docStr } = await setup(features, [
 			line(text.marks(strikethrough())('Hello')),

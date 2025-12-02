@@ -5,11 +5,11 @@ import {
 	basicTextBlocks,
 } from '../__tests__/text-blocks';
 import { basicFontSizeOptions } from '../__tests__/font-sizes';
-import { RTECore } from './core';
-import { RTEFontSizeFeature, type RTEFontSizeFeatureConfig } from './font-size';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
-import { RTETextBlockStructure } from './text-block';
+import { RteCore } from './core';
+import { RteFontSizeFeature, type RteFontSizeFeatureConfig } from './font-size';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
+import { RteTextBlockStructure } from './text-block';
 
 const {
 	doc,
@@ -21,23 +21,23 @@ const {
 
 const { p, h1 } = basicTextBlockFactories;
 
-const features = (config: RTEFontSizeFeatureConfig) => [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEToolbarFeature(),
-	new RTEFontSizeFeature(config),
+const features = (config: RteFontSizeFeatureConfig) => [
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteToolbarFeature(),
+	new RteFontSizeFeature(config),
 ];
 
-const textBlockFeatures = (config: RTEFontSizeFeatureConfig) => [
-	new RTECore(),
-	new RTETextBlockStructure({
+const textBlockFeatures = (config: RteFontSizeFeatureConfig) => [
+	new RteCore(),
+	new RteTextBlockStructure({
 		blocks: basicTextBlocks,
 	}),
-	new RTEToolbarFeature(),
-	new RTEFontSizeFeature(config),
+	new RteToolbarFeature(),
+	new RteFontSizeFeature(config),
 ];
 
-describe('RTEFontSizeFeature', () => {
+describe('RteFontSizeFeature', () => {
 	it('should add a fontSize mark to the schema', async () => {
 		const { docStr } = await setup(features(basicFontSizeOptions), [
 			line(text.marks(size({ size: '123px' }))('Hello')),

@@ -4,12 +4,12 @@ import {
 	basicTextBlockFactories,
 	basicTextBlocks,
 } from '../__tests__/text-blocks';
-import { RTECore } from './core';
-import { RTETextBlockStructure } from './text-block';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
-import { RTEListFeature } from './list';
-import { RTEAlignmentFeature } from './alignment';
+import { RteCore } from './core';
+import { RteTextBlockStructure } from './text-block';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
+import { RteListFeature } from './list';
+import { RteAlignmentFeature } from './alignment';
 
 const {
 	list_item: li,
@@ -21,20 +21,20 @@ const {
 const { p: p } = basicTextBlockFactories;
 
 const freeformFeatures = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEToolbarFeature(),
-	new RTEListFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteToolbarFeature(),
+	new RteListFeature(),
 ];
 
 const textBlockFeatures = [
-	new RTECore(),
-	new RTETextBlockStructure({ blocks: basicTextBlocks }),
-	new RTEToolbarFeature(),
-	new RTEListFeature(),
+	new RteCore(),
+	new RteTextBlockStructure({ blocks: basicTextBlocks }),
+	new RteToolbarFeature(),
+	new RteListFeature(),
 ];
 
-describe('RTEListFeature', () => {
+describe('RteListFeature', () => {
 	it('should add bullet_list, numbered_list, and list_item nodes to the schema', async () => {
 		const rte = await setup(textBlockFeatures, [
 			ul(li('Item 1'), ul(li('Nested Item 2'))),
@@ -607,7 +607,7 @@ describe('RTEListFeature', () => {
 	describe('textblock attrs', () => {
 		it('should maintain textblock attrs when converting block to list item', async () => {
 			const rte = await setup(
-				[...textBlockFeatures, new RTEAlignmentFeature()],
+				[...textBlockFeatures, new RteAlignmentFeature()],
 				[p.attrs({ textAlign: 'right' })('Item')]
 			);
 			await rte.click(rte.toolbarButton('Bullet list'));
@@ -618,7 +618,7 @@ describe('RTEListFeature', () => {
 
 		it('should maintain textblock attrs when lifting item out of list', async () => {
 			const rte = await setup(
-				[...textBlockFeatures, new RTEAlignmentFeature()],
+				[...textBlockFeatures, new RteAlignmentFeature()],
 				[ul(li.attrs({ textAlign: 'right' })('Item'))]
 			);
 			rte.placeCursor('|Item');

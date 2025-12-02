@@ -1,20 +1,20 @@
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
-import { RTECore } from './core';
-import { RTEItalicFeature } from './italic';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
+import { RteCore } from './core';
+import { RteItalicFeature } from './italic';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
 
 const { text, text_line: line, italic } = docFactories;
 
 const features = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEItalicFeature(),
-	new RTEToolbarFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteItalicFeature(),
+	new RteToolbarFeature(),
 ];
 
-describe('RTEItalicFeature', () => {
+describe('RteItalicFeature', () => {
 	it('should add an italic mark to the schema', async () => {
 		const { docStr } = await setup(features, [
 			line(text.marks(italic())('Hello')),

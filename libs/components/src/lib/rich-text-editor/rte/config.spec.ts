@@ -1,72 +1,72 @@
-import { RTECore } from './features/core';
-import { RTEBoldFeature } from './features/bold';
-import { RTEConfig } from './config';
-import { RTEFreeformStructure } from './features/freeform';
-import { RTETextBlockStructure } from './features/text-block';
-import { RTEAlignmentFeature } from './features/alignment';
+import { RteCore } from './features/core';
+import { RteBoldFeature } from './features/bold';
+import { RteConfig } from './config';
+import { RteFreeformStructure } from './features/freeform';
+import { RteTextBlockStructure } from './features/text-block';
+import { RteAlignmentFeature } from './features/alignment';
 import { docFactories } from './__tests__/doc-factories';
 import { impl } from './utils/impl';
 import { basicTextBlocks } from './__tests__/text-blocks';
 
 const { doc, text_line: line } = docFactories;
 
-describe('RTEConfig', () => {
+describe('RteConfig', () => {
 	it('should throw an error when required core feature is missing', () => {
-		expect(() => new RTEConfig([new RTEBoldFeature()])).toThrow(
-			'RTECore feature is required'
+		expect(() => new RteConfig([new RteBoldFeature()])).toThrow(
+			'RteCore feature is required'
 		);
 	});
 
 	it('should throw an error when a feature is provided multiple times', () => {
 		expect(
 			() =>
-				new RTEConfig([
-					new RTECore(),
-					new RTEBoldFeature(),
-					new RTEBoldFeature(),
+				new RteConfig([
+					new RteCore(),
+					new RteBoldFeature(),
+					new RteBoldFeature(),
 				])
-		).toThrow('Duplicate feature: RTEBoldFeature');
+		).toThrow('Duplicate feature: RteBoldFeature');
 	});
 
 	it('should throw an error when no structure is provided', () => {
-		expect(() => new RTEConfig([new RTECore()])).toThrow(
-			'Either RTETextBlockStructure or RTEFreeformStructure feature is required'
+		expect(() => new RteConfig([new RteCore()])).toThrow(
+			'Either RteTextBlockStructure or RteFreeformStructure feature is required'
 		);
 	});
 
 	it('should throw an error when multiple structures are provided', () => {
 		expect(
 			() =>
-				new RTEConfig([
-					new RTECore(),
-					new RTEFreeformStructure(),
-					new RTETextBlockStructure({ blocks: basicTextBlocks }),
+				new RteConfig([
+					new RteCore(),
+					new RteFreeformStructure(),
+					new RteTextBlockStructure({ blocks: basicTextBlocks }),
 				])
 		).toThrow(
-			'Either RTETextBlockStructure or RTEFreeformStructure feature is required'
+			'Either RteTextBlockStructure or RteFreeformStructure feature is required'
 		);
 	});
 
-	it('should throw an error when both RTEFreeformStructure and RTEAlignmentFeature are provided', () => {
+	it('should throw an error when both RteFreeformStructure and RteAlignmentFeature are provided', () => {
 		expect(
 			() =>
-				new RTEConfig([
-					new RTECore(),
-					new RTEFreeformStructure(),
-					new RTEAlignmentFeature(),
+				new RteConfig([
+					new RteCore(),
+					new RteFreeformStructure(),
+					new RteAlignmentFeature(),
 				])
-		).toThrow('RTEAlignmentFeature cannot be used with RTEFreeformStructure');
+		).toThrow('RteAlignmentFeature cannot be used with RteFreeformStructure');
 	});
 
 	describe('instantiateEditor', () => {
 		it('should initialise with an empty document by default', () => {
-			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
+			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
 			const instance = config.instantiateEditor()[impl];
 			expect(instance.state.doc.toString()).toBe('doc(text_line)');
 		});
 
 		it('should allow passing instance options', () => {
-			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
+			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
 			const instance = config.instantiateEditor({
 				initialDocument: doc(line('Hello world')),
 			})[impl];

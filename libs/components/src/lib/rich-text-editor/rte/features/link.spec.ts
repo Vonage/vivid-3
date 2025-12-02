@@ -1,21 +1,21 @@
 import { elementUpdated } from '@repo/shared';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
-import { RTECore } from './core';
-import { RTELinkFeature } from './link';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
+import { RteCore } from './core';
+import { RteLinkFeature } from './link';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
 
 const { text_line: line, text, link } = docFactories;
 
 const features = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTELinkFeature(),
-	new RTEToolbarFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteLinkFeature(),
+	new RteToolbarFeature(),
 ];
 
-describe('RTELinkFeature', () => {
+describe('RteLinkFeature', () => {
 	it('should add a link mark to the schema', async () => {
 		const { docStr } = await setup(features, [
 			line(

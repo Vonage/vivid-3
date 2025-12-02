@@ -1,20 +1,20 @@
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
-import { RTECore } from './core';
-import { RTEMonospaceFeature } from './monospace';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
+import { RteCore } from './core';
+import { RteMonospaceFeature } from './monospace';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
 
 const { text, text_line: line, monospace } = docFactories;
 
 const features = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEMonospaceFeature(),
-	new RTEToolbarFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteMonospaceFeature(),
+	new RteToolbarFeature(),
 ];
 
-describe('RTEMonospaceFeature', () => {
+describe('RteMonospaceFeature', () => {
 	it('should add a monospace mark to the schema', async () => {
 		const { docStr } = await setup(features, [
 			line(text.marks(monospace())('Hello')),

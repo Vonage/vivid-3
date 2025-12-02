@@ -21,12 +21,12 @@ import {
 	contributionPriority,
 	featureFacade,
 	type PluginContribution,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 	type SchemaContribution,
 	type StyleContribution,
 	type ToolbarItemContribution,
 } from '../feature';
-import { RTEInstanceImpl } from '../instance';
+import { RteInstanceImpl } from '../instance';
 import { createButton } from '../utils/ui';
 import type { TextblockAttrs } from '../utils/textblock-attrs';
 import { defaultTextblockForMatch } from '../utils/default-textblock';
@@ -120,7 +120,7 @@ const allListItemsAreOfType = (
 };
 
 /// Decrease a list item's nesting level
-const lift = (rte: RTEInstanceImpl, $li: ResolvedPos, tr: Transaction) => {
+const lift = (rte: RteInstanceImpl, $li: ResolvedPos, tr: Transaction) => {
 	if (isNested($li)) {
 		liftToOuterList($li, tr);
 	} else {
@@ -140,7 +140,7 @@ const liftToOuterList = ($li: ResolvedPos, tr: Transaction) => {
 
 /// Lift an unnested list item out of the list, converting it into a default text block node
 const liftOutOfList = (
-	rte: RTEInstanceImpl,
+	rte: RteInstanceImpl,
 	$li: ResolvedPos,
 	tr: Transaction
 ) => {
@@ -184,7 +184,7 @@ const liftOutOfList = (
 
 /// Increase the nesting level of a textblock node
 const sink = (
-	rte: RTEInstanceImpl,
+	rte: RteInstanceImpl,
 	listType: NodeType,
 	$node: ResolvedPos,
 	tr: Transaction
@@ -221,7 +221,7 @@ const sinkLi = (listType: NodeType, $li: ResolvedPos, tr: Transaction) => {
 
 /// Convert a textblock node into a list
 const sinkNode = (
-	rte: RTEInstanceImpl,
+	rte: RteInstanceImpl,
 	listType: NodeType,
 	$node: ResolvedPos,
 	tr: Transaction
@@ -251,8 +251,8 @@ const sinkNode = (
 	);
 };
 
-export class RTEListFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEListFeature';
+export class RteListFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteListFeature';
 
 	override getStyles(): StyleContribution[] {
 		return [this.contribution(listCss)];
@@ -297,8 +297,8 @@ export class RTEListFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	protected rte!: RTEInstanceImpl;
-	override getPlugins(rte: RTEInstanceImpl): PluginContribution[] {
+	protected rte!: RteInstanceImpl;
+	override getPlugins(rte: RteInstanceImpl): PluginContribution[] {
 		this.rte = rte;
 
 		const tabCommand: Command = (state, dispatch) => {
@@ -369,7 +369,7 @@ export class RTEListFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -480,4 +480,4 @@ export class RTEListFeatureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEListFeature = featureFacade(RTEListFeatureImpl);
+export const RteListFeature = featureFacade(RteListFeatureImpl);

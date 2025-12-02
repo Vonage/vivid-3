@@ -1,25 +1,25 @@
 import { docFactories } from '../__tests__/doc-factories';
 import { setup } from '../__tests__/test-utils';
 import { asyncGeneratorMock } from '../__tests__/async-generator';
-import { RTECore } from './core';
+import { RteCore } from './core';
 import {
 	type ResolvedUrl,
-	RTEInlineImageFeature,
-	type RTEInlineImageFeatureConfig,
+	RteInlineImageFeature,
+	type RteInlineImageFeatureConfig,
 } from './inline-image';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
 
 const { doc, text_line: p, inline_image: img, text } = docFactories;
 
-const featuresWithConfig = (config?: RTEInlineImageFeatureConfig) => [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEToolbarFeature(),
-	new RTEInlineImageFeature(config),
+const featuresWithConfig = (config?: RteInlineImageFeatureConfig) => [
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteToolbarFeature(),
+	new RteInlineImageFeature(config),
 ];
 
-describe('RTEInlineImageFeature', () => {
+describe('RteInlineImageFeature', () => {
 	it('should add an inline_image node to the schema', async () => {
 		const rte = await setup(featuresWithConfig(), [
 			p(

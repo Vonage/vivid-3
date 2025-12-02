@@ -1,65 +1,65 @@
 import { Schema } from 'prosemirror-model';
 import type { Constructor } from '../../../shared/utils/mixins';
-import { RTECoreImpl } from './features/core';
-import { RTEInstance, type RTEInstanceOptions } from './instance';
-import { RTEFeature, RTEFeatureImpl, sortedContributions } from './feature';
-import { RTETextBlockStructureImpl } from './features/text-block';
-import { RTEFreeformStructureImpl } from './features/freeform';
+import { RteCoreImpl } from './features/core';
+import { RteInstance, type RteInstanceOptions } from './instance';
+import { RteFeature, RteFeatureImpl, sortedContributions } from './feature';
+import { RteTextBlockStructureImpl } from './features/text-block';
+import { RteFreeformStructureImpl } from './features/freeform';
 import { TextblockAttrs } from './utils/textblock-attrs';
-import { RTEAlignmentFeatureImpl } from './features/alignment';
+import { RteAlignmentFeatureImpl } from './features/alignment';
 import { impl } from './utils/impl';
 
-export class RTEConfig {
+export class RteConfig {
 	/// @internal
-	[impl]: RTEConfigImpl;
+	[impl]: RteConfigImpl;
 
-	constructor(features: RTEFeature[]) {
-		this[impl] = new RTEConfigImpl(features);
+	constructor(features: RteFeature[]) {
+		this[impl] = new RteConfigImpl(features);
 	}
 
-	instantiateEditor(options?: RTEInstanceOptions): RTEInstance {
-		return new RTEInstance(this, options);
+	instantiateEditor(options?: RteInstanceOptions): RteInstance {
+		return new RteInstance(this, options);
 	}
 }
 
-export class RTEConfigImpl {
+export class RteConfigImpl {
 	schema: Schema;
 	textblockAttrs: TextblockAttrs;
-	featureMap: Map<Constructor<RTEFeatureImpl>, RTEFeatureImpl>;
-	features: RTEFeatureImpl[];
+	featureMap: Map<Constructor<RteFeatureImpl>, RteFeatureImpl>;
+	features: RteFeatureImpl[];
 
-	constructor(featuresFacades: RTEFeature[]) {
+	constructor(featuresFacades: RteFeature[]) {
 		const features = featuresFacades.map((f) => f[impl]);
 		this.features = features.flatMap((f) => f.getFeatures());
 		this.featureMap = new Map();
 
 		for (const f of features) {
-			const constr = f.constructor as Constructor<RTEFeatureImpl>;
+			const constr = f.constructor as Constructor<RteFeatureImpl>;
 			if (this.featureMap.has(constr)) {
 				throw new Error(`Duplicate feature: ${constr.name}`);
 			}
 			this.featureMap.set(constr, f);
 		}
 
-		if (!this.featureMap.has(RTECoreImpl)) {
-			throw new Error('RTECore feature is required');
+		if (!this.featureMap.has(RteCoreImpl)) {
+			throw new Error('RteCore feature is required');
 		}
 
 		if (
-			!this.featureMap.has(RTETextBlockStructureImpl) ===
-			!this.featureMap.has(RTEFreeformStructureImpl)
+			!this.featureMap.has(RteTextBlockStructureImpl) ===
+			!this.featureMap.has(RteFreeformStructureImpl)
 		) {
 			throw new Error(
-				'Either RTETextBlockStructure or RTEFreeformStructure feature is required'
+				'Either RteTextBlockStructure or RteFreeformStructure feature is required'
 			);
 		}
 
 		if (
-			this.featureMap.has(RTEFreeformStructureImpl) &&
-			this.featureMap.has(RTEAlignmentFeatureImpl)
+			this.featureMap.has(RteFreeformStructureImpl) &&
+			this.featureMap.has(RteAlignmentFeatureImpl)
 		) {
 			throw new Error(
-				'RTEAlignmentFeature cannot be used with RTEFreeformStructure'
+				'RteAlignmentFeature cannot be used with RteFreeformStructure'
 			);
 		}
 

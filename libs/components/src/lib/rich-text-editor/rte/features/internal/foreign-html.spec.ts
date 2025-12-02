@@ -1,27 +1,27 @@
-import { RTECore } from '../core';
-import { RTEToolbarFeature } from '../toolbar';
-import { RTEFreeformStructure } from '../freeform';
+import { RteCore } from '../core';
+import { RteToolbarFeature } from '../toolbar';
+import { RteFreeformStructure } from '../freeform';
 import { setup } from '../../__tests__/test-utils';
-import { RTEBoldFeature } from '../bold';
+import { RteBoldFeature } from '../bold';
 import { docFactories } from '../../__tests__/doc-factories';
-import { RTEHtmlParser } from '../../html-parser';
-import { RTELinkFeature } from '../link';
-import { RTEHtmlSerializer } from '../../html-serializer';
+import { RteHtmlParser } from '../../html-parser';
+import { RteLinkFeature } from '../link';
+import { RteHtmlSerializer } from '../../html-serializer';
 
 const { text_line: line, text, bold } = docFactories;
 
 const features = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEBoldFeature(),
-	new RTEToolbarFeature(),
-	new RTELinkFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteBoldFeature(),
+	new RteToolbarFeature(),
+	new RteLinkFeature(),
 ];
 
-describe('RTEForeignHtmlFeature', () => {
+describe('RteForeignHtmlFeature', () => {
 	it('should use the provided html parser when html is pasted or dropped', async () => {
 		const rte = await setup(features, [line('paste: drop:')], (config) => ({
-			foreignHtmlParser: new RTEHtmlParser(config, {
+			foreignHtmlParser: new RteHtmlParser(config, {
 				modifyParseRules: (rules) => {
 					rules.marks.bold = [{ tag: 'span[data-bold]' }];
 				},
@@ -52,7 +52,7 @@ describe('RTEForeignHtmlFeature', () => {
 			features,
 			[line(text.marks(bold())('hello'))],
 			(config) => ({
-				foreignHtmlSerializer: new RTEHtmlSerializer(config, {
+				foreignHtmlSerializer: new RteHtmlSerializer(config, {
 					serializers: {
 						nodes: {},
 						marks: {
