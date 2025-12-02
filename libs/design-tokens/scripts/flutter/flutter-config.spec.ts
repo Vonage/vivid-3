@@ -318,7 +318,7 @@ describe('Flutter Features', () => {
 						destination: 'vivid-design-tokens.dart',
 					},
 					options: {},
-				} as any) ;
+				} as any);
 
 				expect(output).toEqual(
 					`/**

@@ -1,4 +1,8 @@
-import type { Hooks, PlatformConfig, TransformedToken } from 'style-dictionary/types';
+import type {
+	Hooks,
+	PlatformConfig,
+	TransformedToken,
+} from 'style-dictionary/types';
 import { type ColorValue, getHex } from '../utils/hexify.util';
 import { fileHeader } from 'style-dictionary/utils';
 
@@ -15,7 +19,9 @@ export const flutterConfig: Hooks = {
 	actions: {
 		'vvd/flutter/createPackage': {
 			do(_dictionary, platform, file, volume) {
-				volume.cpSync('./files/', platform.buildPath, { recursive: true } as any);
+				volume.cpSync('./files/', platform.buildPath, {
+					recursive: true,
+				} as any);
 			},
 			undo(_dictionary, platform, _config, volume) {
 				volume.unlinkSync(platform.buildPath);
@@ -27,10 +33,12 @@ export const flutterConfig: Hooks = {
 			const header = await fileHeader({ file, options });
 
 			const variables = Array.from(dictionary.tokenMap.values()).map(
-				(token: TransformedToken) => `const ${token.name} = ${token.$value};`,
+				(token: TransformedToken) => `const ${token.name} = ${token.$value};`
 			);
 
-			return `${header}import 'package:flutter/painting.dart';\n\n${variables.join('\n')}`;
+			return `${header}import 'package:flutter/painting.dart';\n\n${variables.join(
+				'\n'
+			)}`;
 		},
 	},
 	transforms: {
@@ -72,7 +80,7 @@ export const flutterConfig: Hooks = {
 				const fontSize = double(token.$value.fontSize.value);
 				const lineHeight = double(
 					parseFloat(token.$value.lineHeight) /
-						parseFloat(token.$value.fontSize.value),
+						parseFloat(token.$value.fontSize.value)
 				);
 				const fontWeight = token.$value.fontWeight;
 				const fontWidth = token.$value.fontFamily.toLowerCase().includes('wide')
@@ -111,7 +119,7 @@ export const flutterConfig: Hooks = {
 			type: 'name',
 			transform(token) {
 				return token.name.replace(/([-_\/][a-z0-9])/g, ($1) =>
-					$1.toUpperCase().replace('-', '').replace('_', '').replace('/', ''),
+					$1.toUpperCase().replace('-', '').replace('_', '').replace('/', '')
 				);
 			},
 		},
