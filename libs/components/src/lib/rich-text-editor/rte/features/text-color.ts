@@ -6,11 +6,7 @@ import {
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
-import {
-	createButton,
-	createDiv,
-	createSingleSlot,
-} from '../utils/toolbar-items';
+import { createButton, createDiv, createSingleSlot } from '../utils/ui';
 
 // markApplies function adapted from prosemirror-commands
 function markApplies(

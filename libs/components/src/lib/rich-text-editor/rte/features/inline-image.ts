@@ -13,12 +13,7 @@ import {
 } from '../feature';
 import type { RTEInstanceImpl } from '../instance';
 import { Popover } from '../../popover';
-import {
-	createButton,
-	createDiv,
-	createDivider,
-	ToolbarCtx,
-} from '../utils/toolbar-items';
+import { createButton, createDiv, createDivider, UiCtx } from '../utils/ui';
 import inlineImageCss from './inline-image.style.scss?inline';
 
 type SizeOption = 'small' | 'fit' | 'original';
@@ -269,7 +264,9 @@ export class RTEInlineImageFeatureImpl extends RTEFeatureImpl {
 						},
 					},
 					view: (view) => {
-						const ctx = new ToolbarCtx(view, rte);
+						const ctx = new UiCtx(view, rte, {
+							popupPlacement: 'bottom',
+						});
 						const popover = rte.createComponent(Popover);
 						popover.offset = 4;
 						const content = createDiv(ctx, {
@@ -278,7 +275,7 @@ export class RTEInlineImageFeatureImpl extends RTEFeatureImpl {
 								createButton(ctx, {
 									label: () =>
 										ctx.rte.getLocale().richTextEditor.imageSizes.small,
-									size: 'condensed',
+									variant: 'popover',
 									active: () =>
 										this.getSelectedImageSize(ctx.view.state) === 'small',
 									onClick: () => {
@@ -292,7 +289,7 @@ export class RTEInlineImageFeatureImpl extends RTEFeatureImpl {
 								createButton(ctx, {
 									label: () =>
 										ctx.rte.getLocale().richTextEditor.imageSizes.fit,
-									size: 'condensed',
+									variant: 'popover',
 									active: () =>
 										this.getSelectedImageSize(ctx.view.state) === 'fit',
 									onClick: () => {
@@ -306,7 +303,7 @@ export class RTEInlineImageFeatureImpl extends RTEFeatureImpl {
 								createButton(ctx, {
 									label: () =>
 										ctx.rte.getLocale().richTextEditor.imageSizes.original,
-									size: 'condensed',
+									variant: 'popover',
 									active: () =>
 										this.getSelectedImageSize(ctx.view.state) === 'original',
 									onClick: () => {

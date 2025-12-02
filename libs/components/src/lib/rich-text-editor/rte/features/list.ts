@@ -27,7 +27,7 @@ import {
 	type ToolbarItemContribution,
 } from '../feature';
 import { RTEInstanceImpl } from '../instance';
-import { createButton } from '../utils/toolbar-items';
+import { createButton } from '../utils/ui';
 import type { TextblockAttrs } from '../utils/textblock-attrs';
 import { defaultTextblockForMatch } from '../utils/default-textblock';
 import listCss from './list.style.scss?inline';
