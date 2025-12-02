@@ -6778,13 +6778,6 @@
 					"description": "The editor instance created from the RTEConfig. Without it, the editor will not render.",
 					"type": "any",
 					"propertyName": "instance"
-				},
-				{
-					"name": "placeholder",
-					"description": "A placeholder text to display when the editor is empty.",
-					"type": "string",
-					"attributeName": "placeholder",
-					"propertyName": "placeholder"
 				}
 			],
 			"events": [

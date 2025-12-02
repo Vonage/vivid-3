@@ -1,24 +1,28 @@
 import { type MarkType } from 'prosemirror-model';
 import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
-import { RteFeatureImpl } from '../../feature';
-import type { RteInstanceImpl } from '../../instance';
+import { featureFacade, RteFeatureImpl } from '../feature';
 import placeholderCss from './placeholder.style.scss?inline';
+
+export type RtePlaceholderFeatureConfig = {
+	text: string;
+};
 
 export class RtePlaceholderFeatureImpl extends RteFeatureImpl {
 	protected name = 'RtePlaceholderFeature';
+
+	constructor(protected config: RtePlaceholderFeatureConfig) {
+		super();
+	}
 
 	override getStyles() {
 		return [this.contribution(placeholderCss)];
 	}
 
-	override getPlugins(rte: RteInstanceImpl) {
+	override getPlugins() {
 		const placeholderPlugin = new Plugin({
 			props: {
 				decorations: (state) => {
-					const placeholderText = rte.hostState().placeholder;
-					if (!placeholderText) return null;
-
 					// Placeholder should appear only when the editor is empty
 					if (state.doc.nodeSize === 4) {
 						const fontSizeMark = state.schema.marks.fontSize as
@@ -33,7 +37,7 @@ export class RtePlaceholderFeatureImpl extends RteFeatureImpl {
 							Decoration.widget(1, () => {
 								const placeholder = document.createElement('span');
 								placeholder.className = 'placeholder';
-								placeholder.dataset.placeholder = placeholderText;
+								placeholder.dataset.placeholder = this.config.text;
 								if (storedSize) {
 									placeholder.style.setProperty(
 										'--placeholder-font-size',
@@ -52,3 +56,5 @@ export class RtePlaceholderFeatureImpl extends RteFeatureImpl {
 		return [this.contribution(placeholderPlugin)];
 	}
 }
+
+export const RtePlaceholderFeature = featureFacade(RtePlaceholderFeatureImpl);
