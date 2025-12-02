@@ -44,6 +44,7 @@
 		const config = new RteConfig([
 			new RteCore(),
 			new RteFreeformStructure(),
+			new RtePlaceholderFeature({ text: 'Start typing here...' }),
 			new RteToolbarFeature(),
 			new RteFontSizeFeature({
 				options: [
@@ -135,6 +136,7 @@
 				],
 			}),
 			new RteToolbarFeature(),
+			new RtePlaceholderFeature({ text: 'Start typing here...' }),
 			new RteFontSizeFeature({
 				options: [
 					{ size: '24px', label: 'Extra Large' },
@@ -173,46 +175,6 @@
 				],
 			},
 		});
-	});
-</script>
-```
-
-## Placeholder
-
-The `placeholder` attribute allows you to set a placeholder text that will be displayed when the editor is empty.
-
-```html preview
-<vwc-rich-text-editor style="block-size: 150px" placeholder="Enter rich text..."></vwc-rich-text-editor>
-
-<script>
-	customElements.whenDefined('vwc-rich-text-editor').then(() => {
-		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RteConfig([
-			new RteCore(),
-			new RteTextBlockStructure({
-				blocks: [
-					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
-					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
-					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
-				],
-			}),
-			new RteFontSizeFeature({
-				options: [
-					{ size: '24px', label: 'Extra Large' },
-					{ size: '18px', label: 'Large' },
-					{ size: '14px', label: 'Normal' },
-					{ size: '12px', label: 'Small' },
-				],
-				defaultSize: '14px',
-			}),
-			new RteBoldFeature(),
-			new RteItalicFeature(),
-			new RteUnderlineFeature(),
-			new RteStrikethroughFeature(),
-			new RteMonospaceFeature(),
-			new RteToolbarFeature(),
-		]);
-		rteComponent.instance = config.instantiateEditor();
 	});
 </script>
 ```

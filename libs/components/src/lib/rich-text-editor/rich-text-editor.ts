@@ -1,4 +1,4 @@
-import { attr, observable } from '@microsoft/fast-element';
+import { observable } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { WithObservableLocale } from '../../shared/patterns';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
@@ -24,17 +24,6 @@ export class RichTextEditor extends WithObservableLocale(VividElement) {
 		this._initViewIfNeeded();
 		prevInstance?.[impl].styles.removeStylesFrom(this.shadowRoot!);
 		this.instance?.[impl].styles.addStylesTo(this.shadowRoot!);
-	}
-
-	/**
-	 * A placeholder text to display when the editor is empty.
-	 */
-	@attr placeholder?: string;
-	/**
-	 * @internal
-	 */
-	placeholderChanged() {
-		this._syncStateIfNeeded();
 	}
 
 	// --- View management ---
@@ -87,7 +76,6 @@ export class RichTextEditor extends WithObservableLocale(VividElement) {
 
 	private _syncStateIfNeeded() {
 		this.instance?.[impl].updateHostState({
-			placeholder: this.placeholder,
 			locale: this.locale,
 			ctx: this._ctx,
 		});

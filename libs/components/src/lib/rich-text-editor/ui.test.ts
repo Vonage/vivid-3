@@ -12,6 +12,7 @@ let RteConfig!: typeof rte.RteConfig;
 let RteCore!: typeof rte.RteCore;
 let RteTextBlockStructure!: typeof rte.RteTextBlockStructure;
 let RteToolbarFeature!: typeof rte.RteToolbarFeature;
+let RtePlaceholderFeature!: typeof rte.RtePlaceholderFeature;
 let RteFontSizeFeature!: typeof rte.RteFontSizeFeature;
 let RteBoldFeature!: typeof rte.RteBoldFeature;
 let RteItalicFeature!: typeof rte.RteItalicFeature;
@@ -276,7 +277,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await renderTemplate({
 		page,
-		template: `<vwc-rich-text-editor style="width: 400px" placeholder="Placeholder text..."></vwc-rich-text-editor>`,
+		template: `<vwc-rich-text-editor style="width: 400px"></vwc-rich-text-editor>`,
 		setup: async () => {
 			await page.evaluate(() => {
 				const rteElement = document.querySelector('vwc-rich-text-editor')!;
@@ -292,6 +293,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 							},
 						],
 					}),
+					new RtePlaceholderFeature({ text: 'Placeholder text...' }),
 					new RteAlignmentFeature(),
 				]);
 				rteElement.instance = config.instantiateEditor({
