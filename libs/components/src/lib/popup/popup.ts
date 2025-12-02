@@ -12,6 +12,7 @@ import {
 	hide,
 	inline,
 	offset,
+	shift,
 	size,
 } from '@floating-ui/dom';
 import type { Placement, Strategy } from '@floating-ui/dom';
@@ -66,6 +67,7 @@ export class Popup extends VividElement {
 					});
 				},
 			}),
+			shift(),
 		];
 		let offsetValue = this.offset ?? 0;
 		if (this.arrow) {
