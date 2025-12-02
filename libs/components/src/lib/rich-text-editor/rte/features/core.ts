@@ -16,6 +16,7 @@ import type { Locale } from '../../../../shared/localization/Locale';
 import type { VividElementDefinitionContext } from '../../../../shared/design-system/defineVividComponent';
 import type { RTEInstanceImpl } from '../instance';
 import { defaultTextblockForMatch } from '../utils/default-textblock';
+import uiCss from '../utils/ui.style.scss?inline';
 import coreCss from './core.style.scss?inline';
 import { RTEHistoryFeatureImpl } from './internal/history';
 import { RTEPlaceholderFeatureImpl } from './internal/placeholder';
@@ -54,7 +55,11 @@ export class RTECoreImpl extends RTEFeatureImpl {
 	protected name = 'RTECore';
 
 	override getStyles() {
-		return [this.contribution(proseMirrorCss), this.contribution(coreCss)];
+		return [
+			this.contribution(proseMirrorCss),
+			this.contribution(coreCss),
+			this.contribution(uiCss),
+		];
 	}
 
 	override getPlugins(rte: RTEInstanceImpl) {

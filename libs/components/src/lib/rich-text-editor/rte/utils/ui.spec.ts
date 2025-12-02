@@ -4,18 +4,20 @@ import { RTEToolbarFeature } from '../features/toolbar';
 import { RTECore } from '../features/core';
 import { setup } from '../__tests__/test-utils';
 import type { Tooltip } from '../../../tooltip/tooltip';
-import { createSingleSlot, ToolbarCtx } from './toolbar-items';
+import { VwcMenuElement } from '../../../menu/definition';
+import { RTEFreeformStructure } from '../features/freeform';
+import { createButton, createMenu, createSingleSlot, UiCtx } from './ui';
 import { impl } from './impl';
 
-describe('ToolbarCtx', () => {
+describe('UiCtx', () => {
 	describe('evalProp', () => {
 		it('should evaluate a property function with the editor state', async () => {
-			const ctx = new ToolbarCtx(null as any, null as any);
+			const ctx = new UiCtx(null as any, null as any, null as any);
 			expect(ctx.evalProp(() => 'value')).toBe('value');
 		});
 
 		it('should return static property value directly', async () => {
-			const ctx = new ToolbarCtx(null as any, null as any);
+			const ctx = new UiCtx(null as any, null as any, null as any);
 			expect(ctx.evalProp('value')).toBe('value');
 		});
 	});
@@ -54,6 +56,48 @@ describe('createSelect', () => {
 	});
 });
 
+describe('createMenu', () => {
+	it('should set anchor to trigger when trigger is regular element', async () => {
+		const { instance } = await setup([
+			new RTECore(),
+			new RTEFreeformStructure(),
+			new RTEToolbarFeature(),
+		]);
+		const ctx = new UiCtx(null as any, instance[impl], {
+			popupPlacement: 'bottom',
+		});
+		const button = document.createElement('button');
+		const menuContainer = createMenu(ctx, {
+			label: 'Menu',
+			trigger: button,
+			children: [],
+		});
+		expect(
+			menuContainer.querySelector<VwcMenuElement>('vwc-menu')!.anchor
+		).toBe(button);
+	});
+
+	it('should set anchor to button when trigger is wrapped button', async () => {
+		const { instance } = await setup([
+			new RTECore(),
+			new RTEFreeformStructure(),
+			new RTEToolbarFeature(),
+		]);
+		const ctx = new UiCtx(null as any, instance[impl], {
+			popupPlacement: 'bottom',
+		});
+		const buttonWrapper = createButton(ctx, { label: 'Button' });
+		const menuContainer = createMenu(ctx, {
+			label: 'Menu',
+			trigger: buttonWrapper,
+			children: [],
+		});
+		expect(
+			menuContainer.querySelector<VwcMenuElement>('vwc-menu')!.anchor
+		).toBe(buttonWrapper.querySelector('vwc-button'));
+	});
+});
+
 describe('createSingleSlot', () => {
 	const setupForSlot = async () => {
 		const { element, view, instance } = await setup([
@@ -85,7 +129,9 @@ describe('createSingleSlot', () => {
 				};
 			},
 			renderSlot: async (slotName: string, initialValue: string) => {
-				const ctx = new ToolbarCtx(view, instance[impl]);
+				const ctx = new UiCtx(view, instance[impl], {
+					popupPlacement: 'bottom',
+				});
 				let value = initialValue;
 				const onChange = vitest.fn();
 				element.shadowRoot!.appendChild(
