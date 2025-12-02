@@ -8,7 +8,7 @@ import { docFactories } from './__tests__/doc-factories';
 import { impl } from './utils/impl';
 import { basicTextBlocks } from './__tests__/text-blocks';
 
-const { doc, text_line: line } = docFactories;
+const { doc, textLine: line } = docFactories;
 
 describe('RteConfig', () => {
 	it('should throw an error when required core feature is missing', () => {
@@ -62,16 +62,15 @@ describe('RteConfig', () => {
 		it('should initialise with an empty document by default', () => {
 			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
 			const instance = config.instantiateEditor()[impl];
-			expect(instance.state.doc.toString()).toBe('doc(text_line)');
+			expect(instance.state.doc.toString()).toBe('doc(textLine)');
 		});
-
 		it('should allow passing instance options', () => {
 			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
 			const instance = config.instantiateEditor({
 				initialDocument: doc(line('Hello world')),
 			})[impl];
 			expect(instance.state.doc.toString()).toBe(
-				'doc(text_line("Hello world"))'
+				'doc(textLine("Hello world"))'
 			);
 		});
 	});

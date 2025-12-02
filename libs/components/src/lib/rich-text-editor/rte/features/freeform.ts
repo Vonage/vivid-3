@@ -15,7 +15,7 @@ export class RteFreeformStructureImpl extends RteFeatureImpl {
 						group: 'inline',
 					},
 					// Since block and inline elements cannot be mixed, create a block for lines of text
-					text_line: {
+					textLine: {
 						group: 'block',
 						content: 'inline*',
 						parseDOM: [{ tag: 'div' }],

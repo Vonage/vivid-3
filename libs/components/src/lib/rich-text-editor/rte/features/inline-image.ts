@@ -246,7 +246,7 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 		return [
 			this.contribution({
 				nodes: {
-					inline_image: inlineImage,
+					inlineImage: inlineImage,
 				},
 			}),
 		];
@@ -259,7 +259,7 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 					props: {
 						nodeViews: {
 							// eslint-disable-next-line @typescript-eslint/naming-convention
-							inline_image: (node, view, getPos) =>
+							inlineImage: (node, view, getPos) =>
 								new InlineImageView(node, view, getPos, this.config),
 						},
 					},
@@ -352,7 +352,7 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 		const sel = state.selection;
 		if (
 			sel instanceof NodeSelection &&
-			sel.node.type === state.schema.nodes.inline_image
+			sel.node.type === state.schema.nodes.inlineImage
 		) {
 			return { pos: sel.from, node: sel.node };
 		}

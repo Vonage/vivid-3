@@ -68,11 +68,11 @@
 				type: 'doc',
 				content: [
 					{
-						type: 'text_line',
+						type: 'textLine',
 						content: [{ type: 'text', text: 'First line' }],
 					},
 					{
-						type: 'text_line',
+						type: 'textLine',
 						content: [{ type: 'text', text: 'Second line' }],
 					},
 				],

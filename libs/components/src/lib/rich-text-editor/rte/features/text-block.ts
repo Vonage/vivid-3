@@ -193,7 +193,7 @@ export class RteTextBlockStructureImpl extends RteFeatureImpl {
 					text: {
 						group: 'inline',
 					},
-					hard_break: {
+					hardBreak: {
 						inline: true,
 						group: 'inline',
 						selectable: false,
@@ -214,7 +214,7 @@ export class RteTextBlockStructureImpl extends RteFeatureImpl {
 		const forceBreak: Command = (state, dispatch) => {
 			dispatch?.(
 				state.tr
-					.replaceSelectionWith(state.schema.nodes.hard_break.create()!, true)
+					.replaceSelectionWith(state.schema.nodes.hardBreak.create()!, true)
 					.scrollIntoView()
 			);
 			return true;

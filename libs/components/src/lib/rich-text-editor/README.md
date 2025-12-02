@@ -53,7 +53,7 @@ rteComponent.instance = instance;
 			type: 'doc',
 			content: [
 				{
-					type: 'text_line',
+					type: 'textLine',
 					content: [
 						{ type: 'text', text: 'Hello' },
 						{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
@@ -84,7 +84,7 @@ const instance = config.instantiateEditor({
 		type: 'doc',
 		content: [
 			{
-				type: 'text_line',
+				type: 'textLine',
 				content: [
 					{ type: 'text', text: 'Hello' },
 					{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
@@ -143,7 +143,7 @@ An example document could look like this:
 					]
 				},
 				{
-					"type": "inline_image",
+					"type": "inlineImage",
 					"attrs": {
 						"imageUrl": "/vonage.png",
 						"alt": "Vonage Logo",
@@ -219,7 +219,7 @@ const fragment = parser.parseFragment('<img data-attachment-id="1">', {
 		}
 	},
 }); /* -> [{
-	"type": "inline_image",
+	"type": "inlineImage",
 	"attrs": {
 		"imageUrl": "attachment://1",
 		...
@@ -298,14 +298,14 @@ You can use the instance to get and modify the document programmatically.
 		document.querySelector('#replaceDocument').addEventListener('click', () => {
 			instance.replaceDocument({
 				type: 'doc',
-				content: [{ type: 'text_line', content: [{ type: 'text', text: 'Replaced document content' }] }],
+				content: [{ type: 'textLine', content: [{ type: 'text', text: 'Replaced document content' }] }],
 			});
 		});
 
 		document.querySelector('#reset').addEventListener('click', () => {
 			instance.reset({
 				type: 'doc',
-				content: [{ type: 'text_line', content: [{ type: 'text', text: 'Reset content' }] }],
+				content: [{ type: 'textLine', content: [{ type: 'text', text: 'Reset content' }] }],
 			});
 		});
 	});
@@ -429,7 +429,7 @@ Allows text input without any structure, similar to a regular text area.
 	<rte-schema-node name="doc">
 		<rte-schema-content>block+</rte-schema-content>
 	</rte-schema-node>
-	<rte-schema-node name="text_line">
+	<rte-schema-node name="textLine">
 		<rte-schema-group>block</rte-schema-group>
 		<rte-schema-content>inline*</rte-schema-content>
 	</rte-schema-node>
@@ -574,7 +574,7 @@ A `data-block-type="<id>"` attribute is added to identify the block type. No sty
 		<rte-schema-marks>&lt;determined by marksAllowed&gt;</rte-schema-marks>
 		<rte-schema-content>inline*</rte-schema-content>
 	</rte-schema-node>
-	<rte-schema-node name="hard_break">
+	<rte-schema-node name="hardBreak">
 		<rte-schema-group>inline</rte-schema-group>
 	</rte-schema-node>
 </rte-schema>
@@ -669,7 +669,7 @@ Configuration options:
 				type: 'doc',
 				content: [
 					{
-						type: 'text_line',
+						type: 'textLine',
 						content: [{ type: 'text', text: 'Tooltips and menus open outwards in this editor.' }],
 					},
 				],
@@ -872,7 +872,7 @@ When using the alternate theme the colors may no longer have sufficient contrast
 				type: 'doc',
 				content: [
 					{
-						type: 'text_line',
+						type: 'textLine',
 						content: [
 							{
 								type: 'text',
@@ -985,15 +985,15 @@ Keyboard shortcuts:
 - **Toggle numbered list**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>7</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>7</kbd>
 
 <rte-schema>
-	<rte-schema-node name="bullet_list">
+	<rte-schema-node name="bulletList">
 		<rte-schema-group>block list</rte-schema-group>
-		<rte-schema-content>(list_item | list)+</rte-schema-content>
+		<rte-schema-content>(listItem | list)+</rte-schema-content>
 	</rte-schema-node>
-	<rte-schema-node name="numbered_list">
+	<rte-schema-node name="numberedList">
 		<rte-schema-group>block list</rte-schema-group>
-		<rte-schema-content>(list_item | list)+</rte-schema-content>
+		<rte-schema-content>(listItem | list)+</rte-schema-content>
 	</rte-schema-node>
-	<rte-schema-node name="list_item">
+	<rte-schema-node name="listItem">
 		<rte-schema-attrs>
 			<rte-schema-textblock-attrs></rte-schema-textblock-attrs>
 		</rte-schema-attrs>
@@ -1013,46 +1013,46 @@ Keyboard shortcuts:
 				type: 'doc',
 				content: [
 					{
-						type: 'bullet_list',
+						type: 'bulletList',
 						content: [
 							{
-								type: 'list_item',
+								type: 'listItem',
 								content: [{ type: 'text', text: 'Bullet list' }],
 							},
 							{
-								type: 'bullet_list',
+								type: 'bulletList',
 								content: [
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 1' }],
 									},
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 2' }],
 									},
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 3' }],
 									},
 								],
 							},
 							{
-								type: 'list_item',
+								type: 'listItem',
 								content: [{ type: 'text', text: 'Numbered list' }],
 							},
 							{
-								type: 'numbered_list',
+								type: 'numberedList',
 								content: [
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 1' }],
 									},
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 2' }],
 									},
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 3' }],
 									},
 								],
@@ -1174,7 +1174,7 @@ Adds the ability to insert links.
 				type: 'doc',
 				content: [
 					{
-						type: 'text_line',
+						type: 'textLine',
 						content: [
 							{
 								type: 'text',
@@ -1199,7 +1199,7 @@ Adds the ability to insert links.
 Adds support for inline images. This feature does not provide any UI for adding images by itself, however the user can paste HTML content containing images into the editor.
 
 <rte-schema>
-	<rte-schema-node name="inline_image">
+	<rte-schema-node name="inlineImage">
 		<rte-schema-group>inline</rte-schema-group>
 		<rte-schema-attrs>
 			<rte-schema-attr name="imageUrl" type="string" required description="A URL representing the image to display."></rte-schema-attr>
@@ -1239,7 +1239,7 @@ Adds support for inline images. This feature does not provide any UI for adding 
 						content: [
 							{ type: 'text', text: 'Image: ' },
 							{
-								type: 'inline_image',
+								type: 'inlineImage',
 								attrs: {
 									imageUrl: '/assets/images/large.jpg',
 									alt: 'Landscape image',
@@ -1255,7 +1255,7 @@ Adds support for inline images. This feature does not provide any UI for adding 
 </script>
 ```
 
-The `inline_image` node type has the following attributes:
+The `inlineImage` node type has the following attributes:
 
 - `imageUrl: string` (required): A URL representing the image to display. By default, this corresponds to the `src` attribute of the HTML `<img>` element.
 - `alt: string` (optional): The alt text for the image. Defaults to an empty string.

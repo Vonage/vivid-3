@@ -10,7 +10,7 @@ import {
 import { RteToolbarFeature } from './toolbar';
 import { RteFreeformStructure } from './freeform';
 
-const { doc, text_line: p, inline_image: img, text } = docFactories;
+const { doc, textLine: p, inlineImage: img, text } = docFactories;
 
 const featuresWithConfig = (config?: RteInlineImageFeatureConfig) => [
 	new RteCore(),
@@ -20,7 +20,7 @@ const featuresWithConfig = (config?: RteInlineImageFeatureConfig) => [
 ];
 
 describe('RteInlineImageFeature', () => {
-	it('should add an inline_image node to the schema', async () => {
+	it('should add an inlineImage node to the schema', async () => {
 		const rte = await setup(featuresWithConfig(), [
 			p(
 				img.attrs({
@@ -35,8 +35,8 @@ describe('RteInlineImageFeature', () => {
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
-			text_line(
-				inline_image[imageUrl="/image.jpg" alt="Image" size="100%" naturalWidth=100 naturalHeight=200]()
+			textLine(
+				inlineImage[imageUrl="/image.jpg" alt="Image" size="100%" naturalWidth=100 naturalHeight=200]()
 			)
 			"
 		`
@@ -52,8 +52,8 @@ describe('RteInlineImageFeature', () => {
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
-			text_line(
-				inline_image[imageUrl="image.jpg" alt="Image" size="100%" naturalWidth=100 naturalHeight=200]()
+			textLine(
+				inlineImage[imageUrl="image.jpg" alt="Image" size="100%" naturalWidth=100 naturalHeight=200]()
 			)
 			"
 		`
@@ -64,8 +64,8 @@ describe('RteInlineImageFeature', () => {
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
-			text_line(
-				inline_image[imageUrl="minimal.jpg" alt="" size=null naturalWidth=null naturalHeight=null]()
+			textLine(
+				inlineImage[imageUrl="minimal.jpg" alt="" size=null naturalWidth=null naturalHeight=null]()
 			)
 			"
 		`
@@ -123,9 +123,9 @@ describe('RteInlineImageFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			text_line(
+			textLine(
 				'Hello|',
-				inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=100 naturalHeight=200]()
+				inlineImage[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=100 naturalHeight=200]()
 			)
 			"
 		`);
@@ -134,8 +134,8 @@ describe('RteInlineImageFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			text_line(
-				inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=100 naturalHeight=200]()
+			textLine(
+				inlineImage[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=100 naturalHeight=200]()
 			)
 			"
 		`);
@@ -157,8 +157,8 @@ describe('RteInlineImageFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			text_line(
-				inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=100 naturalHeight=200]()
+			textLine(
+				inlineImage[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=100 naturalHeight=200]()
 			)
 			"
 		`);
@@ -226,8 +226,8 @@ describe('RteInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				text_line(
-					[|inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=null naturalHeight=null]()|]
+				textLine(
+					[|inlineImage[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=null naturalHeight=null]()|]
 				)
 				"
 			`);
@@ -248,8 +248,8 @@ describe('RteInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				text_line(
-					[|inline_image[imageUrl="/image.jpg" alt="Image" size="100%" naturalWidth=null naturalHeight=null]()|]
+				textLine(
+					[|inlineImage[imageUrl="/image.jpg" alt="Image" size="100%" naturalWidth=null naturalHeight=null]()|]
 				)
 				"
 			`);
@@ -271,8 +271,8 @@ describe('RteInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				text_line(
-					[|inline_image[imageUrl="/image.jpg" alt="Image" size="50px" naturalWidth=100 naturalHeight=null]()|]
+				textLine(
+					[|inlineImage[imageUrl="/image.jpg" alt="Image" size="50px" naturalWidth=100 naturalHeight=null]()|]
 				)
 				"
 			`);
@@ -294,8 +294,8 @@ describe('RteInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				text_line(
-					[|inline_image[imageUrl="/image.jpg" alt="Image" size="300px" naturalWidth=1000 naturalHeight=null]()|]
+				textLine(
+					[|inlineImage[imageUrl="/image.jpg" alt="Image" size="300px" naturalWidth=1000 naturalHeight=null]()|]
 				)
 				"
 			`);
@@ -316,8 +316,8 @@ describe('RteInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				text_line(
-					[|inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=null naturalHeight=null]()|]
+				textLine(
+					[|inlineImage[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=null naturalHeight=null]()|]
 				)
 				"
 			`);
@@ -341,9 +341,9 @@ describe('RteInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				text_line(
+				textLine(
 					'|Hello',
-					inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=null naturalHeight=null]()
+					inlineImage[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=null naturalHeight=null]()
 				)
 				"
 			`);
@@ -362,8 +362,8 @@ describe('RteInlineImageFeature', () => {
 			);
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				text_line(
-					inline_image[imageUrl="parsed:image.jpg" alt="Image" size="100%" naturalWidth=100 naturalHeight=200]()
+				textLine(
+					inlineImage[imageUrl="parsed:image.jpg" alt="Image" size="100%" naturalWidth=100 naturalHeight=200]()
 				)
 				"
 			`);

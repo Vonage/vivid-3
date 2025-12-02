@@ -3,15 +3,15 @@ import { docFactories } from '../__tests__/doc-factories';
 import { RteCore } from './core';
 import { RteFreeformStructure } from './freeform';
 
-const { text_line: line } = docFactories;
+const { textLine: line } = docFactories;
 
 const features = [new RteCore(), new RteFreeformStructure()];
 
 describe('RteFreeformStructure', () => {
-	it('should create a schema with text_line blocks at the top level', async () => {
+	it('should create a schema with textLine blocks at the top level', async () => {
 		const { docStr } = await setup(features, [line('Hello'), line('World')]);
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('|Hello'), text_line('World')"`
+			`"textLine('|Hello'), textLine('World')"`
 		);
 	});
 
@@ -24,7 +24,7 @@ describe('RteFreeformStructure', () => {
 		keydown('Enter');
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello '), text_line('|world')"`
+			`"textLine('Hello '), textLine('|world')"`
 		);
 	});
 });

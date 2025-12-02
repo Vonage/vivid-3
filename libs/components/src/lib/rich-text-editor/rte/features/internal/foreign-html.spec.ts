@@ -8,7 +8,7 @@ import { RteHtmlParser } from '../../html-parser';
 import { RteLinkFeature } from '../link';
 import { RteHtmlSerializer } from '../../html-serializer';
 
-const { text_line: line, text, bold } = docFactories;
+const { textLine: line, text, bold } = docFactories;
 
 const features = [
 	new RteCore(),
@@ -34,7 +34,7 @@ describe('RteForeignHtmlFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			text_line('paste:', <bold>'pasted', ' drop:', <bold>'[dropped|]')
+			textLine('paste:', <bold>'pasted', ' drop:', <bold>'[dropped|]')
 			"
 		`);
 	});
@@ -44,7 +44,7 @@ describe('RteForeignHtmlFeature', () => {
 
 		rte.pasteHtml(`<a href="javascript:alert('xss')">Evil</a>`);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('Evil|')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('Evil|')"`);
 	});
 
 	it('should use the provided html serializer when content is copied or dragged', async () => {

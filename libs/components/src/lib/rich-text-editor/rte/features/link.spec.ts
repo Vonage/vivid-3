@@ -6,7 +6,7 @@ import { RteLinkFeature } from './link';
 import { RteToolbarFeature } from './toolbar';
 import { RteFreeformStructure } from './freeform';
 
-const { text_line: line, text, link } = docFactories;
+const { textLine: line, text, link } = docFactories;
 
 const features = [
 	new RteCore(),
@@ -28,7 +28,7 @@ describe('RteLinkFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			text_line(
+			textLine(
 				'|Visit ',
 				<link[href="https://example.com"]>'example.com',
 				' for more info'
@@ -46,7 +46,7 @@ describe('RteLinkFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			text_line(
+			textLine(
 				'|Visit ',
 				<link[href="https://example.com"]>'example.com',
 				' for more info'
@@ -79,7 +79,7 @@ describe('RteLinkFeature', () => {
 		await click(button(openMenu(), 'Apply'));
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line(<link[href="https://example.com"]>'Click here|')"`
+			`"textLine(<link[href="https://example.com"]>'Click here|')"`
 		);
 
 		await click(toolbarButton('Hyperlink'));
@@ -149,7 +149,7 @@ describe('RteLinkFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			text_line(
+			textLine(
 				'Go to ',
 				<link[href="https://new.example.com"]>'our new website|'
 			)
@@ -209,7 +209,7 @@ describe('RteLinkFeature', () => {
 		await elementUpdated(element);
 		await click(button(openPopover()!, 'Delete'));
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Go to our websi|te')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Go to our websi|te')"`);
 	});
 
 	it('should open the toolbar menu when edit button is clicked', async () => {

@@ -343,7 +343,7 @@ Functionality:
 					const images = imageFiles.map((file) => {
 						const id = attachedImages.length;
 						attachedImages.push(new AttachedImage(file));
-						return { type: 'inline_image', attrs: { imageUrl: `attachment://${id}`, alt: file.name } };
+						return { type: 'inlineImage', attrs: { imageUrl: `attachment://${id}`, alt: file.name } };
 					});
 					if (!images.length) {
 						return null;

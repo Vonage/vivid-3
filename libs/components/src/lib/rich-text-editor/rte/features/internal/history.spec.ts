@@ -21,19 +21,19 @@ describe('RteHistoryFeature', () => {
 		selectAll();
 		keydown('b', { ctrl: true }); // Make bold
 
-		expect(docStr()).toMatchInlineSnapshot(`"[text_line(<bold>'hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[textLine(<bold>'hello')|]"`);
 
 		keydown('z', { ctrl: true });
-		expect(docStr()).toMatchInlineSnapshot(`"[text_line('hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[textLine('hello')|]"`);
 
 		keydown('z', { ctrl: true });
-		expect(docStr()).toMatchInlineSnapshot(`"text_line(|)"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine(|)"`);
 
 		keydown('y', { ctrl: true });
-		expect(docStr()).toMatchInlineSnapshot(`"[text_line('hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[textLine('hello')|]"`);
 
 		keydown('Z', { cmd: true, shift: true });
-		expect(docStr()).toMatchInlineSnapshot(`"[text_line(<bold>'hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[textLine(<bold>'hello')|]"`);
 	});
 
 	it('should add undo and redo buttons to the toolbar that are disabled when the action is not possible', async () => {
@@ -51,10 +51,10 @@ describe('RteHistoryFeature', () => {
 
 		expect(toolbarButton('Undo').disabled).toBe(true);
 		expect(toolbarButton('Redo').disabled).toBe(false);
-		expect(docStr()).toMatchInlineSnapshot(`"text_line(|)"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine(|)"`);
 
 		toolbarButton('Redo').click();
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('hello|')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('hello|')"`);
 		expect(toolbarButton('Undo').disabled).toBe(false);
 		expect(toolbarButton('Redo').disabled).toBe(true);
 	});

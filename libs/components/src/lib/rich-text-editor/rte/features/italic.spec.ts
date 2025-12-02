@@ -5,7 +5,7 @@ import { RteItalicFeature } from './italic';
 import { RteToolbarFeature } from './toolbar';
 import { RteFreeformStructure } from './freeform';
 
-const { text, text_line: line, italic } = docFactories;
+const { text, textLine: line, italic } = docFactories;
 
 const features = [
 	new RteCore(),
@@ -19,7 +19,7 @@ describe('RteItalicFeature', () => {
 		const { docStr } = await setup(features, [
 			line(text.marks(italic())('Hello')),
 		]);
-		expect(docStr()).toMatchInlineSnapshot(`"text_line(<italic>'|Hello')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine(<italic>'|Hello')"`);
 	});
 
 	it('should deserialize italic from HTML', async () => {
@@ -27,7 +27,7 @@ describe('RteItalicFeature', () => {
 		rte.setHtml(`<div><em>italic</em><i>italic</i></div>`);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line(<italic>'|italicitalic')"`
+			`"textLine(<italic>'|italicitalic')"`
 		);
 	});
 
@@ -46,12 +46,12 @@ describe('RteItalicFeature', () => {
 		keydown('i', { ctrl: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <italic>'[world|]')"`
+			`"textLine('Hello ', <italic>'[world|]')"`
 		);
 
 		keydown('i', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello [world|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello [world|]')"`);
 	});
 
 	it('should remember the italic mark when no text is selected', async () => {
@@ -64,13 +64,13 @@ describe('RteItalicFeature', () => {
 		keydown('i', { ctrl: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello |<italic>|world')"`
+			`"textLine('Hello |<italic>|world')"`
 		);
 
 		await typeTextAtCursor('beautiful ');
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <italic>'beautiful |', 'world')"`
+			`"textLine('Hello ', <italic>'beautiful |', 'world')"`
 		);
 	});
 
@@ -84,13 +84,13 @@ describe('RteItalicFeature', () => {
 		toolbarButton('Italic').click();
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <italic>'[world|]')"`
+			`"textLine('Hello ', <italic>'[world|]')"`
 		);
 		expect(isActive(toolbarButton('Italic'))).toBe(true);
 
 		toolbarButton('Italic').click();
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello [world|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello [world|]')"`);
 		expect(isActive(toolbarButton('Italic'))).toBe(false);
 	});
 });

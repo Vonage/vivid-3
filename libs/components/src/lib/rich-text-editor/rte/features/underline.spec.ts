@@ -5,7 +5,7 @@ import { RteUnderlineFeature } from './underline';
 import { RteToolbarFeature } from './toolbar';
 import { RteFreeformStructure } from './freeform';
 
-const { text, text_line: line, underline } = docFactories;
+const { text, textLine: line, underline } = docFactories;
 
 const features = [
 	new RteCore(),
@@ -19,7 +19,7 @@ describe('RteUnderlineFeature', () => {
 		const { docStr } = await setup(features, [
 			line(text.marks(underline())('Hello')),
 		]);
-		expect(docStr()).toMatchInlineSnapshot(`"text_line(<underline>'|Hello')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine(<underline>'|Hello')"`);
 	});
 
 	it('should deserialize underline from HTML', async () => {
@@ -27,7 +27,7 @@ describe('RteUnderlineFeature', () => {
 		rte.setHtml(`<div><u>underline</u></div>`);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line(<underline>'|underline')"`
+			`"textLine(<underline>'|underline')"`
 		);
 	});
 
@@ -50,12 +50,12 @@ describe('RteUnderlineFeature', () => {
 		keydown('u', { ctrl: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <underline>'[world|]')"`
+			`"textLine('Hello ', <underline>'[world|]')"`
 		);
 
 		keydown('u', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello [world|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello [world|]')"`);
 	});
 
 	it('should remember the underline mark when no text is selected', async () => {
@@ -68,13 +68,13 @@ describe('RteUnderlineFeature', () => {
 		keydown('u', { ctrl: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello |<underline>|world')"`
+			`"textLine('Hello |<underline>|world')"`
 		);
 
 		await typeTextAtCursor('beautiful ');
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <underline>'beautiful |', 'world')"`
+			`"textLine('Hello ', <underline>'beautiful |', 'world')"`
 		);
 	});
 
@@ -88,13 +88,13 @@ describe('RteUnderlineFeature', () => {
 		toolbarButton('Underline').click();
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <underline>'[world|]')"`
+			`"textLine('Hello ', <underline>'[world|]')"`
 		);
 		expect(isActive(toolbarButton('Underline'))).toBe(true);
 
 		toolbarButton('Underline').click();
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello [world|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello [world|]')"`);
 		expect(isActive(toolbarButton('Underline'))).toBe(false);
 	});
 });

@@ -91,7 +91,7 @@ const getSharedAncestor = ($from: ResolvedPos, $to: ResolvedPos) =>
 /// Returns the cursor if it is in a list item
 const cursorInListItem = (state: EditorState) => {
 	const { $cursor } = state.selection as TextSelection;
-	if ($cursor?.parent.type === state.schema.nodes.list_item) {
+	if ($cursor?.parent.type === state.schema.nodes.listItem) {
 		return $cursor;
 	}
 	return null;
@@ -109,10 +109,7 @@ const allListItemsAreOfType = (
 		if (node.type.isInGroup('list')) {
 			currentListType = node.type; // Entering list
 		}
-		if (
-			node.type === state.schema.nodes.list_item &&
-			currentListType !== type
-		) {
+		if (node.type === state.schema.nodes.listItem && currentListType !== type) {
 			allLisAreOurType = false;
 		}
 	});
@@ -189,7 +186,7 @@ const sink = (
 	$node: ResolvedPos,
 	tr: Transaction
 ) => {
-	if ($node.parent.type === rte.schema.nodes.list_item) {
+	if ($node.parent.type === rte.schema.nodes.listItem) {
 		sinkLi(listType, $node, tr);
 	} else {
 		sinkNode(rte, listType, $node, tr);
@@ -238,7 +235,7 @@ const sinkNode = (
 			new Slice(
 				Fragment.from(
 					listType.create(null, [
-						rte.schema.nodes.list_item.create(
+						rte.schema.nodes.listItem.create(
 							rte.textblockAttrs.extractFromNode($node.parent)
 						),
 					])
@@ -262,7 +259,7 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 		return [
 			this.contribution({
 				nodes: {
-					list_item: {
+					listItem: {
 						content: 'inline*',
 						attrs: textblockAttrs.attrs,
 						defining: true,
@@ -276,17 +273,17 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 							return ['li', ...textblockAttrs.getDOMAttrs(node), 0];
 						},
 					},
-					bullet_list: {
+					bulletList: {
 						group: 'block list',
-						content: '(list_item | list)+',
+						content: '(listItem | list)+',
 						parseDOM: [{ tag: 'ul' }],
 						toDOM() {
 							return ['ul', 0];
 						},
 					},
-					numbered_list: {
+					numberedList: {
 						group: 'block list',
-						content: '(list_item | list)+',
+						content: '(listItem | list)+',
 						parseDOM: [{ tag: 'ol' }],
 						toDOM() {
 							return ['ol', 0];
@@ -361,8 +358,8 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 					Backspace: backspaceCommand,
 					Tab: tabCommand,
 					'Shift-Tab': shiftTabCommand,
-					'Mod-Shift-8': this.toggleList(rte.schema.nodes.bullet_list),
-					'Mod-Shift-7': this.toggleList(rte.schema.nodes.numbered_list),
+					'Mod-Shift-8': this.toggleList(rte.schema.nodes.bulletList),
+					'Mod-Shift-7': this.toggleList(rte.schema.nodes.numberedList),
 				}),
 				contributionPriority.high // Must apply before default handling of core
 			),
@@ -380,12 +377,12 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 							icon: 'bullet-list-2-line',
 							active: () =>
 								this.isSelectionInList(
-									rte.schema.nodes.bullet_list,
+									rte.schema.nodes.bulletList,
 									ctx.rte.state
 								),
 							onClick: () => {
 								const { state, dispatch } = ctx.view;
-								this.toggleList(rte.schema.nodes.bullet_list)(state, dispatch);
+								this.toggleList(rte.schema.nodes.bulletList)(state, dispatch);
 							},
 						}),
 				},
@@ -400,15 +397,12 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 							icon: 'list-numbered-line',
 							active: () =>
 								this.isSelectionInList(
-									rte.schema.nodes.numbered_list,
+									rte.schema.nodes.numberedList,
 									ctx.rte.state
 								),
 							onClick: () => {
 								const { state, dispatch } = ctx.view;
-								this.toggleList(rte.schema.nodes.numbered_list)(
-									state,
-									dispatch
-								);
+								this.toggleList(rte.schema.nodes.numberedList)(state, dispatch);
 							},
 						}),
 				},
@@ -430,7 +424,7 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 						// Lift all li in selection
 						const tr = state.tr;
 						state.doc.nodesBetween($from.pos, $to.pos, (node, pos) => {
-							if (node.type === state.schema.nodes.list_item) {
+							if (node.type === state.schema.nodes.listItem) {
 								const $li = tr.doc.resolve(tr.mapping.map(pos + 1));
 								lift(this.rte, $li, tr);
 							}

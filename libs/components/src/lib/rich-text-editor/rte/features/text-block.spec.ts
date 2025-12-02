@@ -11,7 +11,7 @@ import { RteItalicFeature } from './italic';
 import { RteListFeature } from './list';
 import { RteAlignmentFeature } from './alignment';
 
-const { node, doc, bullet_list, list_item, bold, italic, text } = docFactories;
+const { node, doc, bulletList, listItem, bold, italic, text } = docFactories;
 
 const features = (config: RteTextBlockStructureConfig) => [
 	new RteCore(),
@@ -381,7 +381,7 @@ describe('RteTextBlockStructure', () => {
 		keydown('Enter', { shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"paragraph('Hello ', hard_break(), '|world')"`
+			`"paragraph('Hello ', hardBreak(), '|world')"`
 		);
 	});
 
@@ -589,7 +589,7 @@ describe('RteTextBlockStructure', () => {
 				new RteListFeature(),
 				new RteToolbarFeature(),
 			],
-			[bullet_list(list_item('item'))]
+			[bulletList(listItem('item'))]
 		);
 
 		expect(toolbarSelect('Paragraph styles').value).toBe('');
@@ -616,12 +616,12 @@ describe('RteTextBlockStructure', () => {
 				new RteListFeature(),
 				new RteToolbarFeature(),
 			],
-			[bullet_list(list_item('item'))]
+			[bulletList(listItem('item'))]
 		);
 
 		keydown('1', { ctrl: true, alt: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"bullet_list(list_item('|item'))"`);
+		expect(docStr()).toMatchInlineSnapshot(`"bulletList(listItem('|item'))"`);
 	});
 
 	it('should render textblock attributes in the DOM', async () => {

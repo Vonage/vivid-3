@@ -15,7 +15,7 @@ const config = new RteConfig([
 	new RteInlineImageFeature(),
 ]);
 
-const { doc, text_line: line, text, bold, inline_image: img } = docFactories;
+const { doc, textLine: line, text, bold, inlineImage: img } = docFactories;
 
 describe('RteHtmlSerializer', () => {
 	it('should serialize HTML from fragment', async () => {
@@ -43,7 +43,7 @@ describe('RteHtmlSerializer', () => {
 			serializers: {
 				nodes: {
 					// eslint-disable-next-line @typescript-eslint/naming-convention
-					inline_image: (node) => [
+					inlineImage: (node) => [
 						'img',
 						{
 							src: node.attrs.imageUrl,

@@ -5,7 +5,7 @@ import { RteMonospaceFeature } from './monospace';
 import { RteToolbarFeature } from './toolbar';
 import { RteFreeformStructure } from './freeform';
 
-const { text, text_line: line, monospace } = docFactories;
+const { text, textLine: line, monospace } = docFactories;
 
 const features = [
 	new RteCore(),
@@ -19,7 +19,7 @@ describe('RteMonospaceFeature', () => {
 		const { docStr } = await setup(features, [
 			line(text.marks(monospace())('Hello')),
 		]);
-		expect(docStr()).toMatchInlineSnapshot(`"text_line(<monospace>'|Hello')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine(<monospace>'|Hello')"`);
 	});
 
 	it('should deserialize monospace from HTML', async () => {
@@ -27,7 +27,7 @@ describe('RteMonospaceFeature', () => {
 		rte.setHtml(`<div><tt>monospace</tt><code>monospace</code></div>`);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line(<monospace>'|monospacemonospace')"`
+			`"textLine(<monospace>'|monospacemonospace')"`
 		);
 	});
 
@@ -50,12 +50,12 @@ describe('RteMonospaceFeature', () => {
 		keydown('M', { ctrl: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <monospace>'[world|]')"`
+			`"textLine('Hello ', <monospace>'[world|]')"`
 		);
 
 		keydown('M', { ctrl: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello [world|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello [world|]')"`);
 	});
 
 	it('should remember the monospace mark when no text is selected', async () => {
@@ -68,13 +68,13 @@ describe('RteMonospaceFeature', () => {
 		keydown('M', { ctrl: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello |<monospace>|world')"`
+			`"textLine('Hello |<monospace>|world')"`
 		);
 
 		await typeTextAtCursor('beautiful ');
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <monospace>'beautiful |', 'world')"`
+			`"textLine('Hello ', <monospace>'beautiful |', 'world')"`
 		);
 	});
 
@@ -88,13 +88,13 @@ describe('RteMonospaceFeature', () => {
 		toolbarButton('Monospace').click();
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <monospace>'[world|]')"`
+			`"textLine('Hello ', <monospace>'[world|]')"`
 		);
 		expect(isActive(toolbarButton('Monospace'))).toBe(true);
 
 		toolbarButton('Monospace').click();
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello [world|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello [world|]')"`);
 		expect(isActive(toolbarButton('Monospace'))).toBe(false);
 	});
 });

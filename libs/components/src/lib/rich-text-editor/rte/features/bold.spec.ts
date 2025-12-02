@@ -5,7 +5,7 @@ import { RteBoldFeature } from './bold';
 import { RteToolbarFeature } from './toolbar';
 import { RteFreeformStructure } from './freeform';
 
-const { text, text_line: line, bold } = docFactories;
+const { text, textLine: line, bold } = docFactories;
 
 const features = [
 	new RteCore(),
@@ -19,7 +19,7 @@ describe('RteBoldFeature', () => {
 		const { docStr } = await setup(features, [
 			line(text.marks(bold())('Hello')),
 		]);
-		expect(docStr()).toMatchInlineSnapshot(`"text_line(<bold>'|Hello')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine(<bold>'|Hello')"`);
 	});
 
 	it('should deserialize bold from HTML', async () => {
@@ -29,7 +29,7 @@ describe('RteBoldFeature', () => {
 		);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line(<bold>'|boldboldbold')"`
+			`"textLine(<bold>'|boldboldbold')"`
 		);
 	});
 
@@ -50,12 +50,12 @@ describe('RteBoldFeature', () => {
 		keydown('b', { ctrl: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <bold>'[world|]')"`
+			`"textLine('Hello ', <bold>'[world|]')"`
 		);
 
 		keydown('b', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello [world|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello [world|]')"`);
 	});
 
 	it('should remember the bold mark when no text is selected', async () => {
@@ -67,14 +67,12 @@ describe('RteBoldFeature', () => {
 		placeCursor('Hello |world');
 		keydown('b', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello |<bold>|world')"`
-		);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello |<bold>|world')"`);
 
 		await typeTextAtCursor('beautiful ');
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <bold>'beautiful |', 'world')"`
+			`"textLine('Hello ', <bold>'beautiful |', 'world')"`
 		);
 	});
 
@@ -88,13 +86,13 @@ describe('RteBoldFeature', () => {
 		toolbarButton('Bold').click();
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <bold>'[world|]')"`
+			`"textLine('Hello ', <bold>'[world|]')"`
 		);
 		expect(isActive(toolbarButton('Bold'))).toBe(true);
 
 		toolbarButton('Bold').click();
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello [world|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello [world|]')"`);
 		expect(isActive(toolbarButton('Bold'))).toBe(false);
 	});
 });

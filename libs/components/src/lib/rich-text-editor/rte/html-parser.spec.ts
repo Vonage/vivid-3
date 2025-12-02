@@ -24,9 +24,9 @@ const config = new RteConfig([
 
 const {
 	doc,
-	text_line: line,
+	textLine: line,
 	text,
-	inline_image: img,
+	inlineImage: img,
 	bold,
 	italic,
 } = docFactories;
@@ -105,10 +105,10 @@ describe('RteHtmlParser', () => {
 				return [
 					this.contribution({
 						nodes: {
-							dummy_node: {},
+							dummyNode: {},
 						},
 						marks: {
-							dummy_mark: {},
+							dummyMark: {},
 						},
 					}),
 				];
@@ -130,8 +130,8 @@ describe('RteHtmlParser', () => {
 			}
 		);
 
-		expect(parseRules!.nodes['dummy_node']).toEqual([]);
-		expect(parseRules!.marks['dummy_mark']).toEqual([]);
+		expect(parseRules!.nodes['dummyNode']).toEqual([]);
+		expect(parseRules!.marks['dummyMark']).toEqual([]);
 	});
 
 	it('should parse DOM modified by modifyDom', async () => {
