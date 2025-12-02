@@ -853,6 +853,13 @@ describe('vwc-combobox', () => {
 			expect(tabEvent.defaultPrevented).toBe(true);
 			expect(element.open).toBe(false);
 		});
+
+		it('should not move to previous option when there is no selection', async () => {
+			element.selectedIndex = -1;
+			(element as any).selectPreviousOption();
+
+			expect(element.selectedIndex).toBe(-1);
+		});
 	});
 
 	describe('on focusout', () => {

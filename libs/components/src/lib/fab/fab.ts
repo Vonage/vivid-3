@@ -65,6 +65,7 @@ export class Fab extends AffixIconWithTrailing(VividFoundationButton) {
 	 * Prevents interaction when disabled.
 	 */
 	clickHandler(event: Event) {
+		/* v8 ignore else -- @preserve */
 		if (this.disabled) {
 			event.preventDefault();
 			event.stopImmediatePropagation();

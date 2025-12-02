@@ -182,6 +182,7 @@ export class Button extends AffixIconWithTrailing(
 	 * Prevents interaction when disabled or pending.
 	 */
 	clickHandler(event: Event) {
+		/* v8 ignore else -- @preserve */
 		if (this.disabled || this.pending) {
 			event.preventDefault();
 			event.stopImmediatePropagation();

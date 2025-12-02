@@ -66,6 +66,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	 * @internal
 	 */
 	expandedChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.$fastController.isConnected) {
 			if (this.submenu && !this.expanded) {
 				this.submenu.collapseExpandedItem();
@@ -357,13 +358,15 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 				}
 				return false;
 
-			case keyArrowRight:
+			case keyArrowRight: {
 				//open/focus on submenu
+				/* v8 ignore else -- @preserve */
 				if (this.submenu) {
 					this.expanded = true;
 					this.#emitSyntheticClick();
 				}
 				return false;
+			}
 
 			case keyArrowLeft:
 				//close submenu

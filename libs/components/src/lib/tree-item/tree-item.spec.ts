@@ -133,6 +133,20 @@ describe('vwc-tree-item', () => {
 			expect(treeItem1.expanded).toBe(true);
 		});
 
+		it('should not expand when disabled and expand button is clicked', async () => {
+			const expandButton = getControlElement(treeItem1).querySelector(
+				ICON_SELECTOR
+			) as Icon;
+
+			treeItem1.disabled = true;
+			await elementUpdated(treeItem1);
+
+			expandButton.click();
+			await elementUpdated(treeItem1);
+
+			expect(treeItem1.expanded).toBe(false);
+		});
+
 		it('should focus out', async () => {
 			treeItem1.focus();
 			await elementUpdated(treeItem1);

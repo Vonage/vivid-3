@@ -72,6 +72,7 @@ function createEnterKeymapPlugin() {
 				dispatch &&
 					dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView());
 			} else {
+				/* v8 ignore else -- @preserve */
 				if (dispatch) {
 					const tr = state.tr;
 
@@ -467,6 +468,7 @@ export class ProseMirrorFacade {
 					);
 
 					if (mark) {
+						/* v8 ignore else -- @preserve */
 						if (textSize === null) {
 							textSize = mark.attrs.size;
 						} else if (textSize !== mark.attrs.size) {

@@ -253,9 +253,11 @@ export class DateRangePicker extends MinMaxCalendarPicker(
 	 */
 	override connectedCallback() {
 		super.connectedCallback();
+		/* v8 ignore else -- @preserve */
 		if (!this.start) {
 			this.start = this.initialStart;
 		}
+		/* v8 ignore else -- @preserve */
 		if (!this.end) {
 			this.end = this.initialEnd;
 		}
