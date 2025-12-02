@@ -164,7 +164,7 @@ export const cssPlatform: PlatformConfig = {
 		'vvd/name/css',
 		'vvd/value/css/dimension',
 		'vvd/value/css/shadow',
-		'vvd/value/css/typography',
+		// 'vvd/value/css/typography',
 		'size/pxToRem',
 		'vvd/value/css/roundRems',
 	],
