@@ -4,7 +4,9 @@ import { RTEToolbarFeature } from '../features/toolbar';
 import { RTECore } from '../features/core';
 import { setup } from '../__tests__/test-utils';
 import type { Tooltip } from '../../../tooltip/tooltip';
-import { createSingleSlot, UiCtx } from './ui';
+import { VwcMenuElement } from '../../../menu/definition';
+import { RTEFreeformStructure } from '../features/freeform';
+import { createButton, createMenu, createSingleSlot, UiCtx } from './ui';
 import { impl } from './impl';
 
 describe('UiCtx', () => {
@@ -51,6 +53,48 @@ describe('createSelect', () => {
 
 		expect(tooltip.open).toBe(false);
 		expect(tooltip.anchor).toBe(select);
+	});
+});
+
+describe('createMenu', () => {
+	it('should set anchor to trigger when trigger is regular element', async () => {
+		const { instance } = await setup([
+			new RTECore(),
+			new RTEFreeformStructure(),
+			new RTEToolbarFeature(),
+		]);
+		const ctx = new UiCtx(null as any, instance[impl], {
+			popupPlacement: 'bottom',
+		});
+		const button = document.createElement('button');
+		const menuContainer = createMenu(ctx, {
+			label: 'Menu',
+			trigger: button,
+			children: [],
+		});
+		expect(
+			menuContainer.querySelector<VwcMenuElement>('vwc-menu')!.anchor
+		).toBe(button);
+	});
+
+	it('should set anchor to button when trigger is wrapped button', async () => {
+		const { instance } = await setup([
+			new RTECore(),
+			new RTEFreeformStructure(),
+			new RTEToolbarFeature(),
+		]);
+		const ctx = new UiCtx(null as any, instance[impl], {
+			popupPlacement: 'bottom',
+		});
+		const buttonWrapper = createButton(ctx, { label: 'Button' });
+		const menuContainer = createMenu(ctx, {
+			label: 'Menu',
+			trigger: buttonWrapper,
+			children: [],
+		});
+		expect(
+			menuContainer.querySelector<VwcMenuElement>('vwc-menu')!.anchor
+		).toBe(buttonWrapper.querySelector('vwc-button'));
 	});
 });
 
