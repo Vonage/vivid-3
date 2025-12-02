@@ -142,6 +142,7 @@ export const flutterPlatform: PlatformConfig = {
 			destination: 'lib/vivid-design-tokens.dart',
 			format: 'vvd/flutter/variables',
 			// TODO: Remove this filter after font licensing is sorted out and typography tokens are rolled out.
+			/* v8 ignore next -- @preserve */
 			filter: (token) => !token.filePath.includes('typography'),
 			options: {
 				className: 'VvdTokens',
