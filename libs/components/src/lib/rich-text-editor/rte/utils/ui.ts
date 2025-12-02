@@ -221,7 +221,11 @@ export const createButton = (
 
 	return createOptionalTooltip(ctx, {
 		enabled: () =>
-			Boolean(ctx.evalProp(props.icon) && !ctx.evalProp(props.noTooltip)),
+			Boolean(
+				ctx.evalProp(props.icon) &&
+					!ctx.evalProp(props.noTooltip) &&
+					!ctx.evalProp(props.disabled)
+			),
 		label: props.label,
 		anchor: button,
 		slot: props.slot,
