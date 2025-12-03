@@ -5,7 +5,7 @@ order: 10
 
 # What Design Tokens Are
 
-Design tokens are the shared language of visual decisions in your design system. They capture choices such as colors, typography, spacing, elevation, and radii in a format that is consistent, portable, and easy to apply across tools and platforms. Instead of storing raw values like `#0077ff` or `16px`, tokens store the _meaning_ behind those values \- so teams can work with intent rather than memorizing numbers.
+Design tokens are the shared language of visual decisions in our design system. They capture choices such as colors, typography, spacing, elevation, and radii in a format that is consistent, portable, and easy to apply across tools and platforms. Instead of storing raw values like `#0077ff` or `16px`, tokens store the _meaning_ behind those values - so teams can work with intent rather than memorizing numbers.
 
 ## Design Decisions, Not Values
 
@@ -13,7 +13,7 @@ A token represents a **design decision**. That decision can be broad, like defin
 
 ## A Single-Level Semantic Model
 
-This system uses a **single-level naming model**, where semantic names point directly to their assigned values. Rather than juggling primitives, aliases, and component-level overrides, each token name reflects its purpose clearly:
+Vivid uses a **single-level naming model**, where semantic names point directly to their assigned values. Rather than juggling primitives, aliases, and component-level overrides, each token name reflects its purpose clearly:
 
 - semantic family (e.g., _neutral_, _accent_, _positive_)
 - optional modifiers (e.g., _alt_, _information_)
