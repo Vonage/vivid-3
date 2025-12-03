@@ -1,5 +1,8 @@
 import { spawnSync } from 'node:child_process';
 
+const PLAYWRIGHT_VERSION = '1.57.0';
+const IMAGE_NAME = `mcr.microsoft.com/playwright:v${PLAYWRIGHT_VERSION}-noble`;
+
 spawnSync(
 	'docker',
 	[
@@ -13,10 +16,10 @@ spawnSync(
 		'--rm',
 		'--init',
 		'--ipc=host',
-		'mcr.microsoft.com/playwright:v1.48.2-focal',
+		IMAGE_NAME,
 		'/bin/sh',
 		'-c',
-		'npx -y playwright@1.48.2 run-server --port 3000 --host 0.0.0.0',
+		`npx -y playwright@${PLAYWRIGHT_VERSION} run-server --port 3000 --host 0.0.0.0`,
 	],
 	{ stdio: 'inherit' }
 );
