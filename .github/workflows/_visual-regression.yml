@@ -25,8 +25,8 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: "20"
-          cache: "pnpm"
+          node-version: '20'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
@@ -48,7 +48,7 @@ jobs:
       image: cypress/browsers:22.15.0
       options: --user 1001
       env:
-        CYPRESS_CACHE_FOLDER: "~/.cache/Cypress"
+        CYPRESS_CACHE_FOLDER: '~/.cache/Cypress'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -74,8 +74,8 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: "20"
-          cache: "pnpm"
+          node-version: '20'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
