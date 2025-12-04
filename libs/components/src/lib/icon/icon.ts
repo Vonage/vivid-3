@@ -1,4 +1,4 @@
-import { attr, observable, volatile } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import {
 	ICONS_BASE_URL as BASE_URL,
 	ICONS_VERSION as ICON_SET_VERSION,
@@ -144,12 +144,6 @@ export class Icon extends VividElement {
 	 * HTML Attribute: name
 	 */
 	@attr name?: string;
-
-	@volatile
-	get iconUrl() {
-		const key = normalizeKey(this.name);
-		return key ? baseUrlTemplate(`${key}.svg`, ICON_SET_VERSION) : this._svg;
-	}
 
 	#abortController: AbortController | null = null;
 
