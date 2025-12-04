@@ -3,6 +3,8 @@ title: What Design Tokens Are
 order: 10
 ---
 
+{% include '../_includes/design-tokens-announcement.njk' %}
+
 # What Design Tokens Are
 
 Design tokens are the shared language of visual decisions in our design system. They capture choices such as colors, typography, spacing, elevation, and radii in a format that is consistent, portable, and easy to apply across tools and platforms. Instead of storing raw values like `#0077ff` or `16px`, tokens store the _meaning_ behind those values - so teams can work with intent rather than memorizing numbers.

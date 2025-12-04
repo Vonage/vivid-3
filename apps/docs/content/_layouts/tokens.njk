@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+	{% include '../_includes/design-tokens-announcement.njk' %}
+
 	{{ content | safe }}
 
 	<div class="token-list">

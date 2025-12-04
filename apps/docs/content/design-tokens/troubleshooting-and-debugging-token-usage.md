@@ -3,6 +3,8 @@ title: Troubleshooting & Debugging Token Usage
 order: 100
 ---
 
+{% include '../_includes/design-tokens-announcement.njk' %}
+
 # Troubleshooting & Debugging Token Usage
 
 Even with a clear token system in place, it’s natural to encounter situations where the chosen token doesn’t feel right, conflicts appear in the UI, or elements look inconsistent across states. This section helps you recognize those issues early and resolve them with confidence.

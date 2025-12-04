@@ -3,6 +3,8 @@ title: How to Choose the Right Token
 order: 20
 ---
 
+{% include '../_includes/design-tokens-announcement.njk' %}
+
 # How to Choose the Right Token
 
 Choosing the right token is about selecting the option that best reflects the **meaning**, **role**, and **hierarchy** of the element you’re designing. Tokens give you a structured way to express intention across color, typography, spacing, size, and shape - so your decisions stay consistent, predictable, and easy to maintain.

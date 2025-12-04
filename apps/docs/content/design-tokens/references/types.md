@@ -4,6 +4,8 @@ parent: 'Token Types  and Reference Pages'
 order: 10
 ---
 
+{% include '../_includes/design-tokens-announcement.njk' %}
+
 # Token Types (Reference Pages)
 
 Design tokens cover several dimensions of the interface - color, typography, spacing, shape, size, and elevation. Each dimension has its own purpose and its own set of semantic scales. To keep things simple and predictable, each token category is documented on a dedicated page.
