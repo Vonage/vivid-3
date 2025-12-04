@@ -30,6 +30,7 @@
 		border-radius: #{border-radius-variables.$border-radius-normal};
 		margin: 0;
 		inline-size: max-content;
+		min-inline-size: fit-content;
 	}
 
 	&:not(.absolute) {
