@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { spawn } from 'node:child_process';
 import path from 'node:path';
 

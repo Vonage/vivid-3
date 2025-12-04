@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { spawnSync } from 'node:child_process';
 import { setTimeout } from 'node:timers/promises';
 
