@@ -1,4 +1,9 @@
-import { html, InlineTemplateDirective, when } from '@microsoft/fast-element';
+import {
+	html,
+	InlineTemplateDirective,
+	ref,
+	when,
+} from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import {
@@ -60,13 +65,13 @@ export const AlertTemplate = (context: VividElementDefinitionContext) => {
 
 	return html<Alert>`
 	<${elevationTag} class="elevation" dp='8' exportparts="vvd-theme-alternate">
-		<div class="${getControlClasses}">
+		<div class="${getControlClasses}" ${ref('_controlEl')}>
 			<div
 				part="vvd-theme-alternate"
 				class="${getClasses}"
 				role="alert"
 				aria-hidden="${(x) => (x.open ? 'false' : 'true')}"
-				${(x) => (!x.open ? 'hidden' : '')}
+				?hidden="${(x) => !x.open}"
 			>
 				${(x) => renderIcon(context, x)}
 				<div class="alert-text">

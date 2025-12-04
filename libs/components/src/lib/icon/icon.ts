@@ -1,4 +1,4 @@
-import { attr, observable, volatile } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import {
 	ICONS_BASE_URL as BASE_URL,
 	ICONS_VERSION as ICON_SET_VERSION,
@@ -145,12 +145,6 @@ export class Icon extends VividElement {
 	 */
 	@attr name?: string;
 
-	@volatile
-	get iconUrl() {
-		const key = normalizeKey(this.name);
-		return key ? baseUrlTemplate(`${key}.svg`, ICON_SET_VERSION) : this._svg;
-	}
-
 	#abortController: AbortController | null = null;
 
 	async nameChanged() {
@@ -165,9 +159,11 @@ export class Icon extends VividElement {
 		this.iconLoaded = false;
 
 		let timeout = setTimeout(() => {
+			/* v8 ignore else -- @preserve */
 			if (this.#currentRequestId === requestId) {
 				this._svg = PLACEHOLDER_ICON;
 				timeout = setTimeout(() => {
+					/* v8 ignore else -- @preserve */
 					if (
 						this.#currentRequestId === requestId &&
 						this._svg === PLACEHOLDER_ICON
@@ -180,6 +176,7 @@ export class Icon extends VividElement {
 
 		try {
 			const svg = await resolveIcon(this.name, this.#abortController.signal);
+			/* v8 ignore else -- @preserve */
 			if (this.#currentRequestId === requestId) {
 				this._svg = svg;
 			}

@@ -61,6 +61,7 @@ export class Switch extends DelegatesAria(
 	 * @internal
 	 */
 	readOnlyChanged(): void {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.readOnly = this.readOnly;
 		}

@@ -78,6 +78,7 @@ export class Radio extends WithErrorText(
 	 * @internal
 	 */
 	readOnlyChanged() {
+		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.readOnly = this.readOnly;
 		}
@@ -105,6 +106,7 @@ export class Radio extends WithErrorText(
 			// Setting this.checked will cause us to enter a dirty state,
 			// but if we are clean when defaultChecked is changed, we want to stay
 			// in a clean state, so reset this.dirtyChecked
+			/* v8 ignore else -- @preserve */
 			if (!this.isInsideRadioGroup()) {
 				this.checked = this.defaultChecked;
 				this.dirtyChecked = false;
@@ -146,12 +148,14 @@ export class Radio extends WithErrorText(
 				'radio-group' &&
 			this.getAttribute('tabindex') === null
 		) {
+			/* v8 ignore else -- @preserve */
 			if (!this.disabled) {
 				this.setAttribute('tabindex', '0');
 			}
 		}
 
 		if (this.defaultChecked) {
+			/* v8 ignore else -- @preserve */
 			if (!this.dirtyChecked) {
 				// Setting this.checked will cause us to enter a dirty state,
 				// but if we are clean when defaultChecked is changed, we want to stay

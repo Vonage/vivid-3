@@ -1,4 +1,3 @@
-/// <reference types="vitest/config" />
 import * as path from 'path';
 import * as fs from 'fs';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
@@ -40,17 +39,6 @@ const isWatchMode = process.env.WATCH_MODE === 'true';
 export default mergeConfig(
 	baseConfig,
 	defineConfig({
-		test: {
-			setupFiles: ['vitest.setup.ts'],
-
-			pool: 'threads',
-			poolOptions: {
-				threads: {
-					useAtomics: true,
-				},
-			},
-		},
-
 		plugins: [
 			viteStaticCopy({
 				targets: [

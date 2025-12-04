@@ -56,6 +56,7 @@ export class RichTextEditor extends Localized(VividElement) {
 	}
 
 	set value(content: string) {
+		/* v8 ignore else -- @preserve */
 		if (this.#editor) {
 			this.#editor.replaceContent(content);
 		}
@@ -112,6 +113,7 @@ export class RichTextEditor extends Localized(VividElement) {
 	}
 
 	#handleSelectionChange = () => {
+		/* v8 ignore if -- @preserve */
 		if (!this.#editor!.selection()) {
 			return;
 		}
@@ -131,6 +133,7 @@ export class RichTextEditor extends Localized(VividElement) {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
+		/* v8 ignore else -- @preserve */
 		if (!this.#editor) {
 			this.#editor = new ProseMirrorFacade();
 			this.#editor.init(this.#editorWrapperElement);

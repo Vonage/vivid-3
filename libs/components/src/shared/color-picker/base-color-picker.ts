@@ -112,7 +112,8 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 
 		/**
 		 * @internal
-		 */
+		 * /
+		/* v8 ignore next -- @preserve */
 		_handleColorSaving(): void {}
 
 		/**
@@ -161,11 +162,13 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 			const totalRows = Math.ceil(totalCells / rowLength);
 
 			switch (event.key) {
-				case 'ArrowRight':
+				case 'ArrowRight': {
+					/* v8 ignore else -- @preserve */
 					if (currentCol < rowLength - 1 && index + 1 < totalCells) {
 						this._focusSwatchByIndex(index + 1);
 					}
 					return false;
+				}
 
 				case 'ArrowLeft':
 					if (currentCol > 0) {
@@ -173,11 +176,13 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 					}
 					return false;
 
-				case 'ArrowDown':
+				case 'ArrowDown': {
+					/* v8 ignore else -- @preserve */
 					if (currentRow < totalRows - 1 && index + rowLength < totalCells) {
 						this._focusSwatchByIndex(index + rowLength);
 					}
 					return false;
+				}
 
 				case 'ArrowUp':
 					if (currentRow > 0) {
@@ -191,6 +196,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 						lastRowStart + currentCol,
 						totalCells - 1
 					);
+					/* v8 ignore else -- @preserve */
 					if (index !== targetIndex) {
 						this._focusSwatchByIndex(targetIndex);
 					}

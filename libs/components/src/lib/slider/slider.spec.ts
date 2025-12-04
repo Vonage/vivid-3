@@ -535,6 +535,27 @@ describe('vwc-slider', () => {
 			expect(element.value).toBe('5');
 		});
 
+		it.each([
+			['ArrowRight'],
+			['ArrowUp'],
+			['ArrowLeft'],
+			['ArrowDown'],
+		] as const)(
+			'should not change value when pressing %s with Shift',
+			async (key) => {
+				element.readOnly = false;
+				element.value = '5';
+				await elementUpdated(element);
+
+				element.dispatchEvent(
+					new KeyboardEvent('keydown', { key, shiftKey: true })
+				);
+				await elementUpdated(element);
+
+				expect(element.value).toBe('5');
+			}
+		);
+
 		it('should have visible focus when control is focused', async () => {
 			getControlElement(element).focus();
 			await elementUpdated(element);

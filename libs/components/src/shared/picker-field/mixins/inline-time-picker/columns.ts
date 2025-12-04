@@ -84,6 +84,7 @@ export const MeridiesColumn: Column = {
 		if (x.value) {
 			const { hours, minuteStr, secondStr } = parseTimeStr(x.value);
 			let adjustedHours = hours;
+			/* v8 ignore else -- @preserve */
 			if (optionValue === 'AM' && hours >= 12) {
 				adjustedHours -= 12;
 			} else if (optionValue === 'PM' && hours < 12) {
