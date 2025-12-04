@@ -1,7 +1,6 @@
 import { RteHtmlParser } from './html-parser';
 import { RteConfig } from './config';
-import { RteCore } from './features/core';
-import { RteFreeformStructure } from './features/freeform';
+import { RteBase } from './features/base';
 import { RteBoldFeature } from './features/bold';
 import { RteLinkFeature } from './features/link';
 import { docFactories } from './__tests__/doc-factories';
@@ -12,10 +11,13 @@ import {
 	RteFeatureImpl,
 	type SchemaContribution,
 } from './feature';
+import { RteToolbarFeature } from './features/toolbar';
 
 const config = new RteConfig([
-	new RteCore(),
-	new RteFreeformStructure(),
+	new RteBase({
+		heading1: true,
+	}),
+	new RteToolbarFeature(),
 	new RteBoldFeature(),
 	new RteItalicFeature(),
 	new RteLinkFeature(),
@@ -24,7 +26,7 @@ const config = new RteConfig([
 
 const {
 	doc,
-	textLine: line,
+	paragraph: p,
 	text,
 	inlineImage: img,
 	bold,
@@ -45,18 +47,16 @@ describe('RteHtmlParser', () => {
 		const parser = new RteHtmlParser(config);
 
 		expect(
-			parser.parseDocument('<div><strong>Hello</strong> world!</div>')
-		).toEqual(doc(line(text.marks(bold())('Hello'), text(' world!'))));
+			parser.parseDocument('<p><strong>Hello</strong> world!</p>')
+		).toEqual(doc(p(text.marks(bold())('Hello'), text(' world!'))));
 	});
 
 	it('should sanitize HTML', async () => {
 		const parser = new RteHtmlParser(config);
 
 		expect(
-			parser.parseFragment(
-				`<div><a href="javascript:alert('xss')">Evil</a></div>`
-			)
-		).toEqual([line(text('Evil'))]);
+			parser.parseFragment(`<p><a href="javascript:alert('xss')">Evil</a></p>`)
+		).toEqual([p(text('Evil'))]);
 	});
 
 	it('should parse empty HTML into empty fragment', async () => {
@@ -97,6 +97,16 @@ describe('RteHtmlParser', () => {
 		]);
 	});
 
+	it('should respect ignore property of rules', async () => {
+		const parser = new RteHtmlParser(config, {
+			modifyParseRules: (rules) => {
+				rules.nodes.heading1 = [{ tag: 'h1', ignore: true }];
+			},
+		});
+
+		expect(parser.parseFragment('<h1>Heading</h1>')).toEqual([]);
+	});
+
 	it('should default nodes and marks with no default parse to an empty array', async () => {
 		class DummyFeatureImpl extends RteFeatureImpl {
 			protected name = 'DummyFeature';
@@ -117,18 +127,11 @@ describe('RteHtmlParser', () => {
 		const DummyFeature = featureFacade(DummyFeatureImpl);
 		let parseRules;
 		// eslint-disable-next-line no-new
-		new RteHtmlParser(
-			new RteConfig([
-				new RteCore(),
-				new RteFreeformStructure(),
-				new DummyFeature(),
-			]),
-			{
-				modifyParseRules: (rules) => {
-					parseRules = rules;
-				},
-			}
-		);
+		new RteHtmlParser(new RteConfig([new RteBase(), new DummyFeature()]), {
+			modifyParseRules: (rules) => {
+				parseRules = rules;
+			},
+		});
 
 		expect(parseRules!.nodes['dummyNode']).toEqual([]);
 		expect(parseRules!.marks['dummyMark']).toEqual([]);

@@ -248,8 +248,22 @@ const sinkNode = (
 	);
 };
 
+export type RteListConfig = {
+	bulletList?: boolean;
+	numberedList?: boolean;
+};
+
 export class RteListFeatureImpl extends RteFeatureImpl {
 	protected name = 'RteListFeature';
+
+	constructor(protected config: RteListConfig) {
+		super();
+		if (!config.bulletList && !config.numberedList) {
+			throw new Error(
+				'RteListFeature requires at least one of bulletList or numberedList to be enabled'
+			);
+		}
+	}
 
 	override getStyles(): StyleContribution[] {
 		return [this.contribution(listCss)];
@@ -273,22 +287,30 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 							return ['li', ...textblockAttrs.getDOMAttrs(node), 0];
 						},
 					},
-					bulletList: {
-						group: 'block list',
-						content: '(listItem | list)+',
-						parseDOM: [{ tag: 'ul' }],
-						toDOM() {
-							return ['ul', 0];
-						},
-					},
-					numberedList: {
-						group: 'block list',
-						content: '(listItem | list)+',
-						parseDOM: [{ tag: 'ol' }],
-						toDOM() {
-							return ['ol', 0];
-						},
-					},
+					...(this.config.bulletList
+						? {
+								bulletList: {
+									group: 'block list',
+									content: '(listItem | list)+',
+									parseDOM: [{ tag: 'ul' }],
+									toDOM() {
+										return ['ul', 0];
+									},
+								},
+						  }
+						: {}),
+					...(this.config.numberedList
+						? {
+								numberedList: {
+									group: 'block list',
+									content: '(listItem | list)+',
+									parseDOM: [{ tag: 'ol' }],
+									toDOM() {
+										return ['ol', 0];
+									},
+								},
+						  }
+						: {}),
 				},
 			}),
 		];
@@ -358,8 +380,16 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 					Backspace: backspaceCommand,
 					Tab: tabCommand,
 					'Shift-Tab': shiftTabCommand,
-					'Mod-Shift-8': this.toggleList(rte.schema.nodes.bulletList),
-					'Mod-Shift-7': this.toggleList(rte.schema.nodes.numberedList),
+					...(this.config.bulletList
+						? {
+								'Mod-Shift-8': this.toggleList(rte.schema.nodes.bulletList),
+						  }
+						: {}),
+					...(this.config.numberedList
+						? {
+								'Mod-Shift-7': this.toggleList(rte.schema.nodes.numberedList),
+						  }
+						: {}),
 				}),
 				contributionPriority.high // Must apply before default handling of core
 			),
@@ -367,48 +397,62 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 	}
 
 	override getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
-		return [
-			this.contribution(
-				{
-					section: 'textblock',
-					render: (ctx) =>
-						createButton(ctx, {
-							label: () => ctx.rte.getLocale().richTextEditor.bulletList,
-							icon: 'bullet-list-2-line',
-							active: () =>
-								this.isSelectionInList(
-									rte.schema.nodes.bulletList,
-									ctx.rte.state
-								),
-							onClick: () => {
-								const { state, dispatch } = ctx.view;
-								this.toggleList(rte.schema.nodes.bulletList)(state, dispatch);
-							},
-						}),
-				},
-				1
-			),
-			this.contribution(
-				{
-					section: 'textblock',
-					render: (ctx) =>
-						createButton(ctx, {
-							label: () => ctx.rte.getLocale().richTextEditor.numberedList,
-							icon: 'list-numbered-line',
-							active: () =>
-								this.isSelectionInList(
-									rte.schema.nodes.numberedList,
-									ctx.rte.state
-								),
-							onClick: () => {
-								const { state, dispatch } = ctx.view;
-								this.toggleList(rte.schema.nodes.numberedList)(state, dispatch);
-							},
-						}),
-				},
-				2
-			),
-		];
+		const toolbarItems: ToolbarItemContribution[] = [];
+
+		if (this.config.bulletList) {
+			toolbarItems.push(
+				this.contribution(
+					{
+						section: 'textblock',
+						render: (ctx) =>
+							createButton(ctx, {
+								label: () => ctx.rte.getLocale().richTextEditor.bulletList,
+								icon: 'bullet-list-2-line',
+								active: () =>
+									this.isSelectionInList(
+										rte.schema.nodes.bulletList,
+										ctx.rte.state
+									),
+								onClick: () => {
+									const { state, dispatch } = ctx.view;
+									this.toggleList(rte.schema.nodes.bulletList)(state, dispatch);
+								},
+							}),
+					},
+					1
+				)
+			);
+		}
+
+		if (this.config.numberedList) {
+			toolbarItems.push(
+				this.contribution(
+					{
+						section: 'textblock',
+						render: (ctx) =>
+							createButton(ctx, {
+								label: () => ctx.rte.getLocale().richTextEditor.numberedList,
+								icon: 'list-numbered-line',
+								active: () =>
+									this.isSelectionInList(
+										rte.schema.nodes.numberedList,
+										ctx.rte.state
+									),
+								onClick: () => {
+									const { state, dispatch } = ctx.view;
+									this.toggleList(rte.schema.nodes.numberedList)(
+										state,
+										dispatch
+									);
+								},
+							}),
+					},
+					2
+				)
+			);
+		}
+
+		return toolbarItems;
 	}
 
 	toggleList(type: NodeType): Command {

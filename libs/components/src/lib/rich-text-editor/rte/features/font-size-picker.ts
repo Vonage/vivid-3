@@ -3,6 +3,7 @@ import { type Command, EditorState, Plugin } from 'prosemirror-state';
 import { toggleMark } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
 import { Decoration, DecorationSet } from 'prosemirror-view';
+import { RemoveMarkStep } from 'prosemirror-transform';
 import { createButton, createMenu, createMenuItem } from '../utils/ui';
 import { RteInstanceImpl } from '../instance';
 import {
@@ -17,23 +18,56 @@ export interface FontSizeOption {
 	label: string;
 }
 
-export type RteFontSizeFeatureConfig = {
+export interface FontSizeOnBlock {
+	node: string;
+	defaultSize?: string;
+}
+
+export type RteFontSizePickerConfig = {
 	options: FontSizeOption[];
-	defaultSize: string;
+	onBlocks?: FontSizeOnBlock[];
 };
 
 const mixedFontSize = Symbol('mixedFontSize');
 type MixedFontSize = typeof mixedFontSize;
 
-export class RteFontSizeFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteFontSizeFeature';
+type SelectionFontSize =
+	| string // only this defined size
+	| MixedFontSize // mixed sizes
+	| null; // no defined sizes
+
+export class RteFontSizePickerFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteFontSizePickerFeature';
 
 	fontSizes: FontSizeOption[];
+	defaultFontSizeForNode?: Record<string, string | null>;
 
-	constructor(protected config: RteFontSizeFeatureConfig) {
+	constructor(protected config: RteFontSizePickerConfig) {
 		super();
 
 		this.fontSizes = config.options;
+		if (config.onBlocks) {
+			this.defaultFontSizeForNode = {};
+			for (const block of config.onBlocks) {
+				this.defaultFontSizeForNode[block.node] = block.defaultSize ?? null;
+			}
+		}
+	}
+
+	override getTextblockMarks() {
+		if (this.config?.onBlocks) {
+			return this.config.onBlocks.map((block) =>
+				this.contribution({
+					markName: 'fontSize',
+					onNodeName: block.node,
+				})
+			);
+		}
+		return [
+			this.contribution({
+				markName: 'fontSize',
+			}),
+		];
 	}
 
 	override getSchema(): SchemaContribution[] {
@@ -87,7 +121,7 @@ export class RteFontSizeFeatureImpl extends RteFeatureImpl {
 							const storedMarkSize =
 								storedMark?.attrs.size ??
 								(state.storedMarks?.length === 0
-									? this.config.defaultSize
+									? this.defaultFontSizeForNode?.[$from.parent.type.name]
 									: null);
 							if (storedMarkSize) {
 								// Create a zero-width span with the correct font size in before the cursor
@@ -150,79 +184,88 @@ export class RteFontSizeFeatureImpl extends RteFeatureImpl {
 		];
 	}
 
-	getFontSizeFromSelection(state: EditorState): string | MixedFontSize {
+	getFontSizeFromSelection(state: EditorState): SelectionFontSize {
 		const { from, to, $from, empty } = state.selection;
+		const { fontSize } = state.schema.marks;
+
 		if (empty) {
-			const canHaveFontSize = toggleMark(state.schema.marks.fontSize)(state);
-			const defaultSize = canHaveFontSize
-				? this.config.defaultSize
-				: mixedFontSize;
+			const defaultSize =
+				this.defaultFontSizeForNode?.[$from.parent.type.name] ?? null;
 			return (
-				state.schema.marks.fontSize.isInSet(state.storedMarks || $from.marks())
-					?.attrs.size ?? defaultSize
+				fontSize.isInSet(state.storedMarks || $from.marks())?.attrs.size ??
+				defaultSize
 			);
 		}
 
-		let size: string | MixedFontSize | null = null;
-		state.doc.nodesBetween(from, to, (node) => {
+		let size: SelectionFontSize = null;
+		const observeSize = (observedSize?: typeof size) => {
+			if (size === null) {
+				size = observedSize ?? null;
+			} else if (observedSize !== size) {
+				size = mixedFontSize;
+			}
+		};
+		state.doc.nodesBetween(from, to, (node, _, parent) => {
 			if (size === mixedFontSize) {
 				return false;
 			}
 			if (!node.isLeaf) {
-				if (!node.type.allowsMarkType(state.schema.marks.fontSize)) {
-					size = mixedFontSize;
+				if (node.type.allowsMarkType(fontSize) && node.childCount === 0) {
+					// Observe default size for empty nodes
+					observeSize(this.defaultFontSizeForNode?.[node.type.name]);
 				}
 				return true;
 			}
 
-			const nodeFontSize =
-				state.schema.marks.fontSize.isInSet(node.marks)?.attrs.size ??
-				this.config.defaultSize;
-
-			if (size === null) {
-				size = nodeFontSize;
-			} else if (nodeFontSize !== size) {
-				size = mixedFontSize;
-			}
+			observeSize(
+				fontSize.isInSet(node.marks)?.attrs.size ??
+					(parent && this.defaultFontSizeForNode?.[parent.type.name])
+			);
 			return true;
 		});
-		return size ?? this.config.defaultSize;
+		return size;
 	}
 
 	setFontSize(size: string): Command {
 		return (state, dispatch) => {
-			const { from, to, empty } = state.selection;
+			const { from, to, empty, $from } = state.selection;
+			const { fontSize } = state.schema.marks;
 
-			if (!toggleMark(state.schema.marks.fontSize, { size })(state)) {
+			if (!toggleMark(fontSize, { size })(state)) {
 				return false; // Cannot apply the mark
 			}
 
 			const tr = state.tr;
 			if (empty) {
 				const storedMarks = state.storedMarks || [];
-				const newStoredMarks = storedMarks.filter(
-					(m) => m.type !== state.schema.marks.fontSize
-				);
-				if (size !== this.config.defaultSize) {
+				const newStoredMarks = storedMarks.filter((m) => m.type !== fontSize);
+				const defaultSize =
+					this.defaultFontSizeForNode?.[$from.parent.type.name];
+				if (size !== defaultSize) {
 					newStoredMarks.push(
-						state.schema.marks.fontSize.create({
+						fontSize.create({
 							size,
 						})
 					);
 				}
 				tr.setStoredMarks(newStoredMarks);
 			} else {
-				if (size === this.config.defaultSize) {
-					tr.removeMark(from, to, state.schema.marks.fontSize);
-				} else {
-					tr.addMark(
-						from,
-						to,
-						state.schema.marks.fontSize.create({
-							size,
-						})
-					);
-				}
+				tr.addMark(
+					from,
+					to,
+					fontSize.create({
+						size,
+					})
+				);
+				// Remove fontSize marks that are the same as the default size
+				tr.doc.nodesBetween(from, to, (node, pos, parent) => {
+					if (!node.isInline) return;
+					const mark = fontSize.isInSet(node.marks);
+					const defaultSize = this.defaultFontSizeForNode?.[parent!.type.name];
+					if (mark && mark.attrs.size === defaultSize) {
+						tr.step(new RemoveMarkStep(pos, pos + node.nodeSize, mark));
+					}
+				});
 			}
 			dispatch?.(tr.scrollIntoView());
 			return true;
@@ -232,7 +275,7 @@ export class RteFontSizeFeatureImpl extends RteFeatureImpl {
 	adjustFontSize(adjustment: -1 | 1): Command {
 		return (state, dispatch) => {
 			const currentSize = this.getFontSizeFromSelection(state);
-			if (currentSize === mixedFontSize) {
+			if (currentSize === null || currentSize === mixedFontSize) {
 				return false;
 			}
 			const currentIndex = this.fontSizes.findIndex(
@@ -247,4 +290,6 @@ export class RteFontSizeFeatureImpl extends RteFeatureImpl {
 	}
 }
 
-export const RteFontSizeFeature = featureFacade(RteFontSizeFeatureImpl);
+export const RteFontSizePickerFeature = featureFacade(
+	RteFontSizePickerFeatureImpl
+);

@@ -5,7 +5,7 @@ import { EditorView } from 'prosemirror-view';
 import type { Constructor } from '../../../shared/utils/mixins';
 import type { Locale } from '../../../shared/localization/Locale';
 import { RteConfig, RteConfigImpl } from './config';
-import { hostBridgePlugin, type HostState } from './features/core';
+import { hostBridgePlugin, type HostState } from './features/internal/core';
 import { RteFeatureImpl, sortedContributions } from './feature';
 import type { RteDocument, RteFragment } from './document';
 import type { TextblockAttrs } from './utils/textblock-attrs';

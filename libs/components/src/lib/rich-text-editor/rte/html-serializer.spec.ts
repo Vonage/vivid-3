@@ -1,21 +1,28 @@
 import { RteConfig } from './config';
-import { RteCore } from './features/core';
-import { RteFreeformStructure } from './features/freeform';
+import { RteBase } from './features/base';
 import { RteBoldFeature } from './features/bold';
 import { RteLinkFeature } from './features/link';
 import { docFactories } from './__tests__/doc-factories';
 import { RteHtmlSerializer } from './html-serializer';
 import { RteInlineImageFeature } from './features/inline-image';
+import { RteToolbarFeature } from './features/toolbar';
+import {
+	featureFacade,
+	RteFeatureImpl,
+	type SchemaContribution,
+} from './feature';
 
 const config = new RteConfig([
-	new RteCore(),
-	new RteFreeformStructure(),
+	new RteBase({
+		heading1: true,
+	}),
+	new RteToolbarFeature(),
 	new RteBoldFeature(),
 	new RteLinkFeature(),
 	new RteInlineImageFeature(),
 ]);
 
-const { doc, textLine: line, text, bold, inlineImage: img } = docFactories;
+const { doc, paragraph: p, text, bold, inlineImage: img } = docFactories;
 
 describe('RteHtmlSerializer', () => {
 	it('should serialize HTML from fragment', async () => {
@@ -23,9 +30,9 @@ describe('RteHtmlSerializer', () => {
 
 		expect(
 			serializer.serializeFragment([
-				line(text.marks(bold())('Hello'), text(' world!')),
+				p(text.marks(bold())('Hello'), text(' world!')),
 			])
-		).toBe('<div><strong>Hello</strong> world!</div>');
+		).toBe('<p><strong>Hello</strong> world!</p>');
 	});
 
 	it('should serialize HTML from document', async () => {
@@ -33,9 +40,9 @@ describe('RteHtmlSerializer', () => {
 
 		expect(
 			serializer.serializeDocument(
-				doc(line(text.marks(bold())('Hello'), text(' world!')))
+				doc(p(text.marks(bold())('Hello'), text(' world!')))
 			)
-		).toBe('<div><strong>Hello</strong> world!</div>');
+		).toBe('<p><strong>Hello</strong> world!</p>');
 	});
 
 	it('should allow specifying custom serializers', async () => {
@@ -60,7 +67,7 @@ describe('RteHtmlSerializer', () => {
 
 		expect(
 			serializer.serializeFragment([
-				line(
+				p(
 					text.marks(bold())('Hello'),
 					img.attrs({
 						imageUrl: 'attachment://1',
@@ -69,7 +76,7 @@ describe('RteHtmlSerializer', () => {
 				),
 			])
 		).toMatchInlineSnapshot(
-			`"<div><span data-bold="">Hello</span><img src="attachment://1" data-attachment-id="1" alt="Image"></div>"`
+			`"<p><span data-bold="">Hello</span><img src="attachment://1" data-attachment-id="1" alt="Image"></p>"`
 		);
 	});
 
@@ -95,5 +102,33 @@ describe('RteHtmlSerializer', () => {
 		).toMatchInlineSnapshot(
 			`"<img src="attachment://1" alt="" data-attachment-id="1">"`
 		);
+	});
+
+	it('should ignore nodes and marks without serializers', async () => {
+		const DummyFeature = featureFacade(
+			class extends RteFeatureImpl {
+				protected name = 'DummyFeature';
+
+				override getSchema(): SchemaContribution[] {
+					return [
+						this.contribution({
+							nodes: {
+								dummyNode: {},
+							},
+							marks: {
+								dummyMark: {},
+							},
+						}),
+					];
+				}
+			}
+		);
+
+		expect(
+			() =>
+				new RteHtmlSerializer(
+					new RteConfig([new RteBase(), new DummyFeature()])
+				)
+		).not.toThrow();
 	});
 });
