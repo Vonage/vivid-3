@@ -7,6 +7,24 @@ order: 20
 
 Choosing the right token is about selecting the option that best reflects the **meaning**, **role**, and **hierarchy** of the element you’re designing. Tokens give you a structured way to express intention across color, typography, spacing, size, and shape - so your decisions stay consistent, predictable, and easy to maintain.
 
+## Overriding tokens and themes
+
+Although it’s technically possible to override token values to create custom themes or layouts, we strongly recommend avoiding it.
+
+Our design tokens are part of an interconnected system generated through an algorithm, not a simple list of chosen values. This structure enables features like automated theme creation, consistent accessibility behavior, and user-driven adjustments such as font scaling or zoom preferences.
+
+For these reasons, custom token overrides are discouraged.
+
+## Generating names
+
+It can be tempting to construct token names dynamically to reduce code, for example:
+
+```typescript
+const token = `--vvd-color-${isError ? 'error' : 'neutral'}-700`;
+```
+
+This approach is not allowed. Tokens must always be written using their full, explicit names. This ensures our analysis tools (and any future code-mod or bulk-replacement tools) can reliably detect and process them.
+
 ## When It’s Fine to Adjust or Break the Guidance
 
 The guidelines in this system are here to support your decision-making—not restrict it. Tokens are meant to be flexible, and real projects sometimes require solutions that sit slightly outside the suggested patterns.
@@ -18,6 +36,18 @@ These thoughtful exceptions are part of good design. When they’re intentional 
 You might wonder: **“If we bend the rules, how do we stay consistent?”**
 
 The answer is simple: by staying mindful. Designers and developers naturally compare their work to existing components, previous patterns, and shared references. We trust that you care about consistency as much as the system does—because cohesive, predictable interfaces benefit everyone. With that awareness, you’ll be able to make informed choices even when stepping slightly outside the recommended path.
+
+## A Simple Routine for Choosing Tokens
+
+Here is a reliable starting point that works across color, typography, radius, size, and spacing:
+
+1. Determine the **semantic meaning** (neutral, positive, heading, rectangle, medium, etc.).
+2. Start at **700** (for color, typography, size, density).
+3. Adjust scale while keeping the same semantic family.
+4. Check **hierarchy, legibility, shape consistency, and spacing balance**.
+5. Make exceptions only for clear reasons like accessibility or functional clarity.
+
+This approach helps you choose tokens with confidence and consistency across the entire system.
 
 ## Start With Meaning, Not Appearance
 
@@ -78,15 +108,3 @@ Avoiding common pitfalls helps preserve long-term consistency:
 - **Hardcoding radii or sizes** - reduces consistency and theming flexibility.
 
 Being mindful of these patterns keeps the system predictable and maintainable.
-
-## A Simple Routine for Choosing Tokens
-
-Here is a reliable starting point that works across color, typography, radius, size, and spacing:
-
-1. Determine the **semantic meaning** (neutral, positive, heading, rectangle, medium, etc.).
-2. Start at **700** (for color, typography, size, density).
-3. Adjust scale slightly while keeping the same semantic family.
-4. Check **hierarchy, legibility, shape consistency, and spacing balance**.
-5. Make exceptions only for clear reasons like accessibility or functional clarity.
-
-This approach helps you choose tokens with confidence and consistency across the entire system.

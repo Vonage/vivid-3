@@ -13,7 +13,7 @@ The most common source of problems is using a token from the wrong semantic grou
 
 When something feels “off,” the first question to ask is:
 
-**Does this family truly represent the meaning of the element?**
+### Does this family truly represent the meaning of the element?
 
 Typical mismatches include:
 
@@ -28,7 +28,7 @@ If the semantic meaning doesn’t match the purpose, the visual result usually f
 **Fix:**  
 Switch to the correct semantic category before adjusting scales or details.
 
-### **Look for Scale Misalignment Within a Single Element**
+### Look for Scale Misalignment Within a Single Element
 
 Even when the right family is chosen, misuse of scale can create unintended hierarchy.  
 Common symptoms include:
@@ -48,7 +48,7 @@ For example:
 **Fix:**  
 Stay within the same family, adjust scale thoughtfully, and check contrast or balance using nearby values.
 
-### **Ensure Background, Border, and Text Come From the Same Family**
+### Ensure Background, Border, and Text Come From the Same Family
 
 When elements feel visually disconnected, mixing families is often the cause.  
 Signs of this issue include:
@@ -63,7 +63,7 @@ Consistency within a single semantic family reinforces clarity and reduces noise
 **Fix:**  
 Realign all internal parts of the component to one family unless there is a clear semantic reason to mix them.
 
-### **Spot “Visual-Only” Token Choices**
+### Spot “Visual-Only” Token Choices
 
 Choosing tokens by eye rather than by meaning is tempting, but it quickly creates maintenance issues \- especially when themes evolve.
 
@@ -81,7 +81,7 @@ Revisit the intent:
 “What is the role of this element?”  
 Then choose the token whose meaning reflects that role.
 
-### **Debug Contrast and Readability Issues**
+### Debug Contrast and Readability Issues
 
 When text or icons look washed out or hard to read, the issue usually comes from:
 
@@ -114,7 +114,7 @@ A reliable fallback checklist:
 
 In many cases, returning to these basics resolves the issue without extra rules or exceptions.
 
-### **When the Problem Isn’t Tokens**
+### When the Problem Isn’t Tokens
 
 Sometimes, misalignment comes from layout, placement, or component behavior rather than token choice.  
 If adjusting tokens doesn’t help:
