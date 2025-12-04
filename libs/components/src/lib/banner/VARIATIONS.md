@@ -2,9 +2,30 @@
 
 The `text` attribute sets the banner's text.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VBanner } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VBanner text="Here's some information that you may find important!" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full
 <vwc-banner text="Here's some information that you may find important!"></vwc-banner>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Connotation
 
@@ -16,6 +37,28 @@ The Banner icon, if not specifically set, defaults to a connotation-associated i
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VBanner } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VBanner connotation="information" text="Banner with connotation information (default conntation)" />
+	<VBanner connotation="announcement" text="Banner with connotation announcement" />
+	<VBanner connotation="success" text="Banner with connotation success" />
+	<VBanner connotation="warning" text="Banner with connotation warning" />
+	<VBanner connotation="alert" text="Banner with connotation alert" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-banner connotation="information" text="Banner with connotation information (default conntation)"></vwc-banner>
 <vwc-banner connotation="announcement" text="Banner with connotation announcement"></vwc-banner>
@@ -24,9 +67,12 @@ The Banner icon, if not specifically set, defaults to a connotation-associated i
 <vwc-banner connotation="alert" text="Banner with connotation alert"></vwc-banner>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Icon
 
-The `icon` attribute displays an icon from the icon library](/icons/icons-gallery/).
+The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery/).
 
 The preferred way to add icons is to use the [icon slot](/components/banner/code/#icon-slot).
 
@@ -37,14 +83,56 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VBanner } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VBanner text="Banner with icon set by icon attribute" icon="home-line" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full
 <vwc-banner text="Banner with icon set by icon attribute" icon="home-line"></vwc-banner>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Removable
 
 The `removable` attribute adds a remove button. On click, it will remove the banner from the DOM.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VBanner } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VBanner removable text="Banner that is removable" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full
 <vwc-banner removable text="Banner that is removable"></vwc-banner>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
