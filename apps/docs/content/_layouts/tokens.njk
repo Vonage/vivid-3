@@ -18,7 +18,7 @@
 							Figma: <code>{{ item.name }}</code>
 						</div>
 						<div class="variable">
-							CSS: <code>var(--{{ item.css }})</code>
+							CSS: <code>--{{ item.css }}</code>
 						</div>
 						<div class="variable">
 							Flutter: <code>{{ item.flutter }}</code>
@@ -67,7 +67,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex: 0 0 150px;
+	flex: 0 0 250px;
 	border-radius: 8px;
 }
 </style>
@@ -80,8 +80,8 @@
 {% endmacro %}
 
 {% macro typography(item) %}
-  <div class="token-preview" style="font: {{ item.preview }};">
-    Aa
+  <div class="token-preview" style="font: {{ item.preview }}; justify-content: start">
+    The quick brown fox jumps over the lazy dog
   </div>
 {% endmacro %}
 
