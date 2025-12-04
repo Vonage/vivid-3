@@ -11,11 +11,11 @@ module.exports = {
 			},
 			layout: 'tokens.njk',
 			permalink: function (data) {
-				return `/design-tokens/reference/${data.tokenPage.slug}/`;
+				return `/design-tokens/references/${data.tokenPage.slug}/`;
 			},
 			eleventyComputed: {
 				title: (data) => `${data.tokenPage.name} Tokens`,
-				parent: 'Token Types and References',
+				parent: 'Token Types  and Reference Pages',
 				tokens: async function (data) {
 					return await getTokens(data.tokenPage.category);
 				},

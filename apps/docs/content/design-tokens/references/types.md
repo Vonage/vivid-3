@@ -1,7 +1,7 @@
 ---
-title: 'Token Types and References'
-parent: 'Design Tokens (new)'
-order: 30
+title: 'Token Types'
+parent: 'Token Types  and Reference Pages'
+order: 10
 ---
 
 # Token Types (Reference Pages)
@@ -46,7 +46,7 @@ Used for properties like border radiuses that affect the shape of the element.
 
 Details how size tokens help standardize icons, UI elements, and layout blocks, with a reference table for medium and large families.
 
-Used for sizes of internal UI elements like text, icons, carets. 
+Used for sizes of internal UI elements like text, icons, carets.
 
 [Size](/design-tokens/reference/size/)
 

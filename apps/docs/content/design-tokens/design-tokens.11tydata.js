@@ -1,4 +1,4 @@
 module.exports = {
 	layout: 'article.njk',
-	parent: 'Design Tokens (new)',
+	parent: 'New Design Token Architecture (Alpha)',
 };
