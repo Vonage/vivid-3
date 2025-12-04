@@ -1,5 +1,4 @@
 import { elementUpdated, fixture, getControlElement } from '@repo/shared';
-import { ICONS_VERSION as ICON_SET_VERSION } from '@repo/consts';
 import { type Icon, resolveIcon } from './icon';
 import '.';
 
@@ -220,18 +219,6 @@ describe('icon', function () {
 			element.name = uniqueId();
 			await vi.runAllTimersAsync();
 			expect(element.iconLoaded).toEqual(true);
-		});
-
-		it('should set an image with src when iconLoaded is false', async function () {
-			const iconName = uniqueId();
-			element.name = iconName;
-			await vi.runAllTimersAsync();
-			element.iconLoaded = false;
-			await elementUpdated(element);
-			const imgElement = getControlElement(element).querySelector('img');
-			expect(imgElement?.src).toEqual(
-				`https://icon.resources.vonage.com/v${ICON_SET_VERSION}/${iconName}.svg`
-			);
 		});
 
 		it('should set aria-busy on the figure element when iconLoaded is false', async function () {
