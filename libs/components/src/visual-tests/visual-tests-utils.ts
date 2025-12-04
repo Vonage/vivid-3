@@ -18,7 +18,9 @@ export async function loadComponents({
 	page: Page;
 	components: string[];
 }) {
-	await page.goto(`${BASE_URL}/assets/ui-tests/index.html`);
+	await page.goto(`${BASE_URL}/assets/ui-tests/index.html`, {
+		waitUntil: 'load',
+	});
 
 	await Promise.all([
 		...components.map((component) =>

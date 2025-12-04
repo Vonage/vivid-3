@@ -49,5 +49,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		template,
 	});
 
+	await page.waitForTimeout(200);
+
 	await takeScreenshot(page, 'number-field');
 });
