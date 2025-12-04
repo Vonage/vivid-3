@@ -4,13 +4,14 @@ import { createMarkToggle } from '../utils/ui';
 import { RteInstanceImpl } from '../instance';
 import {
 	featureFacade,
-	RteFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
+import { RteTextStyleFeatureImpl } from './internal/text-style';
 
-export class RteStrikethroughFeatureImpl extends RteFeatureImpl {
+export class RteStrikethroughFeatureImpl extends RteTextStyleFeatureImpl {
 	protected name = 'RteStrikethroughFeature';
+	protected markName = 'strikethrough';
 
 	override getSchema(): SchemaContribution[] {
 		return [

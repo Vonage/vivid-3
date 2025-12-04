@@ -4,13 +4,14 @@ import { createMarkToggle } from '../utils/ui';
 import { RteInstanceImpl } from '../instance';
 import {
 	featureFacade,
-	RteFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
+import { RteTextStyleFeatureImpl } from './internal/text-style';
 
-export class RteUnderlineFeatureImpl extends RteFeatureImpl {
+export class RteUnderlineFeatureImpl extends RteTextStyleFeatureImpl {
 	protected name = 'RteUnderlineFeature';
+	protected markName = 'underline';
 
 	override getSchema(): SchemaContribution[] {
 		return [

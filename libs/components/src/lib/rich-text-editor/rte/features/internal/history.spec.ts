@@ -1,15 +1,9 @@
-import { RteCore } from '../core';
+import { RteBase } from '../base';
 import { RteToolbarFeature } from '../toolbar';
-import { RteFreeformStructure } from '../freeform';
 import { setup } from '../../__tests__/test-utils';
 import { RteBoldFeature } from '../bold';
 
-const features = [
-	new RteCore(),
-	new RteFreeformStructure(),
-	new RteBoldFeature(),
-	new RteToolbarFeature(),
-];
+const features = [new RteBase(), new RteBoldFeature(), new RteToolbarFeature()];
 
 describe('RteHistoryFeature', () => {
 	it('should undo changes with Mod-z and redo them with Ctrl-y or Cmd+Shift+z', async () => {
@@ -21,19 +15,19 @@ describe('RteHistoryFeature', () => {
 		selectAll();
 		keydown('b', { ctrl: true }); // Make bold
 
-		expect(docStr()).toMatchInlineSnapshot(`"[textLine(<bold>'hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[paragraph(<bold>'hello')|]"`);
 
 		keydown('z', { ctrl: true });
-		expect(docStr()).toMatchInlineSnapshot(`"[textLine('hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[paragraph('hello')|]"`);
 
 		keydown('z', { ctrl: true });
-		expect(docStr()).toMatchInlineSnapshot(`"textLine(|)"`);
+		expect(docStr()).toMatchInlineSnapshot(`"paragraph(|)"`);
 
 		keydown('y', { ctrl: true });
-		expect(docStr()).toMatchInlineSnapshot(`"[textLine('hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[paragraph('hello')|]"`);
 
 		keydown('Z', { cmd: true, shift: true });
-		expect(docStr()).toMatchInlineSnapshot(`"[textLine(<bold>'hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[paragraph(<bold>'hello')|]"`);
 	});
 
 	it('should add undo and redo buttons to the toolbar that are disabled when the action is not possible', async () => {
@@ -51,10 +45,10 @@ describe('RteHistoryFeature', () => {
 
 		expect(toolbarButton('Undo').disabled).toBe(true);
 		expect(toolbarButton('Redo').disabled).toBe(false);
-		expect(docStr()).toMatchInlineSnapshot(`"textLine(|)"`);
+		expect(docStr()).toMatchInlineSnapshot(`"paragraph(|)"`);
 
 		toolbarButton('Redo').click();
-		expect(docStr()).toMatchInlineSnapshot(`"textLine('hello|')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"paragraph('hello|')"`);
 		expect(toolbarButton('Undo').disabled).toBe(false);
 		expect(toolbarButton('Redo').disabled).toBe(true);
 	});

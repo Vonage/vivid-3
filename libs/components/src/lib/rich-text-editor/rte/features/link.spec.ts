@@ -1,24 +1,18 @@
 import { elementUpdated } from '@repo/shared';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
-import { RteCore } from './core';
+import { RteBase } from './base';
 import { RteLinkFeature } from './link';
 import { RteToolbarFeature } from './toolbar';
-import { RteFreeformStructure } from './freeform';
 
-const { textLine: line, text, link } = docFactories;
+const { paragraph: p, text, link } = docFactories;
 
-const features = [
-	new RteCore(),
-	new RteFreeformStructure(),
-	new RteLinkFeature(),
-	new RteToolbarFeature(),
-];
+const features = [new RteBase(), new RteLinkFeature(), new RteToolbarFeature()];
 
 describe('RteLinkFeature', () => {
 	it('should add a link mark to the schema', async () => {
 		const { docStr } = await setup(features, [
-			line(
+			p(
 				'Visit ',
 				text.marks(link({ href: 'https://example.com' }))('example.com'),
 				' for more info'
@@ -28,7 +22,7 @@ describe('RteLinkFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			textLine(
+			paragraph(
 				'|Visit ',
 				<link[href="https://example.com"]>'example.com',
 				' for more info'
@@ -46,7 +40,7 @@ describe('RteLinkFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			textLine(
+			paragraph(
 				'|Visit ',
 				<link[href="https://example.com"]>'example.com',
 				' for more info'
@@ -57,7 +51,7 @@ describe('RteLinkFeature', () => {
 
 	it('should serialize link to HTML', async () => {
 		const rte = await setup(features, [
-			line(
+			p(
 				'Visit ',
 				text.marks(link({ href: 'https://example.com' }))('example.com'),
 				' for more info'
@@ -65,7 +59,7 @@ describe('RteLinkFeature', () => {
 		]);
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
-			`"<div>Visit <a href="https://example.com">example.com</a> for more info</div>"`
+			`"<p>Visit <a href="https://example.com">example.com</a> for more info</p>"`
 		);
 	});
 
@@ -79,7 +73,7 @@ describe('RteLinkFeature', () => {
 		await click(button(openMenu(), 'Apply'));
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"textLine(<link[href="https://example.com"]>'Click here|')"`
+			`"paragraph(<link[href="https://example.com"]>'Click here|')"`
 		);
 
 		await click(toolbarButton('Hyperlink'));
@@ -111,7 +105,7 @@ describe('RteLinkFeature', () => {
 
 	it('should prefill text field with selected text', async () => {
 		const { toolbarButton, click, selectText, textField, openMenu } =
-			await setup(features, [line('Select some text first')]);
+			await setup(features, [p('Select some text first')]);
 
 		selectText('Select [some text] first');
 		await click(toolbarButton('Hyperlink'));
@@ -130,7 +124,7 @@ describe('RteLinkFeature', () => {
 			button,
 			docStr,
 		} = await setup(features, [
-			line(
+			p(
 				'Go to ',
 				text.marks(link({ href: 'https://example.com' }))('our website')
 			),
@@ -149,7 +143,7 @@ describe('RteLinkFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			textLine(
+			paragraph(
 				'Go to ',
 				<link[href="https://new.example.com"]>'our new website|'
 			)
@@ -160,7 +154,7 @@ describe('RteLinkFeature', () => {
 
 	it('should show a popover with a clickable link when the cursor is inside a link', async () => {
 		const { openPopover, placeCursor, element } = await setup(features, [
-			line(
+			p(
 				'Go to ',
 				text.marks(link({ href: 'https://example.com' }))('our website')
 			),
@@ -182,7 +176,7 @@ describe('RteLinkFeature', () => {
 		const { element, openPopover, placeCursor, button, click } = await setup(
 			features,
 			[
-				line(
+				p(
 					'Go to ',
 					text.marks(link({ href: 'https://example.com' }))('our website')
 				),
@@ -199,7 +193,7 @@ describe('RteLinkFeature', () => {
 	it('should remove the link when delete button is clicked', async () => {
 		const { element, openPopover, placeCursor, button, click, docStr } =
 			await setup(features, [
-				line(
+				p(
 					'Go to ',
 					text.marks(link({ href: 'https://example.com' }))('our website')
 				),
@@ -209,7 +203,7 @@ describe('RteLinkFeature', () => {
 		await elementUpdated(element);
 		await click(button(openPopover()!, 'Delete'));
 
-		expect(docStr()).toMatchInlineSnapshot(`"textLine('Go to our websi|te')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"paragraph('Go to our websi|te')"`);
 	});
 
 	it('should open the toolbar menu when edit button is clicked', async () => {
@@ -222,7 +216,7 @@ describe('RteLinkFeature', () => {
 			click,
 			textField,
 		} = await setup(features, [
-			line(
+			p(
 				'Go to ',
 				text.marks(link({ href: 'https://example.com' }))('our website')
 			),
