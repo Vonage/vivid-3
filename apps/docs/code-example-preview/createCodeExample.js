@@ -125,6 +125,10 @@ const createVueExample = (code, classList, id) => {
 		const match = item.match(/\d+px/);
 		numberWithPx = match ? match[0] : 'auto';
 	}
+	const appStyle =
+		classList.includes('full') || classList.includes('center')
+			? ''
+			: 'style="padding: 16px"';
 
 	const document = `<!DOCTYPE html>
 		 <html class="vvd-root vvd-scrollbar" lang="en-US" style="block-size: ${numberWithPx};">
@@ -134,7 +138,9 @@ const createVueExample = (code, classList, id) => {
 				${FONTS}
 			</head>
 			<body ${classList.includes('full') ? 'id="_target"' : ''}>
-				<div id="app" style="padding: 16px"></div>
+				<div id="app" class="${
+					classList.includes('center') ? 'center' : ''
+				}" ${appStyle}></div>
 			 	<script type="module">
 					import { createApp } from 'vue'
 					import { vividVue } from '@vonage/vivid-vue';
