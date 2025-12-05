@@ -9,7 +9,7 @@ export interface ToolbarItemSpec {
 	render(ctx: UiCtx): HTMLElement | DocumentFragment;
 }
 
-export interface RteToolbarFeatureConfig {
+export interface RteToolbarConfig {
 	/**
 	 * Whether tooltips and other popups prefer to open towards or away from the main text-editing area.
 	 * Default: 'inward'
@@ -20,7 +20,7 @@ export interface RteToolbarFeatureConfig {
 export class RteToolbarFeatureImpl extends RteFeatureImpl {
 	protected name = 'RteToolbarFeature';
 
-	constructor(protected config?: RteToolbarFeatureConfig) {
+	constructor(protected config?: RteToolbarConfig) {
 		super();
 	}
 

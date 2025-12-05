@@ -4,14 +4,14 @@ import { Decoration, DecorationSet } from 'prosemirror-view';
 import { featureFacade, RteFeatureImpl } from '../feature';
 import placeholderCss from './placeholder.style.scss?inline';
 
-export type RtePlaceholderFeatureConfig = {
+export type RtePlaceholderConfig = {
 	text: string;
 };
 
 export class RtePlaceholderFeatureImpl extends RteFeatureImpl {
 	protected name = 'RtePlaceholderFeature';
 
-	constructor(protected config: RtePlaceholderFeatureConfig) {
+	constructor(protected config: RtePlaceholderConfig) {
 		super();
 	}
 

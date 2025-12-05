@@ -1,13 +1,13 @@
 import { RteFeatureImpl } from '../../feature';
 
-export type RteTextStyleFeatureConfig = {
+export type RteTextStyleConfig = {
 	onBlocks?: Array<{ node: string }>;
 };
 
 export abstract class RteTextStyleFeatureImpl extends RteFeatureImpl {
 	protected abstract markName: string;
 
-	constructor(protected config?: RteTextStyleFeatureConfig) {
+	constructor(protected config?: RteTextStyleConfig) {
 		super();
 	}
 
