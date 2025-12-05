@@ -8,8 +8,8 @@ import { promiseWithResolvers } from '../__tests__/promise';
 import { RteBase } from './base';
 import { RteToolbarFeature } from './toolbar';
 import {
+	type RteFileHandlerConfig,
 	RteFileHandlerFeature,
-	type RteFileHandlerFeatureConfig,
 } from './file-handler';
 
 vi.mock('prosemirror-transform', () => ({
@@ -25,7 +25,7 @@ const mockProseMirrorDropPointReturn = async (value: number | null) => {
 
 const { paragraph: p, text } = docFactories;
 
-const featuresWithConfig = (config: RteFileHandlerFeatureConfig) => [
+const featuresWithConfig = (config: RteFileHandlerConfig) => [
 	new RteBase(),
 	new RteToolbarFeature(),
 	new RteFileHandlerFeature(config),

@@ -4,10 +4,10 @@ import type { Tooltip } from '../../../tooltip/tooltip';
 import type { Menu } from '../../../menu/menu';
 import { basicFontSizeOptions } from '../__tests__/font-sizes';
 import { RteBase } from './base';
-import { RteToolbarFeature, type RteToolbarFeatureConfig } from './toolbar';
+import { type RteToolbarConfig, RteToolbarFeature } from './toolbar';
 import { RteFontSizePickerFeature } from './font-size-picker';
 
-const features = (config?: RteToolbarFeatureConfig) => [
+const features = (config?: RteToolbarConfig) => [
 	new RteBase(),
 	new RteFontSizePickerFeature(basicFontSizeOptions),
 	new RteToolbarFeature(config),

@@ -7,7 +7,7 @@ import {
 import type { RteInstanceImpl } from '../instance';
 import type { RichTextEditor } from '../../rich-text-editor';
 
-export interface RteDropHandlerFeatureConfig {
+export interface RteDropHandlerConfig {
 	/**
 	 * Called whenever the user drags content over the editor viewport.
 	 * If it returns `true`, the editor will ignore this content.
@@ -26,7 +26,7 @@ export interface RteDropHandlerFeatureConfig {
 export class RteDropHandlerFeatureImpl extends RteFeatureImpl {
 	protected name = 'RteDebugFeature';
 
-	constructor(readonly config: RteDropHandlerFeatureConfig) {
+	constructor(readonly config: RteDropHandlerConfig) {
 		super();
 	}
 
