@@ -19,13 +19,11 @@ import { defaultTextblockForMatch } from '../utils/default-textblock';
 import uiCss from '../utils/ui.style.scss?inline';
 import coreCss from './core.style.scss?inline';
 import { RteHistoryFeatureImpl } from './internal/history';
-import { RtePlaceholderFeatureImpl } from './internal/placeholder';
 import { RteForeignHtmlFeatureImpl } from './internal/foreign-html';
 
 export interface HostState {
 	ctx: VividElementDefinitionContext;
 	locale: Locale;
-	placeholder: string | undefined;
 }
 
 /**
@@ -96,12 +94,7 @@ export class RteCoreImpl extends RteFeatureImpl {
 	}
 
 	override getFeatures(): RteFeatureImpl[] {
-		return [
-			this,
-			new RteHistoryFeatureImpl(),
-			new RtePlaceholderFeatureImpl(),
-			new RteForeignHtmlFeatureImpl(),
-		];
+		return [this, new RteHistoryFeatureImpl(), new RteForeignHtmlFeatureImpl()];
 	}
 }
 
