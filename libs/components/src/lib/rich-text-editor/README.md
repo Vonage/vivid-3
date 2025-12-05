@@ -1451,6 +1451,10 @@ new RteInlineImageFeature({
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
+Not yet implemented.
+
+<!--
+
 Not yet implemented: Use the `xxx` scoped slot to render the placeholder content. The `data` property can contain custom data that is passed to the slot.
 
 ```ts
@@ -1469,6 +1473,8 @@ new RteInlineImageFeature({
 	</template>
 </VRichTextEditor>
 ```
+
+-->
 
 </vwc-tab-panel>
 </vwc-tabs>

@@ -559,7 +559,8 @@
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/rich-text-editor/README.md",
 		"accessibility": "./libs/components/src/lib/rich-text-editor/ACCESSIBILITY.md",
-		"status": "underlying",
+		"hideAccessibility": "true",
+		"status": "alpha",
 		"useCases": "./libs/components/src/lib/rich-text-editor/USE-CASES.md"
 	},
 	{
