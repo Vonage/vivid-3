@@ -72,7 +72,7 @@ rteComponent.instance = instance;
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
-```vue
+```vue preview
 <script setup lang="ts">
 import { VRichTextEditor } from '@vonage/vivid-vue';
 import { RteConfig, RteCore, RteFreeformStructure, RteToolbarFeature, RteBoldFeature } from '@vonage/vivid';
