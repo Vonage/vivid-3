@@ -40,7 +40,7 @@ export class TextblockAttrs {
 
 	getDOMAttrs(node: Node) {
 		if (!this.specs.length) return [];
-		return [{ style: this.getDOMAttrsProperties(node) }];
+		return [this.getDOMAttrsProperties(node)];
 	}
 
 	extractFromNode(node: Node) {
