@@ -1,0 +1,133 @@
+{% extends './page.njk' %}
+
+{% block aside %}
+	{% include '../_includes/toc.njk' %}
+{% endblock %}
+
+{% block content %}
+	{% include '../_includes/design-tokens-announcement.njk' %}
+
+	{{ content | safe }}
+
+	<div class="token-list">
+  {% for semantic, items in tokens | groupby("semantic") %}
+ 		<h2>{{ semantic }}</h2>
+		<div class="token-group">
+			{% for item in items %}
+				<div class="token-presentation">
+					<div class="token-names">
+						<div class="variable">
+							Figma: <code>{{ item.name }}</code>
+						</div>
+						<div class="variable">
+							CSS: <code>--{{ item.css }}</code>
+						</div>
+						<div class="variable">
+							Flutter: <code>{{ item.flutter }}</code>
+						</div>
+					</div>
+					{{ render(item) }}
+				</div>
+			{% endfor %}
+		</div>
+
+  {% endfor %}
+  </div>
+
+<style>
+.token-list {
+	display: flex;
+	flex-direction: column;
+}
+
+.token-group {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.token-presentation {
+	display: flex;
+	padding-bottom: 2rem;
+	align-items: ;
+	justify-items: stretch;
+}
+
+.token-presentation:not(:last-child) {
+	border-block-end: 1px solid var(--vvd-color-neutral-200);
+}
+
+.token-names {
+	flex: 1 1 auto;
+}
+
+.variable {
+	padding: 0.3em;
+}
+
+.token-preview {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 250px;
+	border-radius: 8px;
+}
+</style>
+
+{% endblock %}
+
+
+{% macro color(item) %}
+  <div class="token-preview" style="background-color: {{ item.preview }}"> </div>
+{% endmacro %}
+
+{% macro typography(item) %}
+  <div class="token-preview" style="font: {{ item.preview }}; justify-content: start">
+    The quick brown fox jumps over the lazy dog
+  </div>
+{% endmacro %}
+
+{% macro shadow(item) %}
+  <div class="token-preview">
+  	<div style="width: 3rem; height: 3rem; border-radius: 8px; box-shadow: {{ item.preview }};">
+  	</div>
+  </div>
+{% endmacro %}
+
+{% macro radius(item) %}
+  <div class="token-preview">
+  	<div style="width: 3rem; height: 3rem; border: 0 solid var(--vvd-color-neutral-500); border-width: 1px 1px 0 0; border-top-right-radius: {{ item.preview }};">
+  	</div>
+  </div>
+{% endmacro %}
+
+{% macro density(item) %}
+  <div class="token-preview">
+  	<div style="border: 1px solid var(--vvd-color-neutral-500); color: var(--vvd-color-neutral-500); border-width: 1px 0; padding: {{ item.preview }} 10px;">
+	  	Hello
+  	</div>
+  </div>
+{% endmacro %}
+
+{% macro size(item) %}
+  <div class="token-preview">
+  	<div style="width: {{ item.preview }}; height: {{ item.preview }}; background-color: var(--vvd-color-neutral-200);">
+  	</div>
+  </div>
+{% endmacro %}
+
+{% macro default(item) %}
+  <div class="token-preview">
+    <code>{{ item.preview | dump }}</code>
+  </div>
+{% endmacro %}
+
+{% macro render(item) %}
+  {% if item.category == 'color' %}{{ color(item) }}
+  {% elif item.category == 'typography' %}{{ typography(item) }}
+  {% elif item.category == 'elevation' %}{{ shadow(item) }}
+  {% elif item.category == 'radius' %}{{ radius(item) }}
+  {% elif item.category == 'density' %}{{ density(item) }}
+  {% elif item.category == 'size' %}{{ size(item) }}
+  {% else %}{{ default(item) }}{% endif %}
+{% endmacro %}
