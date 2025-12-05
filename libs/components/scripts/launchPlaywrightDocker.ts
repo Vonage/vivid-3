@@ -5,15 +5,47 @@ import path from 'node:path';
 
 const dirname = path.dirname(new URL(import.meta.url).pathname);
 
-spawn(
+const monitorProcess = spawn(
 	'pnpm',
 	['tsx', path.join(dirname, 'playwrightDockerMonitor.ts'), `${process.pid}`],
 	{
 		detached: true,
-		stdio: 'ignore',
+		stdio: ['ignore', 'pipe', 'pipe'], // Allow stdout/stderr to be visible
 	}
-).unref();
+);
 
-setInterval(() => {
-	// keep the process running
-}, 1000);
+// Forward output from monitor script
+monitorProcess.stdout?.on('data', (data) => {
+	process.stdout.write(data);
+});
+
+monitorProcess.stderr?.on('data', (data) => {
+	process.stderr.write(data);
+});
+
+monitorProcess.on('error', (error) => {
+	// eslint-disable-next-line no-console
+	console.error('Failed to start monitor script:', error);
+	process.exit(1);
+});
+
+monitorProcess.unref();
+
+// Keep the process alive so the monitor script can watch it
+// The monitor will clean up the Docker container when this process exits
+// Keep stdin open to prevent the process from exiting
+if (process.stdin.isTTY) {
+	process.stdin.resume();
+} else {
+	// If not a TTY, keep the event loop alive with a minimal interval
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	const keepAlive = setInterval(() => {}, 1000);
+	process.on('SIGINT', () => {
+		clearInterval(keepAlive);
+		process.exit(0);
+	});
+	process.on('SIGTERM', () => {
+		clearInterval(keepAlive);
+		process.exit(0);
+	});
+}

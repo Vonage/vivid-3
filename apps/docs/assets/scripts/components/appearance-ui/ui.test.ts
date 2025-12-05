@@ -30,6 +30,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.$('#wrapper');
 
 	await page.waitForLoadState('networkidle');
+	await page.waitForTimeout(500);
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'snapshots/appearance-ui.png'
