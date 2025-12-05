@@ -3,7 +3,6 @@ import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import { RTEFeatureImpl } from '../../feature';
 import type { RTEInstanceImpl } from '../../instance';
-import type { FontSizeSpec } from '../font-size';
 import placeholderCss from './placeholder.style.scss?inline';
 
 export class RTEPlaceholderFeatureImpl extends RTEFeatureImpl {
@@ -27,11 +26,6 @@ export class RTEPlaceholderFeatureImpl extends RTEFeatureImpl {
 							| undefined;
 						const storedSize = fontSizeMark?.isInSet(state.storedMarks ?? [])
 							?.attrs.size;
-						const storedFontSize = storedSize
-							? fontSizeMark.spec.fontSizes.find(
-									(fs: FontSizeSpec) => fs.value === storedSize
-							  )!.size
-							: null;
 
 						// Placeholder style should be affected by the block type and font size, not by other text styles
 						// Placing decoration into block will inherit block styles
@@ -40,10 +34,10 @@ export class RTEPlaceholderFeatureImpl extends RTEFeatureImpl {
 								const placeholder = document.createElement('span');
 								placeholder.className = 'placeholder';
 								placeholder.dataset.placeholder = placeholderText;
-								if (storedFontSize) {
+								if (storedSize) {
 									placeholder.style.setProperty(
 										'--placeholder-font-size',
-										storedFontSize
+										storedSize
 									);
 								}
 								return placeholder;

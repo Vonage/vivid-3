@@ -601,7 +601,15 @@ A `data-block-type="<id>"` attribute is added to identify the block type. No sty
 				],
 			}),
 			new RTEToolbarFeature(),
-			new RTEFontSizeFeature(),
+			new RTEFontSizeFeature({
+				options: [
+					{ size: '24px', label: 'Extra Large' },
+					{ size: '18px', label: 'Large' },
+					{ size: '14px', label: 'Normal' },
+					{ size: '12px', label: 'Small' },
+				],
+				defaultSize: '14px',
+			}),
 		]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
@@ -646,7 +654,15 @@ Configuration options:
 			new RTEToolbarFeature({
 				popupDirection: 'outward',
 			}),
-			new RTEFontSizeFeature(),
+			new RTEFontSizeFeature({
+				options: [
+					{ size: '24px', label: 'Extra Large' },
+					{ size: '18px', label: 'Large' },
+					{ size: '14px', label: 'Normal' },
+					{ size: '12px', label: 'Small' },
+				],
+				defaultSize: '14px',
+			}),
 		]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
@@ -667,17 +683,50 @@ Configuration options:
 
 Adds the ability to change the text size.
 
-Currently, the list of font sizes is predefined and cannot be changed.
+Example usage:
+
+```ts
+new RTEFontSizeFeature({
+	options: [
+		{ size: '24px', label: 'Extra Large' },
+		{ size: '18px', label: 'Large' },
+		{ size: '14px', label: 'Normal' },
+		{ size: '12px', label: 'Small' },
+	],
+	defaultSize: '14px',
+});
+```
 
 Keyboard shortcuts:
 
 - **Increase Font Size**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd>
 - **Decrease Font Size**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>,</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>,</kbd>
 
+#### Font Size Options
+
+**options**
+
+Type: `FontSizeOption[]` (required)
+
+Defines the available font sizes. Sizes should be specified from largest to smallest.
+
+`FontSizeOption` has the following properties:
+
+- `size: string` (required): CSS font-size value (e.g., `12px`, `1.5em`, `var(--font-size-large)`).
+- `label: string` (required): Label for the font size option shown in the toolbar.
+
+**defaultSize**
+
+Type: `string` (required)
+
+The default font size for unstyled text.
+
+The editor uses this size to determine which font size option is selected by default. The size will not actually be applied to any text.
+
 <rte-schema>
 	<rte-schema-mark name="fontSize">
 		<rte-schema-attrs>
-			<rte-schema-attr name="size" type="'small' | 'normal' | 'large' | 'extra-large'" default="'normal'"></rte-schema-attr>
+			<rte-schema-attr name="size" type="string" required description="CSS font-size value"></rte-schema-attr>
 		</rte-schema-attrs>
 	</rte-schema-mark>
 </rte-schema>
@@ -702,7 +751,15 @@ Known issues:
 				],
 			}),
 			new RTEToolbarFeature(),
-			new RTEFontSizeFeature(),
+			new RTEFontSizeFeature({
+				options: [
+					{ size: '24px', label: 'Extra Large' },
+					{ size: '18px', label: 'Large' },
+					{ size: '14px', label: 'Normal' },
+					{ size: '12px', label: 'Small' },
+				],
+				defaultSize: '14px',
+			}),
 		]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
@@ -714,18 +771,18 @@ Known issues:
 							{
 								type: 'text',
 								text: 'small ',
-								marks: [{ type: 'fontSize', attrs: { size: 'small' } }],
+								marks: [{ type: 'fontSize', attrs: { size: '12px' } }],
 							},
 							{ type: 'text', text: 'normal ' },
 							{
 								type: 'text',
 								text: 'large ',
-								marks: [{ type: 'fontSize', attrs: { size: 'large' } }],
+								marks: [{ type: 'fontSize', attrs: { size: '18px' } }],
 							},
 							{
 								type: 'text',
 								text: 'extra large',
-								marks: [{ type: 'fontSize', attrs: { size: 'extra-large' } }],
+								marks: [{ type: 'fontSize', attrs: { size: '24px' } }],
 							},
 						],
 					},
