@@ -8,7 +8,7 @@ import type { RteFragment } from '../document';
 import { generateRandomId } from '../../../../shared/utils/randomId';
 import { resolvePromise } from '../../../../shared/utils/promise';
 
-export interface RteFileHandlerFeatureConfig {
+export interface RteFileHandlerConfig {
 	/**
 	 * Called when files are dropped or pasted into the editor. The returned fragment is inserted into the document.
 	 * If it returns `null`, the files are ignored and the current selection remains unchanged.
@@ -21,7 +21,7 @@ type InsertPoint = { type: 'pos'; pos: number } | { type: 'selection' };
 export class RteFileHandlerFeatureImpl extends RteFeatureImpl {
 	protected name = 'RteFileHandlerFeature';
 
-	constructor(readonly config: RteFileHandlerFeatureConfig) {
+	constructor(readonly config: RteFileHandlerConfig) {
 		super();
 	}
 
