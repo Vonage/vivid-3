@@ -1,7 +1,7 @@
 import { expect, type Page } from '@playwright/test';
 import { InFlightRequests } from './requests';
 
-const BASE_URL = Boolean(process.env.PW_TEST_CONNECT_WS_ENDPOINT)
+export const BASE_URL = Boolean(process.env.PW_TEST_CONNECT_WS_ENDPOINT)
 	? 'http://hostmachine:8080'
 	: 'http://localhost:8080';
 

@@ -1,6 +1,7 @@
 import 'vitest-axe/extend-expect';
 import * as matchers from 'vitest-axe/matchers';
 import { expect } from 'vitest';
+
 expect.extend(matchers);
 
 export default async () => {
@@ -25,6 +26,10 @@ Object.defineProperty(document, 'adoptedStyleSheets', {
 	writable: true,
 	configurable: true,
 	value: [],
+});
+
+Object.defineProperty(document, 'execCommand', {
+	value: () => true,
 });
 
 Object.defineProperty(ShadowRoot.prototype, 'adoptedStyleSheets', {

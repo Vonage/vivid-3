@@ -1,0 +1,10 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
+
+.toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 4px;
+	background-color: var(#{constants.$vvd-color-neutral-50});
+	gap: 8px;
+}
