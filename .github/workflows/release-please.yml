@@ -89,6 +89,16 @@ jobs:
       sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
+  vivid-design-tokens-flutter-publish:
+    needs: should-release
+    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+    uses: ./.github/workflows/_publish-flutter.yml
+    with:
+      path: ./libs/design-tokens/flutter-dist
+      sha: ${{ needs.should-release.outputs.release_sha }}
+      version: ${{ env.VIVID_VERSION }}
+    secrets: inherit
+
   vivid-vue-publish:
     needs: should-release
     if: ${{ needs.should-release.outputs.should_release == 'true' }}

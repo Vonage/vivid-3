@@ -1,4 +1,5 @@
-import { flutterConfig } from './flutter.config';
+import type { Dictionary } from 'style-dictionary/types';
+import { flutterConfig, flutterPlatform } from './flutter.config';
 import { buildToken } from '../utils/build-token';
 
 describe('Flutter Features', () => {
@@ -253,6 +254,81 @@ describe('Flutter Features', () => {
 					{}
 				);
 				expect(out).toEqual('vvdColorCritical500');
+			});
+		});
+	});
+
+	describe('Actions', () => {
+		let mockedVolume: Record<string, any>;
+
+		beforeEach(() => {
+			mockedVolume = {
+				cpSync: vi.fn(),
+				unlinkSync: vi.fn(),
+			};
+		});
+
+		describe('vvd/flutter/createPackage', () => {
+			it('Should create a package', async () => {
+				await flutterConfig.actions['vvd/flutter/createPackage'].do(
+					{} as Dictionary,
+					flutterPlatform,
+					{},
+					mockedVolume as any
+				);
+
+				expect(mockedVolume.cpSync).toHaveBeenCalledWith(
+					'./files/',
+					'./flutter-dist',
+					{ recursive: true }
+				);
+			});
+
+			it('Should be able to undo creating the package', () => {
+				flutterConfig.actions['vvd/flutter/createPackage'].undo(
+					{} as Dictionary,
+					flutterPlatform,
+					{},
+					mockedVolume as any
+				);
+
+				expect(mockedVolume.unlinkSync).toHaveBeenCalledWith('./flutter-dist');
+			});
+		});
+	});
+
+	describe('Formats', () => {
+		describe(`vvd/flutter/variables`, () => {
+			it('should create a flutter file with variables', async () => {
+				const dictionary = {
+					tokenMap: new Map([
+						[
+							'vvd-color-canvas',
+							buildToken('vvd/color/canvas', {
+								name: 'vvdColorCanvas',
+								$value: 'Color(0xFFFFFFFF)',
+							}),
+						],
+					]),
+				} as unknown as Dictionary;
+
+				const output = await flutterConfig.formats['vvd/flutter/variables']({
+					dictionary,
+					file: {
+						destination: 'vivid-design-tokens.dart',
+					},
+					options: {},
+				} as any);
+
+				expect(output).toEqual(
+					`/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+import 'package:flutter/painting.dart';
+
+const vvd/color/canvas = Color(0xFFFFFFFF);`
+				);
 			});
 		});
 	});
