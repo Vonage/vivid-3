@@ -1,13 +1,13 @@
 import { Schema } from 'prosemirror-model';
 import type { Constructor } from '../../../shared/utils/mixins';
-import { RteCoreImpl } from './features/core';
+import { RteBaseImpl } from './features/base';
 import { RteInstance, type RteInstanceOptions } from './instance';
 import { RteFeature, RteFeatureImpl, sortedContributions } from './feature';
-import { RteTextBlockStructureImpl } from './features/text-block';
-import { RteFreeformStructureImpl } from './features/freeform';
 import { TextblockAttrs } from './utils/textblock-attrs';
-import { RteAlignmentFeatureImpl } from './features/alignment';
 import { impl } from './utils/impl';
+import { TextblockMarks } from './utils/textblock-marks';
+import { RteLinkFeatureImpl } from './features/link';
+import { RteToolbarFeatureImpl } from './features/toolbar';
 
 export class RteConfig {
 	/// @internal
@@ -25,15 +25,23 @@ export class RteConfig {
 export class RteConfigImpl {
 	schema: Schema;
 	textblockAttrs: TextblockAttrs;
+	textblockMarks: TextblockMarks;
 	featureMap: Map<Constructor<RteFeatureImpl>, RteFeatureImpl>;
 	features: RteFeatureImpl[];
 
 	constructor(featuresFacades: RteFeature[]) {
-		const features = featuresFacades.map((f) => f[impl]);
-		this.features = features.flatMap((f) => f.getFeatures());
+		const resolveFeatures = (features: RteFeatureImpl[]): RteFeatureImpl[] =>
+			features.flatMap((f) =>
+				f
+					.getFeatures()
+					.flatMap((subFeature) =>
+						subFeature === f ? f : resolveFeatures([subFeature])
+					)
+			);
+		this.features = resolveFeatures(featuresFacades.map((f) => f[impl]));
 		this.featureMap = new Map();
 
-		for (const f of features) {
+		for (const f of this.features) {
 			const constr = f.constructor as Constructor<RteFeatureImpl>;
 			if (this.featureMap.has(constr)) {
 				throw new Error(`Duplicate feature: ${constr.name}`);
@@ -41,34 +49,28 @@ export class RteConfigImpl {
 			this.featureMap.set(constr, f);
 		}
 
-		if (!this.featureMap.has(RteCoreImpl)) {
-			throw new Error('RteCore feature is required');
+		if (!this.featureMap.has(RteBaseImpl)) {
+			throw new Error('RteBase feature is required');
 		}
 
 		if (
-			!this.featureMap.has(RteTextBlockStructureImpl) ===
-			!this.featureMap.has(RteFreeformStructureImpl)
+			this.featureMap.has(RteLinkFeatureImpl) &&
+			!this.featureMap.has(RteToolbarFeatureImpl)
 		) {
-			throw new Error(
-				'Either RteTextBlockStructure or RteFreeformStructure feature is required'
-			);
-		}
-
-		if (
-			this.featureMap.has(RteFreeformStructureImpl) &&
-			this.featureMap.has(RteAlignmentFeatureImpl)
-		) {
-			throw new Error(
-				'RteAlignmentFeature cannot be used with RteFreeformStructure'
-			);
+			throw new Error('RteToolbarFeature is required for RteLinkFeature');
 		}
 
 		this.textblockAttrs = new TextblockAttrs(
-			sortedContributions(features.flatMap((f) => f.getTextblockAttrs()))
+			sortedContributions(this.features.flatMap((f) => f.getTextblockAttrs()))
+		);
+		this.textblockMarks = new TextblockMarks(
+			sortedContributions(this.features.flatMap((f) => f.getTextblockMarks()))
 		);
 
 		const schemaContributions = sortedContributions(
-			features.flatMap((f) => f.getSchema(this.textblockAttrs))
+			this.features.flatMap((f) =>
+				f.getSchema(this.textblockAttrs, this.textblockMarks)
+			)
 		);
 
 		const schemaSpec = {
@@ -79,6 +81,12 @@ export class RteConfigImpl {
 		for (const schema of schemaContributions) {
 			Object.assign(schemaSpec.nodes, schema.nodes ?? {});
 			Object.assign(schemaSpec.marks, schema.marks ?? {});
+		}
+
+		for (const referencedNodeName of this.textblockMarks.getReferencedNodeNames()) {
+			if (!(referencedNodeName in schemaSpec.nodes)) {
+				throw new Error(`Unknown node "${referencedNodeName}"`);
+			}
 		}
 
 		this.schema = new Schema(schemaSpec);

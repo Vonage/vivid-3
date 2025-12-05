@@ -1,9 +1,8 @@
 import { axe, fixture } from '@repo/shared';
 import { RichTextEditor } from './rich-text-editor';
 import '.';
-import { RteCore } from './rte/features/core';
+import { RteBase } from './rte/features/base';
 import { RteConfig } from './rte/config';
-import { RteFreeformStructure } from './rte/features/freeform';
 
 const COMPONENT_TAG = 'vwc-rich-text-editor';
 
@@ -14,7 +13,7 @@ describe('a11y: vwc-rich-text-editor', () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as RichTextEditor;
-		const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
+		const config = new RteConfig([new RteBase()]);
 		element.instance = config.instantiateEditor();
 	});
 

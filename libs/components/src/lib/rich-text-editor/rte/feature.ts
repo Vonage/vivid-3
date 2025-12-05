@@ -8,6 +8,10 @@ import {
 } from './utils/textblock-attrs';
 import { impl } from './utils/impl';
 import type { ToolbarItemSpec } from './features/toolbar';
+import {
+	TextblockMarks,
+	type TextblockMarkSpec,
+} from './utils/textblock-marks';
 
 // Features bundle everything related to a specific editor capability together.
 // They can contribute styles, schema additions, ProseMirror plugins, toolbar items, etc.
@@ -52,6 +56,7 @@ export const contributionPriority = {
 export type StyleContribution = Contribution<string>;
 export type SchemaContribution = Contribution<Partial<SchemaSpec>>;
 export type TextblockAttrContribution = Contribution<TextblockAttrSpec>;
+export type TextblockMarkContribution = Contribution<TextblockMarkSpec>;
 export type PluginContribution = Contribution<Plugin>;
 export type ToolbarItemContribution = Contribution<ToolbarItemSpec>;
 
@@ -82,11 +87,18 @@ export abstract class RteFeatureImpl {
 		return [];
 	}
 
-	getSchema(textblockAttrs: TextblockAttrs): SchemaContribution[] {
+	getSchema(
+		textblockAttrs: TextblockAttrs,
+		textblockMarks: TextblockMarks
+	): SchemaContribution[] {
 		return [];
 	}
 
 	getTextblockAttrs(): TextblockAttrContribution[] {
+		return [];
+	}
+
+	getTextblockMarks(): TextblockMarkContribution[] {
 		return [];
 	}
 
