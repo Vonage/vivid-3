@@ -134,7 +134,9 @@ const createVueExample = (code, classList, id) => {
 				${FONTS}
 			</head>
 			<body ${classList.includes('full') ? 'id="_target"' : ''}>
-				<div id="app" style="padding: 16px"></div>
+				<div id="app" ${
+					classList.includes('full') ? '' : 'style="padding: 16px"'
+				}></div>
 			 	<script type="module">
 					import { createApp } from 'vue'
 					import { vividVue } from '@vonage/vivid-vue';
