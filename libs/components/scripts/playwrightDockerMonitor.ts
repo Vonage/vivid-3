@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { spawnSync } from 'node:child_process';
 import { setTimeout } from 'node:timers/promises';
 
@@ -32,6 +31,7 @@ const runResult = spawnSync(
 );
 
 if (runResult.status !== 0) {
+	// eslint-disable-next-line no-console
 	console.error('Failed to start Docker container');
 	process.exit(1);
 }
@@ -88,9 +88,11 @@ const checkServerReady = (): boolean => {
 const waitForServer = async (): Promise<void> => {
 	for (let i = 0; i < MAX_RETRIES; i++) {
 		if (!checkContainerRunning()) {
+			// eslint-disable-next-line no-console
 			console.error('Docker container is not running');
 			const logs = getContainerLogs();
 			if (logs) {
+				// eslint-disable-next-line no-console
 				console.error('Container logs:', logs);
 			}
 			process.exit(1);
@@ -101,15 +103,18 @@ const waitForServer = async (): Promise<void> => {
 			await setTimeout(READINESS_DELAY);
 			// Verify one more time after delay
 			if (checkServerReady()) {
+				// eslint-disable-next-line no-console
 				console.log('Playwright server is ready');
 				return;
 			}
 		}
 
 		if (i === MAX_RETRIES - 1) {
+			// eslint-disable-next-line no-console
 			console.error('Playwright server failed to start within timeout');
 			const logs = getContainerLogs();
 			if (logs) {
+				// eslint-disable-next-line no-console
 				console.error('Container logs:', logs);
 			}
 			process.exit(1);
@@ -137,6 +142,7 @@ const waitForServer = async (): Promise<void> => {
 
 			// Also check if container is still running
 			if (!checkContainerRunning()) {
+				// eslint-disable-next-line no-console
 				console.error('Docker container stopped unexpectedly');
 				cleanup();
 				process.exit(1);
@@ -147,6 +153,7 @@ const waitForServer = async (): Promise<void> => {
 		}
 	}, MONITOR_INTERVAL);
 })().catch((error) => {
+	// eslint-disable-next-line no-console
 	console.error('Error in monitor script:', error);
 	process.exit(1);
 });

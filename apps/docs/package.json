@@ -55,6 +55,7 @@
 		"@vitejs/plugin-vue": "^5.2.4",
 		"clean-css": "^5.3.3",
 		"codemirror": "^6.0.2",
+		"concurrently": "catalog:",
 		"eleventy-plugin-nesting-toc": "^1.3.0",
 		"esbuild": "catalog:",
 		"glob": "^7.2.3",

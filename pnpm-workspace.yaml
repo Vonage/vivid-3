@@ -25,6 +25,7 @@ catalog:
   cem-plugin-jsdoc-example: ^0.0.9
   cem-plugin-jsdoc-function: ^0.0.5
   cem-plugin-readonly: ^0.0.5
+  concurrently: ^9.2.1
   custom-elements-manifest: ^2.1.0
   cypress: ^14.5.4
   esbuild: ^0.25.12

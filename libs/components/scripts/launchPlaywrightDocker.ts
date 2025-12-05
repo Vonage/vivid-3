@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { spawn } from 'node:child_process';
 import path from 'node:path';
 
@@ -26,6 +24,7 @@ monitorProcess.stderr?.on('data', (data) => {
 });
 
 monitorProcess.on('error', (error) => {
+	// eslint-disable-next-line no-console
 	console.error('Failed to start monitor script:', error);
 	process.exit(1);
 });
@@ -39,6 +38,7 @@ if (process.stdin.isTTY) {
 	process.stdin.resume();
 } else {
 	// If not a TTY, keep the event loop alive with a minimal interval
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	const keepAlive = setInterval(() => {}, 1000);
 	process.on('SIGINT', () => {
 		clearInterval(keepAlive);
