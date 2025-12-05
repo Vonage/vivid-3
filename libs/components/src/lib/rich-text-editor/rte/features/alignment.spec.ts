@@ -1,17 +1,18 @@
 import { setup } from '../__tests__/test-utils';
-import { docFactories } from '../__tests__/doc-factories';
+import {
+	basicTextBlockFactories,
+	basicTextBlocks,
+} from '../__tests__/text-blocks';
 import { RTECore } from './core';
 import { RTETextBlockStructure } from './text-block';
 import { RTEAlignmentFeature } from './alignment';
 import { RTEToolbarFeature } from './toolbar';
 
-const { paragraph: p } = docFactories;
-const h1 = docFactories.heading.attrs({ level: 1 });
-const h2 = docFactories.heading.attrs({ level: 2 });
+const { h1, h2, p } = basicTextBlockFactories;
 
 const features = [
 	new RTECore(),
-	new RTETextBlockStructure(),
+	new RTETextBlockStructure({ blocks: basicTextBlocks }),
 	new RTEAlignmentFeature(),
 	new RTEToolbarFeature(),
 ];
@@ -27,7 +28,7 @@ describe('RTEAlignmentFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			heading[level=1 textAlign="right"]('|Right'),
+			heading-1[textAlign="right"]('|Right'),
 			paragraph[textAlign="center"]('Centered'),
 			paragraph[textAlign="left"]('Default')
 			"
@@ -48,8 +49,8 @@ describe('RTEAlignmentFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			heading[level=1 textAlign="center"]('|center'),
-			heading[level=2 textAlign="right"]('right'),
+			heading-1[textAlign="center"]('|center'),
+			heading-2[textAlign="right"]('right'),
 			paragraph[textAlign="left"]('left'),
 			paragraph[textAlign="left"]('default')
 			"
@@ -64,7 +65,7 @@ describe('RTEAlignmentFeature', () => {
 		]);
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
-			`"<h1 style="text-align: center;">center</h1><h2 style="text-align: right;">right</h2><p style="text-align: left;">left</p>"`
+			`"<h1 data-block-type="heading-1" style="text-align: center;">center</h1><h2 data-block-type="heading-2" style="text-align: right;">right</h2><p data-block-type="paragraph" style="text-align: left;">left</p>"`
 		);
 	});
 
@@ -204,8 +205,8 @@ describe('RTEAlignmentFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			heading[level=1 textAlign="right"]('Rig'),
-			heading[level=1 textAlign="right"]('|ht')
+			heading-1[textAlign="right"]('Rig'),
+			heading-1[textAlign="right"]('|ht')
 			"
 		`
 		);

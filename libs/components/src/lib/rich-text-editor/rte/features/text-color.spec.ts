@@ -1,17 +1,21 @@
 import { docFactories } from '../__tests__/doc-factories';
 import { setup as standardSetup } from '../__tests__/test-utils';
 import { RTEFeature } from '../feature';
+import {
+	basicTextBlockFactories,
+	basicTextBlocks,
+} from '../__tests__/text-blocks';
 import { RTECore } from './core';
 import { RTETextBlockStructure } from './text-block';
 import { RTEToolbarFeature } from './toolbar';
 import { RTETextColorFeature } from './text-color';
 
-const { paragraph: p, text, textColor: color } = docFactories;
-const h1 = docFactories.heading.attrs({ level: 1 });
+const { text, textColor: color } = docFactories;
+const { h1, p } = basicTextBlockFactories;
 
 const features = [
 	new RTECore(),
-	new RTETextBlockStructure(),
+	new RTETextBlockStructure({ blocks: basicTextBlocks }),
 	new RTEToolbarFeature(),
 	new RTETextColorFeature({ defaultColor: '#000000' }),
 ];
@@ -66,7 +70,7 @@ describe('RTETextColorFeature', () => {
 		]);
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
-			`"<p><span style="color: rgb(18, 52, 86);" data-text-color="#123456">Colored</span> Plain</p>"`
+			`"<p data-block-type="paragraph"><span style="color: rgb(18, 52, 86);" data-text-color="#123456">Colored</span> Plain</p>"`
 		);
 	});
 

@@ -2,19 +2,19 @@ import { docFactories } from '../__tests__/doc-factories';
 import { setup } from '../__tests__/test-utils';
 import { asyncGeneratorMock } from '../__tests__/async-generator';
 import { RTECore } from './core';
-import { RTETextBlockStructure } from './text-block';
 import {
 	type ResolvedUrl,
 	RTEInlineImageFeature,
 	type RTEInlineImageFeatureConfig,
 } from './inline-image';
 import { RTEToolbarFeature } from './toolbar';
+import { RTEFreeformStructure } from './freeform';
 
-const { doc, paragraph: p, inline_image: img, text } = docFactories;
+const { doc, text_line: p, inline_image: img, text } = docFactories;
 
 const featuresWithConfig = (config?: RTEInlineImageFeatureConfig) => [
 	new RTECore(),
-	new RTETextBlockStructure(),
+	new RTEFreeformStructure(),
 	new RTEToolbarFeature(),
 	new RTEInlineImageFeature(config),
 ];
@@ -35,7 +35,7 @@ describe('RTEInlineImageFeature', () => {
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
-			paragraph(
+			text_line(
 				inline_image[imageUrl="/image.jpg" alt="Image" size="100%" naturalWidth=100 naturalHeight=200]()
 			)
 			"
@@ -52,7 +52,7 @@ describe('RTEInlineImageFeature', () => {
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
-			paragraph(
+			text_line(
 				inline_image[imageUrl="image.jpg" alt="Image" size="100%" naturalWidth=100 naturalHeight=200]()
 			)
 			"
@@ -64,7 +64,7 @@ describe('RTEInlineImageFeature', () => {
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
-			paragraph(
+			text_line(
 				inline_image[imageUrl="minimal.jpg" alt="" size=null naturalWidth=null naturalHeight=null]()
 			)
 			"
@@ -86,7 +86,7 @@ describe('RTEInlineImageFeature', () => {
 		]);
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
-			`"<p><img src="/image.jpg" alt="Image" style="max-width: 100%;" width="100" height="200"></p>"`
+			`"<div><img src="/image.jpg" alt="Image" style="max-width: 100%;" width="100" height="200"></div>"`
 		);
 
 		rte.instance.replaceDocument(
@@ -104,7 +104,7 @@ describe('RTEInlineImageFeature', () => {
 		);
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
-			`"<p><img src="/minimal.jpg" alt=""></p>"`
+			`"<div><img src="/minimal.jpg" alt=""></div>"`
 		);
 	});
 
@@ -123,7 +123,7 @@ describe('RTEInlineImageFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			paragraph(
+			text_line(
 				'Hello|',
 				inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=100 naturalHeight=200]()
 			)
@@ -134,7 +134,7 @@ describe('RTEInlineImageFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			paragraph(
+			text_line(
 				inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=100 naturalHeight=200]()
 			)
 			"
@@ -157,7 +157,7 @@ describe('RTEInlineImageFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			paragraph(
+			text_line(
 				inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=100 naturalHeight=200]()
 			)
 			"
@@ -226,7 +226,7 @@ describe('RTEInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				paragraph(
+				text_line(
 					[|inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=null naturalHeight=null]()|]
 				)
 				"
@@ -248,7 +248,7 @@ describe('RTEInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				paragraph(
+				text_line(
 					[|inline_image[imageUrl="/image.jpg" alt="Image" size="100%" naturalWidth=null naturalHeight=null]()|]
 				)
 				"
@@ -271,7 +271,7 @@ describe('RTEInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				paragraph(
+				text_line(
 					[|inline_image[imageUrl="/image.jpg" alt="Image" size="50px" naturalWidth=100 naturalHeight=null]()|]
 				)
 				"
@@ -294,7 +294,7 @@ describe('RTEInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				paragraph(
+				text_line(
 					[|inline_image[imageUrl="/image.jpg" alt="Image" size="300px" naturalWidth=1000 naturalHeight=null]()|]
 				)
 				"
@@ -316,7 +316,7 @@ describe('RTEInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				paragraph(
+				text_line(
 					[|inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=null naturalHeight=null]()|]
 				)
 				"
@@ -341,7 +341,7 @@ describe('RTEInlineImageFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				paragraph(
+				text_line(
 					'|Hello',
 					inline_image[imageUrl="/image.jpg" alt="Image" size=null naturalWidth=null naturalHeight=null]()
 				)
@@ -362,7 +362,7 @@ describe('RTEInlineImageFeature', () => {
 			);
 			expect(rte.docStr()).toMatchInlineSnapshot(`
 				"
-				paragraph(
+				text_line(
 					inline_image[imageUrl="parsed:image.jpg" alt="Image" size="100%" naturalWidth=100 naturalHeight=200]()
 				)
 				"
@@ -399,7 +399,7 @@ describe('RTEInlineImageFeature', () => {
 				]
 			);
 			expect(rte.getHtml()).toMatchInlineSnapshot(
-				`"<p><img src="serialized:/image.jpg" alt="Image"></p>"`
+				`"<div><img src="serialized:/image.jpg" alt="Image"></div>"`
 			);
 		});
 
@@ -417,7 +417,7 @@ describe('RTEInlineImageFeature', () => {
 					),
 				]
 			);
-			expect(rte.getHtml()).toMatchInlineSnapshot(`"<p></p>"`);
+			expect(rte.getHtml()).toMatchInlineSnapshot(`"<div></div>"`);
 		});
 	});
 

@@ -1,5 +1,9 @@
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
+import {
+	basicTextBlockFactories,
+	basicTextBlocks,
+} from '../__tests__/text-blocks';
 import { RTECore } from './core';
 import { RTETextBlockStructure } from './text-block';
 import { RTEToolbarFeature } from './toolbar';
@@ -12,8 +16,9 @@ const {
 	bullet_list: ul,
 	numbered_list: ol,
 	text_line: line,
-	paragraph: p,
 } = docFactories;
+
+const { p: p } = basicTextBlockFactories;
 
 const freeformFeatures = [
 	new RTECore(),
@@ -24,7 +29,7 @@ const freeformFeatures = [
 
 const textBlockFeatures = [
 	new RTECore(),
-	new RTETextBlockStructure(),
+	new RTETextBlockStructure({ blocks: basicTextBlocks }),
 	new RTEToolbarFeature(),
 	new RTEListFeature(),
 ];

@@ -4,7 +4,6 @@
 .ProseMirror {
 	flex: 1;
 	padding: var(--editor-padding-block) var(--editor-padding-inline);
-	line-height: 20px; // Required for placeholder
 	outline: none;
 }
 

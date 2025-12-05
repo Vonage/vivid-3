@@ -4,12 +4,12 @@ import type { Tooltip } from '../../../tooltip/tooltip';
 import type { Menu } from '../../../menu/menu';
 import { RTECore } from './core';
 import { RTEToolbarFeature, type RTEToolbarFeatureConfig } from './toolbar';
-import { RTETextBlockStructure } from './text-block';
 import { RTEFontSizeFeature } from './font-size';
+import { RTEFreeformStructure } from './freeform';
 
 const features = (config?: RTEToolbarFeatureConfig) => [
 	new RTECore(),
-	new RTETextBlockStructure(),
+	new RTEFreeformStructure(),
 	new RTEFontSizeFeature(),
 	new RTEToolbarFeature(config),
 ];
@@ -23,9 +23,9 @@ describe('RTEToolbarFeature', () => {
 		expect(toolbar.children[0].contains(rte.toolbarButton('Undo'))).toBe(true);
 		expect(toolbar.children[1].contains(rte.toolbarButton('Redo'))).toBe(true);
 		expect(toolbar.children[2]).toBeInstanceOf(Divider);
-		expect(
-			toolbar.children[3].contains(rte.toolbarSelect('Paragraph styles'))
-		).toBe(true);
+		expect(toolbar.children[3].contains(rte.toolbarButton('Text size'))).toBe(
+			true
+		);
 		expect(
 			toolbar.querySelectorAll('[data-vvd-component="divider"]').length
 		).toBe(1);

@@ -44,13 +44,12 @@ const markFactory = (type: string) => (attrs?: Record<string, any>) => ({
 });
 
 export const docFactories = {
+	node: nodeFactory,
 	doc: nodeFactory<RTEDocument>('doc'),
 	text: textFactory(),
 	bullet_list: nodeFactory('bullet_list'),
 	numbered_list: nodeFactory('numbered_list'),
 	list_item: nodeFactory('list_item'),
-	paragraph: nodeFactory('paragraph'),
-	heading: nodeFactory('heading'),
 	hard_break: nodeFactory('hard_break'),
 	text_line: nodeFactory('text_line'),
 	inline_image: nodeFactory('inline_image', undefined, undefined, true),

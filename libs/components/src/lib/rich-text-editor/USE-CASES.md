@@ -257,7 +257,13 @@ Functionality:
 
 		const config = new RTEConfig([
 			new RTECore(),
-			new RTETextBlockStructure(),
+			new RTETextBlockStructure({
+				blocks: [
+					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
+					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
+					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
+				],
+			}),
 			new RTEFontSizeFeature(),
 			new RTEBoldFeature(),
 			new RTEItalicFeature(),
@@ -366,7 +372,7 @@ Functionality:
 				content: Array(20)
 					.fill(null)
 					.map((_, i) => ({
-						type: 'paragraph',
+						type: 'body',
 						content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
 					})),
 			},

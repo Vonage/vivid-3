@@ -1,5 +1,9 @@
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
+import {
+	basicTextBlockFactories,
+	basicTextBlocks,
+} from '../__tests__/text-blocks';
 import { RTECore } from './core';
 import { RTEFontSizeFeature } from './font-size';
 import { RTEToolbarFeature } from './toolbar';
@@ -11,10 +15,10 @@ const {
 	text,
 	text_line: line,
 	fontSize: size,
-	paragraph: p,
 	hard_break: br,
 } = docFactories;
-const h1 = docFactories.heading.attrs({ level: 1 });
+
+const { p, h1 } = basicTextBlockFactories;
 
 const features = [
 	new RTECore(),
@@ -25,7 +29,9 @@ const features = [
 
 const textBlockFeatures = [
 	new RTECore(),
-	new RTETextBlockStructure(),
+	new RTETextBlockStructure({
+		blocks: basicTextBlocks,
+	}),
 	new RTEToolbarFeature(),
 	new RTEFontSizeFeature(),
 ];
