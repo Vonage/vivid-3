@@ -12,29 +12,28 @@ import {
 	type ToolbarItemContribution,
 } from '../feature';
 
-export interface FontSizeSpec {
-	text: string;
-	value: string;
+export interface FontSizeOption {
 	size: string; // CSS font-size value
+	label: string;
 }
+
+export type RTEFontSizeFeatureConfig = {
+	options: FontSizeOption[];
+	defaultSize: string;
+};
+
+const mixedFontSize = Symbol('mixedFontSize');
+type MixedFontSize = typeof mixedFontSize;
 
 export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 	protected name = 'RTEFontSizeFeature';
 
-	fontSizes: FontSizeSpec[];
+	fontSizes: FontSizeOption[];
 
-	constructor() {
+	constructor(protected config: RTEFontSizeFeatureConfig) {
 		super();
 
-		// TODO: make configurable
-		const fontSizes: FontSizeSpec[] = [
-			{ text: 'Extra Large', value: 'extra-large', size: '24px' },
-			{ text: 'Large', value: 'large', size: '18px' },
-			{ text: 'Normal', value: 'normal', size: '14px' },
-			{ text: 'Small', value: 'small', size: '12px' },
-		];
-
-		this.fontSizes = fontSizes;
+		this.fontSizes = config.options;
 	}
 
 	override getSchema(): SchemaContribution[] {
@@ -42,31 +41,28 @@ export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 			this.contribution({
 				marks: {
 					fontSize: {
-						attrs: { size: { default: 'normal' } },
+						attrs: { size: { validate: 'string' } },
 						parseDOM: [
 							{
 								tag: "span[style*='font-size']",
 								getAttrs: (node: HTMLElement) => {
 									const style = node.getAttribute('style');
 
-									const fontSize = style!
+									const size = style!
 										.match(/font-size:\s*([^;]+)/)?.[1]
 										?.trim() as string;
 
-									const size = this.fontSizes.find(
-										(fs) => fs.size === fontSize
-									)?.value;
 									if (size) return { size };
 									return false;
 								},
 							},
 						],
 						toDOM: (mark: Mark) => {
-							const size = mark.attrs.size;
-							const fontSize = this.fontSizes.find(
-								(fs) => fs.value === size
-							)?.size;
-							return ['span', { style: `font-size: ${fontSize};` }, 0] as const;
+							return [
+								'span',
+								{ style: `font-size: ${mark.attrs.size};` },
+								0,
+							] as const;
 						},
 						fontSizes: this.fontSizes,
 					},
@@ -90,11 +86,10 @@ export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 							);
 							const storedMarkSize =
 								storedMark?.attrs.size ??
-								(state.storedMarks?.length === 0 ? 'normal' : null);
+								(state.storedMarks?.length === 0
+									? this.config.defaultSize
+									: null);
 							if (storedMarkSize) {
-								const fontSize = this.fontSizes.find(
-									(fs) => fs.value === storedMarkSize
-								)!.size;
 								// Create a zero-width span with the correct font size in before the cursor
 								// FIXME: This seems to only work and the end of a node
 								return DecorationSet.create(state.doc, [
@@ -102,7 +97,7 @@ export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 										$from.pos,
 										() => {
 											const span = document.createElement('span');
-											span.style.fontSize = fontSize;
+											span.style.fontSize = storedMarkSize;
 											span.innerText = '\u200b'; // zero-width space
 											return span;
 										},
@@ -138,13 +133,13 @@ export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 							}),
 							children: this.fontSizes.map((fs) =>
 								createMenuItem(ctx, {
-									text: fs.text,
+									text: fs.label,
 									checked: () =>
-										this.getFontSizeFromSelection(ctx.view.state) === fs.value,
-									disabled: () => !this.setFontSize(fs.value)(ctx.view.state),
+										this.getFontSizeFromSelection(ctx.view.state) === fs.size,
+									disabled: () => !this.setFontSize(fs.size)(ctx.view.state),
 									onSelect: () => {
 										const { state, dispatch } = ctx.view;
-										this.setFontSize(fs.value)(state, dispatch);
+										this.setFontSize(fs.size)(state, dispatch);
 									},
 								})
 							),
@@ -155,40 +150,43 @@ export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	getFontSizeFromSelection(state: EditorState): string {
+	getFontSizeFromSelection(state: EditorState): string | MixedFontSize {
 		const { from, to, $from, empty } = state.selection;
 		if (empty) {
 			const canHaveFontSize = toggleMark(state.schema.marks.fontSize)(state);
-			const defaultSize = canHaveFontSize ? 'normal' : 'mixed';
+			const defaultSize = canHaveFontSize
+				? this.config.defaultSize
+				: mixedFontSize;
 			return (
 				state.schema.marks.fontSize.isInSet(state.storedMarks || $from.marks())
 					?.attrs.size ?? defaultSize
 			);
 		}
 
-		let size: string | null = null;
+		let size: string | MixedFontSize | null = null;
 		state.doc.nodesBetween(from, to, (node) => {
-			if (size === 'mixed') {
+			if (size === mixedFontSize) {
 				return false;
 			}
 			if (!node.isLeaf) {
 				if (!node.type.allowsMarkType(state.schema.marks.fontSize)) {
-					size = 'mixed';
+					size = mixedFontSize;
 				}
 				return true;
 			}
 
 			const nodeFontSize =
-				state.schema.marks.fontSize.isInSet(node.marks)?.attrs.size ?? 'normal';
+				state.schema.marks.fontSize.isInSet(node.marks)?.attrs.size ??
+				this.config.defaultSize;
 
 			if (size === null) {
 				size = nodeFontSize;
 			} else if (nodeFontSize !== size) {
-				size = 'mixed';
+				size = mixedFontSize;
 			}
 			return true;
 		});
-		return size ?? 'normal';
+		return size ?? this.config.defaultSize;
 	}
 
 	setFontSize(size: string): Command {
@@ -205,7 +203,7 @@ export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 				const newStoredMarks = storedMarks.filter(
 					(m) => m.type !== state.schema.marks.fontSize
 				);
-				if (size !== 'normal') {
+				if (size !== this.config.defaultSize) {
 					newStoredMarks.push(
 						state.schema.marks.fontSize.create({
 							size,
@@ -214,7 +212,7 @@ export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 				}
 				tr.setStoredMarks(newStoredMarks);
 			} else {
-				if (size === 'normal') {
+				if (size === this.config.defaultSize) {
 					tr.removeMark(from, to, state.schema.marks.fontSize);
 				} else {
 					tr.addMark(
@@ -234,17 +232,17 @@ export class RTEFontSizeFeatureImpl extends RTEFeatureImpl {
 	adjustFontSize(adjustment: -1 | 1): Command {
 		return (state, dispatch) => {
 			const currentSize = this.getFontSizeFromSelection(state);
-			if (currentSize === 'mixed') {
+			if (currentSize === mixedFontSize) {
 				return false;
 			}
 			const currentIndex = this.fontSizes.findIndex(
-				(fs) => fs.value === currentSize
+				(fs) => fs.size === currentSize
 			);
 			const nextIndex = currentIndex + adjustment;
 			if (nextIndex < 0 || nextIndex >= this.fontSizes.length) {
 				return false;
 			}
-			return this.setFontSize(this.fontSizes[nextIndex].value)(state, dispatch);
+			return this.setFontSize(this.fontSizes[nextIndex].size)(state, dispatch);
 		};
 	}
 }
