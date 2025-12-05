@@ -4,38 +4,38 @@ import {
 	basicTextBlockFactories,
 	basicTextBlocks,
 } from '../__tests__/text-blocks';
-import { RTECore } from './core';
-import { RTETextBlockStructure } from './text-block';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
-import { RTEListFeature } from './list';
-import { RTEAlignmentFeature } from './alignment';
+import { RteCore } from './core';
+import { RteTextBlockStructure } from './text-block';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
+import { RteListFeature } from './list';
+import { RteAlignmentFeature } from './alignment';
 
 const {
-	list_item: li,
-	bullet_list: ul,
-	numbered_list: ol,
-	text_line: line,
+	listItem: li,
+	bulletList: ul,
+	numberedList: ol,
+	textLine: line,
 } = docFactories;
 
 const { p: p } = basicTextBlockFactories;
 
 const freeformFeatures = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEToolbarFeature(),
-	new RTEListFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteToolbarFeature(),
+	new RteListFeature(),
 ];
 
 const textBlockFeatures = [
-	new RTECore(),
-	new RTETextBlockStructure({ blocks: basicTextBlocks }),
-	new RTEToolbarFeature(),
-	new RTEListFeature(),
+	new RteCore(),
+	new RteTextBlockStructure({ blocks: basicTextBlocks }),
+	new RteToolbarFeature(),
+	new RteListFeature(),
 ];
 
-describe('RTEListFeature', () => {
-	it('should add bullet_list, numbered_list, and list_item nodes to the schema', async () => {
+describe('RteListFeature', () => {
+	it('should add bulletList, numberedList, and listItem nodes to the schema', async () => {
 		const rte = await setup(textBlockFeatures, [
 			ul(li('Item 1'), ul(li('Nested Item 2'))),
 			ol(li('Item 1'), ol(li('Nested Item 2'))),
@@ -43,8 +43,8 @@ describe('RTEListFeature', () => {
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
-			bullet_list(list_item('|Item 1'), bullet_list(list_item('Nested Item 2'))),
-			numbered_list(list_item('Item 1'), numbered_list(list_item('Nested Item 2')))
+			bulletList(listItem('|Item 1'), bulletList(listItem('Nested Item 2'))),
+			numberedList(listItem('Item 1'), numberedList(listItem('Nested Item 2')))
 			"
 		`
 		);
@@ -71,8 +71,8 @@ describe('RTEListFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			bullet_list(list_item('|Item 1'), bullet_list(list_item('Item 2'))),
-			numbered_list(list_item('Item 1'), numbered_list(list_item('Item 2')))
+			bulletList(listItem('|Item 1'), bulletList(listItem('Item 2'))),
+			numberedList(listItem('Item 1'), numberedList(listItem('Item 2')))
 			"
 		`);
 	});
@@ -106,7 +106,7 @@ describe('RTEListFeature', () => {
 					`
 					"
 					paragraph('Before'),
-					bullet_list(list_item('It|em')),
+					bulletList(listItem('It|em')),
 					paragraph('After')
 					"
 				`
@@ -133,7 +133,7 @@ describe('RTEListFeature', () => {
 				expect(rte.docStr()).toMatchInlineSnapshot(
 					`
 					"
-					bullet_list(list_item('Before'), list_item('It|em')),
+					bulletList(listItem('Before'), listItem('It|em')),
 					paragraph('After')
 					"
 				`
@@ -154,7 +154,7 @@ describe('RTEListFeature', () => {
 					`
 					"
 					paragraph('Before'),
-					bullet_list(list_item('It|em'), list_item('After'))
+					bulletList(listItem('It|em'), listItem('After'))
 					"
 				`
 				);
@@ -173,7 +173,7 @@ describe('RTEListFeature', () => {
 				expect(rte.docStr()).toMatchInlineSnapshot(
 					`
 					"
-					bullet_list(list_item('Before'), list_item('It|em'), list_item('After'))
+					bulletList(listItem('Before'), listItem('It|em'), listItem('After'))
 					"
 				`
 				);
@@ -198,7 +198,7 @@ describe('RTEListFeature', () => {
 					`
 					"
 					paragraph('Before'),
-					bullet_list(list_item('It[em 1'), list_item('It|]em 2')),
+					bulletList(listItem('It[em 1'), listItem('It|]em 2')),
 					paragraph('After')
 					"
 				`
@@ -220,10 +220,10 @@ describe('RTEListFeature', () => {
 					`
 					"
 					paragraph('Before'),
-					bullet_list(list_item('Item 1')),
+					bulletList(listItem('Item 1')),
 					paragraph('It[em 2'),
 					paragraph('It|]em 3'),
-					bullet_list(list_item('Item 4')),
+					bulletList(listItem('Item 4')),
 					paragraph('After')
 					"
 				`
@@ -243,7 +243,7 @@ describe('RTEListFeature', () => {
 				expect(rte.docStr()).toMatchInlineSnapshot(
 					`
 					"
-					bullet_list(bullet_list(list_item('Item 1')), list_item('It[em 2')),
+					bulletList(bulletList(listItem('Item 1')), listItem('It[em 2')),
 					paragraph('It|]em 3')
 					"
 				`
@@ -264,13 +264,13 @@ describe('RTEListFeature', () => {
 				expect(rte.docStr()).toMatchInlineSnapshot(
 					`
 					"
-					bullet_list(
-						bullet_list(
-							list_item('Item 1'),
-							bullet_list(list_item('It[em 2')),
-							list_item('Item 3')
+					bulletList(
+						bulletList(
+							listItem('Item 1'),
+							bulletList(listItem('It[em 2')),
+							listItem('Item 3')
 						),
-						list_item('It|]em 4')
+						listItem('It|]em 4')
 					)
 					"
 				`
@@ -288,7 +288,7 @@ describe('RTEListFeature', () => {
 				await rte.click(rte.toolbarButton('Bullet list'));
 
 				expect(rte.docStr()).toMatchInlineSnapshot(
-					`"[bullet_list(list_item('Item 1'), list_item('Item 2'))|]"`
+					`"[bulletList(listItem('Item 1'), listItem('Item 2'))|]"`
 				);
 				expect(rte.isActive(rte.toolbarButton('Bullet list'))).toBe(true);
 			});
@@ -304,7 +304,7 @@ describe('RTEListFeature', () => {
 			rte.placeCursor('|Item');
 			rte.keydown('Backspace');
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"bullet_list(list_item('Before'), list_item('|Item'))"`
+				`"bulletList(listItem('Before'), listItem('|Item'))"`
 			);
 		});
 
@@ -322,7 +322,7 @@ describe('RTEListFeature', () => {
 			rte.placeCursor('|Item');
 			rte.keydown('Backspace');
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"paragraph('|Item'), bullet_list(list_item('Another'))"`
+				`"paragraph('|Item'), bulletList(listItem('Another'))"`
 			);
 		});
 
@@ -333,7 +333,7 @@ describe('RTEListFeature', () => {
 			rte.placeCursor('|Item');
 			rte.keydown('Backspace');
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"bullet_list(list_item('Another')), paragraph('|Item')"`
+				`"bulletList(listItem('Another')), paragraph('|Item')"`
 			);
 		});
 
@@ -346,9 +346,9 @@ describe('RTEListFeature', () => {
 			expect(rte.docStr()).toMatchInlineSnapshot(
 				`
 				"
-				bullet_list(list_item('Before')),
+				bulletList(listItem('Before')),
 				paragraph('|Item'),
-				bullet_list(list_item('Another'))
+				bulletList(listItem('Another'))
 				"
 			`
 			);
@@ -359,7 +359,7 @@ describe('RTEListFeature', () => {
 			rte.placeCursor('|Item');
 			rte.keydown('Backspace');
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"bullet_list(list_item('|Item'))"`
+				`"bulletList(listItem('|Item'))"`
 			);
 		});
 	});
@@ -388,13 +388,7 @@ describe('RTEListFeature', () => {
 			rte.keydown('Backspace'); // Delete text
 			rte.keydown('Enter');
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`
-				"
-				bullet_list(list_item('Before')),
-				paragraph(|),
-				paragraph('After')
-				"
-			`
+				`"bulletList(listItem('Before')), paragraph(|), paragraph('After')"`
 			);
 		});
 
@@ -407,7 +401,7 @@ describe('RTEListFeature', () => {
 			expect(rte.docStr()).toMatchInlineSnapshot(
 				`
 				"
-				bullet_list(list_item('Before'), list_item('Item'), list_item(|))
+				bulletList(listItem('Before'), listItem('Item'), listItem(|))
 				"
 			`
 			);
@@ -418,7 +412,7 @@ describe('RTEListFeature', () => {
 			rte.placeCursor('It|em');
 			rte.keydown('Enter');
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"bullet_list(list_item('It'), list_item('|em'))"`
+				`"bulletList(listItem('It'), listItem('|em'))"`
 			);
 		});
 
@@ -427,7 +421,7 @@ describe('RTEListFeature', () => {
 			rte.selectText('[Item]');
 			rte.keydown('Backspace'); // Delete text
 			rte.keydown('Enter');
-			expect(rte.docStr()).toMatchInlineSnapshot(`"bullet_list(list_item(|))"`);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"bulletList(listItem(|))"`);
 		});
 	});
 
@@ -441,10 +435,10 @@ describe('RTEListFeature', () => {
 			expect(rte.docStr()).toMatchInlineSnapshot(
 				`
 				"
-				bullet_list(
-					list_item('Before'),
-					bullet_list(list_item('|Item')),
-					list_item('After')
+				bulletList(
+					listItem('Before'),
+					bulletList(listItem('|Item')),
+					listItem('After')
 				)
 				"
 			`
@@ -460,9 +454,9 @@ describe('RTEListFeature', () => {
 			expect(rte.docStr()).toMatchInlineSnapshot(
 				`
 				"
-				bullet_list(
-					bullet_list(list_item('Before'), list_item('|Item')),
-					list_item('After')
+				bulletList(
+					bulletList(listItem('Before'), listItem('|Item')),
+					listItem('After')
 				)
 				"
 			`
@@ -478,9 +472,9 @@ describe('RTEListFeature', () => {
 			expect(rte.docStr()).toMatchInlineSnapshot(
 				`
 				"
-				bullet_list(
-					list_item('Before'),
-					bullet_list(list_item('|Item'), list_item('After'))
+				bulletList(
+					listItem('Before'),
+					bulletList(listItem('|Item'), listItem('After'))
 				)
 				"
 			`
@@ -496,8 +490,8 @@ describe('RTEListFeature', () => {
 			expect(rte.docStr()).toMatchInlineSnapshot(
 				`
 				"
-				bullet_list(
-					bullet_list(list_item('Before'), list_item('|Item'), list_item('After'))
+				bulletList(
+					bulletList(listItem('Before'), listItem('|Item'), listItem('After'))
 				)
 				"
 			`
@@ -509,7 +503,7 @@ describe('RTEListFeature', () => {
 			rte.placeCursor('It|em');
 			rte.keydown('Tab');
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"bullet_list(list_item('It|em'))"`
+				`"bulletList(listItem('It|em'))"`
 			);
 		});
 	});
@@ -520,7 +514,7 @@ describe('RTEListFeature', () => {
 			rte.placeCursor('|Item');
 			rte.keydown('Tab', { shift: true });
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"bullet_list(list_item('|Item'))"`
+				`"bulletList(listItem('|Item'))"`
 			);
 		});
 
@@ -531,11 +525,7 @@ describe('RTEListFeature', () => {
 			rte.placeCursor('|Item');
 			rte.keydown('Tab', { shift: true });
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`
-				"
-				bullet_list(list_item('|Item'), bullet_list(list_item('After')))
-				"
-			`
+				`"bulletList(listItem('|Item'), bulletList(listItem('After')))"`
 			);
 		});
 
@@ -548,7 +538,7 @@ describe('RTEListFeature', () => {
 			expect(rte.docStr()).toMatchInlineSnapshot(
 				`
 				"
-				bullet_list(bullet_list(list_item('Before')), list_item('|Item'))
+				bulletList(bulletList(listItem('Before')), listItem('|Item'))
 				"
 			`
 			);
@@ -563,10 +553,10 @@ describe('RTEListFeature', () => {
 			expect(rte.docStr()).toMatchInlineSnapshot(
 				`
 				"
-				bullet_list(
-					bullet_list(list_item('Before')),
-					list_item('|Item'),
-					bullet_list(list_item('After'))
+				bulletList(
+					bulletList(listItem('Before')),
+					listItem('|Item'),
+					bulletList(listItem('After'))
 				)
 				"
 			`
@@ -578,7 +568,7 @@ describe('RTEListFeature', () => {
 			rte.placeCursor('|Item');
 			rte.keydown('Tab', { shift: true });
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"bullet_list(list_item('|Item'))"`
+				`"bulletList(listItem('|Item'))"`
 			);
 		});
 
@@ -587,38 +577,38 @@ describe('RTEListFeature', () => {
 			rte.placeCursor('It|em');
 			rte.keydown('Tab', { shift: true });
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"bullet_list(bullet_list(list_item('It|em')))"`
+				`"bulletList(bulletList(listItem('It|em')))"`
 			);
 		});
 	});
 
 	describe('with freeform structure', () => {
-		it('should use text_line as default node', async () => {
+		it('should use textLine as default node', async () => {
 			const rte = await setup(freeformFeatures, [line('Item')]);
 			await rte.click(rte.toolbarButton('Bullet list'));
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"bullet_list(list_item('|Item'))"`
+				`"bulletList(listItem('|Item'))"`
 			);
 			await rte.click(rte.toolbarButton('Bullet list'));
-			expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('|Item')"`);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('|Item')"`);
 		});
 	});
 
 	describe('textblock attrs', () => {
 		it('should maintain textblock attrs when converting block to list item', async () => {
 			const rte = await setup(
-				[...textBlockFeatures, new RTEAlignmentFeature()],
+				[...textBlockFeatures, new RteAlignmentFeature()],
 				[p.attrs({ textAlign: 'right' })('Item')]
 			);
 			await rte.click(rte.toolbarButton('Bullet list'));
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"bullet_list(list_item[textAlign="right"]('|Item'))"`
+				`"bulletList(listItem[textAlign="right"]('|Item'))"`
 			);
 		});
 
 		it('should maintain textblock attrs when lifting item out of list', async () => {
 			const rte = await setup(
-				[...textBlockFeatures, new RTEAlignmentFeature()],
+				[...textBlockFeatures, new RteAlignmentFeature()],
 				[ul(li.attrs({ textAlign: 'right' })('Item'))]
 			);
 			rte.placeCursor('|Item');
@@ -637,7 +627,7 @@ describe('RTEListFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
-					"bullet_list(list_item('It|em'))"
+					"bulletList(listItem('It|em'))"
 				`
 		);
 	});
@@ -650,7 +640,7 @@ describe('RTEListFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
-					"numbered_list(list_item('It|em'))"
+					"numberedList(listItem('It|em'))"
 				`
 		);
 	});
@@ -667,11 +657,11 @@ describe('RTEListFeature', () => {
 			expect(rte.docStr()).toMatchInlineSnapshot(
 				`
 				"
-				bullet_list(
-					list_item('Item 1'),
-					list_item('It[em 2'),
-					list_item('It|]em 3'),
-					list_item('Item 4')
+				bulletList(
+					listItem('Item 1'),
+					listItem('It[em 2'),
+					listItem('It|]em 3'),
+					listItem('Item 4')
 				)
 				"
 			`
@@ -689,10 +679,10 @@ describe('RTEListFeature', () => {
 			expect(rte.docStr()).toMatchInlineSnapshot(
 				`
 				"
-				numbered_list(
-					list_item('Item 1'),
-					numbered_list(list_item('It[em 2'), list_item('It|]em 3')),
-					list_item('Item 4')
+				numberedList(
+					listItem('Item 1'),
+					numberedList(listItem('It[em 2'), listItem('It|]em 3')),
+					listItem('Item 4')
 				)
 				"
 			`
@@ -712,12 +702,12 @@ describe('RTEListFeature', () => {
 			expect(rte.docStr()).toMatchInlineSnapshot(
 				`
 				"
-				bullet_list(
-					list_item('Item 1'),
-					bullet_list(list_item('It[em 2')),
-					list_item('Middle')
+				bulletList(
+					listItem('Item 1'),
+					bulletList(listItem('It[em 2')),
+					listItem('Middle')
 				),
-				numbered_list(bullet_list(list_item('It|]em 3')), list_item('Item 4'))
+				numberedList(bulletList(listItem('It|]em 3')), listItem('Item 4'))
 				"
 			`
 			);

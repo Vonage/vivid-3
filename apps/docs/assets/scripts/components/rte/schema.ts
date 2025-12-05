@@ -77,14 +77,14 @@ const commonStyles = css`
 			}
 		`,
 	],
-	template: html<RTESchema>`
+	template: html<RteSchema>`
 		<h4 class="heading">Schema Additions</h4>
 		<vwc-accordion>
 			<slot></slot>
 		</vwc-accordion>
 	`,
 })
-export class RTESchema extends FASTElement {}
+export class RteSchema extends FASTElement {}
 
 @customElement({
 	name: 'rte-schema-node',
@@ -96,7 +96,7 @@ export class RTESchema extends FASTElement {}
 			}
 		`,
 	],
-	template: html<RTESchemaNode>`
+	template: html<RteSchemaNode>`
 		<vwc-accordion-item size="condensed">
 			<div slot="heading" class="header">
 				<vwc-badge
@@ -112,7 +112,7 @@ export class RTESchema extends FASTElement {}
 		</vwc-accordion-item>
 	`,
 })
-export class RTESchemaNode extends FASTElement {
+export class RteSchemaNode extends FASTElement {
 	@attr name = '';
 }
 
@@ -126,7 +126,7 @@ export class RTESchemaNode extends FASTElement {
 			}
 		`,
 	],
-	template: html<RTESchemaMark>`
+	template: html<RteSchemaMark>`
 		<vwc-accordion-item size="condensed">
 			<div slot="heading" class="header">
 				<vwc-badge
@@ -142,7 +142,7 @@ export class RTESchemaNode extends FASTElement {
 		</vwc-accordion-item>
 	`,
 })
-export class RTESchemaMark extends FASTElement {
+export class RteSchemaMark extends FASTElement {
 	@attr name = '';
 }
 
@@ -156,7 +156,7 @@ export class RTESchemaMark extends FASTElement {
 			}
 		`,
 	],
-	template: html<RTESchemaTextblockAttr>`
+	template: html<RteSchemaTextblockAttr>`
 		<vwc-accordion-item size="condensed">
 			<div slot="heading" class="header">
 				<vwc-badge
@@ -173,7 +173,7 @@ export class RTESchemaMark extends FASTElement {
 		</vwc-accordion-item>
 	`,
 })
-export class RTESchemaTextblockAttr extends FASTElement {
+export class RteSchemaTextblockAttr extends FASTElement {
 	@attr name = '';
 }
 
@@ -187,14 +187,14 @@ export class RTESchemaTextblockAttr extends FASTElement {
 			}
 		`,
 	],
-	template: html<RTESchemaAttrs>`
+	template: html<RteSchemaAttrs>`
 		<div class="label">Attributes:</div>
 		<div class="content">
 			<slot></slot>
 		</div>
 	`,
 })
-export class RTESchemaAttrs extends FASTElement {}
+export class RteSchemaAttrs extends FASTElement {}
 
 @customElement({
 	name: 'rte-schema-attr',
@@ -221,7 +221,7 @@ export class RTESchemaAttrs extends FASTElement {}
 			}
 		`,
 	],
-	template: html<RTESchemaAttr>`
+	template: html<RteSchemaAttr>`
 		<div class="header">
 			<span class="name">${(x) => x.name}</span>
 			<span class="value">${(x) => x.type}</span>
@@ -247,7 +247,7 @@ export class RTESchemaAttrs extends FASTElement {}
 				: ''}
 	`,
 })
-export class RTESchemaAttr extends FASTElement {
+export class RteSchemaAttr extends FASTElement {
 	@attr name = '';
 	@attr type = '';
 	@attr({ mode: 'boolean' }) required = false;
@@ -265,11 +265,11 @@ export class RTESchemaAttr extends FASTElement {
 			}
 		`,
 	],
-	template: html<RTESchemaEmpty>`
+	template: html<RteSchemaEmpty>`
 		<div class="note">No attributes or content.</div>
 	`,
 })
-export class RTESchemaEmpty extends FASTElement {}
+export class RteSchemaEmpty extends FASTElement {}
 
 @customElement({
 	name: 'rte-schema-textblock-attrs',
@@ -289,11 +289,11 @@ export class RTESchemaEmpty extends FASTElement {}
 			}
 		`,
 	],
-	template: html<RTESchemaTextblockAttrs>`
+	template: html<RteSchemaTextblockAttrs>`
 		<span class="label"> Common textblock attributes from other features </span>
 	`,
 })
-export class RTESchemaTextblockAttrs extends FASTElement {}
+export class RteSchemaTextblockAttrs extends FASTElement {}
 
 @customElement({
 	name: 'rte-schema-group',
@@ -307,12 +307,12 @@ export class RTESchemaTextblockAttrs extends FASTElement {}
 			}
 		`,
 	],
-	template: html<RTESchemaGroup>`
+	template: html<RteSchemaGroup>`
 		<span class="label">Groups:</span>
 		<span class="value"><slot></slot></span>
 	`,
 })
-export class RTESchemaGroup extends FASTElement {}
+export class RteSchemaGroup extends FASTElement {}
 
 @customElement({
 	name: 'rte-schema-marks',
@@ -326,12 +326,12 @@ export class RTESchemaGroup extends FASTElement {}
 			}
 		`,
 	],
-	template: html<RTESchemaMarks>`
+	template: html<RteSchemaMarks>`
 		<span class="label">Allowed marks inside this node:</span>
 		<span class="value"><slot></slot></span>
 	`,
 })
-export class RTESchemaMarks extends FASTElement {}
+export class RteSchemaMarks extends FASTElement {}
 
 @customElement({
 	name: 'rte-schema-content',
@@ -345,9 +345,9 @@ export class RTESchemaMarks extends FASTElement {}
 			}
 		`,
 	],
-	template: html<RTESchemaContent>`
+	template: html<RteSchemaContent>`
 		<span class="label">Allowed child nodes:</span>
 		<span class="value"><slot></slot></span>
 	`,
 })
-export class RTESchemaContent extends FASTElement {}
+export class RteSchemaContent extends FASTElement {}

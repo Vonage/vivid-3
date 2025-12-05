@@ -6,8 +6,8 @@ import {
 	type TagParseRule,
 } from 'prosemirror-model';
 import DOMPurify from 'dompurify';
-import { type RTEConfig, RTEConfigImpl } from './config';
-import type { RTEDocument, RTEFragment } from './document';
+import { type RteConfig, RteConfigImpl } from './config';
+import type { RteDocument, RteFragment } from './document';
 import { impl } from './utils/impl';
 
 const copy = <T extends object>(obj: T): T => ({ ...obj });
@@ -36,7 +36,7 @@ const parseRulesFromSchema = (schema: Schema): ParseRules => ({
 	),
 });
 
-export type RTEHtmlParserOptions = {
+export type RteHtmlParserOptions = {
 	/**
 	 * Function to modify the parse rules before creating the parser.
 	 */
@@ -50,18 +50,18 @@ type ParseOptions = {
 	modifyDom?: (dom: DocumentFragment) => void;
 };
 
-export class RTEHtmlParser {
+export class RteHtmlParser {
 	/// @internal
-	[impl]: RTEHtmlParserImpl;
+	[impl]: RteHtmlParserImpl;
 
-	constructor(config: RTEConfig, options?: RTEHtmlParserOptions) {
-		this[impl] = new RTEHtmlParserImpl(config[impl], options);
+	constructor(config: RteConfig, options?: RteHtmlParserOptions) {
+		this[impl] = new RteHtmlParserImpl(config[impl], options);
 	}
 
 	/**
-	 * Converts an HTML string to an RTEDocument.
+	 * Converts an HTML string to an RteDocument.
 	 */
-	parseDocument(html: string, options?: ParseOptions): RTEDocument {
+	parseDocument(html: string, options?: ParseOptions): RteDocument {
 		return this[impl].parser
 			.parse(this.parseHtml(html, options), {
 				preserveWhitespace: true,
@@ -70,9 +70,9 @@ export class RTEHtmlParser {
 	}
 
 	/**
-	 * Converts an HTML string to an RTEFragment.
+	 * Converts an HTML string to an RteFragment.
 	 */
-	parseFragment(html: string, options?: ParseOptions): RTEFragment {
+	parseFragment(html: string, options?: ParseOptions): RteFragment {
 		return (
 			this[impl].parser
 				.parseSlice(this.parseHtml(html, options), {
@@ -93,10 +93,10 @@ export class RTEHtmlParser {
 	}
 }
 
-class RTEHtmlParserImpl {
+class RteHtmlParserImpl {
 	parser: DOMParser;
 
-	constructor(config: RTEConfigImpl, options?: RTEHtmlParserOptions) {
+	constructor(config: RteConfigImpl, options?: RteHtmlParserOptions) {
 		const rules = parseRulesFromSchema(config.schema);
 		options?.modifyParseRules?.(rules);
 		this.parser = buildDomParser(config.schema, rules);

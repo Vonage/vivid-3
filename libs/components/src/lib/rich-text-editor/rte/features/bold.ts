@@ -2,16 +2,16 @@ import { marks as basicMarks } from 'prosemirror-schema-basic';
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark } from 'prosemirror-commands';
 import { createMarkToggle } from '../utils/ui';
-import { RTEInstanceImpl } from '../instance';
+import { RteInstanceImpl } from '../instance';
 import {
 	featureFacade,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
 
-export class RTEBoldFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEBoldFeature';
+export class RteBoldFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteBoldFeature';
 
 	override getSchema(): SchemaContribution[] {
 		return [
@@ -23,7 +23,7 @@ export class RTEBoldFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getPlugins(rte: RTEInstanceImpl) {
+	override getPlugins(rte: RteInstanceImpl) {
 		return [
 			this.contribution(
 				keymap({
@@ -33,7 +33,7 @@ export class RTEBoldFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -51,4 +51,4 @@ export class RTEBoldFeatureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEBoldFeature = featureFacade(RTEBoldFeatureImpl);
+export const RteBoldFeature = featureFacade(RteBoldFeatureImpl);

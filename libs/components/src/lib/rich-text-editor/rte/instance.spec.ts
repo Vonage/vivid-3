@@ -1,17 +1,17 @@
-import { RTEConfig } from './config';
-import { RTECore } from './features/core';
-import { RTEFreeformStructure } from './features/freeform';
+import { RteConfig } from './config';
+import { RteCore } from './features/core';
+import { RteFreeformStructure } from './features/freeform';
 import { docFactories } from './__tests__/doc-factories';
 import { setup } from './__tests__/test-utils';
 import { impl } from './utils/impl';
 
-const { doc, text_line: line, text } = docFactories;
-const features = [new RTECore(), new RTEFreeformStructure()];
+const { doc, textLine: line, text } = docFactories;
+const features = [new RteCore(), new RteFreeformStructure()];
 
-describe('RTEInstance', () => {
+describe('RteInstance', () => {
 	describe('initialization', () => {
 		it('should throw an error when initial document is invalid', async () => {
-			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
+			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
 			expect(() =>
 				config.instantiateEditor({
 					initialDocument: doc(text('Top level text')),
@@ -24,7 +24,7 @@ describe('RTEInstance', () => {
 					initialDocument: doc(line(line('Nested line'))),
 				})
 			).toThrowErrorMatchingInlineSnapshot(
-				`[RangeError: Invalid content for node text_line: <text_line("Nested line")>]`
+				`[RangeError: Invalid content for node textLine: <textLine("Nested line")>]`
 			);
 		});
 	});
@@ -41,18 +41,16 @@ describe('RTEInstance', () => {
 			const rte = await setup(features, [line('Hello world')]);
 			await rte.typeTextAtCursor('something');
 			rte.instance.reset();
-			expect(rte.docStr()).toMatchInlineSnapshot(`"text_line(|)"`);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"textLine(|)"`);
 			rte.undo();
-			expect(rte.docStr()).toMatchInlineSnapshot(`"text_line(|)"`);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"textLine(|)"`);
 		});
 
 		it('should use an initial document when passed', async () => {
 			const rte = await setup(features, [line('Hello world')]);
 			await rte.typeTextAtCursor('something');
 			rte.instance.reset(doc(line('New document')));
-			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"text_line('|New document')"`
-			);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('|New document')"`);
 		});
 	});
 
@@ -62,7 +60,7 @@ describe('RTEInstance', () => {
 			rte.selectText('[beautiful]');
 			rte.instance.replaceSelection([text('wonderful')]);
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"text_line('Hello wonderful| world')"`
+				`"textLine('Hello wonderful| world')"`
 			);
 		});
 
@@ -72,7 +70,7 @@ describe('RTEInstance', () => {
 			rte.instance.replaceSelection([text('New world')], {
 				cursorPlacement: 'start',
 			});
-			expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('|New world')"`);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('|New world')"`);
 		});
 
 		it('should place cursor at start of inserted content when cursorPlacement=start', async () => {
@@ -82,7 +80,7 @@ describe('RTEInstance', () => {
 				cursorPlacement: 'start',
 			});
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"text_line('Hello |wonderful world')"`
+				`"textLine('Hello |wonderful world')"`
 			);
 		});
 
@@ -93,7 +91,7 @@ describe('RTEInstance', () => {
 				selectContent: true,
 			});
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"text_line('Hello [wonderful|] world')"`
+				`"textLine('Hello [wonderful|] world')"`
 			);
 		});
 
@@ -103,7 +101,7 @@ describe('RTEInstance', () => {
 			rte.instance.replaceSelection([text('New world')], {
 				selectContent: true,
 			});
-			expect(rte.docStr()).toMatchInlineSnapshot(`"[text_line('New world')|]"`);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"[textLine('New world')|]"`);
 		});
 
 		it('should be undoable', async () => {
@@ -113,7 +111,7 @@ describe('RTEInstance', () => {
 			rte.undo();
 
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"text_line('Hello [beautiful|] world')"`
+				`"textLine('Hello [beautiful|] world')"`
 			);
 		});
 
@@ -123,7 +121,7 @@ describe('RTEInstance', () => {
 			expect(() =>
 				rte.instance.replaceSelection([line(line('nested line'))])
 			).toThrowErrorMatchingInlineSnapshot(
-				`[RangeError: Invalid content for node text_line: <text_line("nested line")>]`
+				`[RangeError: Invalid content for node textLine: <textLine("nested line")>]`
 			);
 		});
 	});
@@ -132,9 +130,7 @@ describe('RTEInstance', () => {
 		it('should replace the document', async () => {
 			const rte = await setup(features, [line('Hello world')]);
 			rte.instance.replaceDocument(doc(line('New document')));
-			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"text_line('|New document')"`
-			);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('|New document')"`);
 		});
 
 		it('should place cursor at end of document when cursorPlacement=end', async () => {
@@ -142,9 +138,7 @@ describe('RTEInstance', () => {
 			rte.instance.replaceDocument(doc(line('New document')), {
 				cursorPlacement: 'end',
 			});
-			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"text_line('New document|')"`
-			);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('New document|')"`);
 		});
 
 		it('should select all when selectContent=true', async () => {
@@ -153,7 +147,7 @@ describe('RTEInstance', () => {
 				selectContent: true,
 			});
 			expect(rte.docStr()).toMatchInlineSnapshot(
-				`"[text_line('New document')|]"`
+				`"[textLine('New document')|]"`
 			);
 		});
 
@@ -161,7 +155,7 @@ describe('RTEInstance', () => {
 			const rte = await setup(features, [line('Hello world')]);
 			rte.instance.replaceDocument(doc(line('New document')));
 			rte.undo();
-			expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('|Hello world')"`);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('|Hello world')"`);
 		});
 
 		it('should throw an error when document is invalid', async () => {
@@ -169,7 +163,7 @@ describe('RTEInstance', () => {
 			expect(() =>
 				rte.instance.replaceDocument(doc(line(line('Nested line'))))
 			).toThrowErrorMatchingInlineSnapshot(
-				`[RangeError: Invalid content for node text_line: <text_line("Nested line")>]`
+				`[RangeError: Invalid content for node textLine: <textLine("Nested line")>]`
 			);
 		});
 	});
@@ -190,7 +184,7 @@ describe('RTEInstance', () => {
 
 	describe('hostState', () => {
 		it('should throw an error when host state has not been set', () => {
-			const config = new RTEConfig(features);
+			const config = new RteConfig(features);
 			const instance = config.instantiateEditor()[impl];
 			expect(() => instance.hostState()).toThrowError(
 				'No host state available'
@@ -198,7 +192,7 @@ describe('RTEInstance', () => {
 		});
 
 		it('should return host state when it has been set', () => {
-			const config = new RTEConfig(features);
+			const config = new RteConfig(features);
 			const instance = config.instantiateEditor()[impl];
 			const hostState = {} as any;
 

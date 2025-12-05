@@ -1,6 +1,6 @@
-import type { RTEFontSizeFeatureConfig } from '../features/font-size';
+import type { RteFontSizeFeatureConfig } from '../features/font-size';
 
-export const basicFontSizeOptions: RTEFontSizeFeatureConfig = {
+export const basicFontSizeOptions: RteFontSizeFeatureConfig = {
 	options: [
 		{ size: '24px', label: 'Extra Large' },
 		{ size: '18px', label: 'Large' },

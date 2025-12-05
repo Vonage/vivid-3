@@ -8,10 +8,10 @@ import {
 import type { EditorView, NodeView } from 'prosemirror-view';
 import {
 	featureFacade,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 	type SchemaContribution,
 } from '../feature';
-import type { RTEInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
 import { Popover } from '../../popover';
 import { createButton, createDiv, createDivider, UiCtx } from '../utils/ui';
 import inlineImageCss from './inline-image.style.scss?inline';
@@ -35,7 +35,7 @@ const isGenerator = (
 ): value is ResolvedUrlGenerator =>
 	value !== null && Boolean((value as any)['next']);
 
-export interface RTEInlineImageFeatureConfig {
+export interface RteInlineImageFeatureConfig {
 	/**
 	 * Called whenever the editor needs to display an image. The return value determines what is displayed for the given image URL.
 	 */
@@ -63,7 +63,7 @@ class InlineImageView implements NodeView {
 		node: Node,
 		protected readonly view: EditorView,
 		protected readonly getPos: () => number | undefined,
-		protected readonly config: RTEInlineImageFeatureConfig
+		protected readonly config: RteInlineImageFeatureConfig
 	) {
 		this.dom = document.createElement('div');
 		this.dom.className = 'inline-image-wrapper';
@@ -173,10 +173,10 @@ class InlineImageView implements NodeView {
 	}
 }
 
-export class RTEInlineImageFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEInlineImageFeature';
+export class RteInlineImageFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteInlineImageFeature';
 
-	constructor(protected readonly config: RTEInlineImageFeatureConfig = {}) {
+	constructor(protected readonly config: RteInlineImageFeatureConfig = {}) {
 		super();
 	}
 
@@ -246,20 +246,20 @@ export class RTEInlineImageFeatureImpl extends RTEFeatureImpl {
 		return [
 			this.contribution({
 				nodes: {
-					inline_image: inlineImage,
+					inlineImage: inlineImage,
 				},
 			}),
 		];
 	}
 
-	override getPlugins(rte: RTEInstanceImpl) {
+	override getPlugins(rte: RteInstanceImpl) {
 		return [
 			this.contribution(
 				new Plugin({
 					props: {
 						nodeViews: {
 							// eslint-disable-next-line @typescript-eslint/naming-convention
-							inline_image: (node, view, getPos) =>
+							inlineImage: (node, view, getPos) =>
 								new InlineImageView(node, view, getPos, this.config),
 						},
 					},
@@ -352,7 +352,7 @@ export class RTEInlineImageFeatureImpl extends RTEFeatureImpl {
 		const sel = state.selection;
 		if (
 			sel instanceof NodeSelection &&
-			sel.node.type === state.schema.nodes.inline_image
+			sel.node.type === state.schema.nodes.inlineImage
 		) {
 			return { pos: sel.from, node: sel.node };
 		}
@@ -405,4 +405,4 @@ export class RTEInlineImageFeatureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEInlineImageFeature = featureFacade(RTEInlineImageFeatureImpl);
+export const RteInlineImageFeature = featureFacade(RteInlineImageFeatureImpl);

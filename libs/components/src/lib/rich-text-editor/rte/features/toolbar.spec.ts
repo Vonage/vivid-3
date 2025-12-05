@@ -3,19 +3,19 @@ import { Divider } from '../../../divider/divider';
 import type { Tooltip } from '../../../tooltip/tooltip';
 import type { Menu } from '../../../menu/menu';
 import { basicFontSizeOptions } from '../__tests__/font-sizes';
-import { RTECore } from './core';
-import { RTEToolbarFeature, type RTEToolbarFeatureConfig } from './toolbar';
-import { RTEFontSizeFeature } from './font-size';
-import { RTEFreeformStructure } from './freeform';
+import { RteCore } from './core';
+import { RteToolbarFeature, type RteToolbarFeatureConfig } from './toolbar';
+import { RteFontSizeFeature } from './font-size';
+import { RteFreeformStructure } from './freeform';
 
-const features = (config?: RTEToolbarFeatureConfig) => [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEFontSizeFeature(basicFontSizeOptions),
-	new RTEToolbarFeature(config),
+const features = (config?: RteToolbarFeatureConfig) => [
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteFontSizeFeature(basicFontSizeOptions),
+	new RteToolbarFeature(config),
 ];
 
-describe('RTEToolbarFeature', () => {
+describe('RteToolbarFeature', () => {
 	it('should render toolbar items in order and separated by dividers', async () => {
 		const rte = await setup(features());
 

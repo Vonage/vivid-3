@@ -3,21 +3,21 @@ import {
 	basicTextBlockFactories,
 	basicTextBlocks,
 } from '../__tests__/text-blocks';
-import { RTECore } from './core';
-import { RTETextBlockStructure } from './text-block';
-import { RTEAlignmentFeature } from './alignment';
-import { RTEToolbarFeature } from './toolbar';
+import { RteCore } from './core';
+import { RteTextBlockStructure } from './text-block';
+import { RteAlignmentFeature } from './alignment';
+import { RteToolbarFeature } from './toolbar';
 
 const { h1, h2, p } = basicTextBlockFactories;
 
 const features = [
-	new RTECore(),
-	new RTETextBlockStructure({ blocks: basicTextBlocks }),
-	new RTEAlignmentFeature(),
-	new RTEToolbarFeature(),
+	new RteCore(),
+	new RteTextBlockStructure({ blocks: basicTextBlocks }),
+	new RteAlignmentFeature(),
+	new RteToolbarFeature(),
 ];
 
-describe('RTEAlignmentFeature', () => {
+describe('RteAlignmentFeature', () => {
 	it('should add a textAlign attribute to text block nodes that defaults to left', async () => {
 		const { docStr } = await setup(features, [
 			h1.attrs({ textAlign: 'right' })('Right'),

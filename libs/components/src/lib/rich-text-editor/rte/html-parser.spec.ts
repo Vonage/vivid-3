@@ -1,39 +1,39 @@
-import { RTEHtmlParser } from './html-parser';
-import { RTEConfig } from './config';
-import { RTECore } from './features/core';
-import { RTEFreeformStructure } from './features/freeform';
-import { RTEBoldFeature } from './features/bold';
-import { RTELinkFeature } from './features/link';
+import { RteHtmlParser } from './html-parser';
+import { RteConfig } from './config';
+import { RteCore } from './features/core';
+import { RteFreeformStructure } from './features/freeform';
+import { RteBoldFeature } from './features/bold';
+import { RteLinkFeature } from './features/link';
 import { docFactories } from './__tests__/doc-factories';
-import { RTEItalicFeature } from './features/italic';
-import { RTEInlineImageFeature } from './features/inline-image';
+import { RteItalicFeature } from './features/italic';
+import { RteInlineImageFeature } from './features/inline-image';
 import {
 	featureFacade,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 	type SchemaContribution,
 } from './feature';
 
-const config = new RTEConfig([
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEBoldFeature(),
-	new RTEItalicFeature(),
-	new RTELinkFeature(),
-	new RTEInlineImageFeature(),
+const config = new RteConfig([
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteBoldFeature(),
+	new RteItalicFeature(),
+	new RteLinkFeature(),
+	new RteInlineImageFeature(),
 ]);
 
 const {
 	doc,
-	text_line: line,
+	textLine: line,
 	text,
-	inline_image: img,
+	inlineImage: img,
 	bold,
 	italic,
 } = docFactories;
 
-describe('RTEHtmlParser', () => {
+describe('RteHtmlParser', () => {
 	it('should parse HTML into fragment', async () => {
-		const parser = new RTEHtmlParser(config);
+		const parser = new RteHtmlParser(config);
 
 		expect(parser.parseFragment('<strong>Hello</strong> world!')).toEqual([
 			text.marks(bold())('Hello'),
@@ -42,7 +42,7 @@ describe('RTEHtmlParser', () => {
 	});
 
 	it('should parse HTML into document', async () => {
-		const parser = new RTEHtmlParser(config);
+		const parser = new RteHtmlParser(config);
 
 		expect(
 			parser.parseDocument('<div><strong>Hello</strong> world!</div>')
@@ -50,7 +50,7 @@ describe('RTEHtmlParser', () => {
 	});
 
 	it('should sanitize HTML', async () => {
-		const parser = new RTEHtmlParser(config);
+		const parser = new RteHtmlParser(config);
 
 		expect(
 			parser.parseFragment(
@@ -60,13 +60,13 @@ describe('RTEHtmlParser', () => {
 	});
 
 	it('should parse empty HTML into empty fragment', async () => {
-		const parser = new RTEHtmlParser(config);
+		const parser = new RteHtmlParser(config);
 
 		expect(parser.parseFragment('')).toEqual([]);
 	});
 
 	it('should apply parse rules modified by modifyParseRules', async () => {
-		const parser = new RTEHtmlParser(config, {
+		const parser = new RteHtmlParser(config, {
 			modifyParseRules: (rules) => {
 				rules.marks.bold = [];
 				rules.marks.italic.push({
@@ -83,7 +83,7 @@ describe('RTEHtmlParser', () => {
 	});
 
 	it('should apply priority of parse rules', async () => {
-		const parser = new RTEHtmlParser(config, {
+		const parser = new RteHtmlParser(config, {
 			modifyParseRules: (rules) => {
 				rules.marks.italic.push({
 					priority: 100,
@@ -98,17 +98,17 @@ describe('RTEHtmlParser', () => {
 	});
 
 	it('should default nodes and marks with no default parse to an empty array', async () => {
-		class DummyFeatureImpl extends RTEFeatureImpl {
+		class DummyFeatureImpl extends RteFeatureImpl {
 			protected name = 'DummyFeature';
 
 			override getSchema(): SchemaContribution[] {
 				return [
 					this.contribution({
 						nodes: {
-							dummy_node: {},
+							dummyNode: {},
 						},
 						marks: {
-							dummy_mark: {},
+							dummyMark: {},
 						},
 					}),
 				];
@@ -117,10 +117,10 @@ describe('RTEHtmlParser', () => {
 		const DummyFeature = featureFacade(DummyFeatureImpl);
 		let parseRules;
 		// eslint-disable-next-line no-new
-		new RTEHtmlParser(
-			new RTEConfig([
-				new RTECore(),
-				new RTEFreeformStructure(),
+		new RteHtmlParser(
+			new RteConfig([
+				new RteCore(),
+				new RteFreeformStructure(),
 				new DummyFeature(),
 			]),
 			{
@@ -130,12 +130,12 @@ describe('RTEHtmlParser', () => {
 			}
 		);
 
-		expect(parseRules!.nodes['dummy_node']).toEqual([]);
-		expect(parseRules!.marks['dummy_mark']).toEqual([]);
+		expect(parseRules!.nodes['dummyNode']).toEqual([]);
+		expect(parseRules!.marks['dummyMark']).toEqual([]);
 	});
 
 	it('should parse DOM modified by modifyDom', async () => {
-		const parser = new RTEHtmlParser(config);
+		const parser = new RteHtmlParser(config);
 
 		expect(
 			parser.parseFragment('<img data-attachment-id="1">', {

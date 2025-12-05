@@ -2,7 +2,7 @@ import { attr, observable } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { WithObservableLocale } from '../../shared/patterns';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { RTEInstance } from './rte/instance';
+import { RteInstance } from './rte/instance';
 import { impl } from './rte/utils/impl';
 
 /**
@@ -15,11 +15,11 @@ export class RichTextEditor extends WithObservableLocale(VividElement) {
 	/**
 	 * The editor instance. Without it, the editor will not render anything.
 	 */
-	@observable instance?: RTEInstance;
+	@observable instance?: RteInstance;
 	/**
 	 * @internal
 	 */
-	instanceChanged(prevInstance?: RTEInstance) {
+	instanceChanged(prevInstance?: RteInstance) {
 		prevInstance?.[impl].destroyViewIfNeeded();
 		this._initViewIfNeeded();
 		prevInstance?.[impl].styles.removeStylesFrom(this.shadowRoot!);

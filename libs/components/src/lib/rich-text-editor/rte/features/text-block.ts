@@ -5,12 +5,12 @@ import { createOption, createSelect } from '../utils/ui';
 import {
 	featureFacade,
 	type PluginContribution,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
 import type { TextblockAttrs } from '../utils/textblock-attrs';
-import type { RTEInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
 import textBlockCss from './text-block.style.scss?inline';
 
 const tagNameBySemanticRole = {
@@ -51,19 +51,19 @@ export interface BlockTypeSpec {
 	marksAllowed?: MarksAllowed;
 }
 
-export type RTETextBlockStructureConfig = {
+export type RteTextBlockStructureConfig = {
 	blocks: BlockTypeSpec[];
 	defaultBlocks?: Partial<Record<SemanticRole, BlockTypeId>>;
 };
 
-export class RTETextBlockStructureImpl extends RTEFeatureImpl {
-	protected name = 'RTETextBlockStructure';
+export class RteTextBlockStructureImpl extends RteFeatureImpl {
+	protected name = 'RteTextBlockStructure';
 
 	private blocks: BlockTypeSpec[];
 	private blockById: Map<BlockTypeId, BlockTypeSpec>;
 	private defaultBlocks: Map<SemanticRole, BlockTypeId>;
 
-	constructor(protected config: RTETextBlockStructureConfig) {
+	constructor(protected config: RteTextBlockStructureConfig) {
 		super();
 
 		for (const blockType of config.blocks) {
@@ -193,7 +193,7 @@ export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 					text: {
 						group: 'inline',
 					},
-					hard_break: {
+					hardBreak: {
 						inline: true,
 						group: 'inline',
 						selectable: false,
@@ -210,11 +210,11 @@ export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getPlugins(rte: RTEInstanceImpl): PluginContribution[] {
+	override getPlugins(rte: RteInstanceImpl): PluginContribution[] {
 		const forceBreak: Command = (state, dispatch) => {
 			dispatch?.(
 				state.tr
-					.replaceSelectionWith(state.schema.nodes.hard_break.create()!, true)
+					.replaceSelectionWith(state.schema.nodes.hardBreak.create()!, true)
 					.scrollIntoView()
 			);
 			return true;
@@ -245,7 +245,7 @@ export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 		return [this.contribution(keymap(keyBindings))];
 	}
 
-	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -289,7 +289,7 @@ export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 		return fromTopBlock.type.name;
 	}
 
-	setBlockType(rte: RTEInstanceImpl, id: BlockTypeId): Command {
+	setBlockType(rte: RteInstanceImpl, id: BlockTypeId): Command {
 		return (state, dispatch) => {
 			const blockType = this.blockById.get(id)!;
 			const { from, to } = state.selection;
@@ -321,4 +321,4 @@ export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTETextBlockStructure = featureFacade(RTETextBlockStructureImpl);
+export const RteTextBlockStructure = featureFacade(RteTextBlockStructureImpl);

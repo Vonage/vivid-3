@@ -11,16 +11,16 @@ import {
 import proseMirrorCss from 'prosemirror-view/style/prosemirror.css?inline';
 import { dropCursor } from 'prosemirror-dropcursor';
 import { gapCursor } from 'prosemirror-gapcursor';
-import { featureFacade, RTEFeatureImpl } from '../feature';
+import { featureFacade, RteFeatureImpl } from '../feature';
 import type { Locale } from '../../../../shared/localization/Locale';
 import type { VividElementDefinitionContext } from '../../../../shared/design-system/defineVividComponent';
-import type { RTEInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
 import { defaultTextblockForMatch } from '../utils/default-textblock';
 import uiCss from '../utils/ui.style.scss?inline';
 import coreCss from './core.style.scss?inline';
-import { RTEHistoryFeatureImpl } from './internal/history';
-import { RTEPlaceholderFeatureImpl } from './internal/placeholder';
-import { RTEForeignHtmlFeatureImpl } from './internal/foreign-html';
+import { RteHistoryFeatureImpl } from './internal/history';
+import { RtePlaceholderFeatureImpl } from './internal/placeholder';
+import { RteForeignHtmlFeatureImpl } from './internal/foreign-html';
 
 export interface HostState {
 	ctx: VividElementDefinitionContext;
@@ -51,8 +51,8 @@ export const hostBridgePlugin = new Plugin<HostState | null>({
 /**
  * The core feature is required and provides basic editor functionality.
  */
-export class RTECoreImpl extends RTEFeatureImpl {
-	protected name = 'RTECore';
+export class RteCoreImpl extends RteFeatureImpl {
+	protected name = 'RteCore';
 
 	override getStyles() {
 		return [
@@ -62,7 +62,7 @@ export class RTECoreImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getPlugins(rte: RTEInstanceImpl) {
+	override getPlugins(rte: RteInstanceImpl) {
 		return [
 			this.contribution(
 				keymap({
@@ -95,14 +95,14 @@ export class RTECoreImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getFeatures(): RTEFeatureImpl[] {
+	override getFeatures(): RteFeatureImpl[] {
 		return [
 			this,
-			new RTEHistoryFeatureImpl(),
-			new RTEPlaceholderFeatureImpl(),
-			new RTEForeignHtmlFeatureImpl(),
+			new RteHistoryFeatureImpl(),
+			new RtePlaceholderFeatureImpl(),
+			new RteForeignHtmlFeatureImpl(),
 		];
 	}
 }
 
-export const RTECore = featureFacade(RTECoreImpl);
+export const RteCore = featureFacade(RteCoreImpl);

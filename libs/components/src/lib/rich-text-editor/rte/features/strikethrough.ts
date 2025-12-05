@@ -1,16 +1,16 @@
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark } from 'prosemirror-commands';
 import { createMarkToggle } from '../utils/ui';
-import { RTEInstanceImpl } from '../instance';
+import { RteInstanceImpl } from '../instance';
 import {
 	featureFacade,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
 
-export class RTEStrikethroughFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEStrikethroughFeature';
+export class RteStrikethroughFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteStrikethroughFeature';
 
 	override getSchema(): SchemaContribution[] {
 		return [
@@ -27,7 +27,7 @@ export class RTEStrikethroughFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getPlugins(rte: RTEInstanceImpl) {
+	override getPlugins(rte: RteInstanceImpl) {
 		return [
 			this.contribution(
 				keymap({
@@ -38,7 +38,7 @@ export class RTEStrikethroughFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -56,6 +56,6 @@ export class RTEStrikethroughFeatureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEStrikethroughFeature = featureFacade(
-	RTEStrikethroughFeatureImpl
+export const RteStrikethroughFeature = featureFacade(
+	RteStrikethroughFeatureImpl
 );

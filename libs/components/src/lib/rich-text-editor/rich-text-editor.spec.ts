@@ -4,12 +4,12 @@ import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { Button } from '../button/button';
 import { RichTextEditor } from './rich-text-editor';
-import { RTEConfig } from './rte/config';
-import { RTECore } from './rte/features/core';
-import { RTEFreeformStructure } from './rte/features/freeform';
+import { RteConfig } from './rte/config';
+import { RteCore } from './rte/features/core';
+import { RteFreeformStructure } from './rte/features/freeform';
 import '.';
-import { RTEBoldFeature } from './rte/features/bold';
-import { RTEToolbarFeature } from './rte/features/toolbar';
+import { RteBoldFeature } from './rte/features/bold';
+import { RteToolbarFeature } from './rte/features/toolbar';
 
 const COMPONENT_TAG = 'vwc-rich-text-editor';
 
@@ -41,7 +41,7 @@ describe('vwc-rich-text-editor', () => {
 
 	describe('editorViewportElement', () => {
 		it('should be the viewport element', async () => {
-			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
+			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
 			element.instance = config.instantiateEditor();
 
 			expect(element.editorViewportElement).toBe(
@@ -56,14 +56,14 @@ describe('vwc-rich-text-editor', () => {
 		});
 
 		it('should render an editor when instance is set', async () => {
-			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
+			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
 			element.instance = config.instantiateEditor();
 
 			expect(getEditor().children[0].classList).toContain('ProseMirror');
 		});
 
 		it('should destroy the editor when instance is unset', async () => {
-			const config = new RTEConfig([new RTECore(), new RTEFreeformStructure()]);
+			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
 			element.instance = config.instantiateEditor();
 
 			element.instance = undefined;
@@ -72,11 +72,11 @@ describe('vwc-rich-text-editor', () => {
 		});
 
 		it('should sync the locale to the editor instance', async () => {
-			const config = new RTEConfig([
-				new RTECore(),
-				new RTEFreeformStructure(),
-				new RTEToolbarFeature(),
-				new RTEBoldFeature(),
+			const config = new RteConfig([
+				new RteCore(),
+				new RteFreeformStructure(),
+				new RteToolbarFeature(),
+				new RteBoldFeature(),
 			]);
 			element.instance = config.instantiateEditor();
 

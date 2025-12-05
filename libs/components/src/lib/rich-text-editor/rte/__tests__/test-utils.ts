@@ -16,20 +16,20 @@ import type { RichTextEditor } from '../../rich-text-editor';
 import type { Button } from '../../../button/button';
 import {
 	registerRichTextEditor,
-	RTEHtmlParser,
-	RTEHtmlSerializer,
+	RteHtmlParser,
+	RteHtmlSerializer,
 } from '../../definition';
 import type { Menu } from '../../../menu/menu';
 import type { MenuItem } from '../../../menu-item/menu-item';
 import type { Select } from '../../../select/select';
 import type { ListboxOption } from '../../../option/option';
-import { RTEConfig } from '../config';
-import { RTEFeature } from '../feature';
+import { RteConfig } from '../config';
+import { RteFeature } from '../feature';
 import type { TextField } from '../../../text-field/text-field';
 import type { Popover } from '../../popover';
 import { mockTransfer } from '../../../file-picker/__mocks__/data-transfer';
-import type { RTEFragment } from '../document';
-import type { RTEInstanceOptions } from '../instance';
+import type { RteFragment } from '../document';
+import type { RteInstanceOptions } from '../instance';
 import { impl } from '../utils/impl';
 
 registerRichTextEditor();
@@ -175,11 +175,11 @@ const docToStr = (state: EditorState) => {
 };
 
 export async function setup(
-	features: RTEFeature[],
-	initialContent?: RTEFragment,
-	options?: (config: RTEConfig) => RTEInstanceOptions
+	features: RteFeature[],
+	initialContent?: RteFragment,
+	options?: (config: RteConfig) => RteInstanceOptions
 ) {
-	const config = new RTEConfig(features);
+	const config = new RteConfig(features);
 	const instance = config.instantiateEditor({
 		initialDocument: initialContent && {
 			type: 'doc',
@@ -196,10 +196,10 @@ export async function setup(
 
 	const view = instance[impl].view!;
 
-	const htmlParser = new RTEHtmlParser(config);
+	const htmlParser = new RteHtmlParser(config);
 	const setHtml = (html: string) =>
 		instance.replaceDocument(htmlParser.parseDocument(html));
-	const htmlSerializer = new RTEHtmlSerializer(config);
+	const htmlSerializer = new RteHtmlSerializer(config);
 	const getHtml = () =>
 		htmlSerializer.serializeDocument(instance.getDocument());
 

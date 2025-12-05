@@ -3,15 +3,15 @@ import { vitest } from 'vitest';
 import { setup } from '../__tests__/test-utils';
 import { mockFile } from '../../../file-picker/__mocks__/data-transfer';
 import { docFactories } from '../__tests__/doc-factories';
-import type { RTEFragment } from '../document';
+import type { RteFragment } from '../document';
 import { promiseWithResolvers } from '../__tests__/promise';
-import { RTECore } from './core';
-import { RTEToolbarFeature } from './toolbar';
+import { RteCore } from './core';
+import { RteToolbarFeature } from './toolbar';
 import {
-	RTEFileHandlerFeature,
-	type RTEFileHandlerFeatureConfig,
+	RteFileHandlerFeature,
+	type RteFileHandlerFeatureConfig,
 } from './file-handler';
-import { RTEFreeformStructure } from './freeform';
+import { RteFreeformStructure } from './freeform';
 
 vi.mock('prosemirror-transform', () => ({
 	dropPoint: vitest.fn(),
@@ -24,16 +24,16 @@ const mockProseMirrorDropPointReturn = async (value: number | null) => {
 	).dropPoint.mockReturnValue(value);
 };
 
-const { text_line: p, text } = docFactories;
+const { textLine: p, text } = docFactories;
 
-const featuresWithConfig = (config: RTEFileHandlerFeatureConfig) => [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEToolbarFeature(),
-	new RTEFileHandlerFeature(config),
+const featuresWithConfig = (config: RteFileHandlerFeatureConfig) => [
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteToolbarFeature(),
+	new RteFileHandlerFeature(config),
 ];
 
-describe('RTEFileHandlerFeature', () => {
+describe('RteFileHandlerFeature', () => {
 	it('should ignore files when handler returns null', async () => {
 		const rte = await setup(
 			featuresWithConfig({
@@ -45,7 +45,7 @@ describe('RTEFileHandlerFeature', () => {
 		rte.selectText('Hello [World]');
 		rte.pasteFiles([mockFile('world.txt')]);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('Hello [World|]')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('Hello [World|]')"`);
 	});
 
 	it('should insert returned content at caret on paste', async () => {
@@ -60,7 +60,7 @@ describe('RTEFileHandlerFeature', () => {
 		rte.pasteFiles([mockFile('world.txt')]);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello PASTED|World')"`
+			`"textLine('Hello PASTED|World')"`
 		);
 	});
 
@@ -75,11 +75,11 @@ describe('RTEFileHandlerFeature', () => {
 		rte.selectText('Hello [World]');
 		rte.pasteFiles([mockFile('world.txt')]);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('Hello PASTED|')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('Hello PASTED|')"`);
 	});
 
 	it('should insert asynchronously returned content at cursor position on paste', async () => {
-		const { promise, resolve } = promiseWithResolvers<RTEFragment>();
+		const { promise, resolve } = promiseWithResolvers<RteFragment>();
 
 		const rte = await setup(
 			featuresWithConfig({
@@ -96,12 +96,12 @@ describe('RTEFileHandlerFeature', () => {
 		await elementUpdated(rte.element);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello very| beautiful World')"`
+			`"textLine('Hello very| beautiful World')"`
 		);
 	});
 
 	it('should replace selection with asynchronously returned content on paste', async () => {
-		const { promise, resolve } = promiseWithResolvers<RTEFragment>();
+		const { promise, resolve } = promiseWithResolvers<RteFragment>();
 
 		const rte = await setup(
 			featuresWithConfig({
@@ -118,12 +118,12 @@ describe('RTEFileHandlerFeature', () => {
 		await elementUpdated(rte.element);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello very| beautiful new World')"`
+			`"textLine('Hello very| beautiful new World')"`
 		);
 	});
 
 	it('should ignore asynchronously returned content when the insert point has been deleted', async () => {
-		const { promise, resolve } = promiseWithResolvers<RTEFragment>();
+		const { promise, resolve } = promiseWithResolvers<RteFragment>();
 
 		const rte = await setup(
 			featuresWithConfig({
@@ -139,7 +139,7 @@ describe('RTEFileHandlerFeature', () => {
 		resolve([text('result')]);
 		await elementUpdated(rte.element);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line(|)"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"textLine(|)"`);
 	});
 
 	it('should insert content at cursor position on drop', async () => {
@@ -153,7 +153,7 @@ describe('RTEFileHandlerFeature', () => {
 		rte.dropFiles(rte.getPos('Hello |'), [mockFile('hello.txt')]);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line('|Hello PASTEDWorld')"`
+			`"textLine('|Hello PASTEDWorld')"`
 		);
 	});
 
@@ -172,14 +172,14 @@ describe('RTEFileHandlerFeature', () => {
 		rte.dropFiles(rte.getPos('He|llo'), [mockFile('hello.txt')]);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line('|Hello PASTEDWorld')"`
+			`"textLine('|Hello PASTEDWorld')"`
 		);
 
 		await mockProseMirrorDropPointReturn(null);
 		rte.dropFiles(rte.getPos('He|llo'), [mockFile('hello.txt')]);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line('|HePASTEDllo PASTEDWorld')"`
+			`"textLine('|HePASTEDllo PASTEDWorld')"`
 		);
 	});
 
@@ -215,10 +215,10 @@ describe('RTEFileHandlerFeature', () => {
 
 		rte.pasteFiles([]);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('|Hello World')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('|Hello World')"`);
 
 		rte.dropFiles(rte.getPos('Hello |'), []);
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('|Hello World')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('|Hello World')"`);
 	});
 });

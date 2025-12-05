@@ -1,21 +1,21 @@
 import { setup } from '../__tests__/test-utils';
 import { mockFile } from '../../../file-picker/__mocks__/data-transfer';
-import { RTECore } from './core';
-import { RTEToolbarFeature } from './toolbar';
+import { RteCore } from './core';
+import { RteToolbarFeature } from './toolbar';
 import {
-	RTEDropHandlerFeature,
-	type RTEDropHandlerFeatureConfig,
+	RteDropHandlerFeature,
+	type RteDropHandlerFeatureConfig,
 } from './drop-handler';
-import { RTEFreeformStructure } from './freeform';
+import { RteFreeformStructure } from './freeform';
 
-const featuresWithConfig = (config: RTEDropHandlerFeatureConfig) => [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEToolbarFeature(),
-	new RTEDropHandlerFeature(config),
+const featuresWithConfig = (config: RteDropHandlerFeatureConfig) => [
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteToolbarFeature(),
+	new RteDropHandlerFeature(config),
 ];
 
-describe('RTEDropHandlerFeature', () => {
+describe('RteDropHandlerFeature', () => {
 	it('should call onViewportDragOver on dragover of viewport', async () => {
 		const calls: any[] = [];
 		const rte = await setup(

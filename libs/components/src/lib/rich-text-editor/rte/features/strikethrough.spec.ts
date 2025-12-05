@@ -1,26 +1,26 @@
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
-import { RTECore } from './core';
-import { RTEStrikethroughFeature } from './strikethrough';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
+import { RteCore } from './core';
+import { RteStrikethroughFeature } from './strikethrough';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
 
-const { text, text_line: line, strikethrough } = docFactories;
+const { text, textLine: line, strikethrough } = docFactories;
 
 const features = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEStrikethroughFeature(),
-	new RTEToolbarFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteStrikethroughFeature(),
+	new RteToolbarFeature(),
 ];
 
-describe('RTEStrikethroughFeature', () => {
+describe('RteStrikethroughFeature', () => {
 	it('should add a strikethrough mark to the schema', async () => {
 		const { docStr } = await setup(features, [
 			line(text.marks(strikethrough())('Hello')),
 		]);
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line(<strikethrough>'|Hello')"`
+			`"textLine(<strikethrough>'|Hello')"`
 		);
 	});
 
@@ -29,7 +29,7 @@ describe('RTEStrikethroughFeature', () => {
 		rte.setHtml(`<div><s>strikethrough</s><del>strikethrough</del></div>`);
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line(<strikethrough>'|strikethroughstrikethrough')"`
+			`"textLine(<strikethrough>'|strikethroughstrikethrough')"`
 		);
 	});
 
@@ -52,12 +52,12 @@ describe('RTEStrikethroughFeature', () => {
 		keydown('5', { alt: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <strikethrough>'[world|]')"`
+			`"textLine('Hello ', <strikethrough>'[world|]')"`
 		);
 
 		keydown('5', { alt: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello [world|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello [world|]')"`);
 	});
 
 	it('should toggle strikethrough mark of selected text on Cmd+Shift+X', async () => {
@@ -69,12 +69,12 @@ describe('RTEStrikethroughFeature', () => {
 		keydown('X', { cmd: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <strikethrough>'[world|]')"`
+			`"textLine('Hello ', <strikethrough>'[world|]')"`
 		);
 
 		keydown('X', { cmd: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello [world|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello [world|]')"`);
 	});
 
 	it('should remember the strikethrough mark when no text is selected', async () => {
@@ -85,13 +85,13 @@ describe('RTEStrikethroughFeature', () => {
 		toolbarButton('Strikethrough').click();
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello |<strikethrough>|world')"`
+			`"textLine('Hello |<strikethrough>|world')"`
 		);
 
 		await typeTextAtCursor('beautiful ');
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <strikethrough>'beautiful |', 'world')"`
+			`"textLine('Hello ', <strikethrough>'beautiful |', 'world')"`
 		);
 	});
 
@@ -105,13 +105,13 @@ describe('RTEStrikethroughFeature', () => {
 		toolbarButton('Strikethrough').click();
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <strikethrough>'[world|]')"`
+			`"textLine('Hello ', <strikethrough>'[world|]')"`
 		);
 		expect(isActive(toolbarButton('Strikethrough'))).toBe(true);
 
 		toolbarButton('Strikethrough').click();
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Hello [world|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Hello [world|]')"`);
 		expect(isActive(toolbarButton('Strikethrough'))).toBe(false);
 	});
 });

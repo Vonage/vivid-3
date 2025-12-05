@@ -4,16 +4,16 @@ import { type Constructable, ElementStyles } from '@microsoft/fast-element';
 import { EditorView } from 'prosemirror-view';
 import type { Constructor } from '../../../shared/utils/mixins';
 import type { Locale } from '../../../shared/localization/Locale';
-import { RTEConfig, RTEConfigImpl } from './config';
+import { RteConfig, RteConfigImpl } from './config';
 import { hostBridgePlugin, type HostState } from './features/core';
-import { RTEFeatureImpl, sortedContributions } from './feature';
-import type { RTEDocument, RTEFragment } from './document';
+import { RteFeatureImpl, sortedContributions } from './feature';
+import type { RteDocument, RteFragment } from './document';
 import type { TextblockAttrs } from './utils/textblock-attrs';
-import { RTEHtmlParser } from './html-parser';
-import { RTEHtmlSerializer } from './html-serializer';
+import { RteHtmlParser } from './html-parser';
+import { RteHtmlSerializer } from './html-serializer';
 import { impl } from './utils/impl';
 
-const parseDocument = (schema: Schema, doc?: RTEDocument): Node => {
+const parseDocument = (schema: Schema, doc?: RteDocument): Node => {
 	const node = schema.topNodeType.createAndFill(
 		null,
 		doc ? Fragment.fromJSON(schema, doc.content) : null
@@ -25,8 +25,8 @@ const parseDocument = (schema: Schema, doc?: RTEDocument): Node => {
 	return node;
 };
 
-export type RTEInstanceOptions = {
-	initialDocument?: RTEDocument;
+export type RteInstanceOptions = {
+	initialDocument?: RteDocument;
 	/**
 	 * Called whenever the document content changes.
 	 */
@@ -34,32 +34,32 @@ export type RTEInstanceOptions = {
 	/**
 	 * Used when parsing foreign HTML (e.g., pasted or dropped content).
 	 */
-	foreignHtmlParser?: RTEHtmlParser;
+	foreignHtmlParser?: RteHtmlParser;
 	/**
 	 * Used when serializing content to foreign HTML (e.g., for copy/drag).
 	 */
-	foreignHtmlSerializer?: RTEHtmlSerializer;
+	foreignHtmlSerializer?: RteHtmlSerializer;
 };
 
-export class RTEInstance {
+export class RteInstance {
 	/// @internal
-	[impl]: RTEInstanceImpl;
+	[impl]: RteInstanceImpl;
 
-	constructor(config: RTEConfig, readonly options?: RTEInstanceOptions) {
-		this[impl] = new RTEInstanceImpl(config, options);
+	constructor(config: RteConfig, readonly options?: RteInstanceOptions) {
+		this[impl] = new RteInstanceImpl(config, options);
 	}
 
 	/**
 	 * Returns the current document state.
 	 */
-	getDocument(): RTEDocument {
+	getDocument(): RteDocument {
 		return this[impl].state.doc.toJSON();
 	}
 
 	/**
 	 * Reset the editor to its initial state. Optionally, an initial document can be provided.
 	 */
-	reset(initialDocument?: RTEDocument) {
+	reset(initialDocument?: RteDocument) {
 		this[impl].reset(initialDocument);
 	}
 
@@ -68,7 +68,7 @@ export class RTEInstance {
 	 * If no text is selected, this inserts the content at the cursor position.
 	 */
 	replaceSelection(
-		content: RTEFragment,
+		content: RteFragment,
 		options?: {
 			/**
 			 * Controls where the cursor is placed after the replacement:
@@ -111,7 +111,7 @@ export class RTEInstance {
 	 * Unlike reset, this preserves the rest of the editor state. The undo history is preserved, so the user can undo the replacement.
 	 */
 	replaceDocument(
-		newDocument: RTEDocument,
+		newDocument: RteDocument,
 		options?: {
 			/**
 			 * Controls where the cursor is placed after the replacement:
@@ -145,17 +145,17 @@ export class RTEInstance {
 	}
 }
 
-export class RTEInstanceImpl {
+export class RteInstanceImpl {
 	state!: EditorState;
-	readonly config: RTEConfigImpl;
+	readonly config: RteConfigImpl;
 	readonly schema: Schema;
 	readonly textblockAttrs: TextblockAttrs;
-	readonly features: RTEFeatureImpl[];
+	readonly features: RteFeatureImpl[];
 	readonly styles: ElementStyles;
-	readonly foreignHtmlParser: RTEHtmlParser;
-	readonly foreignHtmlSerializer: RTEHtmlSerializer;
+	readonly foreignHtmlParser: RteHtmlParser;
+	readonly foreignHtmlSerializer: RteHtmlSerializer;
 
-	getFeature<T extends RTEFeatureImpl>(constr: Constructor<T>): T {
+	getFeature<T extends RteFeatureImpl>(constr: Constructor<T>): T {
 		const f = this.config.featureMap.get(constr) as T;
 		if (!f) {
 			throw new Error(`Feature not found: ${constr.name}`);
@@ -163,16 +163,16 @@ export class RTEInstanceImpl {
 		return f;
 	}
 
-	constructor(configFacade: RTEConfig, readonly options?: RTEInstanceOptions) {
+	constructor(configFacade: RteConfig, readonly options?: RteInstanceOptions) {
 		const config = configFacade[impl];
 		this.config = config;
 		this.schema = config.schema;
 		this.textblockAttrs = config.textblockAttrs;
 		this.features = config.features;
 		this.foreignHtmlParser =
-			options?.foreignHtmlParser ?? new RTEHtmlParser(configFacade);
+			options?.foreignHtmlParser ?? new RteHtmlParser(configFacade);
 		this.foreignHtmlSerializer =
-			options?.foreignHtmlSerializer ?? new RTEHtmlSerializer(configFacade);
+			options?.foreignHtmlSerializer ?? new RteHtmlSerializer(configFacade);
 
 		this.styles = new ElementStyles(
 			sortedContributions(config.features.flatMap((f) => f.getStyles()))
@@ -181,7 +181,7 @@ export class RTEInstanceImpl {
 		this.initState(options?.initialDocument);
 	}
 
-	protected initState(initialDoc?: RTEDocument) {
+	protected initState(initialDoc?: RteDocument) {
 		this.state = EditorState.create({
 			doc: parseDocument(this.schema, initialDoc),
 			schema: this.config.schema,
@@ -191,7 +191,7 @@ export class RTEInstanceImpl {
 		});
 	}
 
-	reset(initialDocument?: RTEDocument) {
+	reset(initialDocument?: RteDocument) {
 		const currentHostState = hostBridgePlugin.getState(
 			this.state
 		) as HostState | null;

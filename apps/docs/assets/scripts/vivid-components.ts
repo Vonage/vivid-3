@@ -2,10 +2,10 @@ import * as vivid from '@vonage/vivid';
 
 window.setLocale = vivid.setLocale;
 
-// Expose all RTE classes as globals
+// Expose all Rte classes as globals
 // Note: needs to be done before defining, so that they are available on the component's whenDefined
 for (const key in vivid) {
-	if (/^RTE/.test(key)) {
+	if (/^Rte/.test(key)) {
 		(window as any)[key] = vivid[key as keyof typeof vivid];
 	}
 }

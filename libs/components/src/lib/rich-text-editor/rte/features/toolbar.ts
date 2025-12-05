@@ -1,7 +1,7 @@
 import { Plugin } from 'prosemirror-state';
 import { createDivider, UiCtx } from '../utils/ui';
-import { RTEInstanceImpl } from '../instance';
-import { featureFacade, RTEFeatureImpl, sortedContributions } from '../feature';
+import { RteInstanceImpl } from '../instance';
+import { featureFacade, RteFeatureImpl, sortedContributions } from '../feature';
 import toolbarCss from './toolbar.style.scss?inline';
 
 export interface ToolbarItemSpec {
@@ -9,7 +9,7 @@ export interface ToolbarItemSpec {
 	render(ctx: UiCtx): HTMLElement | DocumentFragment;
 }
 
-export interface RTEToolbarFeatureConfig {
+export interface RteToolbarFeatureConfig {
 	/**
 	 * Whether tooltips and other popups prefer to open towards or away from the main text-editing area.
 	 * Default: 'inward'
@@ -17,10 +17,10 @@ export interface RTEToolbarFeatureConfig {
 	popupDirection?: 'inward' | 'outward';
 }
 
-export class RTEToolbarFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEToolbarFeature';
+export class RteToolbarFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteToolbarFeature';
 
-	constructor(protected config?: RTEToolbarFeatureConfig) {
+	constructor(protected config?: RteToolbarFeatureConfig) {
 		super();
 	}
 
@@ -28,7 +28,7 @@ export class RTEToolbarFeatureImpl extends RTEFeatureImpl {
 		return [this.contribution(toolbarCss)];
 	}
 
-	override getPlugins(rte: RTEInstanceImpl) {
+	override getPlugins(rte: RteInstanceImpl) {
 		const sections = [
 			'history',
 			'font',
@@ -89,4 +89,4 @@ export class RTEToolbarFeatureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEToolbarFeature = featureFacade(RTEToolbarFeatureImpl);
+export const RteToolbarFeature = featureFacade(RteToolbarFeatureImpl);

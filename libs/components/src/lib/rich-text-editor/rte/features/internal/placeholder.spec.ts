@@ -1,14 +1,14 @@
-import { RTECore } from '../core';
+import { RteCore } from '../core';
 import { setup } from '../../__tests__/test-utils';
-import { RTEFreeformStructure } from '../freeform';
-import { RTETextBlockStructure } from '../text-block';
-import { RTEFontSizeFeature } from '../font-size';
+import { RteFreeformStructure } from '../freeform';
+import { RteTextBlockStructure } from '../text-block';
+import { RteFontSizeFeature } from '../font-size';
 
-describe('RTEPlaceholder', () => {
+describe('RtePlaceholder', () => {
 	it('should add placeholder widget when the document is empty', async () => {
 		const { element, typeTextAtCursor } = await setup([
-			new RTECore(),
-			new RTEFreeformStructure(),
+			new RteCore(),
+			new RteFreeformStructure(),
 		]);
 
 		element.placeholder = 'Type here...';
@@ -25,9 +25,9 @@ describe('RTEPlaceholder', () => {
 
 	it('should apply font size to the placeholder', async () => {
 		const { element, keydown } = await setup([
-			new RTECore(),
-			new RTEFreeformStructure(),
-			new RTEFontSizeFeature({
+			new RteCore(),
+			new RteFreeformStructure(),
+			new RteFontSizeFeature({
 				options: [
 					{ size: '100px', label: 'Large' },
 					{ size: '10px', label: 'Small' },
@@ -50,8 +50,8 @@ describe('RTEPlaceholder', () => {
 	describe('with text block structure', () => {
 		it('should add placeholder inside the block element', async () => {
 			const { element } = await setup([
-				new RTECore(),
-				new RTETextBlockStructure({
+				new RteCore(),
+				new RteTextBlockStructure({
 					blocks: [
 						{ id: 'heading', label: 'Heading', semanticRole: 'heading-1' },
 					],
