@@ -1,4 +1,4 @@
-import { Node, type NodeSpec } from 'prosemirror-model';
+import { type Node, type NodeSpec } from 'prosemirror-model';
 import { type Command, EditorState } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 import { createOption, createSelect } from '../utils/ui';
@@ -13,84 +13,84 @@ import type { TextblockAttrs } from '../utils/textblock-attrs';
 import type { RTEInstanceImpl } from '../instance';
 import textBlockCss from './text-block.style.scss?inline';
 
-interface BlockTypeSpec {
-	id: string;
+const tagNameBySemanticRole = {
+	'heading-1': 'h1',
+	'heading-2': 'h2',
+	'heading-3': 'h3',
+	'heading-4': 'h4',
+	'heading-5': 'h5',
+	'heading-6': 'h6',
+	paragraph: 'p',
+	generic: 'div',
+} as const;
+
+type SemanticRole = keyof typeof tagNameBySemanticRole;
+
+// Vivid typography presets, see https://www.figma.com/design/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?node-id=6583-36886&t=EIfSPVn0uhJ0zOzs-4
+type StylePreset =
+	| 'h1'
+	| 'h2'
+	| 'h3'
+	| 'h4'
+	| 'h5'
+	| 'h6'
+	| 'body-1'
+	| 'body-2'
+	| 'caption';
+
+type BlockTypeId = string;
+const isValidBlockTypeId = (id: string) => /^[a-zA-Z0-9-_]+$/.test(id);
+
+type MarksAllowed = boolean | string;
+
+export interface BlockTypeSpec {
+	id: BlockTypeId;
 	label: string;
-	node: ParagraphSpec | HeadingSpec;
+	semanticRole: SemanticRole;
+	stylePreset?: StylePreset;
+	marksAllowed?: MarksAllowed;
 }
 
-interface ParagraphSpec {
-	name: 'paragraph';
-}
-
-interface HeadingSpec {
-	name: 'heading';
-	attrs: { level: 1 | 2 | 3 | 4 | 5 | 6 };
-}
-
-/**
- * If the node is one of the supported block types, returns a string representation of it.
- * Otherwise, returns null.
- */
-const nodeBlockKey = (node: Node): string | null => {
-	switch (node.type.name) {
-		case 'heading':
-			return `heading-${node.attrs.level}`;
-		case 'paragraph':
-			return 'paragraph';
-		/* v8 ignore next 2 */ // TODO: exercise code once there are other block types
-		default:
-			return null;
-	}
-};
-
-const specBlockKey = (spec: ParagraphSpec | HeadingSpec): string => {
-	switch (spec.name) {
-		case 'paragraph':
-			return 'paragraph';
-		case 'heading':
-			return `heading-${spec.attrs.level}`;
-	}
+export type RTETextBlockStructureConfig = {
+	blocks: BlockTypeSpec[];
+	defaultBlocks?: Partial<Record<SemanticRole, BlockTypeId>>;
 };
 
 export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 	protected name = 'RTETextBlockStructure';
 
-	private blockTypeByKey = new Map<string, BlockTypeSpec>();
-	private defaultBlockType: BlockTypeSpec;
-	private blockTypes: BlockTypeSpec[];
+	private blocks: BlockTypeSpec[];
+	private blockById: Map<BlockTypeId, BlockTypeSpec>;
+	private defaultBlocks: Map<SemanticRole, BlockTypeId>;
 
-	constructor() {
+	constructor(protected config: RTETextBlockStructureConfig) {
 		super();
 
-		// TODO: make configurable
-		const blockTypes: BlockTypeSpec[] = [
-			{
-				id: 'title',
-				label: 'Title',
-				node: { name: 'heading', attrs: { level: 1 } },
-			},
-			{
-				id: 'subtitle',
-				label: 'Subtitle',
-				node: { name: 'heading', attrs: { level: 2 } },
-			},
-			{ id: 'default', label: 'Body', node: { name: 'paragraph' } },
-		];
-
-		// A default block type (id=default) must be defined
-		const defaultBlockType = blockTypes.find((bt) => bt.id === 'default');
-		/* v8 ignore next 3 */ // TODO: exercise code once types are configurable
-		if (!defaultBlockType) {
-			throw new Error('RTEBlockTypesFeature: No default block type defined');
-		}
-		this.defaultBlockType = defaultBlockType;
-
-		for (const blockType of blockTypes) {
-			this.blockTypeByKey.set(specBlockKey(blockType.node)!, blockType);
+		for (const blockType of config.blocks) {
+			if (!isValidBlockTypeId(blockType.id)) {
+				throw new Error(
+					`Invalid block type id "${blockType.id}". Only alphanumeric characters, hyphens and underscores are allowed.`
+				);
+			}
 		}
 
-		this.blockTypes = blockTypes;
+		this.blocks = config.blocks;
+		this.blockById = new Map<BlockTypeId, BlockTypeSpec>(
+			this.blocks.map((bt) => [bt.id, bt])
+		);
+		this.defaultBlocks = new Map<SemanticRole, BlockTypeId>(
+			Array.from(
+				Object.entries(config.defaultBlocks ?? {}) as [
+					SemanticRole,
+					BlockTypeId
+				][]
+			)
+		);
+		for (const block of this.blocks) {
+			if (!this.defaultBlocks.get(block.semanticRole)) {
+				this.defaultBlocks.set(block.semanticRole, block.id);
+			}
+		}
 	}
 
 	override getStyles() {
@@ -98,91 +98,98 @@ export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 	}
 
 	override getSchema(textblockAttrs: TextblockAttrs): SchemaContribution[] {
-		/* v8 ignore start */ // TODO: exercise all code paths in tests once types are configurable
-		const hasParagraph = this.blockTypes.some(
-			(bt) => bt.node.name === 'paragraph'
-		);
-		const isParagraphDefault = this.defaultBlockType.node.name === 'paragraph';
+		// Sort block types before creating the schema
+		// Mainly the very first block is important since ProseMirror uses it as a default block
 
-		const paragraphNode: { paragraph?: NodeSpec } = hasParagraph
-			? {
-					paragraph: {
-						content: 'inline*',
+		const schemaOrder = (bt: BlockTypeSpec) =>
+			[
+				'paragraph', // Prefer paragraph to become the default block
+				'generic',
+				'heading-1',
+				'heading-2',
+				'heading-3',
+				'heading-4',
+				'heading-5',
+				'heading-6',
+			].indexOf(bt.semanticRole) *
+				100 +
+			(this.defaultBlocks.get(bt.semanticRole) === bt.id ? 0 : 1); // If there are multiple blocks for a role, prefer the default one
+
+		const sortedBlockTypes = [...this.blocks].sort(
+			(a, b) => schemaOrder(a) - schemaOrder(b)
+		);
+
+		const specs: Array<[string, NodeSpec]> = sortedBlockTypes.map(
+			(blockType) => {
+				const tag = tagNameBySemanticRole[blockType.semanticRole];
+				const selector = `[data-block-type="${blockType.id}"]`;
+
+				const getMarks = () => {
+					switch (blockType.marksAllowed) {
+						case true:
+							return { marks: '_' }; // all marks allowed
+						case false:
+						case undefined:
+							return { marks: '' }; // no marks allowed
+						default:
+							return { marks: blockType.marksAllowed }; // specific marks allowed
+					}
+				};
+
+				return [
+					blockType.id,
+					{
 						group: 'block',
+						content: 'inline*',
 						attrs: { ...textblockAttrs.attrs },
 						parseDOM: [
 							{
-								tag: 'p',
-								getAttrs(dom: HTMLElement) {
-									return textblockAttrs.fromDOM(dom);
-								},
+								tag: selector,
+								priority: 51, // higher than default priority of 50 to prefer this over generic rules
+								getAttrs: (dom: HTMLElement) => textblockAttrs.fromDOM(dom),
+							},
+							{
+								tag,
+								getAttrs: (dom: HTMLElement) => textblockAttrs.fromDOM(dom),
 							},
 						],
+						...getMarks(),
+						...(blockType.semanticRole.startsWith('heading')
+							? { defining: true }
+							: {}),
 						toDOM(node) {
-							return ['p', ...textblockAttrs.getDOMAttrs(node), 0];
+							const el = document.createElement(tag);
+							el.className = 'text-block';
+							el.setAttribute('part', `text-block--${blockType.id}`);
+							if (blockType.stylePreset) {
+								el.classList.add(`text-block--${blockType.stylePreset}`);
+							}
+							for (const [key, value] of Object.entries(
+								textblockAttrs.getDOMAttrsProperties(node)
+							)) {
+								el.setAttribute(key, value);
+							}
+							return { dom: el, contentDOM: el };
 						},
-					},
-			  }
-			: {};
-
-		const headingLevels = this.blockTypes
-			.filter((bt) => bt.node.name === 'heading')
-			.map((bt) => (bt.node as HeadingSpec).attrs.level);
-
-		const defaultHeadingLevel =
-			this.defaultBlockType.node.name === 'heading'
-				? this.defaultBlockType.node.attrs.level
-				: 1;
-
-		const headingNode: { heading?: NodeSpec } = headingLevels.length
-			? {
-					heading: {
-						attrs: {
-							level: {
-								default: defaultHeadingLevel,
-								validate: (value: any) => {
-									if (!headingLevels.includes(value)) {
-										throw new Error(`Invalid heading level: ${value}`);
-									}
-								},
-							},
-							...textblockAttrs.attrs,
-						},
-						content: 'inline*',
-						marks: '',
-						group: 'block',
-						defining: true,
-						parseDOM: headingLevels.map((level) => ({
-							tag: `h${level}`,
-							getAttrs(dom: HTMLElement) {
-								return { level, ...textblockAttrs.fromDOM(dom) };
-							},
-						})),
-						toDOM(node) {
+						serializeToDOM(node: Node) {
 							return [
-								'h' + node.attrs.level,
-								...textblockAttrs.getDOMAttrs(node),
+								tag,
+								{
+									'data-block-type': blockType.id,
+									...textblockAttrs.getDOMAttrsProperties(node),
+								},
 								0,
 							];
 						},
 					},
-			  }
-			: {};
+				];
+			}
+		);
 
 		return [
 			this.contribution({
 				nodes: {
-					// First block in schema becomes the default block type
-					...(isParagraphDefault
-						? {
-								...paragraphNode,
-								...headingNode,
-						  }
-						: {
-								...headingNode,
-								...paragraphNode,
-						  }),
-
+					...Object.fromEntries(specs),
 					text: {
 						group: 'inline',
 					},
@@ -195,14 +202,12 @@ export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 							return ['br'];
 						},
 					},
-
 					doc: {
 						content: 'block+',
 					},
 				},
 			}),
 		];
-		/* v8 ignore end */
 	}
 
 	override getPlugins(rte: RTEInstanceImpl): PluginContribution[] {
@@ -221,19 +226,20 @@ export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 			'Shift-Enter': forceBreak,
 		};
 
-		const paragraphBlock = this.blockTypes.find(
-			(bt) => bt.node.name === 'paragraph'
-		);
-		if (paragraphBlock) {
-			keyBindings['Mod-Alt-0'] = this.setBlockType(rte, paragraphBlock.id);
+		const defaultParagraphId = this.defaultBlocks.get('paragraph');
+		if (defaultParagraphId) {
+			keyBindings['Mod-Alt-0'] = this.setBlockType(rte, defaultParagraphId);
 		}
 
-		const headingBlocks = this.blockTypes.filter(
-			(bt) => bt.node.name === 'heading'
-		);
-		for (const headingBlock of headingBlocks) {
-			const level = (headingBlock.node as HeadingSpec).attrs.level;
-			keyBindings[`Mod-Alt-${level}`] = this.setBlockType(rte, headingBlock.id);
+		for (let level = 1; level <= 6; level++) {
+			const role = `heading-${level}` as SemanticRole;
+			const defaultBlockId = this.defaultBlocks.get(role);
+			if (defaultBlockId) {
+				keyBindings[`Mod-Alt-${level}`] = this.setBlockType(
+					rte,
+					defaultBlockId
+				);
+			}
 		}
 
 		return [this.contribution(keymap(keyBindings))];
@@ -252,7 +258,7 @@ export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 								const { state, dispatch } = ctx.view;
 								this.setBlockType(rte, value)(state, dispatch);
 							},
-							children: this.blockTypes.map((bt) =>
+							children: this.blocks.map((bt) =>
 								createOption(ctx, {
 									text: bt.label,
 									value: bt.id,
@@ -277,18 +283,15 @@ export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 		if (fromTopBlock !== toTopBlock) {
 			return null; // mixed block types
 		}
-		const key = nodeBlockKey(fromTopBlock);
-		const blockType = key ? this.blockTypeByKey.get(key) : null;
-		/* v8 ignore if */ // TODO: exercise code once there are other block types
-		if (!blockType) {
+		if (!this.blockById.has(fromTopBlock.type.name)) {
 			return null;
 		}
-		return blockType.id;
+		return fromTopBlock.type.name;
 	}
 
-	setBlockType(rte: RTEInstanceImpl, id: string): Command {
+	setBlockType(rte: RTEInstanceImpl, id: BlockTypeId): Command {
 		return (state, dispatch) => {
-			const blockType = this.blockTypes.find((bt) => bt.id === id)!;
+			const blockType = this.blockById.get(id)!;
 			const { from, to } = state.selection;
 			const tr = state.tr;
 
@@ -296,23 +299,13 @@ export class RTETextBlockStructureImpl extends RTEFeatureImpl {
 
 			// Convert all supported block types
 			state.doc.nodesBetween(from, to, (node, pos) => {
-				if (nodeBlockKey(node)) {
+				if (this.blockById.has(node.type.name)) {
 					supportedNodeFound = true;
 					tr.setBlockType(
 						pos,
 						pos + node.nodeSize,
-						state.schema.nodes[blockType.node.name],
-						(oldNode) => {
-							const oldAttrs = rte.textblockAttrs.extractFromNode(oldNode);
-							if (blockType.node.name === 'heading') {
-								return {
-									...oldAttrs,
-									...(blockType.node as HeadingSpec).attrs,
-								};
-							} else {
-								return oldAttrs;
-							}
-						}
+						state.schema.nodes[blockType.id],
+						(oldNode) => rte.textblockAttrs.extractFromNode(oldNode)
 					);
 				}
 				return false; // Do not recurse over children

@@ -104,23 +104,41 @@
 
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEToolbarFeature(), new RTEFontSizeFeature(), new RTEBoldFeature(), new RTEItalicFeature(), new RTEUnderlineFeature(), new RTEStrikethroughFeature(), new RTEMonospaceFeature(), new RTETextColorFeature({ defaultColor: '#000000' }), new RTEListFeature(), new RTEAlignmentFeature(), new RTELinkFeature()]);
+		const config = new RTEConfig([
+			new RTECore(),
+			new RTETextBlockStructure({
+				blocks: [
+					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
+					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
+					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
+				],
+			}),
+			new RTEToolbarFeature(),
+			new RTEFontSizeFeature(),
+			new RTEBoldFeature(),
+			new RTEItalicFeature(),
+			new RTEUnderlineFeature(),
+			new RTEStrikethroughFeature(),
+			new RTEMonospaceFeature(),
+			new RTETextColorFeature({ defaultColor: '#000000' }),
+			new RTEListFeature(),
+			new RTEAlignmentFeature(),
+			new RTELinkFeature(),
+		]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
 				type: 'doc',
 				content: [
 					{
-						type: 'heading',
-						attrs: { level: 1 },
+						type: 'title',
 						content: [{ type: 'text', text: 'Title' }],
 					},
 					{
-						type: 'heading',
-						attrs: { level: 2 },
+						type: 'subtitle',
 						content: [{ type: 'text', text: 'Subtitle' }],
 					},
 					{
-						type: 'paragraph',
+						type: 'body',
 						content: [{ type: 'text', text: 'Body' }],
 					},
 				],
@@ -140,7 +158,23 @@ The `placeholder` attribute allows you to set a placeholder text that will be di
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure(), new RTEFontSizeFeature(), new RTEBoldFeature(), new RTEItalicFeature(), new RTEUnderlineFeature(), new RTEStrikethroughFeature(), new RTEMonospaceFeature(), new RTEToolbarFeature()]);
+		const config = new RTEConfig([
+			new RTECore(),
+			new RTETextBlockStructure({
+				blocks: [
+					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
+					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
+					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
+				],
+			}),
+			new RTEFontSizeFeature(),
+			new RTEBoldFeature(),
+			new RTEItalicFeature(),
+			new RTEUnderlineFeature(),
+			new RTEStrikethroughFeature(),
+			new RTEMonospaceFeature(),
+			new RTEToolbarFeature(),
+		]);
 		rteComponent.instance = config.instantiateEditor();
 	});
 </script>

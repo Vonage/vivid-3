@@ -5,6 +5,7 @@ import { RTECore } from '../features/core';
 import { setup } from '../__tests__/test-utils';
 import type { Tooltip } from '../../../tooltip/tooltip';
 import { VwcMenuElement } from '../../../menu/definition';
+import { basicTextBlocks } from '../__tests__/text-blocks';
 import { RTEFreeformStructure } from '../features/freeform';
 import { createButton, createMenu, createSingleSlot, UiCtx } from './ui';
 import { impl } from './impl';
@@ -27,7 +28,7 @@ describe('createSelect', () => {
 	it('should hide the tooltip when the select is open', async () => {
 		const { toolbarSelect } = await setup([
 			new RTECore(),
-			new RTETextBlockStructure(),
+			new RTETextBlockStructure({ blocks: basicTextBlocks }),
 			new RTEToolbarFeature(),
 		]);
 
@@ -102,7 +103,7 @@ describe('createSingleSlot', () => {
 	const setupForSlot = async () => {
 		const { element, view, instance } = await setup([
 			new RTECore(),
-			new RTETextBlockStructure(),
+			new RTEFreeformStructure(),
 			new RTEToolbarFeature(),
 		]);
 		return {
