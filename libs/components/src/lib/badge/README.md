@@ -1,7 +1,20 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VBadge } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VBadge text="My Badge" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -17,19 +30,6 @@ registerBadge('your-prefix');
 </script>
 
 <your-prefix-badge text="My Badge"></your-prefix-badge>
-```
-
-</vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VBadge } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VBadge connotation="success" text="My Badge" />
-</template>
 ```
 
 </vwc-tab-panel>
@@ -49,11 +49,34 @@ For [informative icons](/components/icon/accessibility//#informative-vs-decorati
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VBadge, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VBadge text="Accessibility testing" appearance="subtle-light" connotation="success" size="expanded">
+		<template #icon><VIcon label="Done:" name="check-circle-solid" connotation="success" /></template>
+	</VBadge>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-badge text="Accessibility testing" appearance="subtle-light" connotation="success" size="expanded">
 	<vwc-icon label="Done:" slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 </vwc-badge>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
