@@ -586,7 +586,7 @@ A `data-block-type="<id>"` attribute is added to identify the block type. No sty
 	}
 </style>
 
-<vwc-rich-text-editor style="block-size: 200px" placeholder="Placeholder"></vwc-rich-text-editor>
+<vwc-rich-text-editor style="block-size: 200px"></vwc-rich-text-editor>
 
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
@@ -675,6 +675,46 @@ Configuration options:
 				],
 			},
 		});
+	});
+</script>
+```
+
+### RtePlaceholderFeature
+
+Adds placeholder text when the editor is empty. The placeholder is affected by the current text block and font size.
+
+Configuration options:
+
+- `text: string` (required): The placeholder text to display when the editor is empty.
+
+```html preview
+<vwc-rich-text-editor style="block-size: 150px"></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([
+			new RteCore(),
+			new RteTextBlockStructure({
+				blocks: [
+					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
+					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
+					{ id: 'paragraph', label: 'Paragraph', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
+				],
+			}),
+			new RteFontSizeFeature({
+				options: [
+					{ size: '24px', label: 'Extra Large' },
+					{ size: '18px', label: 'Large' },
+					{ size: '14px', label: 'Normal' },
+					{ size: '12px', label: 'Small' },
+				],
+				defaultSize: '14px',
+			}),
+			new RteToolbarFeature(),
+			new RtePlaceholderFeature({ text: 'Start typing here...' }),
+		]);
+		rteComponent.instance = config.instantiateEditor();
 	});
 </script>
 ```
@@ -1661,9 +1701,8 @@ The `editorViewportElement` property provides access to the scrollable editor vi
 
 <div class="table-wrapper">
 
-| Name            | Type          | Description                                                                             |
-| --------------- | ------------- | --------------------------------------------------------------------------------------- |
-| **instance**    | `RteInstance` | The editor instance created from the RteConfig. Without it, the editor will not render. |
-| **placeholder** | `string`      | A placeholder text to display when the editor is empty.                                 |
+| Name         | Type          | Description                                                                             |
+| ------------ | ------------- | --------------------------------------------------------------------------------------- |
+| **instance** | `RteInstance` | The editor instance created from the RteConfig. Without it, the editor will not render. |
 
 </div>

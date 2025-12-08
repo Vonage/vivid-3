@@ -3,6 +3,7 @@ export { RteCore } from './features/core';
 export { RteTextBlockStructure } from './features/text-block';
 export { RteFreeformStructure } from './features/freeform';
 export { RteToolbarFeature } from './features/toolbar';
+export { RtePlaceholderFeature } from './features/placeholder';
 export { RteFontSizeFeature } from './features/font-size';
 export { RteBoldFeature } from './features/bold';
 export { RteItalicFeature } from './features/italic';

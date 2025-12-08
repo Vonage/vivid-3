@@ -347,6 +347,9 @@ export async function setup(
 
 	const docStr = () => docToStr(view.state);
 
+	const placeholder = () =>
+		element.shadowRoot!.querySelector<HTMLElement>('.placeholder');
+
 	const toolbarButton = (ariaLabel: string) =>
 		element.shadowRoot!.querySelector<Button>(
 			`[data-vvd-component="button"][data-vvd-aria-label="${ariaLabel}"]`
@@ -498,6 +501,7 @@ export async function setup(
 		placeCursor,
 		typeTextAtCursor,
 		docStr,
+		placeholder,
 		toolbarButton,
 		button,
 		textField,
