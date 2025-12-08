@@ -1,17 +1,17 @@
-import { RTECore } from '../core';
-import { RTEToolbarFeature } from '../toolbar';
-import { RTEFreeformStructure } from '../freeform';
+import { RteCore } from '../core';
+import { RteToolbarFeature } from '../toolbar';
+import { RteFreeformStructure } from '../freeform';
 import { setup } from '../../__tests__/test-utils';
-import { RTEBoldFeature } from '../bold';
+import { RteBoldFeature } from '../bold';
 
 const features = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEBoldFeature(),
-	new RTEToolbarFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteBoldFeature(),
+	new RteToolbarFeature(),
 ];
 
-describe('RTEHistoryFeature', () => {
+describe('RteHistoryFeature', () => {
 	it('should undo changes with Mod-z and redo them with Ctrl-y or Cmd+Shift+z', async () => {
 		const { typeTextAtCursor, keydown, docStr, selectAll } = await setup(
 			features
@@ -21,19 +21,19 @@ describe('RTEHistoryFeature', () => {
 		selectAll();
 		keydown('b', { ctrl: true }); // Make bold
 
-		expect(docStr()).toMatchInlineSnapshot(`"[text_line(<bold>'hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[textLine(<bold>'hello')|]"`);
 
 		keydown('z', { ctrl: true });
-		expect(docStr()).toMatchInlineSnapshot(`"[text_line('hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[textLine('hello')|]"`);
 
 		keydown('z', { ctrl: true });
-		expect(docStr()).toMatchInlineSnapshot(`"text_line(|)"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine(|)"`);
 
 		keydown('y', { ctrl: true });
-		expect(docStr()).toMatchInlineSnapshot(`"[text_line('hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[textLine('hello')|]"`);
 
 		keydown('Z', { cmd: true, shift: true });
-		expect(docStr()).toMatchInlineSnapshot(`"[text_line(<bold>'hello')|]"`);
+		expect(docStr()).toMatchInlineSnapshot(`"[textLine(<bold>'hello')|]"`);
 	});
 
 	it('should add undo and redo buttons to the toolbar that are disabled when the action is not possible', async () => {
@@ -51,10 +51,10 @@ describe('RTEHistoryFeature', () => {
 
 		expect(toolbarButton('Undo').disabled).toBe(true);
 		expect(toolbarButton('Redo').disabled).toBe(false);
-		expect(docStr()).toMatchInlineSnapshot(`"text_line(|)"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine(|)"`);
 
 		toolbarButton('Redo').click();
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('hello|')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('hello|')"`);
 		expect(toolbarButton('Undo').disabled).toBe(false);
 		expect(toolbarButton('Redo').disabled).toBe(true);
 	});

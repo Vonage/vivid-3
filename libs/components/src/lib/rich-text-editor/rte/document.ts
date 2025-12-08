@@ -1,6 +1,6 @@
 type Doc = {
 	type: 'doc';
-	content: RTEFragment;
+	content: RteFragment;
 };
 
 type Mark = {
@@ -18,10 +18,10 @@ type RegularNode = {
 	type: Omit<string, 'text'>;
 	attrs?: { [key: string]: any };
 	marks?: Mark[];
-	content?: Array<RTENode>;
+	content?: Array<RteNode>;
 };
 
-export type RTENode = TextNode | RegularNode;
-export type RTEMark = Mark;
-export type RTEDocument = Doc;
-export type RTEFragment = Array<RTENode>;
+export type RteNode = TextNode | RegularNode;
+export type RteMark = Mark;
+export type RteDocument = Doc;
+export type RteFragment = Array<RteNode>;

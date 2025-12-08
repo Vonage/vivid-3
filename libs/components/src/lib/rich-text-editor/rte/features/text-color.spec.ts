@@ -1,26 +1,26 @@
 import { docFactories } from '../__tests__/doc-factories';
 import { setup as standardSetup } from '../__tests__/test-utils';
-import { RTEFeature } from '../feature';
+import { RteFeature } from '../feature';
 import {
 	basicTextBlockFactories,
 	basicTextBlocks,
 } from '../__tests__/text-blocks';
-import { RTECore } from './core';
-import { RTETextBlockStructure } from './text-block';
-import { RTEToolbarFeature } from './toolbar';
-import { RTETextColorFeature } from './text-color';
+import { RteCore } from './core';
+import { RteTextBlockStructure } from './text-block';
+import { RteToolbarFeature } from './toolbar';
+import { RteTextColorFeature } from './text-color';
 
 const { text, textColor: color } = docFactories;
 const { h1, p } = basicTextBlockFactories;
 
 const features = [
-	new RTECore(),
-	new RTETextBlockStructure({ blocks: basicTextBlocks }),
-	new RTEToolbarFeature(),
-	new RTETextColorFeature({ defaultColor: '#000000' }),
+	new RteCore(),
+	new RteTextBlockStructure({ blocks: basicTextBlocks }),
+	new RteToolbarFeature(),
+	new RteTextColorFeature({ defaultColor: '#000000' }),
 ];
 
-export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
+export async function setup(features: RteFeature[], initialDoc?: Array<any>) {
 	const rte = await standardSetup(features, initialDoc);
 
 	// Use an input element to act as a color picker
@@ -44,7 +44,7 @@ export async function setup(features: RTEFeature[], initialDoc?: Array<any>) {
 	};
 }
 
-describe('RTETextColorFeature', () => {
+describe('RteTextColorFeature', () => {
 	it('should add textColor mark to schema', async () => {
 		const rte = await setup(features, [
 			p(text.marks(color({ color: '#ff0000' }))('Hello')),

@@ -6,8 +6,8 @@ import {
 	type Node,
 	type Schema,
 } from 'prosemirror-model';
-import type { RTEConfig, RTEConfigImpl } from './config';
-import type { RTEDocument, RTEFragment } from './document';
+import type { RteConfig, RteConfigImpl } from './config';
+import type { RteDocument, RteFragment } from './document';
 import { impl } from './utils/impl';
 
 type DomSerializers = {
@@ -19,7 +19,7 @@ type DomSerializers = {
 	};
 };
 
-export type RTEHtmlSerializerOptions = {
+export type RteHtmlSerializerOptions = {
 	/**
 	 * Custom DOM serializers for nodes and marks.
 	 */
@@ -33,37 +33,37 @@ type SerializeOptions = {
 	modifyDom?: (dom: DocumentFragment) => void;
 };
 
-export class RTEHtmlSerializer {
+export class RteHtmlSerializer {
 	/// @internal
-	[impl]: RTEHtmlSerializerImpl;
+	[impl]: RteHtmlSerializerImpl;
 
-	constructor(config: RTEConfig, options?: RTEHtmlSerializerOptions) {
-		this[impl] = new RTEHtmlSerializerImpl(config[impl], options);
+	constructor(config: RteConfig, options?: RteHtmlSerializerOptions) {
+		this[impl] = new RteHtmlSerializerImpl(config[impl], options);
 	}
 
 	/**
-	 * Converts an RTEDocument to an HTML string.
+	 * Converts an RteDocument to an HTML string.
 	 */
-	serializeDocument(doc: RTEDocument, options?: SerializeOptions): string {
+	serializeDocument(doc: RteDocument, options?: SerializeOptions): string {
 		return this[impl].serializeFragment(doc.content, options);
 	}
 
 	/**
-	 * Converts an RTEFragment to an HTML string.
+	 * Converts an RteFragment to an HTML string.
 	 */
-	serializeFragment(fragment: RTEFragment, options?: SerializeOptions): string {
+	serializeFragment(fragment: RteFragment, options?: SerializeOptions): string {
 		return this[impl].serializeFragment(fragment, options);
 	}
 }
 
-export class RTEHtmlSerializerImpl {
+export class RteHtmlSerializerImpl {
 	serializer: DOMSerializer;
 
 	constructor(
-		protected readonly config: RTEConfigImpl,
-		options?: RTEHtmlSerializerOptions
+		protected readonly config: RteConfigImpl,
+		options?: RteHtmlSerializerOptions
 	) {
-		const serializers = RTEHtmlSerializerImpl.domSerializersFromSchema(
+		const serializers = RteHtmlSerializerImpl.domSerializersFromSchema(
 			config.schema
 		);
 		Object.assign(serializers.nodes, options?.serializers?.nodes ?? {});
@@ -96,7 +96,7 @@ export class RTEHtmlSerializerImpl {
 		return result;
 	}
 
-	serializeFragment(fragment: RTEFragment, options?: SerializeOptions): string {
+	serializeFragment(fragment: RteFragment, options?: SerializeOptions): string {
 		const parsedFragment = Fragment.fromJSON(this.config.schema, fragment);
 		const serializedFragment =
 			this.serializer.serializeFragment(parsedFragment);

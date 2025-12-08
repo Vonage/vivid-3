@@ -1,17 +1,17 @@
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark } from 'prosemirror-commands';
 import { createMarkToggle } from '../utils/ui';
-import { RTEInstanceImpl } from '../instance';
+import { RteInstanceImpl } from '../instance';
 import {
 	featureFacade,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
 import monospaceCss from './monospace.style.scss?inline';
 
-export class RTEMonospaceFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEMonospaceFeature';
+export class RteMonospaceFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteMonospaceFeature';
 
 	override getStyles() {
 		return [this.contribution(monospaceCss)];
@@ -32,7 +32,7 @@ export class RTEMonospaceFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getPlugins(rte: RTEInstanceImpl) {
+	override getPlugins(rte: RteInstanceImpl) {
 		return [
 			this.contribution(
 				keymap({
@@ -44,7 +44,7 @@ export class RTEMonospaceFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -62,4 +62,4 @@ export class RTEMonospaceFeatureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEMonospaceFeature = featureFacade(RTEMonospaceFeatureImpl);
+export const RteMonospaceFeature = featureFacade(RteMonospaceFeatureImpl);

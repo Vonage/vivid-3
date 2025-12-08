@@ -21,12 +21,12 @@ import {
 	contributionPriority,
 	featureFacade,
 	type PluginContribution,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 	type SchemaContribution,
 	type StyleContribution,
 	type ToolbarItemContribution,
 } from '../feature';
-import { RTEInstanceImpl } from '../instance';
+import { RteInstanceImpl } from '../instance';
 import { createButton } from '../utils/ui';
 import type { TextblockAttrs } from '../utils/textblock-attrs';
 import { defaultTextblockForMatch } from '../utils/default-textblock';
@@ -91,7 +91,7 @@ const getSharedAncestor = ($from: ResolvedPos, $to: ResolvedPos) =>
 /// Returns the cursor if it is in a list item
 const cursorInListItem = (state: EditorState) => {
 	const { $cursor } = state.selection as TextSelection;
-	if ($cursor?.parent.type === state.schema.nodes.list_item) {
+	if ($cursor?.parent.type === state.schema.nodes.listItem) {
 		return $cursor;
 	}
 	return null;
@@ -109,10 +109,7 @@ const allListItemsAreOfType = (
 		if (node.type.isInGroup('list')) {
 			currentListType = node.type; // Entering list
 		}
-		if (
-			node.type === state.schema.nodes.list_item &&
-			currentListType !== type
-		) {
+		if (node.type === state.schema.nodes.listItem && currentListType !== type) {
 			allLisAreOurType = false;
 		}
 	});
@@ -120,7 +117,7 @@ const allListItemsAreOfType = (
 };
 
 /// Decrease a list item's nesting level
-const lift = (rte: RTEInstanceImpl, $li: ResolvedPos, tr: Transaction) => {
+const lift = (rte: RteInstanceImpl, $li: ResolvedPos, tr: Transaction) => {
 	if (isNested($li)) {
 		liftToOuterList($li, tr);
 	} else {
@@ -140,7 +137,7 @@ const liftToOuterList = ($li: ResolvedPos, tr: Transaction) => {
 
 /// Lift an unnested list item out of the list, converting it into a default text block node
 const liftOutOfList = (
-	rte: RTEInstanceImpl,
+	rte: RteInstanceImpl,
 	$li: ResolvedPos,
 	tr: Transaction
 ) => {
@@ -184,12 +181,12 @@ const liftOutOfList = (
 
 /// Increase the nesting level of a textblock node
 const sink = (
-	rte: RTEInstanceImpl,
+	rte: RteInstanceImpl,
 	listType: NodeType,
 	$node: ResolvedPos,
 	tr: Transaction
 ) => {
-	if ($node.parent.type === rte.schema.nodes.list_item) {
+	if ($node.parent.type === rte.schema.nodes.listItem) {
 		sinkLi(listType, $node, tr);
 	} else {
 		sinkNode(rte, listType, $node, tr);
@@ -221,7 +218,7 @@ const sinkLi = (listType: NodeType, $li: ResolvedPos, tr: Transaction) => {
 
 /// Convert a textblock node into a list
 const sinkNode = (
-	rte: RTEInstanceImpl,
+	rte: RteInstanceImpl,
 	listType: NodeType,
 	$node: ResolvedPos,
 	tr: Transaction
@@ -238,7 +235,7 @@ const sinkNode = (
 			new Slice(
 				Fragment.from(
 					listType.create(null, [
-						rte.schema.nodes.list_item.create(
+						rte.schema.nodes.listItem.create(
 							rte.textblockAttrs.extractFromNode($node.parent)
 						),
 					])
@@ -251,8 +248,8 @@ const sinkNode = (
 	);
 };
 
-export class RTEListFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEListFeature';
+export class RteListFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteListFeature';
 
 	override getStyles(): StyleContribution[] {
 		return [this.contribution(listCss)];
@@ -262,7 +259,7 @@ export class RTEListFeatureImpl extends RTEFeatureImpl {
 		return [
 			this.contribution({
 				nodes: {
-					list_item: {
+					listItem: {
 						content: 'inline*',
 						attrs: textblockAttrs.attrs,
 						defining: true,
@@ -276,17 +273,17 @@ export class RTEListFeatureImpl extends RTEFeatureImpl {
 							return ['li', ...textblockAttrs.getDOMAttrs(node), 0];
 						},
 					},
-					bullet_list: {
+					bulletList: {
 						group: 'block list',
-						content: '(list_item | list)+',
+						content: '(listItem | list)+',
 						parseDOM: [{ tag: 'ul' }],
 						toDOM() {
 							return ['ul', 0];
 						},
 					},
-					numbered_list: {
+					numberedList: {
 						group: 'block list',
-						content: '(list_item | list)+',
+						content: '(listItem | list)+',
 						parseDOM: [{ tag: 'ol' }],
 						toDOM() {
 							return ['ol', 0];
@@ -297,8 +294,8 @@ export class RTEListFeatureImpl extends RTEFeatureImpl {
 		];
 	}
 
-	protected rte!: RTEInstanceImpl;
-	override getPlugins(rte: RTEInstanceImpl): PluginContribution[] {
+	protected rte!: RteInstanceImpl;
+	override getPlugins(rte: RteInstanceImpl): PluginContribution[] {
 		this.rte = rte;
 
 		const tabCommand: Command = (state, dispatch) => {
@@ -361,15 +358,15 @@ export class RTEListFeatureImpl extends RTEFeatureImpl {
 					Backspace: backspaceCommand,
 					Tab: tabCommand,
 					'Shift-Tab': shiftTabCommand,
-					'Mod-Shift-8': this.toggleList(rte.schema.nodes.bullet_list),
-					'Mod-Shift-7': this.toggleList(rte.schema.nodes.numbered_list),
+					'Mod-Shift-8': this.toggleList(rte.schema.nodes.bulletList),
+					'Mod-Shift-7': this.toggleList(rte.schema.nodes.numberedList),
 				}),
 				contributionPriority.high // Must apply before default handling of core
 			),
 		];
 	}
 
-	override getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
+	override getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
 		return [
 			this.contribution(
 				{
@@ -380,12 +377,12 @@ export class RTEListFeatureImpl extends RTEFeatureImpl {
 							icon: 'bullet-list-2-line',
 							active: () =>
 								this.isSelectionInList(
-									rte.schema.nodes.bullet_list,
+									rte.schema.nodes.bulletList,
 									ctx.rte.state
 								),
 							onClick: () => {
 								const { state, dispatch } = ctx.view;
-								this.toggleList(rte.schema.nodes.bullet_list)(state, dispatch);
+								this.toggleList(rte.schema.nodes.bulletList)(state, dispatch);
 							},
 						}),
 				},
@@ -400,15 +397,12 @@ export class RTEListFeatureImpl extends RTEFeatureImpl {
 							icon: 'list-numbered-line',
 							active: () =>
 								this.isSelectionInList(
-									rte.schema.nodes.numbered_list,
+									rte.schema.nodes.numberedList,
 									ctx.rte.state
 								),
 							onClick: () => {
 								const { state, dispatch } = ctx.view;
-								this.toggleList(rte.schema.nodes.numbered_list)(
-									state,
-									dispatch
-								);
+								this.toggleList(rte.schema.nodes.numberedList)(state, dispatch);
 							},
 						}),
 				},
@@ -430,7 +424,7 @@ export class RTEListFeatureImpl extends RTEFeatureImpl {
 						// Lift all li in selection
 						const tr = state.tr;
 						state.doc.nodesBetween($from.pos, $to.pos, (node, pos) => {
-							if (node.type === state.schema.nodes.list_item) {
+							if (node.type === state.schema.nodes.listItem) {
 								const $li = tr.doc.resolve(tr.mapping.map(pos + 1));
 								lift(this.rte, $li, tr);
 							}
@@ -480,4 +474,4 @@ export class RTEListFeatureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEListFeature = featureFacade(RTEListFeatureImpl);
+export const RteListFeature = featureFacade(RteListFeatureImpl);
