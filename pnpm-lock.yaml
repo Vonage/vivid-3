@@ -22,8 +22,8 @@ catalogs:
       specifier: ^6.0.0
       version: 6.0.0
     '@playwright/test':
-      specifier: 1.48.2
-      version: 1.48.2
+      specifier: 1.57.0
+      version: 1.57.0
     '@types/eslint':
       specifier: ^8.56.12
       version: 8.56.12
@@ -69,6 +69,9 @@ catalogs:
     cem-plugin-readonly:
       specifier: ^0.0.5
       version: 0.0.5
+    concurrently:
+      specifier: ^9.2.1
+      version: 9.2.1
     custom-elements-manifest:
       specifier: ^2.1.0
       version: 2.1.0
@@ -121,8 +124,8 @@ catalogs:
       specifier: ^17.1.0
       version: 17.1.0
     playwright:
-      specifier: 1.48.2
-      version: 1.48.2
+      specifier: 1.57.0
+      version: 1.57.0
     prettier:
       specifier: 2.8.8
       version: 2.8.8
@@ -321,7 +324,7 @@ importers:
         version: 6.38.8
       '@playwright/test':
         specifier: 'catalog:'
-        version: 1.48.2
+        version: 1.57.0
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../libs/eslint-config
@@ -367,6 +370,9 @@ importers:
       codemirror:
         specifier: ^6.0.2
         version: 6.0.2
+      concurrently:
+        specifier: 'catalog:'
+        version: 9.2.1
       eleventy-plugin-nesting-toc:
         specifier: ^1.3.0
         version: 1.3.0
@@ -545,7 +551,7 @@ importers:
         version: 2.1.0
       '@playwright/test':
         specifier: 'catalog:'
-        version: 1.48.2
+        version: 1.57.0
       '@repo/cem-analyzer-plugins':
         specifier: workspace:*
         version: link:../cem-analyzer-plugins
@@ -613,7 +619,7 @@ importers:
         specifier: 'catalog:'
         version: 0.0.5(@custom-elements-manifest/analyzer@0.5.7)
       concurrently:
-        specifier: ^9.2.1
+        specifier: 'catalog:'
         version: 9.2.1
       dialog-polyfill:
         specifier: ^0.5.6
@@ -632,7 +638,7 @@ importers:
         version: 13.0.2
       playwright:
         specifier: 'catalog:'
-        version: 1.48.2
+        version: 1.57.0
       sass:
         specifier: 'catalog:'
         version: 1.94.2
@@ -937,7 +943,7 @@ importers:
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
-        version: 1.48.2
+        version: 1.57.0
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
@@ -2730,8 +2736,8 @@ packages:
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@playwright/test@1.48.2':
-    resolution: {integrity: sha512-54w1xCWfXuax7dz4W2M9uw0gDyh+ti/0K/MxcCUxChFh37kkdxPdfZDw5QBbuPUJHr1CiHJ1hXgSs+GgeQc5Zw==}
+  '@playwright/test@1.57.0':
+    resolution: {integrity: sha512-6TyEnHgd6SArQO8UO2OMTxshln3QMWBtPGrOCgs3wVEmQmwyuNtB10IZMfmYDE0riwNR1cu4q+pPcxMVtaG3TA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -7743,13 +7749,13 @@ packages:
   pkg-types@1.3.1:
     resolution: {integrity: sha512-/Jm5M4RvtBFVkKWRu2BLUTNP8/M2a+UwuAX+ae4770q1qVGtfjG+WTCupoZixokjmHiry8uI+dlY8KXYV5HVVQ==}
 
-  playwright-core@1.48.2:
-    resolution: {integrity: sha512-sjjw+qrLFlriJo64du+EK0kJgZzoQPsabGF4lBvsid+3CNIZIYLgnMj9V6JY5VhM2Peh20DJWIVpVljLLnlawA==}
+  playwright-core@1.57.0:
+    resolution: {integrity: sha512-agTcKlMw/mjBWOnD6kFZttAAGHgi/Nw0CZ2o6JqWSbMlI219lAFLZZCyqByTsvVAJq5XA5H8cA6PrvBRpBWEuQ==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.48.2:
-    resolution: {integrity: sha512-NjYvYgp4BPmiwfe31j4gHLa3J7bD2WiBz8Lk2RoSsmX38SVIARZ18VYjxLjAcDsAhA+F4iSEXTSGgjua0rrlgQ==}
+  playwright@1.57.0:
+    resolution: {integrity: sha512-ilYQj1s8sr2ppEJ2YVadYBN0Mb3mdo9J0wQ+UuDhzYqURwSoW4n1Xs5vs7ORwgDGmyEh33tRMeS8KhdkMoLXQw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -11495,9 +11501,9 @@ snapshots:
 
   '@pkgr/core@0.2.9': {}
 
-  '@playwright/test@1.48.2':
+  '@playwright/test@1.57.0':
     dependencies:
-      playwright: 1.48.2
+      playwright: 1.57.0
 
   '@pnpm/catalogs.config@1000.0.5':
     dependencies:
@@ -17798,11 +17804,11 @@ snapshots:
       mlly: 1.8.0
       pathe: 2.0.3
 
-  playwright-core@1.48.2: {}
+  playwright-core@1.57.0: {}
 
-  playwright@1.48.2:
+  playwright@1.57.0:
     dependencies:
-      playwright-core: 1.48.2
+      playwright-core: 1.57.0
     optionalDependencies:
       fsevents: 2.3.2
 

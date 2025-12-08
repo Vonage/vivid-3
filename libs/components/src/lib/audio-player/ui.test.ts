@@ -109,5 +109,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			await page.locator('#playback-open-button').click();
 		},
 	});
+	await page.waitForTimeout(200);
+
 	await takeScreenshot(page, 'open-playback-menu');
 });
