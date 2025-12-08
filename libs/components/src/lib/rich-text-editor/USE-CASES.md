@@ -222,7 +222,12 @@ Functionality:
 		const uploadButton = document.querySelector('#upload');
 
 		for (let i = 0; i < 20; i++) {
-			attachments.appendChild(renderTemplate('attached-file', { name: `File_${i + 1}.txt`, size: `${(Math.random() * 1024).toFixed(2)} KB` }));
+			attachments.appendChild(
+				renderTemplate('attached-file', {
+					name: `File_${i + 1}.txt`,
+					size: `${(Math.random() * 1024).toFixed(2)} KB`,
+				})
+			);
 		}
 
 		const addAttachment = (file) => {
@@ -256,35 +261,38 @@ Functionality:
 		const attachedImages = [];
 
 		const config = new RteConfig([
-			new RteCore(),
-			new RteTextBlockStructure({
-				blocks: [
-					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
-					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
-					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
+			new RteBase({
+				heading1: true,
+				heading2: true,
+			}),
+			new RteTextBlockPickerFeature({
+				options: [
+					{ node: 'heading1', label: 'Title' },
+					{ node: 'heading2', label: 'Subtitle' },
+					{ node: 'paragraph', label: 'Body' },
 				],
 			}),
-			new RteFontSizeFeature({
+			new RteFontSizePickerFeature({
 				options: [
 					{ size: '24px', label: 'Extra Large' },
 					{ size: '18px', label: 'Large' },
 					{ size: '14px', label: 'Normal' },
 					{ size: '12px', label: 'Small' },
 				],
-				defaultSize: '14px',
 			}),
 			new RteBoldFeature(),
 			new RteItalicFeature(),
 			new RteUnderlineFeature(),
 			new RteStrikethroughFeature(),
 			new RteMonospaceFeature(),
-			new RteTextColorFeature({
-				defaultColor: '#000000',
-			}),
+			new RteTextColorPickerFeature(),
 			new RteAlignmentFeature(),
 			new RteLinkFeature(),
 			new RteToolbarFeature(),
-			new RteListFeature(),
+			new RteListFeature({
+				bulletList: true,
+				numberedList: true,
+			}),
 			new RteInlineImageFeature({
 				resolveUrl: async function* (src) {
 					const url = new URL(src);
@@ -380,7 +388,7 @@ Functionality:
 				content: Array(20)
 					.fill(null)
 					.map((_, i) => ({
-						type: 'body',
+						type: 'paragraph',
 						content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
 					})),
 			},
@@ -423,7 +431,14 @@ Functionality:
 
 					await sleep(2000); // Simulate upload
 
-					image.updateState(index % 2 === 0 ? { type: 'uploaded' } : { type: 'error', message: 'Failed to upload file' });
+					image.updateState(
+						index % 2 === 0
+							? { type: 'uploaded' }
+							: {
+									type: 'error',
+									message: 'Failed to upload file',
+							  }
+					);
 				}
 			}
 		});

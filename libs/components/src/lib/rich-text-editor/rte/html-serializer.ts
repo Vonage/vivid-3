@@ -90,9 +90,7 @@ export class RteHtmlSerializerImpl {
 				result.nodes[name] = toDOM;
 			}
 		}
-		if (!result.nodes.text) {
-			result.nodes.text = (node: Node) => document.createTextNode(node.text!);
-		}
+		result.nodes.text = (node: Node) => document.createTextNode(node.text!);
 		return result;
 	}
 

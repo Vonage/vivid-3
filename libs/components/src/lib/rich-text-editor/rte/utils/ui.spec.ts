@@ -1,13 +1,19 @@
 import { elementUpdated } from '@repo/shared';
-import { RteTextBlockStructure } from '../features/text-block';
 import { RteToolbarFeature } from '../features/toolbar';
-import { RteCore } from '../features/core';
+import { RteBase } from '../features/base';
 import { setup } from '../__tests__/test-utils';
 import type { Tooltip } from '../../../tooltip/tooltip';
 import { VwcMenuElement } from '../../../menu/definition';
-import { basicTextBlocks } from '../__tests__/text-blocks';
-import { RteFreeformStructure } from '../features/freeform';
-import { createButton, createMenu, createSingleSlot, UiCtx } from './ui';
+import { RteTextBlockPickerFeature } from '../features/text-block-picker';
+import type { Select } from '../../../select/select';
+import {
+	createButton,
+	createMenu,
+	createOption,
+	createSelect,
+	createSingleSlot,
+	UiCtx,
+} from './ui';
 import { impl } from './impl';
 
 describe('UiCtx', () => {
@@ -27,8 +33,15 @@ describe('UiCtx', () => {
 describe('createSelect', () => {
 	it('should hide the tooltip when the select is open', async () => {
 		const { toolbarSelect } = await setup([
-			new RteCore(),
-			new RteTextBlockStructure({ blocks: basicTextBlocks }),
+			new RteBase({ heading1: true, heading2: true }),
+			new RteTextBlockPickerFeature({
+				options: [
+					{
+						node: 'paragraph',
+						label: 'Paragraph',
+					},
+				],
+			}),
 			new RteToolbarFeature(),
 		]);
 
@@ -55,15 +68,39 @@ describe('createSelect', () => {
 		expect(tooltip.open).toBe(false);
 		expect(tooltip.anchor).toBe(select);
 	});
+
+	it('should not call onSelect when value is empty', async () => {
+		const { instance, view } = await setup([
+			new RteBase(),
+			new RteToolbarFeature(),
+		]);
+		const ctx = new UiCtx(view, instance[impl], {
+			popupPlacement: 'bottom',
+		});
+		const onSelect = vitest.fn();
+
+		const selectWrapper = createSelect(ctx, {
+			label: 'Test Select',
+			value: '',
+			onSelect,
+			children: [
+				createOption(ctx, { text: 'Option 1', value: 'option1' }),
+				createOption(ctx, { text: 'Option 2', value: 'option2' }),
+			],
+		});
+		const select = selectWrapper.querySelector(
+			'[data-class="ui-select"]'
+		) as Select;
+
+		select.dispatchEvent(new Event('change'));
+
+		expect(onSelect).not.toHaveBeenCalled();
+	});
 });
 
 describe('createButton', () => {
 	it('should hide tooltip when button is disabled', async () => {
-		const rte = await setup([
-			new RteCore(),
-			new RteFreeformStructure(),
-			new RteToolbarFeature(),
-		]);
+		const rte = await setup([new RteBase(), new RteToolbarFeature()]);
 		await rte.typeTextAtCursor('Hello World');
 		const undoTooltip = rte.element.shadowRoot!.querySelector<Tooltip>(
 			'[data-vvd-component="tooltip"][text="Undo"]'
@@ -76,11 +113,7 @@ describe('createButton', () => {
 	});
 
 	it('should set anchor to button when trigger is wrapped button', async () => {
-		const { instance } = await setup([
-			new RteCore(),
-			new RteFreeformStructure(),
-			new RteToolbarFeature(),
-		]);
+		const { instance } = await setup([new RteBase(), new RteToolbarFeature()]);
 		const ctx = new UiCtx(null as any, instance[impl], {
 			popupPlacement: 'bottom',
 		});
@@ -98,11 +131,7 @@ describe('createButton', () => {
 
 describe('createMenu', () => {
 	it('should set anchor to trigger when trigger is regular element', async () => {
-		const { instance } = await setup([
-			new RteCore(),
-			new RteFreeformStructure(),
-			new RteToolbarFeature(),
-		]);
+		const { instance } = await setup([new RteBase(), new RteToolbarFeature()]);
 		const ctx = new UiCtx(null as any, instance[impl], {
 			popupPlacement: 'bottom',
 		});
@@ -118,11 +147,7 @@ describe('createMenu', () => {
 	});
 
 	it('should set anchor to button when trigger is wrapped button', async () => {
-		const { instance } = await setup([
-			new RteCore(),
-			new RteFreeformStructure(),
-			new RteToolbarFeature(),
-		]);
+		const { instance } = await setup([new RteBase(), new RteToolbarFeature()]);
 		const ctx = new UiCtx(null as any, instance[impl], {
 			popupPlacement: 'bottom',
 		});
@@ -141,8 +166,7 @@ describe('createMenu', () => {
 describe('createSingleSlot', () => {
 	const setupForSlot = async () => {
 		const { element, view, instance } = await setup([
-			new RteCore(),
-			new RteFreeformStructure(),
+			new RteBase(),
 			new RteToolbarFeature(),
 		]);
 		return {

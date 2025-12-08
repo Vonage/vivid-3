@@ -5,13 +5,14 @@ import { createMarkToggle } from '../utils/ui';
 import { RteInstanceImpl } from '../instance';
 import {
 	featureFacade,
-	RteFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
+import { RteTextStyleFeatureImpl } from './internal/text-style';
 
-export class RteBoldFeatureImpl extends RteFeatureImpl {
+export class RteBoldFeatureImpl extends RteTextStyleFeatureImpl {
 	protected name = 'RteBoldFeature';
+	protected markName = 'bold';
 
 	override getSchema(): SchemaContribution[] {
 		return [
