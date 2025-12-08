@@ -64,6 +64,10 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 		];
 	}
 
+	override getTextblockMarks() {
+		return [this.contribution({ markName: 'link' })];
+	}
+
 	override getPlugins(rte: RteInstanceImpl): PluginContribution[] {
 		return [
 			this.contribution(

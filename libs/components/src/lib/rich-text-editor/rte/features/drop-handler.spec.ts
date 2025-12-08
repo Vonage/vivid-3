@@ -1,16 +1,14 @@
 import { setup } from '../__tests__/test-utils';
 import { mockFile } from '../../../file-picker/__mocks__/data-transfer';
-import { RteCore } from './core';
+import { RteBase } from './base';
 import { RteToolbarFeature } from './toolbar';
 import {
 	RteDropHandlerFeature,
 	type RteDropHandlerFeatureConfig,
 } from './drop-handler';
-import { RteFreeformStructure } from './freeform';
 
 const featuresWithConfig = (config: RteDropHandlerFeatureConfig) => [
-	new RteCore(),
-	new RteFreeformStructure(),
+	new RteBase(),
 	new RteToolbarFeature(),
 	new RteDropHandlerFeature(config),
 ];

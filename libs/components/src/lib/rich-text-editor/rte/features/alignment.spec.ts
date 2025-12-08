@@ -1,22 +1,27 @@
 import { setup } from '../__tests__/test-utils';
-import {
-	basicTextBlockFactories,
-	basicTextBlocks,
-} from '../__tests__/text-blocks';
 import { docFactories } from '../__tests__/doc-factories';
-import { RteCore } from './core';
-import { RteTextBlockStructure } from './text-block';
+import { RteBase } from './base';
 import { RteAlignmentFeature } from './alignment';
 import { RteToolbarFeature } from './toolbar';
 import { RteListFeature } from './list';
 
-const { bulletList: ul, listItem: li } = docFactories;
-const { h1, h2, p } = basicTextBlockFactories;
+const {
+	bulletList: ul,
+	listItem: li,
+	paragraph: p,
+	heading1: h1,
+	heading2: h2,
+} = docFactories;
 
 const features = [
-	new RteCore(),
-	new RteTextBlockStructure({ blocks: basicTextBlocks }),
-	new RteListFeature(),
+	new RteBase({
+		heading1: true,
+		heading2: true,
+	}),
+	new RteListFeature({
+		bulletList: true,
+		numberedList: true,
+	}),
 	new RteAlignmentFeature(),
 	new RteToolbarFeature(),
 ];
@@ -33,7 +38,7 @@ describe('RteAlignmentFeature', () => {
 		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
-			heading-1[textAlign="right"]('|Right'),
+			heading1[textAlign="right"]('|Right'),
 			paragraph[textAlign="center"]('Centered'),
 			paragraph[textAlign="left"]('Default'),
 			bulletList(listItem[textAlign="center"]('List item'))
@@ -56,8 +61,8 @@ describe('RteAlignmentFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			heading-1[textAlign="center"]('|center'),
-			heading-2[textAlign="right"]('right'),
+			heading1[textAlign="center"]('|center'),
+			heading2[textAlign="right"]('right'),
 			paragraph[textAlign="left"]('left'),
 			paragraph[textAlign="left"]('default'),
 			bulletList(listItem[textAlign="center"]('List item'))
@@ -74,7 +79,7 @@ describe('RteAlignmentFeature', () => {
 		]);
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
-			`"<h1 data-block-type="heading-1" style="text-align: center;">center</h1><h2 data-block-type="heading-2" style="text-align: right;">right</h2><p data-block-type="paragraph" style="text-align: left;">left</p><ul><li style="text-align: center;">List item</li></ul>"`
+			`"<h1 style="text-align: center;">center</h1><h2 style="text-align: right;">right</h2><p style="text-align: left;">left</p><ul><li style="text-align: center;">List item</li></ul>"`
 		);
 	});
 
@@ -214,8 +219,8 @@ describe('RteAlignmentFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			heading-1[textAlign="right"]('Rig'),
-			heading-1[textAlign="right"]('|ht')
+			heading1[textAlign="right"]('Rig'),
+			heading1[textAlign="right"]('|ht')
 			"
 		`
 		);

@@ -4,14 +4,15 @@ import { createMarkToggle } from '../utils/ui';
 import { RteInstanceImpl } from '../instance';
 import {
 	featureFacade,
-	RteFeatureImpl,
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
 import monospaceCss from './monospace.style.scss?inline';
+import { RteTextStyleFeatureImpl } from './internal/text-style';
 
-export class RteMonospaceFeatureImpl extends RteFeatureImpl {
+export class RteMonospaceFeatureImpl extends RteTextStyleFeatureImpl {
 	protected name = 'RteMonospaceFeature';
+	protected markName = 'monospace';
 
 	override getStyles() {
 		return [this.contribution(monospaceCss)];

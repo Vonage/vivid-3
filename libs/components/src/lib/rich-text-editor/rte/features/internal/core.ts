@@ -11,15 +11,15 @@ import {
 import proseMirrorCss from 'prosemirror-view/style/prosemirror.css?inline';
 import { dropCursor } from 'prosemirror-dropcursor';
 import { gapCursor } from 'prosemirror-gapcursor';
-import { featureFacade, RteFeatureImpl } from '../feature';
-import type { Locale } from '../../../../shared/localization/Locale';
-import type { VividElementDefinitionContext } from '../../../../shared/design-system/defineVividComponent';
-import type { RteInstanceImpl } from '../instance';
-import { defaultTextblockForMatch } from '../utils/default-textblock';
-import uiCss from '../utils/ui.style.scss?inline';
+import { featureFacade, RteFeatureImpl } from '../../feature';
+import type { Locale } from '../../../../../shared/localization/Locale';
+import type { VividElementDefinitionContext } from '../../../../../shared/design-system/defineVividComponent';
+import type { RteInstanceImpl } from '../../instance';
+import { defaultTextblockForMatch } from '../../utils/default-textblock';
+import uiCss from '../../utils/ui.style.scss?inline';
 import coreCss from './core.style.scss?inline';
-import { RteHistoryFeatureImpl } from './internal/history';
-import { RteForeignHtmlFeatureImpl } from './internal/foreign-html';
+import { RteHistoryFeatureImpl } from './history';
+import { RteForeignHtmlFeatureImpl } from './foreign-html';
 
 export interface HostState {
 	ctx: VividElementDefinitionContext;
@@ -45,10 +45,6 @@ export const hostBridgePlugin = new Plugin<HostState | null>({
 	},
 });
 
-// Even though core is required, it's still a feature so that there is the possibility of different cores in the future
-/**
- * The core feature is required and provides basic editor functionality.
- */
 export class RteCoreImpl extends RteFeatureImpl {
 	protected name = 'RteCore';
 

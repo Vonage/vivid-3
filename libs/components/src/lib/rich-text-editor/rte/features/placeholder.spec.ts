@@ -1,18 +1,19 @@
 import { setup } from '../__tests__/test-utils';
-import { RteCore } from './core';
-import { RteFreeformStructure } from './freeform';
-import { RteTextBlockStructure } from './text-block';
-import { RteFontSizeFeature } from './font-size';
+import { docFactories } from '../__tests__/doc-factories';
+import { RteBase } from './base';
+import { RteFontSizePickerFeature } from './font-size-picker';
 import { RtePlaceholderFeature } from './placeholder';
 
+const { heading1 } = docFactories;
+
 const features = [
-	new RteCore(),
+	new RteBase({ heading1: true }),
 	new RtePlaceholderFeature({ text: 'placeholder text' }),
 ];
 
 describe('RtePlaceholder', () => {
 	it('should add placeholder widget when the document is empty', async () => {
-		const rte = await setup([...features, new RteFreeformStructure()]);
+		const rte = await setup(features);
 
 		expect(rte.placeholder()!.dataset.placeholder).toBe('placeholder text');
 
@@ -24,13 +25,12 @@ describe('RtePlaceholder', () => {
 	it('should apply font size to the placeholder', async () => {
 		const rte = await setup([
 			...features,
-			new RteFreeformStructure(),
-			new RteFontSizeFeature({
+			new RteFontSizePickerFeature({
 				options: [
 					{ size: '100px', label: 'Large' },
 					{ size: '10px', label: 'Small' },
 				],
-				defaultSize: '10px',
+				onBlocks: [{ node: 'paragraph', defaultSize: '10px' }],
 			}),
 		]);
 
@@ -41,18 +41,12 @@ describe('RtePlaceholder', () => {
 		).toBe('100px');
 	});
 
-	describe('with text block structure', () => {
-		it('should add placeholder inside the block element', async () => {
-			const rte = await setup([
-				...features,
-				new RteTextBlockStructure({
-					blocks: [
-						{ id: 'heading', label: 'Heading', semanticRole: 'heading-1' },
-					],
-				}),
-			]);
+	it('should add placeholder inside the block element', async () => {
+		const rte = await setup(features, [heading1('Heading')]);
 
-			expect(rte.placeholder()!.parentElement!.tagName).toBe('H1');
-		});
+		rte.selectText('[Heading]');
+		rte.keydown('Backspace');
+
+		expect(rte.placeholder()!.parentElement!.tagName).toBe('H1');
 	});
 });

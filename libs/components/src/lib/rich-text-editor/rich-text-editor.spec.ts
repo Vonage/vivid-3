@@ -5,8 +5,7 @@ import deDE from '../../locales/de-DE';
 import { Button } from '../button/button';
 import { RichTextEditor } from './rich-text-editor';
 import { RteConfig } from './rte/config';
-import { RteCore } from './rte/features/core';
-import { RteFreeformStructure } from './rte/features/freeform';
+import { RteBase } from './rte/features/base';
 import '.';
 import { RteBoldFeature } from './rte/features/bold';
 import { RteToolbarFeature } from './rte/features/toolbar';
@@ -41,7 +40,7 @@ describe('vwc-rich-text-editor', () => {
 
 	describe('editorViewportElement', () => {
 		it('should be the viewport element', async () => {
-			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
+			const config = new RteConfig([new RteBase()]);
 			element.instance = config.instantiateEditor();
 
 			expect(element.editorViewportElement).toBe(
@@ -56,14 +55,14 @@ describe('vwc-rich-text-editor', () => {
 		});
 
 		it('should render an editor when instance is set', async () => {
-			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
+			const config = new RteConfig([new RteBase()]);
 			element.instance = config.instantiateEditor();
 
 			expect(getEditor().children[0].classList).toContain('ProseMirror');
 		});
 
 		it('should destroy the editor when instance is unset', async () => {
-			const config = new RteConfig([new RteCore(), new RteFreeformStructure()]);
+			const config = new RteConfig([new RteBase()]);
 			element.instance = config.instantiateEditor();
 
 			element.instance = undefined;
@@ -73,8 +72,7 @@ describe('vwc-rich-text-editor', () => {
 
 		it('should sync the locale to the editor instance', async () => {
 			const config = new RteConfig([
-				new RteCore(),
-				new RteFreeformStructure(),
+				new RteBase(),
 				new RteToolbarFeature(),
 				new RteBoldFeature(),
 			]);
