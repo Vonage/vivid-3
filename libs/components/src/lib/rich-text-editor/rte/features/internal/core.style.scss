@@ -1,0 +1,20 @@
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
+
+.ProseMirror {
+	flex: 1;
+	padding: var(--editor-padding-block) var(--editor-padding-inline);
+	outline: none;
+}
+
+.ProseMirror-selectednode {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+	#{focus-variables.$focus-border-radius}: 2px;
+
+	position: relative;
+	outline: none;
+
+	&::after {
+		@include focus.focus-in-pseudo-element;
+	}
+}

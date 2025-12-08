@@ -1,213 +1,87 @@
-import {
-	attr,
-	nullableNumberConverter,
-	Updates,
-} from '@microsoft/fast-element';
+import { observable } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { Localized } from '../../shared/patterns';
-import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
-
-export type RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES =
-	| 'extra-large'
-	| 'large'
-	| 'normal'
-	| 'small';
-
-export interface SelectionStyles {
-	textBlockType?: string;
-	textDecoration?: string[];
-	textSize?: string;
-}
-
-export interface RichTextEditorSelection {
-	start: number;
-	end?: number;
-}
-
-export interface RichTextEditorInlineImageProps {
-	file: File;
-	position?: number;
-	alt?: string;
-	error?: string;
-}
-
-export const RichTextEditorTextBlocks = {
-	title: 'h2',
-	subtitle: 'h3',
-	body: 'p',
-} as const;
-
-export type RichTextEditorTextBlocks = keyof typeof RichTextEditorTextBlocks;
+import { WithObservableLocale } from '../../shared/patterns';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { RteInstance } from './rte/instance';
+import { impl } from './rte/utils/impl';
 
 /**
  * @public
  * @component rich-text-editor
+ * @slot editor-start - Displayed at the start of the scrollable editor area.
+ * @slot editor-end - Displayed at the end of the scrollable editor area.
+ * @slot status - Displayed between the editor viewport and the toolbar.
+ * @slot text-color-picker - Color picker for the RteTextColorFeature.
  */
-export class RichTextEditor extends Localized(VividElement) {
+export class RichTextEditor extends WithObservableLocale(VividElement) {
+	// --- Public Properties ---
+
 	/**
-	 * Indicates the rich text editor's value.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: value
+	 * The editor instance. Without it, the editor will not render anything.
 	 */
-	get value(): string | undefined {
-		return this.#editor?.getValue();
+	@observable instance?: RteInstance;
+	/**
+	 * @internal
+	 */
+	instanceChanged(prevInstance?: RteInstance) {
+		prevInstance?.[impl].destroyViewIfNeeded();
+		this._initViewIfNeeded();
+		prevInstance?.[impl].styles.removeStylesFrom(this.shadowRoot!);
+		this.instance?.[impl].styles.addStylesTo(this.shadowRoot!);
 	}
 
-	set value(content: string) {
-		/* v8 ignore else -- @preserve */
-		if (this.#editor) {
-			this.#editor.replaceContent(content);
+	// --- View management ---
+
+	/**
+	 * @internal
+	 */
+	_editorEl!: HTMLDivElement;
+
+	/**
+	 * The viewport wraps the scrollable content of the editor.
+	 */
+	editorViewportElement?: HTMLElement;
+
+	private _initViewIfNeeded() {
+		const instance = this.instance?.[impl];
+		if (instance && this.$fastController.isConnected && !instance.view) {
+			this._syncStateIfNeeded();
+			instance.createView(this._editorEl);
 		}
 	}
-	#editor?: ProseMirrorFacade;
 
-	get #editorWrapperElement(): HTMLElement {
-		return this.shadowRoot!.querySelector('#editor') as HTMLElement;
+	private _destroyViewIfNeeded() {
+		this.instance?.[impl].destroyViewIfNeeded();
 	}
 
-	@attr({ converter: nullableNumberConverter, attribute: 'selection-start' })
-	selectionStart: number | null = null;
-	selectionStartChanged() {
-		if (
-			!this.selectionStart ||
-			(this.selectionEnd && this.selectionStart > this.selectionEnd)
-		) {
-			return;
-		}
-
-		this.#updateEditorSelection();
-	}
-
-	#updateEditorSelection = () => {
-		try {
-			this.#editor?.selection({
-				start: this.selectionStart!,
-				end: this.selectionEnd ? this.selectionEnd : this.selectionStart!,
-			});
-		} catch (e: any) {
-			// eslint-disable-next-line no-console
-			console.warn(e.message);
-		}
-	};
-
-	@attr({ converter: nullableNumberConverter, attribute: 'selection-end' })
-	selectionEnd: number | null = null;
-	selectionEndChanged() {
-		if (this.selectionEnd && !this.selectionStart) {
-			this.selectionStart = 1;
-		}
-		this.#updateEditorSelection();
-	}
-
-	@attr
-	placeholder?: string;
-
-	placeholderChanged() {
-		this.#editor?.updatePlaceholder(this.placeholder);
-	}
-
-	constructor() {
-		super();
-	}
-
-	#handleSelectionChange = () => {
-		/* v8 ignore if -- @preserve */
-		if (!this.#editor!.selection()) {
-			return;
-		}
-		const { start, end } = this.#editor!.selection();
-		this.selectionStart = start;
-		this.selectionEnd = end as number;
-		this.$emit('selection-changed');
-	};
-
-	#handleChange = () => {
-		this.$emit('change');
-	};
-
-	#handleInput = () => {
-		this.$emit('input');
-	};
-
-	override connectedCallback(): void {
+	override connectedCallback() {
 		super.connectedCallback();
-		/* v8 ignore else -- @preserve */
-		if (!this.#editor) {
-			this.#editor = new ProseMirrorFacade();
-			this.#editor.init(this.#editorWrapperElement);
-			this.#editor.addEventListener(
-				'selection-changed',
-				this.#handleSelectionChange
-			);
-			this.#editor.addEventListener('change', this.#handleChange);
-			this.#editor.addEventListener('input', this.#handleInput);
-		}
-		this.placeholderChanged();
+		this._initViewIfNeeded();
 	}
 
-	setTextBlock(blockType: 'title' | 'subtitle' | 'body') {
-		try {
-			this.#editor?.setSelectionTag(RichTextEditorTextBlocks[blockType]);
-		} catch (e: any) {
-			// eslint-disable-next-line no-console
-			console.warn(`Invalid text block: ${blockType}`);
-		}
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this._destroyViewIfNeeded();
 	}
 
-	setSelectionDecoration(decoration: string) {
-		try {
-			this.#editor?.setSelectionDecoration(decoration);
-		} catch (e: any) {
-			// eslint-disable-next-line no-console
-			console.warn(`Invalid decoration: ${decoration}`);
-		}
+	// --- State synchronization ---
+
+	/**
+	 * @internal
+	 */
+	override localeChanged() {
+		this._syncStateIfNeeded();
 	}
 
-	setSelectionTextSize(textSize: RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES) {
-		this.#editor?.setTextSize(textSize);
-	}
+	/**
+	 * @internal
+	 */
+	_ctx!: VividElementDefinitionContext;
 
-	get selectionStyles(): SelectionStyles {
-		if (!this.#editor) {
-			return {};
-		}
-		return this.#editor.getSelectionStyles();
-	}
-
-	override focus() {
-		super.focus();
-		setTimeout(() => {
-			this.#editableAreaElement.focus();
-		}, 0);
-	}
-
-	get #editableAreaElement(): HTMLElement {
-		return this.#editorWrapperElement.querySelector(
-			'[contenteditable="true"]'
-		) as HTMLElement;
-	}
-
-	scrollToAttachments(additionalPixels = 0) {
-		Updates.enqueue(() => {
-			this.#editorWrapperElement.scrollTop =
-				this.#editableAreaElement.getBoundingClientRect().height -
-				this.#editorWrapperElement.getBoundingClientRect().height +
-				additionalPixels;
+	private _syncStateIfNeeded() {
+		this.instance?.[impl].updateHostState({
+			locale: this.locale,
+			ctx: this._ctx,
 		});
-	}
-
-	async addInlineImage(imageProps: {
-		file: File;
-		position?: number;
-		alt?: string;
-	}) {
-		try {
-			await this.#editor!.addInlineImage(imageProps);
-		} catch (e: any) {
-			// eslint-disable-next-line no-console
-			console.warn(e.message);
-		}
 	}
 }
