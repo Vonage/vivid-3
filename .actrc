@@ -1,4 +1,0 @@
- -j publish-flutter
- --input path=./libs/design-tokens/flutter-dist/
- --input version=4.1.3
- -s GITHUB_TOKEN=ghp_nAdnYaWtEy1MwSSMPDv7CMjp9jqu9Z4faw
