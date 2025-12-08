@@ -6814,7 +6814,24 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": [],
+			"slots": [
+				{
+					"name": "editor-end",
+					"description": "Displayed at the end of the scrollable editor area."
+				},
+				{
+					"name": "editor-start",
+					"description": "Displayed at the start of the scrollable editor area."
+				},
+				{
+					"name": "status",
+					"description": "Displayed between the editor viewport and the toolbar."
+				},
+				{
+					"name": "text-color-picker",
+					"description": "Color picker for the RteTextColorFeature."
+				}
+			],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
 				"actions": [
