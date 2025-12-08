@@ -3,11 +3,11 @@ import { mockFile } from '../../../file-picker/__mocks__/data-transfer';
 import { RteBase } from './base';
 import { RteToolbarFeature } from './toolbar';
 import {
+	type RteDropHandlerConfig,
 	RteDropHandlerFeature,
-	type RteDropHandlerFeatureConfig,
 } from './drop-handler';
 
-const featuresWithConfig = (config: RteDropHandlerFeatureConfig) => [
+const featuresWithConfig = (config: RteDropHandlerConfig) => [
 	new RteBase(),
 	new RteToolbarFeature(),
 	new RteDropHandlerFeature(config),

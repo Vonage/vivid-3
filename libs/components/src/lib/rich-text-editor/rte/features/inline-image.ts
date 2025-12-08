@@ -35,7 +35,7 @@ const isGenerator = (
 ): value is ResolvedUrlGenerator =>
 	value !== null && Boolean((value as any)['next']);
 
-export interface RteInlineImageFeatureConfig {
+export interface RteInlineImageConfig {
 	/**
 	 * Called whenever the editor needs to display an image. The return value determines what is displayed for the given image URL.
 	 */
@@ -63,7 +63,7 @@ class InlineImageView implements NodeView {
 		node: Node,
 		protected readonly view: EditorView,
 		protected readonly getPos: () => number | undefined,
-		protected readonly config: RteInlineImageFeatureConfig
+		protected readonly config: RteInlineImageConfig
 	) {
 		this.dom = document.createElement('div');
 		this.dom.className = 'inline-image-wrapper';
@@ -176,7 +176,7 @@ class InlineImageView implements NodeView {
 export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 	protected name = 'RteInlineImageFeature';
 
-	constructor(protected readonly config: RteInlineImageFeatureConfig = {}) {
+	constructor(protected readonly config: RteInlineImageConfig = {}) {
 		super();
 	}
 

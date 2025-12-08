@@ -4,14 +4,14 @@ import { asyncGeneratorMock } from '../__tests__/async-generator';
 import { RteBase } from './base';
 import {
 	type ResolvedUrl,
+	type RteInlineImageConfig,
 	RteInlineImageFeature,
-	type RteInlineImageFeatureConfig,
 } from './inline-image';
 import { RteToolbarFeature } from './toolbar';
 
 const { doc, paragraph: p, inlineImage: img, text } = docFactories;
 
-const featuresWithConfig = (config?: RteInlineImageFeatureConfig) => [
+const featuresWithConfig = (config?: RteInlineImageConfig) => [
 	new RteBase(),
 	new RteToolbarFeature(),
 	new RteInlineImageFeature(config),
