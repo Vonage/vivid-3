@@ -1,25 +1,25 @@
-import { RTEConfig } from './config';
-import { RTECore } from './features/core';
-import { RTEFreeformStructure } from './features/freeform';
-import { RTEBoldFeature } from './features/bold';
-import { RTELinkFeature } from './features/link';
+import { RteConfig } from './config';
+import { RteCore } from './features/core';
+import { RteFreeformStructure } from './features/freeform';
+import { RteBoldFeature } from './features/bold';
+import { RteLinkFeature } from './features/link';
 import { docFactories } from './__tests__/doc-factories';
-import { RTEHtmlSerializer } from './html-serializer';
-import { RTEInlineImageFeature } from './features/inline-image';
+import { RteHtmlSerializer } from './html-serializer';
+import { RteInlineImageFeature } from './features/inline-image';
 
-const config = new RTEConfig([
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEBoldFeature(),
-	new RTELinkFeature(),
-	new RTEInlineImageFeature(),
+const config = new RteConfig([
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteBoldFeature(),
+	new RteLinkFeature(),
+	new RteInlineImageFeature(),
 ]);
 
-const { doc, text_line: line, text, bold, inline_image: img } = docFactories;
+const { doc, textLine: line, text, bold, inlineImage: img } = docFactories;
 
-describe('RTEHtmlSerializer', () => {
+describe('RteHtmlSerializer', () => {
 	it('should serialize HTML from fragment', async () => {
-		const serializer = new RTEHtmlSerializer(config);
+		const serializer = new RteHtmlSerializer(config);
 
 		expect(
 			serializer.serializeFragment([
@@ -29,7 +29,7 @@ describe('RTEHtmlSerializer', () => {
 	});
 
 	it('should serialize HTML from document', async () => {
-		const serializer = new RTEHtmlSerializer(config);
+		const serializer = new RteHtmlSerializer(config);
 
 		expect(
 			serializer.serializeDocument(
@@ -39,11 +39,11 @@ describe('RTEHtmlSerializer', () => {
 	});
 
 	it('should allow specifying custom serializers', async () => {
-		const serializer = new RTEHtmlSerializer(config, {
+		const serializer = new RteHtmlSerializer(config, {
 			serializers: {
 				nodes: {
 					// eslint-disable-next-line @typescript-eslint/naming-convention
-					inline_image: (node) => [
+					inlineImage: (node) => [
 						'img',
 						{
 							src: node.attrs.imageUrl,
@@ -74,7 +74,7 @@ describe('RTEHtmlSerializer', () => {
 	});
 
 	it('should serialize DOM modified by modifyDom', async () => {
-		const serializer = new RTEHtmlSerializer(config);
+		const serializer = new RteHtmlSerializer(config);
 
 		expect(
 			serializer.serializeFragment(

@@ -1,6 +1,6 @@
 // Utilities to more conveniently create documents for testing
 
-import type { RTEDocument, RTENode } from '../document';
+import type { RteDocument, RteNode } from '../document';
 
 const textFactory = (marks: any[] = []) => {
 	const factory = (text: string) => ({
@@ -12,7 +12,7 @@ const textFactory = (marks: any[] = []) => {
 	return factory;
 };
 
-const nodeFactory = <T extends RTENode = RTENode>(
+const nodeFactory = <T extends RteNode = RteNode>(
 	type: T['type'],
 	attrs: Record<string, any> = {},
 	marks: any[] = [],
@@ -45,14 +45,14 @@ const markFactory = (type: string) => (attrs?: Record<string, any>) => ({
 
 export const docFactories = {
 	node: nodeFactory,
-	doc: nodeFactory<RTEDocument>('doc'),
+	doc: nodeFactory<RteDocument>('doc'),
 	text: textFactory(),
-	bullet_list: nodeFactory('bullet_list'),
-	numbered_list: nodeFactory('numbered_list'),
-	list_item: nodeFactory('list_item'),
-	hard_break: nodeFactory('hard_break'),
-	text_line: nodeFactory('text_line'),
-	inline_image: nodeFactory('inline_image', undefined, undefined, true),
+	bulletList: nodeFactory('bulletList'),
+	numberedList: nodeFactory('numberedList'),
+	listItem: nodeFactory('listItem'),
+	hardBreak: nodeFactory('hardBreak'),
+	textLine: nodeFactory('textLine'),
+	inlineImage: nodeFactory('inlineImage', undefined, undefined, true),
 	bold: markFactory('bold'),
 	italic: markFactory('italic'),
 	underline: markFactory('underline'),

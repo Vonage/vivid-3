@@ -3,7 +3,7 @@ import { MarkType } from 'prosemirror-model';
 import { EditorState } from 'prosemirror-state';
 import { toggleMark } from 'prosemirror-commands';
 import { Button } from '../../../button/button';
-import { RTEInstanceImpl } from '../instance';
+import { RteInstanceImpl } from '../instance';
 import { Tooltip } from '../../../tooltip/tooltip';
 import { Menu } from '../../../menu/menu';
 import { MenuItem } from '../../../menu-item/menu-item';
@@ -43,7 +43,7 @@ type CtxProps = {
 export class UiCtx {
 	constructor(
 		readonly view: EditorView,
-		readonly rte: RTEInstanceImpl,
+		readonly rte: RteInstanceImpl,
 		readonly props: Props<CtxProps>
 	) {}
 

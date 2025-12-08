@@ -5,45 +5,45 @@ import {
 	basicTextBlocks,
 } from '../__tests__/text-blocks';
 import { basicFontSizeOptions } from '../__tests__/font-sizes';
-import { RTECore } from './core';
-import { RTEFontSizeFeature, type RTEFontSizeFeatureConfig } from './font-size';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
-import { RTETextBlockStructure } from './text-block';
+import { RteCore } from './core';
+import { RteFontSizeFeature, type RteFontSizeFeatureConfig } from './font-size';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
+import { RteTextBlockStructure } from './text-block';
 
 const {
 	doc,
 	text,
-	text_line: line,
+	textLine: line,
 	fontSize: size,
-	hard_break: br,
+	hardBreak: br,
 } = docFactories;
 
 const { p, h1 } = basicTextBlockFactories;
 
-const features = (config: RTEFontSizeFeatureConfig) => [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTEToolbarFeature(),
-	new RTEFontSizeFeature(config),
+const features = (config: RteFontSizeFeatureConfig) => [
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteToolbarFeature(),
+	new RteFontSizeFeature(config),
 ];
 
-const textBlockFeatures = (config: RTEFontSizeFeatureConfig) => [
-	new RTECore(),
-	new RTETextBlockStructure({
+const textBlockFeatures = (config: RteFontSizeFeatureConfig) => [
+	new RteCore(),
+	new RteTextBlockStructure({
 		blocks: basicTextBlocks,
 	}),
-	new RTEToolbarFeature(),
-	new RTEFontSizeFeature(config),
+	new RteToolbarFeature(),
+	new RteFontSizeFeature(config),
 ];
 
-describe('RTEFontSizeFeature', () => {
+describe('RteFontSizeFeature', () => {
 	it('should add a fontSize mark to the schema', async () => {
 		const { docStr } = await setup(features(basicFontSizeOptions), [
 			line(text.marks(size({ size: '123px' }))('Hello')),
 		]);
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line(<fontSize[size="123px"]>'|Hello')"`
+			`"textLine(<fontSize[size="123px"]>'|Hello')"`
 		);
 	});
 
@@ -52,7 +52,7 @@ describe('RTEFontSizeFeature', () => {
 		rte.setHtml('<span style="font-size: 123px;">Hello</span>');
 
 		expect(rte.docStr()).toMatchInlineSnapshot(
-			`"text_line(<fontSize[size="123px"]>'|Hello')"`
+			`"textLine(<fontSize[size="123px"]>'|Hello')"`
 		);
 	});
 
@@ -60,7 +60,7 @@ describe('RTEFontSizeFeature', () => {
 		const rte = await setup(features(basicFontSizeOptions));
 		rte.setHtml('<span style="transition-property: font-size;">Hello</span>');
 
-		expect(rte.docStr()).toMatchInlineSnapshot(`"text_line('|Hello')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"textLine('|Hello')"`);
 	});
 
 	it('should serialize the mark to HTML', async () => {
@@ -115,7 +115,7 @@ describe('RTEFontSizeFeature', () => {
 		await click(menuItem(openMenu(), 'Large'));
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <fontSize[size="18px"]>'[world|]')"`
+			`"textLine('Hello ', <fontSize[size="18px"]>'[world|]')"`
 		);
 	});
 
@@ -151,7 +151,7 @@ describe('RTEFontSizeFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			text_line(
+			textLine(
 				'no',
 				<fontSize[size="12px"]>'[rmal lar|]',
 				<fontSize[size="18px"]>'ge'
@@ -212,7 +212,7 @@ describe('RTEFontSizeFeature', () => {
 			paragraph(
 				'firs',
 				<fontSize[size="18px"]>'[t',
-				hard_break<fontSize[size="18px"]>(),
+				hardBreak<fontSize[size="18px"]>(),
 				<fontSize[size="18px"]>'after break'
 			),
 			paragraph(<fontSize[size="18px"]>'seco|]', 'nd'),
@@ -313,7 +313,7 @@ describe('RTEFontSizeFeature', () => {
 		await click(menuItem(openMenu(), 'Large'));
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello |<fontSize[size=\\"18px\\"]>|world')"`
+			`"textLine('Hello |<fontSize[size=\\"18px\\"]>|world')"`
 		);
 
 		await typeTextAtCursor('beautiful ');
@@ -321,7 +321,7 @@ describe('RTEFontSizeFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			text_line('Hello ', <fontSize[size="18px"]>'beautiful |', 'world')
+			textLine('Hello ', <fontSize[size="18px"]>'beautiful |', 'world')
 			"
 		`
 		);
@@ -345,7 +345,7 @@ describe('RTEFontSizeFeature', () => {
 		await click(toolbarButton('Text size'));
 		await click(menuItem(openMenu(), 'Normal'));
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('normal [large|]')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('normal [large|]')"`);
 	});
 
 	it('should increase font size when pressing Mod + Shift + .', async () => {
@@ -365,14 +365,14 @@ describe('RTEFontSizeFeature', () => {
 		keydown('.', { ctrl: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <fontSize[size="18px"]>'[world|]')"`
+			`"textLine('Hello ', <fontSize[size="18px"]>'[world|]')"`
 		);
 
 		// Cannot go larger than large
 		keydown('.', { ctrl: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <fontSize[size="18px"]>'[world|]')"`
+			`"textLine('Hello ', <fontSize[size="18px"]>'[world|]')"`
 		);
 	});
 
@@ -393,14 +393,14 @@ describe('RTEFontSizeFeature', () => {
 		keydown(',', { ctrl: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <fontSize[size="12px"]>'[world|]')"`
+			`"textLine('Hello ', <fontSize[size="12px"]>'[world|]')"`
 		);
 
 		// Cannot go smaller than small
 		keydown(',', { ctrl: true, shift: true });
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello ', <fontSize[size="12px"]>'[world|]')"`
+			`"textLine('Hello ', <fontSize[size="12px"]>'[world|]')"`
 		);
 	});
 
@@ -443,7 +443,7 @@ describe('RTEFontSizeFeature', () => {
 		keydown('.', { ctrl: true, shift: true }); // Increase font size
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line('Hello |<fontSize[size=\\"18px\\"]>|world')"`
+			`"textLine('Hello |<fontSize[size=\\"18px\\"]>|world')"`
 		);
 		expect(element.shadowRoot!.querySelector('.ProseMirror')!.innerHTML).toBe(
 			'<div>Hello <span style="font-size: 18px;" class="ProseMirror-widget"></span>world</div>'

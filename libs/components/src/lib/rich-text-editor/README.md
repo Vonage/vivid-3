@@ -6,9 +6,9 @@ Each feature adds specific functionality to the editor (e.g. formatting, lists, 
 To use it, first create a configuration with the features you want to include.
 
 ```js
-import { RTEConfig, RTECore, RTEFreeformStructure, RTEToolbarFeature, RTEBoldFeature } from '@vonage/vivid';
+import { RteConfig, RteCore, RteFreeformStructure, RteToolbarFeature, RteBoldFeature } from '@vonage/vivid';
 
-const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEBoldFeature()]);
+const config = new RteConfig([new RteCore(), new RteFreeformStructure(), new RteToolbarFeature(), new RteBoldFeature()]);
 ```
 
 See the [features documentation](#features) for a list of available features.
@@ -42,18 +42,18 @@ rteComponent.instance = instance;
 <your-prefix-rich-text-editor></your-prefix-rich-text-editor>
 
 <script type="module">
-	import { registerRichTextEditor, RTEConfig, RTECore, RTEFreeformStructure, RTEToolbarFeature, RTEBoldFeature } from '@vonage/vivid';
+	import { registerRichTextEditor, RteConfig, RteCore, RteFreeformStructure, RteToolbarFeature, RteBoldFeature } from '@vonage/vivid';
 
 	registerRichTextEditor('your-prefix');
 
-	const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEBoldFeature()]);
+	const config = new RteConfig([new RteCore(), new RteFreeformStructure(), new RteToolbarFeature(), new RteBoldFeature()]);
 
 	const instance = config.instantiateEditor({
 		initialDocument: {
 			type: 'doc',
 			content: [
 				{
-					type: 'text_line',
+					type: 'textLine',
 					content: [
 						{ type: 'text', text: 'Hello' },
 						{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
@@ -75,16 +75,16 @@ rteComponent.instance = instance;
 ```vue
 <script setup lang="ts">
 import { VRichTextEditor } from '@vonage/vivid-vue';
-import { RTEConfig, RTECore, RTEFreeformStructure, RTEToolbarFeature, RTEBoldFeature } from '@vonage/vivid';
+import { RteConfig, RteCore, RteFreeformStructure, RteToolbarFeature, RteBoldFeature } from '@vonage/vivid';
 
-const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEBoldFeature()]);
+const config = new RteConfig([new RteCore(), new RteFreeformStructure(), new RteToolbarFeature(), new RteBoldFeature()]);
 
 const instance = config.instantiateEditor({
 	initialDocument: {
 		type: 'doc',
 		content: [
 			{
-				type: 'text_line',
+				type: 'textLine',
 				content: [
 					{ type: 'text', text: 'Hello' },
 					{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
@@ -143,7 +143,7 @@ An example document could look like this:
 					]
 				},
 				{
-					"type": "inline_image",
+					"type": "inlineImage",
 					"attrs": {
 						"imageUrl": "/vonage.png",
 						"alt": "Vonage Logo",
@@ -162,9 +162,9 @@ It is a tree structure of nodes similar to HTML. However, unlike HTML, markup li
 
 The exact schema of which nodes and marks can be in the document depends on the features you have enabled. Each feature documents how it extends the document model.
 
-A document is a single `doc` node and has the type `RTEDocument`.
+A document is a single `doc` node and has the type `RteDocument`.
 
-A part of a document is represented as an array of nodes and has the type `RTEFragment`:
+A part of a document is represented as an array of nodes and has the type `RteFragment`:
 
 ```json
 [{ "type": "text", "text": "Hello" }]
@@ -174,9 +174,9 @@ A part of a document is represented as an array of nodes and has the type `RTEFr
 
 Since documents are JSON-serializable, they can be stored directly in a database or sent over the network. This allows loading them into the editor again or rendering them in different contexts.
 
-The schema of a specific `RTEConfig` will be stable across minor versions of Vivid. We will consider modifications to the schema as breaking changes in line with our [Release Policy](/resources/release-policy/).
+The schema of a specific `RteConfig` will be stable across minor versions of Vivid. We will consider modifications to the schema as breaking changes in line with our [Release Policy](/resources/release-policy/).
 
-However, if you make changes to your `RTEConfig`, you should ensure that the editor remains compatible with previously stored documents or migrate them accordingly.
+However, if you make changes to your `RteConfig`, you should ensure that the editor remains compatible with previously stored documents or migrate them accordingly.
 
 ### Rendering Documents
 
@@ -184,16 +184,16 @@ To render documents inside a web application, you will be able to use the Rich T
 
 ### HTML Conversion
 
-Documents can be converted to and from HTML using the `RTEHtmlParser` and `RTEHtmlSerializer` classes:
+Documents can be converted to and from HTML using the `RteHtmlParser` and `RteHtmlSerializer` classes:
 
 ```ts
-import { RTEHtmlParser, RTEHtmlSerializer } from '@vonage/vivid';
+import { RteHtmlParser, RteHtmlSerializer } from '@vonage/vivid';
 
-const parser = new RTEHtmlParser(config);
+const parser = new RteHtmlParser(config);
 const doc = parser.parseDocument('<p>Hello <strong>World</strong></p>'); // -> { type: 'doc', content: [...] }
 const frag = parser.parseFragment('<p>Hello <strong>World</strong></p>'); // -> { type: 'paragraph', content: [...] }
 
-const serializer = new RTEHtmlSerializer(config);
+const serializer = new RteHtmlSerializer(config);
 serializer.serializeDocument(doc); // -> '<p>Hello <strong>World</strong></p>'
 serializer.serializeFragment(frag); // -> '<p>Hello <strong>World</strong></p>'
 ```
@@ -219,7 +219,7 @@ const fragment = parser.parseFragment('<img data-attachment-id="1">', {
 		}
 	},
 }); /* -> [{
-	"type": "inline_image",
+	"type": "inlineImage",
 	"attrs": {
 		"imageUrl": "attachment://1",
 		...
@@ -241,7 +241,7 @@ You can also customize the ProseMirror parsing and serialization logic directly.
 For parsing, the `modifyParseRules` function allows you to modify the ProseMirror [ParseRules](https://prosemirror.net/docs/ref/#model.ParseRule) used:
 
 ```ts
-const parser = new RTEHtmlParser(config, {
+const parser = new RteHtmlParser(config, {
 	modifyParseRules: (rules) => {
 		rules.nodes.paragraph.push({ tag: 'div.paragraph' });
 		rules.marks.bold.push({ tag: 'span.bold' });
@@ -253,7 +253,7 @@ parser.parseFragment("<div class='paragraph'><span class='bold'>Hello</span> wor
 For serialization, you can override the default serializers for nodes and marks. Serializers need to return a ProseMirror [DOMOutputSpec](https://prosemirror.net/docs/ref/#model.DOMOutputSpec):
 
 ```ts
-const serializer = new RTEHtmlSerializer(config, {
+const serializer = new RteHtmlSerializer(config, {
 	serializers: {
 		nodes: {
 			paragraph: () => ['div', { class: 'paragraph' }, 0],
@@ -282,7 +282,7 @@ You can use the instance to get and modify the document programmatically.
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const output = document.querySelector('#output');
-		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature()]);
+		const config = new RteConfig([new RteCore(), new RteFreeformStructure(), new RteToolbarFeature()]);
 		const instance = config.instantiateEditor({
 			onChange: () => {
 				console.log('Document changed:', instance.getDocument());
@@ -298,14 +298,14 @@ You can use the instance to get and modify the document programmatically.
 		document.querySelector('#replaceDocument').addEventListener('click', () => {
 			instance.replaceDocument({
 				type: 'doc',
-				content: [{ type: 'text_line', content: [{ type: 'text', text: 'Replaced document content' }] }],
+				content: [{ type: 'textLine', content: [{ type: 'text', text: 'Replaced document content' }] }],
 			});
 		});
 
 		document.querySelector('#reset').addEventListener('click', () => {
 			instance.reset({
 				type: 'doc',
-				content: [{ type: 'text_line', content: [{ type: 'text', text: 'Reset content' }] }],
+				content: [{ type: 'textLine', content: [{ type: 'text', text: 'Reset content' }] }],
 			});
 		});
 	});
@@ -336,10 +336,10 @@ When not provided, it uses a default parser and serializer.
 
 ```ts
 config.instantiateEditor({
-	foreignHtmlParser: new RTEHtmlParser(config, {
+	foreignHtmlParser: new RteHtmlParser(config, {
 		/* ... */
 	}),
-	foreignHtmlSerializer: new RTEHtmlSerializer(config, {
+	foreignHtmlSerializer: new RteHtmlSerializer(config, {
 		/* ... */
 	}),
 });
@@ -353,7 +353,7 @@ config.instantiateEditor({
 /**
  * Returns the current document state.
  */
-getDocument(): RTEDocument;
+getDocument(): RteDocument;
 ```
 
 ### replaceSelection
@@ -363,7 +363,7 @@ getDocument(): RTEDocument;
  * Replaces the current selection with the given content. If no text is selected, this inserts the content at the cursor position.
  */
 replaceSelection(
-	content: RTEFragment,
+	content: RteFragment,
 	options?: {
 		/**
 		 * Controls where the cursor is placed after the replacement:
@@ -383,7 +383,7 @@ replaceSelection(
 
 ```ts
 replaceDocument(
-	newDocument: RTEDocument,
+	newDocument: RteDocument,
 	options?: {
 		/**
 		 * Controls where the cursor is placed after the replacement:
@@ -405,14 +405,14 @@ replaceDocument(
 /**
  * Reset the editor to its initial state. Optionally, an initial document can be provided.
  */
-reset(initialDocument?: RTEDocument): void;
+reset(initialDocument?: RteDocument): void;
 ```
 
 ## Features
 
 The Core feature and a structure feature are required for the editor to work. All other features are optional and can be combined as needed.
 
-### RTECore
+### RteCore
 
 Provides basic editing functionality and undo/redo functionality.
 
@@ -421,7 +421,7 @@ Keyboard shortcuts:
 - **Undo**: <kbd>Ctrl</kbd> + <kbd>Z</kbd> / <kbd>Cmd</kbd> + <kbd>Z</kbd>
 - **Redo**: <kbd>Ctrl</kbd> + <kbd>Y</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>
 
-### RTEFreeformStructure
+### RteFreeformStructure
 
 Allows text input without any structure, similar to a regular text area.
 
@@ -429,7 +429,7 @@ Allows text input without any structure, similar to a regular text area.
 	<rte-schema-node name="doc">
 		<rte-schema-content>block+</rte-schema-content>
 	</rte-schema-node>
-	<rte-schema-node name="text_line">
+	<rte-schema-node name="textLine">
 		<rte-schema-group>block</rte-schema-group>
 		<rte-schema-content>inline*</rte-schema-content>
 	</rte-schema-node>
@@ -441,20 +441,20 @@ Allows text input without any structure, similar to a regular text area.
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature()]);
+		const config = new RteConfig([new RteCore(), new RteFreeformStructure(), new RteToolbarFeature()]);
 		rteComponent.instance = config.instantiateEditor();
 	});
 </script>
 ```
 
-### RTETextBlockStructure
+### RteTextBlockStructure
 
 Structures the document into text blocks, such as paragraphs and headings.
 
 Example usage:
 
 ```ts
-new RTETextBlockStructure({
+new RteTextBlockStructure({
 	blocks: [
 		{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
 		{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
@@ -505,12 +505,12 @@ Possible values for `StylePreset` are:
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const presets = [`h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `body-1`, `body-2`, `caption`];
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteTextBlockStructure({
 				blocks: presets.map((p) => ({ id: p, label: p, semanticRole: 'generic', stylePreset: p })),
 			}),
-			new RTEToolbarFeature(),
+			new RteToolbarFeature(),
 		]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
@@ -530,7 +530,7 @@ Possible values for `StylePreset` are:
 
 When blocks are styled with a different font size, color or other formatting options, the corresponding editor features will be unaware of this change.
 
-Ensure that `defaultSize` of `RTEFontSizeFeature` and `defaultColor` of `RTETextColorFeature` match the style of your blocks or that the corresponding feature are not in `marksAllowed`.
+Ensure that `defaultSize` of `RteFontSizeFeature` and `defaultColor` of `RteTextColorFeature` match the style of your blocks or that the corresponding feature are not in `marksAllowed`.
 
 </vwc-note>
 
@@ -574,7 +574,7 @@ A `data-block-type="<id>"` attribute is added to identify the block type. No sty
 		<rte-schema-marks>&lt;determined by marksAllowed&gt;</rte-schema-marks>
 		<rte-schema-content>inline*</rte-schema-content>
 	</rte-schema-node>
-	<rte-schema-node name="hard_break">
+	<rte-schema-node name="hardBreak">
 		<rte-schema-group>inline</rte-schema-group>
 	</rte-schema-node>
 </rte-schema>
@@ -591,17 +591,17 @@ A `data-block-type="<id>"` attribute is added to identify the block type. No sty
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteTextBlockStructure({
 				blocks: [
 					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
 					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
 					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
 				],
 			}),
-			new RTEToolbarFeature(),
-			new RTEFontSizeFeature({
+			new RteToolbarFeature(),
+			new RteFontSizeFeature({
 				options: [
 					{ size: '24px', label: 'Extra Large' },
 					{ size: '18px', label: 'Large' },
@@ -634,7 +634,7 @@ A `data-block-type="<id>"` attribute is added to identify the block type. No sty
 </script>
 ```
 
-### RTEToolbarFeature
+### RteToolbarFeature
 
 Adds the toolbar to the editor, which provides controls for the available features.
 
@@ -648,13 +648,13 @@ Configuration options:
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTEFreeformStructure(),
-			new RTEToolbarFeature({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteFreeformStructure(),
+			new RteToolbarFeature({
 				popupDirection: 'outward',
 			}),
-			new RTEFontSizeFeature({
+			new RteFontSizeFeature({
 				options: [
 					{ size: '24px', label: 'Extra Large' },
 					{ size: '18px', label: 'Large' },
@@ -669,7 +669,7 @@ Configuration options:
 				type: 'doc',
 				content: [
 					{
-						type: 'text_line',
+						type: 'textLine',
 						content: [{ type: 'text', text: 'Tooltips and menus open outwards in this editor.' }],
 					},
 				],
@@ -679,14 +679,14 @@ Configuration options:
 </script>
 ```
 
-### RTEFontSizeFeature
+### RteFontSizeFeature
 
 Adds the ability to change the text size.
 
 Example usage:
 
 ```ts
-new RTEFontSizeFeature({
+new RteFontSizeFeature({
 	options: [
 		{ size: '24px', label: 'Extra Large' },
 		{ size: '18px', label: 'Large' },
@@ -741,17 +741,17 @@ Known issues:
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteTextBlockStructure({
 				blocks: [
 					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
 					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
 					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
 				],
 			}),
-			new RTEToolbarFeature(),
-			new RTEFontSizeFeature({
+			new RteToolbarFeature(),
+			new RteFontSizeFeature({
 				options: [
 					{ size: '24px', label: 'Extra Large' },
 					{ size: '18px', label: 'Large' },
@@ -793,7 +793,7 @@ Known issues:
 </script>
 ```
 
-### RTETextColorFeature
+### RteTextColorFeature
 
 Adds support for different text colors.
 
@@ -859,11 +859,11 @@ When using the alternate theme the colors may no longer have sufficient contrast
 
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTEFreeformStructure(),
-			new RTEToolbarFeature(),
-			new RTETextColorFeature({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteFreeformStructure(),
+			new RteToolbarFeature(),
+			new RteTextColorFeature({
 				defaultColor: '#000000',
 			}),
 		]);
@@ -872,7 +872,7 @@ When using the alternate theme the colors may no longer have sufficient contrast
 				type: 'doc',
 				content: [
 					{
-						type: 'text_line',
+						type: 'textLine',
 						content: [
 							{
 								type: 'text',
@@ -900,7 +900,7 @@ When using the alternate theme the colors may no longer have sufficient contrast
 
 ### Text Style Features
 
-The `RTEBoldFeature`, `RTEItalicFeature`, `RTEUnderlineFeature`, `RTEStrikethroughFeature`, and `RTEMonospaceFeature` add the corresponding text styling options to the editor.
+The `RteBoldFeature`, `RteItalicFeature`, `RteUnderlineFeature`, `RteStrikethroughFeature`, and `RteMonospaceFeature` add the corresponding text styling options to the editor.
 
 Keyboard shortcuts:
 
@@ -934,21 +934,21 @@ Keyboard shortcuts:
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteTextBlockStructure({
 				blocks: [
 					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
 					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
 					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
 				],
 			}),
-			new RTEToolbarFeature(),
-			new RTEBoldFeature(),
-			new RTEItalicFeature(),
-			new RTEUnderlineFeature(),
-			new RTEStrikethroughFeature(),
-			new RTEMonospaceFeature(),
+			new RteToolbarFeature(),
+			new RteBoldFeature(),
+			new RteItalicFeature(),
+			new RteUnderlineFeature(),
+			new RteStrikethroughFeature(),
+			new RteMonospaceFeature(),
 		]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
@@ -975,7 +975,7 @@ Keyboard shortcuts:
 </script>
 ```
 
-### RTEListFeature
+### RteListFeature
 
 Adds support for bullet and numbered lists.
 
@@ -985,15 +985,15 @@ Keyboard shortcuts:
 - **Toggle numbered list**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>7</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>7</kbd>
 
 <rte-schema>
-	<rte-schema-node name="bullet_list">
+	<rte-schema-node name="bulletList">
 		<rte-schema-group>block list</rte-schema-group>
-		<rte-schema-content>(list_item | list)+</rte-schema-content>
+		<rte-schema-content>(listItem | list)+</rte-schema-content>
 	</rte-schema-node>
-	<rte-schema-node name="numbered_list">
+	<rte-schema-node name="numberedList">
 		<rte-schema-group>block list</rte-schema-group>
-		<rte-schema-content>(list_item | list)+</rte-schema-content>
+		<rte-schema-content>(listItem | list)+</rte-schema-content>
 	</rte-schema-node>
-	<rte-schema-node name="list_item">
+	<rte-schema-node name="listItem">
 		<rte-schema-attrs>
 			<rte-schema-textblock-attrs></rte-schema-textblock-attrs>
 		</rte-schema-attrs>
@@ -1007,52 +1007,52 @@ Keyboard shortcuts:
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTEListFeature()]);
+		const config = new RteConfig([new RteCore(), new RteFreeformStructure(), new RteToolbarFeature(), new RteListFeature()]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
 				type: 'doc',
 				content: [
 					{
-						type: 'bullet_list',
+						type: 'bulletList',
 						content: [
 							{
-								type: 'list_item',
+								type: 'listItem',
 								content: [{ type: 'text', text: 'Bullet list' }],
 							},
 							{
-								type: 'bullet_list',
+								type: 'bulletList',
 								content: [
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 1' }],
 									},
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 2' }],
 									},
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 3' }],
 									},
 								],
 							},
 							{
-								type: 'list_item',
+								type: 'listItem',
 								content: [{ type: 'text', text: 'Numbered list' }],
 							},
 							{
-								type: 'numbered_list',
+								type: 'numberedList',
 								content: [
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 1' }],
 									},
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 2' }],
 									},
 									{
-										type: 'list_item',
+										type: 'listItem',
 										content: [{ type: 'text', text: 'Item 3' }],
 									},
 								],
@@ -1066,7 +1066,7 @@ Keyboard shortcuts:
 </script>
 ```
 
-### RTEAlignmentFeature
+### RteAlignmentFeature
 
 Adds the ability to change the alignment of text blocks.
 
@@ -1087,7 +1087,7 @@ Keyboard shortcuts:
 <vwc-note connotation="information">
 	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 
-The alignment feature cannot be used with `RTETextBlockStructure`, since there are no text blocks to align.
+The alignment feature cannot be used with `RteTextBlockStructure`, since there are no text blocks to align.
 
 </vwc-note>
 
@@ -1097,17 +1097,17 @@ The alignment feature cannot be used with `RTETextBlockStructure`, since there a
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteTextBlockStructure({
 				blocks: [
 					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
 					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
 					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
 				],
 			}),
-			new RTEToolbarFeature(),
-			new RTEAlignmentFeature(),
+			new RteToolbarFeature(),
+			new RteAlignmentFeature(),
 		]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
@@ -1150,7 +1150,7 @@ The alignment feature cannot be used with `RTETextBlockStructure`, since there a
 </script>
 ```
 
-### RTELinkFeature
+### RteLinkFeature
 
 Adds the ability to insert links.
 
@@ -1168,13 +1168,13 @@ Adds the ability to insert links.
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RTEConfig([new RTECore(), new RTEFreeformStructure(), new RTEToolbarFeature(), new RTELinkFeature()]);
+		const config = new RteConfig([new RteCore(), new RteFreeformStructure(), new RteToolbarFeature(), new RteLinkFeature()]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
 				type: 'doc',
 				content: [
 					{
-						type: 'text_line',
+						type: 'textLine',
 						content: [
 							{
 								type: 'text',
@@ -1194,12 +1194,12 @@ Adds the ability to insert links.
 </script>
 ```
 
-### RTEInlineImageFeature
+### RteInlineImageFeature
 
 Adds support for inline images. This feature does not provide any UI for adding images by itself, however the user can paste HTML content containing images into the editor.
 
 <rte-schema>
-	<rte-schema-node name="inline_image">
+	<rte-schema-node name="inlineImage">
 		<rte-schema-group>inline</rte-schema-group>
 		<rte-schema-attrs>
 			<rte-schema-attr name="imageUrl" type="string" required description="A URL representing the image to display."></rte-schema-attr>
@@ -1218,17 +1218,17 @@ Adds support for inline images. This feature does not provide any UI for adding 
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteTextBlockStructure({
 				blocks: [
 					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
 					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
 					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
 				],
 			}),
-			new RTEToolbarFeature(),
-			new RTEInlineImageFeature(),
+			new RteToolbarFeature(),
+			new RteInlineImageFeature(),
 		]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
@@ -1239,7 +1239,7 @@ Adds support for inline images. This feature does not provide any UI for adding 
 						content: [
 							{ type: 'text', text: 'Image: ' },
 							{
-								type: 'inline_image',
+								type: 'inlineImage',
 								attrs: {
 									imageUrl: '/assets/images/large.jpg',
 									alt: 'Landscape image',
@@ -1255,7 +1255,7 @@ Adds support for inline images. This feature does not provide any UI for adding 
 </script>
 ```
 
-The `inline_image` node type has the following attributes:
+The `inlineImage` node type has the following attributes:
 
 - `imageUrl: string` (required): A URL representing the image to display. By default, this corresponds to the `src` attribute of the HTML `<img>` element.
 - `alt: string` (optional): The alt text for the image. Defaults to an empty string.
@@ -1304,7 +1304,7 @@ Keep in mind that users can duplicate images inside the editor, so `resolveUrl` 
 Here is an example that resolves `attachment://<id>` URLs with placeholders for loading and error states:
 
 ```ts
-new RTEInlineImageFeature({
+new RteInlineImageFeature({
 	resolveUrl: async function* (imageUrl) {
 		const url = new URL(imageUrl);
 		if (url.protocol !== 'attachment:') {
@@ -1367,7 +1367,7 @@ You can optionally return a cleanup function from `create`, which will be called
 Placeholders are never reused, so `create` and `cleanup` will be called at most once.
 
 ```ts
-new RTEInlineImageFeature({
+new RteInlineImageFeature({
 	resolveUrl: (url: string) => ({
 		type: 'placeholder',
 		create: (slotName: string) => {
@@ -1390,7 +1390,7 @@ new RTEInlineImageFeature({
 Not yet implemented: Use the `xxx` scoped slot to render the placeholder content. The `data` property can contain custom data that is passed to the slot.
 
 ```ts
-new RTEInlineImageFeature({
+new RteInlineImageFeature({
 	resolveUrl: (url: string) => ({
 		type: 'placeholder',
 		data: { type: 'error', title: 'Image failed to load', message: 'Please try again later.' },
@@ -1417,13 +1417,13 @@ In general, you cannot know when it is safe to remove the attachment since the u
 
 You can inspect the document to find referenced images when saving or submitting it, after which the editor will no longer be used.
 
-### RTEFileHandlerFeature
+### RteFileHandlerFeature
 
 Allows you to handle files dropped or pasted into the editor.
 
 Configuration options:
 
-- `handleFiles: (files: File[]) => RTEFragment | Promise<RTEFragment> | null` (required)
+- `handleFiles: (files: File[]) => RteFragment | Promise<RteFragment> | null` (required)
 
 Called when files are dropped or pasted into the editor. When pasting file, the returned fragment replaces the current selection. When dropping files, it is inserted at the drop location.
 
@@ -1431,7 +1431,7 @@ If it returns `null`, the files are ignored and the current selection remains un
 
 The function is only called for files inserted into the editor content area. Files dropped or pasted into other areas (e.g. menu bar or content in the `editor-end` slot) are not handled.
 
-### RTEDropHandlerFeature
+### RteDropHandlerFeature
 
 Allows you to customize drag and drop behavior over the editor viewport.
 
@@ -1466,18 +1466,18 @@ In this example, we display a drop zone overlay when files are dragged over the 
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const dropZone = document.querySelector('#drop-zone');
 
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteTextBlockStructure({
 				blocks: [
 					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
 					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
 					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
 				],
 			}),
-			new RTEToolbarFeature(),
-			new RTEInlineImageFeature(),
-			new RTEDropHandlerFeature({
+			new RteToolbarFeature(),
+			new RteInlineImageFeature(),
+			new RteDropHandlerFeature({
 				onViewportDragOver: (event) => {
 					if (!isFileDrop(event)) {
 						return false;
@@ -1535,7 +1535,7 @@ You can use the `--editor-padding-inline` and `--editor-padding-block` CSS varia
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 
-		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure({ blocks: [{ id: 'paragraph', label: 'Paragraph', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true }] }), new RTEToolbarFeature()]);
+		const config = new RteConfig([new RteCore(), new RteTextBlockStructure({ blocks: [{ id: 'paragraph', label: 'Paragraph', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true }] }), new RteToolbarFeature()]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
 				type: 'doc',
@@ -1563,7 +1563,7 @@ Content with `position` of `sticky` / `fixed` / `absolute` is positioned relativ
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 
-		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure({ blocks: [{ id: 'paragraph', label: 'Paragraph', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true }] }), new RTEToolbarFeature()]);
+		const config = new RteConfig([new RteCore(), new RteTextBlockStructure({ blocks: [{ id: 'paragraph', label: 'Paragraph', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true }] }), new RteToolbarFeature()]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
 				type: 'doc',
@@ -1592,7 +1592,7 @@ Content placed in this slot is displayed between the editor viewport and the too
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 
-		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure({ blocks: [{ id: 'paragraph', label: 'Paragraph', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true }] }), new RTEToolbarFeature()]);
+		const config = new RteConfig([new RteCore(), new RteTextBlockStructure({ blocks: [{ id: 'paragraph', label: 'Paragraph', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true }] }), new RteToolbarFeature()]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
 				type: 'doc',
@@ -1624,7 +1624,7 @@ The `editorViewportElement` property provides access to the scrollable editor vi
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 
-		const config = new RTEConfig([new RTECore(), new RTETextBlockStructure({ blocks: [{ id: 'paragraph', label: 'Paragraph', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true }] }), new RTEToolbarFeature()]);
+		const config = new RteConfig([new RteCore(), new RteTextBlockStructure({ blocks: [{ id: 'paragraph', label: 'Paragraph', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true }] }), new RteToolbarFeature()]);
 		rteComponent.instance = config.instantiateEditor({
 			initialDocument: {
 				type: 'doc',
@@ -1663,7 +1663,7 @@ The `editorViewportElement` property provides access to the scrollable editor vi
 
 | Name            | Type          | Description                                                                             |
 | --------------- | ------------- | --------------------------------------------------------------------------------------- |
-| **instance**    | `RTEInstance` | The editor instance created from the RTEConfig. Without it, the editor will not render. |
+| **instance**    | `RteInstance` | The editor instance created from the RteConfig. Without it, the editor will not render. |
 | **placeholder** | `string`      | A placeholder text to display when the editor is empty.                                 |
 
 </div>

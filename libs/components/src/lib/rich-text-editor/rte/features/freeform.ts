@@ -1,11 +1,11 @@
 import {
 	featureFacade,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 	type SchemaContribution,
 } from '../feature';
 
-export class RTEFreeformStructureImpl extends RTEFeatureImpl {
-	protected name = 'RTEFreeformStructure';
+export class RteFreeformStructureImpl extends RteFeatureImpl {
+	protected name = 'RteFreeformStructure';
 
 	override getSchema(): SchemaContribution[] {
 		return [
@@ -15,7 +15,7 @@ export class RTEFreeformStructureImpl extends RTEFeatureImpl {
 						group: 'inline',
 					},
 					// Since block and inline elements cannot be mixed, create a block for lines of text
-					text_line: {
+					textLine: {
 						group: 'block',
 						content: 'inline*',
 						parseDOM: [{ tag: 'div' }],
@@ -30,4 +30,4 @@ export class RTEFreeformStructureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEFreeformStructure = featureFacade(RTEFreeformStructureImpl);
+export const RteFreeformStructure = featureFacade(RteFreeformStructureImpl);

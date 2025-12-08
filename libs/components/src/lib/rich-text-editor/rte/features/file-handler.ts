@@ -2,30 +2,30 @@ import { type EditorState, Plugin, type Transaction } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import { dropPoint } from 'prosemirror-transform';
 import { Fragment, Slice } from 'prosemirror-model';
-import { featureFacade, RTEFeatureImpl } from '../feature';
-import type { RTEInstanceImpl } from '../instance';
-import type { RTEFragment } from '../document';
+import { featureFacade, RteFeatureImpl } from '../feature';
+import type { RteInstanceImpl } from '../instance';
+import type { RteFragment } from '../document';
 import { generateRandomId } from '../../../../shared/utils/randomId';
 import { resolvePromise } from '../../../../shared/utils/promise';
 
-export interface RTEFileHandlerFeatureConfig {
+export interface RteFileHandlerFeatureConfig {
 	/**
 	 * Called when files are dropped or pasted into the editor. The returned fragment is inserted into the document.
 	 * If it returns `null`, the files are ignored and the current selection remains unchanged.
 	 */
-	handleFiles: (files: File[]) => RTEFragment | Promise<RTEFragment> | null;
+	handleFiles: (files: File[]) => RteFragment | Promise<RteFragment> | null;
 }
 
 type InsertPoint = { type: 'pos'; pos: number } | { type: 'selection' };
 
-export class RTEFileHandlerFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEFileHandlerFeature';
+export class RteFileHandlerFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteFileHandlerFeature';
 
-	constructor(readonly config: RTEFileHandlerFeatureConfig) {
+	constructor(readonly config: RteFileHandlerFeatureConfig) {
 		super();
 	}
 
-	override getPlugins(rte: RTEInstanceImpl) {
+	override getPlugins(rte: RteInstanceImpl) {
 		const insertPointPlaceholderPlugin = new Plugin({
 			state: {
 				init() {
@@ -89,7 +89,7 @@ export class RTEFileHandlerFeatureImpl extends RTEFeatureImpl {
 
 		const insertFragment = (
 			tr: Transaction,
-			fragment: RTEFragment,
+			fragment: RteFragment,
 			insertPoint: InsertPoint
 		) => {
 			if (insertPoint.type === 'selection') {
@@ -114,7 +114,7 @@ export class RTEFileHandlerFeatureImpl extends RTEFeatureImpl {
 		};
 
 		const handleSyncResult = (
-			result: RTEFragment,
+			result: RteFragment,
 			insertPoint: InsertPoint
 		) => {
 			const tr = rte.state.tr;
@@ -123,7 +123,7 @@ export class RTEFileHandlerFeatureImpl extends RTEFeatureImpl {
 		};
 
 		const handleAsyncResult = async (
-			promise: Promise<RTEFragment>,
+			promise: Promise<RteFragment>,
 			insertPoint: InsertPoint
 		) => {
 			const tr = rte.state.tr;
@@ -201,4 +201,4 @@ export class RTEFileHandlerFeatureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEFileHandlerFeature = featureFacade(RTEFileHandlerFeatureImpl);
+export const RteFileHandlerFeature = featureFacade(RteFileHandlerFeatureImpl);

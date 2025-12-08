@@ -1,21 +1,21 @@
 import { elementUpdated } from '@repo/shared';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
-import { RTECore } from './core';
-import { RTELinkFeature } from './link';
-import { RTEToolbarFeature } from './toolbar';
-import { RTEFreeformStructure } from './freeform';
+import { RteCore } from './core';
+import { RteLinkFeature } from './link';
+import { RteToolbarFeature } from './toolbar';
+import { RteFreeformStructure } from './freeform';
 
-const { text_line: line, text, link } = docFactories;
+const { textLine: line, text, link } = docFactories;
 
 const features = [
-	new RTECore(),
-	new RTEFreeformStructure(),
-	new RTELinkFeature(),
-	new RTEToolbarFeature(),
+	new RteCore(),
+	new RteFreeformStructure(),
+	new RteLinkFeature(),
+	new RteToolbarFeature(),
 ];
 
-describe('RTELinkFeature', () => {
+describe('RteLinkFeature', () => {
 	it('should add a link mark to the schema', async () => {
 		const { docStr } = await setup(features, [
 			line(
@@ -28,7 +28,7 @@ describe('RTELinkFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			text_line(
+			textLine(
 				'|Visit ',
 				<link[href="https://example.com"]>'example.com',
 				' for more info'
@@ -46,7 +46,7 @@ describe('RTELinkFeature', () => {
 
 		expect(rte.docStr()).toMatchInlineSnapshot(`
 			"
-			text_line(
+			textLine(
 				'|Visit ',
 				<link[href="https://example.com"]>'example.com',
 				' for more info'
@@ -79,7 +79,7 @@ describe('RTELinkFeature', () => {
 		await click(button(openMenu(), 'Apply'));
 
 		expect(docStr()).toMatchInlineSnapshot(
-			`"text_line(<link[href="https://example.com"]>'Click here|')"`
+			`"textLine(<link[href="https://example.com"]>'Click here|')"`
 		);
 
 		await click(toolbarButton('Hyperlink'));
@@ -149,7 +149,7 @@ describe('RTELinkFeature', () => {
 		expect(docStr()).toMatchInlineSnapshot(
 			`
 			"
-			text_line(
+			textLine(
 				'Go to ',
 				<link[href="https://new.example.com"]>'our new website|'
 			)
@@ -209,7 +209,7 @@ describe('RTELinkFeature', () => {
 		await elementUpdated(element);
 		await click(button(openPopover()!, 'Delete'));
 
-		expect(docStr()).toMatchInlineSnapshot(`"text_line('Go to our websi|te')"`);
+		expect(docStr()).toMatchInlineSnapshot(`"textLine('Go to our websi|te')"`);
 	});
 
 	it('should open the toolbar menu when edit button is clicked', async () => {

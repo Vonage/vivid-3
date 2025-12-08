@@ -255,16 +255,16 @@ Functionality:
 
 		const attachedImages = [];
 
-		const config = new RTEConfig([
-			new RTECore(),
-			new RTETextBlockStructure({
+		const config = new RteConfig([
+			new RteCore(),
+			new RteTextBlockStructure({
 				blocks: [
 					{ id: 'title', label: 'Title', semanticRole: 'heading-1', stylePreset: 'h5' },
 					{ id: 'subtitle', label: 'Subtitle', semanticRole: 'heading-2', stylePreset: 'h6' },
 					{ id: 'body', label: 'Body', semanticRole: 'paragraph', stylePreset: 'body-2', marksAllowed: true },
 				],
 			}),
-			new RTEFontSizeFeature({
+			new RteFontSizeFeature({
 				options: [
 					{ size: '24px', label: 'Extra Large' },
 					{ size: '18px', label: 'Large' },
@@ -273,19 +273,19 @@ Functionality:
 				],
 				defaultSize: '14px',
 			}),
-			new RTEBoldFeature(),
-			new RTEItalicFeature(),
-			new RTEUnderlineFeature(),
-			new RTEStrikethroughFeature(),
-			new RTEMonospaceFeature(),
-			new RTETextColorFeature({
+			new RteBoldFeature(),
+			new RteItalicFeature(),
+			new RteUnderlineFeature(),
+			new RteStrikethroughFeature(),
+			new RteMonospaceFeature(),
+			new RteTextColorFeature({
 				defaultColor: '#000000',
 			}),
-			new RTEAlignmentFeature(),
-			new RTELinkFeature(),
-			new RTEToolbarFeature(),
-			new RTEListFeature(),
-			new RTEInlineImageFeature({
+			new RteAlignmentFeature(),
+			new RteLinkFeature(),
+			new RteToolbarFeature(),
+			new RteListFeature(),
+			new RteInlineImageFeature({
 				resolveUrl: async function* (src) {
 					const url = new URL(src);
 					if (url.protocol !== 'attachment:') {
@@ -331,7 +331,7 @@ Functionality:
 					}
 				},
 			}),
-			new RTEFileHandlerFeature({
+			new RteFileHandlerFeature({
 				handleFiles: (files) => {
 					const imageFiles = files.filter((file) => acceptedImageMimeTypes.includes(file.type));
 					const nonImageFiles = files.filter((file) => !acceptedImageMimeTypes.includes(file.type));
@@ -343,7 +343,7 @@ Functionality:
 					const images = imageFiles.map((file) => {
 						const id = attachedImages.length;
 						attachedImages.push(new AttachedImage(file));
-						return { type: 'inline_image', attrs: { imageUrl: `attachment://${id}`, alt: file.name } };
+						return { type: 'inlineImage', attrs: { imageUrl: `attachment://${id}`, alt: file.name } };
 					});
 					if (!images.length) {
 						return null;
@@ -351,7 +351,7 @@ Functionality:
 					return images;
 				},
 			}),
-			new RTEDropHandlerFeature({
+			new RteDropHandlerFeature({
 				onViewportDragOver: (event) => {
 					if (!isFileDrop(event)) {
 						return false;

@@ -2,12 +2,12 @@ import { Plugin } from 'prosemirror-state';
 import {
 	contributionPriority,
 	featureFacade,
-	RTEFeatureImpl,
+	RteFeatureImpl,
 } from '../feature';
-import type { RTEInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
 import type { RichTextEditor } from '../../rich-text-editor';
 
-export interface RTEDropHandlerFeatureConfig {
+export interface RteDropHandlerFeatureConfig {
 	/**
 	 * Called whenever the user drags content over the editor viewport.
 	 * If it returns `true`, the editor will ignore this content.
@@ -23,14 +23,14 @@ export interface RTEDropHandlerFeatureConfig {
 	onViewportDragFinish?: () => void;
 }
 
-export class RTEDropHandlerFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEDebugFeature';
+export class RteDropHandlerFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteDebugFeature';
 
-	constructor(readonly config: RTEDropHandlerFeatureConfig) {
+	constructor(readonly config: RteDropHandlerFeatureConfig) {
 		super();
 	}
 
-	override getPlugins(rte: RTEInstanceImpl) {
+	override getPlugins(rte: RteInstanceImpl) {
 		const dragOverResults = new WeakMap<Event, boolean>();
 		let lastResult = false;
 
@@ -116,4 +116,4 @@ export class RTEDropHandlerFeatureImpl extends RTEFeatureImpl {
 	}
 }
 
-export const RTEDropHandlerFeature = featureFacade(RTEDropHandlerFeatureImpl);
+export const RteDropHandlerFeature = featureFacade(RteDropHandlerFeatureImpl);

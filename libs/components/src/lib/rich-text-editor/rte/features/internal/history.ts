@@ -1,10 +1,10 @@
 import { history, redo, undo } from 'prosemirror-history';
 import { keymap } from 'prosemirror-keymap';
 import { createButton } from '../../utils/ui';
-import { RTEFeatureImpl, type ToolbarItemContribution } from '../../feature';
+import { RteFeatureImpl, type ToolbarItemContribution } from '../../feature';
 
-export class RTEHistoryFeatureImpl extends RTEFeatureImpl {
-	protected name = 'RTEHistoryFeature';
+export class RteHistoryFeatureImpl extends RteFeatureImpl {
+	protected name = 'RteHistoryFeature';
 
 	override getPlugins() {
 		return [

@@ -1,7 +1,7 @@
 import type { SchemaSpec } from 'prosemirror-model';
 import type { Plugin } from 'prosemirror-state';
 import type { Constructor } from '../../../shared/utils/mixins';
-import type { RTEInstanceImpl } from './instance';
+import type { RteInstanceImpl } from './instance';
 import {
 	TextblockAttrs,
 	type TextblockAttrSpec,
@@ -55,14 +55,14 @@ export type TextblockAttrContribution = Contribution<TextblockAttrSpec>;
 export type PluginContribution = Contribution<Plugin>;
 export type ToolbarItemContribution = Contribution<ToolbarItemSpec>;
 
-export abstract class RTEFeature {
+export abstract class RteFeature {
 	/// @internal
-	abstract [impl]: RTEFeatureImpl;
+	abstract [impl]: RteFeatureImpl;
 }
 
-export abstract class RTEFeatureImpl {
+export abstract class RteFeatureImpl {
 	/**
-	 * The name of the feature, e.g. RTEBoldFeature
+	 * The name of the feature, e.g. RteBoldFeature
 	 * Note: Cannot use this.constructor.name because it may be minified
 	 */
 	protected abstract name: string;
@@ -90,16 +90,16 @@ export abstract class RTEFeatureImpl {
 		return [];
 	}
 
-	getPlugins(rte: RTEInstanceImpl): PluginContribution[] {
+	getPlugins(rte: RteInstanceImpl): PluginContribution[] {
 		return [];
 	}
 
-	getToolbarItems(rte: RTEInstanceImpl): ToolbarItemContribution[] {
+	getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
 		return [];
 	}
 
 	// A feature may include additional features for better organization.
-	getFeatures(): RTEFeatureImpl[] {
+	getFeatures(): RteFeatureImpl[] {
 		return [this];
 	}
 }
@@ -108,12 +108,12 @@ export abstract class RTEFeatureImpl {
  * Creates a facade class for a feature to hide internal API.
  */
 export const featureFacade = <
-	T extends RTEFeatureImpl,
+	T extends RteFeatureImpl,
 	C extends Constructor<T>
 >(
 	FeatureImpl: C
 ) => {
-	class Facade extends RTEFeature {
+	class Facade extends RteFeature {
 		/// @internal
 		[impl]: T;
 
