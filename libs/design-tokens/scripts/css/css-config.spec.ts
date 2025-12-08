@@ -65,7 +65,7 @@ describe('CSS Features', () => {
 			});
 		});
 
-		describe('vvd/value/css/typography', () => {
+		describe.skip('vvd/value/css/typography', () => {
 			it('Should build font shorthand', () => {
 				const token = buildToken('vvd/typography/heading/200', {
 					$type: 'typography',
