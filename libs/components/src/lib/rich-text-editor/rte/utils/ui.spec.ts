@@ -57,6 +57,45 @@ describe('createSelect', () => {
 	});
 });
 
+describe('createButton', () => {
+	it('should hide tooltip when button is disabled', async () => {
+		const rte = await setup([
+			new RteCore(),
+			new RteFreeformStructure(),
+			new RteToolbarFeature(),
+		]);
+		await rte.typeTextAtCursor('Hello World');
+		const undoTooltip = rte.element.shadowRoot!.querySelector<Tooltip>(
+			'[data-vvd-component="tooltip"][text="Undo"]'
+		)!;
+		const redoTooltip = rte.element.shadowRoot!.querySelector<Tooltip>(
+			'[data-vvd-component="tooltip"][text="Redo"]'
+		)!;
+		expect(undoTooltip.anchor).toBe(rte.toolbarButton('Undo'));
+		expect(redoTooltip.anchor).toBe(undefined);
+	});
+
+	it('should set anchor to button when trigger is wrapped button', async () => {
+		const { instance } = await setup([
+			new RteCore(),
+			new RteFreeformStructure(),
+			new RteToolbarFeature(),
+		]);
+		const ctx = new UiCtx(null as any, instance[impl], {
+			popupPlacement: 'bottom',
+		});
+		const buttonWrapper = createButton(ctx, { label: 'Button' });
+		const menuContainer = createMenu(ctx, {
+			label: 'Menu',
+			trigger: buttonWrapper,
+			children: [],
+		});
+		expect(
+			menuContainer.querySelector<VwcMenuElement>('vwc-menu')!.anchor
+		).toBe(buttonWrapper.querySelector('vwc-button'));
+	});
+});
+
 describe('createMenu', () => {
 	it('should set anchor to trigger when trigger is regular element', async () => {
 		const { instance } = await setup([
