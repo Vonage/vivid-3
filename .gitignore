@@ -32,7 +32,6 @@ yarn-error.log
 testem.log
 /typings
 .nyc_output/
-.actrc
 
 # System Files
 .DS_Store

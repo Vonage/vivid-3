@@ -102,25 +102,25 @@ export const cssConfig: Hooks = {
 				return `${token.$value.value}px`;
 			},
 		},
-		// 'vvd/value/css/typography': {
-		// 	type: 'value',
-		// 	/* v8 ignore next -- @preserve */
-		// 	filter: (token) => token.$type === 'typography',
-		// 	transform(token, platform) {
-		// 		const fontSize = `${
-		// 			token.$value.fontSize.value / platform.basePxFontSize
-		// 		}rem`;
-		// 		const lineHeight = `${
-		// 			token.$value.lineHeight / platform.basePxFontSize
-		// 		}rem`;
-		// 		const fontFamily = token.$value.fontFamily
-		// 			.toLocaleLowerCase()
-		// 			.includes('mono')
-		// 			? 'SpeziaMonoCompleteVariable'
-		// 			: 'SpeziaCompleteVariableUpright';
-		// 		return `${token.$value.fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`;
-		// 	},
-		// },
+		'vvd/value/css/typography': {
+			type: 'value',
+			/* v8 ignore next -- @preserve */
+			filter: (token) => token.$type === 'typography',
+			transform(token, platform) {
+				const fontSize = `${
+					token.$value.fontSize.value / platform.basePxFontSize
+				}rem`;
+				const lineHeight = `${
+					token.$value.lineHeight / platform.basePxFontSize
+				}rem`;
+				const fontFamily = token.$value.fontFamily
+					.toLocaleLowerCase()
+					.includes('mono')
+					? 'SpeziaMonoCompleteVariable'
+					: 'SpeziaCompleteVariableUpright';
+				return `${token.$value.fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`;
+			},
+		},
 		'vvd/value/css/shadow': {
 			type: 'value',
 			/* v8 ignore next -- @preserve */
@@ -164,7 +164,7 @@ export const cssPlatform: PlatformConfig = {
 		'vvd/name/css',
 		'vvd/value/css/dimension',
 		'vvd/value/css/shadow',
-		// 'vvd/value/css/typography',
+		'vvd/value/css/typography',
 		'size/pxToRem',
 		'vvd/value/css/roundRems',
 	],
