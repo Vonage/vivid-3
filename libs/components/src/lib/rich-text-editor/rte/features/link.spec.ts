@@ -152,7 +152,7 @@ describe('RteLinkFeature', () => {
 		);
 	});
 
-	it('should show a popover with a clickable link when the cursor is inside a link', async () => {
+	it('should show a popover with the link text and clickable URL when the cursor is inside a link', async () => {
 		const { openPopover, placeCursor, element } = await setup(features, [
 			p(
 				'Go to ',
@@ -164,6 +164,9 @@ describe('RteLinkFeature', () => {
 		await elementUpdated(element);
 
 		expect(openPopover()!.open).toBe(true);
+		expect(
+			openPopover()!.querySelector('.link-popover-label')!.textContent
+		).toBe('our website');
 		expect(openPopover()!.querySelector('a')!.href).toBe(
 			'https://example.com/'
 		);
