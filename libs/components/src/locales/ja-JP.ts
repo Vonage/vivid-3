@@ -228,7 +228,6 @@ const jaJP: Locale = {
 		close: '閉じる',
 		edit: '編集',
 		delete: '削除',
-		clickHere: 'ここをクリック',
 		imageSizes: {
 			small: '小',
 			fit: 'フィット',

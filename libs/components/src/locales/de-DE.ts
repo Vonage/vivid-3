@@ -230,7 +230,6 @@ const deDE: Locale = {
 		close: 'Schließen',
 		edit: 'Bearbeiten',
 		delete: 'Löschen',
-		clickHere: 'Hier klicken',
 		imageSizes: {
 			small: 'Klein',
 			fit: 'Anpassen',

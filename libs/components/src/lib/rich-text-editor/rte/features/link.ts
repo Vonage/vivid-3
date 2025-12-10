@@ -101,7 +101,7 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 											children: [
 												createText(ctx, {
 													text: () =>
-														ctx.rte.getLocale().richTextEditor.clickHere,
+														this.getCurrentLink(ctx.view.state)?.text || '',
 												}),
 											],
 										}),
