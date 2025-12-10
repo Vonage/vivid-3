@@ -228,7 +228,6 @@ const enUS: Locale = {
 		close: 'Close',
 		edit: 'Edit',
 		delete: 'Delete',
-		clickHere: 'Click here',
 		imageSizes: {
 			small: 'Small',
 			fit: 'Fit',

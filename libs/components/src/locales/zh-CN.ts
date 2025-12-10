@@ -228,7 +228,6 @@ const zhCN: Locale = {
 		close: '关闭',
 		edit: '编辑',
 		delete: '删除',
-		clickHere: '点击这里',
 		imageSizes: {
 			small: '小',
 			fit: '适应',
