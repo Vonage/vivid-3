@@ -43,7 +43,7 @@ jobs:
       # Whenever the components are released, also create a tag for the vivid-vue library
       - name: Create Vivid Vue Tag
         if: ${{ steps.release.outputs['libs/components--release_created'] }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         env:
           VIVID_VERSION: ${{ steps.release.outputs['libs/components--version'] }}
           VIVID_SHA: ${{ steps.release.outputs['libs/components--sha'] }}
@@ -75,8 +75,8 @@ jobs:
     steps:
       - id: should-release
         run: |
-          echo "::set-output name=should_release::${{ needs.release-please.outputs.vivid_release_created == 'true' || needs.release-please.outputs.eslint_plugin_release_created == 'true' || github.event.inputs.force-release == 'true' }}"
-          echo "::set-output name=release_sha::${{ needs.release-please.outputs.vivid_release_sha || needs.release-please.outputs.eslint_plugin_release_sha || github.event.pull_request.head.sha }}"
+          echo "should_release=${{ needs.release-please.outputs.vivid_release_created == 'true' || needs.release-please.outputs.eslint_plugin_release_created == 'true' || github.event.inputs.force-release == 'true' }}" >> "$GITHUB_OUTPUT"
+          echo "release_sha=${{ needs.release-please.outputs.vivid_release_sha || needs.release-please.outputs.eslint_plugin_release_sha || github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
 
   vivid-publish:
     needs: should-release
@@ -87,14 +87,14 @@ jobs:
       sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
-#  vivid-design-tokens-publish:
-#    needs: should-release
-#    if: ${{ needs.should-release.outputs.should_release == 'true' }}
-#    uses: ./.github/workflows/_publish.yml
-#    with:
-#      path: ./libs/design-tokens/dist
-#      sha: ${{ needs.should-release.outputs.release_sha }}
-#    secrets: inherit
+  #  vivid-design-tokens-publish:
+  #    needs: should-release
+  #    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+  #    uses: ./.github/workflows/_publish.yml
+  #    with:
+  #      path: ./libs/design-tokens/dist
+  #      sha: ${{ needs.should-release.outputs.release_sha }}
+  #    secrets: inherit
 
   vivid-vue-publish:
     needs: should-release
