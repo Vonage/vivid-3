@@ -10,11 +10,6 @@ on:
         required: true
         type: boolean
 
-permissions:
-  contents: write
-  issues: write
-  pull-requests: write
-
 name: release-please
 jobs:
   release-please:
@@ -34,7 +29,6 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           # Defer creating a new release PR until after the vivid-vue tag is created
           # Otherwise, release-please will create a new pull request for the vivid-vue changes immediately
           skip-github-pull-request: true
