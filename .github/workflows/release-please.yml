@@ -87,6 +87,7 @@ jobs:
       sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
+<<<<<<< HEAD
   #  vivid-design-tokens-publish:
   #    needs: should-release
   #    if: ${{ needs.should-release.outputs.should_release == 'true' }}
@@ -95,6 +96,16 @@ jobs:
   #      path: ./libs/design-tokens/dist
   #      sha: ${{ needs.should-release.outputs.release_sha }}
   #    secrets: inherit
+=======
+  vivid-design-tokens-publish:
+    needs: should-release
+    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: ./libs/design-tokens/dist
+      sha: ${{ needs.should-release.outputs.release_sha }}
+    secrets: inherit
+>>>>>>> fb5c3a810 (Revert "chore(ci): remove vivid design tokens job from release workflow (VIV-0000) (#2648)")
 
   vivid-vue-publish:
     needs: should-release
