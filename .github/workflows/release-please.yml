@@ -17,7 +17,6 @@ jobs:
     outputs:
       vivid_release_created: ${{ steps.release.outputs['libs/components--release_created'] }}
       vivid_release_sha: ${{ steps.release.outputs['libs/components--sha'] }}
-      vivid_tokens_version: ${{ steps.release.outputs['libs/design-tokens--version'] }}
       eslint_plugin_release_created: ${{ steps.release.outputs['libs/eslint-plugin--release_created'] }}
       eslint_plugin_release_sha: ${{ steps.release.outputs['libs/eslint-plugin--sha'] }}
     steps:
@@ -108,7 +107,7 @@ jobs:
     with:
       path: ./libs/design-tokens/flutter-dist
       sha: ${{ needs.should-release.outputs.release_sha }}
-      version: ${{ jobs.release-please.outputs.vivid_tokens_version }}
+      version: ${{ env.VIVID_VERSION }}
     secrets: inherit
 
   vivid-vue-publish:
