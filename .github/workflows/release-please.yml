@@ -20,9 +20,6 @@ jobs:
       vivid_tokens_version: ${{ steps.release.outputs['libs/design-tokens--version'] }}
       eslint_plugin_release_created: ${{ steps.release.outputs['libs/eslint-plugin--release_created'] }}
       eslint_plugin_release_sha: ${{ steps.release.outputs['libs/eslint-plugin--sha'] }}
-    permissions:
-      contents: write
-      pull-requests: write
     steps:
       # Checks if a release PR has been merged but not released yet (label: `autorelease: pending`)
       # If so, creates releases (and tags) for the affected libraries in GitHub, updates the label, and sets the relevant outputs
