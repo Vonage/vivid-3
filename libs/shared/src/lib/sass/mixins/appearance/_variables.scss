@@ -113,7 +113,7 @@ $states-mapping: (
 		),
 		subtle: (
 			text: var(#{connotation.get-connotation-token(contrast)}),
-			fill: var(#{connotation.get-connotation-token(faint)}),
+			fill: var(#{connotation.get-connotation-token(dim)}),
 			outline: transparent,
 		),
 		subtle-light: (
@@ -180,7 +180,7 @@ $states-mapping: (
 		),
 		subtle: (
 			text: var(#{connotation.get-connotation-token(contrast)}),
-			fill: var(#{connotation.get-connotation-token(dim)}),
+			fill: var(#{connotation.get-connotation-token(pale)}),
 			outline: transparent,
 		),
 		subtle-light: (
@@ -350,8 +350,8 @@ $states-mapping: (
 			outline: var(#{connotation.get-connotation-token(primary)}),
 		),
 		subtle: (
-			text: var(#{connotation.get-connotation-token(contrast)}),
-			fill: var(#{connotation.get-connotation-token(pale)}),
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill: var(#{connotation.get-connotation-token(primary)}),
 			outline: transparent,
 		),
 		subtle-light: (
@@ -412,8 +412,8 @@ $states-mapping: (
 			outline: var(#{connotation.get-connotation-token(primary-increment)}),
 		),
 		subtle: (
-			text: var(#{connotation.get-connotation-token(contrast)}),
-			fill: var(#{connotation.get-connotation-token(pale)}),
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill: var(#{connotation.get-connotation-token(primary-increment)}),
 			outline: transparent,
 		),
 		subtle-light: (
@@ -526,8 +526,8 @@ $states-mapping: (
 			outline: var(#{connotation.get-connotation-token(primary)}),
 		),
 		subtle: (
-			text: var(#{connotation.get-connotation-token(contrast)}),
-			fill: var(#{connotation.get-connotation-token(pale)}),
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill: var(#{connotation.get-connotation-token(primary)}),
 			outline: transparent,
 		),
 		subtle-light: (
@@ -583,8 +583,8 @@ $states-mapping: (
 			outline: var(#{connotation.get-connotation-token(primary-increment)}),
 		),
 		subtle: (
-			text: var(#{connotation.get-connotation-token(contrast)}),
-			fill: var(#{connotation.get-connotation-token(pale)}),
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill: var(#{connotation.get-connotation-token(primary-increment)}),
 			outline: transparent,
 		),
 		subtle-light: (
