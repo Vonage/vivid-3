@@ -9,9 +9,30 @@ The `label` attribute provides a short description of the purpose of the Date Pi
 <p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 460px
+<script setup lang="ts">
+import { VDatePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDatePicker label="Start date" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 460px
 <vwc-date-picker label="Start date"></vwc-date-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Helper Text
 
@@ -19,13 +40,56 @@ The `helper-text` attribute provides additional information to help the user ent
 
 To add HTML to the helper text, use the [helper-text slot](/components/date-picker/code/#helper-text-slot).
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 460px
+<script setup lang="ts">
+import { VDatePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDatePicker helper-text="Select a date for the event to start" label="Start date" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 460px
 <vwc-date-picker helper-text="Select a date for the event to start" label="Start date"></vwc-date-picker>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Contextual Help
 
 You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 460px
+<script setup lang="ts">
+import { VDatePicker, VContextualHelp } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDatePicker label="Start date">
+		<template #contextual-help>
+			<VContextualHelp>Pick the start date</VContextualHelp>
+		</template>
+	</VDatePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 460px
 <vwc-date-picker label="Start date">
@@ -33,15 +97,39 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 </vwc-date-picker>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Validation Feedback
 
 ### Error Text
 
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 460px
+<script setup lang="ts">
+import { VDatePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDatePicker error-text="Please select a date for the event to start" label="Start date" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 460px
 <vwc-date-picker error-text="Please select a date for the event to start" label="Start date"></vwc-date-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Value
 
@@ -51,38 +139,143 @@ Empty string or `undefined` represent no date being selected.
 
 It will always contain a valid date in the format `YYYY-MM-DD` when a date is selected. If the user types an invalid date, `value` will be empty.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 460px
+<script setup lang="ts">
+import { VDatePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDatePicker value="2023-01-01" label="Start date" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 460px
 <vwc-date-picker value="2023-01-01" label="Start date"></vwc-date-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Min
 
 Set the `min` attribute to configure the earliest date to accept. The user will be prevented from choosing an earlier date, however it is still possible to manually enter one.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 460px
+<script setup lang="ts">
+import { VDatePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDatePicker min="2023-06-10" label="Start date" value="2023-06-15" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 460px
 <vwc-date-picker min="2023-06-10" label="Start date" value="2023-06-15"></vwc-date-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Max
 
 Set the `max` attribute to configure the latest date to accept. The user will be prevented from choosing an later date, however it is still possible to manually enter one.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 460px
+<script setup lang="ts">
+import { VDatePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDatePicker max="2023-06-20" label="Start date" value="2023-06-15" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 460px
 <vwc-date-picker max="2023-06-20" label="Start date" value="2023-06-15"></vwc-date-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Disabled
 
 Add the `disabled` attribute to disable the date picker.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDatePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDatePicker disabled label="Start date" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-date-picker disabled label="Start date"></vwc-date-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Readonly
 
 Add the `readonly` attribute to make the date picker readonly.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDatePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDatePicker readonly label="Start date" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-date-picker readonly label="Start date"></vwc-date-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
