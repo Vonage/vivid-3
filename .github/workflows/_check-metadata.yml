@@ -13,7 +13,7 @@ jobs:
       pull-requests: write
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.VNG_VVD_PAT }} # Use PAT to allow the action commit to trigger CI workflow again
           ref: ${{ github.head_ref }}
@@ -42,9 +42,9 @@ jobs:
       - name: Check Components Metadata
         id: diff
         run: |
-          echo 'DIFF_CONTENT<<EOF' >> $GITHUB_OUTPUT
-          git --no-pager diff --exit-code ./libs/components/metadata.json >> $GITHUB_OUTPUT || true
-          echo 'EOF' >> $GITHUB_OUTPUT
+          echo 'DIFF_CONTENT<<EOF' >> "$GITHUB_OUTPUT"
+          git --no-pager diff --exit-code ./libs/components/metadata.json >> "$GITHUB_OUTPUT" || true
+          echo 'EOF' >> "$GITHUB_OUTPUT"
 
           git --no-pager diff --exit-code ./libs/components/metadata.json
         continue-on-error: true

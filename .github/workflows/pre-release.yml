@@ -26,7 +26,7 @@ jobs:
     outputs:
       version: ${{ steps.get-vivid-version.outputs.version }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
@@ -37,11 +37,12 @@ jobs:
           node-version: '20'
 
       - name: get-vivid-version
+        id: get-vivid-version
         working-directory: ./libs/components
         run: |
           npm version ${{ github.event.inputs.change_type }} --no-git-tag-version
           VERSION=$(node -p "require('./package.json').version")-preview.${{ github.event.inputs.preview_version }}
-          echo "::set-output name=version::${VERSION}"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
 
   vivid-publish:
     needs: get-version

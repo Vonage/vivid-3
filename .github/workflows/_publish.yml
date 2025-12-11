@@ -30,7 +30,7 @@ jobs:
   npm-publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.sha }}
 
@@ -75,14 +75,14 @@ jobs:
 
       - name: Publish to npm registry
         if: steps.check.outputs.published == 'false'
-        run: pnpm publish --no-git-checks --tag ${{ inputs.tag }} ${{ inputs.path }} --//registry.npmjs.org/:_authToken=$AUTH_TOKEN
+        run: pnpm publish --no-git-checks --tag ${{ inputs.tag }} ${{ inputs.path }} "--//registry.npmjs.org/:_authToken=$AUTH_TOKEN"
         env:
           AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
 
   github-publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.sha }}
 
@@ -120,7 +120,7 @@ jobs:
         run: |
           NAME=$(npm view ${{ inputs.path }} name)
           VERSION=$(npm view ${{ inputs.path }} version)
-          if npm view "$NAME@$VERSION" --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$AUTH_TOKEN; then
+          if npm view "$NAME@$VERSION" --registry=https://npm.pkg.github.com "--//npm.pkg.github.com/:_authToken=$AUTH_TOKEN"; then
           echo "published=true" >> "$GITHUB_OUTPUT"
           else
           echo "published=false" >> "$GITHUB_OUTPUT"
@@ -130,6 +130,6 @@ jobs:
 
       - name: Publish to GitHub registry
         if: steps.check.outputs.published == 'false'
-        run: pnpm publish --no-git-checks --tag ${{ inputs.tag }} ${{ inputs.path }} --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$AUTH_TOKEN
+        run: pnpm publish --no-git-checks --tag ${{ inputs.tag }} ${{ inputs.path }} --registry=https://npm.pkg.github.com "--//npm.pkg.github.com/:_authToken=$AUTH_TOKEN"
         env:
           AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
