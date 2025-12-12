@@ -48,6 +48,7 @@ jobs:
           VIVID_VERSION: ${{ steps.release.outputs['libs/components--version'] }}
           VIVID_SHA: ${{ steps.release.outputs['libs/components--sha'] }}
         with:
+          github-token: ${{ secrets.RELEASE_PLEASE_PAT }}
           script: |
             const { VIVID_VERSION, VIVID_SHA } = process.env
             github.rest.git.createRef({
@@ -64,6 +65,7 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: pull-request
         with:
+          token: ${{ secrets.RELEASE_PLEASE_PAT }}
           skip-github-release: true
 
   should-release:
