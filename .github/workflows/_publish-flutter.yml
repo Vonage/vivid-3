@@ -1,0 +1,84 @@
+name: 🚀 Flutter publish
+
+on:
+  workflow_call:
+    inputs:
+      sha:
+        description: The revision to build and publish
+        required: true
+        type: string
+      path:
+        description: The path to call npm publish on
+        required: true
+        type: string
+      tag:
+        required: false
+        default: latest
+        type: string
+      version:
+        description: If provided, updates the packages version before publishing.
+        required: false
+        default: ''
+        type: string
+    secrets:
+      NPM_VVD_VNG_AUTOMATION_TOKEN:
+        required: true
+      VNG_VVD_PAT:
+        required: true
+
+jobs:
+  publish-flutter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.sha }}
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Pnpm setup
+        uses: pnpm/action-setup@v4
+
+      - name: Node Setup
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build
+        working-directory: './libs/design-tokens/'
+        run: pnpm run build
+
+      - name: Set version
+        if: ${{ github.event.inputs.version != '' }}
+        working-directory: ${{ github.event.inputs.path }}
+        run: |
+          sed -i 's/^version:.*/version: ${{ github.event.inputs.version }}/' pubspec.yaml
+          cat pubspec.yaml
+
+      - name: Commit and push changes
+        run: |
+          git clone https://github.x-access-token:${GITHUB_TOKEN}@github.com/Vonage/vivid-flutter-design-tokens.git deploy
+          cd deploy
+          rm -rf *
+          cp -R ../${{ github.event.inputs.path }}* .
+          git add .
+          git commit -m "Release v${{ github.event.inputs.version }}"
+          git tag v${{ github.event.inputs.version }}
+          git push --force origin main --tags
+        env:
+          GIT_AUTHOR_NAME: github-actions
+          GIT_AUTHOR_EMAIL: github-actions@github.com
+          GIT_COMMITTER_NAME: github-actions
+          GIT_COMMITTER_EMAIL: github-actions@github.com
+          GITHUB_TOKEN: ${{ secrets.RELEASE_PLEASE_PAT }}

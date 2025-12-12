@@ -23,6 +23,7 @@ jobs:
     outputs:
       vivid_release_created: ${{ steps.release.outputs['libs/components--release_created'] }}
       vivid_release_sha: ${{ steps.release.outputs['libs/components--sha'] }}
+      vivid_tokens_version: ${{ steps.release.outputs['libs/design-tokens--version'] }}
       eslint_plugin_release_created: ${{ steps.release.outputs['libs/eslint-plugin--release_created'] }}
       eslint_plugin_release_sha: ${{ steps.release.outputs['libs/eslint-plugin--sha'] }}
     steps:
@@ -89,14 +90,24 @@ jobs:
       sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
-  #  vivid-design-tokens-publish:
-  #    needs: should-release
-  #    if: ${{ needs.should-release.outputs.should_release == 'true' }}
-  #    uses: ./.github/workflows/_publish.yml
-  #    with:
-  #      path: ./libs/design-tokens/dist
-  #      sha: ${{ needs.should-release.outputs.release_sha }}
-  #    secrets: inherit
+  vivid-design-tokens-publish:
+    needs: should-release
+    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: ./libs/design-tokens/dist
+      sha: ${{ needs.should-release.outputs.release_sha }}
+    secrets: inherit
+
+  vivid-design-tokens-flutter-publish:
+    needs: should-release
+    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+    uses: ./.github/workflows/_publish-flutter.yml
+    with:
+      path: ./libs/design-tokens/flutter-dist
+      sha: ${{ needs.should-release.outputs.release_sha }}
+      version: ${{ needs.release-please.outputs.vivid_tokens_version }}
+    secrets: inherit
 
   vivid-vue-publish:
     needs: should-release
