@@ -3,6 +3,7 @@ import { attr } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
+ * @public
  * @component contextual-help
  * @slot - Default slot.
  * @slot icon - Custom icon slot (optional).

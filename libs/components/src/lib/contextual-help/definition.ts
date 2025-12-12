@@ -27,3 +27,5 @@ export const contextualHelpDefinition = defineVividComponent(
 export const registerContextualHelp = createRegisterFunction(
 	contextualHelpDefinition
 );
+
+export { ContextualHelp as VwcContextualHelpElement };

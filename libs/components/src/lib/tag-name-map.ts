@@ -16,6 +16,7 @@ import type {
 	VwcCheckboxElement,
 	VwcColorPickerElement,
 	VwcComboboxElement,
+	VwcContextualHelpElement,
 	VwcDataGridCellElement,
 	VwcDataGridElement,
 	VwcDataGridRowElement,
@@ -86,6 +87,7 @@ type DefaultVividTagNameMap = {
 	'vwc-card': VwcCardElement;
 	'vwc-checkbox': VwcCheckboxElement;
 	'vwc-color-picker': VwcColorPickerElement;
+	'vwc-contextual-help': VwcContextualHelpElement;
 	'vwc-combobox': VwcComboboxElement;
 	'vwc-data-grid-cell': VwcDataGridCellElement;
 	'vwc-data-grid': VwcDataGridElement;
