@@ -70,7 +70,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git clone https://github.x-access-token:"${GITHUB_TOKEN}"@github.com/Vonage/vivid-flutter-design-tokens.git deploy
+          git clone "https://github.x-access-token:${GITHUB_TOKEN}@github.com/Vonage/vivid-flutter-design-tokens.git" deploy
           cd deploy
           rm -rf -- *
           cp -R ../${{ github.event.inputs.path }}* .
