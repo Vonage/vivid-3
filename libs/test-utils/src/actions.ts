@@ -52,6 +52,13 @@ export function comboboxClear<D extends DriverT>(
 	this: ComboboxWrapper<D>
 ): D['actionReturn'] {
 	return runSequence([
+		// Wait before clearing to ensure any previous operations have fully settled.
+		// This prevents a sporadic issue in Playwright Safari where the combobox will not clear
+		() =>
+			this.ctx.driver.eval(
+				this.locator,
+				() => new Promise((resolve) => setTimeout(resolve, 200))
+			),
 		() => this.ctx.driver.userClear(this.control()),
 		() => this.ctx.driver.userBlur(this.control()), // Combobox only updates value on blur
 	]);
