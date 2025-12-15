@@ -23,6 +23,7 @@ jobs:
     outputs:
       vivid_release_created: ${{ steps.release.outputs['libs/components--release_created'] }}
       vivid_release_sha: ${{ steps.release.outputs['libs/components--sha'] }}
+      vivid_tokens_version: ${{ steps.release.outputs['libs/design-tokens--version'] }}
       eslint_plugin_release_created: ${{ steps.release.outputs['libs/eslint-plugin--release_created'] }}
       eslint_plugin_release_sha: ${{ steps.release.outputs['libs/eslint-plugin--sha'] }}
     steps:
@@ -48,6 +49,7 @@ jobs:
           VIVID_VERSION: ${{ steps.release.outputs['libs/components--version'] }}
           VIVID_SHA: ${{ steps.release.outputs['libs/components--sha'] }}
         with:
+          github-token: ${{ secrets.RELEASE_PLEASE_PAT }}
           script: |
             const { VIVID_VERSION, VIVID_SHA } = process.env
             github.rest.git.createRef({
@@ -64,6 +66,7 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: pull-request
         with:
+          token: ${{ secrets.RELEASE_PLEASE_PAT }}
           skip-github-release: true
 
   should-release:
@@ -87,14 +90,24 @@ jobs:
       sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
-  #  vivid-design-tokens-publish:
-  #    needs: should-release
-  #    if: ${{ needs.should-release.outputs.should_release == 'true' }}
-  #    uses: ./.github/workflows/_publish.yml
-  #    with:
-  #      path: ./libs/design-tokens/dist
-  #      sha: ${{ needs.should-release.outputs.release_sha }}
-  #    secrets: inherit
+  vivid-design-tokens-publish:
+    needs: should-release
+    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: ./libs/design-tokens/dist
+      sha: ${{ needs.should-release.outputs.release_sha }}
+    secrets: inherit
+
+  vivid-design-tokens-flutter-publish:
+    needs: should-release
+    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+    uses: ./.github/workflows/_publish-flutter.yml
+    with:
+      path: ./libs/design-tokens/flutter-dist
+      sha: ${{ needs.should-release.outputs.release_sha }}
+      version: ${{ needs.release-please.outputs.vivid_tokens_version }}
+    secrets: inherit
 
   vivid-vue-publish:
     needs: should-release

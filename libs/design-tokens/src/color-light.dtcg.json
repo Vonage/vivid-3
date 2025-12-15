@@ -1,5 +1,5 @@
 {
-	"vvd/color/neutral/100": {
+	"vivid/color/neutral/100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -10,7 +10,7 @@
 			"hex": "#fafafa"
 		}
 	},
-	"vvd/color/neutral/200": {
+	"vivid/color/neutral/200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -21,7 +21,7 @@
 			"hex": "#f5f5f5"
 		}
 	},
-	"vvd/color/neutral/300": {
+	"vivid/color/neutral/300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -32,7 +32,7 @@
 			"hex": "#e6e6e6"
 		}
 	},
-	"vvd/color/neutral/400": {
+	"vivid/color/neutral/400": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -43,7 +43,7 @@
 			"hex": "#d8d8d8"
 		}
 	},
-	"vvd/color/neutral/500": {
+	"vivid/color/neutral/500": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -54,7 +54,7 @@
 			"hex": "#c7c7c7"
 		}
 	},
-	"vvd/color/neutral/600": {
+	"vivid/color/neutral/600": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -65,7 +65,7 @@
 			"hex": "#b5b5b5"
 		}
 	},
-	"vvd/color/neutral/700": {
+	"vivid/color/neutral/700": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -76,7 +76,7 @@
 			"hex": "#828282"
 		}
 	},
-	"vvd/color/neutral/800": {
+	"vivid/color/neutral/800": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -87,7 +87,7 @@
 			"hex": "#6a6a6a"
 		}
 	},
-	"vvd/color/neutral/900": {
+	"vivid/color/neutral/900": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -98,7 +98,7 @@
 			"hex": "#545454"
 		}
 	},
-	"vvd/color/neutral/1000": {
+	"vivid/color/neutral/1000": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -109,7 +109,7 @@
 			"hex": "#3e3e3e"
 		}
 	},
-	"vvd/color/neutral/1100": {
+	"vivid/color/neutral/1100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -120,7 +120,7 @@
 			"hex": "#2c2c2c"
 		}
 	},
-	"vvd/color/neutral/1200": {
+	"vivid/color/neutral/1200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -131,7 +131,7 @@
 			"hex": "#242424"
 		}
 	},
-	"vvd/color/neutral/1300": {
+	"vivid/color/neutral/1300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -140,7 +140,7 @@
 			"hex": "#202020"
 		}
 	},
-	"vvd/color/neutral-alt/100": {
+	"vivid/color/neutral-alt/100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -151,7 +151,7 @@
 			"hex": "#f8f9fd"
 		}
 	},
-	"vvd/color/neutral-alt/200": {
+	"vivid/color/neutral-alt/200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -160,7 +160,7 @@
 			"hex": "#f4f5fb"
 		}
 	},
-	"vvd/color/neutral-alt/300": {
+	"vivid/color/neutral-alt/300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -171,7 +171,7 @@
 			"hex": "#e5e6ef"
 		}
 	},
-	"vvd/color/neutral-alt/400": {
+	"vivid/color/neutral-alt/400": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -180,7 +180,7 @@
 			"hex": "#d6d7e2"
 		}
 	},
-	"vvd/color/neutral-alt/500": {
+	"vivid/color/neutral-alt/500": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -189,7 +189,7 @@
 			"hex": "#c5c5d5"
 		}
 	},
-	"vvd/color/neutral-alt/600": {
+	"vivid/color/neutral-alt/600": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -200,7 +200,7 @@
 			"hex": "#b4b3c9"
 		}
 	},
-	"vvd/color/neutral-alt/700": {
+	"vivid/color/neutral-alt/700": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -211,7 +211,7 @@
 			"hex": "#807fa3"
 		}
 	},
-	"vvd/color/neutral-alt/800": {
+	"vivid/color/neutral-alt/800": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -222,7 +222,7 @@
 			"hex": "#676690"
 		}
 	},
-	"vvd/color/neutral-alt/900": {
+	"vivid/color/neutral-alt/900": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -233,7 +233,7 @@
 			"hex": "#4f4f7d"
 		}
 	},
-	"vvd/color/neutral-alt/1000": {
+	"vivid/color/neutral-alt/1000": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -244,7 +244,7 @@
 			"hex": "#3a3a5f"
 		}
 	},
-	"vvd/color/neutral-alt/1100": {
+	"vivid/color/neutral-alt/1100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -255,7 +255,7 @@
 			"hex": "#2b2944"
 		}
 	},
-	"vvd/color/neutral-alt/1200": {
+	"vivid/color/neutral-alt/1200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -266,7 +266,7 @@
 			"hex": "#242238"
 		}
 	},
-	"vvd/color/neutral-alt/1300": {
+	"vivid/color/neutral-alt/1300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -277,7 +277,7 @@
 			"hex": "#201e32"
 		}
 	},
-	"vvd/color/accent/100": {
+	"vivid/color/accent/100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -288,7 +288,7 @@
 			"hex": "#fbf9fe"
 		}
 	},
-	"vvd/color/accent/200": {
+	"vivid/color/accent/200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -299,7 +299,7 @@
 			"hex": "#f7f3fe"
 		}
 	},
-	"vvd/color/accent/300": {
+	"vivid/color/accent/300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -308,7 +308,7 @@
 			"hex": "#ece2fa"
 		}
 	},
-	"vvd/color/accent/400": {
+	"vivid/color/accent/400": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -319,7 +319,7 @@
 			"hex": "#e4d1fb"
 		}
 	},
-	"vvd/color/accent/500": {
+	"vivid/color/accent/500": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -328,7 +328,7 @@
 			"hex": "#d9bafc"
 		}
 	},
-	"vvd/color/accent/600": {
+	"vivid/color/accent/600": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -339,7 +339,7 @@
 			"hex": "#cda4fa"
 		}
 	},
-	"vvd/color/accent/700": {
+	"vivid/color/accent/700": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -348,7 +348,7 @@
 			"hex": "#a45df9"
 		}
 	},
-	"vvd/color/accent/800": {
+	"vivid/color/accent/800": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -357,7 +357,7 @@
 			"hex": "#8e27ff"
 		}
 	},
-	"vvd/color/accent/900": {
+	"vivid/color/accent/900": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -368,7 +368,7 @@
 			"hex": "#6c09de"
 		}
 	},
-	"vvd/color/accent/1000": {
+	"vivid/color/accent/1000": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -379,7 +379,7 @@
 			"hex": "#5101ac"
 		}
 	},
-	"vvd/color/accent/1100": {
+	"vivid/color/accent/1100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -390,7 +390,7 @@
 			"hex": "#3c027e"
 		}
 	},
-	"vvd/color/accent/1200": {
+	"vivid/color/accent/1200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -401,7 +401,7 @@
 			"hex": "#33036a"
 		}
 	},
-	"vvd/color/accent/1300": {
+	"vivid/color/accent/1300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -412,7 +412,7 @@
 			"hex": "#2e035f"
 		}
 	},
-	"vvd/color/accent-alt/100": {
+	"vivid/color/accent-alt/100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -421,7 +421,7 @@
 			"hex": "#fff8fd"
 		}
 	},
-	"vvd/color/accent-alt/200": {
+	"vivid/color/accent-alt/200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -430,7 +430,7 @@
 			"hex": "#fff3fc"
 		}
 	},
-	"vvd/color/accent-alt/300": {
+	"vivid/color/accent-alt/300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -439,7 +439,7 @@
 			"hex": "#ffddf7"
 		}
 	},
-	"vvd/color/accent-alt/400": {
+	"vivid/color/accent-alt/400": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -450,7 +450,7 @@
 			"hex": "#fbcaef"
 		}
 	},
-	"vvd/color/accent-alt/500": {
+	"vivid/color/accent-alt/500": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -461,7 +461,7 @@
 			"hex": "#f9b0e4"
 		}
 	},
-	"vvd/color/accent-alt/600": {
+	"vivid/color/accent-alt/600": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -470,7 +470,7 @@
 			"hex": "#fc92da"
 		}
 	},
-	"vvd/color/accent-alt/700": {
+	"vivid/color/accent-alt/700": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -481,7 +481,7 @@
 			"hex": "#de44ac"
 		}
 	},
-	"vvd/color/accent-alt/800": {
+	"vivid/color/accent-alt/800": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -492,7 +492,7 @@
 			"hex": "#c31d8e"
 		}
 	},
-	"vvd/color/accent-alt/900": {
+	"vivid/color/accent-alt/900": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -503,7 +503,7 @@
 			"hex": "#9a1970"
 		}
 	},
-	"vvd/color/accent-alt/1000": {
+	"vivid/color/accent-alt/1000": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -514,7 +514,7 @@
 			"hex": "#74085f"
 		}
 	},
-	"vvd/color/accent-alt/1100": {
+	"vivid/color/accent-alt/1100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -525,7 +525,7 @@
 			"hex": "#54044b"
 		}
 	},
-	"vvd/color/accent-alt/1200": {
+	"vivid/color/accent-alt/1200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -536,7 +536,7 @@
 			"hex": "#46073f"
 		}
 	},
-	"vvd/color/accent-alt/1300": {
+	"vivid/color/accent-alt/1300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -547,7 +547,7 @@
 			"hex": "#3e0837"
 		}
 	},
-	"vvd/color/positive/100": {
+	"vivid/color/positive/100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -558,7 +558,7 @@
 			"hex": "#f1fcf3"
 		}
 	},
-	"vvd/color/positive/200": {
+	"vivid/color/positive/200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -567,7 +567,7 @@
 			"hex": "#eafaed"
 		}
 	},
-	"vvd/color/positive/300": {
+	"vivid/color/positive/300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -578,7 +578,7 @@
 			"hex": "#d0eed4"
 		}
 	},
-	"vvd/color/positive/400": {
+	"vivid/color/positive/400": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -587,7 +587,7 @@
 			"hex": "#a6e7af"
 		}
 	},
-	"vvd/color/positive/500": {
+	"vivid/color/positive/500": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -596,7 +596,7 @@
 			"hex": "#7adc86"
 		}
 	},
-	"vvd/color/positive/600": {
+	"vivid/color/positive/600": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -607,7 +607,7 @@
 			"hex": "#56cc6c"
 		}
 	},
-	"vvd/color/positive/700": {
+	"vivid/color/positive/700": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -618,7 +618,7 @@
 			"hex": "#24963b"
 		}
 	},
-	"vvd/color/positive/800": {
+	"vivid/color/positive/800": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -629,7 +629,7 @@
 			"hex": "#177a2a"
 		}
 	},
-	"vvd/color/positive/900": {
+	"vivid/color/positive/900": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -640,7 +640,7 @@
 			"hex": "#156024"
 		}
 	},
-	"vvd/color/positive/1000": {
+	"vivid/color/positive/1000": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -651,7 +651,7 @@
 			"hex": "#194621"
 		}
 	},
-	"vvd/color/positive/1100": {
+	"vivid/color/positive/1100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -662,7 +662,7 @@
 			"hex": "#15321b"
 		}
 	},
-	"vvd/color/positive/1200": {
+	"vivid/color/positive/1200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -673,7 +673,7 @@
 			"hex": "#102917"
 		}
 	},
-	"vvd/color/positive/1300": {
+	"vivid/color/positive/1300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -684,7 +684,7 @@
 			"hex": "#0e2515"
 		}
 	},
-	"vvd/color/caution/100": {
+	"vivid/color/caution/100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -695,7 +695,7 @@
 			"hex": "#fefaeb"
 		}
 	},
-	"vvd/color/caution/200": {
+	"vivid/color/caution/200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -706,7 +706,7 @@
 			"hex": "#fdf5d5"
 		}
 	},
-	"vvd/color/caution/300": {
+	"vivid/color/caution/300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -717,7 +717,7 @@
 			"hex": "#fce795"
 		}
 	},
-	"vvd/color/caution/400": {
+	"vivid/color/caution/400": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -728,7 +728,7 @@
 			"hex": "#fad45f"
 		}
 	},
-	"vvd/color/caution/500": {
+	"vivid/color/caution/500": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -739,7 +739,7 @@
 			"hex": "#fcbd2d"
 		}
 	},
-	"vvd/color/caution/600": {
+	"vivid/color/caution/600": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -750,7 +750,7 @@
 			"hex": "#fba204"
 		}
 	},
-	"vvd/color/caution/700": {
+	"vivid/color/caution/700": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -761,7 +761,7 @@
 			"hex": "#ce6602"
 		}
 	},
-	"vvd/color/caution/800": {
+	"vivid/color/caution/800": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -772,7 +772,7 @@
 			"hex": "#ac4f02"
 		}
 	},
-	"vvd/color/caution/900": {
+	"vivid/color/caution/900": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -783,7 +783,7 @@
 			"hex": "#8a3c08"
 		}
 	},
-	"vvd/color/caution/1000": {
+	"vivid/color/caution/1000": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -794,7 +794,7 @@
 			"hex": "#642f02"
 		}
 	},
-	"vvd/color/caution/1100": {
+	"vivid/color/caution/1100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -805,7 +805,7 @@
 			"hex": "#462301"
 		}
 	},
-	"vvd/color/caution/1200": {
+	"vivid/color/caution/1200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -816,7 +816,7 @@
 			"hex": "#3b1d02"
 		}
 	},
-	"vvd/color/caution/1300": {
+	"vivid/color/caution/1300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -827,7 +827,7 @@
 			"hex": "#341a02"
 		}
 	},
-	"vvd/color/critical/100": {
+	"vivid/color/critical/100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -836,7 +836,7 @@
 			"hex": "#fff8fa"
 		}
 	},
-	"vvd/color/critical/200": {
+	"vivid/color/critical/200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -845,7 +845,7 @@
 			"hex": "#fff2f6"
 		}
 	},
-	"vvd/color/critical/300": {
+	"vivid/color/critical/300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -856,7 +856,7 @@
 			"hex": "#fee0e0"
 		}
 	},
-	"vvd/color/critical/400": {
+	"vivid/color/critical/400": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -865,7 +865,7 @@
 			"hex": "#ffcccb"
 		}
 	},
-	"vvd/color/critical/500": {
+	"vivid/color/critical/500": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -874,7 +874,7 @@
 			"hex": "#ffb3b3"
 		}
 	},
-	"vvd/color/critical/600": {
+	"vivid/color/critical/600": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -885,7 +885,7 @@
 			"hex": "#fe9999"
 		}
 	},
-	"vvd/color/critical/700": {
+	"vivid/color/critical/700": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -896,7 +896,7 @@
 			"hex": "#f13f3f"
 		}
 	},
-	"vvd/color/critical/800": {
+	"vivid/color/critical/800": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -907,7 +907,7 @@
 			"hex": "#d40e0f"
 		}
 	},
-	"vvd/color/critical/900": {
+	"vivid/color/critical/900": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -918,7 +918,7 @@
 			"hex": "#ab0403"
 		}
 	},
-	"vvd/color/critical/1000": {
+	"vivid/color/critical/1000": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -927,7 +927,7 @@
 			"hex": "#820000"
 		}
 	},
-	"vvd/color/critical/1100": {
+	"vivid/color/critical/1100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -936,7 +936,7 @@
 			"hex": "#600002"
 		}
 	},
-	"vvd/color/critical/1200": {
+	"vivid/color/critical/1200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -945,7 +945,7 @@
 			"hex": "#520003"
 		}
 	},
-	"vvd/color/critical/1300": {
+	"vivid/color/critical/1300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -954,7 +954,7 @@
 			"hex": "#4a0004"
 		}
 	},
-	"vvd/color/information/100": {
+	"vivid/color/information/100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -963,7 +963,7 @@
 			"hex": "#f4fafd"
 		}
 	},
-	"vvd/color/information/200": {
+	"vivid/color/information/200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -974,7 +974,7 @@
 			"hex": "#eff7fc"
 		}
 	},
-	"vvd/color/information/300": {
+	"vivid/color/information/300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -985,7 +985,7 @@
 			"hex": "#d3e9fc"
 		}
 	},
-	"vvd/color/information/400": {
+	"vivid/color/information/400": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -996,7 +996,7 @@
 			"hex": "#b6dcfd"
 		}
 	},
-	"vvd/color/information/500": {
+	"vivid/color/information/500": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -1005,7 +1005,7 @@
 			"hex": "#91cdff"
 		}
 	},
-	"vvd/color/information/600": {
+	"vivid/color/information/600": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -1014,7 +1014,7 @@
 			"hex": "#6abcff"
 		}
 	},
-	"vvd/color/information/700": {
+	"vivid/color/information/700": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -1025,7 +1025,7 @@
 			"hex": "#1185e3"
 		}
 	},
-	"vvd/color/information/800": {
+	"vivid/color/information/800": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -1036,7 +1036,7 @@
 			"hex": "#0c69c8"
 		}
 	},
-	"vvd/color/information/900": {
+	"vivid/color/information/900": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -1047,7 +1047,7 @@
 			"hex": "#0950a8"
 		}
 	},
-	"vvd/color/information/1000": {
+	"vivid/color/information/1000": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -1058,7 +1058,7 @@
 			"hex": "#0e3a82"
 		}
 	},
-	"vvd/color/information/1100": {
+	"vivid/color/information/1100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -1069,7 +1069,7 @@
 			"hex": "#0c295f"
 		}
 	},
-	"vvd/color/information/1200": {
+	"vivid/color/information/1200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -1080,7 +1080,7 @@
 			"hex": "#0a224f"
 		}
 	},
-	"vvd/color/information/1300": {
+	"vivid/color/information/1300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -1091,7 +1091,7 @@
 			"hex": "#091f46"
 		}
 	},
-	"vvd/color/canvas": {
+	"vivid/color/canvas": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",

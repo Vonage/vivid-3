@@ -1,5 +1,10 @@
-import type { Hooks, PlatformConfig } from 'style-dictionary/types';
+import type {
+	Hooks,
+	PlatformConfig,
+	TransformedToken,
+} from 'style-dictionary/types';
 import { type ColorValue, getHex } from '../utils/hexify.util';
+import { fileHeader } from 'style-dictionary/utils';
 
 function double(value: string | number) {
 	return String(parseFloat(String(value)).toFixed(2));
@@ -11,6 +16,31 @@ function color(token: ColorValue) {
 }
 
 export const flutterConfig: Hooks = {
+	actions: {
+		'vvd/flutter/createPackage': {
+			do(_dictionary, platform, _file, volume) {
+				volume.cpSync('./files/', platform.buildPath, {
+					recursive: true,
+				} as any);
+			},
+			undo(_dictionary, platform, _config, volume) {
+				volume.unlinkSync(platform.buildPath);
+			},
+		},
+	},
+	formats: {
+		'vvd/flutter/variables': async ({ dictionary, file, options }) => {
+			const header = await fileHeader({ file, options });
+
+			const variables = Array.from(dictionary.tokenMap.values()).map(
+				(token: TransformedToken) => `const ${token.name} = ${token.$value};`
+			);
+
+			return `${header}import 'package:flutter/painting.dart';\n\n${variables.join(
+				'\n'
+			)}`;
+		},
+	},
 	transforms: {
 		'vvd/value/flutter/borderRadius': {
 			type: 'value',
@@ -75,7 +105,7 @@ export const flutterConfig: Hooks = {
 			/* v8 ignore next -- @preserve */
 			filter: (token) => token.$type === 'shadow',
 			transform(token) {
-				const stops = token.$value.map((stop) => {
+				const stops = token.$value.map((stop: any) => {
 					return `			BoxShadow(
 					color: ${color(stop.color)},
 					offset: Offset(${double(stop.offsetX)}, ${double(stop.offsetY)}),
@@ -98,9 +128,6 @@ export const flutterConfig: Hooks = {
 };
 
 export const flutterPlatform: PlatformConfig = {
-	options: {
-		selector: '.vvd-root, ::part(vvd-root)',
-	},
 	basePxFontSize: 14,
 	transforms: [
 		'vvd/value/flutter/color',
@@ -110,14 +137,18 @@ export const flutterPlatform: PlatformConfig = {
 		'vvd/value/flutter/borderRadius',
 		'vvd/value/flutter/shadow',
 	],
-	buildPath: './flutter-dist/',
+	buildPath: './flutter-dist',
 	files: [
 		{
-			destination: 'vivid-design-tokens.dart',
-			format: 'flutter/class.dart',
+			destination: 'lib/vivid-design-tokens.dart',
+			format: 'vvd/flutter/variables',
+			// TODO: Remove this filter after font licensing is sorted out and typography tokens are rolled out.
+			/* v8 ignore next -- @preserve */
+			filter: (token) => !token.filePath.includes('typography'),
 			options: {
 				className: 'VvdTokens',
 			},
 		},
 	],
+	actions: ['vvd/flutter/createPackage'],
 };
