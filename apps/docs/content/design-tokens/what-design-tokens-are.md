@@ -28,14 +28,14 @@ This keeps the model simple to understand, predictable to use, and easy to maint
 Tokens follow a structured, readable pattern:
 
 ```
-vvd - category – semantic family – scale
+vivid - category – semantic family – scale
 ```
 
-Example: `vvd-color-positive-700`
+Example: `vivid-color-positive-700`
 
 Each part contributes to clarity:
 
-- **vvd** is a prefix that is visible always, regardless the platform.
+- **vivid** is a prefix that is visible always, regardless the platform.
 - **category** describes the type of design decision (color, typography, spacing, radius, elevation, size)
 - **semantic family** expresses intent (neutral, accent, caution, positive…)
 - **scale** communicates visual weight, hierarchy, and contrast (700 as the default starting point)

@@ -22,7 +22,7 @@ For these reasons, custom token overrides are discouraged.
 It can be tempting to construct token names dynamically to reduce code, for example:
 
 ```typescript
-const token = `--vvd-color-${isError ? 'error' : 'neutral'}-700`;
+const token = `--vivid-color-${isError ? 'error' : 'neutral'}-700`;
 ```
 
 This approach is not allowed. Tokens must always be written using their full, explicit names. This ensures our analysis tools (and any future code-mod or bulk-replacement tools) can reliably detect and process them.

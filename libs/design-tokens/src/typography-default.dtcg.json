@@ -1,5 +1,5 @@
 {
-	"vvd/typography/heading/100": {
+	"❌ [WIP] vivid/typography/heading/100": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -15,7 +15,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/200": {
+	"❌ [WIP] vivid/typography/heading/200": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -31,7 +31,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/300": {
+	"❌ [WIP] vivid/typography/heading/300": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -47,7 +47,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/400": {
+	"❌ [WIP] vivid/typography/heading/400": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -63,7 +63,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/500": {
+	"❌ [WIP] vivid/typography/heading/500": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -79,7 +79,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/600": {
+	"❌ [WIP] vivid/typography/heading/600": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -95,7 +95,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/700": {
+	"❌ [WIP] vivid/typography/heading/700": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -111,7 +111,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/800": {
+	"❌ [WIP] vivid/typography/heading/800": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -127,7 +127,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/900": {
+	"❌ [WIP] vivid/typography/heading/900": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -143,7 +143,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/1000": {
+	"❌ [WIP] vivid/typography/heading/1000": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -159,7 +159,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/1100": {
+	"❌ [WIP] vivid/typography/heading/1100": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -175,7 +175,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/1200": {
+	"❌ [WIP] vivid/typography/heading/1200": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -191,7 +191,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/heading/1300": {
+	"❌ [WIP] vivid/typography/heading/1300": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Wide Medium",
@@ -207,7 +207,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/body/100": {
+	"❌ [WIP] vivid/typography/body/100": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -223,7 +223,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/200": {
+	"❌ [WIP] vivid/typography/body/200": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -239,7 +239,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/300": {
+	"❌ [WIP] vivid/typography/body/300": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -255,7 +255,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/400": {
+	"❌ [WIP] vivid/typography/body/400": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -271,7 +271,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/500": {
+	"❌ [WIP] vivid/typography/body/500": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -287,7 +287,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/600": {
+	"❌ [WIP] vivid/typography/body/600": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -303,7 +303,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/700": {
+	"❌ [WIP] vivid/typography/body/700": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -319,7 +319,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/800": {
+	"❌ [WIP] vivid/typography/body/800": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -335,7 +335,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/900": {
+	"❌ [WIP] vivid/typography/body/900": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -351,7 +351,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/1000": {
+	"❌ [WIP] vivid/typography/body/1000": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -367,7 +367,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/1100": {
+	"❌ [WIP] vivid/typography/body/1100": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -383,7 +383,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/1200": {
+	"❌ [WIP] vivid/typography/body/1200": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -399,7 +399,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/body/1300": {
+	"❌ [WIP] vivid/typography/body/1300": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -415,7 +415,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/caption/100": {
+	"❌ [WIP] vivid/typography/caption/100": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -431,7 +431,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/200": {
+	"❌ [WIP] vivid/typography/caption/200": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -447,7 +447,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/300": {
+	"❌ [WIP] vivid/typography/caption/300": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -463,7 +463,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/400": {
+	"❌ [WIP] vivid/typography/caption/400": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -479,7 +479,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/500": {
+	"❌ [WIP] vivid/typography/caption/500": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -495,7 +495,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/600": {
+	"❌ [WIP] vivid/typography/caption/600": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -511,7 +511,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/700": {
+	"❌ [WIP] vivid/typography/caption/700": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -527,7 +527,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/800": {
+	"❌ [WIP] vivid/typography/caption/800": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -543,7 +543,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/900": {
+	"❌ [WIP] vivid/typography/caption/900": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -559,7 +559,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/1000": {
+	"❌ [WIP] vivid/typography/caption/1000": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -575,7 +575,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/1100": {
+	"❌ [WIP] vivid/typography/caption/1100": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -591,7 +591,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/1200": {
+	"❌ [WIP] vivid/typography/caption/1200": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -607,7 +607,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/caption/1300": {
+	"❌ [WIP] vivid/typography/caption/1300": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Medium",
@@ -623,7 +623,7 @@
 			"fontWeight": 500
 		}
 	},
-	"vvd/typography/input/100": {
+	"❌ [WIP] vivid/typography/input/100": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -639,7 +639,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/200": {
+	"❌ [WIP] vivid/typography/input/200": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -655,7 +655,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/300": {
+	"❌ [WIP] vivid/typography/input/300": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -671,7 +671,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/400": {
+	"❌ [WIP] vivid/typography/input/400": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -687,7 +687,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/500": {
+	"❌ [WIP] vivid/typography/input/500": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -703,7 +703,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/600": {
+	"❌ [WIP] vivid/typography/input/600": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -719,7 +719,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/700": {
+	"❌ [WIP] vivid/typography/input/700": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -735,7 +735,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/800": {
+	"❌ [WIP] vivid/typography/input/800": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -751,7 +751,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/900": {
+	"❌ [WIP] vivid/typography/input/900": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -767,7 +767,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/1000": {
+	"❌ [WIP] vivid/typography/input/1000": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -783,7 +783,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/1100": {
+	"❌ [WIP] vivid/typography/input/1100": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -799,7 +799,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/1200": {
+	"❌ [WIP] vivid/typography/input/1200": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -815,7 +815,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/input/1300": {
+	"❌ [WIP] vivid/typography/input/1300": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - Regular",
@@ -831,7 +831,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/100": {
+	"❌ [WIP] vivid/typography/code/100": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -847,7 +847,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/200": {
+	"❌ [WIP] vivid/typography/code/200": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -863,7 +863,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/300": {
+	"❌ [WIP] vivid/typography/code/300": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -879,7 +879,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/400": {
+	"❌ [WIP] vivid/typography/code/400": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -895,7 +895,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/500": {
+	"❌ [WIP] vivid/typography/code/500": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -911,7 +911,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/600": {
+	"❌ [WIP] vivid/typography/code/600": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -927,7 +927,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/700": {
+	"❌ [WIP] vivid/typography/code/700": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -943,7 +943,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/800": {
+	"❌ [WIP] vivid/typography/code/800": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -959,7 +959,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/900": {
+	"❌ [WIP] vivid/typography/code/900": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -975,7 +975,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/1000": {
+	"❌ [WIP] vivid/typography/code/1000": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -991,7 +991,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/1100": {
+	"❌ [WIP] vivid/typography/code/1100": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -1007,7 +1007,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/1200": {
+	"❌ [WIP] vivid/typography/code/1200": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
@@ -1023,7 +1023,7 @@
 			"fontWeight": 400
 		}
 	},
-	"vvd/typography/code/1300": {
+	"❌ [WIP] vivid/typography/code/1300": {
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "Spezia - SemiMono Regular",
