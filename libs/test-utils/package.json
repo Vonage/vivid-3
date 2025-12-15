@@ -1,6 +1,6 @@
 {
 	"name": "@vonage/vivid-test-utils",
-	"version": "5.6.0",
+	"version": "5.7.0",
 	"type": "module",
 	"exports": {
 		"./dom": {
