@@ -100,7 +100,7 @@ jobs:
     secrets: inherit
 
   vivid-design-tokens-flutter-publish:
-    needs: should-release
+    needs: [should-release, release-please]
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
     uses: ./.github/workflows/_publish-flutter.yml
     with:
