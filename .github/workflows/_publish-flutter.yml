@@ -25,13 +25,15 @@ on:
         required: true
       VNG_VVD_PAT:
         required: true
+      RELEASE_PLEASE_PAT:
+        required: true
 
 jobs:
   publish-flutter:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ inputs.sha }}
 
@@ -68,9 +70,9 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git clone https://github.x-access-token:${GITHUB_TOKEN}@github.com/Vonage/vivid-flutter-design-tokens.git deploy
+          git clone "https://github.x-access-token:${GITHUB_TOKEN}@github.com/Vonage/vivid-flutter-design-tokens.git" deploy
           cd deploy
-          rm -rf *
+          rm -rf -- *
           cp -R ../${{ inputs.path }}* .
           git add .
           git commit -m "Release v${{ inputs.version }}"
