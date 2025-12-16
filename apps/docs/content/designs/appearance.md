@@ -287,7 +287,7 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 	<docs-appearance-ui selected appearance="subtle"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<span class="one-example" class="one-example">not set</span>
+	<docs-appearance-ui selected hovered appearance="subtle"></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
 	<docs-appearance-ui disabled appearance="subtle" class="one-example"></docs-appearance-ui>
