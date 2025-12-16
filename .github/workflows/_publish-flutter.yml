@@ -33,7 +33,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.inputs.sha }}
+          ref: ${{ inputs.sha }}
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
@@ -60,10 +60,10 @@ jobs:
         run: pnpm run build
 
       - name: Set version
-        if: ${{ github.event.inputs.version != '' }}
-        working-directory: ${{ github.event.inputs.path }}
+        if: ${{ inputs.version != '' }}
+        working-directory: ${{ inputs.path }}
         run: |
-          sed -i 's/^version:.*/version: ${{ github.event.inputs.version }}/' pubspec.yaml
+          sed -i 's/^version:.*/version: ${{ inputs.version }}/' pubspec.yaml
           cat pubspec.yaml
 
       - name: Commit and push changes
@@ -71,10 +71,10 @@ jobs:
           git clone https://github.x-access-token:${GITHUB_TOKEN}@github.com/Vonage/vivid-flutter-design-tokens.git deploy
           cd deploy
           rm -rf *
-          cp -R ../${{ github.event.inputs.path }}* .
+          cp -R ../${{ inputs.path }}* .
           git add .
-          git commit -m "Release v${{ github.event.inputs.version }}"
-          git tag v${{ github.event.inputs.version }}
+          git commit -m "Release v${{ inputs.version }}"
+          git tag v${{ inputs.version }}
           git push --force origin main --tags
         env:
           GIT_AUTHOR_NAME: github-actions
