@@ -57,7 +57,7 @@ In these examples try to follow best practice so consumers can copy code into th
 
 ## Accessibility (ACCESSIBILITY.md)
 
-Relevant information the needed to use the component in an accessible way.
+Relevant information needed to use the component in an accessible way.
 
 Include an "Implementation" section for required practices. E.g. Adding an aria-label when no label is provided for the Text Field.
 

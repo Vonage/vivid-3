@@ -28,9 +28,9 @@
 
 All code examples should be provided for Vue Wrappers and Web Components. Use tabs to allow users to switch between the two.
 
-Our documentations site supports special code blocks that will render a live preview of the code alongside the code snippet.
+Our documentation site supports special code blocks that will render a live preview of the code alongside the code snippet.
 
-Start the code block with `html preview` for HTML (Web Components) preview or `vue preview` for Vue preview.
+Start the code block with `html preview` for HTML (Web Components) preview or `vue preview` for Vue preview, and optionally append one of the style options below (for example, ```html preview blocks).
 
 ### Code Preview Style
 
