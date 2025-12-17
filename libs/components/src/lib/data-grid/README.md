@@ -1,7 +1,36 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<template>
+	<VSelect v-model="value" label="Selection Mode" class="select">
+		<VOption value="none" text="none" />
+		<VOption value="single-row" text="single-row" />
+		<VOption value="multi-row" text="multi-row" />
+		<VOption value="single-cell" text="single-cell" />
+		<VOption value="multi-cell" text="multi-cell" />
+	</VSelect>
+	<VDataGrid id="grid" :selection-mode="value" :rows-data="data" />
+</template>
+<script setup lang="ts">
+import { VDataGrid, VSelect, VOption } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const value = ref('none');
+const data = ref([
+	{ name: 'John', surname: 'Doe', age: 30 },
+	{ name: 'Jane', surname: 'Doe', age: 25 },
+	{ name: 'Bill', surname: 'Cave', age: 22 },
+	{ name: 'Jill', surname: 'Jane', age: 23 },
+]);
+</script>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -40,40 +69,76 @@ Data Grid Row and Data Grid Cell sub-components are registered automatically in 
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<template>
-	<VSelect v-model="value" label="Selection Mode" class="select">
-		<VOption value="none" text="none" />
-		<VOption value="single-row" text="single-row" />
-		<VOption value="multi-row" text="multi-row" />
-		<VOption value="single-cell" text="single-cell" />
-		<VOption value="multi-cell" text="multi-cell" />
-	</VSelect>
-	<VDataGrid id="grid" :selection-mode="value" :rows-data="data" />
-</template>
-<script setup lang="ts">
-import { VDataGrid, VSelect, VOption } from '@vonage/vivid-vue';
-import { ref } from 'vue';
-
-const value = ref('none');
-const data = ref([
-	{ name: 'John', surname: 'Doe', age: 30 },
-	{ name: 'Jane', surname: 'Doe', age: 25 },
-	{ name: 'Bill', surname: 'Cave', age: 22 },
-	{ name: 'Jill', surname: 'Jane', age: 23 },
-]);
-</script>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Remove From Tab Order
 
 Use the `no-tabbing` attribute to remove the component from the tab order.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 300px
+<script setup lang="ts">
+import { VButton, VDataGrid, VDataGridRow, VDataGridCell } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const noTabbing = ref(true);
+const activeElementContent = ref('Grid not focused');
+const focusedCellContent = ref(' ');
+
+const changeTabbing = (tabbing: boolean) => {
+	noTabbing.value = tabbing;
+};
+
+const handleFocusIn = () => {
+	activeElementContent.value = 'Grid Focused';
+};
+
+const handleFocusOut = () => {
+	activeElementContent.value = 'Grid Not Focused';
+	focusedCellContent.value = ' ';
+};
+
+const handleCellFocused = (e: CustomEvent) => {
+	focusedCellContent.value = 'Focused Cell Content: ' + e.detail.innerText;
+};
+</script>
+
+<template>
+	<VButton label="No Tabbing" @click="changeTabbing(true)" class="button" :appearance="noTabbing ? 'filled' : undefined" />
+	<VButton label="Tabbing" @click="changeTabbing(false)" class="button" :appearance="!noTabbing ? 'filled' : undefined" />
+
+	<div id="active-element-content-display">
+		<p>Hit <code>TAB</code> key to browse the tab queue. When in `no-tabbing` mode, grid will never be focused.</p>
+		<div id="active-element-content">{{ activeElementContent }}</div>
+		<div id="focused-cell-content">{{ focusedCellContent }}</div>
+	</div>
+
+	<VDataGrid :no-tabbing="noTabbing" class="data-grid" @focusin="handleFocusIn" @focusout="handleFocusOut" @cell-focused="handleCellFocused">
+		<VDataGridRow row-type="header">
+			<VDataGridCell cell-type="columnheader">Data 1</VDataGridCell>
+			<VDataGridCell cell-type="columnheader">Data 2</VDataGridCell>
+			<VDataGridCell cell-type="columnheader">Data 3</VDataGridCell>
+		</VDataGridRow>
+		<VDataGridRow>
+			<VDataGridCell>Data 11</VDataGridCell>
+			<VDataGridCell>Data 12</VDataGridCell>
+			<VDataGridCell>Data 13</VDataGridCell>
+		</VDataGridRow>
+		<VDataGridRow>
+			<VDataGridCell>Data 21</VDataGridCell>
+			<VDataGridCell>Data 22</VDataGridCell>
+			<VDataGridCell>Data 23</VDataGridCell>
+		</VDataGridRow>
+	</VDataGrid>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 300px
 <vwc-button label="No Tabbing" onclick="changeTabbing(true)" class="button" appearance="filled"></vwc-button>
@@ -125,11 +190,45 @@ Use the `no-tabbing` attribute to remove the component from the tab order.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Setting Focus on a Cell
 
 Use the `focusRowIndex` and `focusColumnIndex` to determine which row or cell to set focus on when the Data Grid component receieves focus.
 
 In the example below, change the value of the row / column index and then tab into the Data Grid.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VNumberField, VDataGrid } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const rowIndex = ref(0);
+const colIndex = ref(0);
+
+const data = ref([
+	{ data1: 'data11', data2: 'data12', data3: 'data13' },
+	{ data1: 'data21', data2: 'data22', data3: 'data23' },
+	{ data1: 'data31', data2: 'data32', data3: 'data33' },
+	{ data1: 'data41', data2: 'data42', data3: 'data43' },
+]);
+</script>
+
+<template>
+	<VNumberField label="Row index" v-model="rowIndex" :min="0" :max="5" />
+	<VNumberField label="Column index" v-model="colIndex" :min="0" :max="2" />
+	<VDataGrid :rows-data="data" :focus-row-index="rowIndex" :focus-column-index="colIndex" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-number-field label="Row index" id="row-index" min="0" value="0" max="5"></vwc-number-field>
@@ -159,11 +258,56 @@ In the example below, change the value of the row / column index and then tab in
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Cell Click Event
 
 The `cell-click` event is fired when a cell is clicked on or when the enter or space key is pressed on a focused cell.
 
 Event details: `{ cell, row, isHeaderCell, columnDataKey }`
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDataGrid } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const clickResult = ref('');
+
+const columnDefinitions = ref([
+	{ columnDataKey: 'data1', title: 'Column 1' },
+	{ columnDataKey: 'data2', title: 'Column 2' },
+]);
+
+const rowsData = ref([
+	{ data1: 'data11', data2: 'data12' },
+	{ data1: 'data21', data2: 'data22' },
+]);
+
+const handleCellClick = (e: CustomEvent) => {
+	const { cell, row, columnDataKey, isHeaderCell } = e.detail;
+	let result = `${cell.textContent} Col #${cell.gridColumn}, Row Index${row.rowIndex}`;
+	if (isHeaderCell) result += ': Grid Header Cell';
+	clickResult.value = result;
+};
+</script>
+
+<template>
+	<VDataGrid class="data-grid" :column-definitions="columnDefinitions" :rows-data="rowsData" @cell-click="handleCellClick" />
+	<br />
+	<div>
+		Cell Clicked: <span id="click-result">{{ clickResult }}</span>
+	</div>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-data-grid class="data-grid"></vwc-data-grid>
@@ -193,6 +337,9 @@ Event details: `{ cell, row, isHeaderCell, columnDataKey }`
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Rows Data
 
 Use the `rowsData` property to provide the component with the data (an `array` or `objects`) to be displayed.
@@ -207,6 +354,30 @@ However, we recommend using the [Data Grid Row](#data-grid-row) and [Data Grid C
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDataGrid } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const rowsData = ref([
+	{ data1: 'data11', data2: 'data12' },
+	{ data1: 'data21', data2: 'data22' },
+]);
+</script>
+
+<template>
+	<VDataGrid class="data-grid" :rows-data="rowsData" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-data-grid class="data-grid"></vwc-data-grid>
 
@@ -219,6 +390,9 @@ However, we recommend using the [Data Grid Row](#data-grid-row) and [Data Grid C
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Column Definitions
 
 Use the `columnDefinitions` property to programmatically configure the column headers that are generated when using `rows-data`. See the [ColumnDefinition interface](#data-grid) for more information.
@@ -229,6 +403,40 @@ Use the `columnDefinitions` property to programmatically configure the column he
 The sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. See the [sorting use case](/components/data-grid/use-cases/#sortable-columns) for more information.
 
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDataGrid } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const columnDefinitions = ref([
+	{
+		columnDataKey: 'data1',
+		title: 'Custom Title 1',
+		sortable: true,
+		sortDirection: 'ascending',
+	},
+	{ columnDataKey: 'data2', title: 'Custom Title 2', sortable: true },
+]);
+
+const rowsData = ref([
+	{ data1: 'data11', data2: 'data12' },
+	{ data1: 'data21', data2: 'data22' },
+]);
+</script>
+
+<template>
+	<VDataGrid :column-definitions="columnDefinitions" :rows-data="rowsData" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-data-grid></vwc-data-grid>
@@ -250,9 +458,54 @@ The sortable feature doesn't actually sort the data, it only changes the visual 
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Generate Header
 
 Use the `generate-header` property to programmatically define the type of grid header that is generated when using `rows-data`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VSelect, VOption, VDataGrid } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const generateHeader = ref('default');
+
+const rowsData = ref([
+	{ data1: 'data111', data2: 'data12' },
+	{ data1: 'data21', data2: 'data22' },
+	{ data1: 'data31', data2: 'data32' },
+	{ data1: 'data41', data2: 'data42' },
+	{ data1: 'data51', data2: 'data52' },
+	{ data1: 'data61', data2: 'data62' },
+]);
+</script>
+
+<template>
+	<VSelect v-model="generateHeader">
+		<VOption value="default" text="default" />
+		<VOption value="sticky" text="sticky" />
+		<VOption value="none" text="none" />
+	</VSelect>
+
+	<VDataGrid class="data-grid" :generate-header="generateHeader" :rows-data="rowsData" />
+</template>
+
+<style scoped>
+.data-grid {
+	max-block-size: 300px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-select onchange="changeHeader()">
@@ -288,6 +541,9 @@ Use the `generate-header` property to programmatically define the type of grid h
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Row, Cell and Header Cell Templates
 
 The `ViewTemplate`s used to render rows, cells and header cells can be customised using the following properties:
@@ -317,6 +573,30 @@ You need to use `html` from `fast-element`.
 
 Use the `rowElementTag` to set the element tag for header row cells. If not set, the default tag `vwc-data-grid-cell` will be used.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDataGrid } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const rowsData = ref([
+	{ data1: 'data11', data2: 'data12' },
+	{ data1: 'data21', data2: 'data22' },
+]);
+</script>
+
+<template>
+	<VDataGrid row-element-tag="div" :rows-data="rowsData" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
@@ -329,12 +609,49 @@ Use the `rowElementTag` to set the element tag for header row cells. If not set,
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## CSS Variables
 
 ### Row Background
 
 When Row is set to sticky there's a default canvas background-color.  
 Use `--data-grid-row-background` to change the sticky row background-color.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDataGrid } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const rowsData = ref([
+	{ data1: 'data111', data2: 'data12' },
+	{ data1: 'data21', data2: 'data22' },
+	{ data1: 'data31', data2: 'data32' },
+	{ data1: 'data41', data2: 'data42' },
+	{ data1: 'data51', data2: 'data52' },
+	{ data1: 'data61', data2: 'data62' },
+]);
+</script>
+
+<template>
+	<VDataGrid class="data-grid" generate-header="sticky" :rows-data="rowsData" />
+</template>
+
+<style scoped>
+.data-grid {
+	--data-grid-row-background: var(--vvd-color-neutral-50);
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-data-grid class="data-grid"></vwc-data-grid>
@@ -359,10 +676,96 @@ Use `--data-grid-row-background` to change the sticky row background-color.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Cell Background
 
 When a grid has the `fixed-columns` attribute, fixed columns cells have a default canvas background-color.  
 Use `--data-grid-cell-background` to overwrite the default background-color.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDataGrid } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const rowsData = ref([
+	{
+		team: 'Ironhill United',
+		played: 5,
+		won: 4,
+		drawn: 1,
+		lost: 0,
+		goalsFor: 12,
+		goalsAgainst: 4,
+		points: 13,
+	},
+	{
+		team: 'Crimson Valley FC',
+		played: 5,
+		won: 3,
+		drawn: 1,
+		lost: 1,
+		goalsFor: 9,
+		goalsAgainst: 6,
+		points: 10,
+	},
+	{
+		team: 'Stormridge City',
+		played: 5,
+		won: 2,
+		drawn: 2,
+		lost: 1,
+		goalsFor: 7,
+		goalsAgainst: 5,
+		points: 8,
+	},
+	{
+		team: 'Eastbridge Rovers',
+		played: 5,
+		won: 1,
+		drawn: 1,
+		lost: 3,
+		goalsFor: 5,
+		goalsAgainst: 11,
+		points: 4,
+	},
+	{
+		team: 'Shadowmere FC',
+		played: 5,
+		won: 0,
+		drawn: 1,
+		lost: 4,
+		goalsFor: 3,
+		goalsAgainst: 10,
+		points: 1,
+	},
+]);
+</script>
+
+<template>
+	<VDataGrid class="data-grid" fixed-columns="1" grid-template-columns="2fr repeat(7, 1fr)" :rows-data="rowsData" />
+</template>
+
+<style>
+.data-grid {
+	--data-grid-cell-background: var(--vvd-color-neutral-50);
+}
+.data-grid :deep([data-vvd-component='data-grid-row']) {
+	width: 1200px;
+	display: block;
+	box-sizing: border-box;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-data-grid class="data-grid"></vwc-data-grid>
@@ -437,11 +840,48 @@ Use `--data-grid-cell-background` to overwrite the default background-color.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Block Size
 
 Use `--data-grid-cell-block-size` to change the cell's `block-size`.
 
 By default, header cells have a fixed height while data cells have a dynamic height based on content.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDataGrid, VDataGridRow, VDataGridCell } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDataGrid>
+		<VDataGridRow row-type="header">
+			<VDataGridCell cell-type="columnheader"> Column 1 </VDataGridCell>
+		</VDataGridRow>
+		<VDataGridRow>
+			<VDataGridCell> Dynamic height (default) </VDataGridCell>
+		</VDataGridRow>
+		<VDataGridRow class="fixed-height">
+			<VDataGridCell> Fixed height </VDataGridCell>
+		</VDataGridRow>
+	</VDataGrid>
+</template>
+
+<style scoped>
+.fixed-height {
+	--data-grid-cell-block-size: 100px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-data-grid>
@@ -463,11 +903,48 @@ By default, header cells have a fixed height while data cells have a dynamic hei
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### White Space
 
 Use `--data-grid-cell-white-space` to change the cell's `white-space`.
 
 By default, header cells will not wrap text (`nowrap`), while data cells will wrap text (`normal`).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDataGrid, VDataGridRow, VDataGridCell } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDataGrid>
+		<VDataGridRow row-type="header">
+			<VDataGridCell cell-type="columnheader"> Column 1 </VDataGridCell>
+		</VDataGridRow>
+		<VDataGridRow>
+			<VDataGridCell> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius libero ipsum, ut rhoncus nulla varius sit amet. Vestibulum volutpat feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim metus. </VDataGridCell>
+		</VDataGridRow>
+		<VDataGridRow class="nowrap">
+			<VDataGridCell> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius libero ipsum, ut rhoncus nulla varius sit amet. Vestibulum volutpat feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim metus. </VDataGridCell>
+		</VDataGridRow>
+	</VDataGrid>
+</template>
+
+<style scoped>
+.nowrap {
+	--data-grid-cell-white-space: nowrap;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-data-grid>
@@ -488,6 +965,9 @@ By default, header cells will not wrap text (`nowrap`), while data cells will wr
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
