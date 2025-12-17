@@ -52,21 +52,71 @@ See [Localization](/guides/localization/) for more details.
 
 The `helper-text` slot allows you to use rich content as the date picker's helper text.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 460px
+<script setup lang="ts">
+import { VDatePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDatePicker label="Start date">
+		<template #helper-text>
+			<span>Please see our <a href="#">opening times</a>.</span>
+		</template>
+	</VDatePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 460px
 <vwc-date-picker label="Start date">
 	<span slot="helper-text">Please see our <a href="#">opening times</a>.</span>
 </vwc-date-picker>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Contextual Help
 
 The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 460px
+<script setup lang="ts">
+import { VDatePicker, VContextualHelp } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDatePicker label="Start date">
+		<template #contextual-help>
+			<VContextualHelp>Pick the start date</VContextualHelp>
+		</template>
+	</VDatePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 460px
 <vwc-date-picker label="Start date">
 	<vwc-contextual-help slot="contextual-help">Pick the start date</vwc-contextual-help>
 </vwc-date-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
