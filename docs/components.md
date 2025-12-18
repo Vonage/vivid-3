@@ -20,6 +20,7 @@ Each component is implemented in its own directory under the `libs/components/sr
 
 To run unit tests for a specific component: `pnpm --filter ./libs/components exec vitest --run src/lib/<component name>`
 To update the ui tests snapshots for a specific component: `pnpm turbo @vonage/vivid#e2e:docker -- <component name> --update-snapshots`
+After making changes to a components API, regenerate the `metadata.json` file: `pnpm turbo @repo/wrapper-gen#buildMetadata`
 
 ## Creating a New Component
 
