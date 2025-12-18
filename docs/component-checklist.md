@@ -22,7 +22,7 @@ Developers should use this checklist to vet new components or significant change
 
 - [ ] Handled events are stopped from propagating
   - If the component handles an event, e.g. ESC keypress to close itself, it should usually prevent that event from propagating.
-  - This is to prevent a parent component from handling the even as well.
+  - This is to prevent a parent component from handling the event as well.
 
 ### Style
 
