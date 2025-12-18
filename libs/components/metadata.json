@@ -8596,7 +8596,16 @@
 					"returnType": "void"
 				}
 			],
-			"slots": [{ "name": "default", "description": "Default slot." }],
+			"slots": [
+				{
+					"name": "action-items",
+					"description": "Slot for action items such as buttons or controls."
+				},
+				{
+					"name": "default",
+					"description": "Default slot for tab and tab-panel elements."
+				}
+			],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
 				"actions": [

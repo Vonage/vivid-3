@@ -71,7 +71,8 @@ const arrayShallowEquals = <T>(a: T[], b: T[]) =>
 /**
  * @public
  * @component tabs
- * @slot - Default slot.
+ * @slot - Default slot for tab and tab-panel elements.
+ * @slot action-items - Slot for action items such as buttons or controls.
  * @event {CustomEvent<HTMLElement>} change - Fires a custom 'change' event when a tab is clicked or during keyboard navigation
  */
 export class Tabs extends VividElement {
