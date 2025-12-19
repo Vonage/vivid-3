@@ -171,23 +171,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </style>
 </div></vwc-layout>
 </div> <div style="margin: 5px;">
-    <vwc-layout gutters="small"><div><script type="module">
-	import { registerIcon } from '@vonage/vivid';
-	registerIcon('your-prefix');
-</script>
-
-<your-prefix-icon name="close-line"></your-prefix-icon>
-</div></vwc-layout>
-</div> <div style="margin: 5px;">
-    <vwc-layout gutters="small"><div><template>
-	<p>I <vicon name="heart-line" connotation="alert"> VIVID!</vicon></p>
-</template>
-
-<script setup="" lang="ts">
-import { VIcon } from '@vonage/vivid-vue';
-</script>
-</div></vwc-layout>
-</div> <div style="margin: 5px;">
     <vwc-layout gutters="small"><div><vwc-icon label="Close dialog" name="close-line" class="small-icon"></vwc-icon>
 </div></vwc-layout>
 </div> <div style="margin: 5px;">

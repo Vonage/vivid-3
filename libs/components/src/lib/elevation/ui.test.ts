@@ -21,21 +21,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 <vwc-elevation id="elevation">
 	<div id="card">Hover me!</div>
 </vwc-elevation>
-
-<script>
-	elevation.addEventListener('mouseenter', this.onMouseEnter);
-	elevation.addEventListener('mouseleave', this.onMouseLeave);
-
-	function onMouseEnter() {
-		elevation.setAttribute('dp', '24');
-		card.innerText = 'Get OFF of me!';
-	}
-
-	function onMouseLeave() {
-		elevation.removeAttribute('dp');
-		card.innerText = 'Hover me!';
-	}
-</script>
 </div></vwc-layout>
 </div> <div style="margin: 5px;">
     <vwc-layout gutters="small" column-basis="block"><style>

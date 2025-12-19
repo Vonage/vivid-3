@@ -51,23 +51,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	<vwc-tab-panel>Tab two content</vwc-tab-panel>
 	<vwc-tab-panel>Tab three content</vwc-tab-panel>
 </vwc-tabs>
-
-<script>
-	document.querySelector('vwc-tabs').addEventListener('close', (e) => {
-		const tab = e.srcElement;
-		const tabs = tab.parentElement;
-		const tabPanelId = tab.getAttribute('aria-controls');
-		const tabPanel = document.getElementById(tabPanelId);
-		if (tabs.querySelectorAll('vwc-tab').length === 1) {
-			tabs.remove();
-			return;
-		}
-		if (tabPanel) {
-			tabPanel.remove();
-			e.srcElement.remove();
-		}
-	});
-</script>
 </div> <div style="margin: 5px;">
     <vwc-layout gutters="small"><div><vwc-tabs>
 	<vwc-tab disabled="" label="Disabled Tab" id="tab"></vwc-tab>
