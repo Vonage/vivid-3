@@ -146,7 +146,6 @@ function ifNotFromFeedback<E extends Event>(
 export const SelectTemplate = (context: VividElementDefinitionContext) => {
 	return html<Select>`
 		<template
-			class="base"
 			${applyHostSemantics({
 				role: 'combobox',
 				ariaLabel: (x) => x.ariaLabel ?? x.label,
