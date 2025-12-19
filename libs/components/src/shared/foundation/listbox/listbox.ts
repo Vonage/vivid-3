@@ -219,6 +219,13 @@ export class Listbox extends VividElement {
 		return this.options.filter((o: ListboxOption) => o.text.trim().match(re));
 	}
 
+	/**
+	 * Finds the index of the next non-disabled option starting from the given index.
+	 *
+	 * @param fromIndex - The index to start searching from (inclusive)
+	 * @returns The index of the next selectable option, or -1 if none found
+	 * @internal
+	 */
 	protected getNextSelectableIndex(fromIndex: number) {
 		const nextSelectableOption = this.options.reduce<ListboxOption | null>(
 			(nextSelectableOption, thisOption, index) =>
@@ -229,6 +236,28 @@ export class Listbox extends VividElement {
 		);
 
 		return this.options.indexOf(nextSelectableOption as any);
+	}
+
+	/**
+	 * Finds the index of the previous non-disabled option starting from the given index.
+	 *
+	 * @param fromIndex - The index to start searching from (inclusive)
+	 * @returns The index of the previous selectable option, or -1 if none found
+	 * @internal
+	 */
+	protected getPreviousSelectableIndex(fromIndex: number) {
+		const previousSelectableOption =
+			this.options.reduceRight<ListboxOption | null>(
+				(previousSelectableOption, thisOption, index) =>
+					!previousSelectableOption &&
+					!thisOption.disabled &&
+					index <= fromIndex
+						? thisOption
+						: previousSelectableOption,
+				null
+			);
+
+		return this.options.indexOf(previousSelectableOption as any);
 	}
 
 	/**
@@ -442,7 +471,10 @@ export class Listbox extends VividElement {
 	selectNextOption(): void {
 		/* v8 ignore else -- @preserve */
 		if (!this.disabled && this.selectedIndex < this.options.length - 1) {
-			this.selectedIndex += 1;
+			const nextIndex = this.getNextSelectableIndex(this.selectedIndex + 1);
+			if (nextIndex !== -1) {
+				this.selectedIndex = nextIndex;
+			}
 		}
 	}
 
@@ -454,7 +486,10 @@ export class Listbox extends VividElement {
 	selectPreviousOption(): void {
 		/* v8 ignore else -- @preserve */
 		if (!this.disabled && this.selectedIndex > 0) {
-			this.selectedIndex = this.selectedIndex - 1;
+			const prevIndex = this.getPreviousSelectableIndex(this.selectedIndex - 1);
+			if (prevIndex !== -1) {
+				this.selectedIndex = prevIndex;
+			}
 		}
 	}
 

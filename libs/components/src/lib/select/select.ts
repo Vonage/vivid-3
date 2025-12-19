@@ -161,20 +161,26 @@ export class Select extends WithLightDOMFeedback(
 	 * @internal
 	 */
 	protected checkFirstOption(preserveChecked: boolean) {
+		const firstSelectableIndex = this.getNextSelectableIndex(0);
+		if (firstSelectableIndex === -1) {
+			return;
+		}
+
 		if (preserveChecked) {
-			/* v8 ignore else -- @preserve */
 			if (this.rangeStartIndex === -1) {
-				this.rangeStartIndex = this.activeIndex + 1;
+				this.rangeStartIndex = this.activeIndex;
 			}
 
 			this.options.forEach((o, i) => {
-				o.checked = inRange(i, this.rangeStartIndex);
+				o.checked =
+					inRange(i, firstSelectableIndex, this.rangeStartIndex + 1) &&
+					!o.disabled;
 			});
 		} else {
 			this.uncheckAllOptions();
 		}
 
-		this.activeIndex = 0;
+		this.activeIndex = firstSelectableIndex;
 		this.checkActiveIndex();
 	}
 
@@ -189,20 +195,28 @@ export class Select extends WithLightDOMFeedback(
 	 * @internal
 	 */
 	protected checkLastOption(preserveChecked: boolean) {
+		const lastSelectableIndex = this.getPreviousSelectableIndex(
+			this.length - 1
+		);
+		if (lastSelectableIndex === -1) {
+			return;
+		}
+
 		if (preserveChecked) {
-			/* v8 ignore else -- @preserve */
 			if (this.rangeStartIndex === -1) {
 				this.rangeStartIndex = this.activeIndex;
 			}
 
 			this.options.forEach((o, i) => {
-				o.checked = inRange(i, this.rangeStartIndex, this.length);
+				o.checked =
+					inRange(i, this.rangeStartIndex, lastSelectableIndex + 1) &&
+					!o.disabled;
 			});
 		} else {
 			this.uncheckAllOptions();
 		}
 
-		this.activeIndex = this.length - 1;
+		this.activeIndex = lastSelectableIndex;
 		this.checkActiveIndex();
 	}
 
@@ -217,20 +231,25 @@ export class Select extends WithLightDOMFeedback(
 	 * @internal
 	 */
 	protected checkNextOption(preserveChecked: boolean) {
+		const nextIndex = this.getNextSelectableIndex(this.activeIndex + 1);
+		if (nextIndex === -1) {
+			return;
+		}
+
 		if (preserveChecked) {
-			/* v8 ignore else -- @preserve */
 			if (this.rangeStartIndex === -1) {
 				this.rangeStartIndex = this.activeIndex;
 			}
 
 			this.options.forEach((o, i) => {
-				o.checked = inRange(i, this.rangeStartIndex, this.activeIndex + 1);
+				o.checked =
+					inRange(i, this.rangeStartIndex, nextIndex + 1) && !o.disabled;
 			});
 		} else {
 			this.uncheckAllOptions();
 		}
 
-		this.activeIndex += this.activeIndex < this.length - 1 ? 1 : 0;
+		this.activeIndex = nextIndex;
 		this.checkActiveIndex();
 	}
 
@@ -245,25 +264,29 @@ export class Select extends WithLightDOMFeedback(
 	 * @internal
 	 */
 	protected checkPreviousOption(preserveChecked: boolean) {
+		const previousIndex = this.getPreviousSelectableIndex(this.activeIndex - 1);
+		if (previousIndex === -1) {
+			return;
+		}
+
 		if (preserveChecked) {
-			/* v8 ignore else -- @preserve */
 			if (this.rangeStartIndex === -1) {
 				this.rangeStartIndex = this.activeIndex;
 			}
 
-			/* v8 ignore else -- @preserve */
 			if (this.checkedOptions.length === 1) {
 				this.rangeStartIndex += 1;
 			}
 
 			this.options.forEach((o, i) => {
-				o.checked = inRange(i, this.activeIndex, this.rangeStartIndex);
+				o.checked =
+					inRange(i, previousIndex, this.rangeStartIndex + 1) && !o.disabled;
 			});
 		} else {
 			this.uncheckAllOptions();
 		}
 
-		this.activeIndex -= this.activeIndex > 0 ? 1 : 0;
+		this.activeIndex = previousIndex;
 		this.checkActiveIndex();
 	}
 

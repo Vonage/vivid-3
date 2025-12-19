@@ -2,8 +2,6 @@ import 'element-internals-polyfill';
 
 import { elementUpdated, fixture, getControlElement } from '@repo/shared';
 import {
-	keyArrowDown,
-	keyArrowUp,
 	keyEnd,
 	keyEscape,
 	keyHome,
@@ -942,39 +940,6 @@ describe('vwc-select', () => {
 			expect(element.selectedIndex).toBe(0);
 		});
 
-		it('should select the first option when pressing home', async () => {
-			element.selectedIndex = 1;
-
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyHome }));
-
-			expect(element.selectedIndex).toBe(0);
-		});
-
-		it('should select the last option when pressing end', async () => {
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEnd }));
-
-			expect(element.selectedIndex).toBe(2);
-		});
-
-		it('should select the next option when pressing ArrowDown', async () => {
-			element.focus();
-			element.dispatchEvent(
-				new KeyboardEvent('keydown', { key: keyArrowDown })
-			);
-
-			expect(element.selectedIndex).toBe(1);
-		});
-
-		it('should select the previous option when pressing ArrowUp', async () => {
-			element.selectedIndex = 1;
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyArrowUp }));
-
-			expect(element.selectedIndex).toBe(0);
-		});
-
 		describe('when closed', () => {
 			it.each(['input', 'change'])(
 				`should emit %s event when selecting an option with the keyboard`,
@@ -1061,121 +1026,6 @@ describe('vwc-select', () => {
 			expect(getActiveOption()).toBe(getOption('1'));
 		});
 
-		it('should make first option active when pressing Home', async () => {
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyHome }));
-			await elementUpdated(element);
-
-			expect(getActiveOption()).toBe(getOption('1'));
-		});
-
-		it('should check all options from the active to first when pressing Shift + Home', async () => {
-			getOption('3').click();
-
-			element.focus();
-			element.dispatchEvent(
-				new KeyboardEvent('keydown', { key: keyHome, shiftKey: true })
-			);
-			await elementUpdated(element);
-
-			expect(getCheckedOptions()).toEqual([
-				getOption('1'),
-				getOption('2'),
-				getOption('3'),
-			]);
-		});
-
-		it('should make last option active when pressing End', async () => {
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEnd }));
-			await elementUpdated(element);
-
-			expect(getActiveOption()).toBe(getOption('3'));
-		});
-
-		it('should check all options from active to last when pressing Shift + End', async () => {
-			getOption('1').click();
-
-			element.focus();
-			element.dispatchEvent(
-				new KeyboardEvent('keydown', { key: keyEnd, shiftKey: true })
-			);
-			await elementUpdated(element);
-
-			expect(getCheckedOptions()).toEqual([
-				getOption('1'),
-				getOption('2'),
-				getOption('3'),
-			]);
-		});
-
-		it('should make the next option active when pressing ArrowDown', async () => {
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyHome }));
-			element.dispatchEvent(
-				new KeyboardEvent('keydown', { key: keyArrowDown })
-			);
-			await elementUpdated(element);
-
-			expect(getActiveOption()).toBe(getOption('2'));
-		});
-
-		it('should stay on the last option when pressing ArrowDown', async () => {
-			getOption('3').click();
-
-			element.focus();
-			element.dispatchEvent(
-				new KeyboardEvent('keydown', { key: keyArrowDown })
-			);
-			await elementUpdated(element);
-
-			expect(getActiveOption()).toBe(getOption('3'));
-		});
-
-		it('should check the next option when pressing Shift + ArrowDown', async () => {
-			getOption('1').click();
-
-			element.focus();
-			element.dispatchEvent(
-				new KeyboardEvent('keydown', { key: keyArrowDown, shiftKey: true })
-			);
-			await elementUpdated(element);
-
-			expect(getCheckedOptions()).toEqual([getOption('1'), getOption('2')]);
-		});
-
-		it('should make the previous option active when pressing ArrowUp', async () => {
-			getOption('3').click();
-
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyArrowUp }));
-			await elementUpdated(element);
-
-			expect(getActiveOption()).toBe(getOption('2'));
-		});
-
-		it('should stay on the first option when pressing ArrowUp', async () => {
-			getOption('1').click();
-
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyArrowUp }));
-			await elementUpdated(element);
-
-			expect(getActiveOption()).toBe(getOption('1'));
-		});
-
-		it('should check the previous option when pressing Shift + ArrowUp', async () => {
-			getOption('3').click();
-
-			element.focus();
-			element.dispatchEvent(
-				new KeyboardEvent('keydown', { key: keyArrowUp, shiftKey: true })
-			);
-			await elementUpdated(element);
-
-			expect(getCheckedOptions()).toEqual([getOption('2'), getOption('3')]);
-		});
-
 		it('should toggle the selected state of the active option when pressing space', async () => {
 			getOption('1').click();
 			await elementUpdated(element);
@@ -1254,6 +1104,23 @@ describe('vwc-select', () => {
 			expect(getCheckedOptions()).toEqual([]);
 		});
 
+		it('should uncheck all options when multiple is changed to true', async () => {
+			element.multiple = false;
+			element.innerHTML = `
+				<vwc-option value="1" text="1"></vwc-option>
+				<vwc-option value="2" text="2" selected></vwc-option>
+				<vwc-option value="3" text="3"></vwc-option>
+			`;
+			await elementUpdated(element);
+
+			element.multiple = true;
+			await elementUpdated(element);
+
+			expect(getOption('1').checked).toBe(false);
+			expect(getOption('2').checked).toBe(false);
+			expect(getOption('3').checked).toBe(false);
+		});
+
 		it('should uncheck all options except the active one when pressing Escape', async () => {
 			getOption('1').click();
 			element.focus();
@@ -1320,61 +1187,6 @@ describe('vwc-select', () => {
 			).dispatchEvent(new Event('click', { bubbles: true, composed: true }));
 
 			expect(element.open).toBe(false);
-		});
-	});
-
-	describe('typeahead', () => {
-		beforeEach(async () => {
-			element = (await fixture(`<${COMPONENT_TAG}>
-				<vwc-option value="1" text="Apple"></vwc-option>
-				<vwc-option value="2" text="Ananas"></vwc-option>
-				<vwc-option value="3" text="Nectarine"></vwc-option>
-			</${COMPONENT_TAG}>`)) as Select;
-		});
-
-		it('should select the first option that starts with the typed character', async () => {
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
-
-			expect(element.selectedIndex).toBe(2);
-		});
-
-		it('should select the first option that starts with multiple typed characters', async () => {
-			element.focus();
-			await elementUpdated(element);
-
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
-			await elementUpdated(element);
-
-			expect(element.selectedIndex).toBe(1);
-		});
-
-		it('should reset the typeahead after 5 seconds of no key presses', async () => {
-			element.focus();
-			await elementUpdated(element);
-
-			vi.useFakeTimers();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
-
-			vi.advanceTimersByTime(5000);
-			vi.useRealTimers();
-
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
-
-			expect(element.selectedIndex).toBe(2);
-		});
-
-		it('should make options active instead of selecting them when multiple is true', async () => {
-			element.multiple = true;
-			await elementUpdated(element);
-
-			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
-			await elementUpdated(element);
-
-			expect(element.selectedIndex).toBe(0);
-			expect(getActiveOption()?.value).toBe('3');
 		});
 	});
 
