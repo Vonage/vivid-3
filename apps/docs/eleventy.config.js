@@ -53,7 +53,17 @@ module.exports = async (eleventyConfig) => {
 
 	eleventyConfig.addPlugin(EleventyVitePlugin.default, {
 		viteOptions: {
-			plugins: [vue()],
+			plugins: [
+				vue({
+					template: {
+						compilerOptions: {
+							// 'preserve' will keep all whitespace
+							// 'condense' (default) removes whitespace between tags
+							whitespace: 'preserve',
+						},
+					},
+				}),
+			],
 			build: {
 				emptyOutDir: true,
 			},
