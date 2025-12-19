@@ -1,4 +1,3 @@
-import * as path from 'path';
 import type { Page } from '@playwright/test';
 import { test } from '@playwright/test';
 import {
@@ -6,17 +5,70 @@ import {
 	renderTemplate,
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
-import { extractHTMLBlocksFromReadme } from '../../visual-tests/extract-code-examples';
 
 const components = ['elevation', 'layout'];
+
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+	const template = ` <div style="margin: 5px;">
+    <vwc-layout gutters="small"><div><style>
+	#card {
+		padding: 20px;
+		text-align: center;
+		border-radius: 6px;
+	}
+</style>
+
+<vwc-elevation id="elevation">
+	<div id="card">Hover me!</div>
+</vwc-elevation>
+
+<script>
+	elevation.addEventListener('mouseenter', this.onMouseEnter);
+	elevation.addEventListener('mouseleave', this.onMouseLeave);
+
+	function onMouseEnter() {
+		elevation.setAttribute('dp', '24');
+		card.innerText = 'Get OFF of me!';
+	}
+
+	function onMouseLeave() {
+		elevation.removeAttribute('dp');
+		card.innerText = 'Hover me!';
+	}
+</script>
+</div></vwc-layout>
+</div> <div style="margin: 5px;">
+    <vwc-layout gutters="small" column-basis="block"><style>
+	.card {
+		padding: 20px;
+		text-align: center;
+		border-radius: 6px;
+	}
+</style>
+
+<vwc-elevation dp="0">
+	<div class="card">This is the content inside the elevation with DP 0</div>
+</vwc-elevation>
+<vwc-elevation dp="2">
+	<div class="card">This is the content inside the elevation with DP 2</div>
+</vwc-elevation>
+<vwc-elevation dp="4">
+	<div class="card">This is the content inside the elevation with DP 4</div>
+</vwc-elevation>
+<vwc-elevation dp="8">
+	<div class="card">This is the content inside the elevation with DP 8</div>
+</vwc-elevation>
+<vwc-elevation dp="12">
+	<div class="card">This is the content inside the elevation with DP 12</div>
+</vwc-elevation>
+<vwc-elevation dp="16">
+	<div class="card">This is the content inside the elevation with DP 16</div>
+</vwc-elevation>
+<vwc-elevation dp="24">
+	<div class="card">This is the content inside the elevation with DP 24</div>
+</vwc-elevation>
+</vwc-layout>
+</div>`;
 
 	await page.setViewportSize({ width: 560, height: 720 });
 
