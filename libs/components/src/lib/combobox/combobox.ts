@@ -1,4 +1,4 @@
-import { attr, observable, Observable, Updates } from '@microsoft/fast-element';
+import { attr, observable, Observable } from '@microsoft/fast-element';
 import { limit, uniqueId } from '@microsoft/fast-web-utilities';
 import type { Popup } from '../popup/popup';
 import type { Appearance, Shape, Size } from '../enums';
@@ -206,21 +206,12 @@ export class Combobox extends WithContextualHelp(
 	open = false;
 
 	/**
-	 * Sets focus when the open property changes.
-	 *
-	 * @param prev - the previous open value
-	 * @param next - the current open value
-	 *
 	 * @internal
 	 */
 	protected openChanged() {
 		if (this.open) {
-			this.focusAndScrollOptionIntoView();
-
-			// focus is directed to the element when `open` is changed programmatically
-			Updates.enqueue(() => this.control.focus());
-
-			return;
+			// In case open was set programmatically, ensure selected options is scrolled into view
+			this.enqueueScrollSelectedOptionIntoViewIfNeeded();
 		}
 	}
 
@@ -369,13 +360,20 @@ export class Combobox extends WithContextualHelp(
 	protected override focusAndScrollOptionIntoView(): void {
 		if (this.contains(document.activeElement)) {
 			this.control.focus();
-			const firstSelectedOption = this.firstSelectedOption;
-			/* v8 ignore else -- @preserve */
-			if (firstSelectedOption) {
-				requestAnimationFrame(() => {
-					firstSelectedOption.scrollIntoView({ block: 'nearest' });
-				});
-			}
+			this.enqueueScrollSelectedOptionIntoViewIfNeeded();
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	private enqueueScrollSelectedOptionIntoViewIfNeeded() {
+		const firstSelectedOption = this.firstSelectedOption;
+		/* v8 ignore else -- @preserve */
+		if (firstSelectedOption) {
+			requestAnimationFrame(() => {
+				firstSelectedOption.scrollIntoView({ block: 'nearest' });
+			});
 		}
 	}
 
