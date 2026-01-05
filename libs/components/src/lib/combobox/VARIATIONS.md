@@ -214,7 +214,7 @@ import { VCombobox, VOption } from '@vonage/vivid-vue';
 		<VOption value="madrid" text="Madrid" />
 		<VOption value="paris" text="Paris" />
 		<VOption value="london" text="London" />
-		<VOption value="rome" text="Rome" selected />
+		<VOption value="rome" text="Rome" default-selected />
 	</VCombobox>
 </template>
 
@@ -262,7 +262,7 @@ import { VCombobox, VOption } from '@vonage/vivid-vue';
 
 <template>
 	<VCombobox error-text="Madrid is incorrect" placeholder="Select an option" label="What is the capital of Italy?" class="question">
-		<VOption value="madrid" text="Madrid" selected />
+		<VOption value="madrid" text="Madrid" default-selected />
 		<VOption value="paris" text="Paris" />
 		<VOption value="london" text="London" />
 		<VOption value="rome" text="Rome" />
@@ -317,24 +317,27 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 ```vue preview 270px
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { VCombobox, VOption } from '@vonage/vivid-vue';
 
-const selectedIcon = ref('search-line');
-const handleChange = (e: Event) => {
-	const target = e.target as any;
-	if (target.selectedOptions?.[0]?.icon) {
-		selectedIcon.value = target.selectedOptions[0].icon;
-	}
-};
+const countries = [
+	{ value: '1', text: 'United States', label: '+1', icon: 'flag-united-states' },
+	{ value: '44', text: 'United Kingdom', label: '+44', icon: 'flag-united-kingdom' },
+	{ value: '49', text: 'Germany', label: '+49', icon: 'flag-germany' },
+	{ value: '355', text: 'Albania', label: '+355', icon: 'flag-albania' },
+];
+
+const selectedCountry = ref('');
+
+const selectedIcon = computed(() => {
+	const country = countries.find((c) => c.text === selectedCountry.value);
+	return country?.icon || 'search-line';
+});
 </script>
 
 <template>
-	<VCombobox label="Country code" class="country-code" :icon="selectedIcon" @change="handleChange">
-		<VOption value="1" text="United States" label="+1" icon="flag-united-states" />
-		<VOption value="44" text="United Kingdom" label="+44" icon="flag-united-kingdom" />
-		<VOption value="49" text="Germany" label="+49" icon="flag-germany" />
-		<VOption value="355" text="Albania" label="+355" icon="flag-albania" />
+	<VCombobox v-model="selectedCountry" label="Country code" class="country-code" :icon="selectedIcon">
+		<VOption v-for="country in countries" :key="country.value" :value="country.value" :text="country.text" :label="country.label" :icon="country.icon" />
 	</VCombobox>
 </template>
 ```

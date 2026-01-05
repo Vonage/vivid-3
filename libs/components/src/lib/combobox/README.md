@@ -253,7 +253,7 @@ import { VCombobox, VOption } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VCombobox value="First Option">
+	<VCombobox initialValue="First Option">
 		<VOption text="First Option" />
 		<VOption text="Second Option" />
 	</VCombobox>
