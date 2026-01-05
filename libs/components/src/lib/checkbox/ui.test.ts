@@ -13,6 +13,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	<div style="margin: 5px;">
 		<vwc-checkbox label="Use signed Webhooks"></vwc-checkbox>
 	</div>
+	<div style="margin: 5px; width: 200px;">
+		<vwc-checkbox label="Checkbox with text that is very long"></vwc-checkbox>
+	</div>
 	<div style="margin: 5px;">
 		<vwc-checkbox label="Use signed Webhooks" helper-text="Signed Webhooks are a way to verify that the request is coming from Vonage."></vwc-checkbox>
 	</div>
