@@ -2233,6 +2233,10 @@
 			],
 			"slots": [
 				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
+				{
 					"name": "helper-text",
 					"description": "Describes how to use the text-field. Alternative to the `helper-text` attribute."
 				},
@@ -2479,6 +2483,10 @@
 				}
 			],
 			"slots": [
+				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
 				{ "name": "default", "description": "Default slot." },
 				{
 					"name": "helper-text",
@@ -3051,6 +3059,10 @@
 			],
 			"slots": [
 				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
+				{
 					"name": "helper-text",
 					"description": "Describes how to use the date-picker. Alternative to the `helper-text` attribute."
 				}
@@ -3275,6 +3287,10 @@
 				}
 			],
 			"slots": [
+				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
 				{
 					"name": "helper-text",
 					"description": "Describes how to use the date-range-picker. Alternative to the `helper-text` attribute."
@@ -3506,6 +3522,10 @@
 				}
 			],
 			"slots": [
+				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
 				{
 					"name": "helper-text",
 					"description": "Describes how to use the date-picker. Alternative to the `helper-text` attribute."
@@ -4477,6 +4497,10 @@
 				}
 			],
 			"slots": [
+				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
 				{
 					"name": "helper-text",
 					"description": "Describes how to use the file-picker. Alternative to the `helper-text` attribute."
@@ -5764,6 +5788,10 @@
 				}
 			],
 			"slots": [
+				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
 				{
 					"name": "helper-text",
 					"description": "Describes how to use the number-field. Alternative to the `helper-text` attribute."
@@ -7162,6 +7190,10 @@
 				}
 			],
 			"slots": [
+				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
 				{ "name": "default", "description": "Holds the available options." },
 				{
 					"name": "helper-text",
@@ -7424,6 +7456,10 @@
 				}
 			],
 			"slots": [
+				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
 				{ "name": "default", "description": "Default slot." },
 				{
 					"name": "helper-text",
@@ -9123,6 +9159,10 @@
 			],
 			"slots": [
 				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
+				{
 					"name": "helper-text",
 					"description": "Describes how to use the text-area. Alternative to the `helper-text` attribute."
 				}
@@ -9410,6 +9450,10 @@
 					"description": "Used to add action items to the end of the text-field."
 				},
 				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
+				{
 					"name": "helper-text",
 					"description": "Describes how to use the text-field. Alternative to the `helper-text` attribute."
 				},
@@ -9605,6 +9649,10 @@
 				}
 			],
 			"slots": [
+				{
+					"name": "contextual-help",
+					"description": "Slot for the contextual-help component, displayed next to the label."
+				},
 				{
 					"name": "helper-text",
 					"description": "Describes how to use the time-picker. Alternative to the `helper-text` attribute."
