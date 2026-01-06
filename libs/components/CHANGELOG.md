@@ -4,6 +4,22 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.8.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.7.0...vivid-v5.8.0) (2026-01-05)
+
+
+### Features
+
+* adjusts checkbox vertical alignment ([7a2dfa6](https://github.com/Vonage/vivid-3/commit/7a2dfa6e10474b62db0cc27acdf61d00290eaf25))
+* **checkbox:** adjusts checkbox vertical alignment (VIV-3072) ([#2679](https://github.com/Vonage/vivid-3/issues/2679)) ([7a2dfa6](https://github.com/Vonage/vivid-3/commit/7a2dfa6e10474b62db0cc27acdf61d00290eaf25))
+
+
+### Bug Fixes
+
+* **appearance:** fix subtle appearance interaction states (VIV-3050) ([#2647](https://github.com/Vonage/vivid-3/issues/2647)) ([82b5d75](https://github.com/Vonage/vivid-3/commit/82b5d75a89667529154c2ba57bfc2e82e31004e0))
+* **rich-text-editor:** fix link text (VIV-000) ([#2650](https://github.com/Vonage/vivid-3/issues/2650)) ([bdf5be1](https://github.com/Vonage/vivid-3/commit/bdf5be1d980202a9b9caf9c5d7b716cbcf30b4dd))
+* **select:** fix selection of disabled options by keyboard navigation (VIV-3033) ([#2672](https://github.com/Vonage/vivid-3/issues/2672)) ([0baa864](https://github.com/Vonage/vivid-3/commit/0baa864a6287c1be70ba3a77b8152f21cf7fb2f1))
+* **tabs:** fix missing action-item slot in Vue (VIV-3068) ([#2675](https://github.com/Vonage/vivid-3/issues/2675)) ([e751da1](https://github.com/Vonage/vivid-3/commit/e751da1fcb32bde1d80d482b11299a089282deef))
+
 ## [5.7.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.6.0...vivid-v5.7.0) (2025-12-15)
 
 
