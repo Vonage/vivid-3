@@ -4,6 +4,7 @@ import {
 	Plugin,
 	TextSelection,
 } from 'prosemirror-state';
+import type { Node } from 'prosemirror-model';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import {
 	createAnchor,
@@ -27,6 +28,8 @@ import { Popover } from '../../popover';
 import type { Menu } from '../../../menu/menu';
 import type { Button } from '../../../button/button';
 import linkCss from './link.style.scss?inline';
+
+type Link = { text: string; href: string; start: number; end: number };
 
 export class RteLinkFeatureImpl extends RteFeatureImpl {
 	protected name = 'RteLinkFeature';
@@ -305,30 +308,60 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 		];
 	}
 
-	getCurrentLink(
-		state: EditorState
-	): { text: string; href: string; start: number; end: number } | null {
+	getCurrentLink(state: EditorState): Link | null {
 		const selection = state.selection;
-		if (!(selection instanceof TextSelection && selection.empty)) {
+		if (!(selection instanceof TextSelection)) {
 			return null;
 		}
 
-		// Get link mark at cursor position
-		const { $from } = selection;
 		const linkMark = state.schema.marks.link;
-		const link = linkMark.isInSet($from.marks());
-		if (!link) {
+		const { $from, $to } = selection;
+
+		// Determine link at start of selection
+		const selectionStartMarks = state.selection.empty
+			? $from.marks()
+			: $from.nodeAfter?.marks ?? [];
+		const targetHref = linkMark.isInSet(selectionStartMarks)?.attrs.href;
+		if (!targetHref) {
 			return null;
 		}
-		const textNode = $from.parent.childAfter($from.parentOffset);
-		const start = $from.pos - $from.parentOffset + textNode.offset;
-		const end = start + textNode.node!.nodeSize;
+		const isTargetLink = (node: Node) =>
+			linkMark.isInSet(node.marks)?.attrs.href === targetHref;
+
+		// Now, find the start / end of the link and validate that all text nodes in the selection belong to the same link
+		let linkStart = -1;
+		let linkEnd = -1;
+		let selectionValid = true;
+		state.doc.nodesBetween($from.start(), $to.end(), (node, pos) => {
+			if (!node.isText) {
+				return true;
+			}
+
+			const nodeEnd = pos + node.nodeSize;
+
+			if (isTargetLink(node)) {
+				if (linkStart === -1) {
+					linkStart = pos;
+				}
+				linkEnd = nodeEnd;
+			} else if (nodeEnd > selection.from && pos < selection.to) {
+				selectionValid = false;
+			}
+
+			return false;
+		});
+
+		if (!selectionValid || linkStart === -1) {
+			return null;
+		}
+
+		const linkText = state.doc.textBetween(linkStart, linkEnd, ' ');
 
 		return {
-			text: textNode.node!.text!,
-			href: link.attrs.href,
-			start,
-			end,
+			text: linkText,
+			href: targetHref,
+			start: linkStart,
+			end: linkEnd,
 		};
 	}
 
