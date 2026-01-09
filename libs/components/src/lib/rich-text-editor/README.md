@@ -1237,6 +1237,10 @@ Adds the ability to change the alignment of text blocks.
 
 Adds the ability to insert links. This features requires the `RteToolbarFeature`.
 
+**Keyboard shortcuts:**
+
+- **Insert link**: <kbd>Ctrl</kbd> + <kbd>K</kbd> / <kbd>Cmd</kbd> + <kbd>K</kbd>
+
 <rte-schema>
 	<rte-schema-mark name="link">
 		<rte-schema-attrs>

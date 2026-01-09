@@ -1,6 +1,7 @@
 import { elementUpdated } from '@repo/shared';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
+import { TextField } from '../../../text-field/text-field';
 import { RteBase } from './base';
 import { RteLinkFeature } from './link';
 import { RteToolbarFeature } from './toolbar';
@@ -87,6 +88,15 @@ describe('RteLinkFeature', () => {
 		await click(button(menu, 'Cancel'));
 
 		expect(menu.open).toBe(false);
+	});
+
+	it('should open link menu when Ctrl-k / Cmd-k is pressed', async () => {
+		const rte = await setup(features);
+
+		rte.keydown('k', { ctrl: true });
+		await elementUpdated(rte.element);
+
+		expect(rte.textField(rte.openMenu(), 'URL')).toBeInstanceOf(TextField);
 	});
 
 	it('should disable Apply button when input text is empty', async () => {

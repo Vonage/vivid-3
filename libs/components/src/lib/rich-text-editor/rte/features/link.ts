@@ -6,6 +6,7 @@ import {
 } from 'prosemirror-state';
 import type { Node } from 'prosemirror-model';
 import { Decoration, DecorationSet } from 'prosemirror-view';
+import { keymap } from 'prosemirror-keymap';
 import {
 	createAnchor,
 	createButton,
@@ -72,6 +73,11 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 	}
 
 	override getPlugins(rte: RteInstanceImpl): PluginContribution[] {
+		const insertLinkCommand = () => {
+			this.toolbarMenu!.open = true;
+			return true;
+		};
+
 		return [
 			this.contribution(
 				new Plugin({
@@ -182,6 +188,11 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 							},
 						};
 					},
+				})
+			),
+			this.contribution(
+				keymap({
+					'Mod-k': insertLinkCommand,
 				})
 			),
 		];
