@@ -3,6 +3,14 @@
 	<vwc-simple-color-picker slot="text-color-picker"></vwc-simple-color-picker>
 </vwc-rich-text-editor>
 
+<vwc-action-group style="display: block; margin-top: 20px">
+	<vwc-accordion expand-mode="multi" style="inline-size: 100%">
+		<vwc-accordion-item heading="Rich Text View (live view)" expanded="false">
+			<vwc-rich-text-view></vwc-rich-text-view>
+		</vwc-accordion-item>
+	</vwc-accordion>
+</vwc-action-group>
+
 <script>
 	customElements.whenDefined('vwc-simple-color-picker').then(() => {
 		document.querySelector('vwc-simple-color-picker').swatches = [
@@ -162,7 +170,14 @@
 					},
 				],
 			},
+			onChange: updateView,
 		});
+
+		const viewComponent = document.querySelector('vwc-rich-text-view');
+		function updateView() {
+			viewComponent.view = config.instantiateView(rteComponent.instance.getDocument());
+		}
+		updateView();
 	});
 </script>
 ```

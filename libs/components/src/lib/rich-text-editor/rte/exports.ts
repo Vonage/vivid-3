@@ -23,3 +23,4 @@ export { RteHtmlSerializer } from './html-serializer';
 
 export type { RteInstance } from './instance';
 export type { RteDocument, RteFragment, RteNode, RteMark } from './document';
+export type { RteView, RteViewOptions } from './view';

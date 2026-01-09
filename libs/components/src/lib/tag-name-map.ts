@@ -47,6 +47,7 @@ import type {
 	VwcRadioGroupElement,
 	VwcRangeSliderElement,
 	VwcRichTextEditorElement,
+	VwcRichTextViewElement,
 	VwcSearchableSelectElement,
 	VwcSelectableBoxElement,
 	VwcSelectElement,
@@ -118,6 +119,7 @@ type DefaultVividTagNameMap = {
 	'vwc-radio': VwcRadioElement;
 	'vwc-radio-group': VwcRadioGroupElement;
 	'vwc-range-slider': VwcRangeSliderElement;
+	'vwc-rich-text-view': VwcRichTextViewElement;
 	'vwc-rich-text-editor': VwcRichTextEditorElement;
 	'vwc-searchable-select': VwcSearchableSelectElement;
 	'vwc-selectable-box': VwcSelectableBoxElement;

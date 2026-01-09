@@ -84,7 +84,7 @@ describe('RteInlineImageFeature', () => {
 		]);
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
-			`"<p><img src="/image.jpg" alt="Image" style="max-width: 100%;" width="100" height="200"></p>"`
+			`"<p><img src="/image.jpg" alt="Image" style="max-width: 100%; height: auto;" width="100" height="200"></p>"`
 		);
 
 		rte.instance.replaceDocument(

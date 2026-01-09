@@ -18,6 +18,7 @@ import {
 } from '../utils/ui';
 import { RteInstanceImpl } from '../instance';
 import {
+	contributionPriority,
 	featureFacade,
 	type PluginContribution,
 	RteFeatureImpl,
@@ -41,30 +42,35 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 
 	override getSchema(): SchemaContribution[] {
 		return [
-			this.contribution({
-				marks: {
-					link: {
-						attrs: {
-							href: { validate: 'string' },
-						},
-						inclusive: false,
-						parseDOM: [
-							{
-								tag: 'a[href]',
-								getAttrs(dom: HTMLElement) {
-									return {
-										href: dom.getAttribute('href'),
-									};
-								},
+			this.contribution(
+				{
+					marks: {
+						link: {
+							attrs: {
+								href: { validate: 'string' },
 							},
-						],
-						toDOM(node) {
-							const { href } = node.attrs;
-							return ['a', { href }, 0];
+							inclusive: false,
+							parseDOM: [
+								{
+									tag: 'a[href]',
+									getAttrs(dom: HTMLElement) {
+										return {
+											href: dom.getAttribute('href'),
+										};
+									},
+								},
+							],
+							toDOM(node) {
+								const { href } = node.attrs;
+								return ['a', { href }, 0];
+							},
 						},
 					},
 				},
-			}),
+				// A higher priority will ensure links are serialized to a single <a> element over other marks
+				// E.g. <a>my <b>bold</b> link</a> instead of <a>my </a><b><a>bold</a></b><a> link</a>
+				contributionPriority.high
+			),
 		];
 	}
 
