@@ -4,10 +4,16 @@ import { docFactories } from '../__tests__/doc-factories';
 import { RteBase } from './base';
 import { RteLinkFeature } from './link';
 import { RteToolbarFeature } from './toolbar';
+import { RteBoldFeature } from './bold';
 
-const { paragraph: p, text, link } = docFactories;
+const { paragraph: p, text, link, bold } = docFactories;
 
-const features = [new RteBase(), new RteLinkFeature(), new RteToolbarFeature()];
+const features = [
+	new RteBase(),
+	new RteLinkFeature(),
+	new RteToolbarFeature(),
+	new RteBoldFeature(),
+];
 
 describe('RteLinkFeature', () => {
 	it('should add a link mark to the schema', async () => {
@@ -155,18 +161,22 @@ describe('RteLinkFeature', () => {
 	it('should show a popover with the link text and clickable URL when the cursor is inside a link', async () => {
 		const { openPopover, placeCursor, element } = await setup(features, [
 			p(
-				'Go to ',
-				text.marks(link({ href: 'https://example.com' }))('our website')
+				'Go ',
+				text.marks(bold())('to '),
+				text.marks(link({ href: 'https://example.com' }), bold())('our '),
+				text.marks(link({ href: 'https://example.com' }))('great '),
+				text.marks(link({ href: 'https://example.com' }), bold())('website'),
+				text.marks(bold())(' today')
 			),
 		]);
 
-		placeCursor('our web|site');
+		placeCursor('gre|at');
 		await elementUpdated(element);
 
 		expect(openPopover()!.open).toBe(true);
 		expect(
 			openPopover()!.querySelector('.link-popover-label')!.textContent
-		).toBe('our website');
+		).toBe('our great website');
 		expect(openPopover()!.querySelector('a')!.href).toBe(
 			'https://example.com/'
 		);
@@ -230,5 +240,120 @@ describe('RteLinkFeature', () => {
 
 		expect(textField(openMenu(), 'Text').value).toBe('our website');
 		expect(textField(openMenu(), 'URL').value).toBe('https://example.com');
+	});
+
+	describe('range selections', () => {
+		it('should show popover for the full link when partial range is selected', async () => {
+			const { element, selectText, openPopover } = await setup(features, [
+				p(
+					'Go to ',
+					text.marks(link({ href: 'https://example.com' }))('our website')
+				),
+			]);
+
+			selectText('our [web]site');
+			await elementUpdated(element);
+
+			expect(openPopover()!.open).toBe(true);
+			expect(
+				openPopover()!.querySelector('.link-popover-label')!.textContent
+			).toBe('our website');
+			expect(openPopover()!.querySelector('a')!.href).toBe(
+				'https://example.com/'
+			);
+			expect(openPopover()!.querySelector('a')!.textContent).toBe(
+				'https://example.com'
+			);
+		});
+
+		it('should show popover when entire link is selected', async () => {
+			const { element, openPopover, selectText } = await setup(features, [
+				p(
+					'Go to ',
+					text.marks(link({ href: 'https://example.com' }))('our '),
+					text.marks(link({ href: 'https://example.com' }), bold())('great '),
+					text.marks(link({ href: 'https://example.com' }))('website')
+				),
+			]);
+
+			selectText('[our', 'website]');
+			await elementUpdated(element);
+
+			expect(openPopover()!.open).toBe(true);
+			expect(
+				openPopover()!.querySelector('.link-popover-label')!.textContent
+			).toBe('our great website');
+		});
+
+		it('should not show popover when selection extends beyond link boundaries', async () => {
+			const { element, openPopover, selectText } = await setup(features, [
+				p(
+					'Go to ',
+					text.marks(link({ href: 'https://example.com' }))('our website'),
+					' today'
+				),
+			]);
+
+			selectText('[website', ' today]');
+			await elementUpdated(element);
+
+			expect(openPopover()).toBe(undefined);
+		});
+
+		it('should not show popover when selection spans multiple different links', async () => {
+			const { element, openPopover, selectText } = await setup(features, [
+				p(
+					text.marks(link({ href: 'https://a.com' }))('first'),
+					' and ',
+					text.marks(link({ href: 'https://b.com' }))('second')
+				),
+			]);
+
+			selectText('[first', 'second]');
+			await elementUpdated(element);
+
+			expect(openPopover()).toBe(undefined);
+		});
+
+		it('should remove full link via popover when partial range is selected', async () => {
+			const { element, selectText, button, openPopover, click, docStr } =
+				await setup(features, [
+					p(
+						'Go to ',
+						text.marks(link({ href: 'https://example.com' }))('our website')
+					),
+				]);
+
+			selectText('our [web]site');
+			await elementUpdated(element);
+			await click(button(openPopover()!, 'Delete'));
+
+			expect(docStr()).toMatchInlineSnapshot(
+				`"paragraph('Go to our [web|]site')"`
+			);
+		});
+
+		it('should ignore AllSelection', async () => {
+			const { element, openPopover, selectAll } = await setup(features, [
+				p(text.marks(link({ href: 'https://example.com' }))('our website')),
+			]);
+
+			selectAll();
+			await elementUpdated(element);
+
+			expect(openPopover()).toBe(undefined);
+		});
+
+		it('should handle selection starting at the end of a paragraph', async () => {
+			const { element, openPopover, selectText } = await setup(features, [
+				p('first'),
+				p(text.marks(link({ href: 'https://example.com' }))('link')),
+			]);
+
+			selectText('first[', 'link]');
+			await elementUpdated(element);
+
+			expect(openPopover()).toBe(undefined);
+		});
 	});
 });
