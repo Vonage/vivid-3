@@ -470,6 +470,21 @@ describe('vwc-combobox', () => {
 
 			expect(element.selectedIndex).toEqual(2);
 		});
+
+		it('should focus control and scroll selected option into view when selecting an option while combobox has focus', async () => {
+			element.focus();
+			const controlFocusSpy = vi.spyOn(getControl(), 'focus');
+			const optionToSelect = element.querySelector(
+				'option:nth-child(3)'
+			) as ListboxOption;
+			const scrollIntoViewSpy = vi.spyOn(optionToSelect, 'scrollIntoView');
+
+			element.selectedIndex = 2;
+			await elementUpdated(element);
+
+			expect(controlFocusSpy).toHaveBeenCalled();
+			expect(scrollIntoViewSpy).toHaveBeenCalledWith({ block: 'nearest' });
+		});
 	});
 
 	describe('options', () => {
