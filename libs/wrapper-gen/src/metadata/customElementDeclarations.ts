@@ -167,6 +167,31 @@ const resolveTestingDefintions = (
 	].reduce(mergeTestingDefinitions);
 };
 
+/**
+ * Recursively traverse the inheritance hierarchy to collect slots, which are not automatically inherited like e.g. attributes.
+ */
+const resolveSlots = (kind: string, name: string): schema.Slot[] => {
+	const declaration = findDeclaration(vividDeclarations, kind, name);
+
+	const inheritedSlots = [
+		...(declaration.superclass && declaration.superclass.name !== 'FASTElement'
+			? resolveSlots('class', declaration.superclass.name)
+			: []),
+		...(declaration.mixins ?? []).flatMap((m) => resolveSlots('mixin', m.name)),
+	];
+
+	const currentSlots = declaration.slots ?? [];
+
+	// Merge slots, with current slots overriding inherited ones
+	// Use name || '' to handle default slot (which has empty/undefined name)
+	const slotMap = new Map<string, schema.Slot>();
+	for (const slot of [...inheritedSlots, ...currentSlots]) {
+		slotMap.set(slot.name || '', slot);
+	}
+
+	return Array.from(slotMap.values());
+};
+
 export const getVividComponentDeclaration = (
 	className: string
 ): Declaration => {
@@ -183,6 +208,7 @@ export const getVividComponentDeclaration = (
 
 	return {
 		...declaration,
+		slots: resolveSlots('class', className),
 		vividTesting: resolveTestingDefintions('class', className),
 		_localTypeDefs: resolveLocalTypeDefs('class', className),
 	};
