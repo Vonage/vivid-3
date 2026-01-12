@@ -13,19 +13,20 @@ export type VividTestUtilsManifest = {
 };
 
 export interface ComponentDef {
-	name: string; // The un-prefixed Vivid component tag name. e.g. accordion-item
-	className: string; // Name of the vivid class, e.g. AccordionItem. May differ from name e.g. option -> ListboxOption
+	name: string; // The un-prefixed web component tag name. e.g. accordion-item
+	className: string; // Name of the web component class, e.g. AccordionItem. May differ from name e.g. option -> ListboxOption
 	registerFunctionName: string; // Name of the function that registers the component, e.g. registerAccordionItem
 	description?: string;
+	/// Inputs to the component that can be set via a DOM property or HTML attribute. Some props can only be set in one of those ways.
 	props: {
-		name: string; // Name of the prop in camelCase. Not necessarily the same as property name. E.g. headingLevel instead of headinglevel
+		name: string; // In camelCase. Used as the Vue prop name. Not necessarily the same as DOM property name. E.g. headingLevel instead of headinglevel
 		description?: string;
 		type: TypeStr;
-		propertyName?: string; // Name of the property on the component class. E.g. actionHref
+		propertyName?: string; // Name of the DOM property. E.g. actionHref
 		attributeName?: string; // Name of the HTML attribute. E.g. action-href
 	}[];
 	events: {
-		name: string; // Name of the event on the vivid component in kebab-case. E.g. 'change'
+		name: string; // Name of the DOM event in kebab-case. Used also as the Vue event name. E.g. 'change'
 		description?: string;
 		type: TypeStr;
 	}[];
@@ -45,8 +46,9 @@ export interface ComponentDef {
 		returnType: TypeStr;
 	}[];
 	slots: {
-		name: string;
+		name: string; // Will be "default" for the default slot.
 		description?: string;
 	}[];
+	/// Annotations that drive the auto-generation of vivid-test-utils
 	testUtils: VividTestUtilsManifest;
 }
