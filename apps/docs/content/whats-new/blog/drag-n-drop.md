@@ -58,173 +58,134 @@ Draggable entities should include a button that triggers an inline menu containi
 
 ```html preview 350px
 <div id="wrapper">
-  <vwc-card appearance="outlined">
-    <div class="container" slot="main">
-      <vwc-icon 
-        name="reorder-vertical-solid" 
-        connotation="accent" 
-        size="-6"
-        class="drag-icon"
-      ></vwc-icon>
-      <div class="content">
-        <div class="text">Drag handle always visible</div>
-        <vwc-menu placement="bottom-end" auto-dismiss class="action-menu">
-          <vwc-button 
-            aria-label="More actions" 
-            size="condensed" 
-            appearance="ghost-light" 
-            class="action-menu-button" 
-            slot="anchor"
-          >
-            <vwc-icon 
-              name="more-horizontal-solid" 
-              slot="icon" 
-              connotation="accent" 
-              size="-6"
-            ></vwc-icon>
-          </vwc-button>
-          <vwc-menu-item text="Move to top"></vwc-menu-item>
-          <vwc-menu-item text="Move up"></vwc-menu-item>
-          <vwc-menu-item text="Move down"></vwc-menu-item>
-          <vwc-menu-item text="Move to bottom"></vwc-menu-item>
-          <vwc-divider></vwc-divider>
-          <vwc-menu-item text="Mark as done"></vwc-menu-item>
-          <vwc-menu-item text="Delete"></vwc-menu-item>
-        </vwc-menu>
-      </div>
-    </div>
-  </vwc-card>
+	<vwc-card appearance="outlined">
+		<div class="container" slot="main">
+			<vwc-icon name="reorder-vertical-solid" connotation="accent" size="-6" class="drag-icon"></vwc-icon>
+			<div class="content">
+				<div class="text">Drag handle always visible</div>
+				<vwc-menu placement="bottom-end" auto-dismiss class="action-menu">
+					<vwc-button aria-label="More actions" size="condensed" appearance="ghost-light" class="action-menu-button" slot="anchor">
+						<vwc-icon name="more-horizontal-solid" slot="icon" connotation="accent" size="-6"></vwc-icon>
+					</vwc-button>
+					<vwc-menu-item text="Move to top"></vwc-menu-item>
+					<vwc-menu-item text="Move up"></vwc-menu-item>
+					<vwc-menu-item text="Move down"></vwc-menu-item>
+					<vwc-menu-item text="Move to bottom"></vwc-menu-item>
+					<vwc-divider></vwc-divider>
+					<vwc-menu-item text="Mark as done"></vwc-menu-item>
+					<vwc-menu-item text="Delete"></vwc-menu-item>
+				</vwc-menu>
+			</div>
+		</div>
+	</vwc-card>
 
-  <vwc-card appearance="outlined">
-    <div class="container" slot="main">
-      <vwc-menu placement="bottom-start" auto-dismiss class="action-menu">
-        <vwc-button 
-          aria-label="Move item" 
-          size="condensed" 
-          appearance="ghost-light" 
-          class="action-menu-button draggable" 
-          slot="anchor"
-        >
-          <vwc-icon 
-            name="reorder-vertical-solid" 
-            slot="icon" 
-            connotation="accent" 
-            size="-6"
-          ></vwc-icon>
-        </vwc-button>
-        <vwc-menu-item text="Move to top"></vwc-menu-item>
-        <vwc-menu-item text="Move up"></vwc-menu-item>
-        <vwc-menu-item text="Move down"></vwc-menu-item>
-        <vwc-menu-item text="Move to bottom"></vwc-menu-item>
-      </vwc-menu>
-      <div class="content">
-        <div class="text">Drag handle always visible (with drag handle button/menu)</div>
-      </div>
-    </div>
-  </vwc-card>
+	<vwc-card appearance="outlined">
+		<div class="container" slot="main">
+			<vwc-menu placement="bottom-start" auto-dismiss class="action-menu">
+				<vwc-button aria-label="Move item" size="condensed" appearance="ghost-light" class="action-menu-button draggable" slot="anchor">
+					<vwc-icon name="reorder-vertical-solid" slot="icon" connotation="accent" size="-6"></vwc-icon>
+				</vwc-button>
+				<vwc-menu-item text="Move to top"></vwc-menu-item>
+				<vwc-menu-item text="Move up"></vwc-menu-item>
+				<vwc-menu-item text="Move down"></vwc-menu-item>
+				<vwc-menu-item text="Move to bottom"></vwc-menu-item>
+			</vwc-menu>
+			<div class="content">
+				<div class="text">Drag handle always visible (with drag handle button/menu)</div>
+			</div>
+		</div>
+	</vwc-card>
 
-  <vwc-card appearance="outlined" class="card">
-    <div class="container" slot="main">
-      <vwc-avatar shape="pill" connotation="cta" appearance="subtle"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
-      <div class="text">
-        <div><b>Card</b></div>
-        <div>Implied draggable</div>
-      </div>
-      <vwc-button 
-        id="menu-anchor"
-        aria-label="Move item" 
-        size="super-condensed" 
-        appearance="ghost-light" 
-        class="action-menu-button" 
-        slot="anchor"
-      >
-        <vwc-icon 
-          name="more-horizontal-solid" 
-          slot="icon" 
-          connotation="accent" 
-          size="-6"
-        ></vwc-icon>
-      </vwc-button>
-      <vwc-menu placement="bottom-start" auto-dismiss class="action-menu" anchor="menu-anchor">
-        <vwc-menu-item text="Move to top"></vwc-menu-item>
-        <vwc-menu-item text="Move up"></vwc-menu-item>
-        <vwc-menu-item text="Move down"></vwc-menu-item>
-        <vwc-menu-item text="Move to bottom"></vwc-menu-item>
-      </vwc-menu>
-    </div>
-  </vwc-card>
+	<vwc-card appearance="outlined" class="card">
+		<div class="container" slot="main">
+			<vwc-avatar shape="pill" connotation="cta" appearance="subtle"> <vwc-icon slot="icon" name="user-line" label="User's avatar"></vwc-icon></vwc-avatar>
+			<div class="text">
+				<div><b>Card</b></div>
+				<div>Implied draggable</div>
+			</div>
+			<vwc-button id="menu-anchor" aria-label="Move item" size="super-condensed" appearance="ghost-light" class="action-menu-button" slot="anchor">
+				<vwc-icon name="more-horizontal-solid" slot="icon" connotation="accent" size="-6"></vwc-icon>
+			</vwc-button>
+			<vwc-menu placement="bottom-start" auto-dismiss class="action-menu" anchor="menu-anchor">
+				<vwc-menu-item text="Move to top"></vwc-menu-item>
+				<vwc-menu-item text="Move up"></vwc-menu-item>
+				<vwc-menu-item text="Move down"></vwc-menu-item>
+				<vwc-menu-item text="Move to bottom"></vwc-menu-item>
+			</vwc-menu>
+		</div>
+	</vwc-card>
 </div>
 
 <style>
-  vwc-card {
-    margin-bottom: 12px;
-    max-inline-size: 500px;
-  }
+	vwc-card {
+		margin-bottom: 12px;
+		max-inline-size: 500px;
+	}
 
-  .container {
-    position: relative;
-    background-color: var(--vvd-color-canvas);
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    cursor: grab;
-    
-    &:hover {
-      background: var(--vvd-color-neutral-50);
-    }
-  }
+	.container {
+		position: relative;
+		background-color: var(--vvd-color-canvas);
+		display: flex;
+		align-items: center;
+		padding: 8px;
+		cursor: grab;
 
-  .drag-icon {
-    display: inline-block;
-    margin-inline-start: 8px;
-    margin-inline-end: 8px;
-  }
+		&:hover {
+			background: var(--vvd-color-neutral-50);
+		}
+	}
 
-  [draggable="true"] .container {
-    cursor: grabbed;
-  }
+	.drag-icon {
+		display: inline-block;
+		margin-inline-start: 8px;
+		margin-inline-end: 8px;
+	}
 
-  .drop-target .container {
-    background: var(--vvd-color-neutral-50);
-    border: 1px dashed var(--vvd-color-neutral-300);
-  }
+	[draggable='true'] .container {
+		cursor: grabbed;
+	}
 
-  .drop-target .container * {
-    visibility: hidden;
-  }
+	.drop-target .container {
+		background: var(--vvd-color-neutral-50);
+		border: 1px dashed var(--vvd-color-neutral-300);
+	}
 
-  .content {
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
-    align-items: center;
-  }
+	.drop-target .container * {
+		visibility: hidden;
+	}
 
-  .text {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 95%;
-  }
+	.content {
+		display: flex;
+		flex: 1;
+		justify-content: space-between;
+		align-items: center;
+	}
 
-  .action-menu-button.draggable {
-    --button-cursor: drag;
-  }
+	.text {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		max-width: 95%;
+	}
 
-  .card {
-    inline-size: 250px;
+	.action-menu-button.draggable {
+		--button-cursor: drag;
+	}
 
-    .container {
-      padding: 8px;
-      gap: 8px;
-    }
+	.card {
+		inline-size: 250px;
 
-    .action-menu-button {
-      position: absolute;
-      inset-block-start: 4px;
-      inset-inline-end: 4px;
-    }
-  }
+		.container {
+			padding: 8px;
+			gap: 8px;
+		}
+
+		.action-menu-button {
+			position: absolute;
+			inset-block-start: 4px;
+			inset-inline-end: 4px;
+		}
+	}
 </style>
 ```
 
@@ -244,9 +205,7 @@ Use live regions to announce content changes to screen readers. Messages in live
 Live regions should provide real-time feedback both during and after an interaction. Messages should contain the name of the item being moved, as well as its old and new position.
 
 ```html
-  <div id="sr-announcements" aria-live="polite">
-    Task "Organise a team-building event" was moved from position 3 to position 8
-  </div>
+<div id="sr-announcements" aria-live="polite">Task "Organise a team-building event" was moved from position 3 to position 8</div>
 ```
 
 ### Let the user easily continue to trigger more actions
