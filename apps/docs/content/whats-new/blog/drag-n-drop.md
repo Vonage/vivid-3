@@ -19,7 +19,7 @@ This section willl explore what a truly accessible drag and drop looks like. Tha
 
 ### Different types of drag and drop interactions
 
-The terms “drag and drop” ican describe several distinct interactions patterns:
+The terms “drag and drop” can describe several distinct interactions patterns:
 
 - Moving items between containers, such as **kanban / projects boards**
 - Reordering items with a single container, like **sortable lists**
@@ -45,7 +45,7 @@ When designing these alternative flows, ensure that you:
 
 ### Allow the user to trigger an outcome
 
-Use visible and accessible controls (like buttons, menus, and forms) to make it easy forr people using assistive technologies to achieve the same outcomes as a drag operation.
+Use visible and accessible controls (like buttons, menus, and forms) to make it easy for people using assistive technologies to achieve the same outcomes as a drag operation.
 
 #### General pattern: buttons and menus
 
