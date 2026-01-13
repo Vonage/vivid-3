@@ -349,14 +349,20 @@ export class FilePicker extends WithContextualHelp(
 	}
 
 	#addFiles(files: File[] | FileList) {
+		const newFiles = Array.from(files).filter(
+			(file) =>
+				!this._allFiles.some(
+					(existingFile) =>
+						existingFile.name === file.name && existingFile.size === file.size
+				)
+		);
+
 		if (this.singleFile) {
-			/* v8 ignore else -- @preserve */
-			if (files.length > 0) {
-				// Only keep the last file
-				this._allFiles = [files[files.length - 1]];
+			if (newFiles.length > 0) {
+				this._allFiles = [newFiles[newFiles.length - 1]];
 			}
 		} else {
-			this._allFiles = [...this._allFiles, ...files];
+			this._allFiles = [...this._allFiles, ...newFiles];
 		}
 		this.$emit('change');
 	}

@@ -374,6 +374,28 @@ describe('vwc-file-picker', () => {
 				'File is too big (2MiB). Max filesize: 1MiB.'
 			);
 		});
+
+		it('should show the error only once when the same file is reuploaded', async () => {
+			element.maxFileSize = 0.1; // 1 MB
+			const largeFile = await generateFile('large-file.png', 0.5); // 10 MB
+
+			addFiles([largeFile]);
+			await elementUpdated(element);
+
+			expect(element.rejectedFiles.length).toBe(1);
+			expect(getErrorMessage(0)).toBe(
+				'File is too big (0.5MiB). Max filesize: 0.1MiB.'
+			);
+
+			// Reupload the same file
+			addFiles([largeFile]);
+			await elementUpdated(element);
+
+			expect(element.rejectedFiles.length).toBe(1);
+			expect(getErrorMessage(0)).toBe(
+				'File is too big (0.5MiB). Max filesize: 0.1MiB.'
+			);
+		});
 	});
 
 	describe('maxFiles', function () {
