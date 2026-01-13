@@ -43,6 +43,8 @@ When designing these alternative flows, ensure that you:
 2. Communicate what action was completed and its result
 3. Let the user easily continue to trigger more actions
 
+When designing and building drag-and-drop interfaces, treat drag and drop as an enhancement to the basic alternative flow outlined above. In the examples above, drag and drop can be disabled (by setting the `draggable` variable to `false`) and the interface will still function and make sense without it.
+
 ### Allow the user to trigger an outcome
 
 Use visible and accessible controls (like buttons, menus, and forms) to make it easy for people using assistive technologies to achieve the same outcomes as a drag operation.
