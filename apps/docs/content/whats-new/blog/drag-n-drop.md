@@ -19,7 +19,7 @@ This section willl explore what a truly accessible drag and drop looks like. Tha
 
 ### Different types of drag and drop interactions
 
-The terms “drag and drop” ican describe several distinct interactions patterns:
+The terms “drag and drop” can describe several distinct interactions patterns:
 
 - Moving items between containers, such as **kanban / projects boards**
 - Reordering items with a single container, like **sortable lists**
