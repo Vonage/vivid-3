@@ -45,7 +45,7 @@ When designing these alternative flows, ensure that you:
 
 ### Allow the user to trigger an outcome
 
-Use visible and accessible controls (like buttons, menus, and forms) to make it easy forr people using assistive technologies to achieve the same outcomes as a drag operation.
+Use visible and accessible controls (like buttons, menus, and forms) to make it easy for people using assistive technologies to achieve the same outcomes as a drag operation.
 
 #### General pattern: buttons and menus
 
