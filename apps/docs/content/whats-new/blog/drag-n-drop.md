@@ -9,7 +9,7 @@ January 2026 - James Taylor
 
 <img src="/assets/images/drag-and-drop-blog.png" alt="Drag and drop guidelines in Vivid" class="header-image" />
 
-<p class="lede">We’ve had a number of requests for system-wide guidelines and styles for drag and drop interactions. In this document I will provide recommendations for an accessible experience aswell as requirements for design and assess what we should build into our components and what should be the consumers concern.</p>
+<p class="lede">We’ve received multiple requests for system-wide guidelines and styles for drag-and-drop interactions. This document provides recommendations for creating an accessible experience, outlines design requirements, and evaluates what functionality should be built into our components versus what should be left to consumers.</p>
 
 ## Accessible drag and drop experiences
 
