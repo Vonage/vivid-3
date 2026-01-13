@@ -1,11 +1,11 @@
 ---
-title: Drag and Drop Guidelines
+title: Drag and Drop Patterns Across Cards and Lists
 month: 2026-01
 ---
 
-12th January 2026 - James Taylor
+January 2026 - James Taylor
 
-# Drag and Drop Guidelines
+# Consistent, accessible drag-and-drop patterns across cards and lists
 
 <img src="/assets/images/drag-and-drop-blog.png" alt="Drag and drop guidelines in Vivid" class="header-image" />
 
