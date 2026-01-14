@@ -357,10 +357,8 @@ export class FilePicker extends WithContextualHelp(
 				)
 		);
 
-		if (this.singleFile) {
-			if (newFiles.length > 0) {
-				this._allFiles = [newFiles[newFiles.length - 1]];
-			}
+		if (this.singleFile && newFiles.length > 0) {
+			this._allFiles = [newFiles[newFiles.length - 1]];
 		} else {
 			this._allFiles = [...this._allFiles, ...newFiles];
 		}
