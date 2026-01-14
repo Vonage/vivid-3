@@ -148,6 +148,18 @@ describe('vwc-popover', () => {
 			expect(floatingUI.autoUpdate).toHaveBeenCalled();
 		});
 
+		it('should detect open state via matches(:popover-open) if event.newState is missing', async () => {
+			const base = getBaseElement(element);
+			base.setAttribute('_popover-open', '');
+
+			const event = new Event('toggle');
+			base.dispatchEvent(event);
+
+			await elementUpdated(element);
+
+			expect(element.open).toBe(true);
+		});
+
 		it('should call hidePopover when set to false', async () => {
 			const base = getBaseElement(element);
 			vi.spyOn(base, 'hidePopover');
@@ -364,6 +376,37 @@ describe('vwc-popover', () => {
 			) as HTMLElement;
 
 			expect(arrowEl.style.left).toBe('10px');
+
+			const call = computeSpy.mock.lastCall![2];
+			expect(JSON.stringify(call?.middleware)).toContain('arrow');
+		});
+
+		it('should position arrow correctly for side placements', async () => {
+			element.arrow = true;
+			const computeSpy = vi
+				.spyOn(floatingUI, 'computePosition')
+				.mockReturnValue(
+					Promise.resolve({
+						x: 0,
+						y: 0,
+						placement: 'left',
+						strategy: 'fixed',
+						middlewareData: {
+							hide: {},
+							arrow: { y: 15 },
+						},
+					} as unknown as ComputePositionReturn)
+				);
+
+			await setupPopoverToOpenWithAnchor();
+			await element.updatePosition();
+
+			const arrowEl = element.shadowRoot?.querySelector(
+				'.arrow'
+			) as HTMLElement;
+
+			expect(arrowEl.style.top).toBe('15px');
+			expect(arrowEl.style.left).toBe('calc(100% - 4px)');
 
 			const call = computeSpy.mock.lastCall![2];
 			expect(JSON.stringify(call?.middleware)).toContain('arrow');

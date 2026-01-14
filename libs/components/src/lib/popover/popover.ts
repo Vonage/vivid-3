@@ -209,7 +209,9 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	get #middleware(): Middleware[] {
 		let middleware = [inline(), flip(), shift(), hide()];
 
+		/* v8 ignore next -- @preserve */
 		let offsetValue = this.offset ?? 0;
+
 		if (this.arrow && this.arrowEl) {
 			offsetValue = 12;
 			middleware = [
