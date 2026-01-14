@@ -74,7 +74,8 @@
 		"prosemirror-view": "^1.40.1",
 		"ramda": "^0.32.0",
 		"uuid": "^11.1.0",
-		"vanilla-colorful": "^0.7.2"
+		"vanilla-colorful": "^0.7.2",
+		"video.js": "^8.23.4"
 	},
 	"devDependencies": {
 		"@custom-elements-manifest/analyzer": "catalog:",
@@ -109,7 +110,6 @@
 		"sass": "catalog:",
 		"tsx": "catalog:",
 		"typescript": "catalog:",
-		"video.js": "^8.23.4",
 		"vite": "catalog:",
 		"vite-plugin-dts": "catalog:",
 		"vite-plugin-static-copy": "catalog:",
