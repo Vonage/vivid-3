@@ -29,7 +29,7 @@ export const popoverTemplate = (context: VividElementDefinitionContext) => {
 		<slot name="anchor" ${slotted('_slottedAnchor')}></slot>
 		<${elevationTag}>
 			<div class="base" 
-				${ref('popoverEl')} 
+				${ref('_popoverEl')} 
 				popover="${(x) => (x.manual ? 'manual' : 'auto')}"
 				tabindex="-1"
 				autofocus
@@ -57,7 +57,7 @@ export const popoverTemplate = (context: VividElementDefinitionContext) => {
 					)}
 					${when(
 						(x) => x.arrow,
-						html<Popover>`<div class="arrow" ${ref('arrowEl')}></div>`
+						html<Popover>`<div class="arrow" ${ref('_arrowEl')}></div>`
 					)}
 				</div>
 			</div>

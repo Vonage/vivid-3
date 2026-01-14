@@ -33,12 +33,12 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	/**
 	 * @internal
 	 */
-	popoverEl!: HTMLElement;
+	_popoverEl!: HTMLElement;
 
 	/**
 	 * @internal
 	 */
-	arrowEl?: HTMLElement;
+	_arrowEl?: HTMLElement;
 
 	/**
 	 * The placement of the popover relative to the anchor.
@@ -109,13 +109,13 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	 */
 	@attr({ mode: 'boolean' }) open = false;
 	openChanged(_oldValue: boolean, newValue: boolean) {
-		if (!this.popoverEl) return;
+		if (!this._popoverEl) return;
 
-		const isOpen = this.popoverEl.matches(':popover-open');
+		const isOpen = this._popoverEl.matches(':popover-open');
 		if (newValue && !isOpen) {
-			this.popoverEl.showPopover();
+			this._popoverEl.showPopover();
 		} else if (!newValue && isOpen) {
-			this.popoverEl.hidePopover();
+			this._popoverEl.hidePopover();
 		}
 
 		this.#updateAutoUpdate();
@@ -150,7 +150,7 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	 * @internal
 	 */
 	#updateAnchor() {
-		if (!this.popoverEl) return;
+		if (!this._popoverEl) return;
 		const newAnchor = this.anchor || this._slottedAnchor?.[0] || null;
 
 		if (this.#currentAnchor === newAnchor) return;
@@ -160,7 +160,7 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 
 		this.#currentAnchor = newAnchor;
 
-		if (this.#currentAnchor && this.popoverEl) {
+		if (this.#currentAnchor && this._popoverEl) {
 			this.#bindTrigger(this.#currentAnchor);
 			this.#updateAutoUpdate();
 		}
@@ -176,7 +176,7 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 			anchor instanceof HTMLButtonElement ||
 			anchor instanceof HTMLInputElement
 		) {
-			anchor.popoverTargetElement = this.popoverEl;
+			anchor.popoverTargetElement = this._popoverEl;
 		} else {
 			anchor.addEventListener('click', this.#manualToggle);
 		}
@@ -202,21 +202,24 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	 * @internal
 	 */
 	#manualToggle = () => {
-		this.popoverEl.togglePopover();
+		this._popoverEl.togglePopover();
 	};
 
 	// --- Floating UI Logic ---
+	/**
+	 * @internal
+	 */
 	get #middleware(): Middleware[] {
 		let middleware = [inline(), flip(), shift(), hide()];
 
 		/* v8 ignore next -- @preserve */
 		let offsetValue = this.offset ?? 0;
 
-		if (this.arrow && this.arrowEl) {
+		if (this.arrow && this._arrowEl) {
 			offsetValue = 12;
 			middleware = [
 				...middleware,
-				arrow({ element: this.arrowEl, padding: 10 }),
+				arrow({ element: this._arrowEl, padding: 10 }),
 			];
 		}
 
@@ -228,15 +231,21 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 		return middleware;
 	}
 
+	/**
+	 * @internal
+	 */
 	#cleanup?: () => void;
 
+	/**
+	 * @internal
+	 */
 	#updateAutoUpdate() {
 		this.#cleanup?.();
 
-		if (this.open && this.#currentAnchor && this.popoverEl) {
+		if (this.open && this.#currentAnchor && this._popoverEl) {
 			this.#cleanup = autoUpdate(
 				this.#currentAnchor,
-				this.popoverEl,
+				this._popoverEl,
 				this.#autoUpdateCallback
 			);
 		}
@@ -248,6 +257,9 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	 */
 	#lastPositionUpdate?: Promise<void>;
 
+	/**
+	 * @internal
+	 */
 	#autoUpdateCallback = () => {
 		this.#lastPositionUpdate = this.updatePosition();
 	};
@@ -258,11 +270,11 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	 */
 	async updatePosition() {
 		/* v8 ignore if -- @preserve */
-		if (!this.open || !this.#currentAnchor || !this.popoverEl) return;
+		if (!this.open || !this.#currentAnchor || !this._popoverEl) return;
 
 		const positionData = await computePosition(
 			this.#currentAnchor,
-			this.popoverEl,
+			this._popoverEl,
 			{
 				placement: this.placement,
 				strategy: 'fixed',
@@ -274,14 +286,17 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 
 		this.#assignPopoverPosition(positionData);
 
-		if (this.arrow && this.arrowEl) {
+		if (this.arrow && this._arrowEl) {
 			this.#assignArrowPosition(positionData);
 		}
 	}
 
+	/**
+	 * @internal
+	 */
 	#assignPopoverPosition(data: ComputePositionReturn) {
 		const { x, y } = data;
-		Object.assign(this.popoverEl.style, {
+		Object.assign(this._popoverEl.style, {
 			left: `${x}px`,
 			top: `${y}px`,
 			visibility: data.middlewareData.hide?.referenceHidden
@@ -290,9 +305,12 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 		});
 	}
 
+	/**
+	 * @internal
+	 */
 	#assignArrowPosition(data: ComputePositionReturn) {
 		/* v8 ignore if -- @preserve */
-		if (!this.arrowEl) return;
+		if (!this._arrowEl) return;
 		const { x: arrowX, y: arrowY } = data.middlewareData.arrow!;
 		const styles = {
 			left: 'calc(100% - 4px)',
@@ -302,7 +320,7 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 		};
 		const staticAxis = data.placement.split('-')[0] as keyof typeof styles;
 
-		Object.assign(this.arrowEl.style, {
+		Object.assign(this._arrowEl.style, {
 			left: arrowX ? `${arrowX}px` : styles[staticAxis],
 			top: arrowY ? `${arrowY}px` : styles[staticAxis],
 		});
@@ -316,7 +334,7 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	#handleNativeToggle = (e: ToggleEvent) => {
 		const isOpen = e.newState
 			? e.newState === 'open'
-			: this.popoverEl.matches(':popover-open');
+			: this._popoverEl.matches(':popover-open');
 
 		if (this.open !== isOpen) {
 			this.open = isOpen;
@@ -330,11 +348,11 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 		this.#updateAnchor();
 
 		/* v8 ignore else -- @preserve */
-		if (this.popoverEl) {
-			this.popoverEl.addEventListener('toggle', this.#handleNativeToggle);
+		if (this._popoverEl) {
+			this._popoverEl.addEventListener('toggle', this.#handleNativeToggle);
 
-			if (this.open && !this.popoverEl.matches(':popover-open')) {
-				this.popoverEl.showPopover();
+			if (this.open && !this._popoverEl.matches(':popover-open')) {
+				this._popoverEl.showPopover();
 				this.#updateAutoUpdate();
 			}
 		}
@@ -348,8 +366,8 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 			this.#currentAnchor = null;
 		}
 		/* v8 ignore else -- @preserve */
-		if (this.popoverEl) {
-			this.popoverEl.removeEventListener('toggle', this.#handleNativeToggle);
+		if (this._popoverEl) {
+			this._popoverEl.removeEventListener('toggle', this.#handleNativeToggle);
 		}
 	}
 
