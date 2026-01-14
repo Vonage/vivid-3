@@ -396,6 +396,22 @@ describe('vwc-file-picker', () => {
 				'File is too big (0.5MiB). Max filesize: 0.1MiB.'
 			);
 		});
+
+		it('should replace the existing file with the last file when singleFile is true', async () => {
+			element.singleFile = true;
+			const file1 = await generateFile('file1.txt', 1);
+			const file2 = await generateFile('file2.txt', 1);
+
+			addFiles([file1]);
+			await elementUpdated(element);
+
+			expect(element.files).toEqual([file1]);
+
+			addFiles([file2]);
+			await elementUpdated(element);
+
+			expect(element.files).toEqual([file2]);
+		});
 	});
 
 	describe('maxFiles', function () {
