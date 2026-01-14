@@ -129,6 +129,9 @@ const enGB: Locale = {
 	dialog: {
 		dismissButtonLabel: 'Close',
 	},
+	popover: {
+		dismissButtonLabel: 'Close',
+	},
 	banner: {
 		dismissButtonLabel: 'Close',
 	},

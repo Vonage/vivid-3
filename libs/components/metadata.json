@@ -6078,6 +6078,161 @@
 			}
 		},
 		{
+			"name": "popover",
+			"className": "Popover",
+			"registerFunctionName": "registerPopover",
+			"description": "",
+			"props": [
+				{
+					"name": "alternate",
+					"description": "Sets the color-scheme to alternate (dark/light)",
+					"type": "boolean",
+					"attributeName": "alternate",
+					"propertyName": "alternate"
+				},
+				{
+					"name": "arrow",
+					"description": "Whether to render the arrow tip.",
+					"type": "boolean",
+					"attributeName": "arrow",
+					"propertyName": "arrow"
+				},
+				{
+					"name": "condensed",
+					"description": "Setting to true applies condensed layout with smaller paddings and gaps.",
+					"type": "boolean",
+					"attributeName": "condensed",
+					"propertyName": "condensed"
+				},
+				{
+					"name": "dismissButtonAriaLabel",
+					"description": "Overrides the default Dismiss button's aria-label.",
+					"type": "string",
+					"attributeName": "dismiss-button-aria-label",
+					"propertyName": "dismissButtonAriaLabel"
+				},
+				{
+					"name": "manual",
+					"description": "If true, the popover uses manual dismissal (no light-dismiss).\nAdds a close button to the UI.",
+					"type": "boolean",
+					"attributeName": "manual",
+					"propertyName": "manual"
+				},
+				{
+					"name": "offset",
+					"description": "Sets the offset between popover and the anchor element.",
+					"type": "number",
+					"attributeName": "offset",
+					"propertyName": "offset"
+				},
+				{
+					"name": "open",
+					"description": "Indicates if the popover is currently open.\nCan be set declaratively to open/close the popover.\nAutomatically updates when the user dismisses the popover.",
+					"type": "boolean",
+					"attributeName": "open",
+					"propertyName": "open"
+				},
+				{
+					"name": "placement",
+					"description": "The placement of the popover relative to the anchor.",
+					"type": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'",
+					"attributeName": "placement",
+					"propertyName": "placement"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "close",
+					"description": "Fired when the popover closes.",
+					"type": "CustomEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "open",
+					"description": "Fired when the popover opens.",
+					"type": "CustomEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [
+				{
+					"name": "_slottedAnchorChanged",
+					"args": [],
+					"returnType": "unknown"
+				},
+				{ "name": "anchorChanged", "args": [], "returnType": "unknown" },
+				{ "name": "arrowChanged", "args": [], "returnType": "unknown" },
+				{ "name": "hide", "args": [], "returnType": "void" },
+				{
+					"name": "openChanged",
+					"args": [
+						{ "name": "_oldValue", "type": "boolean" },
+						{ "name": "newValue", "type": "boolean" }
+					],
+					"returnType": "unknown"
+				},
+				{ "name": "placementChanged", "args": [], "returnType": "unknown" },
+				{ "name": "show", "args": [], "returnType": "Promise<void>" },
+				{ "name": "toggle", "args": [], "returnType": "void" },
+				{
+					"name": "updatePosition",
+					"description": "Updates the position of the popover",
+					"args": [],
+					"returnType": "unknown"
+				}
+			],
+			"slots": [
+				{ "name": "anchor", "description": "Slot for the trigger element." },
+				{
+					"name": "default",
+					"description": "Default slot for the popover content."
+				},
+				{
+					"name": "footer",
+					"description": "Use the footer slot in order to add action buttons or other contents to the bottom of the dialog."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
 			"name": "progress",
 			"className": "Progress",
 			"registerFunctionName": "registerProgress",

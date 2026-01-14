@@ -1,0 +1,68 @@
+@use 'partials/variables' as variables;
+@use '@repo/shared/utils' as utils;
+@use '@repo/shared/mixins/resets' as resets;
+@use '@repo/shared/mixins/scrollbar' as scrollbar;
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+
+:host {
+	display: inline-block;
+}
+
+.base {
+	@include resets.floating-element-reset;
+	@include scrollbar.scrollbar;
+
+	& {
+		position: fixed;
+		overflow: visible;
+		padding: 0;
+		border: none;
+		border-radius: #{border-radius-variables.$border-radius-normal};
+		margin: 0;
+		inline-size: max-content;
+		min-inline-size: fit-content;
+	}
+
+	&:focus-visible {
+		outline: none;
+	}
+
+	&::backdrop {
+		background-color: var(#{variables.$popover-backdrop-bg}, transparent);
+	}
+}
+
+.control {
+	display: flex;
+	flex-direction: column;
+	padding: var(#{variables.$popover-padding}, 24px);
+	border-radius: inherit;
+	background: var(#{utils.get-color-token(surface-4dp)});
+	color: var(#{utils.get-color-token(canvas-text)});
+	gap: var(#{variables.$popover-gap}, 24px);
+	&:not(.open) {
+		display: none;
+	}
+	&.condensed {
+		--popover-padding: 12px;
+    --popover-gap: 12px;
+	}
+	&.manual {
+		padding-block-start: 40px;
+	}
+}
+
+.arrow {
+	position: absolute;
+	z-index: -1;
+	width: 8px;
+	height: 8px;
+	background: var(#{utils.get-color-token(surface-4dp)});
+	transform: rotate(45deg);
+}
+
+.dismiss-button {
+	position: absolute;
+	inset-block-start: 4px;
+	inset-inline-end: 4px;
+}
