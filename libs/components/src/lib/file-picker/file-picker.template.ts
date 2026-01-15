@@ -74,12 +74,12 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 					aria-describedby="${(x) => x._feedbackDescribedBy}"
 					${delegateAria()}
 				>
-					<vwc-icon
+					<${iconTag}
 						class="upload-icon"
 						name="cloud-upload-line"
 						size="-4"
 						label="${(x) => x.locale.filePicker.uploadFilesLabel}"
-					></vwc-icon>
+					></${iconTag}>
 					<span class="upload-text"><slot></slot></span>
 				</button>
 				${(x) => x._getFeedbackTemplate(context)}
