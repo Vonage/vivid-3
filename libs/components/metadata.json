@@ -6098,18 +6098,18 @@
 					"propertyName": "arrow"
 				},
 				{
-					"name": "condensed",
-					"description": "Setting to true applies condensed layout with smaller paddings and gaps.",
-					"type": "boolean",
-					"attributeName": "condensed",
-					"propertyName": "condensed"
-				},
-				{
 					"name": "dismissButtonAriaLabel",
 					"description": "Overrides the default Dismiss button's aria-label.",
 					"type": "string",
 					"attributeName": "dismiss-button-aria-label",
 					"propertyName": "dismissButtonAriaLabel"
+				},
+				{
+					"name": "layout",
+					"description": "Sets the layout of the popover.",
+					"type": "'default' | 'condensed'",
+					"attributeName": "layout",
+					"propertyName": "layout"
 				},
 				{
 					"name": "manual",
