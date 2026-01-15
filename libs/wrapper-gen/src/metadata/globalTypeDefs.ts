@@ -101,4 +101,7 @@ export const globalTypeDefs: Record<string, TypeStr> = {
 
 	RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES:
 		"'extra-large' | 'large' | 'normal' | 'small'",
+
+	// Popover
+	PopoverLayout: "'default' | 'condensed'",
 };

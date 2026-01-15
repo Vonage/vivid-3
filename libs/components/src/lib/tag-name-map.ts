@@ -41,6 +41,7 @@ import type {
 	VwcNumberFieldElement,
 	VwcOptionElement,
 	VwcPaginationElement,
+	VwcPopoverElement,
 	VwcProgressElement,
 	VwcProgressRingElement,
 	VwcRadioElement,
@@ -113,6 +114,7 @@ type DefaultVividTagNameMap = {
 	'vwc-number-field': VwcNumberFieldElement;
 	'vwc-option': VwcOptionElement;
 	'vwc-pagination': VwcPaginationElement;
+	'vwc-popover': VwcPopoverElement;
 	'vwc-progress': VwcProgressElement;
 	'vwc-progress-ring': VwcProgressRingElement;
 	'vwc-radio': VwcRadioElement;
