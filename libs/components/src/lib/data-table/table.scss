@@ -1,0 +1,21 @@
+@use '@repo/shared/mixins/scrollbar' as scrollbar;
+
+:host {
+	display: block;
+}
+
+.base {
+	@include scrollbar.scrollbar;
+
+	& {
+		position: relative;
+		overflow: auto;
+		block-size: inherit;
+		inline-size: 100%;
+		max-block-size: inherit;
+		display: table;
+		width: 100%;
+		border-collapse: collapse;
+	}
+}
+

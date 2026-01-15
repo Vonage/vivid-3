@@ -1,0 +1,35 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use 'partials/variables' as variables;
+@use '@repo/shared/mixins/connotation/config' with (
+	$connotations: accent cta,
+	$shades: primary primary-text primary-increment firm faint soft pale dim,
+	$default: accent
+);
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
+	$appearances: listitem,
+	$states: idle hover selected selectedAndHover,
+	$default: listitem
+);
+@use '@repo/shared/mixins/appearance' as appearance;
+
+:host {
+	display: table-row;
+}
+
+.base {
+	@include connotation.connotation(data-grid-row);
+	@include appearance.appearance;
+
+	& {
+		display: contents;
+		width: 100%;
+		box-sizing: border-box;
+		color: var(#{constants.$vvd-color-canvas-text});
+	}
+
+	:host(:is([selected])) & {
+		background-color: var(#{appearance.get-appearance-token(fill)});
+	}
+}
+

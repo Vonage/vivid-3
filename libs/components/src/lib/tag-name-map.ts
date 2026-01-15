@@ -20,6 +20,12 @@ import type {
 	VwcDataGridCellElement,
 	VwcDataGridElement,
 	VwcDataGridRowElement,
+	VwcTableCellElement,
+	VwcTableBodyElement,
+	VwcTableElement,
+	VwcTableHeadElement,
+	VwcTableHeaderCellElement,
+	VwcTableRowElement,
 	VwcDatePickerElement,
 	VwcDateRangePickerElement,
 	VwcDateTimePickerElement,
@@ -92,6 +98,12 @@ type DefaultVividTagNameMap = {
 	'vwc-data-grid-cell': VwcDataGridCellElement;
 	'vwc-data-grid': VwcDataGridElement;
 	'vwc-data-grid-row': VwcDataGridRowElement;
+	'vwc-table': VwcTableElement;
+	'vwc-table-body': VwcTableBodyElement;
+	'vwc-table-cell': VwcTableCellElement;
+	'vwc-table-head': VwcTableHeadElement;
+	'vwc-table-header-cell': VwcTableHeaderCellElement;
+	'vwc-table-row': VwcTableRowElement;
 	'vwc-date-picker': VwcDatePickerElement;
 	'vwc-date-range-picker': VwcDateRangePickerElement;
 	'vwc-date-time-picker': VwcDateTimePickerElement;

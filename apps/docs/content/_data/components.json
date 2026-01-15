@@ -422,6 +422,17 @@
 		"useCases": "./libs/components/src/lib/data-grid/USE-CASES.md"
 	},
 	{
+		"title": "Data Table",
+		"description": "A stateless table component for displaying tabular data, designed for integration with libraries like TanStack Table.",
+		"variations": "./libs/components/src/lib/data-table/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/data-table/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/data-table/README.md",
+		"accessibility": "./libs/components/src/lib/data-table/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/data-table/USE-CASES.md",
+		"status": "alpha"
+	},
+	{
 		"title": "Toggletip",
 		"description": "A Toggletip is a type of Tooltip that is opened when clicking or tapping on the trigger button.",
 		"variations": "./libs/components/src/lib/toggletip/VARIATIONS.md",

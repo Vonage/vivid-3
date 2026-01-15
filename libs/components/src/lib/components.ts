@@ -17,6 +17,7 @@ export * from './color-picker/definition';
 export * from './contextual-help/definition';
 export * from './combobox/definition';
 export * from './data-grid/definition';
+export * from './data-table/definition';
 export * from './date-picker/definition';
 export * from './date-range-picker/definition';
 export * from './date-time-picker/definition';
