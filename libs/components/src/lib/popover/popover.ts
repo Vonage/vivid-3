@@ -21,6 +21,13 @@ import { Localized } from '../../shared/patterns';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
+ * Types of popover layout
+ *
+ * @public
+ */
+export type PopoverLayout = 'default' | 'condensed';
+
+/**
  * @public
  * @component popover
  * @slot - Default slot for the popover content.
@@ -57,10 +64,11 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	@attr({ mode: 'boolean' }) manual = false;
 
 	/**
-	 * Setting to true applies condensed layout with smaller paddings and gaps.
+	 * Sets the layout of the popover.
 	 * @public
+	 * HTML Attribute: layout
 	 */
-	@attr({ mode: 'boolean' }) condensed = false;
+	@attr({ mode: 'fromView' }) layout: PopoverLayout = 'default';
 
 	/**
 	 * Sets the offset between popover and the anchor element.
@@ -340,7 +348,7 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 			this.open = isOpen;
 		}
 
-		this.$emit(isOpen ? 'open' : 'close');
+		this.$emit(isOpen ? 'open' : 'close', undefined, { bubbles: false });
 	};
 
 	override connectedCallback() {

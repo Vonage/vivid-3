@@ -175,12 +175,15 @@ describe('vwc-popover', () => {
 
 		it('should fire "open" event', async () => {
 			const spy = vi.fn();
+			const bubbleSpy = vi.fn();
 			element.addEventListener('open', spy);
+			element.parentElement!.addEventListener('open', spy);
 
 			element.open = true;
 			await elementUpdated(element);
 
 			expect(spy).toHaveBeenCalled();
+			expect(bubbleSpy).not.toHaveBeenCalled();
 		});
 
 		it('should fire "close" event', async () => {
@@ -188,12 +191,15 @@ describe('vwc-popover', () => {
 			await elementUpdated(element);
 
 			const spy = vi.fn();
+			const bubbleSpy = vi.fn();
 			element.addEventListener('close', spy);
+			element.parentElement!.addEventListener('close', spy);
 
 			element.open = false;
 			await elementUpdated(element);
 
 			expect(spy).toHaveBeenCalled();
+			expect(bubbleSpy).not.toHaveBeenCalled();
 		});
 	});
 
@@ -204,6 +210,23 @@ describe('vwc-popover', () => {
 
 			expect(getControlElement(element).getAttribute('part')).toEqual(
 				'vvd-theme-alternate'
+			);
+		});
+	});
+
+	describe('layout', () => {
+		it('should default to "default"', async () => {
+			expect(element.layout).toBe('default');
+			expect(getControlElement(element).classList.contains('condensed')).toBe(
+				false
+			);
+		});
+
+		it('should add "condensed" class when set to "condensed"', async () => {
+			element.layout = 'condensed';
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('condensed')).toBe(
+				true
 			);
 		});
 	});

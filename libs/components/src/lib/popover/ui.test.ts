@@ -37,7 +37,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				</vwc-popover>
 			</div>
 			<div class="cell">
-				<vwc-popover open manual condensed aria-label="Condensed">
+				<vwc-popover open manual layout="condensed" aria-label="Condensed">
 					<vwc-button slot="anchor" appearance="filled" label="Condensed"></vwc-button>
 					<div>Condensed Popover</div>
 				</vwc-popover>

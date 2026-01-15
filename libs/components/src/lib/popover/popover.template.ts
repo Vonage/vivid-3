@@ -7,12 +7,12 @@ import { Button } from '../button/button';
 import { delegateAria } from '../../shared/aria/delegates-aria';
 import { Popover } from './popover';
 
-const getClasses = ({ open, manual, condensed }: Popover) =>
+const getClasses = ({ open, manual, layout }: Popover) =>
 	classNames(
 		'control',
 		['open', Boolean(open)],
 		['manual', Boolean(manual)],
-		['condensed', Boolean(condensed)]
+		['condensed', layout === 'condensed']
 	);
 
 /**

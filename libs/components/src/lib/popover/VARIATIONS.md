@@ -46,9 +46,9 @@ import { VPopover, VButton, VIcon } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
-## Condensed
+## Layout
 
-The `condensed` attribute enables a condensed layout with smaller paddings and gaps.
+The `layout` attribute allows you to enable a condensed layout with smaller paddings and gaps.
 
 <vwc-note connotation="information">
 	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
@@ -67,7 +67,7 @@ import { VPopover, VButton, VIcon } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VPopover condensed aria-label="My Popover">
+	<VPopover layout="condensed" aria-label="My Popover">
 		<template #anchor>
 			<VButton label="Open popover" appearance="filled" icon-trailing>
 				<template #icon><VIcon name="open-solid" /></template>
@@ -83,7 +83,7 @@ import { VPopover, VButton, VIcon } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview center 240px
-<vwc-popover condensed aria-label="My Popover">
+<vwc-popover layout="condensed" aria-label="My Popover">
 	<vwc-button label="Open popover" appearance="filled" slot="anchor" icon-trailing>
 		<vwc-icon slot="icon" name="open-solid"></vwc-icon>
 	</vwc-button>

@@ -607,6 +607,7 @@
 		"code": "./libs/components/src/lib/popover/README.md",
 		"accessibility": "./libs/components/src/lib/popover/ACCESSIBILITY.md",
 		"hideGuidelines": "true",
-		"hideUseCases": "true"
+		"hideUseCases": "true",
+		"status": "alpha"
 	}
 ]
