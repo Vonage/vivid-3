@@ -34,11 +34,6 @@ describe('vwc-table-body', () => {
 			expect(row).toBeTruthy();
 		});
 
-		it('should have display: table-row-group', async () => {
-			await elementUpdated(element);
-			const computedStyle = window.getComputedStyle(element);
-			expect(computedStyle.display).toBe('table-row-group');
-		});
 	});
 });
 

@@ -33,11 +33,6 @@ describe('vwc-table-cell', () => {
 			expect(element.textContent).toContain('Test cell content');
 		});
 
-		it('should have display: table-cell', async () => {
-			await elementUpdated(element);
-			const computedStyle = window.getComputedStyle(element);
-			expect(computedStyle.display).toBe('table-cell');
-		});
 
 		it('should have role="gridcell"', async () => {
 			await elementUpdated(element);

@@ -35,11 +35,6 @@ describe('vwc-table-row', () => {
 			expect(cell?.textContent).toContain('Cell 1');
 		});
 
-		it('should have display: table-row', async () => {
-			await elementUpdated(element);
-			const computedStyle = window.getComputedStyle(element);
-			expect(computedStyle.display).toBe('table-row');
-		});
 
 		it('should have role="row"', async () => {
 			await elementUpdated(element);

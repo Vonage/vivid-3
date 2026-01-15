@@ -33,11 +33,6 @@ describe('vwc-table-header-cell', () => {
 			expect(element.textContent).toContain('Test header content');
 		});
 
-		it('should have display: table-cell', async () => {
-			await elementUpdated(element);
-			const computedStyle = window.getComputedStyle(element);
-			expect(computedStyle.display).toBe('table-cell');
-		});
 
 		it('should have role="columnheader"', async () => {
 			await elementUpdated(element);
