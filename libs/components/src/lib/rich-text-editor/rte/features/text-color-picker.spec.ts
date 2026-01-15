@@ -60,6 +60,15 @@ describe('RteTextColorFeature', () => {
 		);
 	});
 
+	it('should deserialize textColor from inline style', async () => {
+		const rte = await setup(features());
+		rte.setHtml('<p><span style="color: red">Colored</span> Plain</p>');
+
+		expect(rte.docStr()).toMatchInlineSnapshot(
+			`"paragraph(<textColor[color="red"]>'|Colored', ' Plain')"`
+		);
+	});
+
 	it('should serialize textColor to HTML', async () => {
 		const rte = await setup(features(), [
 			p(text.marks(color({ color: '#123456' }))('Colored'), ' Plain'),

@@ -1317,6 +1317,7 @@ Adds the ability to insert links. This features requires the `RteToolbarFeature`
 **Keyboard shortcuts:**
 
 - **Insert link**: <kbd>Ctrl</kbd> + <kbd>K</kbd> / <kbd>Cmd</kbd> + <kbd>K</kbd>
+- Pressing Space or Enter after typing or pasting a URL will automatically convert it into a link.
 
 <rte-schema>
 	<rte-schema-mark name="link">
