@@ -45,6 +45,7 @@ describe('icon', function () {
 			},
 			text: () => svg,
 		};
+		fakeFetch();
 	});
 
 	afterEach(function () {

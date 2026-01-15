@@ -1,11 +1,4 @@
-# Vivid Conventions
-
-Please read the following conventions guidelines before starting to work on a new component:
-
 ## Template Guide
-
-Use the new component generator to create a new component, and it will also generate the proper documentation structure:
-`pnpm turbo gen component`
 
 ## Components Terminology
 
@@ -36,33 +29,3 @@ Use kebab case for slot names. Or use one of the following:
 - `footer` - for a slot bound to contain a footer or a summary.
 - `action-items` - for action items that can be performed on the component.
 - `main` - for main content of the component.
-
-## Documentation Structure
-
-See the [component generator files](https://github.com/Vonage/vivid-3/tree/main/libs/nx-vivid/src/generators/component/files) for examples of the recommended page structure for each page.
-
-The documentation files should have the following structure:
-
-- `VARIATIONS.md`: **Variations** - shows all the visual states the of component
-- `README.md`: **Code** - shows technical properties and configuration options with a API Reference
-- `GUIDELINES.md`: **Guidelines** - shows do's and dont's on component usage
-- `ACCESSIBILITY.md`: **Accessibility** - show advice ono how to use the component in an accessible way
-- `USE-CASES.md`: **Use Cases** - shows examples different ways the component can be used
-
-## Code Preview
-
-### Code Preview Style
-
-```html preview blocks
-code snipet
-```
-
-### Use One of These Options
-
-Use one of these options to style the code preview:
-
-- full
-- blocks
-- columns
-- inline (default)
-- center

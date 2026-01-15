@@ -78,6 +78,3 @@ overrides:
   minimist: 1.2.8
   nconf: 0.13.0
   path-to-regexp: 0.2.5
-
-patchedDependencies:
-  global@4.4.0: patches/global@4.4.0.patch

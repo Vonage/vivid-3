@@ -129,6 +129,9 @@ const jaJP: Locale = {
 	dialog: {
 		dismissButtonLabel: '閉じる',
 	},
+	popover: {
+		dismissButtonLabel: '閉じる',
+	},
 	banner: {
 		dismissButtonLabel: '閉じる',
 	},
