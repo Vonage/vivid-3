@@ -260,7 +260,7 @@ It's appears should be different to the dragged / draggable items.
 
 <ol>
   <li>It should have a different background color. A light CTA shade could be appropriate.</li>
-  <li>It should have a dashed border in the same color variant.<li>
+  <li>It should have a dashed border in the same color variant.</li>
 </ol>
 
 These styles are inkeeping with the [File Picker](/components/file-picker/) component's drop target.
