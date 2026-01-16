@@ -180,7 +180,84 @@ However, if you make changes to your `RteConfig`, you should ensure that the edi
 
 ### Rendering Documents
 
-To render documents inside a web application, you will be able to use the Rich Text component. It will allow you to use custom components for rendering specific nodes or marks.
+To render documents inside a web application, you can use the Rich Text View component. It accepts a view that is created by `RteConfig`'s `instantiateView` method.
+
+```html preview
+<vwc-rich-text-view></vwc-rich-text-view>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-view').then(() => {
+		const config = new RteConfig([new RteBase(), new RteToolbarFeature(), new RteBoldFeature()]);
+
+		const view = config.instantiateView({
+			type: 'doc',
+			content: [
+				{
+					type: 'paragraph',
+					content: [
+						{ type: 'text', text: 'Hello' },
+						{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
+					],
+				},
+			],
+		});
+
+		const viewComponent = document.querySelector('vwc-rich-text-view');
+		viewComponent.view = view;
+	});
+</script>
+```
+
+It renders documents identically to how they appear in the editor. You can also customize the rendering of specific nodes or marks by providing the `renderChildView` option.
+
+`renderChildView?: (view: RteView) => { dom: HTMLElement; contentDom?: HTMLElement; } | false;`
+
+The function is called for each node and mark in the document. The kind is indicated by `view.type: 'node' | 'mark'`, and `view.node` or `view.mark` will contain the respective JSON representation of the node/mark.
+
+You can render a custom HTML element for this node/mark by returning it as the `dom` property. If there is child content, Rich Text View will render them as children of `contentDom`, which defaults to `dom`.
+
+If you return `false`, the view is rendered as normal.
+
+```html preview
+<vwc-rich-text-view></vwc-rich-text-view>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-view').then(() => {
+		const config = new RteConfig([new RteBase(), new RteToolbarFeature(), new RteBoldFeature()]);
+
+		const view = config.instantiateView(
+			{
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'Hello ' },
+							{ type: 'text', text: 'world!', marks: [{ type: 'bold' }] },
+						],
+					},
+				],
+			},
+			{
+				renderChildView: (view) => {
+					if (view.type === 'mark' && view.mark.type === 'bold') {
+						const dom = document.createElement('button');
+						dom.style.fontWeight = 'bold';
+						dom.addEventListener('click', () => alert('Bold text clicked!'));
+						return { dom };
+					}
+					return false; // use default rendering
+				},
+			}
+		);
+
+		const viewComponent = document.querySelector('vwc-rich-text-view');
+		viewComponent.view = view;
+	});
+</script>
+```
+
+In the future, we will also provide a way to use custom Vue components for rendering nodes and marks.
 
 ### HTML Conversion
 
@@ -1418,6 +1495,13 @@ Called when HTML is parsed. Note that this occurs not only when you use a `HtmlP
 
 For each HTML `<img>` tag, it is called with the `src` attribute and should return the `imageUrl`. If it returns `null`, the image is discarded.
 
+<vwc-note connotation="information" headline="When rendering in Rich Text View">
+	<vwc-icon slot="icon" name="info-line" label="Information:"></vwc-icon>
+
+The Rich Text View component will render images like serialized HTML. It will not invoke `resolveUrl`.
+
+</vwc-note>
+
 #### Rendering Placeholders
 
 Resolving an `imageUrl` to a placeholder allows you to display custom slotted content in place of the image.
@@ -1592,22 +1676,26 @@ In this example, we display a drop zone overlay when files are dragged over the 
 
 The basic text blocks `heading-<level>` and `paragraph` are exposed as a shadow DOM part, which allows you to customize its styling using CSS.
 
+This applies to both the Rich Text Editor and Rich Text View components, so styling can be shared.
+
 ```html preview
 <style>
-	vwc-rich-text-editor::part(node--heading1) {
+	::part(node--heading1) {
 		color: var(--vvd-color-neutral-700);
 	}
 
-	vwc-rich-text-editor::part(node--heading2) {
+	::part(node--heading2) {
 		color: var(--vvd-color-neutral-500);
 	}
 
-	vwc-rich-text-editor::part(node--paragraph) {
+	::part(node--paragraph) {
 		font: var(--vvd-typography-base-extended);
 	}
 </style>
 
-<vwc-rich-text-editor style="block-size: 200px"></vwc-rich-text-editor>
+<vwc-rich-text-editor></vwc-rich-text-editor>
+<vwc-divider style="margin-block: 24px"></vwc-divider>
+<vwc-rich-text-view style="display: block; background: var(--vvd-color-canvas); padding: 8px 16px;"></vwc-rich-text-view>
 
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
@@ -1655,7 +1743,14 @@ The basic text blocks `heading-<level>` and `paragraph` are exposed as a shadow 
 					},
 				],
 			},
+			onChange: updateView,
 		});
+
+		const viewComponent = document.querySelector('vwc-rich-text-view');
+		function updateView() {
+			viewComponent.view = config.instantiateView(rteComponent.instance.getDocument());
+		}
+		updateView();
 	});
 </script>
 ```
@@ -1800,12 +1895,26 @@ The `editorViewportElement` property provides access to the scrollable editor vi
 
 ## API Reference
 
-### Properties
+### Rich Text Editor
+
+#### Properties
 
 <div class="table-wrapper">
 
 | Name         | Type          | Description                                                                             |
 | ------------ | ------------- | --------------------------------------------------------------------------------------- |
 | **instance** | `RteInstance` | The editor instance created from the RteConfig. Without it, the editor will not render. |
+
+</div>
+
+### Rich Text View
+
+#### Properties
+
+<div class="table-wrapper">
+
+| Name     | Type      | Description                                      |
+| -------- | --------- | ------------------------------------------------ |
+| **view** | `RteView` | The view to display, created from the RteConfig. |
 
 </div>

@@ -10,7 +10,7 @@ export const RichTextEditorTemplate = (
 			<div class="editor-viewport" ${ref('editorViewportElement')}>
 				<div class="editor-scroll-area">
 					<slot name="editor-start"></slot>
-					<div class="editor" ${ref('_editorEl')}></div>
+					<div class="editor rich-text" ${ref('_editorEl')}></div>
 					<div class="popovers"></div>
 					<slot name="editor-end"></slot>
 				</div>

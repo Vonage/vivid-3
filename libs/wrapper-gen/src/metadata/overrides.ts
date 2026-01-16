@@ -138,4 +138,16 @@ export const componentOverrides: ComponentSpecs[] = [
 			});
 		},
 	],
+
+	[
+		'rich-text-view',
+		(component) => {
+			component.props.push({
+				name: 'view',
+				description: 'The view to display, created from the RteConfig.',
+				type: 'any',
+				propertyName: 'view',
+			});
+		},
+	],
 ];

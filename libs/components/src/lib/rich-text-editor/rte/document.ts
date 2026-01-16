@@ -21,6 +21,8 @@ type RegularNode = {
 	content?: Array<RteNode>;
 };
 
+export type RteTextNode = TextNode;
+export type RteRegularNode = RegularNode;
 export type RteNode = TextNode | RegularNode;
 export type RteMark = Mark;
 export type RteDocument = Doc;
