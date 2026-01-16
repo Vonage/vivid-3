@@ -46,7 +46,7 @@ export const hostBridgePlugin = new Plugin<HostState | null>({
 });
 
 export class RteCoreImpl extends RteFeatureImpl {
-	protected name = 'RteCore';
+	name = 'RteCore';
 
 	override getStyles() {
 		return [

@@ -56,6 +56,7 @@ export const docFactories = {
 	listItem: nodeFactory('listItem'),
 	hardBreak: nodeFactory('hardBreak'),
 	inlineImage: nodeFactory('inlineImage', undefined, undefined, true),
+	atom: (atomName: string) => nodeFactory(atomName, undefined, undefined, true),
 	bold: markFactory('bold'),
 	italic: markFactory('italic'),
 	underline: markFactory('underline'),

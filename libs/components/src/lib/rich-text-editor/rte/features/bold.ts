@@ -11,7 +11,7 @@ import {
 import { RteTextStyleFeatureImpl } from './internal/text-style';
 
 export class RteBoldFeatureImpl extends RteTextStyleFeatureImpl {
-	protected name = 'RteBoldFeature';
+	name = 'RteBoldFeature';
 	protected markName = 'bold';
 
 	override getSchema(): SchemaContribution[] {

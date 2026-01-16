@@ -11,7 +11,7 @@ export type RteBaseConfig = {
 };
 
 export class RteBaseImpl extends RteFeatureImpl {
-	protected name = 'RteBase';
+	name = 'RteBase';
 
 	constructor(protected config?: RteBaseConfig) {
 		super();

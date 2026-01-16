@@ -174,7 +174,7 @@ class InlineImageView implements NodeView {
 }
 
 export class RteInlineImageFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteInlineImageFeature';
+	name = 'RteInlineImageFeature';
 
 	constructor(protected readonly config: RteInlineImageConfig = {}) {
 		super();

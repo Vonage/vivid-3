@@ -5,7 +5,7 @@ import {
 	type ToolbarItemContribution,
 } from '../feature';
 import type { RteInstanceImpl } from '../instance';
-import { RteBasicTextBlocksImpl } from './internal/basic-text-blocks';
+import type { RteBasicTextBlocksImpl } from './internal/basic-text-blocks';
 
 export interface TextBlockOption {
 	node: string;
@@ -17,14 +17,14 @@ export type RteTextBlockPickerConfig = {
 };
 
 export class RteTextBlockPickerFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteTextBlockPickerFeature';
+	name = 'RteTextBlockPickerFeature';
 
 	constructor(protected config: RteTextBlockPickerConfig) {
 		super();
 	}
 
 	override getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
-		const blocks = rte.getFeature(RteBasicTextBlocksImpl);
+		const blocks = rte.getFeature<RteBasicTextBlocksImpl>('RteBasicTextBlocks');
 
 		return [
 			this.contribution(

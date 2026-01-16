@@ -65,7 +65,7 @@ function convertToLink(
 }
 
 export class RteLinkFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteLinkFeature';
+	name = 'RteLinkFeature';
 
 	override getStyles(): StyleContribution[] {
 		return [this.contribution(linkCss)];

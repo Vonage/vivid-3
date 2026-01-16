@@ -29,7 +29,7 @@ const alignments = [
 ] as const;
 
 export class RteAlignmentFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteAlignmentFeature';
+	name = 'RteAlignmentFeature';
 
 	override getTextblockAttrs(): TextblockAttrContribution[] {
 		return [

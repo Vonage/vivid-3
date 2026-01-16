@@ -12,7 +12,7 @@ import type { RteInstanceImpl } from '../../instance';
  * Aggregates all input rules from other features and provides the undoInputRule keybind (Backspace).
  */
 export class RteInputRulesFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteInputRulesFeature';
+	name = 'RteInputRulesFeature';
 
 	override getPlugins(rte: RteInstanceImpl): PluginContribution[] {
 		const rules = sortedContributions(

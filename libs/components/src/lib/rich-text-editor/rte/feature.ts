@@ -72,7 +72,7 @@ export abstract class RteFeatureImpl {
 	 * The name of the feature, e.g. RteBoldFeature
 	 * Note: Cannot use this.constructor.name because it may be minified
 	 */
-	protected abstract name: string;
+	abstract name: string;
 
 	/**
 	 * Creates a contribution of this feature.

@@ -45,7 +45,7 @@ type SelectionColor =
 	| null; // mixed or no defined colors
 
 export class RteTextColorPickerFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteTextColorPicker';
+	name = 'RteTextColorPicker';
 	defaultColorForNode?: Record<string, string | null>;
 
 	constructor(protected readonly config?: RteTextColorPickerConfig) {

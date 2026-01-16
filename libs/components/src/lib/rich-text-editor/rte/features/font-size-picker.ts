@@ -37,7 +37,7 @@ type SelectionFontSize =
 	| null; // no defined sizes
 
 export class RteFontSizePickerFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteFontSizePickerFeature';
+	name = 'RteFontSizePickerFeature';
 
 	fontSizes: FontSizeOption[];
 	defaultFontSizeForNode?: Record<string, string | null>;

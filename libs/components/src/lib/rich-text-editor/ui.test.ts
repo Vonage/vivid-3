@@ -23,6 +23,7 @@ let RteListFeature!: typeof rte.RteListFeature;
 let RteAlignmentFeature!: typeof rte.RteAlignmentFeature;
 let RteLinkFeature!: typeof rte.RteLinkFeature;
 let RteInlineImageFeature!: typeof rte.RteInlineImageFeature;
+let RteAtomFeature!: typeof rte.RteAtomFeature;
 
 const components = ['rich-text-editor'];
 
@@ -35,6 +36,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		content: `
 			#wrapper {
 				display: inline-block;
+			}
+			::part(node--mention) {
+				background-color: var(--vvd-color-cta-100);
+				color: var(--vvd-color-cta-800);
+				font-weight: bold;
+				border-radius: 4px;
+				padding: 2px 4px;
 			}
 		`,
 	});
@@ -101,6 +109,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					new RteAlignmentFeature(),
 					new RteLinkFeature(),
 					new RteInlineImageFeature(),
+					new RteAtomFeature('mention', {
+						resolveValue: (value: string) => `@${value}`,
+					}),
 				]);
 				rteElement.instance = config.instantiateEditor({
 					initialDocument: {
@@ -255,6 +266,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 										text: 'Green',
 										marks: [{ type: 'textColor', attrs: { color: '#1C8731' } }],
 									},
+								],
+							},
+							{
+								type: 'paragraph',
+								content: [
+									{ type: 'text', text: 'Mention: ' },
+									{ type: 'mention', attrs: { value: 'John Doe' } },
 								],
 							},
 							{

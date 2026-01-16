@@ -3,7 +3,6 @@ import { RteBase } from './features/base';
 import { docFactories } from './__tests__/doc-factories';
 import { setup } from './__tests__/test-utils';
 import { impl } from './utils/impl';
-import { RteBoldFeatureImpl } from './features/bold';
 
 const { doc, paragraph: p, text } = docFactories;
 const features = [new RteBase()];
@@ -213,8 +212,8 @@ describe('RteInstance', () => {
 			const config = new RteConfig(features);
 			const instance = config.instantiateEditor()[impl];
 
-			expect(() => instance.getFeature(RteBoldFeatureImpl)).toThrowError(
-				'Feature not found: RteBoldFeatureImpl'
+			expect(() => instance.getFeature('RteBoldFeature')).toThrowError(
+				'Feature not found: RteBoldFeature'
 			);
 		});
 	});

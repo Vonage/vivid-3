@@ -107,7 +107,7 @@ describe('RteHtmlSerializer', () => {
 	it('should ignore nodes and marks without serializers', async () => {
 		const DummyFeature = featureFacade(
 			class extends RteFeatureImpl {
-				protected name = 'DummyFeature';
+				name = 'DummyFeature';
 
 				override getSchema(): SchemaContribution[] {
 					return [

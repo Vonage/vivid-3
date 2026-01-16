@@ -9,7 +9,7 @@ import {
 import type { RteInstanceImpl } from '../instance';
 
 export class RteHardBreakFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteHardBreakFeature';
+	name = 'RteHardBreakFeature';
 
 	override getSchema(): SchemaContribution[] {
 		return [

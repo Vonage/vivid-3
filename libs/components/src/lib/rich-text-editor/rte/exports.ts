@@ -15,6 +15,7 @@ export { RteListFeature } from './features/list';
 export { RteAlignmentFeature } from './features/alignment';
 export { RteLinkFeature } from './features/link';
 export { RteInlineImageFeature } from './features/inline-image';
+export { RteAtomFeature } from './features/atom';
 export { RteFileHandlerFeature } from './features/file-handler';
 export { RteDropHandlerFeature } from './features/drop-handler';
 
