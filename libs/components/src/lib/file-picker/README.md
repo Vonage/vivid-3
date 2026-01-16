@@ -10,7 +10,7 @@ import { VFilePicker } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VFilePicker label="Title"> Drag & Drop or click to upload only one file </VFilePicker>
+	<VFilePicker label="Pick Files"> Drag & Drop or click to upload only one file </VFilePicker>
 </template>
 ```
 
@@ -276,8 +276,6 @@ When setting `block-size` or `max-block-size` on the file-picker the list of the
 **_Rejected Files_** `rejectedFiles` (Read-only)
 
 Use `files` or `rejectedFiles` to access the list of files that have been added to the File Picker and passed or failed validation checks.
-
-# TODO - Vue logic
 
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
