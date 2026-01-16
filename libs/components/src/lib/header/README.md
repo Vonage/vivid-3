@@ -1,6 +1,19 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VHeader } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VHeader>Header content</VHeader>
+</template>
+```
+
+</vwc-tab-panel>
 <vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
@@ -17,19 +30,6 @@ registerHeader('your-prefix');
 </script>
 
 <your-prefix-header>Header content</your-prefix-header>
-```
-
-</vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VHeader } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VHeader>Header content</VHeader>
-</template>
 ```
 
 </vwc-tab-panel>
