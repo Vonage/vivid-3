@@ -2,11 +2,27 @@
 
 <vwc-note connotation="information">
 	<vwc-icon name="info-line" slot="icon" label="Note:"></vwc-icon>
-	<p>Dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"><code>native dialog</code></a> element.</p>
+	
+	Dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"><code>native dialog</code></a> element.
+
 </vwc-note>
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 150px
+<script setup lang="ts">
+import { VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog headline="I'm a dialog" open />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -25,38 +41,6 @@ registerDialog('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<template>
-	<div style="height: 250px">
-		<VDialog open headline="Dialog with footer" subtitle="this is an example of the dialog with slotted buttons inside footer">
-			<template #footer>
-				<div class="demo-footer">
-					<VButton appearance="outlined" label="Cancel" />
-					<VButton appearance="filled" label="Action" />
-				</div>
-			</template>
-		</VDialog>
-	</div>
-</template>
-
-<script setup lang="ts">
-import { VDialog, VButton } from '@vonage/vivid-vue';
-</script>
-
-<style scoped>
-.demo-footer {
-	display: flex;
-	justify-content: flex-end;
-	column-gap: 8px;
-	margin-top: 16px;
-}
-</style>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Modal
@@ -70,6 +54,58 @@ Use the `modal` attribute to set the dialog as Modal
 <li>Non-modal dialogs allow users to interact with the rest of the application while the dialog is open.</li>
 </ul>
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 300px
+<script setup lang="ts">
+import { ref, useTemplateRef } from 'vue';
+import { VButton, VCheckbox, VDialog, VRadio, VRadioGroup } from '@vonage/vivid-vue';
+const modal = ref('false');
+const dialog = useTemplateRef<InstanceType<typeof VDialog>>('dialog');
+
+function openDialog() {
+	if (dialog.value?.element) {
+		dialog.value.element.open = true;
+	}
+}
+
+function closeDialog() {
+	if (dialog.value?.element) {
+		dialog.value.element.open = false;
+	}
+}
+</script>
+
+<template>
+	<div class="buttons-wrapper">
+		<VRadioGroup v-model="modal">
+			<VRadio label="Non-modal" value="false" />
+			<VRadio label="Modal" value="true" />
+		</VRadioGroup>
+		<VButton appearance="filled" label="Open Dialog" @click="openDialog" />
+	</div>
+
+	<VDialog ref="dialog" :modal="modal === 'true'" icon="info" headline="Headline" subtitle="subtitle">
+		<VCheckbox slot="footer" label="Checkbox" />
+		<VButton slot="action-items" label="Cancel" appearance="outlined" @click="closeDialog" /><VButton slot="action-items" label="Ok" appearance="filled" @click="closeDialog" />
+	</VDialog>
+</template>
+
+<style>
+.buttons-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 300px
 <div class="buttons-wrapper">
@@ -111,52 +147,203 @@ Use the `modal` attribute to set the dialog as Modal
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Open
 
 Sets or returns whether a dialog should be open or not.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { useTemplateRef } from 'vue';
+import { VButton, VDialog } from '@vonage/vivid-vue';
+const dialog = useTemplateRef<InstanceType<typeof VDialog>>('dialog');
+
+function toggleDialog() {
+	if (dialog.value?.element) {
+		dialog.value.element.open = !dialog.value.element.open;
+	}
+}
+</script>
+
+<template>
+	<VButton label="Toggle Dialog Open" @click="toggleDialog" appearance="outlined" />
+	<VDialog ref="dialog" headline="I'm a Dialog" subtitle="subtitle" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-button label="Toggle Dialog Open" onclick="dialog.open = !dialog.open" appearance="outlined"></vwc-button> <vwc-dialog id="dialog" headline="I'm a Dialog" subtitle="subtitle"></vwc-dialog>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Dismiss
 
 <vwc-note connotation="warning" headline="Add dismiss options with caution">
 	<vwc-icon name="warning-line" slot="icon" label="Warning"></vwc-icon>
-	<p>When using this attribute, ensure that the dialog can be closed by other means.</p>
+	
+	When using this attribute, ensure that the dialog can be closed by other means.
+
 </vwc-note>
 
 ### No-light-dismiss
 
 Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismissed by clicking outside it.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { useTemplateRef } from 'vue';
+import { VButton, VDialog } from '@vonage/vivid-vue';
+const dialog = useTemplateRef<InstanceType<typeof VDialog>>('dialog');
+function openDialog() {
+	if (dialog.value?.element) {
+		dialog.value.element.open = true;
+	}
+}
+</script>
+
+<template>
+	<VButton label="Open modal dialog" @click="openDialog" appearance="outlined" />
+	<VDialog ref="dialog" no-light-dismiss headline="Headline" modal />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-button label="Open modal dialog" onclick="document.querySelector('vwc-dialog').open = true" appearance="outlined"></vwc-button> <vwc-dialog no-light-dismiss headline="Headline" modal></vwc-dialog>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### No-Dismiss-On-Esc
 
 Use the `no-dismiss-on-esc` attribute to prevent a modal dialog from being dismissed by pressing ESC.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { useTemplateRef } from 'vue';
+import { VButton, VDialog } from '@vonage/vivid-vue';
+const dialog = useTemplateRef<InstanceType<typeof VDialog>>('dialog');
+function openDialog() {
+	if (dialog.value?.element) {
+		dialog.value.element.open = true;
+	}
+}
+</script>
+
+<template>
+	<VButton label="Open modal dialog" @click="openDialog" appearance="outlined" />
+	<VDialog ref="dialog" no-dismiss-on-esc headline="Headline" modal />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-button label="Open modal dialog" onclick="document.querySelector('vwc-dialog').open = true" appearance="outlined"></vwc-button> <vwc-dialog no-dismiss-on-esc headline="Headline" modal></vwc-dialog>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### No-Dismiss-Button
 
 Use the `no-dismiss-button` attribute to remove the dismiss button from the dialog.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { useTemplateRef } from 'vue';
+import { VButton, VDialog } from '@vonage/vivid-vue';
+const dialog = useTemplateRef<InstanceType<typeof VDialog>>('dialog');
+function openDialog() {
+	if (dialog.value?.element) {
+		dialog.value.element.open = true;
+	}
+}
+</script>
+
+<template>
+	<VButton label="Open modal dialog" @click="openDialog" appearance="outlined" />
+	<VDialog ref="dialog" no-dismiss-button headline="Headline" modal />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-button label="Open modal dialog" onclick="document.querySelector('vwc-dialog').open = true" appearance="outlined"></vwc-button> <vwc-dialog no-dismiss-button headline="Headline" modal></vwc-dialog>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Non-Dismissible
 
 The `non-dismissible` attribute combines `no-light-dismiss`, `no-dismiss-on-esc`, and `no-dismiss-button`.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { useTemplateRef } from 'vue';
+import { VButton, VDialog } from '@vonage/vivid-vue';
+const dialog = useTemplateRef<InstanceType<typeof VDialog>>('dialog');
+function openDialog() {
+	if (dialog.value?.element) {
+		dialog.value.element.open = true;
+	}
+}
+</script>
+
+<template>
+	<VButton label="Open modal dialog" @click="openDialog" appearance="outlined" />
+	<VDialog ref="dialog" non-dismissible headline="Headline" modal />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-button label="Open modal dialog" onclick="document.querySelector('vwc-dialog').open = true" appearance="outlined"></vwc-button> <vwc-dialog non-dismissible headline="Headline" modal></vwc-dialog>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Dismiss-Button-Aria-Label
 
@@ -167,6 +354,57 @@ This can be overridden using `dismiss-button-aria-label`.
 
 Use `returnValue` to get or set the return value.  
 Often used to indicate which button the user pressed to close it.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 250px
+<script setup lang="ts">
+import { ref, useTemplateRef } from 'vue';
+import { VButton, VDialog } from '@vonage/vivid-vue';
+const returnValue = ref('');
+const dialog = useTemplateRef<InstanceType<typeof VDialog>>('dialog');
+
+function openDialog() {
+	if (dialog.value?.element) {
+		dialog.value.element.open = true;
+	}
+}
+
+function handleClick(e: any) {
+	const buttonType = e.currentTarget.label;
+	console.log(buttonType);
+	if (dialog.value?.element) {
+		dialog.value.element.returnValue = buttonType;
+		dialog.value.element.open = false;
+	}
+}
+
+function onDialogClose() {
+	if (dialog.value?.element) {
+		returnValue.value = dialog.value.element.returnValue;
+	}
+}
+</script>
+
+<template>
+	<div class="wrapper">
+		<div>Returned Value: <span v-text="returnValue"></span></div>
+		<VButton label="Open Dialog" appearance="outlined" @click="openDialog" />
+	</div>
+	<VDialog open ref="dialog" headline="Returning Dialog" @close="onDialogClose">
+		<template #action-items>
+			<VButton appearance="outlined" label="Cancel" @click="handleClick" />
+			<VButton appearance="filled" label="Action" @click="handleClick" />
+		</template>
+	</VDialog>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 250px
 <div class="wrapper">
@@ -206,6 +444,9 @@ Often used to indicate which button the user pressed to close it.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 ### Graphic Slot
@@ -215,11 +456,34 @@ Use the `graphic` slot in order to replace the icon.
 The `graphic` slot overrides the [icon](/components/dialog/#icons) property.
 Use the slot if a colored icon is needed or an icon with different dimensions.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 200px
+<script setup lang="ts">
+import { VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog headline="Dialog With Graphic Slot" open icon-placement="side">
+		<template #graphic><img src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5" /></template>
+	</VDialog>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 200px
 <vwc-dialog headline="Dialog With Graphic Slot" open icon-placement="side">
 	<img slot="graphic" src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5" />
 </vwc-dialog>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Body Slot
 
@@ -227,8 +491,40 @@ Use the `body` slot in order to add custom HTML to the dialog.
 
 <vwc-note connotation="information" headline="Body slot with top border">
 	<vwc-icon name="info-line" slot="icon"></vwc-icon>
-	<p>When using body slot with a <code>subtitle</code> in the header, a separator will be added between the two.</p>
+	
+	When using body slot with a <code>subtitle</code> in the header, a separator will be added between the two.
+
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 440px
+<script setup lang="ts">
+import { VButton, VDialog, VLayout, VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog open headline="Dialog Content" subtitle="Dialog with body content">
+		<template #body>
+			<VLayout gutters="small-block">
+				<form>
+					<VLayout column-basis="block">
+						<VTextField label="Name" />
+						<VTextField label="Password" type="password" />
+						<VButton label="Login" appearance="filled" />
+					</VLayout>
+				</form>
+			</VLayout>
+		</template>
+	</VDialog>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 440px
 <vwc-dialog open headline="Dialog Content" subtitle="Dialog with body content">
@@ -244,10 +540,53 @@ Use the `body` slot in order to add custom HTML to the dialog.
 </vwc-dialog>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 #### Full-Width-Body
 
 To remove the body inline padding use `full-width-body`.  
 Use `full-width-body` if Progress-Bar or Tabs are needed in the Dialog.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 400px
+<script setup lang="ts">
+import { VDialog, VLayout, VProgress, VTextArea, VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog open icon-placement="side" icon="info" headline="Dialog Headline" full-width-body>
+		<template #body>
+			<div class="dialog-body">
+				<VProgress :min="0" :max="50" :value="12.5" shape="sharp" connotation="pacific" />
+				<VLayout column-basis="block" gutters="medium-inline">
+					<form>
+						<VLayout column-basis="block">
+							<VTextField label="Agent Name" placeholder="Search for an agent" icon="search-line" />
+							<VTextArea label="Additional Note (Optional)" />
+						</VLayout>
+					</form>
+				</VLayout>
+			</div>
+		</template>
+	</VDialog>
+</template>
+
+<style>
+.dialog-body {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 400px
 <vwc-dialog open icon-placement="side" icon="info" headline="Dialog Headline" full-width-body>
@@ -273,9 +612,32 @@ Use `full-width-body` if Progress-Bar or Tabs are needed in the Dialog.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Action Items Slot
 
 Use the `action-items` slot to add action items to the bottom of the dialog.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 250px
+<script setup lang="ts">
+import { VButton, VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog open headline="Dialog with primary and secondary actions" subtitle="This is an example of the dialog with slotted buttons">
+		<template #action-items> <VButton slot="action-items" appearance="outlined" label="Cancel" /><VButton slot="action-items" appearance="filled" label="Action" /> </template>
+	</VDialog>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 250px
 <vwc-dialog open headline="Dialog with primary and secondary actions" subtitle="This is an example of the dialog with slotted buttons">
@@ -284,15 +646,40 @@ Use the `action-items` slot to add action items to the bottom of the dialog.
 </vwc-dialog>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Footer Slot
 
 Use the `footer` slot in order to add additional content to the bottom of the dialog.
 
 <vwc-note connotation="information"  headline="Using Both Footer And Action-Items Slots">
 	<vwc-icon name="info-line" slot="icon"></vwc-icon>
-<p>When used in combination with <code>action-items</code> slot, the <code>footer</code> content will appear to the left of the action items.
-</p>
+  
+	When used in combination with <code>action-items</code> slot, the <code>footer</code> content will appear to the left of the action items.
+
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 250px
+<script setup lang="ts">
+import { VButton, VCheckbox, VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog open headline="Dialog with footer" subtitle="This is an example of the dialog with a checkbox inside footer">
+		<template #footer><VCheckbox slot="footer" label="I agree" /></template>
+		<template #action-items><VButton appearance="filled" label="Ok" /></template>
+	</VDialog>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 250px
 <vwc-dialog open headline="Dialog with footer" subtitle="This is an example of the dialog with a checkbox inside footer">
@@ -301,16 +688,44 @@ Use the `footer` slot in order to add additional content to the bottom of the di
 </vwc-dialog>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Main Slot
 
 Dialog has predefined content style template.
 Use the main slot to fully override a Dialog's predefined template with your own.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 130px
+<script setup lang="ts">
+import { VDialog, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog open>
+		<template #main>
+			<VLayout column-basis="block" gutters="medium"> Use main slot for your own layout and content </VLayout>
+		</template>
+	</VDialog>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 130px
 <vwc-dialog open>
 	<vwc-layout slot="main" column-basis="block" gutters="medium"> Use main slot for your own layout and content </vwc-layout>
 </vwc-dialog>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## CSS Variables
 
@@ -320,8 +735,9 @@ Use `--dialog-z-index` for a different `z-index` value than 1.
 
 <vwc-note connotation="information"  headline="Dialog z-index">
 	<vwc-icon name="info-line" slot="icon"></vwc-icon>
-<p><code>z-index</code> will affect only id the Dialog is not <code>modal</code>.
-</p>
+	
+	<code>z-index</code> will affect only id the Dialog is not <code>modal</code>.
+
 </vwc-note>
 
 ### Inline min & max size
@@ -332,9 +748,34 @@ Setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-s
 
 <vwc-note connotation="information"  headline="Dialog in Mobile">
 	<vwc-icon name="info-line" slot="icon"></vwc-icon>
-<p>When setting a new value for <code>--dialog-min-inline-size</code> and <code>--dialog-max-inline-size</code> take in consideration if different values are needed for mobile.
-</p>
+  
+	When setting a new value for <code>--dialog-min-inline-size</code> and <code>--dialog-max-inline-size</code> take in consideration if different values are needed for mobile.
+
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open />
+</template>
+
+<style>
+.dialog {
+	--dialog-min-inline-size: 560px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-dialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
@@ -346,9 +787,36 @@ Setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-s
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Block-Size
 
 The dialog has a default `--dialog-max-block-size`. If the content is larger, the dialog will be scrollable.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 250px
+<script setup lang="ts">
+import { VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open />
+</template>
+
+<style>
+.dialog {
+	--dialog-max-block-size: 100px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 250px
 <vwc-dialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
@@ -360,9 +828,37 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Inset
 
 When the dialog is not used as a modal, you can overwrite default inset values using `--dialog-inset-inline` and `--dialog-inset-block` variables.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 250px
+<script setup lang="ts">
+import { VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open />
+</template>
+
+<style>
+.dialog {
+	--dialog-inset-inline: 50% 0;
+	--dialog-inset-block: 24px 0;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 250px
 <vwc-dialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
@@ -374,6 +870,9 @@ When the dialog is not used as a modal, you can overwrite default inset values u
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
