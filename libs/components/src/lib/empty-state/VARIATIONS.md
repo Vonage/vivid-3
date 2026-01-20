@@ -12,7 +12,7 @@ import { VEmptyState } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VEmptyState headline="No results found"></VEmptyState>
+	<VEmptyState headline="No results found" />
 </template>
 ```
 
@@ -51,7 +51,7 @@ import { VEmptyState } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VEmptyState icon="search-line"></VEmptyState>
+	<VEmptyState icon="search-line" />
 </template>
 ```
 

@@ -44,8 +44,8 @@ import { VDialog, VEmptyState, VButton } from '@vonage/vivid-vue';
 	<VDialog open>
 		<VEmptyState slot="body" class="empty-state" icon-decoration="outlined" icon="check-solid" connotation="success" headline="You made it!">
 			Your request was submitted. Waht do you wish to do now?
-			<VButton slot="action-items" appearance="outlined" label="continue"></VButton>
-			<VButton slot="action-items" appearance="filled" connotation="cta" label="Read More"></VButton>
+			<VButton slot="action-items" appearance="outlined" label="continue" />
+			<VButton slot="action-items" appearance="filled" connotation="cta" label="Read More" />
 		</VEmptyState>
 	</VDialog>
 </template>
