@@ -32,4 +32,6 @@ export interface RichTextEditorLocale {
 		fit: string;
 		original: string;
 	};
+	suggestLoading: string;
+	suggestNoResults: string;
 }

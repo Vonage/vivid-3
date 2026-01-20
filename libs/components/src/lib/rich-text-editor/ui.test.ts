@@ -23,6 +23,7 @@ let RteListFeature!: typeof rte.RteListFeature;
 let RteAlignmentFeature!: typeof rte.RteAlignmentFeature;
 let RteLinkFeature!: typeof rte.RteLinkFeature;
 let RteInlineImageFeature!: typeof rte.RteInlineImageFeature;
+let RteToolbarButtonFeature!: typeof rte.RteToolbarButtonFeature;
 let RteAtomFeature!: typeof rte.RteAtomFeature;
 
 const components = ['rich-text-editor'];
@@ -109,6 +110,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					new RteAlignmentFeature(),
 					new RteLinkFeature(),
 					new RteInlineImageFeature(),
+					new RteToolbarButtonFeature('greeting', {
+						label: 'Insert greeting',
+						icon: 'waving-line',
+						action: { type: 'insert-text', text: 'Hello, how are you?' },
+					}),
 					new RteAtomFeature('mention', {
 						resolveValue: (value: string) => `@${value}`,
 					}),

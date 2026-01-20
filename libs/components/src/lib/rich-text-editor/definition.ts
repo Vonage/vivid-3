@@ -6,6 +6,7 @@ import {
 	listboxOptionDefinition,
 	menuDefinition,
 	menuItemDefinition,
+	progressRingDefinition,
 	selectDefinition,
 	textFieldDefinition,
 	tooltipDefinition,
@@ -29,6 +30,7 @@ export const richTextEditorDefinition = defineVividComponent(
 		menuItemDefinition,
 		textFieldDefinition,
 		popoverDefinition,
+		progressRingDefinition,
 	],
 	{
 		styles,

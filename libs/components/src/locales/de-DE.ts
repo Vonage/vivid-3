@@ -238,6 +238,8 @@ const deDE: Locale = {
 			fit: 'Anpassen',
 			original: 'Originalgröße',
 		},
+		suggestLoading: 'Laden...',
+		suggestNoResults: 'Keine Ergebnisse',
 	},
 	button: {
 		pendingLabel: 'Laden...',

@@ -1,0 +1,9 @@
+@mixin font($value) {
+	font: $value;
+
+	/* stylelint-disable */
+	// When we use a font, we must keep ligature settings as they break contenteditable functionality
+	font-variant-ligatures: unset;
+	font-feature-settings: unset;
+	/* stylelint-enable */
+}

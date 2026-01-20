@@ -1,6 +1,5 @@
 import type { SchemaSpec } from 'prosemirror-model';
 import type { Plugin } from 'prosemirror-state';
-import type { InputRule } from 'prosemirror-inputrules';
 import type { Constructor } from '../../../shared/utils/mixins';
 import type { RteInstanceImpl } from './instance';
 import {
@@ -13,6 +12,7 @@ import {
 	TextblockMarks,
 	type TextblockMarkSpec,
 } from './utils/textblock-marks';
+import type { InputRuleSpec } from './features/internal/input-rules';
 
 // Features bundle everything related to a specific editor capability together.
 // They can contribute styles, schema additions, ProseMirror plugins, toolbar items, etc.
@@ -60,7 +60,7 @@ export type TextblockAttrContribution = Contribution<TextblockAttrSpec>;
 export type TextblockMarkContribution = Contribution<TextblockMarkSpec>;
 export type PluginContribution = Contribution<Plugin>;
 export type ToolbarItemContribution = Contribution<ToolbarItemSpec>;
-export type InputRuleContribution = Contribution<InputRule>;
+export type InputRuleContribution = Contribution<InputRuleSpec>;
 
 export abstract class RteFeature {
 	/// @internal

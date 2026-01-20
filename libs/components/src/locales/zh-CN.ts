@@ -236,6 +236,8 @@ const zhCN: Locale = {
 			fit: '适应',
 			original: '原始大小',
 		},
+		suggestLoading: '加载中...',
+		suggestNoResults: '无结果',
 	},
 	button: {
 		pendingLabel: '加载中',

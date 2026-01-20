@@ -1,8 +1,10 @@
 @use '@repo/tokens/scss/tokens.constants' as constants;
+@use '../utils/fonts';
 
 tt {
 	// Extract just the font-family from the token
-	font: var(#{constants.$vvd-typography-base-code});
+	@include fonts.font(var(#{constants.$vvd-typography-base-code}));
+
 	font-size: unset;
 	font-weight: unset;
 	line-height: unset;

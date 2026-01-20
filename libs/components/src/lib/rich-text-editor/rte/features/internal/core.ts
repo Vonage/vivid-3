@@ -20,6 +20,7 @@ import uiCss from '../../utils/ui.style.scss?inline';
 import coreCss from './core.style.scss?inline';
 import { RteHistoryFeatureImpl } from './history';
 import { RteForeignHtmlFeatureImpl } from './foreign-html';
+import { RteCursorFixFeatureImpl } from './cursor-fix';
 
 export interface HostState {
 	ctx: VividElementDefinitionContext;
@@ -90,7 +91,12 @@ export class RteCoreImpl extends RteFeatureImpl {
 	}
 
 	override getFeatures(): RteFeatureImpl[] {
-		return [this, new RteHistoryFeatureImpl(), new RteForeignHtmlFeatureImpl()];
+		return [
+			this,
+			new RteHistoryFeatureImpl(),
+			new RteForeignHtmlFeatureImpl(),
+			new RteCursorFixFeatureImpl(),
+		];
 	}
 }
 

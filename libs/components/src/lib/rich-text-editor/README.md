@@ -1576,137 +1576,6 @@ In general, you cannot know when it is safe to remove the attachment since the u
 
 You can inspect the document to find referenced images when saving or submitting it, after which the editor should no longer be used.
 
-### RteAtomFeature
-
-Adds support for custom inline atom nodes. Atoms are non-editable inline elements that can be used for things like variables, mentions or tags.
-
-#### Usage
-
-You can create multiple `RteAtomFeature` instances with different atom names to support different atom types.
-
-Atoms have no content and a single required attribute `value`:
-
-```js
-new RteAtomFeature('mention');
-
-const mention = { type: 'mention', attrs: { value: 'John' } };
-```
-
-By default, the atom value is rendered as plain text. Like other nodes, you can style atoms using CSS parts. See [Styling](#styling) for more information.
-
-```html preview
-<vwc-rich-text-editor></vwc-rich-text-editor>
-
-<script>
-	customElements.whenDefined('vwc-rich-text-editor').then(() => {
-		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RteConfig([new RteBase(), new RteAtomFeature('mention')]);
-		rteComponent.instance = config.instantiateEditor({
-			initialDocument: {
-				type: 'doc',
-				content: [
-					{
-						type: 'paragraph',
-						content: [
-							{ type: 'text', text: 'Hello ' },
-							{ type: 'mention', attrs: { value: 'John' } },
-						],
-					},
-				],
-			},
-		});
-	});
-</script>
-```
-
-You can customize the rendered content by providing the `resolveValue` configuration option:
-
-- `resolveValue?: (value: string) => string | null | AsyncGenerator<string, string>`
-
-```ts
-new RteAtomFeature('tag', {
-	resolveValue: (value) => `#${value}`,
-});
-```
-
-`resolveValue` can also return an async generator, which allows you to fetch the result asynchronously or update it over time:
-
-```ts
-new RteAtomFeature('mention', {
-	resolveValue: async function* (userId) {
-		yield 'Loading...';
-		const user = await fetchUser(userId);
-		return `@${user.name}`;
-	},
-});
-
-const mention = { type: 'mention', attrs: { value: '1' } };
-```
-
-<rte-schema>
-	<rte-schema-node name="<atomName>">
-		<rte-schema-group>inline</rte-schema-group>
-		<rte-schema-attrs>
-			<rte-schema-attr name="value" type="string" required></rte-schema-attr>
-		</rte-schema-attrs>
-	</rte-schema-node>
-</rte-schema>
-
-```html preview
-<vwc-rich-text-editor></vwc-rich-text-editor>
-
-<script>
-	customElements.whenDefined('vwc-rich-text-editor').then(() => {
-		const fetchUser = async (id) => {
-			return new Promise((resolve) => {
-				setTimeout(() => {
-					resolve({ id, name: 'John' });
-				}, 2000);
-			});
-		};
-
-		const rteComponent = document.querySelector('vwc-rich-text-editor');
-		const config = new RteConfig([
-			new RteBase(),
-			new RteAtomFeature('tag', {
-				resolveValue: (value) => `#${value}`,
-			}),
-			new RteAtomFeature('mention', {
-				resolveValue: async function* (userId) {
-					yield 'Loading...';
-					const user = await fetchUser(userId);
-					return `@${user.name}`;
-				},
-			}),
-		]);
-		rteComponent.instance = config.instantiateEditor({
-			initialDocument: {
-				type: 'doc',
-				content: [
-					{
-						type: 'paragraph',
-						content: [
-							{ type: 'text', text: 'Hello ' },
-							{ type: 'mention', attrs: { value: '1' } },
-							{ type: 'text', text: ", let's work on " },
-							{ type: 'tag', attrs: { value: 'new-project' } },
-						],
-					},
-				],
-			},
-		});
-	});
-</script>
-```
-
-#### HTML Serialization
-
-Atoms are serialized to HTML as `<span>` elements with `data-atom-type` and `data-value` attributes:
-
-```html
-<span data-atom-type="mention" data-value="john">john</span>
-```
-
 ### RteFileHandlerFeature
 
 Allows you to handle files dropped or pasted into the editor.
@@ -1796,6 +1665,424 @@ In this example, we display a drop zone overlay when files are dragged over the 
 					{
 						type: 'paragraph',
 						content: [{ type: 'text', text: 'Drag files into the editor.' }],
+					},
+				],
+			},
+		});
+	});
+</script>
+```
+
+### RteToolbarButtonFeature
+
+Adds a button to the toolbar that performs an action when clicked.
+
+#### Configuration
+
+The `RteToolbarButtonFeature` constructor takes two arguments:
+
+1. `id` (string, required): A unique identifier for this toolbar button instance.
+2. `options` (object, required): Configuration options:
+
+- `label: string` (required) - The aria-label for the button.
+- `icon: string` (required) - The icon name for the button.
+- `action: object` (required) - The action to perform when the button is clicked.
+- `order?: number` - The order of the button in the toolbar. Lower numbers appear first. Buttons with the same order are sorted alphabetically by feature id.
+
+**Action types:**
+
+- `{ type: 'insert-text', text: string }` - Inserts the specified text at the cursor position.
+
+```ts
+new RteToolbarButtonFeature('mention', {
+	label: 'Mention user',
+	icon: 'user-line',
+	action: { type: 'insert-text', text: '@' },
+});
+```
+
+```html preview
+<vwc-rich-text-editor></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([
+			new RteBase(),
+			new RteToolbarFeature(),
+			new RteToolbarButtonFeature('greeting', {
+				label: 'Insert greeting',
+				icon: 'waving-line',
+				action: { type: 'insert-text', text: 'Hello, how are you?' },
+			}),
+		]);
+		rteComponent.instance = config.instantiateEditor();
+	});
+</script>
+```
+
+### RteAtomFeature
+
+Adds support for custom inline atom nodes. Atoms are non-editable inline elements that can be used for things like variables, mentions or tags.
+
+#### Usage
+
+You can create multiple `RteAtomFeature` instances with different atom names to support different atom types.
+
+Atoms have no content and a single required attribute `value`:
+
+```js
+new RteAtomFeature('mention');
+
+const mention = { type: 'mention', attrs: { value: 'John' } };
+```
+
+By default, the atom value is rendered as plain text. Like other nodes, you can style atoms using CSS parts. See [Styling](#styling) for more information.
+
+```html preview
+<vwc-rich-text-editor></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([new RteBase(), new RteAtomFeature('mention')]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'Hello ' },
+							{ type: 'mention', attrs: { value: 'John' } },
+						],
+					},
+				],
+			},
+		});
+	});
+</script>
+```
+
+You can customize the rendered content by providing the `resolveValue` configuration option:
+
+- `resolveValue?: (value: string) => string | null | AsyncGenerator<string, string>`
+
+```ts
+new RteAtomFeature('tag', {
+	resolveValue: (value) => `#${value}`,
+});
+```
+
+`resolveValue` can also return an async generator, which allows you to fetch the result asynchronously or update it over time:
+
+```ts
+new RteAtomFeature('mention', {
+	resolveValue: async function* (userId) {
+		yield 'Loading...';
+		const user = await fetchUser(userId);
+		return `@${user.name}`;
+	},
+});
+
+const mention = { type: 'mention', attrs: { value: '1' } };
+```
+
+#### HTML Serialization
+
+Atoms are serialized to HTML as `<span>` elements with `data-atom-type` and `data-value` attributes:
+
+```html
+<span data-atom-type="mention" data-value="john">john</span>
+```
+
+You can customize the text of the span by providing the `serializeValueToHtml` configuration option:
+
+- `serializeValueToHtml?: (value: string) => string | null`: Customize how the atom value is serialized to HTML. If it returns `null`, the atom is omitted from HTML output.
+
+<rte-schema>
+	<rte-schema-node name="<atomName>">
+		<rte-schema-group>inline</rte-schema-group>
+		<rte-schema-attrs>
+			<rte-schema-attr name="value" type="string" required></rte-schema-attr>
+		</rte-schema-attrs>
+	</rte-schema-node>
+</rte-schema>
+
+```html preview
+<style>
+	::part(node--mention) {
+		background-color: var(--vvd-color-cta-100);
+		padding: 0 4px;
+		border-radius: 4px;
+	}
+	::part(node--tag) {
+		background-color: var(--vvd-color-success-100);
+		padding: 0 4px;
+		border-radius: 4px;
+	}
+</style>
+<vwc-rich-text-editor></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const fetchUser = async (id) => {
+			return new Promise((resolve) => {
+				setTimeout(() => {
+					resolve({ id, name: 'John' });
+				}, 2000);
+			});
+		};
+
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([
+			new RteBase(),
+			new RteAtomFeature('tag', {
+				resolveValue: (value) => `#${value}`,
+			}),
+			new RteAtomFeature('mention', {
+				resolveValue: async function* (userId) {
+					yield 'Loading...';
+					const user = await fetchUser(userId);
+					return `@${user.name}`;
+				},
+			}),
+		]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'Hello ' },
+							{ type: 'mention', attrs: { value: '1' } },
+							{ type: 'text', text: ", let's work on " },
+							{ type: 'tag', attrs: { value: 'new-project' } },
+						],
+					},
+				],
+			},
+		});
+	});
+</script>
+```
+
+### RteInputRuleFeature
+
+Enables text replacement rules that automatically transform text as you type. Use this for features like converting text patterns to emojis, hashtags, or other content.
+
+#### Configuration
+
+The `RteInputRuleFeature` constructor takes two arguments:
+
+1. `id` (string, required): A unique identifier for this input rule instance.
+2. `options` (object, required): Configuration options:
+
+- `pattern: RegExp` (required) - The regex to match against text before the cursor. Do not add a trailing `$`.
+- `handler: (match: string[]) => RteFragment | null` (required) - Called when the pattern matches. Return an `RteFragment` to replace the match, or `null` to skip.
+- `matchAfterWhitespace?: boolean` - When `true`, the rule triggers only on space or Enter after the match.
+
+```html preview
+<style>
+	::part(node--tag) {
+		background-color: var(--vvd-color-success-100);
+		padding: 0 4px;
+		border-radius: 4px;
+	}
+</style>
+<vwc-rich-text-editor></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const emojiMap = {
+			':)': '\u{1F642}',
+			':D': '\u{1F604}',
+			':(': '\u{1F641}',
+			';)': '\u{1F609}',
+			':P': '\u{1F61B}',
+			'<3': '\u{2764}\u{FE0F}',
+		};
+
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([
+			new RteBase(),
+			new RteToolbarFeature(),
+			new RteInputRuleFeature('emoji', {
+				pattern: /:\)|:D|:\(|;\)|:P|<3/,
+				handler: (match) => {
+					const emoji = emojiMap[match[0]];
+					if (!emoji) return null;
+					return [{ type: 'text', text: emoji }];
+				},
+			}),
+			new RteAtomFeature('tag', {
+				resolveValue: (value) => `#${value}`,
+			}),
+			new RteInputRuleFeature('tag', {
+				pattern: /#(\w+)/,
+				matchAfterWhitespace: true,
+				handler: (match) => [{ type: 'tag', attrs: { value: match[1] } }],
+			}),
+		]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'Type :) or :D or <3 to see emoji conversion.' }],
+					},
+					{
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'Type #topic and press space or enter to create a ' },
+							{ type: 'tag', attrs: { value: 'tag' } },
+							{ type: 'text', text: '.' },
+						],
+					},
+				],
+			},
+		});
+	});
+</script>
+```
+
+### RteSuggestFeature
+
+Enables regex-based suggestions for implementing features like variables (`{name}`), mentions (`@user`), tags (`#topic`) or emojis (`:smile:`). The feature watches for text patterns before the cursor and can either auto-replace them or show a suggestions popover.
+
+This feature works well together with `RteAtomFeature` - use `RteSuggestFeature` to trigger the suggestion UI and insert atoms into the document.
+
+#### Configuration
+
+The `RteSuggestFeature` constructor takes two arguments:
+
+1. `id` (string, required): A unique identifier for this suggest feature instance.
+2. `options` (object, required): Configuration options:
+
+- `pattern: RegExp` (required) - The regex to match against text before the cursor. The regex should end with `$` to match at cursor position.
+- `load: (match: string[]) => Suggestion[] | Promise<Suggestion[]>` (required) - Called when regex matches. Receives the full match array including capture groups. The returned suggestions are displayed in a popover. If a promise is returned, a loading indicator is shown.
+- `select: (suggestion: Suggestion) => RteFragment` (required) - Called when a suggestion is selected. The matched text is replaced by the returned `RteFragment`.
+
+The `Suggestion` type has the following properties:
+
+```ts
+interface Suggestion {
+	text: string;
+	textSecondary?: string;
+	data?: unknown;
+}
+```
+
+You can customize the empty state message when no suggestions are found by provided the `<id>-suggestions-empty` slot:
+
+```html
+<vwc-rich-text-editor>
+	<div slot="mention-suggestions-empty">No users found</div>
+</vwc-rich-text-editor>
+```
+
+**Keyboard shortcuts:**
+
+- **Navigate between suggestions**: <kbd>Arrow Up</kbd> / <kbd>Arrow Down</kbd>
+- **Select the highlighted suggestion**: <kbd>Enter</kbd>
+- **Close suggestions popover**: <kbd>Escape</kbd>
+
+```html preview
+<style>
+	::part(node--mention) {
+		background-color: var(--vvd-color-cta-100);
+		padding: 0 4px;
+		border-radius: 4px;
+	}
+</style>
+<vwc-rich-text-editor style="block-size: 500px">
+	<span slot="mention-suggestions-empty">No users found. Try "Alice", "Bob", or "Carol".</span>
+</vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const emojis = [
+			{ shortcode: 'smile', emoji: '\u{1F642}' },
+			{ shortcode: 'grin', emoji: '\u{1F604}' },
+			{ shortcode: 'sad', emoji: '\u{1F641}' },
+			{ shortcode: 'wink', emoji: '\u{1F609}' },
+			{ shortcode: 'heart', emoji: '\u{2764}\u{FE0F}' },
+			{ shortcode: 'thumbsup', emoji: '\u{1F44D}' },
+			{ shortcode: 'fire', emoji: '\u{1F525}' },
+			{ shortcode: 'rocket', emoji: '\u{1F680}' },
+		];
+
+		const users = [
+			{ id: '1', name: 'Alice Johnson', email: 'alice@example.com' },
+			{ id: '2', name: 'Bob Smith', email: 'bob@example.com' },
+			{ id: '3', name: 'Carol White', email: 'carol@example.com' },
+		];
+
+		const fetchUsers = async (query) => {
+			// Simulate API call
+			await new Promise((resolve) => setTimeout(resolve, 500));
+			const searchTerm = query.toLowerCase();
+			return users
+				.filter((u) => u.name.toLowerCase().includes(searchTerm) || u.email.toLowerCase().includes(searchTerm))
+				.map((u) => ({
+					text: u.name,
+					textSecondary: u.email,
+					data: u,
+				}));
+		};
+
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([
+			new RteBase(),
+			new RteToolbarFeature(),
+			new RteSuggestFeature('emoji', {
+				pattern: /:(\w*)$/,
+				load: (match) => {
+					const query = match[1].toLowerCase();
+					return emojis
+						.filter((e) => e.shortcode.includes(query))
+						.map((e) => ({
+							text: `${e.emoji} :${e.shortcode}:`,
+							data: e,
+						}));
+				},
+				select: (suggestion) => [{ type: 'text', text: suggestion.data.emoji }],
+			}),
+			new RteToolbarButtonFeature('emoji', {
+				label: 'Insert emoji',
+				icon: 'emoji-line',
+				action: { type: 'insert-text', text: ':' },
+			}),
+			new RteAtomFeature('mention', {
+				resolveValue: (userId) => {
+					const user = users.find((u) => u.id === userId);
+					return user ? `@${user.name}` : `@Unknown`;
+				},
+			}),
+			new RteSuggestFeature('mention', {
+				pattern: /@(\w*)$/,
+				load: (match) => fetchUsers(match[1]),
+				select: (suggestion) => [{ type: 'mention', attrs: { value: suggestion.data.id } }],
+			}),
+			new RteToolbarButtonFeature('mention', {
+				label: 'Mention user',
+				icon: 'user-line',
+				action: { type: 'insert-text', text: '@' },
+			}),
+		]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'Type :smile or :heart to insert emojis.' }],
+					},
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'Type @ to mention a user.' }],
 					},
 				],
 			},
