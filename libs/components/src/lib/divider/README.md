@@ -1,7 +1,21 @@
 ## Usage
 
-<vwc-tabs>
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDivider } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDivider />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -17,20 +31,6 @@ registerDivider('your-prefix');
 </script>
 
 <your-prefix-divider></your-prefix-text-divider>
-```
-
-</vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VDivider } from '@vonage/vivid-vue';
-</script>
-
-<template>
-	<VDivider />
-</template>
 ```
 
 </vwc-tab-panel>
@@ -50,9 +50,30 @@ The `role` attribute to express the semantic value of the divider. If it is bein
 
 See the [Decorative Divider](/components/divider/use-cases/#decorative-divider) use case.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VDivider } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDivider role="presentation" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-divider role="presentation"></vwc-divider>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
