@@ -1,7 +1,6 @@
 import type { Page } from '@playwright/test';
 import { test } from '@playwright/test';
 import {
-	BASE_URL,
 	loadComponents,
 	renderTemplate,
 	takeScreenshot,
@@ -62,7 +61,7 @@ test('should render rich text identically to the editor', async ({
 	await page.addScriptTag({
 		type: 'module',
 		content: `
-			import * as rte from "${BASE_URL}/libs/components/dist/rich-text-editor/index.js";
+			import * as rte from "/libs/components/dist/rich-text-editor/index.js";
 			for (const key in rte) {
 				window[key] = rte[key];
 			}
