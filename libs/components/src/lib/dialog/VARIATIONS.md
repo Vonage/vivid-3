@@ -4,17 +4,59 @@
 
 Use the `headline` attribute to set the dialog's headline.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog headline="Headline" open />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-dialog headline="Headline" open></vwc-dialog>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Subtitle
 
 Use the `subtitle` attribute to set the dialog's subtitle.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog headline="Headline" subtitle="Subtitle" open />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-dialog headline="Headline" subtitle="Subtitle" open></vwc-dialog>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Icon
 
@@ -30,21 +72,78 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </vwc-note>
 -->
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog icon="info" headline="Dialog's Icon" open />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-dialog icon="info" headline="Dialog's Icon" open></vwc-dialog>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Icon-placement
 
 The `icon-placement` attribute specifies where the dialog's icon should appear (relative to the headline).
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 290px
+<script setup lang="ts">
+import { VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="wrapper">
+		<div class="item">
+			<VDialog icon-placement="side" icon="info" headline="Side Icon Placement" subtitle="Side is default" open />
+		</div>
+		<div class="item">
+			<VDialog icon-placement="top" icon="info" headline="Top Icon Placement" subtitle="Top is another option" open />
+		</div>
+	</div>
+</template>
+
+<style>
+.wrapper {
+	display: flex;
+}
+.item {
+	block-size: 280px;
+	position: relative;
+	flex: 1;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 290px
 <div class="wrapper">
 	<div class="item">
-		<vwc-dialog icon-placement="side" icon="info" headline="Side Icon Placemnet" subtitle="side is default" open></vwc-dialog>
+		<vwc-dialog icon-placement="side" icon="info" headline="Side Icon Placement" subtitle="Side is default" open></vwc-dialog>
 	</div>
 	<div class="item">
-		<vwc-dialog icon-placement="top" icon="info" headline="Top Icon Placemnet" subtitle="top is another option" open></vwc-dialog>
+		<vwc-dialog icon-placement="top" icon="info" headline="Top Icon Placement" subtitle="Top is another option" open></vwc-dialog>
 	</div>
 </div>
 
@@ -60,11 +159,69 @@ The `icon-placement` attribute specifies where the dialog's icon should appear (
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Scrollable Body
 
 Use the `scrollable-body` property to make only the content area between the header and footer scrollable (instead of a whole dialog).
 
 The dialog has a default `--dialog-body-max-block-size`, you can overwrite it to fit your use case.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 540px
+<script setup lang="ts">
+import { VButton, VDialog, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog headline="Keep Your Project Up to Date with Vivid" subtitle="Why Staying Up to Date with Vivid Packages Matters" scrollable-body open>
+		<template #body>
+			<div>
+				<p>In this article, we’re going to outline the benefits of staying current with Vivid package updates, explain why major upgrades are now straightforward, and provide useful advice for keeping your Vue and React projects up to date.</p>
+				<strong>Ongoing Bug Fixes and Reliability</strong>
+				<p>
+					Every Vivid package update addresses bugs that may impact your product’s stability. For example,
+					<a href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.22.0" target="_blank">v4.22.0</a>
+					fixed spacing issues in alerts and improved input handling in date & time pickers, while
+					<a href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.17.0" target="_blank">v4.17.0</a>
+					handled incorrect autofocus behavior of <code>searchable-select</code>. These fixes ensure your application remains reliable and visually consistent, benefiting both developers & end users experience.
+				</p>
+				<strong>Accessibility Tweaks</strong>
+				<p>
+					Vivid updates include accessibility improvements. The
+					<a href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.22.0" target="_blank">v4.22.0</a>
+					release added <code>aria-checked</code> attributes to menu items, while
+					<a href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.18.0" target="_blank">v4.18.0</a>
+					fixed <code>radio</code> and <code>radio-group</code> structures to make them work well with screen readers. Such enhancements help your products meet WCAG standards, making your interfaces more inclusive and reducing compliance risks.
+				</p>
+				<strong>New Features and Performance Improvements</strong>
+				<p>
+					Vivid package updates often bring new features and optimizations. The
+					<a href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.18.0" target="_blank">v4.18.0</a>
+					release introduced a <code>date-time-picker</code> component, and
+					<a href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.20.0" target="_blank">v4.20.0</a>
+					refined focus styles for a better accessibility and user experience. Performance enhancements are also regularly included: for example,
+					<a href="https://github.com/Vonage/vivid-3/releases/tag/vivid-v4.5.0" target="_blank">v4.5.0</a>
+					announced tree-shaking support, allowing unused components to be excluded from your production bundle for faster load times.
+				</p>
+			</div>
+		</template>
+		<template #action-items>
+			<VButton appearance="filled" label="Read full article" href="https://vivid.deno.dev/whats-new/why-staying-up-to-date-with-vivid-packages-matters/" target="_blank" icon-trailing>
+				<template #icon><VIcon name="arrow-bold-right-line"></VIcon></template>
+			</VButton>
+		</template>
+	</VDialog>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 540px
 <vwc-dialog headline="Keep Your Project Up to Date with Vivid" subtitle="Why Staying Up to Date with Vivid Packages Matters" scrollable-body open>
@@ -102,3 +259,6 @@ The dialog has a default `--dialog-body-max-block-size`, you can overwrite it to
 	</vwc-button>
 </vwc-dialog>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
