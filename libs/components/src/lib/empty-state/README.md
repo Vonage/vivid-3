@@ -66,7 +66,6 @@ import { VEmptyState } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
-
 ### Graphic Slot
 
 Use the `graphic` slot to set a graphic element to the Empty State.  
@@ -125,7 +124,6 @@ import { VEmptyState } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
-
 ### Action Items Slot
 
 Use the `action-items` slot to add action items to the Empty State.
@@ -164,7 +162,6 @@ import { VEmptyState, VButton } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
 
 ## API Reference
 

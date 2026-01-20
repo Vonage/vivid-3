@@ -12,7 +12,7 @@ import { VEmptyState } from '@vonage/vivid-vue';
 </script>
 
 <template>
-<VEmptyState headline="No results found"></VEmptyState>
+	<VEmptyState headline="No results found"></VEmptyState>
 </template>
 ```
 
@@ -26,7 +26,6 @@ import { VEmptyState } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
 
 ## Icon
 
@@ -52,7 +51,7 @@ import { VEmptyState } from '@vonage/vivid-vue';
 </script>
 
 <template>
-<VEmptyState icon="search-line"></VEmptyState>
+	<VEmptyState icon="search-line"></VEmptyState>
 </template>
 ```
 
@@ -78,7 +77,6 @@ The `icon-decoration` prop is deprecated (as of 05/25) with the previous `outlin
 
 </vwc-note>
 
-
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
@@ -100,12 +98,12 @@ import { VEmptyState } from '@vonage/vivid-vue';
 </template>
 
 <style>
-	.wrapper {
-		display: grid;
-		grid-template-columns: repeat(6, 1fr);
-		gap: 8px;
-		align-items: flex-start;
-	}
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	gap: 8px;
+	align-items: flex-start;
+}
 </style>
 ```
 
@@ -135,4 +133,3 @@ import { VEmptyState } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-

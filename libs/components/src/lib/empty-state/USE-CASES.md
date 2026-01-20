@@ -11,9 +11,7 @@ import { VEmptyState, VSearchableSelect } from '@vonage/vivid-vue';
 
 <template>
 	<VSearchableSelect label="Connect number">
-		<VEmptyState slot="no-options" icon-decoration="outlined" icon="phone-number-line" headline="No numbers">
-			 You do not have any numbers yet.
-		</VEmptyState>
+		<VEmptyState slot="no-options" icon-decoration="outlined" icon="phone-number-line" headline="No numbers"> You do not have any numbers yet. </VEmptyState>
 	</VSearchableSelect>
 </template>
 ```
@@ -30,7 +28,6 @@ import { VEmptyState, VSearchableSelect } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
 
 ## Empty State inside Dialog
 
@@ -71,7 +68,6 @@ import { VDialog, VEmptyState, VButton } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
-
 ## Empty State & Data Grid
 
 <vwc-tabs gutters="none">
@@ -94,9 +90,9 @@ import { VDataGrid, VDataGridRow, VDataGridCell, VEmptyState } from '@vonage/viv
 </template>
 
 <style scoped>
-	.empty-state {
-		margin-block-start: 32px;
-	}
+.empty-state {
+	margin-block-start: 32px;
+}
 </style>
 ```
 
@@ -122,4 +118,3 @@ import { VDataGrid, VDataGridRow, VDataGridCell, VEmptyState } from '@vonage/viv
 
 </vwc-tab-panel>
 </vwc-tabs>
-
