@@ -1,5 +1,104 @@
 ## Fab For Collapsible Side Drawer
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full 250px
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VFab, VIcon, VSideDrawer, VLayout, VNav, VNavItem } from '@vonage/vivid-vue';
+
+const isCollapsed = ref(false);
+const currentNavItem = ref<string>('Calls');
+
+const onToggle = () => {
+	isCollapsed.value = !isCollapsed.value;
+};
+
+const onClick = (value: string) => {
+	currentNavItem.value = value;
+};
+</script>
+
+<template>
+	<VSideDrawer :class="['vwc-side-drawer', { collapsed: isCollapsed }]" alternate open>
+		<VLayout gutters="small" column-basis="block">
+			<VNav class="nav-expanded">
+				<VNavItem href="#" text="Calls" :current="currentNavItem === 'Calls'" @click="onClick('Calls')">
+					<template #icon><VIcon name="call-line" /></template>
+				</VNavItem>
+				<VNavItem href="#" text="Voicemail" :current="currentNavItem === 'Voicemail'" @click="onClick('Voicemail')">
+					<template #icon><VIcon name="voicemail-line" /></template>
+				</VNavItem>
+				<VNavItem href="#" text="SMS" :current="currentNavItem === 'SMS'" @click="onClick('SMS')">
+					<template #icon><VIcon name="chat-line" /></template>
+				</VNavItem>
+			</VNav>
+			<VNav class="nav-collapsed">
+				<VNavItem href="#" :current="currentNavItem === 'Calls'" @click="onClick('Calls')" aria-label="Calls">
+					<template #icon><VIcon name="call-line" /></template>
+				</VNavItem>
+				<VNavItem href="#" :current="currentNavItem === 'Voicemail'" @click="onClick('Voicemail')" aria-label="Voicemail">
+					<template #icon><VIcon name="voicemail-line" /></template>
+				</VNavItem>
+				<VNavItem href="#" :current="currentNavItem === 'SMS'" @click="onClick('SMS')" :aria-label="SMS">
+					<template #icon><VIcon name="chat-line" /></template>
+				</VNavItem>
+			</VNav>
+		</VLayout>
+		<VLayout slot="app-content" gutters="medium"> Toggle the side drawer by clicking the FAB. </VLayout>
+		<VFab class="vwc-fab" slot="app-content" @click="onToggle" aria-label="Toggle Side Drawer">
+			<template #icon><VIcon name="menu-solid" /></template>
+		</VFab>
+	</VSideDrawer>
+</template>
+
+<style scoped>
+.vwc-fab {
+	position: fixed;
+	inset: auto auto 8px 8px;
+	z-index: 2;
+}
+
+.vwc-side-drawer::part(base) {
+	transform: var(--demo-drawer-transform);
+}
+
+.vwc-side-drawer {
+	--demo-drawer-transform: translateX(0);
+	--side-drawer-app-content-offset: 280px;
+
+	.nav-expanded {
+		display: block;
+	}
+	.nav-collapsed {
+		display: none;
+	}
+}
+.vwc-side-drawer.collapsed {
+	--demo-drawer-transform: translateX(calc(-100% + 70px));
+	--side-drawer-app-content-offset: 70px;
+
+	.nav-expanded {
+		display: none;
+	}
+	.nav-collapsed {
+		display: block;
+		width: 70px;
+	}
+}
+
+.vwc-side-drawer.collapsed::part(base) {
+	width: 70px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full 250px
 <vwc-side-drawer id="sideDrawer" class="vwc-side-drawer" alternate open>
 	<vwc-layout gutters="small" column-basis="block">
@@ -61,3 +160,6 @@
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
