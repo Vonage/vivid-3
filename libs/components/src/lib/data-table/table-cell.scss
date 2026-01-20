@@ -19,6 +19,7 @@
 :host {
 	display: table-cell;
 	min-inline-size: 80px;
+
 	@include connotation.connotation(data-grid-cell);
 	@include appearance.appearance;
 
@@ -39,7 +40,9 @@
 
 	&:focus-visible {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 		@include focus.focus;
+
 		outline: none;
 	}
 
@@ -56,11 +59,11 @@
 slot {
 	display: block;
 	overflow: hidden;
+	inline-size: 100%;
 	text-overflow: ellipsis;
 	white-space: var(
 		#{variables.$data-grid-cell-white-space},
 		var(#{variables.$data-grid-cell-default-white-space})
 	);
-	inline-size: 100%;
 }
 

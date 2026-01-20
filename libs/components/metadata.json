@@ -8596,7 +8596,7 @@
 		{
 			"name": "table",
 			"className": "Table",
-			"registerFunctionName": "registerTable",
+			"registerFunctionName": "registerDataTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -8648,7 +8648,7 @@
 		{
 			"name": "table-body",
 			"className": "TableBody",
-			"registerFunctionName": "registerTable",
+			"registerFunctionName": "registerDataTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -8700,7 +8700,7 @@
 		{
 			"name": "table-cell",
 			"className": "TableCell",
-			"registerFunctionName": "registerTable",
+			"registerFunctionName": "registerDataTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -8752,7 +8752,7 @@
 		{
 			"name": "table-head",
 			"className": "TableHead",
-			"registerFunctionName": "registerTable",
+			"registerFunctionName": "registerDataTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -8804,7 +8804,7 @@
 		{
 			"name": "table-header-cell",
 			"className": "TableHeaderCell",
-			"registerFunctionName": "registerTable",
+			"registerFunctionName": "registerDataTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -8856,7 +8856,7 @@
 		{
 			"name": "table-row",
 			"className": "TableRow",
-			"registerFunctionName": "registerTable",
+			"registerFunctionName": "registerDataTable",
 			"description": "",
 			"props": [],
 			"events": [

@@ -5,9 +5,9 @@
 <vwc-tab-panel>
 
 ```js
-import { registerTable } from '@vonage/vivid';
+import { registerDataTable } from '@vonage/vivid';
 
-registerTable('your-prefix');
+registerDataTable('your-prefix');
 ```
 
 <vwc-note connotation="information">
@@ -21,8 +21,8 @@ Table Head, Table Body, Table Row, Table Header Cell, and Table Cell sub-compone
 
 ```html preview
 <script type="module">
-	import { registerTable } from '@vonage/vivid';
-	registerTable('your-prefix');
+	import { registerDataTable } from '@vonage/vivid';
+	registerDataTable('your-prefix');
 </script>
 
 <your-prefix-table>

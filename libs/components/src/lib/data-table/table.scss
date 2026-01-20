@@ -9,13 +9,13 @@
 
 	& {
 		position: relative;
+		display: table;
 		overflow: auto;
+		width: 100%;
 		block-size: inherit;
+		border-collapse: collapse;
 		inline-size: 100%;
 		max-block-size: inherit;
-		display: table;
-		width: 100%;
-		border-collapse: collapse;
 	}
 }
 

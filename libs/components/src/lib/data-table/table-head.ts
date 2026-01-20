@@ -6,11 +6,6 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @slot - Default slot.
  */
 export class TableHead extends VividElement {
-	/**
-	 * @internal
-	 */
-	override connectedCallback(): void {
-		super.connectedCallback();
-	}
+	
 }
 

@@ -102,7 +102,7 @@ export const tableDefinition = defineVividComponent(
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerTable = createRegisterFunction(tableDefinition);
+export const registerDataTable = createRegisterFunction(tableDefinition);
 
 export {
 	Table as VwcTableElement,

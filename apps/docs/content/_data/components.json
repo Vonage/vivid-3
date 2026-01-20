@@ -430,7 +430,7 @@
 		"code": "./libs/components/src/lib/data-table/README.md",
 		"accessibility": "./libs/components/src/lib/data-table/ACCESSIBILITY.md",
 		"useCases": "./libs/components/src/lib/data-table/USE-CASES.md",
-		"status": "alpha"
+		"status": "underlying"
 	},
 	{
 		"title": "Toggletip",

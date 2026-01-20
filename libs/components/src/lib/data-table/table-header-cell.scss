@@ -18,12 +18,8 @@
 
 :host {
 	display: table-cell;
-	min-inline-size: 80px;
-	vertical-align: middle;
-	padding: 0;
-	@include connotation.connotation(data-grid-cell);
-	@include appearance.appearance;
 	box-sizing: border-box;
+	padding: 0;
 	border-bottom: 1px solid var(#{constants.$vvd-color-canvas-text});
 	block-size: var(
 		#{variables.$data-grid-cell-block-size},
@@ -31,14 +27,21 @@
 	);
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base-bold});
-	#{variables.$data-grid-cell-default-block-size}: #{size.$vvd-size-expanded};
-	#{variables.$data-grid-cell-default-white-space}: nowrap;
+	min-inline-size: 80px;
 	padding-block: 13px 14px;
 	padding-inline: 12px;
+	vertical-align: middle;
+
+	@include connotation.connotation(data-grid-cell);
+	@include appearance.appearance;
+	#{variables.$data-grid-cell-default-block-size}: #{size.$vvd-size-expanded};
+	#{variables.$data-grid-cell-default-white-space}: nowrap;
 
 	&:focus-visible {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 		@include focus.focus;
+
 		outline: none;
 	}
 }
@@ -46,11 +49,11 @@
 slot {
 	display: block;
 	overflow: hidden;
+	inline-size: 100%;
 	text-overflow: ellipsis;
 	white-space: var(
 		#{variables.$data-grid-cell-white-space},
 		var(#{variables.$data-grid-cell-default-white-space})
 	);
-	inline-size: 100%;
 }
 

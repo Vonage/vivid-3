@@ -1,5 +1,5 @@
-import { registerTable } from './definition';
+import { registerDataTable } from './definition';
 
-registerTable();
+registerDataTable();
 
 
