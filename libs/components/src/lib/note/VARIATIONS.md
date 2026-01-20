@@ -12,7 +12,7 @@ import { VNote } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VNote headline="Headline Text"></VNote>
+	<VNote headline="Headline Text" />
 </template>
 ```
 
