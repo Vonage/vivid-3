@@ -1,7 +1,21 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<template>
+	<p>I <VIcon name="heart-line" connotation="alert" label="Love" /> VIVID!</p>
+</template>
+
+<script setup lang="ts">
+import { VIcon } from '@vonage/vivid-vue';
+</script>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -16,21 +30,7 @@ registerIcon('your-prefix');
 	registerIcon('your-prefix');
 </script>
 
-<your-prefix-icon name="close-line"></your-prefix-icon>
-```
-
-</vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<template>
-	<p>I <VIcon name="heart-line" connotation="alert" /> VIVID!</p>
-</template>
-
-<script setup lang="ts">
-import { VIcon } from '@vonage/vivid-vue';
-</script>
+<p>I <your-prefix-icon name="heart-line" connotation="alert" label="Love"></your-prefix-icon> VIVID!</p>
 ```
 
 </vwc-tab-panel>
@@ -49,16 +49,59 @@ The `label` attribute was added as an alternative to using the `aria-label` attr
 
 </vwc-note>
 
-```html preview
-<vwc-icon label="Close dialog" name="close-line" class="small-icon"></vwc-icon>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VIcon label="Close dialog" name="close-line" />
+</template>
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<vwc-icon label="Close dialog" name="close-line"></vwc-icon>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Custom Size
 
 If the component is used without a `size`, it will use the current `font-size` value.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template><VIcon name="close-line" label="Close dialog" class="small-icon" /> 30px</template>
+
+<style>
+.small-icon {
+	font-size: 30px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
-<vwc-icon name="close-line" class="small-icon"></vwc-icon>
+<vwc-icon name="close-line" label="Close dialog" class="small-icon"></vwc-icon>
 30px
 
 <style>
@@ -68,12 +111,39 @@ If the component is used without a `size`, it will use the current `font-size` v
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Custom Color
 
 If the component is used without a `connotation`, it will use the current text color.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VIcon class="icon" label="Heart icon" name="heart-solid" />
+</template>
+
+<style>
+.icon {
+	color: var(--vvd-color-announcement-400);
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
-<vwc-icon class="icon" name="heart-solid"></vwc-icon>
+<vwc-icon class="icon" label="Heart icon" name="heart-solid"></vwc-icon>
 
 <style>
 	.icon {
@@ -81,6 +151,9 @@ If the component is used without a `connotation`, it will use the current text c
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
