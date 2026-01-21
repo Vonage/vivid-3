@@ -1,7 +1,39 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VLayout, VCard } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VLayout>
+		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+			<template #media><img src="https://picsum.photos/id/1015/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" /></template>
+		</VCard>
+		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+			<template #media><img src="https://picsum.photos/id/1016/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" /></template>
+		</VCard>
+		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+			<template #media><img src="https://picsum.photos/id/1018/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" /></template>
+		</VCard>
+		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+			<template #media><img src="https://picsum.photos/id/1019/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" /></template>
+		</VCard>
+		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+			<template #media><img src="https://picsum.photos/id/1055/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" /></template>
+		</VCard>
+		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+			<template #media><img src="https://picsum.photos/id/1050/300/200" alt="landscape" style="width: 100%; height: 150px; object-fit: cover;" /></template>
+		</VCard>
+	</VLayout>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -40,23 +72,6 @@ registerLayout('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VLayout, VCard } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VLayout>
-		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
-		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
-		<VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
-	</VLayout>
-</template>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## CSS Variables
@@ -67,6 +82,29 @@ Use custom [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web/
 
 This will override the `auto-sizing` and `column-basis` attributes. The default value is `repeat(<auto-sizing>, minmax(<column-basis>, 1fr))`.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VCard, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VLayout style="--layout-grid-template-columns: 1fr 1fr;" gutters="small">
+		<VCard elevation="2" />
+		<VCard elevation="2" />
+		<VCard elevation="2" />
+		<VCard elevation="2" />
+	</VLayout>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full
 <vwc-layout style="--layout-grid-template-columns: 1fr 1fr;" gutters="small">
 	<vwc-card elevation="2"></vwc-card>
@@ -76,9 +114,37 @@ This will override the `auto-sizing` and `column-basis` attributes. The default 
 </vwc-layout>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Grid-template-rows
 
 Control the [grid-template-rows](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows) of the layout by setting `--layout-grid-template-rows`. The default value is `min-content`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VCard, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VLayout style="--layout-grid-template-rows: 80px 40px auto;" gutters="small">
+		<VCard elevation="2" />
+		<VCard elevation="2" />
+		<VCard elevation="2" />
+		<VCard elevation="2" />
+		<VCard elevation="2" />
+		<VCard elevation="2" />
+	</VLayout>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-layout style="--layout-grid-template-rows: 80px 40px auto;" gutters="small">
@@ -90,6 +156,9 @@ Control the [grid-template-rows](https://developer.mozilla.org/en-US/docs/Web/CS
 	<vwc-card elevation="2"></vwc-card>
 </vwc-layout>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Grid-gap
 
@@ -105,6 +174,29 @@ Use a custom [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap)
 
 This will override the `row-spacing` attribute.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VCard, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VLayout style="--layout-column-gap: 0; --layout-row-gap: 0;" gutters="small">
+		<VCard elevation="2" />
+		<VCard elevation="2" />
+		<VCard elevation="2" />
+		<VCard elevation="2" />
+	</VLayout>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full
 <vwc-layout style="--layout-column-gap: 0; --layout-row-gap: 0;" gutters="small">
 	<vwc-card elevation="2"></vwc-card>
@@ -113,6 +205,9 @@ This will override the `row-spacing` attribute.
 	<vwc-card elevation="2"></vwc-card>
 </vwc-layout>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
