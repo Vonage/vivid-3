@@ -3,7 +3,9 @@
 	"compilerOptions": {
 		"noImplicitOverride": true,
 		"noUnusedLocals": true,
-		"lib": ["ESNext", "DOM"]
+		"lib": ["ESNext", "DOM"],
+		"types": ["node", "vitest/globals"],
+		"moduleResolution": "bundler"
 	},
 	"include": ["src", "scripts", "*.ts"]
 }
