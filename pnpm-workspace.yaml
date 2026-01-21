@@ -6,7 +6,7 @@ packages:
 catalog:
   '@custom-elements-manifest/analyzer': ^0.5.7
   '@microsoft/eslint-config-fast-dna': ^2.1.0
-  '@microsoft/fast-element': ^2.8.3
+  '@microsoft/fast-element': 2.8.3
   '@microsoft/fast-foundation': ^2.50.0
   '@microsoft/fast-web-utilities': ^6.0.0
   '@playwright/test': 1.57.0

@@ -20,5 +20,8 @@
 		"dotenv": "^17.2.3",
 		"tsx": "catalog:",
 		"vite-plugin-static-copy": "catalog:"
+	},
+	"dependencies": {
+		"@microsoft/fast-element": "catalog:"
 	}
 }

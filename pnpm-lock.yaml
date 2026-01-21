@@ -13,7 +13,7 @@ catalogs:
       specifier: ^2.1.0
       version: 2.1.0
     '@microsoft/fast-element':
-      specifier: ^2.8.3
+      specifier: 2.8.3
       version: 2.8.3
     '@microsoft/fast-foundation':
       specifier: ^2.50.0
@@ -731,6 +731,40 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 3.2.4(@types/node@24.10.1)(@vitest/ui@3.2.4)(jsdom@23.2.0)(sass@1.94.2)(tsx@4.20.6)(yaml@2.8.1)
+
+  libs/flags:
+    dependencies:
+      '@microsoft/fast-element':
+        specifier: 'catalog:'
+        version: 2.8.3
+    devDependencies:
+      '@figma/rest-api-spec':
+        specifier: ^0.35.0
+        version: 0.35.0
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/tools':
+        specifier: workspace:*
+        version: link:../tools
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/node':
+        specifier: 'catalog:'
+        version: 20.19.25
+      change-case:
+        specifier: ^5.4.4
+        version: 5.4.4
+      dotenv:
+        specifier: ^17.2.3
+        version: 17.2.3
+      tsx:
+        specifier: 'catalog:'
+        version: 4.20.6
+      vite-plugin-static-copy:
+        specifier: 'catalog:'
+        version: 1.0.6(vite@5.4.21(@types/node@20.19.25)(sass@1.94.2))
 
   libs/icons:
     devDependencies:

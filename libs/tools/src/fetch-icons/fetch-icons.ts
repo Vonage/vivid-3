@@ -18,7 +18,7 @@ import { logger } from '../shared/logger.util';
 export async function fetchIcons(
 	figmaFileId: string,
 	userOptions?: Partial<FetchIconsOptions>
-): Promise<void> {
+): Promise<IconEntry[]> {
 	const options: FetchIconsOptions = {
 		cacheOptions: {
 			dir: '.local',
@@ -119,6 +119,7 @@ export async function fetchIcons(
 			},
 			(result) => isSvg(result)
 		).catch((e) => {
+			iconsMap.delete(entry.figmaNodeId);
 			logger.error(
 				`Failed to fetch SVG for icon: ${entry.name} (${entry.figmaNodeId})`
 			);
@@ -135,4 +136,6 @@ export async function fetchIcons(
 			logger.success(`Wrote icon file: ${join(options.dir, fileName)}`);
 		}
 	}
+
+	return Array.from(iconsMap.values());
 }

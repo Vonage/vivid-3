@@ -5,9 +5,12 @@ import {
 	type NodeFilterFunction,
 } from '@repo/tools';
 import type { Node } from '@figma/rest-api-spec';
-import { kebabCase } from 'change-case';
-
+import { rmSync } from 'node:fs';
 import 'dotenv/config';
+import { svg } from './svg.output';
+import { fastComponent } from './fast-component.output';
+import { createIndex } from './create-index';
+import { createDefine } from './create-define';
 
 const onlyFlags: NodeFilterFunction = (node, path) => {
 	if (!Array.isArray(path)) return false;
@@ -36,15 +39,21 @@ const entryFunction: CreateIconEntryFunction = (
 };
 
 (async () => {
-	await fetchIcons('isdKI406usLCxZ2U8ljDrn', {
-		dir: './src/',
+	const clear = true;
+
+	if (clear) {
+		rmSync('./src/generated', { recursive: true, force: true });
+	}
+
+	const icons = await fetchIcons('isdKI406usLCxZ2U8ljDrn', {
+		dir: './src/generated/',
+		forceUpdate: clear,
 		filter: onlyFlags,
 		createEntry: entryFunction,
-		outputs: [
-			{
-				fileName: (entry) => `svg/${kebabCase(entry.name)}.svg`,
-				template: (_entry, svg) => svg,
-			},
-		],
+		indexFileName: 'index.json',
+		outputs: [svg, fastComponent],
 	});
+
+	createIndex(icons, './src/generated/index.ts');
+	createDefine(icons, './src/generated/register.ts');
 })();
