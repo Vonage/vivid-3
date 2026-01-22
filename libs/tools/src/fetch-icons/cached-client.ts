@@ -43,7 +43,6 @@ export function getClient(
 					return { data: JSON.parse(readFileSync(cacheFilePath, 'utf-8')) };
 				}
 
-				// @ts-ignore
 				const cachedJson = await client[prop](...args).then(
 					(response) => response.data
 				);

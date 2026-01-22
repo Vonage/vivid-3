@@ -8,7 +8,6 @@ describe('createIconEntry', () => {
 		id: '1:1',
 		name: 'style=solid',
 		type: 'COMPONENT',
-		// @ts-ignore
 		children: [],
 	} as Node;
 

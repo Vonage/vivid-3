@@ -118,7 +118,7 @@ export async function fetchIcons(
 				return await response.text();
 			},
 			(result) => isSvg(result)
-		).catch((e) => {
+		).catch(() => {
 			iconsMap.delete(entry.figmaNodeId);
 			logger.error(
 				`Failed to fetch SVG for icon: ${entry.name} (${entry.figmaNodeId})`
