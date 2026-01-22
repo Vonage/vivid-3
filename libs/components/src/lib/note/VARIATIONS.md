@@ -43,22 +43,34 @@ import { VNote, VIcon, VLayout } from '@vonage/vivid-vue';
 <template>
 	<VLayout row-spacing="medium">
 		<VNote connotation="accent" headline="Accent Note (default)">
-			<VIcon slot="icon" name="megaphone-line" label="Announcement:" />
+			<template #icon>
+				<VIcon name="megaphone-line" label="Announcement:" />
+			</template>
 		</VNote>
 		<VNote connotation="alert" headline="Alert Note">
-			<VIcon slot="icon" name="error-line" label="Alert:" />
+			<template #icon>
+				<VIcon name="error-line" label="Alert:" />
+			</template>
 		</VNote>
 		<VNote connotation="success" headline="Success Note">
-			<VIcon slot="icon" name="check-circle-line" label="Success" />
+			<template #icon>
+				<VIcon name="check-circle-line" label="Success" />
+			</template>
 		</VNote>
 		<VNote connotation="warning" headline="Warning Note">
-			<VIcon slot="icon" name="warning-line" label="Warning:" />
+			<template #icon>
+				<VIcon name="warning-line" label="Warning:" />
+			</template>
 		</VNote>
 		<VNote connotation="information" headline="Information Note">
-			<VIcon slot="icon" name="info-line" label="Note:" />
+			<template #icon>
+				<VIcon name="info-line" label="Note:" />
+			</template>
 		</VNote>
 		<VNote connotation="announcement" headline="Announcement Note">
-			<VIcon slot="icon" name="sparkles-line" label="Key Fact:" />
+			<template #icon>
+				<VIcon name="sparkles-line" label="Key Fact:" />
+			</template>
 		</VNote>
 	</VLayout>
 </template>

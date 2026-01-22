@@ -59,7 +59,9 @@ import { VNote, VIcon } from '@vonage/vivid-vue';
 
 <template>
 	<VNote headline="Note Headline" connotation="information">
-		<VIcon slot="icon" name="home" label="User information:" />
+		<template #icon>
+			<VIcon name="home" label="User information:" />
+		</template>
 		<p>This is the text that explains about something important!</p>
 	</VNote>
 </template>
@@ -95,7 +97,9 @@ import { VNote, VIcon } from '@vonage/vivid-vue';
 
 <template>
 	<VNote headline="Task in my todo list">
-		<VIcon slot="icon" name="check-circle-solid" connotation="success" label="Done" />
+		<template #icon>
+			<VIcon name="check-circle-solid" connotation="success" label="Done" />
+		</template>
 	</VNote>
 </template>
 ```
