@@ -44,7 +44,10 @@ export interface IconEntry {
 	style: IconStyle;
 }
 
-export type TemplateFunction = (entry: IconEntry, svg: string) => string;
+export type TemplateFunction = (
+	entry: IconEntry,
+	svg: string
+) => string | undefined;
 export type PathFunction = (entry: IconEntry) => string;
 
 export interface OutputFormat {

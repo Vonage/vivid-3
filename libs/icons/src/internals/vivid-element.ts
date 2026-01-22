@@ -1,4 +1,4 @@
-import { FASTElement } from '@microsoft/fast-element';
+import { attr, FASTElement, html } from '@microsoft/fast-element';
 
 // Replaced at build time
 declare const __PACKAGE_VERSION__: string;
@@ -30,4 +30,12 @@ export class VividElement extends FASTElement {
 	}
 }
 
-export class IconElement extends VividElement {}
+export class IconElement extends VividElement {
+	@attr({
+		attribute: 'style',
+	})
+	iconStyle: 'line' | 'solid' = 'line';
+
+	protected lineIconTemplate = html``;
+	protected solidIconTemplate = html``;
+}

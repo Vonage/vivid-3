@@ -6,9 +6,10 @@ export function createIndex(icons: IconEntry[], path: string) {
 	const exports = icons
 		.map((entry) => {
 			return `export * from './${`components/${kebabCase(
-				`${entry.name}-${entry.style}`
+				`${entry.name}`
 			)}.component`}';`;
 		})
+		.filter((value, index, array) => array.indexOf(value) === index)
 		.join('\n');
 
 	writeFile(path, exports);

@@ -2,17 +2,15 @@ import { type IconEntry, writeFile } from '@repo/tools';
 import { camelCase, kebabCase } from 'change-case';
 
 const getRegisterFunctionName = (entry: IconEntry) =>
-	camelCase(`register-${entry.name}-${entry.style}-icon`);
+	camelCase(`register-${entry.name}`);
 
 // create define.ts file
-export function createDefine(icons: IconEntry[], path: string) {
+export function createRegister(icons: IconEntry[], path: string) {
 	const imports = icons
 		.map((entry) => {
 			return `import { ${getRegisterFunctionName(
 				entry
-			)} } from './${`components/${kebabCase(
-				`${entry.name}-${entry.style}`
-			)}.component`}';`;
+			)} } from './${`components/${kebabCase(entry.name)}.component`}';`;
 		})
 		.join('\n');
 

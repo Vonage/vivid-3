@@ -4,7 +4,7 @@
 		"noImplicitOverride": true,
 		"noUnusedLocals": true,
 		"lib": ["ESNext", "DOM"],
-		"types": ["node", "vitest/globals"],
+		"types": ["node", "vitest/globals"]
 	},
 	"include": ["src", "scripts", "*.ts"]
 }

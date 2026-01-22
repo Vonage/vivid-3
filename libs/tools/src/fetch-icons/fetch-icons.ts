@@ -131,6 +131,7 @@ export async function fetchIcons(
 			const fileName = output.fileName(entry);
 			const filePath = resolve(options.dir, fileName);
 			const fileContent = output.template(entry, svgSource);
+			if (fileContent === undefined) continue;
 			writeFile(filePath, fileContent);
 
 			logger.success(`Wrote icon file: ${join(options.dir, fileName)}`);

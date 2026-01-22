@@ -10,6 +10,9 @@
 		"dev": "tsx --watch scripts/fetch-flags.ts",
 		"fetch": "tsx scripts/fetch-flags.ts"
 	},
+	"dependencies": {
+		"@microsoft/fast-element": "catalog:"
+	},
 	"devDependencies": {
 		"@figma/rest-api-spec": "^0.35.0",
 		"@repo/eslint-config": "workspace:*",
@@ -20,8 +23,5 @@
 		"dotenv": "^17.2.3",
 		"tsx": "catalog:",
 		"vite-plugin-static-copy": "catalog:"
-	},
-	"dependencies": {
-		"@microsoft/fast-element": "catalog:"
 	}
 }

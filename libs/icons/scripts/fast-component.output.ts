@@ -1,9 +1,13 @@
 import type { OutputFormat } from '@repo/tools';
 import { camelCase, kebabCase, pascalCase } from 'change-case';
 
+// This cache is an workaround for creating a component that has two styles of icons - solid and line
+// Usually each icon is separate file.
+const lineSvgCache = new Map<string, string>();
+const solidSvgCache = new Map<string, string>();
+
 export const fastComponent: OutputFormat = {
-	fileName: (entry) =>
-		`components/${kebabCase(`${entry.name}-${entry.style}`)}.component.ts`,
+	fileName: (entry) => `components/${kebabCase(`${entry.name}`)}.component.ts`,
 	template: (entry, svg) => {
 		const content = svg
 			.replace(' fill="none"', '')
@@ -12,18 +16,34 @@ export const fastComponent: OutputFormat = {
 			`${entry.name}-${entry.style}-icon-definition`
 		);
 		const iconName = kebabCase(entry.name);
-		const iconTagName = kebabCase(`icon-${entry.name}-${entry.style}`);
-		const iconClassName = pascalCase(`${entry.name}-${entry.style}-icon`);
-		const registerFunctionName = camelCase(
-			`register-${entry.name}-${entry.style}-icon`
-		);
+		const iconTagName = kebabCase(`icon-${entry.name}`);
+		const iconClassName = pascalCase(`${entry.name}-icon`);
+		const registerFunctionName = camelCase(`register-${entry.name}-icon`);
+
+		const cacheKey = `${entry.category}-${entry.name}`;
+
+		if (entry.style === 'line' && !lineSvgCache.has(cacheKey)) {
+			lineSvgCache.set(cacheKey, content);
+		}
+
+		if (entry.style === 'solid' && !solidSvgCache.has(cacheKey)) {
+			solidSvgCache.set(cacheKey, content);
+		}
+
+		const lineTemplate = lineSvgCache.get(cacheKey);
+		const solidTemplate = solidSvgCache.get(cacheKey);
+
+		if (!lineTemplate || !solidTemplate) return;
 
 		return `import { html, css } from '@microsoft/fast-element';
 import { createRegisterFunction } from '../../internals/createRegisterFunction';
 import { defineVividComponent } from '../../internals/defineVividComponent';
 import { IconElement } from '../../internals/vivid-element';
 
-class ${iconClassName} extends IconElement {}
+class ${iconClassName} extends IconElement {
+	override lineIconTemplate = html\`${lineTemplate}\`;
+	override solidIconTemplate = html\`${solidTemplate}\`;
+}
 
 /**
  * @internal
@@ -31,7 +51,7 @@ class ${iconClassName} extends IconElement {}
 export const ${iconDefinitionName} = defineVividComponent(
 	'${iconTagName}',
 	${iconClassName},
-	html\`${content}\`,
+	html\`\${ (x) => x.iconStyle === 'solid' ? x.solidIconTemplate : x.lineIconTemplate }\`,
 	[],
 	{
 		styles: css\`:host {

@@ -4,7 +4,7 @@ import 'dotenv/config';
 import { svg } from './svg.output';
 import { fastComponent } from './fast-component.output';
 import { createIndex } from './create-index';
-import { createDefine } from './create-define';
+import { createRegister } from './create-register';
 
 let counter = 0;
 
@@ -37,5 +37,5 @@ const allIcons: NodeFilterFunction = (node, path) => {
 	});
 
 	createIndex(icons, './src/generated/index.ts');
-	createDefine(icons, './src/generated/register.ts');
+	createRegister(icons, './src/generated/register.ts');
 })();
