@@ -43,9 +43,9 @@ export function getClient(
 					return { data: JSON.parse(readFileSync(cacheFilePath, 'utf-8')) };
 				}
 
-				const cachedJson = await client[prop](...args).then(
-					(response) => response.data
-				);
+				const method = client[prop] as (...a: any[]) => Promise<{ data: any }>;
+				const response = await method.apply(client, args);
+				const cachedJson = response.data;
 
 				writeJson(cacheFilePath, cachedJson);
 

@@ -58,7 +58,9 @@ export async function fetchIcons(
 
 	logger.info(`Found ${iconsMap.size} icons in ${file.name} Figma file.`);
 
-	const ids = Array.from(iconsMap.values()).map((i) => i.figmaNodeId);
+	const ids = Array.from(iconsMap.values()).map(
+		(i) => i.figmaNodeId
+	) as string[];
 
 	// Split IDs into chunks of 500 (Figma API limit) and fetch image URLs for each chunk.
 	const chunked = chunkify(ids, 500);
