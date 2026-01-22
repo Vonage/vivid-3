@@ -39,7 +39,7 @@ export async function fetchIcons(
 		...userOptions,
 	};
 
-	const client = getClient(true, options.cacheOptions);
+	const client = getClient(!options.forceUpdate, options.cacheOptions);
 	const file: FileResponse = await client.file(figmaFileId).then((r) => r.data);
 	const { document } = file;
 	const iconsMap: Map<string, IconEntry> = new Map();
