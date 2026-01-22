@@ -4,7 +4,7 @@ import type { Table } from './table';
 
 export const TableTemplate = (context: VividElementDefinitionContext) => {
 	return html<Table>`
-		<template role="grid">
+		<template role="table">
 			<div class="base">
 				<slot></slot>
 			</div>

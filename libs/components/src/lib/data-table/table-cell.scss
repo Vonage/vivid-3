@@ -18,7 +18,6 @@
 
 :host {
 	display: table-cell;
-	min-inline-size: 80px;
 
 	@include connotation.connotation(data-grid-cell);
 	@include appearance.appearance;
@@ -33,7 +32,7 @@
 		color: var(#{appearance.get-appearance-token(text)});
 		font: var(#{constants.$vvd-typography-base});
 		min-block-size: #{size.$vvd-size-expanded};
-		padding-block: 13px 14px;
+		padding-block: 12px 14px;
 		padding-inline: 12px;
 		vertical-align: middle;
 	}

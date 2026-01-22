@@ -23,10 +23,10 @@ describe('vwc-table', () => {
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 
-		it('should have role="grid"', async () => {
+		it('should have role="table"', async () => {
 			await elementUpdated(element);
-			// The role="grid" is applied to the template element which becomes the host
-			expect(element.getAttribute('role')).toBe('grid');
+			// The role="table" is applied to the template element which becomes the host
+			expect(element.getAttribute('role')).toBe('table');
 		});
 	});
 

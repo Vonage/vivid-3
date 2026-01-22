@@ -1,7 +1,7 @@
 @use '@repo/shared/mixins/scrollbar' as scrollbar;
 
 :host {
-	display: block;
+	display: inline-block;
 }
 
 .base {

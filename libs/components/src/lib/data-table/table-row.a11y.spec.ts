@@ -13,10 +13,10 @@ describe('a11y: vwc-table-row', () => {
 
 	beforeEach(async () => {
 		const div = (await fixture(`
-      <div role="grid">
+      <div role="table">
         <${COMPONENT_TAG}>
-          <div role="gridcell">Cell 1</div>
-          <div role="gridcell">Cell 2</div>
+          <div role="cell">Cell 1</div>
+          <div role="cell">Cell 2</div>
         </${COMPONENT_TAG}>
       </div>
     `)) as HTMLDivElement;

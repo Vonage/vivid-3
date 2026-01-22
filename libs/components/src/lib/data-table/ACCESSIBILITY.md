@@ -1,6 +1,6 @@
 <vwc-note connotation="information" headline="Accessibility Information">
   <vwc-icon name="info-line" slot="icon" connotation="information" size="0"></vwc-icon> 
-  <p>The Table component follows the same accessibility patterns as the Data Grid component, providing proper ARIA roles and keyboard navigation support.</p>
+  <p>The Table component provides proper ARIA roles and keyboard navigation support following the WAI-ARIA table pattern.</p>
 </vwc-note>
 
 ## Keyboard Interactions
@@ -9,23 +9,22 @@
 
 ## Implementation
 
-- The Table component uses `role="grid"` for the root element.
+- The Table component uses `role="table"` for the root element.
 - Table rows use `role="row"`.
-- Header cells use `role="columnheader"`.
-- Data cells use `role="gridcell"`.
+- Header cells use `role="columnheader"` or `role="rowheader"` depending on context.
+- Data cells use `role="cell"`.
 
 ## ARIA Roles
 
 The Table component structure provides semantic meaning through ARIA roles:
 
-- **Table (root)**: `role="grid"`
+- **Table (root)**: `role="table"`
 - **Table Head**: No specific role (acts as container)
 - **Table Body**: No specific role (acts as container)
 - **Table Row**: `role="row"`
 - **Table Header Cell**: `role="columnheader"`
-- **Table Cell**: `role="gridcell"`
+- **Table Cell**: `role="cell"`
 
 ## Resources
 
-- [WAI-ARIA Authoring Practices Guide - Grid Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/grid/)
-- [Data Grid: Manual accessibility test](https://docs.google.com/spreadsheets/d/1Nw_VbECQvdHzTkwdBiHncPX7B_9rFsUKcsurU0QIEng/edit?gid=1175911860#gid=1175911860)
+- [WAI-ARIA Authoring Practices Guide - Table Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/table/)

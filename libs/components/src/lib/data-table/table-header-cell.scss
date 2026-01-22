@@ -27,8 +27,7 @@
 	);
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base-bold});
-	min-inline-size: 80px;
-	padding-block: 13px 14px;
+	padding-block: 12px 14px;
 	padding-inline: 12px;
 	vertical-align: middle;
 

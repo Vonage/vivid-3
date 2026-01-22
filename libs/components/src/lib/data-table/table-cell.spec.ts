@@ -35,7 +35,7 @@ describe('vwc-table-cell', () => {
 
 		it('should have role="gridcell"', async () => {
 			await elementUpdated(element);
-			expect(element.getAttribute('role')).toBe('gridcell');
+			expect(element.getAttribute('role')).toBe('cell');
 		});
 	});
 });
