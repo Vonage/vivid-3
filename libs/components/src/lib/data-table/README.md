@@ -120,9 +120,9 @@ The Table component provides a stateless, semantic structure for displaying tabu
 
 <div class="table-wrapper">
 
-| Name | Type | Description |
-| -------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| (none) | - | This is a stateless component with no configurable properties |
+| Name   | Type | Description                                                   |
+| ------ | ---- | ------------------------------------------------------------- |
+| (none) | -    | This is a stateless component with no configurable properties |
 
 </div>
 
@@ -132,9 +132,9 @@ The Table component provides a stateless, semantic structure for displaying tabu
 
 <div class="table-wrapper">
 
-| Name | Type | Description |
-| -------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| (none) | - | This is a stateless component with no configurable properties |
+| Name   | Type | Description                                                   |
+| ------ | ---- | ------------------------------------------------------------- |
+| (none) | -    | This is a stateless component with no configurable properties |
 
 </div>
 
@@ -144,9 +144,9 @@ The Table component provides a stateless, semantic structure for displaying tabu
 
 <div class="table-wrapper">
 
-| Name | Type | Description |
-| -------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| (none) | - | This is a stateless component with no configurable properties |
+| Name   | Type | Description                                                   |
+| ------ | ---- | ------------------------------------------------------------- |
+| (none) | -    | This is a stateless component with no configurable properties |
 
 </div>
 
@@ -156,9 +156,9 @@ The Table component provides a stateless, semantic structure for displaying tabu
 
 <div class="table-wrapper">
 
-| Name | Type | Description |
-| -------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| (none) | - | This is a stateless component with no configurable properties |
+| Name   | Type | Description                                                   |
+| ------ | ---- | ------------------------------------------------------------- |
+| (none) | -    | This is a stateless component with no configurable properties |
 
 </div>
 
@@ -168,9 +168,9 @@ The Table component provides a stateless, semantic structure for displaying tabu
 
 <div class="table-wrapper">
 
-| Name | Type | Description |
-| -------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| (none) | - | This is a stateless component with no configurable properties |
+| Name   | Type | Description                                                   |
+| ------ | ---- | ------------------------------------------------------------- |
+| (none) | -    | This is a stateless component with no configurable properties |
 
 </div>
 
@@ -180,9 +180,8 @@ The Table component provides a stateless, semantic structure for displaying tabu
 
 <div class="table-wrapper">
 
-| Name | Type | Description |
-| -------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| (none) | - | This is a stateless component with no configurable properties |
+| Name   | Type | Description                                                   |
+| ------ | ---- | ------------------------------------------------------------- |
+| (none) | -    | This is a stateless component with no configurable properties |
 
 </div>
-

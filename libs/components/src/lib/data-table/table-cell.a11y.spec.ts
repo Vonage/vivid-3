@@ -28,4 +28,3 @@ describe('a11y: vwc-table-cell', () => {
 		expect(await axe(element)).toHaveNoViolations();
 	});
 });
-

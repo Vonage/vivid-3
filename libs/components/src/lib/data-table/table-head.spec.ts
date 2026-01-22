@@ -28,12 +28,11 @@ describe('vwc-table-head', () => {
 
 	describe('rendering', () => {
 		it('should render slot content', async () => {
-			element.innerHTML = '<vwc-table-row><vwc-table-header-cell>Header</vwc-table-header-cell></vwc-table-row>';
+			element.innerHTML =
+				'<vwc-table-row><vwc-table-header-cell>Header</vwc-table-header-cell></vwc-table-row>';
 			await elementUpdated(element);
 			const row = element.querySelector('vwc-table-row');
 			expect(row).toBeTruthy();
 		});
-
 	});
 });
-

@@ -29,4 +29,3 @@ The Table component structure provides semantic meaning through ARIA roles:
 
 - [WAI-ARIA Authoring Practices Guide - Grid Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/grid/)
 - [Data Grid: Manual accessibility test](https://docs.google.com/spreadsheets/d/1Nw_VbECQvdHzTkwdBiHncPX7B_9rFsUKcsurU0QIEng/edit?gid=1175911860#gid=1175911860)
-

@@ -13,4 +13,3 @@ export class Table extends VividElement {
 		super.connectedCallback();
 	}
 }
-

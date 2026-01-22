@@ -8,9 +8,7 @@ describe('vwc-table', () => {
 	let element: Table;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Table;
+		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Table;
 	});
 
 	describe('basic', () => {
@@ -61,4 +59,3 @@ describe('vwc-table', () => {
 		});
 	});
 });
-

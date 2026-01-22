@@ -33,11 +33,9 @@ describe('vwc-table-header-cell', () => {
 			expect(element.textContent).toContain('Test header content');
 		});
 
-
 		it('should have role="columnheader"', async () => {
 			await elementUpdated(element);
 			expect(element.getAttribute('role')).toBe('columnheader');
 		});
 	});
 });
-

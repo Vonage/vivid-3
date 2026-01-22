@@ -35,7 +35,6 @@ describe('vwc-table-row', () => {
 			expect(cell?.textContent).toContain('Cell 1');
 		});
 
-
 		it('should have role="row"', async () => {
 			await elementUpdated(element);
 			expect(element.getAttribute('role')).toBe('row');
@@ -53,4 +52,3 @@ describe('vwc-table-row', () => {
 		});
 	});
 });
-

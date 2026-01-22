@@ -4,9 +4,7 @@ import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import { DataGridCellRole } from '../data-grid/data-grid.options';
 import type { TableCell } from './table-cell';
 
-export const TableCellTemplate = (
-	context: VividElementDefinitionContext
-) => {
+export const TableCellTemplate = (context: VividElementDefinitionContext) => {
 	return html<TableCell>`
 		<template
 			tabindex="-1"
@@ -18,4 +16,3 @@ export const TableCellTemplate = (
 		</template>
 	`;
 };
-

@@ -13,9 +13,7 @@ describe('data table integration tests', () => {
 	let element: Table;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Table;
+		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Table;
 	});
 
 	describe('basic', () => {
@@ -53,9 +51,15 @@ describe('data table integration tests', () => {
 
 			const tableHead = element.querySelector('vwc-table-head') as TableHead;
 			const tableBody = element.querySelector('vwc-table-body') as TableBody;
-			const rows = element.querySelectorAll('vwc-table-row') as NodeListOf<TableRow>;
-			const headerCells = element.querySelectorAll('vwc-table-header-cell') as NodeListOf<TableHeaderCell>;
-			const cells = element.querySelectorAll('vwc-table-cell') as NodeListOf<TableCell>;
+			const rows = element.querySelectorAll(
+				'vwc-table-row'
+			) as NodeListOf<TableRow>;
+			const headerCells = element.querySelectorAll(
+				'vwc-table-header-cell'
+			) as NodeListOf<TableHeaderCell>;
+			const cells = element.querySelectorAll(
+				'vwc-table-cell'
+			) as NodeListOf<TableCell>;
 
 			expect(tableHead).toBeTruthy();
 			expect(tableBody).toBeTruthy();
@@ -131,4 +135,3 @@ describe('data table integration tests', () => {
 		});
 	});
 });
-

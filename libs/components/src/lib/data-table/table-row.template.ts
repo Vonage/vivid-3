@@ -3,9 +3,7 @@ import type { VividElementDefinitionContext } from '../../shared/design-system/d
 import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import type { TableRow } from './table-row';
 
-export const TableRowTemplate = (
-	context: VividElementDefinitionContext
-) => {
+export const TableRowTemplate = (context: VividElementDefinitionContext) => {
 	return html<TableRow>`
 		<template
 			${applyHostSemantics({
@@ -18,4 +16,3 @@ export const TableRowTemplate = (
 		</template>
 	`;
 };
-

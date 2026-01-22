@@ -112,4 +112,3 @@ export {
 	TableHeaderCell as VwcTableHeaderCellElement,
 	TableCell as VwcTableCellElement,
 };
-

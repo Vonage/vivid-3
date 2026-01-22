@@ -44,8 +44,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		template,
 	});
 
-	const text = await page
-		.locator('vwc-table-cell:has-text("Voice")');
+	const text = await page.locator('vwc-table-cell:has-text("Voice")');
 	await text.isVisible();
 
 	await takeScreenshot(page, 'data-table');
@@ -143,18 +142,13 @@ test('should render multiple rows and columns', async ({
 		template,
 	});
 
-	const text = await page
-		.locator('vwc-table-cell:has-text("Row 2, Cell 2")');
+	const text = await page.locator('vwc-table-cell:has-text("Row 2, Cell 2")');
 	await text.isVisible();
 
 	await takeScreenshot(page, 'data-table-multiple-rows-columns');
 });
 
-test('should handle responsive scrolling', async ({
-	page,
-}: {
-	page: Page;
-}) => {
+test('should handle responsive scrolling', async ({ page }: { page: Page }) => {
 	const template = `<div style="margin: 5px;">
 			<vwc-table style="max-height: 200px; width: 100%;">
 				<vwc-table-head>
@@ -217,8 +211,7 @@ test('should handle responsive scrolling', async ({
 		template,
 	});
 
-	const text = await page
-		.locator('vwc-table-cell:has-text("Video")');
+	const text = await page.locator('vwc-table-cell:has-text("Video")');
 	await text.isVisible();
 
 	await takeScreenshot(page, 'data-table-scrolling');

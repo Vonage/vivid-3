@@ -14,4 +14,3 @@ export class TableCell extends HostSemantics(VividElement) {
 		super.connectedCallback();
 	}
 }
-

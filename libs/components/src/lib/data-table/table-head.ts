@@ -5,7 +5,4 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @component table-head
  * @slot - Default slot.
  */
-export class TableHead extends VividElement {
-	
-}
-
+export class TableHead extends VividElement {}
