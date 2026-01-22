@@ -138,7 +138,7 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ78yikjA1tTHQ_T6JbvbU83K
 | Discovery | Validate the shared value of the feature and that we understand the problem well enough to commit further resources. |
 | Design    | Ensure designs meet user needs while upholding our brand standards and visual language.                              |
 | Alpha     | Component is available and documentation is published.                                                               |
-
+<!-- 
 ## Completed Features
 
 <vwc-data-grid>
@@ -198,4 +198,4 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ78yikjA1tTHQ_T6JbvbU83K
     </vwc-data-grid-row>
     {%- endif -%}
   {%- endfor %}
-</vwc-data-grid>
+</vwc-data-grid> -->
