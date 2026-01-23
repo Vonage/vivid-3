@@ -1,7 +1,21 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VSlider } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VSlider aria-label="Vue Slider" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component">
+</vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -20,28 +34,37 @@ registerSlider('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
 
-```vue preview
-<script setup lang="ts">
-import { VSlider } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VSlider aria-label="Vue Slider" />
-</template>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Value
 
 Set the `value` attribute to set the value of the Slider.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview blocks
+<script setup lang="ts">
+import { VSlider } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSlider aria-label="Slider with the value attribute" :value="3" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview blocks
 <vwc-slider aria-label="Slider with the value attribute" value="3"></vwc-slider>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Value Text Formatter
 
@@ -52,6 +75,32 @@ Use this to configure the [`pin`](/components/slider/#pin) string.
 
 Use the `min` attribute to set the lowest value allowed for the Slider.  
 The default value of `min` is `0`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview blocks
+<script setup lang="ts">
+import { VSlider } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const slidervalue = ref(1);
+</script>
+
+<template>
+	<div>
+		<div>
+			<VSlider v-model="slidervalue" :value="slidervalue" aria-label="Slider with the min attribute" :min="-5" />
+		</div>
+		<div>Current value: <span id="slidervalue" v-text="slidervalue"></span></div>
+	</div>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview blocks
 <div>
@@ -67,10 +116,39 @@ The default value of `min` is `0`.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Max
 
 Use the `max` attribute to set the highest value allowed for the Slider.  
 The default value `max` of is `10`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview blocks
+<script setup lang="ts">
+import { VSlider } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const slidervalue = ref(50);
+</script>
+
+<template>
+	<div>
+		<div>
+			<VSlider v-model="slidervalue" :value="slidervalue" aria-label="Slider with the max attribute" :max="100" />
+		</div>
+		<div>Current value: <span id="slidervalue" v-text="slidervalue"></span></div>
+	</div>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview blocks
 <div>
@@ -86,10 +164,39 @@ The default value `max` of is `10`.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Step
 
 Use the `step` attribute sets the granularity with which values can be incremented/decremented.  
 The default value of `step` is `1`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview blocks
+<script setup lang="ts">
+import { VSlider } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const slidervalue = ref(5);
+</script>
+
+<template>
+	<div>
+		<div>
+			<VSlider v-model="slidervalue" :value="slidervalue" aria-label="Slider with the step attribute" :step="0.5" />
+		</div>
+		<div>Current value: <span id="slidervalue" v-text="slidervalue"></span></div>
+	</div>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview blocks
 <div>
@@ -104,6 +211,9 @@ The default value of `step` is `1`.
 	slider.addEventListener('change', (e) => (slidervalue.innerText = slider.value));
 </script>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
