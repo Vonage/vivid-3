@@ -39,6 +39,51 @@ import { VSwitch } from '@vonage/vivid-vue';
 
 Use the `name` and `value` attribute when including the Switch as part of a form.
 
+<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VSwitch, VLayout, VButton } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const results = ref('');
+
+const handleSubmit = (event: Event) => {
+	event.preventDefault();
+	const form = event.target as HTMLFormElement;
+	const formData = new FormData(form);
+	results.value = `
+      email: ${formData.get('email')}<br />
+      text: ${formData.get('text')}<br />
+      phone: ${formData.get('phone')}
+    `;
+};
+</script>
+
+<template>
+	<VLayout column-basis="small">
+		<form @submit="handleSubmit">
+			<VLayout row-spacing="small" column-basis="block">
+				<div>Marketing settings</div>
+				<VSwitch value="yes" name="email" label="Email notifications" />
+				<VSwitch value="yes" name="text" label="Text messages" />
+				<VSwitch value="yes" name="phone" label="Phone calls" />
+				<div>
+					<VButton type="submit" label="Submit" appearance="filled" connotation="cta" />
+				</div>
+			</VLayout>
+		</form>
+		<div>Form Results:<br /><code v-html="results"></code></div>
+	</VLayout>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-layout column-basis="small">
 	<form id="settings">
@@ -68,6 +113,9 @@ Use the `name` and `value` attribute when including the Switch as part of a form
 	});
 </script>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
