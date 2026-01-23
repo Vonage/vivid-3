@@ -610,5 +610,15 @@
 		"code": "./libs/components/src/lib/contextual-help/README.md",
 		"hideGuidelines": "true",
 		"hideAccessibility": "true"
+	},
+	{
+		"title": "Popover",
+		"description": "Displays floating rich content anchored to a specific trigger element, rendering on top of all other page elements.",
+		"variations": "./libs/components/src/lib/popover/VARIATIONS.md",
+		"code": "./libs/components/src/lib/popover/README.md",
+		"accessibility": "./libs/components/src/lib/popover/ACCESSIBILITY.md",
+		"hideGuidelines": "true",
+		"hideUseCases": "true",
+		"status": "alpha"
 	}
 ]

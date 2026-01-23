@@ -8,6 +8,8 @@ import { impl } from './utils/impl';
 import { TextblockMarks } from './utils/textblock-marks';
 import { RteLinkFeatureImpl } from './features/link';
 import { RteToolbarFeatureImpl } from './features/toolbar';
+import type { RteDocument } from './document';
+import { convertToView, type RteView, type RteViewOptions } from './view';
 
 export class RteConfig {
 	/// @internal
@@ -19,6 +21,10 @@ export class RteConfig {
 
 	instantiateEditor(options?: RteInstanceOptions): RteInstance {
 		return new RteInstance(this, options);
+	}
+
+	instantiateView(document: RteDocument, options?: RteViewOptions): RteView {
+		return convertToView(document, { config: this, options: { ...options } });
 	}
 }
 

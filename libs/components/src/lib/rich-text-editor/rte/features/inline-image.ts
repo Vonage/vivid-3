@@ -236,7 +236,7 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 				}
 
 				const attrs: Record<string, string> = { src: resolvedUrl, alt };
-				if (size) attrs.style = `max-width: ${size};`;
+				if (size) attrs.style = `max-width: ${size}; height: auto;`;
 				if (naturalWidth) attrs.width = naturalWidth;
 				if (naturalHeight) attrs.height = naturalHeight;
 				return ['img', attrs];

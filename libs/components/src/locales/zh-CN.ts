@@ -129,6 +129,9 @@ const zhCN: Locale = {
 	dialog: {
 		dismissButtonLabel: '关',
 	},
+	popover: {
+		dismissButtonLabel: '关',
+	},
 	banner: {
 		dismissButtonLabel: '关',
 	},

@@ -1,6 +1,20 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VFilePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker label="Pick Files"> Drag & Drop or click to upload only one file </VFilePicker>
+</template>
+```
+
+</vwc-tab-panel>
 <vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
@@ -20,29 +34,36 @@ registerFilePicker('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VFilePicker } from '@vonage/vivid-vue';
-</script>
-
-<template>
-	<VFilePicker label="Title"> Drag & Drop or click to upload only one file </VFilePicker>
-</template>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Single File
 
 Use the `single-file` attribute to allow only a single file. Subsequent file uploads will replace the current file.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VFilePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker single-file> Drag & Drop or click to upload only one file </VFilePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-file-picker single-file> Drag & Drop or click to upload only one file </vwc-file-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Max Files
 
@@ -55,9 +76,30 @@ If the user tries to upload more files than the maximum number of files, the fil
 	<p>Don't use this for single file uploads (with <code>max-files="1"</code>). Use the <a href="#single-file"><code>single-file</code> attribute</a> instead.</p>
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 330px;
+<script setup lang="ts">
+import { VFilePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker helper-text="Maximum of 2 files" max-files="2"> Drag & Drop or click to upload </VFilePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 330px
 <vwc-file-picker helper-text="Maximum of 2 files" max-files="2"> Drag & Drop or click to upload </vwc-file-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Max Files Exceeded Error
 
@@ -67,9 +109,30 @@ Note: localisation will need to be handled at the application level.
 
 - Type: `string`
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 330px
+<script setup lang="ts">
+import { VFilePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker max-files-exceeded-error="Only 2 files allowed" helper-text="Maximum of 2 files" max-files="2"> Drag & Drop or click to upload </VFilePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 330px
 <vwc-file-picker max-files-exceeded-error="Only 2 files allowed" helper-text="Maximum of 2 files" max-files="2"> Drag & Drop or click to upload </vwc-file-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Max File Size
 
@@ -78,9 +141,30 @@ The default max-file size is `256mb`
 
 If the user tries to upload a file that exceeds the maximum file size, the file picker displays an error message.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VFilePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker helper-text="Max file size is 0.1MB" max-file-size="0.1"> Drag & Drop or click to upload </VFilePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-file-picker helper-text="Max file size is 0.1MB" max-file-size="0.1"> Drag & Drop or click to upload </vwc-file-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### File Too Big Error
 
@@ -88,13 +172,30 @@ Use the `file-too-big-error` attribute provide a custom error message to overrid
 
 Note: localisation will need to be handled at the application level.
 
-{% raw %}
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VFilePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker file-too-big-error="File too large ({{filesize}} MiB). The maximum file size is {{maxFilesize}} MiB." helper-text="Max file size is 0.1MB" max-file-size="0.1"> Drag & Drop or click to upload </VFilePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-file-picker file-too-big-error="File too large ({{filesize}} MiB). The maximum file size is {{maxFilesize}} MiB." helper-text="Max file size is 0.1MB" max-file-size="0.1"> Drag & Drop or click to upload </vwc-file-picker>
 ```
 
-{% endraw %}
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Accept
 
@@ -108,9 +209,30 @@ Some examples of valid values are:
 
 If the user tries to upload a file that does not match the accepted files, the File Picker displays an error message.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VFilePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker helper-text=".jpg, .jpeg types only" accept=".jpg, .jpeg"> Drag & Drop or click to upload </VFilePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-file-picker helper-text=".jpg, .jpeg types only" accept=".jpg, .jpeg"> Drag & Drop or click to upload </vwc-file-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 #### Invalid File Type Error
 
@@ -118,9 +240,30 @@ Use the `invalid-file-type-error` attribute to provide a custom error message to
 
 Note: localisation will need to be handled at the application level.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VFilePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker invalid-file-type-error="This file is not a .jpg or .jpeg" helper-text=".jpg, .jpeg types only" accept=".jpg, .jpeg"> Drag & Drop or click to upload </VFilePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-file-picker invalid-file-type-error="This file is not a .jpg or .jpeg" helper-text=".jpg, .jpeg types only" accept=".jpg, .jpeg"> Drag & Drop or click to upload </vwc-file-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Block-Size
 
@@ -133,6 +276,89 @@ When setting `block-size` or `max-block-size` on the file-picker the list of the
 **_Rejected Files_** `rejectedFiles` (Read-only)
 
 Use `files` or `rejectedFiles` to access the list of files that have been added to the File Picker and passed or failed validation checks.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VFilePicker, VButton, VLayout, VCard, VNote } from '@vonage/vivid-vue';
+import { useTemplateRef, onMounted } from 'vue';
+
+const filePickerRef = useTemplateRef('file-picker');
+const noteRef = useTemplateRef('note');
+
+const changeEvent = (event: CustomEvent) => {
+	const target = event.target;
+	noteRef.value.$el.headline = `files: ${target.files.length}, rejectedfiles: ${target.rejectedFiles.length}`;
+};
+
+function generateFile(fileName, sizeMb, type = 'text/plain') {
+	const sizeInBytes = sizeMb * 1024 * 1024;
+	const content = 'x'.repeat(sizeInBytes);
+	const blob = new Blob([content], { type });
+	return new File([blob], fileName, { type });
+}
+
+function simulateDrop(file) {
+	const dataTransfer = new DataTransfer();
+	dataTransfer.items.add(file);
+
+	const dropEvent = new DragEvent('drop', {
+		dataTransfer,
+		bubbles: true,
+		cancelable: true,
+	});
+
+	const vwcFilePicker = filePickerRef.value.$el;
+
+	if (vwcFilePicker && vwcFilePicker.shadowRoot) {
+		console.log(vwcFilePicker.shadowRoot);
+		const dropzoneEl = vwcFilePicker.shadowRoot?.querySelector('.control');
+		dropzoneEl.dispatchEvent(dropEvent);
+	}
+}
+
+onMounted(() => {
+	const dummyFile1 = generateFile('dummy-image.jpg', 2, 'image/jpeg');
+	const dummyFile2 = generateFile('dummy-txt.jpg', 1, 'text/plain');
+
+	const vwcFilePicker = filePickerRef.value;
+	if (vwcFilePicker && vwcFilePicker.shadowRoot) {
+		console.log('ele');
+	}
+
+	simulateDrop(dummyFile1);
+	simulateDrop(dummyFile2);
+});
+</script>
+
+<template>
+	<form method="post" enctype="multipart/form-data" @submit.prevent="() => {}">
+		<VLayout>
+			<VCard>
+				<VLayout slot="main" gutters="small">
+					<VFilePicker name="files" label="Pick files" max-file-size="1" max-files-exceeded-error="Only 2 files allowed" helper-text="Maximum of 2 files" max-files="2" @change="changeEvent" required ref="file-picker"> Drag & Drop or click to upload</VFilePicker>
+					<div class="buttons">
+						<VButton label="Reset" type="reset" appearance="outlined"></VButton>
+						<VButton label="Submit" appearance="filled" type="submit"></VButton>
+					</div>
+				</VLayout>
+			</VCard>
+			<VCard>
+				<VLayout slot="main" gutters="small">
+					<VNote headline="..." ref="note"></VNote>
+				</VLayout>
+			</VCard>
+		</VLayout>
+	</form>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <form method="post" enctype="multipart/form-data">
@@ -195,14 +421,42 @@ Use `files` or `rejectedFiles` to access the list of files that have been added 
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 ### Default
 
 Use the default slot to set the content of the file picker.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VFilePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker label="Label"> Drag & Drop or <strong>Click</strong> to upload </VFilePicker>
+</template>
+
+<style scoped>
+span {
+	white-space: pre-wrap;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-file-picker label="Label"> Drag & Drop or <strong>Click</strong> to upload </vwc-file-picker>
+
 <style>
 	span {
 		white-space: pre-wrap;
@@ -210,9 +464,33 @@ Use the default slot to set the content of the file picker.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Helper-Text
 
 The `helper-text` slot allows you to use rich content as the File Picker's helper text.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VFilePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker>
+		Drag & Drop the .csv file here or click to upload
+		<span slot="helper-text">Max file size is 0.1MB. <a href="#">Learn how export your data to .csv</a></span>
+	</VFilePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-file-picker>
@@ -221,9 +499,33 @@ The `helper-text` slot allows you to use rich content as the File Picker's helpe
 </vwc-file-picker>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Contextual Help
 
 The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VFilePicker, VContextualHelp } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker label="Upload file">
+		Drag & Drop the .csv file here or click to upload
+		<VContextualHelp slot="contextual-help">Max file size is 0.1MB.</VContextualHelp>
+	</VFilePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-file-picker label="Upload file">
@@ -231,6 +533,9 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 	<vwc-contextual-help slot="contextual-help">Max file size is 0.1MB.</vwc-contextual-help>
 </vwc-file-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## CSS Variables
 

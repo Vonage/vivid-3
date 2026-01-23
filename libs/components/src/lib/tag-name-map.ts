@@ -41,12 +41,14 @@ import type {
 	VwcNumberFieldElement,
 	VwcOptionElement,
 	VwcPaginationElement,
+	VwcPopoverElement,
 	VwcProgressElement,
 	VwcProgressRingElement,
 	VwcRadioElement,
 	VwcRadioGroupElement,
 	VwcRangeSliderElement,
 	VwcRichTextEditorElement,
+	VwcRichTextViewElement,
 	VwcSearchableSelectElement,
 	VwcSelectableBoxElement,
 	VwcSelectElement,
@@ -125,11 +127,13 @@ type DefaultVividTagNameMap = {
 	'vwc-number-field': VwcNumberFieldElement;
 	'vwc-option': VwcOptionElement;
 	'vwc-pagination': VwcPaginationElement;
+	'vwc-popover': VwcPopoverElement;
 	'vwc-progress': VwcProgressElement;
 	'vwc-progress-ring': VwcProgressRingElement;
 	'vwc-radio': VwcRadioElement;
 	'vwc-radio-group': VwcRadioGroupElement;
 	'vwc-range-slider': VwcRangeSliderElement;
+	'vwc-rich-text-view': VwcRichTextViewElement;
 	'vwc-rich-text-editor': VwcRichTextEditorElement;
 	'vwc-searchable-select': VwcSearchableSelectElement;
 	'vwc-selectable-box': VwcSelectableBoxElement;

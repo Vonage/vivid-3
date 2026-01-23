@@ -1,7 +1,26 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 200px
+<script setup lang="ts">
+import { VMenu, VMenuItem, VButton } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VMenu open ariaLabel="Menu example" placement="bottom-end">
+		<template #anchor>
+			<VButton icon="more-vertical-line" aria-Label="Open menu" appearance="outlined" />
+		</template>
+		<VMenuItem text="Menu item 1" />
+		<VMenuItem text="Menu item 2" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -32,23 +51,6 @@ registerMenuItem('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview 200px
-<script setup lang="ts">
-import { VMenu, VMenuItem, VButton } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VMenu open ariaLabel="Menu example" placement="bottom-end">
-		<VButton slot="anchor" icon="more-vertical-line" aria-Label="Open menu" appearance="outlined" />
-		<VMenuItem text="Menu item 1" />
-		<VMenuItem text="Menu item 2" />
-	</VMenu>
-</template>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Trigger
@@ -58,6 +60,38 @@ The `trigger` attribute controls whether the Menu opens and closes itself automa
 - `auto` (default) - The menu opens and closes automatically when the anchor is clicked. It also closes itself when the user selects a menu item with a role different from `menuitemcheckbox`.
 - `legacy` - The menu opens automatically when the anchor is clicked. This value is not recommended and only exists for backwards compatibility.
 - `off` - The menu does not open or close automatically.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 340px
+<script setup lang="ts">
+import { VButton, VDivider, VIcon, VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu aria-label="Menu example" placement="bottom-end">
+		<template #anchor>
+			<VButton aria-label="Open menu" appearance="outlined">
+				<template #icon><VIcon slot="icon" name="more-vertical-line" /></template>
+			</VButton>
+		</template>
+		<VMenuItem text="Menu item 1" />
+		<VMenuItem text="Menu item 2" />
+		<VDivider />
+		<VMenuItem control-type="checkbox" text="Option 1" />
+		<VMenuItem control-type="checkbox" text="Option 2" />
+		<VDivider />
+		<VMenuItem control-type="radio" text="Option 1" />
+		<VMenuItem control-type="radio" text="Option 2" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 340px
 <vwc-menu aria-label="Menu example" placement="bottom-end">
@@ -75,9 +109,38 @@ The `trigger` attribute controls whether the Menu opens and closes itself automa
 </vwc-menu>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Auto Dismiss
 
 The `auto-dismiss` attribute sets it to automatically close when focus is moved away from it, i.e. by clicking outside the menu.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 200px
+<script setup lang="ts">
+import { VButton, VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div style="position: relative">
+		<VMenu auto-dismiss id="menu" open aria-label="Menu example">
+			<template #anchor>
+				<VButton label="Toggle Menu" appearance="outlined" dropdown-indicator />
+			</template>
+			<VMenuItem text="Menu item 1" />
+			<VMenuItem text="Menu item 2" />
+		</VMenu>
+	</div>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 200px
 <div style="position: relative">
@@ -88,6 +151,9 @@ The `auto-dismiss` attribute sets it to automatically close when focus is moved 
 	</vwc-menu>
 </div>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Position Strategy
 
@@ -102,6 +168,34 @@ In vivid version 4.12.0, popover attribute was added to menu, using the power of
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 200px
+<script setup lang="ts">
+import { VButton, VIcon, VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div style="position: absolute; container-type: inline-size;">
+		<VMenu position-strategy="absolute" aria-label="Menu example" placement="bottom-end">
+			<template #anchor>
+				<VButton aria-label="Open menu" appearance="outlined">
+					<template #icon><VIcon name="more-vertical-line" /></template>
+				</VButton>
+			</template>
+			<VMenuItem text="Menu item 1" />
+			<VMenuItem text="Menu item 2" />
+		</VMenu>
+	</div>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 200px
 <div style="position: absolute; container-type: inline-size;">
 	<vwc-menu position-strategy="absolute" aria-label="Menu example" placement="bottom-end">
@@ -113,6 +207,9 @@ In vivid version 4.12.0, popover attribute was added to menu, using the power of
 	</vwc-menu>
 </div>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Anchor
 
@@ -131,6 +228,44 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 **Pay attention to the source order** the components to ensure they can be operated logically using only a keyboard.
 
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview center 200px
+<script setup lang="ts">
+import { useTemplateRef, onMounted } from 'vue';
+import { VButton, VMenu, VMenuItem } from '@vonage/vivid-vue';
+
+const button2 = useTemplateRef('button2');
+const menu2 = useTemplateRef('menu2');
+
+onMounted(() => {
+	if (menu2.value && button2.value) {
+		menu2.value.element.anchor = button2.value.element;
+	}
+});
+</script>
+
+<template>
+	<div style="position: relative">
+		<VButton id="button1" label="ID anchor" appearance="outlined" />
+		<VMenu anchor="button1" aria-label="ID anchor menu example" auto-dismiss>
+			<VMenuItem text="My anchor is an ID" />
+		</VMenu>
+
+		<VButton ref="button2" label="HTMLElement anchor" appearance="outlined" />
+		<VMenu ref="menu2" aria-label="HTML element menu example" auto-dismiss>
+			<VMenuItem text="My anchor is an HTMLElement" />
+		</VMenu>
+	</div>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview center 200px
 <div style="position: relative">
@@ -153,6 +288,9 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 ### Default Slot
@@ -161,17 +299,66 @@ Place menu items and dividers between them in the default slot.
 
 Only Menu Item, Divider and HTML elements with `role` of `menuitem` or `separator` are allowed. They must be direct descendants of the Menu, and cannot be nested inside other elements.
 
-````html preview 200px
-```html preview 130px
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 200px
+<script setup lang="ts">
+import { VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Menu example">
+		<VMenuItem text="Menu item 1" />
+		<VMenuItem text="Menu item 2" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 200px
 <vwc-menu open aria-label="Menu example">
 	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
-````
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Anchor Slot
 
 The Menu positions itself relative to an anchor element. Place it inside the `anchor` slot. It is recommended to use the [Button](/components/button/) component as the anchor element.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 200px
+<script setup lang="ts">
+import { VButton, VIcon, VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Menu example" placement="bottom-end">
+		<template #anchor>
+			<VButton aria-label="Open menu" appearance="outlined">
+				<template #icon><VIcon name="more-vertical-line" /></template>
+			</VButton>
+		</template>
+		<VMenuItem text="Menu item 1" />
+		<VMenuItem text="Menu item 2" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 200px
 <vwc-menu open aria-label="Menu example" placement="bottom-end">
@@ -183,9 +370,36 @@ The Menu positions itself relative to an anchor element. Place it inside the `an
 </vwc-menu>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Header Slot
 
 Use the `header` slot to add additional content to the top of the menu.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 200px
+<script setup lang="ts">
+import { VMenu, VMenuItem, VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Menu example">
+		<template #header>
+			<VTextField placeholder="Search" icon="search" />
+		</template>
+		<VMenuItem text="Menu item 1" />
+		<VMenuItem text="Menu item 2" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 200px
 <vwc-menu open aria-label="Menu example">
@@ -195,9 +409,36 @@ Use the `header` slot to add additional content to the top of the menu.
 </vwc-menu>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Action Items Slot
 
 The `action-items` slot allows the addition of action items (in this case, a Button) to the bottom of the Menu.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 200px
+<script setup lang="ts">
+import { VButton, VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Menu example">
+		<VMenuItem text="Menu item 1" />
+		<VMenuItem text="Menu item 2" />
+		<template #action-items>
+			<VButton appearance="filled" label="Action" />
+		</template>
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 200px
 <vwc-menu open aria-label="Menu example">
@@ -206,6 +447,9 @@ The `action-items` slot allows the addition of action items (in this case, a But
 	<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
 </vwc-menu>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## CSS Variables
 
@@ -221,6 +465,32 @@ Use the `--menu-max-inline-size` variable to set the maximum inline size.
 	<p>In mobile, the <code>max-inline-size</code> is <code>300px</code> by default, but can be changed with the css-variable. </p>
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 150px
+<script setup lang="ts">
+import { VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open class="menu" aria-label="Menu example">
+		<VMenuItem text="Lorem ipsum dolor sit amet conse ctetur adipisicing elit" />
+	</VMenu>
+</template>
+
+<style>
+.menu {
+	--menu-max-inline-size: 300px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 150px
 <style>
 	vwc-menu {
@@ -233,11 +503,40 @@ Use the `--menu-max-inline-size` variable to set the maximum inline size.
 </vwc-menu>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Minimum Inline Size
 
 Use the `--menu-min-inline-size` variable to set th minimum inline size.
 
 - Default: `auto`
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 150px
+<script setup lang="ts">
+import { VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open class="menu" aria-label="Menu example">
+		<VMenuItem text="Menu Item" />
+	</VMenu>
+</template>
+
+<style>
+.menu {
+	--menu-min-inline-size: 300px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 150px
 <style>
@@ -251,11 +550,46 @@ Use the `--menu-min-inline-size` variable to set th minimum inline size.
 </vwc-menu>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Menu Block Size
 
 Use the `--menu-block-size` variable to set the block size.
 
 - Default: `408px`
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 150px
+<script setup lang="ts">
+import { VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open class="menu" aria-label="Menu example">
+		<VMenuItem text="Menu Item" />
+		<VMenuItem text="Menu Item" />
+		<VMenuItem text="Menu Item" />
+		<VMenuItem text="Menu Item" />
+		<VMenuItem text="Menu Item" />
+		<VMenuItem text="Menu Item" />
+		<VMenuItem text="Menu Item" />
+	</VMenu>
+</template>
+
+<style>
+.menu {
+	--menu-block-size: 100px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 150px
 <style>
@@ -274,6 +608,9 @@ Use the `--menu-block-size` variable to set the block size.
 	<vwc-menu-item text="Menu Item"></vwc-menu-item>
 </vwc-menu>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 

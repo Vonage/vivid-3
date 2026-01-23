@@ -1,14 +1,10 @@
 import { expect, type Page } from '@playwright/test';
 import { InFlightRequests } from './requests';
 
-export const BASE_URL = Boolean(process.env.PW_TEST_CONNECT_WS_ENDPOINT)
-	? 'http://hostmachine:8080'
-	: 'http://localhost:8080';
-
 const defaultStyles = [
-	`${BASE_URL}/libs/components/dist/styles/tokens/theme-light.css`,
-	`${BASE_URL}/libs/components/dist/styles/core/all.css`,
-	`${BASE_URL}/assets/fonts/speziaLocalFonts.css`,
+	`/libs/components/dist/styles/tokens/theme-light.css`,
+	`/libs/components/dist/styles/core/all.css`,
+	`/assets/fonts/speziaLocalFonts.css`,
 ];
 
 export async function loadComponents({
@@ -18,14 +14,14 @@ export async function loadComponents({
 	page: Page;
 	components: string[];
 }) {
-	await page.goto(`${BASE_URL}/assets/ui-tests/index.html`, {
+	await page.goto(`/assets/ui-tests/index.html`, {
 		waitUntil: 'load',
 	});
 
 	await Promise.all([
 		...components.map((component) =>
 			page.addScriptTag({
-				url: `${BASE_URL}/libs/components/dist/${component}/index.js`,
+				url: `/libs/components/dist/${component}/index.js`,
 				type: 'module',
 			})
 		),

@@ -130,6 +130,9 @@ const deDE: Locale = {
 	dialog: {
 		dismissButtonLabel: 'Schließen',
 	},
+	popover: {
+		dismissButtonLabel: 'Schließen',
+	},
 	banner: {
 		dismissButtonLabel: 'Schließen',
 	},
