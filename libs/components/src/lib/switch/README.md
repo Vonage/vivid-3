@@ -1,6 +1,19 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VSwitch } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VSwitch label="Email notifications" />
+</template>
+```
+
+</vwc-tab-panel>
 <vwc-tab label="Web component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
@@ -20,26 +33,13 @@ registerSwitch('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VSwitch } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VSwitch label="Email notifications" />
-</template>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Name and Value
 
 Use the `name` and `value` attribute when including the Switch as part of a form.
 
-<vwc-tabs gutters="none" activeid="vue-tab">
+<vwc-tabs gutters="none">
 <vwc-tab label="Vue" id="vue-tab"></vwc-tab>
 <vwc-tab-panel>
 
