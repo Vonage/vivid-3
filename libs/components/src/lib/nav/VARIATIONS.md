@@ -6,24 +6,71 @@
 
 The `text` attribute on the **Nav Item** component provides the Nav Item text.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VNav, VNavItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VNav>
+		<VNavItem text="Account" />
+	</VNav>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-nav>
 	<vwc-nav-item text="Account"></vwc-nav-item>
 </vwc-nav>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Label
 
 The `label` attribute on the **Nav Disclosure** component provides the nav disclosure label.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 120px
+<script setup lang="ts">
+import { VNav, VNavItem, VNavDisclosure } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VNav>
+		<VNavDisclosure label="1st level item" open>
+			<VNavItem text="2nd level item" href="#" />
+		</VNavDisclosure>
+	</VNav>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 120px
 <vwc-nav>
 	<vwc-nav-disclosure label="1st level item" open>
 		<vwc-nav-item text="2nd level item" href="#"></vwc-nav-item>
 	</vwc-nav-disclosure>
-	<vwc-nav></vwc-nav>
 </vwc-nav>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Icon
 
@@ -38,6 +85,30 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 250px
+<script setup lang="ts">
+import { VNav, VNavItem, VNavDisclosure } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VNav>
+		<VNavItem text="Account" href="#" icon="profile" />
+		<VNavItem text="Inbox" href="#" icon="inbox-line" />
+		<VNavDisclosure label="Tools" open icon="design-tools-line">
+			<VNavItem text="Edit" href="#" icon="edit-line" />
+		</VNavDisclosure>
+	</VNav>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 250px
 <vwc-nav>
 	<vwc-nav-item text="Account" href="#" icon="profile"></vwc-nav-item>
@@ -47,6 +118,9 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 	</vwc-nav-disclosure>
 </vwc-nav>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Icon Only
 
@@ -58,6 +132,37 @@ If the `text` is omitted, the **`Nav Item`** will be displayed as an icon-only N
 When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
 
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 250px
+<script setup lang="ts">
+import { VIcon, VNav, VNavItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VNav>
+		<VNavItem href="#" aria-label="Account">
+			<template #icon><VIcon name="profile" /></template>
+		</VNavItem>
+		<VNavItem href="#" aria-label="Inbox">
+			<template #icon><VIcon name="inbox-line" /></template>
+		</VNavItem>
+		<VNavItem href="#" aria-label="Tools">
+			<template #icon><VIcon name="design-tools-line" /></template>
+		</VNavItem>
+		<VNavItem href="#" aria-label="Edit">
+			<template #icon><VIcon name="edit-line" /></template>
+		</VNavItem>
+	</VNav>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 250px
 <vwc-nav>
@@ -76,10 +181,41 @@ When an element has no visible text, provide an accessible name using the <nobr>
 </vwc-nav>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Appearance
 
 The `appearance` attribute controls the **Nav Item** and the **Nav Disclosure** components style.  
 The default appearance is `ghost`. Below it is set to `ghost-light`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VIcon, VNav, VNavItem, VNavDisclosure } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VNav>
+		<VNavDisclosure appearance="ghost-light" open href="#" label="Settings" current>
+			<template #icon><VIcon name="gear-line" /></template>
+			<VNavItem appearance="ghost-light" href="#" text="Ghost Light" current>
+				<template #icon><VIcon name="edit-line" /></template>
+			</VNavItem>
+		</VNavDisclosure>
+		<VNavItem appearance="ghost-light" href="#" text="Account">
+			<template #icon><VIcon name="profile" /></template>
+		</VNavItem>
+	</VNav>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-nav>
@@ -95,9 +231,65 @@ The default appearance is `ghost`. Below it is set to `ghost-light`.
 </vwc-nav>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Connotation
 
 The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure** components color of hover states the selected item.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VIcon, VNav, VNavItem, VNavDisclosure } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="wrapper">
+		<VNav class="navigation">
+			<VNavDisclosure connotation="accent" appearance="ghost-light" open href="#" label="Settings" current>
+				<template #icon><VIcon name="gear-line" /></template>
+				<VNavItem connotation="accent" appearance="ghost-light" href="#" text="Cta connotation" current>
+					<template #icon><VIcon name="edit-line" /></template>
+				</VNavItem>
+			</VNavDisclosure>
+			<VNavItem connotation="accent" appearance="ghost-light" href="#" text="Account">
+				<template #icon><VIcon name="profile" /></template>
+			</VNavItem>
+		</VNav>
+		<VNav class="navigation">
+			<VNavDisclosure connotation="cta" appearance="ghost-light" open href="#" label="Settings" current>
+				<template #icon><VIcon name="gear-line" /></template>
+				<VNavItem connotation="cta" appearance="ghost-light" href="#" text="Accent connotation" current>
+					<template #icon><VIcon name="edit-line" /></template>
+				</VNavItem>
+			</VNavDisclosure>
+			<VNavItem connotation="cta" appearance="ghost-light" href="#" text="Account">
+				<template #icon><VIcon name="profile" /></template>
+			</VNavItem>
+		</VNav>
+	</div>
+</template>
+
+<style>
+.wrapper {
+	display: flex;
+	row-gap: 48px;
+	column-gap: 16px;
+	flex-wrap: wrap;
+}
+.navigation {
+	min-inline-size: 240px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <div class="wrapper">
@@ -137,3 +329,6 @@ The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure**
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
