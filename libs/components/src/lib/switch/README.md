@@ -1,7 +1,7 @@
 ## Usage
 
 <vwc-tabs gutters="none">
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
 ```vue preview
@@ -14,7 +14,7 @@ import { VSwitch } from '@vonage/vivid-vue';
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -40,7 +40,7 @@ registerSwitch('your-prefix');
 Use the `name` and `value` attribute when including the Switch as part of a form.
 
 <vwc-tabs gutters="none">
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
 ```vue preview
@@ -81,7 +81,7 @@ const handleSubmit = (event: Event) => {
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab label="Web component" ></vwc-tab>
 <vwc-tab-panel>
 
 ```html preview
