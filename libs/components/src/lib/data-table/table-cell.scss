@@ -1,0 +1,67 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/tokens/scss/size.variables' as size;
+@use '@repo/shared/mixins/connotation/config' with (
+	$connotations: accent cta,
+	$shades: primary primary-text primary-increment firm soft faint pale dim,
+	$default: accent
+);
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
+	$appearances: listitem,
+	$states: idle hover selected selectedAndHover,
+	$default: listitem
+);
+@use '@repo/shared/mixins/appearance' as appearance;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
+@use '../data-grid/partials/variables' as variables;
+
+:host {
+	display: table-cell;
+
+	@include connotation.connotation(data-grid-cell);
+	@include appearance.appearance;
+
+	& {
+		box-sizing: border-box;
+		border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
+		block-size: var(
+			#{variables.$data-grid-cell-block-size},
+			var(#{variables.$data-grid-cell-default-block-size})
+		);
+		color: var(#{appearance.get-appearance-token(text)});
+		font: var(#{constants.$vvd-typography-base});
+		min-block-size: #{size.$vvd-size-expanded};
+		padding-block: 12px 14px;
+		padding-inline: 12px;
+		vertical-align: middle;
+	}
+
+	&:focus-visible {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		@include focus.focus;
+
+		outline: none;
+	}
+
+	&:not([cell-type='columnheader']) {
+		#{variables.$data-grid-cell-default-block-size}: 100%; // Fit content
+		#{variables.$data-grid-cell-default-white-space}: normal;
+	}
+
+	&:is([selected]) {
+		background-color: var(#{appearance.get-appearance-token(fill)});
+	}
+}
+
+slot {
+	display: block;
+	overflow: hidden;
+	inline-size: 100%;
+	text-overflow: ellipsis;
+	white-space: var(
+		#{variables.$data-grid-cell-white-space},
+		var(#{variables.$data-grid-cell-default-white-space})
+	);
+}
