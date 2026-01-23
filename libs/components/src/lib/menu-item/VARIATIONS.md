@@ -2,11 +2,34 @@
 
 The `text` attribute sets the text content.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Example menu">
+		<VMenuItem text="Menu item" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 100px
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item text="Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Secondary Text
 
@@ -19,11 +42,34 @@ The Menu Item can be given extra context using the `text-secondary` attribute.
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 150px
+<script setup lang="ts">
+import { VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Example menu">
+		<VMenuItem text="Menu item" text-secondary="Secondary text" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 150px
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item text="Menu item" text-secondary="Secondary text"></vwc-menu-item>
 </vwc-menu>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Icon
 
@@ -40,11 +86,34 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </vwc-note>
 -->
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Example menu">
+		<VMenuItem icon="file-pdf-line" text="Export to PDF" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 100px
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item icon="file-pdf-line" text="Export to PDF"></vwc-menu-item>
 </vwc-menu>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Control Type
 
@@ -58,6 +127,34 @@ When `control-type` is `radio`, only one Menu Item can be checked in the current
 Previously, the `role` attribute was used to set the control type. This is now deprecated (as of 05/25) and replaced with the `control-type` attribute. Using `role` is still functional, but will be removed in a future major release.
 
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 330px
+<script setup lang="ts">
+import { VDivider, VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Formatting">
+		<VMenuItem control-type="checkbox" text="Bold" />
+		<VMenuItem control-type="checkbox" text="Italic" />
+		<VMenuItem control-type="checkbox" text="Underlined" />
+		<VDivider />
+		<VMenuItem control-type="radio" text="Small" />
+		<VMenuItem control-type="radio" text="Medium" />
+		<VMenuItem control-type="radio" text="Large" />
+		<VDivider />
+		<VMenuItem text="Clear formatting" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 330px
 <vwc-menu open aria-label="Formatting">
@@ -73,6 +170,9 @@ Previously, the `role` attribute was used to set the control type. This is now d
 </vwc-menu>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Check Trailing
 
 When `control-type` is set, the `check-trailing` attribute places the checkbox / radio indicator at the end of the Menu Item.
@@ -83,6 +183,32 @@ When `control-type` is set, the `check-trailing` attribute places the checkbox /
 If the `icon` attribute is present, the indicator will be trailing by default.
 
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 280px
+<script setup lang="ts">
+import { VDivider, VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Example menu">
+		<VMenuItem control-type="checkbox" text="Checkbox 1" check-trailing />
+		<VMenuItem control-type="checkbox" text="Checkbox 2" check-trailing />
+		<VMenuItem icon="image-line" control-type="checkbox" text="Checkbox 3" />
+		<VDivider />
+		<VMenuItem control-type="radio" text="Radio 1" check-trailing />
+		<VMenuItem control-type="radio" text="Radio 2" check-trailing />
+		<VMenuItem icon="image-line" control-type="radio" text="Radio 3" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 280px
 <vwc-menu open aria-label="Example menu">
@@ -96,11 +222,39 @@ If the `icon` attribute is present, the indicator will be trailing by default.
 </vwc-menu>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Check Appearance
 
 When `control-type` is set, the `check-appearance` attribute changes the appearance of the checkbox / radio indicator.
 
 In the example below it is set to `tick-only` (default is `normal`).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 250px
+<script setup lang="ts">
+import { VDivider, VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Example menu">
+		<VMenuItem control-type="checkbox" text="Checkbox 1" check-appearance="tick-only" checked />
+		<VMenuItem control-type="checkbox" text="Checkbox 2" check-appearance="tick-only" checked />
+		<VMenuItem control-type="checkbox" text="Checkbox 3" check-appearance="tick-only" />
+		<VDivider />
+		<VMenuItem control-type="radio" text="Radio 1" check-appearance="tick-only" />
+		<VMenuItem control-type="radio" text="Radio 2" check-appearance="tick-only" checked />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 250px
 <vwc-menu open aria-label="Example menu">
@@ -113,9 +267,34 @@ In the example below it is set to `tick-only` (default is `normal`).
 </vwc-menu>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Checked
 
 When `control-type` is set, the `checked` attribute sets the checked state.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VDivider, VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Example menu">
+		<VMenuItem checked control-type="checkbox" text="Checked Checkbox Menu Item" />
+		<VDivider />
+		<VMenuItem checked control-type="radio" text="Checked Radio Menu Item" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 100px
 <vwc-menu open aria-label="Example menu">
@@ -125,9 +304,33 @@ When `control-type` is set, the `checked` attribute sets the checked state.
 </vwc-menu>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Connotation
 
 The `connotation` attribute controls the checked color.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 110px
+<script setup lang="ts">
+import { VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Example menu" style="--menu-block-size: auto;">
+		<VMenuItem control-type="checkbox" checked text="Accent (default)" />
+		<VMenuItem connotation="cta" control-type="checkbox" checked text="CTA" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 110px
 <vwc-menu open aria-label="Example menu" style="--menu-block-size: auto;">
@@ -136,12 +339,38 @@ The `connotation` attribute controls the checked color.
 </vwc-menu>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 The `disabled` attribute controls the disabled state.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Example menu">
+		<VMenuItem disabled text="Disabled Menu item" />
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 100px
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item disabled text="Disabled Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
