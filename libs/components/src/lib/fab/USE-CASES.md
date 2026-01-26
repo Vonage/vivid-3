@@ -1,5 +1,78 @@
 ## Fab For Collapsible Side Drawer
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full 250px
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VFab, VIcon, VLayout, VNav, VNavItem, VSideDrawer } from '@vonage/vivid-vue';
+
+const navItems = [
+	{ text: 'Calls', value: 'Calls', icon: 'call-line' },
+	{ text: 'Voicemail', value: 'Voicemail', icon: 'voicemail-line' },
+	{ text: 'SMS', value: 'SMS', icon: 'chat-line' },
+];
+
+const isCollapsed = ref(false);
+const currentItem = ref('Calls');
+
+function onToggle() {
+	isCollapsed.value = !isCollapsed.value;
+}
+
+function onClick(value: string) {
+	currentItem.value = value;
+}
+</script>
+
+<template>
+	<VSideDrawer class="vwc-side-drawer" :class="{ collapsed: isCollapsed }" alternate open>
+		<VLayout gutters="small" column-basis="block">
+			<VNav>
+				<VNavItem v-for="item in navItems" :key="item.value" href="#" :text="isCollapsed ? '' : item.text" :aria-label="isCollapsed ? item.text : undefined" :current="currentItem === item.value" :style="{ alignSelf: isCollapsed ? 'flex-end' : '' }" @click="onClick(item.value)">
+					<template #icon>
+						<VIcon :name="item.icon" />
+					</template>
+				</VNavItem>
+			</VNav>
+		</VLayout>
+		<template #app-content>
+			<VLayout gutters="medium"> Toggle the side drawer by clicking the FAB. </VLayout>
+			<VFab class="vwc-fab" @click="onToggle()" aria-label="Toggle Side Drawer">
+				<template #icon>
+					<VIcon name="menu-solid" />
+				</template>
+			</VFab>
+		</template>
+	</VSideDrawer>
+</template>
+
+<style>
+.vwc-fab {
+	position: fixed;
+	inset: auto auto 8px 8px;
+	z-index: 2;
+}
+.vwc-side-drawer::part(base) {
+	transform: var(--demo-drawer-transform);
+}
+.vwc-side-drawer {
+	--demo-drawer-transform: translateX(0);
+	--side-drawer-app-content-offset: 280px;
+}
+.vwc-side-drawer.collapsed {
+	--demo-drawer-transform: translateX(calc(-100% + 70px));
+	--side-drawer-app-content-offset: 70px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full 250px
 <vwc-side-drawer id="sideDrawer" class="vwc-side-drawer" alternate open>
 	<vwc-layout gutters="small" column-basis="block">
@@ -61,3 +134,6 @@
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
