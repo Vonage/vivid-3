@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.9.0](https://github.com/Vonage/vivid-3/compare/test-utils-v5.8.0...test-utils-v5.9.0) (2026-01-26)
+
+
+### Features
+
+* **option:** add `trailing-meta` slot (VIV-2792) ([#2524](https://github.com/Vonage/vivid-3/issues/2524)) ([6948f2b](https://github.com/Vonage/vivid-3/commit/6948f2be5e71e15f19fedf60c00bad98dea5ccb7))
+
 ## [5.8.0](https://github.com/Vonage/vivid-3/compare/test-utils-v5.7.0...test-utils-v5.8.0) (2026-01-05)
 
 

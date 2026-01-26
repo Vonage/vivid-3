@@ -4,6 +4,23 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.9.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.8.0...vivid-v5.9.0) (2026-01-26)
+
+
+### Features
+
+* **popover:** new component (VIV-3037) ([#2689](https://github.com/Vonage/vivid-3/issues/2689)) ([3910186](https://github.com/Vonage/vivid-3/commit/3910186aa401d13d9474fe4ae0ce53824c8a82d9))
+* **rich-text-editor:** add keyboard shortcut to insert link (VIV-3021) ([#2684](https://github.com/Vonage/vivid-3/issues/2684)) ([5617487](https://github.com/Vonage/vivid-3/commit/5617487b5f8c3176e92a114431e7a1c339c7c412))
+* **rich-text-view:** add Rich Text View component (VIV-3020) ([#2690](https://github.com/Vonage/vivid-3/issues/2690)) ([893e9d2](https://github.com/Vonage/vivid-3/commit/893e9d2c30f0aeaa985fe9abd418ba4094529816))
+
+
+### Bug Fixes
+
+* **combobox:** don't focus combobox when open is set programatically (VIV-000) ([#2681](https://github.com/Vonage/vivid-3/issues/2681)) ([4f784af](https://github.com/Vonage/vivid-3/commit/4f784af19c403308842ee4f07b6b8fa68e4a60b7))
+* **combobox:** don't focus combobx when open is set programatically (VIV-000) ([4f784af](https://github.com/Vonage/vivid-3/commit/4f784af19c403308842ee4f07b6b8fa68e4a60b7))
+* **file-picker:** Fix the same file being validated multiple times (VIV-3073) ([#2687](https://github.com/Vonage/vivid-3/issues/2687)) ([152c2a4](https://github.com/Vonage/vivid-3/commit/152c2a4b31ab614e19bd64dafc1b3ac5222f45cb))
+* **rich-text-editor:** fix link selection (VIV-3021) ([#2683](https://github.com/Vonage/vivid-3/issues/2683)) ([a55ba58](https://github.com/Vonage/vivid-3/commit/a55ba583bf0b6e6655f2c7878e9c05c148c3a105))
+
 ## [5.8.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.7.0...vivid-v5.8.0) (2026-01-05)
 
 
