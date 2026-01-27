@@ -50,6 +50,44 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await takeScreenshot(page, 'data-table');
 });
 
+test('should allow row scoped header cells', async ({ page }: { page: Page }) => {
+	const template = `<div style="margin: 5px; max-width: 700px;">
+			<vwc-table>
+				<vwc-table-row>
+					<vwc-table-header-cell>Product</vwc-table-header-cell>
+					<vwc-table-cell>SMS</vwc-table-cell>
+					<vwc-table-cell>Voice</vwc-table-cell>
+				</vwc-table-row>
+				<vwc-table-row>
+					<vwc-table-header-cell>Type</vwc-table-header-cell>
+					<vwc-table-cell>Volumetric Changes</vwc-table-cell>
+					<vwc-table-cell>Volumetric Changes</vwc-table-cell>
+				</vwc-table-row>
+				<vwc-table-row>
+					<vwc-table-header-cell>Threshold</vwc-table-header-cell>
+					<vwc-table-cell>1000</vwc-table-cell>
+					<vwc-table-cell>5000</vwc-table-cell>
+				</vwc-table-row>
+			</vwc-table>
+	</div>`;
+
+	await page.setViewportSize({ width: 800, height: 400 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await renderTemplate({
+		page,
+		template,
+	});
+
+	const text = await page.locator('vwc-table-cell:has-text("Voice")');
+	await text.isVisible();
+
+	await takeScreenshot(page, 'data-table-row-scoped-headers');
+});
+
 test('should handle long content with text wrapping', async ({
 	page,
 }: {

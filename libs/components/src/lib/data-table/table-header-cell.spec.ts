@@ -33,9 +33,29 @@ describe('vwc-table-header-cell', () => {
 			expect(element.textContent).toContain('Test header content');
 		});
 
-		it('should have role="columnheader"', async () => {
+		it('should have role="rowheader" by default', async () => {
 			await elementUpdated(element);
-			expect(element.getAttribute('role')).toBe('columnheader');
+			expect(element.getAttribute('role')).toBe('rowheader');
+		});
+
+		describe('when placed inside a vwc-table-head', () => {
+			beforeEach(async () => {
+				const div = (await fixture(`
+					<vwc-table>
+						<vwc-table-head>
+							<vwc-table-row>
+								<${COMPONENT_TAG}>Header content</${COMPONENT_TAG}>
+							</vwc-table-row>
+						</vwc-table-head>
+					</vwc-table>
+				`)) as any;
+				element = div.querySelector(COMPONENT_TAG) as TableHeaderCell;
+			});
+
+			it('should have role="columnheader"', async () => {
+				await elementUpdated(element);
+				expect(element.getAttribute('role')).toBe('columnheader');
+			});
 		});
 	});
 });
