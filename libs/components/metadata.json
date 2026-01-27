@@ -7750,6 +7750,13 @@
 					"propertyName": "controlType"
 				},
 				{
+					"name": "disabled",
+					"description": "Disables the control (checkbox or radio) and indicates that the action is not available.",
+					"type": "boolean",
+					"attributeName": "disabled",
+					"propertyName": "disabled"
+				},
+				{
 					"name": "tight",
 					"description": "Removes the padding around the box's slot content",
 					"type": "boolean",
