@@ -1,10 +1,10 @@
 import {
-  createIconEntry,
-  type CreateIconEntryFunction,
-  fetchIcons,
-  type IconsManifest,
-  type NodeFilterFunction,
-  writeJson,
+	createIconEntry,
+	type CreateIconEntryFunction,
+	fetchIcons,
+	type IconsManifest,
+	type NodeFilterFunction,
+	writeJson,
 } from '@repo/tools';
 import type { Node } from '@figma/rest-api-spec';
 import { rmSync } from 'node:fs';
@@ -13,52 +13,52 @@ import { svg } from './svg.output';
 
 // Only Flags icons
 const onlyFlags: NodeFilterFunction = (node, path) => {
-  if (!Array.isArray(path)) return false;
+	if (!Array.isArray(path)) return false;
 
-  return (
-    node.type === 'COMPONENT' &&
-    path.length >= 3 &&
-    path.at(-3)?.name === 'Icons' &&
-    path.at(-2)?.name === 'flags'
-  );
+	return (
+		node.type === 'COMPONENT' &&
+		path.length >= 3 &&
+		path.at(-3)?.name === 'Icons' &&
+		path.at(-2)?.name === 'flags'
+	);
 };
 
 const entryFunction: CreateIconEntryFunction = (
-  node: Node,
-  path: Node[],
-  file
+	node: Node,
+	path: Node[],
+	file
 ) => {
-  const entry = createIconEntry(node, path, file);
+	const entry = createIconEntry(node, path, file);
 
-  entry.name = node.name.replace('flag-', '');
-  entry.figmaComponentName = node.name;
-  entry.category = 'flags';
-  entry.style = 'color';
+	entry.name = node.name.replace('flag-', '');
+	entry.figmaComponentName = node.name;
+	entry.category = 'flags';
+	entry.style = 'color';
 
-  return entry;
+	return entry;
 };
 
 (async () => {
-  const clear = true;
+	const clear = true;
 
-  if (clear) {
-    rmSync('./src/generated', { recursive: true, force: true });
-  }
+	if (clear) {
+		rmSync('./src/generated', { recursive: true, force: true });
+	}
 
-  const icons = await fetchIcons('isdKI406usLCxZ2U8ljDrn', {
-    dir: './src/generated/',
-    forceUpdate: clear,
-    filter: onlyFlags,
-    createEntry: entryFunction,
-    indexFileName: 'index.json',
-    outputs: [svg],
-  });
+	const icons = await fetchIcons('isdKI406usLCxZ2U8ljDrn', {
+		dir: './src/generated/',
+		forceUpdate: clear,
+		filter: onlyFlags,
+		createEntry: entryFunction,
+		indexFileName: 'index.json',
+		outputs: [svg],
+	});
 
-  const manifest: IconsManifest = icons.map((icon) => ({
-    id: `flag-${icon.name}`,
-    keyword: icon.keywords,
-    tag: ['style_color_multi', 'category_flags'],
-  }));
+	const manifest: IconsManifest = icons.map((icon) => ({
+		id: `flag-${icon.name}`,
+		keyword: icon.keywords,
+		tag: ['style_color_multi', 'category_flags'],
+	}));
 
-  writeJson('./src/generated/manifest.json', manifest);
+	writeJson('./src/generated/manifest.json', manifest);
 })();
