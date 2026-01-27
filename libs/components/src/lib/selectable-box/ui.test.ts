@@ -84,6 +84,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-selectable-box control-placement="start">
 					Control placement: <strong>start</strong>
 				</vwc-selectable-box>
+				<vwc-selectable-box disabled control-type="radio">
+					Disabled box
+				</vwc-selectable-box>
 			</vwc-layout>
 			<vwc-layout role="group" aria-label="pick your ios" gutters="small-block">
 				<vwc-selectable-box tight clickable-box style="max-inline-size: 450px">

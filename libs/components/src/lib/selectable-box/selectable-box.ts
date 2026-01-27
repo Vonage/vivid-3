@@ -94,9 +94,18 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	@attr({ mode: 'boolean' }) tight = false;
 
 	/**
+	 * Disables the control (checkbox or radio) and indicates that the action is not available.
+	 *
+	 * @public
+	 * HTML Attribute: disabled
+	 */
+	@attr({ mode: 'boolean' }) disabled = false;
+
+	/**
 	 * @internal
 	 */
 	_handleCheckedChange() {
+		if (this.disabled) return;
 		if (this.controlType === 'radio' && this.checked) return;
 		this.checked = !this.checked;
 		if (this.clickableBox) this.$emit('change');
@@ -106,6 +115,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	 * @internal
 	 */
 	_handleKeydown(event: KeyboardEvent) {
+		if (this.disabled) return true;
 		if ((event.code === 'Space' || event.code === 'Enter') && this.clickableBox)
 			return this._handleCheckedChange();
 		return true;

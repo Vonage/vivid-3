@@ -84,6 +84,7 @@ Use the `--selectable-box-checked-bg` variable to override the default backgroun
 | **control-type**      | `checkbox` (default), `radio`                                                  | Controls the type of control in the box                |
 | **control-placement** | _Enum_:<br/>`end-stacked` (default),<br/>`end`<br/>`start`<br/>`start-stacked` | Controls where the control should be placed in the box |
 | **tight**             | `boolean`                                                                      | Removes the padding from the boxes content area        |
+| **disabled**          | `boolean`                                                                      | Controls the disabled state of the box and its control |
 
 </div>
 
