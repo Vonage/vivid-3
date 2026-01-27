@@ -1,120 +1,124 @@
 {
-	"$schema": "https://turborepo.com/schema.json",
-	"ui": "tui",
-	"tasks": {
-		"build": {
-			"dependsOn": ["^build"],
-			"outputs": ["dist/**"]
-		},
-		"@vonage/vivid#build": {
-			"dependsOn": ["^build"],
-			"inputs": [
-				"$TURBO_DEFAULT$",
-				"!**/*.md",
-				"!**/**.spec.ts",
-				"!**/*.test.ts"
-			],
-			"outputs": ["dist/**"]
-		},
-		"@vonage/vivid-vue#build": {
-			"dependsOn": ["^build"],
-			"outputs": [
-				"web-types.json",
-				"stories/generated/**",
-				"src/generated/**/*.ts",
-				"dist/**"
-			]
-		},
-		"@repo/vivid-design-tokens#build": {
-			"outputs": ["dist/**"]
-		},
-		"@repo/vue-docs#build": {
-			"dependsOn": ["^build"],
-			"outputs": [
-				"docs/components/_index.json",
-				"docs/components/*.md",
-				"!docs/components/index.md",
-				"dist/**"
-			]
-		},
-		"@vonage/vivid-test-utils#build": {
-			"dependsOn": ["^build"],
-			"outputs": ["src/**/*.generated.ts", "dist/**", "API.md"]
-		},
-		"dev": {
-			"dependsOn": ["^build"],
-			"cache": false,
-			"persistent": true
-		},
-		"dev:bundled": {
-			"dependsOn": ["^build"],
-			"cache": false,
-			"persistent": true
-		},
-		"lint": {
-			"dependsOn": ["^build", "^lint"]
-		},
-		"lint:fix": {
-			"dependsOn": ["^build", "^lint:fix"],
-			"cache": false
-		},
-		"stylelint": {
-			"dependsOn": ["^build", "^stylelint"]
-		},
-		"stylelint:fix": {
-			"dependsOn": ["^build", "^stylelint:fix"],
-			"cache": false
-		},
-		"test": {
-			"dependsOn": ["build"]
-		},
-		"test:watch": {
-			"cache": false,
-			"persistent": true
-		},
-		"test:coverage": {
-			"dependsOn": ["build"],
-			"outputs": ["coverage/**"]
-		},
-		"e2e": {
-			"dependsOn": ["build"],
-			"outputs": ["test-results/**"],
-			"passThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH"]
-		},
-		"cy": {
-			"dependsOn": ["build"],
-			"passThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH"]
-		},
-		"e2e:ui": {
-			"dependsOn": ["build"],
-			"cache": false,
-			"persistent": true
-		},
-		"cy:ui": {
-			"dependsOn": ["build"],
-			"cache": false,
-			"persistent": true
-		},
-		"e2e:docker": {
-			"dependsOn": ["^build"],
-			"outputs": ["test-results/**"]
-		},
-		"e2e:docker:ui": {
-			"dependsOn": ["^build"],
-			"cache": false,
-			"persistent": true
-		},
-		"typecheck": {
-			"dependsOn": ["^build", "^typecheck"]
-		},
-		"@vonage/vivid-vue#typecheck": {
-			"dependsOn": ["build", "^build", "^typecheck"]
-		},
-		"@vonage/vivid-test-utils#typecheck": {
-			"dependsOn": ["build", "^build", "^typecheck"]
-		},
-		"buildMetadata": {
-			"dependsOn": ["^build"]
-		}
-	}
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "@vonage/vivid#build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!**/*.md",
+        "!**/**.spec.ts",
+        "!**/*.test.ts"
+      ],
+      "outputs": ["dist/**"]
+    },
+    "@vonage/vivid-vue#build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        "web-types.json",
+        "stories/generated/**",
+        "src/generated/**/*.ts",
+        "dist/**"
+      ]
+    },
+    "@repo/vivid-design-tokens#build": {
+      "outputs": ["dist/**"]
+    },
+    "@repo/vue-docs#build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        "docs/components/_index.json",
+        "docs/components/*.md",
+        "!docs/components/index.md",
+        "dist/**"
+      ]
+    },
+    "@vonage/vivid-test-utils#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["src/**/*.generated.ts", "dist/**", "API.md"]
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "dev:bundled": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "fetch": {
+      "cache": false,
+      "outputs": ["src/generated/*"]
+    },
+    "lint": {
+      "dependsOn": ["^build", "^lint"]
+    },
+    "lint:fix": {
+      "dependsOn": ["^build", "^lint:fix"],
+      "cache": false
+    },
+    "stylelint": {
+      "dependsOn": ["^build", "^stylelint"]
+    },
+    "stylelint:fix": {
+      "dependsOn": ["^build", "^stylelint:fix"],
+      "cache": false
+    },
+    "test": {
+      "dependsOn": ["build"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    },
+    "test:coverage": {
+      "dependsOn": ["build"],
+      "outputs": ["coverage/**"]
+    },
+    "e2e": {
+      "dependsOn": ["build"],
+      "outputs": ["test-results/**"],
+      "passThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH"]
+    },
+    "cy": {
+      "dependsOn": ["build"],
+      "passThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH"]
+    },
+    "e2e:ui": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "persistent": true
+    },
+    "cy:ui": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "persistent": true
+    },
+    "e2e:docker": {
+      "dependsOn": ["^build"],
+      "outputs": ["test-results/**"]
+    },
+    "e2e:docker:ui": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "typecheck": {
+      "dependsOn": ["^build", "^typecheck"]
+    },
+    "@vonage/vivid-vue#typecheck": {
+      "dependsOn": ["build", "^build", "^typecheck"]
+    },
+    "@vonage/vivid-test-utils#typecheck": {
+      "dependsOn": ["build", "^build", "^typecheck"]
+    },
+    "buildMetadata": {
+      "dependsOn": ["^build"]
+    }
+  }
 }

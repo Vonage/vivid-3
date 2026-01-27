@@ -732,7 +732,7 @@ importers:
         specifier: 'catalog:'
         version: 3.2.4(@types/node@24.10.1)(@vitest/ui@3.2.4)(jsdom@23.2.0)(sass@1.94.2)(tsx@4.20.6)(yaml@2.8.1)
 
-  libs/flags:
+  libs/icons:
     dependencies:
       '@microsoft/fast-element':
         specifier: 'catalog:'
@@ -766,7 +766,41 @@ importers:
         specifier: 'catalog:'
         version: 1.0.6(vite@7.2.4(@types/node@20.19.25)(sass@1.94.2)(tsx@4.20.6)(yaml@2.8.1))
 
-  libs/icons:
+  libs/icons-brands:
+    dependencies:
+      '@microsoft/fast-element':
+        specifier: 'catalog:'
+        version: 2.8.3
+    devDependencies:
+      '@figma/rest-api-spec':
+        specifier: ^0.35.0
+        version: 0.35.0
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/tools':
+        specifier: workspace:*
+        version: link:../tools
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/node':
+        specifier: 'catalog:'
+        version: 20.19.25
+      change-case:
+        specifier: ^5.4.4
+        version: 5.4.4
+      dotenv:
+        specifier: ^17.2.3
+        version: 17.2.3
+      tsx:
+        specifier: 'catalog:'
+        version: 4.20.6
+      vite-plugin-static-copy:
+        specifier: 'catalog:'
+        version: 1.0.6(vite@7.2.4(@types/node@20.19.25)(sass@1.94.2)(tsx@4.20.6)(yaml@2.8.1))
+
+  libs/icons-flags:
     dependencies:
       '@microsoft/fast-element':
         specifier: 'catalog:'
@@ -9632,8 +9666,8 @@ packages:
   vue-component-type-helpers@2.2.12:
     resolution: {integrity: sha512-YbGqHZ5/eW4SnkPNR44mKVc6ZKQoRs/Rux1sxC6rdwXb4qpbOSYfDr9DsTHolOTGmIKgM9j141mZbBeg05R1pw==}
 
-  vue-component-type-helpers@3.2.2:
-    resolution: {integrity: sha512-x8C2nx5XlUNM0WirgfTkHjJGO/ABBxlANZDtHw2HclHtQnn+RFPTnbjMJn8jHZW4TlUam0asHcA14lf1C6Jb+A==}
+  vue-component-type-helpers@3.2.4:
+    resolution: {integrity: sha512-05lR16HeZDcDpB23ku5b5f1fBOoHqFnMiKRr2CiEvbG5Ux4Yi0McmQBOET0dR0nxDXosxyVqv67q6CzS3AK8rw==}
 
   vue-docgen-api@4.79.2:
     resolution: {integrity: sha512-n9ENAcs+40awPZMsas7STqjkZiVlIjxIKgiJr5rSohDP0/JCrD9VtlzNojafsA1MChm/hz2h3PDtUedx3lbgfA==}
@@ -13159,7 +13193,7 @@ snapshots:
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       vue: 3.5.24(typescript@5.9.3)
-      vue-component-type-helpers: 3.2.2
+      vue-component-type-helpers: 3.2.4
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -20100,7 +20134,7 @@ snapshots:
 
   vue-component-type-helpers@2.2.12: {}
 
-  vue-component-type-helpers@3.2.2: {}
+  vue-component-type-helpers@3.2.4: {}
 
   vue-docgen-api@4.79.2(vue@2.7.16):
     dependencies:
