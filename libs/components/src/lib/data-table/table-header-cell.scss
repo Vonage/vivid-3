@@ -45,7 +45,7 @@
 	}
 }
 
-:host([role="columnheader"]) {
+:host([role='columnheader']) {
 	border-bottom: 1px solid var(#{constants.$vvd-color-canvas-text});
 }
 

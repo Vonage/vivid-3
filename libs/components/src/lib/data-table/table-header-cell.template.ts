@@ -11,10 +11,10 @@ export const TableHeaderCellTemplate = (
 		<template
 			tabindex="-1"
 			${applyHostSemantics({
-				role: (x) => 
-					x.closest('[data-vvd-component="table-head"]') !== null ? 
-						DataGridCellRole.columnheader : 
-						DataGridCellRole.rowheader,
+				role: (x) =>
+					x.closest('[data-vvd-component="table-head"]') !== null
+						? DataGridCellRole.columnheader
+						: DataGridCellRole.rowheader,
 			})}
 		>
 			<slot></slot>
