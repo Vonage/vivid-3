@@ -1,0 +1,28 @@
+{
+  "name": "@vonage/vivid-icons-flags",
+  "version": "5.8.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsx --watch scripts/fetch-flags.ts",
+    "fetch": "tsx scripts/fetch-flags.ts"
+  },
+  "dependencies": {
+    "@microsoft/fast-element": "catalog:"
+  },
+  "devDependencies": {
+    "@figma/rest-api-spec": "^0.35.0",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/tools": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "change-case": "^5.4.4",
+    "dotenv": "^17.2.3",
+    "tsx": "catalog:",
+    "vite-plugin-static-copy": "catalog:"
+  }
+}
