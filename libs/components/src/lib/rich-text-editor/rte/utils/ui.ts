@@ -38,6 +38,7 @@ const on = <E extends keyof HTMLElementEventMap, T>(
 /// Props available to all elements inside the context
 type CtxProps = {
 	popupPlacement: 'top' | 'bottom';
+	menuOffset?: number;
 };
 
 export class UiCtx {
@@ -249,6 +250,7 @@ export const createMenu = (
 			ariaLabel: props.label,
 			anchor: wrapperTargets.get(props.trigger) ?? props.trigger,
 			placement: ctx.props.popupPlacement,
+			offset: () => ctx.evalProp(ctx.props.menuOffset) ?? null,
 		},
 		[],
 		props.children
