@@ -1,41 +1,50 @@
-import { fetchIcons, type NodeFilterFunction } from '@repo/tools';
+import {
+  fetchIcons,
+  writeJson,
+  type IconsManifest,
+  type NodeFilterFunction,
+} from '@repo/tools';
 import { rmSync } from 'node:fs';
 import 'dotenv/config';
 import { svg } from './svg.output';
-import { fastComponent } from './fast-component.output';
-import { createIndex } from './create-index';
-import { createRegister } from './create-register';
 
-let counter = 0;
-
+// All icons except 'brand' and 'flags'
 const allIcons: NodeFilterFunction = (node, path) => {
-	if (!Array.isArray(path)) return false;
+  if (!Array.isArray(path)) return false;
 
-	const isIcon =
-		node.type === 'COMPONENT' && // Only components
-		path.length >= 4 && // Which are at least three level deep
-		counter < 10;
-
-	if (isIcon) counter++;
-
-	return isIcon;
+  return (
+    node.type === 'COMPONENT' &&
+    path.length >= 4 &&
+    path.at(-4)?.name === 'Icons' &&
+    path.at(-2)?.name !== 'flags' &&
+    path.at(-3)?.name !== 'brand'
+  );
 };
 
 (async () => {
-	const clear = true;
+  const clear = true;
 
-	if (clear) {
-		rmSync('./src/generated', { recursive: true, force: true });
-	}
+  if (clear) {
+    rmSync('./src/generated', { recursive: true, force: true });
+  }
 
-	const icons = await fetchIcons('isdKI406usLCxZ2U8ljDrn', {
-		dir: './src/generated/',
-		forceUpdate: clear,
-		filter: allIcons,
-		indexFileName: 'index.json',
-		outputs: [svg, fastComponent],
-	});
+  const icons = await fetchIcons('isdKI406usLCxZ2U8ljDrn', {
+    dir: './src/generated/',
+    forceUpdate: clear,
+    filter: allIcons,
+    indexFileName: 'index.json',
+    outputs: [svg],
+  });
 
-	createIndex(icons, './src/generated/index.ts');
-	createRegister(icons, './src/generated/register.ts');
+  const manifest: IconsManifest = icons.map((icon) => ({
+    id: `${icon.name}-${icon.style}`,
+    keyword: icon.keywords,
+    tag: [
+      `style_color_${icon.style === 'color' ? 'multi' : 'single'}`,
+      `style_weight_${icon.style === 'solid' ? 'solid' : 'regular'}`,
+      `category_${icon.category}`,
+    ],
+  }));
+
+  writeJson('./src/generated/manifest.json', manifest);
 })();
