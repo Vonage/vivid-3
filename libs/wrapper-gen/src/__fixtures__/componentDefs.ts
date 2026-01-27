@@ -123,6 +123,15 @@ export const exampleComponent: ComponentDef = {
 		{
 			name: 'no-description',
 		},
+		{
+			name: 'dynamic-slot',
+			description: 'This is a dynamic slot',
+			dynamicProps: '{ data: string }',
+		},
+		{
+			name: 'dynamic-no-description',
+			dynamicProps: '{ data: string }',
+		},
 	],
 	testUtils: {
 		selectors: [],

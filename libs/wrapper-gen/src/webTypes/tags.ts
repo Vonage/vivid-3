@@ -64,7 +64,7 @@ export function getTagFromComponentDefinition(
 				name: event.name,
 				description: event.description,
 			})),
-		slots,
+		slots: slots.filter((s) => !s.dynamicProps),
 		source: {
 			module: '@vonage/vivid-vue',
 			symbol: name,

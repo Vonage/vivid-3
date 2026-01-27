@@ -1,0 +1,82 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`dynamicSlotsPlugin > should produce correct results for testcase default 1`] = `
+{
+  "modules": [
+    {
+      "declarations": [
+        {
+          "customElement": true,
+          "description": "",
+          "dynamicSlots": [
+            {
+              "description": "Renders a row.",
+              "name": "row",
+              "type": "{ message: string; index: number; }",
+            },
+            {
+              "name": "item",
+              "type": "{ data: string }",
+            },
+          ],
+          "kind": "class",
+          "name": "MyComponent",
+          "superclass": {
+            "name": "HTMLElement",
+          },
+        },
+        {
+          "description": "",
+          "dynamicSlots": [
+            {
+              "name": "value",
+              "type": "{ value: T }",
+            },
+          ],
+          "kind": "class",
+          "name": "MyMixin",
+        },
+        {
+          "customElement": true,
+          "description": "",
+          "kind": "class",
+          "name": "ClassWithoutSlots",
+          "superclass": {
+            "name": "HTMLElement",
+          },
+        },
+      ],
+      "exports": [
+        {
+          "declaration": {
+            "module": "my-element.js",
+            "name": "MyComponent",
+          },
+          "kind": "js",
+          "name": "MyComponent",
+        },
+        {
+          "declaration": {
+            "module": "my-element.js",
+            "name": "MyMixin",
+          },
+          "kind": "js",
+          "name": "MyMixin",
+        },
+        {
+          "declaration": {
+            "module": "my-element.js",
+            "name": "ClassWithoutSlots",
+          },
+          "kind": "js",
+          "name": "ClassWithoutSlots",
+        },
+      ],
+      "kind": "javascript-module",
+      "path": "my-element.js",
+    },
+  ],
+  "readme": "",
+  "schemaVersion": "1.0.0",
+}
+`;
