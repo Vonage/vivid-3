@@ -3,9 +3,15 @@
 	"version": "1.0.0",
 	"private": true,
 	"type": "module",
+	"main": "src/index.ts",
+	"module": "src/index.ts",
+	"types": "src/index.ts",
 	"bin": {
 		"move-manifest-to-dist": "src/move-manifest-to-dist.ts"
 	},
+	"files": [
+		"src/fetch-icons/index.ts"
+	],
 	"scripts": {
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
@@ -18,9 +24,16 @@
 		"@pnpm/workspace.read-manifest": "^1000.2.7"
 	},
 	"devDependencies": {
+		"@figma/rest-api-spec": "^0.35.0",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
+		"chalk": "^5.6.2",
+		"change-case": "^5.4.4",
+		"figma-js": "1.16.1-0",
+		"figmash": "^0.0.3",
+		"is-svg": "^6.1.0",
+		"ohash": "^2.0.11",
 		"tsx": "catalog:",
 		"vitest": "catalog:"
 	}

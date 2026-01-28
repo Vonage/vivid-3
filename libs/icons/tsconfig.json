@@ -1,0 +1,10 @@
+{
+	"extends": "@repo/typescript-config/components.json",
+	"compilerOptions": {
+		"noImplicitOverride": true,
+		"noUnusedLocals": true,
+		"lib": ["ESNext", "DOM"],
+		"types": ["node", "vitest/globals"]
+	},
+	"include": ["src", "scripts", "*.ts"]
+}

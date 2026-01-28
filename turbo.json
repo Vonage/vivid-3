@@ -51,6 +51,10 @@
 			"cache": false,
 			"persistent": true
 		},
+		"fetch": {
+			"cache": false,
+			"outputs": ["src/generated/*"]
+		},
 		"lint": {
 			"dependsOn": ["^build", "^lint"]
 		},

@@ -6,6 +6,7 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "turbo run build",
+		"fetch": "turbo run fetch",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"lint": "turbo run lint stylelint",
