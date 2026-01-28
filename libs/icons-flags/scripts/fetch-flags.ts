@@ -11,6 +11,8 @@ import { rmSync } from 'node:fs';
 import 'dotenv/config';
 import { svg } from './svg.output';
 
+const figmaFileId = 'isdKI406usLCxZ2U8ljDrn';
+
 // Only Flags icons
 const onlyFlags: NodeFilterFunction = (node, path) => {
 	if (!Array.isArray(path)) return false;
@@ -45,7 +47,7 @@ const entryFunction: CreateIconEntryFunction = (
 		rmSync('./src/generated', { recursive: true, force: true });
 	}
 
-	const icons = await fetchIcons('isdKI406usLCxZ2U8ljDrn', {
+	const icons = await fetchIcons(figmaFileId, {
 		dir: './src/generated/',
 		forceUpdate: clear,
 		filter: onlyFlags,
