@@ -20,7 +20,7 @@
 	display: table-cell;
 	box-sizing: border-box;
 	padding: 0;
-	border-bottom: 1px solid var(#{constants.$vvd-color-canvas-text});
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
 	block-size: var(
 		#{variables.$data-grid-cell-block-size},
 		var(#{variables.$data-grid-cell-default-block-size})
@@ -43,6 +43,10 @@
 
 		outline: none;
 	}
+}
+
+:host([role='columnheader']) {
+	border-bottom: 1px solid var(#{constants.$vvd-color-canvas-text});
 }
 
 slot {

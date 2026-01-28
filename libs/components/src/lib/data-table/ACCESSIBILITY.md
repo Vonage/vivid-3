@@ -3,10 +3,6 @@
   <p>The Table component provides proper ARIA roles and keyboard navigation support following the WAI-ARIA table pattern.</p>
 </vwc-note>
 
-## Keyboard Interactions
-
-- Navigate table cells using the Tab key to move between interactive elements.
-
 ## Implementation
 
 - The Table component uses `role="table"` for the root element.
@@ -22,7 +18,7 @@ The Table component structure provides semantic meaning through ARIA roles:
 - **Table Head**: No specific role (acts as container)
 - **Table Body**: No specific role (acts as container)
 - **Table Row**: `role="row"`
-- **Table Header Cell**: `role="columnheader"`
+- **Table Header Cell**: `role="columnheader|rowheader"`
 - **Table Cell**: `role="cell"`
 
 ## Resources
