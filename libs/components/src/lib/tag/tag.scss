@@ -4,7 +4,7 @@
 @use '@repo/shared/mixins/focus' as focus-variables;
 @use '@repo/shared/mixins/border-radius' as border-radius-variables;
 @use '@repo/shared/mixins/connotation/config' with (
-	$connotations: accent cta,
+	$connotations: accent cta success alert warning information announcement,
 	$shades: primary primary-text soft contrast pale fierce firm firm-all faint
 		dim,
 	$default: accent

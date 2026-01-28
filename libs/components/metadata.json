@@ -9265,7 +9265,7 @@
 				{
 					"name": "connotation",
 					"description": "The connotation the tag should have.",
-					"type": "'accent' | 'cta'",
+					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},

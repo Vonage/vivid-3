@@ -13,7 +13,13 @@ import { Localized } from '../../shared/patterns';
  */
 export type TagConnotation = ExtractFromEnum<
 	Connotation,
-	Connotation.Accent | Connotation.CTA
+	| Connotation.Accent
+	| Connotation.CTA
+	| Connotation.Success
+	| Connotation.Alert
+	| Connotation.Warning
+	| Connotation.Information
+	| Connotation.Announcement
 >;
 
 /**
