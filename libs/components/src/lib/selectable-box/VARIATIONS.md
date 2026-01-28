@@ -84,10 +84,27 @@ Set the `checked` attribute to indicate the checked state of the box.
 
 ## Tight
 
-By default, the Selectable Box is styled in a spacious manner. Enabling the `tight` member willremove the padding around the box's content.
+By default, the Selectable Box is styled in a spacious manner. Enabling the `tight` member will remove the padding around the box's content.
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
 	<vwc-selectable-box tight style="max-inline-size: 450px"> Tight box </vwc-selectable-box>
 </vwc-layout>
+```
+
+## Disabled
+
+The disabled `attribute` disables the control (checkbox or radio) and indicates that the action is not available.
+
+```html preview
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+	<vwc-selectable-box control-type="checkbox" class="box" disabled checked> Checkbox control (disabled & checked) </vwc-selectable-box>
+	<vwc-selectable-box control-type="radio" class="box" disabled> Radio control (disabled) </vwc-selectable-box>
+</vwc-layout>
+
+<style>
+	.box {
+		max-inline-size: 450px;
+	}
+</style>
 ```

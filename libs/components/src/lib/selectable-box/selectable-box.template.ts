@@ -13,6 +13,7 @@ const getClasses = ({
 	checked,
 	clickableBox,
 	controlPlacement,
+	disabled,
 }: SelectableBox) =>
 	classNames(
 		'base',
@@ -21,7 +22,8 @@ const getClasses = ({
 		['selected', checked],
 		['clickable', clickableBox],
 		['readonly', !clickableBox],
-		[`control-placement-${controlPlacement}`, Boolean(controlPlacement)]
+		[`control-placement-${controlPlacement}`, Boolean(controlPlacement)],
+		['disabled', disabled]
 	);
 
 function handleControlChange(x: SelectableBox) {
@@ -47,6 +49,7 @@ function checkbox(context: VividElementDefinitionContext) {
 			connotation="${(x) =>
 				x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${(x) => x.checked}"
+			?disabled="${(x) => x.disabled}"
 			inert="${(x) => (x.clickableBox ? true : null)}"
 		></${checkboxTag}>`
 	)} `;
@@ -71,6 +74,7 @@ function radio(context: VividElementDefinitionContext) {
 			connotation="${(x) =>
 				x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${(x) => x.checked}"
+			?disabled="${(x) => x.disabled}"
 			inert="${(x) => (x.clickableBox ? true : null)}"
 		></${radioTag}>`
 	)} `;
@@ -82,12 +86,13 @@ export const SelectableBoxTemplate = (
 	return html<SelectableBox>`<template>
 		<div
 			class="${getClasses}"
-			tabindex="${(x) => (x.clickableBox ? '0' : null)}"
+			tabindex="${(x) => (x.clickableBox && !x.disabled ? '0' : null)}"
 			${delegateAria({
 				role: (x) => (x.clickableBox ? 'button' : null),
 				ariaPressed: (x) =>
 					x.clickableBox ? (x.checked ? 'true' : 'false') : null,
 				ariaLabel: (x) => (x.clickableBox ? x.ariaLabel : null),
+				ariaDisabled: (x) => (x.clickableBox && x.disabled ? 'true' : null),
 			})}
 			@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
 			@click="${(x) => (x.clickableBox ? x._handleCheckedChange() : null)}"

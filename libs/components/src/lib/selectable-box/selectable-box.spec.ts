@@ -151,6 +151,60 @@ describe('vwc-selectable-box', () => {
 		});
 	});
 
+	describe('disabled', () => {
+		beforeEach(async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} disabled></${COMPONENT_TAG}>`
+			)) as SelectableBox;
+			baseElement = getBaseElement(element);
+		});
+
+		it('should visually indicate disabled state on the base element', async () => {
+			expect(baseElement.classList.contains('disabled')).toBe(true);
+		});
+
+		it('should disable the internal control element', async () => {
+			const control = getControlElement(element);
+			expect(control?.hasAttribute('disabled')).toBe(true);
+		});
+
+		it('should not update checked state on click when clickableBox is true', async () => {
+			element.clickableBox = true;
+			await elementUpdated(element);
+
+			baseElement.click();
+			await elementUpdated(element);
+
+			expect(element.checked).toBe(false);
+		});
+
+		it('should not update checked state on space keydown when clickableBox is true', async () => {
+			element.clickableBox = true;
+			await elementUpdated(element);
+
+			baseElement.dispatchEvent(
+				new KeyboardEvent('keydown', { code: 'Space' })
+			);
+			await elementUpdated(element);
+
+			expect(element.checked).toBe(false);
+		});
+
+		it('should have aria-disabled attribute when clickableBox is true', async () => {
+			element.clickableBox = true;
+			await elementUpdated(element);
+
+			expect(baseElement.getAttribute('aria-disabled')).toBe('true');
+		});
+
+		it('should remove tabindex when clickableBox is true', async () => {
+			element.clickableBox = true;
+			await elementUpdated(element);
+
+			expect(baseElement.hasAttribute('tabindex')).toBe(false);
+		});
+	});
+
 	describe('clickableBox', () => {
 		it('should set clickable class on the base element', async function () {
 			element.clickableBox = true;
