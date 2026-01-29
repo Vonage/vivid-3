@@ -46,6 +46,7 @@ const allIcons: NodeFilterFunction = (node, path) => {
 			`style_weight_${icon.style === 'solid' ? 'solid' : 'regular'}`,
 			`category_${icon.category}`,
 		],
+		...(icon.aliases.length > 0 ? { alias: icon.aliases } : undefined),
 	}));
 
 	writeJson('./src/generated/manifest.json', manifest);

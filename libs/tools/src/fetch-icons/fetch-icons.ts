@@ -6,7 +6,7 @@ import type { FileResponse } from 'figma-js';
 import type { DocumentNode } from '@figma/rest-api-spec';
 import { writeJson } from '../shared/write-json.util';
 import { writeFile } from '../shared/write-file.util';
-import { FetchIconsOptions, IconEntry } from './types';
+import type { FetchIconsOptions, IconEntry } from './types';
 import { chunkify } from '../shared/chunk-array.util';
 import { retry } from '../shared/retry.util';
 import isSvg from 'is-svg';

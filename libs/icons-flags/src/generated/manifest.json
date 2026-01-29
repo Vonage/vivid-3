@@ -1,0 +1,1379 @@
+[
+  {
+    "id": "flag-afghanistan",
+    "keyword": [
+      "afghanistan",
+      "red",
+      "white",
+      "black",
+      "green"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-aland-islands",
+    "keyword": [
+      "aland islands",
+      "red",
+      "yellow",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-albania",
+    "keyword": [
+      "albania",
+      "red",
+      "black"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-algeria",
+    "keyword": [
+      "algeria",
+      "green",
+      "white",
+      "red"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-argentina",
+    "keyword": [
+      "argentina",
+      "blue",
+      "yellow",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-armenia",
+    "keyword": [
+      "armenia",
+      "red",
+      "blue",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-aruba",
+    "keyword": [
+      "aruba",
+      "red",
+      "blue",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-australia",
+    "keyword": [
+      "australia",
+      "red",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-austria",
+    "keyword": [
+      "austria",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-bahamas",
+    "keyword": [
+      "bahamas",
+      "blue",
+      "black",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-bahrain",
+    "keyword": [
+      "bahrain",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-bangladesh",
+    "keyword": [
+      "bangladesh",
+      "bd",
+      "red",
+      "green"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-belarus",
+    "keyword": [
+      "belarus",
+      "red",
+      "green",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-belgium",
+    "keyword": [
+      "belgium",
+      "red",
+      "black",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-benin",
+    "keyword": [
+      "benin",
+      "red",
+      "green",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-bolivia",
+    "keyword": [
+      "bolivia",
+      "red",
+      "green",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-botswana",
+    "keyword": [
+      "botswana",
+      "blue",
+      "black",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-brazil",
+    "keyword": [
+      "brazil",
+      "green",
+      "yellow",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-bulgaria",
+    "keyword": [
+      "bulgaria",
+      "red",
+      "green",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-burkina-faso",
+    "keyword": [
+      "burkina faso",
+      "red",
+      "green",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-cambodia",
+    "keyword": [
+      "cambodia",
+      "red",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-canada",
+    "keyword": [
+      "canada",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-cayman-islands",
+    "keyword": [
+      "red",
+      "blue",
+      "white",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-central-african-republic",
+    "keyword": [
+      "central african republic",
+      "red",
+      "blue",
+      "white",
+      "green",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-chad",
+    "keyword": [
+      "chad",
+      "red",
+      "blue",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-chile",
+    "keyword": [
+      "chile",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-china",
+    "keyword": [
+      "china",
+      "red",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-colombia",
+    "keyword": [
+      "colombia",
+      "red",
+      "blue",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-costa-rica",
+    "keyword": [
+      "costa rica",
+      "red",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-croatia",
+    "keyword": [
+      "croatia",
+      "red",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-cyprus",
+    "keyword": [
+      "cyprus",
+      "orange",
+      "green",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-czech-republic",
+    "keyword": [
+      "czech-republic",
+      "czechia",
+      "cz"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-denmark",
+    "keyword": [
+      "denmark",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-dominican-republic",
+    "keyword": [
+      "dominican republic",
+      "red",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-egypt",
+    "keyword": [
+      "egypt",
+      "red",
+      "black",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-el-salvador",
+    "keyword": [
+      "el salvador",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-estonia",
+    "keyword": [
+      "estonia",
+      "blue",
+      "white",
+      "black"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-european-union",
+    "keyword": [
+      "european",
+      "union",
+      "europe",
+      "eu",
+      "blue",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-finland",
+    "keyword": [
+      "finland",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-france",
+    "keyword": [
+      "france",
+      "red",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-georgia",
+    "keyword": [
+      "georgia",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-germany",
+    "keyword": [
+      "germany",
+      "red",
+      "black",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-ghana",
+    "keyword": [
+      "ghana",
+      "red",
+      "green",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-greece",
+    "keyword": [
+      "greece",
+      "blue",
+      "white",
+      "gr"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-grenada",
+    "keyword": [
+      "grenada",
+      "red",
+      "green",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-guatemala",
+    "keyword": [
+      "guatemala",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-honduras",
+    "keyword": [
+      "honduras",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-hong-kong",
+    "keyword": [
+      "hong kong",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-hungary",
+    "keyword": [
+      "hungary",
+      "red",
+      "green",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-iceland",
+    "keyword": [
+      "iceland",
+      "red",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-india",
+    "keyword": [
+      "india",
+      "orange",
+      "green",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-indonesia",
+    "keyword": [
+      "indonesia",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-ireland",
+    "keyword": [
+      "ireland",
+      "orange",
+      "green",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-israel",
+    "keyword": [
+      "israel",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-italy",
+    "keyword": [
+      "italy",
+      "red",
+      "green",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-jamaica",
+    "keyword": [
+      "jamaica",
+      "yellow",
+      "green",
+      "black"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-japan",
+    "keyword": [
+      "japan",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-latvia",
+    "keyword": [
+      "latvia",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-liechtenstein",
+    "keyword": [
+      "liechtenstein",
+      "red",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-lithuania",
+    "keyword": [
+      "lithuania",
+      "red",
+      "green",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-luxembourg",
+    "keyword": [
+      "luxembourg",
+      "red",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-macao",
+    "keyword": [
+      "macao",
+      "green",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-malaysia",
+    "keyword": [
+      "malaysia",
+      "red",
+      "blue",
+      "white",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-malta",
+    "keyword": [
+      "malta",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-mauritius",
+    "keyword": [
+      "mauritius",
+      "red",
+      "blue",
+      "yellow",
+      "green"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-mexico",
+    "keyword": [
+      "mexico",
+      "red",
+      "white",
+      "green"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-moldova",
+    "keyword": [
+      "mexico",
+      "red",
+      "yellow",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-netherlands",
+    "keyword": [
+      "netherlands",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-new-zealand",
+    "keyword": [
+      "new zealand",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-nigeria",
+    "keyword": [
+      "nigeria",
+      "white",
+      "green"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-norway",
+    "keyword": [
+      "norway",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-pakistan",
+    "keyword": [
+      "pakistan",
+      "white",
+      "green"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-panama",
+    "keyword": [
+      "panama",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-peru",
+    "keyword": [
+      "peru",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-philippines",
+    "keyword": [
+      "Philippines",
+      "red",
+      "white",
+      "blue",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-poland",
+    "keyword": [
+      "poland",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-portugal",
+    "keyword": [
+      "portugal",
+      "red",
+      "yellow",
+      "green"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-puertorico",
+    "keyword": [
+      "puerto rico",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-romania",
+    "keyword": [
+      "romania",
+      "red",
+      "yellow",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-russia",
+    "keyword": [
+      "russia",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-rwanda",
+    "keyword": [
+      "rwanda",
+      "green",
+      "yellow",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-saudi-arabia",
+    "keyword": [
+      "saudi arabia",
+      "green",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-serbia",
+    "keyword": [
+      "serbia",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-singapore",
+    "keyword": [
+      "singapore",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-slovakia",
+    "keyword": [
+      "slovakia",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-slovenia",
+    "keyword": [
+      "slovenia",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-south-africa",
+    "keyword": [
+      "south africa",
+      "red",
+      "white",
+      "blue",
+      "green",
+      "yellow",
+      "black"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-south-korea",
+    "keyword": [
+      "south korea",
+      "red",
+      "white",
+      "blue",
+      "black"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-spain",
+    "keyword": [
+      "spain",
+      "red",
+      "yellow"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-sri-lanka",
+    "keyword": [
+      "sri lanka",
+      "red",
+      "yellow",
+      "green",
+      "orange"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-sweden",
+    "keyword": [
+      "sweden",
+      "yellow",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-switzerland",
+    "keyword": [
+      "switzerland",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-taiwan",
+    "keyword": [
+      "taiwan",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-tajikistan",
+    "keyword": [
+      "tajikistan",
+      "red",
+      "white",
+      "green"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-tanzania",
+    "keyword": [
+      "tanzania",
+      "green",
+      "yellow",
+      "blue",
+      "black"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-thailand",
+    "keyword": [
+      "thailand",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-trinidad-and-tobago",
+    "keyword": [
+      "trinidad and tobago",
+      "red",
+      "white",
+      "black"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-turkey",
+    "keyword": [
+      "turkey",
+      "red",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-ukraine",
+    "keyword": [
+      "ukraine",
+      "yellow",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-united-arab-emirates",
+    "keyword": [
+      "united arab emirates",
+      "red",
+      "white",
+      "black",
+      "green"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-united-kingdom",
+    "keyword": [
+      "united kingdom",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-united-states",
+    "keyword": [
+      "united states",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-uruguay",
+    "keyword": [
+      "uruguay",
+      "yellow",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-uzbekistan",
+    "keyword": [
+      "uzbekistan",
+      "green",
+      "red",
+      "white",
+      "blue"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-venezuela",
+    "keyword": [
+      "venezuela",
+      "yellow",
+      "red",
+      "blue",
+      "white"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-vietnam",
+    "keyword": [
+      "vietnam",
+      "yellow",
+      "red"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  },
+  {
+    "id": "flag-zambia",
+    "keyword": [
+      "zambia",
+      "orange",
+      "green",
+      "red",
+      "black"
+    ],
+    "tag": [
+      "style_color_multi",
+      "category_flags"
+    ]
+  }
+]

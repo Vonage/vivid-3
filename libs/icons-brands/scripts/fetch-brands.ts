@@ -63,6 +63,7 @@ const entryFunction: CreateIconEntryFunction = (
 			`style_color_${icon.style === 'color' ? 'multi' : 'single'}`,
 			'category_brand',
 		],
+		...(icon.aliases.length > 0 ? { alias: icon.aliases } : undefined),
 	}));
 
 	writeJson('./src/generated/manifest.json', manifest);

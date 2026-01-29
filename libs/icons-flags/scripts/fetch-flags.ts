@@ -60,6 +60,7 @@ const entryFunction: CreateIconEntryFunction = (
 		id: `flag-${icon.name}`,
 		keyword: icon.keywords,
 		tag: ['style_color_multi', 'category_flags'],
+		...(icon.aliases.length > 0 ? { alias: icon.aliases } : undefined),
 	}));
 
 	writeJson('./src/generated/manifest.json', manifest);

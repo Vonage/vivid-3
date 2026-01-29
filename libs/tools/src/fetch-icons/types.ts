@@ -1,6 +1,6 @@
 import type { Node } from '@figma/rest-api-spec';
-import { GetClientUserOptions } from './cached-client';
-import { FileResponse } from 'figma-js';
+import type { GetClientUserOptions } from './cached-client';
+import type { FileResponse } from 'figma-js';
 
 export type IconStyle =
 	| 'solid'
@@ -49,6 +49,7 @@ export interface IconEntry {
 	figmaNodeId: string;
 	imageUrl: string;
 	keywords: string[];
+	aliases: string[];
 	name: string;
 	style: IconStyle;
 }
