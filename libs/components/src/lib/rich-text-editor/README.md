@@ -210,9 +210,13 @@ To render documents inside a web application, you can use the Rich Text View com
 
 It renders documents identically to how they appear in the editor. You can also customize the rendering of specific nodes or marks by providing the `renderChildView` option.
 
-`renderChildView?: (view: RteView) => { dom: HTMLElement; contentDom?: HTMLElement; } | false;`
+`renderChildView?: (view: RteView) => { dom: HTMLElement; contentDom?: HTMLElement; } | true | false;`
 
 The function is called for each node and mark in the document. The kind is indicated by `view.type: 'node' | 'mark'`, and `view.node` or `view.mark` will contain the respective JSON representation of the node/mark.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 You can render a custom HTML element for this node/mark by returning it as the `dom` property. If there is child content, Rich Text View will render them as children of `contentDom`, which defaults to `dom`.
 
@@ -257,7 +261,97 @@ If you return `false`, the view is rendered as normal.
 </script>
 ```
 
-In the future, we will also provide a way to use custom Vue components for rendering nodes and marks.
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+You can render a custom content for this node/mark by returning `true` and using the `child` scoped slot. The slot receives `{ view: RteView }`.
+
+If you return `false`, the view is rendered as normal.
+
+To render the children of the view, render `view.children` using a nested `VRichTextView`. Since the nested view might also render using the scoped slot, you can set up a component that recursively renders itself.
+
+```ts
+renderChildView: (view) => {
+	if (view.type === 'mark' && view.mark.type === 'bold') {
+		return true; // uses `child` scoped slot to render
+	}
+	return false; // use default rendering
+};
+```
+
+```html
+<!-- RichText.vue -->
+<script setup lang="ts">
+	import { VRichTextView } from '@vonage/vivid-vue';
+	import type { RteView } from '@vonage/vivid';
+
+	const { view } = defineProps<{
+		view: RteView;
+	}>();
+
+	const onClick = () => {
+		window.alert('Bold text clicked!');
+	};
+</script>
+<template>
+	<VRichTextView :view="view">
+		<template #child="{ view }">
+			<button @click="onClick" style="font-weight: bold">
+				<RichText :view="view.children" />
+			</button>
+		</template>
+	</VRichTextView>
+</template>
+```
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextView } from '@vonage/vivid-vue';
+import { RteBase, RteBoldFeature, RteConfig, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature(), new RteBoldFeature()]);
+
+const view = config.instantiateView(
+	{
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [
+					{ type: 'text', text: 'Hello ' },
+					{ type: 'text', text: 'world!', marks: [{ type: 'bold' }] },
+				],
+			},
+		],
+	},
+	{
+		renderChildView: (view) => {
+			if (view.type === 'mark' && view.mark.type === 'bold') {
+				return true; // use child-view slot
+			}
+			return false; // use default rendering
+		},
+	}
+);
+
+const onClick = () => {
+	window.alert('Bold text clicked!');
+};
+</script>
+<template>
+	<VRichTextView :view="view">
+		<template #child="{ view }">
+			<button @click="onClick" style="font-weight: bold">
+				<VRichTextView :view="view.children" />
+			</button>
+		</template>
+	</VRichTextView>
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### HTML Conversion
 
@@ -1441,7 +1535,7 @@ Possible `ResolvedUrl` values:
 
 - `string`: Displays an image with this `src` URL.
 - `null`: Displays nothing.
-- `{ type: 'placeholder', create: (slotName: string) => (() => unknown) | undefined }`: Displays arbitrary slotted placeholder content. See [Rendering Placeholders](#rendering-placeholders) for details.
+- `{ type: 'placeholder', create?: (slotName: string) => (() => unknown) | undefined }`: Displays arbitrary slotted placeholder content. See [Rendering Placeholders](#rendering-placeholders) for details.
 
 `resolveUrl` can also be an async generator of resolved values. This allows you to resolve the url asynchronously or update the displayed content over time.
 
@@ -1540,30 +1634,23 @@ new RteInlineImageFeature({
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
-Not yet implemented.
-
-<!--
-
-Not yet implemented: Use the `xxx` scoped slot to render the placeholder content. The `data` property can contain custom data that is passed to the slot.
+Use the `inline-image-placeholder` scoped slot to render the placeholder content. The slot receives `{ url: string }` as props, containing the image URL.
 
 ```ts
 new RteInlineImageFeature({
 	resolveUrl: (url: string) => ({
 		type: 'placeholder',
-		data: { type: 'error', title: 'Image failed to load', message: 'Please try again later.' },
 	}),
 });
 ```
 
 ```html
 <VRichTextEditor :instance="instance">
-	<template #xxx="xxxProps">
-		<MyErrorPlaceholder v-if="xxxProps.type === 'inline-image-placeholder' && xxxProps.data.type === 'error'" :title="xxxProps.data.title" :message="xxxProps.data.message" />
+	<template #inline-image-placeholder="{ url }">
+		<MyImagePlaceholder :url="url" />
 	</template>
 </VRichTextEditor>
 ```
-
--->
 
 </vwc-tab-panel>
 </vwc-tabs>
@@ -1975,13 +2062,35 @@ interface Suggestion {
 }
 ```
 
-You can customize the empty state message when no suggestions are found by provided the `<id>-suggestions-empty` slot:
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+You can customize the empty state message when no suggestions are found by providing the `<id>-suggestions-empty` slot:
 
 ```html
 <vwc-rich-text-editor>
 	<div slot="mention-suggestions-empty">No users found</div>
 </vwc-rich-text-editor>
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+You can customize the empty state message when no suggestions are found with the `suggestions-empty` scoped slot. The slot receives `{ id: string }` as props, where `id` is the feature ID (e.g., `"mention"`):
+
+```html
+<VRichTextEditor :instance="instance">
+	<template #suggestions-empty="{ id }">
+		<span v-if="id === 'mention'">No users found</span>
+		<span v-else-if="id === 'emoji'">No emojis found</span>
+	</template>
+</VRichTextEditor>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 **Keyboard shortcuts:**
 

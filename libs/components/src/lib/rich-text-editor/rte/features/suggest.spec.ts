@@ -151,14 +151,44 @@ describe('RteSuggestFeature', () => {
 					pattern: /@(\w*)$/,
 					load: () => [],
 					select: () => [],
-				}),
-				[p('Hello ')]
+				})
 			);
 
 			await rte.typeTextAtCursor('@xyz');
 
 			expect(rte.getSuggestItems()).toHaveLength(0);
 			expect(rte.getEmptyState()!.textContent).toBe('No results');
+		});
+
+		it('should allow customizing empty state with dynamic slot suggestions-empty', async () => {
+			const rte = await setup(
+				featuresWithSuggest({
+					pattern: /@(\w*)$/,
+					load: () => [],
+					select: () => [],
+				})
+			);
+
+			await rte.typeTextAtCursor('@xyz');
+
+			expect(rte.slottableRequests).toEqual([
+				{
+					data: {
+						id: 'mention',
+					},
+					name: 'suggestions-empty-state',
+					slotName: 'mention-suggestions-empty',
+				},
+			]);
+
+			rte.keydown('Escape');
+
+			expect(rte.slottableRequests).toEqual([]);
+
+			await rte.typeTextAtCursor('@xyz');
+			rte.element.remove();
+
+			expect(rte.slottableRequests).toEqual([]);
 		});
 
 		it('should ignore stale results from slow async loads', async () => {

@@ -22,6 +22,10 @@ import { createDiv, UiCtx } from '../utils/ui';
 import { ListboxOption } from '../../../option/option';
 import { ProgressRing } from '../../../progress-ring/progress-ring';
 import { textBeforeCursor } from '../utils/text-before-cursor';
+import {
+	dispatchSlottableRequest,
+	removeSymbol,
+} from '../../../../shared/utils/slottable-request';
 import suggestCss from './suggest.style.scss?inline';
 
 export interface Suggestion {
@@ -348,14 +352,39 @@ class RteSuggestFeatureImpl extends RteFeatureImpl {
 					.querySelector('.popovers')!
 					.appendChild(popover);
 
+				const emptySlotName = `${this.featureId}-suggestions-empty`;
+				const host = (view.dom.getRootNode() as ShadowRoot).host;
+				let emptySlotShowing = false;
+				const updateEmptySlotShowing = (showing: boolean) => {
+					if (!emptySlotShowing && showing) {
+						dispatchSlottableRequest(
+							host,
+							'suggestions-empty-state',
+							emptySlotName,
+							{ id: this.featureId }
+						);
+					}
+					if (emptySlotShowing && !showing) {
+						dispatchSlottableRequest(
+							host,
+							'suggestions-empty-state',
+							emptySlotName,
+							removeSymbol
+						);
+					}
+					emptySlotShowing = showing;
+				};
+
 				const updatePopoverContent = (suggestState: MatchedState) => {
 					content.innerHTML = '';
 
 					const suggestions = suggestState.suggestions!;
+					const showEmptyState = suggestions.items.length === 0;
+					updateEmptySlotShowing(showEmptyState);
 
-					if (suggestions.items.length === 0) {
+					if (showEmptyState) {
 						const emptySlot = document.createElement('slot');
-						emptySlot.name = `${this.featureId}-suggestions-empty`;
+						emptySlot.name = emptySlotName;
 						emptySlot.textContent =
 							rte.getLocale().richTextEditor.suggestNoResults;
 						content.appendChild(
@@ -402,9 +431,12 @@ class RteSuggestFeatureImpl extends RteFeatureImpl {
 						popover.requestOpenState(showPopover);
 						if (showPopover) {
 							updatePopoverContent(suggestState!);
+						} else {
+							updateEmptySlotShowing(false);
 						}
 					},
 					destroy: () => {
+						updateEmptySlotShowing(false);
 						popover.remove();
 					},
 				};
