@@ -347,6 +347,35 @@ describe('vwc-tag', () => {
 		});
 	});
 
+	describe('focus management', () => {
+		it('should prevent default on mousedown to avoid focus ring on button', async () => {
+			const baseElement = getBaseElement(element);
+			const event = new MouseEvent('mousedown', {
+				bubbles: true,
+				cancelable: true,
+			});
+			const spy = vi.spyOn(event, 'preventDefault');
+
+			baseElement.dispatchEvent(event);
+
+			expect(spy).toHaveBeenCalled();
+		});
+
+		it('should prevent default on mousedown when selectable', async () => {
+			await toggleSelectable(element, true);
+			const baseElement = getBaseElement(element);
+			const event = new MouseEvent('mousedown', {
+				bubbles: true,
+				cancelable: true,
+			});
+			const spy = vi.spyOn(event, 'preventDefault');
+
+			baseElement.dispatchEvent(event);
+
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
 	describe('ARIA delegation', () => {
 		itShouldDelegateAriaAttributes(
 			() => element,

@@ -66,6 +66,7 @@ export const tagTemplate = (context: VividElementDefinitionContext) => {
 					ariaPressed: (x) => x.selected,
 				})}
 				?disabled="${(x) => x.disabled}"
+				@mousedown="${(x, c) => c.event.preventDefault()}"
 				@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
 				@click="${(x) => x.handleClick()}"
 			>
@@ -78,6 +79,7 @@ export const tagTemplate = (context: VividElementDefinitionContext) => {
 				class="${getClasses}"
 				${delegateAria()}
 				tabindex="${(x) => (x.disabled || x.removable ? null : 0)}"
+				@mousedown="${(x, c) => c.event.preventDefault()}"
 				@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
 				@click="${(x) => x.handleClick()}"
 			>
