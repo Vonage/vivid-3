@@ -18,7 +18,7 @@ export interface RteToolbarConfig {
 }
 
 export class RteToolbarFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteToolbarFeature';
+	name = 'RteToolbarFeature';
 
 	constructor(protected config?: RteToolbarConfig) {
 		super();

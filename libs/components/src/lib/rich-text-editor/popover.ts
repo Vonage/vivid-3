@@ -107,7 +107,7 @@ export class Popover extends VividElement {
 }
 
 export const popoverDefinition = defineVividComponent(
-	'popover',
+	'rich-text-editor-popover',
 	Popover,
 	popoverTemplate,
 	[popupDefinition],

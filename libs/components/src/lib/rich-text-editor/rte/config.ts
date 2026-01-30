@@ -1,13 +1,9 @@
 import { Schema } from 'prosemirror-model';
-import type { Constructor } from '../../../shared/utils/mixins';
-import { RteBaseImpl } from './features/base';
 import { RteInstance, type RteInstanceOptions } from './instance';
 import { RteFeature, RteFeatureImpl, sortedContributions } from './feature';
 import { TextblockAttrs } from './utils/textblock-attrs';
 import { impl } from './utils/impl';
 import { TextblockMarks } from './utils/textblock-marks';
-import { RteLinkFeatureImpl } from './features/link';
-import { RteToolbarFeatureImpl } from './features/toolbar';
 import type { RteDocument } from './document';
 import { convertToView, type RteView, type RteViewOptions } from './view';
 
@@ -32,7 +28,7 @@ export class RteConfigImpl {
 	schema: Schema;
 	textblockAttrs: TextblockAttrs;
 	textblockMarks: TextblockMarks;
-	featureMap: Map<Constructor<RteFeatureImpl>, RteFeatureImpl>;
+	featureMap: Map<string, RteFeatureImpl>;
 	features: RteFeatureImpl[];
 
 	constructor(featuresFacades: RteFeature[]) {
@@ -48,20 +44,19 @@ export class RteConfigImpl {
 		this.featureMap = new Map();
 
 		for (const f of this.features) {
-			const constr = f.constructor as Constructor<RteFeatureImpl>;
-			if (this.featureMap.has(constr)) {
-				throw new Error(`Duplicate feature: ${constr.name}`);
+			if (this.featureMap.has(f.name)) {
+				throw new Error(`Duplicate feature: ${f.name}`);
 			}
-			this.featureMap.set(constr, f);
+			this.featureMap.set(f.name, f);
 		}
 
-		if (!this.featureMap.has(RteBaseImpl)) {
+		if (!this.featureMap.has('RteBase')) {
 			throw new Error('RteBase feature is required');
 		}
 
 		if (
-			this.featureMap.has(RteLinkFeatureImpl) &&
-			!this.featureMap.has(RteToolbarFeatureImpl)
+			this.featureMap.has('RteLinkFeature') &&
+			!this.featureMap.has('RteToolbarFeature')
 		) {
 			throw new Error('RteToolbarFeature is required for RteLinkFeature');
 		}

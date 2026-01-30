@@ -155,10 +155,10 @@ export class RteInstanceImpl {
 	readonly foreignHtmlParser: RteHtmlParser;
 	readonly foreignHtmlSerializer: RteHtmlSerializer;
 
-	getFeature<T extends RteFeatureImpl>(constr: Constructor<T>): T {
-		const f = this.config.featureMap.get(constr) as T;
+	getFeature<T extends RteFeatureImpl>(name: string): T {
+		const f = this.config.featureMap.get(name) as T;
 		if (!f) {
-			throw new Error(`Feature not found: ${constr.name}`);
+			throw new Error(`Feature not found: ${name}`);
 		}
 		return f;
 	}

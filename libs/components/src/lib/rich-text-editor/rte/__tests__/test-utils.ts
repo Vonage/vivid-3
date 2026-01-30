@@ -386,7 +386,7 @@ export async function setup(
 	const openPopover = () =>
 		Array.from(
 			element.shadowRoot!.querySelectorAll<Popover>(
-				`[data-vvd-component="popover"]`
+				`[data-vvd-component="rich-text-editor-popover"]`
 			)
 		).find((p) => p.open);
 

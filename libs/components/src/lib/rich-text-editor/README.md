@@ -1576,6 +1576,137 @@ In general, you cannot know when it is safe to remove the attachment since the u
 
 You can inspect the document to find referenced images when saving or submitting it, after which the editor should no longer be used.
 
+### RteAtomFeature
+
+Adds support for custom inline atom nodes. Atoms are non-editable inline elements that can be used for things like variables, mentions or tags.
+
+#### Usage
+
+You can create multiple `RteAtomFeature` instances with different atom names to support different atom types.
+
+Atoms have no content and a single required attribute `value`:
+
+```js
+new RteAtomFeature('mention');
+
+const mention = { type: 'mention', attrs: { value: 'John' } };
+```
+
+By default, the atom value is rendered as plain text. Like other nodes, you can style atoms using CSS parts. See [Styling](#styling) for more information.
+
+```html preview
+<vwc-rich-text-editor></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([new RteBase(), new RteAtomFeature('mention')]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'Hello ' },
+							{ type: 'mention', attrs: { value: 'John' } },
+						],
+					},
+				],
+			},
+		});
+	});
+</script>
+```
+
+You can customize the rendered content by providing the `resolveValue` configuration option:
+
+- `resolveValue?: (value: string) => string | null | AsyncGenerator<string, string>`
+
+```ts
+new RteAtomFeature('tag', {
+	resolveValue: (value) => `#${value}`,
+});
+```
+
+`resolveValue` can also return an async generator, which allows you to fetch the result asynchronously or update it over time:
+
+```ts
+new RteAtomFeature('mention', {
+	resolveValue: async function* (userId) {
+		yield 'Loading...';
+		const user = await fetchUser(userId);
+		return `@${user.name}`;
+	},
+});
+
+const mention = { type: 'mention', attrs: { value: '1' } };
+```
+
+<rte-schema>
+	<rte-schema-node name="<atomName>">
+		<rte-schema-group>inline</rte-schema-group>
+		<rte-schema-attrs>
+			<rte-schema-attr name="value" type="string" required></rte-schema-attr>
+		</rte-schema-attrs>
+	</rte-schema-node>
+</rte-schema>
+
+```html preview
+<vwc-rich-text-editor></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const fetchUser = async (id) => {
+			return new Promise((resolve) => {
+				setTimeout(() => {
+					resolve({ id, name: 'John' });
+				}, 2000);
+			});
+		};
+
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([
+			new RteBase(),
+			new RteAtomFeature('tag', {
+				resolveValue: (value) => `#${value}`,
+			}),
+			new RteAtomFeature('mention', {
+				resolveValue: async function* (userId) {
+					yield 'Loading...';
+					const user = await fetchUser(userId);
+					return `@${user.name}`;
+				},
+			}),
+		]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'Hello ' },
+							{ type: 'mention', attrs: { value: '1' } },
+							{ type: 'text', text: ", let's work on " },
+							{ type: 'tag', attrs: { value: 'new-project' } },
+						],
+					},
+				],
+			},
+		});
+	});
+</script>
+```
+
+#### HTML Serialization
+
+Atoms are serialized to HTML as `<span>` elements with `data-atom-type` and `data-value` attributes:
+
+```html
+<span data-atom-type="mention" data-value="john">john</span>
+```
+
 ### RteFileHandlerFeature
 
 Allows you to handle files dropped or pasted into the editor.

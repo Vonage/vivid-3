@@ -10,7 +10,7 @@ import {
 import { RteTextStyleFeatureImpl } from './internal/text-style';
 
 export class RteStrikethroughFeatureImpl extends RteTextStyleFeatureImpl {
-	protected name = 'RteStrikethroughFeature';
+	name = 'RteStrikethroughFeature';
 	protected markName = 'strikethrough';
 
 	override getSchema(): SchemaContribution[] {

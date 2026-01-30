@@ -10,7 +10,7 @@ import {
 import { RteTextStyleFeatureImpl } from './internal/text-style';
 
 export class RteUnderlineFeatureImpl extends RteTextStyleFeatureImpl {
-	protected name = 'RteUnderlineFeature';
+	name = 'RteUnderlineFeature';
 	protected markName = 'underline';
 
 	override getSchema(): SchemaContribution[] {

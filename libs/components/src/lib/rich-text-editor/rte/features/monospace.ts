@@ -11,7 +11,7 @@ import monospaceCss from './monospace.style.scss?inline';
 import { RteTextStyleFeatureImpl } from './internal/text-style';
 
 export class RteMonospaceFeatureImpl extends RteTextStyleFeatureImpl {
-	protected name = 'RteMonospaceFeature';
+	name = 'RteMonospaceFeature';
 	protected markName = 'monospace';
 
 	override getStyles() {

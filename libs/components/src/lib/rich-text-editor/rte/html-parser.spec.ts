@@ -109,7 +109,7 @@ describe('RteHtmlParser', () => {
 
 	it('should default nodes and marks with no default parse to an empty array', async () => {
 		class DummyFeatureImpl extends RteFeatureImpl {
-			protected name = 'DummyFeature';
+			name = 'DummyFeature';
 
 			override getSchema(): SchemaContribution[] {
 				return [
