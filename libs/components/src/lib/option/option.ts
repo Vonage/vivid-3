@@ -26,6 +26,7 @@ export function isListboxOption(el: Element): el is ListboxOption {
  * @public
  * @component option
  * @slot icon - The preferred way to add an icon to the component.
+ * @slot tag-icon - Icon to be displayed in the tag when selected inside of Searchable Select.
  * @slot trailing-meta - For additional elements at the end of the Option.
  * @testAction click click #locator
  */
