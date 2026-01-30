@@ -1,6 +1,7 @@
 import { featureFacade, RteFeatureImpl } from '../feature';
 import { RteCoreImpl } from './internal/core';
 import { RteBasicTextBlocksImpl } from './internal/basic-text-blocks';
+import { RteInputRulesFeatureImpl } from './internal/input-rules';
 
 export type RteBaseConfig = {
 	heading1?: boolean;
@@ -41,6 +42,7 @@ export class RteBaseImpl extends RteFeatureImpl {
 				heading3: this.config?.heading3 ?? false,
 				paragraph: this.config?.paragraph ?? true,
 			}),
+			new RteInputRulesFeatureImpl(),
 		];
 	}
 }

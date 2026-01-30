@@ -1,5 +1,6 @@
 import type { SchemaSpec } from 'prosemirror-model';
 import type { Plugin } from 'prosemirror-state';
+import type { InputRule } from 'prosemirror-inputrules';
 import type { Constructor } from '../../../shared/utils/mixins';
 import type { RteInstanceImpl } from './instance';
 import {
@@ -59,6 +60,7 @@ export type TextblockAttrContribution = Contribution<TextblockAttrSpec>;
 export type TextblockMarkContribution = Contribution<TextblockMarkSpec>;
 export type PluginContribution = Contribution<Plugin>;
 export type ToolbarItemContribution = Contribution<ToolbarItemSpec>;
+export type InputRuleContribution = Contribution<InputRule>;
 
 export abstract class RteFeature {
 	/// @internal
@@ -107,6 +109,10 @@ export abstract class RteFeatureImpl {
 	}
 
 	getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
+		return [];
+	}
+
+	getInputRules(rte: RteInstanceImpl): InputRuleContribution[] {
 		return [];
 	}
 

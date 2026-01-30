@@ -322,25 +322,19 @@ export async function setup(
 	};
 
 	const typeTextAtCursor = async (text: string) => {
-		const { selection } = view.state;
-		const { $cursor } = selection as TextSelection;
-		if (!$cursor) {
-			throw new Error('Selection must be a caret');
-		}
-		// Need to look on right side to find text node instead of the parent node
-		const side = $cursor.parent.nodeSize - 2 === $cursor.parentOffset ? -1 : 1;
-		const { node, offset } = view.domAtPos(selection.anchor, side)!;
-		if (node.nodeType === window.Node.TEXT_NODE) {
-			const prevContent = node.nodeValue ?? '';
-			const newContent =
-				prevContent.slice(0, offset) + text + prevContent.slice(offset);
-			node.nodeValue = newContent;
-		} else {
-			if (offset !== 0) {
-				throw new Error('Not sure whats going on');
+		// Insert text character by character to trigger inputrules
+		for (const char of text) {
+			const { state } = view;
+			const { from, to } = state.selection;
+			const defaultInsert = () => state.tr.insertText(char, from, to);
+			// Use ProseMirror's text input handler which triggers inputrules
+			const handled = view.someProp('handleTextInput', (f) =>
+				f(view, from, to, char, defaultInsert)
+			);
+			if (!handled) {
+				// If no plugin handled it, insert the text directly
+				view.dispatch(defaultInsert());
 			}
-			const textNode = document.createTextNode(text);
-			node.insertBefore(textNode, node.childNodes[0] ?? null);
 		}
 		await elementUpdated(element);
 	};

@@ -7,6 +7,7 @@ import {
 import type { Node } from 'prosemirror-model';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
+import { InputRule } from 'prosemirror-inputrules';
 import {
 	createAnchor,
 	createButton,
@@ -16,10 +17,11 @@ import {
 	createTextField,
 	UiCtx,
 } from '../utils/ui';
-import { RteInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
 import {
 	contributionPriority,
 	featureFacade,
+	type InputRuleContribution,
 	type PluginContribution,
 	RteFeatureImpl,
 	type SchemaContribution,
@@ -32,6 +34,35 @@ import type { Button } from '../../../button/button';
 import linkCss from './link.style.scss?inline';
 
 type Link = { text: string; href: string; start: number; end: number };
+
+/// Matches links in text
+const linkPattern = '(?:https?://|www\\.)[^\\s<]+';
+
+function convertToLink(
+	state: EditorState,
+	matchedText: string,
+	start: number,
+	end: number
+) {
+	// Don't convert if already a link
+	if (state.doc.rangeHasMark(start, start + 1, state.schema.marks.link)) {
+		return null;
+	}
+
+	// Strip characters that are valid URL characters but likely sentence punctuation when at the end
+	const link = matchedText.replace(/[.,;:!?) ]+$/, '');
+	const href = link.startsWith('www.') ? `https://${link}` : link;
+	const linkMark = state.schema.marks.link.create({ href });
+	const linkEnd = start + link.length;
+	const trailingChars = matchedText.slice(link.length);
+
+	const tr = state.tr.addMark(start, linkEnd, linkMark);
+	// Insert trailing characters (punctuation + space) that were stripped or need to be added
+	if (trailingChars) {
+		tr.replaceWith(linkEnd, end, state.schema.text(trailingChars));
+	}
+	return tr;
+}
 
 export class RteLinkFeatureImpl extends RteFeatureImpl {
 	protected name = 'RteLinkFeature';
@@ -78,13 +109,58 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 		return [this.contribution({ markName: 'link' })];
 	}
 
+	override getInputRules(): InputRuleContribution[] {
+		return [
+			this.contribution(
+				// Convert typed links when followed space
+				new InputRule(
+					new RegExp(`${linkPattern} $`),
+					(state, match, start, end) =>
+						convertToLink(state, match[0], start, end)
+				)
+			),
+		];
+	}
+
 	override getPlugins(rte: RteInstanceImpl): PluginContribution[] {
 		const insertLinkCommand = () => {
 			this.toolbarMenu!.open = true;
 			return true;
 		};
 
+		const linkRegex = new RegExp(`${linkPattern}$`);
+
 		return [
+			this.contribution(
+				keymap({
+					// Convert typed links on Enter
+					Enter: (state, dispatch) => {
+						const { $cursor } = state.selection as TextSelection;
+						if (!$cursor) return false;
+
+						// Get text before cursor in current text block
+						const textBefore = $cursor.parent.textBetween(
+							0,
+							$cursor.parentOffset,
+							undefined,
+							'\ufffc' // object replacement char, to avoid matching non-text nodes
+						);
+						const match = linkRegex.exec(textBefore);
+						if (!match) return false;
+
+						const urlStart = $cursor.pos - $cursor.parentOffset + match.index;
+						const urlEnd = urlStart + match[0].length;
+						const tr = convertToLink(state, match[0], urlStart, urlEnd);
+						if (tr) {
+							dispatch?.(tr);
+						}
+						// Return false to let the default Enter handler run after
+						return false;
+					},
+				}),
+				// Run before other Enter handlers so link is created first
+				contributionPriority.highest
+			),
 			this.contribution(
 				new Plugin({
 					props: {
