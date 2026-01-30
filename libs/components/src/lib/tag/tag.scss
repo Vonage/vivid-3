@@ -97,7 +97,7 @@ slot[name='icon'] {
 	cursor: pointer;
 	inset-inline-start: -4px;
 
-	&:focus {
+	&:focus-visible {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 		@include focus.focus;
