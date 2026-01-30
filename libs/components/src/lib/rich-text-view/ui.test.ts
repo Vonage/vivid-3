@@ -142,6 +142,7 @@ test('should render rich text identically to the editor', async ({
 					new RteInlineImageFeature(),
 					new RteAtomFeature('mention', {
 						resolveValue: (value: string) => `@${value}`,
+						serializeValueToHtml: (value: string) => `@${value}`,
 					}),
 				]);
 

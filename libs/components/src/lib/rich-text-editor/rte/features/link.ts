@@ -110,15 +110,21 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 	}
 
 	override getInputRules(): InputRuleContribution[] {
+		const linkRegex = new RegExp(`${linkPattern}$`);
+
 		return [
-			this.contribution(
-				// Convert typed links when followed space
-				new InputRule(
+			this.contribution({
+				rule: new InputRule(
 					new RegExp(`${linkPattern} $`),
 					(state, match, start, end) =>
 						convertToLink(state, match[0], start, end)
-				)
-			),
+				),
+				enterHandler: {
+					regex: linkRegex,
+					handler: (state, match, start, end) =>
+						convertToLink(state, match[0], start, end),
+				},
+			}),
 		];
 	}
 
@@ -128,39 +134,7 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 			return true;
 		};
 
-		const linkRegex = new RegExp(`${linkPattern}$`);
-
 		return [
-			this.contribution(
-				keymap({
-					// Convert typed links on Enter
-					Enter: (state, dispatch) => {
-						const { $cursor } = state.selection as TextSelection;
-						if (!$cursor) return false;
-
-						// Get text before cursor in current text block
-						const textBefore = $cursor.parent.textBetween(
-							0,
-							$cursor.parentOffset,
-							undefined,
-							'\ufffc' // object replacement char, to avoid matching non-text nodes
-						);
-						const match = linkRegex.exec(textBefore);
-						if (!match) return false;
-
-						const urlStart = $cursor.pos - $cursor.parentOffset + match.index;
-						const urlEnd = urlStart + match[0].length;
-						const tr = convertToLink(state, match[0], urlStart, urlEnd);
-						if (tr) {
-							dispatch?.(tr);
-						}
-						// Return false to let the default Enter handler run after
-						return false;
-					},
-				}),
-				// Run before other Enter handlers so link is created first
-				contributionPriority.highest
-			),
 			this.contribution(
 				new Plugin({
 					props: {

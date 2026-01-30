@@ -445,3 +445,186 @@ Functionality:
 	});
 </script>
 ```
+
+## Email Signatures
+
+```html preview
+<style>
+	.section {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.section + .section {
+		margin-top: 40px;
+	}
+
+	h4 {
+		margin: 0 !important;
+	}
+
+	#signature-editor::part(node--variable) {
+		background-color: var(--vvd-color-information-100);
+		padding: 0 4px;
+		border-radius: 4px;
+		font-family: monospace;
+	}
+
+	::part(node--paragraph) {
+		margin-block: 0;
+	}
+</style>
+
+<div class="section">
+	<h4>Signature Template</h4>
+	<vwc-rich-text-editor id="signature-editor">
+		<span slot="variable-suggestions-empty">No matching variables</span>
+	</vwc-rich-text-editor>
+</div>
+
+<div class="section">
+	<h4>Variable Values</h4>
+	<vwc-text-field id="var-first_name" label="First Name" value="John"></vwc-text-field>
+	<vwc-text-field id="var-last_name" label="Last Name" value="Doe"></vwc-text-field>
+	<vwc-text-field id="var-job_title" label="Job Title" value="Software Engineer"></vwc-text-field>
+</div>
+
+<div class="section">
+	<h4>Compose Email</h4>
+	<vwc-rich-text-editor id="email-editor">
+		<div slot="editor-end" style="margin-block-start: calc(0px - var(--editor-padding-block)); padding-inline: var(--editor-padding-inline); padding-block-end: var(--editor-padding-block);">
+			<vwc-rich-text-view id="signature-view"></vwc-rich-text-view>
+		</div>
+	</vwc-rich-text-editor>
+</div>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const variables = [
+			{ name: 'first_name', label: 'First Name' },
+			{ name: 'last_name', label: 'Last Name' },
+			{ name: 'job_title', label: 'Job Title' },
+		];
+		const getVariableValues = () => {
+			const values = {};
+			for (const v of variables) {
+				values[v.name] = document.getElementById(`var-${v.name}`).value;
+			}
+			return values;
+		};
+
+		const emailFeatures = [new RteBase(), new RteToolbarFeature(), new RteBoldFeature(), new RteItalicFeature(), new RteUnderlineFeature(), new RteLinkFeature()];
+
+		const signatureConfig = new RteConfig([
+			...emailFeatures,
+			new RteAtomFeature('variable', {
+				resolveValue: (value) => `{${value}}`,
+			}),
+			new RteInputRuleFeature('variable', {
+				pattern: /\{(\w+)\}/,
+				matchAfterWhitespace: false,
+				handler: (match) => {
+					const varName = match[1];
+					if (variables.some((v) => v.name === varName)) {
+						return [{ type: 'variable', attrs: { value: varName } }];
+					}
+					return null;
+				},
+			}),
+			new RteSuggestFeature('variable', {
+				pattern: /\{(\w*)$/,
+				load: (match) => {
+					const query = match[1].toLowerCase();
+					return variables
+						.filter((v) => v.name.includes(query) || v.label.toLowerCase().includes(query))
+						.map((v) => ({
+							text: `{${v.name}}`,
+							textSecondary: v.label,
+							data: v,
+						}));
+				},
+				select: (suggestion) => [{ type: 'variable', attrs: { value: suggestion.data.name } }],
+			}),
+			new RteToolbarButtonFeature('variable', {
+				label: 'Insert variable',
+				icon: 'curly-brackets-line',
+				action: { type: 'insert-text', text: '{' },
+			}),
+		]);
+
+		const signatureEditor = document.getElementById('signature-editor');
+		const signatureInstance = signatureConfig.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'Best regards,' }],
+					},
+					{
+						type: 'paragraph',
+						content: [
+							{ type: 'variable', attrs: { value: 'first_name' } },
+							{ type: 'text', text: ' ' },
+							{ type: 'variable', attrs: { value: 'last_name' } },
+							{ type: 'text', text: ' | ' },
+							{ type: 'variable', marks: [{ type: 'bold' }], attrs: { value: 'job_title' } },
+						],
+					},
+				],
+			},
+			onChange: updateSignaturePreview,
+		});
+		signatureEditor.instance = signatureInstance;
+
+		const emailConfig = new RteConfig(emailFeatures);
+
+		const emailEditor = document.getElementById('email-editor');
+		emailEditor.instance = emailConfig.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'Hi there,' }],
+					},
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'I wanted to follow up on our conversation...' }],
+					},
+					{
+						type: 'paragraph',
+						content: [],
+					},
+				],
+			},
+		});
+
+		const signatureView = document.getElementById('signature-view');
+
+		function createSignatureViewConfig() {
+			const values = getVariableValues();
+			return new RteConfig([
+				...emailFeatures,
+				new RteAtomFeature('variable', {
+					serializeValueToHtml: (varName) => values[varName],
+				}),
+			]);
+		}
+
+		function updateSignaturePreview() {
+			const doc = signatureInstance.getDocument();
+			const viewConfig = createSignatureViewConfig();
+			signatureView.view = viewConfig.instantiateView(doc);
+		}
+		updateSignaturePreview();
+
+		// Update preview when variable values change
+		for (const v of variables) {
+			const input = document.getElementById(`var-${v.name}`);
+			input.addEventListener('input', updateSignaturePreview);
+		}
+	});
+</script>
+```

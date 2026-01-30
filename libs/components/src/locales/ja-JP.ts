@@ -236,6 +236,8 @@ const jaJP: Locale = {
 			fit: 'フィット',
 			original: '元のサイズ',
 		},
+		suggestLoading: '読み込み中...',
+		suggestNoResults: '結果なし',
 	},
 	button: {
 		pendingLabel: '読み込み中',

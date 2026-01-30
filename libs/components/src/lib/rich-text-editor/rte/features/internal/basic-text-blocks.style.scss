@@ -1,3 +1,5 @@
+@use '../../utils/fonts';
+
 h1,
 h2,
 h3,
@@ -21,25 +23,25 @@ p {
 /* stylelint-disable */
 
 p {
-	font: var(--vvd-typography-base);
+	@include fonts.font(var(--vvd-typography-base));
 	line-height: 20px;
 	margin-block: 16px;
 }
 
 .heading-step-1 {
-	font: var(--vvd-typography-heading-4);
+	@include fonts.font(var(--vvd-typography-heading-4));
 	line-height: 28px;
 	margin-block: 24px 12px;
 }
 
 .heading-step-2 {
-	font: var(--vvd-typography-heading-3);
+	@include fonts.font(var(--vvd-typography-heading-3));
 	line-height: 36px;
 	margin-block: 24px 12px;
 }
 
 .heading-step-3 {
-	font: var(--vvd-typography-heading-2);
+	@include fonts.font(var(--vvd-typography-heading-2));
 	line-height: 42px;
 	margin-block: 32px 16px;
 }

@@ -1,0 +1,36 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/focus';
+@use '@repo/shared/mixins/border-radius';
+
+.suggest-popover {
+	display: flex;
+	flex-direction: column;
+	padding: 4px;
+	gap: 2px;
+	max-block-size: 408px;
+	max-inline-size: 248px;
+	min-inline-size: 128px;
+}
+
+.suggest-loading-widget {
+	display: inline-flex;
+	align-items: center;
+	margin-inline-start: 2px;
+	vertical-align: middle;
+	white-space: normal;
+}
+
+.suggest-empty-message {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(#{constants.$vvd-color-neutral-300});
+	font: var(#{constants.$vvd-typography-base});
+	min-block-size: 40px;
+	text-align: center;
+}
+
+.suggest-item--visible-focus {
+	@include focus.focus;
+	#{focus.$focus-stroke-gap-color}: transparent;
+}

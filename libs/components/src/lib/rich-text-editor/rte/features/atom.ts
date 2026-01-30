@@ -23,6 +23,7 @@ export interface RteAtomConfig {
 	resolveValue?: (
 		value: string
 	) => ResolvedAtomValue | ResolvedAtomValueGenerator;
+	serializeValueToHtml?: (value: string) => string | null;
 }
 
 class AtomView implements NodeView {
@@ -83,20 +84,33 @@ class RteAtomFeatureImpl extends RteFeatureImpl {
 					}),
 				},
 			],
-			/// Since we use a NodeView, this is only used for Rich Text View
-			toDOM: (node) => [
-				'span',
-				{ part: `node--${this.atomName}` },
-				node.attrs.value,
-			],
-			serializeToDOM: (node: Node) => [
-				'span',
-				{
-					'data-atom-type': this.atomName,
-					'data-value': node.attrs.value,
-				},
-				node.attrs.value,
-			],
+			/// Since we use a NodeView, toDOM is only used for Rich Text View
+			toDOM: (node) => {
+				const serializedValue = this.config.serializeValueToHtml
+					? this.config.serializeValueToHtml(node.attrs.value)
+					: node.attrs.value;
+				if (serializedValue === null) {
+					return document.createDocumentFragment();
+				}
+				return ['span', { part: `node--${this.atomName}` }, serializedValue];
+			},
+			serializeToDOM: (node: Node) => {
+				const serializedValue = this.config.serializeValueToHtml
+					? this.config.serializeValueToHtml(node.attrs.value)
+					: node.attrs.value;
+				if (serializedValue === null) {
+					return document.createTextNode('');
+				}
+
+				return [
+					'span',
+					{
+						'data-atom-type': this.atomName,
+						'data-value': node.attrs.value,
+					},
+					serializedValue,
+				];
+			},
 		};
 
 		return [

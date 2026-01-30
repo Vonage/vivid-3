@@ -171,6 +171,58 @@ describe('RteAtomFeature', () => {
 				`"<p part="node--paragraph"><span part="node--mention">username</span></p>"`
 			);
 		});
+
+		it('should use serializeValueToHtml for HTML serialization when provided', async () => {
+			const rte = await setup(
+				featuresWithAtoms([
+					'mention',
+					{ serializeValueToHtml: (value) => `@${value}` },
+				]),
+				[p(mention.attrs({ value: 'username' })())]
+			);
+
+			expect(rte.getHtml()).toMatchInlineSnapshot(
+				`"<p><span data-atom-type="mention" data-value="username">@username</span></p>"`
+			);
+		});
+
+		it('should use serializeValueToHtml for view rendering when provided', async () => {
+			const rte = await setup(
+				featuresWithAtoms([
+					'mention',
+					{ serializeValueToHtml: (value) => `@${value}` },
+				]),
+				[p(mention.attrs({ value: 'username' })())]
+			);
+			const rteView = await rte.renderView();
+
+			expect(
+				rteView.shadowRoot!.querySelector('.content')!.innerHTML
+			).toMatchInlineSnapshot(
+				`"<p part="node--paragraph"><span part="node--mention">@username</span></p>"`
+			);
+		});
+
+		it('should serialize to empty text node when serializeValueToHtml returns null', async () => {
+			const rte = await setup(
+				featuresWithAtoms(['mention', { serializeValueToHtml: () => null }]),
+				[
+					p(
+						text('before '),
+						mention.attrs({ value: 'username' })(),
+						text(' after')
+					),
+				]
+			);
+
+			expect(rte.getHtml()).toMatchInlineSnapshot(`"<p>before  after</p>"`);
+
+			const rteView = await rte.renderView();
+
+			expect(
+				rteView.shadowRoot!.querySelector('.content')!.innerHTML
+			).toMatchInlineSnapshot(`"<p part="node--paragraph">before  after</p>"`);
+		});
 	});
 
 	describe('HTML parsing', () => {

@@ -236,6 +236,8 @@ const enUS: Locale = {
 			fit: 'Fit',
 			original: 'Original size',
 		},
+		suggestLoading: 'Loading...',
+		suggestNoResults: 'No results',
 	},
 	button: {
 		pendingLabel: 'Loading...',
