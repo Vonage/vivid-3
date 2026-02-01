@@ -364,7 +364,6 @@ export const createSelect = (
 		{
 			placeholder: ' ',
 			ariaLabel: props.label,
-			scale: 'condensed',
 			appearance: 'ghost',
 		},
 		[
