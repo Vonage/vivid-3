@@ -4,6 +4,32 @@ The `text` attribute set the text to be displayed in the option list item and in
 
 The [label attribute](/components/option/code/#label) can be used to display different text in the parent element when selected.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VOption text="Option text" value="option1" />
+	</div>
+</template>
+
+<style>
+.container {
+	width: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <div class="container">
 	<vwc-option text="Option text" value="option1"></vwc-option>
@@ -16,6 +42,9 @@ The [label attribute](/components/option/code/#label) can be used to display dif
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Secondary Text
 
 The Option can be given extra context using the `text-secondary` attribute.
@@ -26,6 +55,30 @@ The Option can be given extra context using the `text-secondary` attribute.
     To improve readability, **avoid long text and multiple lines** where possible.
 
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container"><VOption text="Option text" text-secondary="Secondary text" value="option1" /></div>
+</template>
+
+<style>
+.container {
+	width: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <div class="container">
@@ -39,9 +92,38 @@ The Option can be given extra context using the `text-secondary` attribute.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Selected
 
 The `selected` attribute indicates that the option is selected.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VOption selected text="Option text" value="option1" />
+	</div>
+</template>
+
+<style>
+.container {
+	width: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <div class="container">
@@ -55,11 +137,42 @@ The `selected` attribute indicates that the option is selected.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Icons
 
 Icons can be provided using the [icon slot](/components/option/code/#icon-slot). It is displayed at the start of the option, before the text.
 
 The `icon`_(deprecated)_ attribute displays an icon from the [icon library](/icons/icons-gallery/)
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VIcon, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VOption text="Option text" value="option1">
+			<template #icon><VIcon name="chat-line" /></template>
+		</VOption>
+	</div>
+</template>
+
+<style>
+.container {
+	width: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <div class="container">
@@ -75,9 +188,38 @@ The `icon`_(deprecated)_ attribute displays an icon from the [icon library](/ico
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 The `disabled` attribute indicates that the option is disabled and can not be selected.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VOption disabled text="Option text" value="option1" />
+	</div>
+</template>
+
+<style>
+.container {
+	width: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <div class="container">
@@ -91,9 +233,38 @@ The `disabled` attribute indicates that the option is disabled and can not be se
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Matched Text
 
 The `matched-text` attribute highlights a part of text as matching a search query.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VOption matched-text="text" text="Option text" value="option1" />
+	</div>
+</template>
+
+<style>
+.container {
+	width: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <div class="container">
@@ -106,3 +277,6 @@ The `matched-text` attribute highlights a part of text as matching a search quer
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>

@@ -5958,6 +5958,10 @@
 					"description": "The preferred way to add an icon to the component."
 				},
 				{
+					"name": "tag-icon",
+					"description": "Icon to be displayed in the tag when selected inside of Searchable Select."
+				},
+				{
 					"name": "trailing-meta",
 					"description": "For additional elements at the end of the Option."
 				}
