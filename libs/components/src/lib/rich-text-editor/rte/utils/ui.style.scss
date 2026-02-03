@@ -1,6 +1,7 @@
 @use '../../../popup/partials/variables' as popupVariables;
 
 [data-class='ui-select'] {
+	margin-block: -4px; // Remove toolbar padding
 	// Arbitrary value since vivid select is incapable of determining width based on content
 	min-inline-size: 120px;
 }

@@ -65,4 +65,14 @@ describe('RteToolbarFeature', () => {
 
 		expect(fontSizeMenu.placement).toBe('bottom');
 	});
+
+	it('should set offset=8 for menus to align with toolbar', async () => {
+		const rte = await setup(features());
+
+		const fontSizeMenu = rte.element.shadowRoot!.querySelector<Menu>(
+			'[data-vvd-component="menu"][data-vvd-aria-label="Text size"]'
+		)!;
+
+		expect(fontSizeMenu.offset).toBe(8);
+	});
 });

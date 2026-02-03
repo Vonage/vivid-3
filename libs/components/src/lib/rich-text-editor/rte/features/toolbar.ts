@@ -53,6 +53,7 @@ export class RteToolbarFeatureImpl extends RteFeatureImpl {
 						const ctx = new UiCtx(view, rte, {
 							popupPlacement:
 								this.config?.popupDirection === 'outward' ? 'bottom' : 'top',
+							menuOffset: 8,
 						});
 
 						const toolbar = (
