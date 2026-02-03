@@ -75,4 +75,29 @@ describe('RteToolbarFeature', () => {
 
 		expect(fontSizeMenu.offset).toBe(8);
 	});
+
+	describe('hidden', () => {
+		it('should be false by default', async () => {
+			const rte = await setup(features());
+			const toolbarFeature = rte.instance.feature(RteToolbarFeature);
+
+			expect(toolbarFeature.hidden).toBe(false);
+			expect(rte.toolbar.classList.contains('toolbar--hidden')).toBe(false);
+		});
+
+		it('should toggle toolbar visibility', async () => {
+			const rte = await setup(features());
+			const toolbarFeature = rte.instance.feature(RteToolbarFeature);
+
+			toolbarFeature.hidden = true;
+
+			expect(toolbarFeature.hidden).toBe(true);
+			expect(rte.toolbar.classList.contains('toolbar--hidden')).toBe(true);
+
+			toolbarFeature.hidden = false;
+
+			expect(toolbarFeature.hidden).toBe(false);
+			expect(rte.toolbar.classList.contains('toolbar--hidden')).toBe(false);
+		});
+	});
 });

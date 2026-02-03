@@ -276,6 +276,8 @@ export async function setup(
 		view.dispatch(tr);
 	};
 
+	const toolbar = element.shadowRoot!.querySelector('.toolbar')!;
+
 	const getImageWrapper = () => {
 		return view.dom.querySelector<HTMLDivElement>(`.inline-image-wrapper`);
 	};
@@ -496,6 +498,7 @@ export async function setup(
 		typeTextAtCursor,
 		docStr,
 		placeholder,
+		toolbar,
 		toolbarButton,
 		button,
 		textField,
