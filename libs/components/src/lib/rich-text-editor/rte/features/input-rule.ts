@@ -32,7 +32,7 @@ class RteInputRuleFeatureImpl extends RteFeatureImpl {
 	name: string;
 
 	constructor(
-		protected readonly featureId: string,
+		override featureId: string,
 		protected readonly options: RteInputRuleFeatureOptions
 	) {
 		super();

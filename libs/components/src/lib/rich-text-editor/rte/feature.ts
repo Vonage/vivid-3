@@ -75,6 +75,11 @@ export abstract class RteFeatureImpl {
 	abstract name: string;
 
 	/**
+	 * If a feature can have multiple instances, a unique id to differentiate them.
+	 */
+	featureId?: string;
+
+	/**
 	 * Creates a contribution of this feature.
 	 */
 	protected contribution<T>(value: T, order?: number): Contribution<T> {
@@ -120,6 +125,9 @@ export abstract class RteFeatureImpl {
 	getFeatures(): RteFeatureImpl[] {
 		return [this];
 	}
+
+	// Exposes a public interface for this feature.
+	getPublicInterface(rte: RteInstanceImpl): any {}
 }
 
 /**
@@ -143,3 +151,8 @@ export const featureFacade = <
 
 	return Facade;
 };
+
+// Type-only function that can be overloaded to return the correct public interface for a feature facade.
+export declare function getPublicInterface(
+	facade: Constructor<RteFeature>
+): unknown;

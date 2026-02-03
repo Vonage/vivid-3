@@ -169,7 +169,7 @@ class RteSuggestFeatureImpl extends RteFeatureImpl {
 	}
 
 	constructor(
-		protected readonly featureId: string,
+		override featureId: string,
 		protected readonly options: RteSuggestFeatureOptions
 	) {
 		super();
