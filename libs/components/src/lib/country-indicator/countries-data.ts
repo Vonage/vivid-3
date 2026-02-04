@@ -4061,7 +4061,6 @@ export const countries: Country[] = [
 		countryCode: '+44',
 		isoCode: '826',
 	},
-	// UK alias: same as GB (ISO 3166-1 uses GB; UK is common in practice)
 	{
 		label: 'United Kingdom of Great Britain and Northern Ireland',
 		code: 'UK',

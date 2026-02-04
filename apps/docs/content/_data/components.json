@@ -536,13 +536,12 @@
 	},
 	{
 		"title": "Status",
-		"description": "Displays an icon, a title (headline), and a description. Connotation (success, information, warning, alert) drives the default icon and color.",
+		"description": "Displays an icon, status, and a description. Connotation (success, information, warning, alert) drives the default icon and color.",
 		"variations": "./libs/components/src/lib/status/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/status/GUIDELINES.md",
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/status/README.md",
 		"accessibility": "./libs/components/src/lib/status/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/status/USE-CASES.md",
 		"status": "underlying"
 	},
 	{
@@ -624,13 +623,12 @@
 	},
 	{
 		"title": "Country Indicator",
-		"description": "Displays a country flag and dial code. When a country code is set, the component shows the matching flag (from flag-icons) and the dial code (e.g. \"+44\") automatically.",
+		"description": "Displays a country flag and dial code. When a country code is set, the component shows the matching flag and the country code (e.g. \"GB\") automatically.",
 		"variations": "./libs/components/src/lib/country-indicator/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/country-indicator/GUIDELINES.md",
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/country-indicator/README.md",
 		"accessibility": "./libs/components/src/lib/country-indicator/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/country-indicator/USE-CASES.md",
 		"status": "underlying"
 	},
 	{
