@@ -17,6 +17,13 @@
 
 :host {
 	display: flex;
+	/* stylelint-disable-next-line custom-property-pattern */
+	--_vvd-tinted-shadow-surface-0dp: drop-shadow(
+			1px 0px 0px var(#{card-variables.$border-color})
+		)
+		drop-shadow(0px 1px 0px var(#{card-variables.$border-color}))
+		drop-shadow(0px -1px 0px var(#{card-variables.$border-color}))
+		drop-shadow(-1px 0px 0px var(#{card-variables.$border-color}));
 }
 
 .base {
