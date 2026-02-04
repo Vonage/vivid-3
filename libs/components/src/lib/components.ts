@@ -16,6 +16,7 @@ export * from './checkbox/definition';
 export * from './color-picker/definition';
 export * from './combobox/definition';
 export * from './contextual-help/definition';
+export * from './country-indicator/definition';
 export * from './data-grid/definition';
 export * from './table/definition';
 export * from './date-picker/definition';
