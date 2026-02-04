@@ -301,6 +301,8 @@ export async function setup(
 		view.dispatch(tr);
 	};
 
+	const popovers = element.shadowRoot!.querySelector('.popovers')!;
+
 	const toolbar = element.shadowRoot!.querySelector('.toolbar')!;
 
 	const getImageWrapper = () => {
@@ -523,6 +525,7 @@ export async function setup(
 		typeTextAtCursor,
 		docStr,
 		placeholder,
+		popovers,
 		toolbar,
 		toolbarButton,
 		button,

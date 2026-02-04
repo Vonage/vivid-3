@@ -39,3 +39,7 @@
 
 	@include scrollbar.scrollbar;
 }
+
+.popovers--disabled > * {
+	display: none !important;
+}

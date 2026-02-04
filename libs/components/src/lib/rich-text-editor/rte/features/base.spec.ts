@@ -1,5 +1,7 @@
 import { setup } from '../__tests__/test-utils';
 import { RteBase } from './base';
+import { RteToolbarFeature } from './toolbar';
+import { RteBoldFeature } from './bold';
 
 describe('RteBase', () => {
 	it('should add only paragraph node by default', async () => {
@@ -35,5 +37,57 @@ describe('RteBase', () => {
 		const { view } = await setup([new RteBase({ heading3: true })]);
 
 		expect(view.state.schema.nodes.heading3).toBeDefined();
+	});
+
+	describe('disabled', () => {
+		it('should prevent user input and disable toolbar items and popovers', async () => {
+			const rte = await setup([
+				new RteBase(),
+				new RteToolbarFeature(),
+				new RteBoldFeature(),
+			]);
+			const baseFeature = rte.instance.feature(RteBase);
+
+			baseFeature.disabled = true;
+
+			expect(baseFeature.disabled).toBe(true);
+			expect(rte.view.editable).toBe(false);
+			expect(rte.toolbarButton('Bold').disabled).toBe(true);
+			expect(rte.popovers.classList.contains('popovers--disabled')).toBe(true);
+
+			baseFeature.disabled = false;
+
+			expect(baseFeature.disabled).toBe(false);
+			expect(rte.view.editable).toBe(true);
+			expect(rte.toolbarButton('Bold').disabled).toBe(false);
+			expect(rte.popovers.classList.contains('popovers--disabled')).toBe(false);
+		});
+
+		it('should prevent default on click events for links etc.', async () => {
+			const rte = await setup([new RteBase(), new RteToolbarFeature()]);
+			const baseFeature = rte.instance.feature(RteBase);
+
+			baseFeature.disabled = true;
+
+			const clickEvent = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+			rte.view.dom.dispatchEvent(clickEvent);
+
+			expect(clickEvent.defaultPrevented).toBe(true);
+		});
+
+		it('should not prevent default on click events when enabled', async () => {
+			const rte = await setup([new RteBase(), new RteToolbarFeature()]);
+
+			const clickEvent = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+			rte.view.dom.dispatchEvent(clickEvent);
+
+			expect(clickEvent.defaultPrevented).toBe(false);
+		});
 	});
 });
