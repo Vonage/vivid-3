@@ -6,7 +6,7 @@ import {
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['data-table'];
+const components = ['table'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `<div style="margin: 5px; max-width: 700px;">
@@ -47,7 +47,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const text = await page.locator('vwc-table-cell:has-text("Voice")');
 	await text.isVisible();
 
-	await takeScreenshot(page, 'data-table');
+	await takeScreenshot(page, 'table');
 });
 
 test('should allow row scoped header cells', async ({
@@ -89,7 +89,7 @@ test('should allow row scoped header cells', async ({
 	const text = await page.locator('vwc-table-cell:has-text("Voice")');
 	await text.isVisible();
 
-	await takeScreenshot(page, 'data-table-row-scoped-headers');
+	await takeScreenshot(page, 'table-row-scoped-headers');
 });
 
 test('should handle long content with text wrapping', async ({
@@ -132,7 +132,7 @@ test('should handle long content with text wrapping', async ({
 
 	await page.setViewportSize({ width: 400, height: 400 });
 
-	await takeScreenshot(page, 'data-table-multiline-text');
+	await takeScreenshot(page, 'table-multiline-text');
 });
 
 test('should render multiple rows and columns', async ({
@@ -187,7 +187,7 @@ test('should render multiple rows and columns', async ({
 	const text = await page.locator('vwc-table-cell:has-text("Row 2, Cell 2")');
 	await text.isVisible();
 
-	await takeScreenshot(page, 'data-table-multiple-rows-columns');
+	await takeScreenshot(page, 'table-multiple-rows-columns');
 });
 
 test('should handle responsive scrolling', async ({ page }: { page: Page }) => {
@@ -256,5 +256,5 @@ test('should handle responsive scrolling', async ({ page }: { page: Page }) => {
 	const text = await page.locator('vwc-table-cell:has-text("Video")');
 	await text.isVisible();
 
-	await takeScreenshot(page, 'data-table-scrolling');
+	await takeScreenshot(page, 'table-scrolling');
 });

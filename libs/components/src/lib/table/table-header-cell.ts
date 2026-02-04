@@ -6,11 +6,4 @@ import { HostSemantics } from '../../shared/aria/host-semantics';
  * @component table-header-cell
  * @slot - Default slot.
  */
-export class TableHeaderCell extends HostSemantics(VividElement) {
-	/**
-	 * @internal
-	 */
-	override connectedCallback(): void {
-		super.connectedCallback();
-	}
-}
+export class TableHeaderCell extends HostSemantics(VividElement) {}
