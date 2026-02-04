@@ -57,6 +57,7 @@ import type {
 	VwcSimpleColorPickerElement,
 	VwcSliderElement,
 	VwcSplitButtonElement,
+	VwcStatusElement,
 	VwcSwitchElement,
 	VwcTabElement,
 	VwcTableBodyElement,
@@ -144,6 +145,7 @@ type DefaultVividTagNameMap = {
 	'vwc-simple-color-picker': VwcSimpleColorPickerElement;
 	'vwc-slider': VwcSliderElement;
 	'vwc-split-button': VwcSplitButtonElement;
+	'vwc-status': VwcStatusElement;
 	'vwc-switch': VwcSwitchElement;
 	'vwc-tab': VwcTabElement;
 	'vwc-tab-panel': VwcTabPanelElement;

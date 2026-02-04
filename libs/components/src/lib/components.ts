@@ -55,6 +55,7 @@ export * from './side-drawer/definition';
 export * from './simple-color-picker/definition';
 export * from './slider/definition';
 export * from './split-button/definition';
+export * from './status/definition';
 export * from './switch/definition';
 export * from './tab-panel/definition';
 export * from './tab/definition';
