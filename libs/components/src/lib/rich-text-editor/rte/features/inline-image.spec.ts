@@ -500,10 +500,20 @@ describe('RteInlineImageFeature', () => {
 			);
 
 			expect(rte.getImageWrapper()!.querySelector('slot')!.name).toBe(name);
+			expect(rte.slottableRequests).toEqual([
+				{
+					data: {
+						url: '/image.jpg',
+					},
+					name: 'inline-image-placeholder',
+					slotName: name,
+				},
+			]);
 
 			rte.element.remove();
 
 			expect(onDestroy).toHaveBeenCalled();
+			expect(rte.slottableRequests).toEqual([]);
 		});
 
 		it('should allow resolving multiple times when resolving to an async generator', async () => {

@@ -48,12 +48,17 @@ export const renderComponent = (
 		...componentDef.methods.flatMap((method) =>
 			method.args.map((arg) => arg.type)
 		),
+		...componentDef.slots.flatMap((slot) =>
+			slot.dynamicProps ? [slot.dynamicProps] : []
+		),
 	].flatMap(parseTypeStr);
 	imports.push(...importsForTypes(referencesTypes));
 
 	if (isVue3Stub) {
 		typeImports.push({ name: 'SlotsType', fromModule: vueModule });
 	}
+
+	const hasScopedSlots = componentDef.slots.some((slot) => slot.dynamicProps);
 
 	/**
 	 * Forward all props to their respective attribute / dom property.
@@ -122,10 +127,41 @@ export const renderComponent = (
 	const domPropsV2Src = renderProps(props, 'vue2-domProps');
 
 	/**
-	 * All events should be forwarded
+	 * All events should be forwarded. If there are scoped slots, we also need to handle slottable-request events.
 	 */
-	const eventsSrc = componentDef.events
-		.map(({ name, type }) => {
+	const additionEventHandlersV2 = [];
+	const additionEventHandlersV3 = [];
+
+	if (hasScopedSlots) {
+		typeImports.push({
+			name: 'SlottableRequestEvent',
+			fromModule: '../../utils/slottableRequest',
+		});
+		imports.push({
+			name: 'isRemoveRequest',
+			fromModule: '../../utils/slottableRequest',
+		});
+
+		additionEventHandlersV2.push(`'slottable-request': (event: SlottableRequestEvent) => {
+		if (isRemoveRequest(event.data)) {
+			this.slottableRequests.delete(event.slotName);
+		} else {
+			this.slottableRequests.set(event.slotName, { name: event.name, data: event.data });
+		}
+		this.$forceUpdate();
+	}`);
+
+		additionEventHandlersV3.push(`'onSlottable-request': (event: SlottableRequestEvent) => {
+		if (isRemoveRequest(event.data)) {
+			this.slottableRequests.delete(event.slotName);
+		} else {
+			this.slottableRequests.set(event.slotName, { name: event.name, data: event.data });
+		}
+	}`);
+	}
+
+	const eventsSrc = [
+		...componentDef.events.map(({ name, type }) => {
 			const eventVueModels = vueModels.filter((model) =>
 				model.eventNames.includes(name)
 			);
@@ -142,11 +178,12 @@ export const renderComponent = (
 						.join('\n')}
           this.$emit('${name}', event);
         }`;
-		})
-		.join(',');
+		}),
+		...additionEventHandlersV2,
+	].join(',');
 
-	const eventsV3Src = componentDef.events
-		.map(({ name, type }) => {
+	const eventsV3Src = [
+		...componentDef.events.map(({ name, type }) => {
 			const eventVueModels = vueModels.filter((model) =>
 				model.eventNames.includes(name)
 			);
@@ -163,8 +200,9 @@ export const renderComponent = (
 							.join('\n')}
           this.$emit('${name}', event);
         }`;
-		})
-		.join(',');
+		}),
+		...additionEventHandlersV3,
+	].join(',');
 
 	const slotsDeclarationSrc = isVue3Stub
 		? `slots: Object as SlotsType<${
@@ -174,41 +212,13 @@ export const renderComponent = (
 			.map(
 				(slot) => `
 		${renderJsDoc(slot.description)}
-		"${slot.name}": Record<string, never>`
+		"${slot.name}": ${slot.dynamicProps ?? 'Record<string, never>'}`
 			)
 			.join('\n')}
 	}`
 					: 'Record<string, never>'
 		  }>,`
 		: '';
-
-	const renderNamedSlots = (syntax: 'vue2' | 'vue3') =>
-		componentDef.slots
-			.filter((slot) => slot.name !== 'default')
-			.map(
-				(slot) => `// @slot ${slot.name} ${slot.description ?? ''}
-      ${syntax === 'vue2' ? 'handleNamedSlotV2' : 'handleNamedSlotV3'}('${
-					slot.name
-				}', this.$slots['${slot.name}']${syntax === 'vue3' ? ' as any' : ''})`
-			)
-			.join(',');
-
-	const namedSlotsV2Src = renderNamedSlots('vue2');
-	const namedSlotsV3Src = renderNamedSlots('vue3');
-
-	if (namedSlotsV2Src) {
-		imports.push({
-			name: 'handleNamedSlotV2',
-			fromModule: '../../utils/slots',
-		});
-	}
-
-	if (namedSlotsV3Src) {
-		imports.push({
-			name: 'handleNamedSlotV3',
-			fromModule: '../../utils/slots',
-		});
-	}
 
 	const renderPropType = (type: TypeStr): string => {
 		const propTypes = vuePropTypes(importedTypesResolver(type));
@@ -292,6 +302,54 @@ export const renderComponent = (
   } : undefined,`
 		: '';
 
+	const namedSlots = componentDef.slots.filter(
+		(slot) => slot.name !== 'default' && !slot.dynamicProps
+	);
+	const renderNamedSlots = (syntax: 'vue2' | 'vue3') =>
+		namedSlots
+			.map(
+				(slot) => `// @slot ${slot.name} ${slot.description ?? ''}
+      ${
+				syntax === 'vue2'
+					? `handleNamedSlotV2('${slot.name}', this.$slots['${slot.name}'])`
+					: `handleNamedSlotV3('${slot.name}', (this.$slots['${slot.name}'] as any)?.())`
+			}`
+			)
+			.join(',');
+
+	if (namedSlots || hasScopedSlots) {
+		imports.push({
+			name: 'handleNamedSlotV2',
+			fromModule: '../../utils/slots',
+		});
+		imports.push({
+			name: 'handleNamedSlotV3',
+			fromModule: '../../utils/slots',
+		});
+	}
+
+	const slotsV2 = ['this.$slots.default'];
+	const slotsV3 = [
+		`// @ts-ignore
+		this.$slots.default?.()`,
+	];
+
+	if (namedSlots) {
+		slotsV2.push(renderNamedSlots('vue2'));
+		slotsV3.push(renderNamedSlots('vue3'));
+	}
+	if (hasScopedSlots) {
+		slotsV2.push(`...Array.from(this.slottableRequests.entries()).flatMap(
+				([slotName, { name, data }]) =>
+					handleNamedSlotV2(slotName, this.$scopedSlots[name]?.(data)) ?? []
+			)`);
+		slotsV3.push(`...Array.from(this.slottableRequests.entries()).flatMap(
+				([slotName, { name, data }]) =>
+					// @ts-ignore
+					handleNamedSlotV3(slotName, this.$slots[name]?.(data)) ?? []
+			)`);
+	}
+
 	// No need to render body for vue3 stubs, would run into type errors otherwise
 	const renderMethodBody = isVue3Stub
 		? 'return null;'
@@ -304,8 +362,7 @@ export const renderComponent = (
             ${domPropsV2Src ? `domProps: { ${domPropsV2Src} },` : ''}
             on: { ${eventsSrc} },
         }, [
-            this.$slots.default,
-            ${namedSlotsV2Src}
+					${slotsV2.join(',\n')}
         ]);
       }
       // @ts-ignore
@@ -314,9 +371,7 @@ export const renderComponent = (
           class: 'vvd-component',
           ${[propsV3Src, eventsV3Src].filter(Boolean).join(',')}
       } as unknown as VNodeData, [
-          // @ts-ignore
-          this.$slots.default && this.$slots.default(),
-          ${namedSlotsV3Src}
+          ${slotsV3.join(',\n')}
       ]);
     `;
 
@@ -363,7 +418,15 @@ export default defineComponent({
 			componentDef.name
 		)} | null>(null);
 
-    return { componentName, element };
+		${
+			hasScopedSlots
+				? `const slottableRequests = ref(new Map<string, { name: string; data: unknown }>());`
+				: ''
+		}
+
+    return { componentName, element ${
+			hasScopedSlots ? `, slottableRequests` : ''
+		} };
   },
   render() {
     ${renderMethodBody}

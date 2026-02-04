@@ -25,6 +25,10 @@ export const renderImports = (imports: Import[], typeImport = false) => {
 
 const typeImports = new Map([
 	['IconId', [{ name: 'IconId', fromModule: '../icons' }]],
+	[
+		'RteChildSlotProps',
+		[{ name: 'RteChildSlotProps', fromModule: '@vonage/vivid' }],
+	],
 ]);
 export const importsForTypes = (typeRefs: TypeUnion): Import[] =>
 	typeRefs.flatMap((t) => typeImports.get(t) ?? []);

@@ -9,7 +9,7 @@ import { impl } from './utils/impl';
 // Fragments are represented explicitly to allow rendering them as children of a custom rendered node or mark.
 
 export type RteView = (
-	| { type: 'node'; node: RteDocument | RteNode; children: RteView }
+	| { type: 'node'; node: RteNode; children: RteView }
 	| { type: 'mark'; mark: RteMark; children: RteView }
 	| { type: 'fragment'; content: RteView[] }
 ) & {
@@ -30,7 +30,8 @@ export type RteViewOptions = {
 				/// Element to which rendered children will be appended to. Defaults to `dom`.
 				contentDom?: HTMLElement;
 		  }
-		// TODO: Support rendering via Vue scoped slots when returning true
+		/// Request rendering through the child scoped slot
+		| true
 		/// Use default rendering
 		| false;
 };

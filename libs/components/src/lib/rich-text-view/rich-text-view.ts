@@ -9,10 +9,17 @@ import type { RteView } from '../rich-text-editor/rte/view';
 import { impl } from '../rich-text-editor/rte/utils/impl';
 import { sortedContributions } from '../rich-text-editor/rte/feature';
 import type { RteTextNode } from '../rich-text-editor/rte/document';
+import {
+	dispatchSlottableRequest,
+	removeSymbol,
+} from '../../shared/utils/slottable-request';
+
+export type RteChildSlotProps = { view: RteView };
 
 /**
  * @public
  * @component rich-text-view
+ * @dynamicSlot `RteChildSlotProps` child - Used for custom rendered children.
  */
 export class RichTextView extends VividElement {
 	/**
@@ -56,12 +63,17 @@ export class RichTextView extends VividElement {
 
 	private _slotCounter = 0;
 	private _slottedChildren = new Set<HTMLElement>();
+	private _slotRequests = new Set<string>();
 
 	private _cleanupLightDom() {
 		for (const el of this._slottedChildren) {
 			this.removeChild(el);
 		}
+		for (const slotName of this._slotRequests) {
+			dispatchSlottableRequest(this, 'child', slotName, removeSymbol);
+		}
 		this._slottedChildren.clear();
+		this._slotRequests.clear();
 		this._slotCounter = 0;
 	}
 
@@ -110,24 +122,30 @@ export class RichTextView extends VividElement {
 
 	private _handleCustomRender(
 		rteView: RteView & { type: 'node' | 'mark' },
-		customResult: { dom: HTMLElement; contentDom?: HTMLElement }
+		customResult: true | { dom: HTMLElement; contentDom?: HTMLElement }
 	): Node {
-		const { dom, contentDom = dom } = customResult;
-
 		// Custom rendered content will be in light DOM rendered via slot
-		const slotName = `view-${this._slotCounter++}`;
+		const slotName = `child-view-${this._slotCounter++}`;
 		const slot = document.createElement('slot');
 		slot.setAttribute('name', slotName);
 
-		// Child content will be rendered via nested RichTextView
-		const nestedView = document.createElement(this.tagName) as RichTextView;
-		nestedView.view = rteView.children;
-		contentDom.appendChild(nestedView);
+		if (customResult === true) {
+			this._slotRequests.add(slotName);
+			dispatchSlottableRequest(this, 'child', slotName, {
+				view: rteView,
+			});
+		} else {
+			const { dom, contentDom = dom } = customResult;
 
-		dom.setAttribute('slot', slotName);
-		this.appendChild(dom);
-		this._slottedChildren.add(dom);
+			// Child content will be rendered via nested RichTextView
+			const nestedView = document.createElement(this.tagName) as RichTextView;
+			nestedView.view = rteView.children;
+			contentDom.appendChild(nestedView);
 
+			dom.setAttribute('slot', slotName);
+			this.appendChild(dom);
+			this._slottedChildren.add(dom);
+		}
 		return slot;
 	}
 

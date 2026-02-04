@@ -12,6 +12,8 @@ import { impl } from './rte/utils/impl';
  * @slot editor-end - Displayed at the end of the scrollable editor area.
  * @slot status - Displayed between the editor viewport and the toolbar.
  * @slot text-color-picker - Color picker for the RteTextColorFeature.
+ * @dynamicSlot `{ url: string }` inline-image-placeholder - Placeholder content for inline images.
+ * @dynamicSlot `{ id: string }` suggestions-empty - Empty state if no suggestions are found.
  */
 export class RichTextEditor extends WithObservableLocale(VividElement) {
 	// --- Public Properties ---
