@@ -78,13 +78,7 @@ When set, the selected Tags are displayed outside of Searchable Select component
 
 ```vue preview 250px
 <script setup lang="ts">
-import {
-	VIcon,
-	VOption,
-	VSearchableSelect,
-	VTag,
-	VTagGroup,
-} from '@vonage/vivid-vue';
+import { VIcon, VOption, VSearchableSelect, VTag, VTagGroup } from '@vonage/vivid-vue';
 import { computed, ref } from 'vue';
 
 const countriesOptions = [
@@ -128,48 +122,18 @@ function onTagRemoved(e: CustomEvent) {
 </script>
 
 <template>
-	<VSearchableSelect
-		external-tags
-		multiple
-		label="Countries"
-		clearable
-		v-model:values="selectedCountries"
-	>
-		<VOption
-			v-for="opt in countriesOptions"
-			:key="opt.value"
-			:value="opt.value"
-			:text="opt.text"
-		>
+	<VSearchableSelect external-tags multiple label="Countries" clearable v-model:values="selectedCountries">
+		<VOption v-for="opt in countriesOptions" :key="opt.value" :value="opt.value" :text="opt.text">
 			<template #icon>
 				<VIcon :name="opt.icon" />
 			</template>
 		</VOption>
 	</VSearchableSelect>
-	<VSearchableSelect
-		external-tags
-		multiple
-		label="Company Type"
-		clearable
-		v-model:values="selectedCompanyTypes"
-	>
-		<VOption
-			v-for="opt in companyOptions"
-			:key="opt.value"
-			:value="opt.value"
-			:text="opt.text"
-		/>
+	<VSearchableSelect external-tags multiple label="Company Type" clearable v-model:values="selectedCompanyTypes">
+		<VOption v-for="opt in companyOptions" :key="opt.value" :value="opt.value" :text="opt.text" />
 	</VSearchableSelect>
 	<VTagGroup class="tag-group">
-		<VTag
-			v-for="tag in externalTags"
-			:key="`${tag.source}-${tag.value}`"
-			:label="tag.text"
-			removable
-			:data-value="tag.value"
-			:data-source="tag.source"
-			@removed="onTagRemoved"
-		/>
+		<VTag v-for="tag in externalTags" :key="`${tag.source}-${tag.value}`" :label="tag.text" removable :data-value="tag.value" :data-source="tag.source" @removed="onTagRemoved" />
 	</VTagGroup>
 </template>
 

@@ -4,7 +4,6 @@
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
-
 ```js
 import { VTag, VTagGroup } from '@vonage/vivid-vue';
 ```
