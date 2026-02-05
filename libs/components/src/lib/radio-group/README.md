@@ -50,13 +50,6 @@ registerRadioGroup('your-prefix');
 
 Use the `value` attribute to set the Radio's value.
 
-<vwc-note connotation="information">
-	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
-  
-	In <strong>Vue</strong>, the initial value of the Radio should be set using <code>initial-value</code> attribute.
-
-</vwc-note>
-
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
@@ -67,7 +60,7 @@ import { VRadio } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VRadio initial-value="my-value" label="one" />
+	<VRadio value="my-value" label="one" />
 </template>
 ```
 

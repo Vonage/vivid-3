@@ -51,9 +51,9 @@ import { VRadio, VRadioGroup } from '@vonage/vivid-vue';
 
 <template>
 	<VRadioGroup label="Pick a number" name="number">
-		<VRadio label="Number one" initial-value="1" />
-		<VRadio label="Number two" initial-value="2" />
-		<VRadio label="Number three" initial-value="3" />
+		<VRadio label="Number one" value="1" />
+		<VRadio label="Number two" value="2" />
+		<VRadio label="Number three" value="3" />
 	</VRadioGroup>
 </template>
 ```
@@ -90,9 +90,9 @@ import { VRadio, VRadioGroup } from '@vonage/vivid-vue';
 
 <template>
 	<VRadioGroup helper-text="Please choose wisely" label="Pick a number" name="number">
-		<VRadio label="Number one" initial-value="1" />
-		<VRadio label="Number two" initial-value="2" />
-		<VRadio label="Number three" initial-value="3" />
+		<VRadio label="Number one" value="1" />
+		<VRadio label="Number two" value="2" />
+		<VRadio label="Number three" value="3" />
 	</VRadioGroup>
 </template>
 ```
@@ -127,9 +127,9 @@ import { VRadio, VRadioGroup } from '@vonage/vivid-vue';
 
 <template>
 	<VRadioGroup error-text="Please, select one of the options" label="Pick a number" name="number">
-		<VRadio label="Number one" initial-value="1" />
-		<VRadio label="Number two" initial-value="2" />
-		<VRadio label="Number three" initial-value="3" />
+		<VRadio label="Number one" value="1" />
+		<VRadio label="Number two" value="2" />
+		<VRadio label="Number three" value="3" />
 	</VRadioGroup>
 </template>
 ```
@@ -167,9 +167,9 @@ import { VRadio, VRadioGroup } from '@vonage/vivid-vue';
 
 <template>
 	<VRadioGroup label="Pick a number" name="number" orientation="vertical">
-		<VRadio label="1" initial-value="1" />
-		<VRadio label="2" initial-value="2" />
-		<VRadio label="3" initial-value="3" />
+		<VRadio label="1" value="1" />
+		<VRadio label="2" value="2" />
+		<VRadio label="3" value="3" />
 	</VRadioGroup>
 </template>
 ```
@@ -274,9 +274,9 @@ import { VRadio, VRadioGroup } from '@vonage/vivid-vue';
 
 <template>
 	<VRadioGroup label="who is checked?">
-		<VRadio default-checked label="I am checked on load" initial-value="checked" />
-		<VRadio label="I am not checked on load" initial-value="not-checked-1" />
-		<VRadio label="I am not checked on load" initial-value="not-checked-2" />
+		<VRadio default-checked label="I am checked on load" value="checked" />
+		<VRadio label="I am not checked on load" value="not-checked-1" />
+		<VRadio label="I am not checked on load" value="not-checked-2" />
 	</VRadioGroup>
 </template>
 ```
@@ -311,9 +311,9 @@ import { VRadio, VRadioGroup } from '@vonage/vivid-vue';
 
 <template>
 	<VRadioGroup label="Pick a number" name="number">
-		<VRadio disabled label="1" initial-value="1" />
-		<VRadio label="2" initial-value="2" />
-		<VRadio label="3" initial-value="3" />
+		<VRadio disabled label="1" value="1" />
+		<VRadio label="2" value="2" />
+		<VRadio label="3" value="3" />
 	</VRadioGroup>
 </template>
 ```
@@ -346,9 +346,9 @@ import { VRadio, VRadioGroup } from '@vonage/vivid-vue';
 
 <template>
 	<VRadioGroup disabled label="Pick a number" name="number">
-		<VRadio label="1" initial-value="1" default-checked />
-		<VRadio label="2" initial-value="2" />
-		<VRadio label="3" initial-value="3" />
+		<VRadio label="1" value="1" default-checked />
+		<VRadio label="2" value="2" />
+		<VRadio label="3" value="3" />
 	</VRadioGroup>
 </template>
 ```
@@ -385,9 +385,9 @@ import { VRadio, VRadioGroup } from '@vonage/vivid-vue';
 
 <template>
 	<VRadioGroup label="Pick a number" name="number" readonly>
-		<VRadio label="1" initial-value="1" default-checked />
-		<VRadio label="2" initial-value="2" />
-		<VRadio label="3" initial-value="3" />
+		<VRadio label="1" value="1" default-checked />
+		<VRadio label="2" value="2" />
+		<VRadio label="3" value="3" />
 	</VRadioGroup>
 </template>
 ```
