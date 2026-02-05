@@ -1,7 +1,28 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+
+```js
+import { VTag, VTagGroup } from '@vonage/vivid-vue';
+```
+
+```vue preview
+<script setup lang="ts">
+import { VTag, VTagGroup } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VTagGroup>
+		<VTag label="Tag one" />
+		<VTag label="Tag two" />
+	</VTagGroup>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -25,22 +46,6 @@ registerTagGroup('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VTag, VTagGroup } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VTagGroup>
-		<VTag label="Tag one" />
-		<VTag label="Tag two" />
-	</VTagGroup>
-</template>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Slots
@@ -49,6 +54,28 @@ import { VTag, VTagGroup } from '@vonage/vivid-vue';
 
 Use the `icon` slot in the **Tag** component to customise icons. If set, the `icon` attribute is ignored.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VIcon, VTag, VTagGroup } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTagGroup>
+		<VTag label="With icon">
+			<template #icon><VIcon name="heart-solid" connotation="alert" /></template>
+		</VTag>
+	</VTagGroup>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-tag-group>
 	<vwc-tag label="With icon">
@@ -56,6 +83,9 @@ Use the `icon` slot in the **Tag** component to customise icons. If set, the `ic
 	</vwc-tag>
 </vwc-tag-group>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
