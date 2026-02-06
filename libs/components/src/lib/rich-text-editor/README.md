@@ -610,6 +610,10 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 - `heading3?: boolean`: Add the `heading3` (`h3`) node. Defaults to false.
 - `paragraph?: boolean`: Add the `paragraph` (`<p>`) node. Defaults to true.
 
+**Feature API:**
+
+- `disabled: boolean`: Whether the editor is disabled. When disabled, user input is prevented and UI elements are disabled.
+
 **Keyboard shortcuts:**
 
 - **Undo**: <kbd>Ctrl</kbd> + <kbd>Z</kbd> / <kbd>Cmd</kbd> + <kbd>Z</kbd>
@@ -652,6 +656,8 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 </rte-schema>
 
 ```html preview
+<vwc-button id="toggleDisabled" label="Toggle Disabled" appearance="filled"></vwc-button>
+
 <vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
 
 <script>
@@ -664,7 +670,7 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 				heading3: true,
 			}),
 		]);
-		rteComponent.instance = config.instantiateEditor({
+		const instance = config.instantiateEditor({
 			initialDocument: {
 				type: 'doc',
 				content: [
@@ -686,6 +692,12 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 					},
 				],
 			},
+		});
+		rteComponent.instance = instance;
+
+		const base = instance.feature(RteBase);
+		document.querySelector('#toggleDisabled').addEventListener('click', () => {
+			base.disabled = !base.disabled;
 		});
 	});
 </script>

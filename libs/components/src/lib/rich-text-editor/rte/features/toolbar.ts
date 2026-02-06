@@ -4,6 +4,7 @@ import { RteInstanceImpl } from '../instance';
 import { featureFacade, RteFeatureImpl, sortedContributions } from '../feature';
 import { FeatureState } from '../utils/feature-state';
 import toolbarCss from './toolbar.style.scss?inline';
+import { RteCoreImpl } from './internal/core';
 
 export interface ToolbarItemSpec {
 	section: 'history' | 'font' | 'text-style' | 'textblock' | 'insert';
@@ -61,6 +62,8 @@ export class RteToolbarFeatureImpl extends RteFeatureImpl {
 			itemsBySection.get(toolbarItem.section)!.push(toolbarItem);
 		}
 
+		const core = rte.getFeature<RteCoreImpl>('RteCore');
+
 		return [
 			this.contribution(this.hidden.plugin),
 			this.contribution(
@@ -70,6 +73,7 @@ export class RteToolbarFeatureImpl extends RteFeatureImpl {
 							popupPlacement:
 								this.config?.popupDirection === 'outward' ? 'bottom' : 'top',
 							menuOffset: 8,
+							disabled: () => core.disabled.getValue(rte),
 						});
 
 						const toolbar = (

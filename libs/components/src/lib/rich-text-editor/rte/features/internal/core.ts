@@ -17,6 +17,7 @@ import type { VividElementDefinitionContext } from '../../../../../shared/design
 import type { RteInstanceImpl } from '../../instance';
 import { defaultTextblockForMatch } from '../../utils/default-textblock';
 import uiCss from '../../utils/ui.style.scss?inline';
+import { FeatureState } from '../../utils/feature-state';
 import coreCss from './core.style.scss?inline';
 import { RteHistoryFeatureImpl } from './history';
 import { RteForeignHtmlFeatureImpl } from './foreign-html';
@@ -49,6 +50,8 @@ export const hostBridgePlugin = new Plugin<HostState | null>({
 export class RteCoreImpl extends RteFeatureImpl {
 	name = 'RteCore';
 
+	disabled = new FeatureState(false);
+
 	override getStyles() {
 		return [
 			this.contribution(proseMirrorCss),
@@ -59,6 +62,43 @@ export class RteCoreImpl extends RteFeatureImpl {
 
 	override getPlugins(rte: RteInstanceImpl) {
 		return [
+			this.contribution(this.disabled.plugin),
+			this.contribution(
+				new Plugin({
+					props: {
+						editable: () => !this.disabled.getValue(rte),
+						handleDOMEvents: {
+							click: (_view, event) => {
+								if (this.disabled.getValue(rte)) {
+									event.preventDefault();
+									return true;
+								}
+								return false;
+							},
+						},
+					},
+					view: (view) => {
+						const popovers = (
+							view.dom.getRootNode() as ShadowRoot
+						).querySelector('.popovers')!;
+
+						const updatePopoversDisabled = () => {
+							popovers.classList.toggle(
+								'popovers--disabled',
+								this.disabled.getValue(rte)
+							);
+						};
+
+						updatePopoversDisabled();
+
+						return {
+							update: () => {
+								updatePopoversDisabled();
+							},
+						};
+					},
+				})
+			),
 			this.contribution(
 				keymap({
 					...baseKeymap,
