@@ -88,7 +88,7 @@ import { VTextField } from '@vonage/vivid-vue';
 
 const fieldRef = ref<InstanceType<typeof VTextField> | null>(null);
 onMounted(() => {
-	fieldRef.value?.$el?.checkValidity();
+	fieldRef.value?.element?.checkValidity();
 });
 </script>
 
