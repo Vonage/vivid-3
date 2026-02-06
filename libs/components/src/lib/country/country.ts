@@ -4,10 +4,10 @@ import { getFlagIconName } from './country-code-to-flag-icon';
 
 /**
  * @public
- * @component country-indicator
+ * @component country
  * @slot icon - Optional custom flag or graphic. When `code` is set and no content is slotted, a default flag icon (Vivid/Vonage icon set) is shown.
  */
-export class CountryIndicator extends VividElement {
+export class Country extends VividElement {
 	/**
 	 * ISO 3166-1 alpha-2 country code (e.g. "GB", "UK", "US"). When set, the component shows the matching flag icon and the code (e.g. "UK") automatically.
 	 *

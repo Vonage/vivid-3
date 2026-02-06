@@ -2587,17 +2587,24 @@
 			}
 		},
 		{
-			"name": "country-indicator",
-			"className": "CountryIndicator",
-			"registerFunctionName": "registerCountryIndicator",
+			"name": "country",
+			"className": "Country",
+			"registerFunctionName": "registerCountry",
 			"description": "",
 			"props": [
 				{
-					"name": "countryCode",
-					"description": "ISO 3166-1 alpha-2 country code (e.g. \"GB\", \"UK\", \"US\"). When set, the component shows the matching flag icon and the country code automatically.",
+					"name": "code",
+					"description": "ISO 3166-1 alpha-2 country code (e.g. \"GB\", \"UK\", \"US\"). When set, the component shows the matching flag icon and the code (e.g. \"UK\") automatically.",
 					"type": "string",
-					"attributeName": "country-code",
-					"propertyName": "countryCode"
+					"attributeName": "code",
+					"propertyName": "code"
+				},
+				{
+					"name": "label",
+					"description": "Optional label to override the displayed text. When set, this is shown instead of the country code (e.g. for obscure countries where \"Saint Helena\" is clearer than \"SH\").",
+					"type": "string",
+					"attributeName": "label",
+					"propertyName": "label"
 				}
 			],
 			"events": [
@@ -2637,7 +2644,7 @@
 			"slots": [
 				{
 					"name": "icon",
-					"description": "Optional custom flag or graphic. When country-code is set and no content is slotted, a default flag icon is shown."
+					"description": "Optional custom flag or graphic. When `code` is set and no content is slotted, a default flag icon (Vivid/Vonage icon set) is shown."
 				}
 			],
 			"testUtils": {
@@ -8565,13 +8572,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "headline",
-					"description": "The status title (e.g. \"Positive\", \"Info\", \"Warning\", \"Alert\").",
-					"type": "string",
-					"attributeName": "headline",
-					"propertyName": "headline"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the status should have. Determines icon and color.",
 					"type": "'success' | 'information' | 'warning' | 'alert'",
@@ -8580,10 +8580,17 @@
 				},
 				{
 					"name": "icon",
-					"description": "A decorative icon the custom element should have. When not set, icon is derived from connotation.",
+					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
 					"attributeName": "icon",
 					"propertyName": "icon"
+				},
+				{
+					"name": "status",
+					"description": "The status title (e.g. \"Positive\", \"Info\", \"Warning\", \"Alert\").",
+					"type": "string",
+					"attributeName": "status",
+					"propertyName": "status"
 				}
 			],
 			"events": [
@@ -8637,7 +8644,7 @@
 					{ "name": "focus", "args": ["focus", "#locator"] },
 					{ "name": "blur", "args": ["blur", "#locator"] }
 				],
-				"queries": [],
+				"queries": [{ "name": "icon", "args": ["affixIcon"] }],
 				"refs": []
 			}
 		},

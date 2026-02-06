@@ -1,21 +1,21 @@
 import { elementUpdated, fixture } from '@repo/shared';
-import { CountryIndicator } from './country-indicator';
+import { Country } from './country';
 import '.';
 
-const COMPONENT_TAG = 'vwc-country-indicator';
+const COMPONENT_TAG = 'vwc-country';
 
-describe('vwc-country-indicator', () => {
-	let element: CountryIndicator;
+describe('vwc-country', () => {
+	let element: Country;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as CountryIndicator;
+		)) as Country;
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-country-indicator', async () => {
-			expect(element).toBeInstanceOf(CountryIndicator);
+		it('should be initialized as a vwc-country', async () => {
+			expect(element).toBeInstanceOf(Country);
 		});
 
 		it('should allow being created via createElement', () => {

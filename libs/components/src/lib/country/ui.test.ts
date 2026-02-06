@@ -6,12 +6,12 @@ import {
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['country-indicator'];
+const components = ['country'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<div style="margin: 5px;">
-			<vwc-country-indicator code="UK"></vwc-country-indicator>
+			<vwc-country code="UK"></vwc-country>
 		</div>
 	`;
 
@@ -26,5 +26,5 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		template,
 	});
 
-	await takeScreenshot(page, 'country-indicator');
+	await takeScreenshot(page, 'country');
 });

@@ -1,11 +1,11 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { CountryIndicator } from './country-indicator';
+import { Country } from './country';
 import '.';
 
-const COMPONENT_TAG = 'vwc-country-indicator';
+const COMPONENT_TAG = 'vwc-country';
 
-describe('a11y: vwc-country-indicator', () => {
-	let element: CountryIndicator;
+describe('a11y: vwc-country', () => {
+	let element: Country;
 
 	beforeAll(async () => {
 		await customElements.whenDefined(COMPONENT_TAG);
@@ -14,7 +14,7 @@ describe('a11y: vwc-country-indicator', () => {
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG} code="UK"></${COMPONENT_TAG}>`
-		)) as CountryIndicator;
+		)) as Country;
 	});
 
 	it('should pass html a11y test', async () => {

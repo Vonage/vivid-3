@@ -1,18 +1,16 @@
 import { html, when } from '@microsoft/fast-element';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { Icon } from '../icon/icon';
-import type { CountryIndicator } from './country-indicator';
+import type { Country } from './country';
 
-export const CountryIndicatorTemplate = (
-	context: VividElementDefinitionContext
-) => {
+export const CountryTemplate = (context: VividElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
-	return html<CountryIndicator>`
+	return html<Country>`
 		<div class="base">
 			<slot name="icon" class="icon">
 				${when(
 					(x) => x.flagIconName,
-					html<CountryIndicator>`<${iconTag}
+					html<Country>`<${iconTag}
 						size="-4"
 						name="${(x) => x.flagIconName!}"
 						aria-hidden="true"
@@ -21,9 +19,7 @@ export const CountryIndicatorTemplate = (
 			</slot>
 			${when(
 				(x) => x.displayText,
-				html<CountryIndicator>`<span class="text"
-					>${(x) => x.displayText!}</span
-				>`
+				html<Country>`<span class="text">${(x) => x.displayText!}</span>`
 			)}
 		</div>
 	`;

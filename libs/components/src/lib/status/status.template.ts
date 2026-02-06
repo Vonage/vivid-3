@@ -39,7 +39,9 @@ export const StatusTemplate = (context: VividElementDefinitionContext) => {
 			${(x) => affixIconTemplate(getEffectiveIcon(x), IconWrapper.Slot)}
 			<div class="text">
 				${when((x) => x.status, getHeaderTemplate())}
-				<slot class="description"></slot>
+				<div class="description">
+					<slot></slot>
+				</div>
 			</div>
 		</div>
 	`;

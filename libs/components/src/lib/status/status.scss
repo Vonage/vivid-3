@@ -13,25 +13,21 @@
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/tokens/scss/size.variables' as size;
 
-:host {
-	display: inline-flex;
-}
-
 .base {
 	@include connotation.connotation(status);
 	@include appearance.appearance;
 
 	& {
-		display: flex;
+		display: inline-flex;
 		align-items: center;
-		column-gap: 12px;
+		column-gap: 8px;
 	}
 }
 
 slot[name='icon'],
 .icon {
 	color: var(#{appearance.get-appearance-token(outline)});
-	font-size: #{size.$vvd-size-super-condensed};
+	font-size: calc(#{size.$vvd-size-ultra-condensed} * 0.8);
 }
 
 .text {
@@ -47,10 +43,10 @@ slot[name='icon'],
 
 .headline {
 	color: var(#{appearance.get-appearance-token(outline)});
-	font: var(#{constants.$vvd-typography-base-bold});
+	font: var(#{constants.$vvd-typography-base-condensed-bold});
 }
 
-.description::slotted(*) {
+.description {
 	color: var(#{constants.$vvd-color-neutral-600});
 	font: var(#{constants.$vvd-typography-base-condensed});
 }

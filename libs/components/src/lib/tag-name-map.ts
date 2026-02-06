@@ -17,7 +17,7 @@ import type {
 	VwcColorPickerElement,
 	VwcComboboxElement,
 	VwcContextualHelpElement,
-	VwcCountryIndicatorElement,
+	VwcCountryElement,
 	VwcDataGridCellElement,
 	VwcDataGridElement,
 	VwcDataGridRowElement,
@@ -99,7 +99,7 @@ type DefaultVividTagNameMap = {
 	'vwc-color-picker': VwcColorPickerElement;
 	'vwc-contextual-help': VwcContextualHelpElement;
 	'vwc-combobox': VwcComboboxElement;
-	'vwc-country-indicator': VwcCountryIndicatorElement;
+	'vwc-country': VwcCountryElement;
 	'vwc-data-grid-cell': VwcDataGridCellElement;
 	'vwc-data-grid': VwcDataGridElement;
 	'vwc-data-grid-row': VwcDataGridRowElement;
