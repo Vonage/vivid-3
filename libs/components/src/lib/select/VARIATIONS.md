@@ -9,6 +9,29 @@ The `label` attribute provides a short description of the purpose of the Select.
 <p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect label="Title" placeholder="Select an option">
+		<VOption value="mr" text="Mr" />
+		<VOption value="mrs" text="Mrs" />
+		<VOption value="miss" text="Miss" />
+		<VOption value="ms" text="Ms" />
+	</VSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 270px
 <vwc-select label="Title" placeholder="Select an option">
 	<vwc-option value="mr" text="Mr"></vwc-option>
@@ -18,11 +41,44 @@ The `label` attribute provides a short description of the purpose of the Select.
 </vwc-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Helper Text
 
 The `helper-text` attribute provides additional information about the purpose of the Select.
 
 To add HTML to the helper text, use the [helper-text slot](/components/select/code/#helper-text-slot).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 320px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect helper-text="We use this information in to help inform our marketing strategy" label="Where did you hear about us?" placeholder="Select an option" class="marketing">
+		<VOption value="friend" text="A friend" />
+		<VOption value="net" text="Internet search" />
+		<VOption value="online-ad" text="Online advert" />
+		<VOption value="radio-ad" text="Radio advert" />
+		<VOption value="other" text="Other" />
+	</VSelect>
+</template>
+
+<style scoped>
+.marketing {
+	min-inline-size: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 320px
 <vwc-select helper-text="We use this information in to help inform our marketing strategy" label="Where did you hear about us?" placeholder="Select an option" class="marketing">
@@ -40,6 +96,9 @@ To add HTML to the helper text, use the [helper-text slot](/components/select/co
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Placeholder Text
 
 The `placeholder` attribute provides some text to be displayed when no option has been selected.
@@ -48,6 +107,29 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 	<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect placeholder="Select an option" label="Title">
+		<VOption value="mr" text="Mr" />
+		<VOption value="mrs" text="Mrs" />
+		<VOption value="miss" text="Miss" />
+		<VOption value="ms" text="Ms" />
+	</VSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-select placeholder="Select an option" label="Title">
@@ -58,9 +140,45 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 </vwc-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Contextual Help
 
 You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 320px
+<script setup lang="ts">
+import { VContextualHelp, VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect label="What's your favorite club?" placeholder="Select an option" class="sport">
+		<VOption value="friend" text="Ironclad Rovers FC" />
+		<VOption value="net" text="Stormhaven United" />
+		<VOption value="online-ad" text="Blackpeak Athletic" />
+		<VOption value="radio-ad" text="Crimson Harbor FC" />
+		<VOption value="other" text="Valewind Wanderers" />
+		<template #contextual-help>
+			<VContextualHelp>Choose your favorite club</VContextualHelp>
+		</template>
+	</VSelect>
+</template>
+
+<style scoped>
+.sport {
+	min-inline-size: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 320px
 <vwc-select label="What's your favorite club?" placeholder="Select an option" class="sport">
@@ -79,9 +197,34 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Selected Option
 
 To provide a selected option, use the `selected` attribute on the selected [Option](/components/option/#selected).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<template>
+	<VSelect label="Title" class="select">
+		<VOption value="mr" text="Mr" defaultSelected />
+		<VOption value="mrs" text="Mrs" />
+		<VOption value="miss" text="Miss" />
+		<VOption value="ms" text="Ms" />
+	</VSelect>
+</template>
+<script setup lang="ts">
+import { VSelect, VOption } from '@vonage/vivid-vue';
+</script>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-select placeholder="Select an option" label="Title">
@@ -92,11 +235,44 @@ To provide a selected option, use the `selected` attribute on the selected [Opti
 </vwc-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Selected Option Label
 
 Use the `label` attribute on the [Option](/components/option/#label) component to proviode a different label to be displayed when the option is selected.
 
 In the example below, the state code is displayed when selected but the full state name is displayed in the option list.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 320px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect label="US state code" class="state">
+		<VOption value="al" text="Alabama" label="AL" defaultSelected />
+		<VOption value="ak" text="Alaska" label="AK" />
+		<VOption value="az" text="Arizona" label="AZ" />
+		<VOption value="ar" text="Arkansas" label="AR" />
+		<VOption value="ca" text="California" label="CA" />
+	</VSelect>
+</template>
+
+<style scoped>
+.state {
+	min-inline-size: 100px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 320px
 <vwc-select placeholder="Select a state" label="US state code" class="state">
@@ -114,11 +290,43 @@ In the example below, the state code is displayed when selected but the full sta
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Validation Feedback
 
 ### Error Text
 
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect error-text="Madrid is incorrect" label="What is the capital of Italy?" class="question" v-model="selectedAnswer">
+		<VOption value="madrid" text="Madrid" defaultSelected />
+		<VOption value="paris" text="Paris" />
+		<VOption value="london" text="London" />
+		<VOption value="rome" text="Rome" />
+	</VSelect>
+</template>
+
+<style scoped>
+.question {
+	min-inline-size: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-select error-text="Madrid is incorrect" placeholder="Select an option" label="What is the capital of Italy?" class="question">
@@ -135,9 +343,41 @@ The `error-text` attribute provides a custom error message. Any current error st
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Success Text
 
 The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect success-text="Rome is the correct answer" label="What is the capital of Italy?" class="question" v-model="selectedCorrect">
+		<VOption value="madrid" text="Madrid" />
+		<VOption value="paris" text="Paris" />
+		<VOption value="london" text="London" />
+		<VOption value="rome" text="Rome" defaultSelected />
+	</VSelect>
+</template>
+
+<style scoped>
+.question {
+	min-inline-size: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-select success-text="Rome is the correct answer" placeholder="Select an option" label="What is the capital of Italy?" class="question">
@@ -154,6 +394,9 @@ The `success-text` attribute provides a custom success message. Any current erro
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Icon
 
 The `icon` attribute can set to display an icon from the [icon library](/icons/icons-gallery/) on the component.
@@ -166,6 +409,35 @@ The preferred way to add icons is to use the [icon slot](/components/select/code
 The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect label="Results per page" class="results" icon="filter-line">
+		<VOption value="25" text="25 per page" />
+		<VOption value="50" text="50 per page" />
+		<VOption value="75" text="75 per page" />
+		<VOption value="100" text="100 per page" />
+	</VSelect>
+</template>
+
+<style scoped>
+.results {
+	inline-size: 190px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-select label="Results per page" class="results" icon="filter-line">
@@ -182,10 +454,52 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Scale
 
 The `scale` attribute controls the select element display size.
 Use `condensed` in situations when space is limited, for example, inside a Data Grid cell.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VSelect scale="normal" label="Normal" placeholder="Select an option">
+			<VOption value="mr" text="Mr" />
+			<VOption value="mrs" text="Mrs" />
+			<VOption value="miss" text="Miss" />
+			<VOption value="ms" text="Ms" />
+		</VSelect>
+
+		<VSelect scale="condensed" label="Condensed" placeholder="Select an option">
+			<VOption value="mr" text="Mr" />
+			<VOption value="mrs" text="Mrs" />
+			<VOption value="miss" text="Miss" />
+			<VOption value="ms" text="Ms" />
+		</VSelect>
+	</div>
+</template>
+
+<style scoped>
+.container {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <div class="container">
@@ -212,6 +526,9 @@ Use `condensed` in situations when space is limited, for example, inside a Data 
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 <vwc-note connotation="information" headline="Scale instead of Size">
 	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 	<p>The reason for using <code>scale</code> for form elements and not <code>size</code> (as used in other components such as Button), is that <code>size</code> is a HTML attribute that can be used on <code>input</code> elements (and also Text Field) to control the width of the input.</p>
@@ -220,6 +537,45 @@ Use `condensed` in situations when space is limited, for example, inside a Data 
 ## Shape
 
 The `shape` attribute controls the border radius of the Select input element.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VSelect shape="rounded" label="Rounded" placeholder="Select an option">
+			<VOption value="mr" text="Mr" />
+			<VOption value="mrs" text="Mrs" />
+			<VOption value="miss" text="Miss" />
+			<VOption value="ms" text="Ms" />
+		</VSelect>
+
+		<VSelect shape="pill" label="Pill" placeholder="Select an option">
+			<VOption value="mr" text="Mr" />
+			<VOption value="mrs" text="Mrs" />
+			<VOption value="miss" text="Miss" />
+			<VOption value="ms" text="Ms" />
+		</VSelect>
+	</div>
+</template>
+
+<style scoped>
+.container {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <div class="container">
@@ -246,10 +602,52 @@ The `shape` attribute controls the border radius of the Select input element.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Appearance
 
 The `appearance` attribute controls the style of the select element.<br />
 Use `ghost` in combination with a containing element which provides a border, for example when used inside the [leading action items slot of Text Field](/components/text-field/code/#leading-action-items-slot).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VSelect appearance="fieldset" label="Fieldset" placeholder="Select an option">
+			<VOption value="mr" text="Mr" />
+			<VOption value="mrs" text="Mrs" />
+			<VOption value="miss" text="Miss" />
+			<VOption value="ms" text="Ms" />
+		</VSelect>
+
+		<VSelect appearance="ghost" label="Ghost" placeholder="Select an option">
+			<VOption value="mr" text="Mr" />
+			<VOption value="mrs" text="Mrs" />
+			<VOption value="miss" text="Miss" />
+			<VOption value="ms" text="Ms" />
+		</VSelect>
+	</div>
+</template>
+
+<style scoped>
+.container {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <div class="container">
@@ -276,11 +674,43 @@ Use `ghost` in combination with a containing element which provides a border, fo
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Multiple
 
 The `multiple` attribute allows the user to select more than one option. When in the multiple selection state, the options will always be visible.
 
 For a better user experience, consider using a [Checkbox](/components/checkbox/) list or the [Searchable Select](/components/searchable-select/) if there are many options to pick from.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect multiple label="Which countries have you visited?" class="countries">
+		<VOption value="germany" text="Germany" />
+		<VOption value="italy" text="Italy" defaultSelected />
+		<VOption value="spain" text="Spain" defaultSelected />
+		<VOption value="usa" text="USA" />
+	</VSelect>
+</template>
+
+<style scoped>
+.countries {
+	width: 250px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-select multiple label="Which countries have you visited?" class="countries">
@@ -297,9 +727,35 @@ For a better user experience, consider using a [Checkbox](/components/checkbox/)
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 The `disabled` attribute disables the select element.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect disabled label="Title" placeholder="Select an option">
+		<VOption value="mr" text="Mr" />
+		<VOption value="mrs" text="Mrs" />
+		<VOption value="miss" text="Miss" />
+		<VOption value="ms" text="Ms" />
+	</VSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-select disabled label="Title" placeholder="Select an option">
@@ -309,3 +765,6 @@ The `disabled` attribute disables the select element.
 	<vwc-option value="ms" text="Ms"></vwc-option>
 </vwc-select>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
