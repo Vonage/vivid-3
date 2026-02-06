@@ -11,6 +11,98 @@ It accepts an array of objects with `value` and `label` properties: `[{"label": 
 	
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 180px
+<script setup lang="ts">
+import { VSimpleColorPicker, VButton, VIcon } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const swatches = [
+	{
+		label: 'Black',
+		value: '#000000',
+	},
+	{
+		label: 'Maroon',
+		value: '#6E0000',
+	},
+	{
+		label: 'Burnt Orange',
+		value: '#BE5702',
+	},
+	{
+		label: 'Forest Green',
+		value: '#183A1E',
+	},
+	{
+		label: 'Navy Blue',
+		value: '#0E306D',
+	},
+	{
+		label: 'Indigo',
+		value: '#440291',
+	},
+	{
+		label: 'Magenta',
+		value: '#620256',
+	},
+	{
+		label: 'Grey',
+		value: '#757575',
+	},
+	{
+		label: 'Red',
+		value: '#E61D1D',
+	},
+	{
+		label: 'Yellow',
+		value: '#FA9F00',
+	},
+	{
+		label: 'Green',
+		value: '#1C8731',
+	},
+	{
+		label: 'Blue',
+		value: '#0276D5',
+	},
+	{
+		label: 'Purple',
+		value: '#9941FF',
+	},
+	{
+		label: 'Pink',
+		value: '#D6219C',
+	},
+];
+
+const selectedColor = ref('#000000');
+const buttonLabel = ref('Pick color');
+
+const handleColorChange = (event: CustomEvent) => {
+	selectedColor.value = event.target.value;
+	buttonLabel.value = event.target.value ? `Pick color, ${event.target.value} selected.` : 'Pick color';
+};
+</script>
+
+<template>
+	<VSimpleColorPicker :swatches="swatches" @change="handleColorChange">
+		<template #anchor>
+			<VButton :aria-label="buttonLabel" size="super-condensed" shape="pill" appearance="outlined">
+				<template #icon><VIcon name="textcolor-solid" :style="{ color: selectedColor }" /></template>
+			</VButton>
+		</template>
+	</VSimpleColorPicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 180px
 <vwc-simple-color-picker id="picker">
 	<vwc-button aria-label="Pick color" id="button" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
@@ -90,12 +182,75 @@ It accepts an array of objects with `value` and `label` properties: `[{"label": 
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Swatches Per Row
 
 The `swatches-per-row` attribute controls how many swatches should be displayed in a single row of the color palette's grid.
 
 - Type: `number`
 - Default: `7`
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 160px
+<script setup lang="ts">
+import { VSimpleColorPicker, VButton, VIcon } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const swatches = [
+	{
+		label: 'Red',
+		value: '#E61D1D',
+	},
+	{
+		label: 'Yellow',
+		value: '#FA9F00',
+	},
+	{
+		label: 'Green',
+		value: '#1C8731',
+	},
+	{
+		label: 'Blue',
+		value: '#0276D5',
+	},
+	{
+		label: 'Purple',
+		value: '#9941FF',
+	},
+	{
+		label: 'Pink',
+		value: '#D6219C',
+	},
+];
+
+const selectedColor = ref('#000000');
+const buttonLabel = ref('Pick color');
+
+const handleColorChange = (event: CustomEvent) => {
+	selectedColor.value = event.target.value;
+	buttonLabel.value = event.target.value ? `Pick color, ${event.target.value} selected.` : 'Pick color';
+};
+</script>
+
+<template>
+	<VSimpleColorPicker :swatches="swatches" :swatches-per-row="3" @change="handleColorChange">
+		<template #anchor>
+			<VButton :aria-label="buttonLabel" size="super-condensed" shape="pill" appearance="outlined">
+				<template #icon><VIcon name="textcolor-solid" :style="{ color: selectedColor }" /></template>
+			</VButton>
+		</template>
+	</VSimpleColorPicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 160px
 <vwc-simple-color-picker id="picker" swatches-per-row="3">
@@ -145,12 +300,115 @@ The `swatches-per-row` attribute controls how many swatches should be displayed 
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Placement
 
 The `placement` attribute sets the default placement of the Simple Color Picker's popup around its anchor element.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `top-start`
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview center 160px
+<script setup lang="ts">
+import { VSimpleColorPicker, VButton, VIcon } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const swatches = [
+	{
+		label: 'Black',
+		value: '#000000',
+	},
+	{
+		label: 'Maroon',
+		value: '#6E0000',
+	},
+	{
+		label: 'Burnt Orange',
+		value: '#BE5702',
+	},
+	{
+		label: 'Forest Green',
+		value: '#183A1E',
+	},
+	{
+		label: 'Navy Blue',
+		value: '#0E306D',
+	},
+	{
+		label: 'Indigo',
+		value: '#440291',
+	},
+	{
+		label: 'Magenta',
+		value: '#620256',
+	},
+	{
+		label: 'Grey',
+		value: '#757575',
+	},
+	{
+		label: 'Red',
+		value: '#E61D1D',
+	},
+	{
+		label: 'Yellow',
+		value: '#FA9F00',
+	},
+	{
+		label: 'Green',
+		value: '#1C8731',
+	},
+	{
+		label: 'Blue',
+		value: '#0276D5',
+	},
+	{
+		label: 'Purple',
+		value: '#9941FF',
+	},
+	{
+		label: 'Pink',
+		value: '#D6219C',
+	},
+];
+
+const selectedColor = ref('#000000');
+const buttonLabel = ref('Pick color');
+
+const handleColorChange = (event: CustomEvent) => {
+	selectedColor.value = event.target.value;
+	buttonLabel.value = event.target.value ? `Pick color, ${event.target.value} selected.` : 'Pick color';
+};
+</script>
+
+<template>
+	<div class="wrapper">
+		<VSimpleColorPicker placement="top" :swatches="swatches" @change="handleColorChange">
+			<template #anchor>
+				<VButton :aria-label="buttonLabel" size="super-condensed" shape="pill" appearance="outlined">
+					<template #icon><VIcon name="textcolor-solid" :style="{ color: selectedColor }" /></template>
+				</VButton>
+			</template>
+		</VSimpleColorPicker>
+	</div>
+</template>
+
+<style>
+.wrapper {
+	padding-block-start: 100px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview center 160px
 <div class="wrapper">
@@ -239,3 +497,6 @@ The `placement` attribute sets the default placement of the Simple Color Picker'
 	});
 </script>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>

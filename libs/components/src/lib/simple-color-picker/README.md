@@ -1,7 +1,67 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 120px
+<script setup lang="ts">
+import { VSimpleColorPicker, VButton, VIcon } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const swatches = [
+	{
+		label: 'Black',
+		value: '#000000',
+	},
+	{
+		label: 'Red',
+		value: '#E61D1D',
+	},
+	{
+		label: 'Yellow',
+		value: '#FA9F00',
+	},
+	{
+		label: 'Green',
+		value: '#1C8731',
+	},
+	{
+		label: 'Blue',
+		value: '#0276D5',
+	},
+	{
+		label: 'Purple',
+		value: '#9941FF',
+	},
+	{
+		label: 'Pink',
+		value: '#D6219C',
+	},
+];
+
+const selectedColor = ref('#000000');
+const buttonLabel = ref('Pick color');
+
+const handleColorChange = (event: CustomEvent) => {
+	selectedColor.value = event.target.value;
+	buttonLabel.value = event.target.value ? `Pick color, ${event.target.value} selected.` : 'Pick color';
+};
+</script>
+
+<template>
+	<VSimpleColorPicker :swatches="swatches" @change="handleColorChange">
+		<template #anchor>
+			<VButton :aria-label="buttonLabel" size="super-condensed" shape="pill" appearance="outlined">
+				<template #icon><VIcon name="textcolor-solid" :style="{ color: selectedColor }" /></template>
+			</VButton>
+		</template>
+	</VSimpleColorPicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -75,7 +135,17 @@ registerSimpleColorPicker('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+</vwc-tabs>
+
+## Open
+
+Use the `open` attribute to indicate whether the Simple Color Picker's popup should be open.
+
+- Type: `boolean`
+- Default: `false`
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
 ```vue preview 120px
@@ -124,23 +194,19 @@ const handleColorChange = (event: CustomEvent) => {
 </script>
 
 <template>
-	<VSimpleColorPicker :swatches="swatches" @change="handleColorChange">
-		<VButton :aria-label="buttonLabel" slot="anchor" size="super-condensed" shape="pill" appearance="outlined">
-			<VIcon slot="icon" name="textcolor-solid" :style="{ color: selectedColor }" />
-		</VButton>
+	<VSimpleColorPicker open :swatches="swatches" @change="handleColorChange">
+		<template #anchor>
+			<VButton :aria-label="buttonLabel" size="super-condensed" shape="pill" appearance="outlined">
+				<template #icon><VIcon name="textcolor-solid" :style="{ color: selectedColor }" /></template>
+			</VButton>
+		</template>
 	</VSimpleColorPicker>
 </template>
 ```
 
 </vwc-tab-panel>
-</vwc-tabs>
-
-## Open
-
-Use the `open` attribute to indicate whether the Simple Color Picker's popup should be open.
-
-- Type: `boolean`
-- Default: `false`
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 120px
 <vwc-simple-color-picker open id="picker">
@@ -193,6 +259,9 @@ Use the `open` attribute to indicate whether the Simple Color Picker's popup sho
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Anchor
 
 <vwc-note connotation="information" headline="Prefer using the anchot slot">
@@ -210,6 +279,61 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 **Pay attention to the source order** the components to ensure they can be operated logically using only a keyboard.
 
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 130px
+<script setup lang="ts">
+import { VSimpleColorPicker, VButton, VIcon } from '@vonage/vivid-vue';
+import { useTemplateRef, onMounted } from 'vue';
+
+const swatches = [
+	{
+		label: 'Red',
+		value: '#E61D1D',
+	},
+	{
+		label: 'Yellow',
+		value: '#FA9F00',
+	},
+	{
+		label: 'Green',
+		value: '#1C8731',
+	},
+	{
+		label: 'Blue',
+		value: '#0276D5',
+	},
+	{
+		label: 'Black',
+		value: '#000000',
+	},
+	{
+		label: 'Light Grey',
+		value: '#CCCCCC',
+	},
+];
+const button = useTemplateRef<InstanceType<typeof VButton>>('button');
+const picker = useTemplateRef<InstanceType<typeof VSimpleColorPicker>>('picker');
+
+onMounted(() => {
+	if (!button.value || !picker.value) return;
+	picker.value.element.anchor = button.value.element;
+});
+</script>
+<template>
+	<VSimpleColorPicker ref="picker" :swatches="swatches" :swatches-per-row="6" />
+	<VButton ref="button" label="Toggle Color Picker" size="normal" shape="rounded" appearance="filled">
+		<template #icon><VIcon name="palette-solid" /></template>
+	</VButton>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 130px
 <vwc-simple-color-picker anchor="button" swatches-per-row="6" id="picker"></vwc-simple-color-picker>
@@ -250,11 +374,66 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 ### Anchor Slot
 
 Simple Color Picker needs to be anchored to an element. Place the anchor element inside the `anchor` slot of the Simple Color Picker. It is recommended to use the [Button](/components/button/) component as the anchor element.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 130px
+<script setup lang="ts">
+import { VSimpleColorPicker, VButton, VIcon } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const swatches = [
+	{
+		label: 'Red',
+		value: '#E61D1D',
+	},
+	{
+		label: 'Yellow',
+		value: '#FA9F00',
+	},
+	{
+		label: 'Green',
+		value: '#1C8731',
+	},
+	{
+		label: 'Blue',
+		value: '#0276D5',
+	},
+	{
+		label: 'Black',
+		value: '#000000',
+	},
+	{
+		label: 'Light Grey',
+		value: '#CCCCCC',
+	},
+];
+</script>
+
+<template>
+	<VSimpleColorPicker :swatches="swatches" :swatches-per-row="6">
+		<template #anchor>
+			<VButton label="Toggle Color Picker" size="normal" shape="rounded" appearance="filled">
+				<template #icon><VIcon name="palette-solid" /></template>
+			</VButton>
+		</template>
+	</VSimpleColorPicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 130px
 <vwc-simple-color-picker id="picker" swatches-per-row="6">
@@ -294,6 +473,9 @@ Simple Color Picker needs to be anchored to an element. Place the anchor element
 	picker.swatches = swatches;
 </script>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
