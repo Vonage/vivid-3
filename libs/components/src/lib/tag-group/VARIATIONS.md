@@ -4,15 +4,59 @@
 
 The `label` attribute adds label text to the **Tag**.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTag, VTagGroup } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTagGroup>
+		<VTag label="Tag label" />
+	</VTagGroup>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-tag-group>
 	<vwc-tag label="Tag label"></vwc-tag>
 </vwc-tag-group>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Selectable
 
 The `selectable` attribute enables the selectable behaviour. Use the `selected` attribute to mark the Tag as selected.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTag, VTagGroup } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTagGroup>
+		<VTag selectable label="Selectable tag" />
+		<VTag selected selectable label="Selected tag" />
+	</VTagGroup>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-tag-group>
@@ -21,9 +65,33 @@ The `selectable` attribute enables the selectable behaviour. Use the `selected` 
 </vwc-tag-group>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Removable
 
 The `removable` attribute enables the removable behaviour. Clicking the remove icon removes the Tag from the Tag Group
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTag, VTagGroup } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTagGroup>
+		<VTag removable label="Removable tag 1" />
+		<VTag removable label="Removable tag 2" />
+	</VTagGroup>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-tag-group>
@@ -32,9 +100,34 @@ The `removable` attribute enables the removable behaviour. Clicking the remove i
 </vwc-tag-group>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Appearance
 
 The `appearance` attribute sets the Tag's appearance.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTag, VTagGroup } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTagGroup>
+		<VTag label="Subtle" appearance="subtle" />
+		<VTag label="Subtle-Light" appearance="subtle-light" />
+		<VTag label="Duotone" appearance="duotone" />
+	</VTagGroup>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-tag-group>
@@ -44,10 +137,60 @@ The `appearance` attribute sets the Tag's appearance.
 </vwc-tag-group>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Connotation
 
 The `connotation` attribute sets the Tag's connotation.
 It accepts a subset of predefined values.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTag, VTagGroup } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<p>Subtle tag with connotation</p>
+	<VTagGroup>
+		<VTag label="Accent" appearance="subtle" connotation="accent" />
+		<VTag label="CTA" appearance="subtle" connotation="cta" />
+		<VTag label="Information" appearance="subtle" connotation="information" />
+		<VTag label="Announcement" appearance="subtle" connotation="announcement" />
+		<VTag label="Success" appearance="subtle" connotation="success" />
+		<VTag label="Warning" appearance="subtle" connotation="warning" />
+		<VTag label="Alert" appearance="subtle" connotation="alert" />
+	</VTagGroup>
+	<p>Subtle-Light Tag with connotation</p>
+	<VTagGroup>
+		<VTag label="Accent" appearance="subtle-light" connotation="accent" />
+		<VTag label="CTA" appearance="subtle-light" connotation="cta" />
+		<VTag label="Information" appearance="subtle-light" connotation="information" />
+		<VTag label="Announcement" appearance="subtle-light" connotation="announcement" />
+		<VTag label="Success" appearance="subtle-light" connotation="success" />
+		<VTag label="Warning" appearance="subtle-light" connotation="warning" />
+		<VTag label="Alert" appearance="subtle-light" connotation="alert" />
+	</VTagGroup>
+	<p>Duotone Tag with connotation</p>
+	<VTagGroup>
+		<VTag label="Accent" appearance="duotone" connotation="accent" />
+		<VTag label="CTA" appearance="duotone" connotation="cta" />
+		<VTag label="Information" appearance="duotone" connotation="information" />
+		<VTag label="Announcement" appearance="duotone" connotation="announcement" />
+		<VTag label="Success" appearance="duotone" connotation="success" />
+		<VTag label="Warning" appearance="duotone" connotation="warning" />
+		<VTag label="Alert" appearance="duotone" connotation="alert" />
+	</VTagGroup>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <p>Subtle tag with connotation</p>
@@ -82,9 +225,33 @@ It accepts a subset of predefined values.
 </vwc-tag-group>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Shape
 
 The `shape` attribute sets Tag's shape.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTag, VTagGroup } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTagGroup>
+		<VTag label="Rounded" shape="rounded" />
+		<VTag label="Pill" shape="pill" />
+	</VTagGroup>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-tag-group>
@@ -92,6 +259,9 @@ The `shape` attribute sets Tag's shape.
 	<vwc-tag label="Pill" shape="pill"></vwc-tag>
 </vwc-tag-group>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Icon
 
@@ -106,6 +276,28 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VIcon, VTag, VTagGroup } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTagGroup>
+		<VTag label="Tag with icon">
+			<template #icon><VIcon name="pin-line" /></template>
+		</VTag>
+	</VTagGroup>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-tag-group>
 	<vwc-tag label="Tag with icon">
@@ -114,12 +306,38 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </vwc-tag-group>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 The `disabled` attribute sets the disabled state.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTag, VTagGroup } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTagGroup>
+		<VTag label="Disabled tag" disabled />
+	</VTagGroup>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-tag-group>
 	<vwc-tag label="Disabled tag" disabled></vwc-tag>
 </vwc-tag-group>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
