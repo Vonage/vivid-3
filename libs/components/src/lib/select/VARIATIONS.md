@@ -208,7 +208,7 @@ To provide a selected option, use the `selected` attribute on the selected [Opti
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
-```vue preview
+```vue preview 270px
 <template>
 	<VSelect label="Title" class="select">
 		<VOption value="mr" text="Mr" defaultSelected />
