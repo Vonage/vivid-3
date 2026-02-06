@@ -56,8 +56,8 @@ const menuRef = ref<InstanceType<typeof VMenu> | null>(null);
 const menuOpen = ref(true);
 
 onMounted(() => {
-	const splitButtonEl = splitButtonRef.value?.$el;
-	const menuEl = menuRef.value?.$el;
+	const splitButtonEl = splitButtonRef.value?.element;
+	const menuEl = menuRef.value?.element;
 	if (menuEl && splitButtonEl?.indicator) {
 		menuEl.anchor = splitButtonEl.indicator;
 	}
@@ -69,8 +69,8 @@ function onActionClick() {
 
 function onIndicatorClick() {
 	menuOpen.value = !menuOpen.value;
-	if (menuRef.value?.$el) {
-		menuRef.value.$el.open = menuOpen.value;
+	if (menuRef.value?.element) {
+		menuRef.value.element.open = menuOpen.value;
 	}
 }
 </script>
@@ -128,7 +128,9 @@ import { VSplitButton, VIcon } from '@vonage/vivid-vue';
 
 <template>
 	<VSplitButton appearance="outlined" label="submit">
-		<VIcon slot="icon" name="check-circle-solid" connotation="success" />
+		<template #icon>
+			<VIcon name="check-circle-solid" connotation="success" />
+		</template>
 	</VSplitButton>
 </template>
 ```

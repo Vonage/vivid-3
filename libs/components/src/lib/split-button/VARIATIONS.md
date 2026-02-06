@@ -76,7 +76,9 @@ import { VSplitButton, VIcon } from '@vonage/vivid-vue';
 
 <template>
 	<VSplitButton appearance="filled" aria-label="Send Message" indicator-aria-label="More actions">
-		<VIcon slot="icon" name="compose-line" />
+		<template #icon>
+			<VIcon name="compose-line" />
+		</template>
 	</VSplitButton>
 </template>
 ```

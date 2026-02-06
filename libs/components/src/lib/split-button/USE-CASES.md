@@ -14,8 +14,8 @@ const menuRef = ref<InstanceType<typeof VMenu> | null>(null);
 const menuOpen = ref(true);
 
 onMounted(() => {
-	const splitButtonEl = splitButtonRef.value?.$el;
-	const menuEl = menuRef.value?.$el;
+	const splitButtonEl = splitButtonRef.value?.element;
+	const menuEl = menuRef.value?.element;
 	if (menuEl && splitButtonEl?.indicator) {
 		menuEl.anchor = splitButtonEl.indicator;
 	}
@@ -27,8 +27,8 @@ function onActionClick() {
 
 function onIndicatorClick() {
 	menuOpen.value = !menuOpen.value;
-	if (menuRef.value?.$el) {
-		menuRef.value.$el.open = menuOpen.value;
+	if (menuRef.value?.element) {
+		menuRef.value.element.open = menuOpen.value;
 	}
 }
 </script>
@@ -86,8 +86,8 @@ const splitButtonRef = ref<InstanceType<typeof VSplitButton> | null>(null);
 const tooltipRef = ref<InstanceType<typeof VTooltip> | null>(null);
 
 onMounted(() => {
-	const splitButtonEl = splitButtonRef.value?.$el;
-	const tooltipEl = tooltipRef.value?.$el;
+	const splitButtonEl = splitButtonRef.value?.element;
+	const tooltipEl = tooltipRef.value?.element;
 	if (tooltipEl && splitButtonEl?.action) {
 		tooltipEl.anchor = splitButtonEl.action;
 	}
@@ -97,7 +97,9 @@ onMounted(() => {
 <template>
 	<div class="tooltip-demo">
 		<VSplitButton ref="splitButtonRef" appearance="filled" aria-label="Write a new message">
-			<VIcon slot="icon" name="compose-line" />
+			<template #icon>
+				<VIcon name="compose-line" />
+			</template>
 			<VTooltip ref="tooltipRef" text="Write a new message" />
 		</VSplitButton>
 	</div>
