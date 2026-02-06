@@ -271,12 +271,12 @@ import { VDateTimePicker } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VDateTimePicker label="Start date and time" />
+	<VDateTimePicker max="2023-06-10T17:00:00" label="Select date and time" value="2023-06-10T12:00:00" clock="24h" />
 </template>
 ```
 
 </vwc-tab-panel>
-<vwc-tab max="2023-06-10T17:00:00" label="Select date and time" value="2023-06-10T12:00:00" clock="24h"></vwc-tab>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```html preview 460px
