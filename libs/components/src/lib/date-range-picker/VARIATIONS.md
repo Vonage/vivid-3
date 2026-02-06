@@ -79,7 +79,7 @@ import { VDateRangePicker, VContextualHelp } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VDateRangePicker helper-text="Select a date for the event to start" label="Event duration">
+	<VDateRangePicker label="Event duration">
 		<template #contextual-help>
 			<VContextualHelp>Select a date for the event to start</VContextualHelp>
 		</template>

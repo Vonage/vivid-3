@@ -91,7 +91,7 @@ The `helper-text` slot allows you to use rich content as the date picker's helpe
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
-```vue preview locale-switcher 460px
+```vue preview 460px
 <script setup lang="ts">
 import { VDateRangePicker } from '@vonage/vivid-vue';
 </script>
