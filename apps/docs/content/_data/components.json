@@ -630,6 +630,7 @@
 	{
 		"title": "Partials",
 		"page": "legacy",
+		"status": "underlying",
 		"markdown": "./libs/components/src/lib/table/PARTIALS.md",
 		"children": ["Country", "Status"]
 	},
