@@ -587,6 +587,14 @@ reset(initialDocument?: RteDocument): void;
 </script>
 ```
 
+## feature
+
+Some features expose a run-time API that can be accessed via the `feature` method. See the documentation of each feature for details.
+
+```ts
+instance.feature(RteToolbarFeature).hidden = true;
+```
+
 ## Features
 
 The Base feature is required for the editor to work. All other features are optional and can be combined as needed.
@@ -691,14 +699,25 @@ Adds the toolbar to the editor. Features automatically add their controls to the
 
 - `popupDirection?: 'inward' | 'outward'`: Whether tooltips and other popups prefer to be open towards or away from the main text-editing area. Defaults to 'inward'.
 
+**Feature API:**
+
+- `hidden: boolean`: Whether the toolbar is hidden.
+
 ```html preview
+<vwc-button id="toggleToolbar" label="Toggle Toolbar" appearance="filled"></vwc-button>
 <vwc-rich-text-editor style="block-size: 250px; margin-block-end: 250px;"></vwc-rich-text-editor>
 
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const config = new RteConfig([new RteBase(), new RteToolbarFeature()]);
-		rteComponent.instance = config.instantiateEditor();
+		const instance = config.instantiateEditor();
+		rteComponent.instance = instance;
+
+		const toolbar = instance.feature(RteToolbarFeature);
+		document.querySelector('#toggleToolbar').addEventListener('click', () => {
+			toolbar.hidden = !toolbar.hidden;
+		});
 	});
 </script>
 ```

@@ -1,4 +1,5 @@
 import { Schema } from 'prosemirror-model';
+import type { Constructor } from '../../../shared/utils/mixins';
 import { RteInstance, type RteInstanceOptions } from './instance';
 import { RteFeature, RteFeatureImpl, sortedContributions } from './feature';
 import { TextblockAttrs } from './utils/textblock-attrs';
@@ -28,6 +29,7 @@ export class RteConfigImpl {
 	schema: Schema;
 	textblockAttrs: TextblockAttrs;
 	textblockMarks: TextblockMarks;
+	featureFacadesMap: Map<Constructor<RteFeature>, RteFeatureImpl[]>;
 	featureMap: Map<string, RteFeatureImpl>;
 	features: RteFeatureImpl[];
 
@@ -48,6 +50,19 @@ export class RteConfigImpl {
 				throw new Error(`Duplicate feature: ${f.name}`);
 			}
 			this.featureMap.set(f.name, f);
+		}
+
+		this.featureFacadesMap = new Map();
+		for (const facade of featuresFacades) {
+			const FacadeClass = facade.constructor as Constructor<RteFeature>;
+			const feature = facade[impl];
+
+			const instances = this.featureFacadesMap.get(FacadeClass);
+			if (instances) {
+				instances.push(feature);
+			} else {
+				this.featureFacadesMap.set(FacadeClass, [feature]);
+			}
 		}
 
 		if (!this.featureMap.has('RteBase')) {
