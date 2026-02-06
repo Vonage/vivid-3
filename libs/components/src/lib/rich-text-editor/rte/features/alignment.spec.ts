@@ -56,6 +56,7 @@ describe('RteAlignmentFeature', () => {
 				<p style="text-align: left">left</p>
 				<p>default</p>
 				<ul><li style="text-align: center;">List item</li></ul>
+				<p style="text-align: justify">unsupported</p>
 			`.trim()
 		);
 
@@ -65,7 +66,8 @@ describe('RteAlignmentFeature', () => {
 			heading2[textAlign="right"]('right'),
 			paragraph[textAlign="left"]('left'),
 			paragraph[textAlign="left"]('default'),
-			bulletList(listItem[textAlign="center"]('List item'))
+			bulletList(listItem[textAlign="center"]('List item')),
+			paragraph[textAlign="left"]('unsupported')
 			"
 		`);
 	});
@@ -80,6 +82,19 @@ describe('RteAlignmentFeature', () => {
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
 			`"<h1 style="text-align: center;">center</h1><h2 style="text-align: right;">right</h2><p style="text-align: left;">left</p><ul><li style="text-align: center;">List item</li></ul>"`
+		);
+	});
+
+	it('should sanitize invalid textAlign values', async () => {
+		const rte = await setup(features, [
+			p.attrs({ textAlign: 'left; background: red' })('injected style'),
+		]);
+
+		expect(rte.view.dom.querySelector('p')!.style.cssText).toBe(
+			'text-align: left;'
+		);
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<p style="text-align: left;">injected style</p>"`
 		);
 	});
 

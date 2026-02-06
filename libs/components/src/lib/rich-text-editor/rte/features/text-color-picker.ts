@@ -8,6 +8,7 @@ import {
 	type ToolbarItemContribution,
 } from '../feature';
 import { createButton, createDiv, createSingleSlot } from '../utils/ui';
+import { escapeCssProperty } from '../utils/sanitization';
 
 // markApplies function adapted from prosemirror-commands
 function markApplies(
@@ -102,7 +103,7 @@ export class RteTextColorPickerFeatureImpl extends RteFeatureImpl {
 							return [
 								'span',
 								{
-									style: `color: ${color}`,
+									style: `color: ${escapeCssProperty(color)};`,
 									'data-text-color': color,
 								},
 								0,
