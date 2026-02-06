@@ -28,3 +28,4 @@ export const registerRichTextView = createRegisterFunction(
 );
 
 export { RichTextView as VwcRichTextViewElement };
+export type { RteChildSlotProps } from './rich-text-view';

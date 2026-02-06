@@ -31,6 +31,16 @@ import { mockTransfer } from '../../../file-picker/__mocks__/data-transfer';
 import type { RteFragment } from '../document';
 import type { RteInstanceOptions } from '../instance';
 import { impl } from '../utils/impl';
+import { removeSymbol } from '../../../../shared/utils/slottable-request';
+
+/**
+ * Represents an active slottable request (one that has been added but not yet removed).
+ */
+export interface SlottableRequest {
+	name: string;
+	slotName: string;
+	data: unknown;
+}
 
 registerRichTextEditor();
 
@@ -191,6 +201,21 @@ export async function setup(
 	const element = fixture(
 		`<vwc-rich-text-editor></vwc-rich-text-editor>`
 	) as RichTextEditor;
+
+	// Track active slottable requests - automatically updated on add/remove events
+	const slottableRequests: SlottableRequest[] = [];
+	element.addEventListener('slottable-request', ((e: CustomEvent) => {
+		const { name, slotName, data } = e.detail;
+		if (data === removeSymbol) {
+			const index = slottableRequests.findIndex((r) => r.slotName === slotName);
+			if (index !== -1) {
+				slottableRequests.splice(index, 1);
+			}
+		} else {
+			slottableRequests.push({ name, slotName, data });
+		}
+	}) as EventListener);
+
 	element.instance = instance;
 	await elementUpdated(element);
 
@@ -275,6 +300,8 @@ export async function setup(
 		);
 		view.dispatch(tr);
 	};
+
+	const toolbar = element.shadowRoot!.querySelector('.toolbar')!;
 
 	const getImageWrapper = () => {
 		return view.dom.querySelector<HTMLDivElement>(`.inline-image-wrapper`);
@@ -496,6 +523,7 @@ export async function setup(
 		typeTextAtCursor,
 		docStr,
 		placeholder,
+		toolbar,
 		toolbarButton,
 		button,
 		textField,
@@ -520,5 +548,6 @@ export async function setup(
 		dropHtml,
 		startDrag,
 		dispatchDragEvent,
+		slottableRequests,
 	};
 }

@@ -48,6 +48,7 @@ export interface ComponentDef {
 	slots: {
 		name: string; // Will be "default" for the default slot.
 		description?: string;
+		dynamicProps?: TypeStr; // If present, the component requests rendering the slot dynamically with these props. In Vue this becomes a scoped slot.
 	}[];
 	/// Annotations that drive the auto-generation of vivid-test-utils
 	testUtils: VividTestUtilsManifest;

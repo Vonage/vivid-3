@@ -7074,8 +7074,18 @@
 					"description": "Displayed at the start of the scrollable editor area."
 				},
 				{
+					"name": "inline-image-placeholder",
+					"description": "Placeholder content for inline images.",
+					"dynamicProps": "{ url: string }"
+				},
+				{
 					"name": "status",
 					"description": "Displayed between the editor viewport and the toolbar."
+				},
+				{
+					"name": "suggestions-empty",
+					"description": "Empty state if no suggestions are found.",
+					"dynamicProps": "{ id: string }"
 				},
 				{
 					"name": "text-color-picker",
@@ -7140,7 +7150,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": [],
+			"slots": [
+				{
+					"name": "child",
+					"description": "Used for custom rendered children.",
+					"dynamicProps": "RteChildSlotProps"
+				}
+			],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
 				"actions": [

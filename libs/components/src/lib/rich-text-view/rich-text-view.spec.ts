@@ -5,6 +5,7 @@ import { RteBoldFeature } from '../rich-text-editor/rte/features/bold';
 import { RteLinkFeature } from '../rich-text-editor/rte/features/link';
 import { RteToolbarFeature } from '../rich-text-editor/rte/features/toolbar';
 import { docFactories } from '../rich-text-editor/rte/__tests__/doc-factories';
+import { removeSymbol } from '../../shared/utils/slottable-request';
 import { RichTextView } from './rich-text-view';
 import '.';
 
@@ -158,6 +159,81 @@ describe('vwc-rich-text-view', () => {
 			const inner = outer.querySelector('.inner')!;
 			const nestedView = inner.querySelector(COMPONENT_TAG)!;
 			expect(nestedView).toBeInstanceOf(RichTextView);
+		});
+
+		it('should render children in dynamic child slot when renderChildView returns true', async () => {
+			const slottableRequests: Array<{
+				name: string;
+				slotName: string;
+				data: unknown;
+			}> = [];
+
+			element.addEventListener('slottable-request', ((e: CustomEvent) => {
+				if (e.detail.data === removeSymbol) {
+					slottableRequests.splice(
+						slottableRequests.findIndex(
+							(r) => r.slotName === e.detail.slotName
+						),
+						1
+					);
+				} else {
+					slottableRequests.push({
+						name: e.detail.name,
+						slotName: e.detail.slotName,
+						data: e.detail.data,
+					});
+				}
+			}) as EventListener);
+
+			element.view = config.instantiateView(
+				doc(p(text.marks(link({ href: 'https://example.com' }))('Click here'))),
+				{
+					renderChildView: (view) => {
+						if (view.type === 'mark' && view.mark.type === 'link') {
+							return true;
+						}
+						return false;
+					},
+				}
+			);
+			await elementUpdated(element);
+
+			expect(slottableRequests).toEqual([
+				{
+					name: 'child',
+					slotName: 'child-view-0',
+					data: { view: expect.any(Object) },
+				},
+			]);
+
+			element.view = config.instantiateView(
+				doc(
+					p(text.marks(link({ href: 'https://example.com' }))('Click here')),
+					p(text.marks(link({ href: 'https://example.com' }))('Click here'))
+				),
+				{
+					renderChildView: (view) => {
+						if (view.type === 'mark' && view.mark.type === 'link') {
+							return true;
+						}
+						return false;
+					},
+				}
+			);
+			await elementUpdated(element);
+
+			expect(slottableRequests).toEqual([
+				{
+					name: 'child',
+					slotName: 'child-view-0',
+					data: { view: expect.any(Object) },
+				},
+				{
+					name: 'child',
+					slotName: 'child-view-1',
+					data: { view: expect.any(Object) },
+				},
+			]);
 		});
 	});
 

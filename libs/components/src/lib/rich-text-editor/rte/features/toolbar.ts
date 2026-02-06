@@ -2,6 +2,7 @@ import { Plugin } from 'prosemirror-state';
 import { createDivider, UiCtx } from '../utils/ui';
 import { RteInstanceImpl } from '../instance';
 import { featureFacade, RteFeatureImpl, sortedContributions } from '../feature';
+import { FeatureState } from '../utils/feature-state';
 import toolbarCss from './toolbar.style.scss?inline';
 
 export interface ToolbarItemSpec {
@@ -17,8 +18,22 @@ export interface RteToolbarConfig {
 	popupDirection?: 'inward' | 'outward';
 }
 
+export interface RteToolbarPublicInterface {
+	/**
+	 * Whether the toolbar is hidden.
+	 */
+	hidden: boolean;
+}
+declare module '../feature' {
+	export function getPublicInterface(
+		facade: typeof RteToolbarFeature
+	): RteToolbarPublicInterface;
+}
+
 export class RteToolbarFeatureImpl extends RteFeatureImpl {
 	name = 'RteToolbarFeature';
+
+	hidden = new FeatureState(false);
 
 	constructor(protected config?: RteToolbarConfig) {
 		super();
@@ -47,6 +62,7 @@ export class RteToolbarFeatureImpl extends RteFeatureImpl {
 		}
 
 		return [
+			this.contribution(this.hidden.plugin),
 			this.contribution(
 				new Plugin({
 					view: (view) => {
@@ -59,6 +75,12 @@ export class RteToolbarFeatureImpl extends RteFeatureImpl {
 						const toolbar = (
 							view.dom.getRootNode() as ShadowRoot
 						).querySelector('.toolbar')!;
+						ctx.bindProp(
+							() => this.hidden.getValue(rte),
+							(hidden) => {
+								toolbar.classList.toggle('toolbar--hidden', hidden);
+							}
+						);
 
 						let openSection = false;
 						for (const section of sections) {
@@ -87,6 +109,18 @@ export class RteToolbarFeatureImpl extends RteFeatureImpl {
 				})
 			),
 		];
+	}
+
+	override getPublicInterface(rte: RteInstanceImpl): RteToolbarPublicInterface {
+		const hidden = this.hidden;
+		return {
+			get hidden() {
+				return hidden.getValue(rte);
+			},
+			set hidden(value: boolean) {
+				hidden.setValue(rte, value);
+			},
+		};
 	}
 }
 

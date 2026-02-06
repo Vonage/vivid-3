@@ -13,14 +13,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<style>
 				#wrapper {
 					width: 1000px;
-					height: 2900px;
+					height: 3000px;
 					padding: 12px;
 				}
 				.wrapper-div {
-				display: grid;
-				grid-template-columns: 400px 400px;
-				gap: 16px;
-				margin-block: 20px;
+					display: grid;
+					grid-template-columns: 400px 400px;
+					gap: 16px;
+					margin-block: 20px;
 				}
 				</style>
 
@@ -388,9 +388,17 @@ subtitle="Extra text below the card headline"
 >
 </vwc-card>
 </div>
+<div class="wrapper-div">
+	<vwc-card class="custom-border" appearance="outlined" headline="Card with custom border color"></vwc-card>
+	<style>
+	.custom-border {
+		--card-border-color: #ff0000;
+	}
+	</style>
+</div>
 `;
 
-	await page.setViewportSize({ width: 1000, height: 2900 });
+	await page.setViewportSize({ width: 1024, height: 3000 });
 
 	await loadComponents({
 		page,

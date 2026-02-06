@@ -8,8 +8,10 @@ import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
 import { IconId } from '../icons';
+import { isRemoveRequest } from '../../utils/slottableRequest';
 import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
 import type { VwcExampleComponentElement } from '@vonage/vivid';
+import type { SlottableRequestEvent } from '../../utils/slottableRequest';
 
 
 /**
@@ -93,7 +95,9 @@ export default defineComponent({
 
     const element = ref<VwcExampleComponentElement | null>(null);
 
-    return { componentName, element };
+		const slottableRequests = ref(new Map<string, { name: string; data: unknown }>());
+
+    return { componentName, element , slottableRequests };
   },
   render() {
     
@@ -119,12 +123,23 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
 		}) => {
           this.$emit('update:start', event.currentTarget.start);
           this.$emit('input:start', event);
-        } },
+        },'slottable-request': (event: SlottableRequestEvent) => {
+		if (isRemoveRequest(event.data)) {
+			this.slottableRequests.delete(event.slotName);
+		} else {
+			this.slottableRequests.set(event.slotName, { name: event.name, data: event.data });
+		}
+		this.$forceUpdate();
+	} },
         }, [
-            this.$slots.default,
-            // @slot example-slot This is an example slot
+					this.$slots.default,
+// @slot example-slot This is an example slot
       handleNamedSlotV2('example-slot', this.$slots['example-slot']),// @slot no-description 
-      handleNamedSlotV2('no-description', this.$slots['no-description'])
+      handleNamedSlotV2('no-description', this.$slots['no-description']),
+...Array.from(this.slottableRequests.entries()).flatMap(
+				([slotName, { name, data }]) =>
+					handleNamedSlotV2(slotName, this.$scopedSlots[name]?.(data)) ?? []
+			)
         ]);
       }
       // @ts-ignore
@@ -147,13 +162,24 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
 		}) => {
 					 this.$emit('update:start', event.currentTarget.start);
           this.$emit('input:start', event);
-        }
+        },'onSlottable-request': (event: SlottableRequestEvent) => {
+		if (isRemoveRequest(event.data)) {
+			this.slottableRequests.delete(event.slotName);
+		} else {
+			this.slottableRequests.set(event.slotName, { name: event.name, data: event.data });
+		}
+	}
       } as unknown as VNodeData, [
           // @ts-ignore
-          this.$slots.default && this.$slots.default(),
-          // @slot example-slot This is an example slot
-      handleNamedSlotV3('example-slot', this.$slots['example-slot'] as any),// @slot no-description 
-      handleNamedSlotV3('no-description', this.$slots['no-description'] as any)
+		this.$slots.default?.(),
+// @slot example-slot This is an example slot
+      handleNamedSlotV3('example-slot', (this.$slots['example-slot'] as any)?.()),// @slot no-description 
+      handleNamedSlotV3('no-description', (this.$slots['no-description'] as any)?.()),
+...Array.from(this.slottableRequests.entries()).flatMap(
+				([slotName, { name, data }]) =>
+					// @ts-ignore
+					handleNamedSlotV3(slotName, this.$slots[name]?.(data)) ?? []
+			)
       ]);
     
   },
@@ -169,9 +195,11 @@ import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
 import { IconId } from '../icons';
+import { isRemoveRequest } from '../../utils/slottableRequest';
 import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
 import type { VwcExampleComponentElement } from '@vonage/vivid';
 import type { SlotsType } from 'vue3';
+import type { SlottableRequestEvent } from '../../utils/slottableRequest';
 
 
 /**
@@ -264,13 +292,23 @@ export default defineComponent({
 
 		
 		"no-description": Record<string, never>
+
+		/**
+ * This is a dynamic slot
+ */
+		"dynamic-slot": { data: string }
+
+		
+		"dynamic-no-description": { data: string }
 	}>,
   setup(props, ctx) {
     const componentName = registerComponent('example-component', registerExampleComponent);
 
     const element = ref<VwcExampleComponentElement | null>(null);
 
-    return { componentName, element };
+		const slottableRequests = ref(new Map<string, { name: string; data: unknown }>());
+
+    return { componentName, element , slottableRequests };
   },
   render() {
     return null;
@@ -286,6 +324,7 @@ import { isVue2 } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
+import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
 import type { VwcExampleComponentElement } from '@vonage/vivid';
 
 
@@ -305,7 +344,9 @@ export default defineComponent({
 
     const element = ref<VwcExampleComponentElement | null>(null);
 
-    return { componentName, element };
+		
+
+    return { componentName, element  };
   },
   render() {
     
@@ -317,8 +358,8 @@ export default defineComponent({
             
             on: {  },
         }, [
-            this.$slots.default,
-            
+					this.$slots.default,
+
         ]);
       }
       // @ts-ignore
@@ -328,8 +369,8 @@ export default defineComponent({
           ...handleVue3Props({})
       } as unknown as VNodeData, [
           // @ts-ignore
-          this.$slots.default && this.$slots.default(),
-          
+		this.$slots.default?.(),
+
       ]);
     
   },
@@ -344,6 +385,7 @@ import { isVue2 } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
+import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
 import type { VwcExampleComponentElement } from '@vonage/vivid';
 import type { SlotsType } from 'vue3';
 
@@ -364,7 +406,9 @@ export default defineComponent({
 
     const element = ref<VwcExampleComponentElement | null>(null);
 
-    return { componentName, element };
+		
+
+    return { componentName, element  };
   },
   render() {
     return null;

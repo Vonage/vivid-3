@@ -4,6 +4,7 @@ import { jsdocFunctionPlugin } from 'cem-plugin-jsdoc-function';
 import { jsdocExamplePlugin } from 'cem-plugin-jsdoc-example';
 import {
 	cssPropertiesPlugin,
+	dynamicSlotsPlugin,
 	improvedAttrSupportPlugin,
 	improvedMixinSupportPlugin,
 	testUtilsTagsPlugin,
@@ -46,5 +47,6 @@ export default {
 		testUtilsTagsPlugin(),
 		improvedMixinSupportPlugin(),
 		improvedAttrSupportPlugin(),
+		dynamicSlotsPlugin(),
 	],
 };

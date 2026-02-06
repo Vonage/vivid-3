@@ -253,6 +253,51 @@ import { VCard, VLayout } from '@vonage/vivid-vue';
 
 ## CSS Variables
 
+### Border color
+
+The card border color can be customized using `--card-border-color`.
+
+**Note:** this variable works **only** with `outlined` appearance.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCard } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCard class="vwc-card" appearance="outlined" headline="Card with a custom border color" />
+</template>
+
+<style scoped>
+.vwc-card {
+	--card-border-color: #30a849;
+	max-inline-size: 42ch;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<vwc-card class="vwc-card" appearance="outlined" headline="Card with a custom border color"></vwc-card>
+
+<style>
+	.vwc-card {
+		--card-border-color: #30a849;
+		max-inline-size: 42ch;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Trim headline
 
 The card headline can be trimmed to your preferable number of lines.

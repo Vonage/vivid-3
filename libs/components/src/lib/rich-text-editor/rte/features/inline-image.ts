@@ -14,6 +14,10 @@ import {
 import type { RteInstanceImpl } from '../instance';
 import { Popover } from '../../popover';
 import { createButton, createDiv, createDivider, UiCtx } from '../utils/ui';
+import {
+	dispatchSlottableRequest,
+	removeSymbol,
+} from '../../../../shared/utils/slottable-request';
 import inlineImageCss from './inline-image.style.scss?inline';
 
 type SizeOption = 'small' | 'fit' | 'original';
@@ -27,7 +31,7 @@ export type ResolvedUrl =
 			/**
 			 * Called with a unique slot name that will be rendered in place of the image. A returned callback will be called when the slot is removed.
 			 */
-			create: (slotName: string) => ContentDestroyedHandler | undefined;
+			create?: (slotName: string) => ContentDestroyedHandler | undefined;
 	  };
 type ResolvedUrlGenerator = AsyncGenerator<ResolvedUrl, ResolvedUrl>;
 const isGenerator = (
@@ -58,6 +62,7 @@ const generateUniqueId = () => uniqueId++;
 class InlineImageView implements NodeView {
 	dom: HTMLDivElement;
 	img: HTMLImageElement;
+	imageUrl: string;
 
 	constructor(
 		node: Node,
@@ -67,13 +72,14 @@ class InlineImageView implements NodeView {
 	) {
 		this.dom = document.createElement('div');
 		this.dom.className = 'inline-image-wrapper';
+		this.imageUrl = node.attrs.imageUrl;
 
 		this.img = document.createElement('img');
 		this.initializeImg(node);
 
 		const resolveResult = this.config.resolveUrl
-			? this.config.resolveUrl(node.attrs.imageUrl)
-			: node.attrs.imageUrl;
+			? this.config.resolveUrl(this.imageUrl)
+			: this.imageUrl;
 		const initialResolvedUrl = isGenerator(resolveResult)
 			? null
 			: resolveResult;
@@ -117,12 +123,29 @@ class InlineImageView implements NodeView {
 		if (typeof result === 'string') {
 			this.renderImg(result);
 		} else if (result?.type === 'placeholder') {
-			const name = `inline-image-placeholder-${generateUniqueId()}`;
+			const slotName = `inline-image-placeholder-${generateUniqueId()}`;
 			const slot = document.createElement('slot');
 			slot.className = 'inline-image-placeholder';
-			slot.name = name;
-			const onDestroy = result.create(name);
-			this.setContent(slot, { onDestroy });
+			slot.name = slotName;
+
+			const onDestroy = result.create?.(slotName);
+
+			const host = (this.view.dom.getRootNode() as ShadowRoot).host;
+			dispatchSlottableRequest(host, 'inline-image-placeholder', slotName, {
+				url: this.imageUrl,
+			});
+
+			this.setContent(slot, {
+				onDestroy: () => {
+					dispatchSlottableRequest(
+						host,
+						'inline-image-placeholder',
+						slotName,
+						removeSymbol
+					);
+					onDestroy?.();
+				},
+			});
 		} else {
 			this.setContent(null);
 		}

@@ -7,4 +7,8 @@
 	padding: 4px;
 	background-color: var(#{constants.$vvd-color-neutral-50});
 	gap: 8px;
+
+	&--hidden {
+		display: none;
+	}
 }
