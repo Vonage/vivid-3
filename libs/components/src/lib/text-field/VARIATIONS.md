@@ -9,9 +9,30 @@ The `label` attribute provides a short description of the purpose of the Text Fi
 	<p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField label="First name" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-text-field label="First name"></vwc-text-field>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Helper Text
 
@@ -19,9 +40,30 @@ The `helper-text` attribute provides additional information to help the user ent
 
 To add HTML to the helper text, use the [helper-text slot](/components/text-field/code/#helper-text-slot).
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField helper-text="Must be at least six chars and contain both letters and numbers" label="Password" type="password" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-text-field helper-text="Must be at least six chars and contain both letters and numbers" label="Password" type="password"></vwc-text-field>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Placeholder Text
 
@@ -32,21 +74,85 @@ The `placeholder` attribute provides an example of the type of input the user ne
 	<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField placeholder="name@domain.com" label="Email address" type="email" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-text-field placeholder="name@domain.com" label="Email address" type="email"></vwc-text-field>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Character Count
 
 The `char-count` attribute can be use in combination with the `maxlength` attribute to provide a visual character count.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField char-count :maxlength="15" label="Username" helper-text="Maximum of 15 characters" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-text-field char-count maxlength="15" label="Username" helper-text="Maximum of 15 characters"></vwc-text-field>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Contextual Help
 
 You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField, VContextualHelp } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField label="First name">
+		<template #contextual-help>
+			<VContextualHelp>This is the contextual help</VContextualHelp>
+		</template>
+	</VTextField>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-text-field label="First name">
@@ -54,13 +160,37 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 </vwc-text-field>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Value
 
 The `value` attribute can be used the set the default value for the Text Field input element.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField value="Joe" label="Username" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-text-field value="Joe" label="Username"></vwc-text-field>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Validation Feedback
 
@@ -68,17 +198,59 @@ The `value` attribute can be used the set the default value for the Text Field i
 
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField error-text="Username is already taken" value="Joe" label="Username" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-text-field error-text="Username is already taken" value="Joe" label="Username"></vwc-text-field>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Success Text
 
 The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField success-text="Username is available" value="JoeB_89" label="Username" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-text-field success-text="Username is available" value="JoeB_89" label="Username"></vwc-text-field>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Icon
 
@@ -93,14 +265,63 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField icon="search-line" label="Search" type="search" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-text-field icon="search-line" label="Search" type="search"></vwc-text-field>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Scale
 
 The `scale` attribute controls the Text Field input element display size.
 Use `condensed` in situations when space is limited, for example, inside a Data Grid cell.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VTextField scale="normal" label="Normal" />
+		<VTextField scale="condensed" label="Condensed" />
+	</div>
+</template>
+
+<style scoped>
+.container {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <div class="container">
@@ -116,6 +337,9 @@ Use `condensed` in situations when space is limited, for example, inside a Data 
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 <vwc-note connotation="information" headline="Scale instead of Size">
 	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 	<p>The reason for using <code>scale</code> for form elements and not <code>size</code> (as used in other components such as Button), is that <code>size</code> is a HTML attribute that can be used on <code>input</code> elements (and also Text Field) to control the width of the input.</p>
@@ -124,6 +348,34 @@ Use `condensed` in situations when space is limited, for example, inside a Data 
 ## Shape
 
 The `shape` attribute controls the border radius of the Text Field input element.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VTextField shape="rounded" label="Rounded" />
+		<VTextField shape="pill" label="Pill" />
+	</div>
+</template>
+
+<style scoped>
+.container {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <div class="container">
@@ -139,10 +391,41 @@ The `shape` attribute controls the border radius of the Text Field input element
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Appearance
 
 The `appearance` attribute controls the style of the Text Field input element.<br />
 Use `ghost` in combination with a containing element which provides a border, for example [Action Group](/components/action-group/).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VTextField appearance="fieldset" label="Fieldset" placeholder="Appearance" />
+		<VTextField appearance="ghost" label="Ghost" placeholder="Appearance" />
+	</div>
+</template>
+
+<style scoped>
+.container {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <div class="container">
@@ -158,18 +441,63 @@ Use `ghost` in combination with a containing element which provides a border, fo
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 The `disabled` attribute disables the Text Field input element.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField disabled label="Username" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-text-field disabled label="Username"></vwc-text-field>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Read Only
 
 The `readonly` attribute prevents the user from changing the Text Field input element value.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField readonly label="Username" value="JoeB_89" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-text-field readonly label="Username" value="JoeB_89"></vwc-text-field>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>

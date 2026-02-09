@@ -1,26 +1,7 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```js
-import { registerTextField } from '@vonage/vivid';
-
-registerTextField('your-prefix');
-```
-
-```html preview
-<script type="module">
-	import { registerTextField } from '@vonage/vivid';
-	registerTextField('your-prefix');
-</script>
-
-<your-prefix-text-field label="First name" autofocus></your-prefix-text-field>
-```
-
-</vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
 ```vue preview
@@ -31,6 +12,14 @@ import { VTextField } from '@vonage/vivid-vue';
 <template>
 	<VTextField label="First name" />
 </template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<vwc-text-field label="First name"></vwc-text-field>
 ```
 
 </vwc-tab-panel>
@@ -58,6 +47,34 @@ Along with picking the correct `type` for the Text Field's purpose, it's also go
 
 The `inputmode` attribute hints at the type of data that might be entered by the user. This allows a browser to display an appropriate virtual keyboard.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="fields">
+		<VTextField type="tel" inputmode="tel" label="Telephone number" />
+		<VTextField type="email" inputmode="email" label="Email address" />
+	</div>
+</template>
+
+<style scoped>
+.fields {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <div>
 	<vwc-text-field type="tel" inputmode="tel" label="Telephone number"></vwc-text-field>
@@ -72,12 +89,50 @@ The `inputmode` attribute hints at the type of data that might be entered by the
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 ### Action Items Slot
 
 Use the `action-items` slot to postfix elements to the Text Field input element.<br />
 In the example below Buttons are added to implement a custom funcationality for a search field.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField, VButton, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField icon="search" type="search" inputmode="search" label="Search">
+		<template #action-items>
+			<div class="action-items">
+				<VButton size="condensed" aria-label="Record search query">
+					<template #icon><VIcon name="microphone-2-line" /></template>
+				</VButton>
+				<VButton size="condensed" aria-label="Clear field">
+					<template #icon><VIcon name="close-line" /></template>
+				</VButton>
+			</div>
+		</template>
+	</VTextField>
+</template>
+
+<style scoped>
+.action-items {
+	display: flex;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-text-field icon="search" type="search" inputmode="search" label="Search">
@@ -98,10 +153,50 @@ In the example below Buttons are added to implement a custom funcationality for 
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Leading Action Items Slot
 
 Use the `leading-action-items` slot to prefix elements to the Text Field input element.<br />
 In the example below a Select is added to implement a category filtered search field.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 220px
+<script setup lang="ts">
+import { VTextField, VSelect, VOption, VDivider } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField label="Search groceries" type="search" inputmode="search">
+		<template #leading-action-items>
+			<div class="leading-action-items">
+				<VSelect aria-label="Options Selector" appearance="ghost" style="--focus-inset: 2px">
+					<VOption value="all" text="All" selected />
+					<VOption value="fruit" text="Fruit" />
+					<VOption value="veg" text="Vegetables" />
+				</VSelect>
+				<VDivider orientation="vertical" style="height: 20px" />
+			</div>
+		</template>
+	</VTextField>
+</template>
+
+<style scoped>
+.leading-action-items {
+	display: flex;
+	align-items: center;
+	column-gap: 2px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 220px
 <vwc-text-field label="Search groceries" type="search" inputmode="search">
@@ -130,9 +225,42 @@ In the example below a Select is added to implement a category filtered search f
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Helper Text Slot
 
 The `helper-text` slot allows you to use rich content as the text-field's helper text.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="helper-text-slot-demo">
+		<VTextField label="EIN" :maxlength="12" char-count pattern="[0-9]*" inputmode="numeric" style="width: 100%">
+			<template #helper-text>
+				<span><a href="#">Employer Identification Number</a> should be 12 characters</span>
+			</template>
+		</VTextField>
+	</div>
+</template>
+
+<style scoped>
+.helper-text-slot-demo {
+	width: 400px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-text-field label="EIN" maxlength="12" char-count pattern="[0-9]*" inputmode="numeric">
@@ -146,15 +274,43 @@ The `helper-text` slot allows you to use rich content as the text-field's helper
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Contextual-Help
 
 The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTextField, VContextualHelp } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTextField label="First name">
+		<template #contextual-help>
+			<VContextualHelp>This is the contextual help</VContextualHelp>
+		</template>
+	</VTextField>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-text-field label="First name">
 	<vwc-contextual-help slot="contextual-help">This is the contextual help</vwc-contextual-help>
 </vwc-text-field>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
