@@ -1,7 +1,26 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VVideoPlayer } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VVideoPlayer poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg">
+		<source src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8" type="application/x-mpegURL" />
+		<track kind="captions" src="/assets/images/captions.en.vtt" srclang="en" label="English" default />
+		<track kind="subtitles" src="/assets/images/captions.jp.vtt" srclang="jp" label="Japanese" />
+		<track kind="descriptions" src="/assets/images/descriptions.en.vtt" label="English" srclang="en" />
+		<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
+	</VVideoPlayer>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -26,16 +45,23 @@ registerVideoPlayer('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+</vwc-tabs>
+
+## Src
+
+The `src` attribute provides a video source to the component.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
 ```vue preview
 <script setup lang="ts">
 import { VVideoPlayer } from '@vonage/vivid-vue';
 </script>
+
 <template>
-	<VVideoPlayer poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg">
-		<source src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8" type="application/x-mpegURL" />
+	<VVideoPlayer src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8">
 		<track kind="captions" src="/assets/images/captions.en.vtt" srclang="en" label="English" default />
 		<track kind="subtitles" src="/assets/images/captions.jp.vtt" srclang="jp" label="Japanese" />
 		<track kind="descriptions" src="/assets/images/descriptions.en.vtt" label="English" srclang="en" />
@@ -45,11 +71,8 @@ import { VVideoPlayer } from '@vonage/vivid-vue';
 ```
 
 </vwc-tab-panel>
-</vwc-tabs>
-
-## Src
-
-The `src` attribute provides a video source to the component.
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8">
@@ -59,6 +82,9 @@ The `src` attribute provides a video source to the component.
 	<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
 </vwc-video-player>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Supported Video Formats
 
@@ -106,6 +132,30 @@ Text tracks can be provided using the `track` element.
 <track src="../elephantsdream/captions.en.vtt" kind="captions" srclang="en" label="English" default />
 ```
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VVideoPlayer } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VVideoPlayer poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg">
+		<source src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8" type="application/x-mpegURL" />
+		<track kind="captions" src="/assets/images/captions.en.vtt" srclang="en" label="English" default />
+		<track kind="subtitles" src="/assets/images/captions.jp.vtt" srclang="jp" label="Japanese" />
+		<track kind="descriptions" src="/assets/images/descriptions.en.vtt" label="English" srclang="en" />
+		<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
+	</VVideoPlayer>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-video-player poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg">
 	<source src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8" type="application/x-mpegURL" />
@@ -115,6 +165,9 @@ Text tracks can be provided using the `track` element.
 	<track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en" />
 </vwc-video-player>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Track element API
 
@@ -149,11 +202,34 @@ Both `autoplay` and `loop` attributes are boolean. When `autoplay` is set, the v
 
 When `loop` is set, the video will restart automatically when it reaches the end.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VVideoPlayer } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VVideoPlayer autoplay loop>
+		<source src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL" />
+	</VVideoPlayer>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-video-player autoplay loop>
 	<source src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL" />
 </vwc-video-player>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
