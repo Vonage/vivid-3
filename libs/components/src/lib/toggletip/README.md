@@ -99,14 +99,10 @@ It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you ca
 import { onMounted, useTemplateRef } from 'vue';
 import { VButton, VIcon, VToggletip } from '@vonage/vivid-vue';
 
-const firstToggletip = useTemplateRef<InstanceType<typeof VToggletip>>('toggletip1');
 const secondToggletip = useTemplateRef<InstanceType<typeof VToggletip>>('toggletip2');
 const secondButton = useTemplateRef<InstanceType<typeof VButton>>('button2');
 
 onMounted(() => {
-	if (firstToggletip.value?.element) {
-		firstToggletip.value.element.anchor = 'button';
-	}
 	if (secondToggletip.value?.element) {
 		secondToggletip.value.element.anchor = secondButton.value?.element;
 	}
@@ -118,7 +114,7 @@ onMounted(() => {
 		<VButton id="button" appearance="filled" shape="pill">
 			<template #icon><VIcon name="help-line" /></template>
 		</VButton>
-		<VToggletip ref="toggletip1" placement="left">My anchor is ID</VToggletip>
+		<VToggletip anchor="button" placement="left">My anchor is ID</VToggletip>
 		<VButton ref="button2" appearance="filled" shape="pill">
 			<template #icon><VIcon name="help-line" /></template>
 		</VButton>
