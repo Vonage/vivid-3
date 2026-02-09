@@ -243,7 +243,7 @@ import { VTextField } from '@vonage/vivid-vue';
 
 <template>
 	<div class="helper-text-slot-demo">
-		<VTextField label="EIN" maxlength="12" char-count pattern="[0-9]*" inputmode="numeric" style="width: 100%">
+		<VTextField label="EIN" :maxlength="12" char-count pattern="[0-9]*" inputmode="numeric" style="width: 100%">
 			<template #helper-text>
 				<span><a href="#">Employer Identification Number</a> should be 12 characters</span>
 			</template>

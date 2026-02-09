@@ -113,7 +113,7 @@ import { VTextField } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VTextField char-count maxlength="15" label="Username" helper-text="Maximum of 15 characters" />
+	<VTextField char-count :maxlength="15" label="Username" helper-text="Maximum of 15 characters" />
 </template>
 ```
 
