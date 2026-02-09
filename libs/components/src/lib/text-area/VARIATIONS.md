@@ -113,7 +113,7 @@ import { VTextArea } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VTextArea label="Char count example" char-count maxlength="15" />
+	<VTextArea label="Char count example" char-count :maxlength="15" />
 </template>
 ```
 
@@ -271,9 +271,9 @@ import { VTextArea } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VTextArea rows="1" value="1 row text area (36px)" label="text-area label" />
-	<VTextArea rows="2" value="2 rows text area are the default (56px)" label="text-area label" />
-	<VTextArea rows="3" value="3 rows text area (76px)" label="text-area label" />
+	<VTextArea :rows="1" value="1 row text area (36px)" label="text-area label" />
+	<VTextArea :rows="2" value="2 rows text area are the default (56px)" label="text-area label" />
+	<VTextArea :rows="3" value="3 rows text area (76px)" label="text-area label" />
 </template>
 ```
 
