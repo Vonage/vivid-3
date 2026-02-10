@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.10.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v5.9.0...vivid-vue-v5.10.0) (2026-02-10)
+
+
+### Features
+
+* **rich-text-editor:** support vue scoped slots (VIV-2987) ([#2727](https://github.com/Vonage/vivid-3/issues/2727)) ([d80bc7e](https://github.com/Vonage/vivid-3/commit/d80bc7eaa1230372b09d1078fb5bd2e738164237))
+
 ## [5.9.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v5.8.0...vivid-vue-v5.9.0) (2026-01-26)
 
 
