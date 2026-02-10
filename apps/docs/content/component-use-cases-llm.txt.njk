@@ -1,0 +1,12 @@
+---
+eleventyExcludeFromCollections: true
+pagination:
+  data: componentUseCases
+  size: 1
+  alias: component
+permalink: 'components/{{ component | componentSlug }}/use-cases/llm.txt'
+eleventyComputed:
+  pageTitle: "{{ component.title }} - Use Cases"
+---
+# {{ pageTitle }}
+{{ component.useCases | includeMd | safe }}

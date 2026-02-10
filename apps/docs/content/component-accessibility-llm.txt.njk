@@ -1,0 +1,12 @@
+---
+eleventyExcludeFromCollections: true
+pagination:
+  data: componentAccessibility
+  size: 1
+  alias: component
+permalink: "components/{{ component | componentSlug }}/accessibility/llm.txt"
+eleventyComputed:
+  pageTitle: "{{ component.title }} - Accessibility"
+---
+# {{ pageTitle }}
+{{ component.accessibility | includeMd | safe }}

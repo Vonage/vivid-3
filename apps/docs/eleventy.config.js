@@ -23,6 +23,8 @@ const {
 const components = require('./content/_data/components.json');
 const { spawn } = require('node:child_process');
 const { NodePackageImporter } = require('sass');
+const { readFileSync } = require('fs');
+const { resolve } = require('path');
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..');
 const DOCS_DIR = '.';
@@ -129,6 +131,12 @@ module.exports = async (eleventyConfig) => {
 
 	eleventyConfig.addFilter('cssmin', function (code) {
 		return new CleanCSS({}).minify(code).styles;
+	});
+
+	eleventyConfig.addFilter('includeMd', (path) => {
+		if (!path.endsWith('.md') || !path.startsWith('./libs/components/src/lib/'))
+			return '';
+		return readFileSync(resolve('../../', path), 'utf8');
 	});
 
 	eleventyConfig.addFilter('onlyPublicPages', onlyPublicPages);
