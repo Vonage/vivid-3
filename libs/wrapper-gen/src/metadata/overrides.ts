@@ -30,6 +30,32 @@ export const componentOverrides: ComponentSpecs[] = [
 				type: 'any[]',
 				propertyName: 'rowsData',
 			});
+			component.props.push({
+				name: 'focusRowIndex',
+				description:
+					'Index of row to be focused on when the Data Grid receives focus.',
+				type: 'number',
+				propertyName: 'focusRowIndex',
+			});
+			component.props.push({
+				name: 'focusColumnIndex',
+				description:
+					'Index of column to be focused on when the Data Grid receives focus.',
+				type: 'number',
+				propertyName: 'focusColumnIndex',
+			});
+			component.props.push({
+				name: 'columnDefinitions',
+				description: 'Configure the grid header columns.',
+				type: 'any[]',
+				propertyName: 'columnDefinitions',
+			});
+			component.props.push({
+				name: 'rowElementTag',
+				description: 'Element tag for header rows.',
+				type: 'string',
+				propertyName: 'rowElementTag',
+			});
 		},
 	],
 
