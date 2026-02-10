@@ -422,14 +422,14 @@
 		"useCases": "./libs/components/src/lib/data-grid/USE-CASES.md"
 	},
 	{
-		"title": "Data Table",
+		"title": "Table",
 		"description": "A stateless table component for displaying tabular data, designed for integration with libraries like TanStack Table.",
-		"variations": "./libs/components/src/lib/data-table/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/data-table/GUIDELINES.md",
+		"variations": "./libs/components/src/lib/table/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/table/GUIDELINES.md",
 		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/data-table/README.md",
-		"accessibility": "./libs/components/src/lib/data-table/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/data-table/USE-CASES.md",
+		"code": "./libs/components/src/lib/table/README.md",
+		"accessibility": "./libs/components/src/lib/table/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/table/USE-CASES.md",
 		"status": "underlying"
 	},
 	{
@@ -610,6 +610,29 @@
 		"code": "./libs/components/src/lib/contextual-help/README.md",
 		"hideGuidelines": "true",
 		"hideAccessibility": "true"
+	},
+	{
+		"title": "Country",
+		"page": "legacy",
+		"markdown": "./libs/components/src/lib/country/README.md",
+		"description": "Displays a country flag and dial code. When a country code is set, the component shows the matching flag and the country code (e.g. \"GB\") automatically.",
+		"status": "underlying",
+		"parent": "Partials"
+	},
+	{
+		"title": "Status",
+		"page": "legacy",
+		"description": "Displays an icon, status, and a description. Connotation (success, information, warning, alert) drives the default icon and color.",
+		"markdown": "./libs/components/src/lib/status/README.md",
+		"status": "underlying",
+		"parent": "Partials"
+	},
+	{
+		"title": "Partials",
+		"page": "legacy",
+		"status": "underlying",
+		"markdown": "./libs/components/src/lib/table/PARTIALS.md",
+		"children": ["Country", "Status"]
 	},
 	{
 		"title": "Popover",

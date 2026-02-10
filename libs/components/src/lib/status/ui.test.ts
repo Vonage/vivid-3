@@ -1,0 +1,39 @@
+import type { Page } from '@playwright/test';
+import { test } from '@playwright/test';
+import {
+	loadComponents,
+	renderTemplate,
+	takeScreenshot,
+} from '../../visual-tests/visual-tests-utils.js';
+
+const components = ['status', 'icon'];
+
+test('should show the component', async ({ page }: { page: Page }) => {
+	const template = `
+		<div style="margin: 5px;">
+			<vwc-status connotation="success" status="Positive">Description</vwc-status>
+		</div>
+		<div style="margin: 5px;">
+			<vwc-status connotation="information" status="Info">Description</vwc-status>
+		</div>
+		<div style="margin: 5px;">
+			<vwc-status connotation="warning" status="Warning">Description</vwc-status>
+		</div>
+		<div style="margin: 5px;">
+			<vwc-status connotation="alert" status="Alert">Description</vwc-status>
+		</div>
+	`;
+
+	await page.setViewportSize({ width: 400, height: 400 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await renderTemplate({
+		page,
+		template,
+	});
+
+	await takeScreenshot(page, 'status');
+});

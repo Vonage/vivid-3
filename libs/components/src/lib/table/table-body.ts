@@ -5,11 +5,4 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @component table-body
  * @slot - Default slot.
  */
-export class TableBody extends VividElement {
-	/**
-	 * @internal
-	 */
-	override connectedCallback(): void {
-		super.connectedCallback();
-	}
-}
+export class TableBody extends VividElement {}

@@ -2587,6 +2587,78 @@
 			}
 		},
 		{
+			"name": "country",
+			"className": "Country",
+			"registerFunctionName": "registerCountry",
+			"description": "",
+			"props": [
+				{
+					"name": "code",
+					"description": "ISO 3166-1 alpha-2 country code (e.g. \"GB\", \"UK\", \"US\"). When set, the component shows the matching flag icon and the code (e.g. \"UK\") automatically.",
+					"type": "string",
+					"attributeName": "code",
+					"propertyName": "code"
+				},
+				{
+					"name": "label",
+					"description": "Optional label to override the displayed text. When set, this is shown instead of the country code (e.g. for obscure countries where \"Saint Helena\" is clearer than \"SH\").",
+					"type": "string",
+					"attributeName": "label",
+					"propertyName": "label"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "icon",
+					"description": "Optional custom flag or graphic. When `code` is set and no content is slotted, a default flag icon (Vivid/Vonage icon set) is shown."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
 			"name": "data-grid",
 			"className": "DataGrid",
 			"registerFunctionName": "registerDataGrid",
@@ -8494,6 +8566,89 @@
 			}
 		},
 		{
+			"name": "status",
+			"className": "Status",
+			"registerFunctionName": "registerStatus",
+			"description": "",
+			"props": [
+				{
+					"name": "connotation",
+					"description": "The connotation the status should have. Determines icon and color.",
+					"type": "'success' | 'information' | 'warning' | 'alert'",
+					"attributeName": "connotation",
+					"propertyName": "connotation"
+				},
+				{
+					"name": "icon",
+					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
+					"type": "IconId",
+					"attributeName": "icon",
+					"propertyName": "icon"
+				},
+				{
+					"name": "status",
+					"description": "The status title (e.g. \"Positive\", \"Info\", \"Warning\", \"Alert\").",
+					"type": "string",
+					"attributeName": "status",
+					"propertyName": "status"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "default",
+					"description": "Description text below the title."
+				},
+				{
+					"name": "icon",
+					"description": "Optional custom icon. When not set, icon is derived from connotation."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [{ "name": "icon", "args": ["affixIcon"] }],
+				"refs": []
+			}
+		},
+		{
 			"name": "switch",
 			"className": "Switch",
 			"registerFunctionName": "registerSwitch",
@@ -8837,7 +8992,7 @@
 		{
 			"name": "table",
 			"className": "Table",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -8889,7 +9044,7 @@
 		{
 			"name": "table-body",
 			"className": "TableBody",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -8941,7 +9096,7 @@
 		{
 			"name": "table-cell",
 			"className": "TableCell",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -8993,7 +9148,7 @@
 		{
 			"name": "table-head",
 			"className": "TableHead",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -9045,7 +9200,7 @@
 		{
 			"name": "table-header-cell",
 			"className": "TableHeaderCell",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -9097,7 +9252,7 @@
 		{
 			"name": "table-row",
 			"className": "TableRow",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [

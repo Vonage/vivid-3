@@ -3,14 +3,7 @@ import { HostSemantics } from '../../shared/aria/host-semantics';
 
 /**
  * @public
- * @component table-row
+ * @component table-cell
  * @slot - Default slot.
  */
-export class TableRow extends HostSemantics(VividElement) {
-	/**
-	 * @internal
-	 */
-	override connectedCallback(): void {
-		super.connectedCallback();
-	}
-}
+export class TableCell extends HostSemantics(VividElement) {}

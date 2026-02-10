@@ -27,9 +27,7 @@ export const tableCellDefinition = defineVividComponent(
 	TableCell,
 	TableCellTemplate,
 	[],
-	{
-		styles: tableCellStyles,
-	}
+	{ styles: tableCellStyles }
 );
 
 /**
@@ -39,10 +37,8 @@ export const tableHeaderCellDefinition = defineVividComponent(
 	'table-header-cell',
 	TableHeaderCell,
 	TableHeaderCellTemplate,
-	[tableCellDefinition],
-	{
-		styles: tableHeaderCellStyles,
-	}
+	[],
+	{ styles: tableHeaderCellStyles }
 );
 
 /**
@@ -52,10 +48,8 @@ export const tableRowDefinition = defineVividComponent(
 	'table-row',
 	TableRow,
 	TableRowTemplate,
-	[tableCellDefinition, tableHeaderCellDefinition],
-	{
-		styles: tableRowStyles,
-	}
+	[],
+	{ styles: tableRowStyles }
 );
 
 /**
@@ -65,10 +59,8 @@ export const tableBodyDefinition = defineVividComponent(
 	'table-body',
 	TableBody,
 	TableBodyTemplate,
-	[tableRowDefinition],
-	{
-		styles: tableBodyStyles,
-	}
+	[],
+	{ styles: tableBodyStyles }
 );
 
 /**
@@ -78,10 +70,8 @@ export const tableHeadDefinition = defineVividComponent(
 	'table-head',
 	TableHead,
 	TableHeadTemplate,
-	[tableRowDefinition],
-	{
-		styles: tableHeadStyles,
-	}
+	[],
+	{ styles: tableHeadStyles }
 );
 
 /**
@@ -91,10 +81,14 @@ export const tableDefinition = defineVividComponent(
 	'table',
 	Table,
 	TableTemplate,
-	[tableHeadDefinition, tableBodyDefinition],
-	{
-		styles: tableStyles,
-	}
+	[
+		tableCellDefinition,
+		tableHeaderCellDefinition,
+		tableRowDefinition,
+		tableHeadDefinition,
+		tableBodyDefinition,
+	],
+	{ styles: tableStyles }
 );
 
 /**
@@ -102,7 +96,7 @@ export const tableDefinition = defineVividComponent(
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerDataTable = createRegisterFunction(tableDefinition);
+export const registerTable = createRegisterFunction(tableDefinition);
 
 export {
 	Table as VwcTableElement,
