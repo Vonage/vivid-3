@@ -1,7 +1,24 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VTooltip, VButton } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VTooltip text="I'm a tooltip" placement="right">
+		<template #anchor>
+			<VButton appearance="filled" shape="pill" icon="help-line" aria-label="More information" />
+		</template>
+	</VTooltip>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -26,38 +43,66 @@ registerTooltip('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VTooltip, VButton } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VTooltip text="I'm a tooltip" placement="right">
-		<VButton slot="anchor" appearance="filled" shape="pill" icon="help-line" aria-label="More information" />
-	</VTooltip>
-</template>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Anchor
 
 It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you can also use the `anchor` attribute. Either set it to the `id` of the anchor element or pass the anchor element itself.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview center 150px
+<script setup lang="ts">
+import { onMounted, useTemplateRef } from 'vue';
+import { VButton, VIcon, VTooltip } from '@vonage/vivid-vue';
+
+const secondTooltip = useTemplateRef<InstanceType<typeof VTooltip>>('tooltip2');
+const secondButton = useTemplateRef<InstanceType<typeof VButton>>('button2');
+
+onMounted(() => {
+	if (secondTooltip.value?.element) {
+		secondTooltip.value.element.anchor = secondButton.value?.element;
+	}
+});
+</script>
+
+<template>
+	<div class="wrapper">
+		<VButton id="button" appearance="filled" shape="pill" aria-label="More information">
+			<template #icon><VIcon name="help-line" /></template>
+		</VButton>
+		<VTooltip anchor="button" placement="left" text="My anchor is ID" />
+		<VButton ref="button2" appearance="filled" shape="pill" aria-label="More information">
+			<template #icon><VIcon name="help-line" /></template>
+		</VButton>
+		<VTooltip ref="tooltip2" placement="right" text="My anchor is an HTMLElement" />
+	</div>
+</template>
+
+<style>
+.wrapper {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview center 150px
 <div class="wrapper">
 	<vwc-button id="button" appearance="filled" shape="pill" aria-label="More information">
 		<vwc-icon slot="icon" name="help-line"></vwc-icon>
 	</vwc-button>
-	<vwc-tooltip anchor="button" text="I'm a tooltip"></vwc-tooltip>
-
+	<vwc-tooltip anchor="button" placement="left" text="My anchor is ID"></vwc-tooltip>
 	<vwc-button id="button2" appearance="filled" shape="pill" aria-label="More information">
 		<vwc-icon slot="icon" name="help-line"></vwc-icon>
 	</vwc-button>
-	<vwc-tooltip id="tooltip2" text="My anchor is an HTMLElement"></vwc-tooltip>
+	<vwc-tooltip id="tooltip2" placement="right" text="My anchor is an HTMLElement"></vwc-tooltip>
 </div>
 
 <script>
@@ -72,6 +117,9 @@ It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you ca
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 ### Anchor Slot
@@ -85,6 +133,30 @@ Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the Too
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview center 150px
+<script setup lang="ts">
+import { VButton, VIcon, VTooltip } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTooltip text="I'm a tooltip">
+		<template #anchor>
+			<VButton shape="pill" appearance="filled" aria-label="More information">
+				<template #icon><VIcon name="help-line" /></template>
+			</VButton>
+		</template>
+	</VTooltip>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview center 150px
 <vwc-tooltip text="I'm a tooltip">
 	<vwc-button slot="anchor" shape="pill" appearance="filled" aria-label="More information">
@@ -92,6 +164,9 @@ Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the Too
 	</vwc-button>
 </vwc-tooltip>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## CSS Variables
 
@@ -101,13 +176,52 @@ The `--tooltip-max-inline-size` variable sets the Tooltip's max inline size.
 
 - Default: `30ch`
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview center 300px
+<script setup lang="ts">
+import { VButton, VIcon, VTooltip } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTooltip text="Turn on to receive notifications for important updates and alerts directly to your email or mobile device." class="tooltip">
+		<template #anchor>
+			<VButton shape="pill" appearance="filled" aria-label="More information">
+				<template #icon><VIcon name="info-line" /></template>
+			</VButton>
+		</template>
+	</VTooltip>
+</template>
+
+<style>
+.tooltip {
+	--tooltip-max-inline-size: 50ch;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview center 300px
 <vwc-tooltip text="Turn on to receive notifications for important updates and alerts directly to your email or mobile device." class="tooltip">
 	<vwc-button slot="anchor" shape="pill" appearance="filled" aria-label="More information">
 		<vwc-icon slot="icon" name="info-line"></vwc-icon>
 	</vwc-button>
 </vwc-tooltip>
+
+<style>
+	.tooltip {
+		--tooltip-max-inline-size: 50ch;
+	}
+</style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
