@@ -4,6 +4,31 @@ Toggletip works differently to [Tooltip](/components/tooltip/) in that it requir
 
 The `headline` attributes sets the Toggletip headline.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview center 100px
+<script setup lang="ts">
+import { VButton, VIcon, VToggletip } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VToggletip headline="This is the headline" open>
+		<template #anchor>
+			<VButton shape="pill" appearance="filled">
+				<template #icon><VIcon name="help-line" /></template>
+			</VButton>
+		</template>
+		This is the content
+	</VToggletip>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview center 100px
 <vwc-toggletip headline="This is the headline" open>
 	<vwc-button slot="anchor" shape="pill" appearance="filled">
@@ -13,6 +38,9 @@ The `headline` attributes sets the Toggletip headline.
 </vwc-toggletip>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Placement
 
 The `placement` attribute sets the default placement of the Toggletip around its anchor element.
@@ -21,6 +49,139 @@ The `placement` attribute sets the default placement of the Toggletip around its
 	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 	<p>The Tooggletip will attempt to position itself where the <code>placement</code> attribute dictates (or the default of <code>bottom</code> if not set). If it is unable to do so, because of lack of available space on the screen, it will reposition itself to the most appropriate alternative placement.</p>
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview center 400px
+<script setup lang="ts">
+import { VButton, VIcon, VToggletip } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="grid">
+		<VToggletip placement="top-start" class="grid-col-2">
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			top-start
+		</VToggletip>
+		<VToggletip placement="top">
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			top
+		</VToggletip>
+		<VToggletip placement="top-end">
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			top-end
+		</VToggletip>
+		<VToggletip placement="left-start" class="grid-col-1">
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			left-start
+		</VToggletip>
+		<VToggletip placement="right-start" class="grid-col-5">
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			right-start
+		</VToggletip>
+		<VToggletip placement="left" class="grid-col-1">
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			left
+		</VToggletip>
+		<VToggletip placement="right" class="grid-col-5">
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			right
+		</VToggletip>
+		<VToggletip placement="left-end" class="grid-col-1">
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			left-end
+		</VToggletip>
+		<VToggletip placement="right-end" class="grid-col-5">
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			right-end
+		</VToggletip>
+		<VToggletip placement="bottom-start" class="grid-col-2">
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			bottom-start
+		</VToggletip>
+		<VToggletip placement="bottom" open>
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			bottom
+		</VToggletip>
+		<VToggletip placement="bottom-end">
+			<template #anchor>
+				<VButton shape="pill" appearance="filled">
+					<template #icon><VIcon name="help-line" /></template>
+				</VButton>
+			</template>
+			bottom-end
+		</VToggletip>
+	</div>
+</template>
+
+<style>
+.grid {
+	display: grid;
+	grid-template-columns: repeat(5, auto);
+	grid-template-rows: repeat(5, 40px);
+	gap: 4px;
+}
+.grid-col-1 {
+	grid-column: 1;
+}
+.grid-col-2 {
+	grid-column: 2;
+}
+.grid-col-5 {
+	grid-column: 5;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview center 400px
 <div class="grid">
@@ -117,9 +278,37 @@ The `placement` attribute sets the default placement of the Toggletip around its
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Alternate
 
 The `alternate` attribute changes the Toggletip's color scheme to the opposite of the currently select one (eg. from light to dark).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview center 100px
+<script setup lang="ts">
+import { VButton, VIcon, VToggletip } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VToggletip alternate open>
+		<template #anchor>
+			<VButton shape="pill" appearance="filled">
+				<template #icon><VIcon name="help-line" /></template>
+			</VButton>
+		</template>
+		An alternate toggletip
+	</VToggletip>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview center 100px
 <vwc-toggletip alternate open>
@@ -129,3 +318,6 @@ The `alternate` attribute changes the Toggletip's color scheme to the opposite o
 	An alternate toggletip
 </vwc-toggletip>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
