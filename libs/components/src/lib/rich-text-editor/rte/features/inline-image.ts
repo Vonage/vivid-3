@@ -12,6 +12,7 @@ import {
 	type SchemaContribution,
 } from '../feature';
 import type { RteInstanceImpl } from '../instance';
+import { escapeCssProperty, sanitizeImageSrc } from '../utils/sanitization';
 import { Popover } from '../../popover';
 import { createButton, createDiv, createDivider, UiCtx } from '../utils/ui';
 import {
@@ -179,7 +180,8 @@ class InlineImageView implements NodeView {
 	}
 
 	renderImg(src: string) {
-		this.img.src = src;
+		// Sanitize the URL to prevent XSS (allow data:image/* URLs)
+		this.img.src = sanitizeImageSrc(src);
 		this.setContent(this.img, { allowPopover: true });
 	}
 
@@ -222,14 +224,17 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 			},
 			parseDOM: [
 				{
-					tag: 'img[src]',
+					tag: 'img[src],img[data-src]',
 					getAttrs: (dom: HTMLElement) => {
 						const parseDimension = (dim: string | null) => {
 							const value = parseInt(dim ?? '', 10);
 							return isNaN(value) ? null : value;
 						};
 
-						const srcAttr = dom.getAttribute('src')!;
+						// Prefer data-src since src may be dropped by sanitization for custom protocols (e.g. attachment://)
+						const srcAttr = (dom.getAttribute('data-src') ??
+							dom.getAttribute('src')) as string;
+
 						const imageUrl = this.config.parseUrlFromHtml
 							? this.config.parseUrlFromHtml(srcAttr)
 							: srcAttr;
@@ -257,9 +262,13 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 				if (resolvedUrl === null) {
 					return document.createTextNode('');
 				}
-
-				const attrs: Record<string, string> = { src: resolvedUrl, alt };
-				if (size) attrs.style = `max-width: ${size}; height: auto;`;
+				const attrs: Record<string, string> = {
+					src: sanitizeImageSrc(resolvedUrl),
+					'data-src': resolvedUrl, // Preserve src if it is dropped by sanitization
+					alt,
+				};
+				if (size)
+					attrs.style = `max-width: ${escapeCssProperty(size)}; height: auto;`;
 				if (naturalWidth) attrs.width = naturalWidth;
 				if (naturalHeight) attrs.height = naturalHeight;
 				return ['img', attrs];

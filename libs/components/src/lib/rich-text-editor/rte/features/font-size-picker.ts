@@ -11,6 +11,7 @@ import {
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
+import { escapeCssProperty } from '../utils/sanitization';
 import type { CursorFixMarkSpec } from './internal/cursor-fix';
 
 export interface FontSizeOption {
@@ -91,7 +92,7 @@ export class RteFontSizePickerFeatureImpl extends RteFeatureImpl {
 			toDOM: (mark: Mark) => {
 				return [
 					'span',
-					{ style: `font-size: ${mark.attrs.size};` },
+					{ style: `font-size: ${escapeCssProperty(mark.attrs.size)};` },
 					0,
 				] as const;
 			},

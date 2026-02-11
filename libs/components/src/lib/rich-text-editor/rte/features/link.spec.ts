@@ -70,6 +70,35 @@ describe('RteLinkFeature', () => {
 		);
 	});
 
+	it.each([
+		'javascript:alert("XSS")',
+		'data:text/html,<script>alert(1)</script>',
+	])('should sanitize unsafe URL "%s"', async (url) => {
+		const rte = await setup(features, [
+			p('Click ', text.marks(link({ href: url }))('here')),
+		]);
+
+		expect(rte.view.dom.querySelector('a')!.getAttribute('href')).toBe('');
+		expect(rte.getHtml()).toBe('<p>Click <a href="">here</a></p>');
+	});
+
+	it.each([
+		'https://example.com',
+		'http://example.com',
+		'mailto:test@example.com',
+		'tel:+1234567890',
+		'/about',
+		'./page',
+		'#section',
+	])('should allow safe URL "%s"', async (url) => {
+		const rte = await setup(features, [
+			p('Click ', text.marks(link({ href: url }))('here')),
+		]);
+
+		expect(rte.view.dom.querySelector('a')!.getAttribute('href')).toBe(url);
+		expect(rte.getHtml()).toBe(`<p>Click <a href="${url}">here</a></p>`);
+	});
+
 	it('should add a link menu to the toolbar to insert links', async () => {
 		const { toolbarButton, click, textField, openMenu, input, button, docStr } =
 			await setup(features);

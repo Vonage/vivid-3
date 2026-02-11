@@ -31,6 +31,7 @@ import {
 import { Popover } from '../../popover';
 import type { Menu } from '../../../menu/menu';
 import type { Button } from '../../../button/button';
+import { sanitizeLinkHref } from '../utils/sanitization';
 import linkCss from './link.style.scss?inline';
 
 type Link = { text: string; href: string; start: number; end: number };
@@ -93,7 +94,7 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 							],
 							toDOM(node) {
 								const { href } = node.attrs;
-								return ['a', { href }, 0];
+								return ['a', { href: sanitizeLinkHref(href) }, 0];
 							},
 						},
 					},

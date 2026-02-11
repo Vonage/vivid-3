@@ -79,6 +79,19 @@ describe('RteTextColorFeature', () => {
 		);
 	});
 
+	it('should escape color values', async () => {
+		const rte = await setup(features(), [
+			p(text.marks(color({ color: 'red; background: red' }))('Colored')),
+		]);
+
+		expect(rte.view.dom.querySelector('span')!.style.cssText).toBe(
+			'color: red;'
+		);
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<p><span style="color: red;" data-text-color="red; background: red">Colored</span></p>"`
+		);
+	});
+
 	describe('picker color', () => {
 		it('should be empty if no default color is defined', async () => {
 			const rte = await setup(

@@ -61,6 +61,19 @@ describe('RteFontSizeFeature', () => {
 		);
 	});
 
+	it('should escape font size values', async () => {
+		const rte = await setup(features(basicFontSizeOptions), [
+			p(text.marks(size({ size: '15px; background: red' }))('Hello')),
+		]);
+
+		expect(rte.view.dom.querySelector('span')!.style.cssText).toBe(
+			'font-size: 15px;'
+		);
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<p><span style="font-size: 15px;">Hello</span></p>"`
+		);
+	});
+
 	it('should provide a menu with font size options where the current font size is checked', async () => {
 		const { toolbarButton, click, openMenu, menuItem, isChecked, placeCursor } =
 			await setup(

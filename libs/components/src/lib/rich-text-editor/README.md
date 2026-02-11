@@ -401,12 +401,12 @@ const fragment = parser.parseFragment('<img data-attachment-id="1">', {
 
 serializer.serializeFragment(fragment, {
 	modifyDom: (dom) => {
-		for (const img of dom.querySelectorAll('img[src]').values()) {
-			const url = new URL(img.getAttribute('src')!);
+		for (const img of dom.querySelectorAll('img[data-src]').values()) {
+			const url = new URL(img.getAttribute('data-src')!);
 			img.setAttribute('data-attachment-id', url.hostname);
 		}
 	},
-}); // -> '<img src="attachment://1" alt="" data-attachment-id="1">'
+}); // -> '<img src="" data-src="attachment://1" alt="" data-attachment-id="1">'
 ```
 
 You can also customize the ProseMirror parsing and serialization logic directly.
@@ -1605,13 +1605,20 @@ new RteInlineImageFeature({
 });
 ```
 
-**parseUrlFromHtml**
+**serializeUrlToHtml**
 
 Type: `serializeUrlToHtml: (imageUrl: string) => string | null`
 
 Called when the document is serialized to HTML. Note that this occurs not only when you use a `HtmlSerializer`, but also when content is copied or dragged out of the editor.
 
 For each image, it is called with the `imageUrl` and should return the `src` value of `<img>` element. If it returns `null`, the image is omitted from HTML output.
+
+<vwc-note connotation="information" headline="HTML Serialization">
+	<vwc-icon slot="icon" name="info-line" label="Information:"></vwc-icon>
+
+When serializing an image to HTML, an invalid `src` like `attachment://12345` may be dropped from the output due to sanitization. To preserve this value it is added as the `data-src` attribute as well.
+
+</vwc-note>
 
 **parseUrlFromHtml**
 
