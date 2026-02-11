@@ -45,7 +45,15 @@ Here's an example of sorting when building the grid manually:
 <vwc-data-grid class="data-grid">
 	<vwc-data-grid-row row-type="header">
 		<vwc-data-grid-cell cell-type="columnheader"> Not Sortable </vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader" sort-direction="none"> Sortable </vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader" sort-direction="none"> Sortable <vwc-menu placement="bottom-start" slot="filter">
+				<vwc-button slot="anchor" aria-label="Filter Data 1 column" size="condensed" icon="filter-line"></vwc-button>
+				<vwc-menu-item control-type="checkbox" text="Checkbox 1"></vwc-menu-item>
+				<vwc-menu-item control-type="checkbox" text="Checkbox 2"></vwc-menu-item>
+				<vwc-menu-item control-type="checkbox" text="Checkbox 3"></vwc-menu-item>
+				<vwc-menu-item control-type="checkbox" text="Checkbox 4"></vwc-menu-item>
+				<vwc-button slot="action-items" size="condensed" appearance="outlined" label="Close"></vwc-button>
+				<vwc-button slot="action-items" size="condensed" appearance="filled" label="Apply filter"></vwc-button>
+			</vwc-menu></vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
 

@@ -449,7 +449,12 @@ export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 	/**
 	 * @internal
 	 */
-	_handleInteraction(): boolean {
+	_handleInteraction(evt: MouseEvent): boolean {
+		const isFilterClick = (evt.target as HTMLElement).closest('[slot="filter"]') !== null;
+		if (isFilterClick) {
+			evt.stopPropagation();
+			return false;
+		}
 		const isHeaderCell = this.cellType === 'columnheader';
 		const isSortable = isHeaderCell && this.sortDirection !== undefined;
 

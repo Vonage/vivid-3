@@ -104,7 +104,7 @@ export const DataGridCellTemplate = (
 				ariaSelected: calculateAriaSelectedValue,
 				ariaSort: (x) => x.sortDirection ?? null,
 			})}
-			@click="${(x) => x._handleInteraction()}"
+			@click="${(x, c) => x._handleInteraction(c.event as MouseEvent)}"
 			@keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
 		>
 			<div
@@ -140,6 +140,7 @@ export const DataGridCellTemplate = (
 				)}
 				${(_) => renderSortIcons(context)}
 			</div>
+			<slot name="filter"></slot>
 		</template>
 	`;
 };

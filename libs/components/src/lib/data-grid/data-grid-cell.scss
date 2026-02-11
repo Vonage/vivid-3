@@ -19,6 +19,7 @@
 :host {
 	block-size: 100%; // Only needed for older WebKit browsers
 	min-inline-size: 80px;
+	position: relative
 }
 
 :host(:focus-visible) {
@@ -89,7 +90,7 @@
 	}
 }
 
-slot {
+slot:not([name='filter']) {
 	display: block;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -100,6 +101,18 @@ slot {
 	:host(:not([cell-type='columnheader'][aria-sort])) & {
 		inline-size: 100%;
 	}
+}
+
+:host(:not([cell-type='columnheader'])) slot[name='filter'], slot[name='filter']:empty {
+	display: none;
+}
+
+:host([cell-type='columnheader']) slot[name='filter'] {
+	position: absolute;
+	display: block;
+	inset-inline-end: 8px;
+	inset-block-start: 50%;
+	transform: translateY(-50%);
 }
 
 .header-icon {
