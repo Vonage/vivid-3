@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.11.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.10.0...vivid-v5.11.0) (2026-02-11)
+
+
+### Bug Fixes
+
+* **rich-text-editor:** sanitize rendered output (VIV-3059) ([#2745](https://github.com/Vonage/vivid-3/issues/2745)) ([e6adfac](https://github.com/Vonage/vivid-3/commit/e6adfac64d02a85f9c5840a5e1231a251615ea15))
+
 ## [5.10.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.9.0...vivid-v5.10.0) (2026-02-10)
 
 
