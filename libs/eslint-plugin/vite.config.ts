@@ -8,7 +8,8 @@ export default mergeConfig(
 	defineConfig({
 		plugins: [
 			dts({
-				skipDiagnostics: true,
+				include: ['src/**/*.ts'],
+				exclude: ['**/*.spec.ts'],
 			}),
 		],
 

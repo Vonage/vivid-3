@@ -6,11 +6,7 @@ import baseVitestConfig from '@repo/vitest-config/base';
 export default mergeConfig(
 	baseVitestConfig,
 	defineConfig({
-		plugins: [
-			dts({
-				skipDiagnostics: true,
-			}),
-		],
+		plugins: [dts()],
 
 		build: {
 			lib: {

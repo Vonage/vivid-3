@@ -1,7 +1,12 @@
 import { Schema } from 'prosemirror-model';
 import type { Constructor } from '../../../shared/utils/mixins';
 import { RteInstance, type RteInstanceOptions } from './instance';
-import { RteFeature, RteFeatureImpl, sortedContributions } from './feature';
+import {
+	getFeatureImpl,
+	RteFeature,
+	RteFeatureImpl,
+	sortedContributions,
+} from './feature';
 import { TextblockAttrs } from './utils/textblock-attrs';
 import { impl } from './utils/impl';
 import { TextblockMarks } from './utils/textblock-marks';
@@ -42,7 +47,7 @@ export class RteConfigImpl {
 						subFeature === f ? f : resolveFeatures([subFeature])
 					)
 			);
-		this.features = resolveFeatures(featuresFacades.map((f) => f[impl]));
+		this.features = resolveFeatures(featuresFacades.map(getFeatureImpl));
 		this.featureMap = new Map();
 
 		for (const f of this.features) {
@@ -55,7 +60,7 @@ export class RteConfigImpl {
 		this.featureFacadesMap = new Map();
 		for (const facade of featuresFacades) {
 			const FacadeClass = facade.constructor as Constructor<RteFeature>;
-			const feature = facade[impl];
+			const feature = getFeatureImpl(facade);
 
 			const instances = this.featureFacadesMap.get(FacadeClass);
 			if (instances) {
