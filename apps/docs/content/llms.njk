@@ -1,6 +1,5 @@
 ---
-permalink: /llm.txt
-eleventyExcludeFromCollections: true
+permalink: /llms.txt
 ---
 # Vivid Design System: LLM Integration Guide
 
@@ -54,6 +53,8 @@ Used to communicate semantic meaning via color:
 * **Design Tokens:** Use CSS variables (e.g., `--vvd-color-canvas`) instead of hardcoded hex values to support theme switching.
 
 ## Components Reference
+IMPORTANT: Not all components support every connotation/appearance combination. Always refer to the specific component documentation for supported attributes and variations.
+IMPORTANT: Not all components has all documentation part (for example "guidelines"). Always refer to the specific component documentation only for available documentation parts. If you are not sure how to use given component, start with "General usage guidelines" and then check other documentation parts if available (code usage, use cases, variations, accessibility).
 
 For granular details on specific components (APIs, slots, and examples), refer to the following sub-documentation structure:
 
@@ -61,11 +62,21 @@ For granular details on specific components (APIs, slots, and examples), refer t
 {% for component in components %}
 
 * **{{ component.title }}** - {{ component.description }}
-  * [General usage guidelines](/components/{{ component | componentSlug }}/guidelines/llm.txt)
-  * [Code usage](/components/{{ component | componentSlug }}/code/llm.txt)
-  * [Use cases](/components/{{ component | componentSlug }}/use-cases/llm.txt)
-  * [Variations](/components/{{ component | componentSlug }}/variations/llm.txt)
-  * [Accessibility](/components/{{ component | componentSlug }}/accessibility/llm.txt)
+{%- if component.guidelines %}
+  * [General usage guidelines](/components/{{ component | componentSlug }}/guidelines/llms.txt)
+{%- endif %}
+{%- if component.code %}
+  * [Code usage](/components/{{ component | componentSlug }}/code/llms.txt)
+{%- endif %}
+{%- if component.useCases %}
+  * [Use cases](/components/{{ component | componentSlug }}/use-cases/llms.txt)
+{%- endif %}
+{%- if component.variations %}
+  * [Variations](/components/{{ component | componentSlug }}/variations/llms.txt)
+{%- endif %}
+{%- if component.accessibility %}
+  * [Accessibility](/components/{{ component | componentSlug }}/accessibility/llms.txt)
+{%- endif %}
 {% endfor %}
 
 ### Quick Component Selector

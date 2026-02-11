@@ -1,6 +1,5 @@
 const vue = require('@vitejs/plugin-vue');
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
-const EleventyVitePlugin = require('@11ty/eleventy-plugin-vite');
 const pluginTOC = require('eleventy-plugin-nesting-toc');
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
 const markdownLibrary = require('./libraries/markdown-it');
@@ -23,8 +22,6 @@ const {
 const components = require('./content/_data/components.json');
 const { spawn } = require('node:child_process');
 const { NodePackageImporter } = require('sass');
-const { readFileSync } = require('fs');
-const { resolve } = require('path');
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..');
 const DOCS_DIR = '.';
@@ -54,6 +51,7 @@ module.exports = async (eleventyConfig) => {
 	const EleventyVitePlugin = await import('@11ty/eleventy-plugin-vite');
 
 	eleventyConfig.addPlugin(EleventyVitePlugin.default, {
+		tempFolderName: '.11ty-vite',
 		viteOptions: {
 			plugins: [
 				vue({
@@ -65,9 +63,26 @@ module.exports = async (eleventyConfig) => {
 						},
 					},
 				}),
+				{
+					name: 'emit-llms-txt',
+					generateBundle() {
+						const files =
+							glob.sync(`${DOCS_DIR}/.11ty-vite/**/*.txt`, {}) || [];
+						for (const file of files) {
+							const source = fs.readFileSync(file, 'utf-8');
+							const fileName = path.relative(`${DOCS_DIR}/.11ty-vite/`, file);
+
+							this.emitFile({
+								type: 'asset',
+								fileName,
+								source,
+							});
+						}
+					},
+				},
 			],
 			build: {
-				emptyOutDir: true,
+				emptyOutDir: false,
 			},
 			resolve: {
 				alias: {
@@ -133,10 +148,20 @@ module.exports = async (eleventyConfig) => {
 		return new CleanCSS({}).minify(code).styles;
 	});
 
-	eleventyConfig.addFilter('includeMd', (path) => {
-		if (!path.endsWith('.md') || !path.startsWith('./libs/components/src/lib/'))
+	eleventyConfig.addFilter('includeMd', (filePath) => {
+		if (
+			!filePath.endsWith('.md') ||
+			!filePath.startsWith('./libs/components/src/lib/')
+		)
 			return '';
-		return readFileSync(resolve('../../', path), 'utf8');
+
+		const markdownPath = path.resolve(
+			WORKSPACE_ROOT,
+			filePath.replaceAll('../', '')
+		);
+		if (!fs.existsSync(markdownPath)) return '';
+
+		return fs.readFileSync(markdownPath, 'utf8');
 	});
 
 	eleventyConfig.addFilter('onlyPublicPages', onlyPublicPages);
