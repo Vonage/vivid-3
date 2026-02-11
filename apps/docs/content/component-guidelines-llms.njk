@@ -1,0 +1,12 @@
+---
+eleventyExcludeFromCollections: true
+pagination:
+  data: componentGuidelines
+  size: 1
+  alias: component
+permalink: 'components/{{ component | componentSlug }}/guidelines/llms.txt'
+eleventyComputed:
+  pageTitle: '{{ component.title }} - Guidelines'
+---
+# {{ pageTitle }}
+{{ component.guidelines | includeMd | safe }}

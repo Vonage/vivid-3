@@ -1,0 +1,88 @@
+---
+permalink: /llms.txt
+---
+# Vivid Design System: LLM Integration Guide
+
+Vivid is Vonage's official design system built on **native Web Components** (FAST framework). It is framework-agnostic but provides first-class wrappers for Vue and React.
+
+## Core Technical Profile
+
+* **Prefixes:** Custom elements use `vwc-` (e.g., `<vwc-button>`). Global utility classes/variables use `vvd-`.
+* **Architecture:** Encapsulated via Shadow DOM. Styles are isolated; use **CSS Parts** (`::part`) or **Design Tokens** (CSS variables) for deep customization.
+* **Interoperability:** Works in vanilla HTML/JS, Vue (via @vonage/vivid-vue), and React (via `@vonage/vivid-react-wrapper`).
+
+## Global Setup
+
+To activate Vivid styles, the application must:
+
+1. Load the theme CSS (Light/Dark).
+2. Apply the `vvd-root` class to the container (usually `<body>`).
+3. Import the specific component JS module.
+
+## Semantic Patterns (LLM Decision Matrix)
+
+When choosing or configuring components, use these standard attributes to maintain brand logic:
+
+### 1. Connotation (Intent)
+
+Used to communicate semantic meaning via color:
+
+* `cta`: Primary page action.
+* `accent`: Secondary brand highlight.
+* `success`: Positive outcome/confirmation.
+* `alert`: Errors or critical warnings.
+* `announcement`: New features or neutral highlights.
+* `info`: General metadata or supplementary context.
+
+### 2. Appearance (Visual Style)
+
+* `filled`: High emphasis (standard).
+* `outlined`: Medium emphasis.
+* `ghost`: Low emphasis/subtle.
+
+### 3. Layout & Spacing
+
+* Use `<vwc-layout>` as the primary container. It handles grid logic and spacing tokens automatically.
+* Avoid manual margins; rely on the layout component's gutter and column logic.
+
+## Implementation Guidelines for LLMs
+
+* **Attributes vs Properties:** In vanilla/React, use attributes. In Vue, use the `V` prefix wrappers (e.g., `<VButton>`) for better type safety.
+* **Icons:** Use `<vwc-icon>` inside the `icon` slot of components. The `icon` attribute on components is deprecated in favor of slots.
+* **Accessibility:** Components are WCAG 2.1 AA compliant by default. Always provide an `aria-label` for icon-only buttons.
+* **Design Tokens:** Use CSS variables (e.g., `--vvd-color-canvas`) instead of hardcoded hex values to support theme switching.
+
+## Components Reference
+IMPORTANT: Not all components support every connotation/appearance combination. Always refer to the specific component documentation for supported attributes and variations.
+IMPORTANT: Not all components has all documentation part (for example "guidelines"). Always refer to the specific component documentation only for available documentation parts. If you are not sure how to use given component, start with "General usage guidelines" and then check other documentation parts if available (code usage, use cases, variations, accessibility).
+
+For granular details on specific components (APIs, slots, and examples), refer to the following sub-documentation structure:
+
+## Components
+{% for component in components %}
+
+* **{{ component.title }}** - {{ component.description }}
+{%- if component.guidelines %}
+  * [General usage guidelines](/components/{{ component | componentSlug }}/guidelines/llms.txt)
+{%- endif %}
+{%- if component.code %}
+  * [Code usage](/components/{{ component | componentSlug }}/code/llms.txt)
+{%- endif %}
+{%- if component.useCases %}
+  * [Use cases](/components/{{ component | componentSlug }}/use-cases/llms.txt)
+{%- endif %}
+{%- if component.variations %}
+  * [Variations](/components/{{ component | componentSlug }}/variations/llms.txt)
+{%- endif %}
+{%- if component.accessibility %}
+  * [Accessibility](/components/{{ component | componentSlug }}/accessibility/llms.txt)
+{%- endif %}
+{% endfor %}
+
+### Quick Component Selector
+
+* **Inputs:** `vwc-text-field`, `vwc-select`, `vwc-checkbox`, `vwc-radio`.
+* **Feedback:** `vwc-alert`, `vwc-banner`, `vwc-badge`, `vwc-progress-bar`.
+* **Containers:** `vwc-card`, `vwc-accordion`, `vwc-dialog`.
+* **Navigation:** `vwc-tabs`, `vwc-breadcrumb`, `vwc-menu`.
+
