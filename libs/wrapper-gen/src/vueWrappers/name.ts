@@ -1,5 +1,5 @@
 import { kebabToPascal } from '../utils/casing';
-import { ComponentDef } from '../common/ComponentDef';
+import type { ComponentDef } from '@repo/metadata-extractor';
 
 export const wrappedComponentName = (componentDef: ComponentDef) =>
 	`V${kebabToPascal(componentDef.name)}`;

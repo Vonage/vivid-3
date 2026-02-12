@@ -4,10 +4,6 @@
 	"private": true,
 	"type": "module",
 	"exports": {
-		"./metadata": {
-			"types": "./dist/metadata/index.d.ts",
-			"default": "./dist/metadata/index.js"
-		},
 		"./docs": {
 			"types": "./dist/docs/index.d.ts",
 			"default": "./dist/docs/index.js"
@@ -31,7 +27,6 @@
 	},
 	"scripts": {
 		"build": "tsc",
-		"buildMetadata": "tsx src/buildMetadata.ts",
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
 		"test": "vitest run",
@@ -39,19 +34,14 @@
 		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},
 	"devDependencies": {
-		"@microsoft/fast-foundation": "catalog:",
-		"@microsoft/fast-web-utilities": "catalog:",
 		"@repo/consts": "workspace:*",
 		"@repo/eslint-config": "workspace:*",
+		"@repo/metadata-extractor": "workspace:*",
 		"@repo/shared": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
-		"@types/jsdom": "catalog:",
 		"@types/markdown-table": "catalog:",
 		"@types/node-fetch": "^2.6.13",
-		"@vonage/vivid": "workspace:*",
-		"custom-elements-manifest": "catalog:",
-		"jsdom": "catalog:",
 		"markdown-table": "catalog:",
 		"node-fetch": "^2.7.0",
 		"tsx": "catalog:",

@@ -46,6 +46,7 @@
 	"devDependencies": {
 		"@playwright/test": "catalog:",
 		"@repo/eslint-config": "workspace:*",
+		"@repo/metadata-extractor": "workspace:*",
 		"@repo/shared": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",

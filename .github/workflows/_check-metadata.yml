@@ -37,7 +37,7 @@ jobs:
         run: pnpm install
 
       - name: Build Metadata
-        run: pnpm turbo run @repo/wrapper-gen#buildMetadata
+        run: pnpm turbo run @vonage/vivid#build
 
       - name: Check Components Metadata
         id: diff

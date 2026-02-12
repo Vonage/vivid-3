@@ -935,7 +935,7 @@ export class Select extends WithLightDOMFeedback(
 		);
 	}
 
-	override _newDefaultSelectedIndex(
+	protected override _newDefaultSelectedIndex(
 		prev: ListboxOption[],
 		next: ListboxOption[],
 		currentSelectIndex: number
@@ -958,7 +958,7 @@ export class Select extends WithLightDOMFeedback(
 		return defaultSelectedIndex;
 	}
 
-	override _isDefaultSelected(option: ListboxOption) {
+	protected override _isDefaultSelected(option: ListboxOption) {
 		return (
 			super._isDefaultSelected(option) || option.value === this.initialValue
 		);

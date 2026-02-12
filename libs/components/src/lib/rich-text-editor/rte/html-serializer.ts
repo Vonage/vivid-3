@@ -34,7 +34,7 @@ type SerializeOptions = {
 };
 
 export class RteHtmlSerializer {
-	/// @internal
+	/** @internal */
 	[impl]: RteHtmlSerializerImpl;
 
 	constructor(config: RteConfig, options?: RteHtmlSerializerOptions) {

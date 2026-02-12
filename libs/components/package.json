@@ -26,7 +26,8 @@
 		"./*": {
 			"types": "./dist/*/index.d.ts",
 			"import": "./dist/*/index.js",
-			"require": "./dist/*/index.cjs"
+			"require": "./dist/*/index.cjs",
+			"source": "./src/lib/*/index.ts"
 		},
 		"./locales/*": {
 			"types": "./dist/locales/*.d.ts",
@@ -40,13 +41,14 @@
 	"scripts": {
 		"prebuild": "cem analyze --config ./cem.config.mjs",
 		"build": "vite build && vite build -c ./vite.config.bundled.ts",
-		"postbuild": "api-extractor run -c ./dist/api-extractor.json && move-manifest-to-dist .",
+		"postbuild": "api-extractor run -c ./dist/api-extractor.json && pnpm run extract-metadata && move-manifest-to-dist .",
 		"dev": "WATCH_MODE=true vite build -w -c ./vite.config.ts",
 		"dev:bundled": "WATCH_MODE=true vite build -w -c ./vite.config.bundled.ts",
 		"e2e": "playwright test",
 		"e2e:docker": "PW_TEST_CONNECT_WS_ENDPOINT=ws://localhost:3000/ playwright test",
 		"e2e:docker:ui": "PW_TEST_CONNECT_WS_ENDPOINT=ws://localhost:3000/ playwright test --ui",
 		"e2e:ui": "playwright test --ui",
+		"extract-metadata": "extract-metadata | pnpx prettier --stdin-filepath metadata.json > metadata.json",
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
 		"stylelint": "stylelint 'src/**/*.{css,scss}'",
@@ -87,6 +89,7 @@
 		"@repo/consts": "workspace:*",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/eslint-plugin-repo": "workspace:*",
+		"@repo/metadata-extractor": "workspace:*",
 		"@repo/shared": "workspace:*",
 		"@repo/stylelint-config": "workspace:*",
 		"@repo/styles": "workspace:*",

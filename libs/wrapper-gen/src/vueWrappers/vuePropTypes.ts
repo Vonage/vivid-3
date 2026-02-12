@@ -2,10 +2,12 @@ import {
 	isBooleanLiteral,
 	isNumberLiteral,
 	isStringLiteral,
+} from '../common/types';
+import {
 	parseTypeStr,
 	TypeRef,
 	TypeStr,
-} from '../common/types';
+} from '@repo/metadata-extractor/metadata/type-str';
 
 /// Removes any type parameters, e.g. CustomEvent<number> -> CustomEvent
 const stripTypeParameters = (typeStr: TypeRef) => typeStr.replace(/<.*>/, '');
@@ -23,6 +25,10 @@ const toVuePropType = (type: TypeRef) => {
 
 	const baseType = stripTypeParameters(type);
 
+	if (baseType.endsWith('[]')) {
+		return 'Array';
+	}
+
 	switch (baseType) {
 		case 'string':
 			return 'String';
@@ -32,9 +38,6 @@ const toVuePropType = (type: TypeRef) => {
 			return 'Boolean';
 		case 'object':
 			return 'Object';
-		case 'string[]':
-		case 'Element[]':
-		case 'any[]':
 		case 'Array':
 			return 'Array';
 		case 'Date':
@@ -63,5 +66,14 @@ const unique = <T>(arr: T[]) => Array.from(new Set(arr));
  * Converts types to the corresponding runtime values for Vue's prop validation:
  * https://vuejs.org/guide/components/props#prop-validation
  */
-export const vuePropTypes = (types: TypeStr) =>
-	unique(parseTypeStr(types).map(toVuePropType));
+export const vuePropTypes = (types: TypeStr) => {
+	if (types.includes('{') || types.includes('=>')) {
+		// give up immediately
+		return ['null as unknown'];
+	}
+	if (types.includes('#')) {
+		// we don't know for imported types
+		return ['null as unknown'];
+	}
+	return unique(parseTypeStr(types).map(toVuePropType));
+};

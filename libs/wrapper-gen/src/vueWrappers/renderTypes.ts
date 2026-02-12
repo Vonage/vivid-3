@@ -1,5 +1,5 @@
-import { ComponentDef } from '../common/ComponentDef';
 import { wrappedComponentName } from './name';
+import type { ComponentDef } from '@repo/metadata-extractor';
 
 export default function renderTypes(components: ComponentDef[]) {
 	const componentNames = components.map(wrappedComponentName);

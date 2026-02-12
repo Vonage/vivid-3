@@ -1,4 +1,4 @@
-import { TypeStr } from '../common/types';
+import { TypeStr } from '@repo/metadata-extractor/metadata/type-str';
 
 /**
  * Renders a JSDoc block.

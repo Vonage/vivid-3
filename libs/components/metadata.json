@@ -297,7 +297,7 @@
 				{
 					"name": "connotation",
 					"description": "Sets an appropriate icon / icon color for the connotation.",
-					"type": "'accent' | 'information' | 'success' | 'warning' | 'announcement' | 'alert'",
+					"type": "'accent' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -332,7 +332,7 @@
 				{
 					"name": "placement",
 					"description": "The placement of the Alert on the screen.",
-					"type": "'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end'",
+					"type": "'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end'",
 					"attributeName": "placement",
 					"propertyName": "placement"
 				},
@@ -461,12 +461,18 @@
 					"propertyName": "connotation"
 				},
 				{
+					"name": "currentTime",
+					"type": "number",
+					"propertyName": "currentTime"
+				},
+				{
 					"name": "disabled",
 					"description": "Indicates whether audio player is disabled.",
 					"type": "boolean",
 					"attributeName": "disabled",
 					"propertyName": "disabled"
 				},
+				{ "name": "duration", "type": "number", "propertyName": "duration" },
 				{
 					"name": "durationFallback",
 					"description": "Enables fallback logic to fetch and decode audio buffer for duration when metadata is missing.",
@@ -486,11 +492,17 @@
 					"attributeName": "pause-button-aria-label",
 					"propertyName": "pauseButtonAriaLabel"
 				},
+				{ "name": "paused", "type": "boolean", "propertyName": "paused" },
 				{
 					"name": "playButtonAriaLabel",
 					"type": "string",
 					"attributeName": "play-button-aria-label",
 					"propertyName": "playButtonAriaLabel"
+				},
+				{
+					"name": "playbackRate",
+					"type": "number",
+					"propertyName": "playbackRate"
 				},
 				{
 					"name": "playbackRates",
@@ -566,9 +578,9 @@
 			],
 			"vueModels": [],
 			"methods": [
-				{ "name": "pause", "args": [], "returnType": "unknown" },
-				{ "name": "play", "args": [], "returnType": "unknown" },
-				{ "name": "srcChanged", "args": [], "returnType": "unknown" }
+				{ "name": "pause", "args": [], "returnType": "void" },
+				{ "name": "play", "args": [], "returnType": "void" },
+				{ "name": "srcChanged", "args": [], "returnType": "void" }
 			],
 			"slots": [],
 			"testUtils": {
@@ -765,7 +777,7 @@
 				{
 					"name": "connotation",
 					"description": "The connotation the badge should have.",
-					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
+					"type": "'alert' | 'accent' | 'cta' | 'success' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -876,7 +888,7 @@
 				},
 				{
 					"name": "connotation",
-					"type": "'information' | 'announcement' | 'success' | 'warning' | 'alert'",
+					"type": "'success' | 'alert' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -1153,7 +1165,7 @@
 				{
 					"name": "appearance",
 					"description": "The appearance the button should have.",
-					"type": "'filled' | 'outlined' | 'ghost' | 'ghost-light' | 'outlined-light'",
+					"type": "'ghost' | 'filled' | 'outlined' | 'ghost-light' | 'outlined-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},
@@ -1167,7 +1179,7 @@
 				{
 					"name": "connotation",
 					"description": "The connotation the button should have.",
-					"type": "'accent' | 'announcement' | 'cta' | 'success' | 'alert'",
+					"type": "'alert' | 'accent' | 'cta' | 'success' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -1328,7 +1340,7 @@
 				{
 					"name": "size",
 					"description": "The size the button should have.",
-					"type": "'super-condensed' | 'condensed' | 'normal' | 'expanded'",
+					"type": "'condensed' | 'normal' | 'expanded' | 'super-condensed'",
 					"attributeName": "size",
 					"propertyName": "size"
 				},
@@ -1356,7 +1368,7 @@
 				{
 					"name": "type",
 					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
-					"type": "'submit' | 'reset' | 'button'",
+					"type": "string",
 					"attributeName": "type",
 					"propertyName": "type"
 				},
@@ -1412,7 +1424,7 @@
 					"name": "clickHandler",
 					"description": "Handles click events.\nPrevents interaction when disabled or pending.",
 					"args": [{ "name": "event", "type": "Event" }],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "reportValidity",
@@ -1460,7 +1472,7 @@
 				{
 					"name": "datetime",
 					"description": "The date within a week of choice.\nAccepts any parameter acceptable by the `Date()` constructor.",
-					"type": "Date | string",
+					"type": "string | Date",
 					"attributeName": "datetime",
 					"propertyName": "datetime"
 				},
@@ -1530,7 +1542,7 @@
 				{
 					"name": "onKeydown",
 					"args": [{ "name": "_arg0", "type": "KeyboardEvent" }],
-					"returnType": "unknown"
+					"returnType": "boolean"
 				}
 			],
 			"slots": [
@@ -1591,7 +1603,7 @@
 				{
 					"name": "connotation",
 					"description": "The connotation the calendar event should have.",
-					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
+					"type": "'alert' | 'accent' | 'cta' | 'success' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -1686,7 +1698,7 @@
 				{
 					"name": "appearance",
 					"description": "The appearance the card should have.",
-					"type": "'elevated' | 'ghost' | 'outlined'",
+					"type": "'ghost' | 'outlined' | 'elevated'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},
@@ -2160,8 +2172,8 @@
 				},
 				{
 					"name": "swatches",
-					"description": "List of color swatches, has to be an array of objects.",
-					"type": "Array<{ value: string; label?: string }>",
+					"description": "List of color swatches, has to be an array of objects",
+					"type": "{label?: string; value: string}[]",
 					"propertyName": "swatches"
 				},
 				{
@@ -2246,7 +2258,7 @@
 				},
 				{
 					"name": "swatches-text",
-					"description": " Overrides the default \"Saved colors:\" text above color swatches."
+					"description": "Overrides the default \"Saved colors:\" text above color swatches."
 				}
 			],
 			"testUtils": {
@@ -2282,7 +2294,7 @@
 				{
 					"name": "autocomplete",
 					"description": "The autocomplete attribute.",
-					"type": "'inline' | 'list' | 'both' | 'none'",
+					"type": "'none' | 'inline' | 'list' | 'both'",
 					"attributeName": "autocomplete",
 					"propertyName": "autocomplete"
 				},
@@ -2350,6 +2362,12 @@
 					"propertyName": "open"
 				},
 				{
+					"name": "options",
+					"description": "The list of options.",
+					"type": "@vonage/vivid#VwcOptionElement[]",
+					"propertyName": "options"
+				},
+				{
 					"name": "placeholder",
 					"description": "Sets the placeholder value of the element, generally used to provide a hint to the user.",
 					"type": "string",
@@ -2376,6 +2394,18 @@
 					"type": "'condensed' | 'normal'",
 					"attributeName": "scale",
 					"propertyName": "scale"
+				},
+				{
+					"name": "selectedIndex",
+					"description": "The index of the selected option.",
+					"type": "number",
+					"propertyName": "selectedIndex"
+				},
+				{
+					"name": "selectedOptions",
+					"description": "A collection of the selected options.",
+					"type": "@vonage/vivid#VwcOptionElement[]",
+					"propertyName": "selectedOptions"
 				},
 				{
 					"name": "shape",
@@ -2470,12 +2500,6 @@
 					"returnType": "void"
 				},
 				{
-					"name": "setSelectedOptions",
-					"description": "Sets an option as selected and gives it focus.",
-					"args": [],
-					"returnType": "unknown"
-				},
-				{
 					"name": "validate",
 					"description": "{@inheritDoc (FormAssociated:interface).validate}",
 					"args": [],
@@ -2532,7 +2556,7 @@
 				{
 					"name": "placement",
 					"description": "Placement of the toggletip",
-					"type": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'",
+					"type": "'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'left-end' | 'left-start' | 'right-end' | 'right-start'",
 					"attributeName": "placement",
 					"propertyName": "placement"
 				}
@@ -2665,9 +2689,15 @@
 			"description": "",
 			"props": [
 				{
+					"name": "cellItemTemplate",
+					"description": "The template used to render cells in generated rows.",
+					"type": "@microsoft/fast-element#ViewTemplate<any, any>",
+					"propertyName": "cellItemTemplate"
+				},
+				{
 					"name": "columnDefinitions",
-					"description": "Configure the grid header columns.",
-					"type": "any[]",
+					"description": "The column definitions of the grid",
+					"type": "{columnDataKey: string; gridColumn?: string; title?: string; headerCellTemplate?: @microsoft/fast-element#ViewTemplate<any, any>; headerCellInternalFocusQueue?: false | true; headerCellFocusTargetCallback?: ((cell: @vonage/vivid#VwcDataGridCellElement) => HTMLElement); cellTemplate?: @microsoft/fast-element#ViewTemplate<any, any>; cellInternalFocusQueue?: false | true; cellFocusTargetCallback?: ((cell: @vonage/vivid#VwcDataGridCellElement) => HTMLElement); isRowHeader?: false | true}[]",
 					"propertyName": "columnDefinitions"
 				},
 				{
@@ -2679,13 +2709,13 @@
 				},
 				{
 					"name": "focusColumnIndex",
-					"description": "Index of column to be focused on when the Data Grid receives focus.",
+					"description": "The index of the column that will receive focus the next time the\ngrid is focused. This value changes as focus moves to different rows\nwithin the grid.  Changing this value when focus is already within\nthe grid moves focus to the specified column.",
 					"type": "number",
 					"propertyName": "focusColumnIndex"
 				},
 				{
 					"name": "focusRowIndex",
-					"description": "Index of row to be focused on when the Data Grid receives focus.",
+					"description": "The index of the row that will receive focus the next time the\ngrid is focused. This value changes as focus moves to different\nrows within the grid.  Changing this value when focus is already\nwithin the grid moves focus to the specified row.",
 					"type": "number",
 					"propertyName": "focusRowIndex"
 				},
@@ -2704,6 +2734,12 @@
 					"propertyName": "gridTemplateColumns"
 				},
 				{
+					"name": "headerCellItemTemplate",
+					"description": "The template used to render header cells in generated rows.",
+					"type": "@microsoft/fast-element#ViewTemplate<any, any>",
+					"propertyName": "headerCellItemTemplate"
+				},
+				{
 					"name": "noTabbing",
 					"description": "When true the component will not add itself to the tab queue.\nDefault is false.",
 					"type": "boolean",
@@ -2712,14 +2748,20 @@
 				},
 				{
 					"name": "rowElementTag",
-					"description": "Element tag for header rows.",
+					"description": "Set by the component templates.",
 					"type": "string",
 					"propertyName": "rowElementTag"
 				},
 				{
+					"name": "rowItemTemplate",
+					"description": "The template to use for the programmatic generation of rows",
+					"type": "@microsoft/fast-element#ViewTemplate<any, any>",
+					"propertyName": "rowItemTemplate"
+				},
+				{
 					"name": "rowsData",
-					"description": "Array of objects representing the rows of the grid.",
-					"type": "any[]",
+					"description": "The data being displayed in the grid",
+					"type": "object[]",
 					"propertyName": "rowsData"
 				},
 				{
@@ -2777,7 +2819,7 @@
 							"type": "'none' | 'single-row' | 'multi-row' | 'single-cell' | 'multi-cell'"
 						}
 					],
-					"returnType": "unknown"
+					"returnType": "void"
 				}
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -2807,8 +2849,8 @@
 				},
 				{
 					"name": "columnDefinition",
-					"description": "Object representing the column definition.",
-					"type": "object",
+					"description": "The base data for the column",
+					"type": "{sortDirection?: null | 'none' | 'ascending' | 'descending' | 'other'; sortable?: false | true; columnDataKey: string; gridColumn?: string; title?: string; headerCellTemplate?: @microsoft/fast-element#ViewTemplate<any, any>; headerCellInternalFocusQueue?: false | true; headerCellFocusTargetCallback?: ((cell: @vonage/vivid#VwcDataGridCellElement) => HTMLElement); cellTemplate?: @microsoft/fast-element#ViewTemplate<any, any>; cellInternalFocusQueue?: false | true; cellFocusTargetCallback?: ((cell: @vonage/vivid#VwcDataGridCellElement) => HTMLElement); isRowHeader?: false | true}",
 					"propertyName": "columnDefinition"
 				},
 				{
@@ -2817,6 +2859,12 @@
 					"type": "string",
 					"attributeName": "grid-column",
 					"propertyName": "gridColumn"
+				},
+				{
+					"name": "rowData",
+					"description": "The base data for the parent row",
+					"type": "object",
+					"propertyName": "rowData"
 				},
 				{
 					"name": "selected",
@@ -2923,6 +2971,18 @@
 			"description": "",
 			"props": [
 				{
+					"name": "cellItemTemplate",
+					"description": "The template used to render cells in generated rows.",
+					"type": "@microsoft/fast-element#ViewTemplate<any, any>",
+					"propertyName": "cellItemTemplate"
+				},
+				{
+					"name": "columnDefinitions",
+					"description": "The column definitions of the row",
+					"type": "{columnDataKey: string; gridColumn?: string; title?: string; headerCellTemplate?: @microsoft/fast-element#ViewTemplate<any, any>; headerCellInternalFocusQueue?: false | true; headerCellFocusTargetCallback?: ((cell: @vonage/vivid#VwcDataGridCellElement) => HTMLElement); cellTemplate?: @microsoft/fast-element#ViewTemplate<any, any>; cellInternalFocusQueue?: false | true; cellFocusTargetCallback?: ((cell: @vonage/vivid#VwcDataGridCellElement) => HTMLElement); isRowHeader?: false | true}[]",
+					"propertyName": "columnDefinitions"
+				},
+				{
 					"name": "gridTemplateColumns",
 					"description": "String that gets applied to the the css gridTemplateColumns attribute for the row\nx",
 					"type": "string",
@@ -2930,16 +2990,34 @@
 					"propertyName": "gridTemplateColumns"
 				},
 				{
+					"name": "headerCellItemTemplate",
+					"description": "The template used to render header cells in generated rows.",
+					"type": "@microsoft/fast-element#ViewTemplate<any, any>",
+					"propertyName": "headerCellItemTemplate"
+				},
+				{
+					"name": "rowData",
+					"description": "The base data for this row",
+					"type": "object",
+					"propertyName": "rowData"
+				},
+				{
+					"name": "rowIndex",
+					"description": "The index of the row in the parent grid.\nThis is typically set programmatically by the parent grid.",
+					"type": "number",
+					"propertyName": "rowIndex"
+				},
+				{
 					"name": "rowType",
 					"description": "The type of row",
-					"type": "'default' | 'header' | 'sticky-header'",
+					"type": "'header' | 'default' | 'sticky-header'",
 					"attributeName": "row-type",
 					"propertyName": "rowType"
 				},
 				{
 					"name": "selected",
 					"description": "Reflects selected state of the row",
-					"type": "boolean",
+					"type": "false | true",
 					"attributeName": "selected",
 					"propertyName": "selected"
 				}
@@ -3825,7 +3903,7 @@
 						{ "name": "_oldValue", "type": "string" },
 						{ "name": "newValue", "type": "string" }
 					],
-					"returnType": "unknown"
+					"returnType": "void"
 				}
 			],
 			"slots": [],
@@ -3920,6 +3998,11 @@
 					"propertyName": "open"
 				},
 				{
+					"name": "returnValue",
+					"type": "string",
+					"propertyName": "returnValue"
+				},
+				{
 					"name": "scrollableBody",
 					"description": "Makes only the element's content area between the header and footer scrollable",
 					"type": "boolean",
@@ -3989,9 +4072,9 @@
 				}
 			],
 			"methods": [
-				{ "name": "close", "args": [], "returnType": "unknown" },
-				{ "name": "show", "args": [], "returnType": "unknown" },
-				{ "name": "showModal", "args": [], "returnType": "unknown" }
+				{ "name": "close", "args": [], "returnType": "void" },
+				{ "name": "show", "args": [], "returnType": "void" },
+				{ "name": "showModal", "args": [], "returnType": "void" }
 			],
 			"slots": [
 				{
@@ -4112,7 +4195,7 @@
 				{
 					"name": "connotation",
 					"description": "The connotation the empty state should have.",
-					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information'",
+					"type": "'alert' | 'accent' | 'cta' | 'success' | 'warning' | 'information'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -4132,7 +4215,7 @@
 				},
 				{
 					"name": "iconDecoration",
-					"type": "'outlined' | 'filled'",
+					"type": "'filled' | 'outlined'",
 					"attributeName": "icon-decoration",
 					"propertyName": "iconDecoration"
 				}
@@ -4212,7 +4295,7 @@
 				{
 					"name": "connotation",
 					"description": "The connotation the fab should have.",
-					"type": "'cta' | 'accent' | 'announcement'",
+					"type": "'accent' | 'cta' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -4317,7 +4400,7 @@
 				{
 					"name": "type",
 					"description": "The button type.",
-					"type": "'submit' | 'reset' | 'button'",
+					"type": "'button' | 'reset' | 'submit'",
 					"attributeName": "type",
 					"propertyName": "type"
 				},
@@ -4373,7 +4456,7 @@
 					"name": "clickHandler",
 					"description": "Handles click events.\nPrevents interaction when disabled.",
 					"args": [{ "name": "event", "type": "Event" }],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "reportValidity",
@@ -4580,7 +4663,7 @@
 					"name": "removeAllFiles",
 					"description": "Removes all files from the File Picker.",
 					"args": [],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "reportValidity",
@@ -4702,7 +4785,7 @@
 				{
 					"name": "connotation",
 					"description": "The connotation the icon should have.",
-					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
+					"type": "'alert' | 'accent' | 'cta' | 'success' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -4722,7 +4805,7 @@
 				},
 				{
 					"name": "size",
-					"type": "-6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5",
+					"type": "0 | 1 | -1 | 2 | 3 | 4 | 5 | -6 | -5 | -4 | -3 | -2",
 					"attributeName": "size",
 					"propertyName": "size"
 				}
@@ -4761,7 +4844,7 @@
 			],
 			"vueModels": [],
 			"methods": [
-				{ "name": "nameChanged", "args": [], "returnType": "unknown" }
+				{ "name": "nameChanged", "args": [], "returnType": "Promise<void>" }
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
@@ -4784,7 +4867,7 @@
 				{
 					"name": "autoSizing",
 					"description": "sets the initial preferred auto-sizing from predefined available options",
-					"type": "'fit' | 'fill'",
+					"type": "'fill' | 'fit'",
 					"attributeName": "auto-sizing",
 					"propertyName": "autoSizing"
 				},
@@ -4900,21 +4983,21 @@
 				{
 					"name": "placement",
 					"description": "placement of the menu",
-					"type": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'",
+					"type": "'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'left-end' | 'left-start' | 'right-end' | 'right-start'",
 					"attributeName": "placement",
 					"propertyName": "placement"
 				},
 				{
 					"name": "positionStrategy",
 					"description": "The strategy-absolute attribute.",
-					"type": "'absolute' | 'fixed'",
+					"type": "'fixed' | 'absolute'",
 					"attributeName": "position-strategy",
 					"propertyName": "positionStrategy"
 				},
 				{
 					"name": "trigger",
 					"description": "Controls how the menu opens and closes itself.",
-					"type": "'auto' | 'legacy' | 'off'",
+					"type": "'off' | 'auto' | 'legacy'",
 					"attributeName": "trigger",
 					"propertyName": "trigger"
 				}
@@ -5046,7 +5129,7 @@
 				{
 					"name": "connotation",
 					"description": "The connotation the fab should have.",
-					"type": "'cta' | 'accent'",
+					"type": "'accent' | 'cta'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -5519,7 +5602,7 @@
 			"props": [
 				{
 					"name": "connotation",
-					"type": "'accent' | 'information' | 'success' | 'warning' | 'announcement' | 'alert'",
+					"type": "'accent' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -5606,9 +5689,9 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "autoComplete",
+					"name": "autocomplete",
 					"type": "string",
-					"attributeName": "autoComplete",
+					"attributeName": "autocomplete",
 					"propertyName": "autoComplete"
 				},
 				{
@@ -5851,7 +5934,7 @@
 					"name": "select",
 					"description": "Selects all the text in the number field",
 					"args": [],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "stepChanged",
@@ -5859,25 +5942,25 @@
 						{ "name": "_", "type": "number" },
 						{ "name": "next", "type": "number" }
 					],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "stepDown",
 					"description": "Decrements the value using the step value",
 					"args": [],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "stepUp",
 					"description": "Increments the value using the step value",
 					"args": [],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "validate",
 					"description": "{@inheritDoc (FormAssociated:interface).validate}",
 					"args": [],
-					"returnType": "unknown"
+					"returnType": "void"
 				}
 			],
 			"slots": [
@@ -5932,7 +6015,7 @@
 				{
 					"name": "checked",
 					"description": "The checked state is used when the parent listbox is in multiple selection mode.\nTo avoid accessibility conflicts, the checked state should not be present in\nsingle selection mode.",
-					"type": "boolean",
+					"type": "false | true",
 					"attributeName": "checked",
 					"propertyName": "checked"
 				},
@@ -5983,6 +6066,11 @@
 					"type": "boolean",
 					"attributeName": "current-selected",
 					"propertyName": "selected"
+				},
+				{
+					"name": "selectedAttribute",
+					"type": "boolean",
+					"propertyName": "selectedAttribute"
 				},
 				{
 					"name": "tagConnotation",
@@ -6099,7 +6187,7 @@
 				{
 					"name": "size",
 					"description": "The size the pagination should have.",
-					"type": "'super-condensed' | 'condensed' | 'normal'",
+					"type": "'condensed' | 'normal' | 'super-condensed'",
 					"attributeName": "size",
 					"propertyName": "size"
 				},
@@ -6159,10 +6247,13 @@
 				{
 					"name": "paginationButtonsChanged",
 					"args": [
-						{ "name": "_", "type": "HTMLButtonElement[] | undefined" },
-						{ "name": "newValue", "type": "HTMLButtonElement[]" }
+						{
+							"name": "_",
+							"type": "undefined | @vonage/vivid#VwcButtonElement[]"
+						},
+						{ "name": "newValue", "type": "@vonage/vivid#VwcButtonElement[]" }
 					],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "selectedIndexChanged",
@@ -6170,7 +6261,7 @@
 						{ "name": "oldValue", "type": "number" },
 						{ "name": "newValue", "type": "number" }
 					],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "totalChanged",
@@ -6178,7 +6269,7 @@
 						{ "name": "_", "type": "number" },
 						{ "name": "newValue", "type": "number" }
 					],
-					"returnType": "unknown"
+					"returnType": "void"
 				}
 			],
 			"slots": [],
@@ -6216,6 +6307,12 @@
 					"propertyName": "alternate"
 				},
 				{
+					"name": "anchor",
+					"description": "Direct reference to the popover's anchor element.\nSetting this overrides the slotted anchor.",
+					"type": "HTMLElement",
+					"propertyName": "anchor"
+				},
+				{
 					"name": "arrow",
 					"description": "Whether to render the arrow tip.",
 					"type": "boolean",
@@ -6232,7 +6329,7 @@
 				{
 					"name": "layout",
 					"description": "Sets the layout of the popover.",
-					"type": "'default' | 'condensed'",
+					"type": "'condensed' | 'default'",
 					"attributeName": "layout",
 					"propertyName": "layout"
 				},
@@ -6260,7 +6357,7 @@
 				{
 					"name": "placement",
 					"description": "The placement of the popover relative to the anchor.",
-					"type": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'",
+					"type": "'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'left-end' | 'left-start' | 'right-end' | 'right-start'",
 					"attributeName": "placement",
 					"propertyName": "placement"
 				}
@@ -6309,13 +6406,9 @@
 			],
 			"vueModels": [],
 			"methods": [
-				{
-					"name": "_slottedAnchorChanged",
-					"args": [],
-					"returnType": "unknown"
-				},
-				{ "name": "anchorChanged", "args": [], "returnType": "unknown" },
-				{ "name": "arrowChanged", "args": [], "returnType": "unknown" },
+				{ "name": "_slottedAnchorChanged", "args": [], "returnType": "void" },
+				{ "name": "anchorChanged", "args": [], "returnType": "void" },
+				{ "name": "arrowChanged", "args": [], "returnType": "void" },
 				{ "name": "hide", "args": [], "returnType": "void" },
 				{
 					"name": "openChanged",
@@ -6323,16 +6416,16 @@
 						{ "name": "_oldValue", "type": "boolean" },
 						{ "name": "newValue", "type": "boolean" }
 					],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
-				{ "name": "placementChanged", "args": [], "returnType": "unknown" },
+				{ "name": "placementChanged", "args": [], "returnType": "void" },
 				{ "name": "show", "args": [], "returnType": "Promise<void>" },
 				{ "name": "toggle", "args": [], "returnType": "void" },
 				{
 					"name": "updatePosition",
 					"description": "Updates the position of the popover",
 					"args": [],
-					"returnType": "unknown"
+					"returnType": "Promise<void>"
 				}
 			],
 			"slots": [
@@ -6366,7 +6459,7 @@
 				{
 					"name": "connotation",
 					"description": "Indicates the progress' connotation.",
-					"type": "'accent' | 'success' | 'alert' | 'cta' | 'pacific'",
+					"type": "'accent' | 'cta' | 'success' | 'alert' | 'pacific'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -6467,7 +6560,7 @@
 			"props": [
 				{
 					"name": "connotation",
-					"type": "'accent' | 'success' | 'alert' | 'cta'",
+					"type": "'accent' | 'cta' | 'success' | 'alert'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -6494,7 +6587,7 @@
 				},
 				{
 					"name": "size",
-					"type": "-6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5",
+					"type": "0 | 1 | -1 | 2 | 3 | 4 | 5 | -6 | -5 | -4 | -3 | -2",
 					"attributeName": "size",
 					"propertyName": "size"
 				},
@@ -6752,7 +6845,7 @@
 				{
 					"name": "orientation",
 					"description": "The orientation of the group",
-					"type": "'horizontal' | 'vertical' | 'horizontal' | 'vertical'",
+					"type": "'horizontal' | 'vertical'",
 					"attributeName": "orientation",
 					"propertyName": "orientation"
 				},
@@ -6992,6 +7085,12 @@
 					"type": "string",
 					"attributeName": "current-value",
 					"propertyName": "value"
+				},
+				{
+					"name": "valueTextFormatter",
+					"description": "Custom function that generates a string for the component's \"aria-valuetext\" attribute based on the current value.",
+					"type": "((value: string) => string)",
+					"propertyName": "valueTextFormatter"
 				}
 			],
 			"events": [
@@ -7074,7 +7173,7 @@
 					"args": [],
 					"returnType": "boolean"
 				},
-				{ "name": "formResetCallback", "args": [], "returnType": "unknown" },
+				{ "name": "formResetCallback", "args": [], "returnType": "void" },
 				{
 					"name": "reportValidity",
 					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
@@ -7118,8 +7217,8 @@
 			"props": [
 				{
 					"name": "instance",
-					"description": "The editor instance created from the RTEConfig. Without it, the editor will not render.",
-					"type": "any",
+					"description": "The editor instance. Without it, the editor will not render anything.",
+					"type": "@vonage/vivid#RteInstance",
 					"propertyName": "instance"
 				}
 			],
@@ -7205,7 +7304,7 @@
 				{
 					"name": "view",
 					"description": "The view to display, created from the RteConfig.",
-					"type": "any",
+					"type": "@vonage/vivid#RteView",
 					"propertyName": "view"
 				}
 			],
@@ -7247,7 +7346,7 @@
 				{
 					"name": "child",
 					"description": "Used for custom rendered children.",
-					"dynamicProps": "RteChildSlotProps"
+					"dynamicProps": "@vonage/vivid#RteChildSlotProps"
 				}
 			],
 			"testUtils": {
@@ -7349,6 +7448,12 @@
 					"propertyName": "initialValue"
 				},
 				{
+					"name": "initialValues",
+					"description": "The initial values. This value sets the `values` property\nonly when the `values` property has not been explicitly set.",
+					"type": "string[]",
+					"propertyName": "initialValues"
+				},
+				{
 					"name": "label",
 					"description": "The label for the form element.",
 					"type": "string",
@@ -7396,7 +7501,7 @@
 				{
 					"name": "optionFilter",
 					"description": "Function to filter the options to display.",
-					"type": "any",
+					"type": "((option: @vonage/vivid#VwcOptionElement, searchText: string) => boolean)",
 					"propertyName": "optionFilter"
 				},
 				{
@@ -7420,6 +7525,11 @@
 					"propertyName": "selectAllText"
 				},
 				{
+					"name": "selectedIndex",
+					"type": "number",
+					"propertyName": "selectedIndex"
+				},
+				{
 					"name": "shape",
 					"type": "'rounded' | 'pill'",
 					"attributeName": "shape",
@@ -7441,7 +7551,7 @@
 				},
 				{
 					"name": "values",
-					"description": "List of selected option values.",
+					"description": "List of selected values.",
 					"type": "string[]",
 					"propertyName": "values"
 				}
@@ -7667,6 +7777,12 @@
 					"propertyName": "open"
 				},
 				{
+					"name": "options",
+					"description": "The list of options.",
+					"type": "@vonage/vivid#VwcOptionElement[]",
+					"propertyName": "options"
+				},
+				{
 					"name": "placeholder",
 					"description": "The placeholder attribute.",
 					"type": "string",
@@ -7686,6 +7802,18 @@
 					"type": "'condensed' | 'normal'",
 					"attributeName": "scale",
 					"propertyName": "scale"
+				},
+				{
+					"name": "selectedIndex",
+					"description": "The index of the selected option.",
+					"type": "number",
+					"propertyName": "selectedIndex"
+				},
+				{
+					"name": "selectedOptions",
+					"description": "A collection of the selected options.",
+					"type": "@vonage/vivid#VwcOptionElement[]",
+					"propertyName": "selectedOptions"
 				},
 				{
 					"name": "shape",
@@ -7761,7 +7889,7 @@
 					"args": [],
 					"returnType": "boolean"
 				},
-				{ "name": "formResetCallback", "args": [], "returnType": "unknown" },
+				{ "name": "formResetCallback", "args": [], "returnType": "void" },
 				{
 					"name": "reportValidity",
 					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
@@ -7775,18 +7903,12 @@
 					"returnType": "void"
 				},
 				{
-					"name": "setSelectedOptions",
-					"description": "Sets an option as selected and gives it focus.",
-					"args": [],
-					"returnType": "unknown"
-				},
-				{
 					"name": "slottedOptionsChanged",
 					"args": [
-						{ "name": "prev", "type": "Element[] | undefined" },
+						{ "name": "prev", "type": "undefined | Element[]" },
 						{ "name": "next", "type": "Element[]" }
 					],
-					"returnType": "unknown"
+					"returnType": "void"
 				}
 			],
 			"slots": [
@@ -7858,7 +7980,7 @@
 				{
 					"name": "controlPlacement",
 					"description": "Defines where the control (checkbox or radio) should be located.",
-					"type": "'start' | 'start-stacked' | 'end' | 'end-stacked'",
+					"type": "'end' | 'start' | 'start-stacked' | 'end-stacked'",
 					"attributeName": "control-placement",
 					"propertyName": "controlPlacement"
 				},
@@ -8107,7 +8229,7 @@
 				{
 					"name": "placement",
 					"description": "Placement of the popup with color swatches",
-					"type": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'",
+					"type": "'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'left-end' | 'left-start' | 'right-end' | 'right-start'",
 					"attributeName": "placement",
 					"propertyName": "placement"
 				},
@@ -8120,8 +8242,8 @@
 				},
 				{
 					"name": "swatches",
-					"description": "List of color swatches, has to be an array of objects.",
-					"type": "Array<{ value: string; label?: string }>",
+					"description": "List of color swatches, has to be an array of objects",
+					"type": "{label?: string; value: string}[]",
 					"propertyName": "swatches"
 				},
 				{
@@ -8330,6 +8452,12 @@
 					"description": "The value property, typed as a number.",
 					"type": "number",
 					"propertyName": "valueAsNumber"
+				},
+				{
+					"name": "valueTextFormatter",
+					"description": "Custom function that generates a string for the component's \"aria-valuetext\" attribute based on the current value.",
+					"type": "((value: string) => string)",
+					"propertyName": "valueTextFormatter"
 				}
 			],
 			"events": [
@@ -8407,15 +8535,6 @@
 					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
 					"args": [],
 					"returnType": "boolean"
-				},
-				{
-					"name": "setThumbPositionForOrientation",
-					"description": "Places the thumb based on the current value",
-					"args": [
-						{ "name": "_", "type": "'ltr' | 'rtl'" },
-						{ "name": "direction", "type": "unknown" }
-					],
-					"returnType": "void"
 				}
 			],
 			"slots": [],
@@ -8449,14 +8568,14 @@
 				{
 					"name": "appearance",
 					"description": "The appearance the split button should have.",
-					"type": "'filled' | 'outlined' | 'ghost' | 'outlined-light'",
+					"type": "'ghost' | 'filled' | 'outlined' | 'outlined-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},
 				{
 					"name": "connotation",
 					"description": "The connotation the split button should have.",
-					"type": "'accent' | 'announcement' | 'cta' | 'success' | 'alert'",
+					"type": "'alert' | 'accent' | 'cta' | 'success' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -8498,7 +8617,7 @@
 				{
 					"name": "size",
 					"description": "The size the split button should have.",
-					"type": "'super-condensed' | 'condensed' | 'normal' | 'expanded'",
+					"type": "'condensed' | 'normal' | 'expanded' | 'super-condensed'",
 					"attributeName": "size",
 					"propertyName": "size"
 				},
@@ -8558,13 +8677,13 @@
 					"name": "handleActionClick",
 					"description": "Handles action click events.\nPrevents interaction when disabled or pending.",
 					"args": [{ "name": "event", "type": "Event" }],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "handleIndicatorClick",
 					"description": "Handles indicator click events.\nPrevents interaction when disabled or pending.",
 					"args": [{ "name": "event", "type": "Event" }],
-					"returnType": "unknown"
+					"returnType": "void"
 				}
 			],
 			"slots": [
@@ -8602,7 +8721,7 @@
 				{
 					"name": "connotation",
 					"description": "The connotation the status should have. Determines icon and color.",
-					"type": "'success' | 'information' | 'warning' | 'alert'",
+					"type": "'alert' | 'success' | 'warning' | 'information'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -8692,7 +8811,7 @@
 				{
 					"name": "connotation",
 					"description": "Indicates the switch's connotation.",
-					"type": "'accent' | 'alert' | 'announcement' | 'success' | 'cta'",
+					"type": "'accent' | 'cta' | 'success' | 'alert' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -8891,7 +9010,7 @@
 				{
 					"name": "tabIndex",
 					"type": "number",
-					"attributeName": "tabIndex",
+					"attributeName": "tabindex",
 					"propertyName": "tabIndex"
 				}
 			],
@@ -8932,12 +9051,12 @@
 				{
 					"name": "_handleCloseClick",
 					"args": [{ "name": "e", "type": "Event" }],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "_onKeyDown",
 					"args": [{ "name": "e", "type": "KeyboardEvent" }],
-					"returnType": "unknown"
+					"returnType": "boolean"
 				}
 			],
 			"slots": [
@@ -9366,7 +9485,7 @@
 				{
 					"name": "orientation",
 					"description": "The orientation",
-					"type": "'vertical' | 'horizontal'",
+					"type": "'horizontal' | 'vertical'",
 					"attributeName": "orientation",
 					"propertyName": "orientation"
 				},
@@ -9461,14 +9580,14 @@
 				{
 					"name": "appearance",
 					"description": "The appearance the tag should have.",
-					"type": "'subtle' | 'duotone' | 'subtle-light'",
+					"type": "'duotone' | 'subtle' | 'subtle-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},
 				{
 					"name": "connotation",
 					"description": "The connotation the tag should have.",
-					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
+					"type": "'alert' | 'accent' | 'cta' | 'success' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
@@ -9570,7 +9689,7 @@
 				{
 					"name": "handleKeydown",
 					"args": [{ "name": "e", "type": "KeyboardEvent" }],
-					"returnType": "unknown"
+					"returnType": "boolean"
 				},
 				{ "name": "remove", "args": [], "returnType": "void" }
 			],
@@ -9766,10 +9885,10 @@
 					"propertyName": "placeholder"
 				},
 				{
-					"name": "readOnly",
+					"name": "readonly",
 					"description": "When true, the control will be immutable by user interaction. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute for more information.",
 					"type": "boolean",
-					"attributeName": "readOnly",
+					"attributeName": "readonly",
 					"propertyName": "readOnly"
 				},
 				{
@@ -9884,7 +10003,7 @@
 					"name": "select",
 					"description": "Selects all the text in the text area",
 					"args": [],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "validate",
@@ -9935,9 +10054,9 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "autoComplete",
+					"name": "autocomplete",
 					"type": "string",
-					"attributeName": "autoComplete",
+					"attributeName": "autocomplete",
 					"propertyName": "autoComplete"
 				},
 				{
@@ -10096,7 +10215,7 @@
 				{
 					"name": "type",
 					"description": "Allows setting a type or mode of text.",
-					"type": "'email' | 'password' | 'tel' | 'text' | 'url'",
+					"type": "'text' | 'email' | 'password' | 'tel' | 'url'",
 					"attributeName": "type",
 					"propertyName": "type"
 				},
@@ -10160,7 +10279,7 @@
 					"args": [],
 					"returnType": "boolean"
 				},
-				{ "name": "focus", "args": [], "returnType": "unknown" },
+				{ "name": "focus", "args": [], "returnType": "void" },
 				{
 					"name": "reportValidity",
 					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
@@ -10171,13 +10290,13 @@
 					"name": "select",
 					"description": "Selects all the text in the text field",
 					"args": [],
-					"returnType": "unknown"
+					"returnType": "void"
 				},
 				{
 					"name": "validate",
 					"description": "{@inheritDoc (FormAssociated:interface).validate}",
 					"args": [],
-					"returnType": "unknown"
+					"returnType": "void"
 				}
 			],
 			"slots": [
@@ -10460,7 +10579,7 @@
 				{
 					"name": "placement",
 					"description": "placement of the toggletip",
-					"type": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'",
+					"type": "'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'left-end' | 'left-start' | 'right-end' | 'right-start'",
 					"attributeName": "placement",
 					"propertyName": "placement"
 				}
@@ -10560,7 +10679,7 @@
 				},
 				{
 					"name": "placement",
-					"type": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'",
+					"type": "'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'left-end' | 'left-start' | 'right-end' | 'right-start'",
 					"attributeName": "placement",
 					"propertyName": "placement"
 				},
@@ -10744,8 +10863,14 @@
 			"description": "",
 			"props": [
 				{
+					"name": "currentSelected",
+					"description": "The currently selected tree item",
+					"type": "HTMLElement | @vonage/vivid#VwcTreeItemElement",
+					"propertyName": "currentSelected"
+				},
+				{
 					"name": "renderCollapsedNodes",
-					"description": "/**\n When true, the control will be appear expanded by user interaction.",
+					"description": "When true, the control will be appear expanded by user interaction.",
 					"type": "boolean",
 					"attributeName": "render-collapsed-nodes",
 					"propertyName": "renderCollapsedNodes"

@@ -13,7 +13,7 @@ export type RteView = (
 	| { type: 'mark'; mark: RteMark; children: RteView }
 	| { type: 'fragment'; content: RteView[] }
 ) & {
-	/// @internal
+	/** @internal */
 	[impl]: RteViewCtx;
 };
 

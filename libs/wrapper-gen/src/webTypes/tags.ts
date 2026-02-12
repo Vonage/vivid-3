@@ -1,8 +1,7 @@
-import { ComponentDef } from '../common/ComponentDef';
 import { kebabToCamel } from '../utils/casing';
-
 import { wrappedComponentName } from '../vueWrappers/name';
 import { TypeResolver } from '../common/types';
+import type { ComponentDef } from '@repo/metadata-extractor';
 
 export interface WebTypesCommon {
 	name: string;

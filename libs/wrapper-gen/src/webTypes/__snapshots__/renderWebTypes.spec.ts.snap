@@ -63,6 +63,20 @@ exports[`renderWebTypes > should render web types 1`] = `
         "kind": "expression",
         "type": "boolean"
        }
+      },
+      {
+       "name": "importedType",
+       "value": {
+        "kind": "expression",
+        "type": "@vonage/vivid#ButtonSize"
+       }
+      },
+      {
+       "name": "externalType",
+       "value": {
+        "kind": "expression",
+        "type": "@something/else#ExternalType"
+       }
       }
      ],
      "events": [],

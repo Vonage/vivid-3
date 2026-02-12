@@ -1,12 +1,15 @@
-import { ComponentDef } from '../common/ComponentDef';
-import { parseTypeStr } from '../common/types';
 import { Import, importsForTypes, renderImports } from './imports';
-import { getExportedClassName } from '../metadata/vividPackage';
 import { kebabToCamel, kebabToPascal } from '../utils/casing';
 import { wrappedComponentName } from './name';
 import { getEventType } from './types';
 import { renderJsDoc } from './jsDoc';
 import { resolveVueModels } from './vueModels';
+import { getExportedClassName } from '../common/component';
+import type { ComponentDef } from '@repo/metadata-extractor';
+import {
+	parseTypeImports,
+	parseTypeStr,
+} from '@repo/metadata-extractor/metadata/type-str';
 
 export const renderComponentTypes = (componentDef: ComponentDef) => {
 	const { props, vueModelEvents } = resolveVueModels(componentDef);
@@ -49,7 +52,7 @@ export const renderComponentTypes = (componentDef: ComponentDef) => {
 		.map(({ name, description, type }) => {
 			const propName = kebabToCamel(name);
 			return `${renderJsDoc(description)}
-        ${propName}?: ${type}`;
+        ${propName}?: ${parseTypeImports(type).typeStr}`;
 		})
 		.join(',\n');
 

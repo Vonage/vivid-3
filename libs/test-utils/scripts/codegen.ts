@@ -1,6 +1,11 @@
 import { loadMetadata } from '@repo/wrapper-gen/metadataStore';
 import * as fs from 'fs';
 import * as path from 'path';
+import {
+	parseTypeStr,
+	parseTypeImports,
+	type TypeUnion,
+} from '@repo/metadata-extractor/metadata/type-str';
 
 const kebabToCamel = (str: string): string => {
 	return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
@@ -38,6 +43,45 @@ const dirname = new URL('.', import.meta.url).pathname;
 
 const metadata = loadMetadata();
 
+type Import = {
+	name: string;
+	fromModule: string;
+};
+
+const renderImports = (imports: Import[], typeImport = false) => {
+	const importsFromModule = new Map<string, Set<string>>();
+	for (const { name, fromModule } of imports) {
+		if (!importsFromModule.has(fromModule)) {
+			importsFromModule.set(fromModule, new Set());
+		}
+		importsFromModule.get(fromModule)!.add(name);
+	}
+	return Array.from(importsFromModule.entries())
+		.map(
+			([fromModule, names]) =>
+				`import ${typeImport ? 'type ' : ''}{ ${[...names].join(
+					', '
+				)} } from '${fromModule}';`
+		)
+		.join('\n');
+};
+
+export const importsForTypes = (typeRefs: TypeUnion): Import[] =>
+	typeRefs.flatMap((t) => parseTypeImports(t).imports);
+
+const typeImports: Import[] = metadata.componentDefs.map((def) => ({
+	name: `Vwc${kebabToPascal(def.name)}Element`,
+	fromModule: '@vonage/vivid',
+}));
+
+// Import referenced types
+const referencesTypes = [
+	...metadata.componentDefs.flatMap((def) =>
+		def.props.map((prop) => prop.type)
+	),
+].flatMap(parseTypeStr);
+typeImports.push(...importsForTypes(referencesTypes));
+
 fs.writeFileSync(
 	path.join(dirname, '../src/components.generated.ts'),
 	`import type { DriverT } from './drivers/driver';
@@ -52,11 +96,7 @@ import * as selectors from './selectors';
 import * as actions from './actions';
 import * as refs from './refs';
 import * as queries from './queries';
-import type {
-${metadata.componentDefs
-	.map((def) => `Vwc${kebabToPascal(def.name)}Element`)
-	.join(',\n')}
-} from "@vonage/vivid";
+${renderImports(typeImports, true)}
 
 type IconId = string;
 
@@ -76,7 +116,9 @@ ${JSON.stringify(def, null, 2)
 type ${kebabToPascal(def.name)}Props = ${
 					def.props.length
 						? `{
-	${def.props.map((prop) => `${prop.name}: ${prop.type};`).join('\n')}
+	${def.props
+		.map((prop) => `${prop.name}: ${parseTypeImports(prop.type).typeStr};`)
+		.join('\n')}
 }`
 						: 'Record<string, never>'
 				};

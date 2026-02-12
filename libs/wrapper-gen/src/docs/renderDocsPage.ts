@@ -1,13 +1,13 @@
 import markdownTable from 'markdown-table';
-import { ComponentDef } from '../common/ComponentDef';
-import {
-	parseTypeStr,
-	TypeResolver,
-	TypeStr,
-	TypeUnion,
-} from '../common/types';
+import { TypeResolver } from '../common/types';
 import { wrappedComponentName } from '../vueWrappers/name';
 import { camelToKebab } from '../utils/casing';
+import type { ComponentDef } from '@repo/metadata-extractor';
+import {
+	parseTypeStr,
+	TypeStr,
+	TypeUnion,
+} from '@repo/metadata-extractor/metadata/type-str';
 
 const escapeMarkdown = (text = '') => text.replace(/([<>{}])/gm, '\\$1');
 

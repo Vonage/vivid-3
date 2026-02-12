@@ -282,13 +282,9 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 		| 'normal'
 		| 'tick-only';
 
-	/**
-	 *
-	 * Meta & Trailing-meta slot observer:
-	 *
-	 * @internal
-	 */
+	/** @internal */
 	@observable metaSlottedContent?: HTMLElement[];
+	/** @internal */
 	@observable trailingMetaSlottedContent?: HTMLElement[];
 
 	/**

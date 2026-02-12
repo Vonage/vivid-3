@@ -16,6 +16,8 @@ This is an example component
 | **start**           | \`string\`                            |                         |
 | **forced-dom-prop** | *Enum*:<br/>string<br/>HTMLElement  |                         |
 | **boolean-prop**    | \`boolean\`                           |                         |
+| **imported-type**   | \`@vonage/vivid#ButtonSize\`          |                         |
+| **external-type**   | \`@something/else#ExternalType\`      |                         |
 
 ## Events
 

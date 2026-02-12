@@ -52,7 +52,7 @@ type ParseOptions = {
 };
 
 export class RteHtmlParser {
-	/// @internal
+	/** @internal */
 	[impl]: RteHtmlParserImpl;
 
 	constructor(config: RteConfig, options?: RteHtmlParserOptions) {

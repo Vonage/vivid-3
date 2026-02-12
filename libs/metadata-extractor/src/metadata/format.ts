@@ -1,4 +1,4 @@
-import { TypeStr } from './types';
+import type { TypeStr } from './type-str';
 
 type TestUtilAnnotation = {
 	name: string;
@@ -53,3 +53,8 @@ export interface ComponentDef {
 	/// Annotations that drive the auto-generation of vivid-test-utils
 	testUtils: VividTestUtilsManifest;
 }
+
+export type Metadata = {
+	componentDefs: ComponentDef[];
+	iconsManifestUrl: string;
+};
