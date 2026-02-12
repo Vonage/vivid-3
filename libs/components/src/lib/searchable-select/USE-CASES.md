@@ -1,5 +1,63 @@
 ## Country Select
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 550px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Countries" clearable multiple style="width: 400px">
+		<template #icon>
+			<VIcon name="globe-line" />
+		</template>
+		<VOption value="afghanistan" text="Afghanistan">
+			<template #icon><VIcon name="flag-afghanistan" /></template>
+		</VOption>
+		<VOption value="albania" text="Albania">
+			<template #icon><VIcon name="flag-albania" /></template>
+		</VOption>
+		<VOption value="algeria" text="Algeria">
+			<template #icon><VIcon name="flag-algeria" /></template>
+		</VOption>
+		<VOption value="argentina" text="Argentina">
+			<template #icon><VIcon name="flag-argentina" /></template>
+		</VOption>
+		<VOption value="australia" text="Australia">
+			<template #icon><VIcon name="flag-australia" /></template>
+		</VOption>
+		<VOption value="brazil" text="Brazil">
+			<template #icon><VIcon name="flag-brazil" /></template>
+		</VOption>
+		<VOption value="canada" text="Canada">
+			<template #icon><VIcon name="flag-canada" /></template>
+		</VOption>
+		<VOption value="france" text="France">
+			<template #icon><VIcon name="flag-france" /></template>
+		</VOption>
+		<VOption value="germany" text="Germany">
+			<template #icon><VIcon name="flag-germany" /></template>
+		</VOption>
+		<VOption value="japan" text="Japan">
+			<template #icon><VIcon name="flag-japan" /></template>
+		</VOption>
+		<VOption value="united-kingdom" text="United Kingdom">
+			<template #icon><VIcon name="flag-united-kingdom" /></template>
+		</VOption>
+		<VOption value="united-states" text="United States">
+			<template #icon><VIcon name="flag-united-states" /></template>
+		</VOption>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 550px
 <vwc-searchable-select label="Countries" clearable multiple>
 	<vwc-icon slot="icon" name="globe-line"></vwc-icon>
@@ -321,7 +379,55 @@
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## In a Form
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 250px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VIcon, VLayout, VButton } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<form>
+		<VLayout column-spacing="small" column-basis="block">
+			<div>
+				<VSearchableSelect name="country" multiple required>
+					<VOption value="AF" text="Afghanistan">
+						<template #icon><VIcon name="flag-afghanistan" /></template>
+					</VOption>
+					<VOption value="AL" text="Albania">
+						<template #icon><VIcon name="flag-albania" /></template>
+					</VOption>
+					<VOption value="DZ" text="Algeria">
+						<template #icon><VIcon name="flag-algeria" /></template>
+					</VOption>
+				</VSearchableSelect>
+			</div>
+			<div class="buttons">
+				<VButton label="Reset" type="reset" />
+				<VButton label="Submit" appearance="filled" type="submit" />
+			</div>
+		</VLayout>
+	</form>
+</template>
+
+<style scoped>
+.buttons {
+	display: flex;
+	gap: 12px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 250px
 <style>
@@ -353,6 +459,9 @@
 </form>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Asynchronous Option Loading
 
 To fetch options for the search text asynchronously you will need combine several features:
@@ -367,6 +476,150 @@ As you are now handling the filtering of options yourself, you need to disable t
 - Set `matchedText` on the options to the search text they were fetched with.
 
 Already selected options need to stay present, even if they are no longer in the current result set. Use `hidden` to hide them in the dropdown.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 500px
+<template>
+	<div class="container">
+		<VSearchableSelect v-model="value" label="Favorite fruit" :option-filter="() => true" :loading="isLoading" @input="onInput($event.target?.values ?? [])" @search-text-change="onSearchTextChanged($event.target?.searchText ?? '')">
+			<VOption v-for="option in retainedOptions" :key="option.value" :value="option.value" :text="option.text" hidden />
+			<VOption v-for="option in currentSearchResults" :key="option.value" :value="option.value" :text="option.text" :matched-text="currentSearchText" />
+			<template #no-options><span>Start typing to search...</span></template>
+			<template #loading-options><span>Loading results...</span></template>
+		</VSearchableSelect>
+
+		<VSearchableSelect v-model:values="values" label="Favorite fruits" multiple :option-filter="() => true" :loading="isLoading2" @input="onInput2($event.target?.values ?? [])" @search-text-change="onSearchTextChanged2($event.target?.searchText ?? '')">
+			<VOption v-for="option in retainedOptions2" :key="option.value" :value="option.value" :text="option.text" hidden />
+			<VOption v-for="option in currentSearchResults2" :key="option.value" :value="option.value" :text="option.text" :matched-text="currentSearchText2" />
+			<template #no-options><span>Start typing to search...</span></template>
+			<template #loading-options><span>Loading results...</span></template>
+		</VSearchableSelect>
+	</div>
+</template>
+
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+import { computed, ref } from 'vue';
+
+const value = ref('');
+const values = ref<string[]>([]);
+
+const isLoading = ref(false);
+const selectedOptions = ref<{ value: string; text: string }[]>([]);
+const currentSearchResults = ref<{ value: string; text: string }[]>([]);
+const currentSearchText = ref('');
+
+const isLoading2 = ref(false);
+const selectedOptions2 = ref<{ value: string; text: string }[]>([]);
+const currentSearchResults2 = ref<{ value: string; text: string }[]>([]);
+const currentSearchText2 = ref('');
+
+const retainedOptions = computed(() => selectedOptions.value.filter((s) => !currentSearchResults.value.some((o) => o.value === s.value)));
+const retainedOptions2 = computed(() => selectedOptions2.value.filter((s) => !currentSearchResults2.value.some((o) => o.value === s.value)));
+
+const fruitsDatabase = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape', 'Jackfruit', 'Kiwi', 'Lemon', 'Mango', 'Nectarine', 'Orange', 'Passion fruit', 'Quince', 'Raspberry', 'Strawberry', 'Watermelon'];
+
+async function fetchOptions(searchText: string) {
+	return new Promise<{ value: string; text: string }[]>((resolve) => {
+		setTimeout(
+			() =>
+				resolve(
+					fruitsDatabase
+						.filter((fruit) => fruit.toLowerCase().includes(searchText.toLowerCase()))
+						.map((fruit) => ({
+							value: fruit,
+							text: fruit,
+						}))
+				),
+			1000
+		);
+	});
+}
+
+function debounce<T extends (...args: unknown[]) => void>(func: T, timeout: number) {
+	let timer: ReturnType<typeof setTimeout>;
+	return (...args: Parameters<T>) => {
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			func.apply(this, args);
+		}, timeout);
+	};
+}
+
+let latestSearchText = '';
+const debouncedSearch = debounce(async (searchText: string) => {
+	const newResults = await fetchOptions(searchText);
+	if (latestSearchText !== searchText) return;
+	isLoading.value = false;
+	currentSearchResults.value = newResults;
+	currentSearchText.value = searchText;
+}, 1000);
+
+const onSearchTextChanged = (newSearchText: string) => {
+	if (newSearchText === '') {
+		latestSearchText = '';
+		isLoading.value = false;
+		currentSearchResults.value = [];
+		currentSearchText.value = '';
+	} else {
+		latestSearchText = newSearchText;
+		isLoading.value = true;
+		debouncedSearch(newSearchText);
+	}
+};
+
+function onInput(valuesArr: string[]) {
+	selectedOptions.value = valuesArr.map((v) => {
+		const fromResults = currentSearchResults.value.find((o) => o.value === v);
+		const fromSelected = selectedOptions.value.find((o) => o.value === v);
+		return fromResults ?? fromSelected ?? { value: v, text: v };
+	});
+}
+
+let latestSearchText2 = '';
+const debouncedSearch2 = debounce(async (searchText: string) => {
+	const newResults = await fetchOptions(searchText);
+	if (latestSearchText2 !== searchText) return;
+	isLoading2.value = false;
+	currentSearchResults2.value = newResults;
+	currentSearchText2.value = searchText;
+}, 1000);
+
+const onSearchTextChanged2 = (newSearchText: string) => {
+	if (newSearchText === '') {
+		latestSearchText2 = '';
+		isLoading2.value = false;
+		currentSearchResults2.value = [];
+		currentSearchText2.value = '';
+	} else {
+		latestSearchText2 = newSearchText;
+		isLoading2.value = true;
+		debouncedSearch2(newSearchText);
+	}
+};
+
+function onInput2(valuesArr: string[]) {
+	selectedOptions2.value = valuesArr.map((v) => {
+		const fromResults = currentSearchResults2.value.find((o) => o.value === v);
+		const fromSelected = selectedOptions2.value.find((o) => o.value === v);
+		return fromResults ?? fromSelected ?? { value: v, text: v };
+	});
+}
+</script>
+
+<style scoped>
+.container {
+	block-size: 460px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 500px
 <vwc-searchable-select label="Favorite fruit">
@@ -530,3 +783,6 @@ Already selected options need to stay present, even if they are no longer in the
 	}
 </script>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
