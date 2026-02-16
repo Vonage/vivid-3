@@ -1175,6 +1175,148 @@ describe('vwc-select', () => {
 		});
 	});
 
+	describe('clearable', () => {
+		const getClearButton = () =>
+			element.shadowRoot!.querySelector('.clear-button') as HTMLButtonElement;
+
+		it('should not render a clear button by default', async () => {
+			element.innerHTML = `<vwc-option value="1" text="1" selected></vwc-option>`;
+			await elementUpdated(element);
+			expect(getClearButton()).toBeNull();
+		});
+
+		it('should render a clear button when clearable is true and a value is selected', async () => {
+			element.clearable = true;
+			element.innerHTML = `<vwc-option value="1" text="1" selected></vwc-option>`;
+			await elementUpdated(element);
+			expect(getClearButton()).not.toBeNull();
+		});
+
+		it('should render a clear button in multiple mode when clearable is true and options are selected', async () => {
+			element.multiple = true;
+			element.clearable = true;
+			element.innerHTML = `<vwc-option value="1" text="1" selected></vwc-option>`;
+			await elementUpdated(element);
+			expect(getClearButton()).not.toBeNull();
+		});
+
+		it('should not render a clear button when value is empty', async () => {
+			element.clearable = true;
+			await elementUpdated(element);
+			expect(getClearButton()).toBeNull();
+		});
+
+		it('should clear the selection when clicking the clear button', async () => {
+			element.clearable = true;
+			element.innerHTML = `<vwc-option value="1" text="1" selected></vwc-option>`;
+			await elementUpdated(element);
+
+			getClearButton().click();
+			await elementUpdated(element);
+
+			expect(element.value).toBe('');
+			expect(element.selectedIndex).toBe(-1);
+		});
+
+		it('should clear the selection when clicking the clear button in multiple mode', async () => {
+			element.multiple = true;
+			element.clearable = true;
+			element.innerHTML = `
+				<vwc-option value="1" text="1" selected></vwc-option>
+				<vwc-option value="2" text="2" selected></vwc-option>
+			`;
+			await elementUpdated(element);
+
+			getClearButton().click();
+			await elementUpdated(element);
+
+			expect(element.selectedOptions.length).toBe(0);
+		});
+
+		it('should stop propagation when clicking the clear button to prevent opening the dropdown', async () => {
+			element.clearable = true;
+			element.innerHTML = `<vwc-option value="1" text="1" selected></vwc-option>`;
+			await elementUpdated(element);
+
+			const button = getClearButton();
+			const clickEvent = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+			const spy = vi.spyOn(clickEvent, 'stopPropagation');
+
+			button.dispatchEvent(clickEvent);
+
+			expect(spy).toHaveBeenCalled();
+			expect(element.open).toBeFalsy();
+		});
+
+		it('should prevent default on mousedown of the clear button', async () => {
+			element.clearable = true;
+			element.innerHTML = `<vwc-option value="1" text="1" selected></vwc-option>`;
+			await elementUpdated(element);
+
+			const button = getClearButton();
+			const mousedownEvent = new MouseEvent('mousedown', {
+				bubbles: true,
+				cancelable: true,
+			});
+			const preventDefaultSpy = vi.spyOn(mousedownEvent, 'preventDefault');
+
+			button.dispatchEvent(mousedownEvent);
+
+			expect(preventDefaultSpy).toHaveBeenCalled();
+		});
+
+		it('should reset activeIndex and stop propagation when focusing the clear button in multiple mode', async () => {
+			element.multiple = true;
+			element.clearable = true;
+			element.innerHTML = `
+				<vwc-option value="1" text="1"></vwc-option>
+				<vwc-option value="2" text="2" selected></vwc-option>
+				<vwc-option value="3" text="3"></vwc-option>
+			`;
+			await elementUpdated(element);
+
+			(element as any).activeIndex = 0;
+
+			const button = getClearButton();
+			const event = new FocusEvent('focusin', {
+				bubbles: true,
+				cancelable: true,
+			});
+			const stopPropagationSpy = vi.spyOn(event, 'stopPropagation');
+
+			button.dispatchEvent(event);
+
+			expect(stopPropagationSpy).toHaveBeenCalled();
+			expect((element as any).activeIndex).toBe(-1);
+		});
+
+		it('should stop keydown propagation on the clear button to prevent keyboard navigation in multiple mode', async () => {
+			element.multiple = true;
+			element.clearable = true;
+			element.innerHTML = `
+				<vwc-option value="1" text="1"></vwc-option>
+				<vwc-option value="2" text="2" selected></vwc-option>
+				<vwc-option value="3" text="3"></vwc-option>
+			`;
+			await elementUpdated(element);
+
+			const button = getClearButton();
+			const event = new KeyboardEvent('keydown', {
+				key: 'ArrowDown',
+				bubbles: true,
+				cancelable: true,
+			});
+			const spy = vi.spyOn(event, 'stopPropagation');
+
+			button.dispatchEvent(event);
+
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
 	describe('feedback messages', () => {
 		it('should ignore events when triggered on feedback messages', async () => {
 			element.helperText = 'helper text';

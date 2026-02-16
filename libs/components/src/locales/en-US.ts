@@ -173,6 +173,9 @@ const enUS: Locale = {
 	tab: {
 		dismissButtonLabel: 'Press the DELETE key to close this tab',
 	},
+	select: {
+		clearButtonLabel: 'Clear selection',
+	},
 	searchableSelect: {
 		clearButtonLabel: 'Clear selection',
 		noOptionsMessage: 'No options',

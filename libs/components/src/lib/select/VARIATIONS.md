@@ -730,6 +730,45 @@ import { VOption, VSelect } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Clearable
+
+The `clearable` attribute adds a clear button, which clears the selected value(s) when clicked.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect clearable label="Title" placeholder="Select an option">
+		<VOption value="mr" text="Mr" />
+		<VOption value="mrs" text="Mrs" />
+		<VOption value="miss" text="Miss" />
+		<VOption value="ms" text="Ms" />
+	</VSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 270px
+<vwc-select clearable label="Title" placeholder="Select an option">
+	<vwc-option value="mr" text="Mr"></vwc-option>
+	<vwc-option value="mrs" text="Mrs"></vwc-option>
+	<vwc-option value="miss" text="Miss"></vwc-option>
+	<vwc-option value="ms" text="Ms"></vwc-option>
+</vwc-select>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 The `disabled` attribute disables the select element.

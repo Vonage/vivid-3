@@ -7562,6 +7562,13 @@
 					"propertyName": "appearance"
 				},
 				{
+					"name": "clearable",
+					"description": "Adds a clear button to the select field that clears the selected value.",
+					"type": "boolean",
+					"attributeName": "clearable",
+					"propertyName": "clearable"
+				},
+				{
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
