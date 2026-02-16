@@ -1,0 +1,8 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@repo/tools": ["../../../packages/tools/src/index.ts"]
+		}
+	}
+}

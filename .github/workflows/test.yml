@@ -1,0 +1,20 @@
+name: test-cdn
+on: workflow_dispatch
+
+jobs:
+  upload-to-cdn:
+    name: Upload assets to CDN
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Upload assets
+      uses: ./.github/actions/upload-cdn-artifacts
+      with:
+        bucket: 'vivid-icons'
+        base-folder: 'asdasd'
+        version: 12
+        source-dir: 'libs/icons/'
+        index-json-path: 'src/generated/index.json'
