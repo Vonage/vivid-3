@@ -2,6 +2,34 @@
 
 Use the `open` attribute to indicate whether the side drawer is open.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VSideDrawer, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSideDrawer open>
+		<VLayout gutters="small">
+			<p>Side Drawer content</p>
+		</VLayout>
+
+		<template #app-content>
+			<VLayout gutters="small">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</VLayout>
+		</template>
+	</VSideDrawer>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full
 <vwc-side-drawer open>
 	<vwc-layout gutters="small">
@@ -14,9 +42,59 @@ Use the `open` attribute to indicate whether the side drawer is open.
 </vwc-side-drawer>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Modal
 
 Use the `modal` attribute to set the side drawer's type to modal.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VSideDrawer, VLayout, VFab, VIcon } from '@vonage/vivid-vue';
+
+const isOpen = ref(true);
+
+function toggleSideDrawer() {
+	isOpen.value = !isOpen.value;
+}
+</script>
+
+<template>
+	<VSideDrawer modal :open="isOpen">
+		<VLayout gutters="small">Side Drawer content</VLayout>
+
+		<template #app-content>
+			<VLayout gutters="small">
+				<div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+			</VLayout>
+		</template>
+	</VSideDrawer>
+
+	<VFab class="fab" connotation="accent" aria-label="Toggle side drawer" @click="toggleSideDrawer">
+		<VIcon slot="icon" name="menu-solid" />
+	</VFab>
+</template>
+
+<style scoped>
+.content {
+	padding-inline-end: 40px;
+}
+.fab {
+	position: fixed;
+	inset: auto 8px 8px auto;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-side-drawer modal open id="sidedrawer">
@@ -53,9 +131,36 @@ Use the `modal` attribute to set the side drawer's type to modal.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Alternate
 
-Use `alternate` to apply an alternate color-scheme, alternate applies on all assigned vivid components.
+Use `alternate` to apply an alternate color-scheme, alternate applies on all assigned Vivid components.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VSideDrawer, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSideDrawer alternate open>
+		<VLayout gutters="small">Side Drawer content</VLayout>
+
+		<template #app-content>
+			<VLayout gutters="small"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </VLayout>
+		</template>
+	</VSideDrawer>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-side-drawer alternate open>
@@ -65,9 +170,36 @@ Use `alternate` to apply an alternate color-scheme, alternate applies on all ass
 </vwc-side-drawer>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Trailing
 
 Use the `trailing` attribute to set the side of the drawer.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VSideDrawer, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSideDrawer trailing open>
+		<VLayout gutters="small">Side Drawer content</VLayout>
+
+		<template #app-content>
+			<VLayout gutters="small"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </VLayout>
+		</template>
+	</VSideDrawer>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-side-drawer trailing open>
@@ -76,3 +208,6 @@ Use the `trailing` attribute to set the side of the drawer.
 	<vwc-layout gutters="small" slot="app-content"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </vwc-layout>
 </vwc-side-drawer>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
