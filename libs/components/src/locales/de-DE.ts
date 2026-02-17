@@ -175,6 +175,9 @@ const deDE: Locale = {
 		dismissButtonLabel:
 			'Drücken Sie die ENTF-Taste, um diese Registerkarte zu schließen',
 	},
+	select: {
+		clearButtonLabel: 'Auswahl löschen',
+	},
 	searchableSelect: {
 		clearButtonLabel: 'Auswahl löschen',
 		noOptionsMessage: 'Keine Optionen',

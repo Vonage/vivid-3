@@ -8,6 +8,7 @@ import {
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
+import { Button } from '../button/button';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
@@ -62,6 +63,42 @@ function renderPlaceholder(context: VividElementDefinitionContext) {
 		</${optionTag}>`;
 }
 
+function renderClearButton(context: VividElementDefinitionContext) {
+	const buttonTag = context.tagFor(Button);
+
+	return html<Select>`
+		<${buttonTag}
+			aria-label="${(x) => x.locale.select.clearButtonLabel}"
+			aria-hidden="${(x) => (x._isClearButtonFocused ? 'false' : 'true')}"
+			@click="${(x, c) => {
+				x._onClearButtonClick();
+				c.event.stopPropagation();
+			}}"
+			@mousedown="${() => false}"
+			@keydown="${(x, c) => {
+				/* v8 ignore next -- @preserve */
+				if ((c.event as KeyboardEvent).key === 'Tab') {
+					x._onClearButtonBlur();
+				}
+				c.event.stopPropagation();
+				return true;
+			}}"
+			@focusin="${(x, c) => {
+				c.event.stopPropagation();
+				x._onClearButtonFocus();
+			}}"
+			@focusout="${(x) => x._onClearButtonBlur()}"
+			?disabled="${(x) => x.disabled}"
+			:shape="${(x) => x.shape}"
+			size="super-condensed"
+			icon="close-line"
+			appearance="ghost-light"
+			class="clear-button"
+			tabindex="0"
+		></${buttonTag}>
+	`;
+}
+
 function selectValue(context: VividElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const chevronTemplate = chevronTemplateFactory(context);
@@ -76,6 +113,7 @@ function selectValue(context: VividElementDefinitionContext) {
 			<span class="text">${(x) => x.displayValue}</span>
 			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 		</div>
+		${when((x) => x._shouldShowClearButton, renderClearButton(context))}
 		${chevronTemplate}
 	</div>`;
 }
@@ -93,8 +131,12 @@ function renderControl(context: VividElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
 	return html<Select>`
-			<div class="label-wrapper" ?hidden=${(x) => !x.label && !x._hasContextualHelp}>
+			<div class="label-wrapper" ?hidden=${(x) => !x._shouldShowLabelWrapper}>
 				${when((x) => x.label, renderLabel())}
+				${when(
+					(x) => x.multiple && x._shouldShowClearButton,
+					renderClearButton(context)
+				)}
 				<slot name="contextual-help" ${slotted('_contextualHelpSlottedContent')}></slot>
 			</div>
 			<div class="control-wrapper">

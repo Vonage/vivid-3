@@ -568,6 +568,7 @@ import { VOption, VSelect } from '@vonage/vivid-vue';
 | Name                                   | Type                            | Description                                                                                                                 |
 | -------------------------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | **appearance**                         | `fieldset` (default), `ghost`   | Sets the element's appearance                                                                                               |
+| **clearable**                          | `boolean`                       | Adds a clear button to the select that clears the selected value(s).                                                        |
 | **disabled**                           | `boolean`                       | Sets the element's disabled state. A disabled element will not be included during form submission.                          |
 | **error-text**                         | `string`                        | Sets the element's error text                                                                                               |
 | **fixed-dropdown**                     | `boolean`                       | Sets the position strategy of the dropdown to fixed                                                                         |

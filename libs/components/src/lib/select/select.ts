@@ -20,6 +20,7 @@ import {
 import {
 	AffixIconWithTrailing,
 	FormElement,
+	Localized,
 	WithContextualHelp,
 	WithErrorText,
 	WithSuccessText,
@@ -56,8 +57,10 @@ export class Select extends WithLightDOMFeedback(
 	WithContextualHelp(
 		WithErrorText(
 			WithSuccessText(
-				FormElement(
-					HostSemantics(AffixIconWithTrailing(FormAssociated(Listbox)))
+				Localized(
+					FormElement(
+						HostSemantics(AffixIconWithTrailing(FormAssociated(Listbox)))
+					)
 				)
 			)
 		)
@@ -1000,5 +1003,73 @@ export class Select extends WithLightDOMFeedback(
 
 		this.selectedIndex =
 			this._newDefaultSelectedIndex([], this.options, -1) ?? -1;
+	}
+
+	/**
+	 * Adds a clear button to the select field that clears the selected value.
+	 *
+	 * @public
+	 * HTML Attribute: clearable
+	 */
+	@attr({ mode: 'boolean' }) clearable = false;
+
+	/**
+	 * @internal
+	 */
+	@observable _isClearButtonFocused = false;
+
+	/**
+	 * @internal
+	 */
+	get _shouldShowClearButton() {
+		if (!this.clearable) return false;
+		if (this.multiple) {
+			return this.selectedOptions?.length > 0;
+		}
+		return this.value !== '';
+	}
+
+	/**
+	 * @internal
+	 */
+	_onClearButtonFocus() {
+		this._isClearButtonFocused = true;
+		this.activeIndex = -1;
+		this.uncheckAllOptions();
+	}
+
+	/**
+	 * @internal
+	 */
+	_onClearButtonBlur() {
+		this._isClearButtonFocused = false;
+	}
+
+	/**
+	 * @internal
+	 */
+	get _shouldShowLabelWrapper() {
+		return Boolean(
+			this.label ||
+				this._hasContextualHelp ||
+				(this.multiple && this._shouldShowClearButton)
+		);
+	}
+
+	/**
+	 * @internal
+	 */
+	_onClearButtonClick() {
+		if (this.multiple) {
+			this.selectedOptions?.forEach((o) => {
+				/* v8 ignore else -- @preserve */
+				if (!o.disabled) {
+					o.selected = false;
+				}
+			});
+		} else {
+			this.selectedIndex = -1;
+		}
+		this.updateValue(true);
 	}
 }
