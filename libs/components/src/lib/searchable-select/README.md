@@ -1,7 +1,25 @@
 ## Usage
 
 <vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Country">
+		<VOption value="AF" text="Afghanistan" />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -25,23 +43,6 @@ registerSearchableSelect('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VSearchableSelect label="Country">
-		<VOption value="AF" text="Afghanistan" />
-		<VOption value="AL" text="Albania" />
-		<VOption value="DZ" text="Algeria" />
-	</VSearchableSelect>
-</template>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Controlling the Value
@@ -50,6 +51,28 @@ import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
 
 For a single select, you can control the selected value by setting the `value` attribute.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Country" value="AL">
+		<VOption value="AF" text="Afghanistan" />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-searchable-select label="Country" value="AL">
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
@@ -57,6 +80,9 @@ For a single select, you can control the selected value by setting the `value` a
 	<vwc-option value="DZ" text="Algeria"></vwc-option>
 </vwc-searchable-select>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Multiple Select
 
@@ -68,6 +94,43 @@ For multiple select, you can control the selected values by setting the `values`
 Web components (as with all HTML elements) can only accept strings as their attributes. `values` requires an array, so it has to be set programmatically.
 
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VSearchableSelect, VOption, VIcon } from '@vonage/vivid-vue';
+
+const values = ref(['AF', 'DZ']);
+</script>
+
+<template>
+	<VSearchableSelect v-model:values="values" multiple label="Countries">
+		<VOption value="AF" text="Afghanistan">
+			<template #icon>
+				<VIcon name="flag-afghanistan" />
+			</template>
+		</VOption>
+		<VOption value="AL" text="Albania">
+			<template #icon>
+				<VIcon name="flag-albania" />
+			</template>
+		</VOption>
+		<VOption value="DZ" text="Algeria">
+			<template #icon>
+				<VIcon name="flag-algeria" />
+			</template>
+		</VOption>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-searchable-select multiple label="Countries">
@@ -88,6 +151,9 @@ Web components (as with all HTML elements) can only accept strings as their attr
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Fixed Dropdown
 
 Add the `fixed-dropdown` attribute to change the dropdown to use a fixed position strategy.
@@ -97,6 +163,28 @@ This is useful for cases in which the dropdown is obstructed by other elements.
 
 The `open` attribute allows the Searchable Select to be opened programmatically.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Country" open>
+		<VOption value="AF" text="Afghanistan" />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-searchable-select label="Country" open>
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
@@ -105,9 +193,40 @@ The `open` attribute allows the Searchable Select to be opened programmatically.
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Search Text
 
 You can access the current search text through the `searchText` property and listen for changes through the `search-text-change` event.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 150px
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VSearchableSelect } from '@vonage/vivid-vue';
+
+const searchText = ref('');
+
+function onSearchTextChange(e: Event) {
+	const el = (e?.currentTarget ?? e?.target) as { searchText?: string };
+	console.log('onSearchTextChange', el?.searchText);
+	searchText.value = el?.searchText ?? '';
+}
+</script>
+
+<template>
+	<div>Current search text: "<span v-text="searchText"></span>"</div>
+	<VSearchableSelect @search-text-change="onSearchTextChange" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 150px
 <div>Current search text: "<span id="search-text"></span>"</div>
@@ -122,9 +241,55 @@ You can access the current search text through the `searchText` property and lis
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Option Filtering
 
 You can control option filtering by setting `optionFilter` to a custom function. For example, always returning `true` will disable filtering by always showing all options.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 250px
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { VSearchableSelect, VOption, VIcon } from '@vonage/vivid-vue';
+
+const selectRef = ref<InstanceType<typeof VSearchableSelect> | null>(null);
+
+onMounted(() => {
+	if (selectRef.value?.element) {
+		selectRef.value.element.optionFilter = () => true;
+	}
+});
+</script>
+
+<template>
+	<VSearchableSelect ref="selectRef">
+		<VOption value="AF" text="Afghanistan">
+			<template #icon>
+				<VIcon name="flag-afghanistan" />
+			</template>
+		</VOption>
+		<VOption value="AL" text="Albania">
+			<template #icon>
+				<VIcon name="flag-albania" />
+			</template>
+		</VOption>
+		<VOption value="DZ" text="Algeria">
+			<template #icon>
+				<VIcon name="flag-algeria" />
+			</template>
+		</VOption>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 250px
 <vwc-searchable-select>
@@ -146,11 +311,36 @@ You can control option filtering by setting `optionFilter` to a custom function.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 ### Default
 
 Holds the available options as [Option](/components/option/) elements.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Select an option">
+		<VOption value="1" text="Option 1" />
+		<VOption value="2" text="Option 2" />
+		<VOption value="3" text="Option 3" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-searchable-select label="Select an option">
@@ -160,7 +350,53 @@ Holds the available options as [Option](/components/option/) elements.
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 You can use the [Option's `tag-icon` slot](/components/option/#tag-icon) to display an icon next to the selected option's tag.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 320px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Country" clearable multiple>
+		<VOption value="afghanistan" text="Afghanistan" selected>
+			<template #icon>
+				<VIcon name="flag-afghanistan" />
+			</template>
+			<template #tag-icon>
+				<VIcon name="flag-afghanistan" />
+			</template>
+		</VOption>
+		<VOption value="albania" text="Albania">
+			<template #icon>
+				<VIcon name="flag-albania" />
+			</template>
+			<template #tag-icon>
+				<VIcon name="flag-albania" />
+			</template>
+		</VOption>
+		<VOption value="algeria" text="Algeria">
+			<template #icon>
+				<VIcon name="flag-algeria" />
+			</template>
+			<template #tag-icon>
+				<VIcon name="flag-algeria" />
+			</template>
+		</VOption>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 320px
 <vwc-searchable-select label="Country" clearable multiple>
@@ -179,9 +415,34 @@ You can use the [Option's `tag-icon` slot](/components/option/#tag-icon) to disp
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 #### Hidden Options
 
 Setting `hidden` on an Option will hide it from the dropdown while still allowing it to be a selected value.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 150px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect multiple>
+		<VOption value="AF" text="Afghanistan" selected hidden />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 150px
 <vwc-searchable-select multiple>
@@ -191,10 +452,38 @@ Setting `hidden` on an Option will hide it from the dropdown while still allowin
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Icon
 
 Set the `icon` slot to show an icon at the start of the input.
 If set, the `icon`_(deprecated)_ attribute is ignored.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Country" multiple>
+		<template #icon>
+			<VIcon name="check-circle-solid" connotation="success" />
+		</template>
+		<VOption value="AF" text="Afghanistan" selected />
+		<VOption value="AL" text="Albania" selected />
+		<VOption value="DZ" text="Algeria" selected />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-searchable-select label="Country" multiple>
@@ -205,9 +494,37 @@ If set, the `icon`_(deprecated)_ attribute is ignored.
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Meta
 
 Use the `meta` slot to show meta information at the end of the input field.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 320px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VBadge } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect aria-label="Country" multiple style="width: 250px">
+		<VOption value="AF" text="Afghanistan" selected />
+		<VOption value="AL" text="Albania" selected />
+		<VOption value="DZ" text="Algeria" selected />
+		<template #meta>
+			<VBadge connotation="success" text="Beta" />
+		</template>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 320px
 <vwc-searchable-select aria-label="Country" multiple>
@@ -224,9 +541,37 @@ Use the `meta` slot to show meta information at the end of the input field.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Helper Text
 
 The `helper-text` slot allows you to use rich content as the helper text.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Business Type">
+		<VOption value="ngo" text="Non-Governmental Organization" />
+		<VOption value="gov" text="Governmental Organization" />
+		<VOption value="edu" text="Educational Institution" />
+		<template #helper-text>
+			<span>Please select the <a href="#">type of your business</a>.</span>
+		</template>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-searchable-select label="Business Type">
@@ -237,9 +582,37 @@ The `helper-text` slot allows you to use rich content as the helper text.
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Contextual Help
 
 The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VContextualHelp } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Business Type">
+		<VOption value="ngo" text="Non-Governmental Organization" />
+		<VOption value="gov" text="Governmental Organization" />
+		<VOption value="edu" text="Educational Institution" />
+		<template #contextual-help>
+			<VContextualHelp>Please select the type of your business</VContextualHelp>
+		</template>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-searchable-select label="Business Type">
@@ -250,11 +623,36 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Custom Width
 
 You can specify width on the Searchable Select to control the width of the component. The default width is `300px`.
 
 The dropdown has min-width of its content.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Choose an option" style="width: 140px">
+		<VOption value="1" text="Option 1: dogs" />
+		<VOption value="2" text="Option 2: cats" />
+		<VOption value="3" text="Option 3: dogs and cats" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <style>
@@ -269,11 +667,46 @@ The dropdown has min-width of its content.
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## CSS Variables
 
 ### Height
 
 Use `--searchable-select-height` to set the max-height of the dropdown. The default value is `408px`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 300px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect class="searchable-select-height-demo" aria-label="Options Selector">
+		<VOption value="1" text="Option 1" />
+		<VOption value="2" text="Option 2" />
+		<VOption value="3" text="Option 3" />
+		<VOption value="4" text="Option 4" />
+		<VOption value="5" text="Option 5" />
+		<VOption value="6" text="Option 6" />
+		<VOption value="7" text="Option 7" />
+	</VSearchableSelect>
+</template>
+
+<style scoped>
+.searchable-select-height-demo {
+	--searchable-select-height: 100px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 300px
 <style>
@@ -291,6 +724,9 @@ Use `--searchable-select-height` to set the max-height of the dropdown. The defa
 	<vwc-option value="7" text="Option 7"></vwc-option>
 </vwc-searchable-select>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 
