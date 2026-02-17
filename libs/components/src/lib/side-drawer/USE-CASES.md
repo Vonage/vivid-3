@@ -15,8 +15,10 @@
 					<VNavItem class="item" href="#" :text="open ? 'SMS' : ''" :data-label="open ? '' : 'SMS'" icon="chat-line" :aria-current="selected === 'sms' ? 'page' : null" @click.prevent="selected = 'sms'" />
 				</VNav>
 			</VLayout>
-			<VLayout slot="app-content" gutters="medium"> Toggle the side drawer by clicking the FAB. </VLayout>
-			<VFab slot="app-content" class="fab" icon="menu-solid" @click="open = !open" />
+			<template #app-content>
+				<VLayout gutters="medium"> Toggle the side drawer by clicking the FAB. </VLayout>
+				<VFab class="fab" icon="menu-solid" @click="open = !open" />
+			</template>
 		</VSideDrawer>
 	</div>
 </template>
@@ -145,7 +147,9 @@ import { VSideDrawer, VLayout } from '@vonage/vivid-vue';
 <template>
 	<VSideDrawer class="side-drawer" open>
 		<VLayout gutters="small">Side Drawer content</VLayout>
-		<div class="content" slot="app-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+		<template #app-content>
+			<div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+		</template>
 	</VSideDrawer>
 </template>
 
@@ -208,15 +212,17 @@ const isOpen = ref(false);
 
 <template>
 	<VSideDrawer class="vwc-side-drawer" :open="isOpen">
-		<VLayout slot="app-content" gutters="medium">
-			Toggle the side drawer by clicking the FAB.
-			<br />
-			Notice that the side drawer overlaps the application content.
-		</VLayout>
+		<template #app-content>
+			<VLayout gutters="medium">
+				Toggle the side drawer by clicking the FAB.
+				<br />
+				Notice that the side drawer overlaps the application content.
+			</VLayout>
 
-		<VFab slot="app-content" class="vwc-fab" connotation="accent" aria-label="Toggle Side Drawer" @click="isOpen = !isOpen">
-			<VIcon slot="icon" name="menu-solid" />
-		</VFab>
+			<VFab class="vwc-fab" connotation="accent" aria-label="Toggle Side Drawer" @click="isOpen = !isOpen">
+				<VIcon slot="icon" name="menu-solid" />
+			</VFab>
+		</template>
 	</VSideDrawer>
 </template>
 
