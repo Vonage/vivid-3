@@ -69,19 +69,25 @@ function renderClearButton(context: VividElementDefinitionContext) {
 	return html<Select>`
 		<${buttonTag}
 			aria-label="${(x) => x.locale.select.clearButtonLabel}"
+			aria-hidden="${(x) => (x._isClearButtonFocused ? 'false' : 'true')}"
 			@click="${(x, c) => {
 				x._onClearButtonClick();
 				c.event.stopPropagation();
 			}}"
 			@mousedown="${() => false}"
-			@keydown="${(_, c) => {
+			@keydown="${(x, c) => {
+				/* v8 ignore next -- @preserve */
+				if ((c.event as KeyboardEvent).key === 'Tab') {
+					x._onClearButtonBlur();
+				}
 				c.event.stopPropagation();
 				return true;
 			}}"
 			@focusin="${(x, c) => {
-				x._onClearButtonFocus();
 				c.event.stopPropagation();
+				x._onClearButtonFocus();
 			}}"
+			@focusout="${(x) => x._onClearButtonBlur()}"
 			?disabled="${(x) => x.disabled}"
 			:shape="${(x) => x.shape}"
 			size="super-condensed"

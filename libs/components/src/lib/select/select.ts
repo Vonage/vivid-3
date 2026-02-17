@@ -1016,6 +1016,11 @@ export class Select extends WithLightDOMFeedback(
 	/**
 	 * @internal
 	 */
+	@observable _isClearButtonFocused = false;
+
+	/**
+	 * @internal
+	 */
 	get _shouldShowClearButton() {
 		if (!this.clearable) return false;
 		if (this.multiple) {
@@ -1028,8 +1033,16 @@ export class Select extends WithLightDOMFeedback(
 	 * @internal
 	 */
 	_onClearButtonFocus() {
+		this._isClearButtonFocused = true;
 		this.activeIndex = -1;
 		this.uncheckAllOptions();
+	}
+
+	/**
+	 * @internal
+	 */
+	_onClearButtonBlur() {
+		this._isClearButtonFocused = false;
 	}
 
 	/**

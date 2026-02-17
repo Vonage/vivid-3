@@ -1315,6 +1315,27 @@ describe('vwc-select', () => {
 
 			expect(spy).toHaveBeenCalled();
 		});
+
+		it('should toggle aria-hidden on the clear button based on focus', async () => {
+			element.clearable = true;
+			element.innerHTML = `
+				<vwc-option value="1" text="1"></vwc-option>
+				<vwc-option value="2" text="2" selected></vwc-option>
+				<vwc-option value="3" text="3"></vwc-option>
+			`;
+			await elementUpdated(element);
+
+			const button = getClearButton();
+			expect(button.ariaHidden).toBe('true');
+
+			button.dispatchEvent(new FocusEvent('focusin'));
+			await elementUpdated(element);
+			expect(button.ariaHidden).toBe('false');
+
+			button.dispatchEvent(new FocusEvent('focusout'));
+			await elementUpdated(element);
+			expect(button.ariaHidden).toBe('true');
+		});
 	});
 
 	describe('feedback messages', () => {
