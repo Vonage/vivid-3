@@ -548,7 +548,9 @@ import { VSearchableSelect, VOption, VIcon } from '@vonage/vivid-vue';
 		<VOption value="algeria" text="Algeria">
 			<template #icon><VIcon name="flag-algeria" /></template>
 		</VOption>
-		<VOption value="argentina" text="Argentina" />
+		<VOption value="argentina" text="Argentina">
+			<template #icon><VIcon name="flag-argentina" /></template>
+		</VOption>
 		<VOption value="armenia" text="Armenia">
 			<template #icon><VIcon name="flag-armenia" /></template>
 		</VOption>
