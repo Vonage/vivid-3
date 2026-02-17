@@ -7,7 +7,6 @@ import type { Locale } from '../../../shared/localization/Locale';
 import { RteConfig, RteConfigImpl } from './config';
 import { hostBridgePlugin, type HostState } from './features/internal/core';
 import {
-	type getPublicInterface,
 	type RteFeature,
 	type RteFeatureImpl,
 	sortedContributions,
@@ -17,6 +16,7 @@ import type { TextblockAttrs } from './utils/textblock-attrs';
 import { RteHtmlParser } from './html-parser';
 import { RteHtmlSerializer } from './html-serializer';
 import { impl } from './utils/impl';
+import type { getPublicInterface } from './public-interface';
 
 const parseDocument = (schema: Schema, doc?: RteDocument): Node => {
 	const node = schema.topNodeType.createAndFill(

@@ -3,6 +3,7 @@ import { createDivider, UiCtx } from '../utils/ui';
 import { RteInstanceImpl } from '../instance';
 import { featureFacade, RteFeatureImpl, sortedContributions } from '../feature';
 import { FeatureState } from '../utils/feature-state';
+import type { RteToolbarPublicInterface } from '../public-interface';
 import toolbarCss from './toolbar.style.scss?inline';
 import { RteCoreImpl } from './internal/core';
 
@@ -17,18 +18,6 @@ export interface RteToolbarConfig {
 	 * Default: 'inward'
 	 */
 	popupDirection?: 'inward' | 'outward';
-}
-
-export interface RteToolbarPublicInterface {
-	/**
-	 * Whether the toolbar is hidden.
-	 */
-	hidden: boolean;
-}
-declare module '../feature' {
-	export function getPublicInterface(
-		facade: typeof RteToolbarFeature
-	): RteToolbarPublicInterface;
 }
 
 export class RteToolbarFeatureImpl extends RteFeatureImpl {

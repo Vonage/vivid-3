@@ -1,5 +1,6 @@
 import { featureFacade, RteFeatureImpl } from '../feature';
 import type { RteInstanceImpl } from '../instance';
+import type { RteBasePublicInterface } from '../public-interface';
 import { RteCoreImpl } from './internal/core';
 import { RteBasicTextBlocksImpl } from './internal/basic-text-blocks';
 import { RteInputRulesFeatureImpl } from './internal/input-rules';
@@ -10,18 +11,6 @@ export type RteBaseConfig = {
 	heading3?: boolean;
 	paragraph?: boolean;
 };
-
-export interface RteBasePublicInterface {
-	/**
-	 * Whether the editor is disabled. When disabled, user input is prevented and UI elements are disabled.
-	 */
-	disabled: boolean;
-}
-declare module '../feature' {
-	export function getPublicInterface(
-		facade: typeof RteBase
-	): RteBasePublicInterface;
-}
 
 export class RteBaseImpl extends RteFeatureImpl {
 	name = 'RteBase';

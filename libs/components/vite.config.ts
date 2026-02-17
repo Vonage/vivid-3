@@ -68,7 +68,8 @@ export default mergeConfig(
 			}),
 			!isWatchMode
 				? dts({
-						skipDiagnostics: true,
+						include: ['src/**/*'],
+						exclude: ['**/*.spec.ts', '**/*.test.ts', 'src/visual-tests'],
 				  })
 				: undefined,
 		],

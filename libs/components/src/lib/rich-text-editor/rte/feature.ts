@@ -6,7 +6,6 @@ import {
 	TextblockAttrs,
 	type TextblockAttrSpec,
 } from './utils/textblock-attrs';
-import { impl } from './utils/impl';
 import type { ToolbarItemSpec } from './features/toolbar';
 import {
 	TextblockMarks,
@@ -62,10 +61,7 @@ export type PluginContribution = Contribution<Plugin>;
 export type ToolbarItemContribution = Contribution<ToolbarItemSpec>;
 export type InputRuleContribution = Contribution<InputRuleSpec>;
 
-export abstract class RteFeature {
-	/// @internal
-	abstract [impl]: RteFeatureImpl;
-}
+export abstract class RteFeature {}
 
 export abstract class RteFeatureImpl {
 	/**
@@ -130,6 +126,9 @@ export abstract class RteFeatureImpl {
 	getPublicInterface(rte: RteInstanceImpl): any {}
 }
 
+const featureImpls = new WeakMap<RteFeature, RteFeatureImpl>();
+export const getFeatureImpl = (facade: RteFeature) => featureImpls.get(facade)!;
+
 /**
  * Creates a facade class for a feature to hide internal API.
  */
@@ -140,12 +139,9 @@ export const featureFacade = <
 	FeatureImpl: C
 ) => {
 	class Facade extends RteFeature {
-		/// @internal
-		[impl]: T;
-
 		constructor(...args: ConstructorParameters<C>) {
 			super();
-			this[impl] = new FeatureImpl(...args);
+			featureImpls.set(this, new FeatureImpl(...args));
 		}
 	}
 
