@@ -4,6 +4,7 @@
 @forward './welcome';
 @forward './footer';
 @forward './component-page';
+@forward './type-swatch';
 
 /* stylelint-disable */
 @font-face {
@@ -219,7 +220,7 @@ vwc-nav-item > vwc-badge {
 
 /* #endregion page */
 
-/* #region article */
+/* #region article 
 
 article h2,
 article h3,
@@ -273,6 +274,7 @@ article.article > h1 {
 .article h3 {
 	margin-block-end: 16px;
 }
+*/
 
 .article:has(.components-header) .heading-wrapper.h3 {
 	margin-block-start: -32px;
@@ -303,8 +305,9 @@ vwc-note p:last-child {
 
 article.article > h1 + p,
 p.lede {
-	font-size: 18px;
-	margin-block-end: 24px;
+	font: var(--vvd-theme-typography-body-text-lg);
+	margin-block-start: 0;
+	margin-block-end: 1.5rem;
 	max-inline-size: 55ch;
 }
 

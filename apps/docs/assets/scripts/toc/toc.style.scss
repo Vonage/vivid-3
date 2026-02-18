@@ -91,3 +91,7 @@ main:has(vwc-banner) {
 .article-toc nav > ol > li:not(:first-child) {
 	padding-block-start: 12px;
 }
+
+.article-toc h2 {
+	margin-block-end: 0;
+}

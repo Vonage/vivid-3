@@ -7,7 +7,7 @@ $selectors: (
 );
 
 @mixin typography-base {
-	font: var(#{constants.$vvd-typography-base});
+	font: var(--vvd-theme-typography-body-text-md);
 	font-feature-settings: 'kern'; /* turns on kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
 	-moz-osx-font-smoothing: grayscale; /* apply font anti-aliasing for Firefox on OSX */
@@ -16,8 +16,250 @@ $selectors: (
 
 .vvd-root {
 	&:root {
-		// <--- When 'vvd-root' is set on the `:root` (html element), typeface sizes are able to descend from the root font-size, thus comply with the [WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/Understanding/resize-text)
-		--vvd-size-font-scale-base: 1rem;
+		// --vvd-theme-h1-font: var(--vvd-theme-typography-heading-2xl);
+		// --vvd-theme-h2-font: var(--vvd-theme-typography-heading-xl);
+		// --vvd-theme-h3-font: var(--vvd-theme-typography-heading-lg);
+		// --vvd-theme-h4-font: var(--vvd-theme-typography-heading-md);
+		// --vvd-theme-h5-font: var(--vvd-theme-typography-heading-sm);
+		// --vvd-theme-h6-font: var(--vvd-theme-typography-heading-xs);
+
+		// **** TIER 1 ****
+		// FONT-FAMILY
+		--vvd-typography-font-family-spezia: SpeziaCompleteVariableUpright,
+			Montserrat, Roboto, Helvetica, Arial, sans-serif;
+		--vvd-typography-font-family-spezia-code: SpeziaMonoCompleteVariable,
+			SF Mono, SF Mono Regular, Consolas, 'Liberation Mono', Menlo, Courier,
+			monospace;
+
+		// font-size
+		--vvd-typography-font-size-12: 0.75rem;
+		--vvd-typography-font-size-14: 0.875rem;
+		--vvd-typography-font-size-16: 1rem;
+		--vvd-typography-font-size-20: 1.25rem;
+		--vvd-typography-font-size-24: 1.5rem;
+		--vvd-typography-font-size-28: 1.75rem;
+		--vvd-typography-font-size-32: 2rem;
+		--vvd-typography-font-size-40: 2.5rem;
+		--vvd-typography-font-size-48: 3rem;
+		--vvd-typography-font-size-56: 3.5rem;
+		--vvd-typography-font-size-64: 4rem;
+
+		// line-height
+		--vvd-typography-line-height-16: 1rem;
+		--vvd-typography-line-height-20: 1.25rem;
+		--vvd-typography-line-height-24: 1.5rem;
+		--vvd-typography-line-height-28: 1.75rem;
+		--vvd-typography-line-height-32: 2rem;
+		--vvd-typography-line-height-36: 2.25rem;
+		--vvd-typography-line-height-40: 2.5rem;
+		--vvd-typography-line-height-48: 3rem;
+		--vvd-typography-line-height-56: 3.5rem;
+		--vvd-typography-line-height-64: 4rem;
+
+		// font-weight
+		--vvd-typography-font-weight-thin: 300;
+		--vvd-typography-font-weight-regular: 400;
+		--vvd-typography-font-weight-medium: 500;
+		--vvd-typography-font-weight-semi-bold: 600;
+		--vvd-typography-font-weight-bold: 700;
+		--vvd-typography-font-weight-heavy: 800;
+
+		// **** TIER 2 ****
+
+		// ** body-text **
+		--vvd-theme-typography-body-text-font-family: var(
+			--vvd-typography-font-family-spezia
+		);
+		// body-text-large
+		--vvd-theme-typography-body-text-lg-font-size: var(
+			--vvd-typography-font-size-20
+		);
+		--vvd-theme-typography-body-text-lg-line-height: var(
+			--vvd-typography-line-height-28
+		);
+		--vvd-theme-typography-body-text-lg-font-weight: var(
+			--vvd-typography-font-weight-thin
+		);
+		--vvd-theme-typography-body-text-lg: var(
+				--vvd-theme-typography-body-text-lg-font-weight
+			)
+			ultra-condensed var(--vvd-theme-typography-body-text-lg-font-size) /
+			var(--vvd-theme-typography-body-text-lg-line-height)
+			var(--vvd-theme-typography-body-text-font-family);
+		// body-text-meduim
+		--vvd-theme-typography-body-text-md-font-size: var(
+			--vvd-typography-font-size-14
+		);
+		--vvd-theme-typography-body-text-md-line-height: var(
+			--vvd-typography-line-height-20
+		);
+		--vvd-theme-typography-body-text-md-font-weight: var(
+			--vvd-typography-font-weight-regular
+		);
+		--vvd-theme-typography-body-text-md: var(
+				--vvd-theme-typography-body-text-md-font-weight
+			)
+			ultra-condensed var(--vvd-theme-typography-body-text-md-font-size) /
+			var(--vvd-theme-typography-body-text-md-line-height)
+			var(--vvd-theme-typography-body-text-font-family);
+		// body-text-small
+		--vvd-theme-typography-body-text-sm-font-size: var(
+			--vvd-typography-font-size-12
+		);
+		--vvd-theme-typography-body-text-sm-line-height: var(
+			--vvd-typography-line-height-20
+		);
+		--vvd-theme-typography-body-text-sm-font-weight: var(
+			--vvd-typography-font-weight-regular
+		);
+		--vvd-theme-typography-body-text-sm: var(
+				--vvd-theme-typography-body-text-sm-font-weight
+			)
+			ultra-condensed var(--vvd-theme-typography-body-text-sm-font-size) /
+			var(--vvd-theme-typography-body-text-sm-line-height)
+			var(--vvd-theme-typography-body-text-font-family);
+
+		--vvd-theme-typography-code-text: var(
+				--vvd-theme-typography-body-text-md-font-weight
+			)
+			var(--vvd-theme-typography-body-text-md-font-size) /
+			var(--vvd-theme-typography-body-text-md-line-height)
+			var(--vvd-theme-typography-font-family-code-text);
+
+		// ** heading **
+		--vvd-theme-typography-heading-font-family: var(
+			--vvd-typography-font-family-spezia
+		);
+		// heading-3xl
+		--vvd-theme-typography-heading-3xl-font-size: var(
+			--vvd-typography-font-size-40
+		);
+		--vvd-theme-typography-heading-3xl-line-height: var(
+			--vvd-typography-line-height-48
+		);
+		--vvd-theme-typography-heading-3xl-font-weight: var(
+			--vvd-typography-font-weight-medium
+		);
+		--vvd-theme-typography-heading-3xl: var(
+				--vvd-theme-typography-heading-3xl-font-weight
+			)
+			condensed var(--vvd-theme-typography-heading-3xl-font-size) /
+			var(--vvd-theme-typography-heading-3xl-line-height)
+			var(--vvd-theme-typography-heading-font-family);
+		// heading-2xl
+		--vvd-theme-typography-heading-2xl-font-size: var(
+			--vvd-typography-font-size-32
+		);
+		--vvd-theme-typography-heading-2xl-line-height: var(
+			--vvd-typography-line-height-40
+		);
+		--vvd-theme-typography-heading-2xl-font-weight: var(
+			--vvd-typography-font-weight-medium
+		);
+		--vvd-theme-typography-heading-2xl: var(
+				--vvd-theme-typography-heading-2xl-font-weight
+			)
+			condensed var(--vvd-theme-typography-heading-2xl-font-size) /
+			var(--vvd-theme-typography-heading-2xl-line-height)
+			var(--vvd-theme-typography-heading-font-family);
+		// heading-xl
+		--vvd-theme-typography-heading-xl-font-size: var(
+			--vvd-typography-font-size-28
+		);
+		--vvd-theme-typography-heading-xl-line-height: var(
+			--vvd-typography-line-height-36
+		);
+		--vvd-theme-typography-heading-xl-font-weight: var(
+			--vvd-typography-font-weight-medium
+		);
+		--vvd-theme-typography-heading-xl: var(
+				--vvd-theme-typography-heading-xl-font-weight
+			)
+			condensed var(--vvd-theme-typography-heading-xl-font-size) /
+			var(--vvd-theme-typography-heading-xl-line-height)
+			var(--vvd-theme-typography-heading-font-family);
+		// heading-lg
+		--vvd-theme-typography-heading-lg-font-size: var(
+			--vvd-typography-font-size-24
+		);
+		--vvd-theme-typography-heading-lg-line-height: var(
+			--vvd-typography-line-height-28
+		);
+		--vvd-theme-typography-heading-lg-font-weight: var(
+			--vvd-typography-font-weight-medium
+		);
+		--vvd-theme-typography-heading-lg: var(
+				--vvd-theme-typography-heading-lg-font-weight
+			)
+			condensed var(--vvd-theme-typography-heading-lg-font-size) /
+			var(--vvd-theme-typography-heading-lg-line-height)
+			var(--vvd-theme-typography-heading-font-family);
+		// heading-md
+		--vvd-theme-typography-heading-md-font-size: var(
+			--vvd-typography-font-size-20
+		);
+		--vvd-theme-typography-heading-md-line-height: var(
+			--vvd-typography-line-height-24
+		);
+		--vvd-theme-typography-heading-md-font-weight: var(
+			--vvd-typography-font-weight-medium
+		);
+		--vvd-theme-typography-heading-md: var(
+				--vvd-theme-typography-heading-md-font-weight
+			)
+			condensed var(--vvd-theme-typography-heading-md-font-size) /
+			var(--vvd-theme-typography-heading-md-line-height)
+			var(--vvd-theme-typography-heading-font-family);
+		// heading-sm
+		--vvd-theme-typography-heading-sm-font-size: var(
+			--vvd-typography-font-size-16
+		);
+		--vvd-theme-typography-heading-sm-line-height: var(
+			--vvd-typography-line-height-24
+		);
+		--vvd-theme-typography-heading-sm-font-weight: var(
+			--vvd-typography-font-weight-semi-bold
+		);
+		--vvd-theme-typography-heading-sm: var(
+				--vvd-theme-typography-heading-sm-font-weight
+			)
+			condensed var(--vvd-theme-typography-heading-sm-font-size) /
+			var(--vvd-theme-typography-heading-sm-line-height)
+			var(--vvd-theme-typography-heading-font-family);
+		// heading-xs
+		--vvd-theme-typography-heading-xs-font-size: var(
+			--vvd-typography-font-size-14
+		);
+		--vvd-theme-typography-heading-xs-line-height: var(
+			--vvd-typography-line-height-20
+		);
+		--vvd-theme-typography-heading-xs-font-weight: var(
+			--vvd-typography-font-weight-semi-bold
+		);
+		--vvd-theme-typography-heading-xs: var(
+				--vvd-theme-typography-heading-xs-font-weight
+			)
+			condensed var(--vvd-theme-typography-heading-xs-font-size) /
+			var(--vvd-theme-typography-heading-xs-line-height)
+			var(--vvd-theme-typography-heading-font-family);
+		// heading-eyebrow
+		--vvd-theme-typography-heading-eyebrow-font-size: var(
+			--vvd-typography-font-size-12
+		);
+		--vvd-theme-typography-heading-eyebrow-line-height: var(
+			--vvd-typography-line-height-16
+		);
+		--vvd-theme-typography-heading-eyebrow-font-weight: var(
+			--vvd-typography-font-weight-semi-bold
+		);
+		--vvd-theme-typography-heading-eyebrow: var(
+				--vvd-theme-typography-heading-eyebrow-font-weight
+			)
+			condensed var(--vvd-theme-typography-heading-eyebrow-font-size) /
+			var(--vvd-theme-typography-heading-eyebrow-line-height)
+			var(--vvd-theme-typography-heading-font-family);
+
+		--vvd-theme-typography-list-indent: 1.5rem;
 
 		font-size: unset; // resolves to the user-agent default font size (generally 16px)
 
@@ -30,120 +272,161 @@ $selectors: (
 		@include typography-base;
 	}
 
-	p,
-	.font-base {
-		font: var(#{constants.$vvd-typography-base});
-		margin-block: 16px;
+	h1 {
+		font: var(--vvd-theme-h1-font, var(--vvd-theme-typography-heading-3xl));
+		margin-block: var(--vvd-theme-h1-margin-block, 2rem);
+	}
 
-		&.tight {
+	h2 {
+		font: var(--vvd-theme-h2-font, var(--vvd-theme-typography-heading-2xl));
+		margin-block: var(--vvd-theme-h2-margin-block, 1.5rem);
+	}
+
+	h3 {
+		font: var(--vvd-theme-h3-font, var(--vvd-theme-typography-heading-xl));
+		margin-block: var(--vvd-theme-h3-margin-block, 1.25rem);
+	}
+
+	h4 {
+		font: var(--vvd-theme-h4-font, var(--vvd-theme-typography-heading-lg));
+		margin-block: var(--vvd-theme-h4-margin-block, 1rem);
+	}
+
+	h5 {
+		font: var(--vvd-theme-h5-font, var(--vvd-theme-typography-heading-md));
+		margin-block: var(--vvd-theme-h5-margin-block, 0.75rem);
+	}
+
+	h6 {
+		font: var(--vvd-theme-h6-font, var(--vvd-theme-typography-heading-sm));
+		margin-block: var(--vvd-theme-h6-margin-block, 0.5rem);
+	}
+
+	ul,
+	ol {
+		margin-block: 1rem;
+
+		li ul,
+		li ol {
 			margin-block: 0;
 		}
 	}
 
-	.font-base-bold {
-		font: var(#{constants.$vvd-typography-base-bold});
-	}
+	p {
+		font: var(--vvd-theme-typography-body-text-md);
+		margin-block: 1rem;
 
-	.font-base-condensed {
-		font: var(#{constants.$vvd-typography-base-condensed});
-	}
-
-	.font-base-condensed-bold {
-		font: var(#{constants.$vvd-typography-base-condensed-bold});
-	}
-
-	.font-base-extended {
-		font: var(#{constants.$vvd-typography-base-extended});
-	}
-
-	.font-base-extended-bold {
-		font: var(#{constants.$vvd-typography-base-extended-bold});
-	}
-
-	.font-base-code {
-		font: var(#{constants.$vvd-typography-base-code});
-	}
-
-	#{map.get($selectors, 'bold')} {
-		font-weight: 600;
-	}
-
-	#{map.get($selectors, 'code')} {
-		font: var(#{constants.$vvd-typography-base-code});
-	}
-
-	.headline {
-		font: var(#{constants.$vvd-typography-headline});
-		margin-block: 40px;
-	}
-
-	.subtitle {
-		font: var(#{constants.$vvd-typography-subtitle});
-		margin-block: 40px;
-	}
-
-	h1,
-	.heading1 {
-		font: var(#{constants.$vvd-typography-heading-1});
-		margin-block: 32px;
-	}
-
-	h2,
-	.heading2 {
-		font: var(#{constants.$vvd-typography-heading-2});
-		margin-block: 32px;
-	}
-
-	h3,
-	.heading3 {
-		font: var(#{constants.$vvd-typography-heading-3});
-		margin-block: 24px;
-	}
-
-	h4,
-	.heading4 {
-		font: var(#{constants.$vvd-typography-heading-4});
-		margin-block: 24px;
-	}
-
-	.headline,
-	.subtitle,
-	h1,
-	.heading1,
-	h2,
-	.heading2,
-	h3,
-	.heading3,
-	h4,
-	.heading4 {
-		#{map.get($selectors, 'bold')} {
-			font-weight: 500;
-		}
-
-		&.tight {
-			margin-block: 0;
+		small {
+			font: var(--vvd-theme-typography-body-text-sm);
 		}
 	}
 
-	small,
+	b,
+	strong {
+		font-weight: var(--vvd-typography-font-weight-semi-bold);
+	}
+
+	em,
+	i {
+		font-style: italic;
+	}
+
+	blockquote {
+		font-style: italic;
+		margin: 1rem 0;
+		padding-inline: 2rem;
+		border-left: 4px solid var(--vvd-color-neutral-100);
+	}
+
+	q {
+		font-style: italic;
+	}
+
+	pre {
+		font: var(--vvd-theme-typography-code-text);
+
+		code {
+			border: 0;
+			background-color: none;
+			padding: 0;
+			border-radius: 0;
+		}
+	}
+
+	code,
+	kbd {
+		font-family: var(--vvd-typography-font-family-spezia-code);
+		background-color: var(--vvd-color-neutral-50);
+		border: 1px solid var(--vvd-color-neutral-200);
+		color: var(--vvd-color-announcement-600);
+		border-radius: 2px;
+		padding: 2px;
+	}
+
 	figcaption {
-		font: var(#{constants.$vvd-typography-base-condensed});
+		font: var(--vvd-theme-typography-body-text-sm);
+		color: var(--vvd-color-neutral-500);
 	}
 
-	sub,
-	sup {
-		position: relative;
-		font: var(#{constants.$vvd-typography-base-condensed});
-		font-size: 75%;
-		line-height: 0;
-		vertical-align: baseline;
+	.vvd-heading-3xl {
+		font: var(--vvd-theme-typography-heading-3xl);
 	}
 
-	sub {
-		bottom: -0.25em;
+	.vvd-heading-2xl {
+		font: var(--vvd-theme-typography-heading-2xl);
 	}
 
-	sup {
-		top: -0.5em;
+	.vvd-heading-xl {
+		font: var(--vvd-theme-typography-heading-xl);
+	}
+
+	.vvd-heading-lg {
+		font: var(--vvd-theme-typography-heading-lg);
+	}
+
+	.vvd-heading-md {
+		font: var(--vvd-theme-typography-heading-md);
+	}
+
+	.vvd-heading-sm {
+		font: var(--vvd-theme-typography-heading-sm);
+	}
+
+	.vvd-heading-xs {
+		font: var(--vvd-theme-typography-heading-xs);
+	}
+
+	.vvd-heading-eyebrow {
+		font: var(--vvd-theme-typography-heading-eyebrow);
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
+	}
+
+	.vvd-body-text-sm {
+		font: var(--vvd-theme-typography-body-text-sm);
+	}
+
+	.vvd-body-text-md {
+		font: var(--vvd-theme-typography-body-text-md);
+
+		small {
+			font: var(--vvd-theme-typography-body-text-sm);
+		}
+	}
+
+	.vvd-body-text-lg {
+		font: var(--vvd-theme-typography-body-text-lg);
+
+		small {
+			font: var(--vvd-theme-typography-body-text-md);
+		}
+	}
+
+	.vvd-list {
+		padding-inline-start: var(--vvd-theme-typography-list-indent, 1.25rem);
+	}
+
+	.vvd-tight {
+		margin-block: 0 !important;
 	}
 }
