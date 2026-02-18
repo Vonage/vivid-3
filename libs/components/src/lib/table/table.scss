@@ -2,7 +2,7 @@
 
 :host {
 	border-collapse: collapse;
-	border-spacing: 0px;
+	border-spacing: 0;
 	inline-size: 100%;
 }
 
@@ -12,15 +12,6 @@
 	display: block;
 	inline-size: 100%;
 	overflow-x: auto;
-
-	// position: relative;
-	// display: table;
-	// overflow: auto;
-	// width: 100%;
-	// block-size: inherit;
-	// border-collapse: collapse;
-	// inline-size: 100%;
-	// max-block-size: inherit;
 }
 
 .table-content {
