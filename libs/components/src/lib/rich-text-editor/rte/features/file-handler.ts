@@ -19,7 +19,7 @@ export interface RteFileHandlerConfig {
 type InsertPoint = { type: 'pos'; pos: number } | { type: 'selection' };
 
 export class RteFileHandlerFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteFileHandlerFeature';
+	name = 'RteFileHandlerFeature';
 
 	constructor(readonly config: RteFileHandlerConfig) {
 		super();

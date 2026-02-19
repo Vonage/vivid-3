@@ -26,7 +26,38 @@ const instance = config.instantiateEditor({
 To render it, pass the instance to the Rich Text Editor component.
 
 <vwc-tabs gutters="none">
-<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteConfig, RteBase, RteToolbarFeature, RteBoldFeature } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature(), new RteBoldFeature()]);
+
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [
+					{ type: 'text', text: 'Hello' },
+					{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
+				],
+			},
+		],
+	},
+});
+</script>
+<template>
+	<VRichTextEditor :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -66,37 +97,6 @@ rteComponent.instance = instance;
 	const rteComponent = document.querySelector('your-prefix-rich-text-editor');
 	rteComponent.instance = instance;
 </script>
-```
-
-</vwc-tab-panel>
-<vwc-tab label="Vue"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VRichTextEditor } from '@vonage/vivid-vue';
-import { RteConfig, RteBase, RteToolbarFeature, RteBoldFeature } from '@vonage/vivid';
-
-const config = new RteConfig([new RteBase(), new RteToolbarFeature(), new RteBoldFeature()]);
-
-const instance = config.instantiateEditor({
-	initialDocument: {
-		type: 'doc',
-		content: [
-			{
-				type: 'paragraph',
-				content: [
-					{ type: 'text', text: 'Hello' },
-					{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
-				],
-			},
-		],
-	},
-});
-</script>
-<template>
-	<VRichTextEditor :instance="instance" />
-</template>
 ```
 
 </vwc-tab-panel>
@@ -182,6 +182,40 @@ However, if you make changes to your `RteConfig`, you should ensure that the edi
 
 To render documents inside a web application, you can use the Rich Text View component. It accepts a view that is created by `RteConfig`'s `instantiateView` method.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextView } from '@vonage/vivid-vue';
+import { RteBase, RteBoldFeature, RteConfig, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature(), new RteBoldFeature()]);
+
+const view = config.instantiateView({
+	type: 'doc',
+	content: [
+		{
+			type: 'paragraph',
+			content: [
+				{ type: 'text', text: 'Hello' },
+				{ type: 'text', text: ' world!', marks: [{ type: 'bold' }] },
+			],
+		},
+	],
+});
+</script>
+
+<template>
+	<VRichTextView :view="view" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-rich-text-view></vwc-rich-text-view>
 
@@ -208,11 +242,107 @@ To render documents inside a web application, you can use the Rich Text View com
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 It renders documents identically to how they appear in the editor. You can also customize the rendering of specific nodes or marks by providing the `renderChildView` option.
 
-`renderChildView?: (view: RteView) => { dom: HTMLElement; contentDom?: HTMLElement; } | false;`
+`renderChildView?: (view: RteView) => { dom: HTMLElement; contentDom?: HTMLElement; } | true | false;`
 
 The function is called for each node and mark in the document. The kind is indicated by `view.type: 'node' | 'mark'`, and `view.node` or `view.mark` will contain the respective JSON representation of the node/mark.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+You can render a custom content for this node/mark by returning `true` and using the `child` scoped slot. The slot receives `{ view: RteView }`.
+
+If you return `false`, the view is rendered as normal.
+
+To render the children of the view, render `view.children` using a nested `VRichTextView`. Since the nested view might also render using the scoped slot, you can set up a component that recursively renders itself.
+
+```ts
+renderChildView: (view) => {
+	if (view.type === 'mark' && view.mark.type === 'bold') {
+		return true; // uses `child` scoped slot to render
+	}
+	return false; // use default rendering
+};
+```
+
+```html
+<!-- RichText.vue -->
+<script setup lang="ts">
+	import { VRichTextView } from '@vonage/vivid-vue';
+	import type { RteView } from '@vonage/vivid';
+
+	const { view } = defineProps<{
+		view: RteView;
+	}>();
+
+	const onClick = () => {
+		window.alert('Bold text clicked!');
+	};
+</script>
+<template>
+	<VRichTextView :view="view">
+		<template #child="{ view }">
+			<button @click="onClick" style="font-weight: bold">
+				<RichText :view="view.children" />
+			</button>
+		</template>
+	</VRichTextView>
+</template>
+```
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextView } from '@vonage/vivid-vue';
+import { RteBase, RteBoldFeature, RteConfig, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature(), new RteBoldFeature()]);
+
+const view = config.instantiateView(
+	{
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [
+					{ type: 'text', text: 'Hello ' },
+					{ type: 'text', text: 'world!', marks: [{ type: 'bold' }] },
+				],
+			},
+		],
+	},
+	{
+		renderChildView: (view) => {
+			if (view.type === 'mark' && view.mark.type === 'bold') {
+				return true; // use child-view slot
+			}
+			return false; // use default rendering
+		},
+	}
+);
+
+const onClick = () => {
+	window.alert('Bold text clicked!');
+};
+</script>
+<template>
+	<VRichTextView :view="view">
+		<template #child="{ view }">
+			<button @click="onClick" style="font-weight: bold">
+				<VRichTextView :view="view.children" />
+			</button>
+		</template>
+	</VRichTextView>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 You can render a custom HTML element for this node/mark by returning it as the `dom` property. If there is child content, Rich Text View will render them as children of `contentDom`, which defaults to `dom`.
 
@@ -257,7 +387,8 @@ If you return `false`, the view is rendered as normal.
 </script>
 ```
 
-In the future, we will also provide a way to use custom Vue components for rendering nodes and marks.
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### HTML Conversion
 
@@ -307,12 +438,12 @@ const fragment = parser.parseFragment('<img data-attachment-id="1">', {
 
 serializer.serializeFragment(fragment, {
 	modifyDom: (dom) => {
-		for (const img of dom.querySelectorAll('img[src]').values()) {
-			const url = new URL(img.getAttribute('src')!);
+		for (const img of dom.querySelectorAll('img[data-src]').values()) {
+			const url = new URL(img.getAttribute('data-src')!);
 			img.setAttribute('data-attachment-id', url.hostname);
 		}
 	},
-}); // -> '<img src="attachment://1" alt="" data-attachment-id="1">'
+}); // -> '<img src="" data-src="attachment://1" alt="" data-attachment-id="1">'
 ```
 
 You can also customize the ProseMirror parsing and serialization logic directly.
@@ -450,6 +581,71 @@ replaceDocument(
 reset(initialDocument?: RteDocument): void;
 ```
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+{% raw %}
+
+```vue preview
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VRichTextEditor, VButton } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteToolbarFeature } from '@vonage/vivid';
+
+const output = ref('');
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature()]);
+const instance = config.instantiateEditor({
+	onChange: () => {
+		console.log('Document changed:', instance.getDocument());
+		output.value = JSON.stringify(instance.getDocument(), null, 2);
+	},
+});
+
+function handleReplaceSelection() {
+	instance.replaceSelection([{ type: 'text', text: 'Replaced selection' }]);
+}
+
+function handleReplaceDocument() {
+	instance.replaceDocument({
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'Replaced document content' }],
+			},
+		],
+	});
+}
+
+function handleReset() {
+	instance.reset({
+		type: 'doc',
+		content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Reset content' }] }],
+	});
+}
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 150px" :instance="instance" />
+	<VButton label="instance.replaceSelection(...)" @click="handleReplaceSelection" />
+	<VButton label="instance.replaceDocument(...)" @click="handleReplaceDocument" />
+	<VButton label="instance.reset(...)" @click="handleReset" />
+
+	<h3>onChange:</h3>
+	<output style="display: block; block-size: 300px">
+		<pre>{{ output }}</pre>
+	</output>
+</template>
+```
+
+{% endraw %}
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-rich-text-editor style="block-size: 150px"></vwc-rich-text-editor>
 <vwc-button id="replaceSelection" label="instance.replaceSelection(...)"></vwc-button>
@@ -493,6 +689,17 @@ reset(initialDocument?: RteDocument): void;
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
+## feature
+
+Some features expose a run-time API that can be accessed via the `feature` method. See the documentation of each feature for details.
+
+```ts
+instance.feature(RteToolbarFeature).hidden = true;
+```
+
 ## Features
 
 The Base feature is required for the editor to work. All other features are optional and can be combined as needed.
@@ -507,6 +714,10 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 - `heading2?: boolean`: Add the `heading2` (`h2`) node. Defaults to false.
 - `heading3?: boolean`: Add the `heading3` (`h3`) node. Defaults to false.
 - `paragraph?: boolean`: Add the `paragraph` (`<p>`) node. Defaults to true.
+
+**Feature API:**
+
+- `disabled: boolean`: Whether the editor is disabled. When disabled, user input is prevented and UI elements are disabled.
 
 **Keyboard shortcuts:**
 
@@ -549,7 +760,63 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 	</rte-schema-node>
 </rte-schema>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VButton, VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig } from '@vonage/vivid';
+
+const config = new RteConfig([
+	new RteBase({
+		heading1: true,
+		heading2: true,
+		heading3: true,
+	}),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'heading1',
+				content: [{ type: 'text', text: 'Heading 1' }],
+			},
+			{
+				type: 'heading2',
+				content: [{ type: 'text', text: 'Heading 2' }],
+			},
+			{
+				type: 'heading3',
+				content: [{ type: 'text', text: 'Heading 3' }],
+			},
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'This is a paragraph.' }],
+			},
+		],
+	},
+});
+
+const base = instance.feature(RteBase);
+</script>
+
+<template>
+	<VButton label="Toggle Disabled" appearance="filled" @click="base.disabled = !base.disabled" />
+
+	<VRichTextEditor style="block-size: 250px" :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
+<vwc-button id="toggleDisabled" label="Toggle Disabled" appearance="filled"></vwc-button>
+
 <vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
 
 <script>
@@ -562,7 +829,7 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 				heading3: true,
 			}),
 		]);
-		rteComponent.instance = config.instantiateEditor({
+		const instance = config.instantiateEditor({
 			initialDocument: {
 				type: 'doc',
 				content: [
@@ -585,9 +852,18 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 				],
 			},
 		});
+		rteComponent.instance = instance;
+
+		const base = instance.feature(RteBase);
+		document.querySelector('#toggleDisabled').addEventListener('click', () => {
+			base.disabled = !base.disabled;
+		});
 	});
 </script>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### RteToolbarFeature
 
@@ -597,17 +873,56 @@ Adds the toolbar to the editor. Features automatically add their controls to the
 
 - `popupDirection?: 'inward' | 'outward'`: Whether tooltips and other popups prefer to be open towards or away from the main text-editing area. Defaults to 'inward'.
 
+**Feature API:**
+
+- `hidden: boolean`: Whether the toolbar is hidden.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor, VButton } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature()]);
+const instance = config.instantiateEditor();
+
+const toolbar = instance.feature(RteToolbarFeature);
+</script>
+
+<template>
+	<VButton label="Toggle Toolbar" appearance="filled" @click="toolbar.hidden = !toolbar.hidden" />
+	<VRichTextEditor style="block-size: 250px; margin-block-end: 250px" :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
+<vwc-button id="toggleToolbar" label="Toggle Toolbar" appearance="filled"></vwc-button>
 <vwc-rich-text-editor style="block-size: 250px; margin-block-end: 250px;"></vwc-rich-text-editor>
 
 <script>
 	customElements.whenDefined('vwc-rich-text-editor').then(() => {
 		const rteComponent = document.querySelector('vwc-rich-text-editor');
 		const config = new RteConfig([new RteBase(), new RteToolbarFeature()]);
-		rteComponent.instance = config.instantiateEditor();
+		const instance = config.instantiateEditor();
+		rteComponent.instance = instance;
+
+		const toolbar = instance.feature(RteToolbarFeature);
+		document.querySelector('#toggleToolbar').addEventListener('click', () => {
+			toolbar.hidden = !toolbar.hidden;
+		});
 	});
 </script>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### RtePlaceholderFeature
 
@@ -622,6 +937,53 @@ new RtePlaceholderFeature({ text: 'Start typing here...' });
 **Configuration options:**
 
 - `text: string` (required): The placeholder text to display when the editor is empty.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteFontSizePickerFeature, RtePlaceholderFeature, RteTextBlockPickerFeature, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([
+	new RteBase({
+		heading1: true,
+		heading2: true,
+		heading3: true,
+	}),
+	new RteToolbarFeature(),
+	new RtePlaceholderFeature({ text: 'Start typing here...' }),
+	new RteTextBlockPickerFeature({
+		options: [
+			{ node: 'heading1', label: 'Heading 1' },
+			{ node: 'heading2', label: 'Heading 2' },
+			{ node: 'heading3', label: 'Heading 3' },
+			{ node: 'paragraph', label: 'Paragraph' },
+		],
+	}),
+	new RteFontSizePickerFeature({
+		options: [
+			{ size: '24px', label: 'Extra Large' },
+			{ size: '18px', label: 'Large' },
+			{ size: '14px', label: 'Normal' },
+			{ size: '12px', label: 'Small' },
+		],
+		onBlocks: [{ node: 'paragraph', defaultSize: '14px' }],
+	}),
+]);
+const instance = config.instantiateEditor();
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 150px" :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 150px"></vwc-rich-text-editor>
@@ -660,6 +1022,9 @@ new RtePlaceholderFeature({ text: 'Start typing here...' });
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### RteHardBreakFeature
 
 Allows inserting hard line breaks (`<br>`).
@@ -673,6 +1038,47 @@ Allows inserting hard line breaks (`<br>`).
 		<rte-schema-group>inline</rte-schema-group>
 	</rte-schema-node>
 </rte-schema>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteHardBreakFeature } from '@vonage/vivid';
+
+const config = new RteConfig([
+	new RteBase({
+		heading1: true,
+	}),
+	new RteHardBreakFeature(),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'heading1',
+				content: [{ type: 'text', text: 'Heading' }, { type: 'hardBreak' }, { type: 'text', text: 'With Hard Break' }],
+			},
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'Press Shift+Enter for a hard break.' }, { type: 'hardBreak' }, { type: 'text', text: 'This is after the hard break.' }],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 250px" :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
@@ -705,6 +1111,9 @@ Allows inserting hard line breaks (`<br>`).
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### RteTextBlockPickerFeature
 
 Provides a text block picker in the toolbar to change the current text block or range of selected blocks.
@@ -730,6 +1139,65 @@ new RteTextBlockPickerFeature({
 
 - `node: string` (required): Name of the block node.
 - `label: string` (required): Label to show in the picker.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteTextBlockPickerFeature, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([
+	new RteBase({
+		heading1: true,
+		heading2: true,
+		heading3: true,
+	}),
+	new RteToolbarFeature(),
+	new RteTextBlockPickerFeature({
+		options: [
+			{ node: 'heading1', label: 'Heading 1' },
+			{ node: 'heading2', label: 'Heading 2' },
+			{ node: 'heading3', label: 'Heading 3' },
+			{ node: 'paragraph', label: 'Paragraph' },
+		],
+	}),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'heading1',
+				content: [{ type: 'text', text: 'Heading 1' }],
+			},
+			{
+				type: 'heading2',
+				content: [{ type: 'text', text: 'Heading 2' }],
+			},
+			{
+				type: 'heading3',
+				content: [{ type: 'text', text: 'Heading 3' }],
+			},
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'This is a paragraph.' }],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 250px" :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
@@ -779,6 +1247,9 @@ new RteTextBlockPickerFeature({
 	});
 </script>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### RteFontSizePickerFeature
 
@@ -829,6 +1300,90 @@ new RteFontSizeFeature({
 **Known issues:**
 
 - Cursor size does not adjust correctly when the cursor is in the middle of text.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteFontSizePickerFeature, RteTextBlockPickerFeature, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([
+	new RteBase({
+		heading1: true,
+		heading2: true,
+	}),
+	new RteToolbarFeature(),
+	new RteTextBlockPickerFeature({
+		options: [
+			{ node: 'heading1', label: 'Heading 1' },
+			{ node: 'heading2', label: 'Heading 2' },
+			{ node: 'paragraph', label: 'Paragraph' },
+		],
+	}),
+	new RteFontSizePickerFeature({
+		options: [
+			{ size: '24px', label: 'Extra Large' },
+			{ size: '18px', label: 'Large' },
+			{ size: '14px', label: 'Normal' },
+			{ size: '12px', label: 'Small' },
+		],
+		onBlocks: [{ node: 'heading2' }, { node: 'paragraph', defaultSize: '14px' }],
+	}),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'heading1',
+				content: [{ type: 'text', text: 'Text size cannot be change on this heading' }],
+			},
+			{
+				type: 'heading2',
+				content: [
+					{
+						type: 'text',
+						text: 'Text size has no default value on this heading',
+					},
+				],
+			},
+			{
+				type: 'paragraph',
+				content: [
+					{
+						type: 'text',
+						text: 'small ',
+						marks: [{ type: 'fontSize', attrs: { size: '12px' } }],
+					},
+					{ type: 'text', text: 'normal ' },
+					{
+						type: 'text',
+						text: 'large ',
+						marks: [{ type: 'fontSize', attrs: { size: '18px' } }],
+					},
+					{
+						type: 'text',
+						text: 'extra large',
+						marks: [{ type: 'fontSize', attrs: { size: '24px' } }],
+					},
+				],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor></vwc-rich-text-editor>
@@ -899,6 +1454,9 @@ new RteFontSizeFeature({
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### RteTextColorPickerFeature
 
 Adds a text color picker to the toolbar to change the color of the selected text.
@@ -939,6 +1497,99 @@ new RteTextColorPickerFeature({
 When using the alternate theme the colors may no longer have sufficient contrast.
 
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor, VSimpleColorPicker } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteTextBlockPickerFeature, RteTextColorPickerFeature, RteToolbarFeature } from '@vonage/vivid';
+
+const swatches = [
+	{ label: 'Black', value: '#000000' },
+	{ label: 'Red', value: '#E61D1D' },
+	{ label: 'Yellow', value: '#FA9F00' },
+	{ label: 'Green', value: '#1C8731' },
+	{ label: 'Blue', value: '#0276D5' },
+	{ label: 'Purple', value: '#9941FF' },
+	{ label: 'Pink', value: '#D6219C' },
+];
+
+const config = new RteConfig([
+	new RteBase({
+		heading1: true,
+		heading2: true,
+		heading3: true,
+	}),
+	new RteToolbarFeature(),
+	new RteTextBlockPickerFeature({
+		options: [
+			{ node: 'heading1', label: 'Heading 1' },
+			{ node: 'heading2', label: 'Heading 2' },
+			{ node: 'heading3', label: 'Heading 3' },
+			{ node: 'paragraph', label: 'Paragraph' },
+		],
+	}),
+	new RteTextColorPickerFeature({
+		onBlocks: [{ node: 'heading2' }, { node: 'paragraph', defaultColor: '#000000' }],
+	}),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'heading1',
+				content: [
+					{
+						type: 'text',
+						text: 'Text color cannot be changed on this heading',
+					},
+				],
+			},
+			{
+				type: 'heading2',
+				content: [{ type: 'text', text: 'Text color has no default on this heading' }],
+			},
+			{
+				type: 'paragraph',
+				content: [
+					{
+						type: 'text',
+						text: 'Red ',
+						marks: [{ type: 'textColor', attrs: { color: '#E61D1D' } }],
+					},
+					{
+						type: 'text',
+						text: 'Yellow ',
+						marks: [{ type: 'textColor', attrs: { color: '#FA9F00' } }],
+					},
+					{
+						type: 'text',
+						text: 'Green',
+						marks: [{ type: 'textColor', attrs: { color: '#1C8731' } }],
+					},
+				],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 150px" :instance="instance">
+		<template #text-color-picker>
+			<VSimpleColorPicker :swatches="swatches" />
+		</template>
+	</VRichTextEditor>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 150px">
@@ -1039,6 +1690,9 @@ When using the alternate theme the colors may no longer have sufficient contrast
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Text Style Features
 
 The `RteBoldFeature`, `RteItalicFeature`, `RteUnderlineFeature`, `RteStrikethroughFeature`, and `RteMonospaceFeature` add the corresponding text styling options to the editor.
@@ -1072,6 +1726,64 @@ The `RteBoldFeature`, `RteItalicFeature`, `RteUnderlineFeature`, `RteStrikethrou
 		<rte-schema-empty></rte-schema-empty>
 	</rte-schema-mark>
 </rte-schema>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteBoldFeature, RteConfig, RteItalicFeature, RteMonospaceFeature, RteStrikethroughFeature, RteTextBlockPickerFeature, RteToolbarFeature, RteUnderlineFeature } from '@vonage/vivid';
+
+const config = new RteConfig([
+	new RteBase({
+		heading1: true,
+	}),
+	new RteToolbarFeature(),
+	new RteTextBlockPickerFeature({
+		options: [
+			{ node: 'heading1', label: 'Heading 1' },
+			{ node: 'paragraph', label: 'Paragraph' },
+		],
+	}),
+	new RteBoldFeature(),
+	new RteItalicFeature(),
+	new RteUnderlineFeature(),
+	new RteStrikethroughFeature(),
+	new RteMonospaceFeature(),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [
+					{ type: 'text', text: 'bold ', marks: [{ type: 'bold' }] },
+					{ type: 'text', text: 'italic ', marks: [{ type: 'italic' }] },
+					{ type: 'text', text: 'underline ', marks: [{ type: 'underline' }] },
+					{
+						type: 'text',
+						text: 'strikethrough ',
+						marks: [{ type: 'strikethrough' }],
+					},
+					{ type: 'text', text: 'monospace ', marks: [{ type: 'monospace' }] },
+				],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor></vwc-rich-text-editor>
@@ -1121,6 +1833,9 @@ The `RteBoldFeature`, `RteItalicFeature`, `RteUnderlineFeature`, `RteStrikethrou
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### RteListFeature
 
 Adds support for bullet and numbered lists.
@@ -1157,6 +1872,88 @@ You must enable at least one list type.
 		<rte-schema-content>inline*</rte-schema-content>
 	</rte-schema-node>
 </rte-schema>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteListFeature, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([
+	new RteBase(),
+	new RteToolbarFeature(),
+	new RteListFeature({
+		bulletList: true,
+		numberedList: true,
+	}),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'bulletList',
+				content: [
+					{
+						type: 'listItem',
+						content: [{ type: 'text', text: 'Bullet list' }],
+					},
+					{
+						type: 'bulletList',
+						content: [
+							{
+								type: 'listItem',
+								content: [{ type: 'text', text: 'Item 1' }],
+							},
+							{
+								type: 'listItem',
+								content: [{ type: 'text', text: 'Item 2' }],
+							},
+							{
+								type: 'listItem',
+								content: [{ type: 'text', text: 'Item 3' }],
+							},
+						],
+					},
+					{
+						type: 'listItem',
+						content: [{ type: 'text', text: 'Numbered list' }],
+					},
+					{
+						type: 'numberedList',
+						content: [
+							{
+								type: 'listItem',
+								content: [{ type: 'text', text: 'Item 1' }],
+							},
+							{
+								type: 'listItem',
+								content: [{ type: 'text', text: 'Item 2' }],
+							},
+							{
+								type: 'listItem',
+								content: [{ type: 'text', text: 'Item 3' }],
+							},
+						],
+					},
+				],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor></vwc-rich-text-editor>
@@ -1230,6 +2027,9 @@ You must enable at least one list type.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### RteAlignmentFeature
 
 Adds the ability to change the alignment of text blocks.
@@ -1247,6 +2047,78 @@ Adds the ability to change the alignment of text blocks.
 		</rte-schema-attrs>
 	</rte-schema-textblock-attr>
 </rte-schema>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteAlignmentFeature, RteBase, RteConfig, RteTextBlockPickerFeature, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([
+	new RteBase({
+		heading1: true,
+		heading2: true,
+	}),
+	new RteToolbarFeature(),
+	new RteTextBlockPickerFeature({
+		options: [
+			{ node: 'heading1', label: 'Heading 1' },
+			{ node: 'heading2', label: 'Heading 2' },
+			{ node: 'paragraph', label: 'Paragraph' },
+		],
+	}),
+	new RteAlignmentFeature(),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'heading1',
+				attrs: { textAlign: 'center' },
+				content: [
+					{
+						type: 'text',
+						text: 'Centered Heading 1',
+					},
+				],
+			},
+			{
+				type: 'heading2',
+				attrs: { textAlign: 'left' },
+				content: [
+					{
+						type: 'text',
+						text: 'Left-aligned Heading 2',
+					},
+				],
+			},
+			{
+				type: 'paragraph',
+				attrs: { textAlign: 'right' },
+				content: [
+					{
+						type: 'text',
+						text: 'Right-aligned paragraph.',
+					},
+				],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 200px" :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 200px"></vwc-rich-text-editor>
@@ -1310,6 +2182,9 @@ Adds the ability to change the alignment of text blocks.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### RteLinkFeature
 
 Adds the ability to insert links. This features requires the `RteToolbarFeature`.
@@ -1317,6 +2192,7 @@ Adds the ability to insert links. This features requires the `RteToolbarFeature`
 **Keyboard shortcuts:**
 
 - **Insert link**: <kbd>Ctrl</kbd> + <kbd>K</kbd> / <kbd>Cmd</kbd> + <kbd>K</kbd>
+- Pressing Space or Enter after typing or pasting a URL will automatically convert it into a link.
 
 <rte-schema>
 	<rte-schema-mark name="link">
@@ -1325,6 +2201,48 @@ Adds the ability to insert links. This features requires the `RteToolbarFeature`
 		</rte-schema-attrs>
 	</rte-schema-mark>
 </rte-schema>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteLinkFeature, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature(), new RteLinkFeature()]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [
+					{
+						type: 'text',
+						text: 'Learn more on ',
+					},
+					{
+						type: 'text',
+						text: 'our website',
+						marks: [{ type: 'link', attrs: { href: 'https://www.vonage.com' } }],
+					},
+				],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 200px" :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 200px"></vwc-rich-text-editor>
@@ -1358,6 +2276,9 @@ Adds the ability to insert links. This features requires the `RteToolbarFeature`
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### RteInlineImageFeature
 
 Adds support for inline images. This feature does not provide any UI for adding images by itself, however the user can paste HTML content containing images into the editor.
@@ -1374,6 +2295,48 @@ Adds support for inline images. This feature does not provide any UI for adding 
 		</rte-schema-attrs>
 	</rte-schema-node>
 </rte-schema>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteInlineImageFeature, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature(), new RteInlineImageFeature()]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [
+					{ type: 'text', text: 'Image: ' },
+					{
+						type: 'inlineImage',
+						attrs: {
+							imageUrl: '/assets/images/large.jpg',
+							alt: 'Landscape image',
+							size: '100%',
+						},
+					},
+				],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 500px" :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 500px"> </vwc-rich-text-editor>
@@ -1408,6 +2371,9 @@ Adds support for inline images. This feature does not provide any UI for adding 
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 #### Image Size
 
 When selecting an image, the editor will show options to change the `size` to one of the following sizes:
@@ -1440,7 +2406,7 @@ Possible `ResolvedUrl` values:
 
 - `string`: Displays an image with this `src` URL.
 - `null`: Displays nothing.
-- `{ type: 'placeholder', create: (slotName: string) => (() => unknown) | undefined }`: Displays arbitrary slotted placeholder content. See [Rendering Placeholders](#rendering-placeholders) for details.
+- `{ type: 'placeholder', create?: (slotName: string) => (() => unknown) | undefined }`: Displays arbitrary slotted placeholder content. See [Rendering Placeholders](#rendering-placeholders) for details.
 
 `resolveUrl` can also be an async generator of resolved values. This allows you to resolve the url asynchronously or update the displayed content over time.
 
@@ -1479,13 +2445,20 @@ new RteInlineImageFeature({
 });
 ```
 
-**parseUrlFromHtml**
+**serializeUrlToHtml**
 
 Type: `serializeUrlToHtml: (imageUrl: string) => string | null`
 
 Called when the document is serialized to HTML. Note that this occurs not only when you use a `HtmlSerializer`, but also when content is copied or dragged out of the editor.
 
 For each image, it is called with the `imageUrl` and should return the `src` value of `<img>` element. If it returns `null`, the image is omitted from HTML output.
+
+<vwc-note connotation="information" headline="HTML Serialization">
+	<vwc-icon slot="icon" name="info-line" label="Information:"></vwc-icon>
+
+When serializing an image to HTML, an invalid `src` like `attachment://12345` may be dropped from the output due to sanitization. To preserve this value it is added as the `data-src` attribute as well.
+
+</vwc-note>
 
 **parseUrlFromHtml**
 
@@ -1539,30 +2512,23 @@ new RteInlineImageFeature({
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
 
-Not yet implemented.
-
-<!--
-
-Not yet implemented: Use the `xxx` scoped slot to render the placeholder content. The `data` property can contain custom data that is passed to the slot.
+Use the `inline-image-placeholder` scoped slot to render the placeholder content. The slot receives `{ url: string }` as props, containing the image URL.
 
 ```ts
 new RteInlineImageFeature({
 	resolveUrl: (url: string) => ({
 		type: 'placeholder',
-		data: { type: 'error', title: 'Image failed to load', message: 'Please try again later.' },
 	}),
 });
 ```
 
 ```html
 <VRichTextEditor :instance="instance">
-	<template #xxx="xxxProps">
-		<MyErrorPlaceholder v-if="xxxProps.type === 'inline-image-placeholder' && xxxProps.data.type === 'error'" :title="xxxProps.data.title" :message="xxxProps.data.message" />
+	<template #inline-image-placeholder="{ url }">
+		<MyImagePlaceholder :url="url" />
 	</template>
 </VRichTextEditor>
 ```
-
--->
 
 </vwc-tab-panel>
 </vwc-tabs>
@@ -1613,6 +2579,93 @@ Remember to call `event.preventDefault()` to prevent the default browser behavio
 Called whenever dragging over the viewport ends, including after a drop.
 
 In this example, we display a drop zone overlay when files are dragged over the editor viewport:
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteDropHandlerFeature, RteInlineImageFeature, RteToolbarFeature } from '@vonage/vivid';
+
+const showDropZone = ref(false);
+
+const isFileDrop = (event: DragEvent) => event.dataTransfer?.types.includes('Files');
+
+const config = new RteConfig([
+	new RteBase(),
+	new RteToolbarFeature(),
+	new RteInlineImageFeature(),
+	new RteDropHandlerFeature({
+		onViewportDragOver: (event) => {
+			if (!isFileDrop(event)) {
+				return false;
+			}
+			showDropZone.value = true;
+			event.preventDefault();
+			return true;
+		},
+		onViewportDrop: (event) => {
+			if (!isFileDrop(event)) {
+				return;
+			}
+			const files = Array.from(event.dataTransfer?.files ?? []);
+			for (const file of files) {
+				console.log('Dropped file:', file.name);
+			}
+
+			event.preventDefault();
+		},
+		onViewportDragFinish: () => {
+			showDropZone.value = false;
+		},
+	}),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'Drag files into the editor.' }],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 300px" :instance="instance">
+		<template #editor-end>
+			<div v-show="showDropZone" style="position: fixed; inset: 0">
+				<div class="drop-zone-inner">
+					<span>Drop files here to upload</span>
+				</div>
+			</div>
+		</template>
+	</VRichTextEditor>
+</template>
+
+<style scoped>
+.drop-zone-inner {
+	position: absolute;
+	inset-inline: var(--editor-padding-inline);
+	inset-block: var(--editor-padding-block);
+	background-color: var(--vvd-color-alert-50);
+	border-radius: 8px;
+	border: 1px dashed var(--vvd-color-cta-500);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 300px">
@@ -1672,11 +2725,911 @@ In this example, we display a drop zone overlay when files are dragged over the 
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
+### RteToolbarButtonFeature
+
+Adds a button to the toolbar that performs an action when clicked.
+
+#### Configuration
+
+The `RteToolbarButtonFeature` constructor takes two arguments:
+
+1. `id` (string, required): A unique identifier for this toolbar button instance.
+2. `options` (object, required): Configuration options:
+
+- `label: string` (required) - The aria-label for the button.
+- `icon: string` (required) - The icon name for the button.
+- `action: object` (required) - The action to perform when the button is clicked.
+- `order?: number` - The order of the button in the toolbar. Lower numbers appear first. Buttons with the same order are sorted alphabetically by feature id.
+
+**Action types:**
+
+- `{ type: 'insert-text', text: string }` - Inserts the specified text at the cursor position.
+
+```ts
+new RteToolbarButtonFeature('mention', {
+	label: 'Mention user',
+	icon: 'user-line',
+	action: { type: 'insert-text', text: '@' },
+});
+```
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteToolbarButtonFeature, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([
+	new RteBase(),
+	new RteToolbarFeature(),
+	new RteToolbarButtonFeature('greeting', {
+		label: 'Insert greeting',
+		icon: 'waving-line',
+		action: { type: 'insert-text', text: 'Hello, how are you?' },
+	}),
+]);
+const instance = config.instantiateEditor();
+</script>
+
+<template>
+	<VRichTextEditor :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<vwc-rich-text-editor></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([
+			new RteBase(),
+			new RteToolbarFeature(),
+			new RteToolbarButtonFeature('greeting', {
+				label: 'Insert greeting',
+				icon: 'waving-line',
+				action: { type: 'insert-text', text: 'Hello, how are you?' },
+			}),
+		]);
+		rteComponent.instance = config.instantiateEditor();
+	});
+</script>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+### RteAtomFeature
+
+Adds support for custom inline atom nodes. Atoms are non-editable inline elements that can be used for things like variables, mentions or tags.
+
+#### Usage
+
+You can create multiple `RteAtomFeature` instances with different atom names to support different atom types.
+
+Atoms have no content and a single required attribute `value`:
+
+```js
+new RteAtomFeature('mention');
+
+const mention = { type: 'mention', attrs: { value: 'John' } };
+```
+
+By default, the atom value is rendered as plain text. Like other nodes, you can style atoms using CSS parts. See [Styling](#styling) for more information.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteAtomFeature, RteBase, RteConfig } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteAtomFeature('mention')]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [
+					{ type: 'text', text: 'Hello ' },
+					{ type: 'mention', attrs: { value: 'John' } },
+				],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<vwc-rich-text-editor></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([new RteBase(), new RteAtomFeature('mention')]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'Hello ' },
+							{ type: 'mention', attrs: { value: 'John' } },
+						],
+					},
+				],
+			},
+		});
+	});
+</script>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+You can customize the rendered content by providing the `resolveValue` configuration option:
+
+- `resolveValue?: (value: string) => string | null | AsyncGenerator<string, string>`
+
+```ts
+new RteAtomFeature('tag', {
+	resolveValue: (value) => `#${value}`,
+});
+```
+
+`resolveValue` can also return an async generator, which allows you to fetch the result asynchronously or update it over time:
+
+```ts
+new RteAtomFeature('mention', {
+	resolveValue: async function* (userId) {
+		yield 'Loading...';
+		const user = await fetchUser(userId);
+		return `@${user.name}`;
+	},
+});
+
+const mention = { type: 'mention', attrs: { value: '1' } };
+```
+
+#### HTML Serialization
+
+Atoms are serialized to HTML as `<span>` elements with `data-atom-type` and `data-value` attributes:
+
+```html
+<span data-atom-type="mention" data-value="john">john</span>
+```
+
+You can customize the text of the span by providing the `serializeValueToHtml` configuration option:
+
+- `serializeValueToHtml?: (value: string) => string | null`: Customize how the atom value is serialized to HTML. If it returns `null`, the atom is omitted from HTML output.
+
+<rte-schema>
+	<rte-schema-node name="<atomName>">
+		<rte-schema-group>inline</rte-schema-group>
+		<rte-schema-attrs>
+			<rte-schema-attr name="value" type="string" required></rte-schema-attr>
+		</rte-schema-attrs>
+	</rte-schema-node>
+</rte-schema>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteAtomFeature, RteBase, RteConfig } from '@vonage/vivid';
+
+const fetchUser = async (id: string) => {
+	return new Promise<{ id: string; name: string }>((resolve) => {
+		setTimeout(() => {
+			resolve({ id, name: 'John' });
+		}, 2000);
+	});
+};
+
+const config = new RteConfig([
+	new RteBase(),
+	new RteAtomFeature('tag', {
+		resolveValue: (value) => `#${value}`,
+	}),
+	new RteAtomFeature('mention', {
+		resolveValue: async function* (userId) {
+			yield 'Loading...';
+			const user = await fetchUser(userId);
+			return `@${user.name}`;
+		},
+	}),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [
+					{ type: 'text', text: 'Hello ' },
+					{ type: 'mention', attrs: { value: '1' } },
+					{ type: 'text', text: ", let's work on " },
+					{ type: 'tag', attrs: { value: 'new-project' } },
+				],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor :instance="instance" />
+</template>
+
+<style scoped>
+::part(node--mention) {
+	background-color: var(--vvd-color-cta-100);
+	padding: 0 4px;
+	border-radius: 4px;
+}
+::part(node--tag) {
+	background-color: var(--vvd-color-success-100);
+	padding: 0 4px;
+	border-radius: 4px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<style>
+	::part(node--mention) {
+		background-color: var(--vvd-color-cta-100);
+		padding: 0 4px;
+		border-radius: 4px;
+	}
+	::part(node--tag) {
+		background-color: var(--vvd-color-success-100);
+		padding: 0 4px;
+		border-radius: 4px;
+	}
+</style>
+<vwc-rich-text-editor></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const fetchUser = async (id) => {
+			return new Promise((resolve) => {
+				setTimeout(() => {
+					resolve({ id, name: 'John' });
+				}, 2000);
+			});
+		};
+
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([
+			new RteBase(),
+			new RteAtomFeature('tag', {
+				resolveValue: (value) => `#${value}`,
+			}),
+			new RteAtomFeature('mention', {
+				resolveValue: async function* (userId) {
+					yield 'Loading...';
+					const user = await fetchUser(userId);
+					return `@${user.name}`;
+				},
+			}),
+		]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'Hello ' },
+							{ type: 'mention', attrs: { value: '1' } },
+							{ type: 'text', text: ", let's work on " },
+							{ type: 'tag', attrs: { value: 'new-project' } },
+						],
+					},
+				],
+			},
+		});
+	});
+</script>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+### RteInputRuleFeature
+
+Enables text replacement rules that automatically transform text as you type. Use this for features like converting text patterns to emojis, hashtags, or other content.
+
+#### Configuration
+
+The `RteInputRuleFeature` constructor takes two arguments:
+
+1. `id` (string, required): A unique identifier for this input rule instance.
+2. `options` (object, required): Configuration options:
+
+- `pattern: RegExp` (required) - The regex to match against text before the cursor. Do not add a trailing `$`.
+- `handler: (match: string[]) => RteFragment | null` (required) - Called when the pattern matches. Return an `RteFragment` to replace the match, or `null` to skip.
+- `matchAfterWhitespace?: boolean` - When `true`, the rule triggers only on space or Enter after the match.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteAtomFeature, RteBase, RteConfig, RteInputRuleFeature, RteToolbarFeature } from '@vonage/vivid';
+
+const emojiMap: Record<string, string> = {
+	':)': '\u{1F642}',
+	':D': '\u{1F604}',
+	':(': '\u{1F641}',
+	';)': '\u{1F609}',
+	':P': '\u{1F61B}',
+	'<3': '\u{2764}\u{FE0F}',
+};
+
+const config = new RteConfig([
+	new RteBase(),
+	new RteToolbarFeature(),
+	new RteInputRuleFeature('emoji', {
+		pattern: /:\)|:D|:\(|;\)|:P|<3/,
+		handler: (match) => {
+			const emoji = emojiMap[match[0]];
+			if (!emoji) return null;
+			return [{ type: 'text', text: emoji }];
+		},
+	}),
+	new RteAtomFeature('tag', {
+		resolveValue: (value) => `#${value}`,
+	}),
+	new RteInputRuleFeature('tag', {
+		pattern: /#(\w+)/,
+		matchAfterWhitespace: true,
+		handler: (match) => [{ type: 'tag', attrs: { value: match[1] } }],
+	}),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [
+					{
+						type: 'text',
+						text: 'Type :) or :D or <3 to see emoji conversion.',
+					},
+				],
+			},
+			{
+				type: 'paragraph',
+				content: [
+					{
+						type: 'text',
+						text: 'Type #topic and press space or enter to create a ',
+					},
+					{ type: 'tag', attrs: { value: 'tag' } },
+					{ type: 'text', text: '.' },
+				],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor :instance="instance" />
+</template>
+
+<style scoped>
+::part(node--tag) {
+	background-color: var(--vvd-color-success-100);
+	padding: 0 4px;
+	border-radius: 4px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<style>
+	::part(node--tag) {
+		background-color: var(--vvd-color-success-100);
+		padding: 0 4px;
+		border-radius: 4px;
+	}
+</style>
+<vwc-rich-text-editor></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const emojiMap = {
+			':)': '\u{1F642}',
+			':D': '\u{1F604}',
+			':(': '\u{1F641}',
+			';)': '\u{1F609}',
+			':P': '\u{1F61B}',
+			'<3': '\u{2764}\u{FE0F}',
+		};
+
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([
+			new RteBase(),
+			new RteToolbarFeature(),
+			new RteInputRuleFeature('emoji', {
+				pattern: /:\)|:D|:\(|;\)|:P|<3/,
+				handler: (match) => {
+					const emoji = emojiMap[match[0]];
+					if (!emoji) return null;
+					return [{ type: 'text', text: emoji }];
+				},
+			}),
+			new RteAtomFeature('tag', {
+				resolveValue: (value) => `#${value}`,
+			}),
+			new RteInputRuleFeature('tag', {
+				pattern: /#(\w+)/,
+				matchAfterWhitespace: true,
+				handler: (match) => [{ type: 'tag', attrs: { value: match[1] } }],
+			}),
+		]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'Type :) or :D or <3 to see emoji conversion.' }],
+					},
+					{
+						type: 'paragraph',
+						content: [
+							{ type: 'text', text: 'Type #topic and press space or enter to create a ' },
+							{ type: 'tag', attrs: { value: 'tag' } },
+							{ type: 'text', text: '.' },
+						],
+					},
+				],
+			},
+		});
+	});
+</script>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+### RteSuggestFeature
+
+Enables regex-based suggestions for implementing features like variables (`{name}`), mentions (`@user`), tags (`#topic`) or emojis (`:smile:`). The feature watches for text patterns before the cursor and can either auto-replace them or show a suggestions popover.
+
+This feature works well together with `RteAtomFeature` - use `RteSuggestFeature` to trigger the suggestion UI and insert atoms into the document.
+
+#### Configuration
+
+The `RteSuggestFeature` constructor takes two arguments:
+
+1. `id` (string, required): A unique identifier for this suggest feature instance.
+2. `options` (object, required): Configuration options:
+
+- `pattern: RegExp` (required) - The regex to match against text before the cursor. The regex should end with `$` to match at cursor position.
+- `load: (match: string[]) => Suggestion[] | Promise<Suggestion[]>` (required) - Called when regex matches. Receives the full match array including capture groups. The returned suggestions are displayed in a popover. If a promise is returned, a loading indicator is shown.
+- `select: (suggestion: Suggestion) => RteFragment` (required) - Called when a suggestion is selected. The matched text is replaced by the returned `RteFragment`.
+
+The `Suggestion` type has the following properties:
+
+```ts
+interface Suggestion {
+	text: string;
+	textSecondary?: string;
+	data?: unknown;
+}
+```
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+You can customize the empty state message when no suggestions are found by providing the `<id>-suggestions-empty` slot:
+
+```html
+<vwc-rich-text-editor>
+	<div slot="mention-suggestions-empty">No users found</div>
+</vwc-rich-text-editor>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+You can customize the empty state message when no suggestions are found with the `suggestions-empty` scoped slot. The slot receives `{ id: string }` as props, where `id` is the feature ID (e.g., `"mention"`):
+
+```html
+<VRichTextEditor :instance="instance">
+	<template #suggestions-empty="{ id }">
+		<span v-if="id === 'mention'">No users found</span>
+		<span v-else-if="id === 'emoji'">No emojis found</span>
+	</template>
+</VRichTextEditor>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+**Keyboard shortcuts:**
+
+- **Navigate between suggestions**: <kbd>Arrow Up</kbd> / <kbd>Arrow Down</kbd>
+- **Select the highlighted suggestion**: <kbd>Enter</kbd>
+- **Close suggestions popover**: <kbd>Escape</kbd>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteAtomFeature, RteBase, RteConfig, RteSuggestFeature, RteToolbarButtonFeature, RteToolbarFeature } from '@vonage/vivid';
+
+interface Emoji {
+	shortcode: string;
+	emoji: string;
+}
+const emojis: Emoji[] = [
+	{ shortcode: 'smile', emoji: '\u{1F642}' },
+	{ shortcode: 'grin', emoji: '\u{1F604}' },
+	{ shortcode: 'sad', emoji: '\u{1F641}' },
+	{ shortcode: 'wink', emoji: '\u{1F609}' },
+	{ shortcode: 'heart', emoji: '\u{2764}\u{FE0F}' },
+	{ shortcode: 'thumbsup', emoji: '\u{1F44D}' },
+	{ shortcode: 'fire', emoji: '\u{1F525}' },
+	{ shortcode: 'rocket', emoji: '\u{1F680}' },
+];
+
+interface User {
+	id: string;
+	name: string;
+	email: string;
+}
+const users: User[] = [
+	{ id: '1', name: 'Alice Johnson', email: 'alice@example.com' },
+	{ id: '2', name: 'Bob Smith', email: 'bob@example.com' },
+	{ id: '3', name: 'Carol White', email: 'carol@example.com' },
+];
+
+const fetchUsers = async (query: string) => {
+	// Simulate API call
+	await new Promise((resolve) => setTimeout(resolve, 500));
+	const searchTerm = query.toLowerCase();
+	return users
+		.filter((u) => u.name.toLowerCase().includes(searchTerm) || u.email.toLowerCase().includes(searchTerm))
+		.map((u) => ({
+			text: u.name,
+			textSecondary: u.email,
+			data: u,
+		}));
+};
+
+const config = new RteConfig([
+	new RteBase(),
+	new RteToolbarFeature(),
+	new RteSuggestFeature('emoji', {
+		pattern: /:(\w*)$/,
+		load: (match) => {
+			const query = match[1].toLowerCase();
+			return emojis
+				.filter((e) => e.shortcode.includes(query))
+				.map((e) => ({
+					text: `${e.emoji} :${e.shortcode}:`,
+					data: e,
+				}));
+		},
+		select: (suggestion) => [{ type: 'text', text: (suggestion.data as Emoji).emoji }],
+	}),
+	new RteToolbarButtonFeature('emoji', {
+		label: 'Insert emoji',
+		icon: 'emoji-line',
+		action: { type: 'insert-text', text: ':' },
+	}),
+	new RteAtomFeature('mention', {
+		resolveValue: (userId) => {
+			const user = users.find((u) => u.id === userId);
+			return user ? `@${user.name}` : `@Unknown`;
+		},
+	}),
+	new RteSuggestFeature('mention', {
+		pattern: /@(\w*)$/,
+		load: (match) => fetchUsers(match[1]),
+		select: (suggestion) => [{ type: 'mention', attrs: { value: (suggestion.data as User).id } }],
+	}),
+	new RteToolbarButtonFeature('mention', {
+		label: 'Mention user',
+		icon: 'user-line',
+		action: { type: 'insert-text', text: '@' },
+	}),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'Type :smile or :heart to insert emojis.' }],
+			},
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'Type @ to mention a user.' }],
+			},
+		],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 500px" :instance="instance">
+		<template #suggestions-empty="{ id }">
+			<span v-if="id === 'mention'"> No users found. Try "Alice", "Bob", or "Carol". </span>
+		</template>
+	</VRichTextEditor>
+</template>
+
+<style scoped>
+::part(node--mention) {
+	background-color: var(--vvd-color-cta-100);
+	padding: 0 4px;
+	border-radius: 4px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<style>
+	::part(node--mention) {
+		background-color: var(--vvd-color-cta-100);
+		padding: 0 4px;
+		border-radius: 4px;
+	}
+</style>
+<vwc-rich-text-editor style="block-size: 500px">
+	<span slot="mention-suggestions-empty">No users found. Try "Alice", "Bob", or "Carol".</span>
+</vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const emojis = [
+			{ shortcode: 'smile', emoji: '\u{1F642}' },
+			{ shortcode: 'grin', emoji: '\u{1F604}' },
+			{ shortcode: 'sad', emoji: '\u{1F641}' },
+			{ shortcode: 'wink', emoji: '\u{1F609}' },
+			{ shortcode: 'heart', emoji: '\u{2764}\u{FE0F}' },
+			{ shortcode: 'thumbsup', emoji: '\u{1F44D}' },
+			{ shortcode: 'fire', emoji: '\u{1F525}' },
+			{ shortcode: 'rocket', emoji: '\u{1F680}' },
+		];
+
+		const users = [
+			{ id: '1', name: 'Alice Johnson', email: 'alice@example.com' },
+			{ id: '2', name: 'Bob Smith', email: 'bob@example.com' },
+			{ id: '3', name: 'Carol White', email: 'carol@example.com' },
+		];
+
+		const fetchUsers = async (query) => {
+			// Simulate API call
+			await new Promise((resolve) => setTimeout(resolve, 500));
+			const searchTerm = query.toLowerCase();
+			return users
+				.filter((u) => u.name.toLowerCase().includes(searchTerm) || u.email.toLowerCase().includes(searchTerm))
+				.map((u) => ({
+					text: u.name,
+					textSecondary: u.email,
+					data: u,
+				}));
+		};
+
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([
+			new RteBase(),
+			new RteToolbarFeature(),
+			new RteSuggestFeature('emoji', {
+				pattern: /:(\w*)$/,
+				load: (match) => {
+					const query = match[1].toLowerCase();
+					return emojis
+						.filter((e) => e.shortcode.includes(query))
+						.map((e) => ({
+							text: `${e.emoji} :${e.shortcode}:`,
+							data: e,
+						}));
+				},
+				select: (suggestion) => [{ type: 'text', text: suggestion.data.emoji }],
+			}),
+			new RteToolbarButtonFeature('emoji', {
+				label: 'Insert emoji',
+				icon: 'emoji-line',
+				action: { type: 'insert-text', text: ':' },
+			}),
+			new RteAtomFeature('mention', {
+				resolveValue: (userId) => {
+					const user = users.find((u) => u.id === userId);
+					return user ? `@${user.name}` : `@Unknown`;
+				},
+			}),
+			new RteSuggestFeature('mention', {
+				pattern: /@(\w*)$/,
+				load: (match) => fetchUsers(match[1]),
+				select: (suggestion) => [{ type: 'mention', attrs: { value: suggestion.data.id } }],
+			}),
+			new RteToolbarButtonFeature('mention', {
+				label: 'Mention user',
+				icon: 'user-line',
+				action: { type: 'insert-text', text: '@' },
+			}),
+		]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'Type :smile or :heart to insert emojis.' }],
+					},
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'Type @ to mention a user.' }],
+					},
+				],
+			},
+		});
+	});
+</script>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Styling
 
 The basic text blocks `heading-<level>` and `paragraph` are exposed as a shadow DOM part, which allows you to customize its styling using CSS.
 
 This applies to both the Rich Text Editor and Rich Text View components, so styling can be shared.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VRichTextEditor, VRichTextView, VDivider } from '@vonage/vivid-vue';
+import { RteConfig, RteBase, RteTextBlockPickerFeature, RteToolbarFeature, RteFontSizePickerFeature } from '@vonage/vivid';
+
+const config = new RteConfig([
+	new RteBase({
+		heading1: true,
+		heading2: true,
+	}),
+	new RteTextBlockPickerFeature({
+		options: [
+			{ node: 'heading1', label: 'Title' },
+			{ node: 'heading2', label: 'Subtitle' },
+			{ node: 'paragraph', label: 'Body' },
+		],
+	}),
+	new RteToolbarFeature(),
+	new RteFontSizePickerFeature({
+		options: [
+			{ size: '24px', label: 'Extra Large' },
+			{ size: '18px', label: 'Large' },
+			{ size: '14px', label: 'Normal' },
+			{ size: '12px', label: 'Small' },
+		],
+		onBlocks: [
+			{ node: 'paragraph', defaultSize: '18px' }, // Defaults to Large now
+		],
+	}),
+]);
+
+const view = ref(config.instantiateView({ type: 'doc', content: [] }));
+
+function updateView() {
+	view.value = config.instantiateView(instance.getDocument());
+}
+
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'heading1',
+				content: [{ type: 'text', text: 'Title' }],
+			},
+			{
+				type: 'heading2',
+				content: [{ type: 'text', text: 'Subtitle' }],
+			},
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'Body.' }],
+			},
+		],
+	},
+	onChange: updateView,
+});
+
+// Initialize the view
+updateView();
+</script>
+
+<template>
+	<VRichTextEditor :instance="instance" />
+	<VDivider style="margin-block: 24px" />
+	<VRichTextView
+		:view="view"
+		style="
+			display: block;
+			background: var(--vvd-color-canvas);
+			padding: 8px 16px;
+		"
+	/>
+</template>
+
+<style scoped>
+::part(node--heading1) {
+	color: var(--vvd-color-neutral-700);
+}
+
+::part(node--heading2) {
+	color: var(--vvd-color-neutral-500);
+}
+
+::part(node--paragraph) {
+	font: var(--vvd-typography-base-extended);
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <style>
@@ -1755,6 +3708,9 @@ This applies to both the Rich Text Editor and Rich Text View components, so styl
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 ### editor-start / editor-end
@@ -1762,6 +3718,61 @@ This applies to both the Rich Text Editor and Rich Text View components, so styl
 Content placed in these slots is displayed at the start or end of the scrollable editor area.
 
 You can use the `--editor-padding-inline` and `--editor-padding-block` CSS variables to match the padding of the editor content.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteConfig, RteBase, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature()]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: Array(10)
+			.fill(null)
+			.map((_, i) => ({
+				type: 'paragraph',
+				content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
+			})),
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 300px" :instance="instance">
+		<template #editor-start>
+			<div
+				style="
+					background-color: var(--vvd-color-alert-50);
+					padding-inline: var(--editor-padding-inline);
+					padding-block: var(--editor-padding-block);
+				"
+			>
+				Editor Start Content
+			</div>
+		</template>
+		<template #editor-end>
+			<div
+				style="
+					background-color: var(--vvd-color-alert-50);
+					padding-inline: var(--editor-padding-inline);
+					padding-block: var(--editor-padding-block);
+				"
+			>
+				Editor End Content
+			</div>
+		</template>
+	</VRichTextEditor>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 300px">
@@ -1789,7 +3800,70 @@ You can use the `--editor-padding-inline` and `--editor-padding-block` CSS varia
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 Content with `position` of `sticky` / `fixed` / `absolute` is positioned relative to the editor viewport:
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteConfig, RteBase, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature()]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: Array(10)
+			.fill(null)
+			.map((_, i) => ({
+				type: 'paragraph',
+				content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
+			})),
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 300px" :instance="instance">
+		<template #editor-start>
+			<div
+				style="
+					position: sticky;
+					inset-block-start: 0;
+					z-index: 1;
+					background-color: var(--vvd-color-alert-50);
+					padding-inline: var(--editor-padding-inline);
+					padding-block: var(--editor-padding-block);
+				"
+			>
+				Editor Start Content
+			</div>
+		</template>
+		<template #editor-end>
+			<div
+				style="
+					position: sticky;
+					inset-block-end: 0;
+					background-color: var(--vvd-color-alert-50);
+					padding-inline: var(--editor-padding-inline);
+					padding-block: var(--editor-padding-block);
+				"
+			>
+				Editor End Content
+			</div>
+		</template>
+	</VRichTextEditor>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 300px">
@@ -1817,9 +3891,57 @@ Content with `position` of `sticky` / `fixed` / `absolute` is positioned relativ
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### status
 
 Content placed in this slot is displayed between the editor viewport and the toolbar.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteConfig, RteBase, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature()]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: Array(10)
+			.fill(null)
+			.map((_, i) => ({
+				type: 'paragraph',
+				content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
+			})),
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 200px" :instance="instance">
+		<template #status>
+			<div
+				style="
+					padding: 8px;
+					background: var(--vvd-color-alert-50);
+					color: var(--vvd-color-alert-500);
+					font-weight: bold;
+				"
+			>
+				File upload failed. Please try again.
+			</div>
+		</template>
+	</VRichTextEditor>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 200px">
@@ -1846,11 +3968,96 @@ Content placed in this slot is displayed between the editor viewport and the too
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Properties
 
 ### editorViewportElement
 
 The `editorViewportElement` property provides access to the scrollable editor viewport element. You can use this to determine the scroll position.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+{% raw %}
+
+```vue preview
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted, useTemplateRef } from 'vue';
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteConfig, RteBase, RteToolbarFeature } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature()]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: Array(10)
+			.fill(null)
+			.map((_, i) => ({
+				type: 'paragraph',
+				content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
+			})),
+	},
+});
+
+const rteRef = useTemplateRef('rte');
+const slottedContentRef = useTemplateRef('slottedContent');
+const statusText = ref('');
+let observer: IntersectionObserver | null = null;
+
+onMounted(() => {
+	if (rteRef.value && slottedContentRef.value) {
+		observer = new IntersectionObserver(
+			([entry]) => {
+				statusText.value = `In viewport: ${(entry.intersectionRatio * 100).toFixed(0)}%`;
+			},
+			{
+				root: rteRef.value.element.editorViewportElement,
+				threshold: [0, 0.25, 0.5, 0.75, 1],
+			}
+		);
+
+		observer.observe(slottedContentRef.value);
+	}
+});
+
+onUnmounted(() => {
+	observer?.disconnect();
+});
+</script>
+
+<template>
+	<VRichTextEditor ref="rte" style="block-size: 300px" :instance="instance">
+		<template #editor-start>
+			<div
+				ref="slottedContent"
+				style="
+					block-size: 100px;
+					flex: none;
+					background-color: var(--vvd-color-alert-50);
+					padding-inline: var(--editor-padding-inline);
+					padding-block: var(--editor-padding-block);
+				"
+			>
+				This example observes whether this content is in the viewport.
+			</div>
+		</template>
+		<template #status>
+			<div style="padding: 8px; background-color: var(--vvd-color-information-50)">
+				{{ statusText }}
+			</div>
+		</template>
+	</VRichTextEditor>
+</template>
+```
+
+{% endraw %}
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 300px">
@@ -1892,6 +4099,9 @@ The `editorViewportElement` property provides access to the scrollable editor vi
 	});
 </script>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 

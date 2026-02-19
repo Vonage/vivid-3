@@ -1,8 +1,8 @@
 {
-	"libs/components": "5.9.0",
-	"libs/vue-wrappers": "5.9.0",
+	"libs/components": "5.12.0",
+	"libs/vue-wrappers": "5.12.0",
 	"libs/test-wrappers": "5.0.0",
 	"libs/eslint-plugin": "1.5.0",
-	"libs/test-utils": "5.9.0",
-	"libs/design-tokens": "5.9.0"
+	"libs/test-utils": "5.12.0",
+	"libs/design-tokens": "5.12.0"
 }

@@ -1,8 +1,7 @@
 import { Mark } from 'prosemirror-model';
-import { type Command, EditorState, Plugin } from 'prosemirror-state';
+import { type Command, EditorState } from 'prosemirror-state';
 import { toggleMark } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
-import { Decoration, DecorationSet } from 'prosemirror-view';
 import { RemoveMarkStep } from 'prosemirror-transform';
 import { createButton, createMenu, createMenuItem } from '../utils/ui';
 import { RteInstanceImpl } from '../instance';
@@ -12,6 +11,8 @@ import {
 	type SchemaContribution,
 	type ToolbarItemContribution,
 } from '../feature';
+import { escapeCssProperty } from '../utils/sanitization';
+import type { CursorFixMarkSpec } from './internal/cursor-fix';
 
 export interface FontSizeOption {
 	size: string; // CSS font-size value
@@ -37,7 +38,7 @@ type SelectionFontSize =
 	| null; // no defined sizes
 
 export class RteFontSizePickerFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteFontSizePickerFeature';
+	name = 'RteFontSizePickerFeature';
 
 	fontSizes: FontSizeOption[];
 	defaultFontSizeForNode?: Record<string, string | null>;
@@ -71,79 +72,68 @@ export class RteFontSizePickerFeatureImpl extends RteFeatureImpl {
 	}
 
 	override getSchema(): SchemaContribution[] {
+		const markSpec: CursorFixMarkSpec = {
+			attrs: { size: { validate: 'string' } },
+			parseDOM: [
+				{
+					tag: "span[style*='font-size']",
+					getAttrs: (node: HTMLElement) => {
+						const style = node.getAttribute('style');
+
+						const size = style!
+							.match(/font-size:\s*([^;]+)/)?.[1]
+							?.trim() as string;
+
+						if (size) return { size };
+						return false;
+					},
+				},
+			],
+			toDOM: (mark: Mark) => {
+				return [
+					'span',
+					{ style: `font-size: ${escapeCssProperty(mark.attrs.size)};` },
+					0,
+				] as const;
+			},
+			cursorFix: ($cursor, state) => {
+				const storedMarks = state.storedMarks;
+				if (!storedMarks) {
+					return null;
+				}
+
+				// Check if fontSize mark is in stored marks
+				const fontSizeMark = storedMarks.find(
+					(m) => m.type.name === 'fontSize'
+				);
+				if (fontSizeMark) {
+					return { 'font-size': fontSizeMark.attrs.size };
+				}
+
+				// If stored marks is explicitly empty, use default size for the node
+				if (storedMarks.length === 0) {
+					const defaultSize =
+						this.defaultFontSizeForNode?.[$cursor.parent.type.name];
+					if (defaultSize) {
+						return { 'font-size': defaultSize };
+					}
+				}
+
+				return null;
+			},
+		};
+
 		return [
 			this.contribution({
 				marks: {
-					fontSize: {
-						attrs: { size: { validate: 'string' } },
-						parseDOM: [
-							{
-								tag: "span[style*='font-size']",
-								getAttrs: (node: HTMLElement) => {
-									const style = node.getAttribute('style');
-
-									const size = style!
-										.match(/font-size:\s*([^;]+)/)?.[1]
-										?.trim() as string;
-
-									if (size) return { size };
-									return false;
-								},
-							},
-						],
-						toDOM: (mark: Mark) => {
-							return [
-								'span',
-								{ style: `font-size: ${mark.attrs.size};` },
-								0,
-							] as const;
-						},
-						fontSizes: this.fontSizes,
-					},
+					fontSize: markSpec,
 				},
 			}),
 		];
 	}
 
-	override getPlugins(rte: RteInstanceImpl) {
+	override getPlugins() {
 		return [
-			/**
-			 * Plugin to adapt the caret height based on a stored fontSize mark.
-			 */
-			this.contribution(
-				new Plugin({
-					props: {
-						decorations: (state) => {
-							const { $from } = state.selection;
-							const storedMark = state.storedMarks?.find(
-								(m) => m.type === rte.schema.marks.fontSize
-							);
-							const storedMarkSize =
-								storedMark?.attrs.size ??
-								(state.storedMarks?.length === 0
-									? this.defaultFontSizeForNode?.[$from.parent.type.name]
-									: null);
-							if (storedMarkSize) {
-								// Create a zero-width span with the correct font size in before the cursor
-								// FIXME: This seems to only work and the end of a node
-								return DecorationSet.create(state.doc, [
-									Decoration.widget(
-										$from.pos,
-										() => {
-											const span = document.createElement('span');
-											span.style.fontSize = storedMarkSize;
-											span.innerText = '\u200b'; // zero-width space
-											return span;
-										},
-										{ side: -1 }
-									),
-								]);
-							}
-							return null;
-						},
-					},
-				})
-			),
 			this.contribution(
 				keymap({
 					'Mod-Shift-.': this.adjustFontSize(-1),

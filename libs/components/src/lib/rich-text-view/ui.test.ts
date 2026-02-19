@@ -22,6 +22,7 @@ let RteListFeature!: typeof rte.RteListFeature;
 let RteAlignmentFeature!: typeof rte.RteAlignmentFeature;
 let RteLinkFeature!: typeof rte.RteLinkFeature;
 let RteInlineImageFeature!: typeof rte.RteInlineImageFeature;
+let RteAtomFeature!: typeof rte.RteAtomFeature;
 
 const components = ['rich-text-view', 'rich-text-editor'];
 
@@ -55,6 +56,13 @@ test('should render rich text identically to the editor', async ({
 				background-color: var(--vvd-color-neutral-100);
 				padding: 8px 12px;
 				border-bottom: 1px solid var(--vvd-color-neutral-200);
+			}
+			::part(node--mention) {
+				background-color: var(--vvd-color-cta-100);
+				color: var(--vvd-color-cta-800);
+				font-weight: bold;
+				border-radius: 4px;
+				padding: 2px 4px;
 			}
 		`,
 	});
@@ -132,6 +140,10 @@ test('should render rich text identically to the editor', async ({
 					new RteAlignmentFeature(),
 					new RteLinkFeature(),
 					new RteInlineImageFeature(),
+					new RteAtomFeature('mention', {
+						resolveValue: (value: string) => `@${value}`,
+						serializeValueToHtml: (value: string) => `@${value}`,
+					}),
 				]);
 
 				const editor = window.document.querySelector('vwc-rich-text-editor')!;
@@ -288,6 +300,13 @@ test('should render rich text identically to the editor', async ({
 										text: 'Green',
 										marks: [{ type: 'textColor', attrs: { color: '#1C8731' } }],
 									},
+								],
+							},
+							{
+								type: 'paragraph',
+								content: [
+									{ type: 'text', text: 'Mention: ' },
+									{ type: 'mention', attrs: { value: 'John Doe' } },
 								],
 							},
 							{

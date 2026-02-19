@@ -9,7 +9,7 @@ export type RtePlaceholderConfig = {
 };
 
 export class RtePlaceholderFeatureImpl extends RteFeatureImpl {
-	protected name = 'RtePlaceholderFeature';
+	name = 'RtePlaceholderFeature';
 
 	constructor(protected config: RtePlaceholderConfig) {
 		super();

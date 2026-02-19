@@ -8,6 +8,7 @@ import {
 	type ToolbarItemContribution,
 } from '../feature';
 import { createButton, createDiv, createSingleSlot } from '../utils/ui';
+import { escapeCssProperty } from '../utils/sanitization';
 
 // markApplies function adapted from prosemirror-commands
 function markApplies(
@@ -45,7 +46,7 @@ type SelectionColor =
 	| null; // mixed or no defined colors
 
 export class RteTextColorPickerFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteTextColorPicker';
+	name = 'RteTextColorPicker';
 	defaultColorForNode?: Record<string, string | null>;
 
 	constructor(protected readonly config?: RteTextColorPickerConfig) {
@@ -102,7 +103,7 @@ export class RteTextColorPickerFeatureImpl extends RteFeatureImpl {
 							return [
 								'span',
 								{
-									style: `color: ${color}`,
+									style: `color: ${escapeCssProperty(color)};`,
 									'data-text-color': color,
 								},
 								0,

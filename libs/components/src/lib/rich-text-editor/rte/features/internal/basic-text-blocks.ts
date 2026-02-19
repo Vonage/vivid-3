@@ -15,7 +15,7 @@ type EnabledBlocks = {
 };
 
 export class RteBasicTextBlocksImpl extends RteFeatureImpl {
-	protected name = 'RteBasicTextBlocks';
+	name = 'RteBasicTextBlocks';
 
 	constructor(protected enabledBlocks: EnabledBlocks) {
 		super();

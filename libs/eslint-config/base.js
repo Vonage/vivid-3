@@ -1,6 +1,6 @@
 module.exports = {
 	plugins: ['@repo/repo', 'ban', 'unused-imports', '@typescript-eslint'],
-	ignorePatterns: ['dist', 'node_modules', 'coverage'],
+	ignorePatterns: ['dist', 'node_modules', 'coverage', 'tmp'],
 	overrides: [
 		{
 			files: ['*.spec.ts', 'ui.test.ts'],

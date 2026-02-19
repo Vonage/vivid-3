@@ -17,6 +17,10 @@ export { RteLinkFeature } from './features/link';
 export { RteInlineImageFeature } from './features/inline-image';
 export { RteFileHandlerFeature } from './features/file-handler';
 export { RteDropHandlerFeature } from './features/drop-handler';
+export { RteToolbarButtonFeature } from './features/toolbar-button';
+export { RteAtomFeature } from './features/atom';
+export { RteInputRuleFeature } from './features/input-rule';
+export { RteSuggestFeature } from './features/suggest';
 
 export { RteHtmlParser } from './html-parser';
 export { RteHtmlSerializer } from './html-serializer';

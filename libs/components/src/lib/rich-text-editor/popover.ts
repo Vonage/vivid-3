@@ -7,14 +7,28 @@ import {
 import { PlacementStrategy, Popup } from '../popup/popup';
 import { popupDefinition } from '../popup/definition';
 
+const Kind = {
+	default: {
+		placement: undefined,
+		placementStrategy: PlacementStrategy.AutoPlacementHorizontal,
+		strategy: 'absolute',
+	},
+	autocomplete: {
+		placement: 'bottom-start',
+		placementStrategy: PlacementStrategy.Flip,
+		strategy: 'fixed',
+	},
+} as const;
+
 const popoverTemplate = (context: VividElementDefinitionContext) => {
 	const popup = context.tagFor(Popup);
-	return html`<${popup}
+	return html<Popover>`<${popup}
 		:anchor="${(x) => x.anchorEl}"
-		:placementStrategy="${() => PlacementStrategy.AutoPlacementHorizontal}"
+		:placement="${(x) => Kind[x.kind].placement}"
+		:placementStrategy="${(x) => Kind[x.kind].placementStrategy}"
 		:open="${(x) => x.open}"
 		:offset="${(x) => x.offset}"
-		strategy="absolute"
+		:strategy="${(x) => Kind[x.kind].strategy}"
 		exportparts="vvd-theme-alternate"
 	>
 		<slot></slot>
@@ -30,6 +44,8 @@ export class Popover extends VividElement {
 		});
 		onElement.dispatchEvent(event);
 	}
+
+	@observable kind: 'default' | 'autocomplete' = 'default';
 
 	@observable offset?: number;
 
@@ -107,7 +123,7 @@ export class Popover extends VividElement {
 }
 
 export const popoverDefinition = defineVividComponent(
-	'popover',
+	'rich-text-editor-popover',
 	Popover,
 	popoverTemplate,
 	[popupDefinition],

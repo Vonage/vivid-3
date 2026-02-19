@@ -1,7 +1,21 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VPagination } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VPagination :total="10" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -17,20 +31,6 @@ registerPagination('your-prefix');
 </script>
 
 <your-prefix-pagination total="10"></your-prefix-pagination>
-```
-
-</vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VPagination } from '@vonage/vivid-vue';
-</script>
-
-<template>
-	<VPagination total="10" />
-</template>
 ```
 
 </vwc-tab-panel>

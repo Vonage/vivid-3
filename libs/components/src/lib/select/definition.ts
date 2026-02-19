@@ -1,6 +1,7 @@
 import { popupDefinition } from '../popup/definition';
 import { iconDefinition } from '../icon/definition';
 import { listboxOptionDefinition } from '../option/definition';
+import { buttonDefinition } from '../button/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
@@ -21,6 +22,7 @@ export const selectDefinition = defineVividComponent(
 		popupDefinition,
 		iconDefinition,
 		listboxOptionDefinition,
+		buttonDefinition,
 		feedbackMessageDefinition,
 	],
 	{

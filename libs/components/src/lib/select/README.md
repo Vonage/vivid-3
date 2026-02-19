@@ -53,6 +53,35 @@ By default, the Select's `width` is `fit-content` and the same goes for the list
 
 You can specify the `width` of the Select using CSS.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect class="select" label="Choose an option">
+		<VOption value="1" text="Option 1: dogs" />
+		<VOption value="2" text="Option 2: cats" />
+		<VOption value="3" text="Option 3: dogs and cats" />
+	</VSelect>
+</template>
+
+<style scoped>
+.select {
+	max-width: 320px;
+	width: 100%;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-select class="select" label="Choose an option">
 	<vwc-option value="1" text="Option 1: dogs"></vwc-option>
@@ -68,12 +97,71 @@ You can specify the `width` of the Select using CSS.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Fixed Dropdown
 
 The `fixed-dropdown` attribute is useful for cases in which the dropdown is obstructed by other elements.
 
 In the example below, if `fixed-dropdown` was not set on the Select, the select dropdown would be cut off where the Dialog ends.
 Also, see [the Grid Select example](/components/data-grid/#select-in-a-grid)).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 320px
+<script setup lang="ts">
+import { VActionGroup, VButton, VDialog, VDivider, VIcon, VOption, VSelect, VTextField } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const countryCode = ref('1');
+</script>
+
+<template>
+	<VDialog open headline="Telephone Number" icon="call-line" icon-placement="side">
+		<template #body>
+			<VActionGroup>
+				<VSelect fixed-dropdown aria-label="Country code" appearance="ghost" class="country-code" v-model="countryCode">
+					<template #icon>
+						<VIcon name="flag-united-states" />
+					</template>
+					<VOption value="1" text="+1">
+						<template #icon>
+							<VIcon name="flag-united-states" />
+						</template>
+					</VOption>
+					<VOption value="44" text="+44">
+						<template #icon>
+							<VIcon name="flag-united-kingdom" />
+						</template>
+					</VOption>
+					<VOption value="49" text="+49">
+						<template #icon>
+							<VIcon name="flag-germany" />
+						</template>
+					</VOption>
+					<VOption value="355" text="+355">
+						<template #icon>
+							<VIcon name="flag-albania" />
+						</template>
+					</VOption>
+				</VSelect>
+				<VDivider orientation="vertical" />
+				<VTextField aria-label="Telephone number" type="tel" inputmode="tel" appearance="ghost" />
+			</VActionGroup>
+		</template>
+		<template #action-items>
+			<VButton appearance="filled" label="Submit" />
+		</template>
+	</VDialog>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 320px
 <vwc-dialog open headline="Telephone Number" icon="call-line" icon-placement="side">
@@ -107,6 +195,9 @@ Also, see [the Grid Select example](/components/data-grid/#select-in-a-grid)).
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Open
 
 The `open` attribute allows the Select to be opened programmatically.
@@ -120,6 +211,29 @@ Select component is a low level element, unaware of its document context, but is
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect open label="Title" placeholder="Select an option">
+		<VOption value="mr" text="Mr" />
+		<VOption value="mrs" text="Mrs" />
+		<VOption value="miss" text="Miss" />
+		<VOption value="ms" text="Ms" />
+	</VSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 270px
 <vwc-select open label="Title" placeholder="Select an option">
 	<vwc-option value="mr" text="Mr"></vwc-option>
@@ -129,11 +243,37 @@ Select component is a low level element, unaware of its document context, but is
 </vwc-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 ### Default Slot
 
 This is where you place the [Option](/components/option/) components to provide the option list.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect label="Title" placeholder="Select an option">
+		<VOption value="mr" text="Mr" />
+		<VOption value="mrs" text="Mrs" />
+		<VOption value="miss" text="Miss" />
+		<VOption value="ms" text="Ms" />
+	</VSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-select label="Title" placeholder="Select an option">
@@ -144,9 +284,56 @@ This is where you place the [Option](/components/option/) components to provide 
 </vwc-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Meta Slot
 
 Set the `meta` slot to show meta information after the selected option label.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VBadge, VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect aria-label="Options Selector" class="select">
+		<template #meta>
+			<VBadge connotation="success" text="Beta" />
+		</template>
+		<VOption value="1" text="Option 1" />
+		<VOption value="2" text="Option 2" />
+		<VOption value="3" text="Option 3" />
+	</VSelect>
+	<VSelect aria-label="Options Selector" class="select">
+		<template #meta>
+			<span class="duration">00:00:00</span>
+		</template>
+		<VOption value="1" text="Option 1" />
+		<VOption value="2" text="Option 2" />
+		<VOption value="3" text="Option 3" />
+	</VSelect>
+</template>
+
+<style scoped>
+.select {
+	width: 250px;
+}
+.duration {
+	color: var(--vvd-color-neutral-600);
+	text-align: end;
+	flex-grow: 1;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-select aria-label="Options Selector" class="select">
@@ -174,10 +361,44 @@ Set the `meta` slot to show meta information after the selected option label.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Icon Slot
 
 Set the `icon` slot to show an icon before the selected option text.
 If set, the `icon` attribute is ignored.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VIcon, VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect aria-label="Options Selector" class="select">
+		<template #icon>
+			<VIcon name="check-circle-solid" connotation="success" />
+		</template>
+		<VOption value="1" text="Option 1" />
+		<VOption value="2" text="Option 2" />
+		<VOption value="3" text="Option 3" />
+	</VSelect>
+</template>
+
+<style scoped>
+.select {
+	width: 150px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-select aria-label="Options Selector" class="select">
@@ -194,9 +415,37 @@ If set, the `icon` attribute is ignored.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Helper Text Slot
 
 The `helper-text` slot allows you to use rich content as the select's helper text.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect label="Business Type">
+		<template #helper-text>
+			<span>Please select the <a href="#">type of your business</a>.</span>
+		</template>
+		<VOption value="ngo" text="Non-Governmental Organization" />
+		<VOption value="gov" text="Governmental Organization" />
+		<VOption value="edu" text="Educational Institution" />
+	</VSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-select label="Business Type">
@@ -207,9 +456,37 @@ The `helper-text` slot allows you to use rich content as the select's helper tex
 </vwc-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Contextual Help Slot
 
 The `contextual-help` slot allows you to add the [Contextual Help](/components/contextual-help/) component next to the label.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VContextualHelp, VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect label="Business Type">
+		<template #contextual-help>
+			<VContextualHelp>Please select the type of your business</VContextualHelp>
+		</template>
+		<VOption value="ngo" text="Non-Governmental Organization" />
+		<VOption value="gov" text="Governmental Organization" />
+		<VOption value="edu" text="Educational Institution" />
+	</VSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-select label="Business Type">
@@ -220,11 +497,46 @@ The `contextual-help` slot allows you to add the [Contextual Help](/components/c
 </vwc-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## CSS Variables
 
 ### Dropdown Height
 
 Use `--select-height` to customize the `max-height` of the dropdown.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VOption, VSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSelect aria-label="Options Selector" class="select">
+		<VOption value="1" text="Option 1" />
+		<VOption value="2" text="Option 2" />
+		<VOption value="3" text="Option 3" />
+		<VOption value="4" text="Option 4" />
+		<VOption value="5" text="Option 5" />
+		<VOption value="6" text="Option 6" />
+		<VOption value="7" text="Option 7" />
+	</VSelect>
+</template>
+
+<style scoped>
+.select {
+	--select-height: 150px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-select aria-label="Options Selector" class="select">
@@ -244,6 +556,9 @@ Use `--select-height` to customize the `max-height` of the dropdown.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## API Reference
 
 ### Properties
@@ -253,6 +568,7 @@ Use `--select-height` to customize the `max-height` of the dropdown.
 | Name                                   | Type                            | Description                                                                                                                 |
 | -------------------------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | **appearance**                         | `fieldset` (default), `ghost`   | Sets the element's appearance                                                                                               |
+| **clearable**                          | `boolean`                       | Adds a clear button to the select that clears the selected value(s).                                                        |
 | **disabled**                           | `boolean`                       | Sets the element's disabled state. A disabled element will not be included during form submission.                          |
 | **error-text**                         | `string`                        | Sets the element's error text                                                                                               |
 | **fixed-dropdown**                     | `boolean`                       | Sets the position strategy of the dropdown to fixed                                                                         |

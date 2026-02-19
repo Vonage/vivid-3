@@ -31,6 +31,16 @@ import { mockTransfer } from '../../../file-picker/__mocks__/data-transfer';
 import type { RteFragment } from '../document';
 import type { RteInstanceOptions } from '../instance';
 import { impl } from '../utils/impl';
+import { removeSymbol } from '../../../../shared/utils/slottable-request';
+
+/**
+ * Represents an active slottable request (one that has been added but not yet removed).
+ */
+export interface SlottableRequest {
+	name: string;
+	slotName: string;
+	data: unknown;
+}
 
 registerRichTextEditor();
 
@@ -191,6 +201,21 @@ export async function setup(
 	const element = fixture(
 		`<vwc-rich-text-editor></vwc-rich-text-editor>`
 	) as RichTextEditor;
+
+	// Track active slottable requests - automatically updated on add/remove events
+	const slottableRequests: SlottableRequest[] = [];
+	element.addEventListener('slottable-request', ((e: CustomEvent) => {
+		const { name, slotName, data } = e.detail;
+		if (data === removeSymbol) {
+			const index = slottableRequests.findIndex((r) => r.slotName === slotName);
+			if (index !== -1) {
+				slottableRequests.splice(index, 1);
+			}
+		} else {
+			slottableRequests.push({ name, slotName, data });
+		}
+	}) as EventListener);
+
 	element.instance = instance;
 	await elementUpdated(element);
 
@@ -276,6 +301,10 @@ export async function setup(
 		view.dispatch(tr);
 	};
 
+	const popovers = element.shadowRoot!.querySelector('.popovers')!;
+
+	const toolbar = element.shadowRoot!.querySelector('.toolbar')!;
+
 	const getImageWrapper = () => {
 		return view.dom.querySelector<HTMLDivElement>(`.inline-image-wrapper`);
 	};
@@ -322,25 +351,19 @@ export async function setup(
 	};
 
 	const typeTextAtCursor = async (text: string) => {
-		const { selection } = view.state;
-		const { $cursor } = selection as TextSelection;
-		if (!$cursor) {
-			throw new Error('Selection must be a caret');
-		}
-		// Need to look on right side to find text node instead of the parent node
-		const side = $cursor.parent.nodeSize - 2 === $cursor.parentOffset ? -1 : 1;
-		const { node, offset } = view.domAtPos(selection.anchor, side)!;
-		if (node.nodeType === window.Node.TEXT_NODE) {
-			const prevContent = node.nodeValue ?? '';
-			const newContent =
-				prevContent.slice(0, offset) + text + prevContent.slice(offset);
-			node.nodeValue = newContent;
-		} else {
-			if (offset !== 0) {
-				throw new Error('Not sure whats going on');
+		// Insert text character by character to trigger inputrules
+		for (const char of text) {
+			const { state } = view;
+			const { from, to } = state.selection;
+			const defaultInsert = () => state.tr.insertText(char, from, to);
+			// Use ProseMirror's text input handler which triggers inputrules
+			const handled = view.someProp('handleTextInput', (f) =>
+				f(view, from, to, char, defaultInsert)
+			);
+			if (!handled) {
+				// If no plugin handled it, insert the text directly
+				view.dispatch(defaultInsert());
 			}
-			const textNode = document.createTextNode(text);
-			node.insertBefore(textNode, node.childNodes[0] ?? null);
 		}
 		await elementUpdated(element);
 	};
@@ -392,7 +415,7 @@ export async function setup(
 	const openPopover = () =>
 		Array.from(
 			element.shadowRoot!.querySelectorAll<Popover>(
-				`[data-vvd-component="popover"]`
+				`[data-vvd-component="rich-text-editor-popover"]`
 			)
 		).find((p) => p.open);
 
@@ -502,6 +525,8 @@ export async function setup(
 		typeTextAtCursor,
 		docStr,
 		placeholder,
+		popovers,
+		toolbar,
 		toolbarButton,
 		button,
 		textField,
@@ -526,5 +551,6 @@ export async function setup(
 		dropHtml,
 		startDrag,
 		dispatchDragEvent,
+		slottableRequests,
 	};
 }

@@ -38,6 +38,8 @@ const on = <E extends keyof HTMLElementEventMap, T>(
 /// Props available to all elements inside the context
 type CtxProps = {
 	popupPlacement: 'top' | 'bottom';
+	menuOffset?: number;
+	disabled?: boolean;
 };
 
 export class UiCtx {
@@ -197,6 +199,8 @@ export const createButton = (
 		variant() === 'popover-primary' ? 'outlined' : 'ghost-light';
 	const appearance = () =>
 		ctx.evalProp(props.active) ? 'filled' : appearanceInactive();
+	const disabled = () =>
+		Boolean(ctx.evalProp(ctx.props.disabled) || ctx.evalProp(props.disabled));
 
 	const button = ctx.rte.createComponent(Button);
 	ctx.bindToEl(
@@ -204,7 +208,7 @@ export const createButton = (
 		{
 			size,
 			appearance,
-			disabled: props.disabled,
+			disabled,
 			icon: props.icon,
 			autofocus: props.autofocus,
 			connotation: props.connotation,
@@ -224,7 +228,7 @@ export const createButton = (
 			Boolean(
 				ctx.evalProp(props.icon) &&
 					!ctx.evalProp(props.noTooltip) &&
-					!ctx.evalProp(props.disabled)
+					!disabled()
 			),
 		label: props.label,
 		anchor: button,
@@ -249,6 +253,7 @@ export const createMenu = (
 			ariaLabel: props.label,
 			anchor: wrapperTargets.get(props.trigger) ?? props.trigger,
 			placement: ctx.props.popupPlacement,
+			offset: () => ctx.evalProp(ctx.props.menuOffset) ?? null,
 		},
 		[],
 		props.children
@@ -269,13 +274,15 @@ export const createMenuItem = (
 		onSelect: () => void;
 	}
 ) => {
+	const disabled = () =>
+		Boolean(ctx.evalProp(ctx.props.disabled) || ctx.evalProp(props.disabled));
 	const item = ctx.rte.createComponent(MenuItem);
 	ctx.bindToEl(
 		item,
 		{
 			text: props.text,
 			checked: props.checked,
-			disabled: props.disabled,
+			disabled,
 			controlType: 'radio',
 			checkedAppearance: 'tick-only',
 		},
@@ -337,11 +344,13 @@ export const createOption = (
 		disabled?: Prop<boolean>;
 	}
 ) => {
+	const disabled = () =>
+		Boolean(ctx.evalProp(ctx.props.disabled) || ctx.evalProp(props.disabled));
 	const option = ctx.rte.createComponent(ListboxOption);
 	ctx.bindToEl(option, {
 		value: props.value,
 		text: props.text,
-		disabled: props.disabled,
+		disabled,
 	});
 	return option;
 };
@@ -355,6 +364,7 @@ export const createSelect = (
 		onSelect: (value: string) => void;
 	}
 ) => {
+	const disabled = () => Boolean(ctx.evalProp(ctx.props.disabled));
 	const select = ctx.rte.createComponent(Select);
 	select.setAttribute('data-class', 'ui-select'); // Cannot use CSS class since Select overwrites it with "base"
 	ctx.bindToEl(
@@ -362,8 +372,8 @@ export const createSelect = (
 		{
 			placeholder: ' ',
 			ariaLabel: props.label,
-			scale: 'condensed',
 			appearance: 'ghost',
+			disabled,
 		},
 		[
 			on('change', props.onSelect, (onSelect) => () => {
@@ -391,7 +401,7 @@ export const createSelect = (
 		ctx.updateBindings();
 	});
 	return createOptionalTooltip(ctx, {
-		enabled: () => !hideTooltip,
+		enabled: () => !hideTooltip && !disabled(),
 		label: props.label,
 		anchor: select,
 	});

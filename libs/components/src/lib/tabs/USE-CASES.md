@@ -2,6 +2,71 @@
 
 The `removable` attribute on the **Tab** component can used along with the `action-items` slot on the **Tabs** component to create functionality where Tabs can be added and removed by the user.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 300px
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VButton, VIcon, VMenu, VMenuItem, VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+
+interface TabItem {
+	id: string;
+	label: string;
+	content: string;
+}
+
+const tabs = ref<TabItem[]>([
+	{ id: 'tab-1', label: 'Task', content: 'Task content' },
+	{ id: 'tab-2', label: 'Event', content: 'Event content' },
+]);
+
+const activeTabId = ref('tab-1');
+
+function handleClose(e: Event) {
+	const tabId = (e.target as HTMLElement).id;
+	tabs.value = tabs.value.filter((tab) => tab.id !== tabId);
+}
+
+function addTab(name: string) {
+	const newId = `tab-${Math.random()}`;
+	tabs.value.push({
+		id: newId,
+		label: name,
+		content: `${name} content`,
+	});
+	activeTabId.value = newId;
+}
+</script>
+
+<template>
+	<VTabs v-if="tabs.length" :activeid="activeTabId" @close="handleClose">
+		<template v-for="tab in tabs" :key="tab.id">
+			<VTab :label="tab.label" :id="tab.id" removable />
+			<VTabPanel v-text="tab.content" />
+		</template>
+		<template #action-items>
+			<VMenu auto-dismiss placement="bottom-end">
+				<template #anchor>
+					<VButton shape="pill" size="condensed">
+						<template #icon>
+							<VIcon name="plus-line" />
+						</template>
+					</VButton>
+				</template>
+				<VMenuItem text="New Task" @click="addTab('Task')" />
+				<VMenuItem text="New Event" @click="addTab('Event')" />
+			</VMenu>
+		</template>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 300px
 <vwc-tabs activeid="tab-1">
 	<vwc-tab label="Task" id="tab-1" removable></vwc-tab>
@@ -48,3 +113,6 @@ The `removable` attribute on the **Tab** component can used along with the `acti
 	}
 </script>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>

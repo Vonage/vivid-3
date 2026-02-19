@@ -22,6 +22,9 @@ export const renderComponentTypes = (componentDef: ComponentDef) => {
 	const referencesTypes = [
 		...props.map((prop) => prop.type),
 		...componentDef.events.map((event) => event.type),
+		...componentDef.slots.flatMap((slot) =>
+			slot.dynamicProps ? [slot.dynamicProps] : []
+		),
 	].flatMap(parseTypeStr);
 	typeImports.push(...importsForTypes(referencesTypes));
 

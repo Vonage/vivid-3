@@ -4,6 +4,41 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.12.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.11.0...vivid-v5.12.0) (2026-02-13)
+
+
+### Miscellaneous Chores
+
+* **vivid:** Synchronize vivid versions
+
+## [5.11.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.10.0...vivid-v5.11.0) (2026-02-11)
+
+
+### Bug Fixes
+
+* **rich-text-editor:** sanitize rendered output (VIV-3059) ([#2745](https://github.com/Vonage/vivid-3/issues/2745)) ([e6adfac](https://github.com/Vonage/vivid-3/commit/e6adfac64d02a85f9c5840a5e1231a251615ea15))
+
+## [5.10.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.9.0...vivid-v5.10.0) (2026-02-10)
+
+
+### Features
+
+* **card:** add border-color variable (VIV-3106) ([#2731](https://github.com/Vonage/vivid-3/issues/2731)) ([f8cca8c](https://github.com/Vonage/vivid-3/commit/f8cca8cacc1ec85f90a04fa472182c54069e26a2))
+* **rich-text-editor:** add atom feature (VIV-3057) ([#2700](https://github.com/Vonage/vivid-3/issues/2700)) ([717e531](https://github.com/Vonage/vivid-3/commit/717e531ae64d6bf619e04852aec00e80dcbf09c9))
+* **rich-text-editor:** allow disabling editor (VIV-3056) ([#2734](https://github.com/Vonage/vivid-3/issues/2734)) ([6e511c0](https://github.com/Vonage/vivid-3/commit/6e511c08822b41a6a70c7c78aae43d128a3b3a13))
+* **rich-text-editor:** allow toggling toolbar (VIV-3055) ([#2733](https://github.com/Vonage/vivid-3/issues/2733)) ([dc3282f](https://github.com/Vonage/vivid-3/commit/dc3282fc8851192336b610b5a57f546cc94f2e11))
+* **rich-text-editor:** automatically convert URLs to links (VIV-3057) ([#2694](https://github.com/Vonage/vivid-3/issues/2694)) ([ce78e2d](https://github.com/Vonage/vivid-3/commit/ce78e2daf8056f552049a7e93a03f8b404f3be65))
+* **rich-text-editor:** support suggestions (VIV-3057) ([#2716](https://github.com/Vonage/vivid-3/issues/2716)) ([8c9221d](https://github.com/Vonage/vivid-3/commit/8c9221dade626201ec8f1668b8dcbd8ee4b83b41))
+* **rich-text-editor:** support vue scoped slots (VIV-2987) ([#2727](https://github.com/Vonage/vivid-3/issues/2727)) ([d80bc7e](https://github.com/Vonage/vivid-3/commit/d80bc7eaa1230372b09d1078fb5bd2e738164237))
+* **selectable-box:** add disabled state (VIV-3083) ([#2718](https://github.com/Vonage/vivid-3/issues/2718)) ([6faf8c6](https://github.com/Vonage/vivid-3/commit/6faf8c66b7d9d6a008a1b31b7ee87ac86ba3658a))
+* **tag, tag-group:** add additional connotations (VIV-1604) ([#2719](https://github.com/Vonage/vivid-3/issues/2719)) ([5c44741](https://github.com/Vonage/vivid-3/commit/5c44741c0cd08f556ac7bdc70f7abc885f2bbb18))
+
+
+### Bug Fixes
+
+* **rich-text-editor:** align popups with toolbar (VIV-3078) ([#2728](https://github.com/Vonage/vivid-3/issues/2728)) ([3e86a0d](https://github.com/Vonage/vivid-3/commit/3e86a0d97e9065c5dd412dbab4217d456c120210))
+* **tag:** prevent visible focus on remove button (VIV-3049) ([#2722](https://github.com/Vonage/vivid-3/issues/2722)) ([c43c852](https://github.com/Vonage/vivid-3/commit/c43c852362ba0dc3f9a508706160452c5e4fa6b8))
+
 ## [5.9.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.8.0...vivid-v5.9.0) (2026-01-26)
 
 

@@ -4,7 +4,7 @@ import type { RteInstanceImpl } from '../../instance';
 import { impl } from '../../utils/impl';
 
 export class RteForeignHtmlFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteForeignHtmlFeature';
+	name = 'RteForeignHtmlFeature';
 
 	override getPlugins(rte: RteInstanceImpl) {
 		return [

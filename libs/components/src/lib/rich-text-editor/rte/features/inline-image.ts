@@ -12,8 +12,13 @@ import {
 	type SchemaContribution,
 } from '../feature';
 import type { RteInstanceImpl } from '../instance';
+import { escapeCssProperty, sanitizeImageSrc } from '../utils/sanitization';
 import { Popover } from '../../popover';
 import { createButton, createDiv, createDivider, UiCtx } from '../utils/ui';
+import {
+	dispatchSlottableRequest,
+	removeSymbol,
+} from '../../../../shared/utils/slottable-request';
 import inlineImageCss from './inline-image.style.scss?inline';
 
 type SizeOption = 'small' | 'fit' | 'original';
@@ -27,7 +32,7 @@ export type ResolvedUrl =
 			/**
 			 * Called with a unique slot name that will be rendered in place of the image. A returned callback will be called when the slot is removed.
 			 */
-			create: (slotName: string) => ContentDestroyedHandler | undefined;
+			create?: (slotName: string) => ContentDestroyedHandler | undefined;
 	  };
 type ResolvedUrlGenerator = AsyncGenerator<ResolvedUrl, ResolvedUrl>;
 const isGenerator = (
@@ -58,6 +63,7 @@ const generateUniqueId = () => uniqueId++;
 class InlineImageView implements NodeView {
 	dom: HTMLDivElement;
 	img: HTMLImageElement;
+	imageUrl: string;
 
 	constructor(
 		node: Node,
@@ -67,13 +73,14 @@ class InlineImageView implements NodeView {
 	) {
 		this.dom = document.createElement('div');
 		this.dom.className = 'inline-image-wrapper';
+		this.imageUrl = node.attrs.imageUrl;
 
 		this.img = document.createElement('img');
 		this.initializeImg(node);
 
 		const resolveResult = this.config.resolveUrl
-			? this.config.resolveUrl(node.attrs.imageUrl)
-			: node.attrs.imageUrl;
+			? this.config.resolveUrl(this.imageUrl)
+			: this.imageUrl;
 		const initialResolvedUrl = isGenerator(resolveResult)
 			? null
 			: resolveResult;
@@ -117,12 +124,29 @@ class InlineImageView implements NodeView {
 		if (typeof result === 'string') {
 			this.renderImg(result);
 		} else if (result?.type === 'placeholder') {
-			const name = `inline-image-placeholder-${generateUniqueId()}`;
+			const slotName = `inline-image-placeholder-${generateUniqueId()}`;
 			const slot = document.createElement('slot');
 			slot.className = 'inline-image-placeholder';
-			slot.name = name;
-			const onDestroy = result.create(name);
-			this.setContent(slot, { onDestroy });
+			slot.name = slotName;
+
+			const onDestroy = result.create?.(slotName);
+
+			const host = (this.view.dom.getRootNode() as ShadowRoot).host;
+			dispatchSlottableRequest(host, 'inline-image-placeholder', slotName, {
+				url: this.imageUrl,
+			});
+
+			this.setContent(slot, {
+				onDestroy: () => {
+					dispatchSlottableRequest(
+						host,
+						'inline-image-placeholder',
+						slotName,
+						removeSymbol
+					);
+					onDestroy?.();
+				},
+			});
 		} else {
 			this.setContent(null);
 		}
@@ -156,7 +180,8 @@ class InlineImageView implements NodeView {
 	}
 
 	renderImg(src: string) {
-		this.img.src = src;
+		// Sanitize the URL to prevent XSS (allow data:image/* URLs)
+		this.img.src = sanitizeImageSrc(src);
 		this.setContent(this.img, { allowPopover: true });
 	}
 
@@ -174,7 +199,7 @@ class InlineImageView implements NodeView {
 }
 
 export class RteInlineImageFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteInlineImageFeature';
+	name = 'RteInlineImageFeature';
 
 	constructor(protected readonly config: RteInlineImageConfig = {}) {
 		super();
@@ -199,14 +224,17 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 			},
 			parseDOM: [
 				{
-					tag: 'img[src]',
+					tag: 'img[src],img[data-src]',
 					getAttrs: (dom: HTMLElement) => {
 						const parseDimension = (dim: string | null) => {
 							const value = parseInt(dim ?? '', 10);
 							return isNaN(value) ? null : value;
 						};
 
-						const srcAttr = dom.getAttribute('src')!;
+						// Prefer data-src since src may be dropped by sanitization for custom protocols (e.g. attachment://)
+						const srcAttr = (dom.getAttribute('data-src') ??
+							dom.getAttribute('src')) as string;
+
 						const imageUrl = this.config.parseUrlFromHtml
 							? this.config.parseUrlFromHtml(srcAttr)
 							: srcAttr;
@@ -234,9 +262,13 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 				if (resolvedUrl === null) {
 					return document.createTextNode('');
 				}
-
-				const attrs: Record<string, string> = { src: resolvedUrl, alt };
-				if (size) attrs.style = `max-width: ${size}; height: auto;`;
+				const attrs: Record<string, string> = {
+					src: sanitizeImageSrc(resolvedUrl),
+					'data-src': resolvedUrl, // Preserve src if it is dropped by sanitization
+					alt,
+				};
+				if (size)
+					attrs.style = `max-width: ${escapeCssProperty(size)}; height: auto;`;
 				if (naturalWidth) attrs.width = naturalWidth;
 				if (naturalHeight) attrs.height = naturalHeight;
 				return ['img', attrs];

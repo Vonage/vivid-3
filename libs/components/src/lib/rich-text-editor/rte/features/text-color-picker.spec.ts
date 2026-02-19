@@ -60,6 +60,15 @@ describe('RteTextColorFeature', () => {
 		);
 	});
 
+	it('should deserialize textColor from inline style', async () => {
+		const rte = await setup(features());
+		rte.setHtml('<p><span style="color: red">Colored</span> Plain</p>');
+
+		expect(rte.docStr()).toMatchInlineSnapshot(
+			`"paragraph(<textColor[color="red"]>'|Colored', ' Plain')"`
+		);
+	});
+
 	it('should serialize textColor to HTML', async () => {
 		const rte = await setup(features(), [
 			p(text.marks(color({ color: '#123456' }))('Colored'), ' Plain'),
@@ -67,6 +76,19 @@ describe('RteTextColorFeature', () => {
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
 			`"<p><span style="color: rgb(18, 52, 86);" data-text-color="#123456">Colored</span> Plain</p>"`
+		);
+	});
+
+	it('should escape color values', async () => {
+		const rte = await setup(features(), [
+			p(text.marks(color({ color: 'red; background: red' }))('Colored')),
+		]);
+
+		expect(rte.view.dom.querySelector('span')!.style.cssText).toBe(
+			'color: red;'
+		);
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<p><span style="color: red;" data-text-color="red; background: red">Colored</span></p>"`
 		);
 	});
 

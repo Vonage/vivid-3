@@ -6,12 +6,12 @@ import {
 	TextblockAttrs,
 	type TextblockAttrSpec,
 } from './utils/textblock-attrs';
-import { impl } from './utils/impl';
 import type { ToolbarItemSpec } from './features/toolbar';
 import {
 	TextblockMarks,
 	type TextblockMarkSpec,
 } from './utils/textblock-marks';
+import type { InputRuleSpec } from './features/internal/input-rules';
 
 // Features bundle everything related to a specific editor capability together.
 // They can contribute styles, schema additions, ProseMirror plugins, toolbar items, etc.
@@ -59,18 +59,21 @@ export type TextblockAttrContribution = Contribution<TextblockAttrSpec>;
 export type TextblockMarkContribution = Contribution<TextblockMarkSpec>;
 export type PluginContribution = Contribution<Plugin>;
 export type ToolbarItemContribution = Contribution<ToolbarItemSpec>;
+export type InputRuleContribution = Contribution<InputRuleSpec>;
 
-export abstract class RteFeature {
-	/// @internal
-	abstract [impl]: RteFeatureImpl;
-}
+export abstract class RteFeature {}
 
 export abstract class RteFeatureImpl {
 	/**
 	 * The name of the feature, e.g. RteBoldFeature
 	 * Note: Cannot use this.constructor.name because it may be minified
 	 */
-	protected abstract name: string;
+	abstract name: string;
+
+	/**
+	 * If a feature can have multiple instances, a unique id to differentiate them.
+	 */
+	featureId?: string;
 
 	/**
 	 * Creates a contribution of this feature.
@@ -110,11 +113,21 @@ export abstract class RteFeatureImpl {
 		return [];
 	}
 
+	getInputRules(rte: RteInstanceImpl): InputRuleContribution[] {
+		return [];
+	}
+
 	// A feature may include additional features for better organization.
 	getFeatures(): RteFeatureImpl[] {
 		return [this];
 	}
+
+	// Exposes a public interface for this feature.
+	getPublicInterface(rte: RteInstanceImpl): any {}
 }
+
+const featureImpls = new WeakMap<RteFeature, RteFeatureImpl>();
+export const getFeatureImpl = (facade: RteFeature) => featureImpls.get(facade)!;
 
 /**
  * Creates a facade class for a feature to hide internal API.
@@ -126,14 +139,16 @@ export const featureFacade = <
 	FeatureImpl: C
 ) => {
 	class Facade extends RteFeature {
-		/// @internal
-		[impl]: T;
-
 		constructor(...args: ConstructorParameters<C>) {
 			super();
-			this[impl] = new FeatureImpl(...args);
+			featureImpls.set(this, new FeatureImpl(...args));
 		}
 	}
 
 	return Facade;
 };
+
+// Type-only function that can be overloaded to return the correct public interface for a feature facade.
+export declare function getPublicInterface(
+	facade: Constructor<RteFeature>
+): unknown;

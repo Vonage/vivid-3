@@ -1,7 +1,27 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTabs, VTab, VTabPanel } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VTabs>
+		<VTab label="Tab one"></VTab>
+		<VTab label="Tab two"></VTab>
+		<VTab label="Tab three"></VTab>
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -12,7 +32,7 @@ registerTab('your-prefix');
 registerTabPanel('your-prefix');
 ```
 
-```html preview
+```html preview full
 <script type="module">
 	import { registerTabs, registerTab, registerTabPanel } from '@vonage/vivid';
 	registerTabs('your-prefix');
@@ -31,26 +51,6 @@ registerTabPanel('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VTabs, VTab, VTabPanel } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VTabs>
-		<VTab label="Tab one"></VTab>
-		<VTab label="Tab two"></VTab>
-		<VTab label="Tab three"></VTab>
-		<VTabPanel>Tab Panel one</VTabPanel>
-		<VTabPanel>Tab Panel two</VTabPanel>
-		<VTabPanel>Tab Panel three</VTabPanel>
-	</VTabs>
-</template>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Slots
@@ -59,7 +59,34 @@ import { VTabs, VTab, VTabPanel } from '@vonage/vivid-vue';
 
 The `icon` slot on the **Tab** component can be used to display a custom icon. If set, the `icon` attribute is ignored.
 
-```html preview
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VIcon, VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs>
+		<VTab label="Tab one">
+			<template #icon><VIcon name="check-circle-solid" connotation="success" /></template>
+		</VTab>
+		<VTab label="Tab two">
+			<template #icon><VIcon name="close-circle-solid" connotation="alert" /></template>
+		</VTab>
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview full
 <vwc-tabs>
 	<vwc-tab label="Tab one">
 		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
@@ -72,11 +99,60 @@ The `icon` slot on the **Tab** component can be used to display a custom icon. I
 </vwc-tabs>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Action Items Slot
 
 The `action-items` slot on the **Tabs** component can be used to add action items after the last Tab in the tabs bar.
 
 In the example below, a Button is provided that adds a new Tab when clicked.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VButton, VIcon, VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+
+interface TabItem {
+	label: string;
+	content: string;
+}
+
+const tabs = ref<TabItem[]>([
+	{ label: 'Tab one', content: 'Tab Panel one' },
+	{ label: 'Tab two', content: 'Tab Panel two' },
+]);
+
+function addTab() {
+	tabs.value.push({
+		label: 'New tab',
+		content: 'New tab content',
+	});
+}
+</script>
+
+<template>
+	<VTabs>
+		<template v-for="(tab, index) in tabs" :key="index">
+			<VTab :label="tab.label" />
+			<VTabPanel v-text="tab.content" />
+		</template>
+		<template #action-items>
+			<VButton shape="pill" size="condensed" @click="addTab">
+				<template #icon><VIcon name="plus-line" /></template>
+			</VButton>
+		</template>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs>
@@ -101,6 +177,9 @@ In the example below, a Button is provided that adds a new Tab when clicked.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## CSS Variables
 
 ### Tabs Block Size
@@ -108,8 +187,65 @@ In the example below, a Button is provided that adds a new Tab when clicked.
 Use the `--tabs-block-size` CSS variable to set the block-size of the `base` element.  
 When using Tabs inside flex structure, setting `--tabs-block-size: 100%` with `flex:1` or with any specific block-size on Tabs will stretch the tabs to full height.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full 500px
+<script setup lang="ts">
+import { VEmptyState, VIcon, VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="wrapper">
+		<VTabs scrollable-panel class="tabs">
+			<VTab label="Comments">
+				<template #icon><VIcon name="chat-line" /></template>
+			</VTab>
+			<VTab label="Playlist">
+				<template #icon><VIcon name="playlist-line" /></template>
+			</VTab>
+			<VTab label="Favourites">
+				<template #icon><VIcon name="star-line" /></template>
+			</VTab>
+			<VTabPanel>
+				<VEmptyState icon="error-solid" headline="No results" connotation="alert" />
+			</VTabPanel>
+			<VTabPanel>Playlist</VTabPanel>
+			<VTabPanel>Favourites</VTabPanel>
+		</VTabs>
+	</div>
+</template>
+
+<style>
+body,
+#app {
+	height: 100%;
+}
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	block-size: 100%;
+}
+.tabs {
+	--tabs-block-size: 100%;
+	flex: 1;
+	block-size: 100%;
+}
+.tabs::part(tab-panel) {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full 500px
-<div class="wrapper flex">
+<div class="wrapper">
 	<vwc-tabs scrollable-panel class="tabs">
 		<vwc-tab label="Comments">
 			<vwc-icon slot="icon" name="chat-line"></vwc-icon>
@@ -137,13 +273,11 @@ When using Tabs inside flex structure, setting `--tabs-block-size: 100%` with `f
 		flex-direction: column;
 		block-size: 100%;
 	}
-
 	.tabs {
 		--tabs-block-size: 100%;
 		flex: 1;
 		block-size: 100%;
 	}
-
 	.tabs::part(tab-panel) {
 		display: flex;
 		flex-direction: column;
@@ -152,11 +286,45 @@ When using Tabs inside flex structure, setting `--tabs-block-size: 100%` with `f
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## CSS Parts
 
 ### Tab Panel
 
 Use the CSS part `tab-panel` to provide custom styling to the Tab Panel components.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs class="tabs">
+		<VTab label="Tab one" />
+		<VTab label="Tab two" />
+		<VTab label="Tab three" />
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+
+<style>
+.tabs::part(tab-panel) {
+	background-color: var(--vvd-color-cta-50);
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs class="tabs">
@@ -174,6 +342,9 @@ Use the CSS part `tab-panel` to provide custom styling to the Tab Panel componen
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 

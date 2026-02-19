@@ -27,6 +27,7 @@ import type { SimpleColorPickerLocale } from '../../lib/simple-color-picker/loca
 import type { ColorPickerLocale } from '../../lib/color-picker/locale';
 import type { BaseColorPickerLocale } from '../color-picker/locale';
 import type { PopoverLocale } from '../../lib/popover/locale';
+import type { SelectLocale } from '../../lib/select/locale';
 
 type ConnotationAnnoncementLocale = {
 	[key in Connotation as `${key}Icon`]: string;
@@ -66,4 +67,5 @@ export interface Locale {
 	simpleColorPicker: SimpleColorPickerLocale;
 	colorPicker: ColorPickerLocale;
 	popover: PopoverLocale;
+	select: SelectLocale;
 }

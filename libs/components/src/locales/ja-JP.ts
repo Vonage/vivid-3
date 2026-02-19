@@ -173,6 +173,9 @@ const jaJP: Locale = {
 	tab: {
 		dismissButtonLabel: 'このタブを閉じるにはDELETEキーを押してください',
 	},
+	select: {
+		clearButtonLabel: '選択をクリア',
+	},
 	searchableSelect: {
 		clearButtonLabel: '選択をクリア',
 		noOptionsMessage: 'オプションがありません',
@@ -236,6 +239,8 @@ const jaJP: Locale = {
 			fit: 'フィット',
 			original: '元のサイズ',
 		},
+		suggestLoading: '読み込み中...',
+		suggestNoResults: '結果なし',
 	},
 	button: {
 		pendingLabel: '読み込み中',

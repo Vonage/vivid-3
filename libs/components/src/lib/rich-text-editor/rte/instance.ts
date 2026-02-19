@@ -6,12 +6,17 @@ import type { Constructor } from '../../../shared/utils/mixins';
 import type { Locale } from '../../../shared/localization/Locale';
 import { RteConfig, RteConfigImpl } from './config';
 import { hostBridgePlugin, type HostState } from './features/internal/core';
-import { RteFeatureImpl, sortedContributions } from './feature';
+import {
+	type RteFeature,
+	type RteFeatureImpl,
+	sortedContributions,
+} from './feature';
 import type { RteDocument, RteFragment } from './document';
 import type { TextblockAttrs } from './utils/textblock-attrs';
 import { RteHtmlParser } from './html-parser';
 import { RteHtmlSerializer } from './html-serializer';
 import { impl } from './utils/impl';
+import type { getPublicInterface } from './public-interface';
 
 const parseDocument = (schema: Schema, doc?: RteDocument): Node => {
 	const node = schema.topNodeType.createAndFill(
@@ -143,6 +148,16 @@ export class RteInstance {
 
 		dispatchTransaction(tr);
 	}
+
+	/**
+	 * Returns the public interface of a feature.
+	 */
+	feature: typeof getPublicInterface = (
+		Feature: Constructor<RteFeature>,
+		featureId?: string
+	) => {
+		return this[impl].getPublicInterface(Feature, featureId);
+	};
 }
 
 export class RteInstanceImpl {
@@ -155,12 +170,43 @@ export class RteInstanceImpl {
 	readonly foreignHtmlParser: RteHtmlParser;
 	readonly foreignHtmlSerializer: RteHtmlSerializer;
 
-	getFeature<T extends RteFeatureImpl>(constr: Constructor<T>): T {
-		const f = this.config.featureMap.get(constr) as T;
+	getFeature<T extends RteFeatureImpl>(name: string): T {
+		const f = this.config.featureMap.get(name) as T;
 		if (!f) {
-			throw new Error(`Feature not found: ${constr.name}`);
+			throw new Error(`Feature not found: ${name}`);
 		}
 		return f;
+	}
+
+	getPublicInterface(
+		Feature: Constructor<RteFeature>,
+		featureId?: string
+	): any {
+		const instances = this.config.featureFacadesMap.get(Feature);
+
+		if (!instances || instances.length === 0) {
+			throw new Error(`Feature not found`);
+		}
+
+		const isMultiInstance = instances[0].featureId !== undefined;
+
+		if (isMultiInstance) {
+			if (featureId === undefined) {
+				throw new Error(`No featureId provided for multi-instance feature.`);
+			}
+
+			const instance = instances.find((f) => f.featureId === featureId);
+			if (!instance) {
+				throw new Error(`Feature with id "${featureId}" not found`);
+			}
+			return instance.getPublicInterface(this);
+		}
+
+		if (featureId !== undefined) {
+			throw new Error(`Feature does not support featureId`);
+		}
+
+		return instances[0].getPublicInterface(this);
 	}
 
 	constructor(configFacade: RteConfig, readonly options?: RteInstanceOptions) {

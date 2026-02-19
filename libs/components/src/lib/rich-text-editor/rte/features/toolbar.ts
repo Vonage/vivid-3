@@ -2,7 +2,10 @@ import { Plugin } from 'prosemirror-state';
 import { createDivider, UiCtx } from '../utils/ui';
 import { RteInstanceImpl } from '../instance';
 import { featureFacade, RteFeatureImpl, sortedContributions } from '../feature';
+import { FeatureState } from '../utils/feature-state';
+import type { RteToolbarPublicInterface } from '../public-interface';
 import toolbarCss from './toolbar.style.scss?inline';
+import { RteCoreImpl } from './internal/core';
 
 export interface ToolbarItemSpec {
 	section: 'history' | 'font' | 'text-style' | 'textblock' | 'insert';
@@ -18,7 +21,9 @@ export interface RteToolbarConfig {
 }
 
 export class RteToolbarFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteToolbarFeature';
+	name = 'RteToolbarFeature';
+
+	hidden = new FeatureState(false);
 
 	constructor(protected config?: RteToolbarConfig) {
 		super();
@@ -46,18 +51,29 @@ export class RteToolbarFeatureImpl extends RteFeatureImpl {
 			itemsBySection.get(toolbarItem.section)!.push(toolbarItem);
 		}
 
+		const core = rte.getFeature<RteCoreImpl>('RteCore');
+
 		return [
+			this.contribution(this.hidden.plugin),
 			this.contribution(
 				new Plugin({
 					view: (view) => {
 						const ctx = new UiCtx(view, rte, {
 							popupPlacement:
 								this.config?.popupDirection === 'outward' ? 'bottom' : 'top',
+							menuOffset: 8,
+							disabled: () => core.disabled.getValue(rte),
 						});
 
 						const toolbar = (
 							view.dom.getRootNode() as ShadowRoot
 						).querySelector('.toolbar')!;
+						ctx.bindProp(
+							() => this.hidden.getValue(rte),
+							(hidden) => {
+								toolbar.classList.toggle('toolbar--hidden', hidden);
+							}
+						);
 
 						let openSection = false;
 						for (const section of sections) {
@@ -86,6 +102,18 @@ export class RteToolbarFeatureImpl extends RteFeatureImpl {
 				})
 			),
 		];
+	}
+
+	override getPublicInterface(rte: RteInstanceImpl): RteToolbarPublicInterface {
+		const hidden = this.hidden;
+		return {
+			get hidden() {
+				return hidden.getValue(rte);
+			},
+			set hidden(value: boolean) {
+				hidden.setValue(rte, value);
+			},
+		};
 	}
 }
 

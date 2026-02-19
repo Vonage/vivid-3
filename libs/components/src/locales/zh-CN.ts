@@ -173,6 +173,9 @@ const zhCN: Locale = {
 	tab: {
 		dismissButtonLabel: '按 DELETE 键关闭此选项卡',
 	},
+	select: {
+		clearButtonLabel: '清除选择',
+	},
 	searchableSelect: {
 		clearButtonLabel: '清除选择',
 		noOptionsMessage: '没有选项',
@@ -236,6 +239,8 @@ const zhCN: Locale = {
 			fit: '适应',
 			original: '原始大小',
 		},
+		suggestLoading: '加载中...',
+		suggestNoResults: '无结果',
 	},
 	button: {
 		pendingLabel: '加载中',

@@ -1,5 +1,40 @@
 ## In a Form
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 460px
+<script setup lang="ts">
+import { VDateTimePicker, VLayout, VButton } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<form>
+		<VLayout column-spacing="small" column-basis="block">
+			<div>
+				<VDateTimePicker name="date" label="Start date time" required />
+			</div>
+			<div class="buttons">
+				<VButton appearance="outlined" label="Reset" type="reset" />
+				<VButton label="Submit" appearance="filled" type="submit" />
+			</div>
+		</VLayout>
+	</form>
+</template>
+
+<style scoped>
+.buttons {
+	display: flex;
+	gap: 12px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 460px
 <form>
 	<vwc-layout column-spacing="small" column-basis="block">
@@ -7,7 +42,7 @@
 			<vwc-date-time-picker name="date" label="Start date time" required></vwc-date-time-picker>
 		</div>
 		<div class="buttons">
-			<vwc-button label="Reset" type="reset"></vwc-button>
+			<vwc-button label="Reset" appearance="outlined" type="reset"></vwc-button>
 			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
 		</div>
 	</vwc-layout>
@@ -20,3 +55,6 @@
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>

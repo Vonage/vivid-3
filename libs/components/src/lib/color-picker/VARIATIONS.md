@@ -9,30 +9,109 @@ The `label` attribute provides a short description of the purpose of the Color P
 	<p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 480px
+<script setup lang="ts">
+import { VColorPicker } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VColorPicker label="Primary color" saved-colors-key="vvd-color-picker-label" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 480px
 <vwc-color-picker label="Primary color" saved-colors-key="vvd-color-picker-label"></vwc-color-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Helper Text
 
 The `helper-text` attribute provides additional information about the purpose of the Color Picker.  
 To add HTML to the helper text, use the [helper-text slot](/components/color-picker/code/#helper-text-slot).
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 480px
+<script setup lang="ts">
+import { VColorPicker } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VColorPicker label="Primary color" helper-text="Use the HEX color code (e.g. #ffffff)" saved-colors-key="vvd-color-picker-helper-text" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 480px
 <vwc-color-picker label="Primary color" helper-text="Use the HEX color code (e.g. #ffffff)" saved-colors-key="vvd-color-picker-helper-text"></vwc-color-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Placeholder Text
 
 The `placeholder` attribute provides some text to be displayed when no color is selected.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 480px
+<script setup lang="ts">
+import { VColorPicker } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VColorPicker label="Color Picker with Placeholder" placeholder="#ffffff" saved-colors-key="vvd-color-picker-placeholder" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 480px
 <vwc-color-picker label="Color Picker with Placeholder" placeholder="#ffffff" saved-colors-key="vvd-color-picker-placeholder"></vwc-color-picker>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Contextual Help
 
 You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 480px
+<script setup lang="ts">
+import { VContextualHelp, VColorPicker } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VColorPicker label="Color Picker" saved-colors-key="vvd-color-picker-contextual-help">
+		<template #contextual-help><VContextualHelp>Choose your brand color</VContextualHelp></template>
+	</VColorPicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 480px
 <vwc-color-picker label="Color Picker" saved-colors-key="vvd-color-picker-contextual-help">
@@ -40,37 +119,136 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 </vwc-color-picker>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Validation Feedback
 
 ### Error Text
 
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 480px
+<script setup lang="ts">
+import { VColorPicker } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VColorPicker label="Color Picker" value="example" saved-colors-key="vvd-color-picker-error" error-text="This is not a correct HEX color" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 480px
 <vwc-color-picker label="Color Picker" value="example" saved-colors-key="vvd-color-picker-error" error-text="This is not a correct HEX color"></vwc-color-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Success Text
 
 The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 480px
+<script setup lang="ts">
+import { VColorPicker } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VColorPicker label="Color Picker" value="#FA7454" success-text="Great success" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 480px
 <vwc-color-picker label="Color Picker" value="#FA7454" success-text="Great success"></vwc-color-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Value
 
 The `value` attribute can be used to set the default value for the Color Picker element.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 480px
+<script setup lang="ts">
+import { VColorPicker } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VColorPicker label="Primary color" value="#D6219C" saved-colors-key="vvd-color-picker-value" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 480px
 <vwc-color-picker label="Primary color" value="#D6219C" saved-colors-key="vvd-color-picker-value"></vwc-color-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Swatches
 
 The `swatches` attribute can be used to set the default color palette that will be displayed in the Color Picker's Popup.
 
 It accepts an array of objects with `value` and `label` properties: `[{"label": "Red", "value": "#ff0000"}, {"value": "#00ff00"}]`. The optional `label` property provides descriptive text for screen readers, improving accessibility.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 480px
+<script setup lang="ts">
+import { VColorPicker } from '@vonage/vivid-vue';
+
+const swatches = [
+	{
+		label: 'Magenta',
+		value: '#D6219C',
+	},
+	{
+		label: 'Blue',
+		value: '#80C7F5',
+	},
+	{
+		label: 'Orange',
+		value: '#FA7454',
+	},
+	{
+		label: 'Peach',
+		value: '#FCAC98',
+	},
+];
+</script>
+<template>
+	<VColorPicker :swatches="swatches" label="Primary color" value="#D6219C" saved-colors-key="vvd-color-picker-swatches" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 480px
 <vwc-color-picker id="picker" label="Primary color" value="#D6219C" saved-colors-key="vvd-color-picker-swatches"></vwc-color-picker>
@@ -100,17 +278,78 @@ It accepts an array of objects with `value` and `label` properties: `[{"label": 
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Max Swatches
 
 The maximum number of displayed color swatches (either saved by the user or passed using `swatches` attribute) can be set using the `max-swatches` attribute.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 480px
+<script setup lang="ts">
+import { VColorPicker } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VColorPicker label="Primary color" :max-swatches="4" saved-colors-key="vvd-color-picker-max-swatches" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 480px
 <vwc-color-picker label="Primary color" max-swatches="4" saved-colors-key="vvd-color-picker-max-swatches"></vwc-color-picker>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Swatches Text
 
 The default **"Saved Colors:"** text displayed above the color swatches can be overridden with `swatches-text` slot.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 480px
+<script setup lang="ts">
+import { VColorPicker } from '@vonage/vivid-vue';
+
+const swatches = [
+	{
+		label: 'Magenta',
+		value: '#D6219C',
+	},
+	{
+		label: 'Blue',
+		value: '#80C7F5',
+	},
+	{
+		label: 'Orange',
+		value: '#FA7454',
+	},
+	{
+		label: 'Peach',
+		value: '#FCAC98',
+	},
+];
+</script>
+<template>
+	<VColorPicker :swatches="swatches" label="Brand color" value="#D6219C" disable-saved-colors>
+		<template #swatches-text><span>Brand Colors:</span></template>
+	</VColorPicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 480px
 <vwc-color-picker id="picker" label="Brand color" value="#D6219C" disable-saved-colors>
@@ -142,10 +381,33 @@ The default **"Saved Colors:"** text displayed above the color swatches can be o
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 The `disabled` attribute disables the Color Picker element.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 480px
+<script setup lang="ts">
+import { VColorPicker } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VColorPicker label="Primary color" disabled />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 480px
 <vwc-color-picker label="Primary color" disabled></vwc-color-picker>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>

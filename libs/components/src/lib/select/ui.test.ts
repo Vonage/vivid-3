@@ -389,6 +389,24 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					>
 				</vwc-select>
 			</div>
+			<div>
+				<style>
+					vwc-select {
+						width: 280px;
+					}
+				</style>
+				<vwc-select
+					label="What's your favorite club?"
+					placeholder="Select an option"
+					clearable
+				>
+					<vwc-option value="friend" text="Ironclad Rovers FC"></vwc-option>
+					<vwc-option value="net" text="Stormhaven United" selected></vwc-option>
+					<vwc-option value="online-ad" text="Blackpeak Athletic"></vwc-option>
+					<vwc-option value="radio-ad" text="Crimson Harbor FC"></vwc-option>
+					<vwc-option value="other" text="Valewind Wanderers"></vwc-option>
+				</vwc-select>
+			</div>
 		`;
 
 	await page.setViewportSize({ width: 2300, height: 720 });

@@ -9,6 +9,28 @@ The `label` attribute provides a short description of the purpose of the Searcha
 	<p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Country">
+		<VOption value="AF" text="Afghanistan" />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 270px
 <vwc-searchable-select label="Country">
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
@@ -17,11 +39,36 @@ The `label` attribute provides a short description of the purpose of the Searcha
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Helper Text
 
 The `helper-text` attribute provides additional information about the purpose of the Searchable Select.
 
 To add HTML to the helper text, use the [helper-text slot](/components/searchable-select/code/#helper-text-slot).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 320px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect helper-text="Select the countries that your company operates in" label="Country" multiple>
+		<VOption value="AF" text="Afghanistan" />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 320px
 <vwc-searchable-select helper-text="Select the countries that your company operates in" label="Country" multiple>
@@ -31,6 +78,9 @@ To add HTML to the helper text, use the [helper-text slot](/components/searchabl
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Placeholder Text
 
 The `placeholder` attribute provides some text to be displayed when no option has been selected.
@@ -39,6 +89,33 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 	<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Country" placeholder="Select a country...">
+		<VOption value="AF" text="Afghanistan" />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+	<VSearchableSelect label="Countries" placeholder="Select countries..." multiple>
+		<VOption value="AF" text="Afghanistan" />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-searchable-select label="Country" placeholder="Select a country...">
@@ -53,9 +130,37 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Contextual Help
 
 You can add the [Contextual Help](/components/contextual-help/) component using the `contextual-help` slot. It will be displayed next to the label, providing users additional information.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VContextualHelp } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Country">
+		<template #contextual-help>
+			<VContextualHelp>Select the country where your company operates</VContextualHelp>
+		</template>
+		<VOption value="AF" text="Afghanistan" />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-searchable-select label="Country">
@@ -66,11 +171,37 @@ You can add the [Contextual Help](/components/contextual-help/) component using 
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Validation Feedback
 
 ### Error Text
 
 The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect error-text="Madrid is incorrect" label="What is the capital of Italy?">
+		<VOption value="madrid" text="Madrid" selected />
+		<VOption value="paris" text="Paris" />
+		<VOption value="london" text="London" />
+		<VOption value="rome" text="Rome" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-searchable-select error-text="Madrid is incorrect" label="What is the capital of Italy?">
@@ -81,9 +212,35 @@ The `error-text` attribute provides a custom error message. Any current error st
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Success Text
 
 The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect success-text="Rome is correct" label="What is the capital of Italy?">
+		<VOption value="madrid" text="Madrid" />
+		<VOption value="paris" text="Paris" />
+		<VOption value="london" text="London" />
+		<VOption value="rome" text="Rome" selected />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-searchable-select success-text="Rome is correct" label="What is the capital of Italy?">
@@ -93,6 +250,9 @@ The `success-text` attribute provides a custom success message. Any current erro
 	<vwc-option value="rome" text="Rome" selected></vwc-option>
 </vwc-searchable-select>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Icon
 
@@ -107,6 +267,28 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Country" icon="globe-line">
+		<VOption value="AF" text="Afghanistan" />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-searchable-select label="Country" icon="globe-line">
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
@@ -115,9 +297,39 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Shape
 
 The `shape` attribute controls the border radius of the Searchable Select input element.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect shape="rounded" label="Country">
+		<VOption value="AF" text="Afghanistan" />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+	<VSearchableSelect shape="pill" label="Country">
+		<VOption value="AF" text="Afghanistan" />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-searchable-select shape="rounded" label="Country">
@@ -132,11 +344,41 @@ The `shape` attribute controls the border radius of the Searchable Select input 
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Appearance
 
 The `appearance` attribute controls the style of the select element.
 
 Use `ghost` in combination with a containing element which provides a border, for example when used inside the [leading action items slot of Text Field](/components/text-field/code/#leading-action-items-slot).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect appearance="ghost" label="Country" clearable>
+		<VOption value="AF" text="Afghanistan" selected />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+	<VSearchableSelect appearance="ghost" label="Country" clearable multiple>
+		<VOption value="AF" text="Afghanistan" selected />
+		<VOption value="AL" text="Albania" />
+		<VOption value="DZ" text="Algeria" />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-searchable-select appearance="ghost" label="Country" clearable>
@@ -151,9 +393,46 @@ Use `ghost` in combination with a containing element which provides a border, fo
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Multiple
 
 The `multiple` attribute allows the user to select more than one option.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect multiple label="Countries">
+		<VOption value="AF" text="Afghanistan">
+			<template #icon>
+				<VIcon name="flag-afghanistan" />
+			</template>
+		</VOption>
+		<VOption value="AL" text="Albania">
+			<template #icon>
+				<VIcon name="flag-albania" />
+			</template>
+		</VOption>
+		<VOption value="DZ" text="Algeria">
+			<template #icon>
+				<VIcon name="flag-algeria" />
+			</template>
+		</VOption>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-searchable-select multiple label="Countries">
@@ -169,9 +448,52 @@ The `multiple` attribute allows the user to select more than one option.
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Max Lines
 
 This controls the maximum number of lines of tags to display. When the limit would be exceeded, the remaining tags will be hidden and replaced by a counter instead.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect multiple label="Countries" :max-lines="2">
+		<VOption value="afghanistan" text="Afghanistan" selected>
+			<template #icon><VIcon name="flag-afghanistan" /></template>
+		</VOption>
+		<VOption value="albania" text="Albania" selected>
+			<template #icon><VIcon name="flag-albania" /></template>
+		</VOption>
+		<VOption value="algeria" text="Algeria" selected>
+			<template #icon><VIcon name="flag-algeria" /></template>
+		</VOption>
+		<VOption value="argentina" text="Argentina" selected>
+			<template #icon><VIcon name="flag-argentina" /></template>
+		</VOption>
+		<VOption value="armenia" text="Armenia" selected>
+			<template #icon><VIcon name="flag-armenia" /></template>
+		</VOption>
+		<VOption value="aruba" text="Aruba" selected>
+			<template #icon><VIcon name="flag-aruba" /></template>
+		</VOption>
+		<VOption value="australia" text="Australia" selected>
+			<template #icon><VIcon name="flag-australia" /></template>
+		</VOption>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-searchable-select multiple label="Countries" max-lines="2">
@@ -199,9 +521,52 @@ This controls the maximum number of lines of tags to display. When the limit wou
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Max Selected
 
 This controls the maximum number of items that user can select. Once the limit is reached, the remaining options will be disabled.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect multiple label="Countries" :max-selected="3">
+		<VOption value="afghanistan" text="Afghanistan">
+			<template #icon><VIcon name="flag-afghanistan" /></template>
+		</VOption>
+		<VOption value="albania" text="Albania">
+			<template #icon><VIcon name="flag-albania" /></template>
+		</VOption>
+		<VOption value="algeria" text="Algeria">
+			<template #icon><VIcon name="flag-algeria" /></template>
+		</VOption>
+		<VOption value="argentina" text="Argentina">
+			<template #icon><VIcon name="flag-argentina" /></template>
+		</VOption>
+		<VOption value="armenia" text="Armenia">
+			<template #icon><VIcon name="flag-armenia" /></template>
+		</VOption>
+		<VOption value="aruba" text="Aruba">
+			<template #icon><VIcon name="flag-aruba" /></template>
+		</VOption>
+		<VOption value="australia" text="Australia">
+			<template #icon><VIcon name="flag-australia" /></template>
+		</VOption>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-searchable-select multiple label="Countries" max-selected="3">
@@ -227,9 +592,89 @@ This controls the maximum number of items that user can select. Once the limit i
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### External Tags
 
 When set, the selected tags will not be displayed inside the component.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { VSearchableSelect, VOption, VIcon, VTagGroup, VTag } from '@vonage/vivid-vue';
+
+const countriesRef = ref<InstanceType<typeof VSearchableSelect> | null>(null);
+const companyTypeRef = ref<InstanceType<typeof VSearchableSelect> | null>(null);
+const selectedTags = ref<{ value: string; text: string }[]>([]);
+
+function updateTags() {
+	const tags: { value: string; text: string }[] = [];
+	for (const selectRef of [countriesRef, companyTypeRef]) {
+		const el = selectRef.value?.element;
+		if (el?.selectedOptions) {
+			for (const opt of el.selectedOptions) {
+				tags.push({ value: opt.value, text: opt.text });
+			}
+		}
+	}
+	selectedTags.value = tags;
+}
+
+function onTagRemoved(value: string) {
+	for (const selectRef of [countriesRef, companyTypeRef]) {
+		const el = selectRef.value?.element;
+		const option = el?.options?.find((o: { value: string }) => o.value === value);
+		if (option) {
+			option.selected = false;
+			break;
+		}
+	}
+	updateTags();
+}
+
+onMounted(() => {
+	updateTags();
+});
+</script>
+
+<template>
+	<VSearchableSelect ref="countriesRef" external-tags multiple label="Countries" clearable @change="updateTags">
+		<VOption value="AF" text="Afghanistan">
+			<template #icon><VIcon name="flag-afghanistan" /></template>
+		</VOption>
+		<VOption value="AL" text="Albania">
+			<template #icon><VIcon name="flag-albania" /></template>
+		</VOption>
+		<VOption value="DZ" text="Algeria">
+			<template #icon><VIcon name="flag-algeria" /></template>
+		</VOption>
+	</VSearchableSelect>
+	<VSearchableSelect ref="companyTypeRef" external-tags multiple label="Company Type" clearable @change="updateTags">
+		<VOption value="ngo" text="Non-Governmental Organization" />
+		<VOption value="gov" text="Governmental Organization" />
+		<VOption value="edu" text="Educational Institution" />
+	</VSearchableSelect>
+	<VTagGroup class="tag-group">
+		<VTag v-for="tag in selectedTags" :key="tag.value" :label="tag.text" removable :data-value="tag.value" @removed="onTagRemoved(tag.value)" />
+	</VTagGroup>
+</template>
+
+<style scoped>
+.tag-group {
+	display: block;
+	margin-top: 12px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-searchable-select external-tags multiple label="Countries" clearable>
@@ -282,9 +727,33 @@ When set, the selected tags will not be displayed inside the component.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Tag Connotation
 
 The `tag-connotation` of Option attribute sets the connotation of the tags.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect multiple>
+		<VOption value="accent" text="accent" selected />
+		<VOption tag-connotation="cta" value="cta" text="cta" selected />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-searchable-select multiple>
@@ -292,6 +761,9 @@ The `tag-connotation` of Option attribute sets the connotation of the tags.
 	<vwc-option tag-connotation="cta" value="cta" text="cta" selected></vwc-option>
 </vwc-searchable-select>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ### Enable Select All
 
@@ -303,6 +775,46 @@ Use the `enable-select-all` attribute to add **Select All** option at the top of
 	Do not use **enable-select-all** together with **max-selected**. When max-selected is set to a positive number, the “Select All” option is hidden.
 
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect multiple label="Countries" enable-select-all select-all-text="Select all countries" deselect-all-text="Deselect all countries">
+		<VOption value="afghanistan" text="Afghanistan">
+			<template #icon><VIcon name="flag-afghanistan" /></template>
+		</VOption>
+		<VOption value="albania" text="Albania">
+			<template #icon><VIcon name="flag-albania" /></template>
+		</VOption>
+		<VOption value="algeria" text="Algeria">
+			<template #icon><VIcon name="flag-algeria" /></template>
+		</VOption>
+		<VOption value="argentina" text="Argentina">
+			<template #icon><VIcon name="flag-argentina" /></template>
+		</VOption>
+		<VOption value="armenia" text="Armenia">
+			<template #icon><VIcon name="flag-armenia" /></template>
+		</VOption>
+		<VOption value="aruba" text="Aruba">
+			<template #icon><VIcon name="flag-aruba" /></template>
+		</VOption>
+		<VOption value="australia" text="Australia">
+			<template #icon><VIcon name="flag-australia" /></template>
+		</VOption>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-searchable-select multiple label="Countries" enable-select-all select-all-text="Select all countries" deselect-all-text="Deselect all countries">
@@ -330,9 +842,40 @@ Use the `enable-select-all` attribute to add **Select All** option at the top of
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Clearable
 
 Adds a clear button to the input field, which clears the selected value(s) when clicked.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 270px
+<script setup lang="ts">
+import { VSearchableSelect, VOption, VIcon } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect multiple label="Countries" clearable>
+		<VOption value="AF" text="Afghanistan">
+			<template #icon><VIcon name="flag-afghanistan" /></template>
+		</VOption>
+		<VOption value="AL" text="Albania">
+			<template #icon><VIcon name="flag-albania" /></template>
+		</VOption>
+		<VOption value="DZ" text="Algeria">
+			<template #icon><VIcon name="flag-algeria" /></template>
+		</VOption>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 270px
 <vwc-searchable-select multiple label="Countries" clearable>
@@ -348,9 +891,35 @@ Adds a clear button to the input field, which clears the selected value(s) when 
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 The `disabled` attribute disables the Searchable Select.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Country" disabled clearable>
+		<VOption value="AF" text="Afghanistan" selected />
+	</VSearchableSelect>
+	<VSearchableSelect label="Country" disabled multiple clearable>
+		<VOption value="AF" text="Afghanistan" selected />
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-searchable-select label="Country" disabled clearable>
@@ -361,6 +930,9 @@ The `disabled` attribute disables the Searchable Select.
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Loading
 
 The `loading` attribute shows the component in a loading state.
@@ -369,15 +941,75 @@ If there are no options to display, the component shows a loading message. It ca
 
 See the [asynchronous option loading use-case](/components/searchable-select/use-cases/#asynchronous-option-loading) for an example of how to load options.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect loading>
+		<template #loading-options>
+			<span>Loading results...</span>
+		</template>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview 230px
 <vwc-searchable-select loading>
 	<span slot="loading-options">Loading results...</span>
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## No Options
 
 The `no-options` slot allows you to customize the message when there are no options to choose from.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 400px
+<script setup lang="ts">
+import { VSearchableSelect, VEmptyState } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Connect number">
+		<template #no-options>
+			<span>You do not have any numbers.</span>
+		</template>
+	</VSearchableSelect>
+	<VSearchableSelect label="Connect number">
+		<template #no-options>
+			<div class="empty-state-wrapper">
+				<VEmptyState icon="phone-number-line" headline="No numbers"> You do not have any numbers yet. </VEmptyState>
+			</div>
+		</template>
+	</VSearchableSelect>
+</template>
+
+<style scoped>
+.empty-state-wrapper {
+	margin: 24px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 400px
 <style>
@@ -393,9 +1025,35 @@ The `no-options` slot allows you to customize the message when there are no opti
 </vwc-searchable-select>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## No Matches
 
 The `no-matches` slot allows you to customize the message that appears when no options match the search query.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSearchableSelect label="Connect number">
+		<VOption value="1" text="+1 1243 546789" />
+		<template #no-matches>
+			<span>No numbers found.</span>
+		</template>
+	</VSearchableSelect>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview 230px
 <vwc-searchable-select label="Connect number">
@@ -403,3 +1061,6 @@ The `no-matches` slot allows you to customize the message that appears when no o
 	<span slot="no-matches"> No numbers found. </span>
 </vwc-searchable-select>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>

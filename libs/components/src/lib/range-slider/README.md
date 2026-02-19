@@ -1,7 +1,20 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRangeSlider } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VRangeSlider />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -20,25 +33,53 @@ registerRangeSlider('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<script setup lang="ts">
-import { VRangeSlider } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VRangeSlider />
-</template>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Min
 
 Use the `min` attribute to set the lowest value allowed for the Range Slider.  
 The default value of `min` is `0`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { ref, useTemplateRef, onMounted } from 'vue';
+import { VLayout, VRangeSlider } from '@vonage/vivid-vue';
+
+const slider = useTemplateRef<InstanceType<typeof VRangeSlider>>('slider');
+const start = ref('');
+const end = ref('');
+
+const updateDescription = () => {
+	if (!slider.value) return;
+	start.value = slider.value.element.start;
+	end.value = slider.value.element.end;
+};
+
+onMounted(() => updateDescription());
+</script>
+
+<template>
+	<VLayout column-basis="block" gutters="small">
+		<div>
+			<VRangeSlider :min="-10" ref="slider" aria-label="Min value example" @change="updateDescription" />
+		</div>
+		<div>
+			Current range:
+			<span v-text="start"></span>
+			to
+			<span v-text="end"></span>
+		</div>
+	</VLayout>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview blocks
 <div>
@@ -66,10 +107,54 @@ The default value of `min` is `0`.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Max
 
 Use the `max` attribute to set the highest value allowed for the Range Slider.  
 The default value `max` of is `10`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { ref, useTemplateRef, onMounted } from 'vue';
+import { VLayout, VRangeSlider } from '@vonage/vivid-vue';
+
+const slider = useTemplateRef<InstanceType<typeof VRangeSlider>>('slider');
+const start = ref('');
+const end = ref('');
+
+const updateDescription = () => {
+	if (!slider.value) return;
+	start.value = slider.value.element.start;
+	end.value = slider.value.element.end;
+};
+
+onMounted(() => updateDescription());
+</script>
+
+<template>
+	<VLayout column-basis="block" gutters="small">
+		<div>
+			<VRangeSlider :max="20" ref="slider" aria-label="Max value example" @change="updateDescription" />
+		</div>
+		<div>
+			Current range:
+			<span v-text="start"></span>
+			to
+			<span v-text="end"></span>
+		</div>
+	</VLayout>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview blocks
 <div>
@@ -97,10 +182,54 @@ The default value `max` of is `10`.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Step
 
 Use the `step` attribute sets the granularity with which values can be incremented/decremented.  
 The default value `step` of is `1`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { ref, useTemplateRef, onMounted } from 'vue';
+import { VLayout, VRangeSlider } from '@vonage/vivid-vue';
+
+const slider = useTemplateRef<InstanceType<typeof VRangeSlider>>('slider');
+const start = ref('');
+const end = ref('');
+
+const updateDescription = () => {
+	if (!slider.value) return;
+	start.value = slider.value.element.start;
+	end.value = slider.value.element.end;
+};
+
+onMounted(() => updateDescription());
+</script>
+
+<template>
+	<VLayout column-basis="block" gutters="small">
+		<div>
+			<VRangeSlider :step="0.5" ref="slider" markers aria-label="Step example" @change="updateDescription" />
+		</div>
+		<div>
+			Current range:
+			<span v-text="start"></span>
+			to
+			<span v-text="end"></span>
+		</div>
+	</VLayout>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview blocks
 <div>
@@ -128,23 +257,66 @@ The default value `step` of is `1`.
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Start
 
 Use the `start` attribute to set the lower position of the range indicator.  
 The default value of `start` is [`min`](/components/range-slider/code/#min).
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRangeSlider } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VRangeSlider start="5" markers aria-label="Start value example" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview blocks
 <vwc-range-slider start="5" markers aria-label="Start value example"></vwc-range-slider>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## End
 
 Use the `end` attribute to set the upper position of the range indicator.  
 The default value of `end` is [`max`](/components/range-slider/code/#max).
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRangeSlider } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VRangeSlider end="5" markers aria-label="End value example" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview blocks
 <vwc-range-slider end="5" markers aria-label="End value example"></vwc-range-slider>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Value Text Formatter
 

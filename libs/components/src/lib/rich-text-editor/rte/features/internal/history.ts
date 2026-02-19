@@ -4,7 +4,7 @@ import { createButton } from '../../utils/ui';
 import { RteFeatureImpl, type ToolbarItemContribution } from '../../feature';
 
 export class RteHistoryFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteHistoryFeature';
+	name = 'RteHistoryFeature';
 
 	override getPlugins() {
 		return [

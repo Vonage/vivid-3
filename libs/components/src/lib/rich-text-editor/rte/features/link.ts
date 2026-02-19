@@ -7,6 +7,7 @@ import {
 import type { Node } from 'prosemirror-model';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
+import { InputRule } from 'prosemirror-inputrules';
 import {
 	createAnchor,
 	createButton,
@@ -16,10 +17,11 @@ import {
 	createTextField,
 	UiCtx,
 } from '../utils/ui';
-import { RteInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
 import {
 	contributionPriority,
 	featureFacade,
+	type InputRuleContribution,
 	type PluginContribution,
 	RteFeatureImpl,
 	type SchemaContribution,
@@ -29,12 +31,42 @@ import {
 import { Popover } from '../../popover';
 import type { Menu } from '../../../menu/menu';
 import type { Button } from '../../../button/button';
+import { sanitizeLinkHref } from '../utils/sanitization';
 import linkCss from './link.style.scss?inline';
 
 type Link = { text: string; href: string; start: number; end: number };
 
+/// Matches links in text
+const linkPattern = '(?:https?://|www\\.)[^\\s<]+';
+
+function convertToLink(
+	state: EditorState,
+	matchedText: string,
+	start: number,
+	end: number
+) {
+	// Don't convert if already a link
+	if (state.doc.rangeHasMark(start, start + 1, state.schema.marks.link)) {
+		return null;
+	}
+
+	// Strip characters that are valid URL characters but likely sentence punctuation when at the end
+	const link = matchedText.replace(/[.,;:!?) ]+$/, '');
+	const href = link.startsWith('www.') ? `https://${link}` : link;
+	const linkMark = state.schema.marks.link.create({ href });
+	const linkEnd = start + link.length;
+	const trailingChars = matchedText.slice(link.length);
+
+	const tr = state.tr.addMark(start, linkEnd, linkMark);
+	// Insert trailing characters (punctuation + space) that were stripped or need to be added
+	if (trailingChars) {
+		tr.replaceWith(linkEnd, end, state.schema.text(trailingChars));
+	}
+	return tr;
+}
+
 export class RteLinkFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteLinkFeature';
+	name = 'RteLinkFeature';
 
 	override getStyles(): StyleContribution[] {
 		return [this.contribution(linkCss)];
@@ -62,7 +94,7 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 							],
 							toDOM(node) {
 								const { href } = node.attrs;
-								return ['a', { href }, 0];
+								return ['a', { href: sanitizeLinkHref(href) }, 0];
 							},
 						},
 					},
@@ -76,6 +108,25 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 
 	override getTextblockMarks() {
 		return [this.contribution({ markName: 'link' })];
+	}
+
+	override getInputRules(): InputRuleContribution[] {
+		const linkRegex = new RegExp(`${linkPattern}$`);
+
+		return [
+			this.contribution({
+				rule: new InputRule(
+					new RegExp(`${linkPattern} $`),
+					(state, match, start, end) =>
+						convertToLink(state, match[0], start, end)
+				),
+				enterHandler: {
+					regex: linkRegex,
+					handler: (state, match, start, end) =>
+						convertToLink(state, match[0], start, end),
+				},
+			}),
+		];
 	}
 
 	override getPlugins(rte: RteInstanceImpl): PluginContribution[] {

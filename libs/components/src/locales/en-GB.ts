@@ -173,6 +173,9 @@ const enGB: Locale = {
 	tab: {
 		dismissButtonLabel: 'Press the DELETE key to close this tab',
 	},
+	select: {
+		clearButtonLabel: 'Clear selection',
+	},
 	searchableSelect: {
 		clearButtonLabel: 'Clear selection',
 		noOptionsMessage: 'No options',
@@ -236,6 +239,8 @@ const enGB: Locale = {
 			fit: 'Fit',
 			original: 'Original size',
 		},
+		suggestLoading: 'Loading...',
+		suggestNoResults: 'No results',
 	},
 	button: {
 		pendingLabel: 'Loading...',

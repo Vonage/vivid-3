@@ -4,7 +4,7 @@ import dts from 'vite-plugin-dts';
 export default defineConfig({
 	plugins: [
 		dts({
-			skipDiagnostics: true,
+			include: ['src/**/*.ts'],
 		}),
 	],
 

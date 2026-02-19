@@ -12,6 +12,12 @@ import type {
 	VividTestUtilsManifest,
 } from '../common/ComponentDef';
 
+export type DynamicSlot = {
+	name: string;
+	type: string;
+	description?: string;
+};
+
 export type Declaration = CustomElementDeclaration &
 	ClassDeclaration & {
 		_modulePath: string;
@@ -22,6 +28,7 @@ export type Declaration = CustomElementDeclaration &
 			public?: true;
 		};
 		vividTesting?: ComponentDef['testUtils'];
+		dynamicSlots?: DynamicSlot[];
 	};
 
 const parseManifest = (fileName: string): Declaration[] => {
@@ -192,6 +199,35 @@ const resolveSlots = (kind: string, name: string): schema.Slot[] => {
 	return Array.from(slotMap.values());
 };
 
+/**
+ * Recursively traverse the inheritance hierarchy to collect dynamic slots, which are not automatically inherited like e.g. attributes.
+ */
+const resolveDynamicSlots = (kind: string, name: string): DynamicSlot[] => {
+	const declaration = findDeclaration(vividDeclarations, kind, name);
+
+	const inheritedDynamicSlots = [
+		...(declaration.superclass && declaration.superclass.name !== 'FASTElement'
+			? resolveDynamicSlots('class', declaration.superclass.name)
+			: []),
+		...(declaration.mixins ?? []).flatMap((m) =>
+			resolveDynamicSlots('mixin', m.name)
+		),
+	];
+
+	const currentDynamicSlots = declaration.dynamicSlots ?? [];
+
+	// Merge dynamic slots, with current dynamic slots overriding inherited ones
+	const dynamicSlotMap = new Map<string, DynamicSlot>();
+	for (const dynamicSlot of [
+		...inheritedDynamicSlots,
+		...currentDynamicSlots,
+	]) {
+		dynamicSlotMap.set(dynamicSlot.name, dynamicSlot);
+	}
+
+	return Array.from(dynamicSlotMap.values());
+};
+
 export const getVividComponentDeclaration = (
 	className: string
 ): Declaration => {
@@ -209,6 +245,7 @@ export const getVividComponentDeclaration = (
 	return {
 		...declaration,
 		slots: resolveSlots('class', className),
+		dynamicSlots: resolveDynamicSlots('class', className),
 		vividTesting: resolveTestingDefintions('class', className),
 		_localTypeDefs: resolveLocalTypeDefs('class', className),
 	};

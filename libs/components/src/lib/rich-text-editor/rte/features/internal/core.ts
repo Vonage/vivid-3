@@ -17,9 +17,11 @@ import type { VividElementDefinitionContext } from '../../../../../shared/design
 import type { RteInstanceImpl } from '../../instance';
 import { defaultTextblockForMatch } from '../../utils/default-textblock';
 import uiCss from '../../utils/ui.style.scss?inline';
+import { FeatureState } from '../../utils/feature-state';
 import coreCss from './core.style.scss?inline';
 import { RteHistoryFeatureImpl } from './history';
 import { RteForeignHtmlFeatureImpl } from './foreign-html';
+import { RteCursorFixFeatureImpl } from './cursor-fix';
 
 export interface HostState {
 	ctx: VividElementDefinitionContext;
@@ -46,7 +48,9 @@ export const hostBridgePlugin = new Plugin<HostState | null>({
 });
 
 export class RteCoreImpl extends RteFeatureImpl {
-	protected name = 'RteCore';
+	name = 'RteCore';
+
+	disabled = new FeatureState(false);
 
 	override getStyles() {
 		return [
@@ -58,6 +62,43 @@ export class RteCoreImpl extends RteFeatureImpl {
 
 	override getPlugins(rte: RteInstanceImpl) {
 		return [
+			this.contribution(this.disabled.plugin),
+			this.contribution(
+				new Plugin({
+					props: {
+						editable: () => !this.disabled.getValue(rte),
+						handleDOMEvents: {
+							click: (_view, event) => {
+								if (this.disabled.getValue(rte)) {
+									event.preventDefault();
+									return true;
+								}
+								return false;
+							},
+						},
+					},
+					view: (view) => {
+						const popovers = (
+							view.dom.getRootNode() as ShadowRoot
+						).querySelector('.popovers')!;
+
+						const updatePopoversDisabled = () => {
+							popovers.classList.toggle(
+								'popovers--disabled',
+								this.disabled.getValue(rte)
+							);
+						};
+
+						updatePopoversDisabled();
+
+						return {
+							update: () => {
+								updatePopoversDisabled();
+							},
+						};
+					},
+				})
+			),
 			this.contribution(
 				keymap({
 					...baseKeymap,
@@ -90,7 +131,12 @@ export class RteCoreImpl extends RteFeatureImpl {
 	}
 
 	override getFeatures(): RteFeatureImpl[] {
-		return [this, new RteHistoryFeatureImpl(), new RteForeignHtmlFeatureImpl()];
+		return [
+			this,
+			new RteHistoryFeatureImpl(),
+			new RteForeignHtmlFeatureImpl(),
+			new RteCursorFixFeatureImpl(),
+		];
 	}
 }
 

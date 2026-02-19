@@ -123,10 +123,17 @@ export const parseComponent = (name: string): ComponentDef => {
 		})
 	);
 
-	const slots: ComponentDef['slots'] = (declaration.slots ?? []).map((s) => ({
-		name: s.name || 'default',
-		description: s.description,
-	}));
+	const slots: ComponentDef['slots'] = [
+		...(declaration.slots ?? []).map((s) => ({
+			name: s.name || 'default',
+			description: s.description,
+		})),
+		...(declaration.dynamicSlots ?? []).map((s) => ({
+			name: s.name,
+			description: s.description,
+			dynamicProps: resolveLocalType(`dynamic slot ${s.name}`, s.type),
+		})),
+	];
 
 	// Assume that the register function is named after the component directory
 	// e.g. libs/components/src/lib/data-grid/data-grid-cell.ts is registered by registerDataGrid

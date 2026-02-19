@@ -70,6 +70,35 @@ describe('RteLinkFeature', () => {
 		);
 	});
 
+	it.each([
+		'javascript:alert("XSS")',
+		'data:text/html,<script>alert(1)</script>',
+	])('should sanitize unsafe URL "%s"', async (url) => {
+		const rte = await setup(features, [
+			p('Click ', text.marks(link({ href: url }))('here')),
+		]);
+
+		expect(rte.view.dom.querySelector('a')!.getAttribute('href')).toBe('');
+		expect(rte.getHtml()).toBe('<p>Click <a href="">here</a></p>');
+	});
+
+	it.each([
+		'https://example.com',
+		'http://example.com',
+		'mailto:test@example.com',
+		'tel:+1234567890',
+		'/about',
+		'./page',
+		'#section',
+	])('should allow safe URL "%s"', async (url) => {
+		const rte = await setup(features, [
+			p('Click ', text.marks(link({ href: url }))('here')),
+		]);
+
+		expect(rte.view.dom.querySelector('a')!.getAttribute('href')).toBe(url);
+		expect(rte.getHtml()).toBe(`<p>Click <a href="${url}">here</a></p>`);
+	});
+
 	it('should add a link menu to the toolbar to insert links', async () => {
 		const { toolbarButton, click, textField, openMenu, input, button, docStr } =
 			await setup(features);
@@ -364,6 +393,225 @@ describe('RteLinkFeature', () => {
 			await elementUpdated(element);
 
 			expect(openPopover()).toBe(undefined);
+		});
+	});
+
+	describe('input rules', () => {
+		it.each([
+			'http://example.com',
+			'https://example.com',
+			'https://example.com/',
+			'https://example.com/path',
+			'https://example.com/path/',
+			'https://example.com/path?query=value&other=param#fragment',
+		])(
+			'should convert "%s" to a link when followed by a space',
+			async (url) => {
+				const { placeCursor, typeTextAtCursor, docStr } = await setup(
+					features,
+					[p('Visit ')]
+				);
+
+				placeCursor('Visit |');
+				await typeTextAtCursor(`${url} `);
+
+				expect(docStr()).toBe(`
+paragraph(
+	'Visit ',
+	<link[href="${url}"]>'${url}',
+	' |'
+)
+`);
+			}
+		);
+
+		it('should convert www. URLs to links with https:// prefix', async () => {
+			const { placeCursor, typeTextAtCursor, docStr } = await setup(features, [
+				p('Visit '),
+			]);
+
+			placeCursor('Visit |');
+			await typeTextAtCursor('www.example.com ');
+
+			expect(docStr()).toMatchInlineSnapshot(`
+				"
+				paragraph(
+					'Visit ',
+					<link[href="https://www.example.com"]>'www.example.com',
+					' |'
+				)
+				"
+			`);
+		});
+
+		it.each(['world', 'www.', 'https', 'https:', 'https:/', 'https://'])(
+			'should not convert "%s" to a link when followed by a space',
+			async (input) => {
+				const { placeCursor, typeTextAtCursor, docStr } = await setup(
+					features,
+					[p('Hello ')]
+				);
+
+				placeCursor('Hello |');
+				await typeTextAtCursor(`${input} `);
+
+				expect(docStr()).toBe(`paragraph('Hello ${input} |')`);
+			}
+		);
+
+		it.each(['.', ',', ';', ':', '!', '?', ')'])(
+			'should not include trailing punctuation "%s" as part of the link',
+			async (punctuation) => {
+				const { placeCursor, typeTextAtCursor, docStr } = await setup(
+					features,
+					[p('Visit ')]
+				);
+
+				placeCursor('Visit |');
+				await typeTextAtCursor(`https://example.com${punctuation} `);
+
+				expect(docStr()).toBe(`
+paragraph(
+	'Visit ',
+	<link[href="https://example.com"]>'https://example.com',
+	'${punctuation} |'
+)
+`);
+			}
+		);
+
+		it('should strip multiple trailing punctuation characters', async () => {
+			const { placeCursor, typeTextAtCursor, docStr } = await setup(features, [
+				p('Visit '),
+			]);
+
+			placeCursor('Visit |');
+			await typeTextAtCursor('https://example.com). ');
+
+			expect(docStr()).toMatchInlineSnapshot(`
+				"
+				paragraph(
+					'Visit ',
+					<link[href="https://example.com"]>'https://example.com',
+					'). |'
+				)
+				"
+			`);
+		});
+
+		it('should convert URL to a link when Enter is pressed', async () => {
+			const { placeCursor, typeTextAtCursor, keydown, docStr, element } =
+				await setup(features, [p('Visit ')]);
+
+			placeCursor('Visit |');
+			await typeTextAtCursor('https://example.com');
+			keydown('Enter');
+			await elementUpdated(element);
+
+			expect(docStr()).toMatchInlineSnapshot(`
+				"
+				paragraph(
+					'Visit ',
+					<link[href="https://example.com"]>'https://example.com'
+				),
+				paragraph(|)
+				"
+			`);
+		});
+
+		it('should not convert URL when Enter is pressed with range selection', async () => {
+			const { selectText, keydown, docStr, element } = await setup(features, [
+				p('Visit https://example.com today'),
+			]);
+
+			selectText('Visit [https://example.com|] today');
+			keydown('Enter');
+			await elementUpdated(element);
+
+			expect(docStr()).toMatchInlineSnapshot(
+				`"paragraph('Visit '), paragraph('| today')"`
+			);
+		});
+
+		it('should undo link conversion when Backspace is pressed', async () => {
+			const { placeCursor, typeTextAtCursor, keydown, docStr, element } =
+				await setup(features, [p('Visit ')]);
+
+			placeCursor('Visit |');
+			await typeTextAtCursor('https://example.com ');
+
+			expect(docStr()).toMatchInlineSnapshot(`
+				"
+				paragraph(
+					'Visit ',
+					<link[href="https://example.com"]>'https://example.com',
+					' |'
+				)
+				"
+			`);
+
+			keydown('Backspace');
+			await elementUpdated(element);
+
+			expect(docStr()).toMatchInlineSnapshot(
+				`"paragraph('Visit https://example.com |')"`
+			);
+		});
+
+		it('should not modify existing links when typing space', async () => {
+			const { placeCursor, typeTextAtCursor, docStr } = await setup(features, [
+				p(
+					'Visit ',
+					text.marks(link({ href: 'https://old.com' }))('https://example.com')
+				),
+			]);
+
+			placeCursor('https://example.com|');
+			await typeTextAtCursor(' ');
+
+			expect(docStr()).toMatchInlineSnapshot(`
+				"
+				paragraph(
+					'Visit ',
+					<link[href="https://old.com"]>'https://example.com',
+					' |'
+				)
+				"
+			`);
+		});
+
+		it('should not modify existing links when pressing Enter', async () => {
+			const { placeCursor, keydown, docStr, element } = await setup(features, [
+				p(
+					'Visit ',
+					text.marks(link({ href: 'https://old.com' }))('https://example.com')
+				),
+			]);
+
+			placeCursor('https://example.com|');
+			keydown('Enter');
+			await elementUpdated(element);
+
+			expect(docStr()).toMatchInlineSnapshot(`
+				"
+				paragraph('Visit ', <link[href="https://old.com"]>'https://example.com'),
+				paragraph(|)
+				"
+			`);
+		});
+
+		it('should not convert plain text when Enter is pressed', async () => {
+			const { placeCursor, typeTextAtCursor, keydown, docStr, element } =
+				await setup(features, [p('Hello ')]);
+
+			placeCursor('Hello |');
+			await typeTextAtCursor('world');
+			keydown('Enter');
+			await elementUpdated(element);
+
+			expect(docStr()).toMatchInlineSnapshot(
+				`"paragraph('Hello world'), paragraph(|)"`
+			);
 		});
 	});
 });

@@ -1,7 +1,23 @@
 ## Usage
 
 <vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 100px
+<script setup lang="ts">
+import { VSideDrawer } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSideDrawer open>
+		<p>Side Drawer</p>
+	</VSideDrawer>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component" id="web-tab"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -22,30 +38,6 @@ registerSideDrawer('your-prefix');
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<template>
-	<VSideDrawer open>
-		<VLayout gutters="small">
-			<p>Side Drawer content</p>
-		</VLayout>
-
-		<template #app-content>
-			<VLayout gutters="small">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</VLayout>
-		</template>
-	</VSideDrawer>
-</template>
-
-<script lang="ts" setup>
-import { VSideDrawer, VLayout } from '@vonage/vivid-vue';
-</script>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## Slots
@@ -54,15 +46,63 @@ import { VSideDrawer, VLayout } from '@vonage/vivid-vue';
 
 Use the `default` slot to add content to the side drawer itself.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full 150px
+<script setup lang="ts">
+import { VSideDrawer, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSideDrawer open>
+		<VLayout gutters="small">Side Drawer content</VLayout>
+	</VSideDrawer>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full 150px
 <vwc-side-drawer open>
 	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 </vwc-side-drawer>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### App Content
 
 Use the `app-content` slot for the main application content, the side drawer is opened next to.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VSideDrawer, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSideDrawer open>
+		<template #app-content>
+			<VLayout gutters="small">
+				<h3>App Content</h3>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</VLayout>
+		</template>
+	</VSideDrawer>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-side-drawer open>
@@ -73,11 +113,40 @@ Use the `app-content` slot for the main application content, the side drawer is 
 </vwc-side-drawer>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## CSS Parts
 
 ### Base
 
 Use the CSS part `base` to provide custom styling to the Side-Drawer.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full 150px
+<script setup lang="ts">
+import { VSideDrawer, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSideDrawer open class="side-drawer-base">
+		<VLayout gutters="small">Side Drawer content</VLayout>
+	</VSideDrawer>
+</template>
+
+<style scoped>
+.side-drawer-base::part(base) {
+	background-color: var(--vvd-color-neutral-50);
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full 150px
 <vwc-side-drawer open>
@@ -91,12 +160,46 @@ Use the CSS part `base` to provide custom styling to the Side-Drawer.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## CSS Variables
 
 ### Application Content Offset
 
 Use `--side-drawer-app-content-offset` to set a value different from `280px` to the offset of side drawer's application content.  
 This is needed if a custom width is set on the side-drawer, or if side-drawer needs to overlap content [see use-case](/components/side-drawer/use-cases/#side-drawer-overlap-content)
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full 150px
+<script setup lang="ts">
+import { VSideDrawer, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSideDrawer class="side-drawer" open>
+		<template #app-content>
+			<VLayout gutters="medium">narrow side drawer with 100px width</VLayout>
+		</template>
+	</VSideDrawer>
+</template>
+
+<style scoped>
+.side-drawer {
+	--side-drawer-app-content-offset: 100px;
+}
+.side-drawer::part(base) {
+	inline-size: 100px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full 150px
 <vwc-side-drawer class="side-drawer" open>
@@ -112,6 +215,9 @@ This is needed if a custom width is set on the side-drawer, or if side-drawer ne
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 

@@ -17,6 +17,7 @@ import type {
 	VwcColorPickerElement,
 	VwcComboboxElement,
 	VwcContextualHelpElement,
+	VwcCountryElement,
 	VwcDataGridCellElement,
 	VwcDataGridElement,
 	VwcDataGridRowElement,
@@ -56,6 +57,7 @@ import type {
 	VwcSimpleColorPickerElement,
 	VwcSliderElement,
 	VwcSplitButtonElement,
+	VwcStatusElement,
 	VwcSwitchElement,
 	VwcTabElement,
 	VwcTableBodyElement,
@@ -97,6 +99,7 @@ type DefaultVividTagNameMap = {
 	'vwc-color-picker': VwcColorPickerElement;
 	'vwc-contextual-help': VwcContextualHelpElement;
 	'vwc-combobox': VwcComboboxElement;
+	'vwc-country': VwcCountryElement;
 	'vwc-data-grid-cell': VwcDataGridCellElement;
 	'vwc-data-grid': VwcDataGridElement;
 	'vwc-data-grid-row': VwcDataGridRowElement;
@@ -142,6 +145,7 @@ type DefaultVividTagNameMap = {
 	'vwc-simple-color-picker': VwcSimpleColorPickerElement;
 	'vwc-slider': VwcSliderElement;
 	'vwc-split-button': VwcSplitButtonElement;
+	'vwc-status': VwcStatusElement;
 	'vwc-switch': VwcSwitchElement;
 	'vwc-tab': VwcTabElement;
 	'vwc-tab-panel': VwcTabPanelElement;

@@ -163,10 +163,21 @@ $low-ink-color: --_low-ink-color;
 }
 
 // focus styles
-:host(:focus-within) .control:not(.has-activedescendant) {
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
+@supports selector(:has(*)) {
+	:host(:focus-within)
+		.control:not(.has-activedescendant, :has(.clear-button:focus)) {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-	@include focus.focus;
+		@include focus.focus;
+	}
+}
+
+@supports not selector(:has(*)) {
+	:host(:focus-within) .control:not(.has-activedescendant) {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		@include focus.focus;
+	}
 }
 
 :host(:not([multiple]))
@@ -175,4 +186,12 @@ $low-ink-color: --_low-ink-color;
 
 	@include focus.focus;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
+}
+
+:host([multiple]) .clear-button {
+	margin-inline-start: auto;
+}
+
+:host([multiple][clearable]) .label-wrapper {
+	min-block-size: #{size.$vvd-size-super-condensed};
 }

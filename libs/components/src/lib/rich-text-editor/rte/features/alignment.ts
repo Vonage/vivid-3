@@ -28,8 +28,11 @@ const alignments = [
 	},
 ] as const;
 
+const validTextAlign = (value: string): Alignment =>
+	alignments.find((a) => a.value === value)?.value ?? 'left';
+
 export class RteAlignmentFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteAlignmentFeature';
+	name = 'RteAlignmentFeature';
 
 	override getTextblockAttrs(): TextblockAttrContribution[] {
 		return [
@@ -37,10 +40,10 @@ export class RteAlignmentFeatureImpl extends RteFeatureImpl {
 				name: 'textAlign',
 				default: 'left',
 				fromDOM(dom: HTMLElement) {
-					return dom.style.textAlign || 'left';
+					return validTextAlign(dom.style.textAlign);
 				},
 				toStyles(node) {
-					return [`text-align: ${node.attrs.textAlign}`];
+					return [`text-align: ${validTextAlign(node.attrs.textAlign)}`];
 				},
 			}),
 		];

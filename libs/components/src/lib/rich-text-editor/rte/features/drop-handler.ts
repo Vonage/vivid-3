@@ -24,7 +24,7 @@ export interface RteDropHandlerConfig {
 }
 
 export class RteDropHandlerFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteDebugFeature';
+	name = 'RteDebugFeature';
 
 	constructor(readonly config: RteDropHandlerConfig) {
 		super();

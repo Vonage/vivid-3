@@ -2587,17 +2587,107 @@
 			}
 		},
 		{
+			"name": "country",
+			"className": "Country",
+			"registerFunctionName": "registerCountry",
+			"description": "",
+			"props": [
+				{
+					"name": "code",
+					"description": "ISO 3166-1 alpha-2 country code (e.g. \"GB\", \"UK\", \"US\"). When set, the component shows the matching flag icon and the code (e.g. \"UK\") automatically.",
+					"type": "string",
+					"attributeName": "code",
+					"propertyName": "code"
+				},
+				{
+					"name": "label",
+					"description": "Optional label to override the displayed text. When set, this is shown instead of the country code (e.g. for obscure countries where \"Saint Helena\" is clearer than \"SH\").",
+					"type": "string",
+					"attributeName": "label",
+					"propertyName": "label"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "icon",
+					"description": "Optional custom flag or graphic. When `code` is set and no content is slotted, a default flag icon (Vivid/Vonage icon set) is shown."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
 			"name": "data-grid",
 			"className": "DataGrid",
 			"registerFunctionName": "registerDataGrid",
 			"description": "",
 			"props": [
 				{
+					"name": "columnDefinitions",
+					"description": "Configure the grid header columns.",
+					"type": "any[]",
+					"propertyName": "columnDefinitions"
+				},
+				{
 					"name": "fixedColumns",
 					"description": "Number of columns to be fixed when scrolling horizontally",
 					"type": "number",
 					"attributeName": "fixed-columns",
 					"propertyName": "fixedColumns"
+				},
+				{
+					"name": "focusColumnIndex",
+					"description": "Index of column to be focused on when the Data Grid receives focus.",
+					"type": "number",
+					"propertyName": "focusColumnIndex"
+				},
+				{
+					"name": "focusRowIndex",
+					"description": "Index of row to be focused on when the Data Grid receives focus.",
+					"type": "number",
+					"propertyName": "focusRowIndex"
 				},
 				{
 					"name": "generateHeader",
@@ -2619,6 +2709,12 @@
 					"type": "boolean",
 					"attributeName": "no-tabbing",
 					"propertyName": "noTabbing"
+				},
+				{
+					"name": "rowElementTag",
+					"description": "Element tag for header rows.",
+					"type": "string",
+					"propertyName": "rowElementTag"
 				},
 				{
 					"name": "rowsData",
@@ -5958,6 +6054,10 @@
 					"description": "The preferred way to add an icon to the component."
 				},
 				{
+					"name": "tag-icon",
+					"description": "Icon to be displayed in the tag when selected inside of Searchable Select."
+				},
+				{
 					"name": "trailing-meta",
 					"description": "For additional elements at the end of the Option."
 				}
@@ -7070,8 +7170,18 @@
 					"description": "Displayed at the start of the scrollable editor area."
 				},
 				{
+					"name": "inline-image-placeholder",
+					"description": "Placeholder content for inline images.",
+					"dynamicProps": "{ url: string }"
+				},
+				{
 					"name": "status",
 					"description": "Displayed between the editor viewport and the toolbar."
+				},
+				{
+					"name": "suggestions-empty",
+					"description": "Empty state if no suggestions are found.",
+					"dynamicProps": "{ id: string }"
 				},
 				{
 					"name": "text-color-picker",
@@ -7136,7 +7246,13 @@
 			],
 			"vueModels": [],
 			"methods": [],
-			"slots": [],
+			"slots": [
+				{
+					"name": "child",
+					"description": "Used for custom rendered children.",
+					"dynamicProps": "RteChildSlotProps"
+				}
+			],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
 				"actions": [
@@ -7468,6 +7584,13 @@
 					"type": "'fieldset' | 'ghost'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
+				},
+				{
+					"name": "clearable",
+					"description": "Adds a clear button to the select field that clears the selected value.",
+					"type": "boolean",
+					"attributeName": "clearable",
+					"propertyName": "clearable"
 				},
 				{
 					"name": "disabled",
@@ -8474,6 +8597,89 @@
 			}
 		},
 		{
+			"name": "status",
+			"className": "Status",
+			"registerFunctionName": "registerStatus",
+			"description": "",
+			"props": [
+				{
+					"name": "connotation",
+					"description": "The connotation the status should have. Determines icon and color.",
+					"type": "'success' | 'information' | 'warning' | 'alert'",
+					"attributeName": "connotation",
+					"propertyName": "connotation"
+				},
+				{
+					"name": "icon",
+					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
+					"type": "IconId",
+					"attributeName": "icon",
+					"propertyName": "icon"
+				},
+				{
+					"name": "status",
+					"description": "The status title (e.g. \"Positive\", \"Info\", \"Warning\", \"Alert\").",
+					"type": "string",
+					"attributeName": "status",
+					"propertyName": "status"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "default",
+					"description": "Description text below the title."
+				},
+				{
+					"name": "icon",
+					"description": "Optional custom icon. When not set, icon is derived from connotation."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "hover", "args": ["hover", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "blur", "args": ["blur", "#locator"] }
+				],
+				"queries": [{ "name": "icon", "args": ["affixIcon"] }],
+				"refs": []
+			}
+		},
+		{
 			"name": "switch",
 			"className": "Switch",
 			"registerFunctionName": "registerSwitch",
@@ -8817,7 +9023,7 @@
 		{
 			"name": "table",
 			"className": "Table",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -8869,7 +9075,7 @@
 		{
 			"name": "table-body",
 			"className": "TableBody",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -8921,7 +9127,7 @@
 		{
 			"name": "table-cell",
 			"className": "TableCell",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -8973,7 +9179,7 @@
 		{
 			"name": "table-head",
 			"className": "TableHead",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -9025,7 +9231,7 @@
 		{
 			"name": "table-header-cell",
 			"className": "TableHeaderCell",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -9077,7 +9283,7 @@
 		{
 			"name": "table-row",
 			"className": "TableRow",
-			"registerFunctionName": "registerDataTable",
+			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
 			"events": [
@@ -10710,5 +10916,5 @@
 			}
 		}
 	],
-	"iconsManifestUrl": "https://icon.resources.vonage.com/v4.7.0/manifest.json"
+	"iconsManifestUrl": "https://icon.resources.vonage.com/v4.7.1/manifest.json"
 }

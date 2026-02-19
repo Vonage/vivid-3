@@ -11,7 +11,7 @@ import {
 import { RteTextStyleFeatureImpl } from './internal/text-style';
 
 export class RteItalicFeatureImpl extends RteTextStyleFeatureImpl {
-	protected name = 'RteItalicFeature';
+	name = 'RteItalicFeature';
 	protected markName = 'italic';
 
 	override getSchema(): SchemaContribution[] {

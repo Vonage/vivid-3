@@ -27,10 +27,12 @@ This is an example component
 
 ## Slots
 
-| Name               | Description             |
-| ------------------ | ----------------------- |
-| **example-slot**   | This is an example slot |
-| **no-description** |                         |
+| Name                       | Description             |
+| -------------------------- | ----------------------- |
+| **example-slot**           | This is an example slot |
+| **no-description**         |                         |
+| **dynamic-slot**           | This is a dynamic slot  |
+| **dynamic-no-description** |                         |
 
 ## Methods
 

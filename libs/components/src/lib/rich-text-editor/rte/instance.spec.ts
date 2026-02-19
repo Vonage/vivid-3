@@ -3,10 +3,33 @@ import { RteBase } from './features/base';
 import { docFactories } from './__tests__/doc-factories';
 import { setup } from './__tests__/test-utils';
 import { impl } from './utils/impl';
-import { RteBoldFeatureImpl } from './features/bold';
+import { featureFacade, RteFeatureImpl } from './feature';
 
 const { doc, paragraph: p, text } = docFactories;
 const features = [new RteBase()];
+
+class TestFeatureImpl extends RteFeatureImpl {
+	name = 'TestFeature';
+
+	override getPublicInterface() {
+		return { test: true };
+	}
+}
+const TestFeature = featureFacade(TestFeatureImpl);
+
+class MultiInstanceFeatureImpl extends RteFeatureImpl {
+	name: string;
+
+	constructor(override featureId: string) {
+		super();
+		this.name = `MultiInstanceFeature[${featureId}]`;
+	}
+
+	override getPublicInterface() {
+		return { id: this.featureId };
+	}
+}
+const MultiInstanceFeature = featureFacade(MultiInstanceFeatureImpl);
 
 describe('RteInstance', () => {
 	describe('initialization', () => {
@@ -213,8 +236,8 @@ describe('RteInstance', () => {
 			const config = new RteConfig(features);
 			const instance = config.instantiateEditor()[impl];
 
-			expect(() => instance.getFeature(RteBoldFeatureImpl)).toThrowError(
-				'Feature not found: RteBoldFeatureImpl'
+			expect(() => instance.getFeature('RteBoldFeature')).toThrowError(
+				'Feature not found: RteBoldFeature'
 			);
 		});
 	});
@@ -225,6 +248,74 @@ describe('RteInstance', () => {
 			const instance = config.instantiateEditor()[impl];
 
 			expect(() => instance.destroyViewIfNeeded()).not.toThrow();
+		});
+	});
+
+	describe('getPublicInterface', () => {
+		it('should return the public interface of a feature', () => {
+			const config = new RteConfig([new RteBase(), new TestFeature()]);
+			const instance = config.instantiateEditor()[impl];
+
+			expect(instance.getPublicInterface(TestFeature).test).toBe(true);
+		});
+
+		it('should throw an error when feature is not found', () => {
+			const config = new RteConfig([new RteBase()]);
+			const instance = config.instantiateEditor()[impl];
+
+			expect(() => instance.getPublicInterface(TestFeature)).toThrowError(
+				'Feature not found'
+			);
+		});
+
+		it('should throw an error when multiple instances exist without featureId', () => {
+			const config = new RteConfig([
+				new RteBase(),
+				new MultiInstanceFeature('first'),
+				new MultiInstanceFeature('second'),
+			]);
+			const instance = config.instantiateEditor()[impl];
+
+			expect(() =>
+				instance.getPublicInterface(MultiInstanceFeature)
+			).toThrowError('No featureId provided for multi-instance feature.');
+		});
+
+		it('should return the correct instance when featureId is provided', () => {
+			const config = new RteConfig([
+				new RteBase(),
+				new MultiInstanceFeature('first'),
+				new MultiInstanceFeature('second'),
+			]);
+			const instance = config.instantiateEditor()[impl];
+
+			expect(
+				instance.getPublicInterface(MultiInstanceFeature, 'first').id
+			).toBe('first');
+			expect(
+				instance.getPublicInterface(MultiInstanceFeature, 'second').id
+			).toBe('second');
+		});
+
+		it('should throw an error when featureId does not match any instance', () => {
+			const config = new RteConfig([
+				new RteBase(),
+				new MultiInstanceFeature('first'),
+			]);
+			const instance = config.instantiateEditor()[impl];
+
+			expect(() =>
+				instance.getPublicInterface(MultiInstanceFeature, 'nonexistent')
+			).toThrowError('Feature with id "nonexistent" not found');
+		});
+
+		it('should throw error when providing featureId to single-instance feature', () => {
+			const config = new RteConfig([new RteBase(), new TestFeature()]);
+			const instance = config.instantiateEditor()[impl];
+
+			expect(() =>
+				instance.getPublicInterface(TestFeature, 'someId')
+			).toThrowError('Feature does not support featureId');
 		});
 	});
 });

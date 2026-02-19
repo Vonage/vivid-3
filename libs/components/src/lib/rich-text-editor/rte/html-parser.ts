@@ -9,6 +9,7 @@ import DOMPurify from 'dompurify';
 import { type RteConfig, RteConfigImpl } from './config';
 import type { RteDocument, RteFragment } from './document';
 import { impl } from './utils/impl';
+import { domPurifyConfig } from './utils/sanitization';
 
 const copy = <T extends object>(obj: T): T => ({ ...obj });
 
@@ -83,7 +84,10 @@ export class RteHtmlParser {
 	}
 
 	private parseHtml(html: string, options?: ParseOptions): DocumentFragment {
-		const dom = DOMPurify.sanitize(html, { RETURN_DOM: true });
+		const dom = DOMPurify.sanitize(html, {
+			RETURN_DOM: true,
+			...domPurifyConfig,
+		});
 
 		const container = document.createDocumentFragment();
 		container.appendChild(dom);

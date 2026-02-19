@@ -254,7 +254,7 @@ export type RteListConfig = {
 };
 
 export class RteListFeatureImpl extends RteFeatureImpl {
-	protected name = 'RteListFeature';
+	name = 'RteListFeature';
 
 	constructor(protected config: RteListConfig) {
 		super();

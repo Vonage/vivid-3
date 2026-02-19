@@ -1,5 +1,73 @@
 ## Collapsible Side Drawer
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full 250px
+<template>
+	<div class="container">
+		<VSideDrawer class="drawer" :class="{ collapsed: !open }" open alternate>
+			<VLayout gutters="small" column-basis="block">
+				<VNav>
+					<VNavItem class="item" href="#" :text="open ? 'Calls' : ''" :data-label="open ? '' : 'Calls'" icon="call-line" :aria-current="selected === 'calls' ? 'page' : null" @click.prevent="selected = 'calls'" />
+					<VNavItem class="item" href="#" :text="open ? 'Voicemail' : ''" :data-label="open ? '' : 'Voicemail'" icon="voicemail-line" :aria-current="selected === 'voicemail' ? 'page' : null" @click.prevent="selected = 'voicemail'" />
+					<VNavItem class="item" href="#" :text="open ? 'SMS' : ''" :data-label="open ? '' : 'SMS'" icon="chat-line" :aria-current="selected === 'sms' ? 'page' : null" @click.prevent="selected = 'sms'" />
+				</VNav>
+			</VLayout>
+			<template #app-content>
+				<VLayout gutters="medium"> Toggle the side drawer by clicking the FAB. </VLayout>
+				<VFab class="fab" icon="menu-solid" @click="open = !open" />
+			</template>
+		</VSideDrawer>
+	</div>
+</template>
+
+<script setup lang="ts">
+import { VFab, VLayout, VNav, VNavItem, VSideDrawer } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const open = ref(true);
+const selected = ref('calls');
+</script>
+
+<style lang="scss" scoped>
+.container {
+	/* for demo purposes */
+	block-size: 250px;
+	overflow: hidden;
+}
+
+.fab {
+	position: fixed;
+	inset: auto auto 8px 8px;
+	z-index: 2;
+}
+
+.drawer::part(base) {
+	transform: var(--demo-drawer-transform);
+}
+
+.drawer {
+	--demo-drawer-transform: translateX(0);
+	--side-drawer-app-content-offset: 280px;
+}
+
+.drawer.collapsed {
+	--demo-drawer-transform: translateX(calc(-100% + 70px));
+	--side-drawer-app-content-offset: 70px;
+
+	.item {
+		align-self: flex-end;
+	}
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full 250px
 <vwc-side-drawer id="sideDrawer" class="vwc-side-drawer" alternate open>
 	<vwc-layout gutters="small" column-basis="block">
@@ -62,7 +130,47 @@
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Full Content Height
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full 250px
+<script setup lang="ts">
+import { VSideDrawer, VLayout } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VSideDrawer class="side-drawer" open>
+		<VLayout gutters="small">Side Drawer content</VLayout>
+		<template #app-content>
+			<div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+		</template>
+	</VSideDrawer>
+</template>
+
+<style scoped>
+.side-drawer {
+	block-size: 100vh;
+}
+.content {
+	display: flex;
+	align-items: center;
+	background-color: var(--vvd-color-information-50);
+	block-size: 100%;
+	padding: 16px;
+	box-sizing: border-box;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full 250px
 <vwc-side-drawer class="side-drawer" open>
@@ -85,7 +193,55 @@
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Side Drawer Overlap Content
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full 150px
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VSideDrawer, VLayout, VFab, VIcon } from '@vonage/vivid-vue';
+
+const isOpen = ref(false);
+</script>
+
+<template>
+	<VSideDrawer class="vwc-side-drawer" :open="isOpen">
+		<template #app-content>
+			<VLayout gutters="medium">
+				Toggle the side drawer by clicking the FAB.
+				<br />
+				Notice that the side drawer overlaps the application content.
+			</VLayout>
+
+			<VFab class="vwc-fab" connotation="accent" aria-label="Toggle Side Drawer" @click="isOpen = !isOpen">
+				<VIcon slot="icon" name="menu-solid" />
+			</VFab>
+		</template>
+	</VSideDrawer>
+</template>
+
+<style scoped>
+.vwc-side-drawer {
+	--side-drawer-app-content-offset: 100px;
+}
+
+.vwc-fab {
+	position: fixed;
+	inset: auto auto 8px 8px;
+	z-index: 2;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full 150px
 <vwc-side-drawer class="vwc-side-drawer" id="sidedrawer">
@@ -112,3 +268,6 @@
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>

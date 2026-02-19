@@ -92,22 +92,22 @@ describe('RteHtmlSerializer', () => {
 				],
 				{
 					modifyDom: (dom) => {
-						for (const img of dom.querySelectorAll('img[src]').values()) {
-							const url = new URL(img.getAttribute('src')!);
+						for (const img of dom.querySelectorAll('img[data-src]').values()) {
+							const url = new URL(img.getAttribute('data-src')!);
 							img.setAttribute('data-attachment-id', url.hostname);
 						}
 					},
 				}
 			)
 		).toMatchInlineSnapshot(
-			`"<img src="attachment://1" alt="" data-attachment-id="1">"`
+			`"<img src="" data-src="attachment://1" alt="" data-attachment-id="1">"`
 		);
 	});
 
 	it('should ignore nodes and marks without serializers', async () => {
 		const DummyFeature = featureFacade(
 			class extends RteFeatureImpl {
-				protected name = 'DummyFeature';
+				name = 'DummyFeature';
 
 				override getSchema(): SchemaContribution[] {
 					return [

@@ -6,4 +6,8 @@
 
 .content {
 	display: contents;
+
+	// Display white space like in editor:
+	overflow-wrap: break-word;
+	white-space: break-spaces;
 }

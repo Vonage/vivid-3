@@ -1,0 +1,36 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/tokens/scss/size.variables' as size;
+
+:host {
+	display: inline-flex;
+}
+
+.base {
+	display: inline-flex;
+	align-items: center;
+	column-gap: 8px;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+
+	vwc-icon {
+		flex-shrink: 0;
+		block-size: #{size.$vvd-size-super-condensed};
+		inline-size: auto;
+	}
+
+	::slotted(*) {
+		display: block;
+		border-radius: 2px;
+		block-size: #{size.$vvd-size-super-condensed};
+		inline-size: auto;
+		object-fit: contain;
+	}
+}
+
+.text {
+	color: var(--vvd-color-canvas-text);
+	font: var(#{constants.$vvd-typography-base});
+}

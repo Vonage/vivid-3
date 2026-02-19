@@ -4,6 +4,31 @@ For **Tabs** to function correctly they must include corresponding **[Tab](/comp
 
 The `label` attribute on the **Tab** component provides the Tab with label text.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs>
+		<VTab label="Tab one" />
+		<VTab label="Tab two" />
+		<VTab label="Tab three" />
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full
 <vwc-tabs>
 	<vwc-tab label="Tab one"></vwc-tab>
@@ -14,6 +39,9 @@ The `label` attribute on the **Tab** component provides the Tab with label text.
 	<vwc-tab-panel>Tab Panel three</vwc-tab-panel>
 </vwc-tabs>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Icon
 
@@ -28,6 +56,31 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 
 </vwc-note>
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs>
+		<VTab icon="chat-line" label="Comments" />
+		<VTab icon="playlist-line" label="Playlist" />
+		<VTab icon="star-line" label="Favourites" />
+		<VTabPanel>Comments</VTabPanel>
+		<VTabPanel>Playlist</VTabPanel>
+		<VTabPanel>Favourites</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview full
 <vwc-tabs>
 	<vwc-tab icon="chat-line" label="Comments"></vwc-tab>
@@ -39,9 +92,43 @@ The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` sl
 </vwc-tabs>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Icon Trailing
 
 The `icon-trailing` attribute on the **Tab** component positions the icon after the label text.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VIcon, VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs>
+		<VTab icon-trailing label="Comments">
+			<template #icon><VIcon name="chat-line" /></template>
+		</VTab>
+		<VTab icon-trailing label="Playlist">
+			<template #icon><VIcon name="playlist-line" /></template>
+		</VTab>
+		<VTab icon-trailing label="Favourites">
+			<template #icon><VIcon name="star-line" /></template>
+		</VTab>
+		<VTabPanel>Comments</VTabPanel>
+		<VTabPanel>Playlist</VTabPanel>
+		<VTabPanel>Favourites</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs>
@@ -60,6 +147,9 @@ The `icon-trailing` attribute on the **Tab** component positions the icon after 
 </vwc-tabs>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Removable
 
 The `removable` attribute on the **Tab** component adds a close button to the tab.
@@ -71,6 +161,47 @@ Clicking the close button or pressing the `DELETE` key when focussed on the tab 
 	<p>Triggering the <code>close</code> event does not automatically close the tab and tab panel. This needs to be handled in the consuming application as in the example below.</p>
 	<p>The consuming application must also handle whether the user can close all the tabs or not.</p>
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+
+interface TabItem {
+	id: string;
+	label: string;
+	content: string;
+}
+
+const tabs = ref<TabItem[]>([
+	{ id: 'tab-1', label: 'Tab one', content: 'Tab one content' },
+	{ id: 'tab-2', label: 'Tab two', content: 'Tab two content' },
+	{ id: 'tab-3', label: 'Tab three', content: 'Tab three content' },
+]);
+
+function handleClose(e: Event) {
+	const tabId = (e.target as HTMLElement).id;
+	tabs.value = tabs.value.filter((tab) => tab.id !== tabId);
+}
+</script>
+
+<template>
+	<VTabs v-if="tabs.length" @close="handleClose">
+		<template v-for="tab in tabs" :key="tab.id">
+			<VTab :label="tab.label" :id="tab.id" removable />
+			<VTabPanel v-text="tab.content" />
+		</template>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs>
@@ -100,9 +231,37 @@ Clicking the close button or pressing the `DELETE` key when focussed on the tab 
 </script>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 The `disabled` attribute on the **Tab** component disables the Tab.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs>
+		<VTab label="Tab one" />
+		<VTab disabled label="Disabled tab" />
+		<VTab label="Tab three" />
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs>
@@ -115,6 +274,9 @@ The `disabled` attribute on the **Tab** component disables the Tab.
 </vwc-tabs>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Shape
 
 The `shape` attribute on the **Tab** component controls the style of the background in hover state. It can be `rounded` or `shape`.
@@ -123,6 +285,29 @@ The `shape` attribute on the **Tab** component controls the style of the backgro
 	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
 	<p>The <code>shape</code> variations should not be used in the tab set of tabs. The example above is for demonstration purposes only.</p>
 </vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs>
+		<VTab shape="rounded" label="Rounded" />
+		<VTab shape="sharp" label="Sharp" />
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs>
@@ -133,9 +318,37 @@ The `shape` attribute on the **Tab** component controls the style of the backgro
 </vwc-tabs>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Orientation
 
 The `orientation` attribute on the **Tabs** component controls which axis the tabs are aligned. Below is an example of vertical alignment.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs orientation="vertical">
+		<VTab label="Tab one" />
+		<VTab label="Tab two" />
+		<VTab label="Tab three" />
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs orientation="vertical">
@@ -148,9 +361,37 @@ The `orientation` attribute on the **Tabs** component controls which axis the ta
 </vwc-tabs>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Connotation
 
 Use the `connotation` attribute on the **Tabs** component to control the color of the active tab. Below it is set to `cta`.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs connotation="cta">
+		<VTab label="Tab one" />
+		<VTab label="Tab two" />
+		<VTab label="Tab three" />
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs connotation="cta">
@@ -163,9 +404,37 @@ Use the `connotation` attribute on the **Tabs** component to control the color o
 </vwc-tabs>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Active ID
 
 Use the `activeid` attribute on the **Tabs** component to control which tab is active on first render. The `activeid` attribute must match an `id` given to the **Tab** component.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs activeid="tab-2">
+		<VTab label="Tab one" id="tab-1" />
+		<VTab label="Tab two" id="tab-2" />
+		<VTab label="Tab three" id="tab-3" />
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs activeid="tab-2">
@@ -178,9 +447,37 @@ Use the `activeid` attribute on the **Tabs** component to control which tab is a
 </vwc-tabs>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Gutters
 
 Use the `gutters` attribute on the **Tabs** component to control the spacing inside the Tab Panels. It can be set to `small` (default) or `none` (demonstrated in the example below).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs gutters="none">
+		<VTab label="Tab one" />
+		<VTab label="Tab two" />
+		<VTab label="Tab three" />
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs gutters="none">
@@ -193,9 +490,37 @@ Use the `gutters` attribute on the **Tabs** component to control the spacing ins
 </vwc-tabs>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Tabs Layout
 
 The `tabs-layout` attribute on the **Tabs** component controls the tabs layout. When set to `stretch`, the tabs will stretch to fill the available space. It will have no effect when the tabs are in a vertical orientation.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs tabs-layout="stretch">
+		<VTab label="Tab one" />
+		<VTab label="Tab two" />
+		<VTab label="Tab three" />
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs tabs-layout="stretch">
@@ -208,11 +533,58 @@ The `tabs-layout` attribute on the **Tabs** component controls the tabs layout. 
 </vwc-tabs>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Scrollable Panel
 
 Use the `scrollable-panel` attribute combined with setting a `block-size` style to the **Tabs** component to make the content scrollable.
 
 ### Horizontal
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs class="tabs" scrollable-panel>
+		<VTab label="Tab one" />
+		<VTab label="Tab two" />
+		<VTab label="Tab three" />
+		<VTabPanel>
+			<ol>
+				<li>Stuffed artichokes</li>
+				<li>Bruschetta</li>
+				<li>Oven-baked polenta</li>
+				<li>Salami and Fig Crostini with Ricotta</li>
+				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+				<li>Stuffed artichokes</li>
+				<li>Bruschetta</li>
+				<li>Oven-baked polenta</li>
+				<li>Salami and Fig Crostini with Ricotta</li>
+				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+			</ol>
+		</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+
+<style>
+.tabs {
+	block-size: 200px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs class="tabs" scrollable-panel>
@@ -244,7 +616,54 @@ Use the `scrollable-panel` attribute combined with setting a `block-size` style 
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Vertical
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview full
+<script setup lang="ts">
+import { VTab, VTabs, VTabPanel } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTabs scrollable-panel orientation="vertical" class="tabs">
+		<VTab label="Tab one" />
+		<VTab label="Tab two" />
+		<VTab label="Tab three" />
+		<VTabPanel>
+			<ol>
+				<li>Stuffed artichokes</li>
+				<li>Bruschetta</li>
+				<li>Oven-baked polenta</li>
+				<li>Salami and Fig Crostini with Ricotta</li>
+				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+				<li>Stuffed artichokes</li>
+				<li>Bruschetta</li>
+				<li>Oven-baked polenta</li>
+				<li>Salami and Fig Crostini with Ricotta</li>
+				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+			</ol>
+		</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+
+<style>
+.tabs {
+	block-size: 150px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview full
 <vwc-tabs scrollable-panel orientation="vertical" class="tabs">
@@ -275,3 +694,6 @@ Use the `scrollable-panel` attribute combined with setting a `block-size` style 
 	}
 </style>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>

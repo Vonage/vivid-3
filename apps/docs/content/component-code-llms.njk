@@ -1,0 +1,12 @@
+---
+eleventyExcludeFromCollections: true
+pagination:
+  data: componentsNew
+  size: 1
+  alias: component
+permalink: "components/{{ component | componentSlug }}/code/llms.txt"
+eleventyComputed:
+  pageTitle: "{{ component.title }} - Code"
+---
+# {{ pageTitle }}
+{{ component.code | includeMd | safe }}

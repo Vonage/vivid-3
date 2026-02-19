@@ -8,6 +8,7 @@ import {
 } from './font-size-picker';
 import { RteToolbarFeature } from './toolbar';
 import { RteHardBreakFeature } from './hard-break';
+import { RteBoldFeature } from './bold';
 
 const {
 	text,
@@ -57,6 +58,19 @@ describe('RteFontSizeFeature', () => {
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
 			`"<p><span style="font-size: 123px;">Hello</span></p>"`
+		);
+	});
+
+	it('should escape font size values', async () => {
+		const rte = await setup(features(basicFontSizeOptions), [
+			p(text.marks(size({ size: '15px; background: red' }))('Hello')),
+		]);
+
+		expect(rte.view.dom.querySelector('span')!.style.cssText).toBe(
+			'font-size: 15px;'
+		);
+		expect(rte.getHtml()).toMatchInlineSnapshot(
+			`"<p><span style="font-size: 15px;">Hello</span></p>"`
 		);
 	});
 
@@ -503,7 +517,7 @@ describe('RteFontSizeFeature', () => {
 			`"paragraph('Hello |<fontSize[size=\\"18px\\"]>|world')"`
 		);
 		expect(element.shadowRoot!.querySelector('.ProseMirror')!.innerHTML).toBe(
-			'<p part="node--paragraph">Hello <span style="font-size: 18px;" class="ProseMirror-widget"></span>world</p>'
+			'<p part="node--paragraph">Hello <span style="font-size: 18px;" class="ProseMirror-widget">\u200b</span>world</p>'
 		);
 
 		selectAll();
@@ -511,7 +525,52 @@ describe('RteFontSizeFeature', () => {
 		placeCursor('Hello |world');
 		keydown(',', { ctrl: true, shift: true }); // Decrease font size back to normal
 		expect(element.shadowRoot!.querySelector('.ProseMirror')!.innerHTML).toBe(
-			'<p part="node--paragraph"><span style="font-size: 18px;">Hello <span style="font-size: 14px;" class="ProseMirror-widget"></span>world</span></p>'
+			'<p part="node--paragraph"><span style="font-size: 18px;">Hello <span style="font-size: 14px;" class="ProseMirror-widget">\u200b</span>world</span></p>'
 		);
+	});
+
+	it('should not show cursor fix when on a node without default size and no fontSize stored', async () => {
+		const { placeCursor, element, view } = await setup(
+			features({
+				options: [
+					{ size: '18px', label: 'Large' },
+					{ size: '14px', label: 'Normal' },
+				],
+				onBlocks: [{ node: 'heading1', defaultSize: '18px' }], // paragraph has no default
+			}),
+			[p('Hello world')]
+		);
+
+		placeCursor('Hello |world');
+		view.dispatch(view.state.tr.setStoredMarks([]));
+
+		expect(
+			element.shadowRoot!.querySelector('.ProseMirror .ProseMirror-widget')
+		).toBeNull();
+	});
+
+	it('should not show cursor fix when stored marks has non-fontSize marks', async () => {
+		const { placeCursor, element, click, toolbarButton } = await setup(
+			[
+				new RteBase({ heading1: true, heading2: true }),
+				new RteToolbarFeature(),
+				new RteFontSizePickerFeature({
+					options: [
+						{ size: '18px', label: 'Large' },
+						{ size: '14px', label: 'Normal' },
+					],
+					onBlocks: [{ node: 'paragraph', defaultSize: '14px' }],
+				}),
+				new RteBoldFeature(),
+			],
+			[p('Hello world')]
+		);
+
+		placeCursor('Hello |world');
+		click(toolbarButton('Bold')); // Add bold stored mark
+
+		expect(
+			element.shadowRoot!.querySelector('.ProseMirror .ProseMirror-widget')
+		).toBeNull();
 	});
 });

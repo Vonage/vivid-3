@@ -84,7 +84,7 @@ describe('RteInlineImageFeature', () => {
 		]);
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
-			`"<p><img src="/image.jpg" alt="Image" style="max-width: 100%; height: auto;" width="100" height="200"></p>"`
+			`"<p><img src="/image.jpg" data-src="/image.jpg" alt="Image" style="max-width: 100%; height: auto;" width="100" height="200"></p>"`
 		);
 
 		rte.instance.replaceDocument(
@@ -102,7 +102,46 @@ describe('RteInlineImageFeature', () => {
 		);
 
 		expect(rte.getHtml()).toMatchInlineSnapshot(
-			`"<p><img src="/minimal.jpg" alt=""></p>"`
+			`"<p><img src="/minimal.jpg" data-src="/minimal.jpg" alt=""></p>"`
+		);
+	});
+
+	it.each(["javascript:alert('XSS')", 'attachment://1'])(
+		'should sanitize unsafe URL "%s"',
+		async (url) => {
+			const rte = await setup(featuresWithConfig({}), [
+				p(
+					img.attrs({
+						imageUrl: url,
+						alt: 'Image',
+					})()
+				),
+			]);
+
+			expect(rte.view.dom.querySelector('img')!.getAttribute('src')).toBe('');
+			expect(rte.getHtml()).toBe(
+				`<p><img src="" data-src="${url}" alt="Image"></p>`
+			);
+		}
+	);
+
+	it.each([
+		'https://example.com/img.png',
+		'blob:https://example.org/40a5fb5a-d56d-4a33-b4e2-0acf6a8e5f64',
+		'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA',
+	])('should allow safe URL "%s"', async (url) => {
+		const rte = await setup(featuresWithConfig({}), [
+			p(
+				img.attrs({
+					imageUrl: url,
+					alt: 'Image',
+				})()
+			),
+		]);
+
+		expect(rte.view.dom.querySelector('img')!.getAttribute('src')).toBe(url);
+		expect(rte.getHtml()).toBe(
+			`<p><img src="${url}" data-src="${url}" alt="Image"></p>`
 		);
 	});
 
@@ -405,7 +444,7 @@ describe('RteInlineImageFeature', () => {
 		it('should map imageUrl to html img src url when serializing html', async () => {
 			const rte = await setup(
 				featuresWithConfig({
-					serializeUrlToHtml: (src: string) => `serialized:${src}`,
+					serializeUrlToHtml: (src: string) => `https://cdn.example.com${src}`,
 				}),
 				[
 					p(
@@ -417,7 +456,7 @@ describe('RteInlineImageFeature', () => {
 				]
 			);
 			expect(rte.getHtml()).toMatchInlineSnapshot(
-				`"<p><img src="serialized:/image.jpg" alt="Image"></p>"`
+				`"<p><img src="https://cdn.example.com/image.jpg" data-src="https://cdn.example.com/image.jpg" alt="Image"></p>"`
 			);
 		});
 
@@ -500,10 +539,20 @@ describe('RteInlineImageFeature', () => {
 			);
 
 			expect(rte.getImageWrapper()!.querySelector('slot')!.name).toBe(name);
+			expect(rte.slottableRequests).toEqual([
+				{
+					data: {
+						url: '/image.jpg',
+					},
+					name: 'inline-image-placeholder',
+					slotName: name,
+				},
+			]);
 
 			rte.element.remove();
 
 			expect(onDestroy).toHaveBeenCalled();
+			expect(rte.slottableRequests).toEqual([]);
 		});
 
 		it('should allow resolving multiple times when resolving to an async generator', async () => {
