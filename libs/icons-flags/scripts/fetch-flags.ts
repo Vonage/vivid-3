@@ -2,12 +2,9 @@ import {
 	createIconEntry,
 	type CreateIconEntryFunction,
 	fetchIcons,
-	type IconsManifest,
 	type NodeFilterFunction,
-	writeJson,
 } from '@repo/tools';
 import type { Node } from '@figma/rest-api-spec';
-import { rmSync } from 'node:fs';
 import 'dotenv/config';
 
 const figmaFileId = 'isdKI406usLCxZ2U8ljDrn';
@@ -35,32 +32,17 @@ const entryFunction: CreateIconEntryFunction = (
 	entry.figmaComponentName = node.name;
 	entry.category = 'flags';
 	entry.style = 'color';
+	entry.id = `flag-${entry.name}`;
 
 	return entry;
 };
 
 (async () => {
-	const clear = true;
-
-	if (clear) {
-		rmSync('./src/generated', { recursive: true, force: true });
-	}
-
-	const icons = await fetchIcons(figmaFileId, {
+	await fetchIcons(figmaFileId, {
 		dir: './src/generated/',
-		forceUpdate: clear,
+		forceUpdate: true,
 		filter: onlyFlags,
 		createEntry: entryFunction,
-		indexFileName: 'index.json',
 		// output: - use default output without any changes to SVG.
 	});
-
-	const manifest: IconsManifest = icons.map((icon) => ({
-		id: `flag-${icon.name}`,
-		keyword: icon.keywords,
-		tag: ['style_color_multi', 'category_flags'],
-		...(icon.aliases.length > 0 ? { alias: icon.aliases } : undefined),
-	}));
-
-	writeJson('./src/generated/manifest.json', manifest);
 })();

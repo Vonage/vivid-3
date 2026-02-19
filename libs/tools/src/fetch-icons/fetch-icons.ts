@@ -14,6 +14,7 @@ import { kebabCase } from 'change-case';
 import { createIconEntry } from './create-icon-entry';
 import { readJson } from '../shared/read-json.util';
 import { logger } from '../shared/logger.util';
+import { rmSync } from 'node:fs';
 
 export async function fetchIcons(
 	figmaFileId: string,
@@ -37,6 +38,10 @@ export async function fetchIcons(
 		],
 		...userOptions,
 	};
+
+	if (options.forceUpdate) {
+		rmSync(options.dir, { recursive: true, force: true });
+	}
 
 	const client = getClient(!options.forceUpdate, options.cacheOptions);
 	const file: FileResponse = await client.file(figmaFileId).then((r) => r.data);

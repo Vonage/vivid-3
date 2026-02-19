@@ -1,10 +1,4 @@
-import {
-	fetchIcons,
-	writeJson,
-	type IconsManifest,
-	type NodeFilterFunction,
-} from '@repo/tools';
-import { rmSync } from 'node:fs';
+import { fetchIcons, type NodeFilterFunction } from '@repo/tools';
 import 'dotenv/config';
 import { svg } from './svg.output';
 
@@ -24,30 +18,10 @@ const allIcons: NodeFilterFunction = (node, path) => {
 };
 
 (async () => {
-	const clear = true;
-
-	if (clear) {
-		rmSync('./src/generated', { recursive: true, force: true });
-	}
-
-	const icons = await fetchIcons(figmaFileId, {
+	await fetchIcons(figmaFileId, {
 		dir: './src/generated/',
-		forceUpdate: clear,
+		forceUpdate: true,
 		filter: allIcons,
-		indexFileName: 'index.json',
 		outputs: [svg],
 	});
-
-	const manifest: IconsManifest = icons.map((icon) => ({
-		id: `${icon.name}-${icon.style}`,
-		keyword: icon.keywords,
-		tag: [
-			`style_color_${icon.style === 'color' ? 'multi' : 'single'}`,
-			`style_weight_${icon.style === 'solid' ? 'solid' : 'regular'}`,
-			`category_${icon.category}`,
-		],
-		...(icon.aliases.length > 0 ? { alias: icon.aliases } : undefined),
-	}));
-
-	writeJson('./src/generated/manifest.json', manifest);
 })();
