@@ -1,9 +1,9 @@
-name: test-cdn
+name: upload-icons
 on: workflow_dispatch
 
 jobs:
-  upload-to-cdn:
-    name: Upload assets to CDN
+  upload-icons:
+    name: upload-icons-to-cdn
     runs-on: ubuntu-latest
 
     steps:
@@ -11,10 +11,12 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Upload assets
-      uses: ./.github/actions/upload-cdn-artifacts
+      uses: ./.github/actions/upload-icons
       with:
-        bucket: 'vivid-icons'
-        base-folder: 'asdasd'
+        bucket: 'vivid-icons-dev'
+        base-folder: 'NEW_UPLOAD_TEST'
         version: 12
-        source-dir: 'libs/icons/'
-        index-json-path: 'src/generated/index.json'
+        source-dirs: |
+          ./libs/icons/
+          ./libs/icons-flag/
+          ./libs/icons-brand/
