@@ -1,5 +1,3 @@
 export function getMap(entries) {
-	return Object.fromEntries(
-		entries.map((entry) => [`${entry.name}-${entry.style}`, entry.hash])
-	);
+	return Object.fromEntries(entries.map((entry) => [entry.id, entry.hash]));
 }

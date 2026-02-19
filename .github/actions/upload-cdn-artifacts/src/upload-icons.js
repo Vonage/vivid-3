@@ -96,7 +96,9 @@ export async function upload(config) {
 
 	await Promise.all(
 		requests.map((request) =>
-			s3.send(new PutObjectCommand(request)).then(console.log)
+			s3
+				.send(new PutObjectCommand(request))
+				.then(() => console.log('Uploaded', request.Key))
 		)
 	);
 }
