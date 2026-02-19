@@ -9,7 +9,6 @@ import {
 import type { Node } from '@figma/rest-api-spec';
 import { rmSync } from 'node:fs';
 import 'dotenv/config';
-import { svg } from './svg.output';
 
 const figmaFileId = 'isdKI406usLCxZ2U8ljDrn';
 
@@ -53,7 +52,7 @@ const entryFunction: CreateIconEntryFunction = (
 		filter: onlyBrands,
 		createEntry: entryFunction,
 		indexFileName: 'index.json',
-		outputs: [svg],
+		// output: - use default output without any changes to SVG.
 	});
 
 	const manifest: IconsManifest = icons.map((icon) => ({

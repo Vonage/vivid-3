@@ -31,8 +31,7 @@ export async function fetchIcons(
 		indexFileName: 'index.json',
 		outputs: [
 			{
-				fileName: (entry) =>
-					`${kebabCase([entry.name, entry.style].join(' '))}.svg`,
+				fileName: (entry) => `${entry.id}.svg`,
 				template: (_entry, svg) => svg,
 			},
 		],
