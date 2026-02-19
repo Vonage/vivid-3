@@ -51,6 +51,9 @@ export async function fetchIcons(
 	walk(document as DocumentNode, (node, path) => {
 		if (options.filter(node, path)) {
 			const entry = options.createEntry(node, path, file);
+			if (!entry.id || entry.id === '') {
+				entry.id = kebabCase([entry.name, entry.style].join(' '));
+			}
 
 			iconsMap.set(node.id, entry);
 		}
@@ -87,9 +90,9 @@ export async function fetchIcons(
 	}
 
 	// Validate whether all icon have their image URLs.
-	for (const [id, entry] of iconsMap.entries()) {
+	for (const [figmaNodeId, entry] of iconsMap.entries()) {
 		if (!entry.imageUrl) {
-			logger.error(`No image URL for icon: ${entry.name} (${id})`);
+			logger.error(`No image URL for icon: ${entry.name} (${figmaNodeId})`);
 			process.exit(1);
 		}
 	}
