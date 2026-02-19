@@ -88,6 +88,44 @@ import { VTable, VTableHead, VTableBody, VTableRow, VTableHeaderCell, VTableCell
 
 The Table component provides a stateless, semantic structure for displaying tabular data. It follows a similar structure to HTML tables but uses web components.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<template>
+	<VTable>
+		<VTableHead>
+			<VTableRow>
+				<VTableHeaderCell>Column 1</VTableHeaderCell>
+				<VTableHeaderCell>Column 2</VTableHeaderCell>
+				<VTableHeaderCell>Column 3</VTableHeaderCell>
+			</VTableRow>
+		</VTableHead>
+		<VTableBody>
+			<VTableRow>
+				<VTableCell>Data 11</VTableCell>
+				<VTableCell>Data 12</VTableCell>
+				<VTableCell>Data 13</VTableCell>
+			</VTableRow>
+			<VTableRow>
+				<VTableCell>Data 21</VTableCell>
+				<VTableCell>Data 22</VTableCell>
+				<VTableCell>Data 23</VTableCell>
+			</VTableRow>
+		</VTableBody>
+	</VTable>
+</template>
+
+<script setup lang="ts">
+import { VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, VTableRow } from '@vonage/vivid-vue';
+</script>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-table>
 	<vwc-table-head>
@@ -111,6 +149,9 @@ The Table component provides a stateless, semantic structure for displaying tabu
 	</vwc-table-body>
 </vwc-table>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## API Reference
 

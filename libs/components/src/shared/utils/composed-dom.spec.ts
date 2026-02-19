@@ -42,9 +42,9 @@ describe('composed-dom', () => {
 			const parent = document.createElement('div');
 			const child = document.createElement('span');
 			parent.appendChild(child);
-			expect(
-				findComposedAncestor(child, (el) => el.tagName === 'TABLE')
-			).toBe(null);
+			expect(findComposedAncestor(child, (el) => el.tagName === 'TABLE')).toBe(
+				null
+			);
 		});
 
 		it('finds ancestor across shadow boundary', () => {
@@ -54,8 +54,9 @@ describe('composed-dom', () => {
 			const child = document.createElement('span');
 			root.appendChild(child);
 			expect(
-				findComposedAncestor(child, (el) =>
-					el.getAttribute?.('data-vvd-component') === 'table-head'
+				findComposedAncestor(
+					child,
+					(el) => el.getAttribute?.('data-vvd-component') === 'table-head'
 				)
 			).toBe(tableHead);
 		});

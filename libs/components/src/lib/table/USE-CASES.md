@@ -2,6 +2,59 @@
 
 In order for the select popup to show correctly in the table, use the `fixed-dropdown` attribute on the select inside table cells.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<template>
+	<VTable class="data-table">
+		<VTableHead>
+			<VTableRow>
+				<VTableHeaderCell>Product</VTableHeaderCell>
+				<VTableHeaderCell>Status</VTableHeaderCell>
+			</VTableRow>
+		</VTableHead>
+		<VTableBody>
+			<VTableRow>
+				<VTableCell>
+					<VSelect fixed-dropdown>
+						<VOption value="1" text="SMS" />
+						<VOption value="2" text="Voice" />
+						<VOption value="3" text="Email" />
+					</VSelect>
+				</VTableCell>
+				<VTableCell>Active</VTableCell>
+			</VTableRow>
+			<VTableRow>
+				<VTableCell>
+					<VSelect fixed-dropdown>
+						<VOption value="1" text="SMS" />
+						<VOption value="2" text="Voice" />
+						<VOption value="3" text="Email" />
+					</VSelect>
+				</VTableCell>
+				<VTableCell>Inactive</VTableCell>
+			</VTableRow>
+		</VTableBody>
+	</VTable>
+</template>
+
+<script setup lang="ts">
+import { VOption, VSelect, VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, VTableRow } from '@vonage/vivid-vue';
+</script>
+
+<style scoped>
+.data-table {
+	--data-grid-cell-block-size: 100%;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <vwc-table class="data-table">
 	<vwc-table-head>
@@ -41,9 +94,71 @@ In order for the select popup to show correctly in the table, use the `fixed-dro
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Add and Remove Rows Dynamically
 
-You can add and remove rows dynamically by manipulating the DOM.
+You can add and remove rows dynamically by manipulating the DOM (Web Component) or with reactive data (Vue).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<template>
+	<VButton label="Add row" appearance="outlined" @click="addRow" />
+	<VButton label="Remove last row" appearance="outlined" @click="removeLastRow" />
+	<VButton label="Remove first row" appearance="outlined" @click="removeFirstRow" />
+
+	<VTable class="data-table">
+		<VTableHead>
+			<VTableRow>
+				<VTableHeaderCell>Product</VTableHeaderCell>
+				<VTableHeaderCell>Type</VTableHeaderCell>
+			</VTableRow>
+		</VTableHead>
+		<VTableBody>
+			<VTableRow v-for="(row, idx) in rows" :key="idx">
+				<VTableCell>{{ row[0] }}</VTableCell>
+				<VTableCell>{{ row[1] }}</VTableCell>
+			</VTableRow>
+		</VTableBody>
+	</VTable>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VButton, VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, VTableRow } from '@vonage/vivid-vue';
+
+const rows = ref<Array<[string, string]>>([
+	['Data 1', 'Data 2'],
+	['Data 3', 'Data 4'],
+]);
+
+let count = 5;
+const addRow = () => {
+	rows.value.push([`Data ${count}`, `Data ${count + 1}`]);
+	count += 2;
+};
+const removeLastRow = () => {
+	rows.value.pop();
+};
+const removeFirstRow = () => {
+	rows.value.shift();
+};
+</script>
+
+<style scoped>
+.data-table {
+	max-block-size: 200px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-button label="Add row" appearance="outlined" onclick="addRow()"></vwc-button>
@@ -105,9 +220,67 @@ You can add and remove rows dynamically by manipulating the DOM.
 </style>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Custom Cell Content
 
 Table cells can contain any HTML content, including other Vivid components.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<template>
+	<VTable>
+		<VTableHead>
+			<VTableRow>
+				<VTableHeaderCell>Product</VTableHeaderCell>
+				<VTableHeaderCell>Status</VTableHeaderCell>
+				<VTableHeaderCell>Actions</VTableHeaderCell>
+			</VTableRow>
+		</VTableHead>
+		<VTableBody>
+			<VTableRow>
+				<VTableCell>SMS</VTableCell>
+				<VTableCell>
+					<VBadge connotation="success">Active</VBadge>
+				</VTableCell>
+				<VTableCell>
+					<VButton appearance="ghost" icon="edit-line" label="Edit" />
+				</VTableCell>
+			</VTableRow>
+			<VTableRow>
+				<VTableCell>Voice</VTableCell>
+				<VTableCell>
+					<VBadge connotation="alert">Inactive</VBadge>
+				</VTableCell>
+				<VTableCell>
+					<VButton appearance="ghost" icon="edit-line" label="Edit" />
+				</VTableCell>
+			</VTableRow>
+			<VTableRow>
+				<VTableCell>Email</VTableCell>
+				<VTableCell>
+					<VBadge connotation="accent">Pending</VBadge>
+				</VTableCell>
+				<VTableCell>
+					<VButton appearance="ghost" icon="edit-line" label="Edit" />
+				</VTableCell>
+			</VTableRow>
+		</VTableBody>
+	</VTable>
+</template>
+
+<script setup lang="ts">
+import { VBadge, VButton, VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, VTableRow } from '@vonage/vivid-vue';
+</script>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <vwc-table>
@@ -149,3 +322,6 @@ Table cells can contain any HTML content, including other Vivid components.
 	</vwc-table-body>
 </vwc-table>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
