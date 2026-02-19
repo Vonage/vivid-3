@@ -23,6 +23,7 @@ jobs:
     outputs:
       vivid_release_created: ${{ steps.release.outputs['libs/components--release_created'] }}
       vivid_release_sha: ${{ steps.release.outputs['libs/components--sha'] }}
+      vivid_components_version: ${{ steps.release.outputs['libs/components--version'] }}
       vivid_tokens_version: ${{ steps.release.outputs['libs/design-tokens--version'] }}
       eslint_plugin_release_created: ${{ steps.release.outputs['libs/eslint-plugin--release_created'] }}
       eslint_plugin_release_sha: ${{ steps.release.outputs['libs/eslint-plugin--sha'] }}
@@ -107,6 +108,22 @@ jobs:
       path: ./libs/design-tokens/flutter-dist
       sha: ${{ needs.should-release.outputs.release_sha }}
       version: ${{ needs.release-please.outputs.vivid_tokens_version }}
+    secrets: inherit
+
+  vivid-icons-publish:
+    needs: [should-release, release-please]
+    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+    uses: ./.github/actions/upload-icons
+    with:
+      access-key: ${{ secrets.ICONS_AWS_ACCESS_KEY }}
+      secret-access-key: ${{ secrets.ICONS_AWS_SECRET_ACCESS_KEY }}
+      bucket: ${{ vars.ICONS_BUCKET }}
+      base-folder: ${{ vars.ICONS_BASE_FOLDER }}
+      version: ${{ needs.release-please.outputs.vivid_components_version }}
+      source-dirs: |
+        ./libs/icons/src/generated/
+        ./libs/icons-flags/src/generated/
+        ./libs/icons-brands/src/generated/
     secrets: inherit
 
   vivid-vue-publish:
