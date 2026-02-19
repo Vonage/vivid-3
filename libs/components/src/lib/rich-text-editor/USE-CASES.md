@@ -46,7 +46,7 @@ const attachmentsBarStart = ref<HTMLDivElement | null>(null);
 const attachmentsContainer = ref<HTMLDivElement | null>(null);
 
 // --- State ---
-const attachedFiles = ref<Array<{ name: string; size: string }>>([]);
+const attachedFiles = ref<{ name: string; size: string }[]>([]);
 const dropZoneVisible = ref(false);
 const dropZoneBlockSize = ref('100%');
 const scrollButtonOpacity = ref('0');
@@ -166,7 +166,7 @@ const config = new RteConfig([
 		},
 	}),
 	new RteFileHandlerFeature({
-		handleFiles: (files: File[]) => {
+		handleFiles: (files) => {
 			const imageFiles = files.filter((file) => acceptedImageMimeTypes.includes(file.type));
 			const nonImageFiles = files.filter((file) => !acceptedImageMimeTypes.includes(file.type));
 
@@ -189,7 +189,7 @@ const config = new RteConfig([
 		},
 	}),
 	new RteDropHandlerFeature({
-		onViewportDragOver: (event: DragEvent) => {
+		onViewportDragOver: (event) => {
 			if (!isFileDrop(event)) {
 				return false;
 			}
@@ -203,7 +203,7 @@ const config = new RteConfig([
 			event.preventDefault();
 			return false;
 		},
-		onViewportDrop: (event: DragEvent) => {
+		onViewportDrop: (event) => {
 			event.preventDefault();
 		},
 		onViewportDragFinish: () => {
@@ -960,7 +960,11 @@ import type { RteView } from '@vonage/vivid';
 import { RteAtomFeature, RteBase, RteBoldFeature, RteConfig, type RteDocument, RteInputRuleFeature, RteItalicFeature, RteLinkFeature, RteSuggestFeature, RteToolbarButtonFeature, RteToolbarFeature, RteUnderlineFeature } from '@vonage/vivid';
 
 // --- Variables definition ---
-const variables = [
+interface Variable {
+	name: string;
+	label: string;
+}
+const variables: Variable[] = [
 	{ name: 'first_name', label: 'First Name' },
 	{ name: 'last_name', label: 'Last Name' },
 	{ name: 'job_title', label: 'Job Title' },
@@ -984,7 +988,7 @@ const signatureConfig = new RteConfig([
 	}),
 	new RteInputRuleFeature('variable', {
 		pattern: /\{(\w+)}/,
-		handler: (match: RegExpMatchArray) => {
+		handler: (match) => {
 			const varName = match[1];
 			if (variables.some((v) => v.name === varName)) {
 				return [{ type: 'variable', attrs: { value: varName } }];
@@ -994,7 +998,7 @@ const signatureConfig = new RteConfig([
 	}),
 	new RteSuggestFeature('variable', {
 		pattern: /\{(\w*)$/,
-		load: (match: RegExpMatchArray) => {
+		load: (match) => {
 			const query = match[1].toLowerCase();
 			return variables
 				.filter((v) => v.name.includes(query) || v.label.toLowerCase().includes(query))
@@ -1004,7 +1008,12 @@ const signatureConfig = new RteConfig([
 					data: v,
 				}));
 		},
-		select: (suggestion: { data: { name: string } }) => [{ type: 'variable', attrs: { value: suggestion.data.name } }],
+		select: (suggestion) => [
+			{
+				type: 'variable',
+				attrs: { value: (suggestion.data as Variable).name },
+			},
+		],
 	}),
 	new RteToolbarButtonFeature('variable', {
 		label: 'Insert variable',
