@@ -1,11 +1,11 @@
 {
-  "private": true,
+	"private": true,
 	"scripts": {
 		"build": "esbuild src/index.js --bundle --platform=node --target=node20 --format=cjs --outfile=dist/index.js --tree-shaking=true --minify"
 	},
-  "dependencies": {
-		"@aws-sdk/client-s3": "^3.989.0",
+	"dependencies": {
 		"@actions/core": "^1.10.0",
+		"@aws-sdk/client-s3": "^3.989.0",
 		"change-case": "^5.4.4"
 	},
 	"devDependencies": {
