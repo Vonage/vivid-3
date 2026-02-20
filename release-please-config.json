@@ -9,6 +9,18 @@
 			"component": "vivid-design-tokens",
 			"package-name": "vivid-design-tokens"
 		},
+		"libs/icons": {
+			"component": "vivid-icons",
+			"skip-github-release": true
+		},
+		"libs/icons-brands": {
+			"component": "vivid-icons-brands",
+			"skip-github-release": true
+		},
+		"libs/icons-flags": {
+			"component": "vivid-icons-flags",
+			"skip-github-release": true
+		},
 		"libs/vue-wrappers": {
 			"component": "vivid-vue",
 			"skip-github-release": true
@@ -27,6 +39,11 @@
 			"type": "linked-versions",
 			"groupName": "vivid",
 			"components": ["vivid", "vivid-design-tokens", "vivid-vue", "test-utils"]
+		},
+		{
+			"type": "linked-versions",
+			"groupName": "icons",
+			"components": ["vivid-icons", "vivid-icons-flags", "vivid-icons-brands"]
 		}
 	]
 }

@@ -20,7 +20,6 @@
 		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@types/node": "catalog:",
-		"change-case": "^5.4.4",
 		"dotenv": "^17.2.3",
 		"tsx": "catalog:",
 		"vite-plugin-static-copy": "catalog:"

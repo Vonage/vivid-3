@@ -44,6 +44,7 @@ export type IconCategory =
 	| ({} & string);
 
 export interface IconEntry {
+	id: string;
 	category: IconCategory;
 	figmaComponentName: string;
 	figmaNodeId: string;

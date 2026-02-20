@@ -2,14 +2,10 @@ import {
 	createIconEntry,
 	type CreateIconEntryFunction,
 	fetchIcons,
-	type IconsManifest,
 	type NodeFilterFunction,
-	writeJson,
 } from '@repo/tools';
 import type { Node } from '@figma/rest-api-spec';
-import { rmSync } from 'node:fs';
 import 'dotenv/config';
-import { svg } from './svg.output';
 
 const figmaFileId = 'isdKI406usLCxZ2U8ljDrn';
 
@@ -41,30 +37,11 @@ const entryFunction: CreateIconEntryFunction = (
 };
 
 (async () => {
-	const clear = true;
-
-	if (clear) {
-		rmSync('./src/generated', { recursive: true, force: true });
-	}
-
-	const icons = await fetchIcons(figmaFileId, {
+	await fetchIcons(figmaFileId, {
 		dir: './src/generated/',
-		forceUpdate: clear,
+		forceUpdate: true,
 		filter: onlyBrands,
 		createEntry: entryFunction,
-		indexFileName: 'index.json',
-		outputs: [svg],
+		// output: - use default output without any changes to SVG.
 	});
-
-	const manifest: IconsManifest = icons.map((icon) => ({
-		id: `${icon.name}-${icon.style}`,
-		keyword: icon.keywords,
-		tag: [
-			`style_color_${icon.style === 'color' ? 'multi' : 'single'}`,
-			'category_brand',
-		],
-		...(icon.aliases.length > 0 ? { alias: icon.aliases } : undefined),
-	}));
-
-	writeJson('./src/generated/manifest.json', manifest);
 })();

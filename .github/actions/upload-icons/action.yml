@@ -1,0 +1,37 @@
+name: vivid icons CDN upload
+description: "Uploads icon assets to Vivid's Icons AWS S3 bucket"
+branding:
+  color: 'purple'
+
+inputs:
+  access-key:
+    description: S3 bucket Access Key
+    required: true
+
+  secret-access-key:
+    description: S3 bucket Secret Access Key
+    required: true
+
+  version:
+    description: icon set version
+    required: true
+
+  source-dirs:
+    description: Array of source directories where 'index.json' resides (newline separated)
+    required: true
+
+  bucket:
+    description: Target S3 bucket name
+    required: false
+
+  base-folder:
+    description: Root folder in the bucket where all assets live
+    required: false
+
+  region:
+    description: S3 bucket region
+    required: false
+
+runs:
+  using: node20
+  main: dist/index.js

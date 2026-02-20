@@ -756,9 +756,6 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 20.19.25
-      change-case:
-        specifier: ^5.4.4
-        version: 5.4.4
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
@@ -790,9 +787,6 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 20.19.25
-      change-case:
-        specifier: ^5.4.4
-        version: 5.4.4
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
@@ -824,9 +818,6 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 20.19.25
-      change-case:
-        specifier: ^5.4.4
-        version: 5.4.4
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
