@@ -61,6 +61,27 @@ export class RteCoreImpl extends RteFeatureImpl {
 	}
 
 	override getPlugins(rte: RteInstanceImpl) {
+		const enterKeyChainCommands = chainCommands(
+			newlineInCode,
+			createParagraphNear,
+			liftEmptyBlock,
+			splitBlockAs((node, atEnd, $from) => {
+				if (!atEnd) {
+					// If not at end, keep the same type
+					return { type: node.type, attrs: node.attrs! };
+				}
+				// Otherwise, create a default textblock
+				return {
+					type: defaultTextblockForMatch(
+						$from
+							.node($from.depth - 1)
+							.contentMatchAt($from.indexAfter($from.depth - 1))
+					)!,
+					attrs: rte.textblockAttrs.extractFromNode(node),
+				};
+			})
+		);
+
 		return [
 			this.contribution(this.disabled.plugin),
 			this.contribution(
@@ -102,26 +123,8 @@ export class RteCoreImpl extends RteFeatureImpl {
 			this.contribution(
 				keymap({
 					...baseKeymap,
-					Enter: chainCommands(
-						newlineInCode,
-						createParagraphNear,
-						liftEmptyBlock,
-						splitBlockAs((node, atEnd, $from) => {
-							if (!atEnd) {
-								// If not at end, keep the same type
-								return { type: node.type, attrs: node.attrs! };
-							}
-							// Otherwise, create a default textblock
-							return {
-								type: defaultTextblockForMatch(
-									$from
-										.node($from.depth - 1)
-										.contentMatchAt($from.indexAfter($from.depth - 1))
-								)!,
-								attrs: rte.textblockAttrs.extractFromNode(node),
-							};
-						})
-					),
+					Enter: enterKeyChainCommands,
+					'Shift-Enter': enterKeyChainCommands,
 				})
 			),
 			this.contribution(dropCursor()),
