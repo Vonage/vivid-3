@@ -3,6 +3,12 @@
   <p>The Table component provides proper ARIA roles and keyboard navigation support following the WAI-ARIA table pattern.</p>
 </vwc-note>
 
+## Keyboard Interactions
+
+- Navigate data-grid cells using the Arrow keys.
+- If a cell contains an interactive element, it can be reached using the Tab key.
+- If a header cell contains sort functionality, it can be activated using the Space or Enter key.
+
 ## Implementation
 
 - The Table component uses `role="table"` for the root element.
