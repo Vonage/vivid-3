@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html, slotted, when } from '@microsoft/fast-element';
 import { classNames, keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
@@ -85,8 +85,17 @@ function getSortAnnouncement(x: DataGridCell): string {
 
 function handleKeyDown<T extends DataGridCell>(x: T, e: KeyboardEvent) {
 	if (e.key === keyEnter || e.key === keySpace) {
+		const target = e.target as HTMLElement;
+		if (target.closest('[slot="action-items"]')) return true;
 		x._handleInteraction();
 	}
+	return true;
+}
+
+function handleClick<T extends DataGridCell>(x: T, e: Event) {
+	const target = e.target as HTMLElement;
+	if (target.closest('[slot="action-items"]')) return true;
+	x._handleInteraction();
 	return true;
 }
 
@@ -94,8 +103,16 @@ export const DataGridCellTemplate = (
 	context: VividElementDefinitionContext
 ) => {
 	const visuallyHiddenTagName = context.tagFor(VisuallyHidden);
-	const getBaseClasses = (x: DataGridCell) =>
-		classNames('base', ['selected', !!x.selected]);
+	const getBaseClasses = ({
+		selected,
+		_actionItemsSlottedContent,
+	}: DataGridCell) =>
+		classNames(
+			'base',
+			['selected', !!selected],
+			['has-action-items', Boolean(_actionItemsSlottedContent?.length)]
+		);
+
 	return html<DataGridCell>`
 		<template
 			tabindex="-1"
@@ -104,41 +121,47 @@ export const DataGridCellTemplate = (
 				ariaSelected: calculateAriaSelectedValue,
 				ariaSort: (x) => x.sortDirection ?? null,
 			})}
-			@click="${(x) => x._handleInteraction()}"
+			@click="${(x, c) => handleClick(x, c.event)}"
 			@keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
 		>
-			<div
-				class="${getBaseClasses}"
-				role="${(x) => (shouldShowSortIcons(x) ? 'button' : undefined)}"
-			>
-				${(x) =>
-					x.selected
-						? html`<${visuallyHiddenTagName}
+			<div class="${getBaseClasses}">
+				<div
+					class="content"
+					role="${(x) => (shouldShowSortIcons(x) ? 'button' : undefined)}"
+				>
+					${(x) =>
+						x.selected
+							? html`<${visuallyHiddenTagName}
 								data-announcement="selection"
 							>
 								${(x) => x.locale.dataGrid.cell.selected}
 							</${visuallyHiddenTagName}>`
-						: null}
-				<slot></slot>
-				${when(
-					shouldShowSortIcons,
-					html`<${visuallyHiddenTagName}
+							: null}
+					<slot></slot>
+					${when(
+						shouldShowSortIcons,
+						html`<${visuallyHiddenTagName}
 							data-announcement="button-role"
 						>
 							${(x: DataGridCell) => x.locale.dataGrid.cell.button}
 						</${visuallyHiddenTagName}>
-					`
-				)}
-				${when(
-					shouldAnnounceSortState,
-					html`<${visuallyHiddenTagName}
+						`
+					)}
+					${when(
+						shouldAnnounceSortState,
+						html`<${visuallyHiddenTagName}
 							aria-live="polite"
 							data-announcement="sort-state"
 						>
 							${getSortAnnouncement}
 						</${visuallyHiddenTagName}>`
-				)}
-				${(_) => renderSortIcons(context)}
+					)}
+					${(_) => renderSortIcons(context)}
+				</div>
+				<slot
+					name="action-items"
+					${slotted('_actionItemsSlottedContent')}
+				></slot>
 			</div>
 		</template>
 	`;

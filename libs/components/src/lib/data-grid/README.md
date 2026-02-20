@@ -1061,6 +1061,17 @@ import { VDataGrid, VDataGridCell, VDataGridRow } from '@vonage/vivid-vue';
 
 </div>
 
+#### Slots
+
+<div class="table-wrapper">
+
+| Name             | Description                                         |
+| ---------------- | --------------------------------------------------- |
+| **default**      | Use the default slot to set the content of the cell |
+| **action-items** | Add action items to the cell using this slot        |
+
+</div>
+
 #### Events
 
 <div class="table-wrapper">

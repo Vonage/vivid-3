@@ -414,9 +414,9 @@ describe('vwc-data-grid-cell', () => {
 		it('should have a button role when sorting is enabled', async function () {
 			element.setAttribute('aria-sort', 'none');
 			await elementUpdated(element);
-			const baseElement = element.shadowRoot?.querySelector('.base');
+			const buttonElement = element.shadowRoot?.querySelector('.content');
 
-			expect(baseElement?.role).toEqual('button');
+			expect(buttonElement?.role).toEqual('button');
 		});
 
 		it('should show sort-solid icon in the header when "none" is set', async function () {
@@ -494,9 +494,9 @@ describe('vwc-data-grid-cell', () => {
 		it('should have a button role when sorting is enabled', async function () {
 			element.sortDirection = 'none';
 			await elementUpdated(element);
-			const baseElement = element.shadowRoot?.querySelector('.base');
+			const buttonElement = element.shadowRoot?.querySelector('.content');
 
-			expect(baseElement?.role).toEqual('button');
+			expect(buttonElement?.role).toEqual('button');
 		});
 
 		it('should show sort-solid icon in the header when "none" is set', async function () {
@@ -805,5 +805,38 @@ describe('vwc-data-grid-cell', () => {
 			expect(onCellClickSpy).toHaveBeenCalledTimes(1);
 			expect(onCellClickSpy.mock.calls[0][0].detail.isHeaderCell).toBe(true);
 		});
+	});
+
+	describe('action-items slot', () => {
+		let actionButton: HTMLButtonElement;
+		let interactionSpy: Mock;
+
+		beforeEach(async () => {
+			element.cellType = 'columnheader';
+			element.sortDirection = DataGridCellSortStates.none;
+			actionButton = document.createElement('button');
+			actionButton.slot = 'action-items';
+			element.appendChild(actionButton);
+			await elementUpdated(element);
+
+			interactionSpy = vi.fn();
+			element.addEventListener('sort', interactionSpy);
+			element.addEventListener('cell-click', interactionSpy);
+		});
+
+		it('should not emit interaction events when clicking on an element in the action-items slot', () => {
+			actionButton.click();
+			expect(interactionSpy).not.toHaveBeenCalled();
+		});
+
+		it.each(['Enter', ' '])(
+			'should not emit interaction events when pressing "%s" on an element in the action-items slot',
+			(key) => {
+				actionButton.dispatchEvent(
+					new KeyboardEvent('keydown', { key, bubbles: true })
+				);
+				expect(interactionSpy).not.toHaveBeenCalled();
+			}
+		);
 	});
 });

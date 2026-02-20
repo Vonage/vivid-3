@@ -6,7 +6,7 @@ import {
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['data-grid'];
+const components = ['data-grid', 'button'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `<div style="margin: 5px; max-width: 700px;">
@@ -281,7 +281,11 @@ test('multi row selection', async function ({ page }: { page: Page }) {
 	await takeScreenshot(page, 'data-grid-multi-row-select');
 });
 
-test('sort columns', async function ({ page }: { page: Page }) {
+test('sort columns & action-items slot', async function ({
+	page,
+}: {
+	page: Page;
+}) {
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid>
 				<vwc-data-grid-row role="row" class="header" row-type="header">
@@ -293,6 +297,7 @@ test('sort columns', async function ({ page }: { page: Page }) {
 					</vwc-data-grid-cell>
 					<vwc-data-grid-cell aria-sort="descending" cell-type="columnheader">
 					data3
+					<vwc-button slot="action-items" appearance="ghost" aria-label="Filter Status column" size="condensed" icon="filter-line"></vwc-button>
 					</vwc-data-grid-cell>
 				</vwc-data-grid-row>
 			</vwc-data-grid>
