@@ -60,6 +60,24 @@ jobs:
                 sha: VIVID_SHA
             })
 
+        # ...and the same for vivid-icons
+      - name: Create Icons Tag
+        if: ${{ steps.release.outputs['libs/icons--release_created'] }}
+        uses: actions/github-script@v7
+        env:
+          VIVID_VERSION: ${{ steps.release.outputs['libs/icons--version'] }}
+          VIVID_SHA: ${{ steps.release.outputs['libs/icons--sha'] }}
+        with:
+          github-token: ${{ secrets.RELEASE_PLEASE_PAT }}
+          script: |
+            const { VIVID_VERSION, VIVID_SHA } = process.env
+            github.rest.git.createRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `refs/tags/vivid-icons-v${VIVID_VERSION}`,
+                sha: VIVID_SHA
+            })
+
       # Now we can create/update the release PR if needed
       # This will look for commits since the last release and associate them with libraries if files in the library
       # directories have changed. It will then create/update a release PR that updates the libraries changelog and versions

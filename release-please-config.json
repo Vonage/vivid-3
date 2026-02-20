@@ -38,15 +38,12 @@
 		{
 			"type": "linked-versions",
 			"groupName": "vivid",
-			"components": [
-				"vivid",
-				"vivid-design-tokens",
-				"vivid-icons",
-				"vivid-icons-flags",
-				"vivid-icons-brands",
-				"vivid-vue",
-				"test-utils"
-			]
+			"components": ["vivid", "vivid-design-tokens", "vivid-vue", "test-utils"]
+		},
+		{
+			"type": "linked-versions",
+			"groupName": "icons",
+			"components": ["vivid-icons", "vivid-icons-flags", "vivid-icons-brands"]
 		}
 	]
 }
