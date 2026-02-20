@@ -1,7 +1,12 @@
+import { elementUpdated } from '@repo/shared';
 import { setup } from '../__tests__/test-utils';
+import { docFactories } from '../__tests__/doc-factories';
 import { RteBase } from './base';
 import { RteToolbarFeature } from './toolbar';
 import { RteBoldFeature } from './bold';
+import { RteHardBreakFeature } from './hard-break';
+
+const { paragraph: p } = docFactories;
 
 describe('RteBase', () => {
 	it('should add only paragraph node by default', async () => {
@@ -37,6 +42,72 @@ describe('RteBase', () => {
 		const { view } = await setup([new RteBase({ heading3: true })]);
 
 		expect(view.state.schema.nodes.heading3).toBeDefined();
+	});
+
+	describe('keyboard handling', () => {
+		describe('Enter/Shift-Enter', () => {
+			it('should split paragraph when pressing Enter', async () => {
+				const { placeCursor, keydown, docStr, element } = await setup(
+					[new RteBase()],
+					[p('Hello world')]
+				);
+
+				placeCursor('Hello| world');
+				keydown('Enter');
+				await elementUpdated(element);
+
+				expect(docStr()).toMatchInlineSnapshot(
+					`"paragraph('Hello'), paragraph('| world')"`
+				);
+			});
+
+			it('should split paragraph when pressing Shift+Enter', async () => {
+				const { placeCursor, keydown, docStr, element } = await setup(
+					[new RteBase()],
+					[p('Hello world')]
+				);
+
+				placeCursor('Hello| world');
+				keydown('Enter', { shift: true });
+				await elementUpdated(element);
+
+				expect(docStr()).toMatchInlineSnapshot(
+					`"paragraph('Hello'), paragraph('| world')"`
+				);
+			});
+
+			describe('WHEN hard break feature enabled', () => {
+				it('should insert hard break when pressing Shift+Enter', async () => {
+					const { placeCursor, keydown, docStr, element } = await setup(
+						[new RteBase(), new RteHardBreakFeature()],
+						[p('Hello world')]
+					);
+
+					placeCursor('Hello| world');
+					keydown('Enter', { shift: true });
+					await elementUpdated(element);
+
+					expect(docStr()).toMatchInlineSnapshot(
+						`"paragraph('Hello', hardBreak(), '| world')"`
+					);
+				});
+
+				it('should keep Enter behavior', async () => {
+					const { placeCursor, keydown, docStr, element } = await setup(
+						[new RteBase(), new RteHardBreakFeature()],
+						[p('Hello world')]
+					);
+
+					placeCursor('Hello| world');
+					keydown('Enter');
+					await elementUpdated(element);
+
+					expect(docStr()).toMatchInlineSnapshot(
+						`"paragraph('Hello'), paragraph('| world')"`
+					);
+				});
+			});
+		});
 	});
 
 	describe('disabled', () => {

@@ -725,6 +725,14 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 - **Redo**: <kbd>Ctrl</kbd> + <kbd>Y</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>
 - **Convert to Paragraph**: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>0</kbd> / <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>0</kbd>
 - **Convert to Heading Level &lt;X&gt;**: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>&lt;X&gt;</kbd> / <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>&lt;X&gt;</kbd>
+- **Create a New Paragraph:** <kbd>Enter</kbd> / <kbd>Shift</kbd> + <kbd>Enter</kbd>
+
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
+
+To insert a hard break (`<br>`) use <kbd>Shift</kbd> + <kbd>Enter</kbd> with [`RteHardBreakFeature`](#rtehardbreakfeature) enabled.
+
+</vwc-note>
 
 <rte-schema>
 	<rte-schema-node name="doc">
