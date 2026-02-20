@@ -99,8 +99,6 @@ import { VOption, VSelect, VTable, VTableBody, VTableCell, VTableHead, VTableHea
 
 ## Add and Remove Rows Dynamically
 
-You can add and remove rows dynamically by manipulating the DOM (Web Component) or with reactive data (Vue).
-
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
