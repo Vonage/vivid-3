@@ -2898,7 +2898,13 @@
 					"returnType": "void"
 				}
 			],
-			"slots": [{ "name": "default", "description": "Default slot." }],
+			"slots": [
+				{
+					"name": "action-items",
+					"description": "Add action items to the cell using this slot."
+				},
+				{ "name": "default", "description": "Default slot." }
+			],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
 				"actions": [

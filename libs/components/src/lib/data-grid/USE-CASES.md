@@ -367,6 +367,260 @@ function onSort(e: VEvents['VDataGrid']['cell-click']) {
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Column Actions (Filtering and Sorting)
+
+You can combine sorting and custom actions (like filtering) in the same column header. The `action-items` slot ensures that your custom controls are placed properly next to the column title and sort icons without interfering with accessibility or sorting interactions.
+
+<vwc-note connotation="information" headline="Accessibility note">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
+
+For accessibility, it is highly recommended to include an <code>aria-live</code> region to announce to screen readers when the grid data is filtered.
+
+</vwc-note>
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 300px
+<script setup lang="ts">
+import { ref, computed, useTemplateRef } from 'vue';
+import { VButton, VDataGrid, VDataGridRow, VDataGridCell, VMenu, VMenuItem, type VEvents, type VProps } from '@vonage/vivid-vue';
+
+const rowsData = [
+	{ name: 'Alice', status: 'Active' },
+	{ name: 'Bob', status: 'Inactive' },
+	{ name: 'Charlie', status: 'Active' },
+	{ name: 'Dave', status: 'Pending' },
+];
+
+const menuRef = useTemplateRef<InstanceType<typeof VMenu>>('menuRef');
+const statuses = ['Active', 'Inactive', 'Pending'];
+const activeFilters = ref([...statuses]);
+const tempFilters = ref([...statuses]);
+const sortDirection = ref<VProps['VDataGridCell']['sortDirection']>('none');
+
+const processedData = computed(() => {
+	const filteredRows = rowsData.filter((item) => activeFilters.value.includes(item.status));
+	if (sortDirection.value === 'none') return filteredRows;
+
+	return filteredRows.sort((a, b) => {
+		if (sortDirection.value === 'ascending') {
+			return a.status > b.status ? 1 : -1;
+		}
+		return a.status < b.status ? 1 : -1;
+	});
+});
+
+const a11yAnnouncement = computed(() => `Data updated. Showing statuses: ${activeFilters.value.join(', ')}.`);
+
+function toggleFilter(status: string, event: Event) {
+	const isChecked = (event.target as HTMLInputElement).checked;
+	if (isChecked) {
+		tempFilters.value.push(status);
+	} else {
+		tempFilters.value = tempFilters.value.filter((f) => f !== status);
+	}
+}
+
+function cancelFilter() {
+	tempFilters.value = [...activeFilters.value];
+	if (menuRef.value) menuRef.value.element.open = false;
+}
+
+function applyFilter() {
+	activeFilters.value = [...tempFilters.value];
+	if (menuRef.value) menuRef.value.element.open = false;
+}
+
+function onSort(e: VEvents['VDataGridCell']['sort']) {
+	if (e.detail.sortDirection === 'ascending') {
+		sortDirection.value = 'descending';
+	} else if (e.detail.sortDirection === 'descending') {
+		sortDirection.value = 'none';
+	} else {
+		sortDirection.value = 'ascending';
+	}
+}
+</script>
+
+<template>
+	<div>
+		<span class="visually-hidden" aria-live="polite" v-text="a11yAnnouncement"></span>
+		<VDataGrid>
+			<VDataGridRow row-type="header">
+				<VDataGridCell cell-type="columnheader">Name</VDataGridCell>
+				<VDataGridCell cell-type="columnheader" :sort-direction="sortDirection" @sort="onSort">
+					Status
+					<template #action-items>
+						<VMenu placement="bottom-start" ref="menuRef">
+							<template #anchor>
+								<VButton appearance="ghost" aria-label="Filter Status column" size="condensed" icon="filter-line" />
+							</template>
+							<VMenuItem v-for="status in statuses" :key="status" control-type="checkbox" :text="status" :checked="tempFilters.includes(status)" @change="toggleFilter(status, $event)" />
+							<template #action-items>
+								<VButton size="condensed" appearance="outlined" label="Cancel" @click="cancelFilter" />
+								<VButton size="condensed" appearance="filled" label="Apply" @click="applyFilter" />
+							</template>
+						</VMenu>
+					</template>
+				</VDataGridCell>
+			</VDataGridRow>
+			<VDataGridRow v-for="row in processedData" :key="row.name">
+				<VDataGridCell v-text="row.name" />
+				<VDataGridCell v-text="row.status" />
+			</VDataGridRow>
+		</VDataGrid>
+	</div>
+</template>
+
+<style>
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 300px
+<div>
+	<span id="a11y-announcement" class="visually-hidden" aria-live="polite"></span>
+	<vwc-data-grid class="data-grid-filter" generate-header="none">
+		<vwc-data-grid-row row-type="header">
+			<vwc-data-grid-cell cell-type="columnheader">Name</vwc-data-grid-cell>
+			<vwc-data-grid-cell cell-type="columnheader" id="status-header" sort-direction="none">
+				Status
+				<vwc-menu placement="bottom-start" slot="action-items" id="filter-menu">
+					<vwc-button slot="anchor" appearance="ghost" aria-label="Filter Status column" size="condensed" icon="filter-line"></vwc-button>
+					<vwc-button id="btn-cancel" slot="action-items" size="condensed" appearance="outlined" label="Cancel"></vwc-button>
+					<vwc-button id="btn-apply" slot="action-items" size="condensed" appearance="filled" label="Apply"></vwc-button>
+				</vwc-menu>
+			</vwc-data-grid-cell>
+		</vwc-data-grid-row>
+	</vwc-data-grid>
+</div>
+
+<script>
+	const gridFilter = document.querySelector('.data-grid-filter');
+	const statusHeader = document.getElementById('status-header');
+	const filterMenu = document.getElementById('filter-menu');
+	const btnCancel = document.getElementById('btn-cancel');
+	const btnApply = document.getElementById('btn-apply');
+	const a11yAnnouncement = document.getElementById('a11y-announcement');
+
+	const rowsData = [
+		{ name: 'Alice', status: 'Active' },
+		{ name: 'Bob', status: 'Inactive' },
+		{ name: 'Charlie', status: 'Active' },
+		{ name: 'Dave', status: 'Pending' },
+	];
+
+	const statuses = ['Active', 'Inactive', 'Pending'];
+	let activeFilters = [...statuses];
+	let tempFilters = [...statuses];
+
+	statuses.forEach((status) => {
+		const menuItem = document.createElement('vwc-menu-item');
+		menuItem.setAttribute('control-type', 'checkbox');
+		menuItem.setAttribute('text', status);
+		menuItem.checked = true;
+
+		menuItem.addEventListener('change', (e) => {
+			if (e.target.checked) {
+				tempFilters.push(status);
+			} else {
+				tempFilters = tempFilters.filter((f) => f !== status);
+			}
+		});
+
+		filterMenu.insertBefore(menuItem, btnCancel);
+	});
+
+	function renderGrid() {
+		gridFilter.querySelectorAll('vwc-data-grid-row:not([row-type="header"])').forEach((row) => row.remove());
+		const filteredRows = rowsData.filter((item) => activeFilters.includes(item.status));
+		const currentSort = statusHeader.getAttribute('sort-direction') || 'none';
+		let processedData = filteredRows;
+
+		if (currentSort !== 'none') {
+			processedData = filteredRows.sort((a, b) => {
+				if (currentSort === 'ascending') {
+					return a.status > b.status ? 1 : -1;
+				}
+				return a.status < b.status ? 1 : -1;
+			});
+		}
+
+		processedData.forEach((item) => {
+			const row = document.createElement('vwc-data-grid-row');
+			row.innerHTML = `
+				<vwc-data-grid-cell>${item.name}</vwc-data-grid-cell>
+				<vwc-data-grid-cell>${item.status}</vwc-data-grid-cell>
+			`;
+			gridFilter.appendChild(row);
+		});
+
+		a11yAnnouncement.textContent = `Data updated. Showing statuses: ${activeFilters.join(', ')}.`;
+	}
+
+	renderGrid();
+
+	statusHeader.addEventListener('sort', (e) => {
+		const { detail, target } = e;
+		if (detail.sortDirection === 'ascending') {
+			target.setAttribute('sort-direction', 'descending');
+		} else if (detail.sortDirection === 'descending') {
+			target.setAttribute('sort-direction', 'none');
+		} else {
+			target.setAttribute('sort-direction', 'ascending');
+		}
+		renderGrid();
+	});
+
+	btnCancel.addEventListener('click', () => {
+		tempFilters = [...activeFilters];
+		Array.from(filterMenu.querySelectorAll('vwc-menu-item')).forEach((item) => {
+			item.checked = tempFilters.includes(item.getAttribute('text'));
+		});
+		filterMenu.open = false;
+	});
+
+	btnApply.addEventListener('click', () => {
+		activeFilters = [...tempFilters];
+		renderGrid();
+		filterMenu.open = false;
+	});
+</script>
+
+<style>
+	.visually-hidden {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Focusable Child Elements
 
 If your cell contains a focusable child element that you would like to delegate focus to, use the `cellFocusTargetCallback` of the column definition to return the child element. It will now take focus instead of the cell.
