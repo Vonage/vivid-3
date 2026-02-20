@@ -15,6 +15,16 @@
 
 :host {
 	display: table-row;
+
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(#{constants.$vvd-color-neutral-200});
+		}
+	}
+
+	&:is([selected]) {
+		background-color: var(#{appearance.get-appearance-token(fill)});
+	}
 }
 
 .base {
@@ -26,9 +36,5 @@
 		width: 100%;
 		box-sizing: border-box;
 		color: var(#{constants.$vvd-color-canvas-text});
-	}
-
-	:host(:is([selected])) & {
-		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
 }
