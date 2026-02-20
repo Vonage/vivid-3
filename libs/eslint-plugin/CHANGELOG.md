@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/Vonage/vivid-3/compare/eslint-plugin-v1.5.0...eslint-plugin-v1.5.1) (2026-02-20)
+
+
+### Bug Fixes
+
+* **rich-text-editor:** fix types not being emitted (VIV-000) ([#2757](https://github.com/Vonage/vivid-3/issues/2757)) ([030568d](https://github.com/Vonage/vivid-3/commit/030568dd2dfa290ec67c8c53c95c350904617a62))
+
 ## [1.5.0](https://github.com/Vonage/vivid-3/compare/eslint-plugin-v1.4.0...eslint-plugin-v1.5.0) (2025-05-12)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.13.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v5.12.0...vivid-vue-v5.13.0) (2026-02-20)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
 ## [5.12.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v5.11.0...vivid-vue-v5.12.0) (2026-02-13)
 
 

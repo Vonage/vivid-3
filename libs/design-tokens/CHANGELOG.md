@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.13.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.12.0...vivid-design-tokens-v5.13.0) (2026-02-20)
+
+
+### Miscellaneous Chores
+
+* **vivid-design-tokens:** Synchronize vivid versions
+
 ## [5.12.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.11.0...vivid-design-tokens-v5.12.0) (2026-02-13)
 
 
