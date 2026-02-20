@@ -4,6 +4,19 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.13.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.12.0...vivid-v5.13.0) (2026-02-20)
+
+
+### Features
+
+* **data-grid:** add action-items slot for column actions / filtering (VIV-3114) ([#2769](https://github.com/Vonage/vivid-3/issues/2769)) ([7e44974](https://github.com/Vonage/vivid-3/commit/7e44974424ac927097dd2297cbea6122d147939e))
+* **select:** add clear button (VIV-3111) ([#2766](https://github.com/Vonage/vivid-3/issues/2766)) ([40d8acd](https://github.com/Vonage/vivid-3/commit/40d8acde49f5783d94bc0f1af28cdb1158df2b39))
+
+
+### Bug Fixes
+
+* **rich-text-editor:** fix types not being emitted (VIV-000) ([#2757](https://github.com/Vonage/vivid-3/issues/2757)) ([030568d](https://github.com/Vonage/vivid-3/commit/030568dd2dfa290ec67c8c53c95c350904617a62))
+
 ## [5.12.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.11.0...vivid-v5.12.0) (2026-02-13)
 
 
