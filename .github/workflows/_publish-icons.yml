@@ -3,17 +3,14 @@ name: 🚀 Icons publish
 on:
   workflow_call:
     inputs:
+      sha:
+        description: The revision to build and publish
+        required: true
+        type: string
       version:
         description: Icons version
         required: true
         type: string
-    secrets:
-      access-key:
-        description: An vivid icons cdn S3 bucket access key
-        required: true
-      secret-access-key:
-        description: An vivid icons cdn S3 bucket secret access key
-        required: true
 
 jobs:
   publish-flutter:
@@ -39,7 +36,7 @@ jobs:
           secret-access-key: ${{ secrets.ICONS_S3_SECRET_ACCESS_KEY }}
           bucket: ${{ vars.ICONS_BUCKET }}
           base-folder: ${{ vars.ICONS_BASE_FOLDER }}
-          version: ${{ needs.release-please.outputs.vivid_icons_version }}
+          version: ${{ inputs.version }}
           source-dirs: |
             ./libs/icons/src/generated/
             ./libs/icons-flags/src/generated/
