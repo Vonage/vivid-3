@@ -1,0 +1,46 @@
+name: 🚀 Icons publish
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: Icons version
+        required: true
+        type: string
+    secrets:
+      access-key:
+        description: An vivid icons cdn S3 bucket access key
+        required: true
+      secret-access-key:
+        description: An vivid icons cdn S3 bucket secret access key
+        required: true
+
+jobs:
+  publish-flutter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.sha }}
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Publish icons to CDN
+        uses: ./.github/actions/upload-icons
+        with:
+          access-key: ${{ secrets.ICONS_S3_ACCESS_KEY }}
+          secret-access-key: ${{ secrets.ICONS_S3_SECRET_ACCESS_KEY }}
+          bucket: ${{ vars.ICONS_BUCKET }}
+          base-folder: ${{ vars.ICONS_BASE_FOLDER }}
+          version: ${{ needs.release-please.outputs.vivid_icons_version }}
+          source-dirs: |
+            ./libs/icons/src/generated/
+            ./libs/icons-flags/src/generated/
+            ./libs/icons-brands/src/generated/
