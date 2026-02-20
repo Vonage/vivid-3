@@ -30,7 +30,7 @@ Global styles & utility classes
 
 ### Body Text
 
-| Typeface       | Usage                         |
+| Typeface       | Suggested usage               |
 | -------------- | ----------------------------- |
 | Body text - lg | Long-form reading or emphasis |
 | Body text - md | Default body copy             |
@@ -101,7 +101,7 @@ Global styles & utility classes
 
 ### Headings
 
-| Typeface          | Intended usage             |
+| Typeface          | Suggested usage            |
 | ----------------- | -------------------------- |
 | Heading - 3xl     | Page titles                |
 | Heading - 2xl     | Major section headings     |
@@ -307,7 +307,7 @@ All text inherits a shared base style (**body text - md**). This ensures a consi
 | `h6`                 | Heading sm     |
 | `small`              | Body text - sm |
 | `figcaption`         | Body text - sm |
-| `code`, `pre`, `kbd` | Code text      |
+| `code`, `pre`, `kbd` | Mono text      |
 
 Margins are applied to headings and paragraphs to maintain vertical rhythm.
 
