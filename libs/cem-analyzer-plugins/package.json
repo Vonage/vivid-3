@@ -29,7 +29,7 @@
 		"resolve.exports": "^2.0.3",
 		"sass": "catalog:",
 		"typescript": "catalog:",
-		"typescript-cem-version": "npm:typescript@~4.3.5",
+		"typescript-cem-version": "npm:typescript@~4.9.0",
 		"vitest": "catalog:"
 	}
 }
