@@ -18,32 +18,10 @@
 
 :host {
 	display: table-cell;
+	vertical-align: middle;
 
 	@include connotation.connotation(data-grid-cell);
 	@include appearance.appearance;
-
-	& {
-		box-sizing: border-box;
-		border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
-		block-size: var(
-			#{variables.$data-grid-cell-block-size},
-			var(#{variables.$data-grid-cell-default-block-size})
-		);
-		color: var(#{appearance.get-appearance-token(text)});
-		font: var(#{constants.$vvd-typography-base});
-		min-block-size: #{size.$vvd-size-expanded};
-		padding-block: 12px 14px;
-		padding-inline: 12px;
-		vertical-align: middle;
-	}
-
-	&:focus-visible {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-		@include focus.focus;
-
-		outline: none;
-	}
 
 	&:not([cell-type='columnheader']) {
 		#{variables.$data-grid-cell-default-block-size}: 100%; // Fit content
@@ -53,6 +31,31 @@
 	&:is([selected]) {
 		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
+}
+
+:host(:focus-visible) {
+	outline: none;
+}
+
+.base {
+	box-sizing: border-box;
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
+	block-size: var(
+		#{variables.$data-grid-cell-block-size},
+		var(#{variables.$data-grid-cell-default-block-size})
+	);
+	color: var(#{appearance.get-appearance-token(text)});
+	font: var(#{constants.$vvd-typography-base});
+	min-block-size: #{size.$vvd-size-expanded};
+	max-block-size: #{size.$vvd-size-expanded};
+	padding-block: 12px 14px;
+	padding-inline: 12px;
+}
+
+:host(:focus-visible) .base {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	@include focus.focus;
 }
 
 slot {

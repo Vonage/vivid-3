@@ -20,7 +20,9 @@ export const TableHeaderCellTemplate = (
 						: DataGridCellRole.rowheader,
 			})}
 		>
-			<slot></slot>
+			<div class="base">
+				<slot></slot>
+			</div>
 		</template>
 	`;
 };
