@@ -18,6 +18,19 @@
 
 :host {
 	display: table-cell;
+	vertical-align: middle;
+
+	@include connotation.connotation(data-grid-cell);
+	@include appearance.appearance;
+	#{variables.$data-grid-cell-default-block-size}: #{size.$vvd-size-expanded};
+	#{variables.$data-grid-cell-default-white-space}: nowrap;
+}
+
+:host(:focus-visible) {
+	outline: none;
+}
+
+.base {
 	box-sizing: border-box;
 	padding: 0;
 	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
@@ -29,24 +42,16 @@
 	font: var(#{constants.$vvd-typography-base-bold});
 	padding-block: 12px 14px;
 	padding-inline: 12px;
-	vertical-align: middle;
-
-	@include connotation.connotation(data-grid-cell);
-	@include appearance.appearance;
-	#{variables.$data-grid-cell-default-block-size}: #{size.$vvd-size-expanded};
-	#{variables.$data-grid-cell-default-white-space}: nowrap;
-
-	&:focus-visible {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-		@include focus.focus;
-
-		outline: none;
-	}
 }
 
-:host([role='columnheader']) {
+:host([role='columnheader']) .base {
 	border-bottom: 1px solid var(#{constants.$vvd-color-canvas-text});
+}
+
+:host(:focus-visible) .base {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	@include focus.focus;
 }
 
 slot {
