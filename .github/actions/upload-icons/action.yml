@@ -1,7 +1,7 @@
 name: vivid icons CDN upload
-description: "Uploads icon assets to Vivid's Icons AWS S3 bucket"
+description: Uploads icon assets to Vivid's Icons AWS S3 bucket
 branding:
-  color: 'purple'
+  color: purple
 
 inputs:
   access-key:
