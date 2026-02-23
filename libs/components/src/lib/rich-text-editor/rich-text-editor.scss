@@ -4,7 +4,8 @@
 @use '@repo/shared/mixins/focus' as focus-variables;
 
 :host {
-	display: block;
+	display: flex;
+	flex-direction: column;
 }
 
 // Note: Cannot call this .base, as Select sets a base class on itself
@@ -12,6 +13,7 @@
 	display: flex;
 	flex-direction: column;
 	block-size: 100%;
+	min-block-size: 0;
 }
 
 .editor {
@@ -20,9 +22,12 @@
 
 .editor-viewport {
 	position: relative;
+	display: flex;
 	overflow: hidden;
 	flex: 1;
+	flex-direction: column;
 	contain: layout; // for display fixed
+	min-block-size: 0;
 }
 
 .editor-scroll-area {
@@ -30,11 +35,12 @@
 	--editor-padding-inline: 16px;
 
 	display: flex;
+	flex: 1;
 	flex-direction: column;
 	background-color: var(#{constants.$vvd-color-canvas});
-	block-size: 100%;
 	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base});
+	min-block-size: 0;
 	overflow-y: auto;
 
 	@include scrollbar.scrollbar;
