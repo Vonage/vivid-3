@@ -48,5 +48,4 @@ describe('Table row', () => {
 			expect(cells.length).toBe(3);
 		});
 	});
-
 });

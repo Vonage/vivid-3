@@ -17,47 +17,49 @@ Tables can be built using the following components: `table`, `table-head`, `tabl
 
 ```vue preview
 <template>
-	<VTable>
-		<VTableHead>
-			<VTableRow>
-				<VTableHeaderCell>Component</VTableHeaderCell>
-				<VTableHeaderCell>HTML equivalent</VTableHeaderCell>
-				<VTableHeaderCell>Description</VTableHeaderCell>
-			</VTableRow>
-		</VTableHead>
-		<VTableBody>
-			<VTableRow>
-				<VTableHeaderCell>Table</VTableHeaderCell>
-				<VTableCell>table</VTableCell>
-				<VTableCell>Represents tabular data</VTableCell>
-			</VTableRow>
-			<VTableRow>
-				<VTableHeaderCell>Table Head</VTableHeaderCell>
-				<VTableCell>thead</VTableCell>
-				<VTableCell>Encapsulates a set of table rows, indicating that they comprise the head of a table with information about the table's columns</VTableCell>
-			</VTableRow>
-			<VTableRow>
-				<VTableHeaderCell>Table Body</VTableHeaderCell>
-				<VTableCell>tbody</VTableCell>
-				<VTableCell>Encapsulates a set of table rows, indicating that they comprise the body of a table's (main) data</VTableCell>
-			</VTableRow>
-			<VTableRow>
-				<VTableHeaderCell>Table Row</VTableHeaderCell>
-				<VTableCell>tr</VTableCell>
-				<VTableCell>Defines a row of cells in a table</VTableCell>
-			</VTableRow>
-			<VTableRow>
-				<VTableHeaderCell>Table Cell</VTableHeaderCell>
-				<VTableCell>td</VTableCell>
-				<VTableCell>Defines a cell of a table that contains data</VTableCell>
-			</VTableRow>
-			<VTableRow>
-				<VTableHeaderCell>Table Header Cell</VTableHeaderCell>
-				<VTableCell>th</VTableCell>
-				<VTableCell>Defines a cell as the header of a group of table cells</VTableCell>
-			</VTableRow>
-		</VTableBody>
-	</VTable>
+	<div style="width: 1250px;">
+		<VTable>
+			<VTableHead>
+				<VTableRow>
+					<VTableHeaderCell>Component</VTableHeaderCell>
+					<VTableHeaderCell>HTML equivalent</VTableHeaderCell>
+					<VTableHeaderCell style="width: 74%;">Description</VTableHeaderCell>
+				</VTableRow>
+			</VTableHead>
+			<VTableBody>
+				<VTableRow>
+					<VTableHeaderCell>Table</VTableHeaderCell>
+					<VTableCell>table</VTableCell>
+					<VTableCell>Represents tabular data</VTableCell>
+				</VTableRow>
+				<VTableRow>
+					<VTableHeaderCell>Table Head</VTableHeaderCell>
+					<VTableCell>thead</VTableCell>
+					<VTableCell>Encapsulates a set of table rows, indicating that they comprise the head of a table with information about the table's columns</VTableCell>
+				</VTableRow>
+				<VTableRow>
+					<VTableHeaderCell>Table Body</VTableHeaderCell>
+					<VTableCell>tbody</VTableCell>
+					<VTableCell>Encapsulates a set of table rows, indicating that they comprise the body of a table's (main) data</VTableCell>
+				</VTableRow>
+				<VTableRow>
+					<VTableHeaderCell>Table Row</VTableHeaderCell>
+					<VTableCell>tr</VTableCell>
+					<VTableCell>Defines a row of cells in a table</VTableCell>
+				</VTableRow>
+				<VTableRow>
+					<VTableHeaderCell>Table Cell</VTableHeaderCell>
+					<VTableCell>td</VTableCell>
+					<VTableCell>Defines a cell of a table that contains data</VTableCell>
+				</VTableRow>
+				<VTableRow>
+					<VTableHeaderCell>Table Header Cell</VTableHeaderCell>
+					<VTableCell>th</VTableCell>
+					<VTableCell>Defines a cell as the header of a group of table cells</VTableCell>
+				</VTableRow>
+			</VTableBody>
+		</VTable>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -70,12 +72,13 @@ import { VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, VTableRow
 <vwc-tab-panel>
 
 ```html preview
+<div style="width: 1250px;">
 <vwc-table>
 		<vwc-table-head>
 			<vwc-table-row>
 				<vwc-table-header-cell>Component</vwc-table-header-cell>
 				<vwc-table-header-cell>HTML equivalent</vwc-table-header-cell>
-				<vwc-table-header-cell>Description</vwc-table-header-cell>
+				<vwc-table-header-cell style="width: 74%;">Description</vwc-table-header-cell>
 			</vwc-table-row>
 		</vwc-table-head>
 		<vwc-table-body>
@@ -111,6 +114,7 @@ import { VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, VTableRow
 			</vwc-table-row>
 		</Vvwc-table-body>
 	</vwc-table>
+</div>
 ```
 
 </vwc-tab-panel>

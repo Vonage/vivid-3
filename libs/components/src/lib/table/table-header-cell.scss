@@ -14,7 +14,7 @@
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/shared/mixins/focus' as focus;
 @use '@repo/shared/mixins/focus' as focus-variables;
-@use '../data-grid/partials/variables' as variables;
+@use 'partials/variables' as variables;
 
 :host {
 	display: table-cell;
@@ -22,8 +22,8 @@
 
 	@include connotation.connotation(data-grid-cell);
 	@include appearance.appearance;
-	#{variables.$data-grid-cell-default-block-size}: #{size.$vvd-size-expanded};
-	#{variables.$data-grid-cell-default-white-space}: nowrap;
+	#{variables.$table-cell-default-block-size}: #{size.$vvd-size-expanded};
+	#{variables.$table-cell-default-white-space}: nowrap;
 }
 
 :host(:focus-visible) {
@@ -35,8 +35,8 @@
 	padding: 0;
 	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
 	block-size: var(
-		#{variables.$data-grid-cell-block-size},
-		var(#{variables.$data-grid-cell-default-block-size})
+		#{variables.$table-cell-block-size},
+		var(#{variables.$table-cell-default-block-size})
 	);
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base-bold});
@@ -60,7 +60,7 @@ slot {
 	inline-size: 100%;
 	text-overflow: ellipsis;
 	white-space: var(
-		#{variables.$data-grid-cell-white-space},
-		var(#{variables.$data-grid-cell-default-white-space})
+		#{variables.$table-cell-white-space},
+		var(#{variables.$table-cell-default-white-space})
 	);
 }

@@ -14,18 +14,20 @@
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/shared/mixins/focus' as focus;
 @use '@repo/shared/mixins/focus' as focus-variables;
-@use '../data-grid/partials/variables' as variables;
+@use 'partials/variables' as variables;
 
 :host {
 	display: table-cell;
+	overflow: hidden;
+	min-inline-size: 0;
 	vertical-align: middle;
 
 	@include connotation.connotation(data-grid-cell);
 	@include appearance.appearance;
 
 	&:not([cell-type='columnheader']) {
-		#{variables.$data-grid-cell-default-block-size}: 100%; // Fit content
-		#{variables.$data-grid-cell-default-white-space}: normal;
+		#{variables.$table-cell-default-block-size}: 100%; // Fit content
+		#{variables.$table-cell-default-white-space}: normal;
 	}
 
 	&:is([selected]) {
@@ -38,16 +40,19 @@
 }
 
 .base {
+	display: flex;
+	overflow: hidden;
 	box-sizing: border-box;
+	flex-direction: column;
 	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
 	block-size: var(
-		#{variables.$data-grid-cell-block-size},
-		var(#{variables.$data-grid-cell-default-block-size})
+		#{variables.$table-cell-block-size},
+		var(#{variables.$table-cell-default-block-size})
 	);
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
-	max-block-size: #{size.$vvd-size-expanded};
-	min-block-size: #{size.$vvd-size-expanded};
+	max-block-size: calc(#{size.$vvd-size-expanded} + 2px);
+	min-block-size: calc(#{size.$vvd-size-expanded} + 2px);
 	padding-block: 12px 14px;
 	padding-inline: 12px;
 }
@@ -59,12 +64,12 @@
 }
 
 slot {
-	display: block;
+	display: inline-block;
 	overflow: hidden;
+	flex: 1 1 0;
 	inline-size: 100%;
+	min-block-size: 0;
+	min-inline-size: 0; // Allow shrinking so text-overflow: ellipsis can take effect
 	text-overflow: ellipsis;
-	white-space: var(
-		#{variables.$data-grid-cell-white-space},
-		var(#{variables.$data-grid-cell-default-white-space})
-	);
+	white-space: nowrap;
 }
