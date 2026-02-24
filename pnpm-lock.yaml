@@ -616,9 +616,6 @@ importers:
       '@types/uuid':
         specifier: ^10.0.0
         version: 10.0.0
-      '@vonage/vivid-icons':
-        specifier: workspace:*
-        version: link:../icons
       cem-plugin-async-function:
         specifier: 'catalog:'
         version: 0.0.5(@custom-elements-manifest/analyzer@0.5.7)
