@@ -1,8 +1,5 @@
 import { attr, observable } from '@microsoft/fast-element';
-import {
-	ICONS_BASE_URL as BASE_URL,
-	ICONS_VERSION as ICON_SET_VERSION,
-} from '@repo/consts';
+import { ICONS_BASE_URL as BASE_URL } from '@repo/consts';
 import type { Connotation } from '../enums';
 import { numberConverter } from '../../shared/utils/numberConverter';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -14,6 +11,7 @@ const PLACEHOLDER_DELAY = 500;
 // Stop displaying placeholder if exceeding this period of time
 // (will also stop one an icon is loaded)
 const PLACEHOLDER_TIMEOUT = 2000;
+const ICONS_VERSION = import.meta.env.VITE_VIVID_ICONS_VERSION;
 
 const baseUrlTemplate = (resource: string, version: string) =>
 	[BASE_URL, `v${version}`, resource].join('/');
@@ -30,7 +28,7 @@ const extractSvg = (response: Response) => {
 };
 
 const loadSvg = (iconId: string, signal: AbortSignal) =>
-	fetch(baseUrlTemplate(`${iconId}.svg`, ICON_SET_VERSION), { signal }).then(
+	fetch(baseUrlTemplate(`${iconId}.svg`, ICONS_VERSION), { signal }).then(
 		extractSvg
 	);
 

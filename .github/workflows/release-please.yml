@@ -111,6 +111,7 @@ jobs:
     with:
       path: ./libs/components/dist
       sha: ${{ needs.should-release.outputs.release_sha }}
+      icons_version: ${{ needs.release-please.outputs.vivid_icons_version }}
     secrets: inherit
 
   vivid-design-tokens-publish:

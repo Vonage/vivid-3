@@ -36,9 +36,18 @@ const input = generateRollupInput();
 
 const isWatchMode = process.env.WATCH_MODE === 'true';
 
+const iconsVersion = JSON.parse(
+	fs.readFileSync('../icons/package.json', 'utf-8')
+).version;
+
 export default mergeConfig(
 	baseConfig,
 	defineConfig({
+		define: {
+			'import.meta.env.VITE_VIVID_ICONS_VERSION': `'${
+				process.env.VITE_VIVID_ICONS_VERSION || iconsVersion
+			}'`,
+		},
 		plugins: [
 			viteStaticCopy({
 				targets: [

@@ -20,6 +20,10 @@ on:
         required: false
         default: ''
         type: string
+      icons_version:
+        description: The version of the vivid icons package to build with. Only required for the components package, as it has a dependency on the icons.
+        required: false
+        type: string
     secrets:
       NPM_VVD_VNG_AUTOMATION_TOKEN:
         required: true
@@ -53,6 +57,8 @@ jobs:
         run: pnpm install
 
       - name: Build
+        env:
+          VITE_VIVID_ICONS_VERSION: ${{ inputs.icons_version }}
         run: pnpm run build
 
       - name: Set version
