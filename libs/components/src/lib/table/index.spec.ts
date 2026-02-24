@@ -9,15 +9,15 @@ import './index';
 
 const COMPONENT_TAG = 'vwc-table';
 
-describe('data table integration tests', () => {
+describe('Table widget (all parts together)', () => {
 	let element: Table;
 
 	beforeEach(async () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Table;
 	});
 
-	describe('basic', () => {
-		it('should register vwc-table, vwc-table-head, vwc-table-body, vwc-table-row, vwc-table-header-cell and vwc-table-cell', async () => {
+	describe('when the table widget is loaded', () => {
+		it('registers all table parts (table, head, body, row, header cell, and cell)', async () => {
 			expect(customElements.get('vwc-table')).toBeTruthy();
 			expect(customElements.get('vwc-table-head')).toBeTruthy();
 			expect(customElements.get('vwc-table-body')).toBeTruthy();
@@ -27,8 +27,8 @@ describe('data table integration tests', () => {
 		});
 	});
 
-	describe('structure', () => {
-		it('should render complete table structure', async () => {
+	describe('when you build a full table', () => {
+		it('renders the header, body, rows, and cells you put inside', async () => {
 			element.innerHTML = `
 				<vwc-table-head>
 					<vwc-table-row>
@@ -68,7 +68,7 @@ describe('data table integration tests', () => {
 			expect(cells.length).toBe(4); // 2 rows × 2 cells
 		});
 
-		it('should maintain proper component hierarchy', async () => {
+		it('keeps the correct structure: head has rows with header cells, body has rows with cells', async () => {
 			element.innerHTML = `
 				<vwc-table-head>
 					<vwc-table-row>
@@ -96,7 +96,7 @@ describe('data table integration tests', () => {
 			expect(dataCell?.textContent).toContain('Data');
 		});
 
-		it('should render multiple rows and cells correctly', async () => {
+		it('renders multiple rows and columns correctly', async () => {
 			element.innerHTML = `
 				<vwc-table-head>
 					<vwc-table-row>

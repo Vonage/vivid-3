@@ -119,12 +119,11 @@ export class Table extends VividElement {
 				}
 				{
 					let newFocusRowIndex = focusRowIndex - 1;
-					const grid = this;
 					for (; newFocusRowIndex >= 0; newFocusRowIndex--) {
 						const row = rows[newFocusRowIndex] as HTMLElement;
-						if (row.offsetTop < grid.scrollTop) {
-							grid.scrollTop =
-								row.offsetTop + row.clientHeight - grid.clientHeight;
+						if (row.offsetTop < this.scrollTop) {
+							this.scrollTop =
+								row.offsetTop + row.clientHeight - this.clientHeight;
 							break;
 						}
 					}
@@ -132,7 +131,7 @@ export class Table extends VividElement {
 				}
 				break;
 
-			case keyPageDown:
+			case keyPageDown: {
 				e.preventDefault();
 				if (rows.length === 0) {
 					this.focusOnCell(0, 0, false);
@@ -149,17 +148,17 @@ export class Table extends VividElement {
 				}
 				{
 					let newFocusRowIndex = focusRowIndex + 1;
-					const grid = this;
 					for (; newFocusRowIndex <= maxRowIndex; newFocusRowIndex++) {
 						const row = rows[newFocusRowIndex] as HTMLElement;
 						if (row.offsetTop + row.offsetHeight > currentGridBottom) {
-							grid.scrollTop = row.offsetTop;
+							this.scrollTop = row.offsetTop;
 							break;
 						}
 					}
 					this.focusOnCell(newFocusRowIndex, focusColumnIndex, false);
 				}
 				break;
+			}
 
 			case keyHome:
 				if (e.ctrlKey) {
