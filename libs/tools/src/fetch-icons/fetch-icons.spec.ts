@@ -119,6 +119,33 @@ describe('fetchIcons', () => {
 		expect(logger.success).toHaveBeenCalled();
 	});
 
+	it('should generate kebab-case id for icon entry', async () => {
+		(createIconEntry as Mock).mockReturnValue({
+			...mockEntry,
+			name: 'My Icon',
+			style: 'Solid',
+		});
+
+		const result = await fetchIcons(figmaFileId);
+
+		expect(result).toHaveLength(1);
+		expect(result[0].id).toBe('my-icon-solid');
+	});
+
+	it('should generate kebab-case id for icon entry if id is empty string', async () => {
+		(createIconEntry as Mock).mockReturnValue({
+			...mockEntry,
+			id: '',
+			name: 'My Icon',
+			style: 'Solid',
+		});
+
+		const result = await fetchIcons(figmaFileId);
+
+		expect(result).toHaveLength(1);
+		expect(result[0].id).toBe('my-icon-solid');
+	});
+
 	it('should skip existing icons if forceUpdate is false', async () => {
 		(readJson as Mock).mockReturnValue([
 			{ ...mockEntry, imageUrl: 'http://old.url' },
