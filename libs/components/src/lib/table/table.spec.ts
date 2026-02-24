@@ -575,23 +575,35 @@ describe('Table', () => {
 			});
 		});
 
-		describe('coordinating focus with rows', () => {
-			it('ignores focus events when the target is not a row in this table', () => {
+		describe('coordinating focus with cells', () => {
+			it('ignores cell-focused when the target cell is not in this table', () => {
 				element.focusRowIndex = 1;
 				element.focusColumnIndex = 1;
-				element.dispatchEvent(new Event('row-focused', { bubbles: true }));
+				const outsideCell = document.createElement('vwc-table-cell');
+				document.body.append(outsideCell);
+				element.dispatchEvent(
+					new CustomEvent('cell-focused', {
+						bubbles: true,
+						detail: outsideCell,
+					})
+				);
 				expect(element.focusRowIndex).toBe(1);
 				expect(element.focusColumnIndex).toBe(1);
+				outsideCell.remove();
 			});
 
-			it('uses the first column when the row does not report which column is focused', () => {
-				const row = element.querySelector('vwc-table-row') as HTMLElement;
-				Object.defineProperty(row, 'focusColumnIndex', {
-					value: undefined,
-					configurable: true,
-				});
-				row.dispatchEvent(new Event('row-focused', { bubbles: true }));
-				expect(element.focusColumnIndex).toBe(0);
+			it('updates focus row and column when a cell in the table fires cell-focused', () => {
+				const secondRowSecondCell = element.querySelectorAll(
+					'vwc-table-cell'
+				)[3] as HTMLElement;
+				secondRowSecondCell.dispatchEvent(
+					new CustomEvent('cell-focused', {
+						bubbles: true,
+						detail: secondRowSecondCell,
+					})
+				);
+				expect(element.focusRowIndex).toBe(2);
+				expect(element.focusColumnIndex).toBe(1);
 			});
 		});
 	});

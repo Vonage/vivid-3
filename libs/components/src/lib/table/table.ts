@@ -3,6 +3,8 @@ import {
 	eventFocusOut,
 	eventKeyDown,
 	keyArrowDown,
+	keyArrowLeft,
+	keyArrowRight,
 	keyArrowUp,
 	keyEnd,
 	keyHome,
@@ -11,8 +13,8 @@ import {
 } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
-const TABLE_CELL_SELECTOR =
-	'[role="cell"], [role="columnheader"], [role="rowheader"], [data-vvd-component="table-cell"], [data-vvd-component="table-header-cell"]';
+/** Native elements that consume arrow keys  */
+const ARROW_KEY_INTERACTIVE = 'input, textarea, select, [contenteditable]';
 
 /**
  * @public
@@ -23,10 +25,33 @@ export class Table extends VividElement {
 	focusRowIndex = 0;
 	focusColumnIndex = 0;
 
+	private getTagFor(componentName: string): string {
+		const firstHyphen = this.tagName.indexOf('-');
+		if (firstHyphen === -1) {
+			return componentName;
+		}
+		const prefix = this.tagName.slice(0, firstHyphen).toLowerCase();
+		return `${prefix}-${componentName}`;
+	}
+
+	private get cellTagNames(): string {
+		return [
+			this.getTagFor('table-cell'),
+			this.getTagFor('table-header-cell'),
+		].join(', ');
+	}
+
 	private get rowElements(): HTMLElement[] {
+		const tableTag = this.getTagFor('table');
 		return Array.from(
-			this.querySelectorAll<HTMLElement>('[data-vvd-component="table-row"]')
-		).filter((row) => row.closest('[data-vvd-component="table"]') === this);
+			this.querySelectorAll<HTMLElement>(this.getTagFor('table-row'))
+		).filter((row) => row.closest(tableTag) === this);
+	}
+
+	private getCellsInRow(row: HTMLElement): HTMLElement[] {
+		return Array.from(
+			row.querySelectorAll<HTMLElement>(this.cellTagNames)
+		).filter((cell) => cell.closest(this.getTagFor('table-row')) === row);
 	}
 
 	override connectedCallback(): void {
@@ -35,7 +60,10 @@ export class Table extends VividElement {
 		this.addEventListener(eventFocus, this.handleFocus as EventListener);
 		this.addEventListener(eventFocusOut, this.handleFocusOut as EventListener);
 		this.addEventListener(eventKeyDown, this.handleKeyDown as EventListener);
-		this.addEventListener('row-focused', this.handleRowFocus as EventListener);
+		this.addEventListener(
+			'cell-focused',
+			this.handleCellFocus as EventListener
+		);
 
 		this.#setTabIndex();
 	}
@@ -50,8 +78,8 @@ export class Table extends VividElement {
 		);
 		this.removeEventListener(eventKeyDown, this.handleKeyDown as EventListener);
 		this.removeEventListener(
-			'row-focused',
-			this.handleRowFocus as EventListener
+			'cell-focused',
+			this.handleCellFocus as EventListener
 		);
 	}
 
@@ -62,16 +90,24 @@ export class Table extends VividElement {
 		);
 	}
 
-	private handleRowFocus(e: Event): void {
-		const focusRow = e.target as HTMLElement;
-		const rowIndex = this.rowElements.indexOf(focusRow);
+	private handleCellFocus(e: Event): void {
+		const cell = (e.target ?? (e as CustomEvent).detail) as HTMLElement;
+		if (!cell || !this.contains(cell)) return;
+
+		const rowTag = this.getTagFor('table-row');
+		const focusRow = cell.closest(rowTag) as HTMLElement | null;
+		if (!focusRow) return;
+
+		const rows = this.rowElements;
+		const rowIndex = rows.indexOf(focusRow);
 		if (rowIndex < 0) return;
 
-		const focusColumnIndex =
-			(focusRow as unknown as { focusColumnIndex: number }).focusColumnIndex ??
-			0;
+		const cells = this.getCellsInRow(focusRow);
+		const columnIndex = cells.indexOf(cell);
+		if (columnIndex < 0) return;
+
 		this.focusRowIndex = rowIndex;
-		this.focusColumnIndex = focusColumnIndex;
+		this.focusColumnIndex = columnIndex;
 		this.setAttribute('tabindex', '-1');
 	}
 
@@ -91,12 +127,25 @@ export class Table extends VividElement {
 	private handleKeyDown = (e: KeyboardEvent): void => {
 		if (e.defaultPrevented) return;
 
+		const target = e.target as Element;
+		if (target.closest(ARROW_KEY_INTERACTIVE)) return;
+
 		const focusRowIndex = this.focusRowIndex;
 		const focusColumnIndex = this.focusColumnIndex;
 		const rows = this.rowElements;
 		const maxRowIndex = rows.length - 1;
 
 		switch (e.key) {
+			case keyArrowLeft:
+				e.preventDefault();
+				this.focusOnCell(focusRowIndex, focusColumnIndex - 1, true);
+				break;
+
+			case keyArrowRight:
+				e.preventDefault();
+				this.focusOnCell(focusRowIndex, focusColumnIndex + 1, true);
+				break;
+
 			case keyArrowUp:
 				e.preventDefault();
 				this.focusOnCell(focusRowIndex - 1, focusColumnIndex, true);
@@ -164,16 +213,25 @@ export class Table extends VividElement {
 				if (e.ctrlKey) {
 					e.preventDefault();
 					this.focusOnCell(0, 0, true);
+				} else {
+					e.preventDefault();
+					this.focusOnCell(focusRowIndex, 0, true);
 				}
 				break;
 
 			case keyEnd:
-				if (e.ctrlKey && rows.length > 0) {
+				if (rows.length === 0) break;
+				if (e.ctrlKey) {
 					e.preventDefault();
-					const lastRowCells = (
+					const lastRowCells = this.getCellsInRow(
 						rows[maxRowIndex] as HTMLElement
-					).querySelectorAll(TABLE_CELL_SELECTOR);
+					);
 					this.focusOnCell(maxRowIndex, lastRowCells.length - 1, true);
+				} else {
+					e.preventDefault();
+					const focusRow = rows[focusRowIndex] as HTMLElement;
+					const currentRowCells = this.getCellsInRow(focusRow);
+					this.focusOnCell(focusRowIndex, currentRowCells.length - 1, true);
 				}
 				break;
 		}
@@ -189,7 +247,7 @@ export class Table extends VividElement {
 
 		const focusRowIndex = Math.max(0, Math.min(rows.length - 1, rowIndex));
 		const focusRow = rows[focusRowIndex] as HTMLElement;
-		const cells = focusRow.querySelectorAll<HTMLElement>(TABLE_CELL_SELECTOR);
+		const cells = this.getCellsInRow(focusRow);
 		if (cells.length === 0) return;
 
 		const focusColumnIndex = Math.max(
