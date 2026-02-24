@@ -46,8 +46,8 @@
 	);
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
-	min-block-size: #{size.$vvd-size-expanded};
 	max-block-size: #{size.$vvd-size-expanded};
+	min-block-size: #{size.$vvd-size-expanded};
 	padding-block: 12px 14px;
 	padding-inline: 12px;
 }

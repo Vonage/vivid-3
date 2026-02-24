@@ -74,9 +74,8 @@ export class TableRow extends HostSemantics(VividElement) {
 	};
 
 	private handleFocusOut = (): void => {
-		if (!this.contains(document.activeElement)) {
-			this.focusColumnIndex = 0;
-		}
+		if (this.contains(document.activeElement)) return;
+		this.focusColumnIndex = 0;
 	};
 
 	private handleKeyDown = (e: KeyboardEvent): void => {
