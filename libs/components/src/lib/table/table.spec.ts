@@ -54,6 +54,30 @@ describe('Table', () => {
 			expect(element).toBeInstanceOf(Table);
 		});
 
+		it('returns component name when tag has no hyphen (getTagFor branch)', () => {
+			// getTagFor returns componentName when tagName.indexOf('-') === -1; custom elements
+			// always have a hyphen, so we stub tagName and call the private method
+			const originalTagName = Object.getOwnPropertyDescriptor(
+				Element.prototype,
+				'tagName'
+			);
+			Object.defineProperty(element, 'tagName', {
+				value: 'TABLE',
+				configurable: true,
+			});
+			try {
+				expect(
+					(element as unknown as { getTagFor(s: string): string }).getTagFor(
+						'table-cell'
+					)
+				).toBe('table-cell');
+			} finally {
+				if (originalTagName) {
+					Object.defineProperty(element, 'tagName', originalTagName);
+				}
+			}
+		});
+
 		it('can be created in the DOM', () => {
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
@@ -592,6 +616,72 @@ describe('Table', () => {
 				outsideCell.remove();
 			});
 
+			it('ignores cell-focused when event target is used and target is not contained in table', () => {
+				element.focusRowIndex = 1;
+				element.focusColumnIndex = 1;
+				const outsideCell = document.createElement('vwc-table-cell');
+				document.body.append(outsideCell);
+				const ev = new CustomEvent('cell-focused', { bubbles: true });
+				Object.defineProperty(ev, 'target', { value: outsideCell });
+				element.dispatchEvent(ev);
+				expect(element.focusRowIndex).toBe(1);
+				expect(element.focusColumnIndex).toBe(1);
+				outsideCell.remove();
+			});
+
+			it('ignores cell-focused when focused row is not in this table (e.g. nested table)', async () => {
+				element.innerHTML = `
+					<vwc-table-body>
+						<vwc-table-row>
+							<vwc-table-cell>
+								<vwc-table>
+									<vwc-table-body>
+										<vwc-table-row>
+											<vwc-table-cell id="inner-cell">Inner</vwc-table-cell>
+										</vwc-table-row>
+									</vwc-table-body>
+								</vwc-table>
+							</vwc-table-cell>
+						</vwc-table-row>
+					</vwc-table-body>
+				`;
+				await elementUpdated(element);
+				element.focusRowIndex = 0;
+				element.focusColumnIndex = 0;
+				const innerCell = element.querySelector('#inner-cell') as HTMLElement;
+				innerCell.dispatchEvent(
+					new CustomEvent('cell-focused', {
+						bubbles: true,
+						detail: innerCell,
+					})
+				);
+				expect(element.focusRowIndex).toBe(0);
+				expect(element.focusColumnIndex).toBe(0);
+			});
+
+			it('ignores cell-focused when target is not a table cell in the row', async () => {
+				element.innerHTML = `
+					<vwc-table-body>
+						<vwc-table-row>
+							<vwc-table-cell>A</vwc-table-cell>
+							<div id="not-cell">B</div>
+						</vwc-table-row>
+					</vwc-table-body>
+				`;
+				await elementUpdated(element);
+				element.focusRowIndex = 0;
+				element.focusColumnIndex = 0;
+				const notCell = element.querySelector('#not-cell') as HTMLElement;
+				notCell.dispatchEvent(
+					new CustomEvent('cell-focused', {
+						bubbles: true,
+						detail: notCell,
+					})
+				);
+				expect(element.focusRowIndex).toBe(0);
+				expect(element.focusColumnIndex).toBe(0);
+			});
+
 			it('updates focus row and column when a cell in the table fires cell-focused', () => {
 				const secondRowSecondCell = element.querySelectorAll(
 					'vwc-table-cell'
@@ -602,6 +692,20 @@ describe('Table', () => {
 						detail: secondRowSecondCell,
 					})
 				);
+				expect(element.focusRowIndex).toBe(2);
+				expect(element.focusColumnIndex).toBe(1);
+			});
+
+			it('updates focus row and column when cell-focused provides the cell in event detail', () => {
+				const cell = element.querySelectorAll(
+					'vwc-table-cell'
+				)[3] as HTMLElement;
+				const ev = new CustomEvent('cell-focused', {
+					bubbles: true,
+					detail: cell,
+				});
+				Object.defineProperty(ev, 'target', { value: null });
+				element.dispatchEvent(ev);
 				expect(element.focusRowIndex).toBe(2);
 				expect(element.focusColumnIndex).toBe(1);
 			});
