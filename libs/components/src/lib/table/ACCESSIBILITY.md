@@ -1,5 +1,3 @@
-The Table component set is built on native table semantics, providing strong accessibility support out of the box without requiring custom keyboard handling or complex ARIA configuration.
-
 ## Implementation guidance
 
 - Always use header cells for column labels
@@ -24,4 +22,3 @@ Because the Table components rely on native table behaviour:
 - Keyboard users can navigate using standard browser interactions
 - Screen readers provide expected table navigation shortcuts
 - No custom focus management or keyboard overrides are introduced
-
