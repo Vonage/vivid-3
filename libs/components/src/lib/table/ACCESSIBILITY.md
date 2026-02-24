@@ -1,25 +1,29 @@
-<vwc-note connotation="information" headline="Accessibility Information">
-  <vwc-icon name="info-line" slot="icon" connotation="information" size="0"></vwc-icon> 
-  <p>The Table component provides proper ARIA roles and keyboard navigation support following the WAI-ARIA table pattern.</p>
-</vwc-note>
+The Table component set is built on native table semantics, providing strong accessibility support out of the box without requiring custom keyboard handling or complex ARIA configuration.
 
-## Implementation
+## Semantic structure
 
-- The Table component uses `role="table"` for the root element.
-- Table rows use `role="row"`.
-- Header cells use `role="columnheader"` or `role="rowheader"` depending on context.
-- Data cells use `role="cell"`.
+Each Table component maps directly to its HTML table equivalent, ensuring that assistive technologies can correctly interpret the table’s structure and relationships.
 
-## ARIA Roles
+This approach allows screen readers to announce row and column relationships, headers, and cell content automatically.
 
-The Table component structure provides semantic meaning through ARIA roles:
+## ARIA usage
 
-- **Table (root)**: `role="table"`
-- **Table Head**: No specific role (acts as container)
-- **Table Body**: No specific role (acts as container)
-- **Table Row**: `role="row"`
-- **Table Header Cell**: `role="columnheader|rowheader"`
-- **Table Cell**: `role="cell"`
+ARIA roles are applied where necessary to reinforce semantics (eg. Table: `table`, Table Row: `row` etc.)
+
+## Keyboard interaction
+
+Because the Table components rely on native table behaviour:
+
+- Keyboard users can navigate using standard browser interactions
+- Screen readers provide expected table navigation shortcuts
+- No custom focus management or keyboard overrides are introduced
+
+### Implementation guidance
+
+- Always use header cells for column labels
+- Ensure header content clearly describes the associated column or row
+- Avoid empty header cells unless they are semantically required
+- Keep interactive content within cells keyboard-accessible and clearly labelled
 
 ## Resources
 

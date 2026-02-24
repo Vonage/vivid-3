@@ -417,13 +417,14 @@
 	},
 	{
 		"title": "Table",
-		"description": "A stateless table component for displaying tabular data, designed for integration with libraries like TanStack Table.",
+		"description": "A set of composable components that work together in the same way as native HTML table elements.",
 		"variations": "./libs/components/src/lib/table/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/table/GUIDELINES.md",
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/table/README.md",
 		"accessibility": "./libs/components/src/lib/table/ACCESSIBILITY.md",
 		"useCases": "./libs/components/src/lib/table/USE-CASES.md",
+		"hideUseCases": "true",
 		"status": "alpha"
 	},
 	{
