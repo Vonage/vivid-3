@@ -98,11 +98,13 @@ jobs:
     outputs:
       should_release: ${{ steps.should-release.outputs.should_release }}
       release_sha: ${{ steps.should-release.outputs.release_sha }}
+      vivid_icons_version: ${{ steps.should-release.outputs.vivid_icons_version }}
     steps:
       - id: should-release
         run: |
           echo "should_release=${{ needs.release-please.outputs.vivid_release_created == 'true' || needs.release-please.outputs.eslint_plugin_release_created == 'true' || github.event.inputs.force-release == 'true' }}" >> "$GITHUB_OUTPUT"
           echo "release_sha=${{ needs.release-please.outputs.vivid_release_sha || needs.release-please.outputs.eslint_plugin_release_sha || github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
+          echo "vivid_icons_version=${{ needs.release-please.outputs.vivid_icons_version }}" >> "$GITHUB_OUTPUT"
 
   vivid-publish:
     needs: should-release
@@ -111,7 +113,7 @@ jobs:
     with:
       path: ./libs/components/dist
       sha: ${{ needs.should-release.outputs.release_sha }}
-      icons_version: ${{ jobs.release-please.outputs.vivid_icons_version }}
+      icons_version: ${{ needs.should-release.outputs.vivid_icons_version }}
     secrets: inherit
 
   vivid-design-tokens-publish:
