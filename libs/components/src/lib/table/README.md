@@ -1,7 +1,44 @@
 ## Usage
 
-<vwc-tabs gutters="none" activeid="vue-tab">
-<vwc-tab label="Web component" id="web-tab"></vwc-tab>
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```js
+import { VTable, VTableHead, VTableBody, VTableRow, VTableHeaderCell, VTableCell } from '@vonage/vivid-vue';
+```
+
+```vue preview
+<template>
+	<VTable>
+		<VTableHead>
+			<VTableRow>
+				<VTableHeaderCell>Product</VTableHeaderCell>
+				<VTableHeaderCell>Type</VTableHeaderCell>
+				<VTableHeaderCell>Threshold</VTableHeaderCell>
+			</VTableRow>
+		</VTableHead>
+		<VTableBody>
+			<VTableRow>
+				<VTableCell>SMS</VTableCell>
+				<VTableCell>Volumetric Changes</VTableCell>
+				<VTableCell>1000</VTableCell>
+			</VTableRow>
+			<VTableRow>
+				<VTableCell>Voice</VTableCell>
+				<VTableCell>Volumetric Changes</VTableCell>
+				<VTableCell>5000</VTableCell>
+			</VTableRow>
+		</VTableBody>
+	</VTable>
+</template>
+<script setup lang="ts">
+import { VTable, VTableHead, VTableBody, VTableRow, VTableHeaderCell, VTableCell } from '@vonage/vivid-vue';
+</script>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
@@ -49,180 +86,8 @@ Table Head, Table Body, Table Row, Table Header Cell, and Table Cell sub-compone
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="Vue" id="vue-tab"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<template>
-	<VTable>
-		<VTableHead>
-			<VTableRow>
-				<VTableHeaderCell>Product</VTableHeaderCell>
-				<VTableHeaderCell>Type</VTableHeaderCell>
-				<VTableHeaderCell>Threshold</VTableHeaderCell>
-			</VTableRow>
-		</VTableHead>
-		<VTableBody>
-			<VTableRow>
-				<VTableCell>SMS</VTableCell>
-				<VTableCell>Volumetric Changes</VTableCell>
-				<VTableCell>1000</VTableCell>
-			</VTableRow>
-			<VTableRow>
-				<VTableCell>Voice</VTableCell>
-				<VTableCell>Volumetric Changes</VTableCell>
-				<VTableCell>5000</VTableCell>
-			</VTableRow>
-		</VTableBody>
-	</VTable>
-</template>
-<script setup lang="ts">
-import { VTable, VTableHead, VTableBody, VTableRow, VTableHeaderCell, VTableCell } from '@vonage/vivid-vue';
-</script>
-```
-
-</vwc-tab-panel>
-</vwc-tabs>
-
-## Basic Structure
-
-The Table component provides a stateless, semantic structure for displaying tabular data. It follows a similar structure to HTML tables but uses web components.
-
-<vwc-tabs gutters="none">
-<vwc-tab label="Vue"></vwc-tab>
-<vwc-tab-panel>
-
-```vue preview
-<template>
-	<VTable>
-		<VTableHead>
-			<VTableRow>
-				<VTableHeaderCell>Column 1</VTableHeaderCell>
-				<VTableHeaderCell>Column 2</VTableHeaderCell>
-				<VTableHeaderCell>Column 3</VTableHeaderCell>
-			</VTableRow>
-		</VTableHead>
-		<VTableBody>
-			<VTableRow>
-				<VTableCell>Data 11</VTableCell>
-				<VTableCell>Data 12</VTableCell>
-				<VTableCell>Data 13</VTableCell>
-			</VTableRow>
-			<VTableRow>
-				<VTableCell>Data 21</VTableCell>
-				<VTableCell>Data 22</VTableCell>
-				<VTableCell>Data 23</VTableCell>
-			</VTableRow>
-		</VTableBody>
-	</VTable>
-</template>
-
-<script setup lang="ts">
-import { VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, VTableRow } from '@vonage/vivid-vue';
-</script>
-```
-
-</vwc-tab-panel>
-<vwc-tab label="Web Component"></vwc-tab>
-<vwc-tab-panel>
-
-```html preview
-<vwc-table>
-	<vwc-table-head>
-		<vwc-table-row>
-			<vwc-table-header-cell>Column 1</vwc-table-header-cell>
-			<vwc-table-header-cell>Column 2</vwc-table-header-cell>
-			<vwc-table-header-cell>Column 3</vwc-table-header-cell>
-		</vwc-table-row>
-	</vwc-table-head>
-	<vwc-table-body>
-		<vwc-table-row>
-			<vwc-table-cell>Data 11</vwc-table-cell>
-			<vwc-table-cell>Data 12</vwc-table-cell>
-			<vwc-table-cell>Data 13</vwc-table-cell>
-		</vwc-table-row>
-		<vwc-table-row>
-			<vwc-table-cell>Data 21</vwc-table-cell>
-			<vwc-table-cell>Data 22</vwc-table-cell>
-			<vwc-table-cell>Data 23</vwc-table-cell>
-		</vwc-table-row>
-	</vwc-table-body>
-</vwc-table>
-```
-
-</vwc-tab-panel>
 </vwc-tabs>
 
 ## API Reference
 
-### Table
-
-#### Properties
-
-<div class="table-wrapper">
-
-| Name   | Type | Description                                                   |
-| ------ | ---- | ------------------------------------------------------------- |
-| (none) | -    | This is a stateless component with no configurable properties |
-
-</div>
-
-### Table Head
-
-#### Properties
-
-<div class="table-wrapper">
-
-| Name   | Type | Description                                                   |
-| ------ | ---- | ------------------------------------------------------------- |
-| (none) | -    | This is a stateless component with no configurable properties |
-
-</div>
-
-### Table Body
-
-#### Properties
-
-<div class="table-wrapper">
-
-| Name   | Type | Description                                                   |
-| ------ | ---- | ------------------------------------------------------------- |
-| (none) | -    | This is a stateless component with no configurable properties |
-
-</div>
-
-### Table Row
-
-#### Properties
-
-<div class="table-wrapper">
-
-| Name   | Type | Description                                                   |
-| ------ | ---- | ------------------------------------------------------------- |
-| (none) | -    | This is a stateless component with no configurable properties |
-
-</div>
-
-### Table Header Cell
-
-#### Properties
-
-<div class="table-wrapper">
-
-| Name   | Type | Description                                                   |
-| ------ | ---- | ------------------------------------------------------------- |
-| (none) | -    | This is a stateless component with no configurable properties |
-
-</div>
-
-### Table Cell
-
-#### Properties
-
-<div class="table-wrapper">
-
-| Name   | Type | Description                                                   |
-| ------ | ---- | ------------------------------------------------------------- |
-| (none) | -    | This is a stateless component with no configurable properties |
-
-</div>
+At present, the Table components do not expose any props, named slots, events or methods. They are purely presentational.

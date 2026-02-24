@@ -1,6 +1,15 @@
-## Default Configurations
+## Constructing Tables
 
-Use the Table Head, Table Body, Table Row, Table Header Cell, and Table Cell sub-components to construct the tabular data like you would using `thead`, `tbody`, `tr`, `th`, and `td` tags inside of a `table` element.
+Tables can be built using the following components: `table`, `table-head`, `table-body`, `table-row`, `table-cell`, and `table-header-cell`. They work together in the same way as native HTML table elements.
+
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+
+    The Table provides a consistent, accessible structure and styling. All data handling and interaction behaviour (such as sorting, filtering, or selection) is owned by the consuming application. As the component evolves, we will introduce recommended patterns and examples for common interaction behaviours and incrementally add complexity where appropriate.
+
+</vwc-note>
+
+<br />
 
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
@@ -8,48 +17,46 @@ Use the Table Head, Table Body, Table Row, Table Header Cell, and Table Cell sub
 
 ```vue preview
 <template>
-	<strong>Top row header cells</strong><br />
 	<VTable>
 		<VTableHead>
 			<VTableRow>
-				<VTableHeaderCell>Product</VTableHeaderCell>
-				<VTableHeaderCell>Type</VTableHeaderCell>
-				<VTableHeaderCell>Threshold</VTableHeaderCell>
+				<VTableHeaderCell>Component</VTableHeaderCell>
+				<VTableHeaderCell>HTML equivalent</VTableHeaderCell>
+				<VTableHeaderCell>Description</VTableHeaderCell>
 			</VTableRow>
 		</VTableHead>
 		<VTableBody>
 			<VTableRow>
-				<VTableCell>SMS</VTableCell>
-				<VTableCell>Volumetric Changes</VTableCell>
-				<VTableCell>1000</VTableCell>
+				<VTableHeaderCell>Table</VTableHeaderCell>
+				<VTableCell>table</VTableCell>
+				<VTableCell>Represents tabular data</VTableCell>
 			</VTableRow>
 			<VTableRow>
-				<VTableCell>Voice</VTableCell>
-				<VTableCell>Volumetric Changes</VTableCell>
-				<VTableCell>5000</VTableCell>
+				<VTableHeaderCell>Table Head</VTableHeaderCell>
+				<VTableCell>thead</VTableCell>
+				<VTableCell>Encapsulates a set of table rows, indicating that they comprise the head of a table with information about the table's columns</VTableCell>
+			</VTableRow>
+			<VTableRow>
+				<VTableHeaderCell>Table Body</VTableHeaderCell>
+				<VTableCell>tbody</VTableCell>
+				<VTableCell>Encapsulates a set of table rows, indicating that they comprise the body of a table's (main) data</VTableCell>
+			</VTableRow>
+			<VTableRow>
+				<VTableHeaderCell>Table Row</VTableHeaderCell>
+				<VTableCell>tr</VTableCell>
+				<VTableCell>Defines a row of cells in a table</VTableCell>
+			</VTableRow>
+			<VTableRow>
+				<VTableHeaderCell>Table Cell</VTableHeaderCell>
+				<VTableCell>td</VTableCell>
+				<VTableCell>Defines a cell of a table that contains data</VTableCell>
+			</VTableRow>
+			<VTableRow>
+				<VTableHeaderCell>Table Header Cell</VTableHeaderCell>
+				<VTableCell>th</VTableCell>
+				<VTableCell>Defines a cell as the header of a group of table cells</VTableCell>
 			</VTableRow>
 		</VTableBody>
-	</VTable>
-
-	<br /><br /><br />
-
-	<strong>First column header cells</strong><br />
-	<VTable>
-		<VTableRow>
-			<VTableHeaderCell>Product</VTableHeaderCell>
-			<VTableCell>SMS</VTableCell>
-			<VTableCell>Voice</VTableCell>
-		</VTableRow>
-		<VTableRow>
-			<VTableHeaderCell>Type</VTableHeaderCell>
-			<VTableCell>Volumetric Changes</VTableCell>
-			<VTableCell>Volumetric Changes</VTableCell>
-		</VTableRow>
-		<VTableRow>
-			<VTableHeaderCell>Threshold</VTableHeaderCell>
-			<VTableCell>1000</VTableCell>
-			<VTableCell>5000</VTableCell>
-		</VTableRow>
 	</VTable>
 </template>
 
@@ -63,49 +70,47 @@ import { VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, VTableRow
 <vwc-tab-panel>
 
 ```html preview
-<strong>Top row header cells</strong><br />
 <vwc-table>
-	<vwc-table-head>
-		<vwc-table-row>
-			<vwc-table-header-cell>Product</vwc-table-header-cell>
-			<vwc-table-header-cell>Type</vwc-table-header-cell>
-			<vwc-table-header-cell>Threshold</vwc-table-header-cell>
-		</vwc-table-row>
-	</vwc-table-head>
-	<vwc-table-body>
-		<vwc-table-row>
-			<vwc-table-cell>SMS</vwc-table-cell>
-			<vwc-table-cell>Volumetric Changes</vwc-table-cell>
-			<vwc-table-cell>1000</vwc-table-cell>
-		</vwc-table-row>
-		<vwc-table-row>
-			<vwc-table-cell>Voice</vwc-table-cell>
-			<vwc-table-cell>Volumetric Changes</vwc-table-cell>
-			<vwc-table-cell>5000</vwc-table-cell>
-		</vwc-table-row>
-	</vwc-table-body>
-</vwc-table>
-
-<br /><br /><br />
-
-<strong>First column header cells</strong><br />
-<vwc-table>
-	<vwc-table-row>
-		<vwc-table-header-cell>Product</vwc-table-header-cell>
-		<vwc-table-cell>SMS</vwc-table-cell>
-		<vwc-table-cell>Voice</vwc-table-cell>
-	</vwc-table-row>
-	<vwc-table-row>
-		<vwc-table-header-cell>Type</vwc-table-header-cell>
-		<vwc-table-cell>Volumetric Changes</vwc-table-cell>
-		<vwc-table-cell>Volumetric Changes</vwc-table-cell>
-	</vwc-table-row>
-	<vwc-table-row>
-		<vwc-table-header-cell>Threshold</vwc-table-header-cell>
-		<vwc-table-cell>1000</vwc-table-cell>
-		<vwc-table-cell>5000</vwc-table-cell>
-	</vwc-table-row>
-</vwc-table>
+		<vwc-table-head>
+			<vwc-table-row>
+				<vwc-table-header-cell>Component</vwc-table-header-cell>
+				<vwc-table-header-cell>HTML equivalent</vwc-table-header-cell>
+				<vwc-table-header-cell>Description</vwc-table-header-cell>
+			</vwc-table-row>
+		</vwc-table-head>
+		<vwc-table-body>
+			<vwc-table-row>
+				<vwc-table-header-cell>Table</vwc-table-header-cell>
+				<vwc-table-cell>table</vwc-table-cell>
+				<vwc-table-cell>Represents tabular data</vwc-table-cell>
+			</vwc-table-row>
+			<vwc-table-row>
+				<vwc-table-header-cell>Table Head</vwc-table-header-cell>
+				<vwc-table-cell>thead</vwc-table-cell>
+				<vwc-table-cell>Encapsulates a set of table rows, indicating that they comprise the head of a table with information about the table's columns</vwc-table-cell>
+			</vwc-table-row>
+			<vwc-table-row>
+				<vwc-table-header-cell>Table Body</vwc-table-header-cell>
+				<vwc-table-cell>tbody</vwc-table-cell>
+				<vwc-table-cell>Encapsulates a set of table rows, indicating that they comprise the body of a table's (main) data</vwc-table-cell>
+			</vwc-table-row>
+			<vwc-table-row>
+				<vwc-table-header-cell>Table Row</vwc-table-header-cell>
+				<vwc-table-cell>tr</vwc-table-cell>
+				<vwc-table-cell>Defines a row of cells in a table</vwc-table-cell>
+			</vwc-table-row>
+			<vwc-table-row>
+				<vwc-table-header-cell>Table Cell</vwc-table-header-cell>
+				<vwc-table-cell>td</vwc-table-cell>
+				<vwc-table-cell>Defines a cell of a table that contains data</vwc-table-cell>
+			</vwc-table-row>
+			<vwc-table-row>
+				<vwc-table-header-cell>Table Header Cell</vwc-table-header-cell>
+				<vwc-table-cell>th</vwc-table-cell>
+				<vwc-table-cell>Defines a cell as the header of a group of table cells</vwc-table-cell>
+			</vwc-table-row>
+		</Vvwc-table-body>
+	</vwc-table>
 ```
 
 </vwc-tab-panel>
@@ -113,7 +118,7 @@ import { VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, VTableRow
 
 ## Setting Column Widths
 
-Set column widths by applying `width` or `min-width` to header cells. This will enforce a fixed table layout.
+Column widths are controlled using CSS, by applying `width` or `min-width` to column header cells.
 
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
@@ -121,39 +126,33 @@ Set column widths by applying `width` or `min-width` to header cells. This will 
 
 ```vue preview
 <template>
-	<div style="width: 500px; overflow-x: auto;">
-		<VTable>
-			<VTableHead>
-				<VTableRow>
-					<VTableHeaderCell style="width: 15%;">Status</VTableHeaderCell>
-					<VTableHeaderCell style="width: 15%; min-width: 70px;">Name</VTableHeaderCell>
-					<VTableHeaderCell style="width: 30%;">Country</VTableHeaderCell>
-					<VTableHeaderCell style="width: 40%;">Actions</VTableHeaderCell>
-				</VTableRow>
-			</VTableHead>
-			<VTableBody>
-				<VTableRow>
-					<VTableCell>Ready</VTableCell>
-					<VTableCell>237642973237642973</VTableCell>
-					<VTableCell>GB, NO, US</VTableCell>
-					<VTableCell>
-						<VButton appearance="outlined" label="Edit" size="condensed" />
-						<VButton appearance="outlined" label="Delete" size="condensed" />
-					</VTableCell>
-				</VTableRow>
-				<VTableRow>
-					<VTableCell>Ready</VTableCell>
-					<VTableCell>237642973237642973</VTableCell>
-					<VTableCell>GB, NO, US</VTableCell>
-					<VTableCell>
-						<VButton appearance="outlined" label="Edit" size="condensed" />
-						<VButton appearance="outlined" label="Delete" size="condensed" />
-					</VTableCell>
-				</VTableRow>
-			</VTableBody>
-		</VTable>
-	</div>
+	<VTable>
+		<VTableHead>
+			<VTableRow>
+				<VTableHeaderCell class="col1">Code</VTableHeaderCell>
+				<VTableHeaderCell class="col2">Status</VTableHeaderCell>
+				<VTableHeaderCell class="col3">Description</VTableHeaderCell>
+			</VTableRow>
+		</VTableHead>
+		<VTableBody>
+			<VTableRow>
+				<VTableCell>VIV-3024</VTableCell>
+				<VTableCell>Open</VTableCell>
+				<VTableCell>Styles: support italic text</VTableCell>
+			</VTableRow>
+		</VTableBody>
+	</VTable>
 </template>
+
+<style scoped>
+.col1 {
+	width: 100px;
+}
+
+.col2 {
+	width: 150px;
+}
+</style>
 
 <script setup lang="ts">
 import { VButton, VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, VTableRow } from '@vonage/vivid-vue';
@@ -165,38 +164,32 @@ import { VButton, VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, 
 <vwc-tab-panel>
 
 ```html preview
-<div style="width: 500px; overflow-x: auto;">
-	<vwc-table>
-		<vwc-table-head>
-			<vwc-table-row>
-				<vwc-table-header-cell style="width: 15%;">Status</vwc-table-header-cell>
-				<vwc-table-header-cell style="width: 15%; min-width: 70px;">Name</vwc-table-header-cell>
-				<vwc-table-header-cell style="width: 30%;">Country</vwc-table-header-cell>
-				<vwc-table-header-cell style="width: 40%;">Actions</vwc-table-header-cell>
-			</vwc-table-row>
-		</vwc-table-head>
-		<vwc-table-body>
-			<vwc-table-row>
-				<vwc-table-cell>Ready</vwc-table-cell>
-				<vwc-table-cell>237642973237642973</vwc-table-cell>
-				<vwc-table-cell>GB, NO, US</vwc-table-cell>
-				<vwc-table-cell>
-					<vwc-button appearance="outlined" label="Edit" size="condensed"></vwc-button>
-					<vwc-button appearance="outlined" label="Delete" size="condensed"></vwc-button>
-				</vwc-table-cell>
-			</vwc-table-row>
-			<vwc-table-row>
-				<vwc-table-cell>Ready</vwc-table-cell>
-				<vwc-table-cell>237642973237642973</vwc-table-cell>
-				<vwc-table-cell>GB, NO, US</vwc-table-cell>
-				<vwc-table-cell>
-					<vwc-button appearance="outlined" label="Edit" size="condensed"></vwc-button>
-					<vwc-button appearance="outlined" label="Delete" size="condensed"></vwc-button>
-				</vwc-table-cell>
-			</vwc-table-row>
-		</vwc-table-body>
-	</vwc-table>
-</div>
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell class="col1">Code</vwc-table-header-cell>
+			<vwc-table-header-cell class="col2">Status</vwc-table-header-cell>
+			<vwc-table-header-cell class="col3">Description</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		<vwc-table-row>
+			<vwc-table-cell>VIV-3024</vwc-table-cell>
+			<vwc-table-cell>Open</vwc-table-cell>
+			<vwc-table-cell>Styles: support italic text</vwc-table-cell>
+		</vwc-table-row>
+	</vwc-table-body>
+</vwc-table>
+
+<style>
+	.col1 {
+		width: 100px;
+	}
+
+	.col2 {
+		width: 150px;
+	}
+</style>
 ```
 
 </vwc-tab-panel>
@@ -204,7 +197,7 @@ import { VButton, VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, 
 
 ## Partials within cells
 
-Place [Partials](/components/partials) (e.g. Status, Country) together with **Badge** and **Button** inside table cells to build rich rows. This example does not show sorting or filtering.
+Table cells can contain any **Vivid component**, allowing you to compose rich, meaningful rows. [Partials](/components/partials/) (such as Status and Country) are specifically designed to work well within tables, providing compact, scannable information.
 
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
@@ -216,11 +209,10 @@ Place [Partials](/components/partials) (e.g. Status, Country) together with **Ba
 		<VTableHead>
 			<VTableRow>
 				<VTableHeaderCell>Status</VTableHeaderCell>
-				<VTableHeaderCell>Name and network code</VTableHeaderCell>
-				<VTableHeaderCell style="min-width: 200px;">Country</VTableHeaderCell>
+				<VTableHeaderCell>Network code</VTableHeaderCell>
+				<VTableHeaderCell>Country</VTableHeaderCell>
 				<VTableHeaderCell>Type</VTableHeaderCell>
-				<VTableHeaderCell>Supported countries</VTableHeaderCell>
-				<VTableHeaderCell style="min-width: 200px;">Actions</VTableHeaderCell>
+				<VTableHeaderCell></VTableHeaderCell>
 			</VTableRow>
 		</VTableHead>
 		<VTableBody>
@@ -233,16 +225,13 @@ Place [Partials](/components/partials) (e.g. Status, Country) together with **Ba
 				</VTableCell>
 				<VTableCell>
 					<VCountry code="GB" />
-					<VCountry code="NO" />
-					<VCountry code="US" />
 				</VTableCell>
 				<VTableCell>
 					<VBadge text="Positive" icon="check-line" connotation="success" appearance="subtle" shape="pill" />
 				</VTableCell>
-				<VTableCell>PL, RO</VTableCell>
-				<VTableCell>
-					<VButton appearance="outlined" icon="edit-line" label="Edit" size="condensed" />
-					<VButton appearance="outlined" icon="delete-line" label="Delete" size="condensed" />
+				<VTableCell class="cell-actions">
+					<VButton icon="edit-line" aria-label="Edit" size="condensed" />
+					<VButton icon="delete-line" aria-label="Delete" size="condensed" />
 				</VTableCell>
 			</VTableRow>
 			<VTableRow>
@@ -253,17 +242,14 @@ Place [Partials](/components/partials) (e.g. Status, Country) together with **Ba
 					<a href="#">237642973237642973</a>
 				</VTableCell>
 				<VTableCell>
-					<VCountry code="GB" />
 					<VCountry code="NO" />
-					<VCountry code="US" />
 				</VTableCell>
 				<VTableCell>
 					<VBadge text="Positive" icon="check-line" connotation="success" appearance="subtle" shape="pill" />
 				</VTableCell>
-				<VTableCell>PL, RO</VTableCell>
-				<VTableCell>
-					<VButton appearance="outlined" icon="edit-line" label="Edit" size="condensed" />
-					<VButton appearance="outlined" icon="delete-line" label="Delete" size="condensed" />
+				<VTableCell class="cell-actions">
+					<VButton icon="edit-line" aria-label="Edit" size="condensed" />
+					<VButton icon="delete-line" aria-label="Delete" size="condensed" />
 				</VTableCell>
 			</VTableRow>
 			<VTableRow>
@@ -274,22 +260,25 @@ Place [Partials](/components/partials) (e.g. Status, Country) together with **Ba
 					<a href="#">237642973237642973</a>
 				</VTableCell>
 				<VTableCell>
-					<VCountry code="GB" />
-					<VCountry code="NO" />
 					<VCountry code="US" />
 				</VTableCell>
 				<VTableCell>
 					<VBadge text="Positive" icon="check-line" connotation="success" appearance="subtle" shape="pill" />
 				</VTableCell>
-				<VTableCell>PL, RO</VTableCell>
-				<VTableCell>
-					<VButton appearance="outlined" icon="edit-line" label="Edit" size="condensed" />
-					<VButton appearance="outlined" icon="delete-line" label="Delete" size="condensed" />
+				<VTableCell class="cell-actions">
+					<VButton icon="edit-line" aria-label="Edit" size="condensed" />
+					<VButton icon="delete-line" aria-label="Delete" size="condensed" />
 				</VTableCell>
 			</VTableRow>
 		</VTableBody>
 	</VTable>
 </template>
+
+<style scoped>
+.cell-actions {
+	text-align: right;
+}
+</style>
 
 <script setup lang="ts">
 import { VBadge, VButton, VCountry, VStatus, VTable, VTableBody, VTableCell, VTableHead, VTableHeaderCell, VTableRow } from '@vonage/vivid-vue';
@@ -305,11 +294,10 @@ import { VBadge, VButton, VCountry, VStatus, VTable, VTableBody, VTableCell, VTa
 	<vwc-table-head>
 		<vwc-table-row>
 			<vwc-table-header-cell>Status</vwc-table-header-cell>
-			<vwc-table-header-cell>Name and network code</vwc-table-header-cell>
-			<vwc-table-header-cell style="min-width: 200px;">Country</vwc-table-header-cell>
+			<vwc-table-header-cell>Network code</vwc-table-header-cell>
+			<vwc-table-header-cell>Country</vwc-table-header-cell>
 			<vwc-table-header-cell>Type</vwc-table-header-cell>
-			<vwc-table-header-cell>Supported countries</vwc-table-header-cell>
-			<vwc-table-header-cell style="min-width: 200px;">Actions</vwc-table-header-cell>
+			<vwc-table-header-cell></vwc-table-header-cell>
 		</vwc-table-row>
 	</vwc-table-head>
 	<vwc-table-body>
@@ -322,16 +310,13 @@ import { VBadge, VButton, VCountry, VStatus, VTable, VTableBody, VTableCell, VTa
 			</vwc-table-cell>
 			<vwc-table-cell>
 				<vwc-country code="GB"></vwc-country>
-				<vwc-country code="NO"></vwc-country>
-				<vwc-country code="US"></vwc-country>
 			</vwc-table-cell>
 			<vwc-table-cell>
 				<vwc-badge text="Positive" icon="check-line" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
 			</vwc-table-cell>
-			<vwc-table-cell>PL, RO</vwc-table-cell>
-			<vwc-table-cell>
-				<vwc-button appearance="outlined" icon="edit-line" label="Edit" size="condensed"></vwc-button>
-				<vwc-button appearance="outlined" icon="delete-line" label="Delete" size="condensed"></vwc-button>
+			<vwc-table-cell class="cell-actions">
+				<vwc-button icon="edit-line" aria-label="Edit" size="condensed"></vwc-button>
+				<vwc-button icon="delete-line" aria-label="Delete" size="condensed"></vwc-button>
 			</vwc-table-cell>
 		</vwc-table-row>
 		<vwc-table-row>
@@ -342,17 +327,14 @@ import { VBadge, VButton, VCountry, VStatus, VTable, VTableBody, VTableCell, VTa
 				<a href="#">237642973237642973</a>
 			</vwc-table-cell>
 			<vwc-table-cell>
-				<vwc-country code="GB"></vwc-country>
 				<vwc-country code="NO"></vwc-country>
-				<vwc-country code="US"></vwc-country>
 			</vwc-table-cell>
 			<vwc-table-cell>
 				<vwc-badge text="Positive" icon="check-line" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
 			</vwc-table-cell>
-			<vwc-table-cell>PL, RO</vwc-table-cell>
-			<vwc-table-cell>
-				<vwc-button appearance="outlined" icon="edit-line" label="Edit" size="condensed"></vwc-button>
-				<vwc-button appearance="outlined" icon="delete-line" label="Delete" size="condensed"></vwc-button>
+			<vwc-table-cell class="cell-actions">
+				<vwc-button icon="edit-line" aria-label="Edit" size="condensed"></vwc-button>
+				<vwc-button icon="delete-line" aria-label="Delete" size="condensed"></vwc-button>
 			</vwc-table-cell>
 		</vwc-table-row>
 		<vwc-table-row>
@@ -363,21 +345,24 @@ import { VBadge, VButton, VCountry, VStatus, VTable, VTableBody, VTableCell, VTa
 				<a href="#">237642973237642973</a>
 			</vwc-table-cell>
 			<vwc-table-cell>
-				<vwc-country code="GB"></vwc-country>
-				<vwc-country code="NO"></vwc-country>
 				<vwc-country code="US"></vwc-country>
 			</vwc-table-cell>
 			<vwc-table-cell>
 				<vwc-badge text="Positive" icon="check-line" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
 			</vwc-table-cell>
-			<vwc-table-cell>PL, RO</vwc-table-cell>
-			<vwc-table-cell>
-				<vwc-button appearance="outlined" icon="edit-line" label="Edit" size="condensed"></vwc-button>
-				<vwc-button appearance="outlined" icon="delete-line" label="Delete" size="condensed"></vwc-button>
+			<vwc-table-cell class="cell-actions">
+				<vwc-button icon="edit-line" aria-label="Edit" size="condensed"></vwc-button>
+				<vwc-button icon="delete-line" aria-label="Delete" size="condensed"></vwc-button>
 			</vwc-table-cell>
 		</vwc-table-row>
 	</vwc-table-body>
 </vwc-table>
+
+<style>
+	.cell-actions {
+		text-align: right;
+	}
+</style>
 ```
 
 </vwc-tab-panel>
