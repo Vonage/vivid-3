@@ -11,7 +11,9 @@ export const TableCellTemplate = (context: VividElementDefinitionContext) => {
 				role: () => 'cell',
 			})}
 		>
-			<slot></slot>
+			<div class="base">
+				<slot></slot>
+			</div>
 		</template>
 	`;
 };

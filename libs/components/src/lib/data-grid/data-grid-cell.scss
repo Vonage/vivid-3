@@ -89,7 +89,17 @@
 	}
 }
 
-slot {
+.content {
+	display: flex;
+	overflow: hidden;
+	align-items: center;
+
+	&[role='button'] {
+		cursor: pointer;
+	}
+}
+
+slot:not([name]) {
 	display: block;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -103,5 +113,15 @@ slot {
 }
 
 .header-icon {
+	flex-shrink: 0;
 	margin-inline-start: 16px;
+}
+
+slot[name='action-items'] {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	.base.has-action-items & {
+		margin-inline-start: 16px;
+	}
 }

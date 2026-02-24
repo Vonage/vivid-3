@@ -48,6 +48,7 @@ const defaultHeaderCellContentsTemplate: ViewTemplate<DataGridCell> = html`
  * @public
  * @component data-grid-cell
  * @slot - Default slot.
+ * @slot action-items - Add action items to the cell using this slot.
  * @event {CustomEvent<{columnDataKey: string, ariaSort: string | null, sortDirection: string | null}>} sort - Event that fires when a sortable column header is clicked
  * @event {CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>} cell-click - Event that fires when a cell is clicked
  * @event {CustomEvent<HTMLElement>} cell-focused - Fires a custom 'cell-focused' event when focus is on the cell or its contents
@@ -473,4 +474,9 @@ export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 		}
 		return true;
 	}
+
+	/**
+	 * @internal
+	 */
+	@observable _actionItemsSlottedContent?: HTMLElement[];
 }

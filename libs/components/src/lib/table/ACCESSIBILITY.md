@@ -1,5 +1,12 @@
 The Table component set is built on native table semantics, providing strong accessibility support out of the box without requiring custom keyboard handling or complex ARIA configuration.
 
+## Implementation guidance
+
+- Always use header cells for column labels
+- Ensure header content clearly describes the associated column or row
+- Avoid empty header cells unless they are semantically required
+- Keep interactive content within cells keyboard-accessible and clearly labelled
+
 ## Semantic structure
 
 Each Table component maps directly to its HTML table equivalent, ensuring that assistive technologies can correctly interpret the table’s structure and relationships.
@@ -18,13 +25,3 @@ Because the Table components rely on native table behaviour:
 - Screen readers provide expected table navigation shortcuts
 - No custom focus management or keyboard overrides are introduced
 
-### Implementation guidance
-
-- Always use header cells for column labels
-- Ensure header content clearly describes the associated column or row
-- Avoid empty header cells unless they are semantically required
-- Keep interactive content within cells keyboard-accessible and clearly labelled
-
-## Resources
-
-- [WAI-ARIA Authoring Practices Guide - Table Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/table/)

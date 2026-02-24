@@ -4,7 +4,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-table-header-cell';
 
-describe('a11y: vwc-table-header-cell', () => {
+describe('Table header cell accessibility', () => {
 	let element: TableHeaderCell;
 
 	beforeAll(async () => {
@@ -29,8 +29,8 @@ describe('a11y: vwc-table-header-cell', () => {
 		element = div.querySelector(COMPONENT_TAG) as TableHeaderCell;
 	});
 
-	describe('column scope', () => {
-		it('should pass html a11y test', async () => {
+	describe('when used as a column header', () => {
+		it('meets accessibility requirements (no axe violations)', async () => {
 			const div = (await fixture(`
 				<vwc-table>
 					<vwc-table-head>
@@ -52,8 +52,8 @@ describe('a11y: vwc-table-header-cell', () => {
 		});
 	});
 
-	describe('row scope', () => {
-		it('should pass html a11y test', async () => {
+	describe('when used as a row header', () => {
+		it('meets accessibility requirements (no axe violations)', async () => {
 			const div = (await fixture(`
 				<vwc-table>
 					<vwc-table-row>

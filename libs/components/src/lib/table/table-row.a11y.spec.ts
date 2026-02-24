@@ -4,7 +4,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-table-row';
 
-describe('a11y: vwc-table-row', () => {
+describe('Table row accessibility', () => {
 	let element: TableRow;
 
 	beforeAll(async () => {
@@ -23,9 +23,8 @@ describe('a11y: vwc-table-row', () => {
 		element = div.querySelector(COMPONENT_TAG) as TableRow;
 	});
 
-	it('should pass html a11y test', async () => {
+	it('meets accessibility requirements (no axe violations)', async () => {
 		await elementUpdated(element);
-
 		expect(await axe(element)).toHaveNoViolations();
 	});
 });
