@@ -48,8 +48,12 @@
 	},
 	"pnpm": {
 		"peerDependencyRules": {
-			"allowAny": ["vue"],
-			"ignoreMissing": ["vue"]
+			"allowAny": [
+				"vue"
+			],
+			"ignoreMissing": [
+				"vue"
+			]
 		}
 	}
 }
