@@ -28,6 +28,11 @@ jobs:
       eslint_plugin_release_created: ${{ steps.release.outputs['libs/eslint-plugin--release_created'] }}
       eslint_plugin_release_sha: ${{ steps.release.outputs['libs/eslint-plugin--sha'] }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
       # Checks if a release PR has been merged but not released yet (label: `autorelease: pending`)
       # If so, creates releases (and tags) for the affected libraries in GitHub, updates the label, and sets the relevant outputs
       # We have configured release-please to not create a release/tag for the vivid-vue library, as it is always released
