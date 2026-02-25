@@ -10,13 +10,15 @@
 		}
 	},
 	"scripts": {
-		"build": "tsc",
+		"build": "tsx scripts/build.ts && tsc",
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
+		"@types/node": "catalog:",
+		"tsx": "catalog:",
 		"vitest": "catalog:"
 	}
 }
