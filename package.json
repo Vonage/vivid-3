@@ -45,5 +45,11 @@
 	"engines": {
 		"node": ">=20.0.0",
 		"pnpm": ">=10.23.0"
+	},
+	"pnpm": {
+		"peerDependencyRules": {
+			"allowAny": ["vue"],
+			"ignoreMissing": ["vue"]
+		}
 	}
 }
