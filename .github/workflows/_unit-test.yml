@@ -7,6 +7,10 @@ jobs:
   test:
     name: 'Unit Tests'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,20 +34,22 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Test
+      - name: Test Packages
         id: test
-        run: pnpm run test
+        run: pnpm turbo run test:coverage --continue
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+      - name: Enforce and Merge Coverage
+        if: always()
+        run: |
+          pnpm exec istanbul-merge ./libs/*/coverage/coverage-final.json ./apps/*/coverage/coverage-final.json --out .nyc_output/coverage.json
+          pnpm exec nyc report
+          pnpm exec nyc check-coverage
+
+      - name: Report Coverage
+        if: always()
+        uses: davelosert/vitest-coverage-report-action@v2
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage/
-          fail_ci_if_error: true
-          files: ./coverage/lcov.info
-          flags: unittests
-          name: codecov-umbrella
-          verbose: true
-
-      - run: exit 0
-        if: ${{ steps.test.outcome == 'success' }}
+          name: 'Vivid Coverage'
+          json-summary-path: './coverage/coverage-summary.json'
+          json-final-path: './coverage/coverage-final.json'
+          file-coverage-mode: all

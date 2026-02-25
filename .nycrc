@@ -1,0 +1,33 @@
+{
+	"lines": 100,
+	"statements": 100,
+	"functions": 100,
+	"branches": 100,
+	"reporter": ["html", "json-summary", "json"],
+	"exclude": [
+		"**/coverage/**",
+		"**/dist/**",
+		"**/node_modules/**",
+		"**/[.]**",
+		"**/*.d.ts",
+		"**/*{.,-}{test,spec,bench,benchmark}?(-d).?(c|m)[jt]s?(x)",
+		"**/__tests__/**",
+		"**/__fixtures__/**",
+		"**/__mocks__/**",
+		"**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,stylelint,prettier,playwright,cem}.config.*",
+		"**/vitest.{workspace,projects}.[jt]s?(on)",
+		"**/.{eslint,mocha,prettier}rc.{?(c|m)js,yml}",
+		"apps/**",
+		"libs/components/scripts/**",
+		"libs/cem-analyzer-plugins/**",
+		"libs/vue-wrappers/**",
+		"libs/wrapper-gen/**",
+		"libs/tokens/**",
+		"libs/tokens-new/**",
+		"libs/internal-eslint-plugin/**",
+		"libs/components/src/visual-tests/**",
+		"libs/components/src/locales/**",
+		"libs/design-tokens/scripts/build.ts",
+		"libs/design-tokens/scripts/style-dictionary.ts"
+	]
+}

@@ -35,6 +35,7 @@ export const WithObservableLocale = <T extends Constructor<VividElement>>(
 		 * Called whenever the locale changes.
 		 * @internal
 		 */
+		/* v8 ignore next */
 		localeChanged() {}
 
 		override connectedCallback() {

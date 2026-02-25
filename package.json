@@ -12,7 +12,7 @@
 		"lint": "turbo run lint stylelint",
 		"lint:fix": "turbo run lint:fix stylelint:fix",
 		"start": "turbo run dev --filter=@repo/docs --filter=@vonage/vivid --filter=@repo/styles",
-		"test": "turbo run test:coverage && istanbul-merge ./libs/*/coverage/coverage-final.json ./apps/*/coverage/coverage-final.json --out .nyc_output/coverage.json && nyc report --temp-dir .nyc_output --reporter html --reporter lcov --report-dir coverage",
+		"test": "turbo run test:coverage --continue && istanbul-merge ./libs/*/coverage/coverage-final.json ./apps/*/coverage/coverage-final.json --out .nyc_output/coverage.json && nyc report && nyc check-coverage",
 		"test:ui": "turbo run @vonage/vivid#e2e:docker:ui",
 		"typecheck": "turbo run typecheck"
 	},
