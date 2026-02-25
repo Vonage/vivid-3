@@ -1,6 +1,7 @@
 import { type Command } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 import {
+	contributionPriority,
 	featureFacade,
 	type PluginContribution,
 	RteFeatureImpl,
@@ -45,7 +46,7 @@ export class RteHardBreakFeatureImpl extends RteFeatureImpl {
 			'Shift-Enter': forceBreak,
 		};
 
-		return [this.contribution(keymap(keyBindings))];
+		return [this.contribution(keymap(keyBindings), contributionPriority.high)];
 	}
 }
 
