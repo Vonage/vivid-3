@@ -725,7 +725,7 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 - **Redo**: <kbd>Ctrl</kbd> + <kbd>Y</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>
 - **Convert to Paragraph**: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>0</kbd> / <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>0</kbd>
 - **Convert to Heading Level &lt;X&gt;**: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>&lt;X&gt;</kbd> / <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>&lt;X&gt;</kbd>
-- **Create a New Paragraph:** <kbd>Enter</kbd> / <kbd>Shift</kbd> + <kbd>Enter</kbd>
+- **Create a New Block:** <kbd>Enter</kbd> / <kbd>Shift</kbd> + <kbd>Enter</kbd>
 
 <vwc-note connotation="information">
 	<vwc-icon slot="icon" name="info-line"></vwc-icon>
@@ -1113,6 +1113,103 @@ const instance = config.instantiateEditor({
 						content: [{ type: 'text', text: 'Press Shift+Enter for a hard break.' }, { type: 'hardBreak' }, { type: 'text', text: 'This is after the hard break.' }],
 					},
 				],
+			},
+		});
+	});
+</script>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+### RteKeyboardShortcutsFeature
+
+Lets you add or override keyboard shortcuts. Each instance needs a unique name (first argument). Shortcuts use ProseMirror key names (e.g. `"Enter"`, `"Shift-Enter"`, `"Mod-b"`).
+
+**Example usage:**
+
+```ts
+import { TextSelection } from 'prosemirror-state';
+
+new RteKeyboardShortcutsFeature('escape-deselect', {
+	shortcuts: {
+		// Escape collapses selection to cursor (deselect)
+		Escape: (state, dispatch) => {
+			if (state.selection.empty) return false; // let default handle (e.g. close popover)
+			dispatch?.(state.tr.setSelection(TextSelection.create(state.doc, state.selection.to)));
+			return true;
+		},
+		// Prevent default (no tab to next field)
+		Tab: () => true,
+	},
+});
+```
+
+**Constructor:** `new RteKeyboardShortcutsFeature(id, options)`
+
+**Configuration options:**
+
+- `id: string`(required):
+  Unique identifier for this feature instance.
+- `options.shortcuts` (record):</br>
+  Map of key name to `KeyboardShortcutHandler`. Keys use ProseMirror key names (e.g. `"Enter"`, `"Shift-Enter"`, `"Mod-b"`).
+
+`KeyboardShortcutHandler`:
+
+- A ProseMirror `Command` `(state, dispatch) => boolean`, or a no-arg function `() => true` to only prevent default. Return `true` to consume the key (prevent default); `false` to let other features handle it.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig, RteKeyboardShortcutsFeature } from '@vonage/vivid';
+
+const config = new RteConfig([
+	new RteBase(),
+	new RteKeyboardShortcutsFeature('no-enter', {
+		shortcuts: {
+			Enter: () => true, // Prevent default (no new paragraph on Enter)
+		},
+	}),
+]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Press Enter — nothing happens.' }] }],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 250px" :instance="instance" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<vwc-rich-text-editor style="block-size: 250px"></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([
+			new RteBase(),
+			new RteKeyboardShortcutsFeature('no-enter', {
+				shortcuts: {
+					Enter: () => true,
+				},
+			}),
+		]);
+		rteComponent.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Press Enter — nothing happens.' }] }],
 			},
 		});
 	});

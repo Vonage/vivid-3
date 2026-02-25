@@ -20,6 +20,7 @@ export { RteDropHandlerFeature } from './features/drop-handler';
 export { RteToolbarButtonFeature } from './features/toolbar-button';
 export { RteAtomFeature } from './features/atom';
 export { RteInputRuleFeature } from './features/input-rule';
+export { RteKeyboardShortcutsFeature } from './features/keyboard-shortcuts';
 export { RteSuggestFeature } from './features/suggest';
 
 export { RteHtmlParser } from './html-parser';
