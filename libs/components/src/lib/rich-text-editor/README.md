@@ -3711,6 +3711,76 @@ updateView();
 </vwc-tab-panel>
 </vwc-tabs>
 
+### CSS Variables
+
+#### Editor Padding
+
+Use `--rich-text-editor-padding-inline` and `--rich-text-editor-padding-block` to control the padding around the editor content. These override the values used by `--editor-padding-inline` and `--editor-padding-block` (e.g. for slotted content alignment).
+
+- **--rich-text-editor-padding-inline**: Default `16px`
+- **--rich-text-editor-padding-block**: Default `8px`
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 120px
+<script setup lang="ts">
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteConfig } from '@vonage/vivid';
+
+const config = new RteConfig([new RteBase()]);
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Editor content with custom padding.' }] }],
+	},
+});
+</script>
+
+<template>
+	<VRichTextEditor class="rte-custom-padding" :instance="instance" />
+</template>
+
+<style scoped>
+.rte-custom-padding {
+	--rich-text-editor-padding-inline: 24px;
+	--rich-text-editor-padding-block: 12px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 120px
+<vwc-rich-text-editor class="rte-custom-padding"></vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const el = document.querySelector('vwc-rich-text-editor');
+		const config = new RteConfig([new RteBase()]);
+		el.instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Editor content with custom padding.' }] }],
+			},
+		});
+	});
+</script>
+
+<style>
+	.rte-custom-padding {
+		--rich-text-editor-padding-inline: 24px;
+		--rich-text-editor-padding-block: 12px;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Slots
 
 ### editor-start / editor-end

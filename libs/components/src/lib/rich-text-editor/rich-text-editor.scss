@@ -1,4 +1,5 @@
 @use '@repo/tokens/scss/tokens.constants' as constants;
+@use 'partials/variables' as variables;
 @use '@repo/shared/mixins/scrollbar' as scrollbar;
 @use '@repo/shared/mixins/focus' as focus;
 @use '@repo/shared/mixins/focus' as focus-variables;
@@ -31,8 +32,14 @@
 }
 
 .editor-scroll-area {
-	--editor-padding-block: 8px;
-	--editor-padding-inline: 16px;
+	--editor-padding-inline: var(
+		#{variables.$rich-text-editor-padding-inline},
+		16px
+	);
+	--editor-padding-block: var(
+		#{variables.$rich-text-editor-padding-block},
+		8px
+	);
 
 	display: flex;
 	flex: 1;
