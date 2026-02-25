@@ -1,0 +1,9 @@
+# Changelog
+
+## 1.0.0 (2026-02-25)
+
+
+### Features
+
+* **icons:** update icons ([08393aa](https://github.com/Vonage/vivid-3/commit/08393aa2128096c9a34d957bc95946b74df08d89))
+* **icons:** update icons (VIV-3134) ([#2780](https://github.com/Vonage/vivid-3/issues/2780)) ([08393aa](https://github.com/Vonage/vivid-3/commit/08393aa2128096c9a34d957bc95946b74df08d89))
