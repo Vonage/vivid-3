@@ -2,7 +2,7 @@
   {
     "id": "android-color",
     "figmaNodeId": "865:716",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/bb037513-594f-4472-8bde-33ed4b355ed1",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/789d0438-795b-4449-bd42-0a5cc851f8dd",
     "figmaComponentName": "android",
     "category": "brand",
     "name": "android",
@@ -18,7 +18,7 @@
   {
     "id": "android-mono",
     "figmaNodeId": "865:722",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b7b8caa4-3398-4edf-8df3-da9b423775bf",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0e8eb358-9f05-465d-b32e-95d70e89d416",
     "figmaComponentName": "android",
     "category": "brand",
     "name": "android",
@@ -33,7 +33,7 @@
   {
     "id": "angular-color",
     "figmaNodeId": "865:727",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/22db92cd-a7d6-41bb-84b7-dbaa8f4225d2",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5c67cb9d-e430-4e42-beda-bc91bf2797ec",
     "figmaComponentName": "angular",
     "category": "brand",
     "name": "angular",
@@ -49,7 +49,7 @@
   {
     "id": "angular-mono",
     "figmaNodeId": "865:732",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/88c72057-55bb-4084-85f5-5f67dee5f238",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f607dd3f-8d81-466b-ad42-932532939079",
     "figmaComponentName": "angular",
     "category": "brand",
     "name": "angular",
@@ -64,7 +64,7 @@
   {
     "id": "apple-color",
     "figmaNodeId": "865:737",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/68a283b6-cd17-4fe9-9cf0-b01b000c5703",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/4846f3f1-5473-4676-aab1-e2316ba25ec0",
     "figmaComponentName": "apple",
     "category": "brand",
     "name": "apple",
@@ -79,7 +79,7 @@
   {
     "id": "apple-mono",
     "figmaNodeId": "865:742",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c91e176f-40e2-475d-b228-d60e95fa864c",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e034aead-a325-4bf6-a94f-b37e247134ce",
     "figmaComponentName": "apple",
     "category": "brand",
     "name": "apple",
@@ -94,7 +94,7 @@
   {
     "id": "blogger-color",
     "figmaNodeId": "865:748",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5d7cf697-be58-46c3-92d8-3f43435fb3b6",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/81796215-b974-44c4-8635-2fa32fa5d71c",
     "figmaComponentName": "blogger",
     "category": "brand",
     "name": "blogger",
@@ -110,7 +110,7 @@
   {
     "id": "blogger-mono",
     "figmaNodeId": "865:754",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/ad9452f0-6d34-4f91-b4bb-8828b198b21f",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/938c6ae5-f8a0-4983-93ca-0d76332b382b",
     "figmaComponentName": "blogger",
     "category": "brand",
     "name": "blogger",
@@ -125,7 +125,7 @@
   {
     "id": "bullhorn-color",
     "figmaNodeId": "865:760",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f72ad640-80d5-4ed5-bc82-4967fa3d61d3",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e7f00c43-8b11-46e2-9dbb-013985f1fc0d",
     "figmaComponentName": "bullhorn",
     "category": "brand",
     "name": "bullhorn",
@@ -141,7 +141,7 @@
   {
     "id": "bullhorn-mono",
     "figmaNodeId": "865:766",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c2682498-4f88-49c7-b4f9-c4dbbd819cbd",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/8395892c-055c-4f89-a828-e96bd1bde7f3",
     "figmaComponentName": "bullhorn",
     "category": "brand",
     "name": "bullhorn",
@@ -156,7 +156,7 @@
   {
     "id": "chime-color",
     "figmaNodeId": "865:794",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3562df2d-81ef-4516-ae89-96d10640e278",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/6c893177-6566-4f7a-a889-98b154eddeb4",
     "figmaComponentName": "chime",
     "category": "brand",
     "name": "chime",
@@ -172,7 +172,7 @@
   {
     "id": "chime-mono",
     "figmaNodeId": "865:800",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/210c4140-35db-42eb-a33c-2cf596260d85",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/983d2f19-4887-462f-b1c0-a2e019b58c5a",
     "figmaComponentName": "chime",
     "category": "brand",
     "name": "chime",
@@ -187,7 +187,7 @@
   {
     "id": "clio-color",
     "figmaNodeId": "865:806",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/4aec0ef0-efd9-4d1e-94de-6b73f726c04d",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/415d6c24-515b-4c52-b9ea-d73d4d105c1e",
     "figmaComponentName": "clio",
     "category": "brand",
     "name": "clio",
@@ -203,7 +203,7 @@
   {
     "id": "clio-mono",
     "figmaNodeId": "865:812",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/2f3487d0-ecc9-4e0b-a50e-24bcbaec4a05",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/6823bd32-835f-443b-98e3-5e8688499b1b",
     "figmaComponentName": "clio",
     "category": "brand",
     "name": "clio",
@@ -218,7 +218,7 @@
   {
     "id": "comms-online-color",
     "figmaNodeId": "865:817",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/d1ff2eaa-f9b5-451c-851f-eab1668556ac",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b07227ef-4d28-412c-b988-991ce657b746",
     "figmaComponentName": "comms-online",
     "category": "brand",
     "name": "comms-online",
@@ -232,7 +232,7 @@
   {
     "id": "comms-online-mono",
     "figmaNodeId": "865:822",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/7c7c83ee-e1d9-42e5-a031-9a509809e853",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/ce77407a-aa93-4af3-97e8-1186bddd0c20",
     "figmaComponentName": "comms-online",
     "category": "brand",
     "name": "comms-online",
@@ -246,7 +246,7 @@
   {
     "id": "connectwise-color",
     "figmaNodeId": "865:828",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/52d5dd1e-70ab-4214-b539-07aaea9132f7",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f2266741-5c92-4830-85c7-6db8f21243ad",
     "figmaComponentName": "connectwise",
     "category": "brand",
     "name": "connectwise",
@@ -259,7 +259,7 @@
   {
     "id": "connectwise-mono",
     "figmaNodeId": "865:834",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/31e3e410-cd3c-457c-b163-9ff6bc7727c7",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/8ecc58a3-6617-468a-a32c-e651a4f5bfb4",
     "figmaComponentName": "connectwise",
     "category": "brand",
     "name": "connectwise",
@@ -272,7 +272,7 @@
   {
     "id": "curl-color",
     "figmaNodeId": "865:840",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/d13d4ce9-bb89-4242-9f6c-bc81951c20e1",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a3d02e63-86cb-4727-a3e7-7721d6c558b4",
     "figmaComponentName": "curl",
     "category": "brand",
     "name": "curl",
@@ -288,7 +288,7 @@
   {
     "id": "curl-mono",
     "figmaNodeId": "865:846",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/7711aadd-897e-491f-aa7f-669a9c5b5139",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/6cbb4bce-cf81-4f31-8e28-e49c9642be14",
     "figmaComponentName": "curl",
     "category": "brand",
     "name": "curl",
@@ -303,7 +303,7 @@
   {
     "id": "dotnet-color",
     "figmaNodeId": "865:852",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3b060985-e7fb-42c0-a268-14e365b43eef",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e798541d-25e7-4d71-b04e-2acb4a4f0807",
     "figmaComponentName": "dotnet",
     "category": "brand",
     "name": "dotnet",
@@ -319,7 +319,7 @@
   {
     "id": "dotnet-mono",
     "figmaNodeId": "865:858",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5dec2f44-58b5-4ce8-9e4f-1be6b73f01a0",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/7ba84838-cb59-4171-a9cf-c3ee0e1ef2b0",
     "figmaComponentName": "dotnet",
     "category": "brand",
     "name": "dotnet",
@@ -334,7 +334,7 @@
   {
     "id": "drupal-color",
     "figmaNodeId": "865:863",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a33e2e89-4d48-4d2c-8504-ff91f7322a54",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e61bff07-9480-442e-a1a5-c6a95184dab3",
     "figmaComponentName": "drupal",
     "category": "brand",
     "name": "drupal",
@@ -350,7 +350,7 @@
   {
     "id": "drupal-mono",
     "figmaNodeId": "865:868",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e844f47d-9f84-4e7a-8a07-a6975f2a1e8d",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/88dd02b4-a180-46eb-9725-f0c918d5c45a",
     "figmaComponentName": "drupal",
     "category": "brand",
     "name": "drupal",
@@ -365,7 +365,7 @@
   {
     "id": "dynamics-365-color",
     "figmaNodeId": "865:873",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/d7209b32-abd4-4ec2-a47f-3d42d6af6e92",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3543a3e9-5833-4a8a-a823-adafb1a43b7c",
     "figmaComponentName": "dynamics-365",
     "category": "brand",
     "name": "dynamics-365",
@@ -379,7 +379,7 @@
   {
     "id": "dynamics-365-mono",
     "figmaNodeId": "865:878",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f23e9acf-1e11-408f-becf-fe61c43112a3",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/4eaa408d-0eb1-43f3-a410-e271fac1a5ce",
     "figmaComponentName": "dynamics-365",
     "category": "brand",
     "name": "dynamics-365",
@@ -392,7 +392,7 @@
   {
     "id": "dynamics-color",
     "figmaNodeId": "865:884",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/55c48da9-47d3-4331-b951-05431f02bbeb",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/905b2698-dd93-4cff-a2b8-ee8f04a68288",
     "figmaComponentName": "dynamics",
     "category": "brand",
     "name": "dynamics",
@@ -409,7 +409,7 @@
   {
     "id": "dynamics-mono",
     "figmaNodeId": "865:890",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/63a2271e-adf2-4d27-b40b-864bd1c46577",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/59afcfa5-866c-4e18-9d4b-c2d1f121761f",
     "figmaComponentName": "dynamics",
     "category": "brand",
     "name": "dynamics",
@@ -424,7 +424,7 @@
   {
     "id": "express-color",
     "figmaNodeId": "865:895",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/021d23eb-6141-4d71-bb99-ae2b1b2d378d",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a4d9e075-059f-4719-b213-c75508014f22",
     "figmaComponentName": "express",
     "category": "brand",
     "name": "express",
@@ -440,7 +440,7 @@
   {
     "id": "express-mono",
     "figmaNodeId": "865:900",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/685f371f-8666-4acf-82e5-fd460adb3f75",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/7af05713-291a-4d2e-892c-cda69cbece7e",
     "figmaComponentName": "express",
     "category": "brand",
     "name": "express",
@@ -455,7 +455,7 @@
   {
     "id": "facebook-color",
     "figmaNodeId": "865:906",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/57f94183-8b41-41a5-8315-043e6fd5b658",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3c31812c-edcb-42ec-8cb3-28e6d058690d",
     "figmaComponentName": "facebook",
     "category": "brand",
     "name": "facebook",
@@ -471,7 +471,7 @@
   {
     "id": "facebook-mono",
     "figmaNodeId": "865:911",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/505ed97e-cf3a-49ef-a1ce-eeab06e188b9",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3fb914e9-a8ac-4e69-8d44-799d5f01e1aa",
     "figmaComponentName": "facebook",
     "category": "brand",
     "name": "facebook",
@@ -487,7 +487,7 @@
   {
     "id": "github-color",
     "figmaNodeId": "865:917",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/650551a6-564b-479e-9b6f-de51c9e25a9f",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a318eb7c-b9d2-4994-a798-53f5e512c799",
     "figmaComponentName": "github",
     "category": "brand",
     "name": "github",
@@ -503,7 +503,7 @@
   {
     "id": "github-mono",
     "figmaNodeId": "865:923",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a053bff4-6978-4c50-9dea-0745406d0e19",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c2a4b585-9c63-48f4-87e7-1de5dcfddee2",
     "figmaComponentName": "github",
     "category": "brand",
     "name": "github",
@@ -518,7 +518,7 @@
   {
     "id": "google-color",
     "figmaNodeId": "865:933",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/435bcafb-2456-4a46-b7f6-4778af6b0144",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/92ef0437-8b36-476a-ad45-3547da2dc219",
     "figmaComponentName": "google",
     "category": "brand",
     "name": "google",
@@ -537,7 +537,7 @@
   {
     "id": "google-mono",
     "figmaNodeId": "865:939",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b20d4d46-2827-4a57-8fa9-db1815ccb9c0",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/890bb2d0-bf30-4f64-80fa-90fb6ffd432b",
     "figmaComponentName": "google",
     "category": "brand",
     "name": "google",
@@ -552,7 +552,7 @@
   {
     "id": "gradle-color",
     "figmaNodeId": "865:945",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/d9f8794a-7b72-419b-9db3-3479ca5f4086",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b21dc107-a23c-46bf-83f3-ca3aad4d60eb",
     "figmaComponentName": "gradle",
     "category": "brand",
     "name": "gradle",
@@ -568,7 +568,7 @@
   {
     "id": "gradle-mono",
     "figmaNodeId": "865:951",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/224e1e01-1554-4853-beb2-d6d02b32835d",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/ef96511e-70c7-43f3-8ff1-317e03782e20",
     "figmaComponentName": "gradle",
     "category": "brand",
     "name": "gradle",
@@ -583,7 +583,7 @@
   {
     "id": "groovy-color",
     "figmaNodeId": "865:959",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/25d617af-b3e9-40e9-955b-7f9c821a081a",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0e9235ef-3ac2-491d-82ff-25dafc99fc0e",
     "figmaComponentName": "groovy",
     "category": "brand",
     "name": "groovy",
@@ -601,7 +601,7 @@
   {
     "id": "groovy-mono",
     "figmaNodeId": "865:964",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/088a0814-7cf3-4251-bb68-9e4ad02a7f13",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/9336b28d-4a95-4ad0-8f20-1c89d779d56f",
     "figmaComponentName": "groovy",
     "category": "brand",
     "name": "groovy",
@@ -616,7 +616,7 @@
   {
     "id": "hubspot-color",
     "figmaNodeId": "865:969",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e4ba0382-7d0f-4cd4-9e15-1939804cbc68",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e54bf52f-61d5-4f72-b78a-30442ca06b8f",
     "figmaComponentName": "hubspot",
     "category": "brand",
     "name": "hubspot",
@@ -630,7 +630,7 @@
   {
     "id": "hubspot-mono",
     "figmaNodeId": "865:974",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/de5dde05-3944-42f8-85cf-428629961c56",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/94e17842-fb47-42fa-8734-0b93282a5be2",
     "figmaComponentName": "hubspot",
     "category": "brand",
     "name": "hubspot",
@@ -643,7 +643,7 @@
   {
     "id": "instagram-color",
     "figmaNodeId": "865:981",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/63bb3959-b987-4933-9765-e667ceaef60b",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e156e741-177c-46f7-9805-53d55653cfb0",
     "figmaComponentName": "instagram",
     "category": "brand",
     "name": "instagram",
@@ -656,7 +656,7 @@
   {
     "id": "instagram-mono",
     "figmaNodeId": "865:987",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/21c675f2-abf1-4b5a-b160-c4c285814e80",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c3ed2120-3eae-493f-bb8c-2359f67e242e",
     "figmaComponentName": "instagram",
     "category": "brand",
     "name": "instagram",
@@ -669,7 +669,7 @@
   {
     "id": "ios-color",
     "figmaNodeId": "865:992",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/69b76ca8-b318-4c4b-9ada-6841d9195a8b",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/49b54684-4a92-4700-a115-ae89e8309bcb",
     "figmaComponentName": "ios",
     "category": "brand",
     "name": "ios",
@@ -686,7 +686,7 @@
   {
     "id": "ios-mono",
     "figmaNodeId": "865:997",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/53866069-a5a6-4fea-839c-0618be236043",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/16f94ff5-38d1-49ae-9fe5-4e2513be3881",
     "figmaComponentName": "ios",
     "category": "brand",
     "name": "ios",
@@ -701,7 +701,7 @@
   {
     "id": "java-color",
     "figmaNodeId": "865:1006",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/ae4fcddf-e23d-43b1-a333-e3dcb0e6faba",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/2eee3205-6a20-49db-a6a6-6dc8260d0867",
     "figmaComponentName": "java",
     "category": "brand",
     "name": "java",
@@ -718,7 +718,7 @@
   {
     "id": "java-mono",
     "figmaNodeId": "865:1011",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/21139ead-2f09-486c-9188-04cfe7e0b3b2",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/236883f4-5fe5-4967-a63d-e42e4a528e19",
     "figmaComponentName": "java",
     "category": "brand",
     "name": "java",
@@ -733,7 +733,7 @@
   {
     "id": "javascript-color",
     "figmaNodeId": "865:1018",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/8131824e-4902-432b-9a73-4d7b7845e627",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/60c72cd8-d365-4df8-9908-9603531fb205",
     "figmaComponentName": "javascript",
     "category": "brand",
     "name": "javascript",
@@ -749,7 +749,7 @@
   {
     "id": "javascript-mono",
     "figmaNodeId": "865:1024",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/802c809f-6443-42a4-b1cb-2b3190a5e16d",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/66fbfb2f-fee6-4fdd-ba8d-f84bc6de5ee9",
     "figmaComponentName": "javascript",
     "category": "brand",
     "name": "javascript",
@@ -764,7 +764,7 @@
   {
     "id": "jobdiva-color",
     "figmaNodeId": "865:1031",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/9c621f6b-d240-46b9-aa30-ff99b372d751",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/ed57360b-4ffe-4b27-a1d1-6794c09a4e0b",
     "figmaComponentName": "jobdiva",
     "category": "brand",
     "name": "jobdiva",
@@ -781,7 +781,7 @@
   {
     "id": "jobdiva-mono",
     "figmaNodeId": "865:1036",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/800b201d-5ea3-4eb8-a154-5a37bedd3517",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/da92f293-18e5-4339-ab46-da1e04fa72a4",
     "figmaComponentName": "jobdiva",
     "category": "brand",
     "name": "jobdiva",
@@ -796,7 +796,7 @@
   {
     "id": "kotlin-color",
     "figmaNodeId": "865:1044",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c80b7959-ea7c-4bde-9e91-22e81c16e690",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/75d829e4-e9ad-43b7-aec2-db010eb0af5b",
     "figmaComponentName": "kotlin",
     "category": "brand",
     "name": "kotlin",
@@ -813,7 +813,7 @@
   {
     "id": "kotlin-mono",
     "figmaNodeId": "865:1050",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b978431c-3579-4013-bf6c-3295c80ba8da",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/8268e0e6-b4db-4672-a0b2-bb70606d3362",
     "figmaComponentName": "kotlin",
     "category": "brand",
     "name": "kotlin",
@@ -828,7 +828,7 @@
   {
     "id": "laravel-color",
     "figmaNodeId": "865:1056",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5877e3e6-2fcd-4eee-b3ef-6d441998fd22",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/cb96279e-5c1d-4662-8c43-784990462911",
     "figmaComponentName": "laravel",
     "category": "brand",
     "name": "laravel",
@@ -844,7 +844,7 @@
   {
     "id": "laravel-mono",
     "figmaNodeId": "865:1062",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b7f43ebc-c065-4492-8809-e619a6f80899",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/cd90935b-c682-4522-95fa-b05d7ee72166",
     "figmaComponentName": "laravel",
     "category": "brand",
     "name": "laravel",
@@ -859,7 +859,7 @@
   {
     "id": "linkedin-color",
     "figmaNodeId": "865:1068",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f6b63408-522e-4482-b1f4-dad8fae599cf",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0b8e487c-6eb5-4b76-806d-55b32d47c56f",
     "figmaComponentName": "linkedin",
     "category": "brand",
     "name": "linkedin",
@@ -875,7 +875,7 @@
   {
     "id": "linkedin-mono",
     "figmaNodeId": "865:1074",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/367127cf-6392-4b31-812c-a4ee96fb5bd7",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/d121cb35-180d-4679-8e8a-0526c118068c",
     "figmaComponentName": "linkedin",
     "category": "brand",
     "name": "linkedin",
@@ -890,7 +890,7 @@
   {
     "id": "linux-color",
     "figmaNodeId": "865:1079",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/4b8dad1e-921b-47f8-80fd-ef7b4161b659",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/bdb3ee7c-be72-4825-be0b-ebf2a84878c0",
     "figmaComponentName": "linux",
     "category": "brand",
     "name": "linux",
@@ -903,7 +903,7 @@
   {
     "id": "linux-mono",
     "figmaNodeId": "865:1084",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/d88d16a9-e5da-45c9-b998-0093bbf57dca",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e24cf92e-1474-4495-accf-e9aa0c016ad4",
     "figmaComponentName": "linux",
     "category": "brand",
     "name": "linux",
@@ -916,7 +916,7 @@
   {
     "id": "microsoft-dynamics-365-color",
     "figmaNodeId": "865:1092",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/46a8dbd7-9474-4b9e-86a6-21581cbf7962",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5d384df8-5590-4383-9212-ae4979e6e91b",
     "figmaComponentName": "microsoft-dynamics-365",
     "category": "brand",
     "name": "microsoft-dynamics-365",
@@ -932,7 +932,7 @@
   {
     "id": "microsoft-dynamics-365-mono",
     "figmaNodeId": "865:1097",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f276c25d-a399-48d4-8910-3063f8245b3a",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/75fa27c2-5a13-4387-a747-39095c430930",
     "figmaComponentName": "microsoft-dynamics-365",
     "category": "brand",
     "name": "microsoft-dynamics-365",
@@ -948,7 +948,7 @@
   {
     "id": "microsoft-teams-color",
     "figmaNodeId": "865:1113",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/314a80de-995d-4665-bdf2-d7cdaeb9ca3e",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/ffff1ed6-421f-4207-9c5c-fe025a7df03c",
     "figmaComponentName": "microsoft-teams",
     "category": "brand",
     "name": "microsoft-teams",
@@ -962,7 +962,7 @@
   {
     "id": "microsoft-teams-mono",
     "figmaNodeId": "865:1120",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/746b6eac-fa98-42f1-a6ec-c64a297b1691",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/55d1c23c-4a82-4cd5-9818-aae74a244b59",
     "figmaComponentName": "microsoft-teams",
     "category": "brand",
     "name": "microsoft-teams",
@@ -976,7 +976,7 @@
   {
     "id": "netsuite-color",
     "figmaNodeId": "865:1126",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/25ff1d0c-d113-44de-919e-c435704e453e",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/cc1d8e9a-7099-455a-9e85-be1c6446f779",
     "figmaComponentName": "netsuite",
     "category": "brand",
     "name": "netsuite",
@@ -991,7 +991,7 @@
   {
     "id": "netsuite-mono",
     "figmaNodeId": "865:1131",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5d6e7c0a-485e-46ba-9720-e019212045ae",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/47bb4a1a-71dc-4ce1-b41b-919386c673f2",
     "figmaComponentName": "netsuite",
     "category": "brand",
     "name": "netsuite",
@@ -1004,7 +1004,7 @@
   {
     "id": "nexmo-color",
     "figmaNodeId": "865:1137",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/9f3fcf27-0de8-40e4-b8e6-33fd545e5e7a",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/fd956b41-6984-4602-a3dd-eb6466800e49",
     "figmaComponentName": "nexmo",
     "category": "brand",
     "name": "nexmo",
@@ -1021,7 +1021,7 @@
   {
     "id": "nexmo-mono",
     "figmaNodeId": "865:1142",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/7264d655-699d-43c5-919c-4ed568d71b5a",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e7cbe7cc-31c8-436e-9d87-fdcd1ebd0141",
     "figmaComponentName": "nexmo",
     "category": "brand",
     "name": "nexmo",
@@ -1036,7 +1036,7 @@
   {
     "id": "node-color",
     "figmaNodeId": "865:1148",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a4188023-88fb-4472-9f0f-5cf9441d94a7",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/22bd12db-abc7-43be-ac31-695d73fd54a5",
     "figmaComponentName": "node",
     "category": "brand",
     "name": "node",
@@ -1052,7 +1052,7 @@
   {
     "id": "node-mono",
     "figmaNodeId": "865:1154",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/dd99efc0-abd1-4b2b-80e9-37c5595db27f",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3450104c-2882-4e75-9eae-8a7b98a36f80",
     "figmaComponentName": "node",
     "category": "brand",
     "name": "node",
@@ -1067,7 +1067,7 @@
   {
     "id": "objective-c-color",
     "figmaNodeId": "865:1159",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e995c2d1-d8dd-4fd5-8fd1-b9d42f31bdd1",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/cbbc6236-5e85-4c76-bc74-b7a4abad789e",
     "figmaComponentName": "objective-c",
     "category": "brand",
     "name": "objective-c",
@@ -1081,7 +1081,7 @@
   {
     "id": "objective-c-mono",
     "figmaNodeId": "865:1164",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/283ba638-b279-4d77-b556-7efb0c193241",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f2bd7e02-8655-4059-992d-a8d54aa03362",
     "figmaComponentName": "objective-c",
     "category": "brand",
     "name": "objective-c",
@@ -1095,7 +1095,7 @@
   {
     "id": "office-color",
     "figmaNodeId": "865:1170",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e37fdbb7-16c4-42ee-974d-ed539b1ff2ef",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5b6e3838-89ee-41bc-90dc-a3413261c1e2",
     "figmaComponentName": "office",
     "category": "brand",
     "name": "office",
@@ -1111,7 +1111,7 @@
   {
     "id": "office-mono",
     "figmaNodeId": "865:1176",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/ce473312-6a67-4d14-926d-8940845b900d",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5dc1feec-30f7-4b0b-8d53-d74304763923",
     "figmaComponentName": "office",
     "category": "brand",
     "name": "office",
@@ -1126,7 +1126,7 @@
   {
     "id": "php-color",
     "figmaNodeId": "865:1181",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f583a54c-3b52-425d-87d4-b736e60ff9f5",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5cd49f28-1091-4449-a59d-1a219182f432",
     "figmaComponentName": "php",
     "category": "brand",
     "name": "php",
@@ -1142,7 +1142,7 @@
   {
     "id": "php-mono",
     "figmaNodeId": "865:1186",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/cb5848a2-1ea1-4cd8-9c5c-2a5bfb4bdd01",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a7a7946b-90ac-4e5a-aa45-6d64969a88b3",
     "figmaComponentName": "php",
     "category": "brand",
     "name": "php",
@@ -1157,7 +1157,7 @@
   {
     "id": "python-color",
     "figmaNodeId": "865:1193",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a6db6c92-1926-4b3f-ab51-224a6253d63f",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c88b6751-9137-4cc1-94a0-38a672338975",
     "figmaComponentName": "python",
     "category": "brand",
     "name": "python",
@@ -1174,7 +1174,7 @@
   {
     "id": "python-mono",
     "figmaNodeId": "865:1199",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/73f2802c-fe46-4746-8a64-0d89950339be",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b02d4bf3-b0f0-4a1f-94f0-b2bf84ad2a92",
     "figmaComponentName": "python",
     "category": "brand",
     "name": "python",
@@ -1189,7 +1189,7 @@
   {
     "id": "rails-color",
     "figmaNodeId": "865:1205",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b52e1a98-09cc-4578-bdc8-e07ae59a7517",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/338cd9ce-5a9c-46f9-b9c2-512d3459a60f",
     "figmaComponentName": "rails",
     "category": "brand",
     "name": "rails",
@@ -1205,7 +1205,7 @@
   {
     "id": "rails-mono",
     "figmaNodeId": "865:1211",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f1272f53-3bbb-4273-ac67-4b5ca25a3a82",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0044c4ad-1a73-499e-abd4-ea655cec42b2",
     "figmaComponentName": "rails",
     "category": "brand",
     "name": "rails",
@@ -1220,7 +1220,7 @@
   {
     "id": "react-color",
     "figmaNodeId": "865:1217",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/9c9517ca-5c30-411a-a238-e648977c5f33",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/521ed745-89b1-4462-99dd-75bf3f93f806",
     "figmaComponentName": "react",
     "category": "brand",
     "name": "react",
@@ -1236,7 +1236,7 @@
   {
     "id": "react-mono",
     "figmaNodeId": "865:1222",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/31d41b93-a45f-4f9a-be00-46367a1ea2b4",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/efc1beb8-6f3b-4c4b-9399-e3981235fe60",
     "figmaComponentName": "react",
     "category": "brand",
     "name": "react",
@@ -1251,7 +1251,7 @@
   {
     "id": "rss-color",
     "figmaNodeId": "865:1228",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/cc9763a6-8c79-4ccd-b47a-ff80ba7d954e",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b61743ce-f3c6-4f37-a0e6-d1aa0a9756fd",
     "figmaComponentName": "rss",
     "category": "brand",
     "name": "rss",
@@ -1269,7 +1269,7 @@
   {
     "id": "rss-mono",
     "figmaNodeId": "865:1234",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f35b9581-c871-4eb6-ac33-d0bb4f1c15c5",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/370b4907-c9d1-4d4a-9e69-0c9444904a05",
     "figmaComponentName": "rss",
     "category": "brand",
     "name": "rss",
@@ -1282,7 +1282,7 @@
   {
     "id": "ruby-color",
     "figmaNodeId": "865:1240",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/fe1b1bf6-1fee-446d-b3c9-f30ab21ba0a4",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/57284f32-6735-49b0-be62-60077c4dc9c7",
     "figmaComponentName": "ruby",
     "category": "brand",
     "name": "ruby",
@@ -1298,7 +1298,7 @@
   {
     "id": "ruby-mono",
     "figmaNodeId": "865:1246",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/aa39f2c6-b4d3-4a39-a97f-79b178d8cbdb",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5d6f0bed-63ae-40c1-b1e0-5f632f1ed3a0",
     "figmaComponentName": "ruby",
     "category": "brand",
     "name": "ruby",
@@ -1313,7 +1313,7 @@
   {
     "id": "salesforce-color",
     "figmaNodeId": "865:1252",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/d52d5dae-fe9e-421f-b4a1-5c1cc05a07b1",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/89427a29-b0a9-4005-91e9-6c5c51b3ef45",
     "figmaComponentName": "salesforce",
     "category": "brand",
     "name": "salesforce",
@@ -1329,7 +1329,7 @@
   {
     "id": "salesforce-mono",
     "figmaNodeId": "865:1258",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/1fc47028-e589-4ed2-927a-21c0f4c347fe",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/30a83d29-d90e-4347-839f-df0ab10a31d6",
     "figmaComponentName": "salesforce",
     "category": "brand",
     "name": "salesforce",
@@ -1344,7 +1344,7 @@
   {
     "id": "slack-color",
     "figmaNodeId": "865:1267",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/781d92c6-9b87-434e-ba80-b9fd65e2b058",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a4145f6d-67c9-453b-9cb6-6964e94a6ca5",
     "figmaComponentName": "slack",
     "category": "brand",
     "name": "slack",
@@ -1363,7 +1363,7 @@
   {
     "id": "slack-mono",
     "figmaNodeId": "865:1273",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/fe4f1b4a-6301-4ae7-9a85-3a243949e5a2",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/98d9ad69-4e67-4b04-9364-4189dd36dcf6",
     "figmaComponentName": "slack",
     "category": "brand",
     "name": "slack",
@@ -1378,7 +1378,7 @@
   {
     "id": "stackoverflow-color",
     "figmaNodeId": "865:1280",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/37600e36-c5f1-4704-818b-e54c9e32c094",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/447a8894-14b3-4a73-b5ff-2ca3462b50a8",
     "figmaComponentName": "stackoverflow",
     "category": "brand",
     "name": "stackoverflow",
@@ -1395,7 +1395,7 @@
   {
     "id": "stackoverflow-mono",
     "figmaNodeId": "865:1285",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/294ce40c-c5aa-41c1-96e8-52f96da2dce8",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/79b750e6-00b4-4c4d-9e36-e092d7b13f7c",
     "figmaComponentName": "stackoverflow",
     "category": "brand",
     "name": "stackoverflow",
@@ -1410,7 +1410,7 @@
   {
     "id": "sugarcrm-color",
     "figmaNodeId": "865:1293",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e36d1868-5291-403e-9a9a-8aaf4b7733e9",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/71d2894c-e59b-406d-9fca-ec4f4c863a35",
     "figmaComponentName": "sugarcrm",
     "category": "brand",
     "name": "sugarcrm",
@@ -1428,7 +1428,7 @@
   {
     "id": "sugarcrm-mono",
     "figmaNodeId": "865:1299",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/526b29de-5055-4a13-b6c1-e26328141a8a",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/bbf98e27-d84a-4350-935e-e9ebcfa3cfbe",
     "figmaComponentName": "sugarcrm",
     "category": "brand",
     "name": "sugarcrm",
@@ -1443,7 +1443,7 @@
   {
     "id": "swift-color",
     "figmaNodeId": "865:1304",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/06d1ca8a-f217-48c6-86f2-8d781c5b1b7f",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a211f85f-3a43-49bd-9605-f22db66ada54",
     "figmaComponentName": "swift",
     "category": "brand",
     "name": "swift",
@@ -1457,7 +1457,7 @@
   {
     "id": "swift-mono",
     "figmaNodeId": "865:1309",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/feb61c1f-b03d-423e-b671-b0e3bd8443d5",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e2bf2a46-525a-4396-b168-3e11380502d6",
     "figmaComponentName": "swift",
     "category": "brand",
     "name": "swift",
@@ -1471,7 +1471,7 @@
   {
     "id": "symfony-color",
     "figmaNodeId": "865:1315",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/1cc2500a-6ccf-414a-9c7a-6ea99b3e5c27",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/77735855-b76e-4276-948c-55ffb45c6a2e",
     "figmaComponentName": "symfony",
     "category": "brand",
     "name": "symfony",
@@ -1487,7 +1487,7 @@
   {
     "id": "symfony-mono",
     "figmaNodeId": "865:1321",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5517fa25-9b44-4e27-8b9a-95cccbfb7042",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/10527c55-348b-499e-923a-e840b6748793",
     "figmaComponentName": "symfony",
     "category": "brand",
     "name": "symfony",
@@ -1502,7 +1502,7 @@
   {
     "id": "twitch-color",
     "figmaNodeId": "865:1326",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/9371a24f-6aee-416f-9826-7dca9dbea9f6",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/caf616fc-c28e-486c-9a28-b6c447853057",
     "figmaComponentName": "twitch",
     "category": "brand",
     "name": "twitch",
@@ -1518,7 +1518,7 @@
   {
     "id": "twitch-mono",
     "figmaNodeId": "865:1331",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/75586cff-0acf-4574-9dd5-e3810789d98d",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b79390af-4adb-4b49-806e-57897fcd93a3",
     "figmaComponentName": "twitch",
     "category": "brand",
     "name": "twitch",
@@ -1533,7 +1533,7 @@
   {
     "id": "twitter-color",
     "figmaNodeId": "865:1336",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/ce1c3446-fb2e-402d-a299-28a05c4c1d70",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/87050126-a490-4e86-9fcc-7e3ddc14314c",
     "figmaComponentName": "twitter",
     "category": "brand",
     "name": "twitter",
@@ -1549,7 +1549,7 @@
   {
     "id": "twitter-mono",
     "figmaNodeId": "865:1341",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/d76edf04-6fbc-4291-9c73-d3acf11a1596",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b31b203a-f42c-4311-bdc7-9ae917a1375d",
     "figmaComponentName": "twitter",
     "category": "brand",
     "name": "twitter",
@@ -1564,7 +1564,7 @@
   {
     "id": "viber-color",
     "figmaNodeId": "865:1347",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/26fdad90-8ee9-47f2-85e9-079fa27c187b",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/ef72e454-5f04-417e-946f-e412989008c8",
     "figmaComponentName": "viber",
     "category": "brand",
     "name": "viber",
@@ -1579,7 +1579,7 @@
   {
     "id": "viber-mono",
     "figmaNodeId": "865:1353",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/8dcfa675-fc3e-4b6d-81c1-a7e1942eae3e",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/9e2aa25e-6a99-4140-b4d0-1b0286828ce0",
     "figmaComponentName": "viber",
     "category": "brand",
     "name": "viber",
@@ -1594,7 +1594,7 @@
   {
     "id": "vonage-color",
     "figmaNodeId": "865:1358",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/812dc7d3-31cb-4e0f-b4f9-138b892be5ee",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/31bac1cf-4bac-4b60-85d1-dca6806e4f92",
     "figmaComponentName": "vonage",
     "category": "brand",
     "name": "vonage",
@@ -1611,7 +1611,7 @@
   {
     "id": "vonage-mono",
     "figmaNodeId": "865:1363",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/dfac0af4-fed4-4906-a15b-9b233e4bce19",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/6ad7dbf4-d390-4957-8838-8b62df0985cd",
     "figmaComponentName": "vonage",
     "category": "brand",
     "name": "vonage",
@@ -1626,7 +1626,7 @@
   {
     "id": "vue-color",
     "figmaNodeId": "865:1369",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b6aba3f9-114f-4ed1-8282-f1cc9c02a6c5",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/9b705e53-f6a5-46a5-b656-05e2f73bdd7f",
     "figmaComponentName": "vue",
     "category": "brand",
     "name": "vue",
@@ -1643,7 +1643,7 @@
   {
     "id": "vue-mono",
     "figmaNodeId": "865:1374",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/098bcbbb-2b22-4120-92d3-0badbde2f406",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5876acb2-c3b4-4cc0-b5c5-95764e7ae0cd",
     "figmaComponentName": "vue",
     "category": "brand",
     "name": "vue",
@@ -1658,7 +1658,7 @@
   {
     "id": "web-chat-color",
     "figmaNodeId": "865:1379",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5c2c273c-10c1-4bfc-af3c-fdfd9da52a58",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/cf693a11-9d84-43a9-97e0-35ba91719364",
     "figmaComponentName": "web-chat",
     "category": "brand",
     "name": "web-chat",
@@ -1673,7 +1673,7 @@
   {
     "id": "web-chat-mono",
     "figmaNodeId": "865:1384",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3e5946f6-f980-4731-a848-e0ac27719342",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/6bad5a62-3d6c-45c5-97ab-0cf6b5620570",
     "figmaComponentName": "web-chat",
     "category": "brand",
     "name": "web-chat",
@@ -1688,7 +1688,7 @@
   {
     "id": "whatsapp-color",
     "figmaNodeId": "865:1390",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0ab39ce8-ea0d-4ab1-8b6a-9a25d2046de7",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0c49ae42-dac0-4091-b232-0497d128f664",
     "figmaComponentName": "whatsapp",
     "category": "brand",
     "name": "whatsapp",
@@ -1704,7 +1704,7 @@
   {
     "id": "whatsapp-mono",
     "figmaNodeId": "865:1396",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c3fb27df-8c3f-4349-bb6a-91099404bd9c",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3c2fec71-650a-4587-9be1-c4378b17508c",
     "figmaComponentName": "whatsapp",
     "category": "brand",
     "name": "whatsapp",
@@ -1719,7 +1719,7 @@
   {
     "id": "windows-color",
     "figmaNodeId": "865:1401",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/341ba540-1a6d-494e-8640-f33f5a524219",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/417b117d-9c44-4fea-9cb9-faaf8f8d69b9",
     "figmaComponentName": "windows",
     "category": "brand",
     "name": "windows",
@@ -1732,7 +1732,7 @@
   {
     "id": "windows-mono",
     "figmaNodeId": "865:1406",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/98d09732-43a7-423b-911d-fbff62a84567",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/1a494caf-b2d7-4031-9fc8-5c19d96c20f0",
     "figmaComponentName": "windows",
     "category": "brand",
     "name": "windows",
@@ -1745,7 +1745,7 @@
   {
     "id": "wordpress-color",
     "figmaNodeId": "865:1412",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/8770d8d7-e9f5-4cf7-89a8-56bead85b28d",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/46b0630d-6355-4843-ba8c-5a8cf6c35b20",
     "figmaComponentName": "wordpress",
     "category": "brand",
     "name": "wordpress",
@@ -1761,7 +1761,7 @@
   {
     "id": "wordpress-mono",
     "figmaNodeId": "865:1418",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/6e0c0cab-23a6-467b-bf68-cf68bf4afd80",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/dff44265-54a6-4564-9fdf-4b65b68dffc8",
     "figmaComponentName": "wordpress",
     "category": "brand",
     "name": "wordpress",
@@ -1776,7 +1776,7 @@
   {
     "id": "workplace-color",
     "figmaNodeId": "865:1424",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c4b2d7b5-fee8-4462-9ee0-137780ce1e20",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/68aa5ea3-01e9-4c0f-b433-366de0870e2e",
     "figmaComponentName": "workplace",
     "category": "brand",
     "name": "workplace",
@@ -1790,7 +1790,7 @@
   {
     "id": "workplace-mono",
     "figmaNodeId": "865:1430",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/67c67be9-238f-4e90-bd81-65c59ff04aa9",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/7623ec26-1b4d-4da9-b76f-c272fe66ac50",
     "figmaComponentName": "workplace",
     "category": "brand",
     "name": "workplace",
@@ -1803,7 +1803,7 @@
   {
     "id": "x-twitter-color",
     "figmaNodeId": "865:1435",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/6fd39577-d7b0-413f-abb5-6ba8c808a41b",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/29cdf4dc-dc12-45b1-99ac-0cd26b3462f9",
     "figmaComponentName": "x-twitter",
     "category": "brand",
     "name": "x-twitter",
@@ -1816,7 +1816,7 @@
   {
     "id": "x-twitter-mono",
     "figmaNodeId": "865:1440",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/83bfaad4-4a53-45c2-929e-cc38a94b8b34",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/fd4f9191-058a-416d-bbf0-5b5dcad9707d",
     "figmaComponentName": "x-twitter",
     "category": "brand",
     "name": "x-twitter",
@@ -1829,7 +1829,7 @@
   {
     "id": "xml-color",
     "figmaNodeId": "865:1451",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/ba4a0550-9e15-4269-b65d-74bf3c094e1a",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/41b133c9-f58e-463c-869e-c1096689c8b9",
     "figmaComponentName": "xml",
     "category": "brand",
     "name": "xml",
@@ -1845,7 +1845,7 @@
   {
     "id": "xml-mono",
     "figmaNodeId": "865:1456",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/053e0cb9-2f98-437c-91b3-3593daf66af0",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/af4be134-d496-47af-9bb1-d59ba6b81cec",
     "figmaComponentName": "xml",
     "category": "brand",
     "name": "xml",
@@ -1860,7 +1860,7 @@
   {
     "id": "youtube-color",
     "figmaNodeId": "865:1463",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/fb684524-4bbd-4ed3-bc52-cb25fff1a6c2",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3143dc4e-b406-4aa8-ae2e-f8657cd704e9",
     "figmaComponentName": "youtube",
     "category": "brand",
     "name": "youtube",
@@ -1876,7 +1876,7 @@
   {
     "id": "youtube-mono",
     "figmaNodeId": "865:1469",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e9486ae8-a3a1-4956-a787-c51fca307638",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/04cd2242-e31c-49f1-a0d9-5125447cf61d",
     "figmaComponentName": "youtube",
     "category": "brand",
     "name": "youtube",
@@ -1891,7 +1891,7 @@
   {
     "id": "zendesk-color",
     "figmaNodeId": "865:1475",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/465d7261-60a8-4c01-80f1-352b92deb7d8",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/aa66f0a0-86be-4dc4-99a5-8900b16af5fe",
     "figmaComponentName": "zendesk",
     "category": "brand",
     "name": "zendesk",
@@ -1907,7 +1907,7 @@
   {
     "id": "zendesk-mono",
     "figmaNodeId": "865:1481",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/8c808985-f220-4378-bdd1-1ff6c93363e1",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/bcd209ec-ec82-4d8d-b99e-71d5ea243c2f",
     "figmaComponentName": "zendesk",
     "category": "brand",
     "name": "zendesk",
@@ -1922,7 +1922,7 @@
   {
     "id": "zoho-color",
     "figmaNodeId": "865:1487",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/fea2aa48-4fd6-4ac3-bb33-b1ebeb6dad14",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/03dbc0ad-d49f-48c2-9d82-e02c80918941",
     "figmaComponentName": "zoho",
     "category": "brand",
     "name": "zoho",
@@ -1938,7 +1938,7 @@
   {
     "id": "zoho-mono",
     "figmaNodeId": "865:1493",
-    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3ce05e70-5a27-4e5c-9b87-9b50987bb288",
+    "imageUrl": "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e0066efd-be42-4ac7-b12c-e1a547031ad9",
     "figmaComponentName": "zoho",
     "category": "brand",
     "name": "zoho",
