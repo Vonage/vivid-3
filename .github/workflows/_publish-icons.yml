@@ -13,7 +13,7 @@ on:
         type: string
 
 jobs:
-  publish-flutter:
+  publish-icons:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
