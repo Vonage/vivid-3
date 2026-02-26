@@ -1,4 +1,4 @@
-import { resolve } from 'node:path';
+import { resolve, sep } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getAssets } from './get-assets.js';
@@ -21,6 +21,23 @@ export async function upload(config) {
 	const sourceDirs = Array.isArray(config.sourceDirs)
 		? config.sourceDirs
 		: [config.sourceDirs];
+
+	for (const dir of sourceDirs) {
+		const jsonString = readFileSync(resolve(dir, 'index.json'), 'utf-8');
+		const dirName = dir.split(sep).at(-3);
+		const indexName = [dirName.replace('icons', '').replace('-', ''), 'index']
+			.filter(Boolean)
+			.reverse()
+			.join('-');
+
+		requests.push({
+			Bucket: config.bucket,
+			Key: `${config.baseFolder}/v${config.version}/${indexName}.json`,
+			Body: jsonString,
+			ContentType: 'application/json',
+			CacheControl: CACHE_FOREVER,
+		});
+	}
 
 	const entries = sourceDirs.flatMap((dir) => {
 		const jsonString = readFileSync(resolve(dir, 'index.json'), 'utf-8');
@@ -87,7 +104,7 @@ export async function upload(config) {
 				Bucket: config.bucket,
 				Key: `${config.baseFolder}/v${config.version}/${alias}.svg`,
 				Body: 'Redirect',
-				WebsiteRedirectLocation: `/${config.baseFolder}/${asset.hash}.svg`,
+				WebsiteRedirectLocation: `/${asset.hash}.svg`,
 			});
 		}
 	}
