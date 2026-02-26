@@ -50,3 +50,7 @@ slot[name='icon'],
 	color: var(#{constants.$vvd-color-neutral-600});
 	font: var(#{constants.$vvd-typography-base-condensed});
 }
+
+.description[data-has-description='false'] {
+	display: none;
+}

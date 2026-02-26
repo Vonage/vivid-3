@@ -18,6 +18,7 @@
 
 :host {
 	display: table-cell;
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
 	vertical-align: middle;
 
 	@include connotation.connotation(data-grid-cell);
@@ -26,26 +27,27 @@
 	#{variables.$table-cell-default-white-space}: nowrap;
 }
 
+:host([role='columnheader']) {
+	border-bottom-color: var(#{constants.$vvd-color-canvas-text});
+}
+
 :host(:focus-visible) {
 	outline: none;
 }
 
 .base {
+	display: flex;
+	overflow: hidden;
 	box-sizing: border-box;
+	flex-direction: column;
+	justify-content: center;
 	padding: 0;
-	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
-	block-size: var(
-		#{variables.$table-cell-block-size},
-		var(#{variables.$table-cell-default-block-size})
-	);
+	block-size: 100%;
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base-bold});
-	padding-block: 12px 14px;
+	min-block-size: #{size.$vvd-size-expanded};
+	padding-block: 4px;
 	padding-inline: 12px;
-}
-
-:host([role='columnheader']) .base {
-	border-bottom: 1px solid var(#{constants.$vvd-color-canvas-text});
 }
 
 :host(:focus-visible) .base {
@@ -57,6 +59,7 @@
 slot {
 	display: block;
 	overflow: hidden;
+	flex: 0 0 auto;
 	inline-size: 100%;
 	text-overflow: ellipsis;
 	white-space: var(

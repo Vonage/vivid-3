@@ -6,7 +6,6 @@ import type { TableCell } from './table-cell';
 export const TableCellTemplate = (context: VividElementDefinitionContext) => {
 	return html<TableCell>`
 		<template
-			tabindex="-1"
 			${applyHostSemantics({
 				role: () => 'cell',
 			})}

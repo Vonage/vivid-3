@@ -12,7 +12,6 @@ export const TableHeaderCellTemplate = (
 
 	return html<TableHeaderCell>`
 		<template
-			tabindex="-1"
 			${applyHostSemantics({
 				role: (x) =>
 					x.closest(tableHeadTag) !== null

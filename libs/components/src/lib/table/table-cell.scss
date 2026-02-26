@@ -18,8 +18,7 @@
 
 :host {
 	display: table-cell;
-	overflow: hidden;
-	min-inline-size: 0;
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
 	vertical-align: middle;
 
 	@include connotation.connotation(data-grid-cell);
@@ -44,16 +43,12 @@
 	overflow: hidden;
 	box-sizing: border-box;
 	flex-direction: column;
-	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
-	block-size: var(
-		#{variables.$table-cell-block-size},
-		var(#{variables.$table-cell-default-block-size})
-	);
+	justify-content: center;
+	block-size: 100%;
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
-	max-block-size: calc(#{size.$vvd-size-expanded} + 2px);
-	min-block-size: calc(#{size.$vvd-size-expanded} + 2px);
-	padding-block: 12px 14px;
+	min-block-size: #{size.$vvd-size-expanded};
+	padding-block: 4px;
 	padding-inline: 12px;
 }
 
@@ -64,12 +59,7 @@
 }
 
 slot {
-	display: inline-block;
-	overflow: hidden;
-	flex: 1 1 0;
+	display: block;
+	flex: 0 0 auto; // Size to content so row height grows with wrapped text
 	inline-size: 100%;
-	min-block-size: 0;
-	min-inline-size: 0; // Allow shrinking so text-overflow: ellipsis can take effect
-	text-overflow: ellipsis;
-	white-space: nowrap;
 }
