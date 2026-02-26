@@ -15,6 +15,8 @@ export const createIconEntry: CreateIconEntryFunction = (node, path, file) => {
 		.at(0);
 	const aliasString = description.split(/[Aa]lias:/).at(1);
 
+	const name = path.at(-2)?.name || node.id.replace(':', '-');
+	const style: IconStyle = node.name.replace('style=', '');
 	const keywords =
 		keywordsString
 			?.split(',')
@@ -24,12 +26,13 @@ export const createIconEntry: CreateIconEntryFunction = (node, path, file) => {
 		[];
 
 	const entry: IconEntry = {
+		id: '',
 		figmaNodeId: node.id,
 		imageUrl: '',
 		figmaComponentName: path.at(-2)?.name || '[UNKNOWN]',
-		name: path.at(-2)?.name || node.id.replace(':', '-'),
-		style: node.name.replace('style=', '') as IconStyle,
 		category: path.at(-3)?.name as IconCategory,
+		name,
+		style,
 		keywords,
 		aliases,
 	};

@@ -1,5 +1,30 @@
 # Changelog
 
+## [5.14.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v5.13.0...vivid-vue-v5.14.0) (2026-02-25)
+
+
+### Features
+
+* **menu-item:** replace role with control-type attribute (VIV-2602) ([#2381](https://github.com/Vonage/vivid-3/issues/2381)) ([795c34a](https://github.com/Vonage/vivid-3/commit/795c34a2426345c01c67c1a4c604bb7a289c8b19))
+* **rich-text-editor:** support vue scoped slots (VIV-2987) ([#2727](https://github.com/Vonage/vivid-3/issues/2727)) ([d80bc7e](https://github.com/Vonage/vivid-3/commit/d80bc7eaa1230372b09d1078fb5bd2e738164237))
+* **vue-wrappers:** export component typings (VIV-2384) ([#2270](https://github.com/Vonage/vivid-3/issues/2270)) ([9aea18c](https://github.com/Vonage/vivid-3/commit/9aea18cbe9db1ab84adb3b9a224fb57c32353cda))
+* **vue-wrappers:** improve slot handling (VIV-2383) ([#2255](https://github.com/Vonage/vivid-3/issues/2255)) ([bd2c628](https://github.com/Vonage/vivid-3/commit/bd2c6280012891d2c16fd658eeae05e881f5fcf6))
+* **vue-wrappers:** improve typings (VIV-2381) ([#2240](https://github.com/Vonage/vivid-3/issues/2240)) ([10e9628](https://github.com/Vonage/vivid-3/commit/10e9628bef6fb84354fa8cfc9d1af27505eae1ba))
+
+
+### Bug Fixes
+
+* **audio-player:** fix duration bar and skip controls not working correctly (VIV-2728)  ([#2445](https://github.com/Vonage/vivid-3/issues/2445)) ([c2549ed](https://github.com/Vonage/vivid-3/commit/c2549ed19cbcd379c5a67b7c67afd42091f54af5))
+* **vue-wrappers:** fix broken typings (VIV-2560) ([#2281](https://github.com/Vonage/vivid-3/issues/2281)) ([3128518](https://github.com/Vonage/vivid-3/commit/3128518f22a3cf936c09fa77e9803ba41a796307))
+* **vue-wrappers:** fix missing indeterminate prop of checkbox (VIV-2557) ([#2275](https://github.com/Vonage/vivid-3/issues/2275)) ([a9ec182](https://github.com/Vonage/vivid-3/commit/a9ec1824bfa18f68dba0acfbd3930955dc109956))
+
+## [5.13.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v5.12.0...vivid-vue-v5.13.0) (2026-02-24)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
 ## [5.12.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v5.11.0...vivid-vue-v5.12.0) (2026-02-13)
 
 

@@ -14,6 +14,7 @@ import { kebabCase } from 'change-case';
 import { createIconEntry } from './create-icon-entry';
 import { readJson } from '../shared/read-json.util';
 import { logger } from '../shared/logger.util';
+import { rmSync } from 'node:fs';
 
 export async function fetchIcons(
 	figmaFileId: string,
@@ -31,13 +32,16 @@ export async function fetchIcons(
 		indexFileName: 'index.json',
 		outputs: [
 			{
-				fileName: (entry) =>
-					`${kebabCase([entry.name, entry.style].join(' '))}.svg`,
+				fileName: (entry) => `${entry.id}.svg`,
 				template: (_entry, svg) => svg,
 			},
 		],
 		...userOptions,
 	};
+
+	if (options.forceUpdate) {
+		rmSync(options.dir, { recursive: true, force: true });
+	}
 
 	const client = getClient(!options.forceUpdate, options.cacheOptions);
 	const file: FileResponse = await client.file(figmaFileId).then((r) => r.data);
@@ -51,6 +55,9 @@ export async function fetchIcons(
 	walk(document as DocumentNode, (node, path) => {
 		if (options.filter(node, path)) {
 			const entry = options.createEntry(node, path, file);
+			if (!entry.id || entry.id === '') {
+				entry.id = kebabCase([entry.name, entry.style].join(' '));
+			}
 
 			iconsMap.set(node.id, entry);
 		}
@@ -87,9 +94,9 @@ export async function fetchIcons(
 	}
 
 	// Validate whether all icon have their image URLs.
-	for (const [id, entry] of iconsMap.entries()) {
+	for (const [figmaNodeId, entry] of iconsMap.entries()) {
 		if (!entry.imageUrl) {
-			logger.error(`No image URL for icon: ${entry.name} (${id})`);
+			logger.error(`No image URL for icon: ${entry.name} (${figmaNodeId})`);
 			process.exit(1);
 		}
 	}

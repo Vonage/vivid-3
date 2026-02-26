@@ -682,9 +682,15 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@types/node':
+        specifier: 'catalog:'
+        version: 20.19.25
+      tsx:
+        specifier: 'catalog:'
+        version: 4.20.6
       vitest:
         specifier: 'catalog:'
-        version: 3.2.4(@types/node@24.10.1)(@vitest/ui@3.2.4)(jsdom@23.2.0)(sass@1.94.2)(tsx@4.20.6)(yaml@2.8.1)
+        version: 3.2.4(@types/node@20.19.25)(@vitest/ui@3.2.4)(jsdom@23.2.0)(sass@1.94.2)(tsx@4.20.6)(yaml@2.8.1)
 
   libs/design-tokens:
     devDependencies:
@@ -756,9 +762,6 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 20.19.25
-      change-case:
-        specifier: ^5.4.4
-        version: 5.4.4
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
@@ -790,9 +793,6 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 20.19.25
-      change-case:
-        specifier: ^5.4.4
-        version: 5.4.4
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
@@ -824,9 +824,6 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 20.19.25
-      change-case:
-        specifier: ^5.4.4
-        version: 5.4.4
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
@@ -9686,8 +9683,8 @@ packages:
   vue-component-type-helpers@2.2.12:
     resolution: {integrity: sha512-YbGqHZ5/eW4SnkPNR44mKVc6ZKQoRs/Rux1sxC6rdwXb4qpbOSYfDr9DsTHolOTGmIKgM9j141mZbBeg05R1pw==}
 
-  vue-component-type-helpers@3.2.4:
-    resolution: {integrity: sha512-05lR16HeZDcDpB23ku5b5f1fBOoHqFnMiKRr2CiEvbG5Ux4Yi0McmQBOET0dR0nxDXosxyVqv67q6CzS3AK8rw==}
+  vue-component-type-helpers@3.2.5:
+    resolution: {integrity: sha512-tkvNr+bU8+xD/onAThIe7CHFvOJ/BO6XCOrxMzeytJq40nTfpGDJuVjyCM8ccGZKfAbGk2YfuZyDMXM56qheZQ==}
 
   vue-docgen-api@4.79.2:
     resolution: {integrity: sha512-n9ENAcs+40awPZMsas7STqjkZiVlIjxIKgiJr5rSohDP0/JCrD9VtlzNojafsA1MChm/hz2h3PDtUedx3lbgfA==}
@@ -13184,7 +13181,7 @@ snapshots:
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       vue: 3.5.24(typescript@5.9.3)
-      vue-component-type-helpers: 3.2.4
+      vue-component-type-helpers: 3.2.5
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -20145,7 +20142,7 @@ snapshots:
 
   vue-component-type-helpers@2.2.12: {}
 
-  vue-component-type-helpers@3.2.4: {}
+  vue-component-type-helpers@3.2.5: {}
 
   vue-docgen-api@4.79.2(vue@2.7.16):
     dependencies:
