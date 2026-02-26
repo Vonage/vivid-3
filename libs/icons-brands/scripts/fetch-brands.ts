@@ -43,9 +43,7 @@ const entryFunction: CreateIconEntryFunction = (
 		forceUpdate: true,
 		filter: onlyBrands,
 		createEntry: entryFunction,
-		outputs: [
-			svg
-		]
+		outputs: [svg],
 		// output: - use default output without any changes to SVG.
 	});
 })();
