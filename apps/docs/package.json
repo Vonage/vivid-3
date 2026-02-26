@@ -27,7 +27,7 @@
 		"@vonage/vivid": "workspace:*",
 		"@vonage/vivid-test-utils": "workspace:*",
 		"@vonage/vivid-vue": "workspace:*",
-		"lodash": "^4.17.21",
+		"lodash": "^4.17.23",
 		"ramda": "^0.32.0"
 	},
 	"devDependencies": {
