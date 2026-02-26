@@ -46,6 +46,12 @@ const main = defineCommand({
 			description: 'AWS region',
 			default: 'us-east-1',
 		},
+		dry: {
+			type: 'boolean',
+			alias: 'd',
+			description: 'If you actually want to perform upload',
+			default: false,
+		},
 	},
 	run({ args }) {
 		if (!args.key || !args.secret) {
@@ -71,6 +77,7 @@ const main = defineCommand({
 			bucket: args.bucket,
 			baseFolder: args.folder,
 			region: args.region,
+			dry: args.dry,
 		});
 	},
 });

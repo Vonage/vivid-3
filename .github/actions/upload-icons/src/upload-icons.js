@@ -1,4 +1,4 @@
-import { resolve } from 'node:path';
+import { resolve, sep } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getAssets } from './get-assets.js';
@@ -22,6 +22,22 @@ export async function upload(config) {
 		? config.sourceDirs
 		: [config.sourceDirs];
 
+	for (const dir of sourceDirs) {
+		const jsonString = readFileSync(resolve(dir, 'index.json'), 'utf-8');
+		const dirName = dir.split(sep).at(-3);
+		const indexName = [dirName.replace('icons', '').replace('-', ''), 'index']
+			.filter(Boolean)
+			.reverse()
+			.join('-');
+
+		requests.push({
+			Bucket: config.bucket,
+			Key: `${config.baseFolder}/v${config.version}/${indexName}.json`,
+			Body: jsonString,
+			CacheControl: CACHE_FOREVER,
+		});
+	}
+
 	const entries = sourceDirs.flatMap((dir) => {
 		const jsonString = readFileSync(resolve(dir, 'index.json'), 'utf-8');
 		return JSON.parse(jsonString).map((entry) => ({ ...entry, dir }));
@@ -31,7 +47,7 @@ export async function upload(config) {
 
 	requests.push({
 		Bucket: config.bucket,
-		Key: `${config.baseFolder}/latest`,
+		Key: `${config.baseFolder}/v${config.version}/categories.json`,
 		Body: 'Redirect',
 		WebsiteRedirectLocation: `/v${config.version}/manifest.json`,
 		CacheControl: 'public, max-age=600',
