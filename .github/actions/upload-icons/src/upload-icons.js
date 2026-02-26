@@ -34,6 +34,7 @@ export async function upload(config) {
 			Bucket: config.bucket,
 			Key: `${config.baseFolder}/v${config.version}/${indexName}.json`,
 			Body: jsonString,
+			ContentType: 'application/json',
 			CacheControl: CACHE_FOREVER,
 		});
 	}
@@ -47,7 +48,7 @@ export async function upload(config) {
 
 	requests.push({
 		Bucket: config.bucket,
-		Key: `${config.baseFolder}/v${config.version}/categories.json`,
+		Key: `${config.baseFolder}/latest`,
 		Body: 'Redirect',
 		WebsiteRedirectLocation: `/v${config.version}/manifest.json`,
 		CacheControl: 'public, max-age=600',
@@ -103,7 +104,7 @@ export async function upload(config) {
 				Bucket: config.bucket,
 				Key: `${config.baseFolder}/v${config.version}/${alias}.svg`,
 				Body: 'Redirect',
-				WebsiteRedirectLocation: `/${config.baseFolder}/${asset.hash}.svg`,
+				WebsiteRedirectLocation: `/${asset.hash}.svg`,
 			});
 		}
 	}
