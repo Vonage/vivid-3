@@ -9,7 +9,7 @@ export function getAssets(entries) {
 		const svg = readFileSync(filePath, 'utf8');
 
 		return {
-			id: `${entry.name}-${entry.style}`,
+			id: entry.id,
 			svg,
 			hash: createHash('md5').update(svg).digest('hex'),
 			aliases: entry.aliases || [],
