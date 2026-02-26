@@ -6,6 +6,7 @@ import {
 } from '@repo/tools';
 import type { Node } from '@figma/rest-api-spec';
 import 'dotenv/config';
+import { svg } from './svg.output';
 
 const figmaFileId = 'isdKI406usLCxZ2U8ljDrn';
 
@@ -42,6 +43,9 @@ const entryFunction: CreateIconEntryFunction = (
 		forceUpdate: true,
 		filter: onlyBrands,
 		createEntry: entryFunction,
+		outputs: [
+			svg
+		]
 		// output: - use default output without any changes to SVG.
 	});
 })();
