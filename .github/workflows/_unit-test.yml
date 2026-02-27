@@ -34,9 +34,9 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Test Packages
+      - name: Test
         id: test
-        run: pnpm turbo run test:coverage --continue
+        run: pnpm turbo run --continue test:coverage
 
       - name: Enforce and Merge Coverage
         if: always()
@@ -49,7 +49,7 @@ jobs:
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2
         with:
-          name: 'Vivid Coverage'
+          name: 'Test Coverage'
           json-summary-path: './coverage/coverage-summary.json'
           json-final-path: './coverage/coverage-final.json'
           file-coverage-mode: all
