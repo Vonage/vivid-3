@@ -1,4 +1,4 @@
-import { IconCategory, IconStyle } from './types';
+import type { IconCategory, IconStyle } from './types';
 
 export type IconTag =
 	| `style_weight_${IconStyle}`

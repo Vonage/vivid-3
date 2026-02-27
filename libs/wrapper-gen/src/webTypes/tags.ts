@@ -1,7 +1,7 @@
-import { kebabToCamel } from '../utils/casing';
 import { wrappedComponentName } from '../vueWrappers/name';
 import { TypeResolver } from '../common/types';
 import type { ComponentDef } from '@repo/metadata-extractor';
+import { camelCase } from 'change-case';
 
 export interface WebTypesCommon {
 	name: string;
@@ -48,7 +48,7 @@ export function getTagFromComponentDefinition(
 			.filter((prop) => prop.name !== vueModel?.propName)
 			// eslint-disable-next-line no-shadow
 			.map((prop) => ({
-				name: kebabToCamel(prop.name),
+				name: camelCase(prop.name),
 				description: prop.description,
 				value: {
 					kind: 'expression',

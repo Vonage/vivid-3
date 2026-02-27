@@ -2,24 +2,11 @@ import { loadMetadata } from '@repo/wrapper-gen/metadataStore';
 import * as fs from 'fs';
 import * as path from 'path';
 import {
-	parseTypeStr,
 	parseTypeImports,
+	parseTypeStr,
 	type TypeUnion,
 } from '@repo/metadata-extractor/metadata/type-str';
-
-const kebabToCamel = (str: string): string => {
-	return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
-};
-
-const kebabToPascal = (str: string): string => {
-	return str
-		.split('-')
-		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-		.join('');
-};
-
-export const camelToPascal = (camel: string) =>
-	camel[0].toUpperCase() + camel.slice(1);
+import { camelCase, pascalCase } from 'change-case';
 
 const parseQuery = (query: { name: string; args: string[] }) => {
 	let name = query.name;
@@ -32,9 +19,9 @@ const parseQuery = (query: { name: string; args: string[] }) => {
 
 	name = isBoolean
 		? isNegation
-			? `notToBe${camelToPascal(name)}`
-			: `toBe${camelToPascal(name)}`
-		: `toHave${camelToPascal(query.name)}`;
+			? `notToBe${pascalCase(name)}`
+			: `toBe${pascalCase(name)}`
+		: `toHave${pascalCase(query.name)}`;
 
 	return { name, isBoolean };
 };
@@ -70,7 +57,7 @@ export const importsForTypes = (typeRefs: TypeUnion): Import[] =>
 	typeRefs.flatMap((t) => parseTypeImports(t).imports);
 
 const typeImports: Import[] = metadata.componentDefs.map((def) => ({
-	name: `Vwc${kebabToPascal(def.name)}Element`,
+	name: `Vwc${pascalCase(def.name)}Element`,
 	fromModule: '@vonage/vivid',
 }));
 
@@ -113,7 +100,7 @@ ${JSON.stringify(def, null, 2)
 	.join('\n')}
 */
 
-type ${kebabToPascal(def.name)}Props = ${
+type ${pascalCase(def.name)}Props = ${
 					def.props.length
 						? `{
 	${def.props
@@ -123,18 +110,18 @@ type ${kebabToPascal(def.name)}Props = ${
 						: 'Record<string, never>'
 				};
 
-const ${kebabToCamel(def.name)}ComponentInfo = {
+const ${camelCase(def.name)}ComponentInfo = {
 	name: '${def.name}'
 };
 
-export class ${kebabToPascal(
+export class ${pascalCase(
 					def.name
-				)}Wrapper<D extends DriverT> extends BaseWrapper<D, ${`Vwc${kebabToPascal(
+				)}Wrapper<D extends DriverT> extends BaseWrapper<D, ${`Vwc${pascalCase(
 					def.name
 				)}Element`}> {
-	type = '${kebabToCamel(def.name)}' as const;
+	type = '${camelCase(def.name)}' as const;
 
-	componentInfo = ${kebabToCamel(def.name)}ComponentInfo;
+	componentInfo = ${camelCase(def.name)}ComponentInfo;
 
 	${def.testUtils.actions
 		.map(
@@ -170,16 +157,14 @@ ${ref.name} = (refs.${ref.args[0]}<D>).bind(this, ${ref.args
 		.join('\n')}
 }
 
-export class ${kebabToPascal(
-					def.name
-				)}<D extends DriverT> extends BaseComponent<
+export class ${pascalCase(def.name)}<D extends DriverT> extends BaseComponent<
 	D,
-	${kebabToPascal(def.name)}Wrapper<D>
+	${pascalCase(def.name)}Wrapper<D>
 > {
-	componentInfo = ${kebabToCamel(def.name)}ComponentInfo;
+	componentInfo = ${camelCase(def.name)}ComponentInfo;
 
 	wrap(locator: D['locator']) {
-		return new ${kebabToPascal(def.name)}Wrapper(this.ctx, locator);
+		return new ${pascalCase(def.name)}Wrapper(this.ctx, locator);
 	}
 
 	${def.testUtils.selectors
@@ -188,24 +173,24 @@ export class ${kebabToPascal(
 				`// prettier-ignore
 ${selector.name} = this.ctx.driver.wrapSelector((selectors.${
 					selector.args[0]
-				}<D, ${kebabToPascal(def.name)}Wrapper<D>>).bind(this));`
+				}<D, ${pascalCase(def.name)}Wrapper<D>>).bind(this));`
 		)
 		.join('\n')}
 }
 
-export class ${kebabToPascal(def.name)}Expectations<D extends DriverT> {
-	constructor(private readonly ctx: Context<D>, private readonly wrapper: ${kebabToPascal(
+export class ${pascalCase(def.name)}Expectations<D extends DriverT> {
+	constructor(private readonly ctx: Context<D>, private readonly wrapper: ${pascalCase(
 		def.name
 	)}Wrapper<D>) {}
 
 	${
 		def.props.length
 			? `
-	toHaveProp = this.ctx.driver.wrapExpect(<T extends keyof ${kebabToPascal(
+	toHaveProp = this.ctx.driver.wrapExpect(<T extends keyof ${pascalCase(
 		def.name
 	)}Props>(
 		propName: T,
-		value: ${kebabToPascal(def.name)}Props[T]
+		value: ${pascalCase(def.name)}Props[T]
 	) => this.ctx.driver.expectEq(
 			{
 				type: 'eval',
@@ -266,8 +251,7 @@ type Expectations<D extends DriverT> = {
 	collection: ComponentCollectionExpectations<D>;
 	${metadata.componentDefs
 		.map(
-			(def) =>
-				`${kebabToCamel(def.name)}: ${kebabToPascal(def.name)}Expectations<D>;`
+			(def) => `${camelCase(def.name)}: ${pascalCase(def.name)}Expectations<D>;`
 		)
 		.join('\n')}
 };
@@ -276,8 +260,7 @@ const expectationsConstructors= {
 	collection: ComponentCollectionExpectations,
 	${metadata.componentDefs
 		.map(
-			(def) =>
-				`${kebabToCamel(def.name)}: ${kebabToPascal(def.name)}Expectations,`
+			(def) => `${camelCase(def.name)}: ${pascalCase(def.name)}Expectations,`
 		)
 		.join('\n')}
 };
@@ -303,8 +286,7 @@ export class VividWrapper<D extends DriverT> {
 
 	${metadata.componentDefs
 		.map(
-			(def) =>
-				`${kebabToCamel(def.name)} = new ${kebabToPascal(def.name)}(this.ctx);`
+			(def) => `${camelCase(def.name)} = new ${pascalCase(def.name)}(this.ctx);`
 		)
 		.join('\n')}
 }
@@ -315,7 +297,7 @@ fs.writeFileSync(
 	path.join(dirname, '../API.md'),
 	`${metadata.componentDefs
 		.map(
-			(componentDef) => `### ${kebabToPascal(componentDef.name)}
+			(componentDef) => `### ${pascalCase(componentDef.name)}
 
 #### Selectors
 

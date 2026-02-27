@@ -1,4 +1,4 @@
-import { kebabToPascal } from '../utils/casing';
+import { pascalCase } from 'change-case';
 import {
 	isNumberLiteral,
 	isStringLiteral,
@@ -47,7 +47,7 @@ export const renderStorybookTemplate = (
 		return vueModel ? vueModel.name : prop;
 	};
 	const eventHandlerName = (event: string) =>
-		`on${kebabToPascal(event.replaceAll(':', '-'))}`;
+		`on${pascalCase(event.replaceAll(':', '-'))}`;
 
 	const argTypesSrc = def.props
 		.map(

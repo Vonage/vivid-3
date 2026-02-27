@@ -1,7 +1,7 @@
-import { kebabToPascal } from '../utils/casing';
+import { pascalCase } from 'change-case';
 
 /**
  * Gets the exported class name, e.g. 'accordion-item' -> 'VwcAccordionItemElement'.
  */
 export const getExportedClassName = (componentName: string) =>
-	`Vwc${kebabToPascal(componentName)}Element`;
+	`Vwc${pascalCase(componentName)}Element`;

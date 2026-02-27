@@ -867,6 +867,9 @@ importers:
       '@repo/tools':
         specifier: workspace:*
         version: link:../tools
+      change-case:
+        specifier: ^5.4.4
+        version: 5.4.4
       pkg-entry-points:
         specifier: ^1.1.1
         version: 1.1.1
@@ -1078,6 +1081,9 @@ importers:
       '@vonage/vivid':
         specifier: workspace:^
         version: link:../components
+      change-case:
+        specifier: ^5.4.4
+        version: 5.4.4
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -1266,6 +1272,10 @@ importers:
         version: vue@3.5.24(typescript@5.9.3)
 
   libs/wrapper-gen:
+    dependencies:
+      change-case:
+        specifier: ^5.4.4
+        version: 5.4.4
     devDependencies:
       '@repo/consts':
         specifier: workspace:*

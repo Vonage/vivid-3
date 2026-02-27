@@ -33,6 +33,9 @@
 		"test:coverage": "vitest run --coverage",
 		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},
+	"dependencies": {
+		"change-case": "^5.4.4"
+	},
 	"devDependencies": {
 		"@repo/consts": "workspace:*",
 		"@repo/eslint-config": "workspace:*",

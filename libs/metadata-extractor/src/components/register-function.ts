@@ -1,4 +1,4 @@
-import { kebabToPascal } from '../utils/casing';
+import { pascalCase } from 'change-case';
 
 /**
  * Derive registerFunctionName from the component directory
@@ -7,6 +7,6 @@ import { kebabToPascal } from '../utils/casing';
 export const getRegisterFunctionName = (modulePath: string) => {
 	const pathParts = modulePath.split('/');
 	const componentDirName = pathParts[pathParts.length - 2];
-	const registerFunctionName = `register${kebabToPascal(componentDirName)}`;
+	const registerFunctionName = `register${pascalCase(componentDirName)}`;
 	return registerFunctionName;
 };

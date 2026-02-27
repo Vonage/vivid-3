@@ -1,4 +1,3 @@
-import { kebabToCamel, kebabToPascal } from '../utils/casing';
 import { TypeResolver } from '../common/types';
 import { vuePropTypes } from './vuePropTypes';
 import { wrappedComponentName } from './name';
@@ -14,6 +13,8 @@ import {
 	parseTypeStr,
 	TypeStr,
 } from '@repo/metadata-extractor/metadata/type-str';
+import { camelCase } from 'change-case';
+import { vue3EventHandlerName } from './events';
 
 export const renderComponent = (
 	componentDef: ComponentDef,
@@ -192,7 +193,7 @@ export const renderComponent = (
 			const eventVueModels = vueModels.filter((model) =>
 				model.eventNames.includes(name)
 			);
-			return `'on${kebabToPascal(name)}': (event: ${getEventType(
+			return `'${vue3EventHandlerName(name)}': (event: ${getEventType(
 				type,
 				getExportedClassName(componentDef.name),
 				false
@@ -258,7 +259,7 @@ export const renderComponent = (
 					];
 				})
 				.map(({ name, description, type }) => {
-					const propName = kebabToCamel(name);
+					const propName = camelCase(name);
 					return `${renderJsDoc(description)}
         ${propName}: {type: ${renderPropType(type)} as PropType<${
 						parseTypeImports(type).typeStr

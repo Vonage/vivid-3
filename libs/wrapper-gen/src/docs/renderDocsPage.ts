@@ -1,13 +1,13 @@
 import markdownTable from 'markdown-table';
 import { TypeResolver } from '../common/types';
 import { wrappedComponentName } from '../vueWrappers/name';
-import { camelToKebab } from '../utils/casing';
 import type { ComponentDef } from '@repo/metadata-extractor';
 import {
 	parseTypeStr,
 	TypeStr,
 	TypeUnion,
 } from '@repo/metadata-extractor/metadata/type-str';
+import { kebabCase } from 'change-case';
 
 const escapeMarkdown = (text = '') => text.replace(/([<>{}])/gm, '\\$1');
 
@@ -34,7 +34,10 @@ function renderTableWithType(
 		...objects.map(({ name, type, description }) => {
 			const resolvedType = parseTypeStr(importedTypesResolver(type));
 			return [
-				`**${camelToKebab(name)}**`,
+				`**${name
+					.split(':')
+					.map((p) => kebabCase(p))
+					.join(':')}**`,
 				(resolvedType.length === 1
 					? `\`${resolvedType[0]}\``
 					: `*Enum*:<br/>${renderEnumType(resolvedType)}`
