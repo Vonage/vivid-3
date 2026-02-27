@@ -123,6 +123,7 @@ export abstract class RteFeatureImpl {
 	}
 
 	// Exposes a public interface for this feature.
+	/* v8 ignore next */
 	getPublicInterface(rte: RteInstanceImpl): any {}
 }
 

@@ -1,7 +1,5 @@
 import { defineConfig } from 'vitest/config';
 
-const isCI = process.env['CI'] === 'true';
-
 export default defineConfig({
 	test: {
 		globals: true,
@@ -25,8 +23,9 @@ export default defineConfig({
 				'**/.{eslint,mocha,prettier}rc.{?(c|m)js,yml}',
 			],
 			allowExternal: true, // This will collect coverage from other packages in the monorepo. For built packages, source maps are required for this to work
-			reporter: isCI ? ['json'] : ['text', 'html', 'json'],
+			reporter: ['text', 'json'],
 			provider: 'v8',
+			reportOnFailure: true,
 		},
 		passWithNoTests: true,
 		fakeTimers: {

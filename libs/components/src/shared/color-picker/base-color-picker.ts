@@ -112,8 +112,8 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 
 		/**
 		 * @internal
-		 * /
-		/* v8 ignore next -- @preserve */
+		 */
+		/* v8 ignore next */
 		_handleColorSaving(): void {}
 
 		/**
