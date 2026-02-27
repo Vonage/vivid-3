@@ -4,6 +4,19 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.15.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.14.0...vivid-v5.15.0) (2026-02-27)
+
+
+### Features
+
+* **rich-text-editor:** add css variables for editor padding (VIV-3108)   ([#2776](https://github.com/Vonage/vivid-3/issues/2776)) ([7117261](https://github.com/Vonage/vivid-3/commit/7117261d3c718a162ddda28d95ab796c1cc32cea))
+* **rich-text-editor:** add Shift + Enter  hotkey to insert a new block (VIV-3110) ([#2770](https://github.com/Vonage/vivid-3/issues/2770)) ([e6da624](https://github.com/Vonage/vivid-3/commit/e6da624fc607b8c5bee724357956f72ccb998f41))
+
+
+### Bug Fixes
+
+* **rich-text-editor:** support min- and max-block-size (VIV-3108) ([#2771](https://github.com/Vonage/vivid-3/issues/2771)) ([26effad](https://github.com/Vonage/vivid-3/commit/26effad1fcab2e454a11ae01d9a233fa1ccbacec))
+
 ## [5.14.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.13.0...vivid-v5.14.0) (2026-02-25)
 
 
