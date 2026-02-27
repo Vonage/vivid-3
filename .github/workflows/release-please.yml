@@ -138,12 +138,11 @@ jobs:
     secrets: inherit
 
   vivid-icons-publish:
-    needs: [should-release, release-please]
+    needs: should-release
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
     uses: ./.github/workflows/_publish-icons.yml
     with:
       sha: ${{ needs.should-release.outputs.release_sha }}
-      version: ${{ needs.release-please.outputs.vivid_icons_version }}
     secrets: inherit
 
   vivid-vue-publish:
