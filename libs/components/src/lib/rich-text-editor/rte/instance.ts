@@ -69,13 +69,6 @@ export class RteInstance {
 	}
 
 	/**
-	 * ProseMirror editor view.
-	 */
-	get view(): EditorView | null {
-		return this[impl].view;
-	}
-
-	/**
 	 * Replaces the current selection with the given content.
 	 * If no text is selected, this inserts the content at the cursor position.
 	 */

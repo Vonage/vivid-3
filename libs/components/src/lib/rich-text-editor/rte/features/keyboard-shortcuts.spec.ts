@@ -1,5 +1,4 @@
 import { elementUpdated } from '@repo/shared';
-import { TextSelection } from 'prosemirror-state';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
 import type { RteInstance } from '../instance';
@@ -12,15 +11,6 @@ import {
 const { paragraph: p } = docFactories;
 
 const escapeDeselectShortcuts: Record<string, KeyboardShortcutHandler> = {
-	Escape: (rteInstance: RteInstance) => {
-		const view = rteInstance.view;
-		const state = view?.state;
-		if (!state || state.selection.empty) return false;
-		view.dispatch(
-			state.tr.setSelection(TextSelection.create(state.doc, state.selection.to))
-		);
-		return true;
-	},
 	Tab: () => true,
 };
 
@@ -109,39 +99,13 @@ describe('RteKeyboardShortcutsFeature', () => {
 		expect(docStr()).toBe(`paragraph('Line |one')`);
 	});
 
-	describe('Escape collapses selection and Tab prevent default', () => {
+	describe('Tab prevent default', () => {
 		const features = [
 			new RteBase(),
 			new RteKeyboardShortcutsFeature('escape-deselect', {
 				shortcuts: escapeDeselectShortcuts,
 			}),
 		];
-
-		it('should collapse selection to cursor on Escape', async () => {
-			const { selectText, keydown, docStr, element } = await setup(features, [
-				p('Hello world'),
-			]);
-
-			selectText('He[llo] world');
-			expect(docStr()).toBe(`paragraph('He[llo|] world')`);
-
-			keydown('Escape');
-			await elementUpdated(element);
-
-			expect(docStr()).toBe(`paragraph('Hello| world')`);
-		});
-
-		it('should not change cursor when selection is already empty and Escape is pressed', async () => {
-			const { placeCursor, keydown, docStr, element } = await setup(features, [
-				p('Hello world'),
-			]);
-
-			placeCursor('Hello| world');
-			keydown('Escape');
-			await elementUpdated(element);
-
-			expect(docStr()).toBe(`paragraph('Hello| world')`);
-		});
 
 		it('should prevent default Tab behavior', async () => {
 			const { placeCursor, keydown, docStr, element } = await setup(features, [

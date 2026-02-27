@@ -1129,21 +1129,11 @@ Lets you add or override keyboard shortcuts. Each instance needs a unique name (
 **Example usage:**
 
 ```ts
-import { TextSelection } from 'prosemirror-state';
-
 new RteKeyboardShortcutsFeature('escape-deselect', {
 	shortcuts: {
-		// Collapse selection on Escape using rteInstance.view
 		Escape: (rteInstance) => {
-			const view = rteInstance.view;
-			const state = view?.state;
-			if (!state?.selection.empty) {
-				view.dispatch(state.tr.setSelection(TextSelection.create(state.doc, state.selection.to)));
-				return true;
-			}
-			return false;
+			return true;
 		},
-		Tab: () => true,
 	},
 });
 ```
