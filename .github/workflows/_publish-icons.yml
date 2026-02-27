@@ -7,10 +7,6 @@ on:
         description: The revision to build and publish
         required: true
         type: string
-      version:
-        description: Icons version
-        required: true
-        type: string
 
 jobs:
   publish-icons:
@@ -29,6 +25,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
+      - name: Get icons version from package.json
+        id: get-icons-version
+        run: |
+          ICONS_VERSION=$(jq -r .version ./libs/icons/package.json)
+          echo "icons_version=$ICONS_VERSION" >> "$GITHUB_OUTPUT"
+
       - name: Publish icons to CDN
         uses: ./.github/actions/upload-icons
         with:
@@ -36,7 +38,7 @@ jobs:
           secret-access-key: ${{ secrets.ICONS_S3_SECRET_ACCESS_KEY }}
           bucket: ${{ vars.ICONS_BUCKET }}
           base-folder: ${{ vars.ICONS_BASE_FOLDER }}
-          version: ${{ inputs.version }}
+          version: ${{ steps.get-icons-version.outputs.icons_version }}
           source-dirs: |
             ./libs/icons/src/generated/
             ./libs/icons-flags/src/generated/
