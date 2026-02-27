@@ -1,6 +1,5 @@
 import { traverseAliasChain } from '../types/alias-chain';
 import { assert } from '../utils/assert';
-import { log, warn } from '../utils/log';
 import type {
 	ExtractedType,
 	NodeId,
@@ -8,6 +7,7 @@ import type {
 	SymbolStructure,
 	TypeStructure,
 } from '../types/structure';
+import { logger } from '@repo/tools';
 
 /**
  * Render types for the metadata. Renders types as typescript literals while replacing exported and imported types with `@package/name#name`.
@@ -31,7 +31,7 @@ export const createMetadataTypeRenderer = (
 		if (typeNode?.kind === 'TypeReference') {
 			const identifier = getNode(typeNode.typeName);
 			if (identifier.kind !== 'Identifier') {
-				log(`Unhandled type reference`, identifier.kind);
+				logger.debug(`Unhandled type reference`, identifier.kind);
 				return;
 			}
 			const exportedName = findSymbolExport(identifier.symbol);
@@ -121,7 +121,10 @@ export const createMetadataTypeRenderer = (
 			if (!exportedName) {
 				const classNode = getNode(classDecl);
 				assert(classNode.kind === 'ComponentClass');
-				warn(`Referenced component not exported:`, classNode.componentName);
+				logger.warning(
+					`Referenced component not exported:`,
+					classNode.componentName
+				);
 				return `[[Unexported component ${classNode.componentName}]]`;
 			}
 			return exportedName;

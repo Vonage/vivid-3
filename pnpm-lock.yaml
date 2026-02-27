@@ -864,6 +864,9 @@ importers:
       '@repo/consts':
         specifier: workspace:*
         version: link:../consts
+      '@repo/tools':
+        specifier: workspace:*
+        version: link:../tools
       pkg-entry-points:
         specifier: ^1.1.1
         version: 1.1.1

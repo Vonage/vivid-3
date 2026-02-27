@@ -24,6 +24,7 @@
 	},
 	"dependencies": {
 		"@repo/consts": "workspace:*",
+		"@repo/tools": "workspace:*",
 		"pkg-entry-points": "^1.1.1",
 		"ts-morph": "^27.0.2"
 	},

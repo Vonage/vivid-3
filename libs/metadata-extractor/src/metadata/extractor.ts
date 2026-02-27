@@ -17,13 +17,13 @@ import { ICONS_MANIFEST_URL } from '@repo/consts';
 import { getRegisterFunctionName } from '../components/register-function';
 import { createMetadataTypeRenderer } from './render-type';
 import { getDescription } from '../types/jsdoc';
-import { log } from '../utils/log';
 import type { NodeId } from '../types/structure';
 import { getSourceEntryPoints } from '../project/entry-points';
 import path from 'node:path';
 import { stableMetadata } from './stable-metadata';
 import { propNameForAttribute } from '../components/attributes';
 import { createProject } from '../project/create-project';
+import { logger } from '@repo/tools';
 
 export async function extractMetadata(packageRoot: string): Promise<Metadata> {
 	const project = createProject(packageRoot);
@@ -36,14 +36,14 @@ export async function extractMetadata(packageRoot: string): Promise<Metadata> {
 
 	// Vivid entry points are a mess, only use the main entry point for now
 	const mainEntryPoint = entryPoints['.'];
-	log(`Using entry point ${mainEntryPoint}`);
+	logger.debug(`Using entry point ${mainEntryPoint}`);
 	const mainSourceFile = project.getSourceFile(
 		path.join(packageRoot, mainEntryPoint)
 	)!;
 	const exportedSymbols = ctx.extractExportedSymbols(mainSourceFile);
-	log(`Exported symbols for ${mainEntryPoint}:`);
+	logger.debug(`Exported symbols for ${mainEntryPoint}:`);
 	for (const symbol of exportedSymbols) {
-		log(` - ${symbol.name}`);
+		logger.debug(` - ${symbol.name}`);
 	}
 	for (const symbol of exportedSymbols) {
 		traverseAliasChain(ctx.getNode, symbol, (id) => {
@@ -58,9 +58,9 @@ export async function extractMetadata(packageRoot: string): Promise<Metadata> {
 		const { name, className, classDeclaration, modulePath } = component;
 
 		const hierarchy = resolveClassHierarchy(classDeclaration);
-		log(`Class hierarchy of component: ${name}`);
+		logger.debug(`Class hierarchy of component: ${name}`);
 		for (const entry of hierarchy) {
-			log(
+			logger.debug(
 				` - ${entry.classDeclaration.getName()} : ${
 					entry.isMixin ? `Mixin ${entry.mixinName}` : `Class`
 				}`
@@ -123,9 +123,9 @@ export async function extractMetadata(packageRoot: string): Promise<Metadata> {
 			})),
 		];
 		if (domOnlyProperties.length) {
-			log(`Ignoring DOM only properties of component ${name}:`);
+			logger.debug(`Ignoring DOM only properties of component ${name}:`);
 			for (const prop of domOnlyProperties) {
-				log(` - ${prop.name}${prop.readonly ? ' (readonly)' : ''}`);
+				logger.debug(` - ${prop.name}${prop.readonly ? ' (readonly)' : ''}`);
 			}
 		}
 

@@ -1,5 +1,5 @@
 import { kebabToCamel, pascalToCamel } from '../utils/casing';
-import { warn } from '../utils/log';
+import { logger } from '@repo/tools';
 
 /**
  * These field names have a different attribute name, e.g. 'value' -> 'current-value'  and 'initialValue' -> 'value'
@@ -22,7 +22,7 @@ export const propNameForAttribute = (
 	domPropertyName: string
 ): string => {
 	if (domPropertyName === 'autoFocus' || domPropertyName === 'tabIndex') {
-		warn(`Bug: incorrectly named property ${domPropertyName}`);
+		logger.warning(`Bug: incorrectly named property ${domPropertyName}`);
 		return domPropertyName;
 	}
 

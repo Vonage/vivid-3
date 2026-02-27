@@ -1,6 +1,6 @@
 import { Node, SyntaxKind } from 'ts-morph';
-import { warn } from '../utils/log';
 import { hasJSDocTag } from './jsdoc';
+import { logger } from '@repo/tools';
 
 export function isPrivateOrInternal(node: Node): boolean {
 	if (Node.isScoped(node)) {
@@ -18,7 +18,7 @@ export function isPrivateOrInternal(node: Node): boolean {
 			return true; // Private element like '#member'
 		}
 		if (node.getName().startsWith('_')) {
-			warn(
+			logger.warning(
 				`Bug: "${node.getName()}" starts with "_" but is not private or internal`
 			);
 		}

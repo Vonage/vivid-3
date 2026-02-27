@@ -1,8 +1,8 @@
-import { log, warn } from '../utils/log';
 import { getPackageEntryPoints } from 'pkg-entry-points';
 import * as fs from 'node:fs';
 import path from 'node:path';
 import { tryGuessSourcePath } from './guess-source-path';
+import { logger } from '@repo/tools';
 
 /**
  * subpath -> filepath relative to packageRoot
@@ -18,7 +18,7 @@ export type EntryPoints = Record<string, string>;
 export async function getSourceEntryPoints(
 	packageRoot: string
 ): Promise<EntryPoints> {
-	log(`Entry points for ${packageRoot}:`);
+	logger.debug(`Entry points for ${packageRoot}:`);
 	const eps = await getPackageEntryPoints(packageRoot);
 	return Object.fromEntries(
 		[...Object.entries(eps)].flatMap(([subpath, conditionsToPath]) => {
@@ -39,13 +39,13 @@ export async function getSourceEntryPoints(
 						fs.existsSync(path.join(packageRoot, f))
 					);
 					if (!guessedPath) {
-						warn(`Could not find source path for ${subpath}`);
+						logger.warning(`Could not find source path for ${subpath}`);
 						return [];
 					}
 					filePath = guessedPath;
 				}
 
-				log(` - ${subpath} -> ${filePath}`);
+				logger.debug(` - ${subpath} -> ${filePath}`);
 				return [[subpath, filePath]];
 			}
 			return [];
