@@ -6,13 +6,13 @@ import {
 	type PluginContribution,
 	RteFeatureImpl,
 } from '../feature';
-import type { RteInstanceImpl } from '../instance';
+import { type RteInstance, RteInstanceImpl } from '../instance';
 
 /**
  * A keyboard shortcut handler. Return `true` to consume the key (prevent default behavior), `false` to let other handlers run.
- * You can use a no-arg function to only prevent default: `() => true`.
+ * Use a no-arg function `() => true` or a function that receives the RteInstance `(rteInstance) => true`.
  */
-export type KeyboardShortcutHandler = Command | (() => boolean);
+export type KeyboardShortcutHandler = (rteInstance: RteInstance) => boolean;
 
 export interface RteKeyboardShortcutsFeatureOptions {
 	/**
@@ -23,11 +23,15 @@ export interface RteKeyboardShortcutsFeatureOptions {
 	shortcuts: Record<string, KeyboardShortcutHandler>;
 }
 
-function toCommand(handler: KeyboardShortcutHandler): Command {
+function toCommand(
+	handler: KeyboardShortcutHandler,
+	rteInstance: RteInstance
+): Command {
 	if (handler.length === 0) {
 		return (_state, _dispatch) => (handler as () => boolean)();
 	}
-	return handler as Command;
+	return (_state, _dispatch) =>
+		(handler as (rte: RteInstance) => boolean)(rteInstance);
 }
 
 export class RteKeyboardShortcutsFeatureImpl extends RteFeatureImpl {
@@ -41,10 +45,10 @@ export class RteKeyboardShortcutsFeatureImpl extends RteFeatureImpl {
 		this.name = `RteKeyboardShortcutsFeature[${featureId}]`;
 	}
 
-	override getPlugins(_rte: RteInstanceImpl): PluginContribution[] {
+	override getPlugins(rte: RteInstanceImpl): PluginContribution[] {
 		const bindings: Record<string, Command> = {};
 		for (const [key, handler] of Object.entries(this.options.shortcuts)) {
-			bindings[key] = toCommand(handler);
+			bindings[key] = toCommand(handler, rte.facade);
 		}
 		return [this.contribution(keymap(bindings), contributionPriority.high)];
 	}

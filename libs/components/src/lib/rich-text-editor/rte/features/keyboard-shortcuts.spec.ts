@@ -2,6 +2,7 @@ import { elementUpdated } from '@repo/shared';
 import { TextSelection } from 'prosemirror-state';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
+import type { RteInstance } from '../instance';
 import { RteBase } from './base';
 import {
 	type KeyboardShortcutHandler,
@@ -11,9 +12,11 @@ import {
 const { paragraph: p } = docFactories;
 
 const escapeDeselectShortcuts: Record<string, KeyboardShortcutHandler> = {
-	Escape: (state, dispatch) => {
-		if (state.selection.empty) return false;
-		dispatch?.(
+	Escape: (rteInstance: RteInstance) => {
+		const view = rteInstance.view;
+		const state = view?.state;
+		if (!state || state.selection.empty) return false;
+		view.dispatch(
 			state.tr.setSelection(TextSelection.create(state.doc, state.selection.to))
 		);
 		return true;
@@ -40,13 +43,13 @@ describe('RteKeyboardShortcutsFeature', () => {
 		expect(docStr()).toBe(`paragraph('Hello| world')`);
 	});
 
-	it('should prevent default when handler returns true (Command)', async () => {
+	it('should prevent default when handler returns true (rteInstance)', async () => {
 		const { placeCursor, keydown, docStr, element } = await setup(
 			[
 				new RteBase(),
 				new RteKeyboardShortcutsFeature('prevent-enter-cmd', {
 					shortcuts: {
-						Enter: (_state, _dispatch) => true,
+						Enter: (rteInstance: RteInstance) => true,
 					},
 				}),
 			],

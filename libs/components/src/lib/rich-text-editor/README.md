@@ -1133,13 +1133,16 @@ import { TextSelection } from 'prosemirror-state';
 
 new RteKeyboardShortcutsFeature('escape-deselect', {
 	shortcuts: {
-		// Escape collapses selection to cursor (deselect)
-		Escape: (state, dispatch) => {
-			if (state.selection.empty) return false; // let default handle (e.g. close popover)
-			dispatch?.(state.tr.setSelection(TextSelection.create(state.doc, state.selection.to)));
-			return true;
+		// Collapse selection on Escape using rteInstance.view
+		Escape: (rteInstance) => {
+			const view = rteInstance.view;
+			const state = view?.state;
+			if (!state?.selection.empty) {
+				view.dispatch(state.tr.setSelection(TextSelection.create(state.doc, state.selection.to)));
+				return true;
+			}
+			return false;
 		},
-		// Prevent default (no tab to next field)
 		Tab: () => true,
 	},
 });
@@ -1156,7 +1159,7 @@ new RteKeyboardShortcutsFeature('escape-deselect', {
 
 `KeyboardShortcutHandler`:
 
-- A ProseMirror `Command` `(state, dispatch) => boolean`, or a no-arg function `() => true` to only prevent default. Return `true` to consume the key (prevent default); `false` to let other features handle it.
+- A function that receives the RteInstance `(rteInstance: RteInstance) => boolean`. Return `true` to consume the key (prevent default); `false` to let other features handle it.
 
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>

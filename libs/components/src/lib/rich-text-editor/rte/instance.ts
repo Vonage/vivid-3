@@ -51,7 +51,7 @@ export class RteInstance {
 	[impl]: RteInstanceImpl;
 
 	constructor(config: RteConfig, readonly options?: RteInstanceOptions) {
-		this[impl] = new RteInstanceImpl(config, options);
+		this[impl] = new RteInstanceImpl(this, config, options);
 	}
 
 	/**
@@ -66,6 +66,13 @@ export class RteInstance {
 	 */
 	reset(initialDocument?: RteDocument) {
 		this[impl].reset(initialDocument);
+	}
+
+	/**
+	 * ProseMirror editor view.
+	 */
+	get view(): EditorView | null {
+		return this[impl].view;
 	}
 
 	/**
@@ -161,6 +168,7 @@ export class RteInstance {
 }
 
 export class RteInstanceImpl {
+	readonly facade: RteInstance;
 	state!: EditorState;
 	readonly config: RteConfigImpl;
 	readonly schema: Schema;
@@ -209,7 +217,12 @@ export class RteInstanceImpl {
 		return instances[0].getPublicInterface(this);
 	}
 
-	constructor(configFacade: RteConfig, readonly options?: RteInstanceOptions) {
+	constructor(
+		instanceFacade: RteInstance,
+		configFacade: RteConfig,
+		readonly options?: RteInstanceOptions
+	) {
+		this.facade = instanceFacade;
 		const config = configFacade[impl];
 		this.config = config;
 		this.schema = config.schema;
