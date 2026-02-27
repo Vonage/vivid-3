@@ -38,6 +38,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			#wrapper {
 				display: inline-block;
 			}
+			vwc-rich-text-editor {
+				--rich-text-editor-padding-inline: 24px;
+				--rich-text-editor-padding-block: 12px;
+			}
 			::part(node--mention) {
 				background-color: var(--vvd-color-cta-100);
 				color: var(--vvd-color-cta-800);
