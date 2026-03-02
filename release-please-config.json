@@ -38,7 +38,7 @@
 		{
 			"type": "linked-versions",
 			"groupName": "vivid",
-			"components": ["vivid", "vivid-design-tokens", "vivid-vue", "test-utils"]
+			"components": ["vivid", "vivid-vue", "test-utils"]
 		},
 		{
 			"type": "linked-versions",
