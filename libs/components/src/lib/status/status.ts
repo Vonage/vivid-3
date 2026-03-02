@@ -1,4 +1,4 @@
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -41,4 +41,12 @@ export class Status extends AffixIcon(VividElement) {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: StatusConnotation;
+
+	/**
+	 * Tracks nodes assigned to the default slot so we can
+	 * hide the description container and extra spacing when empty.
+	 *
+	 * @internal
+	 */
+	@observable descriptionSlottedContent?: HTMLElement[];
 }

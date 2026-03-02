@@ -4,34 +4,28 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-table';
 
-describe('vwc-table', () => {
+describe('Table', () => {
 	let element: Table;
 
 	beforeEach(async () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Table;
 	});
 
-	describe('basic', () => {
-		it('should be initialized as a vwc-table', async () => {
+	describe('when the table is set up', () => {
+		it('is a table component', async () => {
 			expect(element).toBeInstanceOf(Table);
 		});
 
-		it('should allow being created via createElement', () => {
-			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
-			// This is because only createElement performs checks for custom element constructor requirements
-			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+		it('can be created in the DOM', () => {
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 
-		it('should have role="table"', async () => {
+		it('has role="table" so screen readers recognize it as a table', async () => {
 			await elementUpdated(element);
-			// The role="table" is applied to the template element which becomes the host
 			expect(element.getAttribute('role')).toBe('table');
 		});
-	});
 
-	describe('structure', () => {
-		it('should render table-head and table-body in slots', async () => {
+		it('shows a head and body when you put them inside it', async () => {
 			element.innerHTML = `
 				<vwc-table-head>
 					<vwc-table-row>
@@ -45,14 +39,11 @@ describe('vwc-table', () => {
 				</vwc-table-body>
 			`;
 			await elementUpdated(element);
-
-			const tableHead = element.querySelector('vwc-table-head');
-			const tableBody = element.querySelector('vwc-table-body');
-			expect(tableHead).toBeTruthy();
-			expect(tableBody).toBeTruthy();
+			expect(element.querySelector('vwc-table-head')).toBeTruthy();
+			expect(element.querySelector('vwc-table-body')).toBeTruthy();
 		});
 
-		it('should render slot content', async () => {
+		it('shows whatever content you put inside it', async () => {
 			element.innerHTML = '<div>Test content</div>';
 			await elementUpdated(element);
 			expect(element.textContent).toContain('Test content');

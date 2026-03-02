@@ -4,7 +4,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-table';
 
-describe('a11y: vwc-table', () => {
+describe('Table accessibility', () => {
 	let element: Table;
 
 	beforeAll(async () => {
@@ -36,7 +36,7 @@ describe('a11y: vwc-table', () => {
 		await elementUpdated(element);
 	});
 
-	it('should pass html a11y test', async () => {
+	it('meets accessibility requirements (no axe violations)', async () => {
 		expect(await axe(element)).toHaveNoViolations();
 	});
 });

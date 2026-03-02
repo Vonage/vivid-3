@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
@@ -39,8 +39,12 @@ export const StatusTemplate = (context: VividElementDefinitionContext) => {
 			${(x) => affixIconTemplate(getEffectiveIcon(x), IconWrapper.Slot)}
 			<div class="text">
 				${when((x) => x.status, getHeaderTemplate())}
-				<div class="description">
-					<slot></slot>
+				<div
+					class="description"
+					data-has-description="${(x) =>
+						(x.descriptionSlottedContent?.length ?? 0) > 0}"
+				>
+					<slot ${slotted('descriptionSlottedContent')}></slot>
 				</div>
 			</div>
 		</div>
