@@ -9253,6 +9253,11 @@
 					"type": "FocusEvent"
 				},
 				{
+					"name": "cell-focused",
+					"description": "Fires when the cell or its contents receive focus",
+					"type": "CustomEvent<HTMLElement>"
+				},
+				{
 					"name": "click",
 					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
 					"type": "MouseEvent"
@@ -9355,6 +9360,11 @@
 					"name": "blur",
 					"description": "Fires when the element loses focus.",
 					"type": "FocusEvent"
+				},
+				{
+					"name": "cell-focused",
+					"description": "Fires when the cell or its contents receive focus",
+					"type": "CustomEvent<HTMLElement>"
 				},
 				{
 					"name": "click",

@@ -4,7 +4,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-table-row';
 
-describe('vwc-table-row', () => {
+describe('Table row', () => {
 	let element: TableRow;
 
 	beforeEach(async () => {
@@ -13,21 +13,18 @@ describe('vwc-table-row', () => {
 		)) as TableRow;
 	});
 
-	describe('basic', () => {
-		it('should be initialized as a vwc-table-row', async () => {
+	describe('when the component is set up', () => {
+		it('is a table row component', async () => {
 			expect(element).toBeInstanceOf(TableRow);
 		});
 
-		it('should allow being created via createElement', () => {
-			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
-			// This is because only createElement performs checks for custom element constructor requirements
-			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+		it('can be created in the DOM', () => {
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
-	describe('rendering', () => {
-		it('should render slot content', async () => {
+	describe('when rendering', () => {
+		it('shows the content you put inside its cells', async () => {
 			element.innerHTML = '<vwc-table-cell>Cell 1</vwc-table-cell>';
 			await elementUpdated(element);
 			const cell = element.querySelector('vwc-table-cell');
@@ -35,12 +32,12 @@ describe('vwc-table-row', () => {
 			expect(cell?.textContent).toContain('Cell 1');
 		});
 
-		it('should have role="row"', async () => {
+		it('has role="row" so screen readers know it is a row', async () => {
 			await elementUpdated(element);
 			expect(element.getAttribute('role')).toBe('row');
 		});
 
-		it('should render multiple cells', async () => {
+		it('can display multiple cells in one row', async () => {
 			element.innerHTML = `
 				<vwc-table-cell>Cell 1</vwc-table-cell>
 				<vwc-table-cell>Cell 2</vwc-table-cell>
