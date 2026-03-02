@@ -172,7 +172,8 @@ jobs:
       sha: ${{ needs.should-release.outputs.release_sha }}
     secrets: inherit
 
-  deploy-deno:
+  deploy-s3:
     needs: should-release
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
-    uses: ./.github/workflows/_deploy-deno.yml
+    uses: ./.github/workflows/_deploy-s3.yml
+    secrets: inherit

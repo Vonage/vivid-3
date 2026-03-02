@@ -1,0 +1,52 @@
+name: ☁️ Deploy to S3
+
+on: [workflow_call, workflow_dispatch]
+
+jobs:
+  deploy:
+    name: Deploy to S3
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Falls back to the selected branch if run manually via workflow_dispatch
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build docs
+        run: |
+          pnpm turbo run build '--filter=./apps/*'
+          mv ./apps/vue-docs/dist ./apps/docs/dist/vivid-vue
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.DOCS_S3_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.DOCS_S3_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Sync to S3
+        run: aws s3 sync apps/docs/dist s3://${{ secrets.DOCS_S3_BUCKET_NAME }} --delete
+
+      - name: Invalidate CloudFront
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
