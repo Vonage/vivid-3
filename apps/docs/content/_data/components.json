@@ -417,14 +417,15 @@
 	},
 	{
 		"title": "Table",
-		"description": "A stateless table component for displaying tabular data, designed for integration with libraries like TanStack Table.",
+		"description": "A set of composable components that work together in the same way as native HTML table elements.",
 		"variations": "./libs/components/src/lib/table/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/table/GUIDELINES.md",
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/table/README.md",
 		"accessibility": "./libs/components/src/lib/table/ACCESSIBILITY.md",
 		"useCases": "./libs/components/src/lib/table/USE-CASES.md",
-		"status": "underlying"
+		"hideUseCases": "true",
+		"status": "alpha"
 	},
 	{
 		"title": "Toggletip",
@@ -606,7 +607,7 @@
 		"page": "legacy",
 		"markdown": "./libs/components/src/lib/country/README.md",
 		"description": "Displays a country flag and dial code. When a country code is set, the component shows the matching flag and the country code (e.g. \"GB\") automatically.",
-		"status": "underlying",
+		"status": "alpha",
 		"parent": "Partials"
 	},
 	{
@@ -614,13 +615,12 @@
 		"page": "legacy",
 		"description": "Displays an icon, status, and a description. Connotation (success, information, warning, alert) drives the default icon and color.",
 		"markdown": "./libs/components/src/lib/status/README.md",
-		"status": "underlying",
+		"status": "alpha",
 		"parent": "Partials"
 	},
 	{
 		"title": "Partials",
 		"page": "legacy",
-		"status": "underlying",
 		"markdown": "./libs/components/src/lib/table/PARTIALS.md",
 		"children": ["Country", "Status"]
 	},

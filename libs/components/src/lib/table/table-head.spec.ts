@@ -4,7 +4,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-table-head';
 
-describe('vwc-table-head', () => {
+describe('Table head', () => {
 	let element: TableHead;
 
 	beforeEach(async () => {
@@ -13,21 +13,18 @@ describe('vwc-table-head', () => {
 		)) as TableHead;
 	});
 
-	describe('basic', () => {
-		it('should be initialized as a vwc-table-head', async () => {
+	describe('when the component is set up', () => {
+		it('is a table head component', async () => {
 			expect(element).toBeInstanceOf(TableHead);
 		});
 
-		it('should allow being created via createElement', () => {
-			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
-			// This is because only createElement performs checks for custom element constructor requirements
-			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+		it('can be created in the DOM', () => {
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
-	describe('rendering', () => {
-		it('should render slot content', async () => {
+	describe('when rendering', () => {
+		it('shows the header rows and cells you put inside it', async () => {
 			element.innerHTML =
 				'<vwc-table-row><vwc-table-header-cell>Header</vwc-table-header-cell></vwc-table-row>';
 			await elementUpdated(element);
