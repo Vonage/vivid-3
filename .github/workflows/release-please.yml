@@ -128,11 +128,15 @@ jobs:
     steps:
       - id: should-release
         run: |
+          SHOULD_RELEASE="${{ needs.release-please.outputs.vivid_release_created == 'true' || needs.release-please.outputs.eslint_plugin_release_created == 'true' || github.event.inputs.force-release == 'true' }}"
+          RELEASE_SHA="${{ needs.release-please.outputs.vivid_release_sha || needs.release-please.outputs.eslint_plugin_release_sha || github.event.pull_request.head.sha }}"
+          SHOULD_RELEASE_ICONS="${{ needs.release-please.outputs.vivid_icons_release_created == 'true' || github.event.inputs.force-release == 'true' }}"
+          SHOULD_RELEASE_TOKENS="${{ needs.release-please.outputs.vivid_tokens_release_created == 'true' || github.event.inputs.force-release == 'true' }}"
           {
-            echo "should_release=${ { needs.release-please.outputs.vivid_release_created == 'true' || needs.release-please.outputs.eslint_plugin_release_created == 'true' || github.event.inputs.force-release == 'true' } }"
-            echo "release_sha=${ { needs.release-please.outputs.vivid_release_sha || needs.release-please.outputs.eslint_plugin_release_sha || github.event.pull_request.head.sha } }"
-            echo "should_release_icons=${ { needs.release-please.outputs.vivid_icons_release_created == 'true' || github.event.inputs.force-release == 'true' } }"
-            echo "should_release_tokens=${ { needs.release-please.outputs.vivid_tokens_release_created == 'true' || github.event.inputs.force-release == 'true' } }"
+            echo "should_release=$SHOULD_RELEASE"
+            echo "release_sha=$RELEASE_SHA"
+            echo "should_release_icons=$SHOULD_RELEASE_ICONS"
+            echo "should_release_tokens=$SHOULD_RELEASE_TOKENS"
           } >> "$GITHUB_OUTPUT"
 
   vivid-publish:
