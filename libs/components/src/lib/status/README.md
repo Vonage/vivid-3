@@ -1,10 +1,74 @@
 # Status
 
-Displays a status icon and a short message. Use the **status** attribute for the title and the default slot for the description. The **connotation** attribute (success, information, warning, alert) drives the icon and color.
+The Status component is used to clearly communicate system states and outcomes, such as success, information, warnings, or alerts.
 
-## Variations
+<docs-do-dont>
+<docs-do slot="description">
 
-### Connotation
+**Use Status when...**
+
+- Showing passive state
+- Communicating outcomes or progress
+- Information is contextual
+- No interuption is needed
+
+</docs-do>
+
+<docs-do dont>
+
+**Don't use Status when...**
+
+- Immediate attention is required
+- User action is blocked
+- Screen reader announcement is needed
+- Message is critical or urgent
+
+</docs-do>
+</docs-do-dont>
+
+## Usage
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```js
+import { VStatus } from '@vonage/vivid-vue';
+```
+
+```vue preview
+<script setup lang="ts">
+import { VStatus } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VStatus connotation="information" status="Information">Check the terms and conditions carefully</VStatus>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```js
+import { registerStatus } from '@vonage/vivid';
+
+registerStatus('your-prefix');
+```
+
+```html preview
+<script type="module">
+	import { registerStatus } from '@vonage/vivid';
+	registerStatus('your-prefix');
+</script>
+
+<your-prefix-status status="Information" connotation="information">Check the terms and conditions carefully</your-prefix-status>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## Connotation
 
 The **connotation** attribute determines the icon and color. Use `success`, `information`, `warning`, or `alert`.
 
@@ -19,10 +83,10 @@ import { VStatus } from '@vonage/vivid-vue';
 
 <template>
 	<div class="status-group">
-		<VStatus connotation="success" status="Positive">Description</VStatus>
-		<VStatus connotation="information" status="Info">Description</VStatus>
-		<VStatus connotation="warning" status="Warning">Description</VStatus>
-		<VStatus connotation="alert" status="Alert">Description</VStatus>
+		<VStatus connotation="success" status="Success">Transaction complete</VStatus>
+		<VStatus connotation="information" status="Informatoin">Additional details are available</VStatus>
+		<VStatus connotation="warning" status="Warning">Action may be required</VStatus>
+		<VStatus connotation="alert" status="Alert">An error has occurred</VStatus>
 	</div>
 </template>
 
@@ -41,10 +105,10 @@ import { VStatus } from '@vonage/vivid-vue';
 
 ```html preview
 <div class="status-group">
-	<vwc-status connotation="success" status="Positive">Description</vwc-status>
-	<vwc-status connotation="information" status="Info">Description</vwc-status>
-	<vwc-status connotation="warning" status="Warning">Description</vwc-status>
-	<vwc-status connotation="alert" status="Alert">Description</vwc-status>
+	<vwc-status connotation="success" status="Success">Transaction complete</vwc-status>
+	<vwc-status connotation="information" status="Info">Additional details are available</vwc-status>
+	<vwc-status connotation="warning" status="Warning">Action may be required</vwc-status>
+	<vwc-status connotation="alert" status="Alert">An error has occurred</vwc-status>
 </div>
 
 <style>
@@ -64,17 +128,17 @@ import { VStatus } from '@vonage/vivid-vue';
 	<p>Use the Status component to show a short message with a clear type: positive (success), info, warning, or alert. Use the <strong>status</strong> attribute for the status label and the default slot for a brief description.</p>
 </vwc-note>
 
-### Status
+## Status
 
-The **status** attribute sets the title shown next to the icon (e.g. "Positive", "Completed", "Error"). Use any text that fits your context.
+The `status` attribute defines the short, visible label displayed next to the status icon (for example: Completed, New, Draft, Error).
+
+Use concise, meaningful text that clearly communicates the current state of an item, and pair it with an appropriate connotation to reinforce the message visually.
+
+The optional content placed inside the component (see [Default slot](#default-slot) below) provides additional context or explanation and should remain brief and scannable.
 
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
-
-```js
-import { VStatus } from '@vonage/vivid-vue';
-```
 
 ```vue preview
 <script setup lang="ts">
@@ -83,10 +147,10 @@ import { VStatus } from '@vonage/vivid-vue';
 
 <template>
 	<div class="status-group">
-		<VStatus connotation="success" status="Completed">Your request has been submitted.</VStatus>
-		<VStatus connotation="information" status="New">Check your inbox for details.</VStatus>
-		<VStatus connotation="warning" status="Draft">Please review before continuing.</VStatus>
-		<VStatus connotation="alert" status="Error">Something went wrong.</VStatus>
+		<VStatus connotation="success" status="Complete">Request submitted</VStatus>
+		<VStatus connotation="information" status="New">Check your inbox</VStatus>
+		<VStatus connotation="warning" status="Draft">Review before continuing</VStatus>
+		<VStatus connotation="alert" status="Error">Something went wrong</VStatus>
 	</div>
 </template>
 
@@ -105,10 +169,10 @@ import { VStatus } from '@vonage/vivid-vue';
 
 ```html preview
 <div class="status-group">
-	<vwc-status connotation="success" status="Completed">Your request has been submitted.</vwc-status>
-	<vwc-status connotation="information" status="New">Check your inbox for details.</vwc-status>
-	<vwc-status connotation="warning" status="Draft">Please review before continuing.</vwc-status>
-	<vwc-status connotation="alert" status="Error">Something went wrong.</vwc-status>
+	<vwc-status connotation="success" status="Complete">Request submitted</vwc-status>
+	<vwc-status connotation="information" status="New">Check your inbox</vwc-status>
+	<vwc-status connotation="warning" status="Draft">Review before continuing</vwc-status>
+	<vwc-status connotation="alert" status="Error">Something went wrong</vwc-status>
 </div>
 
 <style>
@@ -127,7 +191,7 @@ import { VStatus } from '@vonage/vivid-vue';
 
 ### Default slot
 
-Use the default slot for the description text below the status title.
+Use the default slot to provide additional context or explanation. Content should remain brief and scannable.
 
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
@@ -139,7 +203,7 @@ import { VStatus } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VStatus connotation="success" status="Positive">Your request has been submitted successfully.</VStatus>
+	<VStatus connotation="success" status="Complete">Request submitted</VStatus>
 </template>
 ```
 
@@ -148,7 +212,7 @@ import { VStatus } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview
-<vwc-status connotation="success" status="Positive">Your request has been submitted successfully.</vwc-status>
+<vwc-status connotation="success" status="Complete">Request submitted</vwc-status>
 ```
 
 </vwc-tab-panel>
@@ -168,9 +232,9 @@ import { VIcon, VStatus } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VStatus connotation="success" status="Positive">
+	<VStatus connotation="success" status="Complete">
 		<template #icon><VIcon name="check-double-solid" /></template>
-		Description
+		Request submitted
 	</VStatus>
 </template>
 ```
@@ -180,9 +244,9 @@ import { VIcon, VStatus } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview
-<vwc-status connotation="success" status="Positive">
+<vwc-status connotation="success" status="Complete">
 	<vwc-icon slot="icon" name="check-double-solid"></vwc-icon>
-	Description
+	Request submitted
 </vwc-status>
 ```
 

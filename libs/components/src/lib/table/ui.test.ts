@@ -191,8 +191,8 @@ test('should render multiple rows and columns', async ({
 });
 
 test('should handle responsive scrolling', async ({ page }: { page: Page }) => {
-	const template = `<div style="margin: 5px;">
-			<vwc-table style="max-height: 200px; width: 100%;">
+	const template = `<div style="margin: 5px;max-height: 200px; width: 100%;">
+			<vwc-table>
 				<vwc-table-head>
 					<vwc-table-row>
 						<vwc-table-header-cell>Product</vwc-table-header-cell>
