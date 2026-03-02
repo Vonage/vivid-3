@@ -23,8 +23,15 @@ jobs:
     outputs:
       vivid_release_created: ${{ steps.release.outputs['libs/components--release_created'] }}
       vivid_release_sha: ${{ steps.release.outputs['libs/components--sha'] }}
+
+      vivid_icons_release_created: ${{ steps.release.outputs['libs/icons--release_created'] || steps.release.outputs['libs/icons-brands--release_created'] || steps.release.outputs['libs/icons-flags--release_created']}}
       vivid_icons_version: ${{ steps.release.outputs['libs/icons--version'] }}
+      vivid_icons_sha: ${{ steps.release.outputs['libs/icons--sha'] || steps.release.outputs['libs/icons-brands--sha'] || steps.release.outputs['libs/icons-flags--sha']}}
+
+      vivid_tokens_release_created: ${{ steps.release.outputs['libs/design-tokens--release_created'] }}
       vivid_tokens_version: ${{ steps.release.outputs['libs/design-tokens--version'] }}
+      vivid_tokens_sha: ${{ steps.release.outputs['libs/design-tokens--sha'] }}
+
       eslint_plugin_release_created: ${{ steps.release.outputs['libs/eslint-plugin--release_created'] }}
       eslint_plugin_release_sha: ${{ steps.release.outputs['libs/eslint-plugin--sha'] }}
     steps:
@@ -35,10 +42,9 @@ jobs:
 
       # Checks if a release PR has been merged but not released yet (label: `autorelease: pending`)
       # If so, creates releases (and tags) for the affected libraries in GitHub, updates the label, and sets the relevant outputs
-      # We have configured release-please to not create a release/tag for the vivid-vue library, as it is always released
-      # with vivid components which would make the release redundant.
-      # However, release-please depends on the vivid-vue tag to understand what has changed, so we create it ourselves in the
-      # next step.
+      # release-please is configured to skip github-release creation for some of the packages. They are configured in the
+      # "release-please-config.json" file in root directory. Skipped packages have "skip-github-release" option set to `true`.
+      # However, release-please depends on the tags to understand what has changed, so we create it ourselves in the next step.
       - uses: googleapis/release-please-action@v4
         id: release
         with:
@@ -57,7 +63,17 @@ jobs:
           version: ${{ steps.release.outputs['libs/components--version'] }}
           token: ${{ secrets.RELEASE_PLEASE_PAT }}
 
-      # ...and the same for vivid-icons
+      # release-please checks whether changes has been made in the test-utils package. If so, release tag is created.
+      - name: Create Test Utils Tag
+        if: ${{ steps.release.outputs['libs/test-utils--release_created'] }}
+        uses: ./.github/actions/create-version-tag
+        with:
+          sha: ${{ steps.release.outputs['libs/test-utils--sha'] }}
+          tag: test-utils
+          version: ${{ steps.release.outputs['libs/test-utils--version'] }}
+          token: ${{ secrets.RELEASE_PLEASE_PAT }}
+
+      # ...and the same for icons
       - name: Create Icons Tag
         if: ${{ steps.release.outputs['libs/icons--release_created'] }}
         uses: ./.github/actions/create-version-tag
@@ -87,6 +103,10 @@ jobs:
           version: ${{ steps.release.outputs['libs/icons-flags--version'] }}
           token: ${{ secrets.RELEASE_PLEASE_PAT }}
 
+      - name: Update Icons Version in Code
+        if: ${{ steps.release.outputs['libs/icons-flags--release_created'] }}
+        run: pnpm turbo run build --filter=@repo/consts
+
       # Now we can create/update the release PR if needed
       # This will look for commits since the last release and associate them with libraries if files in the library
       # directories have changed. It will then create/update a release PR that updates the libraries changelog and versions
@@ -103,11 +123,15 @@ jobs:
     outputs:
       should_release: ${{ steps.should-release.outputs.should_release }}
       release_sha: ${{ steps.should-release.outputs.release_sha }}
+      should_release_icons: ${{ steps.should-release.outputs.should_release_icons }}
+      should_release_tokens: ${{ steps.should-release.outputs.should_release_tokens }}
     steps:
       - id: should-release
         run: |
           echo "should_release=${{ needs.release-please.outputs.vivid_release_created == 'true' || needs.release-please.outputs.eslint_plugin_release_created == 'true' || github.event.inputs.force-release == 'true' }}" >> "$GITHUB_OUTPUT"
           echo "release_sha=${{ needs.release-please.outputs.vivid_release_sha || needs.release-please.outputs.eslint_plugin_release_sha || github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
+          echo "should_release_icons=${{ needs.release-please.outputs.vivid_icons_release_created == 'true' || github.event.inputs.force-release == 'true' }}" >> "$GITHUB_OUTPUT"
+          echo "should_release_tokens=${{ needs.release-please.outputs.vivid_tokens_release_created == 'true' || github.event.inputs.force-release == 'true' }}" >> "$GITHUB_OUTPUT"
 
   vivid-publish:
     needs: should-release
@@ -120,7 +144,7 @@ jobs:
 
   vivid-design-tokens-publish:
     needs: should-release
-    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+    if: ${{ needs.should-release.outputs.should_release_tokens == 'true' }}
     uses: ./.github/workflows/_publish.yml
     with:
       path: ./libs/design-tokens
@@ -129,7 +153,7 @@ jobs:
 
   vivid-design-tokens-flutter-publish:
     needs: [should-release, release-please]
-    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+    if: ${{ needs.should-release.outputs.should_release_tokens == 'true' }}
     uses: ./.github/workflows/_publish-flutter.yml
     with:
       path: ./libs/design-tokens/flutter-dist
@@ -139,7 +163,7 @@ jobs:
 
   vivid-icons-publish:
     needs: should-release
-    if: ${{ needs.should-release.outputs.should_release == 'true' }}
+    if: ${{ needs.should-release.outputs.should_release_icons == 'true' }}
     uses: ./.github/workflows/_publish-icons.yml
     with:
       sha: ${{ needs.should-release.outputs.release_sha }}
