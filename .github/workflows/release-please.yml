@@ -104,7 +104,7 @@ jobs:
           token: ${{ secrets.RELEASE_PLEASE_PAT }}
 
       - name: Update Icons Version in Code
-        if: ${{ steps.release.outputs['libs/icons-flags--release_created'] }}
+        if: ${{ steps.release.outputs['libs/icons--release_created'] || steps.release.outputs['libs/icons-flags--release_created'] || steps.release.outputs['libs/icons-brands--release_created']}}
         run: pnpm turbo run build --filter=@repo/consts
 
       # Now we can create/update the release PR if needed
