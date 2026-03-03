@@ -20,7 +20,7 @@
 		"@repo/typescript-config": "workspace:*",
 		"@types/node": "catalog:",
 		"dotenv": "^17.2.3",
-		"tsx": "catalog:",
-		"vite-plugin-static-copy": "catalog:"
+		"tsdown": "^0.20.3",
+		"tsx": "catalog:"
 	}
 }
