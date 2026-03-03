@@ -1,6 +1,6 @@
-import { type IconCategory } './generated/icon-categories.ts'
-import { type IconName } from './generated/icon-names.ts'
-import { type IconStyle } from './generated/icon-styles.ts'
+import { type IconCategory } from './generated/icon-categories';
+import { type IconName } from './generated/icon-names';
+import { type IconStyle } from './generated/icon-styles';
 
 export interface IconEntry {
 	id: IconName;

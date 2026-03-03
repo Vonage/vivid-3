@@ -12,7 +12,7 @@ const figmaFileId = 'isdKI406usLCxZ2U8ljDrn';
 (async () => {
 	const index = await fetchIcons(figmaFileId, {
 		dir: './src/generated/',
-		forceUpdate: true,
+		forceUpdate: false,
 		filter: allIcons,
 		createEntry: (node, path, file) => {
 			if (isBrand(path)) {
