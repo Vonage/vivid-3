@@ -24,9 +24,9 @@ jobs:
       vivid_release_created: ${{ steps.release.outputs['libs/components--release_created'] }}
       vivid_release_sha: ${{ steps.release.outputs['libs/components--sha'] }}
 
-      vivid_icons_release_created: ${{ steps.release.outputs['libs/icons--release_created'] || steps.release.outputs['libs/icons-brands--release_created'] || steps.release.outputs['libs/icons-flags--release_created']}}
+      vivid_icons_release_created: ${{ steps.release.outputs['libs/icons--release_created'] }}
       vivid_icons_version: ${{ steps.release.outputs['libs/icons--version'] }}
-      vivid_icons_sha: ${{ steps.release.outputs['libs/icons--sha'] || steps.release.outputs['libs/icons-brands--sha'] || steps.release.outputs['libs/icons-flags--sha']}}
+      vivid_icons_sha: ${{ steps.release.outputs['libs/icons--sha'] }}
 
       vivid_tokens_release_created: ${{ steps.release.outputs['libs/design-tokens--release_created'] }}
       vivid_tokens_version: ${{ steps.release.outputs['libs/design-tokens--version'] }}
@@ -82,30 +82,6 @@ jobs:
           tag: vivid-icons
           version: ${{ steps.release.outputs['libs/icons--version'] }}
           token: ${{ secrets.RELEASE_PLEASE_PAT }}
-
-      # ...and brand icons
-      - name: Create Brand Icons Tag
-        if: ${{ steps.release.outputs['libs/icons-brands--release_created'] }}
-        uses: ./.github/actions/create-version-tag
-        with:
-          sha: ${{ steps.release.outputs['libs/icons-brands--sha'] }}
-          tag: vivid-icons-brands
-          version: ${{ steps.release.outputs['libs/icons-brands--version'] }}
-          token: ${{ secrets.RELEASE_PLEASE_PAT }}
-
-      # ...and flag icons
-      - name: Create Flags Icons Tag
-        if: ${{ steps.release.outputs['libs/icons-flags--release_created'] }}
-        uses: ./.github/actions/create-version-tag
-        with:
-          sha: ${{ steps.release.outputs['libs/icons-flags--sha'] }}
-          tag: vivid-icons-flags
-          version: ${{ steps.release.outputs['libs/icons-flags--version'] }}
-          token: ${{ secrets.RELEASE_PLEASE_PAT }}
-
-      - name: Update Icons Version in Code
-        if: ${{ steps.release.outputs['libs/icons--release_created'] || steps.release.outputs['libs/icons-flags--release_created'] || steps.release.outputs['libs/icons-brands--release_created']}}
-        run: pnpm turbo run build --filter=@repo/consts
 
       # Now we can create/update the release PR if needed
       # This will look for commits since the last release and associate them with libraries if files in the library
