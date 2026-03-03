@@ -41,7 +41,6 @@
 	"devDependencies": {
 		"@microsoft/fast-foundation": "catalog:",
 		"@microsoft/fast-web-utilities": "catalog:",
-		"@repo/consts": "workspace:*",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/shared": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
@@ -50,6 +49,7 @@
 		"@types/markdown-table": "catalog:",
 		"@types/node-fetch": "^2.6.13",
 		"@vonage/vivid": "workspace:*",
+		"@vonage/vivid-icons": "workspace:*",
 		"custom-elements-manifest": "catalog:",
 		"jsdom": "catalog:",
 		"markdown-table": "catalog:",

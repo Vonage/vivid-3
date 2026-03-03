@@ -1,6 +1,6 @@
 import { kebabToCamel } from '../utils/casing';
 import { iconListFromManifest } from '../common/icons';
-import { IconsManifest } from '@repo/consts';
+import { IconsManifest } from '@vonage/vivid-icons';
 
 export const renderIcons = (iconsManifest: IconsManifest) => `export enum Icon {
 ${iconListFromManifest(iconsManifest)
