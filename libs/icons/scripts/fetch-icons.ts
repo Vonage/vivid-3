@@ -1,27 +1,67 @@
-import { fetchIcons, type NodeFilterFunction } from '@repo/tools';
+import { createIconEntry, fetchIcons, writeFile } from '@repo/tools';
 import 'dotenv/config';
 import { svg } from './svg.output';
+import { createBrandIconEntry } from './create-brand-icon-entry';
+import { createFlagIconEntry } from './create-flag-icon-entry';
+import { isBrand } from './is-brand';
+import { isFlag } from './is-flag';
+import { allIcons } from './filter-icons';
 
 const figmaFileId = 'isdKI406usLCxZ2U8ljDrn';
 
-// All icons except 'brand' and 'flags'
-const allIcons: NodeFilterFunction = (node, path) => {
-	if (!Array.isArray(path)) return false;
-
-	return (
-		node.type === 'COMPONENT' &&
-		path.length >= 4 &&
-		path.at(-4)?.name === 'Icons' &&
-		path.at(-2)?.name !== 'flags' &&
-		path.at(-3)?.name !== 'brand'
-	);
-};
-
 (async () => {
-	await fetchIcons(figmaFileId, {
+	const index = await fetchIcons(figmaFileId, {
 		dir: './src/generated/',
 		forceUpdate: true,
 		filter: allIcons,
+		createEntry: (node, path, file) => {
+			if (isBrand(path)) {
+				return createBrandIconEntry(node, path, file);
+			} else if (isFlag(path)) {
+				return createFlagIconEntry(node, path, file);
+			} else {
+				return createIconEntry(node, path, file);
+			}
+		},
 		outputs: [svg],
 	});
+
+	const slimmedIndex = index.map(
+		({ id, name, aliases, category, style, keywords }) => ({
+			id,
+			name,
+			aliases,
+			category,
+			style,
+			keywords,
+		})
+	);
+	const slimmedIndexContents = JSON.stringify(slimmedIndex, null, 2);
+
+	const categories = [...new Set(index.map((entry) => entry.category))];
+	const categoriesTypesContents = `export type IconCategories = ${categories
+		.map((category) => `'${category}'`)
+		.join(' | \n')};`;
+
+	const names = [
+		...new Set(
+			index.flatMap((entry) => {
+				// Name of the icon used in icon component is effectively the icon id
+				return [entry.id, ...entry.aliases];
+			})
+		),
+	];
+	const namesTypesContents = `export type IconNames = ${names
+		.map((iconName) => `'${iconName}'`)
+		.join(' | \n')};`;
+
+	const styles = [...new Set(index.map((entry) => entry.style))];
+	const stylesTypesContents = `export type IconStyles = ${styles
+		.map((iconStyle) => `'${iconStyle}'`)
+		.join(' | \n')};`;
+
+	writeFile('./src/generated/index.json', slimmedIndexContents);
+	writeFile('./src/generated/icon-categories.ts', categoriesTypesContents);
+	writeFile('./src/generated/icon-names.ts', namesTypesContents);
+	writeFile('./src/generated/icon-styles.ts', stylesTypesContents);
 })();
