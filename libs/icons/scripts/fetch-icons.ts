@@ -39,7 +39,7 @@ const figmaFileId = 'isdKI406usLCxZ2U8ljDrn';
 	const slimmedIndexContents = JSON.stringify(slimmedIndex, null, 2);
 
 	const categories = [...new Set(index.map((entry) => entry.category))];
-	const categoriesTypesContents = `export type IconCategories = ${categories
+	const categoriesTypesContents = `export type IconCategory = ${categories
 		.map((category) => `'${category}'`)
 		.join(' | \n')};`;
 
@@ -51,12 +51,12 @@ const figmaFileId = 'isdKI406usLCxZ2U8ljDrn';
 			})
 		),
 	];
-	const namesTypesContents = `export type IconNames = ${names
+	const namesTypesContents = `export type IconName = ${names
 		.map((iconName) => `'${iconName}'`)
 		.join(' | \n')};`;
 
 	const styles = [...new Set(index.map((entry) => entry.style))];
-	const stylesTypesContents = `export type IconStyles = ${styles
+	const stylesTypesContents = `export type IconStyle = ${styles
 		.map((iconStyle) => `'${iconStyle}'`)
 		.join(' | \n')};`;
 
