@@ -30,4 +30,4 @@ We have add the `enable-select-all` attribute to add a [Select / Deselect All op
 
 We have started to migrate all our [component code examples to show Vue.js](/components/accordion/#heading) coded examples as well as the current Web component exmaples.
 
-When this is complete we will remove the [Vivid Vue storybook sites](https://vivid.deno.dev/vivid-vue/) as everything will now here in one place.
+When this is complete we will remove the [Vivid Vue storybook sites](https://vivid.vonage.com/vivid-vue/) as everything will now here in one place.

@@ -11,7 +11,7 @@
   <h6>
 		Build safe, simple and intuitive interfaces using Vonage's design system.
   </h6>
-  <a class="home-page-hero-docs-btn" href="https://vivid.deno.dev"><strong>Explore the docs</strong></a>
+  <a class="home-page-hero-docs-btn" href="https://vivid.vonage.com"><strong>Explore the docs</strong></a>
 </div>
 
 <br>

@@ -142,7 +142,7 @@ import { VCard } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VCard headline="Vivid Card as a Link" subtitle="Clicking on this card will navigate you to the documentation homepage" href="https://vivid.deno.dev" target="_blank"> </VCard>
+	<VCard headline="Vivid Card as a Link" subtitle="Clicking on this card will navigate you to the documentation homepage" href="https://vivid.vonage.com" target="_blank"> </VCard>
 </template>
 ```
 
@@ -151,7 +151,7 @@ import { VCard } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview
-<vwc-card headline="Vivid Card as a Link" subtitle="Clicking on this card will navigate you to the documentation homepage" href="https://vivid.deno.dev" target="_blank"> </vwc-card>
+<vwc-card headline="Vivid Card as a Link" subtitle="Clicking on this card will navigate you to the documentation homepage" href="https://vivid.vonage.com" target="_blank"> </vwc-card>
 ```
 
 </vwc-tab-panel>
