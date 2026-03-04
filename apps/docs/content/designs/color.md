@@ -267,6 +267,8 @@ vwc-side-drawer::part(base) {
 Some components (eg. Header, Side Drawer, Toggletip) have an `alternate` attribute. This switch the component itself and all of it's children to use the design tokens from the alternate theme (light / dark).
 
 <vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+
   <p>If you need a child element to still use the parent (non-alternative) theme, add the class <code>vvd-root</code>.</p>
   <p>In the example below, the first button ("Parent theme") is still using the parent theme's design tokens.</p>
 </vwc-note>
