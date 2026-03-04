@@ -29,6 +29,8 @@ import { VHeader } from '@vonage/vivid-vue';
 
 The `alternate` attribute applies an alternate color scheme, which is in contrast with the current global theme. It will also apply to any slotted Vivid components.
 
+[Read more about the `alternative` attribute](/designs/color/#alternate-attribute)
+
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>

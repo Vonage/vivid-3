@@ -262,9 +262,30 @@ vwc-side-drawer::part(base) {
 
 ## Alternate
 
-A single component can be set with alternate colors.
+### Alternate Attribute
 
-Add the class `vvd-theme-alternate` to the component.
+Some components (eg. Header, Side Drawer, Toggletip) have an `alternate` attribute. This switch the component itself and all of it's children to use the design tokens from the alternate theme (light / dark).
+
+<vwc-note connotation="information">
+  <p>If you need a child element to still use the parent (non-alternative) theme, add the class <code>vvd-root</code>.</p>
+  <p>In the example below, the first button ("Parent theme") is still using the parent theme's design tokens.</p>
+</vwc-note>
+
+```html preview
+<vwc-header alternate>
+	<div>Alternate Header</div>
+	<vwc-action-group appearance="ghost" slot="action-items">
+		<vwc-button appearance="filled" label="Parent theme" class="vvd-root"></vwc-button>
+		<vwc-button appearance="filled" label="Alternate theme"></vwc-button>
+	</vwc-action-group>
+</vwc-header>
+```
+
+### Alternate Class
+
+A single component can be set to use the design tokens for the alternate (light/dark) theme by adding the class `vvd-theme-alternate` to the component.
+
+In the example below, the background color is set to the opposite on the theme's canvas color. The button inside (with the class `vvd-theme-alternate`) is using the alternative theme colors.
 
 ```html preview
 <style>
@@ -277,7 +298,7 @@ Add the class `vvd-theme-alternate` to the component.
 	}
 </style>
 <div class="wrapper">
-	<vwc-button label="filled" appearance="filled" class="vvd-theme-alternate"></vwc-button>
+	<vwc-button label="Alternate color" appearance="filled" class="vvd-theme-alternate"></vwc-button>
 </div>
 ```
 
