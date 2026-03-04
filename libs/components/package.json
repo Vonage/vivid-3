@@ -1,7 +1,7 @@
 {
 	"name": "@vonage/vivid",
 	"version": "5.15.0",
-	"homepage": "https://vivid.deno.dev",
+	"homepage": "https://vivid.vonage.com",
 	"bugs": {
 		"url": "https://github.com/Vonage/vivid-3/issues"
 	},

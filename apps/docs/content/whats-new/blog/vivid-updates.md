@@ -43,9 +43,9 @@ Upgrading to a new major version of the Vivid design system is no longer a tedio
 ## Perform Updates in Your Project in Three Steps
 
 1. **Check the changelog and releases**  
-   Review the [Vivid changelog](https://github.com/Vonage/vivid-3/blob/main/libs/components/CHANGELOG.md) and [GitHub releases](https://github.com/Vonage/vivid-3/releases) before upgrading to see what’s changed and whether the update is major or minor. If the update is a major one, breaking changes are always clearly explained there and in the [migration guides](https://vivid.deno.dev/guides/v4-release-migration/).
+   Review the [Vivid changelog](https://github.com/Vonage/vivid-3/blob/main/libs/components/CHANGELOG.md) and [GitHub releases](https://github.com/Vonage/vivid-3/releases) before upgrading to see what’s changed and whether the update is major or minor. If the update is a major one, breaking changes are always clearly explained there and in the [migration guides](https://vivid.vonage.com/guides/v4-release-migration/).
 2. **Update the package**
-   Use our official packages which are actively maintained and [kept up to date with every Vivid release](https://vivid.deno.dev/getting-started/vue/#complete-and-up-to-date).
+   Use our official packages which are actively maintained and [kept up to date with every Vivid release](https://vivid.vonage.com/getting-started/vue/#complete-and-up-to-date).
 
    - **For Vue:** `npm install @vonage/vivid-vue@latest`
    - **For React:** `npm install @vonage/vivid-react@latest`
@@ -58,7 +58,7 @@ Upgrading to a new major version of the Vivid design system is no longer a tedio
 
 - Use tools like [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) for automated dependency management.
 - Always review the [Vivid changelog](https://github.com/Vonage/vivid-3/blob/main/libs/components/CHANGELOG.md) and [GitHub releases](https://github.com/Vonage/vivid-3/releases) before upgrading.
-- Using our [ESLint plugin](https://vivid.deno.dev/guides/eslint-plugin/) to catch common issues and mistakes when working with Vivid Vue.
+- Using our [ESLint plugin](https://vivid.vonage.com/guides/eslint-plugin/) to catch common issues and mistakes when working with Vivid Vue.
 - Run your test suite after each update to catch integration issues early.
 
 ## Take Your Part in Shaping the Future of Vivid
@@ -82,7 +82,7 @@ Keeping your Vivid package up to date ensures your projects benefit from the lat
 
 ### Resources
 
-- [Vivid documentation](https://vivid.deno.dev/)
+- [Vivid documentation](https://vivid.vonage.com/)
 - [Vivid GitHub](https://github.com/Vonage/vivid-3)
 - [Vue wrapper](https://www.npmjs.com/package/@vonage/vivid-vue)
 - [React wrapper](https://github.com/Vonage/vivid-react)
