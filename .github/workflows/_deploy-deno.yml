@@ -37,10 +37,11 @@ jobs:
         run: |
           pnpm turbo run build '--filter=./apps/*'
           mv ./apps/vue-docs/dist ./apps/docs/dist/vivid-vue
+          cp apps/docs/serve.ts apps/docs/dist/serve.ts
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: vivid
           root: apps/docs/dist
-          entrypoint: https://deno.land/std@0.217.0/http/file_server.ts
+          entrypoint: serve.ts

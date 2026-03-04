@@ -14,7 +14,7 @@ import type { RteDocument } from './document';
 import { convertToView, type RteView, type RteViewOptions } from './view';
 
 export class RteConfig {
-	/// @internal
+	/** @internal */
 	[impl]: RteConfigImpl;
 
 	constructor(features: RteFeature[]) {

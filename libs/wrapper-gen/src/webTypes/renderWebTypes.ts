@@ -1,6 +1,6 @@
-import { ComponentDef } from '../common/ComponentDef';
 import { getTagFromComponentDefinition } from './tags';
 import { TypeResolver } from '../common/types';
+import type { ComponentDef } from '@repo/metadata-extractor';
 
 export function renderWebTypes(
 	componentDefs: ComponentDef[],

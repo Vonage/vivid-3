@@ -58,14 +58,14 @@ export class Pagination extends Localized(VividElement) {
 	 */
 	@attr shape?: PaginationShape;
 
-	@observable
-	paginationButtons?: Button[];
+	/** @internal */
+	@observable paginationButtons?: Button[];
 
-	@observable
-	prevButton?: Button;
+	/** @internal */
+	@observable prevButton?: Button;
 
-	@observable
-	nextButton?: Button;
+	/** @internal */
+	@observable nextButton?: Button;
 
 	@attr({ attribute: 'nav-icons', mode: 'boolean' }) navIcons = false;
 

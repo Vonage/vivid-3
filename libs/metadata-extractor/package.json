@@ -1,0 +1,41 @@
+{
+	"name": "@repo/metadata-extractor",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"default": "./src/index.ts"
+		},
+		"./metadata/type-str": {
+			"types": "./src/metadata/type-str.ts",
+			"default": "./src/metadata/type-str.ts"
+		}
+	},
+	"bin": {
+		"extract-metadata": "./src/cli.ts"
+	},
+	"scripts": {
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"test": "vitest run",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@repo/tools": "workspace:*",
+		"@vonage/vivid-icons": "workspace:*",
+		"change-case": "^5.4.4",
+		"pkg-entry-points": "^1.1.1",
+		"ts-morph": "^27.0.2"
+	},
+	"devDependencies": {
+		"@repo/eslint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"@types/node": "catalog:",
+		"tsx": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}

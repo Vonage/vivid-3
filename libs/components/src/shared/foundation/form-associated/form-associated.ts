@@ -148,6 +148,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 		}
 
 		/**
+		 * @internal
 		 * @deprecated Use `value` instead.
 		 */
 		get currentValue() {
@@ -610,6 +611,7 @@ export const CheckableFormAssociated = <T extends Constructor<VividElement>>(
 		}
 
 		/**
+		 * @internal
 		 * @deprecated Use `defaultChecked` instead.
 		 */
 		get checkedAttribute() {
@@ -620,6 +622,7 @@ export const CheckableFormAssociated = <T extends Constructor<VividElement>>(
 		}
 
 		/**
+		 * @internal
 		 * @deprecated Use `checked` instead.
 		 */
 		get currentChecked() {

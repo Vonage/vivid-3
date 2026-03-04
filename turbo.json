@@ -15,7 +15,7 @@
 				"!**/**.spec.ts",
 				"!**/*.test.ts"
 			],
-			"outputs": ["dist/**"]
+			"outputs": ["dist/**", "metadata.json"]
 		},
 		"@vonage/vivid-vue#build": {
 			"dependsOn": ["^build"],
@@ -44,6 +44,10 @@
 		},
 		"@vonage/vivid-test-utils#build": {
 			"dependsOn": ["^build"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"$TURBO_ROOT$/libs/components/metadata.json"
+			],
 			"outputs": ["src/**/*.generated.ts", "dist/**", "API.md"]
 		},
 		"dev": {
@@ -121,14 +125,6 @@
 		},
 		"@vonage/vivid-test-utils#typecheck": {
 			"dependsOn": ["build", "^build", "^typecheck"]
-		},
-		"@repo/wrapper-gen#buildMetadata": {
-			"dependsOn": ["^build"],
-			"inputs": [
-				"$TURBO_DEFAULT$",
-				"$TURBO_ROOT$/libs/components/dist/custom-elements.json"
-			],
-			"outputs": ["$TURBO_ROOT$/libs/components/metadata.json"]
 		}
 	}
 }

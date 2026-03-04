@@ -21,8 +21,8 @@ Each release can include updates to:
 
 - [@vonage/vivid](https://www.npmjs.com/package/@vonage/vivid) component library
 - [@vonage/vivid-vue](https://www.npmjs.com/package/@vonage/vivid-vue) Vue wrapper library
-- [Icons](https://vivid.deno.dev/icons/icons-gallery)
-- [Vivid documentation site](https://vivid.deno.dev/)
+- [Icons](https://vivid.vonage.com/icons/icons-gallery)
+- [Vivid documentation site](https://vivid.vonage.com/)
 
 ## Cadence
 

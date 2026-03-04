@@ -211,7 +211,7 @@ import { VButton, VDialog, VIcon } from '@vonage/vivid-vue';
 			</div>
 		</template>
 		<template #action-items>
-			<VButton appearance="filled" label="Read full article" href="https://vivid.deno.dev/whats-new/why-staying-up-to-date-with-vivid-packages-matters/" target="_blank" icon-trailing>
+			<VButton appearance="filled" label="Read full article" href="https://vivid.vonage.com/whats-new/why-staying-up-to-date-with-vivid-packages-matters/" target="_blank" icon-trailing>
 				<template #icon><VIcon name="arrow-bold-right-line"></VIcon></template>
 			</VButton>
 		</template>
@@ -254,7 +254,7 @@ import { VButton, VDialog, VIcon } from '@vonage/vivid-vue';
 			announced tree-shaking support, allowing unused components to be excluded from your production bundle for faster load times.
 		</p>
 	</div>
-	<vwc-button slot="action-items" appearance="filled" label="Read full article" href="https://vivid.deno.dev/whats-new/why-staying-up-to-date-with-vivid-packages-matters/" target="_blank" icon-trailing>
+	<vwc-button slot="action-items" appearance="filled" label="Read full article" href="https://vivid.vonage.com/whats-new/why-staying-up-to-date-with-vivid-packages-matters/" target="_blank" icon-trailing>
 		<vwc-icon name="arrow-bold-right-line" slot="icon"></vwc-icon>
 	</vwc-button>
 </vwc-dialog>

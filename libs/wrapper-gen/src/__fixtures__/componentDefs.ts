@@ -1,4 +1,4 @@
-import { ComponentDef } from '../common/ComponentDef';
+import type { ComponentDef } from '@repo/metadata-extractor';
 
 export const minimalComponent: ComponentDef = {
 	name: 'example-component',
@@ -65,6 +65,16 @@ export const exampleComponent: ComponentDef = {
 			type: 'boolean',
 			attributeName: 'boolean-prop',
 			propertyName: 'booleanProp',
+		},
+		{
+			name: 'importedType',
+			type: '@vonage/vivid#ButtonSize',
+			propertyName: 'importedType',
+		},
+		{
+			name: 'externalType',
+			type: '@something/else#ExternalType',
+			propertyName: 'externalType',
 		},
 	],
 	events: [

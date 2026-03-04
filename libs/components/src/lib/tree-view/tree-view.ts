@@ -44,7 +44,6 @@ export function getDisplayedNodes(
  */
 export class TreeView extends HostSemantics(VividElement) {
 	/**
-   /**
 	 * When true, the control will be appear expanded by user interaction.
 	 * @public
 	 * @remarks

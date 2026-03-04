@@ -124,6 +124,7 @@ export class Icon extends VividElement {
 	 * @internal
 	 */
 	@observable _svg?: string;
+	/** @internal */
 	@observable iconLoaded = false;
 	#currentRequestId = 0;
 

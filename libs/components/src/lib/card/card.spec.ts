@@ -218,7 +218,7 @@ describe('vwc-card', () => {
 
 	describe('clickable card: card as a link', () => {
 		beforeEach(async () => {
-			await setProperty(element, 'href', 'https://vivid.deno.dev');
+			await setProperty(element, 'href', 'https://vivid.vonage.com');
 		});
 
 		it('should render a card with href attribute as anchor element', async function () {

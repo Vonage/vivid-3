@@ -1,10 +1,13 @@
-import { kebabToCamel } from '../utils/casing';
+import { camelCase } from 'change-case';
 import { iconListFromManifest } from '../common/icons';
 import { IconsManifest } from '@vonage/vivid-icons';
 
 export const renderIcons = (iconsManifest: IconsManifest) => `export enum Icon {
 ${iconListFromManifest(iconsManifest)
-	.map((icon) => `   '${kebabToCamel(icon)}' = '${icon}',`)
+	.map(
+		(icon) =>
+			`   '${camelCase(icon, { mergeAmbiguousCharacters: true })}' = '${icon}',`
+	)
 	.join('\n')}
 };
 

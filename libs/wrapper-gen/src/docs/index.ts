@@ -1,11 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { ComponentDef } from '../common/ComponentDef';
 import { renderDocPage } from './renderDocsPage';
-import { Metadata } from '../common/metadata';
 import { wrappedComponentName } from '../vueWrappers/name';
 import { makeImportedTypesResolver } from '../common/importedTypes';
 import { TypeResolver } from '../common/types';
+import type { ComponentDef, Metadata } from '@repo/metadata-extractor';
 
 const DocsComponentsFolder = '../../apps/vue-docs/docs/components';
 

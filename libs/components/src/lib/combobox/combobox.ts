@@ -553,7 +553,7 @@ export class Combobox extends WithContextualHelp(
 		}
 	}
 
-	override _isDefaultSelected(option: ListboxOption): boolean {
+	protected override _isDefaultSelected(option: ListboxOption): boolean {
 		return (
 			super._isDefaultSelected(option) ||
 			(option.text !== '' && option.text === this.initialValue)
