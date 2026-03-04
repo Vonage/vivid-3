@@ -19,7 +19,7 @@ export type RteChildSlotProps = { view: RteView };
 /**
  * @public
  * @component rich-text-view
- * @dynamicSlot `RteChildSlotProps` child - Used for custom rendered children.
+ * @dynamicSlot `@vonage/vivid#RteChildSlotProps` child - Used for custom rendered children.
  */
 export class RichTextView extends VividElement {
 	/**

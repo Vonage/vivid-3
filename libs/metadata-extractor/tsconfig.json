@@ -1,0 +1,7 @@
+{
+	"extends": "@repo/typescript-config/tsc.json",
+	"compilerOptions": {
+		"lib": ["ESNext"]
+	},
+	"include": ["src", "tests", "*.ts"]
+}

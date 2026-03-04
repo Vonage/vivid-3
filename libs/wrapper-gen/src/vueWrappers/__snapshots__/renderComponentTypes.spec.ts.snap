@@ -2,7 +2,7 @@
 
 exports[`renderComponentTypes > should render a type definitions file 1`] = `
 "
-import type { VwcExampleComponentElement } from '@vonage/vivid';
+import type { VwcExampleComponentElement, ButtonSize } from '@vonage/vivid';
 import type { IconId } from '../icons';
 
 export interface VExampleComponentEvents {
@@ -62,7 +62,11 @@ export interface VExampleComponentProps {
 
         forcedDomProp?: string | HTMLElement,
 
-        booleanProp?: boolean
+        booleanProp?: boolean,
+
+        importedType?: ButtonSize,
+
+        externalType?: any
 	
 				/**
  * This is an example event

@@ -2,8 +2,8 @@ import {
 	isBooleanLiteral,
 	isNumberLiteral,
 	isStringLiteral,
-	TypeUnion,
 } from '../common/types';
+import { TypeUnion } from '@repo/metadata-extractor/metadata/type-str';
 
 /**
  * DOM attributes can only be strings, therefore complex data (e.g. HTMLElement) needs to be passed as props.

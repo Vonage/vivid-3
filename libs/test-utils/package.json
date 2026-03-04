@@ -41,11 +41,13 @@
 	},
 	"dependencies": {
 		"@testing-library/user-event": "^14.6.1",
-		"@vonage/vivid": "workspace:^"
+		"@vonage/vivid": "workspace:^",
+		"change-case": "^5.4.4"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
 		"@repo/eslint-config": "workspace:*",
+		"@repo/metadata-extractor": "workspace:*",
 		"@repo/shared": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",

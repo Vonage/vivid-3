@@ -1,9 +1,4 @@
-import { ComponentDef } from './ComponentDef';
-
-export type Metadata = {
-	componentDefs: ComponentDef[];
-	iconsManifestUrl: string;
-};
+import type { ComponentDef, Metadata } from './format';
 
 const sortBy = <T>(arr: T[], key: keyof T) =>
 	[...arr].sort((a, b) => (a[key] < b[key] ? -1 : 1));
@@ -17,6 +12,12 @@ const stableComponentDefs = (componentDefs: ComponentDef[]) =>
 			vueModels: sortBy(componentDef.vueModels, 'name'),
 			methods: sortBy(componentDef.methods, 'name'),
 			slots: sortBy(componentDef.slots, 'name'),
+			testUtils: {
+				selectors: sortBy(componentDef.testUtils.selectors, 'name'),
+				actions: sortBy(componentDef.testUtils.actions, 'name'),
+				queries: sortBy(componentDef.testUtils.queries, 'name'),
+				refs: sortBy(componentDef.testUtils.refs, 'name'),
+			},
 		})),
 		'name'
 	);

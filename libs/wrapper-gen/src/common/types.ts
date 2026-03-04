@@ -1,34 +1,9 @@
-export type TypeStr = string; // e.g. "string | 'cta' | Date | HTMLElement"
-export type TypeRef = string; // e.g. 'string', "'cta'", 'Date', 'HTMLElement'
-export type TypeUnion = TypeRef[];
-
-/// Splits a type union string along the '|' character, while respecting nested '<' and '>' brackets
-export const parseTypeStr = (typeStr: TypeStr): TypeUnion => {
-	const unionMembers: TypeUnion = [];
-
-	let bracketDepth = 0;
-	let currentMember = '';
-	for (const char of typeStr) {
-		if (char === '<') {
-			bracketDepth++;
-		} else if (char === '>') {
-			bracketDepth--;
-		}
-
-		if (char === '|' && bracketDepth === 0) {
-			unionMembers.push(currentMember.trim());
-			currentMember = '';
-		} else {
-			currentMember += char;
-		}
-	}
-
-	unionMembers.push(currentMember.trim());
-
-	return unionMembers.filter((m) => m.length > 0);
-};
-
-export const toTypeStr = (type: TypeUnion): TypeStr => type.join(' | ');
+import {
+	parseTypeStr,
+	toTypeStr,
+	TypeRef,
+	TypeStr,
+} from '@repo/metadata-extractor/metadata/type-str';
 
 export const isStringLiteral = (typeRef: TypeRef) =>
 	Boolean(typeRef.match(/^['"].*['"]$/));

@@ -409,6 +409,7 @@ export class Tabs extends VividElement {
 		);
 	}
 
+	/** @internal */
 	@observable tablist?: HTMLElement;
 
 	/**

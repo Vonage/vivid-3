@@ -1,4 +1,4 @@
-import { ComponentDef } from '../common/ComponentDef';
+import type { ComponentDef } from '@repo/metadata-extractor';
 
 export const resolveVueModels = (componentDef: ComponentDef) => {
 	// Filter out props that are overshadowed by v-model name

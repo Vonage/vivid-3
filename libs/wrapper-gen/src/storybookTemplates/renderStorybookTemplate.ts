@@ -1,13 +1,15 @@
-import { ComponentDef } from '../common/ComponentDef';
-import { kebabToPascal } from '../utils/casing';
+import { pascalCase } from 'change-case';
 import {
 	isNumberLiteral,
 	isStringLiteral,
-	parseTypeStr,
 	TypeResolver,
-	TypeUnion,
 } from '../common/types';
 import { wrappedComponentName } from '../vueWrappers/name';
+import type { ComponentDef } from '@repo/metadata-extractor';
+import {
+	parseTypeStr,
+	TypeUnion,
+} from '@repo/metadata-extractor/metadata/type-str';
 
 const isBasicString = (type: TypeUnion) =>
 	type.length === 1 && type[0] === 'string';
@@ -45,7 +47,7 @@ export const renderStorybookTemplate = (
 		return vueModel ? vueModel.name : prop;
 	};
 	const eventHandlerName = (event: string) =>
-		`on${kebabToPascal(event.replaceAll(':', '-'))}`;
+		`on${pascalCase(event.replaceAll(':', '-'))}`;
 
 	const argTypesSrc = def.props
 		.map(

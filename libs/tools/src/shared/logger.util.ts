@@ -1,4 +1,20 @@
+/* eslint-disable no-console */
+
 import chalk from 'chalk';
+
+const LogLevel = {
+	debug: 1,
+	info: 2,
+	warn: 3,
+	error: 4,
+};
+type LogLevelKey = keyof typeof LogLevel;
+
+const envLogLevel = process.env.LOG_LEVEL ?? '';
+
+const logLevel = LogLevel.hasOwnProperty(envLogLevel)
+	? LogLevel[envLogLevel as LogLevelKey]
+	: LogLevel.info;
 
 export interface Logger {
 	log(...message: any[]): void;
@@ -11,27 +27,26 @@ export interface Logger {
 
 export const logger: Logger = {
 	log(...message) {
-		// eslint-disable-next-line no-console
-		console.log('log', ...message);
-	},
-	success(...messages: any[]) {
-		// eslint-disable-next-line no-console
-		console.log(chalk.white.bgGreen('[SUCCESS]'), ...messages);
-	},
-	error(...messages: any[]) {
-		// eslint-disable-next-line no-console
-		console.log(chalk.white.bgRed('[ERROR]'), ...messages);
-	},
-	info(...messages: any[]) {
-		// eslint-disable-next-line no-console
-		console.log(chalk.white.bgBlue('[INFO]'), ...messages);
-	},
-	warning(...messages: any[]) {
-		// eslint-disable-next-line no-console
-		console.log(chalk.white.bgYellow('[WARNING]'), ...messages);
+		console.error('log', ...message);
 	},
 	debug(...messages: any[]) {
-		// eslint-disable-next-line no-console
-		console.log(chalk.black.bgGray('[DEBUG]'), ...messages);
+		if (logLevel > LogLevel.debug) return;
+		console.error(chalk.black.bgGray('[DEBUG]'), ...messages);
+	},
+	info(...messages: any[]) {
+		if (logLevel > LogLevel.info) return;
+		console.error(chalk.white.bgBlue('[INFO]'), ...messages);
+	},
+	success(...messages: any[]) {
+		if (logLevel > LogLevel.info) return;
+		console.error(chalk.white.bgGreen('[SUCCESS]'), ...messages);
+	},
+	warning(...messages: any[]) {
+		if (logLevel > LogLevel.warn) return;
+		console.error(chalk.white.bgYellow('[WARNING]'), ...messages);
+	},
+	error(...messages: any[]) {
+		if (logLevel > LogLevel.error) return;
+		console.error(chalk.white.bgRed('[ERROR]'), ...messages);
 	},
 };

@@ -7,10 +7,10 @@ import { isVue2 } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
-import { IconId } from '../icons';
 import { isRemoveRequest } from '../../utils/slottableRequest';
 import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
-import type { VwcExampleComponentElement } from '@vonage/vivid';
+import type { VwcExampleComponentElement, ButtonSize } from '@vonage/vivid';
+import type { IconId } from '../icons';
 import type { SlottableRequestEvent } from '../../utils/slottableRequest';
 
 
@@ -45,7 +45,11 @@ export default defineComponent({
 
         forcedDomProp: {type: [String, HTMLElement] as PropType<string | HTMLElement>, default: undefined},
 
-        booleanProp: {type: Boolean as PropType<boolean>, default: undefined}
+        booleanProp: {type: Boolean as PropType<boolean>, default: undefined},
+
+        importedType: {type: null as unknown as PropType<ButtonSize>, default: undefined},
+
+        externalType: {type: null as unknown as PropType<any>, default: undefined}
 			},
   emits: [
 			
@@ -106,7 +110,7 @@ export default defineComponent({
             ref: 'element',
             attrs: { ...((this.sameEvent ?? this.exampleProp) !== undefined ? {'example-prop': this.sameEvent ?? this.exampleProp } : {}),...((this.typeUnion) !== undefined ? {'type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'icon-type': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'current-value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'start': this.start } : {}),...((this.booleanProp) !== undefined ? {'boolean-prop': this.booleanProp } : {}) },
             class: 'vvd-component',
-            domProps: { ...((this.forcedDomProp) !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}) },
+            domProps: { ...((this.forcedDomProp) !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}),...((this.importedType) !== undefined ? {'importedType': this.importedType } : {}),...((this.externalType) !== undefined ? {'externalType': this.externalType } : {}) },
             on: { 'example-event': (event: Event & {
 			currentTarget: VwcExampleComponentElement
 		}) => {
@@ -146,7 +150,7 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
       return h(this.componentName, {
           ref: 'element',
           class: 'vvd-component',
-          ...handleVue3Props({...((this.sameEvent ?? this.exampleProp) !== undefined ? {'^example-prop': this.sameEvent ?? this.exampleProp } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'^icon-type': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^current-value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanProp) !== undefined && (this.booleanProp) !== false ? {'^boolean-prop': this.booleanProp } : {})}),'onExampleEvent': (event: Event & {
+          ...handleVue3Props({...((this.sameEvent ?? this.exampleProp) !== undefined ? {'^example-prop': this.sameEvent ?? this.exampleProp } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'^icon-type': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^current-value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanProp) !== undefined && (this.booleanProp) !== false ? {'^boolean-prop': this.booleanProp } : {}),...((this.importedType) !== undefined ? {'.importedType': this.importedType } : {}),...((this.externalType) !== undefined ? {'.externalType': this.externalType } : {})}),'onExampleEvent': (event: Event & {
 			currentTarget: VwcExampleComponentElement
 		}) => {
 					 
@@ -194,10 +198,10 @@ import { isVue2 } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
-import { IconId } from '../icons';
 import { isRemoveRequest } from '../../utils/slottableRequest';
 import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
-import type { VwcExampleComponentElement } from '@vonage/vivid';
+import type { VwcExampleComponentElement, ButtonSize } from '@vonage/vivid';
+import type { IconId } from '../icons';
 import type { SlotsType } from 'vue3';
 import type { SlottableRequestEvent } from '../../utils/slottableRequest';
 
@@ -233,7 +237,11 @@ export default defineComponent({
 
         forcedDomProp: {type: [String, HTMLElement] as PropType<string | HTMLElement>, default: undefined},
 
-        booleanProp: {type: Boolean as PropType<boolean>, default: undefined}
+        booleanProp: {type: Boolean as PropType<boolean>, default: undefined},
+
+        importedType: {type: null as unknown as PropType<ButtonSize>, default: undefined},
+
+        externalType: {type: null as unknown as PropType<any>, default: undefined}
 			},
   emits: {
 			

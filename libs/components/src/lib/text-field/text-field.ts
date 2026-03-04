@@ -395,14 +395,9 @@ export class TextField extends WithContextualHelp(
 	 */
 	@attr({ attribute: 'inputmode' }) override inputMode!: string;
 
-	/**
-	 *
-	 * Slot observer:
-	 *
-	 * @internal
-	 */
-
+	/** @internal */
 	@observable actionItemsSlottedContent?: HTMLElement[];
+	/** @internal */
 	@observable leadingActionItemsSlottedContent?: HTMLElement[];
 
 	override connectedCallback() {

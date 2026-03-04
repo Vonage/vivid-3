@@ -54,6 +54,9 @@
 			"ignoreMissing": [
 				"vue"
 			]
+		},
+		"overrides": {
+			"ts-morph>minimatch": "^10.2.3"
 		}
 	}
 }

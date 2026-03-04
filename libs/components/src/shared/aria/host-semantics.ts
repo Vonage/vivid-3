@@ -53,6 +53,7 @@ export function applyHostSemantics<T>(
  */
 export const HostSemantics = <T extends Constructor<VividElement>>(Base: T) => {
 	class HostSemanticsElement extends Base {
+		/** @internal */
 		override _vividAriaBehaviour = 'host' as const;
 	}
 
