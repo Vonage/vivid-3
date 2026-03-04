@@ -1,4 +1,7 @@
-import { TypeUnion } from '../common/types';
+import {
+	parseTypeImports,
+	TypeUnion,
+} from '@repo/metadata-extractor/metadata/type-str';
 
 export type Import = {
 	name: string;
@@ -6,17 +9,17 @@ export type Import = {
 };
 
 export const renderImports = (imports: Import[], typeImport = false) => {
-	const importsFromModule = new Map<string, string[]>();
+	const importsFromModule = new Map<string, Set<string>>();
 	for (const { name, fromModule } of imports) {
 		if (!importsFromModule.has(fromModule)) {
-			importsFromModule.set(fromModule, []);
+			importsFromModule.set(fromModule, new Set());
 		}
-		importsFromModule.get(fromModule)!.push(name);
+		importsFromModule.get(fromModule)!.add(name);
 	}
 	return Array.from(importsFromModule.entries())
 		.map(
 			([fromModule, names]) =>
-				`import ${typeImport ? 'type ' : ''}{ ${names.join(
+				`import ${typeImport ? 'type ' : ''}{ ${[...names].join(
 					', '
 				)} } from '${fromModule}';`
 		)
@@ -25,10 +28,6 @@ export const renderImports = (imports: Import[], typeImport = false) => {
 
 const typeImports = new Map([
 	['IconId', [{ name: 'IconId', fromModule: '../icons' }]],
-	[
-		'RteChildSlotProps',
-		[{ name: 'RteChildSlotProps', fromModule: '@vonage/vivid' }],
-	],
 ]);
 export const importsForTypes = (typeRefs: TypeUnion): Import[] =>
-	typeRefs.flatMap((t) => typeImports.get(t) ?? []);
+	typeRefs.flatMap((t) => typeImports.get(t) ?? parseTypeImports(t).imports);

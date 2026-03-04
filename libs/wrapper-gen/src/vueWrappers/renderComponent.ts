@@ -1,7 +1,4 @@
-import { ComponentDef } from '../common/ComponentDef';
-import { kebabToCamel, kebabToPascal } from '../utils/casing';
-import { parseTypeStr, TypeResolver, TypeStr } from '../common/types';
-import { getExportedClassName } from '../metadata/vividPackage';
+import { TypeResolver } from '../common/types';
 import { vuePropTypes } from './vuePropTypes';
 import { wrappedComponentName } from './name';
 import { determinePropForwarding } from './propForwarding';
@@ -9,6 +6,15 @@ import { Import, importsForTypes, renderImports } from './imports';
 import { getEventType } from './types';
 import { renderJsDoc } from './jsDoc';
 import { resolveVueModels } from './vueModels';
+import { getExportedClassName } from '../common/component';
+import type { ComponentDef } from '@repo/metadata-extractor';
+import {
+	parseTypeImports,
+	parseTypeStr,
+	TypeStr,
+} from '@repo/metadata-extractor/metadata/type-str';
+import { camelCase } from 'change-case';
+import { vue3EventHandlerName } from './events';
 
 export const renderComponent = (
 	componentDef: ComponentDef,
@@ -52,7 +58,7 @@ export const renderComponent = (
 			slot.dynamicProps ? [slot.dynamicProps] : []
 		),
 	].flatMap(parseTypeStr);
-	imports.push(...importsForTypes(referencesTypes));
+	typeImports.push(...importsForTypes(referencesTypes));
 
 	if (isVue3Stub) {
 		typeImports.push({ name: 'SlotsType', fromModule: vueModule });
@@ -187,7 +193,7 @@ export const renderComponent = (
 			const eventVueModels = vueModels.filter((model) =>
 				model.eventNames.includes(name)
 			);
-			return `'on${kebabToPascal(name)}': (event: ${getEventType(
+			return `'${vue3EventHandlerName(name)}': (event: ${getEventType(
 				type,
 				getExportedClassName(componentDef.name),
 				false
@@ -212,7 +218,9 @@ export const renderComponent = (
 			.map(
 				(slot) => `
 		${renderJsDoc(slot.description)}
-		"${slot.name}": ${slot.dynamicProps ?? 'Record<string, never>'}`
+		"${slot.name}": ${
+					parseTypeImports(slot.dynamicProps ?? 'Record<string, never>').typeStr
+				}`
 			)
 			.join('\n')}
 	}`
@@ -251,11 +259,11 @@ export const renderComponent = (
 					];
 				})
 				.map(({ name, description, type }) => {
-					const propName = kebabToCamel(name);
+					const propName = camelCase(name);
 					return `${renderJsDoc(description)}
-        ${propName}: {type: ${renderPropType(
-						type
-					)} as PropType<${type}>, default: undefined}`;
+        ${propName}: {type: ${renderPropType(type)} as PropType<${
+						parseTypeImports(type).typeStr
+					}>, default: undefined}`;
 				})
 				.join(',\n')}
 			},`
@@ -387,7 +395,7 @@ export const renderComponent = (
 				`
         ${renderJsDoc(method.description)}
         ${method.name}(${method.args
-					.map((a) => `${a.name}: ${a.type}`)
+					.map((a) => `${a.name}: ${parseTypeImports(a.type).typeStr}`)
 					.join(', ')}): ${method.returnType}{ return (this.element as any)?.${
 					method.name
 				}(${method.args.map((a) => a.name).join(', ')}); }`

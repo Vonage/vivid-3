@@ -71,6 +71,7 @@ export const Linkable = <T extends Constructor<VividElement>>(Base: T) => {
 		 */
 		@attr target?: '_self' | '_blank' | '_parent' | '_top';
 
+		// BUG: for buttons, this attempts to override the base buttons narrower type
 		/**
 		 * See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element } for more information.
 		 * @public

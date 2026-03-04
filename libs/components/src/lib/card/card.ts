@@ -84,14 +84,10 @@ export class Card extends Linkable(VividElement) {
 	})
 	clickableCard = false;
 
-	/**
-	 *
-	 * Slot observer:
-	 *
-	 * @internal
-	 */
-
+	/** @internal */
 	@observable footerSlottedContent?: HTMLElement[];
+	/** @internal */
 	@observable graphicSlottedContent?: HTMLElement[];
+	/** @internal */
 	@observable hasMetaSlottedContent?: HTMLElement[];
 }

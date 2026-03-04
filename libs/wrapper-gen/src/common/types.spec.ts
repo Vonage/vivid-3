@@ -3,9 +3,11 @@ import {
 	isNumberLiteral,
 	isStringLiteral,
 	makeTypeResolver,
+} from './types';
+import {
 	parseTypeStr,
 	toTypeStr,
-} from './types';
+} from '@repo/metadata-extractor/metadata/type-str';
 
 describe('isStringLiteral', () => {
 	it('should return true if the type string is a string literal', () => {

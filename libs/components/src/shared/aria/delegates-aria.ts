@@ -70,6 +70,7 @@ export function delegateAria<T>(
  */
 export const DelegatesAria = <T extends Constructor<VividElement>>(Base: T) => {
 	class DelegatesAriaElement extends Base {
+		/** @internal */
 		override _vividAriaBehaviour = 'delegate' as const;
 	}
 

@@ -122,6 +122,7 @@ export const AriaMixin = <T extends Constructor<FASTElement & HTMLElement>>(
 	Base: T
 ) => {
 	class AriaMixinElement extends Base {
+		/** @internal */
 		_vividAriaBehaviour: VividAriaBehaviour = 'default';
 
 		constructor(...args: any[]) {

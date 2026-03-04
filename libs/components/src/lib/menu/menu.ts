@@ -442,13 +442,9 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		return true;
 	}
 
-	/**
-	 *
-	 * Slot observer:
-	 *
-	 * @internal
-	 */
+	/** @internal */
 	@observable headerSlottedContent?: HTMLElement[];
+	/** @internal */
 	@observable actionItemsSlottedContent?: HTMLElement[];
 
 	/**

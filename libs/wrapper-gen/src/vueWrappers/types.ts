@@ -1,4 +1,7 @@
-import { parseTypeStr, TypeStr } from '../common/types';
+import {
+	parseTypeStr,
+	TypeStr,
+} from '@repo/metadata-extractor/metadata/type-str';
 
 export const getEventType = (
 	type: TypeStr,

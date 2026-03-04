@@ -47,7 +47,7 @@ export type RteInstanceOptions = {
 };
 
 export class RteInstance {
-	/// @internal
+	/** @internal */
 	[impl]: RteInstanceImpl;
 
 	constructor(config: RteConfig, readonly options?: RteInstanceOptions) {

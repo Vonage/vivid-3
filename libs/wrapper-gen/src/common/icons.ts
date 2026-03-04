@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-import { toTypeStr, TypeStr } from './types';
 import { IconsManifest } from '@repo/consts';
+import { toTypeStr, TypeStr } from '@repo/metadata-extractor/metadata/type-str';
 
 export const fetchIconsManifest = async (url: string): Promise<IconsManifest> =>
 	(await fetch(url)).json();

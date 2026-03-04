@@ -4,14 +4,13 @@ import { renderComponent } from './renderComponent';
 import { renderIcons } from './renderIcons';
 import renderIndex from './renderIndex';
 import { formatFiles } from '../utils/formatFiles';
-import { ComponentDef } from '../common/ComponentDef';
-import { Metadata } from '../common/metadata';
 import { wrappedComponentName } from './name';
 import { fetchIconsManifest } from '../common/icons';
 import { makeImportedTypesResolver } from '../common/importedTypes';
 import { TypeResolver } from '../common/types';
 import { renderComponentTypes } from './renderComponentTypes';
 import renderTypes from './renderTypes';
+import type { ComponentDef, Metadata } from '@repo/metadata-extractor';
 
 const LibraryGeneratedFolder = '../vue-wrappers/src/generated';
 

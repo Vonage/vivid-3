@@ -1,6 +1,6 @@
 import { fetchIconsManifest, iconTypeFromManifest } from './icons';
-import { Metadata } from './metadata';
 import { makeTypeResolver } from './types';
+import type { Metadata } from '@repo/metadata-extractor';
 
 export const makeImportedTypesResolver = async (metadata: Metadata) =>
 	makeTypeResolver({

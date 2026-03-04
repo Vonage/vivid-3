@@ -75,12 +75,6 @@ export class Banner extends AffixIcon(Localized(DelegatesAria(VividElement))) {
 		this.remove();
 	};
 
-	/**
-	 *
-	 * Slot observer:
-	 *
-	 * @internal
-	 */
-
+	/** @internal */
 	@observable actionItemsSlottedContent?: HTMLElement[];
 }
