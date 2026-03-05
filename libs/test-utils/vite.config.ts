@@ -15,6 +15,7 @@ export default defineConfig({
 			],
 			name: 'vivid-test-utils',
 			formats: ['es', 'cjs'],
+			cssFileName: 'style',
 		},
 		rollupOptions: {
 			external: ['@testing-library/user-event', '@vonage/vivid'],

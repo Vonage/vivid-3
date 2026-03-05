@@ -1,6 +1,6 @@
 import shadowShorthand from './shadow-shorthand';
 
-const { transformer, matcher } = shadowShorthand;
+const { transform: transformer, filter: matcher } = shadowShorthand;
 
 const defaultToken = {
 	value: undefined,
@@ -50,12 +50,12 @@ const expectedParsedEffects =
 
 describe('basic', () => {
 	it('should transform array of drop shadows to single token value', () => {
-		expect(transformer(token, {})).toEqual(expectedParsedEffects);
+		expect(transformer(token, {}, {})).toEqual(expectedParsedEffects);
 	});
 
 	it('should ignore already parsed value', () => {
 		expect(
-			transformer({ ...defaultToken, value: expectedParsedEffects }, {})
+			transformer({ ...defaultToken, value: expectedParsedEffects }, {}, {})
 		).toEqual(expectedParsedEffects);
 	});
 

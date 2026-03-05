@@ -1,6 +1,6 @@
 import fontSize from './font-size';
 
-const { transformer, matcher } = fontSize;
+const { transform: transformer, filter: matcher } = fontSize;
 
 const defaultToken = {
 	value: undefined,
@@ -32,14 +32,11 @@ describe('basic', () => {
 
 	it('should transform to css calc', () => {
 		expect(
-			transformer(
-				{
-					...defaultToken,
-					value: '16 * 4.125',
-					type: 'fontSizes',
-				},
-				{}
-			)
+			transformer({
+				...defaultToken,
+				value: '16 * 4.125',
+				type: 'fontSizes',
+			})
 		).toEqual('calc(16 * 4.125)');
 	});
 });

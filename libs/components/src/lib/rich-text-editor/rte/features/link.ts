@@ -271,7 +271,7 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 				// eslint-disable-next-line no-new
 				new URL(url);
 				return true;
-			} catch (e) {
+			} catch {
 				return false;
 			}
 		};
