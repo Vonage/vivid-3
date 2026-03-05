@@ -3,9 +3,11 @@ import { convertAnnotatedSourceToFailureCase } from '../utils/testing';
 import { noDeprecatedAPIs } from './no-deprecated-apis';
 
 const ruleTester = new RuleTester({
-	parser: require.resolve('vue-eslint-parser'),
-	parserOptions: {
-		sourceType: 'module',
+	languageOptions: {
+		parser: require('vue-eslint-parser'),
+		parserOptions: {
+			sourceType: 'module',
+		},
 	},
 });
 
