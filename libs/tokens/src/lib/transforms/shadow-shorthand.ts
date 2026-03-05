@@ -1,3 +1,4 @@
+import type { Transform } from 'style-dictionary/types';
 import StyleDictionary from 'style-dictionary';
 import { transforms } from 'style-dictionary/enums';
 
@@ -29,7 +30,7 @@ const parseShadowEffects = (value, options: { usesDtcg?: boolean }) =>
 		.join(' ');
 
 export default {
-	type: 'value' as const,
+	type: 'value',
 	name: 'shadow/shorthand',
 	transitive: true,
 	filter: (token) => {
@@ -41,4 +42,4 @@ export default {
 		Array.isArray(token.value ?? token.$value)
 			? parseShadowEffects(token.value ?? token.$value, options ?? {})
 			: token.value ?? token.$value,
-};
+} as Transform;

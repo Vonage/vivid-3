@@ -1,7 +1,8 @@
+import type { Transform } from 'style-dictionary/types';
 import { isPublic } from '../filters';
 
 export default {
-	type: 'value' as const,
+	type: 'value',
 	name: 'public/cssReferences',
 	transitive: true,
 	filter: isPublic,
@@ -9,4 +10,4 @@ export default {
 		const value = token.value ?? token.$value;
 		return `var(--${token.name}, ${value})`;
 	},
-};
+} as Transform;

@@ -1,8 +1,13 @@
+import type {
+	Config,
+	TransformedToken,
+	PlatformConfig,
+} from 'style-dictionary/types';
 import fontSize from './font-size';
 
-const { transform: transformer, filter: matcher } = fontSize;
+const { transform, filter } = fontSize;
 
-const defaultToken = {
+const defaultToken: Partial<TransformedToken> = {
 	value: undefined,
 	name: '',
 	path: [],
@@ -10,6 +15,15 @@ const defaultToken = {
 	filePath: '',
 	isSource: false,
 };
+
+const config = {} as Config;
+const platformConfig = {} as PlatformConfig;
+
+const matcher = (token: Partial<TransformedToken>) =>
+	filter(token as TransformedToken, config);
+
+const transformer = (token: Partial<TransformedToken>) =>
+	transform(token as TransformedToken, platformConfig, config);
 
 describe('basic', () => {
 	it('should match if token is of type fontSizes', () => {
