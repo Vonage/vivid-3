@@ -29,11 +29,14 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 		if (newValue && this.isConnected) {
 			requestAnimationFrame(() => {
 				this._refreshCanvasColor();
-				const selectedIndex = this.swatches.findIndex(
-					(swatch) => swatch.value === this.value
-				);
-				const targetIndex = selectedIndex >= 0 ? selectedIndex : 0;
-				this._focusSwatchByIndex(targetIndex);
+				if (this.#openedByKeyboard) {
+					const selectedIndex = this.swatches.findIndex(
+						(swatch) => swatch.value === this.value
+					);
+					const targetIndex = selectedIndex >= 0 ? selectedIndex : 0;
+					this._focusSwatchByIndex(targetIndex);
+				}
+				this.#openedByKeyboard = false;
 			});
 		}
 	}
@@ -135,9 +138,17 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	/**
 	 * @internal
 	 */
+	#openedByKeyboard = false;
+
+	/**
+	 * @internal
+	 */
 	#openPopup = () => {
 		// Updates.enqueue() prevents click event from being caught by document listener
-		if (!this.open) Updates.enqueue(() => (this.open = true));
+		if (!this.open) {
+			this.#openedByKeyboard = false;
+			Updates.enqueue(() => (this.open = true));
+		}
 	};
 
 	/**
@@ -147,6 +158,7 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 		/* v8 ignore next -- @preserve */
 		if (event.key === 'Enter' || event.key === ' ') {
 			if (!this.open) {
+				this.#openedByKeyboard = true;
 				Updates.enqueue(() => (this.open = true));
 			}
 			event.preventDefault();
