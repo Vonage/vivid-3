@@ -1,4 +1,3 @@
-import type { Named, Transform } from 'style-dictionary';
 import { Parser } from 'expr-eval';
 import { isFontSize, isSizing } from '../filters';
 
@@ -11,7 +10,7 @@ function checkAndEvaluateMath(value) {
 	try {
 		parser.evaluate(value);
 		return +parser.evaluate(value).toFixed(3);
-	} catch (ex) {
+	} catch {
 		return value;
 	}
 }
@@ -21,8 +20,8 @@ function checkAndEvaluateMath(value) {
  */
 export default {
 	name: 'resolveMath',
-	type: 'value',
+	type: 'value' as const,
 	transitive: true,
-	matcher: (token) => isSizing(token) || isFontSize(token),
-	transformer: (token) => `${checkAndEvaluateMath(token.value)}`,
-} as Named<Transform>;
+	filter: (token) => isSizing(token) || isFontSize(token),
+	transform: (token) => `${checkAndEvaluateMath(token.value ?? token.$value)}`,
+};

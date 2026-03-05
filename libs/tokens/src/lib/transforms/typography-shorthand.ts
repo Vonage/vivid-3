@@ -1,4 +1,3 @@
-import type { Named, Transform } from 'style-dictionary';
 import { isTypography } from '../filters';
 
 /**
@@ -18,8 +17,8 @@ const transformTypography = ({
  */
 export default {
 	name: 'typography/shorthand',
-	type: 'value',
+	type: 'value' as const,
 	transitive: true,
-	matcher: isTypography,
-	transformer: (token) => transformTypography(token.value),
-} as Named<Transform>;
+	filter: isTypography,
+	transform: (token) => transformTypography(token.value ?? token.$value),
+};

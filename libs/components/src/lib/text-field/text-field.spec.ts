@@ -677,14 +677,12 @@ describe('vwc-text-field', () => {
 
 	describe('safari workaround', () => {
 		it('should install the safari workaround stylesheet only once', () => {
-			// eslint-disable-next-line compat/compat
 			expect(document.adoptedStyleSheets.length).toBe(1);
 
 			const parent = element.parentElement!;
 			element.remove();
 			parent.appendChild(element);
 
-			// eslint-disable-next-line compat/compat
 			expect(document.adoptedStyleSheets.length).toBe(1);
 		});
 	});

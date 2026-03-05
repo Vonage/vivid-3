@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { attr, Observable, type ValueConverter } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { Localized } from '../../shared/patterns';

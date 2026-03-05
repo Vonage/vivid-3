@@ -16,7 +16,7 @@ export default {
 	],
 	platforms: {
 		scss: {
-			transforms: ['name/cti/kebab'],
+			transforms: ['name/kebab'],
 			prefix,
 			buildPath,
 			files: [

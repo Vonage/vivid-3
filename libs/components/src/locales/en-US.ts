@@ -1,7 +1,6 @@
 import * as videoPlayerLocale from 'video.js/dist/lang/en.json';
 import type { Locale } from '../shared/localization/Locale';
 
-/* eslint-disable max-len */
 const enUS: Locale = {
 	lang: 'en-US',
 	common: {

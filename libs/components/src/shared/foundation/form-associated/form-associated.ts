@@ -358,8 +358,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 			 * to avoid runtime TypeError in ElementInternals.setValidity on disabled elements
 			 */
 			if ('valid' in flags && this.disabled) {
-				// eslint-disable-next-line @typescript-eslint/no-unused-vars
-				const { valid, ...cleanFlags } = flags as ValidityState &
+				const { valid: _valid, ...cleanFlags } = flags as ValidityState &
 					ValidityStateFlags;
 				flags = cleanFlags;
 			}

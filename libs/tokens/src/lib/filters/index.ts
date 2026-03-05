@@ -1,7 +1,8 @@
-export const isTypography = (token) => ['typography'].includes(token.type);
-export const isFontSize = (token) => ['fontSizes'].includes(token.type);
-export const isSizing = (token) => ['sizing'].includes(token.type);
-export const isMath = (token) => ['math'].includes(token.type);
+const typeOf = (token) => token?.type ?? token?.$type;
+export const isTypography = (token) => ['typography'].includes(typeOf(token));
+export const isFontSize = (token) => ['fontSizes'].includes(typeOf(token));
+export const isSizing = (token) => ['sizing'].includes(typeOf(token));
+export const isMath = (token) => ['math'].includes(typeOf(token));
 
-export const isSource = (token) => token.isSource;
-export const isPublic = (token) => token.public;
+export const isSource = (token) => token?.isSource === true;
+export const isPublic = (token) => token?.public === true;

@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 export enum Connotation {
 	Accent = 'accent',
 	CTA = 'cta',
@@ -13,7 +12,6 @@ export enum ConnotationDecorative {
 	Pacific = 'pacific',
 }
 
-/* eslint-disable no-shadow */
 export enum Shape {
 	Rounded = 'rounded',
 	Pill = 'pill',
@@ -21,7 +19,6 @@ export enum Shape {
 	Sharp = 'sharp',
 }
 
-/* eslint-disable no-shadow */
 export enum Appearance {
 	Filled = 'filled',
 	Outlined = 'outlined',
@@ -36,7 +33,6 @@ export enum Appearance {
 	Elevated = 'elevated',
 }
 
-/* eslint-disable no-shadow */
 export enum IconDecoration {
 	Filled = 'filled',
 	Outlined = 'outlined',

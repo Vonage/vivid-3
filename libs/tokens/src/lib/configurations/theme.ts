@@ -15,7 +15,7 @@ export default (theme: string) => ({
 	],
 	platforms: {
 		css: {
-			transforms: ['attribute/cti', 'name/cti/kebab', 'shadow/shorthand'],
+			transforms: ['attribute/cti', 'name/kebab', 'shadow/shorthand'],
 			prefix,
 			buildPath,
 			files: [

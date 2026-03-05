@@ -245,7 +245,6 @@ export class VividFoundationButton extends DelegatesAria(
 		if (this.$fastController.definition.shadowOptions) {
 			if (
 				window.ShadowRoot &&
-				/* eslint-disable-next-line */
 				!window.ShadowRoot.prototype.hasOwnProperty('delegatesFocus') &&
 				this.$fastController.definition.shadowOptions.delegatesFocus
 			) {
