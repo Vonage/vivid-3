@@ -27,7 +27,7 @@ type Props<T> = {
 type EventBinding = [
 	string,
 	unknown,
-	(value: unknown) => (event: Event) => void
+	(value: unknown) => (event: Event) => void,
 ];
 const on = <E extends keyof HTMLElementEventMap, T>(
 	event: E,
@@ -227,8 +227,8 @@ export const createButton = (
 		enabled: () =>
 			Boolean(
 				ctx.evalProp(props.icon) &&
-					!ctx.evalProp(props.noTooltip) &&
-					!disabled()
+				!ctx.evalProp(props.noTooltip) &&
+				!disabled()
 			),
 		label: props.label,
 		anchor: button,

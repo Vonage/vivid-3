@@ -91,7 +91,7 @@ const buttonContent = (context: VividElementDefinitionContext) => {
 				>${(x) =>
 					x.pending
 						? x.locale.button.pendingLabel
-						: x.ariaLabel ?? x.label}</span
+						: (x.ariaLabel ?? x.label)}</span
 			>
 		</span>
 		${when((x) => x.dropdownIndicator, chevronTemplate)}`;

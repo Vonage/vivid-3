@@ -163,7 +163,7 @@ describe('RteFileHandlerFeature', () => {
 			[p(text('Hello World'))]
 		);
 		Object.defineProperty(rte.view, 'dragging', {
-			get: () => ({ slice: {} } as any),
+			get: () => ({ slice: {} }) as any,
 			set: () => undefined,
 		});
 		await mockProseMirrorDropPointReturn(7);

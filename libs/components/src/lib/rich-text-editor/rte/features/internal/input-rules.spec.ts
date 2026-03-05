@@ -60,9 +60,8 @@ describe('RteInputRulesFeature', () => {
 		});
 
 		it('should apply input rule on Enter', async () => {
-			const { typeTextAtCursor, keydown, docStr, element } = await setup(
-				tagFeatures
-			);
+			const { typeTextAtCursor, keydown, docStr, element } =
+				await setup(tagFeatures);
 
 			await typeTextAtCursor('#hello');
 			keydown('Enter');
@@ -74,9 +73,8 @@ describe('RteInputRulesFeature', () => {
 		});
 
 		it('should not apply Enter rule when regex does not match', async () => {
-			const { typeTextAtCursor, keydown, docStr, element } = await setup(
-				tagFeatures
-			);
+			const { typeTextAtCursor, keydown, docStr, element } =
+				await setup(tagFeatures);
 
 			await typeTextAtCursor('no match here');
 			keydown('Enter');

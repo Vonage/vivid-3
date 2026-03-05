@@ -28,9 +28,9 @@ const nodeFactory = <T extends RteNode = RteNode>(
 						content: content.map((v) =>
 							typeof v === 'string' ? { type: 'text', text: v } : v
 						),
-				  }
+					}
 				: {}),
-		} as unknown as T);
+		}) as unknown as T;
 	factory.attrs = (newAttrs: Record<string, any>) =>
 		nodeFactory(type, { ...attrs, ...newAttrs }, marks, isLeaf);
 	factory.marks = (...newMarks: any[]) =>

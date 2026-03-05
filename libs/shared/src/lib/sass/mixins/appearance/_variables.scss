@@ -46,8 +46,7 @@ $states-mapping: (
 		),
 		subtle-light: (
 			text: var(#{connotation.get-connotation-token(contrast)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(primary)}),
 					transparent 85%
@@ -78,8 +77,7 @@ $states-mapping: (
 		),
 		ghost-light: (
 			text: var(#{connotation.get-connotation-token(fierce-primary)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(primary)}),
 					transparent 90%
@@ -93,8 +91,7 @@ $states-mapping: (
 		),
 		outlined-light: (
 			text: var(#{connotation.get-connotation-token(fierce-primary)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(primary)}),
 					transparent 90%
@@ -118,8 +115,7 @@ $states-mapping: (
 		),
 		subtle-light: (
 			text: var(#{connotation.get-connotation-token(contrast)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(primary)}),
 					transparent 75%
@@ -145,8 +141,7 @@ $states-mapping: (
 		),
 		ghost-light: (
 			text: var(#{connotation.get-connotation-token(fierce-primary)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(primary)}),
 					transparent 80%
@@ -160,8 +155,7 @@ $states-mapping: (
 		),
 		outlined-light: (
 			text: var(#{connotation.get-connotation-token(fierce-primary)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(primary)}),
 					transparent 80%
@@ -185,8 +179,7 @@ $states-mapping: (
 		),
 		subtle-light: (
 			text: var(#{connotation.get-connotation-token(contrast)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(primary)}),
 					transparent 65%
@@ -316,8 +309,7 @@ $states-mapping: (
 		),
 		ghost-light: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(firm)}),
 					transparent 10%
@@ -331,8 +323,7 @@ $states-mapping: (
 		),
 		outlined-light: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(firm)}),
 					transparent 10%
@@ -378,8 +369,7 @@ $states-mapping: (
 		),
 		ghost-light: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(fierce-primary)}),
 					transparent 20%
@@ -393,8 +383,7 @@ $states-mapping: (
 		),
 		outlined-light: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(fierce-primary)}),
 					transparent 20%
@@ -418,8 +407,7 @@ $states-mapping: (
 		),
 		subtle-light: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(fierce-primary)}),
 					transparent 10%
@@ -497,8 +485,7 @@ $states-mapping: (
 		),
 		ghost-light: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(firm)}),
 					transparent 10%
@@ -554,8 +541,7 @@ $states-mapping: (
 		),
 		ghost-light: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(fierce-primary)}),
 					transparent 20%
@@ -589,8 +575,7 @@ $states-mapping: (
 		),
 		subtle-light: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
-			fill:
-				color-mix(
+			fill: color-mix(
 					in srgb,
 					var(#{connotation.get-connotation-token(fierce-primary)}),
 					transparent 10%

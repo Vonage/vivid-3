@@ -5,15 +5,16 @@ body::before {
 	position: fixed;
 	z-index: -1;
 	background-color: inherit;
-	background-image: linear-gradient(
-			45deg,
-			var(--vvd-color-neutral-50) 25%,
-			transparent 25%
-		),
+	background-image:
+		linear-gradient(45deg, var(--vvd-color-neutral-50) 25%, transparent 25%),
 		linear-gradient(135deg, var(--vvd-color-neutral-50) 25%, transparent 25%),
 		linear-gradient(45deg, transparent 75%, var(--vvd-color-neutral-50) 75%),
 		linear-gradient(135deg, transparent 75%, var(--vvd-color-neutral-50) 75%);
-	background-position: 0 0, 10px 0, 10px -10px, 0 10px;
+	background-position:
+		0 0,
+		10px 0,
+		10px -10px,
+		0 10px;
 	background-size: 20px 20px;
 	content: '';
 	inset: 0;

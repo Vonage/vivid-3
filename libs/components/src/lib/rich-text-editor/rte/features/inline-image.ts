@@ -410,8 +410,8 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 				size === 'small'
 					? this.calculateSmallWidth(naturalWidth)
 					: size === 'fit'
-					? '100%'
-					: null
+						? '100%'
+						: null
 			);
 			dispatch?.(tr.scrollIntoView());
 			return true;

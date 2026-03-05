@@ -51,8 +51,8 @@ const filesFromEntry = (
 	const promise = entry.isFile
 		? handleFileEntry(entry as FileSystemFileEntry)
 		: entry.isDirectory
-		? filesFromDirectory(entry as FileSystemDirectoryEntry)
-		: Promise.resolve([]);
+			? filesFromDirectory(entry as FileSystemDirectoryEntry)
+			: Promise.resolve([]);
 	promise.catch(() => null); // Prevent unhandled promise rejection as promise may reject before handlers are attached
 	return promise;
 };

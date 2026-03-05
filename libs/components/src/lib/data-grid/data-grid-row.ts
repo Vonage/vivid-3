@@ -268,11 +268,11 @@ export class DataGridRow extends HostSemantics(VividElement) {
 			this.cellItemTemplate !== undefined
 				? this.cellItemTemplate
 				: this.rowType === DataGridRowTypes.default &&
-				  this.cellItemTemplate === undefined
-				? this.defaultCellItemTemplate
-				: this.headerCellItemTemplate !== undefined
-				? this.headerCellItemTemplate
-				: this.defaultHeaderCellItemTemplate;
+					  this.cellItemTemplate === undefined
+					? this.defaultCellItemTemplate
+					: this.headerCellItemTemplate !== undefined
+						? this.headerCellItemTemplate
+						: this.defaultHeaderCellItemTemplate;
 	}
 
 	private updateRowStyle = (): void => {

@@ -249,7 +249,7 @@ describe('vwc-calendar', () => {
 					({
 						overflowY: 'auto',
 						overflowX: 'scroll',
-					} as CSSStyleDeclaration)
+					}) as CSSStyleDeclaration
 			);
 
 			const fragment = document.createElement('div');

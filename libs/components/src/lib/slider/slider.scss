@@ -75,7 +75,10 @@ $track-thickness: 2px;
 
 		.track {
 			top: calc(
-				(var(#{variables.$thumb-interaction-indicator-size}) - $track-thickness) /
+				(
+						var(#{variables.$thumb-interaction-indicator-size}) -
+							$track-thickness
+					) /
 					2
 			);
 			right: 0;
@@ -115,7 +118,10 @@ $track-thickness: 2px;
 
 		.track {
 			left: calc(
-				(var(#{variables.$thumb-interaction-indicator-size}) - $track-thickness) /
+				(
+						var(#{variables.$thumb-interaction-indicator-size}) -
+							$track-thickness
+					) /
 					2
 			);
 			block-size: 100%;
@@ -238,9 +244,11 @@ $track-thickness: 2px;
 		inline-size: var(#{variables.$thumb-size});
 		inset: calc(
 			(
-					var(#{variables.$thumb-interaction-indicator-size}) -
-						var(#{variables.$thumb-size})
-				) / 2
+					var(#{variables.$thumb-interaction-indicator-size}) - var(
+							#{variables.$thumb-size}
+						)
+				) /
+				2
 		);
 	}
 }

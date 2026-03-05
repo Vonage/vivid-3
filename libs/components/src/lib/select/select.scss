@@ -69,7 +69,9 @@ $low-ink-color: --_low-ink-color;
 		color: var(#{appearance.get-appearance-token(text)});
 		font: var(#{constants.$vvd-typography-base});
 		gap: 8px;
-		transition: box-shadow 0.2s, background-color 0.2s;
+		transition:
+			box-shadow 0.2s,
+			background-color 0.2s;
 	}
 
 	&.size-condensed {

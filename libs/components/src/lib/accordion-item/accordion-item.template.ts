@@ -49,7 +49,7 @@ const header = (context: VividElementDefinitionContext, hTagName: string) => {
 					!(x.icon && x.iconTrailing) && !x.noIndicator
 						? affixIconTemplate(
 								x.expanded ? 'chevron-up-line' : 'chevron-down-line'
-						  )
+							)
 						: null}
 
 			</button>
@@ -65,8 +65,9 @@ export const AccordionItemTemplate = (
 		id="${(x) => x.id}-panel"
 		aria-labelledby="${(x) => x.id}"
 		role="region"
-		class="region ${(x) => (x.icon && !x.iconTrailing ? 'padded' : '')} ${(x) =>
-			x.size ? `size-${x.size}` : ''}"
+		class="region ${(x) => (x.icon && !x.iconTrailing ? 'padded' : '')} ${(
+			x
+		) => (x.size ? `size-${x.size}` : '')}"
 	>
 		<slot></slot>
 	</div>
