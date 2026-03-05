@@ -1,8 +1,9 @@
-import * as utils from 'eslint-plugin-vue/lib/utils/index.js';
 import type { Rule } from 'eslint';
+import { defineTemplateBodyVisitor } from '../utils/vue';
 import { normalizeTag } from '../utils/components';
 import { ComponentMetadata } from '../utils/ComponentMetadata';
 import { getAttributes } from '../utils/attributes';
+import type { Node } from '../types/vue-eslint-parser';
 
 const renamedProps = new ComponentMetadata<
 	{
@@ -25,8 +26,8 @@ export const noDeprecatedAPIs: Rule.RuleModule = {
 		schema: [],
 	},
 	create(context) {
-		return utils.defineTemplateBodyVisitor(context, {
-			VElement(node) {
+		return defineTemplateBodyVisitor(context, {
+			VElement(node: Node) {
 				renamedProps.forTag(
 					normalizeTag(node.name),
 					(componentName, renamedProps) => {

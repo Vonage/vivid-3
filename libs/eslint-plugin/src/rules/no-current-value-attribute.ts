@@ -1,9 +1,10 @@
-import * as utils from 'eslint-plugin-vue/lib/utils/index.js';
 import type { Rule } from 'eslint';
+import { defineTemplateBodyVisitor } from '../utils/vue';
 import { normalizeTag } from '../utils/components';
 import { ComponentMetadata } from '../utils/ComponentMetadata';
 import { camelToKebab } from '../utils/casing';
 import { getAttributes } from '../utils/attributes';
+import type { Node } from '../types/vue-eslint-parser';
 
 const componentsWithCurrentValue = new ComponentMetadata<
 	{
@@ -122,8 +123,8 @@ export const noCurrentValueAttribute: Rule.RuleModule = {
 		schema: [],
 	},
 	create(context) {
-		return utils.defineTemplateBodyVisitor(context, {
-			VElement(node) {
+		return defineTemplateBodyVisitor(context, {
+			VElement(node: Node) {
 				componentsWithCurrentValue.forTag(
 					normalizeTag(node.name),
 					(_, currentValueAttrs) => {
