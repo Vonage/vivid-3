@@ -13,7 +13,7 @@ import {
 	ICONS_MANIFEST_URL,
 	type IconsManifest,
 	type IconTag,
-} from '@repo/consts';
+} from '@vonage/vivid-icons';
 import type { Alert } from '../vivid';
 import styles from './icons-gallery.style.scss?inline';
 

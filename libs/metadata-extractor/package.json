@@ -23,8 +23,8 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@repo/consts": "workspace:*",
 		"@repo/tools": "workspace:*",
+		"@vonage/vivid-icons": "workspace:*",
 		"change-case": "^5.4.4",
 		"pkg-entry-points": "^1.1.1",
 		"ts-morph": "^27.0.2"

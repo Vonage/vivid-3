@@ -37,7 +37,8 @@
 		"change-case": "^5.4.4"
 	},
 	"devDependencies": {
-		"@repo/consts": "workspace:*",
+		"@microsoft/fast-foundation": "catalog:",
+		"@microsoft/fast-web-utilities": "catalog:",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/metadata-extractor": "workspace:*",
 		"@repo/shared": "workspace:*",
@@ -45,6 +46,7 @@
 		"@repo/vitest-config": "workspace:*",
 		"@types/markdown-table": "catalog:",
 		"@types/node-fetch": "^2.6.13",
+		"@vonage/vivid-icons": "workspace:*",
 		"markdown-table": "catalog:",
 		"node-fetch": "^2.7.0",
 		"tsx": "catalog:",
