@@ -138,6 +138,8 @@ function toggleSideDrawer() {
 
 Use `alternate` to apply an alternate color-scheme, alternate applies on all assigned Vivid components.
 
+[Read more about the `alternative` attribute](/designs/color/#alternate-attribute)
+
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>

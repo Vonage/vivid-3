@@ -2,9 +2,13 @@
 @use 'pkg:@repo/shared/mixins/scrollbar' as scrollbar;
 
 .vvd-root {
-	background-color: var(#{constants.$vvd-color-canvas});
 	color: var(#{constants.$vvd-color-canvas-text});
 	color-scheme: var(#{constants.$vvd-color-scheme});
+}
+
+// set on page root only so that it is not applied to components inside "alternate" theme sections
+:root.vvd-root {
+	background-color: var(#{constants.$vvd-color-canvas});
 }
 
 .vvd-scrollbar {
