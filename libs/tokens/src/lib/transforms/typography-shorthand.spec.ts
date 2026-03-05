@@ -1,6 +1,6 @@
 import typographyShorthand from './typography-shorthand';
 
-const { transformer, matcher } = typographyShorthand;
+const { transform: transformer, filter: matcher } = typographyShorthand;
 
 const defualtToken = {
 	value: undefined,
@@ -30,13 +30,10 @@ const expectedParsedEffects =
 describe('basic', () => {
 	it('should transform object of typography to a font shorthand value', () => {
 		expect(
-			transformer(
-				{
-					...defualtToken,
-					...token,
-				},
-				{}
-			)
+			transformer({
+				...defualtToken,
+				...token,
+			})
 		).toEqual(expectedParsedEffects);
 	});
 

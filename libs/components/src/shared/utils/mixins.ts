@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
-
 // Utilities to create mixins using the pattern described in https://www.typescriptlang.org/docs/handbook/mixins.html
 
 export type Constructor<T = {}> = new (...args: any[]) => T;

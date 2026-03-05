@@ -1,6 +1,6 @@
 import publicCssReferences from './public-css-references';
 
-const { transformer, matcher } = publicCssReferences;
+const { transform: transformer, filter: matcher } = publicCssReferences;
 
 const defaultToken = {
 	value: undefined,
@@ -32,16 +32,13 @@ describe('basic', () => {
 
 	it('should transform to css calc', () => {
 		expect(
-			transformer(
-				{
-					...defaultToken,
-					name: 'vvd-size-font-scale-base',
-					value: '16',
-					type: 'sizing',
-					public: true,
-				},
-				{}
-			)
+			transformer({
+				...defaultToken,
+				name: 'vvd-size-font-scale-base',
+				value: '16',
+				type: 'sizing',
+				public: true,
+			})
 		).toEqual('var(--vvd-size-font-scale-base, 16)');
 	});
 });
