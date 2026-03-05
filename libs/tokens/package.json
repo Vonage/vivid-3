@@ -25,8 +25,8 @@
 		"@repo/vitest-config": "workspace:*",
 		"@types/node": "catalog:",
 		"@vonage/vivid-figma-tokens": "github:vonage/vivid-figma-tokens#v1.4.0",
-		"expr-eval": "^2.0.2",
-		"style-dictionary": "^3.9.2",
+		"expr-eval": "catalog:",
+		"style-dictionary": "catalog:",
 		"tsx": "catalog:",
 		"vitest": "catalog:"
 	}
