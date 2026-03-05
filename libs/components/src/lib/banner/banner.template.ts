@@ -39,7 +39,7 @@ const renderIcon = (c: VividElementDefinitionContext, x: Banner) => {
 			? {
 					label: x.locale.connotationAnnoncement[`${x.connotation}Icon`],
 					announceOnUpdate: false,
-			  }
+				}
 			: undefined;
 
 	return affixIconTemplate(

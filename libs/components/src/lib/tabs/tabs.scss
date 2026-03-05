@@ -228,7 +228,7 @@ slot[name='action-items'] {
 }
 
 .activeIndicatorTransition {
-	transition: transform #{variables.$tabs-active-indicator-transition-delay} ease-out
-			0s,
+	transition:
+		transform #{variables.$tabs-active-indicator-transition-delay} ease-out 0s,
 		inline-size #{variables.$tabs-active-indicator-transition-delay} ease-out 0s;
 }

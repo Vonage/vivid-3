@@ -880,7 +880,7 @@ describe('vwc-searchable-select', () => {
 					() =>
 						({
 							width: 100,
-						} as DOMRect)
+						}) as DOMRect
 				);
 				element.maxLines = 1;
 				element.values = ['apple', 'banana'];

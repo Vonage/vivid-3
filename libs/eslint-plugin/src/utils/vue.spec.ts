@@ -10,7 +10,9 @@ describe('defineTemplateBodyVisitor', () => {
 				(
 					templateBodyVisitor: Rule.RuleListener,
 					scriptVisitor?: Rule.RuleListener,
-					options?: { templateBodyTriggerSelector?: 'Program' | 'Program:exit' }
+					options?: {
+						templateBodyTriggerSelector?: 'Program' | 'Program:exit';
+					}
 				) => Rule.RuleListener
 			>()
 			.mockReturnValue(returnedListener);

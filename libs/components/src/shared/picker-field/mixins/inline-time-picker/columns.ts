@@ -24,8 +24,8 @@ export const HoursColumn: Column = {
 			x.min,
 			x.max,
 			x.clock === '12h'
-				? MeridiesColumn.getSelectedOptionValue(x) ??
-						MeridiesColumn.getOptions(x)[0].value
+				? (MeridiesColumn.getSelectedOptionValue(x) ??
+						MeridiesColumn.getOptions(x)[0].value)
 				: undefined
 		),
 	getSelectedOptionValue: (x: InlineTimePicker) =>

@@ -46,7 +46,6 @@ Upgrading to a new major version of the Vivid design system is no longer a tedio
    Review the [Vivid changelog](https://github.com/Vonage/vivid-3/blob/main/libs/components/CHANGELOG.md) and [GitHub releases](https://github.com/Vonage/vivid-3/releases) before upgrading to see what’s changed and whether the update is major or minor. If the update is a major one, breaking changes are always clearly explained there and in the [migration guides](https://vivid.vonage.com/guides/v4-release-migration/).
 2. **Update the package**
    Use our official packages which are actively maintained and [kept up to date with every Vivid release](https://vivid.vonage.com/getting-started/vue/#complete-and-up-to-date).
-
    - **For Vue:** `npm install @vonage/vivid-vue@latest`
    - **For React:** `npm install @vonage/vivid-react@latest`
 

@@ -59,8 +59,8 @@ function renderBackwardSkipButtons(context: VividElementDefinitionContext) {
 			x.skipBy == MediaSkipBy.Five
 				? '5-sec-backward-line'
 				: x.skipBy == MediaSkipBy.Thirty
-				? '30-sec-backward-line'
-				: '10-sec-backward-line'}"
+					? '30-sec-backward-line'
+					: '10-sec-backward-line'}"
 		size='condensed'
 		aria-label="${(x) =>
 			x.skipBackwardButtonAriaLabel || x.locale.audioPlayer.skipBackwardButton}"
@@ -80,8 +80,8 @@ function renderForwardSkipButtons(context: VividElementDefinitionContext) {
 			x.skipBy == MediaSkipBy.Five
 				? '5-sec-forward-line'
 				: x.skipBy == MediaSkipBy.Thirty
-				? '30-sec-forward-line'
-				: '10-sec-forward-line'}"
+					? '30-sec-forward-line'
+					: '10-sec-forward-line'}"
 		size='condensed'
 		aria-label="${(x) =>
 			x.skipForwardButtonAriaLabel || x.locale.audioPlayer.skipForwardButton}"

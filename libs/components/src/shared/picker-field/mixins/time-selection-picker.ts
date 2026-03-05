@@ -17,7 +17,7 @@ import type { SingleValuePickerElement } from './single-value-picker';
  * Mixin for pickers that allow selecting a time.
  */
 export const TimeSelectionPicker = <
-	T extends AbstractConstructor<SingleValuePickerElement>
+	T extends AbstractConstructor<SingleValuePickerElement>,
 >(
 	Base: T
 ) => {

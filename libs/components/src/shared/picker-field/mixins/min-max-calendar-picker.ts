@@ -20,7 +20,7 @@ export const ValidDateFilter: ValueConverter = {
  * Mixin for calendar pickers where min/max is a date.
  */
 export const MinMaxCalendarPicker = <
-	T extends AbstractConstructor<CalendarPickerElement>
+	T extends AbstractConstructor<CalendarPickerElement>,
 >(
 	SuperClass: T
 ) => {

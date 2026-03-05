@@ -52,7 +52,7 @@ export class HostSemanticsBehavior<T> implements ViewBehavior {
 	) {
 		for (const [property, binding] of Object.entries(boundProperties) as [
 			AriaPropertyName,
-			AriaBinding<T>
+			AriaBinding<T>,
 		][]) {
 			const bindingFn =
 				binding instanceof Function

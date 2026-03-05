@@ -84,7 +84,10 @@ $outline-width: 2px;
 		grid-column: 1 / -1;
 		min-block-size: #{size.$vvd-size-condensed};
 		resize: none;
-		transition: box-shadow 0.2s, background-color 0.2s, color 0.2s;
+		transition:
+			box-shadow 0.2s,
+			background-color 0.2s,
+			color 0.2s;
 	}
 
 	@supports selector(::-webkit-resizer) {

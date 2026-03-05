@@ -304,11 +304,11 @@ catalogs:
       specifier: 1.57.0
       version: 1.57.0
     prettier:
-      specifier: 2.8.8
-      version: 2.8.8
+      specifier: ^3.8.1
+      version: 3.8.1
     prettier-plugin-packagejson:
-      specifier: ^2.5.19
-      version: 2.5.22
+      specifier: ^3.0.0
+      version: 3.0.2
     prosemirror-commands:
       specifier: ^1.7.1
       version: 1.7.1
@@ -492,10 +492,10 @@ importers:
         version: 18.0.0
       prettier:
         specifier: 'catalog:'
-        version: 2.8.8
+        version: 3.8.1
       prettier-plugin-packagejson:
         specifier: 'catalog:'
-        version: 2.5.22(prettier@2.8.8)
+        version: 3.0.2(prettier@3.8.1)
       stylelint:
         specifier: 'catalog:'
         version: 16.26.1(typescript@5.9.3)
@@ -8312,10 +8312,10 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier-plugin-packagejson@2.5.22:
-    resolution: {integrity: sha512-G6WalmoUssKF8ZXkni0+n4324K+gG143KPysSQNW+FrR0XyNb3BdRxchGC/Q1FE/F702p7/6KU7r4mv0WSWbzA==}
+  prettier-plugin-packagejson@3.0.2:
+    resolution: {integrity: sha512-kmoj3hEynXwoHDo8ZhmWAIjRBoQWCDUVackiWfSDWdgD0rS3LGB61T9zoVbume/cotYdCoadUh4sqViAmXvpBQ==}
     peerDependencies:
-      prettier: '>= 1.16.0'
+      prettier: ^3
     peerDependenciesMeta:
       prettier:
         optional: true
@@ -18033,11 +18033,11 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-packagejson@2.5.22(prettier@2.8.8):
+  prettier-plugin-packagejson@3.0.2(prettier@3.8.1):
     dependencies:
       sort-package-json: 3.6.0
     optionalDependencies:
-      prettier: 2.8.8
+      prettier: 3.8.1
 
   prettier@2.8.8: {}
 

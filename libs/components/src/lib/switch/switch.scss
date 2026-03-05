@@ -99,9 +99,8 @@
 	.control:not(.checked) & {
 		transform: translateX(
 			calc(
-				-1 * var(#{variables.$switch-inline-size}) + var(
-						#{variables.$checked-indicator-size}
-					) + var(#{variables.$gutter})
+				-1 * var(#{variables.$switch-inline-size}) +
+					var(#{variables.$checked-indicator-size}) + var(#{variables.$gutter})
 			)
 		);
 	}

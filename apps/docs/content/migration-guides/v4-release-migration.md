@@ -163,7 +163,6 @@ Code using `v-model` or `modelValue` is not affected.
   The `no-current-value-attribute` rule of our ESLint plugin can perform this migration automatically.
 
 - Replace all usages of `value` / `checked`:
-
   - **Vue 3:**  
     `value`/`checked` sets the current value and can be replaced with `modelValue`.
 

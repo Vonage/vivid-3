@@ -89,8 +89,8 @@ export const WithCharCount = <T extends Constructor<VividElement>>(Base: T) => {
 							)}</${visuallyHiddenTag}
 					>
 					<${visuallyHiddenTag} id="char-count-remaining" aria-live="polite" ${ref(
-				'charCountRemaining'
-			)}
+						'charCountRemaining'
+					)}
 						></${visuallyHiddenTag}
 					>
 				</div>

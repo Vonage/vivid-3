@@ -42,7 +42,9 @@
 		filter: var(#{elevation.$vvd-elevation-shadow});
 		font: var(#{constants.$vvd-typography-base-bold});
 		padding-inline: var(#{variables.$inline-padding});
-		transition: background-color 0.15s linear, filter 0.15s linear;
+		transition:
+			background-color 0.15s linear,
+			filter 0.15s linear;
 		vertical-align: middle;
 	}
 

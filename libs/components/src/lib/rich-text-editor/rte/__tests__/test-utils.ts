@@ -147,7 +147,7 @@ const docToStr = (state: EditorState) => {
 			? ''
 			: `${node === selectedNode ? '[|' : ''}${
 					node.type.name
-			  }${marks}${attrsToStr(node.attrs)}(`;
+				}${marks}${attrsToStr(node.attrs)}(`;
 		let nodeContent = node.content!.content.map(nodeToStr);
 		if (!node.childCount) {
 			if ($cursor?.parent === node) {
@@ -164,12 +164,12 @@ const docToStr = (state: EditorState) => {
 
 		let contentStr = shouldBreak
 			? '\n' +
-			  nodeContent
+				nodeContent
 					.join(',\n')
 					.split('\n')
 					.map((c) => `${isDoc ? '' : '\t'}${c}`)
 					.join('\n') +
-			  '\n'
+				'\n'
 			: nodeContent.join(', ');
 		if (isDoc && state.selection instanceof AllSelection) {
 			contentStr = isBackwards

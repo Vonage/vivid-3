@@ -35,7 +35,7 @@ export const expandCollapseButton = (
 			${ref('expandCollapseButton')}
 	>
 		<${iconTag} class="expandCollapseIcon" name="${(x) =>
-		x.expanded ? 'chevron-down-line' : 'chevron-right-line'}"></${iconTag}>
+			x.expanded ? 'chevron-down-line' : 'chevron-right-line'}"></${iconTag}>
 	</div>`;
 };
 

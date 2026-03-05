@@ -49,7 +49,10 @@ class TagGroup {
 
 class TagOption {
 	@observable isSelected = false;
-	constructor(public id: IconTag, public label: string) {}
+	constructor(
+		public id: IconTag,
+		public label: string
+	) {}
 }
 
 const tagOptionTemplate = html<TagOption>`

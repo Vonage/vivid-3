@@ -1051,8 +1051,8 @@ export class Select extends WithLightDOMFeedback(
 	get _shouldShowLabelWrapper() {
 		return Boolean(
 			this.label ||
-				this._hasContextualHelp ||
-				(this.multiple && this._shouldShowClearButton)
+			this._hasContextualHelp ||
+			(this.multiple && this._shouldShowClearButton)
 		);
 	}
 

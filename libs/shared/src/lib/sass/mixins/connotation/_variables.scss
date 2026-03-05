@@ -23,8 +23,7 @@
 }
 
 $connotation-mapping: (
-	accent:
-		map.merge(
+	accent: map.merge(
 			get-default-mapping(neutral),
 			(
 				primary: utils.get-color-token(canvas-text),
@@ -33,8 +32,7 @@ $connotation-mapping: (
 				fierce-primary: utils.get-color-token(canvas-text),
 			)
 		),
-	warning:
-		map.merge(
+	warning: map.merge(
 			get-default-mapping(warning),
 			(
 				primary: utils.get-color-token(warning-300),

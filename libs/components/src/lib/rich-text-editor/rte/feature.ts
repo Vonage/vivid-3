@@ -135,7 +135,7 @@ export const getFeatureImpl = (facade: RteFeature) => featureImpls.get(facade)!;
  */
 export const featureFacade = <
 	T extends RteFeatureImpl,
-	C extends Constructor<T>
+	C extends Constructor<T>,
 >(
 	FeatureImpl: C
 ) => {
