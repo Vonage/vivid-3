@@ -3,9 +3,11 @@ import { convertAnnotatedSourceToFailureCase } from '../utils/testing';
 import { noValueAttribute } from './no-value-attribute';
 
 const ruleTester = new RuleTester({
-	parser: require.resolve('vue-eslint-parser'),
-	parserOptions: {
-		sourceType: 'module',
+	languageOptions: {
+		parser: require('vue-eslint-parser'),
+		parserOptions: {
+			sourceType: 'module',
+		},
 	},
 });
 

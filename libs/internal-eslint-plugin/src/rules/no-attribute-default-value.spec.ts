@@ -1,12 +1,15 @@
-import { convertAnnotatedSourceToFailureCase } from '@angular-eslint/utils';
-import { TSESLint } from '@typescript-eslint/utils';
+import { RuleTester } from 'eslint';
+import tsParser from '@typescript-eslint/parser';
+import { convertAnnotatedSourceToFailureCase } from '../../../eslint-plugin/src/utils/testing';
 import { rule, RULE_NAME } from './no-attribute-default-value';
 
-const ruleTester = new TSESLint.RuleTester({
-	parser: require.resolve('@typescript-eslint/parser'),
+const ruleTester = new RuleTester({
+	languageOptions: {
+		parser: tsParser as never,
+	},
 });
 
-ruleTester.run(RULE_NAME, rule, {
+ruleTester.run(RULE_NAME, rule as never, {
 	valid: [
 		`
     class Test{
@@ -37,39 +40,37 @@ ruleTester.run(RULE_NAME, rule, {
         @someDecorator example = 'someValue';
     }`,
 	],
+	// should fail property decorated by 'attr' decorator, if assignment mutates DOM tree
 	invalid: [
 		convertAnnotatedSourceToFailureCase({
-			description:
-				"should fail property decorated by 'attr' decorator, if assignment mutates DOM tree",
 			annotatedSource: `
       class Test {
         @attr example = 'someValue';
                         ~~~~~~~~~~~
       }
       `,
-			messageId: 'noAttributeDefaultValue',
-		}) as TSESLint.InvalidTestCase<'noAttributeDefaultValue', []>,
+			message:
+				"'attr' decorator assigned with a default value (unless mode is set to 'fromView', or, to 'boolean' assigned to false) will mutate the custom element in the DOM light tree.",
+		}),
 		convertAnnotatedSourceToFailureCase({
-			description:
-				"should fail property decorated by 'attr' decorator, if assignment mutates DOM tree",
 			annotatedSource: `
       class Test {
         @attr({ mode: 'reflect' }) example = 'someValue';
                                              ~~~~~~~~~~~
       }
       `,
-			messageId: 'noAttributeDefaultValue',
-		}) as TSESLint.InvalidTestCase<'noAttributeDefaultValue', []>,
+			message:
+				"'attr' decorator assigned with a default value (unless mode is set to 'fromView', or, to 'boolean' assigned to false) will mutate the custom element in the DOM light tree.",
+		}),
 		convertAnnotatedSourceToFailureCase({
-			description:
-				"should fail property decorated by 'attr' decorator, if assignment mutates DOM tree",
 			annotatedSource: `
       class Test {
         @attr({ mode: 'boolean' }) example = true;
                                              ~~~~
       }
       `,
-			messageId: 'noAttributeDefaultValue',
-		}) as TSESLint.InvalidTestCase<'noAttributeDefaultValue', []>,
+			message:
+				"'attr' decorator assigned with a default value (unless mode is set to 'fromView', or, to 'boolean' assigned to false) will mutate the custom element in the DOM light tree.",
+		}),
 	],
 });
