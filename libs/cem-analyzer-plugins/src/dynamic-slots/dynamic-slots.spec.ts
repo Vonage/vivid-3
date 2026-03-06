@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import * as glob from 'glob';
+import { globSync } from 'glob';
 import * as ts from 'typescript-cem-version';
 import { create } from '@custom-elements-manifest/analyzer/src/create.js';
 import { dynamicSlotsPlugin } from './dynamic-slots';
@@ -12,7 +12,7 @@ describe('dynamicSlotsPlugin', () => {
 	it.each(testCases)(
 		`should produce correct results for testcase %s`,
 		async (testCase) => {
-			const moduleFiles = glob.sync(
+			const moduleFiles = globSync(
 				path.join(fixturesPath, testCase, '/**/*.{ts,js}')
 			);
 			const modules = moduleFiles.map((moduleFile) =>

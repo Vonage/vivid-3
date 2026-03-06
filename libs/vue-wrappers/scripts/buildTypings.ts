@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import glob from 'glob';
+import { globSync } from 'glob';
 
 const dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -38,7 +38,7 @@ const addTsIgnoreToPlugin = (filePath: string) => {
  */
 const generateVueVersionSwitch = async () => {
 	const componentTypesPath = path.join(dirname, '../dist/generated/components');
-	const vue3Definitions = glob.sync('*.vue3.d.ts', { cwd: componentTypesPath });
+	const vue3Definitions = globSync('*.vue3.d.ts', { cwd: componentTypesPath });
 
 	for (const vue3Definition of vue3Definitions) {
 		updateVue3Imports(path.join(componentTypesPath, vue3Definition));
