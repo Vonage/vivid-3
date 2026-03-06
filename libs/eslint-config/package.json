@@ -4,10 +4,10 @@
 	"private": true,
 	"type": "module",
 	"dependencies": {
-		"@typescript-eslint/eslint-plugin": "catalog:",
-		"@typescript-eslint/parser": "catalog:",
-		"eslint-plugin-ban": "catalog:",
-		"eslint-plugin-import": "catalog:",
+		"@typescript-eslint/eslint-plugin": "^8.0.0",
+		"@typescript-eslint/parser": "^8.0.0",
+		"eslint-plugin-ban": "^2.0.0",
+		"eslint-plugin-import": "^2.32.0",
 		"eslint-plugin-unused-imports": "catalog:"
 	}
 }

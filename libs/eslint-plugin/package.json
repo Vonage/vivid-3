@@ -23,7 +23,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"eslint-plugin-vue": "catalog:"
+		"eslint-plugin-vue": "^10.0.0"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",

@@ -46,7 +46,7 @@
 		"@types/jsdom": "catalog:",
 		"@types/markdown-table": "catalog:",
 		"@types/node-fetch": "^2.6.13",
-		"markdown-table": "catalog:",
+		"markdown-table": "^3.0.4",
 		"node-fetch": "^2.7.0",
 		"tsx": "catalog:",
 		"vitest": "catalog:"
