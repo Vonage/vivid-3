@@ -2,7 +2,12 @@
 	"name": "@repo/eslint-config",
 	"version": "1.0.0",
 	"private": true,
+	"type": "module",
 	"dependencies": {
-		"@repo/eslint-plugin-repo": "workspace:*"
+		"@typescript-eslint/eslint-plugin": "catalog:",
+		"@typescript-eslint/parser": "catalog:",
+		"eslint-plugin-ban": "catalog:",
+		"eslint-plugin-import": "catalog:",
+		"eslint-plugin-unused-imports": "catalog:"
 	}
 }

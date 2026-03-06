@@ -33,6 +33,7 @@
 		"eslint-plugin-tsdoc": "catalog:",
 		"eslint-plugin-unused-imports": "catalog:",
 		"eslint-plugin-vue": "catalog:",
+		"globals": "catalog:",
 		"istanbul-merge": "catalog:",
 		"nyc": "catalog:",
 		"prettier": "catalog:",

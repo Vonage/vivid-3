@@ -261,6 +261,9 @@ catalogs:
     glob:
       specifier: ^7.2.3
       version: 7.2.3
+    globals:
+      specifier: ^17.4.0
+      version: 17.4.0
     highlight.js:
       specifier: ^11.11.1
       version: 11.11.1
@@ -484,6 +487,9 @@ importers:
       eslint-plugin-vue:
         specifier: 'catalog:'
         version: 10.8.0(@typescript-eslint/parser@8.56.1(eslint@10.0.2)(typescript@5.9.3))(eslint@10.0.2)(vue-eslint-parser@9.4.3(eslint@10.0.2))
+      globals:
+        specifier: 'catalog:'
+        version: 17.4.0
       istanbul-merge:
         specifier: 'catalog:'
         version: 2.0.0
@@ -964,9 +970,21 @@ importers:
 
   libs/eslint-config:
     dependencies:
-      '@repo/eslint-plugin-repo':
-        specifier: workspace:*
-        version: link:../internal-eslint-plugin
+      '@typescript-eslint/eslint-plugin':
+        specifier: 'catalog:'
+        version: 8.56.1(@typescript-eslint/parser@8.56.1(eslint@10.0.2)(typescript@5.9.3))(eslint@10.0.2)(typescript@5.9.3)
+      '@typescript-eslint/parser':
+        specifier: 'catalog:'
+        version: 8.56.1(eslint@10.0.2)(typescript@5.9.3)
+      eslint-plugin-ban:
+        specifier: 'catalog:'
+        version: 2.0.0
+      eslint-plugin-import:
+        specifier: 'catalog:'
+        version: 2.32.0(@typescript-eslint/parser@8.56.1(eslint@10.0.2)(typescript@5.9.3))(eslint@10.0.2)
+      eslint-plugin-unused-imports:
+        specifier: 'catalog:'
+        version: 4.4.1(@typescript-eslint/eslint-plugin@8.56.1(@typescript-eslint/parser@8.56.1(eslint@10.0.2)(typescript@5.9.3))(eslint@10.0.2)(typescript@5.9.3))(eslint@10.0.2)
 
   libs/eslint-plugin:
     dependencies:
@@ -6725,6 +6743,10 @@ packages:
 
   globals@15.15.0:
     resolution: {integrity: sha512-7ACyT3wmyp3I61S4fG682L0VA2RGD9otkqGJIwNUMF1SWUombIIk+af1unuDYgMm082aHYwD+mzJvv9Iu8dsgg==}
+    engines: {node: '>=18'}
+
+  globals@17.4.0:
+    resolution: {integrity: sha512-hjrNztw/VajQwOLsMNT1cbJiH2muO3OROCHnbehc8eY5JyD2gqz4AcMHPqgaOR59DjgUjYAYLeH699g/eWi2jw==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -16340,6 +16362,8 @@ snapshots:
   globals@14.0.0: {}
 
   globals@15.15.0: {}
+
+  globals@17.4.0: {}
 
   globalthis@1.0.4:
     dependencies:

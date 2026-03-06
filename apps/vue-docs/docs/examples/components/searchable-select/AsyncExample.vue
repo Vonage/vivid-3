@@ -32,11 +32,16 @@
 import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
 import { computed, ref } from 'vue';
 
+type Option = {
+	value: string;
+	text: string;
+};
+
 const value = ref('');
 
 const isLoading = ref(false);
-const selectedOptions = ref([]);
-const currentSearchResults = ref([]);
+const selectedOptions = ref<Option[]>([]);
+const currentSearchResults = ref<Option[]>([]);
 const currentSearchText = ref('');
 
 const retainedOptions = computed(() =>
@@ -45,7 +50,7 @@ const retainedOptions = computed(() =>
 	)
 );
 
-const fruitsDatabase = [
+const fruitsDatabase: string[] = [
 	'Apple',
 	'Banana',
 	'Cherry',
@@ -66,7 +71,7 @@ const fruitsDatabase = [
 	'Watermelon',
 ];
 
-async function fetchOptions(searchText) {
+async function fetchOptions(searchText: string): Promise<Option[]> {
 	return new Promise((resolve) => {
 		setTimeout(
 			() =>
@@ -86,13 +91,13 @@ async function fetchOptions(searchText) {
 }
 
 let latestSearchText = '';
-const debouncedSearch = debounce(async (searchText) => {
+const debouncedSearch = debounce(async (searchText: string) => {
 	const newResults = await fetchOptions(searchText);
 	if (latestSearchText !== searchText) {
 		return; // Results are no longer relevant
 	}
 	isLoading.value = false;
-	currentSearchResults.value = newResults as any[];
+	currentSearchResults.value = newResults;
 	currentSearchText.value = searchText;
 }, 1000);
 
@@ -109,7 +114,7 @@ const onSearchTextChanged = (newSearchText: string) => {
 	}
 };
 
-function onInput(values) {
+function onInput(values: string[]) {
 	selectedOptions.value = values.map(
 		(v) =>
 			currentSearchResults.value.find((o) => o.value === v) ||
@@ -117,12 +122,15 @@ function onInput(values) {
 	);
 }
 
-function debounce(func, timeout) {
-	let timer;
-	return (...args) => {
+function debounce<T extends (...args: unknown[]) => void>(
+	func: T,
+	timeout: number
+) {
+	let timer: ReturnType<typeof setTimeout>;
+	return (...args: Parameters<T>) => {
 		clearTimeout(timer);
 		timer = setTimeout(() => {
-			func.apply(this, args);
+			func(...args);
 		}, timeout);
 	};
 }
