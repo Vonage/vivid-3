@@ -90,6 +90,7 @@ catalog:
   figma-js: 1.16.1-0
   figmash: ^0.0.3
   glob: ^7.2.3
+  globals: ^17.4.0
   highlight.js: ^11.11.1
   htmx.org: ^1.9.12
   http-server: ^14.1.1

@@ -9,7 +9,7 @@ export const packageVersion = JSON.parse(
 
 const isWatchMode = process.env.WATCH_MODE === 'true';
 
-const baseConfig = defineConfig({
+const baseConfig: UserConfig = defineConfig({
 	build: {
 		outDir: 'dist',
 		cssMinify: true,
@@ -30,15 +30,11 @@ const baseConfig = defineConfig({
 			scss: {
 				api: 'modern-compiler',
 				importers: [new NodePackageImporter()],
-			} as unknown as NonNullable<
-				UserConfig['css']
-			>['preprocessorOptions'] extends infer T
-				? T extends { scss?: infer S }
-					? S
-					: never
-				: never,
+			} as NonNullable<
+				NonNullable<UserConfig['css']>['preprocessorOptions']
+			>['scss'],
 		},
 	},
 });
 
-export default baseConfig as unknown as UserConfig;
+export default baseConfig;
