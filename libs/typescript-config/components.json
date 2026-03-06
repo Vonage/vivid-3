@@ -6,6 +6,6 @@
 		"module": "esnext",
 		"moduleResolution": "bundler",
 
-		"lib": ["dom", "dom.iterable"]
+		"lib": ["es2022", "dom", "dom.iterable"]
 	}
 }

@@ -28,6 +28,7 @@
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
+		"@types/node": "catalog:",
 		"chalk": "catalog:",
 		"change-case": "catalog:",
 		"figma-js": "catalog:",

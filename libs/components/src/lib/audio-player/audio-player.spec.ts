@@ -499,16 +499,20 @@ describe('vwc-audio-player', () => {
 			});
 
 			it('should not fetch if src is not set', async () => {
+				const originalFetch = globalThis.fetch;
+				const fetchSpy = vi.fn<typeof fetch>();
+				globalThis.fetch = fetchSpy as typeof fetch;
+
 				element.durationFallback = true;
 				setAudioElementDuration(Infinity);
 				element.src = undefined;
 				const event = new Event('loadedmetadata');
 				nativeAudioElement.dispatchEvent(event);
 
-				const fetchSpy = vi.spyOn(globalThis, 'fetch');
 				await elementUpdated(element);
 				expect(fetchSpy).not.toHaveBeenCalled();
-				fetchSpy.mockRestore();
+
+				globalThis.fetch = originalFetch;
 			});
 
 			it('should handle errors during fetch and clean up the abort controller', async () => {
