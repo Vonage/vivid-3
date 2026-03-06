@@ -285,7 +285,7 @@ export class SearchableSelect extends WithContextualHelp(
 		return (
 			this._currentSearchText ??
 			(!this.multiple && this.value !== ''
-				? this.#textForValue(this.value) ?? ''
+				? (this.#textForValue(this.value) ?? '')
 				: '')
 		);
 	}
@@ -525,16 +525,16 @@ export class SearchableSelect extends WithContextualHelp(
 		const optionMessage = isSelection
 			? this.locale.searchableSelect.optionSelectedMessage(
 					option._getAccessibleName()
-			  )
+				)
 			: this.locale.searchableSelect.optionDeselectedMessage(
 					option._getAccessibleName()
-			  );
+				);
 		const maxSelectedMessage =
 			this.multiple && this.maxSelected && this.maxSelected >= 1
 				? this.locale.searchableSelect.maxSelectedMessage(
 						this.values.length,
 						this.maxSelected!
-				  )
+					)
 				: '';
 
 		this._changeDescription = `${optionMessage} ${maxSelectedMessage}`;
@@ -1167,8 +1167,8 @@ export class SearchableSelect extends WithContextualHelp(
 	 */
 	get _selectAllLabel(): string {
 		return this._isAllSelected
-			? this.deselectAllText ?? this.locale.searchableSelect.deselectAllLabel
-			: this.selectAllText ?? this.locale.searchableSelect.selectAllLabel;
+			? (this.deselectAllText ?? this.locale.searchableSelect.deselectAllLabel)
+			: (this.selectAllText ?? this.locale.searchableSelect.selectAllLabel);
 	}
 
 	/**
@@ -1220,8 +1220,8 @@ export class SearchableSelect extends WithContextualHelp(
 		return this.initialValues.length
 			? this.initialValues
 			: this.initialValue
-			? [this.initialValue]
-			: [];
+				? [this.initialValue]
+				: [];
 	}
 
 	/**

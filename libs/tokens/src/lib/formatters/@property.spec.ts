@@ -1,9 +1,9 @@
 import cssAtRuleProperty from './@property';
 
-const { formatter } = cssAtRuleProperty;
+const { format: formatter } = cssAtRuleProperty;
 
 describe('basic', () => {
-	it('should generate integer property from token', () => {
+	it('should generate integer property from token', async () => {
 		const token = {
 			dictionary: {
 				allProperties: [
@@ -29,10 +29,10 @@ describe('basic', () => {
     initial-value: 0;
   }`;
 
-		expect(formatter(token)).toContain(expectedProperty);
+		await expect(formatter(token)).resolves.toContain(expectedProperty);
 	});
 
-	it('should generate length property from token', () => {
+	it('should generate length property from token', async () => {
 		const token = {
 			dictionary: {
 				allProperties: [
@@ -57,6 +57,6 @@ describe('basic', () => {
     initial-value: 16px;
   }`;
 
-		expect(formatter(token)).toContain(expectedProperty);
+		await expect(formatter(token)).resolves.toContain(expectedProperty);
 	});
 });

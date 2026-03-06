@@ -290,7 +290,6 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 				new Plugin({
 					props: {
 						nodeViews: {
-							// eslint-disable-next-line @typescript-eslint/naming-convention
 							inlineImage: (node, view, getPos) =>
 								new InlineImageView(node, view, getPos, this.config),
 						},
@@ -411,8 +410,8 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 				size === 'small'
 					? this.calculateSmallWidth(naturalWidth)
 					: size === 'fit'
-					? '100%'
-					: null
+						? '100%'
+						: null
 			);
 			dispatch?.(tr.scrollIntoView());
 			return true;

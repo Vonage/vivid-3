@@ -9,7 +9,7 @@ import { type SingleValuePickerElement } from './single-value-picker';
 export const SingleDatePickerMixin = <
 	T extends AbstractConstructor<
 		CalendarPickerElement & SingleValuePickerElement
-	>
+	>,
 >(
 	Base: T
 ) => {

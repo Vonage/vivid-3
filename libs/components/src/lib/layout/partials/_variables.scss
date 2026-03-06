@@ -25,8 +25,10 @@ $spaces: (
 	small: calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}),
 	small-inline: 0
 		calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}),
-	small-block:
-		calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}) 0,
+	small-block: calc(
+			#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}
+		)
+		0,
 	medium: #{size.$vvd-size-super-condensed},
 	medium-inline: 0 #{size.$vvd-size-super-condensed},
 	medium-block: #{size.$vvd-size-super-condensed} 0,

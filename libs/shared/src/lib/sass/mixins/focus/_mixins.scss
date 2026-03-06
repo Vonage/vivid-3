@@ -4,7 +4,8 @@
 @mixin focus {
 	$outline-width: 1px;
 
-	box-shadow: 0 0 0 4px
+	box-shadow:
+		0 0 0 4px
 			color-mix(
 				in srgb,
 				var(

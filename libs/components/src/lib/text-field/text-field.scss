@@ -119,7 +119,9 @@ $low-ink-color: --_low-ink-color;
 	font: var(#{constants.$vvd-typography-base});
 	grid-column: 1 / 4;
 	padding-block: 0;
-	transition: color 0.2s, background-color 0.2s;
+	transition:
+		color 0.2s,
+		background-color 0.2s;
 
 	&::after {
 		position: absolute;

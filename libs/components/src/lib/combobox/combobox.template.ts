@@ -51,7 +51,7 @@ function setFixedDropdownVarWidth(x: Combobox) {
 	return x.open && x.fixedDropdown
 		? `--_combobox-fixed-width: ${Math.round(
 				x.getBoundingClientRect().width
-		  )}px`
+			)}px`
 		: null;
 }
 

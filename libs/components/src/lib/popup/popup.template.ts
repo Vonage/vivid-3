@@ -24,9 +24,9 @@ export const popupTemplate = (context: VividElementDefinitionContext) => {
 	return html<Popup>`
   <${elevationTag}>
 		<div popover="${handlePopover}" class="popup-wrapper ${(x) =>
-		x.strategy}" ${ref('popupEl')} part="popup-base">
+			x.strategy}" ${ref('popupEl')} part="popup-base">
 			<div ${ref('controlEl')} class="${getClasses}" aria-hidden="${(x) =>
-		x.open ? 'false' : 'true'}"
+				x.open ? 'false' : 'true'}"
 				part="${(x) => (x.alternate ? 'vvd-theme-alternate' : '')}">
 				<div class="popup-content">
 					<slot></slot>

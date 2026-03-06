@@ -219,13 +219,13 @@ export const renderComponent = (
 				(slot) => `
 		${renderJsDoc(slot.description)}
 		"${slot.name}": ${
-					parseTypeImports(slot.dynamicProps ?? 'Record<string, never>').typeStr
-				}`
+			parseTypeImports(slot.dynamicProps ?? 'Record<string, never>').typeStr
+		}`
 			)
 			.join('\n')}
 	}`
 					: 'Record<string, never>'
-		  }>,`
+			}>,`
 		: '';
 
 	const renderPropType = (type: TypeStr): string => {
@@ -254,7 +254,7 @@ export const renderComponent = (
 										...prop,
 										name: vueModel.name,
 									},
-							  ]
+								]
 							: []),
 					];
 				})
@@ -262,8 +262,8 @@ export const renderComponent = (
 					const propName = camelCase(name);
 					return `${renderJsDoc(description)}
         ${propName}: {type: ${renderPropType(type)} as PropType<${
-						parseTypeImports(type).typeStr
-					}>, default: undefined}`;
+					parseTypeImports(type).typeStr
+				}>, default: undefined}`;
 				})
 				.join(',\n')}
 			},`
@@ -284,10 +284,10 @@ export const renderComponent = (
 			`
 				${renderJsDoc(description, type)}
 				['${name}'](event: ${getEventType(
-				type,
-				getExportedClassName(componentDef.name),
-				isVueModelEvent
-			)}) { return true }`;
+					type,
+					getExportedClassName(componentDef.name),
+					isVueModelEvent
+				)}) { return true }`;
 
 	// Declare events
 	const eventDefinitionsSrc = isVue3Stub
@@ -419,8 +419,8 @@ export default defineComponent({
 	${slotsDeclarationSrc}
   setup(props, ctx) {
     const componentName = registerComponent('${componentDef.name}', ${
-		componentDef.registerFunctionName
-	});
+			componentDef.registerFunctionName
+		});
 
     const element = ref<${getExportedClassName(
 			componentDef.name

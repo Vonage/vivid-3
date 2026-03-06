@@ -1,4 +1,4 @@
-import * as utils from 'eslint-plugin-vue/lib/utils/index.js';
+import { defineTemplateBodyVisitor } from '../utils/vue';
 import type { Rule } from 'eslint';
 import { ComponentMetadata } from '../utils/ComponentMetadata';
 import { normalizeTag } from '../utils/components';
@@ -51,7 +51,7 @@ export const noSlotAttribute: Rule.RuleModule = {
 		schema: [],
 	},
 	create(context) {
-		return utils.defineTemplateBodyVisitor(context, {
+		return defineTemplateBodyVisitor(context, {
 			VElement(node: any) {
 				componentsWithNamedSlots.forTag(normalizeTag(node.name), () => {
 					for (const child of node.children) {

@@ -43,12 +43,12 @@ function makeStep(element: NumberField, direction: number) {
 	const stepUpValue = !isNaN(value)
 		? value + direction * element.step
 		: element.min > 0
-		? element.min
-		: element.max < 0
-		? element.max
-		: !element.min
-		? direction * element.step
-		: 0;
+			? element.min
+			: element.max < 0
+				? element.max
+				: !element.min
+					? direction * element.step
+					: 0;
 
 	element.value = Number(stepUpValue.toFixed(12)).toString();
 	element._updatedValueAnnouncement =

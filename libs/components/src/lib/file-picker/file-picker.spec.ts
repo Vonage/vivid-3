@@ -717,7 +717,11 @@ describe('vwc-file-picker', () => {
 				configurable: true,
 			});
 			hiddenInput.dispatchEvent(
-				new Event('change', { bubbles: true, composed: true, cancelable: true })
+				new Event('change', {
+					bubbles: true,
+					composed: true,
+					cancelable: true,
+				})
 			);
 
 			expect(element.files.length).toBe(1);

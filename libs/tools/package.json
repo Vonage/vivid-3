@@ -18,22 +18,23 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@pnpm/catalogs.config": "^1000.0.5",
-		"@pnpm/exportable-manifest": "^1000.2.1",
-		"@pnpm/read-project-manifest": "^1001.2.1",
-		"@pnpm/workspace.read-manifest": "^1000.2.7"
+		"@pnpm/catalogs.config": "catalog:",
+		"@pnpm/exportable-manifest": "catalog:",
+		"@pnpm/read-project-manifest": "catalog:",
+		"@pnpm/workspace.read-manifest": "catalog:"
 	},
 	"devDependencies": {
-		"@figma/rest-api-spec": "^0.35.0",
+		"@figma/rest-api-spec": "catalog:",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
-		"chalk": "^5.6.2",
-		"change-case": "^5.4.4",
-		"figma-js": "1.16.1-0",
-		"figmash": "^0.0.3",
-		"is-svg": "^6.1.0",
-		"ohash": "^2.0.11",
+		"@types/node": "catalog:",
+		"chalk": "catalog:",
+		"change-case": "catalog:",
+		"figma-js": "catalog:",
+		"figmash": "catalog:",
+		"is-svg": "catalog:",
+		"ohash": "catalog:",
 		"tsx": "catalog:",
 		"vitest": "catalog:"
 	}

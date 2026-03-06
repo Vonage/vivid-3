@@ -35,7 +35,6 @@ export const getMarkersTemplate = (
 export const SliderTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 
-	/* eslint-disable @typescript-eslint/indent */
 	return html<Slider>`<template
 		@focusin="${(x) => x._onFocusIn()}"
 		@focusout="${(x) => x._onFocusOut()}"
@@ -60,7 +59,7 @@ export const SliderTemplate = (context: VividElementDefinitionContext) => {
 							? getMarkersTemplate(
 									x.orientation === Orientation.horizontal,
 									Math.floor((x.max - x.min) / x.step)
-							  )
+								)
 							: void 0}
 					<div class="track-start" style="${(x) => x.position}"></div>
 				</div>

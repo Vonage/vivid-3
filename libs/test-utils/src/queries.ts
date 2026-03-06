@@ -8,8 +8,8 @@ export function checkedState(
 	return el.indeterminate
 		? 'indeterminate'
 		: el.checked
-		? 'checked'
-		: 'unchecked';
+			? 'checked'
+			: 'unchecked';
 }
 
 export function visibleError(el: any) {

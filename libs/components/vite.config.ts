@@ -70,7 +70,7 @@ export default mergeConfig(
 				? dts({
 						include: ['src/**/*'],
 						exclude: ['**/*.spec.ts', '**/*.test.ts', 'src/visual-tests'],
-				  })
+					})
 				: undefined,
 		],
 		build: {
@@ -79,6 +79,7 @@ export default mergeConfig(
 				entry: input,
 				name: 'components',
 				formats: ['es', 'cjs'],
+				cssFileName: 'style',
 			},
 			minify: false,
 			rollupOptions: {

@@ -58,7 +58,6 @@ Pre-built, interconnected component setups
 - **Complete API Synchronization:** 100% alignment with Vivid API components
 - **Thoroughly Tested:** We've gone the extra mile to make sure everything works perfectly ([Components QA](https://docs.google.com/spreadsheets/d/1-R6p9tJa6agJRDUkpfDNZ8kS4bXjfm7YcVZY4KoZAqg/edit?gid=0#gid=0))
 - **Expanded Component Set:** New components and enhanced features like:
-
   - Searchable select
   - Video-player
   - Side-Drawer

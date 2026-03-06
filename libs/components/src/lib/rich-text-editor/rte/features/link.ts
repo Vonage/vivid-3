@@ -271,7 +271,7 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 				// eslint-disable-next-line no-new
 				new URL(url);
 				return true;
-			} catch (e) {
+			} catch {
 				return false;
 			}
 		};
@@ -388,7 +388,7 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 		// Determine link at start of selection
 		const selectionStartMarks = state.selection.empty
 			? $from.marks()
-			: $from.nodeAfter?.marks ?? [];
+			: ($from.nodeAfter?.marks ?? []);
 		const targetHref = linkMark.isInSet(selectionStartMarks)?.attrs.href;
 		if (!targetHref) {
 			return null;

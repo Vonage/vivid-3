@@ -7,9 +7,8 @@ const features = [new RteBase(), new RteBoldFeature(), new RteToolbarFeature()];
 
 describe('RteHistoryFeature', () => {
 	it('should undo changes with Mod-z and redo them with Ctrl-y or Cmd+Shift+z', async () => {
-		const { typeTextAtCursor, keydown, docStr, selectAll } = await setup(
-			features
-		);
+		const { typeTextAtCursor, keydown, docStr, selectAll } =
+			await setup(features);
 
 		await typeTextAtCursor('hello');
 		selectAll();

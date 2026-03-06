@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import { defineConfig } from 'vite';
+import { defineConfig, type UserConfig } from 'vite';
 import { NodePackageImporter } from 'sass';
 
 export const packageVersion = JSON.parse(
@@ -9,7 +9,7 @@ export const packageVersion = JSON.parse(
 
 const isWatchMode = process.env.WATCH_MODE === 'true';
 
-export default defineConfig({
+const baseConfig = defineConfig({
 	build: {
 		outDir: 'dist',
 		cssMinify: true,
@@ -17,7 +17,7 @@ export default defineConfig({
 		watch: isWatchMode
 			? {
 					exclude: ['**/*.md'],
-			  }
+				}
 			: null,
 	},
 	define: {
@@ -25,10 +25,20 @@ export default defineConfig({
 	},
 	css: {
 		preprocessorOptions: {
+			// Vite's SassPreprocessorOptions type doesn't currently include the newer
+			// Sass JS API selector, but Sass supports it at runtime.
 			scss: {
 				api: 'modern-compiler',
 				importers: [new NodePackageImporter()],
-			},
+			} as unknown as NonNullable<
+				UserConfig['css']
+			>['preprocessorOptions'] extends infer T
+				? T extends { scss?: infer S }
+					? S
+					: never
+				: never,
 		},
 	},
 });
+
+export default baseConfig as unknown as UserConfig;

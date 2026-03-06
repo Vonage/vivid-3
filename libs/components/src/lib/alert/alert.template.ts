@@ -35,7 +35,7 @@ function renderIcon(c: VividElementDefinitionContext, x: Alert) {
 			? {
 					label: x.locale.connotationAnnoncement[`${x.connotation}Icon`],
 					announceOnUpdate: true,
-			  }
+				}
 			: undefined;
 
 	return affixIconTemplate(

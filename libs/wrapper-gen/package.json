@@ -34,7 +34,7 @@
 		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},
 	"dependencies": {
-		"change-case": "^5.4.4"
+		"change-case": "catalog:"
 	},
 	"devDependencies": {
 		"@repo/consts": "workspace:*",
@@ -43,10 +43,9 @@
 		"@repo/shared": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
-		"@types/markdown-table": "catalog:",
-		"@types/node-fetch": "^2.6.13",
+		"@types/jsdom": "catalog:",
 		"markdown-table": "catalog:",
-		"node-fetch": "^2.7.0",
+		"node-fetch": "catalog:",
 		"tsx": "catalog:",
 		"vitest": "catalog:"
 	}

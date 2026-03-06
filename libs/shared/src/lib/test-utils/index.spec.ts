@@ -123,9 +123,9 @@ describe(`test-utils`, function () {
 			baseElement.classList.add('base');
 			const shadowedElement = document.createElement('dummy-element');
 			document.body.appendChild(shadowedElement);
-			shadowedElement.shadowRoot
-				? shadowedElement.shadowRoot.appendChild(baseElement)
-				: '';
+			if (shadowedElement.shadowRoot) {
+				shadowedElement.shadowRoot.appendChild(baseElement);
+			}
 			expect(getBaseElement(shadowedElement)).toEqual(baseElement);
 		});
 	});
@@ -141,9 +141,9 @@ describe(`test-utils`, function () {
 			controlElement.classList.add('control');
 			const shadowedElement = document.createElement('dummy-element');
 			document.body.appendChild(shadowedElement);
-			shadowedElement.shadowRoot
-				? shadowedElement.shadowRoot.appendChild(controlElement)
-				: '';
+			if (shadowedElement.shadowRoot) {
+				shadowedElement.shadowRoot.appendChild(controlElement);
+			}
 			expect(getControlElement(shadowedElement)).toEqual(controlElement);
 		});
 	});

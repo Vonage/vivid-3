@@ -1,12 +1,12 @@
-import type { Named, Transform } from 'style-dictionary';
+import type { Transform } from 'style-dictionary/types';
 import { isFontSize } from '../filters';
 
 export default {
 	type: 'value',
 	name: 'type/fontSize',
 	transitive: true,
-	matcher: isFontSize,
-	transformer: function (token) {
-		return `calc(${token.value})`;
+	filter: isFontSize,
+	transform: function (token) {
+		return `calc(${token.value ?? token.$value})`;
 	},
-} as Named<Transform>;
+} as Transform;

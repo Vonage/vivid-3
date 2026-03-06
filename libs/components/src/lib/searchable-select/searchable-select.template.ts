@@ -201,7 +201,7 @@ function setFixedDropdownVarWidth(x: Select) {
 	return x.open && x.fixedDropdown
 		? `--_searchable-select-fixed-width: ${Math.round(
 				x.getBoundingClientRect().width
-		  )}px`
+			)}px`
 		: null;
 }
 

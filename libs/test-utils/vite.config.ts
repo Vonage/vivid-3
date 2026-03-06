@@ -1,9 +1,9 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type PluginOption } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
-	plugins: [vue(), dts()],
+	plugins: [vue(), dts() as PluginOption],
 
 	build: {
 		lib: {
@@ -15,6 +15,7 @@ export default defineConfig({
 			],
 			name: 'vivid-test-utils',
 			formats: ['es', 'cjs'],
+			cssFileName: 'style',
 		},
 		rollupOptions: {
 			external: ['@testing-library/user-event', '@vonage/vivid'],

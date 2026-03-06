@@ -1,4 +1,4 @@
-import SD from 'style-dictionary';
+import StyleDictionary from 'style-dictionary';
 
 import resolveMath from './transforms/resolve-math';
 import publicCssReferences from './transforms/public-css-references';
@@ -9,17 +9,24 @@ import configTypography from './configurations/typography';
 import configSize from './configurations/size';
 import cssAtRuleProperty from './configurations/@property';
 
-SD.registerTransform(publicCssReferences);
-SD.registerTransform(resolveMath);
+StyleDictionary.registerTransform(publicCssReferences);
+StyleDictionary.registerTransform(resolveMath);
 
-SD.extend(configScssConstants).buildAllPlatforms();
+const base = new StyleDictionary({});
 
-['light', 'dark'].forEach((theme) => {
-	SD.extend(getConfigTheme(theme)).buildAllPlatforms();
-});
+let extended = await base.extend(configScssConstants);
+await extended.buildAllPlatforms();
 
-SD.extend(configTypography).buildAllPlatforms();
+for (const theme of ['light', 'dark']) {
+	extended = await base.extend(getConfigTheme(theme));
+	await extended.buildAllPlatforms();
+}
 
-SD.extend(configSize).buildAllPlatforms();
+extended = await base.extend(configTypography);
+await extended.buildAllPlatforms();
 
-SD.extend(cssAtRuleProperty).buildAllPlatforms();
+extended = await base.extend(configSize);
+await extended.buildAllPlatforms();
+
+extended = await base.extend(cssAtRuleProperty);
+await extended.buildAllPlatforms();
