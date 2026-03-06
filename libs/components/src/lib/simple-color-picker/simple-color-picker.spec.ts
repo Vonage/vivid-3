@@ -440,7 +440,7 @@ describe('vwc-simple-color-picker', () => {
 			}).not.toThrow();
 		});
 
-		it('should focus correct swatch when opened via any method', async () => {
+		it('should focus correct swatch when opened via keyboard navigation', async () => {
 			const anchorElement = document.createElement('button');
 			anchorElement.slot = 'anchor';
 			element.appendChild(anchorElement);
@@ -457,14 +457,18 @@ describe('vwc-simple-color-picker', () => {
 
 			element.open = false;
 			element.value = '#ffff00';
-			anchorElement.click();
+			anchorElement.dispatchEvent(
+				new KeyboardEvent('keydown', { key: ' ', bubbles: true })
+			);
 			await elementUpdated(element);
 			await new Promise((resolve) => setTimeout(resolve, 50));
 			expect(element.shadowRoot?.activeElement).toBe(getSwatch(3));
 
 			element.open = false;
 			element.value = '#999999';
-			anchorElement.click();
+			anchorElement.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })
+			);
 			await elementUpdated(element);
 			await new Promise((resolve) => setTimeout(resolve, 50));
 			expect(element.shadowRoot?.activeElement).toBe(getSwatch(0));
@@ -532,6 +536,13 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			expect(element.open).toBe(false);
+		});
+
+		it('should not auto-focus swatch when opened via mouse click', async () => {
+			anchorElement.click();
+			await elementUpdated(element);
+			await new Promise((resolve) => setTimeout(resolve, 50));
+			expect(element.shadowRoot?.activeElement).toBeNull();
 		});
 	});
 
