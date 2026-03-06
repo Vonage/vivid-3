@@ -44,10 +44,8 @@
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@types/jsdom": "catalog:",
-		"@types/markdown-table": "catalog:",
-		"@types/node-fetch": "^2.6.13",
 		"markdown-table": "catalog:",
-		"node-fetch": "^2.7.0",
+		"node-fetch": "catalog:",
 		"tsx": "catalog:",
 		"vitest": "catalog:"
 	}

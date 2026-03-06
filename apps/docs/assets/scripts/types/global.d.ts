@@ -4,6 +4,6 @@ declare global {
 	interface Window {
 		setLocale: typeof setLocale;
 		toggleSideDrawerButton: () => void;
-		htmx: typeof import('htmx.org');
+		htmx: typeof import('htmx.org').default;
 	}
 }

@@ -100,7 +100,6 @@
 		"@testing-library/user-event": "catalog:",
 		"@types/node": "catalog:",
 		"@types/ramda": "catalog:",
-		"@types/uuid": "catalog:",
 		"cem-plugin-async-function": "catalog:",
 		"cem-plugin-jsdoc-example": "catalog:",
 		"cem-plugin-jsdoc-function": "catalog:",

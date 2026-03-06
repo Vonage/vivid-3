@@ -49,8 +49,6 @@
 		"@types/jsdom": "catalog:",
 		"@types/lodash": "catalog:",
 		"@types/markdown-it": "catalog:",
-		"@types/markdown-table": "catalog:",
-		"@types/node-fetch": "catalog:",
 		"@types/ramda": "catalog:",
 		"@vitejs/plugin-vue": "catalog:",
 		"clean-css": "catalog:",
