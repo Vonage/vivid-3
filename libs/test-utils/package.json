@@ -52,6 +52,7 @@
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@repo/wrapper-gen": "workspace:*",
+		"@types/node": "catalog:",
 		"@vitejs/plugin-vue": "catalog:",
 		"@vonage/vivid-vue": "workspace:*",
 		"@vue/test-utils": "^2.4.6",

@@ -488,22 +488,37 @@ describe('vwc-popup', () => {
 		});
 
 		it('should activate showPopover when strategy is fixed and popup is opened', async () => {
+			await elementUpdated(element);
+			const wrapper = getPopupWrapper();
+			const showSpy = vi.fn();
+			wrapper.showPopover = showSpy;
+
 			element.strategy = 'fixed';
 			element.open = true;
 			await elementUpdated(element);
 
-			expect(getPopupWrapper().showPopover).toHaveBeenCalled();
+			expect(showSpy).toHaveBeenCalled();
 		});
 
 		it('should not activate showPopover when strategy is absolute and popup is opened', async () => {
+			await elementUpdated(element);
+			const wrapper = getPopupWrapper();
+			const showSpy = vi.fn();
+			wrapper.showPopover = showSpy;
+
 			element.strategy = 'absolute';
 			element.open = true;
 			await elementUpdated(element);
 
-			expect(getPopupWrapper().showPopover).not.toHaveBeenCalled();
+			expect(showSpy).not.toHaveBeenCalled();
 		});
 
 		it('should activate hidePopover when strategy is fixed and popup is closed', async () => {
+			await elementUpdated(element);
+			const wrapper = getPopupWrapper();
+			const hideSpy = vi.fn();
+			wrapper.hidePopover = hideSpy;
+
 			element.strategy = 'fixed';
 			element.open = true;
 			await elementUpdated(element);
@@ -511,10 +526,15 @@ describe('vwc-popup', () => {
 			element.open = false;
 			await elementUpdated(element);
 
-			expect(getPopupWrapper().hidePopover).toHaveBeenCalled();
+			expect(hideSpy).toHaveBeenCalled();
 		});
 
 		it('should active showPopover when strategy is changed to fixed', async () => {
+			await elementUpdated(element);
+			const wrapper = getPopupWrapper();
+			const showSpy = vi.fn();
+			wrapper.showPopover = showSpy;
+
 			element.strategy = 'absolute';
 			element.open = true;
 			await elementUpdated(element);
@@ -522,7 +542,7 @@ describe('vwc-popup', () => {
 			element.strategy = 'fixed';
 			await elementUpdated(element);
 
-			expect(getPopupWrapper().showPopover).toHaveBeenCalled();
+			expect(showSpy).toHaveBeenCalled();
 		});
 	});
 
