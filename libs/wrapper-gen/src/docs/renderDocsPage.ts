@@ -1,7 +1,7 @@
-import markdownTable from 'markdown-table';
 import { TypeResolver } from '../common/types';
 import { wrappedComponentName } from '../vueWrappers/name';
 import type { ComponentDef } from '@repo/metadata-extractor';
+import { markdownTable } from 'markdown-table';
 import {
 	parseTypeStr,
 	TypeStr,

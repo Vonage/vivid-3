@@ -15,6 +15,7 @@ module.exports.getTokens = async function (type) {
 	const names = Array.from(
 		await styleDictionaryInstance.tokenMap.keys()
 	).filter((key) => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const [_prefix, category, _semantic, _scale] = key
 			.replace(/[{}]/gm, '')
 			.split('/');
@@ -34,6 +35,7 @@ module.exports.getTokens = async function (type) {
 		const cssToken = cssTokens.tokenMap.get(name);
 		const flutterToken = flutterTokens.tokenMap.get(name);
 		const cleanName = name.replace(/[{}]/gm, '');
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const [_prefix, category, semantic, scale] = cleanName.split('/');
 
 		return {

@@ -8,7 +8,6 @@ export type IconStyle =
 	| 'flag'
 	| 'color'
 	| 'mono'
-	// eslint-disable-next-line
 	| ({} & string);
 
 export type IconCategory =
@@ -40,7 +39,6 @@ export type IconCategory =
 	| 'user'
 	| 'video'
 	| 'view'
-	// eslint-disable-next-line
 	| ({} & string);
 
 export interface IconEntry {

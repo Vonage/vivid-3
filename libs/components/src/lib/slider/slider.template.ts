@@ -35,7 +35,6 @@ export const getMarkersTemplate = (
 export const SliderTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 
-	/* eslint-disable @typescript-eslint/indent */
 	return html<Slider>`<template
 		@focusin="${(x) => x._onFocusIn()}"
 		@focusout="${(x) => x._onFocusOut()}"

@@ -79,6 +79,7 @@ export default mergeConfig(
 				entry: input,
 				name: 'components',
 				formats: ['es', 'cjs'],
+				cssFileName: 'style',
 			},
 			minify: false,
 			rollupOptions: {

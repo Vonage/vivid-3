@@ -1,8 +1,9 @@
 import type { Rule } from 'eslint';
-import * as utils from 'eslint-plugin-vue/lib/utils/index.js';
+import { defineTemplateBodyVisitor } from '../utils/vue';
 import { getAttributes } from '../utils/attributes';
 import { ComponentMetadata } from '../utils/ComponentMetadata';
 import { normalizeTag } from '../utils/components';
+import type { Node } from '../types/vue-eslint-parser';
 
 const IDREF_ARIA_ATTRIBUTES = [
 	'aria-activedescendant',
@@ -58,8 +59,8 @@ export const noIdrefAriaAttribute: Rule.RuleModule = {
 		schema: [],
 	},
 	create(context) {
-		return utils.defineTemplateBodyVisitor(context, {
-			VElement(node) {
+		return defineTemplateBodyVisitor(context, {
+			VElement(node: Node) {
 				const tagName = normalizeTag(node.name);
 				components.forTag(tagName, () => {
 					const attrs = getAttributes(node.startTag);

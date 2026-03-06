@@ -1,8 +1,13 @@
+import type {
+	Config,
+	TransformedToken,
+	PlatformConfig,
+} from 'style-dictionary/types';
 import shadowShorthand from './shadow-shorthand';
 
-const { transformer, matcher } = shadowShorthand;
+const { transform, filter } = shadowShorthand;
 
-const defaultToken = {
+const defaultToken: Partial<TransformedToken> = {
 	value: undefined,
 	name: '',
 	path: [],
@@ -11,7 +16,7 @@ const defaultToken = {
 	isSource: false,
 };
 
-const token = {
+const token: Partial<TransformedToken> = {
 	...defaultToken,
 	type: 'boxShadow',
 	attributes: {
@@ -48,14 +53,23 @@ const token = {
 const expectedParsedEffects =
 	'drop-shadow(0px 2px 1px #0000000d) drop-shadow(0px 1px 2px #0000000d) drop-shadow(0px 1px 4px #0000001a)';
 
+const config = {} as Config;
+const platformConfig = {} as PlatformConfig;
+
+const matcher = (token: Partial<TransformedToken>) =>
+	filter(token as TransformedToken, config);
+
+const transformer = (token: Partial<TransformedToken>) =>
+	transform(token as TransformedToken, platformConfig, config);
+
 describe('basic', () => {
 	it('should transform array of drop shadows to single token value', () => {
-		expect(transformer(token, {})).toEqual(expectedParsedEffects);
+		expect(transformer(token)).toEqual(expectedParsedEffects);
 	});
 
 	it('should ignore already parsed value', () => {
 		expect(
-			transformer({ ...defaultToken, value: expectedParsedEffects }, {})
+			transformer({ ...defaultToken, value: expectedParsedEffects })
 		).toEqual(expectedParsedEffects);
 	});
 

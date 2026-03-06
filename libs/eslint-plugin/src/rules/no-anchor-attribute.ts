@@ -1,7 +1,8 @@
-import * as utils from 'eslint-plugin-vue/lib/utils/index.js';
 import type { Rule } from 'eslint';
+import { defineTemplateBodyVisitor } from '../utils/vue';
 import { normalizeTag } from '../utils/components';
 import { ComponentMetadata } from '../utils/ComponentMetadata';
+import type { Node } from '../types/vue-eslint-parser';
 
 const anchoredComponents = new ComponentMetadata<null>();
 
@@ -19,8 +20,8 @@ export const noAnchorAttribute: Rule.RuleModule = {
 		schema: [],
 	},
 	create(context) {
-		return utils.defineTemplateBodyVisitor(context, {
-			VElement(node) {
+		return defineTemplateBodyVisitor(context, {
+			VElement(node: Node) {
 				anchoredComponents.forTag(normalizeTag(node.name), () => {
 					for (const attr of node.startTag.attributes) {
 						if (attr.directive || attr.key.name !== 'anchor') {

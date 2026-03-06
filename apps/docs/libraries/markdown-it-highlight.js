@@ -17,6 +17,7 @@ module.exports = function (str, language, attrs) {
 			return `<pre class="${classes.join(
 				' '
 			)}" data-pagefind-ignore><code>${highlight}</code></pre>`;
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		} catch (__) {
 			// ignore
 		}
