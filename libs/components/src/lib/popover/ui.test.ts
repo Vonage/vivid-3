@@ -237,7 +237,5 @@ test('should show default (auto) popover', async ({ page }: { page: Page }) => {
 		template,
 	});
 
-	await page.waitForTimeout(500);
-
 	await takeScreenshot(page, 'popover-default');
 });

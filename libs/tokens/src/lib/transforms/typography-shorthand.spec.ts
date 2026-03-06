@@ -1,8 +1,13 @@
+import type {
+	Config,
+	TransformedToken,
+	PlatformConfig,
+} from 'style-dictionary/types';
 import typographyShorthand from './typography-shorthand';
 
-const { transform: transformer, filter: matcher } = typographyShorthand;
+const { transform, filter } = typographyShorthand;
 
-const defualtToken = {
+const defualtToken: Partial<TransformedToken> = {
 	value: undefined,
 	name: '',
 	path: [],
@@ -11,7 +16,7 @@ const defualtToken = {
 	isSource: false,
 };
 
-const token = {
+const token: Partial<TransformedToken> = {
 	type: 'typography',
 	attributes: {
 		category: 'font',
@@ -26,6 +31,15 @@ const token = {
 
 const expectedParsedEffects =
 	'Regular {size.font.base} * 0.75/{size.font.base} * 1 SpeziaMonoCompleteVariable';
+
+const config = {} as Config;
+const platformConfig = {} as PlatformConfig;
+
+const matcher = (token: Partial<TransformedToken>) =>
+	filter(token as TransformedToken, config);
+
+const transformer = (token: Partial<TransformedToken>) =>
+	transform(token as TransformedToken, platformConfig, config);
 
 describe('basic', () => {
 	it('should transform object of typography to a font shorthand value', () => {

@@ -11,7 +11,7 @@ const getRunTimeDensity = (token) => {
 };
 
 SD.registerTransform({
-	type: 'value' as const,
+	type: 'value',
 	name: 'type/density',
 	transitive: true,
 	filter: (token) => token.attributes?.type === 'density',
@@ -19,7 +19,7 @@ SD.registerTransform({
 });
 
 SD.registerTransform({
-	type: 'value' as const,
+	type: 'value',
 	name: 'css/calc',
 	transitive: true,
 	filter: isSource,
