@@ -1,11 +1,11 @@
 {
-	"libs/components": "5.15.0",
-	"libs/vue-wrappers": "5.15.0",
+	"libs/components": "5.15.1",
+	"libs/vue-wrappers": "5.15.1",
 	"libs/test-wrappers": "5.0.0",
 	"libs/eslint-plugin": "1.5.1",
-	"libs/test-utils": "5.15.0",
+	"libs/test-utils": "5.15.1",
 	"libs/design-tokens": "5.15.0",
-	"libs/icons": "4.8.0",
-	"libs/icons-brands": "4.8.0",
-	"libs/icons-flags": "4.8.0"
+	"libs/icons": "4.9.0",
+	"libs/icons-brands": "4.9.0",
+	"libs/icons-flags": "4.9.0"
 }
