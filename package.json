@@ -17,6 +17,8 @@
 		"typecheck": "turbo run typecheck"
 	},
 	"devDependencies": {
+		"@eslint/eslintrc": "catalog:",
+		"@eslint/js": "catalog:",
 		"@types/eslint": "catalog:",
 		"@typescript-eslint/eslint-plugin": "catalog:",
 		"@typescript-eslint/parser": "catalog:",
@@ -31,6 +33,7 @@
 		"eslint-plugin-tsdoc": "catalog:",
 		"eslint-plugin-unused-imports": "catalog:",
 		"eslint-plugin-vue": "catalog:",
+		"globals": "catalog:",
 		"istanbul-merge": "catalog:",
 		"nyc": "catalog:",
 		"prettier": "catalog:",
@@ -43,7 +46,7 @@
 	},
 	"packageManager": "pnpm@10.28.2",
 	"engines": {
-		"node": ">=20.0.0",
+		"node": ">=20.19.0",
 		"pnpm": ">=10.23.0"
 	},
 	"pnpm": {

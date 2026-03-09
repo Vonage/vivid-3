@@ -20,13 +20,12 @@ import { ASTUtils, ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
 // NOTE: The rule will be available in ESLint configs as "@nrwl/nx/workspace/no-attribute-default-value"
 export const RULE_NAME = 'no-attribute-default-value';
 
-export const rule = ESLintUtils.RuleCreator(() => __filename)({
+export const rule = ESLintUtils.RuleCreator(() => import.meta.url)({
 	name: RULE_NAME,
 	meta: {
 		type: 'problem',
 		docs: {
 			description: ``,
-			recommended: 'strict',
 		},
 		schema: [],
 		messages: {

@@ -720,7 +720,6 @@ export class DataGrid extends VividElement {
 
 	private onChildListChange = (
 		mutations: MutationRecord[],
-		/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 		_: MutationObserver
 	): void => {
 		/* v8 ignore else -- @preserve */

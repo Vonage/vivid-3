@@ -57,7 +57,6 @@ function renderHeader(iconTag: InlineTemplateDirective) {
 }
 
 function shouldHideHeader(card: Card) {
-	// eslint-disable-next-line max-len
 	return (
 		!card.headline &&
 		!card.subtitle &&

@@ -1,6 +1,4 @@
 /* Eslint confuses ts-morph's Symbol with builtin symbol */
-/* eslint-disable @typescript-eslint/ban-types */
-
 import { Node, type SourceFile, type Symbol, Type } from 'ts-morph';
 import { getComponentName } from './jsdoc';
 import { relative } from 'node:path';

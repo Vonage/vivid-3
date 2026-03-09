@@ -1,4 +1,4 @@
-import * as utils from 'eslint-plugin-vue/lib/utils/index.js';
+import { defineTemplateBodyVisitor } from '../utils/vue';
 import type { Rule } from 'eslint';
 import { normalizeTag } from '../utils/components';
 
@@ -56,7 +56,7 @@ export const accessibleNames: Rule.RuleModule = {
 		schema: [],
 	},
 	create(context) {
-		return utils.defineTemplateBodyVisitor(context, {
+		return defineTemplateBodyVisitor(context, {
 			VElement(node: any) {
 				requiredAccessibleNames.forTag(
 					normalizeTag(node.name),

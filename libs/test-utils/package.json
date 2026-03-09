@@ -40,9 +40,9 @@
 		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},
 	"dependencies": {
-		"@testing-library/user-event": "^14.6.1",
+		"@testing-library/user-event": "catalog:",
 		"@vonage/vivid": "workspace:^",
-		"change-case": "^5.4.4"
+		"change-case": "catalog:"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
@@ -55,12 +55,12 @@
 		"@vitejs/plugin-vue": "catalog:",
 		"@vonage/vivid-vue": "workspace:*",
 		"@vue/test-utils": "^2.4.6",
-		"concurrently": "^9.2.1",
-		"cypress": "catalog:",
+		"concurrently": "catalog:",
+		"cypress": "^14.5.4",
 		"tsx": "catalog:",
 		"vite": "catalog:",
 		"vitest": "catalog:",
 		"vue": "catalog:vue3",
-		"wait-on": "^8.0.5"
+		"wait-on": "catalog:"
 	}
 }

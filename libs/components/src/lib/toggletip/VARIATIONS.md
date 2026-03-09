@@ -285,6 +285,8 @@ import { VButton, VIcon, VToggletip } from '@vonage/vivid-vue';
 
 The `alternate` attribute changes the Toggletip's color scheme to the opposite of the currently select one (eg. from light to dark).
 
+[Read more about the `alternative` attribute](/designs/color/#alternate-attribute)
+
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>

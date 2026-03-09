@@ -49,7 +49,6 @@ describe('RteHtmlSerializer', () => {
 		const serializer = new RteHtmlSerializer(config, {
 			serializers: {
 				nodes: {
-					// eslint-disable-next-line @typescript-eslint/naming-convention
 					inlineImage: (node) => [
 						'img',
 						{

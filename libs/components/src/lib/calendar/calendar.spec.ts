@@ -252,7 +252,6 @@ describe('vwc-calendar', () => {
 					} as CSSStyleDeclaration)
 			);
 
-			document.body.innerHTML;
 			const fragment = document.createElement('div');
 			document.body.appendChild(fragment);
 			const calendarEl = document.createElement(COMPONENT_TAG);

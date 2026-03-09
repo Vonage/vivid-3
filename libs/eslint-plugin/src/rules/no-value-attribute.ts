@@ -1,9 +1,10 @@
-import * as utils from 'eslint-plugin-vue/lib/utils/index.js';
 import type { Rule } from 'eslint';
+import { defineTemplateBodyVisitor } from '../utils/vue';
 import { normalizeTag } from '../utils/components';
 import { ComponentMetadata } from '../utils/ComponentMetadata';
 import { getAttributes } from '../utils/attributes';
 import { camelToKebab } from '../utils/casing';
+import type { Node } from '../types/vue-eslint-parser';
 
 const componentsWithValueAttributes = new ComponentMetadata<{
 	valueAttr: string;
@@ -92,8 +93,8 @@ export const noValueAttribute: Rule.RuleModule = {
 	create(context) {
 		const replaceWith = context.options[0]?.replaceWith ?? null;
 
-		return utils.defineTemplateBodyVisitor(context, {
-			VElement(node) {
+		return defineTemplateBodyVisitor(context, {
+			VElement(node: Node) {
 				componentsWithValueAttributes.forTag(
 					normalizeTag(node.name),
 					(_, { valueAttr, initialValueAttr }) => {

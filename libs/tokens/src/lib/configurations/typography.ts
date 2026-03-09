@@ -17,7 +17,7 @@ export default {
 		css: {
 			transforms: [
 				'attribute/cti',
-				'name/cti/kebab',
+				'name/kebab',
 				'size/px',
 				'type/fontSize',
 				'typography/shorthand',

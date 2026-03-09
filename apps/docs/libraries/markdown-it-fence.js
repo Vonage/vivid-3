@@ -1,4 +1,3 @@
-const { unescapeAll } = require('markdown-it/lib/common/utils');
 const {
 	createCodeExample,
 } = require('../code-example-preview/createCodeExample');
@@ -6,10 +5,12 @@ const createVariablePreview = require('../variables-preview');
 
 /**
  * Extend the original fence renderer to support custom fenced blocks like code preview.
+ * Uses slf.utils.unescapeAll when available (markdown-it instance); fallback for compat.
  */
 module.exports =
 	(originalFenceRenderer) => (tokens, idx, options, env, slf) => {
 		const token = tokens[idx];
+		const unescapeAll = slf?.utils?.unescapeAll ?? ((s) => s);
 		const info = token.info ? unescapeAll(token.info).trim() : '';
 		const [lang, ...additionalOptions] = info.split(/\s+/g);
 
