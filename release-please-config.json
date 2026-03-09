@@ -10,8 +10,7 @@
 			"package-name": "vivid-design-tokens"
 		},
 		"libs/icons": {
-			"component": "vivid-icons",
-			"skip-github-release": true
+			"component": "vivid-icons"
 		},
 		"libs/vue-wrappers": {
 			"component": "vivid-vue",

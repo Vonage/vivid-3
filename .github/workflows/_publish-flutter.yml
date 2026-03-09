@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  puiblish-flutter:
+  publish-flutter:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo

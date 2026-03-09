@@ -24,10 +24,6 @@ jobs:
       vivid_release_created: ${{ steps.release.outputs['libs/components--release_created'] }}
       vivid_release_sha: ${{ steps.release.outputs['libs/components--sha'] }}
 
-      vivid_icons_release_created: ${{ steps.release.outputs['libs/icons--release_created'] }}
-      vivid_icons_version: ${{ steps.release.outputs['libs/icons--version'] }}
-      vivid_icons_sha: ${{ steps.release.outputs['libs/icons--sha'] }}
-
       vivid_tokens_release_created: ${{ steps.release.outputs['libs/design-tokens--release_created'] }}
       vivid_tokens_version: ${{ steps.release.outputs['libs/design-tokens--version'] }}
       vivid_tokens_sha: ${{ steps.release.outputs['libs/design-tokens--sha'] }}
@@ -71,15 +67,6 @@ jobs:
           tag: test-utils
           version: ${{ steps.release.outputs['libs/test-utils--version'] }}
 
-      # ...and the same for icons
-      - name: Create Icons Tag
-        if: ${{ steps.release.outputs['libs/icons--release_created'] }}
-        uses: ./.github/actions/create-version-tag
-        with:
-          sha: ${{ steps.release.outputs['libs/icons--sha'] }}
-          tag: vivid-icons
-          version: ${{ steps.release.outputs['libs/icons--version'] }}
-
       # Now we can create/update the release PR if needed
       # This will look for commits since the last release and associate them with libraries if files in the library
       # directories have changed. It will then create/update a release PR that updates the libraries changelog and versions
@@ -95,19 +82,16 @@ jobs:
     outputs:
       should_release: ${{ steps.should-release.outputs.should_release }}
       release_sha: ${{ steps.should-release.outputs.release_sha }}
-      should_release_icons: ${{ steps.should-release.outputs.should_release_icons }}
       should_release_tokens: ${{ steps.should-release.outputs.should_release_tokens }}
     steps:
       - id: should-release
         run: |
           SHOULD_RELEASE="${{ needs.release-please.outputs.vivid_release_created == 'true' || needs.release-please.outputs.eslint_plugin_release_created == 'true' || github.event.inputs.force-release == 'true' }}"
           RELEASE_SHA="${{ needs.release-please.outputs.vivid_release_sha || needs.release-please.outputs.eslint_plugin_release_sha || github.event.pull_request.head.sha }}"
-          SHOULD_RELEASE_ICONS="${{ needs.release-please.outputs.vivid_icons_release_created == 'true' || github.event.inputs.force-release == 'true' }}"
           SHOULD_RELEASE_TOKENS="${{ needs.release-please.outputs.vivid_tokens_release_created == 'true' || github.event.inputs.force-release == 'true' }}"
           {
             echo "should_release=$SHOULD_RELEASE"
             echo "release_sha=$RELEASE_SHA"
-            echo "should_release_icons=$SHOULD_RELEASE_ICONS"
             echo "should_release_tokens=$SHOULD_RELEASE_TOKENS"
           } >> "$GITHUB_OUTPUT"
 
@@ -139,7 +123,7 @@ jobs:
 
   vivid-icons-publish:
     needs: should-release
-    if: ${{ needs.should-release.outputs.should_release_icons == 'true' }}
+    if: ${{ needs.should-release.outputs.should_release == 'true' }}
     uses: ./.github/workflows/_publish-icons.yml
     with:
       sha: ${{ needs.should-release.outputs.release_sha }}
