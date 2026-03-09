@@ -47,7 +47,7 @@
 		"@types/node-fetch": "^2.6.13",
 		"@vonage/vivid-icons": "workspace:*",
 		"markdown-table": "^3.0.4",
-		"node-fetch": "^2.7.0",
+		"node-fetch": "^3.3.2",
 		"tsx": "catalog:",
 		"vitest": "catalog:"
 	}

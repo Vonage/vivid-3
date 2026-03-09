@@ -57,7 +57,7 @@
 		"@vonage/vivid-vue": "workspace:*",
 		"@vue/test-utils": "^2.4.6",
 		"concurrently": "catalog:",
-		"cypress": "^14.5.4",
+		"cypress": "^15.11.0",
 		"tsx": "catalog:",
 		"vite": "catalog:",
 		"vitest": "catalog:",
