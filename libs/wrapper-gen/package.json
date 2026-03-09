@@ -37,8 +37,6 @@
 		"change-case": "catalog:"
 	},
 	"devDependencies": {
-		"@microsoft/fast-foundation": "catalog:",
-		"@microsoft/fast-web-utilities": "catalog:",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/metadata-extractor": "workspace:*",
 		"@repo/shared": "workspace:*",
