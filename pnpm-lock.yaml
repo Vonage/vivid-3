@@ -21,9 +21,6 @@ catalogs:
     '@microsoft/fast-element':
       specifier: 2.8.3
       version: 2.8.3
-    '@microsoft/fast-foundation':
-      specifier: ^2.50.0
-      version: 2.50.0
     '@microsoft/fast-web-utilities':
       specifier: ^6.0.0
       version: 6.0.0
@@ -1235,12 +1232,6 @@ importers:
         specifier: 'catalog:'
         version: 5.4.4
     devDependencies:
-      '@microsoft/fast-foundation':
-        specifier: 'catalog:'
-        version: 2.50.0
-      '@microsoft/fast-web-utilities':
-        specifier: 'catalog:'
-        version: 6.0.0
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
@@ -2961,17 +2952,8 @@ packages:
     resolution: {integrity: sha512-0rFv/D8Grzw1Mjs2+8NGUR+o4h9LVm5zKRtMeWnpdB5IMJF4TeHCL1zR5LMCIudkOvyvjbhMG5Wjs0B5nqsrRQ==}
     hasBin: true
 
-  '@microsoft/fast-element@1.14.0':
-    resolution: {integrity: sha512-zXvuSOzvsu8zDTy9eby8ix8VqLop2rwKRgp++ZN2kTCsoB3+QJVoaGD2T/Cyso2ViZQFXNpiNCVKfnmxBvmWkQ==}
-
   '@microsoft/fast-element@2.8.3':
     resolution: {integrity: sha512-dQPyOoMCJMIMdsIicNcKPvLu3Um8VM5wk/UARFXRYJAdZ7j9cEvEn5trc7y0blnXlPk9tTkah77oWqUSFi0pyg==}
-
-  '@microsoft/fast-foundation@2.50.0':
-    resolution: {integrity: sha512-8mFYG88Xea1jZf2TI9Lm/jzZ6RWR8x29r24mGuLojNYqIR2Bl8+hnswoV6laApKdCbGMPKnsAL/O68Q0sRxeVg==}
-
-  '@microsoft/fast-web-utilities@5.4.1':
-    resolution: {integrity: sha512-ReWYncndjV3c8D8iq9tp7NcFNc1vbVHvcBFPME2nNFKNbS1XCesYZGlIlf3ot5EmuOXPlrzUHOWzQ2vFpIkqDg==}
 
   '@microsoft/fast-web-utilities@6.0.0':
     resolution: {integrity: sha512-ckCA4Xn91ja1Qz+jhGGL1Q3ZeuRpA5VvYcRA7GzA1NP545sl14bwz3tbHCq8jIk+PL7mkSaIveGMYuJB2L4Izg==}
@@ -9206,9 +9188,6 @@ packages:
   synchronous-promise@2.0.17:
     resolution: {integrity: sha512-AsS729u2RHUfEra9xJrE39peJcc2stq2+poBXX8bcM08Y6g9j/i/PUzwNQqkaJde7Ntg1TO7bSREbR5sdosQ+g==}
 
-  tabbable@5.3.3:
-    resolution: {integrity: sha512-QD9qKY3StfbZqWOPLp0++pOrAVb/HbUi5xCc8cUo4XjP19808oaMiDzn0leBY5mCespIBM0CIZePzZjgzR83kA==}
-
   tabbable@6.4.0:
     resolution: {integrity: sha512-05PUHKSNE8ou2dwIxTngl4EzcnsCDZGJ/iCLtDflR/SHB/ny14rXc+qU5P4mG9JkusiV7EivzY9Mhm55AzAvCg==}
 
@@ -12000,20 +11979,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@microsoft/fast-element@1.14.0': {}
-
   '@microsoft/fast-element@2.8.3': {}
-
-  '@microsoft/fast-foundation@2.50.0':
-    dependencies:
-      '@microsoft/fast-element': 1.14.0
-      '@microsoft/fast-web-utilities': 5.4.1
-      tabbable: 5.3.3
-      tslib: 1.14.1
-
-  '@microsoft/fast-web-utilities@5.4.1':
-    dependencies:
-      exenv-es6: 1.1.1
 
   '@microsoft/fast-web-utilities@6.0.0':
     dependencies:
@@ -19436,8 +19402,6 @@ snapshots:
   symbol-tree@3.2.4: {}
 
   synchronous-promise@2.0.17: {}
-
-  tabbable@5.3.3: {}
 
   tabbable@6.4.0: {}
 
