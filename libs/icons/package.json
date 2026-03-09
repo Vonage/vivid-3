@@ -1,6 +1,6 @@
 {
 	"name": "@vonage/vivid-icons",
-	"version": "4.9.0",
+	"version": "4.8.0",
 	"type": "module",
 	"exports": {
 		".": "./dist/index.mjs",

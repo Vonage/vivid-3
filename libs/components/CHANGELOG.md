@@ -4,13 +4,6 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
-## [5.15.1](https://github.com/Vonage/vivid-3/compare/vivid-v5.15.0...vivid-v5.15.1) (2026-03-09)
-
-
-### Bug Fixes
-
-* **simple-color-picker:** do not focus swatch on mouse open (VIV-3045) ([#2801](https://github.com/Vonage/vivid-3/issues/2801)) ([f57e889](https://github.com/Vonage/vivid-3/commit/f57e88909dc7ec8174f2a57cf208a025e3377f83))
-
 ## [5.15.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.14.0...vivid-v5.15.0) (2026-02-27)
 
 

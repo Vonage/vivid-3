@@ -1,12 +1,5 @@
 # Changelog
 
-## [5.15.1](https://github.com/Vonage/vivid-3/compare/test-utils-v5.15.0...test-utils-v5.15.1) (2026-03-09)
-
-
-### Miscellaneous Chores
-
-* **test-utils:** Synchronize vivid versions
-
 ## [5.15.0](https://github.com/Vonage/vivid-3/compare/test-utils-v5.14.0...test-utils-v5.15.0) (2026-02-27)
 
 
