@@ -13,7 +13,7 @@ import { type Metadata } from './format';
 import { traverseAliasChain } from '../types/alias-chain';
 import { patchIcons } from './patch-icons';
 import { patchEvents } from './patch-events';
-import { ICONS_MANIFEST_URL } from '@repo/consts';
+import { ICONS_MANIFEST_URL } from '@vonage/vivid-icons';
 import { getRegisterFunctionName } from '../components/register-function';
 import { createMetadataTypeRenderer } from './render-type';
 import { getDescription } from '../types/jsdoc';

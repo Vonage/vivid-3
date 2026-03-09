@@ -22,9 +22,9 @@
 	"dependencies": {
 		"@microsoft/fast-element": "catalog:",
 		"@microsoft/fast-web-utilities": "catalog:",
-		"@repo/consts": "workspace:*",
 		"@repo/styles": "workspace:*",
 		"@vonage/vivid": "workspace:*",
+		"@vonage/vivid-icons": "workspace:*",
 		"@vonage/vivid-test-utils": "workspace:*",
 		"@vonage/vivid-vue": "workspace:*",
 		"lodash": "^4.17.23",

@@ -1,4 +1,4 @@
-import { IconsManifest } from '@repo/consts';
+import { IconsManifest } from '@vonage/vivid-icons';
 
 export const iconsManifestStub: IconsManifest = [
 	{

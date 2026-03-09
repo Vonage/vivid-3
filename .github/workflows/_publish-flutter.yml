@@ -1,4 +1,4 @@
-name: 🚀 Flutter publish
+name: Build and push pub package
 
 on:
   workflow_call:
@@ -7,26 +7,8 @@ on:
         description: The revision to build and publish
         required: true
         type: string
-      path:
-        description: The path to call npm publish on
-        required: true
-        type: string
-      tag:
-        required: false
-        default: latest
-        type: string
-      version:
-        description: If provided, updates the packages version before publishing.
-        required: false
-        default: ''
-        type: string
-    secrets:
-      NPM_VVD_VNG_AUTOMATION_TOKEN:
-        required: true
-      VNG_VVD_PAT:
-        required: true
-      RELEASE_PLEASE_PAT:
-        required: true
+
+  workflow_dispatch:
 
 jobs:
   publish-flutter:
@@ -45,42 +27,41 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - name: Pnpm setup
-        uses: pnpm/action-setup@v4
-
       - name: Node Setup
         uses: actions/setup-node@v6
         with:
           node-version: '20.19.0'
           cache: 'pnpm'
 
+      - name: Pnpm setup
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Flutter SDK
+        uses: flutter-actions/setup-flutter@v4
+        with:
+          channel: stable
+          version: 3.35.0
+
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Build
-        working-directory: './libs/design-tokens/'
+      - name: Setup pub
+        run: dart pub token add https://eu-rtifactory.vonage.cloud/artifactory/api/pub/pub --env-var ARTIFACTORY_SECRET
+
+      - name: Build tokens
+        working-directory: ./libs/design-tokens/
         run: pnpm run build
 
       - name: Set version
-        if: ${{ inputs.version != '' }}
-        working-directory: ${{ inputs.path }}
+        working-directory: ./libs/design-tokens/flutter-dist
         run: |
-          sed -i 's/^version:.*/version: ${{ inputs.version }}/' pubspec.yaml
+          VERSION=$(npm pkg get version | tr -d '"')
+          sed -i "s/^version:.*/version: $VERSION/" pubspec.yaml
           cat pubspec.yaml
 
-      - name: Commit and push changes
-        run: |
-          git clone "https://github.x-access-token:${GITHUB_TOKEN}@github.com/Vonage/vivid-flutter-design-tokens.git" deploy
-          cd deploy
-          rm -rf -- *
-          cp -R ../${{ inputs.path }}* .
-          git add .
-          git commit -m "Release v${{ inputs.version }}"
-          git tag v${{ inputs.version }}
-          git push --force origin main --tags
+      - name: Build and push package to Artifactory
+        working-directory: ./libs/design-tokens/flutter-dist
         env:
-          GIT_AUTHOR_NAME: github-actions
-          GIT_AUTHOR_EMAIL: github-actions@github.com
-          GIT_COMMITTER_NAME: github-actions
-          GIT_COMMITTER_EMAIL: github-actions@github.com
-          GITHUB_TOKEN: ${{ secrets.RELEASE_PLEASE_PAT }}
+          ARTIFACTORY_SECRET: ${{ secrets.ARTIFACTORY_SECRET }}
+          PUB_HOSTED_URL: https://eu-artifactory.vonage.cloud/artifactory/api/pub/pub
+        run: dart pub publish -f
