@@ -18,11 +18,10 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"@angular-eslint/utils": "^17.0.0",
 		"@microsoft/fast-element": "catalog:",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
-		"@typescript-eslint/utils": "catalog:",
+		"@typescript-eslint/utils": "^8.0.0",
 		"eslint": "catalog:",
 		"vitest": "catalog:"
 	}

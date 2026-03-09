@@ -7,7 +7,7 @@ const DEFAULT_ALLOWED_URI_REGEXP =
 const ALLOWED_URI_REGEXP_WITH_BLOB =
 	/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|blob):|[^a-z]|[a-z+.-]+(?:[^a-z+.\-:]|$))/i;
 export const ATTR_WHITESPACE =
-	/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g; // eslint-disable-line no-control-regex
+	/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g;
 
 export const domPurifyConfig = {
 	// Allow blobs

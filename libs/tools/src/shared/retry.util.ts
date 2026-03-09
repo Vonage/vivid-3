@@ -24,7 +24,7 @@ export async function retry<R>(
 				} else {
 					execute();
 				}
-			} catch (error) {
+			} catch {
 				execute();
 			}
 		};

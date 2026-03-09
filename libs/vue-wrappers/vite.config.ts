@@ -26,6 +26,7 @@ export default defineConfig({
 			name: 'vivid-vue',
 			fileName: 'index',
 			formats: ['es', 'cjs'],
+			cssFileName: 'style',
 		},
 		minify: false,
 		target: 'esnext',

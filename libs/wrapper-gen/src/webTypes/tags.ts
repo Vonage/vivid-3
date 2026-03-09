@@ -46,7 +46,6 @@ export function getTagFromComponentDefinition(
 		attributes: props
 			// filter out v-model prop
 			.filter((prop) => prop.name !== vueModel?.propName)
-			// eslint-disable-next-line no-shadow
 			.map((prop) => ({
 				name: camelCase(prop.name),
 				description: prop.description,
@@ -58,7 +57,6 @@ export function getTagFromComponentDefinition(
 		events: events
 			// filter out v-model event
 			.filter((event) => vueModel?.eventNames.includes(event))
-			// eslint-disable-next-line no-shadow
 			.map((event) => ({
 				name: event.name,
 				description: event.description,

@@ -18,7 +18,7 @@
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
-		"style-dictionary": "^5.1.1",
+		"style-dictionary": "catalog:",
 		"tsx": "catalog:",
 		"vitest": "catalog:"
 	}

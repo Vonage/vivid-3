@@ -1,7 +1,6 @@
 import * as videoPlayerLocale from 'video.js/dist/lang/zh-CN.json';
 import type { Locale } from '../shared/localization/Locale';
 
-/* eslint-disable max-len */
 const zhCN: Locale = {
 	lang: 'zh-CN',
 	common: {

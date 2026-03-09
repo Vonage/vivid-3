@@ -10,14 +10,14 @@ export default {
 	],
 	platforms: {
 		scss: {
-			transforms: ['name/cti/kebab'],
+			transforms: ['name/kebab'],
 			prefix,
 			buildPath,
 			files: [
 				{
 					destination: '@properties.scss',
 					format: 'scss/@property',
-					filter: (token) => token['@property'],
+					filter: (token) => !!(token['@property'] ?? token?.$property),
 					options: {
 						selector: '@mixin properties',
 					},

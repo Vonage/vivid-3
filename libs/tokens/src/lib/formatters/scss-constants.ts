@@ -1,15 +1,16 @@
-import SD from 'style-dictionary';
-
-const { fileHeader } = SD.formatHelpers;
+import { fileHeader } from 'style-dictionary/utils';
 
 export default {
 	name: 'scss/constants',
-	formatter({ dictionary, file }) {
+	async format({ dictionary, file, options }) {
+		const tokens = dictionary.allTokens ?? dictionary.allProperties ?? [];
+		const header =
+			typeof fileHeader === 'function'
+				? await Promise.resolve(fileHeader({ file, options }))
+				: '';
 		return (
-			fileHeader({ file }) +
-			dictionary.allProperties
-				.map(({ name }) => `$${name}: --${name};`)
-				.join('\n')
+			header +
+			tokens.map((token) => `$${token.name}: --${token.name};`).join('\n')
 		);
 	},
 };
