@@ -69,15 +69,15 @@ const buildFixIfPossible = (node: any, anchorId: string) => {
 								`<template #anchor>${context.sourceCode.getText(
 									preceding.node
 								)}</template>`
-						  )
+							)
 						: fixer.replaceTextRange(
 								[node.range[1] - 2, node.range[1]],
 								`><template #anchor>${context.sourceCode.getText(
 									preceding.node
 								)}</template></${node.rawName}>`
-						  ),
+							),
 				];
-		  }
+			}
 		: undefined;
 };
 

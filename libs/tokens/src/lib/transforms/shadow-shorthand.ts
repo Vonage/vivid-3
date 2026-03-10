@@ -41,5 +41,5 @@ export default {
 	transform: (token, config, options) =>
 		Array.isArray(token.value ?? token.$value)
 			? parseShadowEffects(token.value ?? token.$value, options ?? {})
-			: token.value ?? token.$value,
+			: (token.value ?? token.$value),
 } as Transform;

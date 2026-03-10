@@ -3,7 +3,7 @@
 		<VDialog
 			open
 			icon-placement="side"
-			icon="info"
+			icon="info-line"
 			headline="Dialog Headline"
 			full-width-body
 		>

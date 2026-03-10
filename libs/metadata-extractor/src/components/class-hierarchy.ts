@@ -238,8 +238,8 @@ function findInnerClassInBlock(node: Node): ClassDeclaration | undefined {
 	const body = Node.isArrowFunction(node)
 		? node.getBody()
 		: Node.isFunctionDeclaration(node) || Node.isFunctionExpression(node)
-		? node.getBody()
-		: undefined;
+			? node.getBody()
+			: undefined;
 
 	if (!body) return undefined;
 

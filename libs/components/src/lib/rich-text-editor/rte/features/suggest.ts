@@ -237,7 +237,7 @@ class RteSuggestFeatureImpl extends RteFeatureImpl {
 											side: 1, // Insert after cursor
 										}
 									),
-							  ]);
+								]);
 					};
 
 					// Handle actions

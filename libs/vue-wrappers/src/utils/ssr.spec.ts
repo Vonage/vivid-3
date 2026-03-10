@@ -8,6 +8,7 @@ const props = {
 describe('handleVue3Props', () => {
 	describe('when running in SSR mode', () => {
 		beforeEach(() => {
+			(globalThis as any).__IMPORT_META_ENV_PLACEHOLDER__ = { SSR: true };
 			(process as any).server = true;
 		});
 
@@ -20,6 +21,7 @@ describe('handleVue3Props', () => {
 
 	describe('when not running in SSR mode', () => {
 		beforeEach(() => {
+			(globalThis as any).__IMPORT_META_ENV_PLACEHOLDER__ = { SSR: false };
 			(process as any).server = false;
 		});
 

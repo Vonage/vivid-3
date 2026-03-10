@@ -59,7 +59,7 @@ export const SliderTemplate = (context: VividElementDefinitionContext) => {
 							? getMarkersTemplate(
 									x.orientation === Orientation.horizontal,
 									Math.floor((x.max - x.min) / x.step)
-							  )
+								)
 							: void 0}
 					<div class="track-start" style="${(x) => x.position}"></div>
 				</div>

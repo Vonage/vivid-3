@@ -41,7 +41,10 @@
 	right: 0;
 	width: 1px;
 	block-size: 100%;
-	box-shadow: 4px 0 4px #0000001a, 2px 0 2px #0000000d, 1px 0 1px #0000000d;
+	box-shadow:
+		4px 0 4px #0000001a,
+		2px 0 2px #0000000d,
+		1px 0 1px #0000000d;
 	content: '';
 	pointer-events: none;
 }

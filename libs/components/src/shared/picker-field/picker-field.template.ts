@@ -74,8 +74,8 @@ export const PickerFieldTemplate = (
 						'dialog--padded',
 						padded,
 					])}" role='dialog' ${ref(
-		'_dialogEl'
-	)} aria-modal='true' aria-label='${(x) => x._dialogLabel}'>
+					'_dialogEl'
+				)} aria-modal='true' aria-label='${(x) => x._dialogLabel}'>
 					${() => popupContentTemplate}
 					<div class="${() =>
 						classNames('footer', ['footer--with-separator', withSeparator])}">

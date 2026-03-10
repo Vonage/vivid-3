@@ -142,7 +142,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 						grid.querySelectorAll<HTMLElement>(
 							'[role="gridcell"], [data-vvd-role="gridcell"]'
 						)
-				  )
+					)
 				: [];
 		}
 

@@ -187,7 +187,7 @@ function renderTextField(
 	)} class="phone-field" internal-part type="tel"
         value="${(x) => x.value}" placeholder="${(x) => x.placeholder}"
             ?disabled="${(x) => x.disabled}" helper-text="${(x) =>
-		x.helperText}" pattern="${(x) => x.pattern}"
+							x.helperText}" pattern="${(x) => x.pattern}"
             aria-label="${(x) => x.locale.dialPad.inputLabel}"
             @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
             @keyup="${(x, c) => handleKeyUp(x, c.event as KeyboardEvent)}"

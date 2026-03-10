@@ -120,7 +120,7 @@ export const noValueAttribute: Rule.RuleModule = {
 													)
 												);
 											},
-									  }
+										}
 									: {}),
 							});
 						}

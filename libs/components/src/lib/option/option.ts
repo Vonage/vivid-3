@@ -265,7 +265,7 @@ export class ListboxOption extends HostSemantics(
 				: {
 						from: matchIndex,
 						to: matchIndex + matchedText.length,
-				  };
+					};
 		}
 		return { from: 0, to: 0 };
 	}

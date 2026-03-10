@@ -260,7 +260,7 @@ const handleUpload = async () => {
 					: {
 							type: 'error',
 							message: 'Failed to upload file',
-					  }
+						}
 			);
 		}
 	}
@@ -932,7 +932,7 @@ onMounted(() => {
 							: {
 									type: 'error',
 									message: 'Failed to upload file',
-							  }
+								}
 					);
 				}
 			}

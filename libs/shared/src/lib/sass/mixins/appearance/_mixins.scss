@@ -103,11 +103,13 @@ $hover-sensitive-states: (hover, selectedAndHover, checkedAndHover);
 	$state-mapping: map.get(variables.$states-mapping, $state);
 
 	@each $appearance in config.$appearances {
-		$selector: if(
-			$appearance == config.$default,
-			'&',
-			'&.appearance-#{$appearance}'
-		);
+		$selector: null;
+
+		@if $appearance == config.$default {
+			$selector: '&';
+		} @else {
+			$selector: '&.appearance-#{$appearance}';
+		}
 
 		#{$selector} {
 			$appearance-mapping: map.get($state-mapping, $appearance);

@@ -152,7 +152,7 @@ export class VideoPlayer extends Localized(VividElement) {
 			: Array.from(srcEles).map((el) => ({
 					src: el.getAttribute('src'),
 					type: el.getAttribute('type'),
-			  }));
+				}));
 	}
 
 	/**

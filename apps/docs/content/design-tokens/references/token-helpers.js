@@ -27,9 +27,8 @@ module.exports.getTokens = async function (type) {
 	}
 
 	const cssTokens = await styleDictionaryInstance.getPlatformTokens('css');
-	const flutterTokens = await styleDictionaryInstance.getPlatformTokens(
-		'flutter'
-	);
+	const flutterTokens =
+		await styleDictionaryInstance.getPlatformTokens('flutter');
 
 	return names.map((name) => {
 		const cssToken = cssTokens.tokenMap.get(name);

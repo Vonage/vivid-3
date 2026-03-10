@@ -231,7 +231,7 @@ export class RteSchemaAttrs extends FASTElement {}
 							appearance="subtle-light"
 							connotation="alert"
 							text="required"
-					  ></vwc-badge>`
+						></vwc-badge>`
 					: ''}
 		</div>
 		${(x) =>
@@ -243,7 +243,7 @@ export class RteSchemaAttrs extends FASTElement {}
 				? html`<div class="default">
 						<span class="default-label">Default:</span>
 						<span class="value">${x.default}</span>
-				  </div>`
+					</div>`
 				: ''}
 	`,
 })

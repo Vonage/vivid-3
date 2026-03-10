@@ -4,6 +4,7 @@
 		"verbatimModuleSyntax": false,
 		"declaration": true,
 		"lib": ["ES2022"],
+		"types": ["node", "vitest/globals"],
 
 		"outDir": "dist",
 		"rootDir": "src"
