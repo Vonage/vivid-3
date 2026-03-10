@@ -44,11 +44,12 @@
 
 	$top: calc(
 		var(#{variables.$start}, 0) *
-			(100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows} +
-			#{$dividers-top-size}
+			(100% - #{calendar-variables.$total-rows - 1}px) /
+			#{calendar-variables.$total-rows} + #{$dividers-top-size}
 	);
 	$hour-block-size: calc(
-		(100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows}
+		(100% - #{calendar-variables.$total-rows - 1}px) /
+			#{calendar-variables.$total-rows}
 	);
 
 	& {
@@ -66,8 +67,8 @@
 		border-radius: #{border-radius-variables.$border-radius-normal};
 		background-color: var(#{appearance.get-appearance-token(fill)});
 		block-size: calc(
-			var(#{variables.$duration}, 1) * #{$hour-block-size} + #{$dividers-block-size} -
-				#{$margin-block * 2}
+			var(#{variables.$duration}, 1) * #{$hour-block-size} +
+				#{$dividers-block-size} - #{$margin-block * 2}
 		);
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 		color: var(#{appearance.get-appearance-token(text)});

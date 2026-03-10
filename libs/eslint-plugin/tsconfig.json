@@ -1,4 +1,7 @@
 {
 	"extends": "@repo/typescript-config/vite.json",
+	"compilerOptions": {
+		"types": ["node", "vitest/globals"]
+	},
 	"include": ["src", "*.ts"]
 }

@@ -465,18 +465,21 @@ describe('vwc-data-grid', () => {
 			let resizeCallback: (() => void) | undefined;
 			const mockObserve = vi.fn();
 			const mockDisconnect = vi.fn();
-			const mockResizeObserver = vi
-				.fn()
-				.mockImplementation((callback: () => void) => {
-					resizeCallback = callback;
-					return {
-						observe: mockObserve,
-						disconnect: mockDisconnect,
-					};
-				});
+
+			const mockResizeObserver = vi.fn(function (
+				this: any,
+				callback: () => void
+			) {
+				resizeCallback = callback;
+				return {
+					observe: mockObserve,
+					disconnect: mockDisconnect,
+				};
+			});
 
 			const originalResizeObserver = global.ResizeObserver;
-			global.ResizeObserver = mockResizeObserver;
+			global.ResizeObserver =
+				mockResizeObserver as unknown as typeof ResizeObserver;
 
 			const applyFixedColumnsSpy = vi.spyOn(
 				element as any,

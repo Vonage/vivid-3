@@ -112,7 +112,7 @@ HTMLDirective.define(RenderInLightDomDirective);
  */
 export function renderInLightDOM<
 	TSource extends VividElement = VividElement,
-	TParent = any
+	TParent = any,
 >(
 	templateOrTemplateBinding:
 		| ViewTemplate<any, TSource>

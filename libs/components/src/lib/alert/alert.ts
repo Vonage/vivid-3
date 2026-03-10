@@ -55,7 +55,7 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 		| null = null;
 
 	// timeout to close the alert
-	#timeoutID?: NodeJS.Timeout;
+	#timeoutID?: ReturnType<typeof setTimeout>;
 
 	/**
 	 * Adds a close button to the Alert.

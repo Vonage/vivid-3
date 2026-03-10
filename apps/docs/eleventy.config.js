@@ -7,7 +7,7 @@ const CleanCSS = require('clean-css');
 const fs = require('fs');
 const path = require('path');
 const packageInstallation = require('./shortcodes/packageInstallation');
-const glob = require('glob');
+const { globSync } = require('glob');
 const { spawnSync } = require('child_process');
 const {
 	resetExampleIndex,
@@ -26,7 +26,7 @@ const { NodePackageImporter } = require('sass');
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..');
 const DOCS_DIR = '.';
 const INPUT_DIR = `${DOCS_DIR}/content`;
-const OUTPUT_DIR = './dist';
+const OUTPUT_DIR = 'dist';
 
 module.exports = async (eleventyConfig) => {
 	eleventyConfig.setLibrary('md', markdownLibrary);
@@ -37,11 +37,11 @@ module.exports = async (eleventyConfig) => {
 	 * Hack to inject the generated code example frames into the Eleventy results, so that they will be processed by Vite.
 	 */
 	eleventyConfig.on('eleventy.after', async ({ results }) => {
-		const matchedFiles = glob.sync(`${OUTPUT_DIR}/frames/*.html`);
+		const matchedFiles = globSync(`${OUTPUT_DIR}/frames/*.html`);
 		for (const matchedFile of matchedFiles) {
 			results.push({
 				inputPath: '',
-				outputPath: matchedFile,
+				outputPath: `./${OUTPUT_DIR}/frames/${path.basename(matchedFile)}`,
 				url: '',
 				content: '',
 			});
@@ -66,8 +66,7 @@ module.exports = async (eleventyConfig) => {
 				{
 					name: 'emit-llms-txt',
 					generateBundle() {
-						const files =
-							glob.sync(`${DOCS_DIR}/.11ty-vite/**/*.txt`, {}) || [];
+						const files = globSync(`${DOCS_DIR}/.11ty-vite/**/*.txt`, {}) || [];
 						for (const file of files) {
 							const source = fs.readFileSync(file, 'utf-8');
 							const fileName = path.relative(`${DOCS_DIR}/.11ty-vite/`, file);

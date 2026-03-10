@@ -132,7 +132,7 @@ describe('Anchored', () => {
 
 	describe('observer cleanup', function () {
 		let disconnectionFunc: Mock;
-		let mutationObserverSpy: MockInstance;
+		let mutationObserverSpy: MockInstance<typeof MutationObserver>;
 		let capturedCallback: () => void;
 		beforeEach(function () {
 			const mockMutationObserver = vi.fn(function (this: any, callback) {
@@ -143,7 +143,7 @@ describe('Anchored', () => {
 			});
 			mutationObserverSpy = vi
 				.spyOn(window, 'MutationObserver')
-				.mockImplementation(mockMutationObserver as any);
+				.mockImplementation(mockMutationObserver);
 		});
 
 		afterEach(function () {

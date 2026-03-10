@@ -18,7 +18,7 @@ It can determine whether types are exported and under what name, e.g. `@vonage/v
 - `@event {<type>} <name> - <description>`: Declares an event that the component emits.
 - `` @vueModel <model name> <attribute name> <event name(s)> `<expression mapping event to value>` ``: Declares a v-model that will be added to the generated Vue wrappers.
 - `@slot (<name>) - <description>`: Declares a slot of the component. Name defaults to `default`.
-- `` @dynamicSlot `<prop type>` <slot name> (- <description>) ``: Declares a slot that is dynamically requested by the component following the slottable request community protocol (https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/slottable-request.md).
+- ``@dynamicSlot `<prop type>` <slot name> (- <description>)``: Declares a slot that is dynamically requested by the component following the slottable request community protocol (https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/slottable-request.md).
 
 ## Metadata Format
 

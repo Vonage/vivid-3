@@ -297,7 +297,7 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 										return ['ul', 0];
 									},
 								},
-						  }
+							}
 						: {}),
 					...(this.config.numberedList
 						? {
@@ -309,7 +309,7 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 										return ['ol', 0];
 									},
 								},
-						  }
+							}
 						: {}),
 				},
 			}),
@@ -383,12 +383,12 @@ export class RteListFeatureImpl extends RteFeatureImpl {
 					...(this.config.bulletList
 						? {
 								'Mod-Shift-8': this.toggleList(rte.schema.nodes.bulletList),
-						  }
+							}
 						: {}),
 					...(this.config.numberedList
 						? {
 								'Mod-Shift-7': this.toggleList(rte.schema.nodes.numberedList),
-						  }
+							}
 						: {}),
 				}),
 				contributionPriority.high // Must apply before default handling of core

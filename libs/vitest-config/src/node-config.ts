@@ -1,13 +1,21 @@
-import { defineConfig } from 'vitest/config';
+import { configDefaults, defineConfig } from 'vitest/config';
 
 export default defineConfig({
 	test: {
 		globals: true,
 		environment: 'node',
 		include: ['src/**/*.spec.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+		// Vitest 4 only excludes node_modules and .git by default; restore v3-style excludes
+		exclude: [
+			...configDefaults.exclude,
+			'**/dist/**',
+			'**/cypress/**',
+			'**/.{idea,cache,output,temp}/**',
+			'**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,stylelint,prettier,playwright,cem}.config.*',
+		],
 		reporters: ['default'],
 		coverage: {
-			experimentalAstAwareRemapping: true,
+			include: ['src/**/*.{ts,tsx,js,jsx,mts,cts,mjs,cjs}'],
 			exclude: [
 				'**/coverage/**',
 				'**/dist/**',

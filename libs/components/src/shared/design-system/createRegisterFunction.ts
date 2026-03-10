@@ -68,7 +68,7 @@ export const createRegisterFunction =
 					(dependency) =>
 						[dependency.type, prefixed(dependency.name)] as [
 							Constructable,
-							string
+							string,
 						]
 				),
 			]);

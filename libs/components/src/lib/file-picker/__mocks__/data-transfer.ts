@@ -32,7 +32,11 @@ class MockFileSystemFileEntry
 	extends MockFileSystemEntry
 	implements FileSystemFileEntry
 {
-	constructor(name: string, readonly _file: File, fullPath?: string) {
+	constructor(
+		name: string,
+		readonly _file: File,
+		fullPath?: string
+	) {
 		super(name, true, false, fullPath);
 	}
 

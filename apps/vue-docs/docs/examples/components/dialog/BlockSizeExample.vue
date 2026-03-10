@@ -2,7 +2,7 @@
 	<div style="height: 250px">
 		<VDialog
 			style="--dialog-max-block-size: 100px"
-			icon="info"
+			icon="info-line"
 			headline="Headline"
 			subtitle="subtitle content"
 			open

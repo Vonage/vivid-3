@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import * as glob from 'glob';
+import { globSync } from 'glob';
 import * as ts from 'typescript-cem-version';
 import { create } from '@custom-elements-manifest/analyzer/src/create.js';
 import { cssPropertiesPlugin } from './css-properties';
@@ -13,7 +13,9 @@ describe('cssPropertiesPlugin', () => {
 		`should produce correct results for testcase %s`,
 		async (testCase) => {
 			const componentsPath = path.join(fixturesPath, testCase, 'components');
-			const moduleFiles = glob.sync(path.join(componentsPath, '/**/*.{ts,js}'));
+			const moduleFiles = globSync(
+				path.join(componentsPath, '/**/*.{ts,js}')
+			).sort();
 			const modules = moduleFiles.map((moduleFile) =>
 				ts.createSourceFile(
 					path.basename(moduleFile),
