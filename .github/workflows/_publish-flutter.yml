@@ -46,7 +46,7 @@ jobs:
         run: pnpm install
 
       - name: Setup pub
-        run: dart pub token add https://eu-rtifactory.vonage.cloud/artifactory/api/pub/pub --env-var ARTIFACTORY_SECRET
+        run: dart pub token add https://eu-artifactory.vonage.cloud/artifactory/api/pub/pub --env-var ARTIFACTORY_SECRET
         env:
           ARTIFACTORY_SECRET: ${{ secrets.ARTIFACTORY_SECRET }}
 
