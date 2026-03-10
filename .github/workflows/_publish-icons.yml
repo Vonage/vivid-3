@@ -1,4 +1,4 @@
-name: 🚀 Icons publish
+name: 🚀 Publish Icons
 
 on:
   workflow_call:

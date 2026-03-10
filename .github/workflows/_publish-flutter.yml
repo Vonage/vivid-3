@@ -1,4 +1,4 @@
-name: Build and push pub package
+name: 🚀 Publish Dart
 
 on:
   workflow_call:
@@ -27,14 +27,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
+      - name: Pnpm setup
+        uses: pnpm/action-setup@v4
+
       - name: Node Setup
         uses: actions/setup-node@v6
         with:
           node-version: '20.19.0'
           cache: 'pnpm'
-
-      - name: Pnpm setup
-        uses: pnpm/action-setup@v4
 
       - name: Setup Flutter SDK
         uses: flutter-actions/setup-flutter@v4
@@ -46,7 +46,9 @@ jobs:
         run: pnpm install
 
       - name: Setup pub
-        run: dart pub token add https://eu-rtifactory.vonage.cloud/artifactory/api/pub/pub --env-var ARTIFACTORY_SECRET
+        run: dart pub token add https://eu-artifactory.vonage.cloud/artifactory/api/pub/pub --env-var ARTIFACTORY_SECRET
+        env:
+          ARTIFACTORY_SECRET: ${{ secrets.ARTIFACTORY_SECRET }}
 
       - name: Build tokens
         working-directory: ./libs/design-tokens/
