@@ -43,8 +43,6 @@
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@types/jsdom": "catalog:",
-		"@types/markdown-table": "catalog:",
-		"@types/node-fetch": "^2.6.13",
 		"@vonage/vivid-icons": "workspace:*",
 		"markdown-table": "^3.0.4",
 		"node-fetch": "^3.3.2",
