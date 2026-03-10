@@ -6,7 +6,7 @@ This package provides a GitHub Action and a manual CLI tool for uploading icons 
 
 The GitHub Action is designed to automate the process of uploading icons.
 
-Current implementation of icons assumes that some of them have their aliases. To support them, s3 redirects are made. These redirects are created dynamically. Because of that, the action has to be a custom script instead of of-the-shelf Github Action.
+Current implementation of icons assumes that some of them have their aliases. To support them, s3 redirects are made. These redirects are created dynamically. Because of that, the action has to be a custom script instead of off-the-shelf Github Action.
 
 ### Usage
 
