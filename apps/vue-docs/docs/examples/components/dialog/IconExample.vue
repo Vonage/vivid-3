@@ -1,6 +1,6 @@
 <template>
 	<div style="height: 230px">
-		<VDialog icon="info" open />
+		<VDialog icon="info-line" open />
 	</div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
 	<div style="height: 230px">
 		<VDialog
-			icon="info"
+			icon="info-line"
 			headline="Headline"
 			subtitle="subtitle content"
 			open

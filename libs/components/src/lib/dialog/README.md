@@ -88,7 +88,7 @@ function closeDialog() {
 		<VButton appearance="filled" label="Open Dialog" @click="openDialog" />
 	</div>
 
-	<VDialog ref="dialog" :modal="modal === 'true'" icon="info" headline="Headline" subtitle="subtitle">
+	<VDialog ref="dialog" :modal="modal === 'true'" icon="info-line" headline="Headline" subtitle="subtitle">
 		<VCheckbox slot="footer" label="Checkbox" />
 		<VButton slot="action-items" label="Cancel" appearance="outlined" @click="closeDialog" /><VButton slot="action-items" label="Ok" appearance="filled" @click="closeDialog" />
 	</VDialog>
@@ -116,7 +116,7 @@ function closeDialog() {
 	<vwc-button appearance="filled" label="Open Dialog" onclick="openDialog()"></vwc-button>
 </div>
 
-<vwc-dialog id="vwc-dialog" icon="info" headline="Headline" subtitle="subtitle">
+<vwc-dialog id="vwc-dialog" icon="info-line" headline="Headline" subtitle="subtitle">
 	<vwc-checkbox slot="footer" label="Checkbox"></vwc-checkbox>
 	<vwc-button slot="action-items" label="Cancel" appearance="outlined" onclick="closeDialog()"></vwc-button>
 	<vwc-button slot="action-items" label="Ok" appearance="filled" onclick="closeDialog()"></vwc-button>
@@ -558,7 +558,7 @@ import { VDialog, VLayout, VProgress, VTextArea, VTextField } from '@vonage/vivi
 </script>
 
 <template>
-	<VDialog open icon-placement="side" icon="info" headline="Dialog Headline" full-width-body>
+	<VDialog open icon-placement="side" icon="info-line" headline="Dialog Headline" full-width-body>
 		<template #body>
 			<div class="dialog-body">
 				<VProgress :min="0" :max="50" :value="12.5" shape="sharp" connotation="pacific" />
@@ -589,7 +589,7 @@ import { VDialog, VLayout, VProgress, VTextArea, VTextField } from '@vonage/vivi
 <vwc-tab-panel>
 
 ```html preview 400px
-<vwc-dialog open icon-placement="side" icon="info" headline="Dialog Headline" full-width-body>
+<vwc-dialog open icon-placement="side" icon="info-line" headline="Dialog Headline" full-width-body>
 	<div slot="body" class="dialog-body">
 		<vwc-progress min="0" max="50" value="12.5" shape="sharp" connotation="pacific"></vwc-progress>
 		<vwc-layout column-basis="block" gutters="medium-inline">
@@ -763,7 +763,7 @@ import { VDialog } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VDialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open />
+	<VDialog class="dialog" icon="info-line" headline="Headline" subtitle="Subtitle content" open />
 </template>
 
 <style>
@@ -778,7 +778,7 @@ import { VDialog } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview 230px
-<vwc-dialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
+<vwc-dialog class="dialog" icon="info-line" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
 
 <style>
 	.dialog {
@@ -804,7 +804,7 @@ import { VDialog } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VDialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open />
+	<VDialog class="dialog" icon="info-line" headline="Headline" subtitle="Subtitle content" open />
 </template>
 
 <style>
@@ -819,7 +819,7 @@ import { VDialog } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview 250px
-<vwc-dialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
+<vwc-dialog class="dialog" icon="info-line" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
 
 <style>
 	.dialog {
@@ -845,7 +845,7 @@ import { VDialog } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VDialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open />
+	<VDialog class="dialog" icon="info-line" headline="Headline" subtitle="Subtitle content" open />
 </template>
 
 <style>
@@ -861,7 +861,7 @@ import { VDialog } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview 250px
-<vwc-dialog class="dialog" icon="info" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
+<vwc-dialog class="dialog" icon="info-line" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
 
 <style>
 	.dialog {
