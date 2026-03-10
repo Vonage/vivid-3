@@ -29,7 +29,6 @@ To fetch and update icons, follow these steps:
    ```
 
    This script performs the following actions:
-
    - Fetches icons from the Figma file specified by the `figmaFileId` constant in `scripts/fetch-icons.ts`.
    - Saves the icons in the `src/generated/` directory.
    - It generates the `index.json` file which contains information on all available icons, their styles, keywords and categories.
