@@ -520,12 +520,12 @@ export class Slider extends Localized(
 						e.pageX -
 							document.documentElement.scrollLeft -
 							this.getBoundingClientRect().left,
-				  ]
+					]
 				: [
 						trackClientRect.top,
 						trackClientRect.bottom,
 						e.pageY - document.documentElement.scrollTop,
-				  ];
+					];
 
 		// Remap to value space
 		return lerp(this.min, this.max, inverseLerp(minPos, maxPos, valuePos));

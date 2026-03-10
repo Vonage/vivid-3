@@ -82,7 +82,7 @@ import { VDialog } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VDialog icon="info" headline="Dialog's Icon" open />
+	<VDialog icon="info-line" headline="Dialog's Icon" open />
 </template>
 ```
 
@@ -91,7 +91,7 @@ import { VDialog } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview 230px
-<vwc-dialog icon="info" headline="Dialog's Icon" open></vwc-dialog>
+<vwc-dialog icon="info-line" headline="Dialog's Icon" open></vwc-dialog>
 ```
 
 </vwc-tab-panel>
@@ -113,10 +113,10 @@ import { VDialog } from '@vonage/vivid-vue';
 <template>
 	<div class="wrapper">
 		<div class="item">
-			<VDialog icon-placement="side" icon="info" headline="Side Icon Placement" subtitle="Side is default" open />
+			<VDialog icon-placement="side" icon="info-line" headline="Side Icon Placement" subtitle="Side is default" open />
 		</div>
 		<div class="item">
-			<VDialog icon-placement="top" icon="info" headline="Top Icon Placement" subtitle="Top is another option" open />
+			<VDialog icon-placement="top" icon="info-line" headline="Top Icon Placement" subtitle="Top is another option" open />
 		</div>
 	</div>
 </template>
@@ -140,10 +140,10 @@ import { VDialog } from '@vonage/vivid-vue';
 ```html preview 290px
 <div class="wrapper">
 	<div class="item">
-		<vwc-dialog icon-placement="side" icon="info" headline="Side Icon Placement" subtitle="Side is default" open></vwc-dialog>
+		<vwc-dialog icon-placement="side" icon="info-line" headline="Side Icon Placement" subtitle="Side is default" open></vwc-dialog>
 	</div>
 	<div class="item">
-		<vwc-dialog icon-placement="top" icon="info" headline="Top Icon Placement" subtitle="Top is another option" open></vwc-dialog>
+		<vwc-dialog icon-placement="top" icon="info-line" headline="Top Icon Placement" subtitle="Top is another option" open></vwc-dialog>
 	</div>
 </div>
 

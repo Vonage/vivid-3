@@ -222,23 +222,23 @@ function renderCalendarGrid(context: VividElementDefinitionContext) {
 										>
 											${(x) => x.label}
 											<${visuallyHiddenTag}>${(x, c) => {
-										const picker = c.parentContext.parentContext.parent;
-										const announcements = [];
+												const picker = c.parentContext.parentContext.parent;
+												const announcements = [];
 
-										if (x.date === picker._currentDate) {
-											announcements.push(
-												picker.locale.calendarPicker.todayLabel
-											);
-										}
+												if (x.date === picker._currentDate) {
+													announcements.push(
+														picker.locale.calendarPicker.todayLabel
+													);
+												}
 
-										if (picker._isDateAriaSelected(x.date)) {
-											announcements.push(
-												picker.locale.calendarPicker.selectedLabel
-											);
-										}
+												if (picker._isDateAriaSelected(x.date)) {
+													announcements.push(
+														picker.locale.calendarPicker.selectedLabel
+													);
+												}
 
-										return announcements.join(' ');
-									}}</${visuallyHiddenTag}>
+												return announcements.join(' ');
+											}}</${visuallyHiddenTag}>
 										</button>
 									</span>`
 								)}
@@ -321,21 +321,23 @@ function renderMonthPickerGrid(context: VividElementDefinitionContext) {
 									>
 										${(x) => x.label}
 										<${visuallyHiddenTag}>${(x, c) => {
-								const picker = c.parentContext.parentContext.parent;
-								const announcements = [];
+											const picker = c.parentContext.parentContext.parent;
+											const announcements = [];
 
-								if (areMonthsEqual(x.month, picker._currentMonth)) {
-									announcements.push(picker.locale.calendarPicker.currentLabel);
-								}
+											if (areMonthsEqual(x.month, picker._currentMonth)) {
+												announcements.push(
+													picker.locale.calendarPicker.currentLabel
+												);
+											}
 
-								if (areMonthsEqual(x.month, picker._selectedMonth)) {
-									announcements.push(
-										picker.locale.calendarPicker.selectedLabel
-									);
-								}
+											if (areMonthsEqual(x.month, picker._selectedMonth)) {
+												announcements.push(
+													picker.locale.calendarPicker.selectedLabel
+												);
+											}
 
-								return announcements.join(' ');
-							}}</${visuallyHiddenTag}>
+											return announcements.join(' ');
+										}}</${visuallyHiddenTag}>
 									</button>
 								</span>
 							`

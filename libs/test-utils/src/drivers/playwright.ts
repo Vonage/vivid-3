@@ -104,4 +104,4 @@ export const createPlaywrightDriver = (expect: typeof pwExpect) =>
 			};
 		},
 		wrapSelector: (selector) => selector,
-	} as Driver<PlaywrightDriverT>);
+	}) as Driver<PlaywrightDriverT>;

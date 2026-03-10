@@ -23,7 +23,6 @@
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
-		"@types/glob": "catalog:",
 		"custom-elements-manifest": "^2.1.0",
 		"glob": "catalog:",
 		"resolve.exports": "^2.0.3",

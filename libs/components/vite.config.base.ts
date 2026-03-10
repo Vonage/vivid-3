@@ -17,7 +17,7 @@ const baseConfig: UserConfig = defineConfig({
 		watch: isWatchMode
 			? {
 					exclude: ['**/*.md'],
-			  }
+				}
 			: null,
 	},
 	define: {

@@ -58,7 +58,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	<div class="grid">
 		<div class="wrapper">
 			<vwc-dialog
-				icon="info"
+				icon="info-line"
 				headline="Headline"
 				subtitle="This is the content that I want to show and I will show it!!!"
 				open
@@ -77,7 +77,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</div>
 		<div class="wrapper">
 			<vwc-dialog
-				icon="info"
+				icon="info-line"
 				headline="Dialog with overridden graphic slot"
 				subtitle="This is the content that I want to show and I will show it!!!"
 				open
@@ -87,7 +87,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</div>
 		<div class="wrapper">
 			<vwc-dialog
-				icon="info"
+				icon="info-line"
 				headline="Dialog with footer"
 				subtitle="This is the content that I want to show and I will show it!!"
 				open
@@ -164,7 +164,7 @@ test('should show the the dialog as a modal when calling .showModal()', async ({
 	const template = `
 		<div style="height: 800px">
 			<vwc-dialog
-				icon="info"
+				icon="info-line"
 				headline="Headline"
 				subtitle="This is the content that I want to show and I will show it!!!"
 				open
@@ -193,7 +193,7 @@ test('should leave the dialog open on pressing ESC twice when cancel event is ca
 	const template = `
 		<div style="height: 800px">
 			<vwc-dialog
-				icon="info"
+				icon="info-line"
 				headline="Headline"
 				open
 				modal

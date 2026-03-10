@@ -11,7 +11,7 @@ export type ComponentInfo = {
 
 export abstract class BaseWrapper<
 	D extends DriverT,
-	E extends HTMLElement = HTMLElement
+	E extends HTMLElement = HTMLElement,
 > {
 	constructor(
 		protected readonly ctx: Context<D>,
@@ -45,7 +45,7 @@ export abstract class BaseWrapper<
 
 export abstract class BaseComponent<
 	D extends DriverT,
-	W extends BaseWrapper<D>
+	W extends BaseWrapper<D>,
 > {
 	constructor(protected readonly ctx: Context<D>) {}
 
@@ -68,7 +68,7 @@ export abstract class BaseComponent<
 
 export type ComponentCollectionLocator<
 	D extends DriverT,
-	W extends BaseWrapper<D>
+	W extends BaseWrapper<D>,
 > = ComponentCollection<D, W>;
 
 export class ComponentCollection<D extends DriverT, W extends BaseWrapper<D>> {

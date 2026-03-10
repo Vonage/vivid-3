@@ -87,14 +87,14 @@ export const Subtitle = SubtitleTemplate.bind({});
 
 const IconTemplate = () => ({
 	components: { VDialog },
-	template: `<VDialog icon="info" open />`,
+	template: `<VDialog icon="info-line" open />`,
 });
 export const Icon = IconTemplate.bind({});
 
 const IconPlacementTemplate = () => ({
 	components: { VDialog },
 	template: `
-  <VDialog icon-placement="side" icon="info" headline="Dialog Headline" subtitle="subtitle content" open />`,
+  <VDialog icon-placement="side" icon="info-line" headline="Dialog Headline" subtitle="subtitle content" open />`,
 });
 export const IconPlacement = IconPlacementTemplate.bind({});
 
@@ -127,7 +127,7 @@ export const Body = BodyTemplate.bind({});
 
 const FullWidthBodyTemplate = () => ({
 	components: { VDialog, VProgress, VLayout, VTextField, VTextArea },
-	template: `<VDialog open icon-placement="side" icon="info" headline="Dialog Headline" full-width-body>
+	template: `<VDialog open icon-placement="side" icon="info-line" headline="Dialog Headline" full-width-body>
     <template #body>
       <div style="background: lightgoldenrodyellow; padding: 10px">content</div>
     </template>
@@ -158,12 +158,12 @@ export const Main = MainTemplate.bind({});
 
 const InlineMinMaxSizeTemplate = () => ({
 	components: { VDialog },
-	template: `<VDialog icon="info" headline="Headline" subtitle="subtitle content" open style="--dialog-min-inline-size: 560px" />`,
+	template: `<VDialog icon="info-line" headline="Headline" subtitle="subtitle content" open style="--dialog-min-inline-size: 560px" />`,
 });
 export const InlineMinMaxSize = InlineMinMaxSizeTemplate.bind({});
 
 const BlockSizeTemplate = () => ({
 	components: { VDialog },
-	template: `<VDialog icon="info" headline="Headline" subtitle="subtitle content" open style="--dialog-max-block-size: 100px" />`,
+	template: `<VDialog icon="info-line" headline="Headline" subtitle="subtitle content" open style="--dialog-max-block-size: 100px" />`,
 });
 export const BlockSize = BlockSizeTemplate.bind({});

@@ -54,11 +54,10 @@ function getButtonAppearance(
 	return parent.selectedIndex === Number(value) - 1 ? 'filled' : 'ghost';
 }
 
-const paginationButtonRenderer = (
-	buttonTag: InlineTemplateDirective
-) => html` ${when(
-	(value) => value !== '...',
-	html`
+const paginationButtonRenderer = (buttonTag: InlineTemplateDirective) =>
+	html` ${when(
+		(value) => value !== '...',
+		html`
 		<${buttonTag} class="vwc-pagination-button"
 			label="${(value) => value}"
 			appearance="${getButtonAppearance}"
@@ -74,16 +73,16 @@ const paginationButtonRenderer = (
 			@keydown="${handleKeyDown}">
 		</${buttonTag}>
 	`
-)}
-${when(
-	(value) => value === '...',
-	html` <div
-		class="dots size-${(_, { parent: x }) => getPaginationSize(x)}"
-		aria-hidden="true"
-	>
-		...
-	</div>`
-)}`;
+	)}
+	${when(
+		(value) => value === '...',
+		html` <div
+			class="dots size-${(_, { parent: x }) => getPaginationSize(x)}"
+			aria-hidden="true"
+		>
+			...
+		</div>`
+	)}`;
 
 const getPaginationSize = (x: Pagination) => {
 	if (!x.size || !ALLOWED_SIZES.includes(x.size)) {

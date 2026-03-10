@@ -46,7 +46,7 @@ export const renderComponentTypes = (componentDef: ComponentDef) => {
 								...prop,
 								name: vueModel.name,
 							},
-					  ]
+						]
 					: []),
 			];
 		})
@@ -64,8 +64,8 @@ export const renderComponentTypes = (componentDef: ComponentDef) => {
 		`
 				${renderJsDoc(description)}
 				'${vue3EventHandlerName(name)}'?: (event: ${wrappedComponentName(
-			componentDef
-		)}Events['${name}']) => void`;
+					componentDef
+				)}Events['${name}']) => void`;
 
 	const eventHandlersSrc = [...componentDef.events, ...vueModelEvents]
 		.map(renderEventHandler)
@@ -77,10 +77,10 @@ export const renderComponentTypes = (componentDef: ComponentDef) => {
 			`
 				${renderJsDoc(description)}
 				'${name}': ${getEventType(
-				type,
-				getExportedClassName(componentDef.name),
-				isVueModelEvent
-			)}`;
+					type,
+					getExportedClassName(componentDef.name),
+					isVueModelEvent
+				)}`;
 
 	const eventTypesSrc = [
 		...componentDef.events.map(renderEventType(false)),

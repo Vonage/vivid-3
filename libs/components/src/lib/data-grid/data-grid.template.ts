@@ -27,8 +27,8 @@ function getMultiSelectAriaState(x: DataGrid) {
 		x.selectionMode === DataGridSelectionMode.none
 		? null
 		: x.selectionMode.includes('multi')
-		? 'true'
-		: 'false';
+			? 'true'
+			: 'false';
 }
 
 function setHeaderRow(x: DataGrid) {

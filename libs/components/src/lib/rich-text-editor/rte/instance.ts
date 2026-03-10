@@ -50,7 +50,10 @@ export class RteInstance {
 	/** @internal */
 	[impl]: RteInstanceImpl;
 
-	constructor(config: RteConfig, readonly options?: RteInstanceOptions) {
+	constructor(
+		config: RteConfig,
+		readonly options?: RteInstanceOptions
+	) {
 		this[impl] = new RteInstanceImpl(this, config, options);
 	}
 

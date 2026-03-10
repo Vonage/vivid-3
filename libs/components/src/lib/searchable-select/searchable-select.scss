@@ -71,7 +71,9 @@ $low-ink-color: --_low-ink-color;
 		gap: 8px;
 		padding-block: 8px;
 		padding-inline: 16px;
-		transition: box-shadow 0.2s, background-color 0.2s;
+		transition:
+			box-shadow 0.2s,
+			background-color 0.2s;
 	}
 
 	@supports selector(:has(*)) {

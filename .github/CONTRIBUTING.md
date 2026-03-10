@@ -15,12 +15,10 @@ Never made an open source contribution before? Wondering how contributions work 
 - Run `pnpm install`
 
 - Building and developing the documentation:
-
   - Development: `pnpm start`
   - Build: `pnpm run build`
 
 - Building and developing the components:
-
   - Unit Tests
     - `pnpm test`
   - Visual tests: see the [ui-tests documentation](../docs/ui-test/readme.md)

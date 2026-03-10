@@ -33,7 +33,9 @@ $dps: 0 2 4 8 12 16 24;
 			inline-size: 100%;
 			inset-block-start: 0;
 			inset-inline-start: 0;
-			transition: background-color 0.15s linear, filter 0.15s linear;
+			transition:
+				background-color 0.15s linear,
+				filter 0.15s linear;
 		}
 	}
 
