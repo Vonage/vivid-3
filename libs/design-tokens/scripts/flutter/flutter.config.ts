@@ -22,6 +22,7 @@ export const flutterConfig: Hooks = {
 				volume.cpSync('./files/', platform.buildPath, {
 					recursive: true,
 				} as any);
+				volume.cpSync('./CHANGELOG.md', `${platform.buildPath}/CHANGELOG.md`);
 			},
 			undo(_dictionary, platform, _config, volume) {
 				volume.unlinkSync(platform.buildPath);
@@ -140,7 +141,7 @@ export const flutterPlatform: PlatformConfig = {
 	buildPath: './flutter-dist',
 	files: [
 		{
-			destination: 'lib/vivid-design-tokens.dart',
+			destination: 'lib/vivid_design_tokens.dart',
 			format: 'vvd/flutter/variables',
 			// TODO: Remove this filter after font licensing is sorted out and typography tokens are rolled out.
 			/* v8 ignore next -- @preserve */
