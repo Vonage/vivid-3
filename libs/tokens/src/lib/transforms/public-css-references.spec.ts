@@ -1,8 +1,13 @@
+import type {
+	Config,
+	TransformedToken,
+	PlatformConfig,
+} from 'style-dictionary/types';
 import publicCssReferences from './public-css-references';
 
-const { transformer, matcher } = publicCssReferences;
+const { transform, filter } = publicCssReferences;
 
-const defaultToken = {
+const defaultToken: Partial<TransformedToken> = {
 	value: undefined,
 	name: '',
 	path: [],
@@ -10,6 +15,15 @@ const defaultToken = {
 	filePath: '',
 	isSource: false,
 };
+
+const config = {} as Config;
+const platformConfig = {} as PlatformConfig;
+
+const matcher = (token: Partial<TransformedToken>) =>
+	filter(token as TransformedToken, config);
+
+const transformer = (token: Partial<TransformedToken>) =>
+	transform(token as TransformedToken, platformConfig, config);
 
 describe('basic', () => {
 	it('should match if token is public', () => {
@@ -32,16 +46,13 @@ describe('basic', () => {
 
 	it('should transform to css calc', () => {
 		expect(
-			transformer(
-				{
-					...defaultToken,
-					name: 'vvd-size-font-scale-base',
-					value: '16',
-					type: 'sizing',
-					public: true,
-				},
-				{}
-			)
+			transformer({
+				...defaultToken,
+				name: 'vvd-size-font-scale-base',
+				value: '16',
+				type: 'sizing',
+				public: true,
+			})
 		).toEqual('var(--vvd-size-font-scale-base, 16)');
 	});
 });

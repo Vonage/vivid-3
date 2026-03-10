@@ -14,7 +14,7 @@ import { kebabCase } from 'change-case';
 import { createIconEntry } from './create-icon-entry';
 import { readJson } from '../shared/read-json.util';
 import { logger } from '../shared/logger.util';
-import { rmSync } from 'node:fs';
+import { existsSync, rmSync } from 'node:fs';
 
 export async function fetchIcons(
 	figmaFileId: string,
@@ -150,11 +150,13 @@ export async function fetchIcons(
 				for (const output of options.outputs) {
 					const fileName = output.fileName(entry);
 					const filePath = resolve(options.dir, fileName);
-					const fileContent = output.template(entry, svgSource);
-					if (fileContent === undefined) continue;
-					writeFile(filePath, fileContent);
+					if (!existsSync(filePath) || options.forceUpdate) {
+						const fileContent = output.template(entry, svgSource);
+						if (fileContent === undefined) continue;
+						writeFile(filePath, fileContent);
 
-					logger.success(`Wrote icon file: ${join(options.dir, fileName)}`);
+						logger.success(`Wrote icon file: ${join(options.dir, fileName)}`);
+					}
 				}
 
 				resolvePromise(entry);

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { IconsManifest } from '@repo/consts';
+import { IconsManifest } from '@vonage/vivid-icons';
 import { toTypeStr, TypeStr } from '@repo/metadata-extractor/metadata/type-str';
 
 export const fetchIconsManifest = async (url: string): Promise<IconsManifest> =>

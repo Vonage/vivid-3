@@ -69,11 +69,7 @@ const main = defineCommand({
 			accessKey: args.key,
 			secretAccessKey: args.secret,
 			version: args.version,
-			sourceDirs: [
-				resolve('../../../libs/icons/src/generated'),
-				resolve('../../../libs/icons-flags/src/generated'),
-				resolve('../../../libs/icons-brands/src/generated'),
-			],
+			sourceDirs: [resolve('../../../libs/icons/src/generated')],
 			bucket: args.bucket,
 			baseFolder: args.folder,
 			region: args.region,

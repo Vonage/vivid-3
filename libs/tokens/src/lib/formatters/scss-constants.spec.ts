@@ -1,6 +1,6 @@
 import scssConstants from './scss-constants';
 
-const { formatter } = scssConstants;
+const { format: formatter } = scssConstants;
 
 describe('basic', () => {
 	const token = {
@@ -22,10 +22,11 @@ describe('basic', () => {
 			],
 		},
 		file: { destination: '_constants.scss', options: {} },
+		options: {},
 	};
 
-	it('should generate scss constants from token', () => {
-		expect(formatter(token)).toContain(
+	it('should generate scss constants from token', async () => {
+		await expect(formatter(token)).resolves.toContain(
 			`$vvd-color-canvas: --vvd-color-canvas;`
 		);
 	});

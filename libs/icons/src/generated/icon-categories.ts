@@ -1,0 +1,29 @@
+export type IconCategory = 'AI' | 
+'alert' | 
+'arrows' | 
+'audio' | 
+'brand' | 
+'calling' | 
+'charts' | 
+'check' | 
+'chevrons' | 
+'commerce' | 
+'connectivity' | 
+'delete' | 
+'devices' | 
+'emoji' | 
+'file' | 
+'flags' | 
+'layout' | 
+'location' | 
+'messaging' | 
+'objects' | 
+'password' | 
+'science' | 
+'social' | 
+'sort' | 
+'time' | 
+'tools' | 
+'user' | 
+'video' | 
+'view';

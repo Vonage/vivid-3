@@ -34,18 +34,19 @@
 		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},
 	"dependencies": {
-		"change-case": "^5.4.4"
+		"change-case": "catalog:"
 	},
 	"devDependencies": {
-		"@repo/consts": "workspace:*",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/metadata-extractor": "workspace:*",
 		"@repo/shared": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
+		"@types/jsdom": "catalog:",
 		"@types/markdown-table": "catalog:",
 		"@types/node-fetch": "^2.6.13",
-		"markdown-table": "catalog:",
+		"@vonage/vivid-icons": "workspace:*",
+		"markdown-table": "^3.0.4",
 		"node-fetch": "^2.7.0",
 		"tsx": "catalog:",
 		"vitest": "catalog:"

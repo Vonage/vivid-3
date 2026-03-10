@@ -14,19 +14,22 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			.grid {
 				display: grid;
 				grid-template-columns: repeat(3, 300px);
-				gap: 12px;
+				column-gap: 24px;
+				row-gap: 20px;
 				padding: 12px;
+				justify-items: center;
 			}
 			.cell {
 				display: flex;
+				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-				height: 400px;
-        width: 100%;
 				background-color: #eee;
 				padding: 12px;
 				border-radius: 8px;
-        box-sizing: border-box;
+				box-sizing: border-box;
+				min-height: 320px;
+				width: 100%;
 			}
 		</style>
 		<div class="grid">

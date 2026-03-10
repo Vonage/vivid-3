@@ -2,27 +2,30 @@ import SD from 'style-dictionary';
 import { buildPath, prefix } from '../common';
 import { isSource } from '../filters';
 
-const transformToCssVariable = ({ name, value }) => `var(--${name}, ${value})`;
-const getRunTimeDensity = (token) =>
-	`clamp(${+token.value - 1}, ${transformToCssVariable(token)}, ${
-		+token.value + 2
-	})`;
+const transformToCssVariable = (token) =>
+	`var(--${token.name}, ${token.value ?? token.$value})`;
+const getRunTimeDensity = (token) => {
+	const v = token.value ?? token.$value;
+	const num = +v;
+	return `clamp(${num - 1}, ${transformToCssVariable(token)}, ${num + 2})`;
+};
 
 SD.registerTransform({
 	type: 'value',
 	name: 'type/density',
 	transitive: true,
-	matcher: (token) => token.attributes.type === 'density',
-	transformer: getRunTimeDensity,
+	filter: (token) => token.attributes?.type === 'density',
+	transform: getRunTimeDensity,
 });
 
 SD.registerTransform({
 	type: 'value',
 	name: 'css/calc',
 	transitive: true,
-	matcher: isSource,
-	transformer: function (token) {
-		return `calc(1px * (${token.value}))`;
+	filter: isSource,
+	transform: function (token) {
+		const v = token.value ?? token.$value;
+		return `calc(1px * (${v}))`;
 	},
 });
 
@@ -37,7 +40,7 @@ export default {
 		scss: {
 			transforms: [
 				'attribute/cti',
-				'name/cti/kebab',
+				'name/kebab',
 				'resolveMath',
 				'type/density',
 				'css/calc',

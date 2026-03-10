@@ -1,26 +1,30 @@
 {
 	"name": "@vonage/vivid-icons",
-	"version": "4.8.0",
+	"version": "4.9.0",
 	"type": "module",
-	"main": "dist/index.ts",
+	"exports": {
+		".": "./dist/index.mjs",
+		"./package.json": "./package.json"
+	},
+	"types": "./dist/index.d.ts",
 	"files": [
 		"dist"
 	],
 	"scripts": {
-		"dev": "tsx --watch scripts/fetch-icons.ts",
+		"build": "tsdown",
 		"fetch": "tsx scripts/fetch-icons.ts"
 	},
 	"dependencies": {
 		"@microsoft/fast-element": "catalog:"
 	},
 	"devDependencies": {
-		"@figma/rest-api-spec": "^0.35.0",
+		"@figma/rest-api-spec": "catalog:",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@types/node": "catalog:",
-		"dotenv": "^17.2.3",
-		"tsx": "catalog:",
-		"vite-plugin-static-copy": "catalog:"
+		"dotenv": "catalog:",
+		"tsdown": "^0.20.3",
+		"tsx": "catalog:"
 	}
 }
