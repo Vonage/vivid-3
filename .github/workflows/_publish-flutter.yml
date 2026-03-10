@@ -1,4 +1,4 @@
-name: Build and push pub package
+name: 🚀 Publish Dart
 
 on:
   workflow_call:
@@ -47,6 +47,8 @@ jobs:
 
       - name: Setup pub
         run: dart pub token add https://eu-rtifactory.vonage.cloud/artifactory/api/pub/pub --env-var ARTIFACTORY_SECRET
+        env:
+          ARTIFACTORY_SECRET: ${{ secrets.ARTIFACTORY_SECRET }}
 
       - name: Build tokens
         working-directory: ./libs/design-tokens/
