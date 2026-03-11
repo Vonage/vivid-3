@@ -960,7 +960,9 @@ export class Select extends WithLightDOMFeedback(
 
 	protected override _isDefaultSelected(option: ListboxOption) {
 		return (
-			super._isDefaultSelected(option) || option.value === this.initialValue
+			super._isDefaultSelected(option) ||
+			option.value === this.initialValue ||
+			(!this._isResetting && option.value === this.value)
 		);
 	}
 
@@ -998,11 +1000,18 @@ export class Select extends WithLightDOMFeedback(
 		this.validate();
 	}
 
+	/**
+	 * @internal
+	 */
+	private _isResetting = false;
+
 	override formResetCallback() {
 		this.setProxyOptions();
 
+		this._isResetting = true;
 		this.selectedIndex =
 			this._newDefaultSelectedIndex([], this.options, -1) ?? -1;
+		this._isResetting = false;
 	}
 
 	/**

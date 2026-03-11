@@ -847,6 +847,25 @@ describe('vwc-select', () => {
 
 			expect(element.value).toBe('');
 		});
+
+		it('should select the correct option when value is set before options and DOM insertion', async () => {
+			const select = document.createElement(COMPONENT_TAG) as Select;
+
+			select.value = 'second';
+
+			['first', 'second', 'third'].forEach((val) => {
+				const option = document.createElement('vwc-option') as ListboxOption;
+				option.value = val;
+				option.text = val;
+				select.appendChild(option);
+			});
+
+			element.appendChild(select);
+			await elementUpdated(select);
+
+			expect(select.value).toBe('second');
+			expect(select.selectedIndex).toBe(1);
+		});
 	});
 
 	describe('default value', () => {
