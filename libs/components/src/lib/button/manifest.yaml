@@ -1,0 +1,21 @@
+concept: Button
+id: button
+description: Buttons trigger an action, such as submitting a form, closing a dialog, or navigating to a new page.
+keywords: [action, trigger, control]
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: button
+    design:
+      - https://figma.com/...,
+      - https://figma.com/...,
+      - https://figma.com/...,
+      - https://figma.com/...,
+    role: wrapper
+
