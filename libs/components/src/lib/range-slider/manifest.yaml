@@ -1,0 +1,21 @@
+concept: Range Slider
+id: range-slider
+description: Allows users to select a range. It includes two thumb controls that can be dragged to set the start and end values.
+keywords:
+  - range
+  - slider
+  - selection
+  - thumb
+  - controls
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: range-slider
+    design: https://figma.com/...
+    role: wrapper
