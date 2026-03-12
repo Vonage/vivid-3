@@ -18,7 +18,6 @@ links:
 elements:
   - tag: searchable-select
     design: https://figma.com/...
-    role: wrapper
+
   - tag: option
     design: https://figma.com/...
-    role: child

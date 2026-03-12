@@ -18,7 +18,6 @@ links:
 elements:
   - tag: tree-view
     design: https://figma.com/...
-    role: wrapper
+
   - tag: tree-item
     design: https://figma.com/...
-    role: child

@@ -18,10 +18,9 @@ links:
 elements:
   - tag: nav
     design: https://figma.com/...
-    role: wrapper
+
   - tag: nav-item
     design: https://figma.com/...
-    role: child
+
   - tag: nav-disclosure
     design: https://figma.com/...
-    role: child

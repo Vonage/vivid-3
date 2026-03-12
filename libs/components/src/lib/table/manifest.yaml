@@ -18,19 +18,18 @@ links:
 elements:
   - tag: table
     design: https://figma.com/...
-    role: wrapper
+
   - tag: table-cell
     design: https://figma.com/...
-    role: child
+
   - tag: table-header-cell
     design: https://figma.com/...
-    role: child
+
   - tag: table-row
     design: https://figma.com/...
-    role: child
+
   - tag: table-head
     design: https://figma.com/...
-    role: child
+
   - tag: table-body
     design: https://figma.com/...
-    role: child

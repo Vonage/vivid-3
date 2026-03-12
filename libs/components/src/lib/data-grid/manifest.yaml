@@ -18,10 +18,9 @@ links:
 elements:
   - tag: data-grid
     design: https://figma.com/...
-    role: wrapper
+
   - tag: data-grid-row
     design: https://figma.com/...
-    role: child
+
   - tag: data-grid-cell
     design: https://figma.com/...
-    role: child

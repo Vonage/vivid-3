@@ -18,7 +18,6 @@ links:
 elements:
   - tag: status
     design: https://figma.com/...
-    role: child
+
   - tag: icon
     design: https://figma.com/...
-    role: child

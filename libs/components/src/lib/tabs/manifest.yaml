@@ -18,10 +18,9 @@ links:
 elements:
   - tag: tabs
     design: https://figma.com/...
-    role: wrapper
+
   - tag: tab
     design: https://figma.com/...
-    role: child
+
   - tag: tab-panel
     design: https://figma.com/...
-    role: child

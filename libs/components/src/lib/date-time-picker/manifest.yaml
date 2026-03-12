@@ -19,4 +19,3 @@ links:
 elements:
   - tag: date-time-picker
     design: https://figma.com/...
-    role: wrapper

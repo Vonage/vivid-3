@@ -18,7 +18,6 @@ links:
 elements:
   - tag: tag-group
     design: https://figma.com/...
-    role: wrapper
+
   - tag: tag
     design: https://figma.com/...
-    role: child

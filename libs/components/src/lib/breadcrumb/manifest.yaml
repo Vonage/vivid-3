@@ -13,7 +13,6 @@ links:
 elements:
   - tag: breadcrumb
     design: https://figma.com/...
-    role: wrapper
+
   - tag: breadcrumb-item
     design: https://figma.com/...
-    role: child

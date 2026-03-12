@@ -18,7 +18,6 @@ links:
 elements:
   - tag: menu
     design: https://figma.com/...
-    role: wrapper
+
   - tag: menu-item
     design: https://figma.com/...
-    role: child

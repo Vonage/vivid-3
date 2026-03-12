@@ -13,7 +13,6 @@ links:
 elements:
   - tag: accordion
     design: https://figma.com/...
-    role: wrapper
+
   - tag: accordion-item
     design: https://figma.com/...
-    role: child
