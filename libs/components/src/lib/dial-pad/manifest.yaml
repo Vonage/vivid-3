@@ -1,0 +1,21 @@
+concept: Dial Pad
+id: dial-pad
+description: Dial Pad allows users to enter or dial phone numbers.
+keywords:
+  - dial
+  - phone
+  - number
+  - keypad
+  - input
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: dial-pad
+    design: https://figma.com/...
+    role: wrapper
