@@ -2,6 +2,7 @@ concept: Banner
 id: banner
 description: Banner displays a prominent message, usually on system level, and provides actions for users to address or dismiss.
 status: ready
+slug: banner
 keywords: [notification, message, system]
 documentation:
   readme: ./README.md

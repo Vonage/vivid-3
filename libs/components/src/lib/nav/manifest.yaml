@@ -2,6 +2,7 @@ concept: Navigation
 id: navigation
 description: A navigation component makes it easy for users to navigate through your application. Nav accepts Nav Item and Nav Disclosure elements as children.
 status: ready
+slug: navigation
 keywords:
   - navigation
   - nav

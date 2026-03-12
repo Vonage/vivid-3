@@ -2,6 +2,7 @@ concept: Select
 id: select
 description: Select lets users choose one option from an options menu. Consider using select when you have 4 or more options to choose from.
 status: ready
+slug: select
 keywords:
   - select
   - dropdown

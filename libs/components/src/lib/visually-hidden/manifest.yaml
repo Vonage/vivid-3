@@ -2,6 +2,7 @@ concept: Visually Hidden
 id: visually-hidden
 description: Hides content while keeping it available to assistive technology
 status: underlying
+slug: visually-hidden
 keywords:
   - visually-hidden
   - accessibility

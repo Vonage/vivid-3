@@ -2,6 +2,7 @@ concept: Text Area
 id: text-area
 description: The Text Area component enables users to input longer, multi-line text when more extensive text entry is required.
 status: ready
+slug: text-area
 keywords:
   - text-area
   - textarea

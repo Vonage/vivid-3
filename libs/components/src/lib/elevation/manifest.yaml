@@ -2,6 +2,7 @@ concept: Elevation
 id: elevation
 description: Represents underlying elevation custom element. Applies a perceived visual elevation to a direct child element.
 status: underlying
+slug: elevation
 keywords:
   - elevation
   - shadow

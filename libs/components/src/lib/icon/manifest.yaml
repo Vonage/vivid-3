@@ -2,6 +2,7 @@ concept: Icon
 id: icon
 description: Displays icons from the Vivid Icons Library using predefined colors and sizes.
 status: ready
+slug: icon
 keywords:
   - icon
   - symbol

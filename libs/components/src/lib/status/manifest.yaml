@@ -2,6 +2,7 @@ concept: Status
 id: status
 description: Displays an icon, status, and a description. Connotation (success, information, warning, alert) drives the default icon and color.
 status: alpha
+slug: status
 keywords:
   - status
   - state

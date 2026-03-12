@@ -2,6 +2,7 @@ concept: Toggletip
 id: toggletip
 description: A Toggletip is a type of Tooltip that is opened when clicking or tapping on the trigger button.
 status: ready
+slug: toggletip
 keywords:
   - toggletip
   - tooltip

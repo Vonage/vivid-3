@@ -2,6 +2,7 @@ concept: Time Picker
 id: time-picker
 description: Allows users to select a specific time using an input field and time picker interface.
 status: ready
+slug: time-picker
 keywords:
   - time-picker
   - time

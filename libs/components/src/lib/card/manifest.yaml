@@ -2,6 +2,7 @@ concept: Card
 id: card
 description: A card is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card
 status: ready
+slug: card
 keywords:
   - card
   - container

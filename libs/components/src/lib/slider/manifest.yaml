@@ -2,6 +2,7 @@ concept: Slider
 id: slider
 description: Allows users to choose from a range of values along a horizontal or vertical line
 status: ready
+slug: slider
 keywords:
   - slider
   - range

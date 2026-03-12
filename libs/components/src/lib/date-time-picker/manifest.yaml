@@ -2,6 +2,7 @@ concept: Date Time Picker
 id: date-time-picker
 description: Combines an Input and a Calendar/Time Picker popover to allow users to enter or select a date and time.
 status: ready
+slug: date-time-picker
 keywords:
   - date
   - time

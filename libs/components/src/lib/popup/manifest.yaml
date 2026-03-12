@@ -2,6 +2,7 @@ concept: Popup
 id: popup
 description: Popup are used to display a message or notification to the user and are displayed on top of all other web page elements. Popup's goal is to provide additional, helpful content.
 status: underlying
+slug: popup
 keywords:
   - popup
   - overlay

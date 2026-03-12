@@ -2,6 +2,7 @@ concept: Accordion
 id: accordion
 description: Accordion and Accordion Item work together to provide a vertically stacked list of headers that reveal or hide associated sections of content.
 status: ready
+slug: accordion
 keywords: [collapse, toggle, disclosure]
 documentation:
   readme: ./README.md

@@ -2,6 +2,7 @@ concept: Data Grid
 id: data-grid
 description: Allows users to interact with data in a tabular format.
 status: ready
+slug: data-grid
 keywords:
   - data
   - table

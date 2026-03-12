@@ -2,6 +2,7 @@ concept: Switch
 id: switch
 description: Use a Switch when you want a user to easily toggle between two mutually exclusive options, like 'on' and 'off' typically for settings or preferences within an application.
 status: ready
+slug: switch
 keywords:
   - switch
   - toggle

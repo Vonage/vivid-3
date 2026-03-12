@@ -2,6 +2,7 @@ concept: Empty State
 id: empty-state
 description: The Empty State component is used to display a message when there is no data to show.
 status: ready
+slug: empty-state
 keywords:
   - empty
   - state

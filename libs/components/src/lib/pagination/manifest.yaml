@@ -2,6 +2,7 @@ concept: Pagination
 id: pagination
 description: Help users navigate forwards and backwards through a series of pages. For example, search results or guidance that's divided into multiple pages.
 status: ready
+slug: pagination
 keywords:
   - pagination
   - navigation

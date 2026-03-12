@@ -2,6 +2,7 @@ concept: Simple Color Picker
 id: simple-color-picker
 description: The basic version of the Color Picker allows users to select a color from a predefined palette.
 status: alpha
+slug: simple-color-picker
 keywords:
   - color
   - picker

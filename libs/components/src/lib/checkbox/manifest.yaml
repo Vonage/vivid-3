@@ -2,6 +2,7 @@ concept: Checkbox
 id: checkbox
 description: Checkboxes allow users to select one or more items from a list of options.
 status: ready
+slug: checkbox
 keywords:
   - selection
   - form

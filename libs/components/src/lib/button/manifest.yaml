@@ -2,6 +2,7 @@ concept: Button
 id: button
 description: Buttons trigger an action, such as submitting a form, closing a dialog, or navigating to a new page.
 status: ready
+slug: button
 keywords: [action, trigger, control]
 documentation:
   readme: ./README.md

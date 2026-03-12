@@ -2,6 +2,7 @@ concept: Text Field
 id: text-field
 description: The Text Field component is used to allow users to provide text input when the expected input is short. As well as plain text, Text Field supports various types of text, including passwords, email addresses and telephone numbers.
 status: ready
+slug: text-field
 keywords:
   - text-field
   - input

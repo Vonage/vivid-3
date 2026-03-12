@@ -2,6 +2,7 @@ concept: Dialog
 id: dialog
 description: Represents a part of an application that a user interacts with to perform a task.
 status: ready
+slug: dialog
 keywords:
   - dialog
   - modal

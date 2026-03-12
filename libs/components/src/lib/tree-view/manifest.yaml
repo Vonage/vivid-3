@@ -2,6 +2,7 @@ concept: Tree View
 id: tree-view
 description: Represents a hierarchical list where tree items may have child items that can be expanded or collapsed to show or hide the children.
 status: ready
+slug: tree-view
 keywords:
   - tree-view
   - hierarchical
