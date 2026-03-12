@@ -1,0 +1,28 @@
+concept: Data Grid
+id: data-grid
+description: Allows users to interact with data in a tabular format.
+keywords:
+  - data
+  - table
+  - grid
+  - sorting
+  - selection
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: data-grid
+    design: https://figma.com/...
+    role: wrapper
+  - tag: data-grid-row
+    design: https://figma.com/...
+    role: child
+  - tag: data-grid-cell
+    design: https://figma.com/...
+    role: child
+
