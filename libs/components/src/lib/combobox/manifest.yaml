@@ -1,0 +1,25 @@
+concept: Combobox
+id: combobox
+description: Combobox contains a free text input for filtering options along with a similar behavior to a Select.
+keywords:
+  - input
+  - selection
+  - autocomplete
+  - options
+  - filtering
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: combobox
+    design: https://figma.com/...
+    role: wrapper
+  - tag: option
+    design: https://figma.com/...
+    role: child
+
