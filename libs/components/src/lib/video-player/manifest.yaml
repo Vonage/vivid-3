@@ -1,0 +1,21 @@
+concept: Video Player
+id: video-player
+description: Video Player is a component used to play and control video content.
+keywords:
+  - video-player
+  - video
+  - media
+  - player
+  - controls
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: video-player
+    design: https://figma.com/...
+    role: wrapper
