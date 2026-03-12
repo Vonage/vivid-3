@@ -1,0 +1,21 @@
+concept: File Picker
+id: file-picker
+description: The file picker component enables users to select files either by opening a file selection dialog or by using drag-and-drop functionality.
+keywords:
+  - file
+  - picker
+  - upload
+  - drag
+  - drop
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: file-picker
+    design: https://figma.com/...
+    role: wrapper
