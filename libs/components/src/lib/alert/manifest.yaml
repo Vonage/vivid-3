@@ -5,7 +5,7 @@ status: ready
 slug: alert
 keywords: [notification, message, status]
 documentation:
-  readme: ./README.md
+  code: ./README.md
   accessibility: ./ACCESSIBILITY.md
   useCases: ./USE-CASES.md
   variations: ./VARIATIONS.md

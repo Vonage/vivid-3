@@ -10,7 +10,7 @@ keywords:
   - option
   - toggle
 documentation:
-  readme: ./README.md
+  code: ./README.md
   accessibility: ./ACCESSIBILITY.md
   useCases: ./USE-CASES.md
   variations: ./VARIATIONS.md

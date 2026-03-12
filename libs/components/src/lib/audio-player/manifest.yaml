@@ -5,7 +5,7 @@ status: ready
 slug: audio-player
 keywords: [audio, media, playback]
 documentation:
-  readme: ./README.md
+  code: ./README.md
   accessibility: ./ACCESSIBILITY.md
   useCases: ./USE-CASES.md
   variations: ./VARIATIONS.md

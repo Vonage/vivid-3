@@ -9,7 +9,7 @@ keywords:
   - content grouping
   - surface
 documentation:
-  readme: ./README.md
+  code: ./README.md
   accessibility: ./ACCESSIBILITY.md
   useCases: ./USE-CASES.md
   variations: ./VARIATIONS.md
