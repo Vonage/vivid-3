@@ -1,0 +1,21 @@
+concept: Dialog
+id: dialog
+description: Represents a part of an application that a user interacts with to perform a task.
+keywords:
+  - dialog
+  - modal
+  - popup
+  - overlay
+  - interaction
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: dialog
+    design: https://figma.com/...
+    role: wrapper
