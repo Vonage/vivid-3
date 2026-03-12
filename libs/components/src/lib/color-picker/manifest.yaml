@@ -1,0 +1,22 @@
+concept: Color Picker
+id: color-picker
+description: Allows users to select any color using a dedicated Color Picker interface.
+keywords:
+  - color
+  - picker
+  - form
+  - input
+  - selection
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: color-picker
+    design: https://figma.com/...
+    role: wrapper
+
