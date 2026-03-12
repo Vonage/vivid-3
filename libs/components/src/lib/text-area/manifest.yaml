@@ -1,0 +1,21 @@
+concept: Text Area
+id: text-area
+description: The Text Area component enables users to input longer, multi-line text when more extensive text entry is required.
+keywords:
+  - text-area
+  - textarea
+  - multi-line
+  - input
+  - text
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: text-area
+    design: https://figma.com/...
+    role: wrapper
