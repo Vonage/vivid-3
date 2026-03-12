@@ -1,0 +1,22 @@
+concept: Date Time Picker
+id: date-time-picker
+description: Combines an Input and a Calendar/Time Picker popover to allow users to enter or select a date and time.
+keywords:
+  - date
+  - time
+  - picker
+  - calendar
+  - form
+  - input
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: date-time-picker
+    design: https://figma.com/...
+    role: wrapper
