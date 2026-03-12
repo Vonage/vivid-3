@@ -1,0 +1,21 @@
+concept: Selectable Box
+id: selectable-box
+description: Represents a content box to used in a group where one or more can be selected.
+keywords:
+  - selectable
+  - box
+  - selection
+  - group
+  - content
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: selectable-box
+    design: https://figma.com/...
+    role: wrapper
