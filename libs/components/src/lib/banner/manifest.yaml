@@ -1,0 +1,17 @@
+concept: Banner
+id: banner
+description: Banner displays a prominent message, usually on system level, and provides actions for users to address or dismiss.
+keywords: [notification, message, system]
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: banner
+    design: https://figma.com/...
+    role: wrapper
+
