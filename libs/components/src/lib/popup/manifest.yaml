@@ -1,0 +1,21 @@
+concept: Popup
+id: popup
+description: Popup are used to display a message or notification to the user and are displayed on top of all other web page elements. Popup's goal is to provide additional, helpful content.
+keywords:
+  - popup
+  - overlay
+  - message
+  - notification
+  - anchor
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: popup
+    design: https://figma.com/...
+    role: wrapper
