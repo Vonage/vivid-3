@@ -1,0 +1,24 @@
+concept: Radio Group
+id: radio-group
+description: A radio group is a collection of Radio buttons where only one choice can be selected.
+keywords:
+  - radio
+  - group
+  - selection
+  - choice
+  - buttons
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: radio-group
+    design: https://figma.com/...
+    role: wrapper
+  - tag: radio
+    design: https://figma.com/...
+    role: child
