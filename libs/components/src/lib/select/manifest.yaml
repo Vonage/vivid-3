@@ -1,0 +1,24 @@
+concept: Select
+id: select
+description: Select lets users choose one option from an options menu. Consider using select when you have 4 or more options to choose from.
+keywords:
+  - select
+  - dropdown
+  - options
+  - choice
+  - menu
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: select
+    design: https://figma.com/...
+    role: wrapper
+  - tag: option
+    design: https://figma.com/...
+    role: child
