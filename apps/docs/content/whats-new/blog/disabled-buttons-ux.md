@@ -79,7 +79,7 @@ In contrast, allowing the button to be pressed enables the system to respond wit
 
 This turns a confusing interaction into a clear and instructive one.
 
-## Disabled Buttons Break Real-World Conditions
+## Disabled Buttons Break In Real-World Conditions
 
 Modern web applications run in messy environments.
 
