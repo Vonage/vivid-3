@@ -1,0 +1,21 @@
+concept: Toggletip
+id: toggletip
+description: A Toggletip is a type of Tooltip that is opened when clicking or tapping on the trigger button.
+keywords:
+  - toggletip
+  - tooltip
+  - trigger
+  - click
+  - popup
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: toggletip
+    design: https://figma.com/...
+    role: wrapper
