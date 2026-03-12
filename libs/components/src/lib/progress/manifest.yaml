@@ -1,0 +1,21 @@
+concept: Progress
+id: progress
+description: Use to display the length of time a process will take, visualize a percentage value (determinate) or to represent an unspecified wait time (indeterminate).
+keywords:
+  - progress
+  - bar
+  - loading
+  - percentage
+  - status
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: progress
+    design: https://figma.com/...
+    role: wrapper
