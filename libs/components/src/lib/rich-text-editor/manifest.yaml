@@ -1,0 +1,21 @@
+concept: Rich Text Editor
+id: rich-text-editor
+description: Lets users create and format styled text content, and embed rich media such as links and images.
+keywords:
+  - rich
+  - text
+  - editor
+  - formatting
+  - content
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: rich-text-editor
+    design: https://figma.com/...
+    role: wrapper
