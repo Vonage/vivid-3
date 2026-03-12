@@ -19,3 +19,6 @@ elements:
   - tag: slider
     design: https://figma.com/...
     role: wrapper
+  - tag: popup
+    design: https://figma.com/...
+    role: child
