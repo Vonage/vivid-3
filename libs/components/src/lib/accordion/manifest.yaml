@@ -1,0 +1,19 @@
+concept: Accordion
+id: accordion
+description: Accordion and Accordion Item work together to provide a vertically stacked list of headers that reveal or hide associated sections of content.
+keywords: [collapse, toggle, disclosure]
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: accordion
+    design: https://figma.com/...
+    role: wrapper
+  - tag: accordion-item
+    design: https://figma.com/...
+    role: child
