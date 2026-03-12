@@ -20,9 +20,7 @@ links:
 elements:
   - tag: data-grid
     design: https://figma.com/...
-
   - tag: data-grid-row
     design: https://figma.com/...
-
   - tag: data-grid-cell
     design: https://figma.com/...

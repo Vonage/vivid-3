@@ -1,6 +1,7 @@
 concept: Elevation
 id: elevation
-description: Represents underlying elevation custom element. Applies a perceived visual elevation to a direct child element.
+description: Represents underlying elevation custom element. Applies a perceived
+  visual elevation to a direct child element.
 status: underlying
 slug: elevation
 keywords:
@@ -11,10 +12,6 @@ keywords:
   - underlying
 documentation:
   code: ./README.md
-  accessibility: ./ACCESSIBILITY.md
-  useCases: ./USE-CASES.md
-  variations: ./VARIATIONS.md
-  guidelines: ./GUIDELINES.md
 links:
   figma: https://figma.com/...
 elements:

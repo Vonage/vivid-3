@@ -1,6 +1,7 @@
 concept: Select
 id: select
-description: Select lets users choose one option from an options menu. Consider using select when you have 4 or more options to choose from.
+description: Select lets users choose one option from an options menu. Consider
+  using select when you have 4 or more options to choose from.
 status: ready
 slug: select
 keywords:
@@ -20,6 +21,5 @@ links:
 elements:
   - tag: select
     design: https://figma.com/...
-
   - tag: option
     design: https://figma.com/...

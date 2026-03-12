@@ -1,6 +1,7 @@
 concept: Range Slider
 id: range-slider
-description: Allows users to select a range. It includes two thumb controls that can be dragged to set the start and end values.
+description: Allows users to select a range. It includes two thumb controls that
+  can be dragged to set the start and end values.
 status: ready
 slug: range-slider
 keywords:

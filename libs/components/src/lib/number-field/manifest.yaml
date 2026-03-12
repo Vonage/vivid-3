@@ -1,6 +1,7 @@
 concept: Number Field
 id: number-field
-description: Allows users to enter a number in a text field or use buttons to increment or decrement the value.
+description: Allows users to enter a number in a text field or use buttons to
+  increment or decrement the value.
 status: ready
 slug: number-field
 keywords:

@@ -1,6 +1,7 @@
 concept: Combobox
 id: combobox
-description: Combobox contains a free text input for filtering options along with a similar behavior to a Select.
+description: Combobox contains a free text input for filtering options along
+  with a similar behavior to a Select.
 status: ready
 slug: combobox
 keywords:
@@ -20,6 +21,5 @@ links:
 elements:
   - tag: combobox
     design: https://figma.com/...
-
   - tag: option
     design: https://figma.com/...

@@ -12,7 +12,6 @@ keywords:
 documentation:
   code: ./README.md
   accessibility: ./ACCESSIBILITY.md
-  useCases: ./USE-CASES.md
   variations: ./VARIATIONS.md
   guidelines: ./GUIDELINES.md
 links:

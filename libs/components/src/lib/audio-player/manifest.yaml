@@ -1,9 +1,13 @@
 concept: Audio Player
 id: audio-player
-description: Audio Player is a component used to play audio files. It is based on the HTML5 audio element.
+description: Audio Player is a component used to play audio files. It is based
+  on the HTML5 audio element.
 status: ready
 slug: audio-player
-keywords: [audio, media, playback]
+keywords:
+  - audio
+  - media
+  - playback
 documentation:
   code: ./README.md
   accessibility: ./ACCESSIBILITY.md

@@ -1,6 +1,7 @@
 concept: Header
 id: header
-description: The header component can be used to display a header at the top of a page or section.
+description: The header component can be used to display a header at the top of
+  a page or section.
 status: ready
 slug: header
 keywords:

@@ -1,6 +1,7 @@
 concept: Calendar
 id: calendar
-description: The Calendar component displays events in a visual date grid in a week views, allowing users to view and interact with the displayed events.
+description: The Calendar component displays events in a visual date grid in a
+  week views, allowing users to view and interact with the displayed events.
 status: ready
 slug: calendar
 keywords:
@@ -20,6 +21,5 @@ links:
 elements:
   - tag: calendar
     design: https://figma.com/...
-
   - tag: calendar-event
     design: https://figma.com/...

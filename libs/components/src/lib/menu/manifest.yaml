@@ -1,6 +1,8 @@
 concept: Menu
 id: menu
-description: The Menu is an interactive element that appears in response to user actions. It typically presents a list of Menu Items (actions) relevant to the current context.
+description: The Menu is an interactive element that appears in response to user
+  actions. It typically presents a list of Menu Items (actions) relevant to the
+  current context.
 status: ready
 slug: menu
 keywords:
@@ -20,6 +22,5 @@ links:
 elements:
   - tag: menu
     design: https://figma.com/...
-
   - tag: menu-item
     design: https://figma.com/...

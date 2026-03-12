@@ -1,6 +1,7 @@
 concept: Tooltip
 id: tooltip
-description: A Tooltips provides a short description of a page element or control that become visible when the target is hovered over or focussed on.
+description: A Tooltips provides a short description of a page element or
+  control that become visible when the target is hovered over or focussed on.
 status: ready
 slug: tooltip
 keywords:
@@ -14,7 +15,6 @@ documentation:
   accessibility: ./ACCESSIBILITY.md
   useCases: ./USE-CASES.md
   variations: ./VARIATIONS.md
-  guidelines: ./GUIDELINES.md
 links:
   figma: https://figma.com/...
 elements:

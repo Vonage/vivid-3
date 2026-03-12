@@ -1,6 +1,7 @@
 concept: Popover
 id: popover
-description: Displays floating rich content anchored to a specific trigger element, rendering on top of all other page elements.
+description: Displays floating rich content anchored to a specific trigger
+  element, rendering on top of all other page elements.
 status: alpha
 slug: popover
 keywords:
@@ -12,9 +13,7 @@ keywords:
 documentation:
   code: ./README.md
   accessibility: ./ACCESSIBILITY.md
-  useCases: ./USE-CASES.md
   variations: ./VARIATIONS.md
-  guidelines: ./GUIDELINES.md
 links:
   figma: https://figma.com/...
 elements:

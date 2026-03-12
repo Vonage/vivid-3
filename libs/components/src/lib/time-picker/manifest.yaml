@@ -1,6 +1,7 @@
 concept: Time Picker
 id: time-picker
-description: Allows users to select a specific time using an input field and time picker interface.
+description: Allows users to select a specific time using an input field and
+  time picker interface.
 status: ready
 slug: time-picker
 keywords:
@@ -14,7 +15,6 @@ documentation:
   accessibility: ./ACCESSIBILITY.md
   useCases: ./USE-CASES.md
   variations: ./VARIATIONS.md
-  guidelines: ./GUIDELINES.md
 links:
   figma: https://figma.com/...
 elements:
