@@ -1,0 +1,21 @@
+concept: Layout
+id: layout
+description: Easily arrange elements in a grid using CSS grid layout and predefined sizes and spaces.
+keywords:
+  - layout
+  - grid
+  - arrange
+  - spacing
+  - responsive
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: layout
+    design: https://figma.com/...
+    role: wrapper
