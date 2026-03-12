@@ -4,11 +4,11 @@ pagination:
   data: componentsNew
   size: 1
   alias: component
-permalink: "components/{{ component | componentSlug }}/code/"
+permalink: "components/{{ component.slug }}/code/"
 layout: component.njk
 eleventyComputed:
-  pageTitle: "{{ component.title }} - Code"
-  githubEditLink: "{{ component.code | githubEditLink }}"
+  pageTitle: "{{ component.concept }} - Code"
+  githubEditLink: "{{ component.documentation.code | githubEditLink }}"
 ---
 
-{% renderFile "../../" ~ component.code %}
+{% renderFile component.documentation.code %}

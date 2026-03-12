@@ -4,9 +4,9 @@ pagination:
   data: componentAccessibility
   size: 1
   alias: component
-permalink: "components/{{ component | componentSlug }}/accessibility/llms.txt"
+permalink: "components/{{ component.slug }}/accessibility/llms.txt"
 eleventyComputed:
-  pageTitle: "{{ component.title }} - Accessibility"
+  pageTitle: "{{ component.concept }} - Accessibility"
 ---
 # {{ pageTitle }}
-{{ component.accessibility | includeMd | safe }}
+{{ component.documentation.accessibility | includeMd | safe }}

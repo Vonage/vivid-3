@@ -1,14 +1,14 @@
 ---
 tags: components
 pagination:
-  data: componentsNew
+  data: componentVariations
   size: 1
   alias: component
-permalink: 'components/{{ component | componentSlug }}/'
+permalink: 'components/{{ component.slug }}/'
 layout: component.njk
 eleventyComputed:
-  pageTitle: "{{ component.title }} - Variations"
-  githubEditLink: "{{ component.variations | githubEditLink }}"
+  pageTitle: "{{ component.concept }} - Variations"
+  githubEditLink: "{{ component.documentation.variations | githubEditLink }}"
 ---
 
-{% renderFile "../../" ~ component.variations %}
+{% renderFile component.documentation.variations %}

@@ -1,12 +1,12 @@
 ---
 eleventyExcludeFromCollections: true
 pagination:
-  data: componentsNew
+  data: componentVariations
   size: 1
   alias: component
-permalink: 'components/{{ component | componentSlug }}/variations/llms.txt'
+permalink: 'components/{{ component.slug }}/variations/llms.txt'
 eleventyComputed:
-  pageTitle: "{{ component.title }} - Variations"
+  pageTitle: "{{ component.concept }} - Variations"
 ---
 # {{ pageTitle }}
-{{ component.variations | includeMd | safe }}
+{{ component.documentation.variations | includeMd | safe }}

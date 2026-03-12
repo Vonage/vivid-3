@@ -72,6 +72,7 @@
 		"vitest": "catalog:",
 		"vitest-axe": "catalog:",
 		"vue": "catalog:vue3",
-		"wait-on": "catalog:"
+		"wait-on": "catalog:",
+		"yaml": "^2.8.2"
 	}
 }
