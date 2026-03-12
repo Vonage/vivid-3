@@ -1,6 +1,7 @@
 concept: Badge
 id: badge
 description: A small label, generally appearing inside or in proximity to another larger interface component, representing a status, property, or some other metadata.
+status: ready
 keywords: [status, label, metadata]
 documentation:
   readme: ./README.md

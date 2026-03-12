@@ -1,6 +1,7 @@
 concept: File Picker
 id: file-picker
 description: The file picker component enables users to select files either by opening a file selection dialog or by using drag-and-drop functionality.
+status: ready
 keywords:
   - file
   - picker

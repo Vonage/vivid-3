@@ -1,6 +1,7 @@
 concept: Calendar
 id: calendar
 description: The Calendar component displays events in a visual date grid in a week views, allowing users to view and interact with the displayed events.
+status: ready
 keywords:
   - calendar
   - events

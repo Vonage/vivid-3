@@ -1,6 +1,7 @@
 concept: Date Picker
 id: date-picker
 description: Combines an Input and a Calendar popover to allow users to select a date.
+status: ready
 keywords:
   - date
   - picker

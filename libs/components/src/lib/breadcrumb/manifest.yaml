@@ -1,6 +1,7 @@
 concept: Breadcrumb
 id: breadcrumb
 description: Links showing the position of the current page within the navigational hierarchy.
+status: ready
 keywords: [navigation, hierarchy, path]
 documentation:
   readme: ./README.md

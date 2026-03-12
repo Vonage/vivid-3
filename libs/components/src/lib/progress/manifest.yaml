@@ -1,6 +1,7 @@
 concept: Progress
 id: progress
 description: Use to display the length of time a process will take, visualize a percentage value (determinate) or to represent an unspecified wait time (indeterminate).
+status: ready
 keywords:
   - progress
   - bar

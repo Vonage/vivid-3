@@ -1,6 +1,7 @@
 concept: Video Player
 id: video-player
 description: Video Player is a component used to play and control video content.
+status: ready
 keywords:
   - video-player
   - video

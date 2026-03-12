@@ -1,6 +1,7 @@
 concept: Layout
 id: layout
 description: Easily arrange elements in a grid using CSS grid layout and predefined sizes and spaces.
+status: ready
 keywords:
   - layout
   - grid

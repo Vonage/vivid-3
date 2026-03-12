@@ -1,6 +1,7 @@
 concept: Tabs
 id: tabs
 description: Tabs are interactive elements that work alongside Tab and Tab Panel to organise content into separate sections or views.
+status: ready
 keywords:
   - tabs
   - navigation

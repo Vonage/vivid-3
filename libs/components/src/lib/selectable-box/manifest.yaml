@@ -1,6 +1,7 @@
 concept: Selectable Box
 id: selectable-box
 description: Represents a content box to used in a group where one or more can be selected.
+status: ready
 keywords:
   - selectable
   - box

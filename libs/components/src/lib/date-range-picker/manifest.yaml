@@ -1,6 +1,7 @@
 concept: Date Range Picker
 id: date-range-picker
 description: Combines an Input and a dual Calendar popover to allow users to enter or select a date range.
+status: ready
 keywords:
   - date
   - range

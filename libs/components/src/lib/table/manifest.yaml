@@ -1,6 +1,7 @@
 concept: Table
 id: table
 description: A set of composable components that work together in the same way as native HTML table elements.
+status: alpha
 keywords:
   - table
   - data

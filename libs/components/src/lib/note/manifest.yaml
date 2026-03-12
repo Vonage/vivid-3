@@ -1,6 +1,7 @@
 concept: Note
 id: note
 description: Callout information that would be relevant to the user.
+status: ready
 keywords:
   - note
   - callout

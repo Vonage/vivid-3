@@ -1,6 +1,7 @@
 concept: Color Picker
 id: color-picker
 description: Allows users to select any color using a dedicated Color Picker interface.
+status: alpha
 keywords:
   - color
   - picker

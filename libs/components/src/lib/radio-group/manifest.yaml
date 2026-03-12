@@ -1,6 +1,7 @@
 concept: Radio Group
 id: radio-group
 description: A radio group is a collection of Radio buttons where only one choice can be selected.
+status: ready
 keywords:
   - radio
   - group

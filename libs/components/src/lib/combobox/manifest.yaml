@@ -1,6 +1,7 @@
 concept: Combobox
 id: combobox
 description: Combobox contains a free text input for filtering options along with a similar behavior to a Select.
+status: ready
 keywords:
   - input
   - selection

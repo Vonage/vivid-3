@@ -1,6 +1,7 @@
 concept: Rich Text Editor
 id: rich-text-editor
 description: Lets users create and format styled text content, and embed rich media such as links and images.
+status: alpha
 keywords:
   - rich
   - text

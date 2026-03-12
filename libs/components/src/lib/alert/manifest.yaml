@@ -1,6 +1,7 @@
 concept: Alert
 id: alert
 description: Alerts display short-lived important information to the user, usually at the top or bottom of the screen.
+status: ready
 keywords: [notification, message, status]
 documentation:
   readme: ./README.md

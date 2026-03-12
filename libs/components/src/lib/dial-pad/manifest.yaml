@@ -1,6 +1,7 @@
 concept: Dial Pad
 id: dial-pad
 description: Dial Pad allows users to enter or dial phone numbers.
+status: ready
 keywords:
   - dial
   - phone

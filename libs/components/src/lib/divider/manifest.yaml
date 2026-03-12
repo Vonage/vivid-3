@@ -1,6 +1,7 @@
 concept: Divider
 id: divider
 description: Use as a separator between content.
+status: ready
 keywords:
   - divider
   - separator

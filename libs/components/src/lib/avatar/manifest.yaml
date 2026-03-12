@@ -1,6 +1,7 @@
 concept: Avatar
 id: avatar
 description: Avatars are used to represent a user or a system entity. They can be used to represent a person, a group of people, or an object.
+status: ready
 keywords: [profile, user, identity]
 documentation:
   readme: ./README.md
