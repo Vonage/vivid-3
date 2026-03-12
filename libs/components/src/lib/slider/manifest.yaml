@@ -1,0 +1,21 @@
+concept: Slider
+id: slider
+description: Allows users to choose from a range of values along a horizontal or vertical line
+keywords:
+  - slider
+  - range
+  - value
+  - selection
+  - control
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: slider
+    design: https://figma.com/...
+    role: wrapper
