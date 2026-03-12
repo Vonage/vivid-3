@@ -1,0 +1,21 @@
+concept: Note
+id: note
+description: Callout information that would be relevant to the user.
+keywords:
+  - note
+  - callout
+  - information
+  - message
+  - alert
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: note
+    design: https://figma.com/...
+    role: wrapper
