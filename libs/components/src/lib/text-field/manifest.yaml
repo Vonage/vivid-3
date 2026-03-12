@@ -1,0 +1,21 @@
+concept: Text Field
+id: text-field
+description: The Text Field component is used to allow users to provide text input when the expected input is short. As well as plain text, Text Field supports various types of text, including passwords, email addresses and telephone numbers.
+keywords:
+  - text-field
+  - input
+  - form
+  - text
+  - field
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: text-field
+    design: https://figma.com/...
+    role: wrapper
