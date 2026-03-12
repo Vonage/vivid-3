@@ -19,3 +19,6 @@ elements:
   - tag: pagination
     design: https://figma.com/...
     role: wrapper
+  - tag: button
+    design: https://figma.com/...
+    role: child

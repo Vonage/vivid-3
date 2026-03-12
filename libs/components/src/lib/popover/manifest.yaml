@@ -1,0 +1,21 @@
+concept: Popover
+id: popover
+description: Displays floating rich content anchored to a specific trigger element, rendering on top of all other page elements.
+keywords:
+  - popover
+  - floating
+  - tooltip
+  - overlay
+  - anchor
+documentation:
+  readme: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: popover
+    design: https://figma.com/...
+    role: wrapper
