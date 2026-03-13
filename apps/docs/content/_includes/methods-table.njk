@@ -1,0 +1,19 @@
+{% if metadata.methods and metadata.methods | length > 0 %}
+	<h3>Methods</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for method in metadata.methods %}
+			<tr>
+				<td><strong>{{ method.name }}</strong></td>
+				<td>{{ method.description | default('') }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endif %}

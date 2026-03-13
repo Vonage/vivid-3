@@ -18,8 +18,12 @@ const { onlyPublicPages } = require('./filters/publicPages');
 const { componentSlug } = require('./filters/componentSlug');
 const { spawn } = require('node:child_process');
 const { NodePackageImporter } = require('sass');
-const { manifestsArray: components } = require('./utils/manifestsStore');
+const {
+	manifestsArray: components,
+	manifestsBySlug,
+} = require('./utils/components-manifests');
 const { componentsNav } = require('./utils/components-navigation');
+const { metadataByTag } = require('./utils/components-metadata');
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..');
 const DOCS_DIR = '.';
@@ -119,6 +123,9 @@ module.exports = async (eleventyConfig) => {
 	});
 
 	eleventyConfig.addWatchTarget(
+		`${WORKSPACE_ROOT}/libs/components/src/lib/*/manifest.yaml`
+	);
+	eleventyConfig.addWatchTarget(
 		`${WORKSPACE_ROOT}/libs/components/src/lib/*/README.md`
 	);
 	eleventyConfig.addWatchTarget(
@@ -168,6 +175,14 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addFilter('onlyNavPages', (entries) =>
 		entries.filter((entry) => Boolean(entry.data.title))
 	);
+
+	eleventyConfig.addNunjucksGlobal('getManifest', (slug) => {
+		return manifestsBySlug.get(slug);
+	});
+
+	eleventyConfig.addNunjucksGlobal('getMetadata', (tagName) => {
+		return metadataByTag.get(tagName);
+	});
 
 	eleventyConfig.addFilter('has', (object, propName) => {
 		return Object.prototype.hasOwnProperty.call(object, propName);

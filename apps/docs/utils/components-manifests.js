@@ -1,6 +1,6 @@
 const { globSync } = require('glob');
-const { readFileSync } = require('fs');
-const { resolve, dirname } = require('path');
+const { readFileSync } = require('node:fs');
+const { resolve, dirname } = require('node:path');
 const { parse: parseYaml } = require('yaml');
 
 const WORKSPACE_ROOT = resolve(__dirname, '..', '..', '..');

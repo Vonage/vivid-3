@@ -12,3 +12,19 @@ eleventyComputed:
 ---
 
 {% renderFile component.documentation.code %}
+
+<h1> API Reference </h1>
+
+{% for element in component.elements %}
+	{% set metadata = getMetadata(element.tag) %}
+
+	{% if component.elements | length > 1 %}
+	<h2> {{ element.tag }} </h2>
+	{% endif %}
+
+	{% include "props-table.njk" %}
+	{% include "slots-table.njk" %}
+	{% include "events-table.njk" %}
+	{% include "methods-table.njk" %}
+
+{% endfor %}

@@ -1,5 +1,5 @@
 const { isPublicStatus } = require('../filters/publicPages');
-const { manifestsBySlug } = require('../utils/manifestsStore');
+const { manifestsBySlug } = require('./components-manifests');
 const components = require('../content/_data/components.json');
 
 const navItems = [];

@@ -1,0 +1,19 @@
+{% if metadata.events and metadata.events | length > 0 %}
+	<h3>Events</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for event in metadata.events %}
+			<tr>
+				<td><strong>{{ event.name }}</strong></td>
+				<td>{{ event.description | default('') }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endif %}
