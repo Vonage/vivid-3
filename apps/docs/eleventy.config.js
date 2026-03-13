@@ -16,13 +16,10 @@ const { githubEditLinkFromPath } = require('./filters/githubEditLink');
 const { isNavItemActive } = require('./filters/isNavItemActive');
 const { onlyPublicPages } = require('./filters/publicPages');
 const { componentSlug } = require('./filters/componentSlug');
-const {
-	navigationFromComponents,
-} = require('./filters/navigationFromComponents');
-const components = require('./content/_data/components.json');
 const { spawn } = require('node:child_process');
 const { NodePackageImporter } = require('sass');
-const { parse: parseYaml } = require('yaml');
+const { manifestsArray: components } = require('./utils/manifestsStore');
+const { componentsNav } = require('./utils/components-navigation');
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..');
 const DOCS_DIR = '.';
@@ -30,62 +27,6 @@ const INPUT_DIR = `${DOCS_DIR}/content`;
 const OUTPUT_DIR = 'dist';
 
 module.exports = async (eleventyConfig) => {
-	const componentsDir = path.resolve(
-		WORKSPACE_ROOT,
-		'libs',
-		'components',
-		'src',
-		'lib'
-	);
-
-	const manifestFiles = globSync('**/manifest.yaml', {
-		cwd: componentsDir,
-		absolute: true,
-	});
-
-	const componentsAlt = manifestFiles.map((manifestFile) => {
-		const manifestContent = fs.readFileSync(manifestFile, 'utf-8');
-		const dirname = path.dirname(manifestFile);
-		const manifestData = parseYaml(manifestContent);
-
-		if (manifestData.documentation.code) {
-			manifestData.documentation.code = path.resolve(
-				dirname,
-				manifestData.documentation.code
-			);
-		}
-
-		if (manifestData.documentation.guidelines) {
-			manifestData.documentation.guidelines = path.resolve(
-				dirname,
-				manifestData.documentation.guidelines
-			);
-		}
-
-		if (manifestData.documentation.variations) {
-			manifestData.documentation.variations = path.resolve(
-				dirname,
-				manifestData.documentation.variations
-			);
-		}
-
-		if (manifestData.documentation.accessibility) {
-			manifestData.documentation.accessibility = path.resolve(
-				dirname,
-				manifestData.documentation.accessibility
-			);
-		}
-
-		if (manifestData.documentation.useCases) {
-			manifestData.documentation.useCases = path.resolve(
-				dirname,
-				manifestData.documentation.useCases
-			);
-		}
-
-		return manifestData;
-	});
-
 	eleventyConfig.setLibrary('md', markdownLibrary);
 
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
@@ -241,36 +182,33 @@ module.exports = async (eleventyConfig) => {
 		return false;
 	});
 
-	eleventyConfig.addFilter(
-		'navigationFromComponents',
-		navigationFromComponents
-	);
+	eleventyConfig.addGlobalData('componentsNavigation', componentsNav);
 
-	eleventyConfig.addGlobalData('componentsNew', componentsAlt);
+	eleventyConfig.addGlobalData('componentsNew', components);
 
 	eleventyConfig.addGlobalData(
 		'componentGuidelines',
-		componentsAlt.filter((c) => c.documentation.guidelines)
+		components.filter((c) => c.documentation.guidelines)
 	);
 
 	eleventyConfig.addGlobalData(
 		'componentUseCases',
-		componentsAlt.filter((c) => c.documentation.useCases)
+		components.filter((c) => c.documentation.useCases)
 	);
 
 	eleventyConfig.addGlobalData(
 		'componentVariations',
-		componentsAlt.filter((c) => c.documentation.variations)
+		components.filter((c) => c.documentation.variations)
 	);
 
 	eleventyConfig.addGlobalData(
 		'componentAccessibility',
-		componentsAlt.filter((c) => c.documentation.accessibility)
+		components.filter((c) => c.documentation.accessibility)
 	);
 
 	eleventyConfig.addGlobalData(
 		'componentsLegacy',
-		componentsAlt.filter((c) => {
+		components.filter((c) => {
 			return (
 				!c.documentation.accessibility &&
 				!c.documentation.useCases &&
