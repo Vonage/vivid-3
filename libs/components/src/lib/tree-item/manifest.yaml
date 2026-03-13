@@ -1,0 +1,20 @@
+concept: Tree Item
+id: tree-item
+description: Represents a tree-item custom element that can be used within a
+  Tree View to display hierarchical data with expandable and collapsible
+  functionality.
+status: ready
+slug: tree-item
+keywords:
+  - tree-item
+  - hierarchy
+  - expandable
+  - node
+  - item
+documentation:
+  code: ./README.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: tree-item
+    design: https://figma.com/...

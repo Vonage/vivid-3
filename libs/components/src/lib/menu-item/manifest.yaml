@@ -1,0 +1,22 @@
+concept: Menu Item
+id: menu-item
+description: An option to appear inside a Menu.
+status: ready
+slug: menu-item
+keywords:
+  - menu-item
+  - option
+  - action
+  - clickable
+  - selection
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: menu-item
+    design: https://figma.com/...
+  - tag: icon
+    design: https://figma.com/...

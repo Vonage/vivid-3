@@ -1,0 +1,22 @@
+concept: Calendar Event
+id: calendar-event
+description: The Calendar Event component displays scheduled items within the
+  weekly view of the Calendar component. It supports clickable, interactive
+  events with customizable times and colors.
+status: ready
+slug: calendar-event
+keywords:
+  - calendar
+  - event
+  - scheduled
+  - appointment
+  - time
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: calendar-event
+    design: https://figma.com/...
