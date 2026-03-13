@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block content %}
-	{% if component.documentation | hasAny("variations", "guidelines", "useCases", "accessibility") %}
+	{% if not (component.documentation | has("legacy")) %}
 		<h1>{{ component.concept }}</h1>
 		<p>{{ component.description }}</p>
 		<div class="components-header" id="components-header">
@@ -25,6 +25,7 @@
 					{% if component.documentation | has("variations") %}
 						<li><a href="/components/{{ component.slug }}/" {% if ("/components/" + (component.slug) + "/") == page.url %} aria-current="page" {% endif %}>Variations</a></li>
 					{% endif %}
+
 					{% if component.documentation | has("guidelines") %}
 						<li><a href="/components/{{ component.slug }}/guidelines/" {% if ("/components/" + (component.slug) + "/guidelines/") == page.url %} aria-current="page" {% endif %}>Guidelines</a></li>
 					{% endif %}

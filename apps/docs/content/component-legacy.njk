@@ -7,7 +7,7 @@ pagination:
 permalink: "components/{{ component.slug }}/"
 layout: component.njk
 eleventyComputed:
-    githubEditLink: "{{ component.documentation.code | githubEditLink }}"
+    githubEditLink: "{{ component.documentation.legacy | githubEditLink }}"
 ---
 
-{% renderFile component.documentation.code %}
+{% renderFile component.documentation.legacy %}

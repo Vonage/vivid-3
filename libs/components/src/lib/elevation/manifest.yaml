@@ -11,7 +11,7 @@ keywords:
   - visual
   - underlying
 documentation:
-  code: ./README.md
+  legacy: ./README.md
 links:
   figma: https://figma.com/...
 elements:

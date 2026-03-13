@@ -12,7 +12,7 @@ keywords:
   - notification
   - anchor
 documentation:
-  code: ./README.md
+  legacy: ./README.md
 links:
   figma: https://figma.com/...
 elements:

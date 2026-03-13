@@ -187,6 +187,11 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addGlobalData('componentsNew', components);
 
 	eleventyConfig.addGlobalData(
+		'componentCode',
+		components.filter((c) => c.documentation.code)
+	);
+
+	eleventyConfig.addGlobalData(
 		'componentGuidelines',
 		components.filter((c) => c.documentation.guidelines)
 	);
@@ -208,14 +213,7 @@ module.exports = async (eleventyConfig) => {
 
 	eleventyConfig.addGlobalData(
 		'componentsLegacy',
-		components.filter((c) => {
-			return (
-				!c.documentation.accessibility &&
-				!c.documentation.useCases &&
-				!c.documentation.variations &&
-				!c.documentation.guidelines
-			);
-		})
+		components.filter((c) => c.documentation.legacy)
 	);
 
 	eleventyConfig.addShortcode('clientSideNavigationHint', function () {

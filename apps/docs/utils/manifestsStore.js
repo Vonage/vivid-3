@@ -25,6 +25,10 @@ for (const manifestFile of manifestFiles) {
 	const dir = dirname(manifestFile);
 	const data = parseYaml(contents);
 
+	if (data.documentation.legacy) {
+		data.documentation.legacy = resolve(dir, data.documentation.legacy);
+	}
+
 	if (data.documentation.code) {
 		data.documentation.code = resolve(dir, data.documentation.code);
 	}
