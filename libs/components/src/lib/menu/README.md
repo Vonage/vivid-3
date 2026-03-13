@@ -618,14 +618,14 @@ import { VMenu, VMenuItem } from '@vonage/vivid-vue';
 
 <div class="table-wrapper">
 
-| Name                 | Type                                                                                                                                                                    | Description                                                           |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| **anchor**           | `string`, `HTMLElement`                                                                                                                                                 | `id` or the anchor element itself                                     |
-| **auto-dismiss**     | `boolean`                                                                                                                                                               | Sets the Menu to close when focus is lost                             |
-| **open**             | `boolean`                                                                                                                                                               | Sets the open state of the Menu                                       |
-| **placement**        | `left-start`, `left-center` `left-end`, `right-start`, `right-center`, `right-end`, `top-start`, `top-center`, `top-end`, `bottom-start`, `bottom-center`, `bottom-end` | Sets the desired position of the Menu relative to it's anchor element |
-| **position-stategy** | `fixed` (deafult), `absolute`                                                                                                                                           | Sets the position strategy                                            |
-| **trigger**          | `none`, `legacy`, `auto`(default)                                                                                                                                       | Sets trigger method of Menu                                           |
+| Name                  | Type                                                                                                                                                                    | Description                                                           |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **anchor**            | `string`, `HTMLElement`                                                                                                                                                 | `id` or the anchor element itself                                     |
+| **auto-dismiss**      | `boolean`                                                                                                                                                               | Sets the Menu to close when focus is lost                             |
+| **open**              | `boolean`                                                                                                                                                               | Sets the open state of the Menu                                       |
+| **placement**         | `left-start`, `left-center` `left-end`, `right-start`, `right-center`, `right-end`, `top-start`, `top-center`, `top-end`, `bottom-start`, `bottom-center`, `bottom-end` | Sets the desired position of the Menu relative to it's anchor element |
+| **position-strategy** | `fixed` (default), `absolute`                                                                                                                                           | Sets the position strategy                                            |
+| **trigger**           | `off`, `legacy`, `auto` (default)                                                                                                                                       | Sets trigger method of Menu                                           |
 
 </div>
 

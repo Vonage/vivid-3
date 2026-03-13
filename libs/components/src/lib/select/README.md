@@ -588,10 +588,10 @@ import { VOption, VSelect } from '@vonage/vivid-vue';
 
 <div class="table-wrapper">
 
-| Name       | Type                     | Bubbles | Composed | Description                                     |
-| ---------- | ------------------------ | ------- | -------- | ----------------------------------------------- |
-| **input**  | `CustomEvent<undefined>` | No      | Yes      | Fired when an option is selected or unselected. |
-| **change** | `CustomEvent<undefined>` | No      | Yes      | Fired when an option is selected or unselected. |
+| Name       | Type                       | Bubbles | Composed | Description                                     |
+| ---------- | -------------------------- | ------- | -------- | ----------------------------------------------- |
+| **input**  | `CustomEvent<undefined>`   | No      | Yes      | Fired when an option is selected or unselected. |
+| **change** | `CustomEvent<HTMLElement>` | No      | Yes      | Fired when an option is selected or unselected. |
 
 </div>
 

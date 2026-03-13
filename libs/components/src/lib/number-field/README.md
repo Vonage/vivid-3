@@ -227,6 +227,7 @@ import { VContextualHelp, VNumberField } from '@vonage/vivid-vue';
 | **autofocus**     | `boolean`                       | Indicates that an element should be focused on page load, or when the Dialog that it is part of is displayed |
 | **disabled**      | `boolean`                       | Whether the input element is disabled                                                                        |
 | **error-text**    | `string`                        | Sets error-text on element                                                                                   |
+| **helper-text**   | `string`                        | Sets helper-text on element                                                                                  |
 | **label**         | `string`                        | Label of the Text Field                                                                                      |
 | **max**           | `string`                        | Maximum value of the element                                                                                 |
 | **min**           | `string`                        | Minimum value of the element                                                                                 |

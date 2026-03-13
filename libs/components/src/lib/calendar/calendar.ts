@@ -182,6 +182,9 @@ export class Calendar extends VividElement {
 		el?.focus();
 	}
 
+	/**
+	 * @internal
+	 */
 	onKeydown({ key }: KeyboardEvent) {
 		const isArrow = [ARROW_UP, ARROW_RIGHT, ARROW_DOWN, ARROW_LEFT].some(
 			(predefinedKey) => predefinedKey == key

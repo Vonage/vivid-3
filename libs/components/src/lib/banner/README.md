@@ -188,6 +188,7 @@ import { VBanner, VIcon } from '@vonage/vivid-vue';
 | **connotation**                        | Enum\_:<br/>`information` (default) <br/>`announcement`<br/>`success`<br/>`warning` <br/>`alert` |
 | _(deprecated as of 05/25)_<br>**icon** | Enum\_:<br/>`[icon-name]`                                                                        |
 | **removable**                          | `boolean`                                                                                        |
+| **dismiss-aria-label**                 | `string` – Allows setting a custom aria-label for the dismiss button.                            |
 
 </div>
 

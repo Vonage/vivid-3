@@ -148,6 +148,9 @@ export class Icon extends VividElement {
 
 	#abortController: AbortController | null = null;
 
+	/**
+	 * @internal
+	 */
 	async nameChanged() {
 		const requestId = ++this.#currentRequestId;
 

@@ -88,11 +88,17 @@ export class Tab extends HostSemantics(
 	 */
 	@observable active = false;
 
+	/**
+	 * @internal
+	 */
 	_handleCloseClick(e: Event) {
 		e.stopImmediatePropagation();
 		this.$emit('close');
 	}
 
+	/**
+	 * @internal
+	 */
 	_onKeyDown(e: KeyboardEvent) {
 		if (!this.removable || e.key !== 'Delete') return true;
 

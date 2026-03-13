@@ -92,6 +92,9 @@ export class AudioPlayer extends Localized(VividElement) {
 	 */
 	@attr src?: string;
 
+	/**
+	 * @internal
+	 */
 	srcChanged() {
 		if (this.src === undefined) {
 			this.setSrc('');

@@ -194,7 +194,7 @@ import { VCalendar, VCalendarEvent } from '@vonage/vivid-vue';
 | **datetime**    | `Date()` constructor acceptable parameter             | Sets the week to display                  |
 | **hour12**      | `boolean`                                             | Displays a time in 12 hour format         |
 | **locales**     | `string`, `String[]`                                  | Sets the locale to be displayed           |
-| **start**       | `sunday`, `monday`                                    | Sets the first day of the week to display |
+| **start-day**   | `sunday`, `monday`                                    | Sets the first day of the week to display |
 | **sticky-mode** | `'none'` , `'header'` , `'column'` , `'all'`(default) | Set the `sticky-mode` attribute           |
 
 </div>

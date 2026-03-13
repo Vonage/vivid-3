@@ -49,6 +49,10 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+
+	/**
+	 * @internal
+	 */
 	openChanged(oldValue: boolean, newValue: boolean): void {
 		if (oldValue === undefined) return;
 
