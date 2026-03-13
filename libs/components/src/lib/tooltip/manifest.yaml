@@ -13,7 +13,6 @@ keywords:
 documentation:
   code: ./README.md
   accessibility: ./ACCESSIBILITY.md
-  useCases: ./USE-CASES.md
   variations: ./VARIATIONS.md
 links:
   figma: https://figma.com/...
