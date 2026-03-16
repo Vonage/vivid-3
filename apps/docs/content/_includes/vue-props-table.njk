@@ -38,7 +38,6 @@
 {% endfor %}
 
 {% if vueProps.length > 0 %}
-<h3>Properties</h3>
 <table>
 	<thead>
 		<tr>
@@ -53,7 +52,7 @@
 		<tr>
 			<td><strong>{{ prop.name | camelCase }}</strong>{% if prop.vueModelName %} ({{ prop.vueModelName }}){% endif %}</td>
 			<td><code>{{ prop.type }}</code></td>
-			<td>{% if prop.default is not none %}<code>{{ prop.default }}</code>{% endif %}</td>
+			<td>{% if prop.default %}<code>{{ prop.default }}</code>{% endif %}</td>
 			<td>{{ prop.description or '' }}</td>
 		</tr>
 		{% endfor %}

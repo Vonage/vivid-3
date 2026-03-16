@@ -1,0 +1,31 @@
+{% set sourceSlots = metadata.slots or [] %}
+
+{% if sourceSlots.length > 0 %}
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for slot in sourceSlots %}
+			<tr>
+				<td><strong>{{ slot.name }}</strong></td>
+				<td>
+					{{ slot.description or '' }}{% if slot.dynamicProps %}{% if slot.description %} {% endif %}(dynamic slot props){% endif %}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{% set scopedSlots = sourceSlots | selectattr('dynamicProps') | list %}
+
+	{% if scopedSlots.length > 0 %}
+		<vwc-note connotation="information" >
+			Scoped slots trigger internal slottable-request handling in wrappers.
+		</vwc-note>
+	{% endif %}
+
+{% endif %}

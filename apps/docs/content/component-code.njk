@@ -22,18 +22,56 @@ eleventyComputed:
 	<h2> {{ element.tag }} </h2>
 	{% endif %}
 
+	<h3>Properties</h3>
 	<vwc-tabs>
-			<vwc-tab label="Vue"></vwc-tab>
-  		<vwc-tab-panel>
-  				{% include "vue-props-table.njk" %}
-  		</vwc-tab-panel>
+		<vwc-tab label="Vue"></vwc-tab>
+		<vwc-tab-panel>
+			{% include "vue-props-table.njk" %}
+		</vwc-tab-panel>
 
-			<vwc-tab label="Web components"></vwc-tab>
-			<vwc-tab-panel>
-				{% include "props-table.njk" %}
-				{% include "slots-table.njk" %}
-				{% include "events-table.njk" %}
-				{% include "methods-table.njk" %}
-			</vwc-tab-panel>
-  	</vwc-tabs>
+		<vwc-tab label="Web components"></vwc-tab>
+		<vwc-tab-panel>
+			{% include "props-table.njk" %}
+		</vwc-tab-panel>
+	</vwc-tabs>
+
+
+	<h3>Slots</h3>
+	<vwc-tabs>
+		<vwc-tab label="Vue"></vwc-tab>
+		<vwc-tab-panel>
+			{% include "vue-slots-table.njk" %}
+		</vwc-tab-panel>
+
+		<vwc-tab label="Web components"></vwc-tab>
+		<vwc-tab-panel>
+			{% include "slots-table.njk" %}
+		</vwc-tab-panel>
+	</vwc-tabs>
+
+	<h3>Events</h3>
+	<vwc-tabs>
+		<vwc-tab label="Vue"></vwc-tab>
+		<vwc-tab-panel>
+			Vue Events
+		</vwc-tab-panel>
+
+		<vwc-tab label="Web components"></vwc-tab>
+		<vwc-tab-panel>
+			{% include "events-table.njk" %}
+		</vwc-tab-panel>
+	</vwc-tabs>
+
+	<h3>Methods</h3>
+	<vwc-tabs>
+		<vwc-tab label="Vue"></vwc-tab>
+		<vwc-tab-panel>
+			Vue methods
+		</vwc-tab-panel>
+
+		<vwc-tab label="Web components"></vwc-tab>
+		<vwc-tab-panel>
+			{% include "methods-table.njk" %}
+		</vwc-tab-panel>
+	</vwc-tabs>
 {% endfor %}
