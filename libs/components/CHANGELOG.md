@@ -1,9 +1,5 @@
 # Change Log - @vonage/vivid
 
-This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be manually modified.
-
-<!-- Start content -->
-
 ## [5.15.1](https://github.com/Vonage/vivid-3/compare/vivid-v5.15.0...vivid-v5.15.1) (2026-03-09)
 
 

@@ -59,6 +59,10 @@ EOF
 
 load_env_config
 
+# Point the cloned repo's origin to the real GitHub HTTPS URL
+git -C "${ENV_DIR}/repo" remote set-url origin \
+  "https://github.com/${GITHUB_REPOSITORY_OWNER}/${GITHUB_REPOSITORY_NAME}"
+
 # Create repos for git server
 mkdir -p "${ENV_DIR}/config/repos/${GITHUB_REPOSITORY_OWNER}"
 git clone --bare --quiet \
@@ -66,6 +70,8 @@ git clone --bare --quiet \
   "${ENV_DIR}/config/repos/${GITHUB_REPOSITORY_OWNER}/${GITHUB_REPOSITORY_NAME}"
 git -C "${ENV_DIR}/config/repos/${GITHUB_REPOSITORY_OWNER}/${GITHUB_REPOSITORY_NAME}" \
   config uploadpack.allowAnySHA1InWant true
+git -C "${ENV_DIR}/config/repos/${GITHUB_REPOSITORY_OWNER}/${GITHUB_REPOSITORY_NAME}" \
+  config http.receivepack true
 
 # Create mitm ca cert
 openssl req -x509 -newkey rsa:2048 -sha256 -days 365 -nodes \
@@ -144,6 +150,7 @@ EOF
 cat > "${ENV_DIR}/config/Dockerfile.act-runner" <<'EOF'
 FROM ghcr.io/catthehacker/ubuntu:act-latest
 
+# Install awscli
 RUN arch="$(dpkg --print-architecture)" \
     && case "$arch" in \
          arm64) aws_arch="aarch64" ;; \
@@ -154,8 +161,17 @@ RUN arch="$(dpkg --print-architecture)" \
     && unzip -q /tmp/awscliv2.zip -d /tmp \
     && /tmp/aws/install \
     && rm -rf /tmp/aws /tmp/awscliv2.zip
-
 ENV AWS_PAGER=""
+
+# Install gh cli
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+        | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+        | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && apt-get update \
+    && apt-get install -y gh \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY certs/ca.crt /usr/local/share/ca-certificates/vvd-workflow-tests-proxy-ca.crt
 RUN update-ca-certificates
@@ -196,7 +212,8 @@ EOF
 
 cat > "${ENV_DIR}/config/Dockerfile.git-server" <<'EOF'
 FROM python:3-alpine
-RUN apk add --no-cache git
+RUN apk add --no-cache git \
+    && git config --global --add safe.directory '*'
 EOF
 
 cat > "${ENV_DIR}/docker-compose.yml" <<EOF

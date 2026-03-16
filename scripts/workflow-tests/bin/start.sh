@@ -9,8 +9,12 @@ load_env_config
 printf 'Building act runner image %s\n' "${ACT_RUNNER_IMAGE}"
 docker build -f "${ENV_DIR}/config/Dockerfile.act-runner" -t "${ACT_RUNNER_IMAGE}" "${ENV_DIR}/config"
 
-printf 'Building amd64 act runner image %s\n' "${ACT_RUNNER_IMAGE_AMD64}"
-docker build --platform linux/amd64 -f "${ENV_DIR}/config/Dockerfile.act-runner" -t "${ACT_RUNNER_IMAGE_AMD64}" "${ENV_DIR}/config"
+if should_skip_amd64; then
+  printf 'Skipping amd64 act runner image build because SKIP_AMD64=1\n'
+else
+  printf 'Building amd64 act runner image %s\n' "${ACT_RUNNER_IMAGE_AMD64}"
+  docker build --platform linux/amd64 -f "${ENV_DIR}/config/Dockerfile.act-runner" -t "${ACT_RUNNER_IMAGE_AMD64}" "${ENV_DIR}/config"
+fi
 
 printf 'Creating act cache volume %s\n' "${ACT_CACHE_VOLUME}"
 docker volume create "${ACT_CACHE_VOLUME}" >/dev/null 2>&1 || true

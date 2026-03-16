@@ -13,7 +13,7 @@ PORT = int(os.environ.get("PORT", "3008"))
 
 # Matches: /<path-to-repo>/<git-action>
 ACTION_RE = re.compile(
-    r"^(?P<repo>/.+?)/(?P<action>info/refs|git-upload-pack)$"
+    r"^(?P<repo>/.+?)/(?P<action>info/refs|git-upload-pack|git-receive-pack)$"
 )
 
 
@@ -52,7 +52,9 @@ class GitHTTPHandler(BaseHTTPRequestHandler):
         if action == "info/refs":
             service = parse_qs(parsed.query).get("service", [None])[0]
             if service == "git-upload-pack":
-                self._info_refs(repo_dir)
+                self._info_refs(repo_dir, "upload-pack")
+            elif service == "git-receive-pack":
+                self._info_refs(repo_dir, "receive-pack")
             else:
                 self.send_error(403, f"Unsupported service: {service}")
         else:
@@ -72,17 +74,20 @@ class GitHTTPHandler(BaseHTTPRequestHandler):
 
         if m.group("action") == "git-upload-pack":
             self._upload_pack(repo_dir)
+        elif m.group("action") == "git-receive-pack":
+            self._receive_pack(repo_dir)
         else:
             self.send_error(403)
 
     # ----- handlers --------------------------------------------------------
 
-    def _info_refs(self, repo_dir):
-        """GET /repo/info/refs?service=git-upload-pack"""
+    def _info_refs(self, repo_dir, service):
+        """GET /repo/info/refs?service=git-upload-pack|git-receive-pack"""
+        git_cmd = service  # "upload-pack" or "receive-pack"
         env = self._git_env()
         try:
             proc = subprocess.run(
-                ["git", "upload-pack", "--stateless-rpc", "--advertise-refs", repo_dir],
+                ["git", git_cmd, "--stateless-rpc", "--advertise-refs", repo_dir],
                 capture_output=True, env=env, timeout=30,
             )
         except Exception as exc:
@@ -90,17 +95,17 @@ class GitHTTPHandler(BaseHTTPRequestHandler):
             return
 
         if proc.returncode != 0:
-            self._log_git_error("upload-pack --advertise-refs", proc)
-            self.send_error(500, "git upload-pack failed")
+            self._log_git_error(f"{git_cmd} --advertise-refs", proc)
+            self.send_error(500, f"git {git_cmd} failed")
             return
 
         body = (
-            _pkt_line("# service=git-upload-pack\n")
+            _pkt_line(f"# service=git-{git_cmd}\n")
             + b"0000"
             + proc.stdout
         )
         self.send_response(200)
-        self.send_header("Content-Type", "application/x-git-upload-pack-advertisement")
+        self.send_header("Content-Type", f"application/x-git-{git_cmd}-advertisement")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-cache")
         self.end_headers()
@@ -128,6 +133,33 @@ class GitHTTPHandler(BaseHTTPRequestHandler):
 
         self.send_response(200)
         self.send_header("Content-Type", "application/x-git-upload-pack-result")
+        self.send_header("Content-Length", str(len(proc.stdout)))
+        self.send_header("Cache-Control", "no-cache")
+        self.end_headers()
+        self.wfile.write(proc.stdout)
+
+    def _receive_pack(self, repo_dir):
+        """POST /repo/git-receive-pack"""
+        length = int(self.headers.get("Content-Length", "0"))
+        request_body = self.rfile.read(length) if length else b""
+
+        env = self._git_env()
+        try:
+            proc = subprocess.run(
+                ["git", "receive-pack", "--stateless-rpc", repo_dir],
+                input=request_body, capture_output=True, env=env, timeout=120,
+            )
+        except Exception as exc:
+            self.send_error(500, str(exc))
+            return
+
+        if proc.returncode != 0 and not proc.stdout:
+            self._log_git_error("receive-pack", proc)
+            self.send_error(500, "git receive-pack failed")
+            return
+
+        self.send_response(200)
+        self.send_header("Content-Type", "application/x-git-receive-pack-result")
         self.send_header("Content-Length", str(len(proc.stdout)))
         self.send_header("Cache-Control", "no-cache")
         self.end_headers()
