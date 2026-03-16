@@ -63,15 +63,6 @@ eleventyComputed:
 	</vwc-tabs>
 
 	<h3>Methods</h3>
-	<vwc-tabs>
-		<vwc-tab label="Vue"></vwc-tab>
-		<vwc-tab-panel>
-			Vue methods
-		</vwc-tab-panel>
-
-		<vwc-tab label="Web components"></vwc-tab>
-		<vwc-tab-panel>
-			{% include "methods-table.njk" %}
-		</vwc-tab-panel>
-	</vwc-tabs>
+	{# methods seems to be identical for Web components and Vue wrappers #}
+	{% include "methods-table.njk" %}
 {% endfor %}
