@@ -21,5 +21,6 @@ generated
 /.nx/cache
 /.nx/workspace-data
 .turbo
+scripts/workflow-tests/env
 
 *.hbs
