@@ -1,0 +1,62 @@
+{% set vueModels = metadata.vueModels or [] %}
+{% set sourceProps = metadata.props or [] %}
+
+{# Filter props with v-model alias #}
+{# remove if model.name === prop.name ans model.propName !== prop.name #}
+
+{% set filteredProps = [] %}
+
+{% for prop in sourceProps %}
+	{% set isShadowed = false %}
+	{% for model in vueModels %}
+		{% if model.name == prop.name and model.propName != prop.name %}
+			{% set isShadowed = true %}
+		{% endif %}
+	{% endfor %}
+	{% if not isShadowed %}
+		{% set filteredProps = filteredProps.concat([prop]) %}
+	{% endif %}
+{% endfor %}
+
+{% set vueProps = [] %}
+
+{% for prop in filteredProps %}
+	{% set vueModelName = null %}
+	{% for model in vueModels %}
+		{% if model.propName == prop.name %}
+			{% set vueModelName = model.name %}
+		{% endif %}
+	{% endfor %}
+
+	{% set vueProps = vueProps.concat([{
+		name: prop.name,
+		type: prop.type,
+		description: prop.description,
+		default: prop.default,
+		vueModelName: vueModelName
+	}]) %}
+{% endfor %}
+
+{% if vueProps.length > 0 %}
+<h3>Properties</h3>
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Type</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for prop in vueProps %}
+		<tr>
+			<td><strong>{{ prop.name | camelCase }}</strong>{% if prop.vueModelName %} ({{ prop.vueModelName }}){% endif %}</td>
+			<td><code>{{ prop.type }}</code></td>
+			<td>{% if prop.default is not none %}<code>{{ prop.default }}</code>{% endif %}</td>
+			<td>{{ prop.description or '' }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endif %}

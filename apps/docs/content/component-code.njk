@@ -22,9 +22,18 @@ eleventyComputed:
 	<h2> {{ element.tag }} </h2>
 	{% endif %}
 
-	{% include "props-table.njk" %}
-	{% include "slots-table.njk" %}
-	{% include "events-table.njk" %}
-	{% include "methods-table.njk" %}
+	<vwc-tabs>
+			<vwc-tab label="Vue"></vwc-tab>
+  		<vwc-tab-panel>
+  				{% include "vue-props-table.njk" %}
+  		</vwc-tab-panel>
 
+			<vwc-tab label="Web components"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "props-table.njk" %}
+				{% include "slots-table.njk" %}
+				{% include "events-table.njk" %}
+				{% include "methods-table.njk" %}
+			</vwc-tab-panel>
+  	</vwc-tabs>
 {% endfor %}

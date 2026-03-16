@@ -13,7 +13,7 @@
 			{% for prop in metadata.props %}
 			<tr>
 				<td><strong>{{ prop.name }}</strong></td>
-				<td>{{ prop.type }}</td>
+				<td><code>{{ prop.type }}</code></td>
 				<td>{{ prop.default | default('') }}</td>
 				<td>{{ prop.description | default('') }}</td>
 			</tr>

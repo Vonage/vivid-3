@@ -85,7 +85,7 @@ catalogs:
       specifier: ^4.0.0
       version: 4.0.18
     change-case:
-      specifier: ^5.4.4
+      specifier: 'catalog:'
       version: 5.4.4
     concurrently:
       specifier: ^9.2.1
@@ -371,6 +371,9 @@ importers:
       '@vitejs/plugin-vue':
         specifier: 'catalog:'
         version: 6.0.4(vite@7.3.1(@types/node@25.3.3)(sass@1.97.3)(tsx@4.21.0)(yaml@2.8.2))(vue@3.5.29(typescript@5.9.3))
+      change-case:
+        specifier: 'catalog:'
+        version: 5.4.4
       clean-css:
         specifier: ^5.3.3
         version: 5.3.3

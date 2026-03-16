@@ -24,6 +24,19 @@ const {
 } = require('./utils/components-manifests');
 const { componentsNav } = require('./utils/components-navigation');
 const { metadataByTag } = require('./utils/components-metadata');
+const {
+	camelCase,
+	pascalCase,
+	pascalSnakeCase,
+	capitalCase,
+	constantCase,
+	dotCase,
+	kebabCase,
+	pathCase,
+	sentenceCase,
+	snakeCase,
+	trainCase,
+} = require('change-case');
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..');
 const DOCS_DIR = '.';
@@ -146,7 +159,17 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addWatchTarget(`${WORKSPACE_ROOT}docs/`);
 	eleventyConfig.addWatchTarget(`${WORKSPACE_ROOT}assets/`);
 
-	eleventyConfig.setUseGitIgnore(false);
+	eleventyConfig.addFilter('camelCase', camelCase);
+	eleventyConfig.addFilter('pascalCase', pascalCase);
+	eleventyConfig.addFilter('pascalSnakeCase', pascalSnakeCase);
+	eleventyConfig.addFilter('capitalCase', capitalCase);
+	eleventyConfig.addFilter('constantCase', constantCase);
+	eleventyConfig.addFilter('dotCase', dotCase);
+	eleventyConfig.addFilter('kebabCase', kebabCase);
+	eleventyConfig.addFilter('pathCase', pathCase);
+	eleventyConfig.addFilter('sentenceCase', sentenceCase);
+	eleventyConfig.addFilter('snakeCase', snakeCase);
+	eleventyConfig.addFilter('trainCase', trainCase);
 
 	eleventyConfig.addFilter('cssmin', function (code) {
 		return new CleanCSS({}).minify(code).styles;
