@@ -550,18 +550,21 @@ If needed, the background of the item can be changed using the `--file-picker-li
 
 <div class="table-wrapper">
 
-| Name              | Type                           | Description                                                                              |
-| ----------------- | ------------------------------ | ---------------------------------------------------------------------------------------- |
-| **accept**        | `string`                       | Defines a list of allowed file extensions or MIME types                                  |
-| **error-text**    | `string`                       | Sets the element's error text                                                            |
-| **error-text**    | `string`                       | Sets the element's helper text                                                           |
-| **files**         | `File[]` (default `[]`)        | A read-only list of files that have been added to the file picker and passed validation. |
-| **rejectedFiles** | `File[]` (default `[]`)        | A read-only list of files that have been added to the file picker, but failed validation |
-| **max-file**      | `string`                       | Sets the file picker max files to upload                                                 |
-| **label**         | `string`                       | Sets the element's label                                                                 |
-| **max-file-size** | `string`                       | Sets the file picker max file size to upload                                             |
-| **single-file**   | `string`                       | Sets the file picker as a single file uploaded                                           |
-| **size**          | `normal` (default), `expanded` | Sets the display size of the input element                                               |
+| Name                         | Type                           | Description                                                                        |
+| ---------------------------- | ------------------------------ | ---------------------------------------------------------------------------------- |
+| **accept**                   | `string`                       | Defines a list of allowed file extensions or MIME types                            |
+| **error-text**               | `string`                       | Sets the element's error text                                                      |
+| **helper-text**              | `string`                       | Sets the element's helper text                                                     |
+| **label**                    | `string`                       | Sets the element's label                                                           |
+| **size**                     | `normal` (default), `expanded` | Sets the display size of the input element                                         |
+| **single-file**              | `boolean`                      | Allows only a single file; subsequent uploads replace the current file             |
+| **max-files**                | `number`                       | Limits how many files can be selected; additional files will be rejected           |
+| **max-file-size**            | `number` (megabytes)           | Maximum allowed file size per file                                                 |
+| **invalid-file-type-error**  | `string`                       | Custom error message shown when a file does not match the accepted types           |
+| **max-files-exceeded-error** | `string`                       | Custom error message shown when more than the allowed number of files are selected |
+| **file-too-big-error**       | `string`                       | Custom error message shown when a file exceeds the maximum file size               |
+| **files**                    | `File[]` (read-only)           | List of files that have been added to the file picker and passed validation        |
+| **rejectedFiles**            | `File[]` (read-only)           | List of files that have been added to the file picker but failed validation        |
 
 </div>
 

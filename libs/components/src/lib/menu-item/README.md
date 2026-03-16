@@ -380,6 +380,7 @@ import { VIcon, VMenu, VMenuItem } from '@vonage/vivid-vue';
 
 | Name                 | Type                            | Description                                                                                                                                |
 | -------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **expanded**         | `boolean`                       | Sets the expanded state                                                                                                                    |
 | **control-type**     | `checkbox`, `radio`             | Whether the menu item should behave as a checkbox or radio button.                                                                         |
 | **check-appearance** | `normal` (default), `tick-only` | Sets the appearance of the check element                                                                                                   |
 | **checked**          | `boolean`                       | Sets the checked state                                                                                                                     |
@@ -387,7 +388,7 @@ import { VIcon, VMenu, VMenuItem } from '@vonage/vivid-vue';
 | **connotation**      | `accent` (default), `cta`       | Sets the connotation that appears when checked                                                                                             |
 | **disabled**         | `boolean`                       | Sets the disabled state                                                                                                                    |
 | **icon**             | _Enum_:<br/>`[icon-name]`       | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **secondary-text**   | `string`                        | Give more context to the text                                                                                                              |
+| **text-secondary**   | `string`                        | Give more context to the text                                                                                                              |
 | **text**             | `string`                        | Text content                                                                                                                               |
 
 </div>

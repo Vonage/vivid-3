@@ -209,6 +209,9 @@ export class DataGridRow extends HostSemantics(VividElement) {
 		this.removeEventListener(eventKeyDown, this.handleKeydown as EventListener);
 	}
 
+	/**
+	 * @internal
+	 */
 	handleFocusout(_: FocusEvent): void {
 		/* v8 ignore else -- @preserve */
 		if (!this.contains(document.activeElement)) {
@@ -216,11 +219,17 @@ export class DataGridRow extends HostSemantics(VividElement) {
 		}
 	}
 
+	/**
+	 * @internal
+	 */
 	handleCellFocus(e: Event): void {
 		this.focusColumnIndex = this.cellElements.indexOf(e.target as HTMLElement);
 		this.$emit('row-focused', this);
 	}
 
+	/**
+	 * @internal
+	 */
 	handleKeydown(e: KeyboardEvent): void {
 		if (e.defaultPrevented) {
 			return;

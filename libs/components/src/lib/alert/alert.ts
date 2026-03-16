@@ -117,6 +117,10 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+
+	/**
+	 * @internal
+	 */
 	openChanged(oldValue: boolean, newValue: boolean): void {
 		if (oldValue === undefined) return;
 		this.$emit(newValue ? 'open' : 'close');

@@ -37,6 +37,10 @@ export class TreeItem extends HostSemantics(AffixIcon(VividElement)) {
 	 * HTML Attribute: expanded
 	 */
 	@attr({ mode: 'boolean' }) expanded = false;
+
+	/**
+	 * @internal
+	 */
 	expandedChanged(): void {
 		if (this.$fastController.isConnected) {
 			this.$emit('expanded-change', this);
@@ -53,6 +57,10 @@ export class TreeItem extends HostSemantics(AffixIcon(VividElement)) {
 		mode: 'boolean',
 	})
 	selected = false;
+
+	/**
+	 * @internal
+	 */
 	selectedChanged(): void {
 		if (this.$fastController.isConnected) {
 			this.$emit('selected-change', this);

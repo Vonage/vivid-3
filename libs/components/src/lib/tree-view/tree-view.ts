@@ -69,6 +69,10 @@ export class TreeView extends HostSemantics(VividElement) {
 	@observable
 	// @ts-expect-error Type is incorrectly non-optional
 	slottedTreeItems: HTMLElement[];
+
+	/**
+	 * @internal
+	 */
 	slottedTreeItemsChanged(): void {
 		if (this.$fastController.isConnected) {
 			// update for slotted children change

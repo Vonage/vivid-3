@@ -408,16 +408,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{
-					"name": "openChanged",
-					"args": [
-						{ "name": "oldValue", "type": "boolean" },
-						{ "name": "newValue", "type": "boolean" }
-					],
-					"returnType": "void"
-				}
-			],
+			"methods": [],
 			"slots": [
 				{
 					"name": "action-items",
@@ -579,8 +570,7 @@
 			"vueModels": [],
 			"methods": [
 				{ "name": "pause", "args": [], "returnType": "void" },
-				{ "name": "play", "args": [], "returnType": "void" },
-				{ "name": "srcChanged", "args": [], "returnType": "void" }
+				{ "name": "play", "args": [], "returnType": "void" }
 			],
 			"slots": [],
 			"testUtils": {
@@ -874,18 +864,6 @@
 			"registerFunctionName": "registerBanner",
 			"description": "",
 			"props": [
-				{
-					"name": "actionHref",
-					"type": "string",
-					"attributeName": "action-href",
-					"propertyName": "actionHref"
-				},
-				{
-					"name": "actionText",
-					"type": "string",
-					"attributeName": "action-text",
-					"propertyName": "actionText"
-				},
 				{
 					"name": "connotation",
 					"type": "'success' | 'alert' | 'warning' | 'information' | 'announcement'",
@@ -1421,12 +1399,6 @@
 					"returnType": "boolean"
 				},
 				{
-					"name": "clickHandler",
-					"description": "Handles click events.\nPrevents interaction when disabled or pending.",
-					"args": [{ "name": "event", "type": "Event" }],
-					"returnType": "void"
-				},
-				{
 					"name": "reportValidity",
 					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
 					"args": [],
@@ -1538,13 +1510,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{
-					"name": "onKeydown",
-					"args": [{ "name": "_arg0", "type": "KeyboardEvent" }],
-					"returnType": "boolean"
-				}
-			],
+			"methods": [],
 			"slots": [
 				{
 					"name": "day-0",
@@ -2810,18 +2776,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{
-					"name": "selectionModeChanged",
-					"args": [
-						{
-							"name": "oldValue",
-							"type": "'none' | 'single-row' | 'multi-row' | 'single-cell' | 'multi-cell'"
-						}
-					],
-					"returnType": "void"
-				}
-			],
+			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
@@ -2929,23 +2884,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{
-					"name": "handleFocusin",
-					"args": [{ "name": "_", "type": "FocusEvent" }],
-					"returnType": "void"
-				},
-				{
-					"name": "handleFocusout",
-					"args": [{ "name": "_", "type": "FocusEvent" }],
-					"returnType": "void"
-				},
-				{
-					"name": "handleKeydown",
-					"args": [{ "name": "e", "type": "KeyboardEvent" }],
-					"returnType": "void"
-				}
-			],
+			"methods": [],
 			"slots": [
 				{
 					"name": "action-items",
@@ -3065,23 +3004,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{
-					"name": "handleCellFocus",
-					"args": [{ "name": "e", "type": "Event" }],
-					"returnType": "void"
-				},
-				{
-					"name": "handleFocusout",
-					"args": [{ "name": "_", "type": "FocusEvent" }],
-					"returnType": "void"
-				},
-				{
-					"name": "handleKeydown",
-					"args": [{ "name": "e", "type": "KeyboardEvent" }],
-					"returnType": "void"
-				}
-			],
+			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
@@ -4453,12 +4376,6 @@
 					"returnType": "boolean"
 				},
 				{
-					"name": "clickHandler",
-					"description": "Handles click events.\nPrevents interaction when disabled.",
-					"args": [{ "name": "event", "type": "Event" }],
-					"returnType": "void"
-				},
-				{
 					"name": "reportValidity",
 					"description": "Return the current validity of the element.\nIf false, fires an invalid event at the element.",
 					"args": [],
@@ -4843,9 +4760,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{ "name": "nameChanged", "args": [], "returnType": "Promise<void>" }
-			],
+			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
@@ -6243,35 +6158,7 @@
 					"valueMapping": "event.currentTarget.selectedIndex"
 				}
 			],
-			"methods": [
-				{
-					"name": "paginationButtonsChanged",
-					"args": [
-						{
-							"name": "_",
-							"type": "undefined | @vonage/vivid#VwcButtonElement[]"
-						},
-						{ "name": "newValue", "type": "@vonage/vivid#VwcButtonElement[]" }
-					],
-					"returnType": "void"
-				},
-				{
-					"name": "selectedIndexChanged",
-					"args": [
-						{ "name": "oldValue", "type": "number" },
-						{ "name": "newValue", "type": "number" }
-					],
-					"returnType": "void"
-				},
-				{
-					"name": "totalChanged",
-					"args": [
-						{ "name": "_", "type": "number" },
-						{ "name": "newValue", "type": "number" }
-					],
-					"returnType": "void"
-				}
-			],
+			"methods": [],
 			"slots": [],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
@@ -6406,19 +6293,7 @@
 			],
 			"vueModels": [],
 			"methods": [
-				{ "name": "_slottedAnchorChanged", "args": [], "returnType": "void" },
-				{ "name": "anchorChanged", "args": [], "returnType": "void" },
-				{ "name": "arrowChanged", "args": [], "returnType": "void" },
 				{ "name": "hide", "args": [], "returnType": "void" },
-				{
-					"name": "openChanged",
-					"args": [
-						{ "name": "_oldValue", "type": "boolean" },
-						{ "name": "newValue", "type": "boolean" }
-					],
-					"returnType": "void"
-				},
-				{ "name": "placementChanged", "args": [], "returnType": "void" },
 				{ "name": "show", "args": [], "returnType": "Promise<void>" },
 				{ "name": "toggle", "args": [], "returnType": "void" },
 				{
@@ -8672,20 +8547,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{
-					"name": "handleActionClick",
-					"description": "Handles action click events.\nPrevents interaction when disabled or pending.",
-					"args": [{ "name": "event", "type": "Event" }],
-					"returnType": "void"
-				},
-				{
-					"name": "handleIndicatorClick",
-					"description": "Handles indicator click events.\nPrevents interaction when disabled or pending.",
-					"args": [{ "name": "event", "type": "Event" }],
-					"returnType": "void"
-				}
-			],
+			"methods": [],
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
 				{
@@ -9047,18 +8909,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{
-					"name": "_handleCloseClick",
-					"args": [{ "name": "e", "type": "Event" }],
-					"returnType": "void"
-				},
-				{
-					"name": "_onKeyDown",
-					"args": [{ "name": "e", "type": "KeyboardEvent" }],
-					"returnType": "boolean"
-				}
-			],
+			"methods": [],
 			"slots": [
 				{
 					"name": "icon",
@@ -9694,15 +9545,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{ "name": "handleClick", "args": [], "returnType": "void" },
-				{
-					"name": "handleKeydown",
-					"args": [{ "name": "e", "type": "KeyboardEvent" }],
-					"returnType": "boolean"
-				},
-				{ "name": "remove", "args": [], "returnType": "void" }
-			],
+			"methods": [{ "name": "remove", "args": [], "returnType": "void" }],
 			"slots": [
 				{
 					"name": "icon",
@@ -10627,16 +10470,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{
-					"name": "openChanged",
-					"args": [
-						{ "name": "oldValue", "type": "boolean" },
-						{ "name": "newValue", "type": "boolean" }
-					],
-					"returnType": "void"
-				}
-			],
+			"methods": [],
 			"slots": [
 				{
 					"name": "action-items",
@@ -10843,11 +10677,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{ "name": "expandedChanged", "args": [], "returnType": "void" },
-				{ "name": "itemsChanged", "args": [], "returnType": "void" },
-				{ "name": "selectedChanged", "args": [], "returnType": "void" }
-			],
+			"methods": [{ "name": "itemsChanged", "args": [], "returnType": "void" }],
 			"slots": [
 				{
 					"name": "icon",
@@ -10919,9 +10749,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{ "name": "slottedTreeItemsChanged", "args": [], "returnType": "void" }
-			],
+			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],

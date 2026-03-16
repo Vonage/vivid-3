@@ -170,6 +170,8 @@ export class SplitButton extends AffixIcon(
 	/**
 	 * Handles action click events.
 	 * Prevents interaction when disabled or pending.
+	 *
+	 * @internal
 	 */
 	handleActionClick(event: Event) {
 		if (this.disabled) {
@@ -186,6 +188,8 @@ export class SplitButton extends AffixIcon(
 	/**
 	 * Handles indicator click events.
 	 * Prevents interaction when disabled or pending.
+	 *
+	 * @internal
 	 */
 	handleIndicatorClick(event: Event) {
 		if (this.disabled) {

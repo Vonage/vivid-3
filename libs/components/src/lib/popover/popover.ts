@@ -52,6 +52,10 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	 * @public
 	 */
 	@attr({ mode: 'fromView' }) placement: Placement = 'bottom';
+
+	/**
+	 * @internal
+	 */
 	placementChanged() {
 		this.#updateAutoUpdate();
 	}
@@ -105,6 +109,10 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	 * @public
 	 */
 	@attr({ mode: 'boolean' }) arrow = false;
+
+	/**
+	 * @internal
+	 */
 	arrowChanged() {
 		this.#updateAutoUpdate();
 	}
@@ -116,6 +124,10 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	 * @public
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+
+	/**
+	 * @internal
+	 */
 	openChanged(_oldValue: boolean, newValue: boolean) {
 		if (!this._popoverEl) return;
 
@@ -136,6 +148,10 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	 * @public
 	 */
 	@observable anchor?: HTMLElement;
+
+	/**
+	 * @internal
+	 */
 	anchorChanged() {
 		this.#updateAnchor();
 	}
@@ -145,6 +161,10 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	 * @internal
 	 */
 	@observable _slottedAnchor?: HTMLElement[];
+
+	/**
+	 * @internal
+	 */
 	_slottedAnchorChanged() {
 		this.#updateAnchor();
 	}

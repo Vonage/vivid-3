@@ -1054,10 +1054,12 @@ import { VDataGrid, VDataGridCell, VDataGridRow } from '@vonage/vivid-vue';
 
 <div class="table-wrapper">
 
-| Name             | Type                                      | Description                   |
-| ---------------- | ----------------------------------------- | ----------------------------- |
-| `selected`       | `true`, `false`                           | Selected state of cell        |
-| `sort-direction` | `ascending`, `decending`, `none`, `other` | Sort state of the header cell |
+| Name             | Type                                      | Description                                                                                               |
+| ---------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `cell-type`      | `default`, `columnheader`, `rowheader`    | The type of cell                                                                                          |
+| `grid-column`    | `string`                                  | The column index of the cell. This will be applied to the CSS grid-column index value applied to the cell |
+| `selected`       | `true`, `false`                           | Selected state of cell                                                                                    |
+| `sort-direction` | `ascending`, `decending`, `none`, `other` | Sort state of the header cell                                                                             |
 
 </div>
 

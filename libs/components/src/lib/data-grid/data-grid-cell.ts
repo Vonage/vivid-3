@@ -189,6 +189,9 @@ export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 		this.disconnectCellView();
 	}
 
+	/**
+	 * @internal
+	 */
 	handleFocusin(_: FocusEvent): void {
 		this.shadowRoot!.querySelector('.base')!.classList.add('active');
 
@@ -236,6 +239,9 @@ export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 		this.$emit('cell-focused', this);
 	}
 
+	/**
+	 * @internal
+	 */
 	handleFocusout(_: FocusEvent): void {
 		this.shadowRoot!.querySelector('.base')!.classList.remove('active');
 
@@ -248,6 +254,9 @@ export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 		}
 	}
 
+	/**
+	 * @internal
+	 */
 	handleKeydown(e: KeyboardEvent): void {
 		if (
 			e.defaultPrevented ||

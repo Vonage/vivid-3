@@ -823,6 +823,9 @@ export class DataGrid extends VividElement {
 		}, [] as DataGridCell[]);
 	}
 
+	/**
+	 * @internal
+	 */
 	selectionModeChanged(oldValue: DataGridSelectionMode) {
 		if (oldValue === undefined) {
 			Updates.enqueue(this._resetSelection);
