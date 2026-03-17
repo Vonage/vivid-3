@@ -33,6 +33,11 @@ for (const component of components) {
 			...component.children.map((childTitle) => {
 				const childItem = componentByTitle.get(childTitle);
 
+				const childIndex = components.indexOf(childItem);
+				if (childIndex > 0) {
+					components.splice(childIndex, 1);
+				}
+
 				return {
 					...childItem,
 					key: childItem.title,
