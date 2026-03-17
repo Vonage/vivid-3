@@ -34,21 +34,3 @@ registerProgress('your-prefix');
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name            | Type                                                     | Description                                  |
-| --------------- | -------------------------------------------------------- | -------------------------------------------- |
-| **connotation** | `accent` (default), `cta`, `success`, `alert`, `pacific` | Sets the connotation                         |
-| **max**         | `number`                                                 | Sets the maximum value of the range          |
-| **min**         | `number`                                                 | Sets the minimum value of the range          |
-| **paused**      | `boolean`                                                | Sets the paused state                        |
-| **reverse**     | `boolean`                                                | Sets the progress to show from right to left |
-| **shape**       | `rounded` (default), `sharp`                             | Sets the border radius                       |
-| **value**       | `number` or `string`                                     | Sets the current value of progress           |
-
-</div>

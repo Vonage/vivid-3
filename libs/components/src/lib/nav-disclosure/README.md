@@ -134,16 +134,6 @@ Set the `connotation` attribute to change the nav disclosure's connotation.
 </vwc-nav>
 ```
 
-## Events
-
-<div class="table-wrapper">
-
-| Name     | Type                     | Bubbles | Composed | Description                                       |
-| -------- | ------------------------ | ------- | -------- | ------------------------------------------------- |
-| `toggle` | `CustomEvent<undefined>` | No      | Yes      | Event emitted when the nav disclosure is toggled. |
-
-</div>
-
 ## Slots
 
 ### Icon

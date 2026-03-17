@@ -149,13 +149,3 @@ If set, the `icon`_(deprecated)_ attribute is ignored.
 	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```
-
-## Events
-
-<div class="table-wrapper">
-
-| Name    | Type          | Bubbles | Composed | Description                                                                                                           |
-| ------- | ------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
-| `close` | `CustomEvent` | Yes     | Yes      | When `removable` is set, fires a custom 'close' event when the close button is clicked or the `DELETE` key is pressed |
-
-</div>

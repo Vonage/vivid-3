@@ -4270,29 +4270,3 @@ onUnmounted(() => {
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Rich Text Editor
-
-#### Properties
-
-<div class="table-wrapper">
-
-| Name         | Type          | Description                                                                             |
-| ------------ | ------------- | --------------------------------------------------------------------------------------- |
-| **instance** | `RteInstance` | The editor instance created from the RteConfig. Without it, the editor will not render. |
-
-</div>
-
-### Rich Text View
-
-#### Properties
-
-<div class="table-wrapper">
-
-| Name     | Type      | Description                                      |
-| -------- | --------- | ------------------------------------------------ |
-| **view** | `RteView` | The view to display, created from the RteConfig. |
-
-</div>

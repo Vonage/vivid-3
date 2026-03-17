@@ -208,18 +208,3 @@ import { VCard, VLayout } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name               | Type                                                                                                                                        | Description                                              |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| **auto-sizing**    | `fit` (default), `fill`                                                                                                                     | Controls how the grid's behaves with empty column tracks |
-| **column-basis**   | `small`, `medium` (default), `large`, `block`                                                                                               | Controls the `min-width` of columns                      |
-| **column-spacing** | `small`, `medium` (default), `large`                                                                                                        | Controls the size of the spacing between columns         |
-| **gutters**        | `none` (default), `small`, `medium`, `large`, `small-inline`, `medium-inline`, `large-inline`, `small-block`, `medium-block`, `large-block` | Controls the amount of margin around the component       |
-
-</div>

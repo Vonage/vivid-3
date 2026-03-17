@@ -77,31 +77,3 @@ import { VBadge, VIcon } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name                                   | Description                                                                                        | Description                  |
-| -------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------- |
-| **text**                               | `string`                                                                                           | Sets a text on the badge     |
-| **connotation**                        | Enum\_:<br/>`accent` (default), `announcement`,`alert`, `cta`, `success`, `warning`, `information` | Sets the badge connotation   |
-| _(deprecated as of 05/25)_<br>**icon** | Enum\_:<br/>`[icon-name]`                                                                          | Sets the element's icon      |
-| **icon-trailing**                      | `string`                                                                                           | Sets icon as trailing        |
-| **appearance**                         | Enum\_:<br/>`filled` (default), `duotone`, `subtle`, `subtle-light`                                | Sets the badge appearance    |
-| **shape**                              | Enum\_:<br/>`rounded` (default), `pill`                                                            | Sets the badge border-radius |
-| **size**                               | Enum\_:<br/>`normal` (default), `expanded`                                                         | Sets the badge size          |
-
-</div>
-
-### Slots
-
-<div class="table-wrapper">
-
-| Name     | Description                   |
-| -------- | ----------------------------- |
-| **Icon** | Add an icon to the component. |
-
-</div>

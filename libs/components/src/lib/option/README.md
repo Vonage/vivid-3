@@ -280,37 +280,3 @@ import { VIcon, VOption, VSearchableSelect } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name                                   | Type                      | Description                                                                                                                                                                          |
-| -------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **checked**                            | `boolean`                 | The checked state is used when the parent listbox is in multiple selection mode. To avoid accessibility conflicts, the checked state should not be present in single selection mode. |
-| **defaultSelected**                    | `boolean`                 | Sets the option's initial selected state (mirrors the native `selected` attribute)                                                                                                   |
-| **disabled**                           | `boolean`                 | Sets the option to be disabled                                                                                                                                                       |
-| _(deprecated as of 05/25)_<br>**icon** | _Enum_:<br/>`[icon-name]` | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s                                                          |
-| **label**                              | `string`                  | Text to be displayed instead of `text` when the option is selected                                                                                                                   |
-| **selected**                           | `boolean`                 | Indicates whether the option is currently selected                                                                                                                                   |
-| **text-secondary**                     | `string`                  | Secondary text displayed below or next to the primary text                                                                                                                           |
-| **text**                               | `string`                  | Sets the option's text                                                                                                                                                               |
-| **value**                              | `string`                  | Value to be submited as part of the form data                                                                                                                                        |
-| **matchedText**                        | `string`                  | Text to highlighted as matching a search query                                                                                                                                       |
-| **tagConnotation**                     | `accent` (default), `cta` | When displayed as a tag, the connotation of the tag                                                                                                                                  |
-
-</div>
-
-### Slots
-
-<div class="table-wrapper">
-
-| Name              | Description                                                               |
-| ----------------- | ------------------------------------------------------------------------- |
-| **icon**          | Add an icon before the option's text                                      |
-| **trailing-meta** | For additional elements at the end of the Menu Item                       |
-| **tag-icon**      | Icon to be displayed in the tag when selected inside of Searchable Select |
-
-</div>

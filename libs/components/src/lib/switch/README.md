@@ -116,31 +116,3 @@ const handleSubmit = (event: Event) => {
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name            | Type                                                           | Description                                                 |
-| --------------- | -------------------------------------------------------------- | ----------------------------------------------------------- |
-| **checked**     | `boolean`                                                      | Controls the checked state                                  |
-| **connotation** | `primary` (default), `cta`, `announcement`, `success`, `alert` | Controls the color of the Switch                            |
-| **disabled**    | `boolean`                                                      | Controls the disabled state                                 |
-| **label**       | `string`                                                       | Provides the label for the Switch                           |
-| **name**        | `string`                                                       | Provides a identifier when used inside of a form            |
-| **readonly**    | `boolean`                                                      | Controls the read only state                                |
-| **value**       | `string`                                                       | Provides a value to be submitted when used inside of a form |
-
-</div>
-
-### Events
-
-<div class="table-wrapper">
-
-| Name       | Type                     | Bubbles | Composed | Description                                                |
-| ---------- | ------------------------ | ------- | -------- | ---------------------------------------------------------- |
-| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom change event when the checked state changes |
-
-</div>
