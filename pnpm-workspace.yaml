@@ -61,7 +61,7 @@ catalog:
   cem-plugin-jsdoc-function: ^0.0.5
   cem-plugin-readonly: ^0.0.5
   chalk: ^5.6.2
-  change-case: 'catalog:'
+  change-case: ^5.4.4
   clean-css: ^5.3.3
   codemirror: ^6.0.2
   concurrently: ^9.2.1

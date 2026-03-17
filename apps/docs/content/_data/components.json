@@ -4,16 +4,28 @@
 		"slug": "accordion"
 	},
 	{
+		"title": "Action Group",
+		"slug": "action-group"
+	},
+	{
+		"title": "Alert",
+		"slug": "alert"
+	},
+	{
+		"title": "Audio Player",
+		"slug": "audio-player"
+	},
+	{
+		"title": "Avatar",
+		"slug": "avatar"
+	},
+	{
 		"title": "Badge",
 		"slug": "badge"
 	},
 	{
 		"title": "Banner",
 		"slug": "banner"
-	},
-	{
-		"title": "Alert",
-		"slug": "alert"
 	},
 	{
 		"title": "Breadcrumb",
@@ -34,6 +46,36 @@
 		"slug": "calendar-event"
 	},
 	{
+		"title": "Card",
+		"slug": "card"
+	},
+	{
+		"title": "Checkbox",
+		"slug": "checkbox"
+	},
+	{
+		"title": "Color Picker",
+		"children": ["Simple Color Picker"],
+		"slug": "color-picker"
+	},
+	{
+		"title": "Combobox",
+		"slug": "combobox"
+	},
+	{
+		"title": "Contextual Help",
+		"slug": "contextual-help"
+	},
+	{
+		"title": "Country",
+		"parent": "Partials",
+		"slug": "country"
+	},
+	{
+		"title": "Data Grid",
+		"slug": "data-grid"
+	},
+	{
 		"title": "Date Picker",
 		"children": ["Date Range Picker", "Date Time Picker"],
 		"slug": "date-picker"
@@ -49,72 +91,44 @@
 		"slug": "date-time-picker"
 	},
 	{
-		"title": "Icon",
-		"slug": "icon"
-	},
-	{
-		"title": "Layout",
-		"slug": "layout"
-	},
-	{
-		"title": "Side Drawer",
-		"slug": "side-drawer"
-	},
-	{
-		"title": "Navigation",
-		"slug": "navigation"
-	},
-	{
-		"title": "Tooltip",
-		"slug": "tooltip"
-	},
-	{
-		"title": "Progress",
-		"slug": "progress"
-	},
-	{
-		"title": "Progress Ring",
-		"slug": "progress-ring"
-	},
-	{
-		"title": "Card",
-		"slug": "card"
-	},
-	{
-		"title": "Text Field",
-		"slug": "text-field"
-	},
-	{
-		"title": "Number Field",
-		"slug": "number-field"
-	},
-	{
-		"title": "Fab",
-		"slug": "fab"
-	},
-	{
-		"title": "Action Group",
-		"slug": "action-group"
-	},
-	{
-		"title": "Note",
-		"slug": "note"
-	},
-	{
-		"title": "Checkbox",
-		"slug": "checkbox"
+		"title": "Dial Pad",
+		"slug": "dial-pad"
 	},
 	{
 		"title": "Dialog",
 		"slug": "dialog"
 	},
 	{
+		"title": "Divider",
+		"slug": "divider"
+	},
+	{
+		"title": "Elevation",
+		"slug": "elevation"
+	},
+	{
+		"title": "Empty State",
+		"slug": "empty-state"
+	},
+	{
+		"title": "Fab",
+		"slug": "fab"
+	},
+	{
+		"title": "File Picker",
+		"slug": "file-picker"
+	},
+	{
 		"title": "Header",
 		"slug": "header"
 	},
 	{
-		"title": "Divider",
-		"slug": "divider"
+		"title": "Icon",
+		"slug": "icon"
+	},
+	{
+		"title": "Layout",
+		"slug": "layout"
 	},
 	{
 		"title": "Menu",
@@ -127,150 +141,24 @@
 		"slug": "menu-item"
 	},
 	{
-		"title": "Avatar",
-		"slug": "avatar"
+		"title": "Navigation",
+		"slug": "navigation"
 	},
 	{
-		"title": "Text Area",
-		"slug": "text-area"
+		"title": "Note",
+		"slug": "note"
 	},
 	{
-		"title": "Radio Group",
-		"slug": "radio-group"
+		"title": "Number Field",
+		"slug": "number-field"
 	},
 	{
 		"title": "Option",
 		"slug": "option"
 	},
 	{
-		"title": "Searchable Select",
-		"slug": "searchable-select"
-	},
-	{
-		"title": "Switch",
-		"slug": "switch"
-	},
-	{
-		"title": "Slider",
-		"slug": "slider"
-	},
-	{
-		"title": "Tabs",
-		"slug": "tabs"
-	},
-	{
-		"title": "Combobox",
-		"slug": "combobox"
-	},
-	{
-		"title": "Elevation",
-		"slug": "elevation"
-	},
-	{
-		"title": "Popup",
-		"slug": "popup"
-	},
-	{
-		"title": "Select",
-		"slug": "select"
-	},
-	{
-		"title": "Data Grid",
-		"slug": "data-grid"
-	},
-	{
-		"title": "Table",
-		"slug": "table"
-	},
-	{
-		"title": "Toggletip",
-		"slug": "toggletip"
-	},
-	{
-		"title": "Time Picker",
-		"slug": "time-picker"
-	},
-	{
-		"title": "Tree View",
-		"children": ["Tree Item"],
-		"slug": "tree-view"
-	},
-	{
-		"title": "Tree Item",
-		"parent": "Tree View",
-		"slug": "tree-item"
-	},
-	{
-		"title": "Tags",
-		"slug": "tags"
-	},
-	{
 		"title": "Pagination",
 		"slug": "pagination"
-	},
-	{
-		"title": "Empty State",
-		"slug": "empty-state"
-	},
-	{
-		"title": "File Picker",
-		"slug": "file-picker"
-	},
-	{
-		"title": "Range Slider",
-		"slug": "range-slider"
-	},
-	{
-		"title": "Split Button",
-		"slug": "split-button"
-	},
-	{
-		"title": "Selectable Box",
-		"slug": "selectable-box"
-	},
-	{
-		"title": "Audio Player",
-		"slug": "audio-player"
-	},
-	{
-		"title": "Dial Pad",
-		"slug": "dial-pad"
-	},
-	{
-		"title": "Video Player",
-		"slug": "video-player"
-	},
-	{
-		"title": "Rich Text Editor",
-		"slug": "rich-text-editor"
-	},
-	{
-		"title": "Visually Hidden",
-		"slug": "visually-hidden"
-	},
-	{
-		"title": "Color Picker",
-		"children": ["Simple Color Picker"],
-		"slug": "color-picker"
-	},
-	{
-		"title": "Simple Color Picker",
-		"parent": "Color Picker",
-		"slug": "simple-color-picker"
-	},
-	{
-		"title": "Contextual Help",
-		"slug": "contextual-help"
-	},
-	{
-		"title": "Country",
-		"parent": "Partials",
-		"slug": "country"
-	},
-	{
-		"title": "Status",
-		"parent": "Partials",
-		"slug": "status"
 	},
 	{
 		"title": "Partials",
@@ -280,5 +168,117 @@
 	{
 		"title": "Popover",
 		"slug": "popover"
+	},
+	{
+		"title": "Popup",
+		"slug": "popup"
+	},
+	{
+		"title": "Progress",
+		"slug": "progress"
+	},
+	{
+		"title": "Progress Ring",
+		"slug": "progress-ring"
+	},
+	{
+		"title": "Radio Group",
+		"slug": "radio-group"
+	},
+	{
+		"title": "Range Slider",
+		"slug": "range-slider"
+	},
+	{
+		"title": "Rich Text Editor",
+		"slug": "rich-text-editor"
+	},
+	{
+		"title": "Searchable Select",
+		"slug": "searchable-select"
+	},
+	{
+		"title": "Select",
+		"slug": "select"
+	},
+	{
+		"title": "Selectable Box",
+		"slug": "selectable-box"
+	},
+	{
+		"title": "Side Drawer",
+		"slug": "side-drawer"
+	},
+	{
+		"title": "Simple Color Picker",
+		"parent": "Color Picker",
+		"slug": "simple-color-picker"
+	},
+	{
+		"title": "Slider",
+		"slug": "slider"
+	},
+	{
+		"title": "Split Button",
+		"slug": "split-button"
+	},
+	{
+		"title": "Status",
+		"parent": "Partials",
+		"slug": "status"
+	},
+	{
+		"title": "Switch",
+		"slug": "switch"
+	},
+	{
+		"title": "Table",
+		"slug": "table"
+	},
+	{
+		"title": "Tabs",
+		"slug": "tabs"
+	},
+	{
+		"title": "Tags",
+		"slug": "tags"
+	},
+	{
+		"title": "Text Area",
+		"slug": "text-area"
+	},
+	{
+		"title": "Text Field",
+		"slug": "text-field"
+	},
+	{
+		"title": "Time Picker",
+		"slug": "time-picker"
+	},
+	{
+		"title": "Toggletip",
+		"slug": "toggletip"
+	},
+	{
+		"title": "Tooltip",
+		"slug": "tooltip"
+	},
+	{
+		"title": "Tree Item",
+		"parent": "Tree View",
+		"slug": "tree-item"
+	},
+	{
+		"title": "Tree View",
+		"children": ["Tree Item"],
+		"slug": "tree-view"
+	},
+	{
+		"title": "Video Player",
+		"slug": "video-player"
+	},
+	{
+		"title": "Visually Hidden",
+		"slug": "visually-hidden"
 	}
 ]

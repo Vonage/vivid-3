@@ -85,7 +85,7 @@ catalogs:
       specifier: ^4.0.0
       version: 4.0.18
     change-case:
-      specifier: 'catalog:'
+      specifier: ^5.4.4
       version: 5.4.4
     concurrently:
       specifier: ^9.2.1
@@ -1271,6 +1271,9 @@ importers:
       '@turbo/gen':
         specifier: ^2.8.13
         version: 2.8.13(@types/node@25.3.3)
+      change-case:
+        specifier: 'catalog:'
+        version: 5.4.4
 
 packages:
 
@@ -14350,11 +14353,11 @@ snapshots:
       '@vue/shared': 3.5.29
       csstype: 3.2.3
 
-  '@vue/server-renderer@3.5.29(vue@3.5.29(typescript@5.9.3))':
+  '@vue/server-renderer@3.5.29(vue@2.7.16)':
     dependencies:
       '@vue/compiler-ssr': 3.5.29
       '@vue/shared': 3.5.29
-      vue: 3.5.29(typescript@5.9.3)
+      vue: 2.7.16
 
   '@vue/shared@3.5.29': {}
 
@@ -20189,7 +20192,7 @@ snapshots:
       '@vue/compiler-dom': 3.5.29
       '@vue/compiler-sfc': 3.5.29
       '@vue/runtime-dom': 3.5.29
-      '@vue/server-renderer': 3.5.29(vue@3.5.29(typescript@5.9.3))
+      '@vue/server-renderer': 3.5.29(vue@2.7.16)
       '@vue/shared': 3.5.29
     optionalDependencies:
       typescript: 5.9.3
