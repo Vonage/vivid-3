@@ -24,24 +24,22 @@ main:has(vwc-banner) {
 }
 
 .article-toc nav {
+	position: relative;
 	border-left: 1px solid var(--vvd-color-neutral-200);
 	margin-block-start: 16px;
-	position: relative;
 }
 
 .article-toc nav::before {
 	position: absolute;
+	top: anchor(top);
+	left: 0;
 	display: block;
-	content: '';
-
+	height: anchor-size(height);
 	background-color: var(--vvd-color-cta-600);
 	block-size: 100%;
+	content: '';
 	inline-size: 2px;
-
 	position-anchor: --toc-current-item;
-	left: 0;
-	height: anchor-size(height);
-	top: anchor(top);
 	transition:
 		top 0.2s ease,
 		height 0.2s ease;
@@ -85,7 +83,7 @@ main:has(vwc-banner) {
 }
 
 .article-toc a[aria-active] {
+	anchor-name: --toc-current-item;
 	background-color: var(--vvd-color-cta-100);
 	color: var(--vvd-color-cta-600);
-	anchor-name: --toc-current-item;
 }
