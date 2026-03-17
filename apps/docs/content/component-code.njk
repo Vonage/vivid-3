@@ -13,56 +13,87 @@ eleventyComputed:
 
 {% renderFile component.documentation.code %}
 
-<h2> API Reference </h2>
+{% if component.elements | length > 1 %}
+	{% set headingTag = "h4" %}
+{% else %}
+	{% set headingTag = "h3" %}
+{% endif %}
+
+<div class="heading-wrapper h2">
+<h2 id="api-reference" data-pagefind-weight="1">API Reference</h2>
+<a class="anchor" href="#api-reference" aria-labelledby="api-reference"><vwc-icon name="link-solid"></vwc-icon></a>
+</div>
 
 {% for element in component.elements %}
 	{% set metadata = getMetadata(element.tag) %}
 
 	{% if component.elements | length > 1 %}
-	<h2> {{ element.tag }} </h2>
+		<div class="heading-wrapper h3">
+			<h3 id="api-reference-{{ element.tag }}" data-pagefind-weight="1">{{ element.tag }}</h3>
+			<a class="anchor" href="#api-reference-{{ element.tag }}" aria-labelledby="api-reference-{{ element.tag }}"><vwc-icon name="link-solid"></vwc-icon></a>
+		</div>
+  {% endif %}
+
+	{% if metadata.props | length > 0 %}
+		<div class="heading-wrapper h4">
+			<{{ headingTag }} id="api-reference-{{ element.tag }}-properties" data-pagefind-weight="1">Properties</{{ headingTag }}>
+			<a class="anchor" href="#api-reference-{{ element.tag }}-properties" aria-labelledby="api-reference-{{ element.tag }}-properties"><vwc-icon name="link-solid"></vwc-icon></a>
+		</div>
+		<vwc-tabs>
+			<vwc-tab label="Vue"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "vue-props-table.njk" %}
+			</vwc-tab-panel>
+
+			<vwc-tab label="Web components"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "props-table.njk" %}
+			</vwc-tab-panel>
+		</vwc-tabs>
 	{% endif %}
 
-	<h3>Properties</h3>
-	<vwc-tabs>
-		<vwc-tab label="Vue"></vwc-tab>
-		<vwc-tab-panel>
-			{% include "vue-props-table.njk" %}
-		</vwc-tab-panel>
+	{% if metadata.slots | length > 0 %}
+		<div class="heading-wrapper h4">
+			<{{ headingTag }} id="api-reference-{{ element.tag }}-slots" data-pagefind-weight="1">Slots</{{ headingTag }}>
+			<a class="anchor" href="#api-reference-{{ element.tag }}-slots" aria-labelledby="api-reference-{{ element.tag }}-slots"><vwc-icon name="link-solid"></vwc-icon></a>
+		</div>
+		<vwc-tabs>
+			<vwc-tab label="Vue"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "vue-slots-table.njk" %}
+			</vwc-tab-panel>
 
-		<vwc-tab label="Web components"></vwc-tab>
-		<vwc-tab-panel>
-			{% include "props-table.njk" %}
-		</vwc-tab-panel>
-	</vwc-tabs>
+			<vwc-tab label="Web components"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "slots-table.njk" %}
+			</vwc-tab-panel>
+		</vwc-tabs>
+	{% endif %}
 
+	{% if metadata.events | length > 0 %}
+		<div class="heading-wrapper h4">
+			<{{ headingTag }} id="api-reference-{{ element.tag }}-events" data-pagefind-weight="1">Events</{{ headingTag }}>
+			<a class="anchor" href="#api-reference-{{ element.tag }}-events" aria-labelledby="api-reference-{{ element.tag }}-events"><vwc-icon name="link-solid"></vwc-icon></a>
+		</div>
+		<vwc-tabs>
+			<vwc-tab label="Vue"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "vue-events-table.njk" %}
+			</vwc-tab-panel>
 
-	<h3>Slots</h3>
-	<vwc-tabs>
-		<vwc-tab label="Vue"></vwc-tab>
-		<vwc-tab-panel>
-			{% include "vue-slots-table.njk" %}
-		</vwc-tab-panel>
+			<vwc-tab label="Web components"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "events-table.njk" %}
+			</vwc-tab-panel>
+		</vwc-tabs>
+	{% endif %}
 
-		<vwc-tab label="Web components"></vwc-tab>
-		<vwc-tab-panel>
-			{% include "slots-table.njk" %}
-		</vwc-tab-panel>
-	</vwc-tabs>
-
-	<h3>Events</h3>
-	<vwc-tabs>
-		<vwc-tab label="Vue"></vwc-tab>
-		<vwc-tab-panel>
-			{% include "vue-events-table.njk" %}
-		</vwc-tab-panel>
-
-		<vwc-tab label="Web components"></vwc-tab>
-		<vwc-tab-panel>
-			{% include "events-table.njk" %}
-		</vwc-tab-panel>
-	</vwc-tabs>
-
-	<h3>Methods</h3>
-	{# methods seems to be identical for Web components and Vue wrappers #}
-	{% include "methods-table.njk" %}
+	{% if metadata.methods | length > 0 %}
+		<div class="heading-wrapper h4">
+			<{{ headingTag }} id="api-reference-{{ element.tag }}-methods" data-pagefind-weight="1">Methods</{{ headingTag }}>
+			<a class="anchor" href="#api-reference-{{ element.tag }}-methods" aria-labelledby="api-reference-{{ element.tag }}-methods"><vwc-icon name="link-solid"></vwc-icon></a>
+		</div>
+		{# methods seems to be identical for Web components and Vue wrappers #}
+		{% include "methods-table.njk" %}
+	{% endif %}
 {% endfor %}

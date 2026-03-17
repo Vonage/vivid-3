@@ -50,7 +50,7 @@
 	<tbody>
 		{% for prop in vueProps %}
 		<tr>
-			<td><strong>{{ prop.name | camelCase }}</strong>{% if prop.vueModelName %} ({{ prop.vueModelName }}){% endif %}</td>
+			<td><strong>{{ prop.name | camelCase }}</strong>{% if prop.vueModelName %}<br><small class="weak">({{ prop.vueModelName }})</small>{% endif %}</td>
 			<td><code>{{ prop.type }}</code></td>
 			<td>{% if prop.default %}<code>{{ prop.default }}</code>{% endif %}</td>
 			<td>{{ prop.description or '' }}</td>

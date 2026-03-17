@@ -11,7 +11,12 @@
 		<tbody>
 			{% for prop in metadata.props %}
 			<tr>
-				<td><strong>{{ prop.attributeName }}</strong></td>
+				<td>
+					<strong>{{ prop.attributeName or prop.name }}</strong>
+					{% if not prop.attributeName %}
+						<br><small class="weak">(property only)</small>
+					{% endif %}
+				</td>
 				<td><code>{{ prop.type }}</code></td>
 				<td>{{ prop.default | default('') }}</td>
 				<td>{{ prop.description | default('') }}</td>
