@@ -419,3 +419,14 @@ import { VAudioPlayer } from '@vonage/vivid-vue';
 | --------- | ---------------- |
 | **play**  | Plays the audio  |
 | **pause** | Pauses the audio |
+
+## Events
+
+<div class="table-wrapper">
+
+| Name      | Type                     | Bubbles | Composed | Description                                                |
+| --------- | ------------------------ | ------- | -------- | ---------------------------------------------------------- |
+| **play**  | `CustomEvent<undefined>` | No      | Yes      | The `play` event fires when the audio playback is played.  |
+| **pause** | `CustomEvent<undefined>` | No      | Yes      | The `pause` event fires when the audio playback is paused. |
+
+</div>

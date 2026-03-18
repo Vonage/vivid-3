@@ -57,6 +57,8 @@ const validSkipByConverter: ValueConverter = {
 /**
  * @public
  * @component audio-player
+ * @event {CustomEvent<undefined>} play - Fires when the audio playback is started.
+ * @event {CustomEvent<undefined>} pause - Fires when the audio playback is paused.
  */
 export class AudioPlayer extends Localized(VividElement) {
 	@attr({ attribute: 'play-button-aria-label' }) playButtonAriaLabel:
@@ -315,6 +317,19 @@ export class AudioPlayer extends Localized(VividElement) {
 		this.#playerEl.removeEventListener('timeupdate', this.#updateProgress);
 		this.#playerEl.removeEventListener('loadedmetadata', this.#updateTotalTime);
 		this.#playerEl.removeEventListener('durationchange', this.#updateTotalTime);
+	}
+
+	/**
+	 * @internal
+	 */
+	_togglePlay() {
+		if (this.paused) {
+			this.$emit('play', undefined, { bubbles: false });
+			this.play();
+		} else {
+			this.$emit('pause', undefined, { bubbles: false });
+			this.pause();
+		}
 	}
 
 	play() {

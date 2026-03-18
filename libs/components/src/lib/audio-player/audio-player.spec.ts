@@ -910,6 +910,31 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
+	describe('events', () => {
+		it('should emit "play" event when audio is played via button click', async () => {
+			const playSpy = vi.fn();
+			element.addEventListener('play', playSpy);
+
+			pauseButton.click();
+			await elementUpdated(element);
+
+			expect(playSpy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should emit "pause" event when audio is paused via button click', async () => {
+			pauseButton.click();
+			await elementUpdated(element);
+
+			const pauseSpy = vi.fn();
+			element.addEventListener('pause', pauseSpy);
+
+			pauseButton.click();
+			await elementUpdated(element);
+
+			expect(pauseSpy).toHaveBeenCalledTimes(1);
+		});
+	});
+
 	describe('playbackRates', () => {
 		function getPlaybackRatesMenuElement() {
 			return getBaseElement(element).querySelector('.playback-rates') as Menu;
