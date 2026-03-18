@@ -13,7 +13,7 @@ export default defineConfig({
 			entry: ['src/jsdom-config.ts', 'src/node-config.ts'],
 			formats: ['es', 'cjs'],
 		},
-		rollupOptions: {
+		rolldownOptions: {
 			external: ['vitest/config'],
 		},
 	},

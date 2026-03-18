@@ -17,7 +17,7 @@ export default defineConfig({
 			formats: ['es', 'cjs'],
 			cssFileName: 'style',
 		},
-		rollupOptions: {
+		rolldownOptions: {
 			external: ['@testing-library/user-event', '@vonage/vivid'],
 		},
 	},

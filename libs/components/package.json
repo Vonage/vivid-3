@@ -25,9 +25,9 @@
 		},
 		"./*": {
 			"types": "./dist/*/index.d.ts",
+			"source": "./src/lib/*/index.ts",
 			"import": "./dist/*/index.js",
-			"require": "./dist/*/index.cjs",
-			"source": "./src/lib/*/index.ts"
+			"require": "./dist/*/index.cjs"
 		},
 		"./locales/*": {
 			"types": "./dist/locales/*.d.ts",

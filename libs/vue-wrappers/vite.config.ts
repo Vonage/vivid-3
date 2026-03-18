@@ -20,7 +20,6 @@ export default defineConfig({
 
 	build: {
 		reportCompressedSize: true,
-		commonjsOptions: { transformMixedEsModules: true },
 		lib: {
 			entry: 'src/index.ts',
 			name: 'vivid-vue',
@@ -30,7 +29,7 @@ export default defineConfig({
 		},
 		minify: false,
 		target: 'esnext',
-		rollupOptions: {
+		rolldownOptions: {
 			external: ['vue', '@vonage/vivid'],
 			output: {
 				globals: {
