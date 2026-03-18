@@ -1,0 +1,162 @@
+name: release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Prevent concurrent runs
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  changesets:
+    runs-on: ubuntu-latest
+    outputs:
+      should_release_vivid: ${{ steps.release.outputs.should_release_vivid }}
+      should_release_design_tokens: ${{ steps.release.outputs.should_release_design_tokens }}
+      should_release_icons: ${{ steps.release.outputs.should_release_icons }}
+      should_release_eslint_plugin: ${{ steps.release.outputs.should_release_eslint_plugin }}
+      should_release_vue: ${{ steps.release.outputs.should_release_vue }}
+      should_release_test_utils: ${{ steps.release.outputs.should_release_test_utils }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20.19.0'
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Create/Update Release Pull Request with changesets in the repo
+        uses: changesets/action@v1
+        id: changesets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # This runs only if there are no changesets (usually because the release PR was just merged)
+      # Always runs when manually dispatched, but note that it will release the current HEAD
+      - name: Determine package releases based on which package versions are missing tags
+        id: release
+        if: steps.changesets.outputs.hasChangesets == 'false' || github.event_name == 'workflow_dispatch'
+        run: bash scripts/release/determine-packages-to-release.sh
+
+  vivid-publish:
+    needs: changesets
+    if: needs.changesets.outputs.should_release_vivid == 'true'
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: ./libs/components/dist
+      sha: ${{ github.sha }}
+    secrets: inherit
+
+  vivid-design-tokens-publish:
+    needs: changesets
+    if: needs.changesets.outputs.should_release_design_tokens == 'true'
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: ./libs/design-tokens
+      sha: ${{ github.sha }}
+    secrets: inherit
+
+  vivid-design-tokens-flutter-publish:
+    needs: changesets
+    if: needs.changesets.outputs.should_release_design_tokens == 'true'
+    uses: ./.github/workflows/_publish-flutter.yml
+    with:
+      sha: ${{ github.sha }}
+    secrets: inherit
+
+  vivid-icons-publish:
+    needs: changesets
+    if: needs.changesets.outputs.should_release_icons == 'true'
+    uses: ./.github/workflows/_publish-icons.yml
+    with:
+      sha: ${{ github.sha }}
+    secrets: inherit
+
+  vivid-vue-publish:
+    needs: changesets
+    if: needs.changesets.outputs.should_release_vue == 'true'
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: ./libs/vue-wrappers
+      sha: ${{ github.sha }}
+    secrets: inherit
+
+  test-utils-publish:
+    needs: changesets
+    if: needs.changesets.outputs.should_release_test_utils == 'true'
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: ./libs/test-utils
+      sha: ${{ github.sha }}
+    secrets: inherit
+
+  eslint-plugin-publish:
+    needs: changesets
+    if: needs.changesets.outputs.should_release_eslint_plugin == 'true'
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: ./libs/eslint-plugin
+      sha: ${{ github.sha }}
+    secrets: inherit
+
+  deploy-s3:
+    needs: changesets
+    if: needs.changesets.outputs.should_release_vivid == 'true'
+    uses: ./.github/workflows/_deploy-s3.yml
+    secrets: inherit
+
+  create-release-metadata:
+    needs:
+      - changesets
+      - vivid-publish
+      - vivid-design-tokens-publish
+      - vivid-design-tokens-flutter-publish
+      - vivid-icons-publish
+      - vivid-vue-publish
+      - test-utils-publish
+      - eslint-plugin-publish
+      - deploy-s3
+    if: always() && !cancelled() && needs.changesets.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Create tags and releases for successful releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SHOULD_RELEASE_VIVID: ${{ needs.changesets.outputs.should_release_vivid }}
+          SHOULD_RELEASE_DESIGN_TOKENS: ${{ needs.changesets.outputs.should_release_design_tokens }}
+          SHOULD_RELEASE_ICONS: ${{ needs.changesets.outputs.should_release_icons }}
+          SHOULD_RELEASE_ESLINT_PLUGIN: ${{ needs.changesets.outputs.should_release_eslint_plugin }}
+          SHOULD_RELEASE_VUE: ${{ needs.changesets.outputs.should_release_vue }}
+          SHOULD_RELEASE_TEST_UTILS: ${{ needs.changesets.outputs.should_release_test_utils }}
+          VIVID_PUBLISH_RESULT: ${{ needs.vivid-publish.result }}
+          DESIGN_TOKENS_PUBLISH_RESULT: ${{ needs.vivid-design-tokens-publish.result }}
+          DESIGN_TOKENS_FLUTTER_PUBLISH_RESULT: ${{ needs.vivid-design-tokens-flutter-publish.result }}
+          ICONS_PUBLISH_RESULT: ${{ needs.vivid-icons-publish.result }}
+          VIVID_VUE_PUBLISH_RESULT: ${{ needs.vivid-vue-publish.result }}
+          TEST_UTILS_PUBLISH_RESULT: ${{ needs.test-utils-publish.result }}
+          ESLINT_PLUGIN_PUBLISH_RESULT: ${{ needs.eslint-plugin-publish.result }}
+          DEPLOY_S3_RESULT: ${{ needs.deploy-s3.result }}
+        run: bash scripts/release/create-release-metadata.sh

@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 source "${SCRIPT_DIR}/../bin/common.sh"
 load_env_config
 
-print_section "Run pull-request workflow"
+test_start "pull-request" "Pull request workflow runs lint, unit-tests, and metadata checks"
 
 event_file="config/events/pull-request.json"
 
@@ -40,4 +40,4 @@ run_act_workflow pull_request "${event_file}" pull-request.yml -j call-lint
 run_act_workflow pull_request "${event_file}" pull-request.yml -j unit-tests
 run_act_workflow pull_request "${event_file}" pull-request.yml -j check-metadata
 
-echo "Pull-request test passed"
+test_success
