@@ -159,7 +159,8 @@ export class TextArea extends WithContextualHelp(
 	}
 
 	/**
-	 * The maximum number of characters a user can enter.
+	 * Maximum length (number of characters) of `value`
+	 *
 	 * @public
 	 * @remarks
 	 * HTMLAttribute: maxlength

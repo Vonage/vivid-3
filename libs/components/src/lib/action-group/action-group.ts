@@ -31,7 +31,7 @@ export type ActionGroupShape = ExtractFromEnum<
  */
 export class ActionGroup extends DelegatesAria(VividElement) {
 	/**
-	 * The shape the ActionGroup should have.
+	 * Sets the element's border-radius
 	 *
 	 * @public
 	 * @remarks
@@ -40,7 +40,7 @@ export class ActionGroup extends DelegatesAria(VividElement) {
 	@attr shape?: ActionGroupShape;
 
 	/**
-	 * The appearance the ActionGroup should have.
+	 * Sets the element's appearance
 	 *
 	 * @public
 	 * @remarks

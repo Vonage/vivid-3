@@ -13,8 +13,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  */
 export class Tooltip extends Anchored(VividElement) {
 	/**
-	 * the text of the tooltip
-	 * accepts string
+	 * Text content of the Tooltip
 	 *
 	 * @public
 	 */

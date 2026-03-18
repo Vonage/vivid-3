@@ -92,7 +92,7 @@ export class SplitButton extends AffixIcon(
 	}
 
 	/**
-	 * The connotation the split button should have.
+	 * Sets the connotation
 	 *
 	 * @public
 	 * @remarks
@@ -101,7 +101,7 @@ export class SplitButton extends AffixIcon(
 	@attr connotation?: SplitButtonConnotation;
 
 	/**
-	 * The shape the split button should have.
+	 * Sets the shape
 	 *
 	 * @public
 	 * @remarks
@@ -110,7 +110,7 @@ export class SplitButton extends AffixIcon(
 	@attr shape?: SplitButtonShape;
 
 	/**
-	 * The appearance the split button should have.
+	 * Sets the appearance
 	 *
 	 * @public
 	 * @remarks
@@ -119,7 +119,7 @@ export class SplitButton extends AffixIcon(
 	@attr appearance?: SplitButtonAppearance;
 
 	/**
-	 * The size the split button should have.
+	 * Sets the size
 	 *
 	 * @public
 	 * @remarks
@@ -137,7 +137,7 @@ export class SplitButton extends AffixIcon(
 	@attr label?: string;
 
 	/**
-	 * Indicates the split button's icon indicator.
+	 * Icon for the secondary action
 	 *
 	 * @public
 	 * @remarks
@@ -147,7 +147,7 @@ export class SplitButton extends AffixIcon(
 	splitIndicator = 'chevron-down-line';
 
 	/**
-	 * Indicates if the button is disabled.
+	 * Sets the disabled state
 	 *
 	 * @public
 	 * @remarks
@@ -156,9 +156,8 @@ export class SplitButton extends AffixIcon(
 	@attr({ attribute: 'disabled', mode: 'boolean' }) disabled = false;
 
 	/**
-	 * Defines a string value that labels the indicator element.
+	 * Accessible label for the secondary action
 	 *
-	 * {@link https://www.w3.org/TR/wai-aria-1.1/#aria-label}
 	 * @public
 	 * @remarks
 	 * HTML Attribute: indicator-aria-label

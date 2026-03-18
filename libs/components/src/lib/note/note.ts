@@ -18,7 +18,7 @@ export type NoteConnotation =
  */
 export class Note extends AffixIcon(VividElement) {
 	/**
-	 * Indicates the note's headline text
+	 * Sets the headline text
 	 *
 	 * @public
 	 * @remarks

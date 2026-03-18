@@ -62,7 +62,8 @@ export class ListboxOption extends HostSemantics(
 	checked?: boolean;
 
 	/**
-	 * The defaultSelected state of the option.
+	 * Sets the option's initial selected state (mirrors the native `selected` attribute)
+	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: selected
@@ -114,7 +115,7 @@ export class ListboxOption extends HostSemantics(
 	}
 
 	/**
-	 * The checked state of the control.
+	 * Indicates whether the option is currently selected
 	 *
 	 * @public
 	 */
@@ -191,6 +192,8 @@ export class ListboxOption extends HostSemantics(
 	}
 
 	/**
+	 * Secondary text displayed below or next to the primary text
+	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: text-secondary
@@ -226,7 +229,8 @@ export class ListboxOption extends HostSemantics(
 	@observable _displayCheckmark = false;
 
 	/**
-	 * Text to highlighted as matching a search query.
+	 * Text to highlighted as matching a search query
+	 *
 	 * @remarks
 	 * HTML Attribute: matched-text
 	 */
@@ -271,7 +275,7 @@ export class ListboxOption extends HostSemantics(
 	}
 
 	/**
-	 * When displayed as a tag, the connotation of the tag.
+	 * When displayed as a tag, the connotation of the tag
 	 *
 	 * @public
 	 * @remarks

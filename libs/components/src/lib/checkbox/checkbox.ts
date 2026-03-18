@@ -80,8 +80,8 @@ export class Checkbox extends DelegatesAria(
 	}
 
 	/**
-	 * The element's value to be included in form submission when checked.
-	 * Default to "on" to reach parity with input[type="checkbox"]
+	 * The initial value of the form. This value sets the `value` property only when the `value`
+	 * property has not been explicitly set.
 	 *
 	 * @internal
 	 */
@@ -94,7 +94,7 @@ export class Checkbox extends DelegatesAria(
 	defaultSlottedNodes: Node[] = [];
 
 	/**
-	 * The indeterminate state of the control.
+	 * Indicates whether a checkbox is in an indeterminate state.
 	 *
 	 * @public
 	 * @remarks

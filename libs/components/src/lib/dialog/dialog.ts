@@ -34,7 +34,7 @@ type DismissMethod = 'escape' | 'dismiss-button' | 'light-dismiss';
  */
 export class Dialog extends Localized(DelegatesAria(VividElement)) {
 	/**
-	 * Indicates dialog's state
+	 * Sets the element's to be opened
 	 *
 	 * @public
 	 * @remarks
@@ -52,7 +52,8 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 		| null = null;
 
 	/**
-	 * Prevents the dialog from being dismissed when clicking outside it.
+	 * prevent a modal dialog from being dismissed by clicking outside of it.
+	 *
 	 * @remarks
 	 * HTML Attribute: no-light-dismiss
 	 */
@@ -60,7 +61,8 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 		false;
 
 	/**
-	 * Prevents the dialog from being dismissed when the escape key is pressed.
+	 * prevent a modal dialog from being dismissed by pressing esc
+	 *
 	 * @remarks
 	 * HTML Attribute: no-dismiss-on-esc
 	 */
@@ -68,7 +70,8 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 		false;
 
 	/**
-	 * Hides the dismiss button.
+	 * Remove the element's dismiss button
+	 *
 	 * @remarks
 	 * HTML Attribute: no-dismiss-button
 	 */
@@ -76,7 +79,8 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 		false;
 
 	/**
-	 * Disables all means of dismissal for the dialog.
+	 * combines `no-light-dismiss`, `no-dismiss-on-esc`, and `no-dismiss-button`
+	 *
 	 * @remarks
 	 * HTML Attribute: non-dismissible
 	 */
@@ -84,7 +88,8 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 		false;
 
 	/**
-	 * Controls whether the dialog is modal.
+	 * Sets the element's to be opened
+	 *
 	 * @remarks
 	 * HTML Attribute: modal
 	 */
@@ -92,6 +97,7 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 
 	/**
 	 * Makes only the element's content area between the header and footer scrollable
+	 *
 	 * @remarks
 	 * HTML Attribute: modal
 	 */

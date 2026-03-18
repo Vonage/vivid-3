@@ -99,6 +99,7 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 
 	/**
 	 * Sets an appropriate icon / icon color for the connotation.
+	 *
 	 * @public
 	 */
 	@attr connotation?: AlertConnotation;

@@ -28,7 +28,7 @@ export class Switch extends DelegatesAria(
 	CheckableFormAssociated(VividElement)
 ) {
 	/**
-	 * Indicates the switch's label.
+	 * Provides the label for the Switch
 	 *
 	 * @public
 	 * @remarks
@@ -37,7 +37,7 @@ export class Switch extends DelegatesAria(
 	@attr label?: string;
 
 	/**
-	 * Indicates the switch's connotation.
+	 * Controls the color of the Switch
 	 *
 	 * @public
 	 * HTML Attribute: connotation

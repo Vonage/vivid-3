@@ -41,7 +41,7 @@ export type SelectableBoxControlPlacement =
  */
 export class SelectableBox extends DelegatesAria(VividElement) {
 	/**
-	 * Controls the checked state of the box
+	 * Controls the checked state
 	 *
 	 * @public
 	 * HTML Attribute: checked
@@ -49,7 +49,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	@attr({ mode: 'boolean' }) checked = false;
 
 	/**
-	 * Makes the entire selectable box clickable
+	 * Sets the whole box to be clickable
 	 *
 	 * @public
 	 * HTML Attribute: clickable-box
@@ -58,7 +58,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	clickableBox = false;
 
 	/**
-	 * The connotation the selectable box should have.
+	 * Controls the color of the box and its control
 	 *
 	 * @public
 	 * @remarks
@@ -67,7 +67,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	@attr connotation?: SelectableBoxConnotation;
 
 	/**
-	 * The type of control the box should have: checkbox or radio.
+	 * Controls the type of control in the box
 	 *
 	 * @public
 	 * @remarks
@@ -76,7 +76,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	@attr({ attribute: 'control-type' }) controlType?: SelectableBoxControlType;
 
 	/**
-	 * Defines where the control (checkbox or radio) should be located.
+	 * Controls where the control should be placed in the box
 	 *
 	 * @public
 	 * @remarks
@@ -86,7 +86,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	controlPlacement: SelectableBoxControlPlacement = 'end-stacked';
 
 	/**
-	 * Removes the padding around the box's slot content
+	 * Removes the padding from the boxes content area
 	 *
 	 * @public
 	 * HTML Attribute: tight
@@ -94,7 +94,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	@attr({ mode: 'boolean' }) tight = false;
 
 	/**
-	 * Disables the control (checkbox or radio) and indicates that the action is not available.
+	 * Controls the disabled state of the box and its control
 	 *
 	 * @public
 	 * HTML Attribute: disabled

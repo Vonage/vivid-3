@@ -42,7 +42,7 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	}
 
 	/**
-	 * Placement of the popup with color swatches
+	 * Preferred placement of the Color Picker's popup in relation to the anchor element
 	 *
 	 * @public
 	 * HTML Attribute: placement
