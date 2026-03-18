@@ -1,0 +1,60 @@
+{
+	"tagName": "vwc-banner",
+	"properties": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": "`string`"
+		},
+		{
+			"name": "connotation",
+			"type": "string",
+			"description": "Enum\\_: `information` (default) `announcement` `success` `warning` `alert`"
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Enum\\_: `[icon-name]`",
+			"deprecated": "deprecated as of 05/25"
+		},
+		{
+			"name": "removable",
+			"type": "string",
+			"description": "`boolean`"
+		},
+		{
+			"name": "dismiss-aria-label",
+			"type": "string",
+			"description": "`string` – Allows setting a custom aria-label for the dismiss button."
+		}
+	],
+	"events": [
+		{
+			"name": "removing",
+			"type": "Event",
+			"description": "Fires `removing` whenever the banner has started its removing animation."
+		},
+		{
+			"name": "removed",
+			"type": "Event",
+			"description": "Fires `removed` when the removing animation is done."
+		}
+	],
+	"slots": [
+		{
+			"name": "Action Items",
+			"description": "Add action items like buttons to the component."
+		},
+		{
+			"name": "Icon",
+			"description": "Add an icon to the component."
+		}
+	],
+	"methods": [
+		{
+			"name": "remove",
+			"type": "() => void",
+			"description": "Removes the banner from the DOM. Fires the `removing` event and starts the remove animation. When the animation finishes, it emits the `removed` event and removes the banner from the DOM completely. If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak."
+		}
+	]
+}

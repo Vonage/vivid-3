@@ -1,0 +1,64 @@
+{
+	"tagName": "vwc-radio-group",
+	"properties": [
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Whether the input element is disabled"
+		},
+		{
+			"name": "error-text",
+			"type": "string",
+			"description": "Sets the error message and error state"
+		},
+		{
+			"name": "helper-text",
+			"type": "string",
+			"description": "Gives addition context to the user"
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Label of the the Radio Group"
+		},
+		{
+			"name": "orientation",
+			"type": "'horizontal' | 'vertical'",
+			"description": "Sets axis on which the tabs are aligned"
+		},
+		{
+			"name": "readonly",
+			"type": "boolean",
+			"description": "The value is not editable"
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"description": "Sets the required state"
+		}
+	],
+	"events": [
+		{
+			"name": "change",
+			"type": "CustomEvent",
+			"description": "Fires a custom 'change' event when the value changes"
+		}
+	],
+	"slots": [
+		{
+			"name": "default",
+			"description": "For Radio components to provide options"
+		},
+		{
+			"name": "helper-text",
+			"description": "To add rich text to provide addition context for the user"
+		}
+	],
+	"methods": [
+		{
+			"name": "checkValidity",
+			"type": "() => boolean",
+			"description": "Returns `true` if the element passes validity checks; otherwise, returns `false` and fires an `invalid` event at the element."
+		}
+	]
+}

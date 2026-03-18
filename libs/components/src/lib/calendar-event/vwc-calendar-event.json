@@ -1,0 +1,43 @@
+{
+	"tagName": "vwc-calendar-event",
+	"properties": [
+		{
+			"name": "appearance",
+			"type": "'filled' | 'subtle'",
+			"description": "Sets the event's appearance"
+		},
+		{
+			"name": "connotation",
+			"type": "'information' | 'accent' | 'cta' | 'success' | 'alert' | 'announcement'",
+			"description": "Sets the first day of the week to display"
+		},
+		{
+			"name": "description",
+			"type": "string",
+			"description": "Sets the event description"
+		},
+		{
+			"name": "duration",
+			"type": "string",
+			"description": "Sets the event duration (e.g. `2` = 2 hours)"
+		},
+		{
+			"name": "heading",
+			"type": "string",
+			"description": "Sets the event heading"
+		},
+		{
+			"name": "overlap-count",
+			"type": "string (number)",
+			"description": "Sets the stacking context of the event when it overlaps with another"
+		},
+		{
+			"name": "start",
+			"type": "string",
+			"description": "Sets the event start time (e.g. `14` = 2pm)"
+		}
+	],
+	"events": [],
+	"slots": [],
+	"methods": []
+}

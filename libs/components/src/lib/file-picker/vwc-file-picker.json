@@ -1,0 +1,94 @@
+{
+	"tagName": "vwc-file-picker",
+	"properties": [
+		{
+			"name": "accept",
+			"type": "string",
+			"description": "Defines a list of allowed file extensions or MIME types"
+		},
+		{
+			"name": "error-text",
+			"type": "string",
+			"description": "Sets the element's error text"
+		},
+		{
+			"name": "helper-text",
+			"type": "string",
+			"description": "Sets the element's helper text"
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Sets the element's label"
+		},
+		{
+			"name": "size",
+			"type": "'normal' | 'expanded'",
+			"description": "Sets the display size of the input element"
+		},
+		{
+			"name": "single-file",
+			"type": "boolean",
+			"description": "Allows only a single file; subsequent uploads replace the current file"
+		},
+		{
+			"name": "max-files",
+			"type": "number",
+			"description": "Limits how many files can be selected; additional files will be rejected"
+		},
+		{
+			"name": "max-file-size",
+			"type": "number (megabytes)",
+			"description": "Maximum allowed file size per file"
+		},
+		{
+			"name": "invalid-file-type-error",
+			"type": "string",
+			"description": "Custom error message shown when a file does not match the accepted types"
+		},
+		{
+			"name": "max-files-exceeded-error",
+			"type": "string",
+			"description": "Custom error message shown when more than the allowed number of files are selected"
+		},
+		{
+			"name": "file-too-big-error",
+			"type": "string",
+			"description": "Custom error message shown when a file exceeds the maximum file size"
+		},
+		{
+			"name": "files",
+			"type": "File[] (read-only)",
+			"description": "List of files that have been added to the file picker and passed validation"
+		},
+		{
+			"name": "rejectedFiles",
+			"type": "File[] (read-only)",
+			"description": "List of files that have been added to the file picker but failed validation"
+		}
+	],
+	"events": [
+		{
+			"name": "`change`",
+			"type": "CustomEvent",
+			"description": "Emitted when a file is added or removed."
+		}
+	],
+	"slots": [
+		{
+			"name": "default",
+			"description": "Use the default slot to set the content of the file picker."
+		},
+		{
+			"name": "contextual-help",
+			"description": "Allows you to add the [Contextual Help](/components/contextual-help/) component to be displayed next to the label."
+		}
+	],
+	"methods": [
+		{
+			"name": "removeAllFiles()",
+			"type": "() => void",
+			"description": "Removes all files from the File Picker."
+		}
+	]
+}

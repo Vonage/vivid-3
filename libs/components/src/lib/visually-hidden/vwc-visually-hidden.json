@@ -1,0 +1,12 @@
+{
+	"tagName": "vwc-visually-hidden",
+	"properties": [],
+	"events": [],
+	"slots": [
+		{
+			"name": "default",
+			"description": "Content to be visually hidden."
+		}
+	],
+	"methods": []
+}

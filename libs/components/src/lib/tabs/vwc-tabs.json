@@ -1,0 +1,92 @@
+{
+	"tagName": "vwc-tabs",
+	"properties": [
+		{
+			"name": "activeid",
+			"type": "string",
+			"description": "Match with an `id` set on a Tab to mark it as active on initial load"
+		},
+		{
+			"name": "connotation",
+			"type": "'accent' | 'cta'",
+			"description": "Sets the connotation color of the active tab"
+		},
+		{
+			"name": "gutters",
+			"type": "'none' | 'small'",
+			"description": "Sets the spacing inside the Tab Panels"
+		},
+		{
+			"name": "orientation",
+			"type": "'horizontal' | 'vertical'",
+			"description": "Sets axis on which the tabs are aligned"
+		},
+		{
+			"name": "scrollable-panel",
+			"type": "boolean",
+			"description": "Sets whether the Tab Panel will be scrollable (if content height exceeds `block-size`)"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Sets the disabled state"
+		},
+		{
+			"name": "icon",
+			"type": "'[icon-name]'",
+			"description": "A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names",
+			"deprecated": "deprecated as of 05/25"
+		},
+		{
+			"name": "icon-trailing",
+			"type": "boolean",
+			"description": "Places the icon after the label text"
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Sets the label text"
+		},
+		{
+			"name": "removable",
+			"type": "boolean",
+			"description": "Adds a close button"
+		},
+		{
+			"name": "shape",
+			"type": "'rounded' | 'sharp'",
+			"description": "Shape of the background when hovered"
+		}
+	],
+	"events": [
+		{
+			"name": "`change`",
+			"type": "CustomEvent",
+			"description": "Fired when a tab is clicked or during keyboard navigation"
+		},
+		{
+			"name": "close",
+			"type": "CustomEvent",
+			"description": "When `removable` is set, fired when the close button is clicked or the `DELETE` key is pressed"
+		}
+	],
+	"slots": [
+		{
+			"name": "default",
+			"description": "For Tab and Tab Panel components"
+		},
+		{
+			"name": "action-items",
+			"description": "To add action items after the last Tab in the tabs bar"
+		},
+		{
+			"name": "icon",
+			"description": "For custom icons"
+		},
+		{
+			"name": "default",
+			"description": "For Tab Panel content"
+		}
+	],
+	"methods": []
+}

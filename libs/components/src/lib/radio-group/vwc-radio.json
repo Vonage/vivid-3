@@ -1,0 +1,54 @@
+{
+	"tagName": "vwc-radio",
+	"properties": [
+		{
+			"name": "checked",
+			"type": "boolean",
+			"description": "Sets the radio to be checked"
+		},
+		{
+			"name": "connotation",
+			"type": "'accent' | 'cta'",
+			"description": "The connotation the radio-group should have."
+		},
+		{
+			"name": "error-text",
+			"type": "string",
+			"description": "The error text for the form element."
+		},
+		{
+			"name": "helper-text",
+			"type": "string",
+			"description": "The helper text for the form element."
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Whether the radio-group is disabled"
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"description": "Whether the radio-group is required"
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Label of the the Radio"
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": "Set the radio's value."
+		}
+	],
+	"events": [
+		{
+			"name": "change",
+			"type": "CustomEvent",
+			"description": "Emits a custom change event when the checked state changes"
+		}
+	],
+	"slots": [],
+	"methods": []
+}

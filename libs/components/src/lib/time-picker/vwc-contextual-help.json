@@ -1,0 +1,93 @@
+{
+	"tagName": "vwc-contextual-help",
+	"properties": [
+		{
+			"name": "clock",
+			"type": "'12h' | '24hr'",
+			"description": "Sets time display format"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Sets the disabled state"
+		},
+		{
+			"name": "error-text",
+			"type": "string",
+			"description": "Sets the error text"
+		},
+		{
+			"name": "helper-text",
+			"type": "string",
+			"description": "Sets the helper text"
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Sets the field label"
+		},
+		{
+			"name": "max",
+			"type": "string (time format hh:mm:ss)",
+			"description": "Sets the maximum time the user can set"
+		},
+		{
+			"name": "min",
+			"type": "string (time format hh:mm:ss)",
+			"description": "Sets the minimum time the user can set"
+		},
+		{
+			"name": "minutes-step",
+			"type": "number",
+			"description": "Sets the step between minites in the Time Picker"
+		},
+		{
+			"name": "read-only",
+			"type": "boolean",
+			"description": "Sets the read onnly state"
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"description": "Sets the field as required"
+		},
+		{
+			"name": "seconds-step",
+			"type": "number",
+			"description": "Sets the step between seconds (and activate seconds) in the Time Picker"
+		},
+		{
+			"name": "value",
+			"type": "string (time format hh:mm:ss)",
+			"description": "Sets the current value of the Time Picker"
+		}
+	],
+	"events": [
+		{
+			"name": "input",
+			"type": "CustomEvent",
+			"description": "Emitted when the time is changed by the user."
+		},
+		{
+			"name": "change",
+			"type": "CustomEvent",
+			"description": "Emitted when the time is changed by the user."
+		},
+		{
+			"name": "clear-click",
+			"type": "CustomEvent",
+			"description": "Event emitted when the clear button is clicked."
+		}
+	],
+	"slots": [
+		{
+			"name": "helper-text",
+			"description": "Add rich content as the Time Picker's helper text"
+		},
+		{
+			"name": "contextual-help",
+			"description": "Allows you to add the [Contextual Help](/components/contextual-help/) component to be displayed next to the label."
+		}
+	],
+	"methods": []
+}

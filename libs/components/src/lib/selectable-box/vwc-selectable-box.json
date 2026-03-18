@@ -1,0 +1,54 @@
+{
+	"tagName": "vwc-selectable-box",
+	"properties": [
+		{
+			"name": "checked",
+			"type": "boolean",
+			"description": "Controls the checked state"
+		},
+		{
+			"name": "clickable-box",
+			"type": "boolean",
+			"description": "Sets the whole box to be clickable"
+		},
+		{
+			"name": "connotation",
+			"type": "'accent' | 'cta'",
+			"description": "Controls the color of the box and its control"
+		},
+		{
+			"name": "control-type",
+			"type": "'checkbox' | 'radio'",
+			"description": "Controls the type of control in the box"
+		},
+		{
+			"name": "control-placement",
+			"type": "'end-stacked' | 'end' | 'start' | 'start-stacked'",
+			"description": "Controls where the control should be placed in the box"
+		},
+		{
+			"name": "tight",
+			"type": "boolean",
+			"description": "Removes the padding from the boxes content area"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Controls the disabled state of the box and its control"
+		}
+	],
+	"events": [
+		{
+			"name": "change",
+			"type": "CustomEvent",
+			"description": "Fired when the checked state changes"
+		}
+	],
+	"slots": [
+		{
+			"name": "default",
+			"description": "Content area for the Selectable Box"
+		}
+	],
+	"methods": []
+}

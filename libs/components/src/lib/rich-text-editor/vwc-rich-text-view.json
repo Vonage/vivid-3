@@ -1,0 +1,13 @@
+{
+	"tagName": "vwc-rich-text-view",
+	"properties": [
+		{
+			"name": "view",
+			"type": "RteView",
+			"description": "The view to display, created from the RteConfig."
+		}
+	],
+	"events": [],
+	"slots": [],
+	"methods": []
+}

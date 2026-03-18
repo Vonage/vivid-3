@@ -1,0 +1,88 @@
+{
+	"tagName": "vwc-avatar",
+	"properties": [
+		{
+			"name": "appearance",
+			"type": "'filled' | 'duotone' | 'outlined' | 'subtle'",
+			"description": "Sets the element's appearance"
+		},
+		{
+			"name": "connotation",
+			"type": "'accent' | 'cta'",
+			"description": "Sets the element's connotation"
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Sets the element's icon",
+			"deprecated": "deprecated as of 06/25"
+		},
+		{
+			"name": "initials",
+			"type": "string",
+			"description": "Sets the initials on the Avatar"
+		},
+		{
+			"name": "shape",
+			"type": "'rounded' | 'pill'",
+			"description": "Sets the element's shape"
+		},
+		{
+			"name": "size",
+			"type": "'condensed' | 'normal' | 'expanded'",
+			"description": "Sets the element's size"
+		},
+		{
+			"name": "clickable",
+			"type": "boolean",
+			"description": "Indicates whether element should be a ``."
+		},
+		{
+			"name": "href",
+			"type": "string",
+			"description": "Sets the element's href, changes card tag to `` ."
+		},
+		{
+			"name": "download",
+			"type": "string",
+			"description": "Sets the element's download."
+		},
+		{
+			"name": "hreflang",
+			"type": "string",
+			"description": "Sets the element's hreflang."
+		},
+		{
+			"name": "ping",
+			"type": "string",
+			"description": "Sets the element's ping."
+		},
+		{
+			"name": "referrerpolicy",
+			"type": "string",
+			"description": "Sets the element's referrerpolicy."
+		},
+		{
+			"name": "rel",
+			"type": "string",
+			"description": "Sets the element's rel."
+		},
+		{
+			"name": "target",
+			"type": "'_self' | '_blank' | '_parent' | '_top'",
+			"description": "Sets the target's rel."
+		}
+	],
+	"events": [],
+	"slots": [
+		{
+			"name": "graphic",
+			"description": "Add graphic element to card. Overrides the icon property"
+		},
+		{
+			"name": "icon",
+			"description": "Add an icon to the component."
+		}
+	],
+	"methods": []
+}

@@ -1,0 +1,83 @@
+{
+	"tagName": "vwc-alert",
+	"properties": [
+		{
+			"name": "dismiss-button-aria-label",
+			"type": "string",
+			"description": "Allows setting a custom aria-label for the dismiss button."
+		},
+		{
+			"name": "removable",
+			"type": "boolean",
+			"description": "Adds a close button to the Alert."
+		},
+		{
+			"name": "placement",
+			"type": "'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end'",
+			"description": "The placement of the Alert on the screen."
+		},
+		{
+			"name": "headline",
+			"type": "string",
+			"description": "Adds a headline to the Alert."
+		},
+		{
+			"name": "text",
+			"type": "string",
+			"description": "The main text of the Alert."
+		},
+		{
+			"name": "icon",
+			"type": "'[icon-name]'",
+			"description": "The icon to display in the Alert. Takes precedence over the connotation's icon.",
+			"deprecated": "deprecated as of 05/25"
+		},
+		{
+			"name": "timeoutms",
+			"type": "number",
+			"description": "Timeout after which the Alert will close."
+		},
+		{
+			"name": "connotation",
+			"type": "'accent' | 'information' | 'success' | 'warning' | 'announcement' | 'alert'",
+			"description": "Sets an appropriate icon / icon color for the connotation."
+		},
+		{
+			"name": "strategy",
+			"type": "'fixed' | 'static'",
+			"description": "Controls the `position` of the Alert."
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"description": "Open state of the Alert."
+		}
+	],
+	"events": [
+		{
+			"name": "open",
+			"type": "CustomEvent",
+			"description": "Fired when the Alert is opened"
+		},
+		{
+			"name": "close",
+			"type": "CustomEvent",
+			"description": "Fired when the Alert is closed"
+		}
+	],
+	"slots": [
+		{
+			"name": "main",
+			"description": "The main content of the Alert."
+		},
+		{
+			"name": "action-items",
+			"description": "Add action items to Alert using this slot."
+		},
+		{
+			"name": "icon",
+			"description": "Add an icon to the component."
+		}
+	],
+	"methods": []
+}

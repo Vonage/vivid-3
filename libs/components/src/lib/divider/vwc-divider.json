@@ -1,0 +1,23 @@
+{
+	"tagName": "vwc-divider",
+	"properties": [
+		{
+			"name": "orientation",
+			"type": "'horizontal' | 'vertical'",
+			"description": "Controls the orientation"
+		},
+		{
+			"name": "role",
+			"type": "'separator' | 'presentation'",
+			"description": "Controls the semantic role"
+		},
+		{
+			"name": "appearance",
+			"type": "'ghost' | 'subtle'",
+			"description": "Controls the divider's appearance"
+		}
+	],
+	"events": [],
+	"slots": [],
+	"methods": []
+}

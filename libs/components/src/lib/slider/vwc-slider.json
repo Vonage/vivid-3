@@ -1,0 +1,59 @@
+{
+	"tagName": "vwc-slider",
+	"properties": [
+		{
+			"name": "connotation",
+			"type": "'accent' | 'cta'",
+			"description": "The connotation of the component"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Sets the element's disabled state"
+		},
+		{
+			"name": "markers",
+			"type": "boolean",
+			"description": "Display markers on/off"
+		},
+		{
+			"name": "max",
+			"type": "number",
+			"description": "The maximum value of the range."
+		},
+		{
+			"name": "min",
+			"type": "number",
+			"description": "The minimum value of the range."
+		},
+		{
+			"name": "orientation",
+			"type": "'horizontal' | 'vertical'",
+			"description": "The orientation of the slider."
+		},
+		{
+			"name": "pin",
+			"type": "boolean",
+			"description": "Show current values on the thumbs."
+		},
+		{
+			"name": "step",
+			"type": "number",
+			"description": "Value to increment or decrement via arrow keys, mouse click or drag."
+		},
+		{
+			"name": "value",
+			"type": "number",
+			"description": "Set the value attribute to set the value of the slider."
+		}
+	],
+	"events": [
+		{
+			"name": "change",
+			"type": "CustomEvent",
+			"description": "Fires a custom 'change' event when the slider value changes"
+		}
+	],
+	"slots": [],
+	"methods": []
+}

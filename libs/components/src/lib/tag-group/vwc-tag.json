@@ -1,0 +1,71 @@
+{
+	"tagName": "vwc-tag",
+	"properties": [
+		{
+			"name": "appearance",
+			"type": "'Enum\\: subtle' | 'subtle-light' | 'duotone'",
+			"description": "Sets the appearance"
+		},
+		{
+			"name": "connotation",
+			"type": "'Enum\\: accent' | 'announcement' | 'alert' | 'cta' | 'success' | 'warning' | 'information'",
+			"description": "Sets the connotation"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Sets the disabled state"
+		},
+		{
+			"name": "icon",
+			"type": "'[icon-name]'",
+			"description": "A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names",
+			"deprecated": "deprecated as of 05/25"
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Sets the label text"
+		},
+		{
+			"name": "selectable",
+			"type": "boolean",
+			"description": "Enables the selectable behaviour"
+		},
+		{
+			"name": "selected",
+			"type": "boolean",
+			"description": "Sets the selected state"
+		},
+		{
+			"name": "shape",
+			"type": "'rounded' | 'pill'",
+			"description": "Sets the shape"
+		},
+		{
+			"name": "removable",
+			"type": "boolean",
+			"description": "Enables the removable behaviour"
+		}
+	],
+	"events": [
+		{
+			"name": "selected-change",
+			"type": "CustomEvent",
+			"description": "Fires when the `selected` state changes"
+		},
+		{
+			"name": "removed",
+			"type": "CustomEvent",
+			"description": "Fires when a tag is removed"
+		}
+	],
+	"slots": [],
+	"methods": [
+		{
+			"name": "remove",
+			"type": "() => void",
+			"description": "Removes the tag from the DOM. Fires the `removed` event and removes the tag from the DOM completely. If you have a variable that refers to the tag element make sure to clear it otherwise it might cause a memory leak."
+		}
+	]
+}

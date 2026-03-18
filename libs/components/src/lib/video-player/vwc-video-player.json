@@ -1,0 +1,54 @@
+{
+	"tagName": "vwc-video-player",
+	"properties": [
+		{
+			"name": "autoplay",
+			"type": "boolean",
+			"description": "Sets the video to start playing automatically after loading"
+		},
+		{
+			"name": "loop",
+			"type": "boolean",
+			"description": "Sets the video to loop"
+		},
+		{
+			"name": "playback-rates",
+			"type": "'comma separated string of numeric values. 0.5' | '1' | '1.5' | '2'",
+			"description": "Sets the possible playback rates"
+		},
+		{
+			"name": "poster",
+			"type": "string",
+			"description": "Reference to poster image's source"
+		},
+		{
+			"name": "skip-by",
+			"type": "'0' | '5' | '10' | '30'",
+			"description": "Sets the amount to skip"
+		},
+		{
+			"name": "src",
+			"type": "string",
+			"description": "Reference to the video's source"
+		}
+	],
+	"events": [
+		{
+			"name": "play",
+			"type": "CustomEvent",
+			"description": "Fired when the video is played"
+		},
+		{
+			"name": "pause",
+			"type": "CustomEvent",
+			"description": "Fired when the video is paused"
+		},
+		{
+			"name": "ended",
+			"type": "CustomEvent",
+			"description": "Fired when the video is ended"
+		}
+	],
+	"slots": [],
+	"methods": []
+}

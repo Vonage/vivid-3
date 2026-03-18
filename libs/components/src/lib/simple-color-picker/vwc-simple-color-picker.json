@@ -1,0 +1,54 @@
+{
+	"tagName": "vwc-simple-color-picker",
+	"properties": [
+		{
+			"name": "anchor",
+			"type": "string or HTMLElement",
+			"description": "ID of, or HTML element itself, to anchor the Color Picker's popup to. Prefer using the `anchor` slot."
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"description": "Sets the open state of the Color Picker's popup"
+		},
+		{
+			"name": "placement",
+			"type": "'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'",
+			"description": "Preferred placement of the Color Picker's popup in relation to the anchor element"
+		},
+		{
+			"name": "swatches",
+			"type": "{label?: string; value: string;}[]",
+			"description": "Sets a color palette from which users can select colors"
+		},
+		{
+			"name": "swatches-per-row",
+			"type": "number",
+			"description": "Sets the number of swatches to be displayed per row in the color palette grid"
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": "The value of the element. When specified in the HTML, corresponds to the initial value"
+		}
+	],
+	"events": [
+		{
+			"name": "change",
+			"type": "CustomEvent",
+			"description": "Fires a custom 'change' event when the `value` of an element has changed"
+		},
+		{
+			"name": "input",
+			"type": "CustomEvent",
+			"description": "Fires a custom 'input' event immediately when the `value` has changed"
+		}
+	],
+	"slots": [
+		{
+			"name": "anchor",
+			"description": "For the anchor element."
+		}
+	],
+	"methods": []
+}

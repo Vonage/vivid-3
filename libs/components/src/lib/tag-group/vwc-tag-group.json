@@ -1,0 +1,18 @@
+{
+	"tagName": "vwc-tag-group",
+	"properties": [
+		{
+			"name": "aria-label",
+			"type": "string",
+			"description": "Sets the accessible label"
+		}
+	],
+	"events": [],
+	"slots": [
+		{
+			"name": "default",
+			"description": "For a collection of Tag components"
+		}
+	],
+	"methods": []
+}

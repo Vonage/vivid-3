@@ -1,0 +1,22 @@
+{
+	"tagName": "vwc-contextual-help",
+	"properties": [
+		{
+			"name": "placement",
+			"type": "'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'",
+			"description": "Preferred placement of the Contextual Help's Toggletip in relation to the button element"
+		}
+	],
+	"events": [],
+	"slots": [
+		{
+			"name": "default",
+			"description": "For the default content of the Contextual Help Toggletip."
+		},
+		{
+			"name": "icon",
+			"description": "Add the Custom Icon to the Contextual Help Button."
+		}
+	],
+	"methods": []
+}

@@ -1,0 +1,77 @@
+{
+	"tagName": "vwc-option",
+	"properties": [
+		{
+			"name": "checked",
+			"type": "boolean",
+			"description": "The checked state is used when the parent listbox is in multiple selection mode. To avoid accessibility conflicts, the checked state should not be present in single selection mode."
+		},
+		{
+			"name": "defaultSelected",
+			"type": "boolean",
+			"description": "Sets the option's initial selected state (mirrors the native `selected` attribute)"
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Sets the option to be disabled"
+		},
+		{
+			"name": "icon",
+			"type": "'[icon-name]'",
+			"description": "A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s",
+			"deprecated": "deprecated as of 05/25"
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Text to be displayed instead of `text` when the option is selected"
+		},
+		{
+			"name": "selected",
+			"type": "boolean",
+			"description": "Indicates whether the option is currently selected"
+		},
+		{
+			"name": "text-secondary",
+			"type": "string",
+			"description": "Secondary text displayed below or next to the primary text"
+		},
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Sets the option's text"
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"description": "Value to be submited as part of the form data"
+		},
+		{
+			"name": "matchedText",
+			"type": "string",
+			"description": "Text to highlighted as matching a search query"
+		},
+		{
+			"name": "tagConnotation",
+			"type": "'accent' | 'cta'",
+			"description": "When displayed as a tag, the connotation of the tag"
+		}
+	],
+	"events": [],
+	"slots": [
+		{
+			"name": "icon",
+			"description": "Add an icon before the option's text"
+		},
+		{
+			"name": "trailing-meta",
+			"description": "For additional elements at the end of the Menu Item"
+		},
+		{
+			"name": "tag-icon",
+			"description": "Icon to be displayed in the tag when selected inside of Searchable Select"
+		}
+	],
+	"methods": []
+}

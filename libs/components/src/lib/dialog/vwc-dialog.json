@@ -1,0 +1,99 @@
+{
+	"tagName": "vwc-dialog",
+	"properties": [
+		{
+			"name": "dismiss-button-aria-label",
+			"type": "string",
+			"description": "Sets a custom aria-label to the close button"
+		},
+		{
+			"name": "full-width-body",
+			"type": "boolean",
+			"description": "Sets the element's body to full width (no padding)"
+		},
+		{
+			"name": "headline",
+			"type": "string",
+			"description": "Sets the element's headline"
+		},
+		{
+			"name": "icon",
+			"type": "'[icon-name]'",
+			"description": "A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`'s"
+		},
+		{
+			"name": "icon-placement",
+			"type": "'[side]' | '[top]'",
+			"description": "Sets the element's icon placement"
+		},
+		{
+			"name": "modal",
+			"type": "boolean",
+			"description": "Sets the element's to be opened"
+		},
+		{
+			"name": "no-dismiss-button",
+			"type": "boolean",
+			"description": "Remove the element's dismiss button"
+		},
+		{
+			"name": "no-dismiss-on-esc",
+			"type": "boolean",
+			"description": "prevent a modal dialog from being dismissed by pressing esc"
+		},
+		{
+			"name": "no-light-dismiss",
+			"type": "boolean",
+			"description": "prevent a modal dialog from being dismissed by clicking outside of it."
+		},
+		{
+			"name": "non-dismissible",
+			"type": "boolean",
+			"description": "combines `no-light-dismiss`, `no-dismiss-on-esc`, and `no-dismiss-button`"
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"description": "Sets the element's to be opened"
+		},
+		{
+			"name": "returnValue",
+			"type": "string",
+			"description": "Sets the element's to be opened"
+		},
+		{
+			"name": "subtitle",
+			"type": "string",
+			"description": "Sets the element's return value"
+		},
+		{
+			"name": "scrollable-body",
+			"type": "boolean",
+			"description": "Makes only the element's content area between the header and footer scrollable"
+		}
+	],
+	"events": [],
+	"slots": [
+		{
+			"name": "action-items",
+			"description": "Use for adding action items to the bottom of the dialog"
+		},
+		{
+			"name": "body",
+			"description": "Add custom content to the dialog's body"
+		},
+		{
+			"name": "footer",
+			"description": "Add additional content to the bottom of the dialog."
+		},
+		{
+			"name": "graphic",
+			"description": "Add graphic element to dialog. Overrides the icon property"
+		},
+		{
+			"name": "main",
+			"description": "Override a card's predefined template"
+		}
+	],
+	"methods": []
+}

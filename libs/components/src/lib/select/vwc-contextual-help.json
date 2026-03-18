@@ -1,0 +1,111 @@
+{
+	"tagName": "vwc-contextual-help",
+	"properties": [
+		{
+			"name": "appearance",
+			"type": "'fieldset' | 'ghost'",
+			"description": "Sets the element's appearance"
+		},
+		{
+			"name": "clearable",
+			"type": "boolean",
+			"description": "Adds a clear button to the select that clears the selected value(s)."
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Sets the element's disabled state. A disabled element will not be included during form submission."
+		},
+		{
+			"name": "error-text",
+			"type": "string",
+			"description": "Sets the element's error text"
+		},
+		{
+			"name": "fixed-dropdown",
+			"type": "boolean",
+			"description": "Sets the position strategy of the dropdown to fixed"
+		},
+		{
+			"name": "helper-text",
+			"type": "string",
+			"description": "Sets the element's helper text"
+		},
+		{
+			"name": "icon",
+			"type": "'[icon-name]'",
+			"description": "A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s",
+			"deprecated": "deprecated as of 05/25"
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Sets the element's label"
+		},
+		{
+			"name": "multiple",
+			"type": "boolean",
+			"description": "Sets the element to allow multiple selections"
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"description": "Sets the element's menu to be open"
+		},
+		{
+			"name": "placeholder",
+			"type": "string",
+			"description": "Sets the text to be displayed when no option is selected"
+		},
+		{
+			"name": "scale",
+			"type": "'normal' | 'condensed'",
+			"description": "Sets the display size of the input element"
+		},
+		{
+			"name": "shape",
+			"type": "'rounded' | 'pill'",
+			"description": "Sets the shape of the select element"
+		},
+		{
+			"name": "success-text",
+			"type": "string",
+			"description": "Sets the element's success text"
+		}
+	],
+	"events": [
+		{
+			"name": "input",
+			"type": "CustomEvent",
+			"description": "Fired when an option is selected or unselected."
+		},
+		{
+			"name": "change",
+			"type": "CustomEvent",
+			"description": "Fired when an option is selected or unselected."
+		}
+	],
+	"slots": [
+		{
+			"name": "default",
+			"description": "Default slot meant for Option component to provide the option list"
+		},
+		{
+			"name": "helper-text",
+			"description": "Add HTML content for helper text"
+		},
+		{
+			"name": "icon",
+			"description": "Add an icon to the component."
+		},
+		{
+			"name": "meta",
+			"description": "Show meta information after the selected option label"
+		},
+		{
+			"name": "contextual-help",
+			"description": "Allows you to add the [Contextual Help](/components/contextual-help/) component to be displayed next to the label."
+		}
+	],
+	"methods": []
+}

@@ -1,0 +1,93 @@
+{
+	"tagName": "vwc-contextual-help",
+	"properties": [
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"description": "Sets the disabled state"
+		},
+		{
+			"name": "end",
+			"type": "string, date format YYYY-MM-DD",
+			"description": "Sets the end date value"
+		},
+		{
+			"name": "error-text",
+			"type": "string",
+			"description": "Sets the error text"
+		},
+		{
+			"name": "helper-text",
+			"type": "string",
+			"description": "Sets the helper text"
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Sets the label text"
+		},
+		{
+			"name": "min",
+			"type": "string, date format YYYY-MM-DD",
+			"description": "Sets the minimum date that can be selected"
+		},
+		{
+			"name": "max",
+			"type": "string, date format YYYY-MM-DD",
+			"description": "Sets the maximum date that can be selected"
+		},
+		{
+			"name": "readonly",
+			"type": "boolean",
+			"description": "Sets the field to be readonly"
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"description": "Sets the field to be required"
+		},
+		{
+			"name": "start",
+			"type": "string, date format YYYY-MM-DD",
+			"description": "Sets the start date value"
+		}
+	],
+	"events": [
+		{
+			"name": "input:start",
+			"type": "CustomEvent",
+			"description": "Event emitted when the start value changes"
+		},
+		{
+			"name": "input:end",
+			"type": "CustomEvent",
+			"description": "Event emitted when the end value changes"
+		},
+		{
+			"name": "clear-click",
+			"type": "CustomEvent",
+			"description": "Event emitted when the clear button is clicked."
+		},
+		{
+			"name": "input",
+			"type": "CustomEvent",
+			"description": "Emitted when either the start or end value changes"
+		},
+		{
+			"name": "change",
+			"type": "CustomEvent",
+			"description": "Emitted when either the start or end value changes"
+		}
+	],
+	"slots": [
+		{
+			"name": "helper-text",
+			"description": "Add rich text for as field's helper text"
+		},
+		{
+			"name": "contextual-help",
+			"description": "Allows you to add the [Contextual Help](/components/contextual-help/) component to be displayed next to the label."
+		}
+	],
+	"methods": []
+}

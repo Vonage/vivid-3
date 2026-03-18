@@ -1,0 +1,28 @@
+{
+	"tagName": "vwc-tooltip",
+	"properties": [
+		{
+			"name": "anchor",
+			"type": "string or HTMLElement",
+			"description": "ID of, or HTML elemnent itself, to anchor the Tooltip to. Prefer using the `anchor` slot"
+		},
+		{
+			"name": "placement",
+			"type": "'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'",
+			"description": "Prefered placement of the Tooltip in relation to the anchor element"
+		},
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Text content of the Tooltip"
+		}
+	],
+	"events": [],
+	"slots": [
+		{
+			"name": "anchor",
+			"description": "For the anchor element."
+		}
+	],
+	"methods": []
+}

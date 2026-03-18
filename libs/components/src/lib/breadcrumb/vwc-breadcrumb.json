@@ -1,0 +1,18 @@
+{
+	"tagName": "vwc-breadcrumb",
+	"properties": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Sets the breadcrumb-item text"
+		},
+		{
+			"name": "href",
+			"type": "string",
+			"description": "Sets the breadcrumb-item href"
+		}
+	],
+	"events": [],
+	"slots": [],
+	"methods": []
+}

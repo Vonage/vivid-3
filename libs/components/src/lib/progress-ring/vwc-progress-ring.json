@@ -1,0 +1,38 @@
+{
+	"tagName": "vwc-progress-ring",
+	"properties": [
+		{
+			"name": "connotation",
+			"type": "'accent' | 'cta' | 'success' | 'alert'",
+			"description": "Sets the connotation"
+		},
+		{
+			"name": "max",
+			"type": "number",
+			"description": "Sets the maximum value of the range"
+		},
+		{
+			"name": "min",
+			"type": "number",
+			"description": "Sets the minimum value of the range"
+		},
+		{
+			"name": "paused",
+			"type": "boolean",
+			"description": "Sets the paused state"
+		},
+		{
+			"name": "size",
+			"type": "'-6' | '-5 -4' | '-3' | '-2' | '-1' | '0' | '1' | '2' | '3' | '4' | '5'",
+			"description": "Sets the size"
+		},
+		{
+			"name": "value",
+			"type": "number or string",
+			"description": "Sets the current value of progress"
+		}
+	],
+	"events": [],
+	"slots": [],
+	"methods": []
+}

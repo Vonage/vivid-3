@@ -1,0 +1,130 @@
+{
+	"tagName": "vwc-card",
+	"properties": [
+		{
+			"name": "appearance",
+			"type": "'elevated' | 'outlined' | 'ghost'",
+			"description": "Sets the element's appearance."
+		},
+		{
+			"name": "elevation",
+			"type": "'2' | '4' | '8' | '12' | '16' | '24'",
+			"description": "Sets the element's elevation."
+		},
+		{
+			"name": "headline",
+			"type": "string",
+			"description": "Sets the element's headline."
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Sets the element's icon."
+		},
+		{
+			"name": "subtitle",
+			"type": "string",
+			"description": "Sets the element's subtitle."
+		},
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Sets the element's text."
+		},
+		{
+			"name": "clickable-card",
+			"type": "boolean",
+			"description": "Indicates whether card should be a ``."
+		},
+		{
+			"name": "href",
+			"type": "string",
+			"description": "Sets the element's href, changes card tag to `` ."
+		},
+		{
+			"name": "download",
+			"type": "string",
+			"description": "Sets the element's download."
+		},
+		{
+			"name": "hreflang",
+			"type": "string",
+			"description": "Sets the element's hreflang."
+		},
+		{
+			"name": "ping",
+			"type": "string",
+			"description": "Sets the element's ping."
+		},
+		{
+			"name": "referrerpolicy",
+			"type": "string",
+			"description": "Sets the element's referrerpolicy."
+		},
+		{
+			"name": "rel",
+			"type": "string",
+			"description": "Sets the element's rel."
+		},
+		{
+			"name": "target",
+			"type": "'_self' | '_blank' | '_parent' | '_top'",
+			"description": "Sets the target's rel."
+		}
+	],
+	"events": [
+		{
+			"name": "click",
+			"type": "Event",
+			"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element."
+		},
+		{
+			"name": "focus",
+			"type": "Event",
+			"description": "Fires when the element receives focus."
+		},
+		{
+			"name": "blur",
+			"type": "Event",
+			"description": "Fires when the element loses focus."
+		},
+		{
+			"name": "keydown",
+			"type": "Event",
+			"description": "Fires when a key is pressed."
+		},
+		{
+			"name": "keyup",
+			"type": "Event",
+			"description": "Fires when a key is released."
+		},
+		{
+			"name": "input",
+			"type": "Event",
+			"description": "Fires when the value of an element has been changed."
+		}
+	],
+	"slots": [
+		{
+			"name": "Graphic",
+			"description": "Add graphic element to card. Overrides the icon property"
+		},
+		{
+			"name": "Media",
+			"description": "Use to display images or video content above the card header"
+		},
+		{
+			"name": "Meta",
+			"description": "Use for adding action content, of info in the card header"
+		},
+		{
+			"name": "Footer",
+			"description": "Content in the card footer."
+		},
+		{
+			"name": "Main",
+			"description": "Override a card's predefined template"
+		}
+	],
+	"methods": []
+}

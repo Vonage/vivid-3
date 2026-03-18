@@ -1,0 +1,49 @@
+{
+	"tagName": "vwc-badge",
+	"properties": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Sets a text on the badge"
+		},
+		{
+			"name": "connotation",
+			"type": "string",
+			"description": "Sets the badge connotation"
+		},
+		{
+			"name": "icon",
+			"type": "string",
+			"description": "Sets the element's icon",
+			"deprecated": "deprecated as of 05/25"
+		},
+		{
+			"name": "icon-trailing",
+			"type": "string",
+			"description": "Sets icon as trailing"
+		},
+		{
+			"name": "appearance",
+			"type": "string",
+			"description": "Sets the badge appearance"
+		},
+		{
+			"name": "shape",
+			"type": "string",
+			"description": "Sets the badge border-radius"
+		},
+		{
+			"name": "size",
+			"type": "string",
+			"description": "Sets the badge size"
+		}
+	],
+	"events": [],
+	"slots": [
+		{
+			"name": "Icon",
+			"description": "Add an icon to the component."
+		}
+	],
+	"methods": []
+}
