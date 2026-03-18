@@ -47,7 +47,7 @@ Consider a typical form:
 		<div>
 			<vwc-text-field label="Password" name="password" type="password"></vwc-text-field>
 		</div>
-		<vwc-button appearance="filled" disabled label="Login"></vwc-button>
+		<vwc-button appearance="filled" disabled label="Login" type="submit"></vwc-button>
 	</form>
 </vwc-card>
 
@@ -122,6 +122,7 @@ This interface blocks progress without explaining the problem.
 </vwc-card>
 
 <script>
+	let validationTriggered = false;
 	const handleFieldChange = (e) => {
 		if (!validationTriggered) return;
 		if ((!event.target) instanceof HTMLInputElement) return;
