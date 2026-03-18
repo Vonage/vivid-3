@@ -158,11 +158,13 @@ describe('vwc-audio-player', () => {
 		vi.spyOn(nativeAudioElement, 'play').mockImplementation(() => {
 			return new Promise((res) => {
 				vi.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(false);
+				nativeAudioElement.dispatchEvent(new Event('play'));
 				res();
 			});
 		});
 		vi.spyOn(nativeAudioElement, 'pause').mockImplementation(async () => {
 			vi.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(true);
+			nativeAudioElement.dispatchEvent(new Event('pause'));
 		});
 
 		pauseButton = getPauseButtonElement();
@@ -932,6 +934,30 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(pauseSpy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should not emit "play" event when play is triggered while dragging the slider', async () => {
+			const playSpy = vi.fn();
+			const slider = getSliderElement();
+			element.addEventListener('play', playSpy);
+
+			slider.isDragging = true;
+			nativeAudioElement.dispatchEvent(new Event('play'));
+			await elementUpdated(element);
+
+			expect(playSpy).not.toHaveBeenCalled();
+		});
+
+		it('should not emit "pause" event when pause is triggered while dragging the slider', async () => {
+			const pauseSpy = vi.fn();
+			const slider = getSliderElement();
+			element.addEventListener('pause', pauseSpy);
+
+			slider.isDragging = true;
+			nativeAudioElement.dispatchEvent(new Event('pause'));
+			await elementUpdated(element);
+
+			expect(pauseSpy).not.toHaveBeenCalled();
 		});
 	});
 
