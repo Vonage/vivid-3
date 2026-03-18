@@ -1,5 +1,5 @@
 {% extends './page.njk' %}
-{% set title = pageTitle or component.title %} 
+{% set title = pageTitle or component.concept %}
 
 
 {% block banner %}
@@ -12,27 +12,35 @@
 {% endblock %}
 
 {% block aside %}
-	{% include '../_includes/toc.njk' %}
+		{% include '../_includes/toc.njk' %}
 {% endblock %}
 
 {% block content %}
-	{% if (component.page != 'legacy') %}
-		<h1>{{ component.title }}</h1>
+	{% if not (component.documentation | has("legacy")) %}
+		<h1>{{ component.concept }}</h1>
 		<p>{{ component.description }}</p>
 		<div class="components-header" id="components-header">
 			<nav>
 				<ul>
-					<li><a href="/components/{{ component | componentSlug }}/" {% if ("/components/" + (component | componentSlug) + "/") == page.url %} aria-current="page" {% endif %}>Variations</a></li>
-					{% if component.hideGuidelines != "true" %}
-						<li><a href="/components/{{ component | componentSlug }}/guidelines/" {% if ("/components/" + (component | componentSlug) + "/guidelines/") == page.url %} aria-current="page" {% endif %}>Guidelines</a></li>
+					{% if component.documentation | has("variations") %}
+						<li><a href="/components/{{ component.slug }}/" {% if ("/components/" + (component.slug) + "/") == page.url %} aria-current="page" {% endif %}>Variations</a></li>
 					{% endif %}
-					<li><a href="/components/{{ component | componentSlug }}/code/" {% if ("/components/" + (component | componentSlug) + "/code/") == page.url %} aria-current="page" {% endif %}>Code</a></li>
-					{% if component.useCases and component.hideUseCases != "true" %}
-						<li><a href="/components/{{ component | componentSlug }}/use-cases/" {% if ("/components/" + (component | componentSlug) + "/use-cases/") == page.url %} aria-current="page" {% endif %}>Use Cases</a></li>
+
+					{% if component.documentation | has("guidelines") %}
+						<li><a href="/components/{{ component.slug }}/guidelines/" {% if ("/components/" + (component.slug) + "/guidelines/") == page.url %} aria-current="page" {% endif %}>Guidelines</a></li>
 					{% endif %}
-					{% if component.hideAccessibility != "true" %}
-						<li><a href="/components/{{ component | componentSlug }}/accessibility/" {% if ("/components/" + (component | componentSlug) + "/accessibility/") == page.url %} aria-current="page" {% endif %}>Accessibility</a></li>
-						{% endif %}
+
+					{% if component.documentation | has("code") %}
+						<li><a href="/components/{{ component.slug }}/code/" {% if ("/components/" + (component.slug) + "/code/") == page.url %} aria-current="page" {% endif %}>Code</a></li>
+					{% endif %}
+
+					{% if component.documentation | has("useCases") %}
+						<li><a href="/components/{{ component.slug }}/use-cases/" {% if ("/components/" + (component.slug) + "/use-cases/") == page.url %} aria-current="page" {% endif %}>Use Cases</a></li>
+					{% endif %}
+
+					{% if component.documentation | has("accessibility") %}
+						<li><a href="/components/{{ component.slug }}/accessibility/" {% if ("/components/" + (component.slug) + "/accessibility/") == page.url %} aria-current="page" {% endif %}>Accessibility</a></li>
+					{% endif %}
 				</ul>
 			</nav>
 		</div>

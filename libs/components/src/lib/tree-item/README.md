@@ -271,14 +271,3 @@ import { VIcon, VTreeItem, VTreeView } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## Events
-
-<div class="table-wrapper">
-
-| Name              | Type                       | Bubbles | Composed | Description                                                            |
-| ----------------- | -------------------------- | ------- | -------- | ---------------------------------------------------------------------- |
-| `expanded-change` | `CustomEvent<HTMLElement>` | Yes     | Yes      | Fires a custom 'expanded-change' event when the expanded state changes |
-| `selected-change` | `CustomEvent<HTMLElement>` | Yes     | Yes      | Fires a custom 'selected-change' event when the selected state changes |
-
-</div>

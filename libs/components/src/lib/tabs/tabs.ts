@@ -168,7 +168,7 @@ export class Tabs extends VividElement {
 	}
 
 	/**
-	 * The id of the active tab
+	 * Match with an `id` set on a Tab to mark it as active on initial load
 	 *
 	 * @public
 	 * @remarks
@@ -413,7 +413,7 @@ export class Tabs extends VividElement {
 	@observable tablist?: HTMLElement;
 
 	/**
-	 * The connotation the tabs should have.
+	 * Sets the connotation color of the active tab
 	 *
 	 * @public
 	 * HTML Attribute: connotation
@@ -427,14 +427,14 @@ export class Tabs extends VividElement {
 	}
 
 	/**
-	 * sets the initial preferred margin from predefined available options
+	 * Sets the spacing inside the Tab Panels
 	 *
 	 * @public
 	 */
 	@attr gutters?: TabsGutters;
 
 	/**
-	 * sets overflow to the tab-panel
+	 * Sets whether the Tab Panel will be scrollable (if content height exceeds `block-size`)
 	 *
 	 * @public
 	 */

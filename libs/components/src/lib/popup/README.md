@@ -242,16 +242,6 @@ The default should really be `contents`, but is not due to backwards compatibili
 </script>
 ```
 
-## Methods
-
-<div class="table-wrapper">
-
-| Name             | Returns | Description               |
-| ---------------- | ------- | ------------------------- |
-| `updatePosition` | `void`  | Updates popup's position. |
-
-</div>
-
 ## Caveat
 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).

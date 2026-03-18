@@ -1,0 +1,22 @@
+concept: Breadcrumb
+id: breadcrumb
+description: Links showing the position of the current page within the
+  navigational hierarchy.
+status: ready
+slug: breadcrumb
+keywords:
+  - navigation
+  - hierarchy
+  - path
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: breadcrumb
+    design: https://figma.com/...
+  - tag: breadcrumb-item
+    design: https://figma.com/...

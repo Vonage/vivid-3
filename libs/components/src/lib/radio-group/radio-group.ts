@@ -23,7 +23,7 @@ import { WithFeedback } from '../../shared/feedback/mixins';
  */
 export class RadioGroup extends WithFeedback(VividElement) {
 	/**
-	 * The label for the radio group
+	 * Label of the the Radio Group
 	 *
 	 * @public
 	 * @remarks
@@ -32,7 +32,7 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	@attr label!: string;
 
 	/**
-	 * When true, the radio group and all its radio buttons will be required
+	 * Sets the required state
 	 *
 	 * @public
 	 * @remarks
@@ -76,7 +76,7 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	}
 
 	/**
-	 * Disables the radio group and child radios.
+	 * Whether the input element is disabled
 	 *
 	 * @public
 	 * @remarks
@@ -162,7 +162,7 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	}
 
 	/**
-	 * The orientation of the group
+	 * Sets axis on which the tabs are aligned
 	 *
 	 * @public
 	 * @remarks

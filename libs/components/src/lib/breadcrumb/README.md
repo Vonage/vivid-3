@@ -44,16 +44,3 @@ registerBreadcrumbItem('your-prefix');
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name     | Type     | Description                       |
-| -------- | -------- | --------------------------------- |
-| **text** | `string` | Sets the **breadcrumb-item** text |
-| **href** | `string` | Sets the **breadcrumb-item** href |
-
-</div>

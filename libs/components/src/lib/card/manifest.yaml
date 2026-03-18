@@ -1,0 +1,21 @@
+concept: Card
+id: card
+description: A card is a UI design pattern that groups related information in a
+  flexible-size container visually resembling a playing card
+status: ready
+slug: card
+keywords:
+  - card
+  - container
+  - content grouping
+  - surface
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: card
+    design: https://figma.com/...

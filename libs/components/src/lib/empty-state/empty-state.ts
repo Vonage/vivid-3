@@ -39,7 +39,7 @@ export type EmptyStateIconDecoration = ExtractFromEnum<
  */
 export class EmptyState extends VividElement {
 	/**
-	 * The connotation the empty state should have.
+	 * The connotation the button should have.
 	 *
 	 * @public
 	 * @remarks
@@ -48,19 +48,24 @@ export class EmptyState extends VividElement {
 	@attr connotation?: EmptyStateConnotation;
 	/**
 	 * An optional headline for the empty state.
+	 *
 	 * @public
 	 */
 	@attr headline?: string;
 
 	/**
-	 * Icon for the empty state.
+	 * A decorative icon the Empty State should have. See the [Vivid Icon
+	 * Gallery](/icons/icons-gallery/) for available icons and `icon-name`s
+	 *
 	 * @public
 	 */
 	@attr icon?: string;
 
 	/**
+	 * Has no effect on the component
 	 *
-	 * @deprecated The icon circle is now the default and only style
+	 * @deprecated deprecated
+	 *
 	 * HTML Attribute: icon-decoration
 	 */
 	@attr({ attribute: 'icon-decoration' })

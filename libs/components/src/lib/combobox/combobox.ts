@@ -98,7 +98,7 @@ export class Combobox extends WithContextualHelp(
 	private filter = '';
 
 	/**
-	 * The appearance attribute.
+	 * Sets the element's appearance
 	 *
 	 * @public
 	 * HTML Attribute: appearance
@@ -106,7 +106,7 @@ export class Combobox extends WithContextualHelp(
 	@attr appearance?: ComboboxAppearance;
 
 	/**
-	 * The shape attribute.
+	 * Sets the shape of the combobox element
 	 *
 	 * @public
 	 * HTML Attribute: shape
@@ -114,7 +114,7 @@ export class Combobox extends WithContextualHelp(
 	@attr shape?: ComboboxShape;
 
 	/**
-	 * The size the combobox should have.
+	 * Sets the display size of the input element
 	 *
 	 * @public
 	 * @remarks
@@ -130,7 +130,7 @@ export class Combobox extends WithContextualHelp(
 	@attr placement?: PopupPlacement;
 
 	/**
-	 * Whether the dropdown is using a fixed positioning strategy.
+	 * Sets the position strategy of the dropdown to fixed
 	 *
 	 * @public
 	 * HTML Attribute: fixed-dropdown
@@ -196,7 +196,7 @@ export class Combobox extends WithContextualHelp(
 	maxHeight = 0;
 
 	/**
-	 * The open attribute.
+	 * Sets the element's menu to be open
 	 *
 	 * @public
 	 * @remarks
@@ -216,7 +216,7 @@ export class Combobox extends WithContextualHelp(
 	}
 
 	/**
-	 * The list of options.
+	 * A read-only list of options.
 	 *
 	 * @public
 	 * @remarks

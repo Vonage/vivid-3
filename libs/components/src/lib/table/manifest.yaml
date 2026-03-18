@@ -1,0 +1,31 @@
+concept: Table
+id: table
+description: A set of composable components that work together in the same way
+  as native HTML table elements.
+status: alpha
+slug: table
+keywords:
+  - table
+  - data
+  - rows
+  - columns
+  - grid
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: table
+    design: https://figma.com/...
+  - tag: table-cell
+    design: https://figma.com/...
+  - tag: table-header-cell
+    design: https://figma.com/...
+  - tag: table-row
+    design: https://figma.com/...
+  - tag: table-head
+    design: https://figma.com/...
+  - tag: table-body
+    design: https://figma.com/...

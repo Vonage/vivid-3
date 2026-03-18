@@ -25,7 +25,6 @@
     		{% set navPages = collections.all | onlyNavPages | onlyPublicPages | eleventyNavigation %}
 				{%- for entry in navPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
         <vwc-divider></vwc-divider>
-        {% set componentPages = components | navigationFromComponents %}
-        {%- for entry in componentPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
+        {%- for entry in componentsNavigation %}{{ renderNavListItem(entry) }}{%- endfor -%}
     </vwc-nav>
 {% endblock %}

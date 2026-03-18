@@ -19,7 +19,7 @@ export class RichTextEditor extends WithObservableLocale(VividElement) {
 	// --- Public Properties ---
 
 	/**
-	 * The editor instance. Without it, the editor will not render anything.
+	 * The editor instance created from the RteConfig. Without it, the editor will not render.
 	 */
 	@observable instance?: RteInstance;
 	/**

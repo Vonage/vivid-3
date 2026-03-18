@@ -66,16 +66,6 @@ Use the `value` member to set the radio's value.
 <vwc-radio value="my-value"></vwc-radio>
 ```
 
-## Events
-
-<div class="table-wrapper">
-
-| Name     | Type                     | Bubbles | Composed | Description                                                |
-| -------- | ------------------------ | ------- | -------- | ---------------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom change event when the checked state changes |
-
-</div>
-
 ## Accessibility
 
 - If a label is not provided either through the `label` attribute, then the checkbox needs an accessible label.

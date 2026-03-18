@@ -74,17 +74,3 @@ import { VDivider } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name            | Type                                  | Description                       |
-| --------------- | ------------------------------------- | --------------------------------- |
-| **orientation** | `horizontal` (default), `vertical`    | Controls the orientation          |
-| **role**        | `separator` (default), `presentation` | Controls the semantic role        |
-| **appearance**  | `ghost` (default), `subtle`           | Controls the divider's appearance |
-
-</div>

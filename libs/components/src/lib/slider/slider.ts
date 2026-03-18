@@ -593,7 +593,7 @@ export class Slider extends Localized(
 	markers = false;
 
 	/**
-	 * Show current value on the thumb.
+	 * Show current values on the thumbs.
 	 *
 	 * @public
 	 * HTML Attribute: pin
@@ -601,7 +601,7 @@ export class Slider extends Localized(
 	@attr({ mode: 'boolean' }) pin = false;
 
 	/**
-	 * slider connotation
+	 * The connotation of the component
 	 *
 	 * @public
 	 */

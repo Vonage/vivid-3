@@ -116,28 +116,3 @@ import { VNote, VIcon } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name                                   | Type                                                                             | Description                                                                                                                              |
-| -------------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| **connotation**                        | `accent` (default), `alert`, `success`, `warning`, `information`, `announcement` | Sets the connotation                                                                                                                     |
-| **headline**                           | `string`                                                                         | Sets the headline text                                                                                                                   |
-| _(deprecated as of 05/25)_<br>**icon** | _Enum_:<br/>`[icon-name]`                                                        | Decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-
-</div>
-
-### Slots
-
-<div class="table-wrapper">
-
-| Name        | Description                  |
-| ----------- | ---------------------------- |
-| **default** | Main content of the Note     |
-| **icon**    | Add an icon to the component |
-
-</div>

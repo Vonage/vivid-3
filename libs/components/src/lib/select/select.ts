@@ -413,7 +413,7 @@ export class Select extends WithLightDOMFeedback(
 	}
 
 	/**
-	 * The open attribute.
+	 * Sets the element's menu to be open
 	 *
 	 * @public
 	 * @remarks
@@ -871,7 +871,7 @@ export class Select extends WithLightDOMFeedback(
 	@observable _anchor!: HTMLElement;
 
 	/**
-	 * The size the select should have.
+	 * Sets the display size of the input element
 	 *
 	 * @public
 	 * @remarks
@@ -880,7 +880,7 @@ export class Select extends WithLightDOMFeedback(
 	@attr() scale?: SelectSize;
 
 	/**
-	 * The appearance attribute.
+	 * Sets the element's appearance
 	 *
 	 * @public
 	 * HTML Attribute: appearance
@@ -888,7 +888,7 @@ export class Select extends WithLightDOMFeedback(
 	@attr appearance?: SelectAppearance;
 
 	/**
-	 * The shape attribute.
+	 * Sets the shape of the select element
 	 *
 	 * @public
 	 * HTML Attribute: shape
@@ -896,7 +896,7 @@ export class Select extends WithLightDOMFeedback(
 	@attr shape?: SelectShape;
 
 	/**
-	 * The fixed-dropdown attribute.
+	 * Sets the position strategy of the dropdown to fixed
 	 *
 	 * @public
 	 * HTML Attribute: fixed-dropdown
@@ -904,7 +904,7 @@ export class Select extends WithLightDOMFeedback(
 	@attr({ mode: 'boolean', attribute: 'fixed-dropdown' }) fixedDropdown = false;
 
 	/**
-	 * The placeholder attribute.
+	 * Sets the text to be displayed when no option is selected
 	 *
 	 * @public
 	 * HTML Attribute: placeholder
@@ -1015,7 +1015,7 @@ export class Select extends WithLightDOMFeedback(
 	}
 
 	/**
-	 * Adds a clear button to the select field that clears the selected value.
+	 * Adds a clear button to the select that clears the selected value(s).
 	 *
 	 * @public
 	 * HTML Attribute: clearable

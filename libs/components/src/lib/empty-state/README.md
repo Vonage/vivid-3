@@ -162,30 +162,3 @@ import { VEmptyState, VButton } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name                             | Type                                                                          | Description                                                                                                                             |
-| -------------------------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| **icon**                         | Enum: `[icon-name]`                                                           | A decorative icon the Empty State should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **headline**                     | `string`                                                                      | An optional headline for the empty state.                                                                                               |
-| **connotation**                  | Enum: `accent` (default), `cta`, `success`, `alert`, `information`, `warning` | The connotation the button should have.                                                                                                 |
-| **icon-decoration** (deprecated) | Enum:`filled` (default), `outlined`                                           | Has no effect on the component                                                                                                          |
-
-</div>
-
-### Slots
-
-<div class="table-wrapper">
-
-| Name             | Description                                                            |
-| ---------------- | ---------------------------------------------------------------------- |
-| **default**      | The default slot controls the body text of the empty state             |
-| **graphic**      | The graphic slot allows overriding the icon with a custom illustration |
-| **action-items** | Slot to add action items to the empty state                            |
-
-</div>

@@ -4,11 +4,11 @@ pagination:
   data: componentUseCases
   size: 1
   alias: component
-permalink: 'components/{{ component | componentSlug }}/use-cases/'
+permalink: 'components/{{ component.slug }}/use-cases/'
 layout: component.njk
 eleventyComputed:
-  pageTitle: "{{ component.title }} - Use Cases"
-  githubEditLink: "{{ component.useCases | githubEditLink }}"
+  pageTitle: "{{ component.concept }} - Use Cases"
+  githubEditLink: "{{ component.documentation.useCases | githubEditLink }}"
 ---
 
-{% renderFile "../../" ~ component.useCases %}
+{% renderFile component.documentation.useCases %}

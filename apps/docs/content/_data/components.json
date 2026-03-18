@@ -1,637 +1,284 @@
 [
 	{
 		"title": "Accordion",
-		"description": "Accordion and Accordion Item work together to provide a vertically stacked list of headers that reveal or hide associated sections of content.",
-		"variations": "./libs/components/src/lib/accordion/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/accordion/GUIDELINES.md",
-		"code": "./libs/components/src/lib/accordion/README.md",
-		"accessibility": "./libs/components/src/lib/accordion/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/accordion/USE-CASES.md"
-	},
-	{
-		"title": "Badge",
-		"description": "A small label, generally appearing inside or in proximity to another larger interface component, representing a status, property, or some other metadata.",
-		"variations": "./libs/components/src/lib/badge/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/badge/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/badge/README.md",
-		"accessibility": "./libs/components/src/lib/badge/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/badge/USE-CASES.md"
-	},
-	{
-		"title": "Banner",
-		"description": "Banner displays a prominent message, usually on system level, and provides actions for users to address or dismiss.",
-		"variations": "./libs/components/src/lib/banner/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/banner/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/banner/README.md",
-		"accessibility": "./libs/components/src/lib/banner/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/banner/USE-CASES.md"
-	},
-	{
-		"title": "Alert",
-		"description": "Alerts display short-lived important information to the user, usually at the top or bottom of the screen.",
-		"variations": "./libs/components/src/lib/alert/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/alert/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/alert/README.md",
-		"accessibility": "./libs/components/src/lib/alert/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/alert/USE-CASES.md"
-	},
-	{
-		"title": "Breadcrumb",
-		"description": "Links showing the position of the current page within the navigational hierarchy.",
-		"variations": "./libs/components/src/lib/breadcrumb/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/breadcrumb/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/breadcrumb/README.md",
-		"accessibility": "./libs/components/src/lib/breadcrumb/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/breadcrumb/USE-CASES.md"
-	},
-	{
-		"title": "Button",
-		"description": "Buttons trigger an action, such as submitting a form, closing a dialog, or navigating to a new page.",
-		"variations": "./libs/components/src/lib/button/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/button/GUIDELINES.md",
-		"code": "./libs/components/src/lib/button/README.md",
-		"accessibility": "./libs/components/src/lib/button/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/button/USE-CASES.md"
-	},
-	{
-		"title": "Calendar",
-		"description": "The Calendar component displays events in a visual date grid in a week views, allowing users to view and interact with the displayed events.",
-		"variations": "./libs/components/src/lib/calendar/VARIATIONS.md",
-		"code": "./libs/components/src/lib/calendar/README.md",
-		"accessibility": "./libs/components/src/lib/calendar/ACCESSIBILITY.md",
-		"hideGuidelines": "true",
-		"children": ["Calendar Event"]
-	},
-	{
-		"title": "Calendar Event",
-		"description": "The Calendar Event component displays scheduled items within the weekly view of the Calendar component. It supports clickable, interactive events with customizable times and colors.",
-		"variations": "./libs/components/src/lib/calendar-event/VARIATIONS.md",
-		"code": "./libs/components/src/lib/calendar-event/README.md",
-		"accessibility": "./libs/components/src/lib/calendar-event/ACCESSIBILITY.md",
-		"hideGuidelines": "true",
-		"parent": "Calendar"
-	},
-	{
-		"title": "Date Picker",
-		"description": "Combines an Input and a Calendar popover to allow users to select a date.",
-		"variations": "./libs/components/src/lib/date-picker/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/date-picker/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/date-picker/README.md",
-		"accessibility": "./libs/components/src/lib/date-picker/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/date-picker/USE-CASES.md",
-		"children": ["Date Range Picker", "Date Time Picker"]
-	},
-	{
-		"title": "Date Range Picker",
-		"description": "Combines an Input and a dual Calendar popover to allow users to enter or select a date range.",
-		"variations": "./libs/components/src/lib/date-range-picker/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/date-range-picker/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/date-range-picker/README.md",
-		"accessibility": "./libs/components/src/lib/date-range-picker/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/date-range-picker/USE-CASES.md",
-		"parent": "Date Picker"
-	},
-	{
-		"title": "Date Time Picker",
-		"description": "Combines an Input and a Calendar/Time Picker popover to allow users to enter or select a date and time.",
-		"variations": "./libs/components/src/lib/date-time-picker/VARIATIONS.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/date-time-picker/README.md",
-		"accessibility": "./libs/components/src/lib/date-time-picker/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/date-time-picker/USE-CASES.md",
-		"parent": "Date Picker"
-	},
-	{
-		"title": "Icon",
-		"description": "Displays icons from the Vivid Icons Library using predefined colors and sizes.",
-		"variations": "./libs/components/src/lib/icon/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/icon/GUIDELINES.md",
-		"code": "./libs/components/src/lib/icon/README.md",
-		"accessibility": "./libs/components/src/lib/icon/ACCESSIBILITY.md"
-	},
-	{
-		"title": "Layout",
-		"description": "Easily arrange elements in a grid using CSS grid layout and predefined sizes and spaces.",
-		"variations": "./libs/components/src/lib/layout/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/layout/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/layout/README.md",
-		"accessibility": "./libs/components/src/lib/layout/ACCESSIBILITY.md"
-	},
-	{
-		"title": "Side Drawer",
-		"description": "",
-		"variations": "./libs/components/src/lib/side-drawer/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/side-drawer/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/side-drawer/README.md",
-		"accessibility": "./libs/components/src/lib/side-drawer/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/side-drawer/USE-CASES.md"
-	},
-	{
-		"title": "Navigation",
-		"description": "A navigation component makes it easy for users to navigate through your application. Nav accepts Nav Item and Nav Disclosure elements as children.",
-		"variations": "./libs/components/src/lib/nav/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/nav/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/nav/README.md",
-		"accessibility": "./libs/components/src/lib/nav/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/nav/USE-CASES.md"
-	},
-	{
-		"title": "Tooltip",
-		"description": "A Tooltips provides a short description of a page element or control that become visible when the target is hovered over or focussed on.",
-		"variations": "./libs/components/src/lib/tooltip/VARIATIONS.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/tooltip/README.md",
-		"accessibility": "./libs/components/src/lib/tooltip/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/tooltip/USE-CASES.md",
-		"hideUseCases": "true"
-	},
-	{
-		"title": "Progress",
-		"description": "Use to display the length of time a process will take, visualize a percentage value (determinate) or to represent an unspecified wait time (indeterminate).",
-		"variations": "./libs/components/src/lib/progress/VARIATIONS.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/progress/README.md",
-		"accessibility": "./libs/components/src/lib/progress/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/progress/USE-CASES.md"
-	},
-	{
-		"title": "Progress Ring",
-		"description": "Use to display the length of time a process will take, visualize a percentage value (determinate) or to represent an unspecified wait time (indeterminate).",
-		"variations": "./libs/components/src/lib/progress-ring/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/progress-ring/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/progress-ring/README.md",
-		"accessibility": "./libs/components/src/lib/progress-ring/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/progress-ring/USE-CASES.md"
-	},
-	{
-		"title": "Card",
-		"description": "A card is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card",
-		"variations": "./libs/components/src/lib/card/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/card/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/card/README.md",
-		"accessibility": "./libs/components/src/lib/card/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/card/USE-CASES.md"
-	},
-	{
-		"title": "Text Field",
-		"description": "The Text Field component is used to allow users to provide text input when the expected input is short. As well as plain text, Text Field supports various types of text, including passwords, email addresses and telephone numbers.",
-		"variations": "./libs/components/src/lib/text-field/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/text-field/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/text-field/README.md",
-		"accessibility": "./libs/components/src/lib/text-field/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/text-field/USE-CASES.md"
-	},
-	{
-		"title": "Number Field",
-		"description": "Allows users to enter a number in a text field or use buttons to increment or decrement the value.",
-		"variations": "./libs/components/src/lib/number-field/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/number-field/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/number-field/README.md",
-		"accessibility": "./libs/components/src/lib/number-field/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/number-field/USE-CASES.md"
-	},
-	{
-		"title": "Fab",
-		"description": "Floating Action Button (FAB) is an action button that floats above the user interface and should be used for actions that stands out among the rest of the UI.",
-		"variations": "./libs/components/src/lib/fab/VARIATIONS.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/fab/README.md",
-		"accessibility": "./libs/components/src/lib/fab/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/fab/USE-CASES.md"
+		"slug": "accordion"
 	},
 	{
 		"title": "Action Group",
-		"description": "The action group component should be used when you have a set of related actions or options that need to be grouped together within a limited space.",
-		"variations": "./libs/components/src/lib/action-group/VARIATIONS.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/action-group/README.md",
-		"accessibility": "./libs/components/src/lib/action-group/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/action-group/USE-CASES.md"
+		"slug": "action-group"
 	},
 	{
-		"title": "Note",
-		"description": "Callout information that would be relevant to the user.",
-		"variations": "./libs/components/src/lib/note/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/note/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/note/README.md",
-		"accessibility": "./libs/components/src/lib/note/ACCESSIBILITY.md"
-	},
-	{
-		"title": "Checkbox",
-		"description": "Checkboxes allow users to select one or more items from a list of options.",
-		"variations": "./libs/components/src/lib/checkbox/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/checkbox/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/checkbox/README.md",
-		"accessibility": "./libs/components/src/lib/checkbox/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/checkbox/USE-CASES.md"
-	},
-	{
-		"title": "Dialog",
-		"description": "Represents a part of an application that a user interacts with to perform a task.",
-		"variations": "./libs/components/src/lib/dialog/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/dialog/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/dialog/README.md",
-		"accessibility": "./libs/components/src/lib/dialog/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/dialog/USE-CASES.md"
-	},
-	{
-		"title": "Header",
-		"description": "The header component can be used to display a header at the top of a page or section.",
-		"variations": "./libs/components/src/lib/header/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/header/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/header/README.md",
-		"useCases": "./libs/components/src/lib/header/USE-CASES.md",
-		"accessibility": "./libs/components/src/lib/header/ACCESSIBILITY.md"
-	},
-	{
-		"title": "Divider",
-		"description": "Use as a separator between content.",
-		"variations": "./libs/components/src/lib/divider/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/divider/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/divider/README.md",
-		"accessibility": "./libs/components/src/lib/divider/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/divider/USE-CASES.md"
-	},
-	{
-		"title": "Menu",
-		"description": "The Menu is an interactive element that appears in response to user actions. It typically presents a list of Menu Items (actions) relevant to the current context.",
-		"variations": "./libs/components/src/lib/menu/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/menu/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/menu/README.md",
-		"accessibility": "./libs/components/src/lib/menu/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/menu/USE-CASES.md",
-		"children": ["Menu Item"]
-	},
-	{
-		"title": "Menu Item",
-		"description": "An option to appear inside a Menu.",
-		"variations": "./libs/components/src/lib/menu-item/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/menu-item/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/menu-item/README.md",
-		"accessibility": "./libs/components/src/lib/menu-item/ACCESSIBILITY.md",
-		"parent": "Menu"
-	},
-	{
-		"title": "Avatar",
-		"description": "Avatars are used to represent a user or a system entity. They can be used to represent a person, a group of people, or an object.",
-		"variations": "./libs/components/src/lib/avatar/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/avatar/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/avatar/README.md",
-		"accessibility": "./libs/components/src/lib/avatar/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/avatar/USE-CASES.md"
-	},
-	{
-		"title": "Text Area",
-		"description": "The Text Area component enables users to input longer, multi-line text when more extensive text entry is required.",
-		"variations": "./libs/components/src/lib/text-area/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/text-area/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/text-area/README.md",
-		"accessibility": "./libs/components/src/lib/text-area/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/text-area/USE-CASES.md",
-		"hideUseCases": "true"
-	},
-	{
-		"title": "Radio Group",
-		"description": "A radio group is a collection of Radio buttons where only one choice can be selected.",
-		"variations": "./libs/components/src/lib/radio-group/VARIATIONS.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/radio-group/README.md",
-		"accessibility": "./libs/components/src/lib/radio-group/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/radio-group/USE-CASES.md"
-	},
-	{
-		"title": "Option",
-		"description": "Use to display an option list inside the Select, Searchable Select or Combobox components",
-		"variations": "./libs/components/src/lib/option/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/option/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/option/README.md",
-		"accessibility": "./libs/components/src/lib/option/ACCESSIBILITY.md"
-	},
-	{
-		"title": "Searchable Select",
-		"description": "Searchable Select allows users to select one or multiple items from a list of options. It provides a search input field to filter the options.",
-		"variations": "./libs/components/src/lib/searchable-select/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/searchable-select/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/searchable-select/README.md",
-		"accessibility": "./libs/components/src/lib/searchable-select/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/searchable-select/USE-CASES.md"
-	},
-	{
-		"title": "Switch",
-		"description": "Use a Switch when you want a user to easily toggle between two mutually exclusive options, like 'on' and 'off' typically for settings or preferences within an application.",
-		"variations": "./libs/components/src/lib/switch/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/switch/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"hideUseCases": "true",
-		"code": "./libs/components/src/lib/switch/README.md",
-		"accessibility": "./libs/components/src/lib/switch/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/switch/USE-CASES.md"
-	},
-	{
-		"title": "Slider",
-		"description": "Allows users to choose from a range of values along a horizontal or vertical line",
-		"variations": "./libs/components/src/lib/slider/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/slider/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/slider/README.md",
-		"accessibility": "./libs/components/src/lib/slider/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/slider/USE-CASES.md",
-		"hideUseCases": "true"
-	},
-	{
-		"title": "Tabs",
-		"description": "Tabs are interactive elements that work alongside Tab and Tab Panel to organise content into separate sections or views.",
-		"variations": "./libs/components/src/lib/tabs/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/tabs/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/tabs/README.md",
-		"accessibility": "./libs/components/src/lib/tabs/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/tabs/USE-CASES.md"
-	},
-	{
-		"title": "Combobox",
-		"description": "Combobox contains a free text input for filtering options along with a similar behavior to a Select.",
-		"variations": "./libs/components/src/lib/combobox/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/combobox/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/combobox/README.md",
-		"accessibility": "./libs/components/src/lib/combobox/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/combobox/USE-CASES.md",
-		"hideUseCases": "true"
-	},
-	{
-		"title": "Elevation",
-		"page": "legacy",
-		"status": "underlying",
-		"markdown": "./libs/components/src/lib/elevation/README.md"
-	},
-	{
-		"title": "Popup",
-		"page": "legacy",
-		"status": "underlying",
-		"markdown": "./libs/components/src/lib/popup/README.md"
-	},
-	{
-		"title": "Select",
-		"description": "Select lets users choose one option from an options menu. Consider using select when you have 4 or more options to choose from.",
-		"variations": "./libs/components/src/lib/select/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/select/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/select/README.md",
-		"accessibility": "./libs/components/src/lib/select/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/select/USE-CASES.md"
-	},
-	{
-		"title": "Data Grid",
-		"description": "Allows users to interact with data in a tabular format.",
-		"variations": "./libs/components/src/lib/data-grid/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/data-grid/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/data-grid/README.md",
-		"accessibility": "./libs/components/src/lib/data-grid/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/data-grid/USE-CASES.md"
-	},
-	{
-		"title": "Table",
-		"description": "A set of composable components that work together in the same way as native HTML table elements.",
-		"variations": "./libs/components/src/lib/table/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/table/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/table/README.md",
-		"accessibility": "./libs/components/src/lib/table/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/table/USE-CASES.md",
-		"hideUseCases": "true",
-		"status": "alpha"
-	},
-	{
-		"title": "Toggletip",
-		"description": "A Toggletip is a type of Tooltip that is opened when clicking or tapping on the trigger button.",
-		"variations": "./libs/components/src/lib/toggletip/VARIATIONS.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/toggletip/README.md",
-		"accessibility": "./libs/components/src/lib/toggletip/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/toggletip/USE-CASES.md",
-		"hideUseCases": "true"
-	},
-	{
-		"title": "Time Picker",
-		"description": "",
-		"variations": "./libs/components/src/lib/time-picker/VARIATIONS.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/time-picker/README.md",
-		"accessibility": "./libs/components/src/lib/time-picker/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/time-picker/USE-CASES.md"
-	},
-	{
-		"title": "Tree View",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/tree-view/README.md",
-		"children": ["Tree Item"]
-	},
-	{
-		"title": "Tree Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/tree-item/README.md",
-		"parent": "Tree View"
-	},
-	{
-		"title": "Tags",
-		"description": "Tags are small, interactive labels used to visually group, classify, or filter criteria. Tags are wrapped with Tag Group",
-		"variations": "./libs/components/src/lib/tag-group/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/tag-group/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/tag-group/README.md",
-		"accessibility": "./libs/components/src/lib/tag-group/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/tag-group/USE-CASES.md"
-	},
-	{
-		"title": "Pagination",
-		"description": "Help users navigate forwards and backwards through a series of pages. For example, search results or guidance that’s divided into multiple pages.",
-		"variations": "./libs/components/src/lib/pagination/VARIATIONS.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/pagination/README.md",
-		"accessibility": "./libs/components/src/lib/pagination/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/pagination/USE-CASES.md"
-	},
-	{
-		"title": "Empty State",
-		"description": "The Empty State component is used to display a message when there is no data to show.",
-		"variations": "./libs/components/src/lib/empty-state/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/empty-state/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/empty-state/README.md",
-		"accessibility": "./libs/components/src/lib/empty-state/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/empty-state/USE-CASES.md"
-	},
-	{
-		"title": "File Picker",
-		"description": "The file picker component enables users to select files either by opening a file selection dialog or by using drag-and-drop functionality.",
-		"variations": "./libs/components/src/lib/file-picker/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/file-picker/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/file-picker/README.md",
-		"accessibility": "./libs/components/src/lib/file-picker/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/file-picker/USE-CASES.md"
-	},
-	{
-		"title": "Range Slider",
-		"description": "Allows users to select a range. It includes two thumb controls that can be dragged to set the start and end values.",
-		"variations": "./libs/components/src/lib/range-slider/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/range-slider/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/range-slider/README.md",
-		"accessibility": "./libs/components/src/lib/range-slider/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/range-slider/USE-CASES.md"
-	},
-	{
-		"title": "Split Button",
-		"description": "A split button is a dual-function menu button that offers a default action as well as the possibility of choosing a different action by selecting from a set of alternatives.",
-		"variations": "./libs/components/src/lib/split-button/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/split-button/GUIDELINES.md",
-		"code": "./libs/components/src/lib/split-button/README.md",
-		"accessibility": "./libs/components/src/lib/split-button/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/split-button/USE-CASES.md"
-	},
-	{
-		"title": "Selectable Box",
-		"description": "Represents a content box to used in a group where one or more can be selected.",
-		"variations": "./libs/components/src/lib/selectable-box/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/selectable-box/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/selectable-box/README.md",
-		"accessibility": "./libs/components/src/lib/selectable-box/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/selectable-box/USE-CASES.md"
+		"title": "Alert",
+		"slug": "alert"
 	},
 	{
 		"title": "Audio Player",
-		"description": "Audio Player is a component used to play audio files. It is based on the HTML5 audio element.",
-		"variations": "./libs/components/src/lib/audio-player/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/audio-player/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/audio-player/README.md",
-		"accessibility": "./libs/components/src/lib/audio-player/ACCESSIBILITY.md"
+		"slug": "audio-player"
 	},
 	{
-		"title": "Dial Pad",
-		"description": "Dial Pad allows users to enter or dial phone numbers.",
-		"markdown": "./libs/components/src/lib/dial-pad/README.md",
-		"variations": "./libs/components/src/lib/dial-pad/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/dial-pad/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/dial-pad/README.md",
-		"accessibility": "./libs/components/src/lib/dial-pad/ACCESSIBILITY.md"
+		"title": "Avatar",
+		"slug": "avatar"
 	},
 	{
-		"title": "Video Player",
-		"description": "Video Player is a component used to play and control video content.",
-		"variations": "./libs/components/src/lib/video-player/VARIATIONS.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/video-player/README.md",
-		"accessibility": "./libs/components/src/lib/video-player/ACCESSIBILITY.md"
+		"title": "Badge",
+		"slug": "badge"
 	},
 	{
-		"title": "Rich Text Editor",
-		"description": "Lets users create and format styled text content, and embed rich media such as links and images.",
-		"variations": "./libs/components/src/lib/rich-text-editor/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/rich-text-editor/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/rich-text-editor/README.md",
-		"accessibility": "./libs/components/src/lib/rich-text-editor/ACCESSIBILITY.md",
-		"hideAccessibility": "true",
-		"status": "alpha",
-		"useCases": "./libs/components/src/lib/rich-text-editor/USE-CASES.md"
+		"title": "Banner",
+		"slug": "banner"
 	},
 	{
-		"title": "Visually Hidden",
-		"description": "Hides content while keeping it available to assistive technology",
-		"variations": "./libs/components/src/lib/visually-hidden/VARIATIONS.md",
-		"code": "./libs/components/src/lib/visually-hidden/README.md",
-		"hideGuidelines": "true",
-		"hideAccessibility": "true",
-		"status": "underlying"
+		"title": "Breadcrumb",
+		"slug": "breadcrumb"
+	},
+	{
+		"title": "Button",
+		"slug": "button"
+	},
+	{
+		"title": "Calendar",
+		"children": ["Calendar Event"],
+		"slug": "calendar"
+	},
+	{
+		"title": "Calendar Event",
+		"parent": "Calendar",
+		"slug": "calendar-event"
+	},
+	{
+		"title": "Card",
+		"slug": "card"
+	},
+	{
+		"title": "Checkbox",
+		"slug": "checkbox"
 	},
 	{
 		"title": "Color Picker",
-		"description": "Allows users to select any color using a dedicated Color Picker interface.",
-		"variations": "./libs/components/src/lib/color-picker/VARIATIONS.md",
-		"code": "./libs/components/src/lib/color-picker/README.md",
-		"accessibility": "./libs/components/src/lib/color-picker/ACCESSIBILITY.md",
-		"hideGuidelines": "true",
-		"status": "alpha",
-		"children": ["Simple Color Picker"]
+		"children": ["Simple Color Picker"],
+		"slug": "color-picker"
 	},
 	{
-		"title": "Simple Color Picker",
-		"description": "The basic version of the Color Picker allows users to select a color from a predefined palette.",
-		"variations": "./libs/components/src/lib/simple-color-picker/VARIATIONS.md",
-		"code": "./libs/components/src/lib/simple-color-picker/README.md",
-		"accessibility": "./libs/components/src/lib/simple-color-picker/ACCESSIBILITY.md",
-		"hideGuidelines": "true",
-		"status": "alpha",
-		"parent": "Color Picker"
+		"title": "Combobox",
+		"slug": "combobox"
 	},
 	{
 		"title": "Contextual Help",
-		"description": "Adds contextual help nested in the Toggletip to the form label",
-		"variations": "./libs/components/src/lib/contextual-help/VARIATIONS.md",
-		"code": "./libs/components/src/lib/contextual-help/README.md",
-		"hideGuidelines": "true",
-		"hideAccessibility": "true"
+		"slug": "contextual-help"
 	},
 	{
 		"title": "Country",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/country/README.md",
-		"description": "Displays a country flag and dial code. When a country code is set, the component shows the matching flag and the country code (e.g. \"GB\") automatically.",
-		"status": "alpha",
-		"parent": "Partials"
+		"parent": "Partials",
+		"slug": "country"
 	},
 	{
-		"title": "Status",
-		"page": "legacy",
-		"description": "Displays an icon, status, and a description. Connotation (success, information, warning, alert) drives the default icon and color.",
-		"markdown": "./libs/components/src/lib/status/README.md",
-		"status": "alpha",
-		"parent": "Partials"
+		"title": "Data Grid",
+		"slug": "data-grid"
+	},
+	{
+		"title": "Date Picker",
+		"children": ["Date Range Picker", "Date Time Picker"],
+		"slug": "date-picker"
+	},
+	{
+		"title": "Date Range Picker",
+		"parent": "Date Picker",
+		"slug": "date-range-picker"
+	},
+	{
+		"title": "Date Time Picker",
+		"parent": "Date Picker",
+		"slug": "date-time-picker"
+	},
+	{
+		"title": "Dial Pad",
+		"slug": "dial-pad"
+	},
+	{
+		"title": "Dialog",
+		"slug": "dialog"
+	},
+	{
+		"title": "Divider",
+		"slug": "divider"
+	},
+	{
+		"title": "Elevation",
+		"slug": "elevation"
+	},
+	{
+		"title": "Empty State",
+		"slug": "empty-state"
+	},
+	{
+		"title": "Fab",
+		"slug": "fab"
+	},
+	{
+		"title": "File Picker",
+		"slug": "file-picker"
+	},
+	{
+		"title": "Header",
+		"slug": "header"
+	},
+	{
+		"title": "Icon",
+		"slug": "icon"
+	},
+	{
+		"title": "Layout",
+		"slug": "layout"
+	},
+	{
+		"title": "Menu",
+		"children": ["Menu Item"],
+		"slug": "menu"
+	},
+	{
+		"title": "Menu Item",
+		"parent": "Menu",
+		"slug": "menu-item"
+	},
+	{
+		"title": "Navigation",
+		"slug": "navigation"
+	},
+	{
+		"title": "Note",
+		"slug": "note"
+	},
+	{
+		"title": "Number Field",
+		"slug": "number-field"
+	},
+	{
+		"title": "Option",
+		"slug": "option"
+	},
+	{
+		"title": "Pagination",
+		"slug": "pagination"
 	},
 	{
 		"title": "Partials",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/table/PARTIALS.md",
-		"children": ["Country", "Status"]
+		"children": ["Country", "Status"],
+		"slug": "partials"
 	},
 	{
 		"title": "Popover",
-		"description": "Displays floating rich content anchored to a specific trigger element, rendering on top of all other page elements.",
-		"variations": "./libs/components/src/lib/popover/VARIATIONS.md",
-		"code": "./libs/components/src/lib/popover/README.md",
-		"accessibility": "./libs/components/src/lib/popover/ACCESSIBILITY.md",
-		"hideGuidelines": "true",
-		"hideUseCases": "true",
-		"status": "alpha"
+		"slug": "popover"
+	},
+	{
+		"title": "Popup",
+		"slug": "popup"
+	},
+	{
+		"title": "Progress",
+		"slug": "progress"
+	},
+	{
+		"title": "Progress Ring",
+		"slug": "progress-ring"
+	},
+	{
+		"title": "Radio Group",
+		"slug": "radio-group"
+	},
+	{
+		"title": "Range Slider",
+		"slug": "range-slider"
+	},
+	{
+		"title": "Rich Text Editor",
+		"slug": "rich-text-editor"
+	},
+	{
+		"title": "Searchable Select",
+		"slug": "searchable-select"
+	},
+	{
+		"title": "Select",
+		"slug": "select"
+	},
+	{
+		"title": "Selectable Box",
+		"slug": "selectable-box"
+	},
+	{
+		"title": "Side Drawer",
+		"slug": "side-drawer"
+	},
+	{
+		"title": "Simple Color Picker",
+		"parent": "Color Picker",
+		"slug": "simple-color-picker"
+	},
+	{
+		"title": "Slider",
+		"slug": "slider"
+	},
+	{
+		"title": "Split Button",
+		"slug": "split-button"
+	},
+	{
+		"title": "Status",
+		"parent": "Partials",
+		"slug": "status"
+	},
+	{
+		"title": "Switch",
+		"slug": "switch"
+	},
+	{
+		"title": "Table",
+		"slug": "table"
+	},
+	{
+		"title": "Tabs",
+		"slug": "tabs"
+	},
+	{
+		"title": "Tags",
+		"slug": "tags"
+	},
+	{
+		"title": "Text Area",
+		"slug": "text-area"
+	},
+	{
+		"title": "Text Field",
+		"slug": "text-field"
+	},
+	{
+		"title": "Time Picker",
+		"slug": "time-picker"
+	},
+	{
+		"title": "Toggletip",
+		"slug": "toggletip"
+	},
+	{
+		"title": "Tooltip",
+		"slug": "tooltip"
+	},
+	{
+		"title": "Tree Item",
+		"parent": "Tree View",
+		"slug": "tree-item"
+	},
+	{
+		"title": "Tree View",
+		"children": ["Tree Item"],
+		"slug": "tree-view"
+	},
+	{
+		"title": "Video Player",
+		"slug": "video-player"
+	},
+	{
+		"title": "Visually Hidden",
+		"slug": "visually-hidden"
 	}
 ]

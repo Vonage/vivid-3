@@ -1,0 +1,27 @@
+{% if metadata.props and metadata.props | length > 0 %}
+	<table>
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Type</th>
+				<th>Default</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for prop in metadata.props %}
+			<tr>
+				<td>
+					<strong>{{ prop.attributeName or prop.name }}</strong>
+					{% if not prop.attributeName %}
+						<br><small class="weak">(property only)</small>
+					{% endif %}
+				</td>
+				<td><code>{{ prop.type }}</code></td>
+				<td>{{ prop.default | default('') }}</td>
+				<td>{{ prop.description | default('') }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endif %}

@@ -77,7 +77,7 @@ export class AudioPlayer extends Localized(VividElement) {
 		| null = null;
 
 	/**
-	 * The connotation the audio-player should have.
+	 * Sets the color of the audio player
 	 *
 	 * @public
 	 * HTML Attribute: connotation
@@ -85,7 +85,7 @@ export class AudioPlayer extends Localized(VividElement) {
 	@attr connotation?: AudioPlayerConnotation;
 
 	/**
-	 * Indicates the audio-player's src.
+	 * Sets the audio source URL
 	 *
 	 * @public
 	 * HTML Attribute: src
@@ -166,7 +166,7 @@ export class AudioPlayer extends Localized(VividElement) {
 	}
 
 	/**
-	 * Indicates whether audio player is disabled.
+	 * Sets the disabled state of the audio player
 	 *
 	 * @public
 	 * HTML Attribute: disabled
@@ -174,6 +174,7 @@ export class AudioPlayer extends Localized(VividElement) {
 	@attr({ mode: 'boolean' }) disabled = false;
 
 	/**
+	 * Hides the time stamp
 	 *
 	 * @public
 	 * HTML Attribute: notime
@@ -193,7 +194,7 @@ export class AudioPlayer extends Localized(VividElement) {
 	skipBy?: AudioPlayerMediaSkipBy;
 
 	/**
-	 * Sets the available playback rates. When an empty string, no choices will be available
+	 * Comma-separated string of numbers to define playback speeds
 	 *
 	 * @public
 	 * @remarks

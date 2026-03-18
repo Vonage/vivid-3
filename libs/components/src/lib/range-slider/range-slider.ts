@@ -64,7 +64,7 @@ export class RangeSlider extends Localized(
 	#isInternalValueUpdate = false;
 
 	/**
-	 * The start value of the range.
+	 * The current start value of the element.
 	 */
 	@observable start = '';
 
@@ -135,7 +135,7 @@ export class RangeSlider extends Localized(
 	}
 
 	/**
-	 * The end value of the range.
+	 * The current end value of the element.
 	 */
 	@observable end = '';
 

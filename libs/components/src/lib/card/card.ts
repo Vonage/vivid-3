@@ -27,7 +27,7 @@ export type CardAppearance = ExtractFromEnum<
 
 export class Card extends Linkable(VividElement) {
 	/**
-	 * The appearance the card should have.
+	 * Sets the element's appearance.
 	 *
 	 * @public
 	 * @remarks
@@ -36,38 +36,35 @@ export class Card extends Linkable(VividElement) {
 	@attr appearance?: CardAppearance;
 
 	/**
-	 * the text of the card heading
-	 * accepts string
+	 * Sets the element's headline.
 	 *
 	 * @public
 	 */
 	@attr headline?: string;
 
 	/**
-	 * the text of the card sub-heading
-	 * accepts string
+	 * Sets the element's subtitle.
 	 *
 	 * @public
 	 */
 	@attr subtitle?: string;
 
 	/**
-	 * the text of the card sub-heading
-	 * accepts string
+	 * Sets the element's text.
 	 *
 	 * @public
 	 */
 	@attr text?: string;
 
 	/**
-	 * card header icon
+	 * Sets the element's icon.
 	 *
 	 * @public
 	 */
 	@attr icon?: string;
 
 	/**
-	 * card elevation dp
+	 * Sets the element's elevation.
 	 *
 	 * @public
 	 */

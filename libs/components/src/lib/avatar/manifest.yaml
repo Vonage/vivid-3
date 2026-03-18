@@ -1,0 +1,20 @@
+concept: Avatar
+id: avatar
+description: Avatars are used to represent a user or a system entity. They can
+  be used to represent a person, a group of people, or an object.
+status: ready
+slug: avatar
+keywords:
+  - profile
+  - user
+  - identity
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: avatar
+    design: https://figma.com/...

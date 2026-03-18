@@ -1,0 +1,21 @@
+concept: Tree View
+id: tree-view
+description: Represents a hierarchical list where tree items may have child
+  items that can be expanded or collapsed to show or hide the children.
+status: ready
+slug: tree-view
+keywords:
+  - tree-view
+  - hierarchical
+  - list
+  - expandable
+  - navigation
+documentation:
+  legacy: ./README.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: tree-view
+    design: https://figma.com/...
+  - tag: tree-item
+    design: https://figma.com/...

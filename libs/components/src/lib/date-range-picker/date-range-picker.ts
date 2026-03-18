@@ -80,7 +80,7 @@ export class DateRangePicker extends MinMaxCalendarPicker(
 	#isInternalValueUpdate = false;
 
 	/**
-	 * The start value of the date range.
+	 * Sets the start date value
 	 */
 	@observable start = '';
 
@@ -100,7 +100,7 @@ export class DateRangePicker extends MinMaxCalendarPicker(
 	}
 
 	/**
-	 * The end value of the date range.
+	 * Sets the end date value
 	 */
 	@observable end = '';
 

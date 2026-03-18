@@ -43,7 +43,7 @@ export class FilePicker extends WithContextualHelp(
 	)
 ) {
 	/**
-	 * Whether to allow only a single file. Subsequent added file will replace the current file.
+	 * Allows only a single file; subsequent uploads replace the current file
 	 *
 	 * @public
 	 * @remarks
@@ -52,7 +52,7 @@ export class FilePicker extends WithContextualHelp(
 	@attr({ attribute: 'single-file', mode: 'boolean' }) singleFile = false;
 
 	/**
-	 * The max number of files that can be selected. Additional files will be rejected.
+	 * Limits how many files can be selected; additional files will be rejected
 	 *
 	 * @public
 	 * @remarks
@@ -61,7 +61,7 @@ export class FilePicker extends WithContextualHelp(
 	@attr({ attribute: 'max-files' }) maxFiles?: number;
 
 	/**
-	 * The maximum file size (in megabytes) for each file.
+	 * Maximum allowed file size per file
 	 *
 	 * @public
 	 * @remarks
@@ -71,7 +71,7 @@ export class FilePicker extends WithContextualHelp(
 	maxFileSize = 256;
 
 	/**
-	 * List of accepted files types
+	 * Defines a list of allowed file extensions or MIME types
 	 *
 	 * @public
 	 * @remarks
@@ -80,7 +80,7 @@ export class FilePicker extends WithContextualHelp(
 	@attr accept?: string;
 
 	/**
-	 * The size the file-uploader should have.
+	 * Sets the display size of the input element
 	 *
 	 * @public
 	 * @remarks
@@ -89,7 +89,7 @@ export class FilePicker extends WithContextualHelp(
 	@attr size?: FilePickerSize;
 
 	/**
-	 * Overrides the localized error message for invalid file type
+	 * Custom error message shown when a file does not match the accepted types
 	 *
 	 * @public
 	 * @remarks
@@ -98,7 +98,7 @@ export class FilePicker extends WithContextualHelp(
 	@attr({ attribute: 'invalid-file-type-error' }) invalidFileTypeError?: string;
 
 	/**
-	 * Overrides the localized error message for max file exceed
+	 * Custom error message shown when more than the allowed number of files are selected
 	 *
 	 * @public
 	 * @remarks
@@ -108,7 +108,7 @@ export class FilePicker extends WithContextualHelp(
 	maxFilesExceededError?: string;
 
 	/**
-	 * Overrides the localized error message for file too big
+	 * Custom error message shown when a file exceeds the maximum file size
 	 *
 	 * @public
 	 * @remarks
@@ -422,7 +422,7 @@ export class FilePicker extends WithContextualHelp(
 	}
 
 	/**
-	 * Files that have been added to the file picker and passed validation.
+	 * List of files that have been added to the file picker and passed validation
 	 *
 	 * @public
 	 */
@@ -433,7 +433,7 @@ export class FilePicker extends WithContextualHelp(
 	}
 
 	/**
-	 * Files that have been rejected by the file picker for failing validation.
+	 * List of files that have been added to the file picker but failed validation
 	 *
 	 * @public
 	 */

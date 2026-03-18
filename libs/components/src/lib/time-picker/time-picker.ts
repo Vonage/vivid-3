@@ -87,7 +87,7 @@ export class TimePicker extends TimeSelectionPicker(
 	// --- Attributes ---
 
 	/**
-	 * The earliest accepted time of the time-picker.
+	 * Sets the minimum time the user can set
 	 *
 	 * @public
 	 * @remarks
@@ -108,7 +108,7 @@ export class TimePicker extends TimeSelectionPicker(
 	}
 
 	/**
-	 * The latest accepted time of the time-picker.
+	 * Sets the maximum time the user can set
 	 *
 	 * @public
 	 * @remarks

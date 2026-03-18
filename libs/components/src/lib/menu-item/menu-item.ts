@@ -43,7 +43,7 @@ export type MenuItemConnotation = ExtractFromEnum<
  */
 export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	/**
-	 * The disabled state of the element.
+	 * Sets the disabled state
 	 *
 	 * @public
 	 * @remarks
@@ -53,7 +53,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	disabled!: boolean;
 
 	/**
-	 * The expanded state of the element.
+	 * Sets the expanded state
 	 *
 	 * @public
 	 * @remarks
@@ -145,7 +145,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	controlType?: ControlType;
 
 	/**
-	 * The checked value of the element.
+	 * Sets the checked state
 	 *
 	 * @public
 	 * @remarks
@@ -242,7 +242,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	};
 
 	/**
-	 * Indicates the menu item's text.
+	 * Text content
 	 *
 	 * @public
 	 * @remarks
@@ -250,7 +250,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	 */
 	@attr text?: string;
 	/**
-	 * Indicates the menu item's secondary text.
+	 * Give more context to the text
 	 *
 	 * @public
 	 * @remarks
@@ -258,7 +258,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	 */
 	@attr({ attribute: 'text-secondary' }) textSecondary?: string;
 	/**
-	 * The connotation the fab should have.
+	 * Sets the connotation that appears when checked
 	 *
 	 * @public
 	 * @remarks
@@ -266,7 +266,8 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	 */
 	@attr connotation?: MenuItemConnotation;
 	/**
-	 * Controls the placement of the menu item's checkmark or radio icon.
+	 * Sets the check element to appear at the end of the Menu Item
+	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: check-trailing

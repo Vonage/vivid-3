@@ -1,0 +1,24 @@
+concept: Searchable Select
+id: searchable-select
+description: Searchable Select allows users to select one or multiple items from
+  a list of options. It provides a search input field to filter the options.
+status: ready
+slug: searchable-select
+keywords:
+  - searchable
+  - select
+  - dropdown
+  - filter
+  - options
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: searchable-select
+    design: https://figma.com/...
+  - tag: option
+    design: https://figma.com/...

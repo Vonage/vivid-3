@@ -1,0 +1,21 @@
+concept: Status
+id: status
+description: Displays an icon, status, and a description. Connotation (success,
+  information, warning, alert) drives the default icon and color.
+status: alpha
+slug: status
+keywords:
+  - status
+  - state
+  - indicator
+  - icon
+  - connotation
+documentation:
+  legacy: ./README.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: status
+    design: https://figma.com/...
+  - tag: icon
+    design: https://figma.com/...

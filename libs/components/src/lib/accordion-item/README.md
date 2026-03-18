@@ -205,13 +205,3 @@ Use `--accordion-item-meta-inline-size` to set a custom inline-size to the meta-
 	<vwc-accordion-item heading="Accordion item" meta="meta-data with custom width"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </vwc-accordion-item>
 </vwc-accordion>
 ```
-
-## Events
-
-<div class="table-wrapper">
-
-| Name     | Type                     | Bubbles | Composed | Description                                              |
-| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the button is invoked |
-
-</div>

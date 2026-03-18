@@ -4,9 +4,9 @@ pagination:
   data: componentGuidelines
   size: 1
   alias: component
-permalink: 'components/{{ component | componentSlug }}/guidelines/llms.txt'
+permalink: 'components/{{ component.slug }}/guidelines/llms.txt'
 eleventyComputed:
-  pageTitle: '{{ component.title }} - Guidelines'
+  pageTitle: '{{ component.concept }} - Guidelines'
 ---
 # {{ pageTitle }}
-{{ component.guidelines | includeMd | safe }}
+{{ component.documentation.guidelines | includeMd | safe }}
