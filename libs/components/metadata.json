@@ -566,6 +566,16 @@
 					"name": "keyup",
 					"description": "Fires when a key is released.",
 					"type": "KeyboardEvent"
+				},
+				{
+					"name": "pause",
+					"description": "Fires when the audio playback is paused.",
+					"type": "CustomEvent<undefined>"
+				},
+				{
+					"name": "play",
+					"description": "Fires when the audio playback is started.",
+					"type": "CustomEvent<undefined>"
 				}
 			],
 			"vueModels": [],

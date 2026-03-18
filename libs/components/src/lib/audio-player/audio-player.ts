@@ -57,6 +57,8 @@ const validSkipByConverter: ValueConverter = {
 /**
  * @public
  * @component audio-player
+ * @event {CustomEvent<undefined>} play - Fires when the audio playback is started.
+ * @event {CustomEvent<undefined>} pause - Fires when the audio playback is paused.
  */
 export class AudioPlayer extends Localized(VividElement) {
 	@attr({ attribute: 'play-button-aria-label' }) playButtonAriaLabel:
@@ -302,6 +304,8 @@ export class AudioPlayer extends Localized(VividElement) {
 		this.#playerEl.addEventListener('timeupdate', this.#updateProgress);
 		this.#playerEl.addEventListener('loadedmetadata', this.#updateTotalTime);
 		this.#playerEl.addEventListener('durationchange', this.#updateTotalTime);
+		this.#playerEl.addEventListener('play', this.#onPlay);
+		this.#playerEl.addEventListener('pause', this.#onPause);
 		this.#setSliderInteractionListeners();
 
 		this.#setPausedState();
@@ -316,6 +320,8 @@ export class AudioPlayer extends Localized(VividElement) {
 		this.#playerEl.removeEventListener('timeupdate', this.#updateProgress);
 		this.#playerEl.removeEventListener('loadedmetadata', this.#updateTotalTime);
 		this.#playerEl.removeEventListener('durationchange', this.#updateTotalTime);
+		this.#playerEl.removeEventListener('play', this.#onPlay);
+		this.#playerEl.removeEventListener('pause', this.#onPause);
 	}
 
 	play() {
@@ -325,6 +331,18 @@ export class AudioPlayer extends Localized(VividElement) {
 	pause() {
 		this.#pausedChanged(PAUSE);
 	}
+
+	#onPlay = () => {
+		if (!this.#sliderEl?.isDragging) {
+			this.$emit('play', undefined, { bubbles: false });
+		}
+	};
+
+	#onPause = () => {
+		if (!this.#sliderEl?.isDragging) {
+			this.$emit('pause', undefined, { bubbles: false });
+		}
+	};
 
 	#setSliderInteractionListeners(add = true) {
 		const action = add ? 'addEventListener' : 'removeEventListener';
