@@ -4,9 +4,10 @@ pagination:
     data: componentsLegacy
     size: 1
     alias: component
-permalink: "components/{{ component | componentSlug }}/"
+permalink: "components/{{ component.slug }}/"
 layout: component.njk
 eleventyComputed:
-    githubEditLink: "{{ component.markdown | githubEditLink }}"
+    githubEditLink: "{{ component.documentation.legacy | githubEditLink }}"
 ---
-{% renderFile "../../" ~ component.markdown %}
+
+{% renderFile component.documentation.legacy %}

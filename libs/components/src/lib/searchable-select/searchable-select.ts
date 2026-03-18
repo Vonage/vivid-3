@@ -79,30 +79,40 @@ export class SearchableSelect extends WithContextualHelp(
 	)
 ) {
 	/**
+	 *
+	 *
 	 * @public
 	 * HTML Attribute: appearance
 	 */
 	@attr appearance?: SearchableSelectAppearance;
 
 	/**
+	 *
+	 *
 	 * @public
 	 * HTML Attribute: shape
 	 */
 	@attr shape?: SearchableSelectShape;
 
 	/**
+	 *
+	 *
 	 * @public
 	 * HTML Attribute: fixed-dropdown
 	 */
 	@attr({ mode: 'boolean', attribute: 'fixed-dropdown' }) fixedDropdown = false;
 
 	/**
+	 *
+	 *
 	 * @public
 	 * HTML Attribute: placeholder
 	 */
 	@attr placeholder: string | undefined;
 
 	/**
+	 *
+	 *
 	 * @public
 	 * HTML Attribute: open
 	 */
@@ -117,18 +127,24 @@ export class SearchableSelect extends WithContextualHelp(
 	}
 
 	/**
+	 *
+	 *
 	 * @public
 	 * HTML Attribute: multiple
 	 */
 	@attr({ mode: 'boolean' }) multiple = false;
 
 	/**
+	 *
+	 *
 	 * @public
 	 * HTML Attribute: external-tags
 	 */
 	@attr({ attribute: 'external-tags', mode: 'boolean' }) externalTags = false;
 
 	/**
+	 *
+	 *
 	 * @public
 	 * HTML Attribute: max-lines
 	 */
@@ -138,7 +154,7 @@ export class SearchableSelect extends WithContextualHelp(
 	// --- Values ---
 
 	/**
-	 * List of selected values.
+	 * List of selected option's values in the order that they have been selected in.
 	 */
 	@observable values: string[] = [];
 	/**
@@ -189,8 +205,7 @@ export class SearchableSelect extends WithContextualHelp(
 	}
 
 	/**
-	 * The initial values. This value sets the `values` property
-	 * only when the `values` property has not been explicitly set.
+	 * List of initially selected option's values. Used in case of form reset.
 	 */
 	@observable initialValues: string[] = [];
 	/**
@@ -272,7 +287,7 @@ export class SearchableSelect extends WithContextualHelp(
 	}
 
 	/**
-	 * The current search text of the component.
+	 * Read-only property containing the current search text.
 	 */
 	get searchText() {
 		return this._currentSearchText ?? '';
@@ -1043,6 +1058,7 @@ export class SearchableSelect extends WithContextualHelp(
 
 	/**
 	 * Adds a clear button to the input field that clears the selected values.
+	 *
 	 * @public
 	 * HTML Attribute: clearable
 	 */
@@ -1069,6 +1085,8 @@ export class SearchableSelect extends WithContextualHelp(
 	// --- Max selected ---
 
 	/**
+	 *
+	 *
 	 * @public
 	 * HTML Attribute: max-selected
 	 */
@@ -1133,14 +1151,16 @@ export class SearchableSelect extends WithContextualHelp(
 		false;
 
 	/**
-	 * Overrides the default "Select All" text
+	 * Overrides the default "Select All" text.
+	 *
 	 * @public
 	 * HTML Attribute: select-all-text
 	 */
 	@attr({ attribute: 'select-all-text' }) selectAllText: string | undefined;
 
 	/**
-	 * Overrides the default "Deselect All" text
+	 * Overrides the default "Deselect All" text.
+	 *
 	 * @public
 	 * HTML Attribute: deselect-all-text
 	 */

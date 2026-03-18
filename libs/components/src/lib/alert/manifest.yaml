@@ -1,0 +1,20 @@
+concept: Alert
+id: alert
+description: Alerts display short-lived important information to the user,
+  usually at the top or bottom of the screen.
+status: ready
+slug: alert
+keywords:
+  - notification
+  - message
+  - status
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: alert
+    design: https://figma.com/...

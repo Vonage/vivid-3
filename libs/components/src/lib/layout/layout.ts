@@ -36,21 +36,21 @@ export type ColumnBasis =
  */
 export class Layout extends VividElement {
 	/**
-	 * sets the initial preferred margin from predefined available options
+	 * Controls the amount of margin around the component
 	 *
 	 * @public
 	 */
 	@attr gutters?: Gutters;
 
 	/**
-	 * sets the initial preferred measure of a column from predefined available options
+	 * Controls the `min-width` of columns
 	 *
 	 * @public
 	 */
 	@attr({ attribute: 'column-basis' }) columnBasis?: ColumnBasis;
 
 	/**
-	 * sets the initial preferred spacing of a column from predefined available options
+	 * Controls the size of the spacing between columns
 	 *
 	 * @public
 	 */
@@ -64,7 +64,7 @@ export class Layout extends VividElement {
 	@attr({ attribute: 'row-spacing' }) rowSpacing?: RowSpacing;
 
 	/**
-	 * sets the initial preferred auto-sizing from predefined available options
+	 * Controls how the grid's behaves with empty column tracks
 	 *
 	 * @public
 	 */

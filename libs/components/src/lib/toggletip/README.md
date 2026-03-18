@@ -316,31 +316,3 @@ import { VButton, VIcon, VToggletip } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name          | Type                                                                                                                                         | Description                                                                                |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **alternate** | `boolean`                                                                                                                                    | Inverted color scheme                                                                      |
-| **anchor**    | `string` or `HTMLElement`                                                                                                                    | ID of, or HTML elemnent itself, to anchor the Toggletip to. Prefer using the `anchor` slot |
-| **headline**  | `string`                                                                                                                                     | Headline text for the Toggletip                                                            |
-| **open**      | `boolean`                                                                                                                                    | Sets the open state of the Toggletip                                                       |
-| **placement** | `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` | Prefered placement of the toggletip in relation to the anchor element                      |
-
-</div>
-
-### Slots
-
-<div class="table-wrapper">
-
-| Name             | Description                               |
-| ---------------- | ----------------------------------------- |
-| **default**      | For the default content of the Toggletip. |
-| **anchor**       | For the anchor element.                   |
-| **action-items** | For action buttons inside the Toggletip   |
-
-</div>

@@ -53,7 +53,7 @@ export class DateTimePicker extends TimeSelectionPicker(
 	SingleDatePickerMixin(SingleValuePicker(CalendarPicker(PickerField)))
 ) {
 	/**
-	 * The earliest accepted date-time.
+	 * Sets the minimum date and time that can be selected
 	 *
 	 * @public
 	 * @remarks
@@ -63,7 +63,7 @@ export class DateTimePicker extends TimeSelectionPicker(
 	min: string;
 
 	/**
-	 * The earliest accepted time part of the date-time.
+	 * Sets the minimum time that can be selected
 	 *
 	 * @public
 	 * @remarks
@@ -73,7 +73,7 @@ export class DateTimePicker extends TimeSelectionPicker(
 	minTime: string;
 
 	/**
-	 * The earliest accepted date part of the date-time.
+	 * Sets the minimum date that can be selected
 	 *
 	 * @public
 	 * @remarks
@@ -83,7 +83,7 @@ export class DateTimePicker extends TimeSelectionPicker(
 	minDate: string;
 
 	/**
-	 * The latest accepted date-time.
+	 * Sets the maximum date and time that can be selected
 	 *
 	 * @public
 	 * @remarks
@@ -93,7 +93,7 @@ export class DateTimePicker extends TimeSelectionPicker(
 	max: string;
 
 	/**
-	 * The latest accepted time part of the date-time.
+	 * Sets the maximum time that can be selected
 	 *
 	 * @public
 	 * @remarks
@@ -103,7 +103,7 @@ export class DateTimePicker extends TimeSelectionPicker(
 	maxTime: string;
 
 	/**
-	 * The latest accepted time date of the date-time.
+	 * Sets the maximum date that can be selected
 	 *
 	 * @public
 	 * @remarks

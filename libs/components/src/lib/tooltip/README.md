@@ -222,27 +222,3 @@ import { VButton, VIcon, VTooltip } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name          | Type                                                                                                                                         | Description                                                                              |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **anchor**    | `string` or `HTMLElement`                                                                                                                    | ID of, or HTML elemnent itself, to anchor the Tooltip to. Prefer using the `anchor` slot |
-| **placement** | `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` | Prefered placement of the Tooltip in relation to the anchor element                      |
-| **text**      | `string`                                                                                                                                     | Text content of the Tooltip                                                              |
-
-</div>
-
-### Slots
-
-<div class="table-wrapper">
-
-| Name       | Description             |
-| ---------- | ----------------------- |
-| **anchor** | For the anchor element. |
-
-</div>

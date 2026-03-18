@@ -54,7 +54,7 @@ export type BadgeSize = ExtractFromEnum<Size, Size.Normal | Size.Expanded>;
  */
 export class Badge extends AffixIconWithTrailing(VividElement) {
 	/**
-	 * The connotation the badge should have.
+	 * Sets the badge connotation
 	 *
 	 * @public
 	 * @remarks
@@ -63,7 +63,7 @@ export class Badge extends AffixIconWithTrailing(VividElement) {
 	@attr connotation?: BadgeConnotation;
 
 	/**
-	 * The shape the badge should have.
+	 * Sets the badge border-radius
 	 *
 	 * @public
 	 * @remarks
@@ -72,7 +72,7 @@ export class Badge extends AffixIconWithTrailing(VividElement) {
 	@attr shape?: BadgeShape;
 
 	/**
-	 * The size the badge should have.
+	 * Sets the badge size
 	 *
 	 * @public
 	 * @remarks
@@ -81,7 +81,7 @@ export class Badge extends AffixIconWithTrailing(VividElement) {
 	@attr size?: BadgeSize;
 
 	/**
-	 * The appearance the badge should have.
+	 * Sets the badge appearance
 	 *
 	 * @public
 	 * @remarks
@@ -90,7 +90,7 @@ export class Badge extends AffixIconWithTrailing(VividElement) {
 	@attr appearance?: BadgeAppearance;
 
 	/**
-	 * Indicates the badge's text.
+	 * Sets a text on the badge
 	 *
 	 * @public
 	 * @remarks

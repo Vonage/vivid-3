@@ -3,6 +3,7 @@
 	"private": true,
 	"devDependencies": {
 		"@repo/typescript-config": "workspace:*",
-		"@turbo/gen": "^2.8.13"
+		"@turbo/gen": "^2.8.13",
+		"change-case": "catalog:"
 	}
 }

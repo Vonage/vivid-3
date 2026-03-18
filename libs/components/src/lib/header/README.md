@@ -333,28 +333,3 @@ main {
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name                 | Type      | Description                                |
-| -------------------- | --------- | ------------------------------------------ |
-| **alternate**        | `boolean` | Applies an alternate inverted color scheme |
-| **elevation-shadow** | `boolean` | Applies a shadow to the header             |
-
-</div>
-
-### Slots
-
-<div class="table-wrapper">
-
-| Name             | Description                                                 |
-| ---------------- | ----------------------------------------------------------- |
-| **action-items** | Add adding action items to the end of the header            |
-| **app-content**  | Add application content to apply consistant vertical rhythm |
-| **default**      | Main content for the header, typically a heading            |
-
-</div>

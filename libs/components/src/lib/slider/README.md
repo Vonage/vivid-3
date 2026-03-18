@@ -214,33 +214,3 @@ const slidervalue = ref(5);
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name            | Type                                    | Description                                                          |
-| --------------- | --------------------------------------- | -------------------------------------------------------------------- |
-| **connotation** | _Enum_:<br/>`accent`<br/>`cta`          | The connotation of the component                                     |
-| **disabled**    | `boolean`                               | Sets the element's disabled state                                    |
-| **markers**     | `boolean`                               | Display markers on/off                                               |
-| **max**         | `number`                                | The maximum value of the range.                                      |
-| **min**         | `number`                                | The minimum value of the range.                                      |
-| **orientation** | _Enum_:<br/>`horizontal`<br/>`vertical` | The orientation of the slider.                                       |
-| **pin**         | `boolean`                               | Show current values on the thumbs.                                   |
-| **step**        | `number`                                | Value to increment or decrement via arrow keys, mouse click or drag. |
-| **value**       | `number`                                | Set the value attribute to set the value of the slider.              |
-
-</div>
-
-### Events
-
-<div class="table-wrapper">
-
-| Name       | Type                     | Bubbles | Composed | Description                                                 |
-| ---------- | ------------------------ | ------- | -------- | ----------------------------------------------------------- |
-| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the slider value changes |
-
-</div>

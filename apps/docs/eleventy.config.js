@@ -16,12 +16,27 @@ const { githubEditLinkFromPath } = require('./filters/githubEditLink');
 const { isNavItemActive } = require('./filters/isNavItemActive');
 const { onlyPublicPages } = require('./filters/publicPages');
 const { componentSlug } = require('./filters/componentSlug');
-const {
-	navigationFromComponents,
-} = require('./filters/navigationFromComponents');
-const components = require('./content/_data/components.json');
 const { spawn } = require('node:child_process');
 const { NodePackageImporter } = require('sass');
+const {
+	manifestsArray: components,
+	manifestsBySlug,
+} = require('./utils/components-manifests');
+const { componentsNav } = require('./utils/components-navigation');
+const { metadataByTag } = require('./utils/components-metadata');
+const {
+	camelCase,
+	pascalCase,
+	pascalSnakeCase,
+	capitalCase,
+	constantCase,
+	dotCase,
+	kebabCase,
+	pathCase,
+	sentenceCase,
+	snakeCase,
+	trainCase,
+} = require('change-case');
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..');
 const DOCS_DIR = '.';
@@ -121,6 +136,9 @@ module.exports = async (eleventyConfig) => {
 	});
 
 	eleventyConfig.addWatchTarget(
+		`${WORKSPACE_ROOT}/libs/components/src/lib/*/manifest.yaml`
+	);
+	eleventyConfig.addWatchTarget(
 		`${WORKSPACE_ROOT}/libs/components/src/lib/*/README.md`
 	);
 	eleventyConfig.addWatchTarget(
@@ -141,7 +159,17 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addWatchTarget(`${WORKSPACE_ROOT}docs/`);
 	eleventyConfig.addWatchTarget(`${WORKSPACE_ROOT}assets/`);
 
-	eleventyConfig.setUseGitIgnore(false);
+	eleventyConfig.addFilter('camelCase', camelCase);
+	eleventyConfig.addFilter('pascalCase', pascalCase);
+	eleventyConfig.addFilter('pascalSnakeCase', pascalSnakeCase);
+	eleventyConfig.addFilter('capitalCase', capitalCase);
+	eleventyConfig.addFilter('constantCase', constantCase);
+	eleventyConfig.addFilter('dotCase', dotCase);
+	eleventyConfig.addFilter('kebabCase', kebabCase);
+	eleventyConfig.addFilter('pathCase', pathCase);
+	eleventyConfig.addFilter('sentenceCase', sentenceCase);
+	eleventyConfig.addFilter('snakeCase', snakeCase);
+	eleventyConfig.addFilter('trainCase', trainCase);
 
 	eleventyConfig.addFilter('cssmin', function (code) {
 		return new CleanCSS({}).minify(code).styles;
@@ -170,34 +198,60 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addFilter('onlyNavPages', (entries) =>
 		entries.filter((entry) => Boolean(entry.data.title))
 	);
-	eleventyConfig.addFilter(
-		'navigationFromComponents',
-		navigationFromComponents
-	);
+
+	eleventyConfig.addNunjucksGlobal('getManifest', (slug) => {
+		return manifestsBySlug.get(slug);
+	});
+
+	eleventyConfig.addNunjucksGlobal('getMetadata', (tagName) => {
+		return metadataByTag.get(tagName);
+	});
+
+	eleventyConfig.addFilter('has', (object, propName) => {
+		return Object.prototype.hasOwnProperty.call(object, propName);
+	});
+
+	eleventyConfig.addFilter('hasAny', (object, ...propNames) => {
+		for (const name of propNames) {
+			if (Object.keys(object).includes(name)) {
+				return true;
+			}
+		}
+		return false;
+	});
+
+	eleventyConfig.addGlobalData('componentsNavigation', componentsNav);
+
+	eleventyConfig.addGlobalData('componentsNew', components);
 
 	eleventyConfig.addGlobalData(
-		'componentsNew',
-		components.filter((c) => c.page !== 'legacy')
+		'componentCode',
+		components.filter((c) => c.documentation.code)
 	);
 
 	eleventyConfig.addGlobalData(
 		'componentGuidelines',
-		components.filter((c) => c.guidelines)
+		components.filter((c) => c.documentation.guidelines)
 	);
 
 	eleventyConfig.addGlobalData(
 		'componentUseCases',
-		components.filter((c) => c.useCases)
+		components.filter((c) => c.documentation.useCases)
+	);
+
+	eleventyConfig.addGlobalData(
+		'componentVariations',
+		components.filter((c) => c.documentation.variations)
 	);
 
 	eleventyConfig.addGlobalData(
 		'componentAccessibility',
-		components.filter((c) => c.accessibility)
+		components.filter((c) => c.documentation.accessibility)
 	);
 
 	eleventyConfig.addGlobalData(
 		'componentsLegacy',
-		components.filter((c) => c.page === 'legacy')
+		components.filter((c) => c.documentation.legacy)
 	);
 
 	eleventyConfig.addShortcode('clientSideNavigationHint', function () {

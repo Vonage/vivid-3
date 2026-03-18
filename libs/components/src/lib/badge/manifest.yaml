@@ -1,0 +1,21 @@
+concept: Badge
+id: badge
+description: A small label, generally appearing inside or in proximity to
+  another larger interface component, representing a status, property, or some
+  other metadata.
+status: ready
+slug: badge
+keywords:
+  - status
+  - label
+  - metadata
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: badge
+    design: https://figma.com/...

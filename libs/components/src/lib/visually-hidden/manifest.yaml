@@ -1,0 +1,19 @@
+concept: Visually Hidden
+id: visually-hidden
+description: Hides content while keeping it available to assistive technology
+status: underlying
+slug: visually-hidden
+keywords:
+  - visually-hidden
+  - accessibility
+  - screen-reader
+  - hidden
+  - assistive
+documentation:
+  code: ./README.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: visually-hidden
+    design: https://figma.com/...

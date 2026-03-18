@@ -40,8 +40,7 @@ export type AccordionExpandMode =
  */
 export class Accordion extends VividElement {
 	/**
-	 * Controls the expand mode of the Accordion, either allowing
-	 * single or multiple item expansion.
+	 * Determines if multiple items or a single item can opened at once
 	 * @public
 	 *
 	 * @remarks

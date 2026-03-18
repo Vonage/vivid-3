@@ -52,7 +52,7 @@ export type AvatarSize = ExtractFromEnum<
  */
 export class Avatar extends Linkable(VividElement) {
 	/**
-	 * The connotation the avatar should have.
+	 * Sets the element's connotation
 	 *
 	 * @public
 	 * @remarks
@@ -61,7 +61,7 @@ export class Avatar extends Linkable(VividElement) {
 	@attr connotation?: AvatarConnotation;
 
 	/**
-	 * The shape the avatar should have.
+	 * Sets the element's shape
 	 *
 	 * @public
 	 * @remarks
@@ -70,7 +70,7 @@ export class Avatar extends Linkable(VividElement) {
 	@attr shape?: AvatarShape;
 
 	/**
-	 * The appearance the avatar should have.
+	 * Sets the element's appearance
 	 *
 	 * @public
 	 * @remarks
@@ -79,7 +79,7 @@ export class Avatar extends Linkable(VividElement) {
 	@attr appearance?: AvatarAppearance;
 
 	/**
-	 * The size the avatar should have.
+	 * Sets the element's size
 	 *
 	 * @public
 	 * @remarks
@@ -88,7 +88,10 @@ export class Avatar extends Linkable(VividElement) {
 	@attr size?: AvatarSize;
 
 	/**
-	 * @deprecated Use icon slot instead.
+	 * Sets the element's icon
+	 *
+	 * @deprecated deprecated as of 06/25
+	 *
 	 * avatar header icon
 	 *
 	 * @public
@@ -96,7 +99,7 @@ export class Avatar extends Linkable(VividElement) {
 	@attr icon?: string;
 
 	/**
-	 * avatar name
+	 * Sets the initials on the Avatar
 	 *
 	 * @public
 	 */

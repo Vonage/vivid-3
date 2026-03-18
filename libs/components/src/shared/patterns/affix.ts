@@ -15,8 +15,11 @@ export const AffixIcon = <T extends Constructor<VividElement>>(Base: T) => {
 	 */
 	class AffixIconElement extends Base {
 		/**
-		 * A decorative icon the custom element should have.
-		 * @deprecated Use the icon slot instead. This attribute will be removed in a future versions.
+		 * A decorative icon the custom element should have. See the [Vivid Icon
+		 * Gallery](/icons/icons-gallery/) for available icons and `icon-name`s
+		 *
+		 * @deprecated deprecated as of 05/25
+		 *
 		 * @public
 		 * @remarks
 		 * HTML Attribute: icon

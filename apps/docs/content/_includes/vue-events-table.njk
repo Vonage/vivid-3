@@ -1,0 +1,52 @@
+{% set sourceEvents = metadata.events or [] %}
+{% set sourceProps = metadata.props or [] %}
+{% set vueModels = metadata.vueModels or [] %}
+
+{% set vueEvents = [] %}
+
+{% for event in sourceEvents %}
+	{% set vueEvents = vueEvents.concat([{
+		name: event.name,
+		type: event.type,
+		description: event.description
+	}]) %}
+{% endfor %}
+
+{% for model in vueModels %}
+	{% set propType = null %}
+	{% for prop in sourceProps %}
+		{% if prop.name == model.propName %}
+			{% set propType = prop.type %}
+		{% endif %}
+	{% endfor %}
+
+	{% if propType %}
+		{% set vueEvents = vueEvents.concat([{
+			name: 'update:' + model.name,
+			type: propType,
+			description: 'Fires when the ' + model.name + ' value changes'
+		}]) %}
+	{% endif %}
+{% endfor %}
+
+{% if vueEvents.length > 0 %}
+<table>
+	<thead>
+		<tr>
+			<th>Event</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for event in vueEvents %}
+		<tr>
+			<td><strong>{{ event.name }}</strong></td>
+			<td><code>{{ event.type }}</code></td>
+			<td>{{ event.description or '' }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endif %}
+

@@ -10,7 +10,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  */
 export class ContextualHelp extends VividElement {
 	/**
-	 * Placement of the toggletip
+	 * Preferred placement of the Contextual Help's Toggletip in relation to the button element
 	 *
 	 * @public
 	 * HTML Attribute: placement

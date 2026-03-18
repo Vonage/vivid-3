@@ -24,40 +24,53 @@ main:has(vwc-banner) {
 }
 
 .article-toc nav {
+	position: relative;
 	border-left: 1px solid var(--vvd-color-neutral-200);
 	margin-block-start: 16px;
 }
 
+.article-toc nav::before {
+	position: absolute;
+	top: anchor(top);
+	left: 0;
+	display: block;
+	height: anchor-size(height);
+	background-color: var(--vvd-color-cta-600);
+	block-size: 100%;
+	content: '';
+	inline-size: 2px;
+	position-anchor: --toc-current-item;
+	transition:
+		top 0.2s ease,
+		height 0.2s ease;
+}
+
+.article-toc ol {
+	padding-left: 8px;
+	list-style: none;
+}
+
+.article-toc ol ol li {
+	padding-block-start: 2px;
+}
+
+.article-toc nav > ol > li:not(:first-child) {
+	padding-block-start: 12px;
+}
+
 .article-toc a {
-	position: relative;
 	display: block;
 	padding: 8px 16px;
 	border-radius: 8px;
 	color: var(--vvd-color-canvas-text);
 	font: var(--vvd-typography-base);
-	margin-inline-start: var(--inline-start);
 	text-decoration: none;
-
-	--inline-start: 8px;
-}
-
-.article-toc a[aria-active]::before {
-	position: absolute;
-	display: block;
-	background-color: currentColor;
-	block-size: 100%;
-	content: '';
-	inline-size: 2px;
-	inset-block-start: 0;
-	inset-inline-start: calc(0px - var(--inline-start));
 }
 
 .article-toc ol ol a {
 	border-radius: 4px;
 	font: var(--vvd-typography-base-condensed);
 	padding-block: 6px;
-
-	--inline-start: 24px;
 }
 
 .article-toc a:visited {
@@ -69,25 +82,8 @@ main:has(vwc-banner) {
 	color: var(--vvd-color-canvas-text);
 }
 
-.article-toc a:hover:active {
-	background-color: var(--vvd-color-cta-100);
-}
-
 .article-toc a[aria-active] {
+	anchor-name: --toc-current-item;
 	background-color: var(--vvd-color-cta-100);
 	color: var(--vvd-color-cta-600);
-}
-
-.article-toc ol {
-	margin: 0;
-	list-style: none;
-	padding-inline-start: 0;
-}
-
-.article-toc ol ol li {
-	padding-block-start: 2px;
-}
-
-.article-toc nav > ol > li:not(:first-child) {
-	padding-block-start: 12px;
 }

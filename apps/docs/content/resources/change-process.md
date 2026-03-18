@@ -10,7 +10,8 @@ Vivid uses a phased process to manage changes and enhancements to the design sys
 ## Raising a Request
 
 <vwc-accordion expand-mode="multi">
-  <vwc-accordion-item heading="1. Open a JIRA ticket">
+  <vwc-accordion-item heading="1. Open a JIRA ticket" expanded>
+    <vwc-button appearance="filled" connotation="cta" label="Raise Request" size="expanded" href="https://jira.vonage.com/secure/CreateIssue.jspa?pid=21800&issuetype=3" target="_blank"></vwc-button>
     <p>The <a href="https://jira.vonage.com/secure/CreateIssue.jspa?pid=21800&issuetype=3">new ticket</a> should include
       <ul>
         <li>Problem statement</li>

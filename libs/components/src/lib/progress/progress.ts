@@ -18,7 +18,7 @@ export type ProgressShape = Shape.Rounded | Shape.Sharp;
  */
 export class Progress extends DelegatesAria(BaseProgress) {
 	/**
-	 * Indicates the progress' shape.
+	 * Sets the border radius
 	 *
 	 * @public
 	 * HTML Attribute: shape
@@ -26,7 +26,7 @@ export class Progress extends DelegatesAria(BaseProgress) {
 	@attr() shape?: ProgressShape;
 
 	/**
-	 * Indicates the progress' connotation.
+	 * Sets the connotation
 	 *
 	 * @public
 	 * HTML Attribute: connotation
@@ -34,7 +34,7 @@ export class Progress extends DelegatesAria(BaseProgress) {
 	@attr() connotation?: ProgressConnotation;
 
 	/**
-	 * Indicates the progress' reverse status.
+	 * Sets the progress to show from right to left
 	 *
 	 * @public
 	 * HTML Attribute: reverse

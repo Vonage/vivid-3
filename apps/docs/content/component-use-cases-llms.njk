@@ -4,9 +4,9 @@ pagination:
   data: componentUseCases
   size: 1
   alias: component
-permalink: 'components/{{ component | componentSlug }}/use-cases/llms.txt'
+permalink: 'components/{{ component.slug }}/use-cases/llms.txt'
 eleventyComputed:
-  pageTitle: "{{ component.title }} - Use Cases"
+  pageTitle: "{{ component.concept }} - Use Cases"
 ---
 # {{ pageTitle }}
-{{ component.useCases | includeMd | safe }}
+{{ component.documentation.useCases | includeMd | safe }}

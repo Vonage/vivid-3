@@ -1,0 +1,22 @@
+concept: Side Drawer
+id: side-drawer
+description: A side panel that slides in from the edge of the screen to display
+  additional content or navigation options.
+status: ready
+slug: side-drawer
+keywords:
+  - side-drawer
+  - panel
+  - sidebar
+  - slide
+  - navigation
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: side-drawer
+    design: https://figma.com/...

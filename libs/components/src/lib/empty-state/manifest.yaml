@@ -1,0 +1,22 @@
+concept: Empty State
+id: empty-state
+description: The Empty State component is used to display a message when there
+  is no data to show.
+status: ready
+slug: empty-state
+keywords:
+  - empty
+  - state
+  - placeholder
+  - message
+  - no-data
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: empty-state
+    design: https://figma.com/...

@@ -34,7 +34,7 @@ export class Status extends AffixIcon(VividElement) {
 	@attr status?: string;
 
 	/**
-	 * The connotation the status should have. Determines icon and color.
+	 * The connotation; determines icon and color.
 	 *
 	 * @public
 	 * @remarks
