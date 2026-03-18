@@ -35,14 +35,17 @@ Disabled buttons also prevent users from learning what needs to change.
 
 Consider a typical form:
 
+<docs-do-dont reverse headline="Disable button until the user enters valid data">
+<docs-do dont>
+
 ```html preview
 <vwc-card>
 	<form slot="main">
 		<div>
-			<vwc-text-field label="Email" type="email"></vwc-text-field>
+			<vwc-text-field label="Email" name="email"></vwc-text-field>
 		</div>
 		<div>
-			<vwc-text-field label="Password" type="password"></vwc-text-field>
+			<vwc-text-field label="Password" name="password" type="password"></vwc-text-field>
 		</div>
 		<vwc-button appearance="filled" disabled label="Login"></vwc-button>
 	</form>
@@ -62,7 +65,33 @@ Consider a typical form:
 		width: 100%;
 	}
 </style>
+
+<script>
+	const loginCreds = {
+		email: '',
+		password: '',
+	};
+	document.querySelector('form').addEventListener('input', (e) => {
+		const field = e.target.closest('vwc-text-field').name;
+		loginCreds[field] = e.target.value;
+		console.log('form changed', loginCreds);
+		isValidForm() ? document.querySelector('vwc-button').removeAttribute('disabled') : document.querySelector('vwc-button').setAttribute('disabled', '');
+	});
+
+	function isValidEmail(email) {
+		const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return regex.test(email);
+	}
+
+	function isValidForm() {
+		return loginCreds.password.length > 8 && isValidEmail(loginCreds.email);
+	}
+</script>
 ```
+
+</docs-do>
+
+<div slot="description">
 
 If the button is disabled, users have no way to discover:
 
@@ -70,14 +99,107 @@ If the button is disabled, users have no way to discover:
 - Whether formatting is wrong
 - Whether something is missing entirely
 
-The interface blocks progress without explaining the problem.
+This interface blocks progress without explaining the problem.
 
-In contrast, allowing the button to be pressed enables the system to respond with clear guidance such as:
+</div>
+
+</docs-do-dont>
+
+<docs-do-dont reverse headline="Enable button and form validation on submit">
+<docs-do>
+
+```html preview
+<vwc-card>
+	<form slot="main">
+		<div>
+			<vwc-text-field label="Email" name="email" type="text"></vwc-text-field>
+		</div>
+		<div>
+			<vwc-text-field label="Password" name="password" type="password"></vwc-text-field>
+		</div>
+		<vwc-button appearance="filled" label="Login" type="submit"></vwc-button>
+	</form>
+</vwc-card>
+
+<script>
+	const handleFieldChange = (e) => {
+		if (!validationTriggered) return;
+		if ((!event.target) instanceof HTMLInputElement) return;
+		validateField(e.target.closest('vwc-text-field').name);
+	};
+
+	function validateField(fieldName) {
+		const fieldEle = document.querySelector(`[name="${fieldName}"]`);
+		const fieldVal = fieldEle.getAttribute('current-value');
+		let errorMsg;
+		let valid = false;
+		if (fieldName === 'email') {
+			valid = isValidEmail(fieldVal);
+			errorMsg = 'Please enter a valid email address';
+		}
+		if (fieldName === 'password') {
+			valid = fieldVal.length > 7;
+			errorMsg = 'Password must contain at least 8 characters';
+		}
+		if (valid && fieldEle.getAttribute('error-text') !== null) {
+			fieldEle.removeAttribute('error-text');
+		}
+		if (!valid && fieldEle.getAttribute('error-text') === null) {
+			fieldEle.setAttribute('error-text', errorMsg);
+		}
+	}
+
+	function isValidEmail(email) {
+		const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return regex.test(email);
+	}
+
+	document.querySelector('form').addEventListener('submit', (e) => {
+		const emailFieldEl = document.querySelector('[name="email"]');
+		const passwordFieldEl = document.querySelector('[name="password"]');
+		if (!validationTriggered) {
+			emailFieldEl.addEventListener('change', handleFieldChange);
+			passwordFieldEl.addEventListener('change', handleFieldChange);
+			validateField('email');
+			validateField('password');
+			validationTriggered = true;
+		}
+		const valid = emailFieldEl.getAttribute('error-text') === null && passwordFieldEl.getAttribute('error-text') === null;
+		if (!valid) e.preventDefault();
+		console.log('invalid form');
+	});
+</script>
+
+<style>
+	vwc-card {
+		max-inline-size: 320px;
+	}
+	form {
+		padding: 32px;
+	}
+	div {
+		padding-block-end: 16px;
+	}
+	vwc-text-field {
+		width: 100%;
+	}
+</style>
+```
+
+</docs-do>
+
+<div slot="description">
+
+Allowing the button to be pressed enables the system to respond with clear guidance such as:
 
 - “Please enter a valid email address”
 - “Password must contain at least 8 characters”
 
 This turns a confusing interaction into a clear and instructive one.
+
+</div>
+
+</docs-do-dont>
 
 ## Disabled Buttons Break In Real-World Conditions
 
