@@ -211,10 +211,14 @@ ENV PATH="/opt/node-shim:${PATH}"
 EOF
 
 cat > "${ENV_DIR}/config/Dockerfile.git-server" <<'EOF'
-FROM python:3-alpine
-RUN apk add --no-cache git \
-    && git config --global --add safe.directory '*'
+FROM httpd:2-alpine
+RUN apk add --no-cache git git-daemon \
+    && git config --system --add safe.directory '*'
+COPY git-server.conf /usr/local/apache2/conf/httpd.conf.template
+CMD ["sh", "-c", "chmod -R a+rwX /repos && sed \"s/{{PORT}}/$PORT/g\" /usr/local/apache2/conf/httpd.conf.template > /usr/local/apache2/conf/httpd.conf && httpd-foreground"]
 EOF
+
+cp "${WORKFLOW_TESTS_ROOT}/stubs/git-server.conf" "${ENV_DIR}/config/git-server.conf"
 
 cat > "${ENV_DIR}/docker-compose.yml" <<EOF
 services:
@@ -401,12 +405,9 @@ services:
       context: ${ENV_DIR}/config
       dockerfile: Dockerfile.git-server
     volumes:
-      - ${WORKFLOW_TESTS_ROOT}/stubs/git-server.py:/server.py:ro
       - ${ENV_DIR}/config/repos:/repos
     environment:
       PORT: "${GIT_SERVER_PORT}"
-      GIT_PROJECT_ROOT: /repos
-    command: ["python", "/server.py"]
     ports:
       - "127.0.0.1:${GIT_SERVER_PORT}:${GIT_SERVER_PORT}"
 

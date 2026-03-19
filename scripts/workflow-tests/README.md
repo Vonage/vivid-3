@@ -83,7 +83,7 @@ The state is stored in: `env/state/github-stub.json`
 
 ### GitHub Git Server
 
-A custom server serves the local git repository over HTTP, so that actions can clone from and push to it.
+Apache httpd with `git-http-backend` serves the local git repository over HTTP, so that actions can clone from and push to it.
 
 ## Limitations
 
