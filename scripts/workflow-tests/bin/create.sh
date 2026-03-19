@@ -20,6 +20,9 @@ mkdir -p \
 # Clone repo
 git clone --quiet --no-hardlinks "${REPO_ROOT}" "${ENV_DIR}/repo"
 
+# Generate mitmweb password
+MITMWEB_PASSWORD=$(openssl rand -base64 16)
+
 # Create and load config
 cat > "${ENV_DIR}/config/config.env" <<EOF
 export HEAD_SHA=$(git -C "${ENV_DIR}/repo" rev-parse HEAD)
@@ -55,6 +58,7 @@ export ICONS_BUCKET=vvd-icons-local
 export ICONS_BASE_FOLDER=VIVID_ICONS_LOCAL
 export DOCS_PRODUCTION_DOMAIN=vivid.vonage.com
 export ICONS_PRODUCTION_DOMAIN=icon.resources.vonage.com
+export MITMWEB_PASSWORD=${MITMWEB_PASSWORD}
 EOF
 
 load_env_config
@@ -243,6 +247,7 @@ services:
       ICONS_BUCKET: "${ICONS_BUCKET}"
       DOCS_PRODUCTION_DOMAIN: "${DOCS_PRODUCTION_DOMAIN}"
       ICONS_PRODUCTION_DOMAIN: "${ICONS_PRODUCTION_DOMAIN}"
+      MITMWEB_PASSWORD: "${MITMWEB_PASSWORD}"
     command: ["/bin/bash", "/opt/proxy/start.sh"]
     volumes:
       - ${ENV_DIR}:/env
@@ -250,6 +255,7 @@ services:
     tty: true
     ports:
       - "5555:5555"
+      - "8081:8081"
       - "51820:51820/udp"
     healthcheck:
       test: ["CMD-SHELL", "test -f /env/config/wireguard/wg0.conf"]
@@ -453,3 +459,4 @@ ICONS_BASE_FOLDER=${ICONS_BASE_FOLDER}
 EOF
 
 printf 'Environment created: %s\n' "${ENV_DIR}"
+printf 'mitmweb password: %s\n' "${MITMWEB_PASSWORD}"

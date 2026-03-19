@@ -28,6 +28,8 @@ All workflow traffic is intercepted by mitmproxy with a custom addon (`./proxy/a
 
 All requests are logged to `./env/logs/proxy.requests.jsonl`.
 
+A web interface for inspecting proxy traffic is available at http://localhost:8081/. The password is generated when running `create.sh` and printed to stdout.
+
 Additionally, a SOCKS5 endpoint is exposed on port 5555.
 
 For example, on MacOS you can open the deployed docs site in Chrome with this command:
