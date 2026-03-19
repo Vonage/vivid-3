@@ -1,5 +1,6 @@
 @forward '@repo/styles/core/all.css';
 @forward 'reset';
+@forward 'typography';
 
 body::before {
 	position: fixed;
