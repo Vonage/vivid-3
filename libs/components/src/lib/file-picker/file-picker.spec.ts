@@ -89,7 +89,7 @@ describe('vwc-file-picker', () => {
 			expect(element.helperText).toBeUndefined();
 			expect(element.size).toBeUndefined();
 			expect(element.maxFileSize).toEqual(256);
-			expect(element.maxFiles).toBeUndefined();
+			expect(element.maxFiles).toBeNull();
 			expect(element.accept).toBeUndefined();
 			expect([element.files, element.rejectedFiles]).toEqual([[], []]);
 			expect(element.invalidFileTypeError).toBeUndefined();
@@ -415,6 +415,30 @@ describe('vwc-file-picker', () => {
 	});
 
 	describe('maxFiles', function () {
+		it('should enforce max-files when set as an HTML attribute', async function () {
+			setupFixture(
+				`<${COMPONENT_TAG} max-files="2">Drag & drop or click to upload</${COMPONENT_TAG}>`
+			);
+
+			addFiles([
+				await generateFile('london-1.png', 1, 'image/png'),
+				await generateFile('london-2.png', 1, 'image/png'),
+				await generateFile('london-3.png', 1, 'image/png'),
+			]);
+			await elementUpdated(element);
+
+			expect(element.maxFiles).toBe(2);
+			expect(hiddenInput.multiple).toBe(true);
+
+			// 3rd file should be rejected
+			expect(getErrorMessage(0)).toBe('');
+			expect(getErrorMessage(1)).toBe('');
+			expect(getErrorMessage(2)).toBe("You can't select any more files.");
+
+			expect(element.files).toHaveLength(2);
+			expect(element.rejectedFiles).toHaveLength(1);
+		});
+
 		describe('error message', () => {
 			it('should show an error message for files added after the maxFiles limit is reached', async function () {
 				element.maxFiles = 1;
