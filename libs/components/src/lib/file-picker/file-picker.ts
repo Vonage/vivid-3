@@ -2,6 +2,7 @@ import {
 	attr,
 	ExecutionContext,
 	type ExpressionNotifier,
+	nullableNumberConverter,
 	observable,
 	Observable,
 	volatile,
@@ -58,7 +59,12 @@ export class FilePicker extends WithContextualHelp(
 	 * @remarks
 	 * HTML Attribute: max-files
 	 */
-	@attr({ attribute: 'max-files' }) maxFiles?: number;
+	@attr({
+		attribute: 'max-files',
+		converter: nullableNumberConverter,
+		mode: 'fromView',
+	})
+	maxFiles: number | null = null;
 
 	/**
 	 * The maximum file size (in megabytes) for each file.

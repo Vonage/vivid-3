@@ -111,7 +111,7 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 			class="hidden-input"
 			aria-hidden="true"
 			type="file"
-			?multiple="${(x) => !x.singleFile && (!x.maxFiles || x.maxFiles > 1)}"
+			?multiple="${(x) => !x.singleFile && (x.maxFiles == null || x.maxFiles > 1)}"
 			accept="${(x) => x.accept || null}"
 			tabindex="-1"
 			@change="${(x, c) => x._onHiddenInputChange(c.event as InputEvent)}"
