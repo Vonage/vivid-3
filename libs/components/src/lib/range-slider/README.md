@@ -322,39 +322,3 @@ import { VRangeSlider } from '@vonage/vivid-vue';
 
 Use the `valueTextFormatter` to generates a string for the Range Slider's "aria-valuetext" attribute based on the current value.  
 Use this to configure the [`pin`](/components/range-slider/#pin) string.
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name                 | Type                                    | Description                                                          |
-| -------------------- | --------------------------------------- | -------------------------------------------------------------------- |
-| **aria-start-label** | `string`                                | Aria label for the start thumb                                       |
-| **aria-end-label**   | `string`                                | Aria label for the end thumb                                         |
-| **connotation**      | _Enum_:<br/>`accent`<br/>`cta`          | The connotation of the component                                     |
-| **disabled**         | `boolean`                               | Sets the element's disabled state                                    |
-| **end**              | `string`                                | The current end value of the element.                                |
-| **markers**          | `boolean`                               | Display markers on/off                                               |
-| **max**              | `number`                                | The maximum value of the range.                                      |
-| **min**              | `number`                                | The minimum value of the range.                                      |
-| **orientation**      | _Enum_:<br/>`horizontal`<br/>`vertical` | The orientation of the slider.                                       |
-| **pin**              | `boolean`                               | Show current values on the thumbs.                                   |
-| **start**            | `string`                                | The current start value of the element.                              |
-| **step**             | `number`                                | Value to increment or decrement via arrow keys, mouse click or drag. |
-
-</div>
-
-### Events
-
-<div class="table-wrapper">
-
-| Name            | Type                     | Bubbles | Composed | Description                                               |
-| --------------- | ------------------------ | ------- | -------- | --------------------------------------------------------- |
-| **input:start** | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the start value changes                |
-| **input:end**   | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the end value changes                  |
-| **input**       | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when either the start or end value changes. |
-| **change**      | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when either the start or end value changes. |
-
-</div>

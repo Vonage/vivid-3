@@ -1,0 +1,21 @@
+concept: Checkbox
+id: checkbox
+description: Checkboxes allow users to select one or more items from a list of options.
+status: ready
+slug: checkbox
+keywords:
+  - selection
+  - form
+  - input
+  - option
+  - toggle
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: checkbox
+    design: https://figma.com/...

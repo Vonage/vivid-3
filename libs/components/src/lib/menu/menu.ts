@@ -111,8 +111,8 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	}
 
 	/**
-	 * Moves focus into the menu. If there is a child with the `autofocus` attribute, it will be focused.
-	 * Otherwise, the first focusable child will be focused.
+	 * Moves focus into the Menu. If there is a child with the `autofocus` attribute, it will be
+	 * focused. Otherwise, the first Menu Item will be focused.
 	 *
 	 * @public
 	 */
@@ -288,7 +288,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	}
 
 	/**
-	 * placement of the menu
+	 * Sets the desired position of the Menu relative to it's anchor element
 	 *
 	 * @public
 	 * HTML Attribute: placement
@@ -296,7 +296,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	@attr({ mode: 'fromView' }) placement?: Placement = 'bottom';
 
 	/**
-	 * Controls how the menu opens and closes itself.
+	 * Sets trigger method of Menu
 	 *
 	 * @public
 	 * HTML Attribute: trigger
@@ -307,7 +307,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	}
 
 	/**
-	 * indicates whether the menu will automatically close when focus moves away from it.
+	 * Sets the Menu to close when focus is lost
 	 *
 	 * @public
 	 * HTML Attribute: auto-dismiss
@@ -315,7 +315,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	@attr({ mode: 'boolean', attribute: 'auto-dismiss' }) autoDismiss = false;
 
 	/**
-	 * The strategy-absolute attribute.
+	 * Sets the position strategy
 	 *
 	 * @public
 	 * HTML Attribute: strategy
@@ -323,7 +323,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	@attr({ mode: 'fromView', attribute: 'position-strategy' })
 	positionStrategy?: Strategy = 'fixed';
 	/**
-	 * indicates whether the menu is open
+	 * Sets the open state of the Menu
 	 *
 	 * @public
 	 * HTML Attribute: open

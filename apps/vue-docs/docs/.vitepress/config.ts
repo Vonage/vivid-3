@@ -10,6 +10,7 @@ export default defineConfig({
 	lastUpdated: false,
 	appearance: false,
 	base: '/vivid-vue',
+	ignoreDeadLinks: true,
 	themeConfig: {
 		logo: { light: '/logo/vivid-logo.svg', dark: '/logo/vivid-logo.svg' },
 

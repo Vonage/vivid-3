@@ -1,0 +1,26 @@
+concept: Tabs
+id: tabs
+description: Tabs are interactive elements that work alongside Tab and Tab Panel
+  to organise content into separate sections or views.
+status: ready
+slug: tabs
+keywords:
+  - tabs
+  - navigation
+  - sections
+  - content
+  - organization
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: tabs
+    design: https://figma.com/...
+  - tag: tab
+    design: https://figma.com/...
+  - tag: tab-panel
+    design: https://figma.com/...

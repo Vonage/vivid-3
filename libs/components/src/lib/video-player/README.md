@@ -230,32 +230,3 @@ import { VVideoPlayer } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name               | Type                                                                   | Description                                                 |
-| ------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------------- |
-| **autoplay**       | `boolean`                                                              | Sets the video to start playing automatically after loading |
-| **loop**           | `boolean`                                                              | Sets the video to loop                                      |
-| **playback-rates** | comma separated `string` of numeric values. `0.5, 1, 1.5, 2` (default) | Sets the possible playback rates                            |
-| **poster**         | `string`                                                               | Reference to poster image's source                          |
-| **skip-by**        | `0`, `5`, `10` (default), `30`                                         | Sets the amount to skip                                     |
-| **src**            | `string`                                                               | Reference to the video's source                             |
-
-</div>
-
-### Events
-
-<div class="table-wrapper">
-
-| Name      | Type                     | Bubbles | Composed | Description                    |
-| --------- | ------------------------ | ------- | -------- | ------------------------------ |
-| **play**  | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is played |
-| **pause** | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is paused |
-| **ended** | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is ended  |
-
-</div>

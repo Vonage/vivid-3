@@ -1,0 +1,24 @@
+concept: Tags
+id: tag-group
+description: Tags are small, interactive labels used to visually group,
+  classify, or filter criteria. Tags are wrapped with Tag Group
+status: ready
+slug: tags
+keywords:
+  - tag-group
+  - tags
+  - labels
+  - grouping
+  - filter
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: tag-group
+    design: https://figma.com/...
+  - tag: tag
+    design: https://figma.com/...

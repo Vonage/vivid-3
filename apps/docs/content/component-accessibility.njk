@@ -4,12 +4,10 @@ pagination:
   data: componentAccessibility
   size: 1
   alias: component
-permalink: 'components/{{ component | componentSlug }}/accessibility/'
+permalink: 'components/{{ component.slug }}/accessibility/'
 layout: component.njk
 eleventyComputed:
-  pageTitle: "{{ component.title }} - Accessibility"
-  githubEditLink: "{{ component.accessibility | githubEditLink }}"
+  pageTitle: "{{ component.concept }} - Accessibility"
+  githubEditLink: "{{ component.documentation.accessibility | githubEditLink }}"
 ---
-
-{% set accessibilityPath = "../../" + component.accessibility %}
-{% renderFile accessibilityPath %}
+{% renderFile component.documentation.accessibility %}

@@ -1,0 +1,21 @@
+concept: Date Picker
+id: date-picker
+description: Combines an Input and a Calendar popover to allow users to select a date.
+status: ready
+slug: date-picker
+keywords:
+  - date
+  - picker
+  - calendar
+  - form
+  - input
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: date-picker
+    design: https://figma.com/...

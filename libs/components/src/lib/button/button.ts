@@ -180,6 +180,8 @@ export class Button extends AffixIconWithTrailing(
 	/**
 	 * Handles click events.
 	 * Prevents interaction when disabled or pending.
+	 *
+	 * @internal
 	 */
 	clickHandler(event: Event) {
 		/* v8 ignore else -- @preserve */

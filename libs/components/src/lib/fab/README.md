@@ -166,30 +166,3 @@ import { VFab, VIcon } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name                                   | Type                                                       | Description                                                                                                                                |
-| -------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| _(deprecated as of 05/25)_<br>**icon** | _Enum_:<br/>`[icon-name]`                                  | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **icon-trailing**                      | `boolean`                                                  | Indicates the icon affix alignment.                                                                                                        |
-| **disabled**                           | `boolean`                                                  | Sets the element's disabled state. A disabled element will not be included during form submission.                                         |
-| **connotation**                        | Enum:`undefined` (default), `accent`, `cta`, `announcment` | The connotation the Fab should have.                                                                                                       |
-| **size**                               | Enum: `condensed`, `normal` (default), `expanded`          | The size the Fab should have.                                                                                                              |
-| **label**                              | `string`                                                   | Indicates the Fab's label.                                                                                                                 |
-
-</div>
-
-### Slots
-
-<div class="table-wrapper">
-
-| Name     | Description                   |
-| -------- | ----------------------------- |
-| **icon** | Add an icon to the component. |
-
-</div>

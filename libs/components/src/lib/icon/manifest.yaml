@@ -1,0 +1,21 @@
+concept: Icon
+id: icon
+description: Displays icons from the Vivid Icons Library using predefined colors and sizes.
+status: ready
+slug: icon
+keywords:
+  - icon
+  - symbol
+  - graphic
+  - visual
+  - display
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: icon
+    design: https://figma.com/...

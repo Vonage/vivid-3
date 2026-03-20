@@ -156,39 +156,3 @@ import { VAvatar } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name                                    | Type                                                      | Description                                          |
-| --------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------- |
-| **appearance**                          | Enum: `filled` (default), `duotone`, `outlined`, `subtle` | Sets the element's appearance                        |
-| **connotation**                         | Enum: `accent` (default), `cta`                           | Sets the element's connotation                       |
-| _(deprecated as of 06/25)_<br> **icon** | `string`                                                  | Sets the element's icon                              |
-| **initials**                            | `string`                                                  | Sets the initials on the Avatar                      |
-| **shape**                               | Enum: `rounded` (default), `pill`                         | Sets the element's shape                             |
-| **size**                                | Enum: `condensed`, `normal` (default), `expanded`         | Sets the element's size                              |
-| **clickable**                           | `boolean`                                                 | Indicates whether element should be a `<button>`.    |
-| **href**                                | `string`                                                  | Sets the element's href, changes card tag to `<a>` . |
-| **download**                            | `string`                                                  | Sets the element's download.                         |
-| **hreflang**                            | `string`                                                  | Sets the element's hreflang.                         |
-| **ping**                                | `string`                                                  | Sets the element's ping.                             |
-| **referrerpolicy**                      | `string`                                                  | Sets the element's referrerpolicy.                   |
-| **rel**                                 | `string`                                                  | Sets the element's rel.                              |
-| **target**                              | _Enum_:<br/>`_self`<br/>`_blank`<br/>`_parent`<br/>`_top` | Sets the target's rel.                               |
-
-</div>
-
-### Slots
-
-<div class="table-wrapper">
-
-| Name        | Description                                              |
-| ----------- | -------------------------------------------------------- |
-| **graphic** | Add graphic element to card. Overrides the icon property |
-| **icon**    | Add an icon to the component.                            |
-
-</div>

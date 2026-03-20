@@ -4,11 +4,11 @@ pagination:
   data: componentGuidelines
   size: 1
   alias: component
-permalink: 'components/{{ component | componentSlug }}/guidelines/'
+permalink: "components/{{ component.slug }}/guidelines/"
 layout: component.njk
 eleventyComputed:
-  pageTitle: '{{ component.title }} - Guidelines'
-  githubEditLink: '{{ component.guidelines | githubEditLink }}'
+  pageTitle: "{{ component.concept }} - Guidelines"
+  githubEditLink: "{{ component.documentation.guidelines | githubEditLink }}"
 ---
 
-{% renderFile "../../" ~ component.guidelines %}
+{% renderFile component.documentation.guidelines %}

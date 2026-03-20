@@ -1,0 +1,21 @@
+concept: Divider
+id: divider
+description: Use as a separator between content.
+status: ready
+slug: divider
+keywords:
+  - divider
+  - separator
+  - line
+  - break
+  - section
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: divider
+    design: https://figma.com/...

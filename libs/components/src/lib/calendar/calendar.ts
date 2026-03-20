@@ -47,46 +47,35 @@ export type CalendarSticky = ExtractFromEnum<
  */
 export class Calendar extends VividElement {
 	/**
-	 * The date within a week of choice.
-	 * Accepts any parameter acceptable by the `Date()` constructor.
+	 * Sets the week to display
 	 *
 	 * @public
 	 */
 	@attr datetime?: Date | string;
 
 	/**
-	 * The day to show as the first within a work week.
-	 * Accepts either Sunday or Monday
-	 * Calendar will - programmatically - default to Monday if not specified
-	 *
-	 * (only applicable for views of more than a single day)
+	 * Sets the first day of the week to display
 	 *
 	 * @public
 	 */
 	@attr({ attribute: 'start-day' }) startDay?: 'sunday' | 'monday';
 
 	/**
-	 * A locale string or array of locale strings that contain one or more language or locale tags.
-	 * If you include more than one locale string,
-	 * list them in descending order of priority so that the first entry is the preferred locale.
-	 * If you omit this parameter, the default locale of the JavaScript runtime is used.
-	 * This parameter must conform to BCP 47 standards; see the Intl.Collator object for details.
-	 * e.g. en-US | en-US, he-IL
+	 * Sets the locale to be displayed
 	 *
 	 * @public
 	 */
 	@attr locales?: string | string[] | undefined;
 
 	/**
-	 * The convention of displayed time in which the day runs from midnight to midnight and is divided into 24 or 12 hours.
-	 * Unless provided, choice will be set according to local time preference (e.g. US = 12, IL = 24)
+	 * Displays a time in 12 hour format
 	 *
 	 * @public
 	 */
 	@attr({ mode: 'boolean' }) hour12 = false;
 
 	/**
-	 * Sticky header and sticky column options
+	 * Set the `sticky-mode` attribute
 	 *
 	 * @public
 	 * @remarks
@@ -182,6 +171,9 @@ export class Calendar extends VividElement {
 		el?.focus();
 	}
 
+	/**
+	 * @internal
+	 */
 	onKeydown({ key }: KeyboardEvent) {
 		const isArrow = [ARROW_UP, ARROW_RIGHT, ARROW_DOWN, ARROW_LEFT].some(
 			(predefinedKey) => predefinedKey == key

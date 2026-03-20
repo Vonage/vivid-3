@@ -87,7 +87,3 @@ Table Head, Table Body, Table Row, Table Header Cell, and Table Cell sub-compone
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-At present, the Table components do not expose any props, named slots, events or methods. They are purely presentational.

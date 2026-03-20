@@ -143,6 +143,9 @@ export class Tag extends Localized(DelegatesAria(AffixIcon(VividElement))) {
 		this.$emit('selected-change');
 	};
 
+	/**
+	 * @internal
+	 */
 	handleKeydown(e: KeyboardEvent) {
 		if (e.key === 'Enter' || e.key === ' ') {
 			e.preventDefault();
@@ -155,6 +158,9 @@ export class Tag extends Localized(DelegatesAria(AffixIcon(VividElement))) {
 		return true;
 	}
 
+	/**
+	 * @internal
+	 */
 	handleClick(): void {
 		this.#select();
 	}

@@ -40,7 +40,7 @@ function appendProgressBarToStart(videoPlayer: any) {
  */
 export class VideoPlayer extends Localized(VividElement) {
 	/**
-	 * Reference to an image which is displayed before the video is played
+	 * Reference to poster image's source
 	 *
 	 * @public
 	 * @remarks
@@ -49,7 +49,7 @@ export class VideoPlayer extends Localized(VividElement) {
 	@attr poster?: string;
 
 	/**
-	 * URL of a video file
+	 * Reference to the video's source
 	 *
 	 * @public
 	 * @remarks
@@ -65,7 +65,7 @@ export class VideoPlayer extends Localized(VividElement) {
 	}
 
 	/**
-	 * Allows the video will play automatically (muted)
+	 * Sets the video to start playing automatically after loading
 	 *
 	 * @public
 	 * @remarks
@@ -83,7 +83,7 @@ export class VideoPlayer extends Localized(VividElement) {
 	}
 
 	/**
-	 * Allows the video to loop back to the beginning when finished
+	 * Sets the video to loop
 	 *
 	 * @public
 	 * @remarks
@@ -92,7 +92,7 @@ export class VideoPlayer extends Localized(VividElement) {
 	@attr({ mode: 'boolean' }) loop = false;
 
 	/**
-	 * Sets the available playback rates. When an empty string, no choices will be available
+	 * Sets the possible playback rates
 	 *
 	 * @public
 	 * @remarks
@@ -102,7 +102,7 @@ export class VideoPlayer extends Localized(VividElement) {
 	playbackRates: string = DEFAULT_PLAYBACK_RATES;
 
 	/**
-	 * Allows the video to loop back to the beginning when finished
+	 * Sets the amount to skip
 	 *
 	 * @public
 	 * @remarks

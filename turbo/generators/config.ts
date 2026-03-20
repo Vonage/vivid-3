@@ -1,17 +1,9 @@
 import type { PlopTypes } from '@turbo/gen';
+import { camelCase, capitalCase, kebabCase, pascalCase } from 'change-case';
 
-// Helper functions to match the original Nx generator behavior
-function toPascalCase(string: string): string {
-	return string
-		.replace(/([a-z])([A-Z])/g, '$1 $2') // Splits camelCase words into separate words
-		.replace(/[-_]+|[^\p{L}\p{N}]/gu, ' ') // Replaces dashes, underscores, and special characters with spaces
-		.toLowerCase() // Converts the entire string to lowercase
-		.replace(/(?:^|\s)(\p{L})/gu, (_, letter) => letter.toUpperCase()) // Capitalizes the first letter of each word
-		.replace(/\s+/g, ''); // Removes all spaces
-}
-
-function toTitleCase(string: string): string {
-	return string.replace(/([A-Z])/g, ' $1').trim();
+interface ComponentListEntry {
+	title: string;
+	slug: string;
 }
 
 const updateComponentsExports = (name: string) => (contents: string) => {
@@ -61,29 +53,23 @@ const updateTagNameMap =
 			`\t'vwc-${name}': Vwc${className}Element;`
 		);
 
-const updateDocsComponentList =
-	(name: string, titleCasedName: string) => (contents: string) => {
-		const title = `		"title": "${titleCasedName}",`;
-		const lines = contents.split('\n');
-		if (lines.indexOf(title) === -1) {
-			const toAdd = `	{
-${title}
-		"description": "Short description of the component.",
-		"variations": "./libs/components/src/lib/${name}/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/${name}/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/${name}/README.md",
-		"accessibility": "./libs/components/src/lib/${name}/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/${name}/USE-CASES.md",
-		"status": "underlying"
-	}`;
-			const lastComponentLine = lines[lines.length - 3];
-			if (lastComponentLine.indexOf('}') > 0) lines[lines.length - 3] = '	},';
-			lines.splice(lines.length - 2, 0, toAdd);
-		}
+const updateDocsComponentList = (name: string) => (contents: string) => {
+	const componentsList = JSON.parse(contents) as ComponentListEntry[];
 
-		return lines.join('\n');
-	};
+	if (componentsList.some(({ title }) => title === capitalCase(name)))
+		return contents;
+
+	componentsList.push({
+		title: capitalCase(name),
+		slug: kebabCase(name),
+	});
+
+	const uniqueEntries = [...new Set(componentsList)];
+
+	uniqueEntries.sort((a, b) => a.title.localeCompare(b.title));
+
+	return JSON.stringify(uniqueEntries, null, 2) + '\n';
+};
 
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
 	plop.setGenerator('component', {
@@ -117,12 +103,11 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 			if (!data) return [];
 
 			const rawName = data.name as string;
-			const name = rawName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-			const className = toPascalCase(rawName);
-			const titleCasedName = toTitleCase(className);
-			const pascalCasedName = toPascalCase(className);
-			const camelCasedName =
-				className[0].toLowerCase() + className.substring(1);
+			const name = kebabCase(rawName);
+			const className = pascalCase(rawName);
+			const titleCasedName = capitalCase(className);
+			const pascalCasedName = pascalCase(className);
+			const camelCasedName = camelCase(className);
 
 			const actions: PlopTypes.ActionType[] = [
 				{
@@ -159,7 +144,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 				actions.push({
 					type: 'modify',
 					path: 'apps/docs/content/_data/components.json',
-					transform: updateDocsComponentList(rawName, titleCasedName),
+					transform: updateDocsComponentList(rawName),
 				});
 			}
 

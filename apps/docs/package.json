@@ -51,6 +51,7 @@
 		"@types/markdown-it": "^14.1.0",
 		"@types/ramda": "catalog:",
 		"@vitejs/plugin-vue": "catalog:",
+		"change-case": "catalog:",
 		"clean-css": "^5.3.3",
 		"codemirror": "^6.0.2",
 		"concurrently": "catalog:",
@@ -72,6 +73,7 @@
 		"vitest": "catalog:",
 		"vitest-axe": "catalog:",
 		"vue": "catalog:vue3",
-		"wait-on": "catalog:"
+		"wait-on": "catalog:",
+		"yaml": "^2.8.2"
 	}
 }

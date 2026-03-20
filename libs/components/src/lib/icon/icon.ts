@@ -138,7 +138,8 @@ export class Icon extends VividElement {
 	@attr label?: string;
 
 	/**
-	 * Indicates which icon to resolve.
+	 * Indicates which icon to resolve. See the Vivid Icon Gallery for available icons:
+	 * https://icons.vivid.vonage.com/
 	 *
 	 * @public
 	 * @remarks
@@ -148,6 +149,9 @@ export class Icon extends VividElement {
 
 	#abortController: AbortController | null = null;
 
+	/**
+	 * @internal
+	 */
 	async nameChanged() {
 		const requestId = ++this.#currentRequestId;
 

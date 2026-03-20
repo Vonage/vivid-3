@@ -252,20 +252,3 @@ import { VIcon, VStatus } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-| **Property**    | **Type**                                                   | **Description**                                                   |
-| --------------- | ---------------------------------------------------------- | ----------------------------------------------------------------- |
-| **status**      | _string_                                                   | The status title (e.g. "Positive", "Info", "Warning", "Alert").   |
-| **connotation** | _Enum_: `success` \| `information` \| `warning` \| `alert` | The connotation; determines icon and color.                       |
-| **icon**        | _string_                                                   | Optional custom icon name. Overrides the default per connotation. |
-
-### Slots
-
-| **Name**  | **Description**                           |
-| --------- | ----------------------------------------- |
-| _default_ | Description text below the title.         |
-| **icon**  | Optional custom icon (overrides default). |

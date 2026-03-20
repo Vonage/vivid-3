@@ -9,7 +9,9 @@ import { getFlagIconName } from './country-code-to-flag-icon';
  */
 export class Country extends VividElement {
 	/**
-	 * ISO 3166-1 alpha-2 country code (e.g. "GB", "UK", "US"). When set, the component shows the matching flag icon and the code (e.g. "UK") automatically.
+	 * ISO 3166-1 alpha-2 country code (e.g. "GB", "UK", "US"). When set, the component shows the
+	 * matching flag (from [flag-icons](https://github.com/lipis/flag-icons)) and the code (e.g. "UK")
+	 * automatically.
 	 *
 	 * @public
 	 * @remarks
@@ -18,7 +20,8 @@ export class Country extends VividElement {
 	@attr code?: string;
 
 	/**
-	 * Optional label to override the displayed text. When set, this is shown instead of the country code (e.g. for obscure countries where "Saint Helena" is clearer than "SH").
+	 * Optional text to show instead of the country code (e.g. "Saint Helena" for "SH"). Useful for
+	 * less familiar codes.
 	 *
 	 * @public
 	 * @remarks

@@ -18,7 +18,7 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 	#originalAriaLabel: string | null = null;
 
 	/**
-	 * the optional title of the toggletip
+	 * Headline text for the Toggletip
 	 *
 	 * @public
 	 * HTML Attribute: headline
@@ -27,7 +27,7 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 	@attr headline?: string;
 
 	/**
-	 * toggle color scheme
+	 * Inverted color scheme
 	 *
 	 * @public
 	 * HTML Attribute: alternate
@@ -35,7 +35,7 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 	@attr({ mode: 'boolean' }) alternate = false;
 
 	/**
-	 * placement of the toggletip
+	 * Prefered placement of the toggletip in relation to the anchor element
 	 *
 	 * @public
 	 * HTML Attribute: placement
@@ -43,12 +43,16 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 	@attr({ mode: 'fromView' }) placement?: Placement = 'right';
 
 	/**
-	 * indicates whether the toggletip is open
+	 * Sets the open state of the Toggletip
 	 *
 	 * @public
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+
+	/**
+	 * @internal
+	 */
 	openChanged(oldValue: boolean, newValue: boolean): void {
 		if (oldValue === undefined) return;
 

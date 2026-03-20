@@ -35,30 +35,3 @@ registerPagination('your-prefix');
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name             | Type                                               | Description                                                       |
-| ---------------- | -------------------------------------------------- | ----------------------------------------------------------------- |
-| `nav-icons`      | `boolean`                                          | Changes the Previous and Next buttons to chevron icons            |
-| `pagesList`      | `number[]`                                         | An immutable array that represents the current pagination's state |
-| `selected-index` | `number`                                           | Index of the currently selected page                              |
-| `shape`          | `rounded` (default), `pill`                        | Sets the shapes of the navigation buttons                         |
-| `size`           | `super-condensed` (default), `condensed`, `normal` | Sets the size of the navigation buttons                           |
-| `total`          | `number`                                           | Total number of pages to navigate                                 |
-
-</div>
-
-### Events
-
-<div class="table-wrapper">
-
-| Name                | Type                                                                    | Bubbles | Composed | Description                  |
-| ------------------- | ----------------------------------------------------------------------- | ------- | -------- | ---------------------------- |
-| `pagination-change` | `CustomEvent<{selectedIndex: number, total: number, oldIndex: number}>` | Yes     | Yes      | Fires when the page changes. |
-
-</div>

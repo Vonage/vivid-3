@@ -1,0 +1,32 @@
+{% if metadata.methods and metadata.methods | length > 0 %}
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Params</th>
+				<th>Returns</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for method in metadata.methods %}
+			<tr>
+				<td><strong>{{ method.name }}</strong></td>
+				<td>
+				{% for arg in method.args or [] %}
+					<div><code>{{ arg.name or 'arg' }}: {{ arg.type or 'unknown' }}</code></div>
+				{% endfor %}
+				</td>
+				<td>
+					{% if method.returnType %}
+						<code>{{ method.returnType }}</code>
+					{% else %}
+						<code>void</code>
+					{% endif %}
+				</td>
+				<td>{{ method.description | default('') }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endif %}

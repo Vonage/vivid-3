@@ -1,0 +1,18 @@
+{% if metadata.slots and metadata.slots | length > 0 %}
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for slot in metadata.slots %}
+			<tr>
+				<td><strong>{{ slot.name | default('default') }}</strong></td>
+				<td>{{ slot.description | default('') }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endif %}

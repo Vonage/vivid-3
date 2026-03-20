@@ -36,21 +36,21 @@ export type CalendarEventAppearance = ExtractFromEnum<
  */
 export class CalendarEvent extends DelegatesAria(VividElement) {
 	/**
-	 * the heading of the event
+	 * Sets the event heading
 	 *
 	 * @public
 	 */
 	@attr heading?: string;
 
 	/**
-	 * the description of the event
+	 * Sets the event description
 	 *
 	 * @public
 	 */
 	@attr description?: string;
 
 	/**
-	 * The connotation the calendar event should have.
+	 * Sets the first day of the week to display
 	 *
 	 * @public
 	 * @remarks
@@ -59,7 +59,7 @@ export class CalendarEvent extends DelegatesAria(VividElement) {
 	@attr connotation?: CalendarEventConnotation;
 
 	/**
-	 * The appearance the calendar event should have.
+	 * Sets the event's appearance
 	 *
 	 * @public
 	 * @remarks
@@ -68,7 +68,7 @@ export class CalendarEvent extends DelegatesAria(VividElement) {
 	@attr appearance?: CalendarEventAppearance;
 
 	/**
-	 * sets card display precendence and indentation
+	 * Sets the stacking context of the event when it overlaps with another
 	 *
 	 * @public
 	 */
@@ -76,7 +76,7 @@ export class CalendarEvent extends DelegatesAria(VividElement) {
 	overlapCount?: number;
 
 	/**
-	 * time of day event starts
+	 * Sets the event start time (e.g. `14` = 2pm)
 	 *
 	 * @public
 	 */
@@ -84,7 +84,7 @@ export class CalendarEvent extends DelegatesAria(VividElement) {
 	start?: number; // TODO should be converted to allowed range
 
 	/**
-	 * event's time duration in hours
+	 * Sets the event duration (e.g. `2` = 2 hours)
 	 *
 	 * @public
 	 */

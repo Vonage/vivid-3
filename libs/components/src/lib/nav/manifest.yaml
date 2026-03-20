@@ -1,0 +1,27 @@
+concept: Navigation
+id: navigation
+description: A navigation component makes it easy for users to navigate through
+  your application. Nav accepts Nav Item and Nav Disclosure elements as
+  children.
+status: ready
+slug: navigation
+keywords:
+  - navigation
+  - nav
+  - menu
+  - links
+  - hierarchy
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: nav
+    design: https://figma.com/...
+  - tag: nav-item
+    design: https://figma.com/...
+  - tag: nav-disclosure
+    design: https://figma.com/...

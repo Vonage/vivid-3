@@ -60,21 +60,3 @@ registerCalendarEvent('your-prefix');
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-<div class="table-wrapper">
-
-| Name              | Type                                                                         | Description                                                          |
-| ----------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| **appearance**    | `filled` (default), `subtle`                                                 | Sets the event's appearance                                          |
-| **connotation**   | `information` (default), `accent`, `cta`, `success`, `alert`, `announcement` | Sets the first day of the week to display                            |
-| **description**   | `string`                                                                     | Sets the event description                                           |
-| **duration**      | `string`                                                                     | Sets the event duration ("2" = 2 hours)                              |
-| **heading**       | `string`                                                                     | Sets the event heading                                               |
-| **overlap-count** | `string` (number)                                                            | Sets the stacking context of the event when it overlaps with another |
-| **start-time**    | `string`                                                                     | Sets the event start time (14 = 2pm)                                 |
-
-</div>

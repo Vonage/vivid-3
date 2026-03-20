@@ -27,7 +27,7 @@ export class DialPad extends Localized(VividElement) {
 	_textFieldEl!: TextField;
 
 	/**
-	 * Indicates the helper-text's text.
+	 * Controls the helper text displayed below the phone input element
 	 *
 	 * @public
 	 * @remarks
@@ -45,7 +45,7 @@ export class DialPad extends Localized(VividElement) {
 	@attr placeholder: string | null = null;
 
 	/**
-	 * Indicates the value's text.
+	 * Value of the phone input element
 	 *
 	 * @public
 	 * @remarks
@@ -65,7 +65,7 @@ export class DialPad extends Localized(VividElement) {
 	}
 
 	/**
-	 * Indicates the dial pad's pattern.
+	 * Regular expression to validate the value of the input element
 	 *
 	 * @public
 	 * @remarks
@@ -74,7 +74,7 @@ export class DialPad extends Localized(VividElement) {
 	@attr({ mode: 'fromView' }) pattern = '^[0-9#*]*$';
 
 	/**
-	 * Indicates the disabled state of the dial-pad.
+	 * Controls the disabled state of the dial pad
 	 *
 	 * @public
 	 * @remarks
@@ -83,7 +83,7 @@ export class DialPad extends Localized(VividElement) {
 	@attr({ mode: 'boolean' }) disabled = false;
 
 	/**
-	 * Indicates the pending state of the dial-pad.
+	 * Controls the pending state
 	 *
 	 * @public
 	 * @remarks
@@ -92,7 +92,7 @@ export class DialPad extends Localized(VividElement) {
 	@attr({ mode: 'boolean' }) pending = false;
 
 	/**
-	 * Indicates the active state of the dial-pad.
+	 * Controls the active state of the call
 	 *
 	 * @public
 	 * @remarks
@@ -101,7 +101,7 @@ export class DialPad extends Localized(VividElement) {
 	@attr({ attribute: 'call-active', mode: 'boolean' }) callActive = false;
 
 	/**
-	 * Indicates the no-call state of the dial-pad.
+	 * Removes the call button and functionality
 	 *
 	 * @public
 	 * @remarks
@@ -110,7 +110,7 @@ export class DialPad extends Localized(VividElement) {
 	@attr({ mode: 'boolean', attribute: 'no-call' }) noCall = false;
 
 	/**
-	 * Indicates the no-input state of the dial-pad.
+	 * Removes the phone input element
 	 *
 	 * @public
 	 * @remarks
@@ -119,6 +119,7 @@ export class DialPad extends Localized(VividElement) {
 	@attr({ mode: 'boolean', attribute: 'no-input' }) noInput = false;
 
 	/**
+	 * Controls the end call button label
 	 *
 	 * @public
 	 * @remarks
@@ -129,6 +130,7 @@ export class DialPad extends Localized(VividElement) {
 		| null = null;
 
 	/**
+	 * Controls the call button label
 	 *
 	 * @public
 	 * @remarks
@@ -259,7 +261,10 @@ export class DialPad extends Localized(VividElement) {
 	};
 
 	/**
-	 * Indicates that this element should get focus after the page finishes loading.
+	 * Indicates that an element should be focused on page load, or when the Dialog that it is part of
+	 * is displayed. When `no-input` attribute is specified, it will be the first digit button.
+	 * Otherwise, the text field will be focused.`
+	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: autofocus
@@ -268,7 +273,8 @@ export class DialPad extends Localized(VividElement) {
 	override autofocus = false;
 
 	/**
-	 * Moves focus into the diapl-pad.
+	 * Moves focus into the Dial Pad. If `no-input` attribute is specified, it will be the first digit
+	 * button. Otherwise, the input field will be focused.
 	 *
 	 * @public
 	 */

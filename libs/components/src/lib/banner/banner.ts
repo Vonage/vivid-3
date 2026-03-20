@@ -36,8 +36,6 @@ export class Banner extends AffixIcon(Localized(DelegatesAria(VividElement))) {
 	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel:
 		| string
 		| null = null;
-	@attr({ attribute: 'action-href' }) actionHref: string | undefined;
-	@attr({ attribute: 'action-text' }) actionText: string | undefined;
 	@attr({ mode: 'boolean' }) removable = false;
 	@attr() text: string | undefined;
 	@attr() connotation: BannerConnotation | undefined;

@@ -1,0 +1,21 @@
+concept: Action Group
+id: action-group
+description: The action group component should be used when you have a set of
+  related actions or options that need to be grouped together within a limited
+  space.
+status: ready
+slug: action-group
+keywords:
+  - actions
+  - grouping
+  - toolbar
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: action-group
+    design: https://figma.com/...

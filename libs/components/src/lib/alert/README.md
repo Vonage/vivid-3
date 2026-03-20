@@ -328,35 +328,3 @@ import { VAlert } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-| Name                                   | Type                                                                                              | Description                                                                     |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| **dismiss-button-aria-label**          | `string`                                                                                          | Allows setting a custom aria-label for the dismiss button.                      |
-| **removable**                          | `boolean`                                                                                         | Adds a close button to the Alert.                                               |
-| **placement**                          | _Enum_:<br/>`top`<br/>`top-start`<br/>`top-end`<br/>`bottom`<br/>`bottom-start`<br/>`bottom-end`  | The placement of the Alert on the screen.                                       |
-| **headline**                           | `string`                                                                                          | Adds a headline to the Alert.                                                   |
-| **text**                               | `string`                                                                                          | The main text of the Alert.                                                     |
-| _(deprecated as of 05/25)_<br>**icon** | _Enum_:<br/>`[icon-name]`                                                                         | The icon to display in the Alert. Takes precedence over the connotation's icon. |
-| **timeoutms**                          | `number`                                                                                          | Timeout after which the Alert will close.                                       |
-| **connotation**                        | _Enum_:<br/>`accent`<br/>`information`<br/>`success`<br/>`warning`<br/>`announcement`<br/>`alert` | Sets an appropriate icon / icon color for the connotation.                      |
-| **strategy**                           | _Enum_:<br/>`fixed`<br/>`static`                                                                  | Controls the `position` of the Alert.                                           |
-| **open**                               | `boolean`                                                                                         | Open state of the Alert.                                                        |
-
-### Slots
-
-| Name             | Description                                |
-| ---------------- | ------------------------------------------ |
-| **main**         | The main content of the Alert.             |
-| **action-items** | Add action items to Alert using this slot. |
-| **icon**         | Add an icon to the component.              |
-
-### Events
-
-| Name      | Type                     | Bubbles | Composed | Description                    |
-| --------- | ------------------------ | ------- | -------- | ------------------------------ |
-| **open**  | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the Alert is opened |
-| **close** | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the Alert is closed |

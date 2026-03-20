@@ -48,23 +48,30 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	_arrowEl?: HTMLElement;
 
 	/**
-	 * The placement of the popover relative to the anchor.
+	 * Controls the position of the Popover, relative to its anchor element.
+	 *
 	 * @public
 	 */
 	@attr({ mode: 'fromView' }) placement: Placement = 'bottom';
+
+	/**
+	 * @internal
+	 */
 	placementChanged() {
 		this.#updateAutoUpdate();
 	}
 
 	/**
-	 * If true, the popover uses manual dismissal (no light-dismiss).
-	 * Adds a close button to the UI.
+	 * Sets the Popover to manual mode, disabling light-dismiss (clicking outside) and displaying a
+	 * close button.
+	 *
 	 * @public
 	 */
 	@attr({ mode: 'boolean' }) manual = false;
 
 	/**
-	 * Sets the layout of the popover.
+	 * Can be used to enable a condensed layout with smaller paddings and gaps.
+	 *
 	 * @public
 	 * HTML Attribute: layout
 	 */
@@ -93,7 +100,8 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	alternate = false;
 
 	/**
-	 * Overrides the default Dismiss button's aria-label.
+	 * Overrides the default "Close" aria-label of Dismiss button when manual mode is enabled.
+	 *
 	 * @public
 	 */
 	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel:
@@ -101,21 +109,29 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 		| null = null;
 
 	/**
-	 * Whether to render the arrow tip.
+	 * Adds a small triangle to indicate the trigger element.
+	 *
 	 * @public
 	 */
 	@attr({ mode: 'boolean' }) arrow = false;
+
+	/**
+	 * @internal
+	 */
 	arrowChanged() {
 		this.#updateAutoUpdate();
 	}
 
 	/**
-	 * Indicates if the popover is currently open.
-	 * Can be set declaratively to open/close the popover.
-	 * Automatically updates when the user dismisses the popover.
+	 * Sets the open state of the Popover
+	 *
 	 * @public
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+
+	/**
+	 * @internal
+	 */
 	openChanged(_oldValue: boolean, newValue: boolean) {
 		if (!this._popoverEl) return;
 
@@ -131,11 +147,16 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 
 	// --- Anchoring Logic ---
 	/**
-	 * Direct reference to the popover's anchor element.
-	 * Setting this overrides the slotted anchor.
+	 * Sets the Popover's anchor element. Prefer using the [`anchor`
+	 * slot](/components/popover/code/#anchor-slot) if possible.
+	 *
 	 * @public
 	 */
 	@observable anchor?: HTMLElement;
+
+	/**
+	 * @internal
+	 */
 	anchorChanged() {
 		this.#updateAnchor();
 	}
@@ -145,6 +166,10 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	 * @internal
 	 */
 	@observable _slottedAnchor?: HTMLElement[];
+
+	/**
+	 * @internal
+	 */
 	_slottedAnchorChanged() {
 		this.#updateAnchor();
 	}

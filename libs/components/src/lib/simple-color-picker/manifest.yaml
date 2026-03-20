@@ -1,0 +1,21 @@
+concept: Simple Color Picker
+id: simple-color-picker
+description: The basic version of the Color Picker allows users to select a
+  color from a predefined palette.
+status: alpha
+slug: simple-color-picker
+keywords:
+  - color
+  - picker
+  - form
+  - input
+  - selection
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: simple-color-picker
+    design: https://figma.com/...

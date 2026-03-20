@@ -134,6 +134,9 @@ export class Pagination extends Localized(VividElement) {
 		});
 	}
 
+	/**
+	 * @internal
+	 */
 	totalChanged(_: number, newValue: number) {
 		if (newValue < 0) {
 			this.total = 0;
@@ -143,6 +146,9 @@ export class Pagination extends Localized(VividElement) {
 		this.#constrainSelectedIndex();
 	}
 
+	/**
+	 * @internal
+	 */
 	selectedIndexChanged(oldValue: number, newValue: number) {
 		if (oldValue === undefined) return;
 		this.$emit('pagination-change', {
@@ -154,6 +160,9 @@ export class Pagination extends Localized(VividElement) {
 		this.#constrainSelectedIndex();
 	}
 
+	/**
+	 * @internal
+	 */
 	paginationButtonsChanged(_: Button[] | undefined, newValue: Button[]) {
 		newValue.forEach((button) => {
 			button

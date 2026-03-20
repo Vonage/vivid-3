@@ -1,0 +1,23 @@
+concept: Fab
+id: fab
+description: Floating Action Button (FAB) is an action button that floats above
+  the user interface and should be used for actions that stands out among the
+  rest of the UI.
+status: ready
+slug: fab
+keywords:
+  - fab
+  - button
+  - floating
+  - action
+  - primary
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: fab
+    design: https://figma.com/...

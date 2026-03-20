@@ -1,14 +1,99 @@
 ---
 tags: components
 pagination:
-  data: componentsNew
+  data: componentCode
   size: 1
   alias: component
-permalink: "components/{{ component | componentSlug }}/code/"
+permalink: "components/{{ component.slug }}/code/"
 layout: component.njk
 eleventyComputed:
-  pageTitle: "{{ component.title }} - Code"
-  githubEditLink: "{{ component.code | githubEditLink }}"
+  pageTitle: "{{ component.concept }} - Code"
+  githubEditLink: "{{ component.documentation.code | githubEditLink }}"
 ---
 
-{% renderFile "../../" ~ component.code %}
+{% renderFile component.documentation.code %}
+
+{% if component.elements | length > 1 %}
+	{% set headingTag = "h4" %}
+{% else %}
+	{% set headingTag = "h3" %}
+{% endif %}
+
+<div class="heading-wrapper h2">
+<h2 id="api-reference" data-pagefind-weight="1">API Reference</h2>
+<a class="anchor" href="#api-reference" aria-labelledby="api-reference"><vwc-icon name="link-solid"></vwc-icon></a>
+</div>
+
+{% for element in component.elements %}
+	{% set metadata = getMetadata(element.tag) %}
+
+	{% if component.elements | length > 1 %}
+		<div class="heading-wrapper h3">
+			<h3 id="api-reference-{{ element.tag }}" data-pagefind-weight="1">{{ element.tag }}</h3>
+			<a class="anchor" href="#api-reference-{{ element.tag }}" aria-labelledby="api-reference-{{ element.tag }}"><vwc-icon name="link-solid"></vwc-icon></a>
+		</div>
+  {% endif %}
+
+	{% if metadata.props | length > 0 %}
+		<div class="heading-wrapper h4">
+			<{{ headingTag }} id="api-reference-{{ element.tag }}-properties" data-pagefind-weight="1">Properties</{{ headingTag }}>
+			<a class="anchor" href="#api-reference-{{ element.tag }}-properties" aria-labelledby="api-reference-{{ element.tag }}-properties"><vwc-icon name="link-solid"></vwc-icon></a>
+		</div>
+		<vwc-tabs>
+			<vwc-tab label="Vue"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "vue-props-table.njk" %}
+			</vwc-tab-panel>
+
+			<vwc-tab label="Web components"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "props-table.njk" %}
+			</vwc-tab-panel>
+		</vwc-tabs>
+	{% endif %}
+
+	{% if metadata.slots | length > 0 %}
+		<div class="heading-wrapper h4">
+			<{{ headingTag }} id="api-reference-{{ element.tag }}-slots" data-pagefind-weight="1">Slots</{{ headingTag }}>
+			<a class="anchor" href="#api-reference-{{ element.tag }}-slots" aria-labelledby="api-reference-{{ element.tag }}-slots"><vwc-icon name="link-solid"></vwc-icon></a>
+		</div>
+		<vwc-tabs>
+			<vwc-tab label="Vue"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "vue-slots-table.njk" %}
+			</vwc-tab-panel>
+
+			<vwc-tab label="Web components"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "slots-table.njk" %}
+			</vwc-tab-panel>
+		</vwc-tabs>
+	{% endif %}
+
+	{% if metadata.events | length > 0 %}
+		<div class="heading-wrapper h4">
+			<{{ headingTag }} id="api-reference-{{ element.tag }}-events" data-pagefind-weight="1">Events</{{ headingTag }}>
+			<a class="anchor" href="#api-reference-{{ element.tag }}-events" aria-labelledby="api-reference-{{ element.tag }}-events"><vwc-icon name="link-solid"></vwc-icon></a>
+		</div>
+		<vwc-tabs>
+			<vwc-tab label="Vue"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "vue-events-table.njk" %}
+			</vwc-tab-panel>
+
+			<vwc-tab label="Web components"></vwc-tab>
+			<vwc-tab-panel>
+				{% include "events-table.njk" %}
+			</vwc-tab-panel>
+		</vwc-tabs>
+	{% endif %}
+
+	{% if metadata.methods | length > 0 %}
+		<div class="heading-wrapper h4">
+			<{{ headingTag }} id="api-reference-{{ element.tag }}-methods" data-pagefind-weight="1">Methods</{{ headingTag }}>
+			<a class="anchor" href="#api-reference-{{ element.tag }}-methods" aria-labelledby="api-reference-{{ element.tag }}-methods"><vwc-icon name="link-solid"></vwc-icon></a>
+		</div>
+		{# methods seems to be identical for Web components and Vue wrappers #}
+		{% include "methods-table.njk" %}
+	{% endif %}
+{% endfor %}

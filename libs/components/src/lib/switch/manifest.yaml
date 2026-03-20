@@ -1,0 +1,22 @@
+concept: Switch
+id: switch
+description: Use a Switch when you want a user to easily toggle between two
+  mutually exclusive options, like 'on' and 'off' typically for settings or
+  preferences within an application.
+status: ready
+slug: switch
+keywords:
+  - switch
+  - toggle
+  - settings
+  - preferences
+  - binary
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: switch
+    design: https://figma.com/...

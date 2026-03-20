@@ -137,8 +137,7 @@ export class DataGrid extends VividElement {
 	}
 
 	/**
-	 * When true the component will not add itself to the tab queue.
-	 * Default is false.
+	 * Remove the grid from the tab order
 	 *
 	 * @public
 	 * @remarks
@@ -205,7 +204,7 @@ export class DataGrid extends VividElement {
 	}
 
 	/**
-	 * The data being displayed in the grid
+	 * Content of the grid in data format
 	 *
 	 * @public
 	 */
@@ -224,7 +223,7 @@ export class DataGrid extends VividElement {
 	}
 
 	/**
-	 * The column definitions of the grid
+	 * Configure the grid header columns
 	 *
 	 * @public
 	 */
@@ -249,7 +248,7 @@ export class DataGrid extends VividElement {
 	}
 
 	/**
-	 * The template to use for the programmatic generation of rows
+	 * Templete to use when rendering rows
 	 *
 	 * @public
 	 */
@@ -257,7 +256,7 @@ export class DataGrid extends VividElement {
 	rowItemTemplate!: ViewTemplate;
 
 	/**
-	 * The template used to render cells in generated rows.
+	 * Templete to use when rendering cells
 	 *
 	 * @public
 	 */
@@ -265,7 +264,7 @@ export class DataGrid extends VividElement {
 	cellItemTemplate?: ViewTemplate;
 
 	/**
-	 * The template used to render header cells in generated rows.
+	 * Templete to use when rendering grid header cells
 	 *
 	 * @public
 	 */
@@ -285,10 +284,7 @@ export class DataGrid extends VividElement {
 	}
 
 	/**
-	 * The index of the row that will receive focus the next time the
-	 * grid is focused. This value changes as focus moves to different
-	 * rows within the grid.  Changing this value when focus is already
-	 * within the grid moves focus to the specified row.
+	 * Index of row to be focused on when the Data Grid receives focus
 	 *
 	 * @public
 	 */
@@ -304,10 +300,7 @@ export class DataGrid extends VividElement {
 	}
 
 	/**
-	 * The index of the column that will receive focus the next time the
-	 * grid is focused. This value changes as focus moves to different rows
-	 * within the grid.  Changing this value when focus is already within
-	 * the grid moves focus to the specified column.
+	 * Index of column to be focused on when the Data Grid receives focus
 	 *
 	 * @public
 	 */
@@ -323,7 +316,8 @@ export class DataGrid extends VividElement {
 	}
 
 	/**
-	 * Number of columns to be fixed when scrolling horizontally
+	 * Sets the number of columns fixed to the left when horizontal scrolling
+	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: fixed-columns
@@ -377,8 +371,7 @@ export class DataGrid extends VividElement {
 	defaultRowItemTemplate!: ViewTemplate;
 
 	/**
-	 * Set by the component templates.
-	 *
+	 * Element tag for header rows
 	 */
 	@observable
 	rowElementTag!: string;
@@ -801,7 +794,7 @@ export class DataGrid extends VividElement {
 	}
 
 	/**
-	 * Indicates the selection mode.
+	 * Set the selection mode
 	 *
 	 * @public
 	 * HTML Attribute: selection-mode
@@ -823,6 +816,9 @@ export class DataGrid extends VividElement {
 		}, [] as DataGridCell[]);
 	}
 
+	/**
+	 * @internal
+	 */
 	selectionModeChanged(oldValue: DataGridSelectionMode) {
 		if (oldValue === undefined) {
 			Updates.enqueue(this._resetSelection);

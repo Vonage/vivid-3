@@ -72,7 +72,8 @@ export class ColorPicker extends WithContextualHelp(
 		/^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$/;
 
 	/**
-	 * Sets the placeholder value of the element, generally used to provide a hint to the user.
+	 * Text that appears in the input element when it has no value set
+	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: placeholder
@@ -112,7 +113,8 @@ export class ColorPicker extends WithContextualHelp(
 	// --- Saved Colors ---
 
 	/**
-	 * Sets the localStorage saved colors key explicitly.
+	 * Sets the localStorage key used to store saved colors explicitly
+	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: saved-colors-key

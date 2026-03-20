@@ -34,7 +34,7 @@ export type FABSize = ExtractFromEnum<
  */
 export class Fab extends AffixIconWithTrailing(VividFoundationButton) {
 	/**
-	 * The connotation the fab should have.
+	 * The connotation the Fab should have.
 	 *
 	 * @public
 	 * @remarks
@@ -43,7 +43,7 @@ export class Fab extends AffixIconWithTrailing(VividFoundationButton) {
 	@attr connotation?: FabConnotation;
 
 	/**
-	 * The size the FAB should have.
+	 * The size the Fab should have.
 	 *
 	 * @public
 	 * @remarks
@@ -52,7 +52,7 @@ export class Fab extends AffixIconWithTrailing(VividFoundationButton) {
 	@attr size?: FABSize;
 
 	/**
-	 * Indicates the fab's label.
+	 * Indicates the Fab's label.
 	 *
 	 * @public
 	 * @remarks
@@ -63,6 +63,8 @@ export class Fab extends AffixIconWithTrailing(VividFoundationButton) {
 	/**
 	 * Handles click events.
 	 * Prevents interaction when disabled.
+	 *
+	 * @internal
 	 */
 	clickHandler(event: Event) {
 		/* v8 ignore else -- @preserve */

@@ -390,26 +390,3 @@ import { VAudioPlayer } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-| Name                  | Type                           | Description                                                                                    |
-| --------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------- |
-| **connotation**       | `accent` (default), `cta`      | Sets the color of the audio player                                                             |
-| **currentTime**       | `number`                       | Get and set the current time                                                                   |
-| **disabled**          | `boolean`                      | Sets the disabled state of the audio player                                                    |
-| **duration**          | `number`                       | Get the duration (in seconds) of the audio                                                     |
-| **notime**            | `boolean`                      | Hides the time stamp                                                                           |
-| **paused**            | `boolean`                      | Returns the paused state of the audio                                                          |
-| **playback-rates**    | `string`                       | Comma separated string of numbers to define playback speeds                                    |
-| **skip-by**           | `0` (default), `5`, `10`, `30` | Sets the amount of seconds to skip the audio by                                                |
-| **duration-fallback** | `boolean`, Default: `false`    | Enables fallback logic to fetch and decode audio buffer for duration when metadata is missing. |
-
-### Methods
-
-| Name      | Description      |
-| --------- | ---------------- |
-| **play**  | Plays the audio  |
-| **pause** | Pauses the audio |

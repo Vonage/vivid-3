@@ -57,6 +57,8 @@ const validSkipByConverter: ValueConverter = {
 /**
  * @public
  * @component audio-player
+ * @event {CustomEvent<undefined>} play - Fires when the audio playback is started.
+ * @event {CustomEvent<undefined>} pause - Fires when the audio playback is paused.
  */
 export class AudioPlayer extends Localized(VividElement) {
 	@attr({ attribute: 'play-button-aria-label' }) playButtonAriaLabel:
@@ -77,7 +79,7 @@ export class AudioPlayer extends Localized(VividElement) {
 		| null = null;
 
 	/**
-	 * The connotation the audio-player should have.
+	 * Sets the color of the audio player
 	 *
 	 * @public
 	 * HTML Attribute: connotation
@@ -85,13 +87,16 @@ export class AudioPlayer extends Localized(VividElement) {
 	@attr connotation?: AudioPlayerConnotation;
 
 	/**
-	 * Indicates the audio-player's src.
+	 * Sets the audio source URL
 	 *
 	 * @public
 	 * HTML Attribute: src
 	 */
 	@attr src?: string;
 
+	/**
+	 * @internal
+	 */
 	srcChanged() {
 		if (this.src === undefined) {
 			this.setSrc('');
@@ -163,7 +168,7 @@ export class AudioPlayer extends Localized(VividElement) {
 	}
 
 	/**
-	 * Indicates whether audio player is disabled.
+	 * Sets the disabled state of the audio player
 	 *
 	 * @public
 	 * HTML Attribute: disabled
@@ -171,6 +176,7 @@ export class AudioPlayer extends Localized(VividElement) {
 	@attr({ mode: 'boolean' }) disabled = false;
 
 	/**
+	 * Hides the time stamp
 	 *
 	 * @public
 	 * HTML Attribute: notime
@@ -190,7 +196,7 @@ export class AudioPlayer extends Localized(VividElement) {
 	skipBy?: AudioPlayerMediaSkipBy;
 
 	/**
-	 * Sets the available playback rates. When an empty string, no choices will be available
+	 * Comma-separated string of numbers to define playback speeds
 	 *
 	 * @public
 	 * @remarks
@@ -298,6 +304,8 @@ export class AudioPlayer extends Localized(VividElement) {
 		this.#playerEl.addEventListener('timeupdate', this.#updateProgress);
 		this.#playerEl.addEventListener('loadedmetadata', this.#updateTotalTime);
 		this.#playerEl.addEventListener('durationchange', this.#updateTotalTime);
+		this.#playerEl.addEventListener('play', this.#onPlay);
+		this.#playerEl.addEventListener('pause', this.#onPause);
 		this.#setSliderInteractionListeners();
 
 		this.#setPausedState();
@@ -312,6 +320,8 @@ export class AudioPlayer extends Localized(VividElement) {
 		this.#playerEl.removeEventListener('timeupdate', this.#updateProgress);
 		this.#playerEl.removeEventListener('loadedmetadata', this.#updateTotalTime);
 		this.#playerEl.removeEventListener('durationchange', this.#updateTotalTime);
+		this.#playerEl.removeEventListener('play', this.#onPlay);
+		this.#playerEl.removeEventListener('pause', this.#onPause);
 	}
 
 	play() {
@@ -321,6 +331,18 @@ export class AudioPlayer extends Localized(VividElement) {
 	pause() {
 		this.#pausedChanged(PAUSE);
 	}
+
+	#onPlay = () => {
+		if (!this.#sliderEl?.isDragging) {
+			this.$emit('play', undefined, { bubbles: false });
+		}
+	};
+
+	#onPause = () => {
+		if (!this.#sliderEl?.isDragging) {
+			this.$emit('pause', undefined, { bubbles: false });
+		}
+	};
 
 	#setSliderInteractionListeners(add = true) {
 		const action = add ? 'addEventListener' : 'removeEventListener';

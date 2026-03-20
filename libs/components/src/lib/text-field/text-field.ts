@@ -139,7 +139,9 @@ export class TextField extends WithContextualHelp(
 	}
 
 	/**
-	 * Indicates that this element should get focus after the page finishes loading. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefautofocus | autofocus HTML attribute} for more information.
+	 * Indicates that an element should be focused on page load, or when the Dialog that it is part of
+	 * is displayed
+	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: autofocus
@@ -158,7 +160,8 @@ export class TextField extends WithContextualHelp(
 	}
 
 	/**
-	 * Sets the placeholder value of the element, generally used to provide a hint to the user.
+	 * Text that appears in the input element when it has no value set
+	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: placeholder
@@ -197,7 +200,8 @@ export class TextField extends WithContextualHelp(
 	}
 
 	/**
-	 * Allows associating a {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist | datalist} to the element by {@link https://developer.mozilla.org/en-US/docs/Web/API/Element/id}.
+	 * Value of the id attribute of the `` of autocomplete options
+	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: list
@@ -216,7 +220,8 @@ export class TextField extends WithContextualHelp(
 	}
 
 	/**
-	 * The maximum number of characters a user can enter.
+	 * Maximum length (number of characters) of `value`
+	 *
 	 * @public
 	 * @remarks
 	 * HTMLAttribute: maxlength
@@ -235,7 +240,8 @@ export class TextField extends WithContextualHelp(
 	}
 
 	/**
-	 * The minimum number of characters a user can enter.
+	 * Minimum length (number of characters) of `value`
+	 *
 	 * @public
 	 * @remarks
 	 * HTMLAttribute: minlength
@@ -254,7 +260,8 @@ export class TextField extends WithContextualHelp(
 	}
 
 	/**
-	 * A regular expression that the value must match to pass validation.
+	 * Pattern the `value` must match to be valid
+	 *
 	 * @public
 	 * @remarks
 	 * HTMLAttribute: pattern
@@ -273,7 +280,8 @@ export class TextField extends WithContextualHelp(
 	}
 
 	/**
-	 * Sets the width of the element to a specified number of characters.
+	 * Size (in chars) of the input element
+	 *
 	 * @public
 	 * @remarks
 	 * HTMLAttribute: size
@@ -377,7 +385,7 @@ export class TextField extends WithContextualHelp(
 	@attr autoComplete?: string;
 
 	/**
-	 * The size the text-field should have.
+	 * Sets the display size of the input element
 	 *
 	 * @public
 	 * @remarks

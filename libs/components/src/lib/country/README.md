@@ -182,18 +182,3 @@ import { VCountry } from '@vonage/vivid-vue';
 
 </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Properties
-
-| **Property** | **Type** | **Description**                                                                                                                                                                                           |
-| ------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **code**     | _string_ | ISO 3166-1 alpha-2 country code (e.g. "GB", "UK", "US"). When set, the component shows the matching flag (from [flag-icons](https://github.com/lipis/flag-icons)) and the code (e.g. "UK") automatically. |
-| **label**    | _string_ | Optional text to show instead of the country code (e.g. "Saint Helena" for "SH"). Useful for less familiar codes.                                                                                         |
-
-### Slots
-
-| **Name** | **Description**                  |
-| -------- | -------------------------------- |
-| **icon** | Optional custom flag or graphic. |

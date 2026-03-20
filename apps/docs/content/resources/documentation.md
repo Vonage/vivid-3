@@ -109,7 +109,6 @@ Each component page is split into sub pages (represented in the _tab-like_ navig
   - How to install the component
   - Examples for the properties that don't effect the visual states
   - Examples for slots, events etc.
-  - API Reference
 - **Use Cases**: `USE-CASES.md` - shows examples different ways the component can be used
 - **Accessibility**: `ACCESSIBILITY.md` - show advice ono how to use the component in an accessible way
 
@@ -123,36 +122,22 @@ Some component pages will not need every one of the sub-pages, this can be confi
 
 When a new component is added using the generator, this object is added to the `components.json`.
 
-```JS
-{
-  // Component Title
-  "title": "My Component",
+```js
+[
+	[...],
+	{
+		// Name of the component / concept
+		"title": "My Component",
 
-  // First paragraph of the page
-  "description": "Brief description of the component",
+		// slug for the component page url (eg. /components/my-component). Since slug is unique, it also serves for an kay / id of the concept in the docs.
+		"slug": "my-component",
 
-  // Variation page (required)
-  "variations": "./libs/components/src/lib/my-component/VARIATIONS.md",
+		// optional, not generated - parent of the current page in the hierarchy. Please refer to `eleventyNavigation` plugin.
+		"parent": "[...]",
 
-  // Guidelines page
-  "guidelines": "./libs/components/src/lib/my-compponent/GUIDELINES.md",
-
-  // Remove guidelines page from the navigation (url is still viewable)
-  "hideGuidelines": "true",
-
-  // Code page (required)
-  "code": "./libs/components/src/lib/my-component/README.md",
-
-  // Accessibility page
-  "accessibility": "./libs/components/src/lib/my-component/ACCESSIBILITY.md",
-
-  // Use-Cases page
-  "useCases": "./libs/components/src/lib/my-component/USE-CASES.md",
-
-  // Remove use-cases page from the navigation (url is still viewable)
-  "hideUseCases": "true",
-
-  // Development status (underlying | alpha)
-  "status": "underlying"
-},
+		// optional, not generated - children of the current page in the hierarchy. Please refer to `eleventyNavigation` plugin."
+		"children: ["...", "..."]
+	},
+	[...]
+]
 ```

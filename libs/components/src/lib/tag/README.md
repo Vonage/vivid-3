@@ -177,26 +177,3 @@ If set, the `icon` attribute is ignored.
 	</vwc-tag>
 </vwc-tag-group>
 ```
-
-## Events
-
-## Events
-
-<div class="table-wrapper">
-
-| Name              | Type                     | Bubbles | Composed | Description                           |
-| ----------------- | ------------------------ | ------- | -------- | ------------------------------------- |
-| `selected-change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires when the selected state changes |
-| `removed`         | `CustomEvent<undefined>` | Yes     | Yes      | Fires when the tag is removed         |
-
-</div>
-
-## Methods
-
-<div class="table-wrapper">
-
-| Name     | Returns | Description                                                                                                                                                                                                              |
-| -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `remove` | `void`  | Removes the tag from the DOM. Fires the `removed` event and removes the tag from the DOM completely. If you have a variable that refers to the tag element make sure to clear it otherwise it might cause a memory leak. |
-
-</div>
