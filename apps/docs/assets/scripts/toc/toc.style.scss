@@ -34,9 +34,8 @@ main:has(vwc-banner) {
 	top: anchor(top);
 	left: 0;
 	display: block;
-	height: anchor-size(height);
 	background-color: var(--vvd-color-cta-600);
-	block-size: 100%;
+	block-size: anchor-size(height);
 	content: '';
 	inline-size: 2px;
 	position-anchor: --toc-current-item;
@@ -46,8 +45,12 @@ main:has(vwc-banner) {
 }
 
 .article-toc ol {
-	padding-left: 8px;
 	list-style: none;
+	padding-inline-start: 8px;
+}
+
+.article-toc ol ol {
+	padding-inline-start: 16px;
 }
 
 .article-toc ol ol li {
