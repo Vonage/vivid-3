@@ -2,8 +2,6 @@ const fs = require('fs');
 const _ = require('lodash');
 const components = require('../content/_data/components.json');
 
-const FONTS =
-	'<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">';
 const IFRAME_STYLE =
 	'<link rel="stylesheet" href="/docs/assets/styles/iframe.scss">';
 const IFRAME_INLINE_STYLE = `<style>
@@ -99,7 +97,6 @@ const createHTMLExample = (code, classList, id) => {
 			<head>
 				${IFRAME_STYLE}
 				${IFRAME_INLINE_STYLE}
-			 	${FONTS}
 				<script type="module" src="/docs/assets/scripts/code-example/main.ts"></script>
 			</head>
 			<body class="page-not-ready" ${
@@ -134,7 +131,6 @@ const createVueExample = (code, classList, id) => {
 			<head>
 				${IFRAME_STYLE}
 				${IFRAME_INLINE_STYLE}
-				${FONTS}
 			</head>
 			<body ${classList.includes('full') ? 'id="_target"' : ''}>
 				<div id="app" class="${
