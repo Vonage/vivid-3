@@ -71,6 +71,12 @@ describe('vwc-popup', () => {
 			expect(cleanupMock).toHaveBeenCalled();
 		});
 
+		it('should not re-register autoUpdate when element is removed while open', async function () {
+			await setupPopupToOpenWithAnchor();
+			element.remove();
+			expect(floatingUI.autoUpdate).toHaveBeenCalledTimes(1);
+		});
+
 		it('should cleanup autoUpdate when popup is closed', async function () {
 			await setupPopupToOpenWithAnchor();
 			element.open = false;

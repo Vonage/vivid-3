@@ -226,6 +226,10 @@ export class Popup extends VividElement {
 	#updateAutoUpdate() {
 		this.#cleanup?.();
 
+		if (!this.isConnected) {
+			return;
+		}
+
 		if (this.open && this.controlEl) {
 			// Ensure open is synced with the control element so that popup can be measured
 			// Otherwise, position will not be computed correctly
