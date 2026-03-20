@@ -767,6 +767,19 @@ describe('vwc-file-picker', () => {
 			expect(errorSpy).toHaveBeenCalledWith(error);
 			expect(element.files).toEqual([]);
 		});
+
+		it('should prevent default on keydown of the control', async () => {
+			const keydownEvent = new KeyboardEvent('keydown', {
+				bubbles: true,
+				cancelable: true,
+				key: 'Enter',
+			});
+			const preventDefaultSpy = vi.spyOn(keydownEvent, 'preventDefault');
+
+			getControlElement(element).dispatchEvent(keydownEvent);
+
+			expect(preventDefaultSpy).toHaveBeenCalled();
+		});
 	});
 
 	describe('feedback messages', () => {
