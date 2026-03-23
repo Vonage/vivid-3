@@ -191,6 +191,59 @@ import { VIcon, VOption } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Connotation
+
+The `connotation` attribute controls the selected color.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VOption selected text="Accent (default)" value="accent" />
+		<VOption selected connotation="cta" text="CTA" value="cta" />
+	</div>
+</template>
+
+<style>
+.container {
+	width: 250px;
+	gap: 4px;
+	display: flex;
+	flex-direction: column;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<div class="container">
+	<vwc-option selected text="Accent (default)" value="accent"></vwc-option>
+	<vwc-option selected connotation="cta" text="CTA" value="cta"></vwc-option>
+</div>
+
+<style>
+	.container {
+		gap: 4px;
+		width: 250px;
+		display: flex;
+		flex-direction: column;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 The `disabled` attribute indicates that the option is disabled and can not be selected.

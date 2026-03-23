@@ -2,7 +2,7 @@
 @use '@repo/shared/mixins/focus' as focus-variables;
 @use '@repo/tokens/scss/tokens.constants' as constants;
 @use '@repo/shared/mixins/connotation/config' with (
-	$connotations: accent,
+	$connotations: accent cta,
 	$shades: primary primary-text primary-increment firm faint soft pale dim,
 	$default: accent
 );

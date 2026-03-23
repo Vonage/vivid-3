@@ -9,7 +9,7 @@ import { ListboxOption } from './option';
 
 const components = ['option', 'badge'];
 test('should show the component', async ({ page }: { page: Page }) => {
-	await page.setViewportSize({ width: 200, height: 720 });
+	await page.setViewportSize({ width: 300, height: 720 });
 
 	await loadComponents({
 		page,
@@ -19,7 +19,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await renderTemplate({
 		page,
 		template: `
-			<div role="listbox">
+			<style>
+				.listbox {
+					display: flex;
+					flex-direction: column;
+					gap: 4px;
+				}
+			</style>
+			<div class="listbox" role="listbox">
 				<vwc-option text="Option"></vwc-option>
 				<vwc-option text="Option" icon="chat-line"></vwc-option>
 				<vwc-option text="Option" selected></vwc-option>
@@ -67,6 +74,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					<vwc-icon slot="icon" name="chat-line"></vwc-icon>
 					<vwc-icon slot="trailing-meta" name="chat-line"></vwc-icon>
 				</vwc-option>
+				<vwc-option connotation="cta" text="CTA Option" selected></vwc-option>
+				<vwc-option connotation="cta" class="checkmark" text="CTA Option" selected></vwc-option>
+				<vwc-option connotation="cta" text="CTA Option" matched-text="pti" selected></vwc-option>
+				<vwc-option connotation="cta" class="highlighted" text="CTA Option"></vwc-option>
 			</div>
 		`,
 		setup: async () => {
