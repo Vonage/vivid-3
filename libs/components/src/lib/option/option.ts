@@ -3,7 +3,19 @@ import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { HostSemantics } from '../../shared/aria/host-semantics';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { Connotation } from '../enums';
 import type { OptionTagConnotation } from '../searchable-select/option-tag';
+
+/**
+ * Types of Option connotation.
+ *
+ * @public
+ */
+export type OptionConnotation = ExtractFromEnum<
+	Connotation,
+	Connotation.CTA | Connotation.Accent
+>;
 
 /**
  * Determines if the element is a {@link (ListboxOption:class)}
@@ -273,6 +285,15 @@ export class ListboxOption extends HostSemantics(
 		}
 		return { from: 0, to: 0 };
 	}
+
+	/**
+	 * Sets the connotation that appears when selected
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: connotation
+	 */
+	@attr connotation?: OptionConnotation;
 
 	/**
 	 * When displayed as a tag, the connotation of the tag

@@ -5949,6 +5949,13 @@
 					"propertyName": "checked"
 				},
 				{
+					"name": "connotation",
+					"description": "Sets the connotation that appears when selected",
+					"type": "'accent' | 'cta'",
+					"attributeName": "connotation",
+					"propertyName": "connotation"
+				},
+				{
 					"name": "defaultSelected",
 					"description": "Sets the option's initial selected state (mirrors the native `selected` attribute)",
 					"type": "boolean",

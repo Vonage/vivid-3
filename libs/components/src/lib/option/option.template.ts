@@ -12,6 +12,7 @@ import type { ListboxOption } from './option';
 const getClasses = (x: ListboxOption) =>
 	classNames(
 		'base',
+		[`connotation-${x.connotation}`, Boolean(x.connotation)],
 		['disabled', x.disabled],
 		['selected', Boolean(x.selected)],
 		['hover', Boolean(x._highlighted)],
