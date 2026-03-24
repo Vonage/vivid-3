@@ -195,6 +195,13 @@ import { VIcon, VOption } from '@vonage/vivid-vue';
 
 The `connotation` attribute controls the selected color.
 
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line" label="Warning:"></vwc-icon>
+
+For visual consistency, avoid mixing different connotations within the same control. <br /> All options within a single listbox or select should share the same connotation.
+
+</vwc-note>
+
 <vwc-tabs gutters="none">
 <vwc-tab label="Vue"></vwc-tab>
 <vwc-tab-panel>
@@ -206,8 +213,10 @@ import { VOption } from '@vonage/vivid-vue';
 
 <template>
 	<div class="container">
-		<VOption selected text="Accent (default)" value="accent" />
-		<VOption selected connotation="cta" text="CTA" value="cta" />
+		<VOption text="Accent (default)" value="accent1" />
+		<VOption selected text="Accent (default)" value="accent2" />
+		<VOption connotation="cta" text="CTA" value="cta1" />
+		<VOption selected connotation="cta" text="CTA" value="cta2" />
 	</div>
 </template>
 
@@ -227,8 +236,10 @@ import { VOption } from '@vonage/vivid-vue';
 
 ```html preview
 <div class="container">
-	<vwc-option selected text="Accent (default)" value="accent"></vwc-option>
-	<vwc-option selected connotation="cta" text="CTA" value="cta"></vwc-option>
+	<vwc-option text="Accent (default)" value="accent1"></vwc-option>
+	<vwc-option selected text="Accent (default)" value="accent2"></vwc-option>
+	<vwc-option connotation="cta" text="CTA" value="cta1"></vwc-option>
+	<vwc-option selected connotation="cta" text="CTA" value="cta2"></vwc-option>
 </div>
 
 <style>
