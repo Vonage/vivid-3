@@ -82,7 +82,7 @@ export default mergeConfig(
 				cssFileName: 'style',
 			},
 			minify: false,
-			rollupOptions: {
+			rolldownOptions: {
 				external: [
 					'@microsoft/fast-element',
 					'@microsoft/fast-web-utilities',

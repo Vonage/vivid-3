@@ -14,7 +14,7 @@ export default mergeConfig(
 				fileName: 'index',
 				formats: ['es'],
 			},
-			rollupOptions: {
+			rolldownOptions: {
 				external: [
 					'@custom-elements-manifest/analyzer',
 					'@custom-elements-manifest/analyzer/src/utils/mixins.js',

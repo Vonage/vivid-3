@@ -37,7 +37,7 @@ export default mergeConfig(
 				cssFileName: 'style',
 			},
 			minify: true,
-			rollupOptions: {
+			rolldownOptions: {
 				input,
 				output: [
 					{

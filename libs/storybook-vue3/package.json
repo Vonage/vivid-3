@@ -23,7 +23,7 @@
 		"react": "catalog:",
 		"react-dom": "catalog:",
 		"storybook": "catalog:",
-		"vite": "catalog:",
+		"vite": "^5.4.21",
 		"vue": "catalog:vue3"
 	}
 }

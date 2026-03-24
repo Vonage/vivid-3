@@ -62,7 +62,7 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 					${ref('control')}
 					class="${getClasses}"
 					@click="${(x) => x._onControlClick()}"
-					@keydown"${
+					@keydown="${
 						/* v8 ignore next -- @preserve -- Prevent implicit form submission on Enter */
 						() => false
 					}"

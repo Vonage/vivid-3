@@ -14,7 +14,7 @@ export default mergeConfig(
 				formats: ['es', 'cjs'],
 			},
 			target: 'esnext',
-			rollupOptions: {
+			rolldownOptions: {
 				external: ['@microsoft/fast-element', '@typescript-eslint/utils'],
 			},
 		},

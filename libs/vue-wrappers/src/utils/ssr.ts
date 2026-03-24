@@ -19,6 +19,8 @@ export function handleVue3Props(
 	// For this reason, the condition is written in a way to allow tree shaking if only
 	// one of the expressions has been statically replaced.
 	// Note: Do not move or modify the expression without validating tree shaking
+	// Note: For the CJS build, `import.meta` is replaced with `{}` with a warning.
+	// We can't suppress with an explicit define, since we need it in the ESM build.
 	if (
 		/* v8 ignore next 8 */
 		// @ts-ignore

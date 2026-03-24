@@ -21,7 +21,7 @@ export default mergeConfig(
 				formats: ['es', 'cjs'],
 			},
 			target: 'esnext',
-			rollupOptions: {
+			rolldownOptions: {
 				external: ['eslint-plugin-vue/lib/utils/index.js'],
 			},
 		},
