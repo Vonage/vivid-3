@@ -1,0 +1,74 @@
+---
+permalink: /design-tokens/references/typography/
+parent: Token Types  and Reference Pages
+title: Typography
+order: 20
+---
+{% include '../../_includes/tokens-table.njk' %}
+{% from '../../_includes/tokens-table.njk' import tokensList, heading %}
+{% macro preview(item) %}
+ <div class="token-preview" style="font: {{ item.preview }}; justify-content: start">
+    The quick brown fox jumps over the lazy dog
+  </div>
+{% endmacro %}
+
+<h1>Typography</h1>
+<p>
+	Describes the concept of typography as a compound token (font size, line height, weight, and family), explains style roles, and lists all heading, body, caption, input, and code tokens.
+</p>
+<p>
+	Used for properties like font, text styles, etc.
+</p>
+
+{{ heading('Heading', '2') }}
+<p>
+	Tokens used for headings and titles, such as page titles, section titles, and headlines.
+</p>
+<p>
+	<strong>Keywords:</strong>
+	heading, title, headline, display, section title, page title
+</p>
+{{ tokensList(tokens.typography.heading, preview) }}
+
+{{ heading('Body', '2') }}
+<p>
+	Tokens used for body text, such as paragraphs, lists, and general content.
+</p>
+<p>
+	<strong>Keywords:</strong>
+	body, text, paragraph, content, copy, description
+</p>
+{{ tokensList(tokens.typography.body, preview) }}
+
+{{ heading('Caption', '2') }}
+<p>
+	Tokens used for captions, such as image captions, figure captions, form field labels, and other secondary text.
+</p>
+<p>
+	<strong>Keywords:</strong>
+	caption, label, secondary text, image caption, figure caption, helper text
+</p>
+{{ tokensList(tokens.typography.caption, preview) }}
+
+{{ heading('Input', '2') }}
+<p>
+	Tokens used for the content of input fields, such as form fields, dropdowns, and other interactive elements.
+</p>
+<p>
+	<strong>Keywords:</strong>
+	input, form field, dropdown, interactive text, user input
+</p>
+{{ tokensList(tokens.typography.input, preview) }}
+
+{{ heading('Code', '2') }}
+<p>
+	Tokens used for code snippets, such as inline code, code blocks, and other monospaced text.
+</p>
+<p>
+	<strong>Keywords:</strong>
+	code, monospaced, inline code, code block, programming text
+</p>
+{{ tokensList(tokens.typography.code, preview) }}
+
+
+

@@ -12,13 +12,13 @@ Design tokens cover several dimensions of the interface - color, typography, spa
 
 ## Categories
 
-### Colors
+### Color
 
 Covers semantic color families, usage guidance for backgrounds, solids, borders, and text, and the full neutral, accent, status, and accent-alt scales.
 
 Used for properties like foreground and background colors, surfaces, border colors, etc.
 
-[Colors](/design-tokens/reference/colors/)
+[Color](/design-tokens/references/color/)
 
 ### Typography
 
@@ -26,7 +26,7 @@ Describes the concept of typography as a compound token (font size, line height,
 
 Used for properties like font, text styles, etc.
 
-[Typography](/design-tokens/reference/typography/)
+[Typography](/design-tokens/references/typography/)
 
 ### Density
 
@@ -34,7 +34,7 @@ Explains how spacing works. These tokens affect the inner and outer spacing betw
 
 Used for properties like paddings, margins and gaps
 
-[Density](/design-tokens/reference/density/)
+[Density](/design-tokens/references/density/)
 
 ### Radius
 
@@ -42,7 +42,7 @@ Covers shape families (rectangle, pill, circle), when each is appropriate, and t
 
 Used for properties like border radiuses that affect the shape of the element.
 
-[Radius](/design-tokens/reference/radius/)
+[Radius](/design-tokens/references/radius/)
 
 ### Size
 
@@ -50,7 +50,7 @@ Details how size tokens help standardize icons, UI elements, and layout blocks, 
 
 Used for sizes of internal UI elements like text, icons, carets.
 
-[Size](/design-tokens/reference/size/)
+[Size](/design-tokens/references/size/)
 
 ### Elevation
 
@@ -58,4 +58,4 @@ Explains depth, shadows, and layering, and includes the full elevation scale for
 
 Used for properties like container shadow.
 
-[Elevation](/design-tokens/reference/elevation/)
+[Elevation](/design-tokens/references/elevation/)
