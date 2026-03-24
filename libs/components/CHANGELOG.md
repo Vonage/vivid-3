@@ -4,6 +4,20 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.16.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.15.1...vivid-v5.16.0) (2026-03-24)
+
+
+### Features
+
+* **audio-player:** add play/pause events (VIV-3160) ([#2817](https://github.com/Vonage/vivid-3/issues/2817)) ([b1620bd](https://github.com/Vonage/vivid-3/commit/b1620bdd58271d93a24744344f789cfde0d2176b))
+* **option:** add CTA connotation (VIV-3171) ([#2825](https://github.com/Vonage/vivid-3/issues/2825)) ([ca718b5](https://github.com/Vonage/vivid-3/commit/ca718b5a1164be45466dc754c15b5627da2a9358))
+
+
+### Bug Fixes
+
+* **file-picker:** max-files  prop is not working correctly (VIV-3172)  ([#2823](https://github.com/Vonage/vivid-3/issues/2823)) ([e1ad40e](https://github.com/Vonage/vivid-3/commit/e1ad40e21f25df81e155edc9a7003e6a6154ba3f))
+* **select:** correct programmatic value assignment if value was set before options (VIV-3159) ([#2810](https://github.com/Vonage/vivid-3/issues/2810)) ([a14f919](https://github.com/Vonage/vivid-3/commit/a14f9192f9940249a1a62ee253eac73805099f09))
+
 ## [5.15.1](https://github.com/Vonage/vivid-3/compare/vivid-v5.15.0...vivid-v5.15.1) (2026-03-09)
 
 

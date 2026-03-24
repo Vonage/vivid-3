@@ -1,6 +1,6 @@
 {
 	"name": "@vonage/vivid",
-	"version": "5.15.1",
+	"version": "5.16.0",
 	"homepage": "https://vivid.vonage.com",
 	"bugs": {
 		"url": "https://github.com/Vonage/vivid-3/issues"
