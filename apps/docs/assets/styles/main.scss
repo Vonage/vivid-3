@@ -19,6 +19,12 @@ code {
 	tab-size: 4;
 }
 
+blockquote {
+	border-inline-start: 2px solid var(--vvd-color-neutral-300);
+	margin: 0 0 1rem;
+	padding: 0.25rem 2rem;
+}
+
 a {
 	color: var(--vvd-color-cta-600);
 }
