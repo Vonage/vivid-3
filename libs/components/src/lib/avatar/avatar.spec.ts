@@ -137,7 +137,7 @@ describe('vwc-avatar', () => {
 
 	describe('avatar as a link', () => {
 		beforeEach(async () => {
-			await setProperty(element, 'href', 'https://vivid.vonage.com');
+			await setProperty(element, 'href', 'https://apps.vivid.vonage.com');
 		});
 
 		it('should render an avatar with href attribute as anchor element', async () => {
