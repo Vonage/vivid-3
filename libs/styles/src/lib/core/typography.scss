@@ -3,7 +3,7 @@
 
 $selectors: (
 	bold: 'b, strong',
-	code: 'pre, var, code, kbd, samp',
+	code: 'pre, var, code, samp',
 );
 
 @mixin typography-base {

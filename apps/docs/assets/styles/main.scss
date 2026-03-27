@@ -16,7 +16,23 @@ code {
 	padding: 0 6px;
 	border-radius: 4px;
 	background-color: var(--vvd-color-neutral-50);
-	tab-size: 4;
+}
+
+.vvd-root kbd {
+	display: inline-block;
+	padding: 2px 4px 0;
+	margin-inline: 0px;
+	margin-block-start: -4px;
+	font-size: 12px;
+	line-height: 12px;
+	letter-spacing: 0px;
+	color: var(--vvd-color-canvas-text);
+	vertical-align: middle;
+	background-color: var(--vvd-color-neutral-50);
+	border: 1px solid var(--vvd-color-neutral-300);
+	border-bottom-color: var(--vvd-color-neutral-400);
+	border-radius: 4px;
+	font-family: SpeziaCompleteVariableUpright;
 }
 
 a {

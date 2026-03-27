@@ -11,6 +11,9 @@ Disabled buttons are everywhere in modern interfaces. They’re commonly used in
 
 At first glance, this pattern seems helpful: prevent errors by disabling actions until everything is valid. But in practice, disabled buttons frequently cause confusion, frustration, and accessibility issues.
 
+<p>Here is some text with <kbd>Space</kbd> key and <kbd>ArrowDown</kbd> in the text.<br />
+Also here is <kbd>Ctrl</kbd><kbd>Shift</kbd> + <kbd>Delete</kbd>.</p>
+
 This article explores why disabled buttons often lead to poor user experiences — and what alternative patterns are recommended instead.
 
 ## The Core Problem: No Feedback
