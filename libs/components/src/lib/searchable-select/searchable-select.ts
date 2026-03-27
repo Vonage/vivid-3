@@ -58,8 +58,8 @@ const isFormAssociatedTryingToSetFormValue = (
  * @event {CustomEvent<undefined>} input - Fired when the selected options change
  * @event {CustomEvent<undefined>} search-text-change - Fired when the search text changes
  * @event {CustomEvent<undefined>} change - Fired when the selected options change
- * @vueModel modelValue value input `event.currentTarget.value`
- * @vueModel values values input `event.currentTarget.values`
+ * @vueModel modelValue value input,@lazy:change `event.currentTarget.value`
+ * @vueModel values values input,@lazy:change `event.currentTarget.values`
  * @testAction selectOptionByValue selectOptionByValue
  * @testAction selectOptionByText selectOptionByText
  * @testQuery values values

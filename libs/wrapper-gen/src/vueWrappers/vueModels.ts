@@ -1,5 +1,13 @@
 import type { ComponentDef } from '@repo/metadata-extractor';
 
+/**
+ * Returns the Vue prop name for the modifiers object of a v-model.
+ * Vue 3 uses `modelModifiers` for the default v-model (name === 'modelValue')
+ * and `${name}Modifiers` for named v-models.
+ */
+export const modifiersPropName = (modelName: string) =>
+	modelName === 'modelValue' ? 'modelModifiers' : `${modelName}Modifiers`;
+
 export const resolveVueModels = (componentDef: ComponentDef) => {
 	// Filter out props that are overshadowed by v-model name
 	const props = componentDef.props.filter(
@@ -18,6 +26,15 @@ export const resolveVueModels = (componentDef: ComponentDef) => {
 		for (const eventName of model.eventNames) {
 			const event = componentDef.events.find((e) => e.name === eventName);
 			if (!event) throw new Error(`v-model event not found: ${eventName}`);
+		}
+		if (model.lazyEventNames) {
+			for (const lazyEventName of model.lazyEventNames) {
+				const lazyEvent = componentDef.events.find(
+					(e) => e.name === lazyEventName
+				);
+				if (!lazyEvent)
+					throw new Error(`v-model lazy event not found: ${lazyEventName}`);
+			}
 		}
 
 		return {

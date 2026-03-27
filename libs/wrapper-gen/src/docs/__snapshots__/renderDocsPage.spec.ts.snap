@@ -25,6 +25,7 @@ This is an example component
 | ----------------- | ------------------------------------ | ------------------------ |
 | **example-event** | \`Event\`                              | This is an example event |
 | **input**         | \`Event\`                              |                          |
+| **change**        | \`Event\`                              | This is a change event   |
 | **input:start**   | \`CustomEvent<{a: string \\| number}>\` |                          |
 
 ## Slots

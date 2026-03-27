@@ -19,6 +19,13 @@ export interface VExampleComponentEvents {
 			currentTarget: VwcExampleComponentElement
 		},
 
+				/**
+ * This is a change event
+ */
+				'change': Event & {
+			currentTarget: VwcExampleComponentElement
+		},
+
 				
 				'input:start': CustomEvent<{a: string | number}> & {
 			currentTarget: VwcExampleComponentElement
@@ -68,6 +75,15 @@ export interface VExampleComponentProps {
 
         externalType?: any
 	
+				/** Modifiers for the modelValue v-model */
+				modelModifiers?: { trim?: true; number?: true; lazy?: true },
+
+				/** Modifiers for the sameEvent v-model */
+				sameEventModifiers?: { trim?: true; number?: true },
+
+				/** Modifiers for the start v-model */
+				startModifiers?: { trim?: true; number?: true }
+	
 				/**
  * This is an example event
  */
@@ -75,6 +91,11 @@ export interface VExampleComponentProps {
 
 				
 				'onInput'?: (event: VExampleComponentEvents['input']) => void,
+
+				/**
+ * This is a change event
+ */
+				'onChange'?: (event: VExampleComponentEvents['change']) => void,
 
 				
 				'onInput:start'?: (event: VExampleComponentEvents['input:start']) => void,
