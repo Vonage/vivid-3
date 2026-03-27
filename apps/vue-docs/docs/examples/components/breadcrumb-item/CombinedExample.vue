@@ -1,7 +1,7 @@
 <template>
 	<div style="display: flex">
-		<VBreadcrumbItem text="Breadcrumb" href="https://vivid.vonage.com" />
-		<VBreadcrumbItem text="Breadcrumb" href="https://vivid.vonage.com" />
+		<VBreadcrumbItem text="Breadcrumb" href="https://apps.vivid.vonage.com" />
+		<VBreadcrumbItem text="Breadcrumb" href="https://apps.vivid.vonage.com" />
 		<VBreadcrumbItem text="..." />
 		<VBreadcrumbItem text="Breadcrumb" />
 	</div>

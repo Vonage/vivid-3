@@ -467,7 +467,7 @@ import { VAvatar, VIcon } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VAvatar href="https://vivid.vonage.com" target="_blank" aria-label="Link to the Vivid documentation">
+	<VAvatar href="https://apps.vivid.vonage.com" target="_blank" aria-label="Link to the Vivid documentation">
 		<VIcon slot="icon" name="chain-solid" label="Link" />
 	</VAvatar>
 </template>
@@ -478,7 +478,7 @@ import { VAvatar, VIcon } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview
-<vwc-avatar href="https://vivid.vonage.com" target="_blank" aria-label="Link to the Vivid documentation">
+<vwc-avatar href="https://apps.vivid.vonage.com" target="_blank" aria-label="Link to the Vivid documentation">
 	<vwc-icon slot="icon" name="chain-solid" label="Link"></vwc-icon>
 </vwc-avatar>
 ```

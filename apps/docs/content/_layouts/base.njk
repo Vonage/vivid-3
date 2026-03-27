@@ -6,10 +6,10 @@
 		<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <!--  Essential META Tags -->
-    <meta property="og:title" content="Vivid">
+    <meta property="og:title" content="Vivid Apps">
     <meta property="og:type" content="Documentation" />
     <meta property="og:image" content="https://raw.githubusercontent.com/Vonage/vivid-3/3ed7695e719b94bd87621983eba29c4d2df496e6/assets/images/vivid-logo.jpeg">
-    <meta property="og:url" content="https://vivid.vonage.com">
+    <meta property="og:url" content="https://apps.vivid.vonage.com">
     <meta name="twitter:card" content="summary_large_image">
 
     <!--  Non-Essential, But Recommended -->
@@ -27,7 +27,7 @@
 			gtag('config', 'G-DSG25YSQT3');
 		</script>
 
-    <title>{% if title %}{{ title }} | {% endif %}Vivid</title>
+    <title>{% if title %}{{ title }} | {% endif %}Vivid Apps</title>
     <link rel="icon" href="{{ '/assets/images/vivid-logo.svg' | url }}" type="image/svg+xml">
 
 		<style>
@@ -44,14 +44,27 @@
 		{% block header %}{% endblock %}
   </head>
 
-<body class="page-not-ready" hx-boost="true" hx-target="main" hx-select="main" hx-swap="outerHTML">
+<body class="page-not-ready with-announcement-banner" hx-boost="true" hx-target="main" hx-select="main" hx-swap="outerHTML">
+	<vwc-banner class="announcement-banner" icon="apps-solid"
+		text="You're currently browsing documentation of Vivid maintained by and for the Vonage Apps business unit."
+		connotation="announcement"
+	>
+		<vwc-button
+			appearance="filled"
+			slot="action-items"
+			class="vvd-theme-alternate desktop"
+			label="Check API Documentation"
+			icon="code-solid" icon-trailing
+			href="https://api.vivid.vonage.com/"
+		></vwc-button>
+	</vwc-banner>
 	<vwc-header id="header-main" slot="app-content">
 
 		<div class="header-content-wrapper">
 			<vwc-button class="vvd-theme-alternate" id="hamburger-button" connotation="accent" icon='collapse-solid' size='condensed' id="menu-button" aria-label="Menu" onclick="toggleSideDrawerButton()" class="menu-button"></vwc-button>
 			<a class="logo-wrapper vvd-theme-alternate" href="/">
 				<img src="/assets/images/vivid-logo.svg" alt="Vivid Logo" style="width: 24px">
-				<span class="text">Vivid</span>
+				<span class="text">Vivid <strong>Apps</strong></span>
 			</a>
 		</div>
 
