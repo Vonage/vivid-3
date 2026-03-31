@@ -182,7 +182,7 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-:host(:not([multiple]))
+:host(:not([multiple]):focus-visible)
 	::slotted([data-vvd-component='option'][current-selected]) {
 	border-radius: #{border-radius-variables.$border-radius-normal};
 
