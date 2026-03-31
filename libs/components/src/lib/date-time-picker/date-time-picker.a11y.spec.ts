@@ -4,7 +4,7 @@ import {
 	fixture,
 	setupDelegatesFocusPolyfill,
 } from '@repo/shared';
-import { DateTimePicker } from './date-time-picker';
+import type { DateTimePicker } from './date-time-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-date-time-picker';

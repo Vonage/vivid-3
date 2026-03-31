@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Slider } from './slider';
+import type { Slider } from './slider';
 import '.';
 
 const COMPONENT_TAG = 'vwc-slider';

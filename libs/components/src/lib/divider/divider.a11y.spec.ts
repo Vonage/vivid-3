@@ -1,5 +1,5 @@
 import { axe, fixture } from '@repo/shared';
-import { Divider } from './divider';
+import type { Divider } from './divider';
 import '.';
 
 const COMPONENT_TAG = 'vwc-divider';

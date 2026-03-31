@@ -1,5 +1,5 @@
 import { axe, fixture } from '@repo/shared';
-import { Breadcrumb } from './breadcrumb';
+import type { Breadcrumb } from './breadcrumb';
 import '../breadcrumb-item';
 import '.';
 

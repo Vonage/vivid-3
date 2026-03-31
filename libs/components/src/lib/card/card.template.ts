@@ -1,10 +1,8 @@
-import {
-	html,
+import type {
 	InlineTemplateDirective,
-	slotted,
 	ViewTemplate,
-	when,
 } from '@microsoft/fast-element';
+import { html, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';

@@ -1,6 +1,6 @@
 import { elementUpdated, fixture } from '@repo/shared';
 import * as TrappedFocus from '../../../patterns/trapped-focus';
-import { InlineTimePicker } from './inline-time-picker';
+import type { InlineTimePicker } from './inline-time-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-inline-time-picker';

@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Popup } from './popup';
+import type { Popup } from './popup';
 import '.';
 
 const COMPONENT_TAG = 'vwc-popup';

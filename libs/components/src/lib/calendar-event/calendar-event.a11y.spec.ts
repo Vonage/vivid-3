@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { CalendarEvent } from './calendar-event';
+import type { CalendarEvent } from './calendar-event';
 import '.';
 
 const COMPONENT_TAG = 'vwc-calendar-event';

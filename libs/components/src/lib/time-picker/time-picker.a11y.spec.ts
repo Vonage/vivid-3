@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { TimePicker } from './time-picker';
+import type { TimePicker } from './time-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-time-picker';

@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { ListboxOption } from './option';
+import type { ListboxOption } from './option';
 import '.';
 
 const COMPONENT_TAG = 'vwc-option';

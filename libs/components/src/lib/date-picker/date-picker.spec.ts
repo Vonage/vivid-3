@@ -8,8 +8,8 @@ import {
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { setLocale } from '../../shared/localization';
-import { TextField } from '../text-field/text-field';
-import { Button } from '../button/button';
+import type { TextField } from '../text-field/text-field';
+import type { Button } from '../button/button';
 import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
 import { calendarPickerSpec } from '../../shared/picker-field/mixins/calendar-picker.spec';
 import { DatePicker } from './date-picker';

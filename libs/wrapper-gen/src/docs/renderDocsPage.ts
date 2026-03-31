@@ -1,12 +1,12 @@
-import { TypeResolver } from '../common/types';
+import type { TypeResolver } from '../common/types';
 import { wrappedComponentName } from '../vueWrappers/name';
 import type { ComponentDef } from '@repo/metadata-extractor';
 import { markdownTable } from 'markdown-table';
-import {
-	parseTypeStr,
+import type {
 	TypeStr,
 	TypeUnion,
 } from '@repo/metadata-extractor/metadata/type-str';
+import { parseTypeStr } from '@repo/metadata-extractor/metadata/type-str';
 import { kebabCase } from 'change-case';
 
 const escapeMarkdown = (text = '') => text.replace(/([<>{}])/gm, '\\$1');

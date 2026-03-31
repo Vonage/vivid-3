@@ -1,6 +1,6 @@
 import { attr, observable } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { Connotation, Shape } from '../enums';
+import type { Connotation, Shape } from '../enums';
 import { Localized } from '../../shared/patterns';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 

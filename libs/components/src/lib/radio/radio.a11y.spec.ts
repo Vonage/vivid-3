@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Radio } from './radio';
+import type { Radio } from './radio';
 import '.';
 
 const COMPONENT_TAG = 'vwc-radio';

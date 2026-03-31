@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Switch } from './switch';
+import type { Switch } from './switch';
 import '.';
 
 const COMPONENT_TAG = 'vwc-switch';

@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Avatar } from './avatar';
+import type { Avatar } from './avatar';
 import '.';
 
 const COMPONENT_TAG = 'vwc-avatar';

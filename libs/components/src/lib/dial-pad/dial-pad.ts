@@ -1,6 +1,6 @@
 import { attr, observable } from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
-import { TextField } from '../text-field/text-field';
+import type { TextField } from '../text-field/text-field';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { Button } from '../button/button';
 

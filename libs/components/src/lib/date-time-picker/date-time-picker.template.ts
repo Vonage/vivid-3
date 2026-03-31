@@ -3,7 +3,7 @@ import type { VividElementDefinitionContext } from '../../shared/design-system/d
 import { CalendarPickerTemplate } from '../../shared/picker-field/mixins/calendar-picker.template';
 import { TimeSelectionPickerTemplate } from '../../shared/picker-field/mixins/time-selection-picker.template';
 import { PickerFieldTemplate } from '../../shared/picker-field/picker-field.template';
-import { DateTimePicker } from './date-time-picker';
+import type { DateTimePicker } from './date-time-picker';
 
 export const DateTimePickerTemplate = (
 	context: VividElementDefinitionContext

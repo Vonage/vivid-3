@@ -1,5 +1,5 @@
 import { axe, fixture } from '@repo/shared';
-import { RichTextEditor } from './rich-text-editor';
+import type { RichTextEditor } from './rich-text-editor';
 import '.';
 import { RteBase } from './rte/features/base';
 import { RteConfig } from './rte/config';

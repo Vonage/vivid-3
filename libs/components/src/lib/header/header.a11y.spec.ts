@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Header } from './header';
+import type { Header } from './header';
 import '.';
 
 const COMPONENT_TAG = 'vwc-header';

@@ -5,12 +5,7 @@ import {
 	NodeSelection,
 	TextSelection,
 } from 'prosemirror-state';
-import {
-	type Attrs,
-	type Mark,
-	type Node,
-	type ResolvedPos,
-} from 'prosemirror-model';
+import type { Attrs, Mark, Node, ResolvedPos } from 'prosemirror-model';
 import { sum } from 'ramda';
 import type { RichTextEditor } from '../../rich-text-editor';
 import type { Button } from '../../../button/button';
@@ -24,7 +19,7 @@ import type { MenuItem } from '../../../menu-item/menu-item';
 import type { Select } from '../../../select/select';
 import type { ListboxOption } from '../../../option/option';
 import { RteConfig } from '../config';
-import { RteFeature } from '../feature';
+import type { RteFeature } from '../feature';
 import type { TextField } from '../../../text-field/text-field';
 import type { Popover } from '../../popover';
 import { mockTransfer } from '../../../file-picker/__mocks__/data-transfer';

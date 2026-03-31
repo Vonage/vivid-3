@@ -35,6 +35,11 @@ export default defineConfig([
 			'no-new': 'warn',
 			'@typescript-eslint/no-non-null-assertion': 'off',
 			'@typescript-eslint/no-explicit-any': 'off',
+			'@typescript-eslint/consistent-type-imports': [
+				'error',
+				{ disallowTypeAnnotations: false },
+			],
+			'@typescript-eslint/no-import-type-side-effects': 'error',
 		},
 	},
 	{

@@ -1,6 +1,6 @@
 import { elementUpdated, fixture } from '@repo/shared';
 import './icons-gallery';
-import { DocsIconsGallery } from './icons-gallery';
+import type { DocsIconsGallery } from './icons-gallery';
 
 vi.spyOn(window, 'fetch').mockResolvedValue({
 	json: async () => [

@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Toggletip } from './toggletip';
+import type { Toggletip } from './toggletip';
 import '../button';
 import '.';
 

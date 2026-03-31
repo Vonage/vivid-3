@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Banner } from './banner';
+import type { Banner } from './banner';
 import '.';
 
 const COMPONENT_TAG = 'vwc-banner';

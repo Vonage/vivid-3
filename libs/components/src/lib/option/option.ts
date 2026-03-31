@@ -4,7 +4,7 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { HostSemantics } from '../../shared/aria/host-semantics';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
-import { Connotation } from '../enums';
+import type { Connotation } from '../enums';
 import type { OptionTagConnotation } from '../searchable-select/option-tag';
 
 /**

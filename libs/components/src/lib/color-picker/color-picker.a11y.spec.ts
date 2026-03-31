@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { ColorPicker } from './color-picker';
+import type { ColorPicker } from './color-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-color-picker';

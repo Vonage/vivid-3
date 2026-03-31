@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Card } from './card';
+import type { Card } from './card';
 import '.';
 
 const COMPONENT_TAG = 'vwc-card';

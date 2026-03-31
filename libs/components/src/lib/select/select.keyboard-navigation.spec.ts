@@ -7,8 +7,8 @@ import {
 	keyEnd,
 	keyHome,
 } from '@microsoft/fast-web-utilities';
-import { ListboxOption } from '../option/option';
-import { Select } from './select';
+import type { ListboxOption } from '../option/option';
+import type { Select } from './select';
 import '.';
 
 describe('vwc-select keyboard navigation', () => {

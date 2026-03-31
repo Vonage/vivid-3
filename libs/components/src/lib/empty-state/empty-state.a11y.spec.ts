@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { EmptyState } from './empty-state';
+import type { EmptyState } from './empty-state';
 import '.';
 
 const COMPONENT_TAG = 'vwc-empty-state';

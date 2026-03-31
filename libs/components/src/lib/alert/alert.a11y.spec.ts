@@ -1,6 +1,6 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
 import { Connotation } from '../enums';
-import { Alert } from './alert';
+import type { Alert } from './alert';
 import '.';
 
 const COMPONENT_TAG = 'vwc-alert';

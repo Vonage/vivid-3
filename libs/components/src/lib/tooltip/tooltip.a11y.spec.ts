@@ -5,7 +5,7 @@ import {
 	fixture,
 } from '@repo/shared';
 import type { Button } from '../button/button';
-import { Tooltip } from './tooltip';
+import type { Tooltip } from './tooltip';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tooltip';

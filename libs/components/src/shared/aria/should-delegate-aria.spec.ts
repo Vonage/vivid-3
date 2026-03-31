@@ -1,5 +1,5 @@
 import { elementUpdated } from '@repo/shared';
-import { type DelegatesAriaElement } from './delegates-aria';
+import type { DelegatesAriaElement } from './delegates-aria';
 import {
 	ariaAttributeName,
 	ariaMixinProperties,

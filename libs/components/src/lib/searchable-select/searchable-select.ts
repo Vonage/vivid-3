@@ -5,7 +5,7 @@ import {
 	Observable,
 	Updates,
 } from '@microsoft/fast-element';
-import { Appearance, Shape } from '../enums';
+import type { Appearance, Shape } from '../enums';
 import {
 	AffixIconWithTrailing,
 	FormElement,

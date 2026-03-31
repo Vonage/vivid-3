@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Menu } from './menu';
+import type { Menu } from './menu';
 import '.';
 import '../menu-item';
 import '../divider';
