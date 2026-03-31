@@ -5,7 +5,6 @@ import {
 	ref,
 	css,
 } from '@microsoft/fast-element';
-import { memoizeWith } from 'ramda';
 import type { Dialog } from '../vivid.js';
 import './search.style.scss';
 
@@ -27,22 +26,20 @@ const loadElement = async (
 	});
 };
 
-const loadPagefind = memoizeWith(
-	() => '',
-	() =>
-		Promise.all([
-			loadElement(
-				'script',
-				{ src: '/pagefind/pagefind-ui.js', async: true },
-				document.body
-			),
-			loadElement(
-				'link',
-				{ rel: 'stylesheet', href: '/pagefind/pagefind-ui.css' },
-				document.head
-			),
-		])
-);
+let loadPagefindPromise: Promise<unknown[]> | null = null;
+const loadPagefind = () =>
+	(loadPagefindPromise ??= Promise.all([
+		loadElement(
+			'script',
+			{ src: '/pagefind/pagefind-ui.js', async: true },
+			document.body
+		),
+		loadElement(
+			'link',
+			{ rel: 'stylesheet', href: '/pagefind/pagefind-ui.css' },
+			document.head
+		),
+	]));
 
 const template = html<DocsSearch>`
 	<template

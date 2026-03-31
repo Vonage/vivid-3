@@ -90,7 +90,6 @@ export default mergeConfig(
 					/^prosemirror-(?!.*\.css($|\?))/,
 					'dompurify',
 					'date-fns',
-					'ramda',
 					'uuid',
 					/^vanilla-colorful/,
 					/^video\.js/,
