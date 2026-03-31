@@ -84,6 +84,7 @@ $gap: 16px;
 
 	.digits {
 		gap: 8px;
+		grid-template-rows: repeat(4, 0.85fr);
 	}
 
 	.call-btn {

@@ -284,7 +284,7 @@ function renderDigits(
 
 function renderDialButton(buttonTag: InlineTemplateDirective) {
 	return html<DialPad>`<${buttonTag} class="call-btn"
-        size="expanded"
+        size="${(x) => (x.size === 'condensed' ? 'normal' : 'expanded')}"
         appearance="filled"
         icon="${(x) => (x.callActive ? 'disable-call-line' : 'call-line')}"
         connotation="${(x) => (x.callActive ? 'alert' : 'cta')}"
