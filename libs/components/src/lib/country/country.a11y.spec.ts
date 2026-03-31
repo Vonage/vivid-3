@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Country } from './country';
+import type { Country } from './country';
 import '.';
 
 const COMPONENT_TAG = 'vwc-country';

@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { FilePicker } from './file-picker';
+import type { FilePicker } from './file-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-file-picker';

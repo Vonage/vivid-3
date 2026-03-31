@@ -1,7 +1,7 @@
 import { elementUpdated } from '@repo/shared';
 import { docFactories } from '../__tests__/doc-factories';
 import { setup as standardSetup } from '../__tests__/test-utils';
-import { RteConfig } from '../config';
+import type { RteConfig } from '../config';
 import type { ProgressRing } from '../../../progress-ring/progress-ring';
 import type { Popover } from '../../popover';
 import type { ListboxOption } from '../../../option/option';

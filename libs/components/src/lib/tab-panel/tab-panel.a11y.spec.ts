@@ -1,5 +1,5 @@
 import { axe, fixture } from '@repo/shared';
-import { TabPanel } from './tab-panel';
+import type { TabPanel } from './tab-panel';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tab-panel';

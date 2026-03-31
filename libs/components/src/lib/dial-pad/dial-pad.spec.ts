@@ -1,7 +1,7 @@
 import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
 import { Updates } from '@microsoft/fast-element';
-import { TextField } from '../text-field/text-field';
-import { Button } from '../button/button';
+import type { TextField } from '../text-field/text-field';
+import type { Button } from '../button/button';
 import { DialPad } from './dial-pad';
 import '.';
 

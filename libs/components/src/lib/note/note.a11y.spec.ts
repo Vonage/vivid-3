@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Note } from './note';
+import type { Note } from './note';
 import '.';
 
 const COMPONENT_TAG = 'vwc-note';

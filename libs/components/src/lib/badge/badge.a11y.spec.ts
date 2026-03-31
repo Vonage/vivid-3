@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Badge } from './badge';
+import type { Badge } from './badge';
 import '.';
 
 const COMPONENT_TAG = 'vwc-badge';

@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Status } from './status';
+import type { Status } from './status';
 import '.';
 
 const COMPONENT_TAG = 'vwc-status';

@@ -1,6 +1,6 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
 import { LayoutSize } from '../enums';
-import { Layout } from './layout';
+import type { Layout } from './layout';
 import '.';
 
 const COMPONENT_TAG = 'vwc-layout';

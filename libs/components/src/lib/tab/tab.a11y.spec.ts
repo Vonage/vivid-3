@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Tab } from './tab';
+import type { Tab } from './tab';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tab';

@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Button } from './button';
+import type { Button } from './button';
 import '.';
 
 const COMPONENT_TAG = 'vwc-button';

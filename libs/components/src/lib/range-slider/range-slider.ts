@@ -15,7 +15,7 @@ import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
-import { Connotation } from '../enums';
+import type { Connotation } from '../enums';
 import { FormElement, Localized } from '../../shared/patterns';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';

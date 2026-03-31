@@ -1,5 +1,5 @@
 import { axe, fixture } from '@repo/shared';
-import { ActionGroup } from './action-group';
+import type { ActionGroup } from './action-group';
 import '.';
 
 const COMPONENT_TAG = 'vwc-action-group';

@@ -3,7 +3,7 @@ import { RteToolbarFeature } from '../features/toolbar';
 import { RteBase } from '../features/base';
 import { setup } from '../__tests__/test-utils';
 import type { Tooltip } from '../../../tooltip/tooltip';
-import { VwcMenuElement } from '../../../menu/definition';
+import type { VwcMenuElement } from '../../../menu/definition';
 import { RteTextBlockPickerFeature } from '../features/text-block-picker';
 import type { Select } from '../../../select/select';
 import {

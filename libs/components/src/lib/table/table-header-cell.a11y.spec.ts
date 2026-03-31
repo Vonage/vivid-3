@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { TableHeaderCell } from './table-header-cell';
+import type { TableHeaderCell } from './table-header-cell';
 import '.';
 
 const COMPONENT_TAG = 'vwc-table-header-cell';

@@ -12,13 +12,13 @@ import {
 } from '@microsoft/fast-web-utilities';
 import type { Button } from '../button/button';
 import type { Popup } from '../popup/popup';
-import { MenuItem } from '../menu-item/menu-item';
+import type { MenuItem } from '../menu-item/menu-item';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Menu } from './menu';
 import '.';
 import '../menu-item';
 import '../divider';
-import { VwcTooltipElement } from '../tooltip/definition';
+import type { VwcTooltipElement } from '../tooltip/definition';
 
 const COMPONENT_TAG = 'vwc-menu';
 

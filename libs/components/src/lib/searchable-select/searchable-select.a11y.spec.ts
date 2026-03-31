@@ -1,7 +1,7 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
 import '.';
 import '../option';
-import { SearchableSelect } from './searchable-select';
+import type { SearchableSelect } from './searchable-select';
 
 const COMPONENT_TAG = 'vwc-searchable-select';
 const OPTION_TAG = 'vwc-option';

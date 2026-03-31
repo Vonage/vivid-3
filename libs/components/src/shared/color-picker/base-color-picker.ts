@@ -1,13 +1,7 @@
-import {
-	attr,
-	html,
-	InlineTemplateDirective,
-	observable,
-	Updates,
-	when,
-} from '@microsoft/fast-element';
+import type { InlineTemplateDirective } from '@microsoft/fast-element';
+import { attr, html, observable, Updates, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { VividElement } from '../foundation/vivid-element/vivid-element';
+import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor, MixinType } from '../utils/mixins';
 import { FormElement, Localized } from '../patterns';
 import { FormAssociated } from '../foundation/form-associated/form-associated';

@@ -1,5 +1,5 @@
 import type { DriverT } from './drivers/driver';
-import { BaseWrapper } from './base';
+import type { BaseWrapper } from './base';
 import { ButtonWrapper, TextFieldWrapper } from './components.generated';
 
 export function light<D extends DriverT>(

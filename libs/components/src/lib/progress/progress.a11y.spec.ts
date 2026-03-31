@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Progress } from './progress';
+import type { Progress } from './progress';
 import '.';
 
 const COMPONENT_TAG = 'vwc-progress';

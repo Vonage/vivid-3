@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Checkbox } from './checkbox';
+import type { Checkbox } from './checkbox';
 import '.';
 
 const COMPONENT_TAG = 'vwc-checkbox';

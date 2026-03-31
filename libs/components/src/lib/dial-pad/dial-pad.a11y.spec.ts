@@ -1,5 +1,5 @@
 import { axe, fixture } from '@repo/shared';
-import { DialPad } from './dial-pad';
+import type { DialPad } from './dial-pad';
 import '.';
 
 const COMPONENT_TAG = 'vwc-dial-pad';

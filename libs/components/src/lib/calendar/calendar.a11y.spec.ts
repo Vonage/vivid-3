@@ -1,5 +1,5 @@
 import { axe, fixture } from '@repo/shared';
-import { Calendar } from './calendar';
+import type { Calendar } from './calendar';
 import '.';
 import '../calendar-event';
 

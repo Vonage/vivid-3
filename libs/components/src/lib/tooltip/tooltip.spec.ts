@@ -6,7 +6,7 @@ import {
 } from '@repo/shared';
 import { fireEvent } from '@testing-library/dom';
 import type { Button } from '../button/button';
-import { Popup } from '../popup/popup';
+import type { Popup } from '../popup/popup';
 import { Tooltip } from './tooltip';
 import '.';
 

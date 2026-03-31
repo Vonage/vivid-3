@@ -5,7 +5,7 @@ import {
 	type ViewController,
 } from '@microsoft/fast-element';
 import type { Constructor, MixinType } from '../utils/mixins';
-import { VividElement } from '../foundation/vivid-element/vivid-element';
+import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import {
 	type BoundAriaProperties,
 	DelegateAriaBehavior,

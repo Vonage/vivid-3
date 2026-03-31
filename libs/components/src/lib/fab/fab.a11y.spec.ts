@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Fab } from './fab';
+import type { Fab } from './fab';
 import '.';
 
 const COMPONENT_TAG = 'vwc-fab';

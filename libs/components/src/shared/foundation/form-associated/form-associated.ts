@@ -1,7 +1,7 @@
 import { attr, emptyArray, Updates } from '@microsoft/fast-element';
 import { keyEnter } from '@microsoft/fast-web-utilities';
 import type { Constructor, MixinType } from '../../utils/mixins';
-import { VividElement } from '../vivid-element/vivid-element';
+import type { VividElement } from '../vivid-element/vivid-element';
 
 const proxySlotName = 'form-associated-proxy';
 

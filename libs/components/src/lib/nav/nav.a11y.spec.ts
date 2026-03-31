@@ -1,5 +1,5 @@
 import { axe, fixture } from '@repo/shared';
-import { Nav } from './nav';
+import type { Nav } from './nav';
 import '.';
 
 const COMPONENT_TAG = 'vwc-nav';

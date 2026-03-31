@@ -5,7 +5,7 @@ import {
 	getResolvedTextContent,
 	setupDelegatesFocusPolyfill,
 } from '@repo/shared';
-import { Button } from '../../../lib/button/button';
+import type { Button } from '../../../lib/button/button';
 import type { CalendarPickerElement } from './calendar-picker';
 
 const cleanWhitespace = (text: string) => text.replace(/\s+/g, ' ').trim();

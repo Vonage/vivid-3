@@ -5,7 +5,7 @@ import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { Button } from '../button/button';
 import { delegateAria } from '../../shared/aria/delegates-aria';
-import { Popover } from './popover';
+import type { Popover } from './popover';
 
 const getClasses = ({ open, manual, layout }: Popover) =>
 	classNames(

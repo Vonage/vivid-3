@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { SideDrawer } from './side-drawer';
+import type { SideDrawer } from './side-drawer';
 import '.';
 
 const COMPONENT_TAG = 'vwc-side-drawer';

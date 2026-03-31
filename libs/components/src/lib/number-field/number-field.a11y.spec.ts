@@ -1,7 +1,7 @@
 import 'element-internals-polyfill';
 
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { NumberField } from './number-field';
+import type { NumberField } from './number-field';
 import '.';
 
 const COMPONENT_TAG = 'vwc-number-field';

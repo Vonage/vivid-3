@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture } from '@repo/shared';
-import { TagGroup } from './tag-group';
+import type { TagGroup } from './tag-group';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tag-group';
