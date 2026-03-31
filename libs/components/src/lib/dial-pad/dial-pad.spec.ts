@@ -433,6 +433,26 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
+	describe('size', () => {
+		it('should should not set class when size is not set', async () => {
+			expect(getBaseElement(element).classList.contains('size-normal')).toBe(false);
+		});
+		
+		it('should set class when size is set', async () => {
+			element.size = 'normal';
+			await Updates.next();
+			expect(getBaseElement(element).classList.contains('size-normal')).toBe(
+				true
+			);
+		});
+
+		it('should set scale=condensed on text input when size is set to condensed', async () => {
+			element.size = 'condensed';
+			await Updates.next();
+			expect(getTextField(element).getAttribute('scale')).toBe('condensed');
+		});
+	});
+
 	describe('events', () => {
 		function dispatchEvent(eventType: string) {
 			getTextField(element).dispatchEvent(

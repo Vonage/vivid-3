@@ -62,8 +62,12 @@ const DIAL_PAD_BUTTONS = [
 	),
 ];
 
-const getClasses = ({ noInput }: DialPad) =>
-	classNames('base', ['no-input', Boolean(noInput)]);
+const getClasses = ({ noInput, size }: DialPad) =>
+	classNames(
+		'base',
+		[`size-${size}`, Boolean(size)],
+		['no-input', Boolean(noInput)]
+	);
 
 function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 	if (
@@ -196,6 +200,7 @@ function renderTextField(
 			@focus="${stopPropagation}"
 			@blur="${stopPropagation}"
 			?autofocus="${(x) => x.autofocus}"
+			scale="${(x) => (x.size === 'condensed' ? 'condensed' : 'normal')}">
 			>
          ${when(
 						(x) => x.value && x.value.length && x.value.length > 0,

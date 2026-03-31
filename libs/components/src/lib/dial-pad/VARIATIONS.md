@@ -259,6 +259,16 @@ import { VDialPad } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Size
+
+When vertical space is limited, set the `size` attribute to `condensed`.
+
+This reduces the overall height of the Dial Pad by decreasing spacing between controls, making it more suitable for compact layouts without changing functionality.
+
+```html preview
+<vwc-dial-pad size="condensed"></vwc-dial-pad>
+```
+
 ## Removing Elements
 
 ### No Call

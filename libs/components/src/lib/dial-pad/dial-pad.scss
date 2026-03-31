@@ -27,6 +27,7 @@ $gap: 16px;
 	display: grid;
 	box-sizing: border-box;
 	grid-template-rows: 80px 1fr auto;
+
 	&.no-input {
 		grid-template-rows: 1fr auto;
 	}
@@ -74,6 +75,18 @@ $gap: 16px;
 }
 
 .call-btn {
-	margin-top: 32px;
+	margin-block-start: 32px;
 	grid-column: 1/-1;
+}
+
+.base.size-condensed {
+	grid-template-rows: 60px 1fr auto;
+
+	.digits {
+		gap: 8px;
+	}
+
+	.call-btn {
+		margin-block-start: 12px;
+	}
 }
