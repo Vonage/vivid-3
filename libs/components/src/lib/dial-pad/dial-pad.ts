@@ -1,8 +1,17 @@
 import { attr, observable } from '@microsoft/fast-element';
+import type { Size } from '../enums.js';
 import { Localized } from '../../shared/patterns';
 import { TextField } from '../text-field/text-field';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { Button } from '../button/button';
+
+/**
+ * Types of button size.
+ *
+ * @public
+ */
+export type DialPadSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
 
 /**
  * Base class for dial-pad
@@ -117,6 +126,15 @@ export class DialPad extends Localized(VividElement) {
 	 * HTML Attribute: no-input
 	 */
 	@attr({ mode: 'boolean', attribute: 'no-input' }) noInput = false;
+
+	/**
+	 * Controls the vertical size of the dial pad
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
+	@attr size?: DialPadSize;
 
 	/**
 	 * Controls the end call button label

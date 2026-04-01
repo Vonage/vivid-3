@@ -3759,6 +3759,13 @@
 					"propertyName": "placeholder"
 				},
 				{
+					"name": "size",
+					"description": "Controls the vertical size of the dial pad",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "size",
+					"propertyName": "size"
+				},
+				{
 					"name": "value",
 					"description": "Value of the phone input element",
 					"type": "string",
