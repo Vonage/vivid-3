@@ -452,6 +452,12 @@ describe('vwc-dial-pad', () => {
 			await Updates.next();
 			expect(getTextField(element).getAttribute('scale')).toBe('condensed');
 		});
+
+		it('should set size=normal on the call button when size is set to condensed', async () => {
+			element.size = 'condensed';
+			await Updates.next();
+			expect(getCallButton(element).getAttribute('size')).toBe('normal');
+		});
 	});
 
 	describe('events', () => {
