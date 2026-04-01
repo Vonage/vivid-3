@@ -4,6 +4,14 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.17.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.16.0...vivid-v5.17.0) (2026-04-01)
+
+
+### Bug Fixes
+
+* **picker-field:** fix visible focus when opening the picker (APIVIV-18) ([#2836](https://github.com/Vonage/vivid-3/issues/2836)) ([192c98f](https://github.com/Vonage/vivid-3/commit/192c98f60cfec04c13cc636f1eac2e161071c363))
+* **select:** fix visible focus on selected option (APIVIV-23) ([#2835](https://github.com/Vonage/vivid-3/issues/2835)) ([a460c10](https://github.com/Vonage/vivid-3/commit/a460c10e34dc992c0777d755844ac96163e8f820))
+
 ## [5.16.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.15.1...vivid-v5.16.0) (2026-03-24)
 
 
