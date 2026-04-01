@@ -13,7 +13,7 @@ import { VBanner, VButton, VHeader, VIcon } from '@vonage/vivid-vue';
 	<div class="site">
 		<VBanner class="banner" text="Use Vivid in Your Design" connotation="announcement">
 			<template #icon><VIcon slot="icon" name="sparkles-solid" /></template>
-			<VButton slot="action-items" size="condensed" shape="pill" href="https://vivid.vonage.com" target="_blank" appearance="filled" connotation="accent" label="Start Now" icon-trailing>
+			<VButton slot="action-items" size="condensed" shape="pill" href="https://apps.vivid.vonage.com" target="_blank" appearance="filled" connotation="accent" label="Start Now" icon-trailing>
 				<template #icon><VIcon slot="icon" name="chevron-right-line" /></template>
 			</VButton>
 		</VBanner>
@@ -52,7 +52,7 @@ import { VBanner, VButton, VHeader, VIcon } from '@vonage/vivid-vue';
 <div class="site">
 	<vwc-banner class="banner" text="Use Vivid in Your Design" connotation="announcement">
 		<vwc-icon slot="icon" name="sparkles-solid"></vwc-icon>
-		<vwc-button slot="action-items" size="condensed" shape="pill" href="https://vivid.vonage.com" target="_blank" appearance="filled" connotation="accent" label="Start Now" icon-trailing> <vwc-icon slot="icon" name="chevron-right-line"></vwc-icon> </vwc-button
+		<vwc-button slot="action-items" size="condensed" shape="pill" href="https://apps.vivid.vonage.com" target="_blank" appearance="filled" connotation="accent" label="Start Now" icon-trailing> <vwc-icon slot="icon" name="chevron-right-line"></vwc-icon> </vwc-button
 	></vwc-banner>
 	<vwc-header alternate>Site Header</vwc-header>
 	<div class="body">
