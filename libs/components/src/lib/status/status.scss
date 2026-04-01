@@ -42,12 +42,12 @@ slot[name='icon'],
 }
 
 .headline {
-	color: var(#{appearance.get-appearance-token(outline)});
+	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base-condensed-bold});
 }
 
 .description {
-	color: var(#{constants.$vvd-color-neutral-600});
+	color: var(#{constants.$vvd-color-neutral-800});
 	font: var(#{constants.$vvd-typography-base-condensed});
 }
 
