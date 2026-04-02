@@ -318,7 +318,7 @@ describe('vwc-audio-player', () => {
 						this.setAttribute('src', value);
 					});
 
-				const consoleSpy = vi.spyOn(console, 'log');
+				const consoleSpy = vi.spyOn(console, 'log').mockImplementation(vi.fn());
 
 				element['setSrc'](originalUrl, mockBlob);
 
@@ -518,6 +518,10 @@ describe('vwc-audio-player', () => {
 			});
 
 			it('should handle errors during fetch and clean up the abort controller', async () => {
+				const consoleErrorSpy = vi
+					.spyOn(console, 'error')
+					.mockImplementation(vi.fn());
+
 				element.durationFallback = true;
 				setAudioElementDuration(Infinity);
 				element.src = 'https://example.com/audio.mp3';
@@ -533,6 +537,8 @@ describe('vwc-audio-player', () => {
 
 				// The abort controller should be cleaned up
 				expect((element as any).fetchAbortController).toBeUndefined();
+
+				consoleErrorSpy.mockRestore();
 			});
 
 			it('should call URL.createObjectURL when setting source with a blob', () => {
@@ -633,6 +639,10 @@ describe('vwc-audio-player', () => {
 					};
 				});
 
+				const consoleErrorSpy = vi
+					.spyOn(console, 'error')
+					.mockImplementation(vi.fn());
+
 				element.durationFallback = true;
 				setAudioElementDuration(Infinity);
 				element.src = 'https://example.com/audio1.mp3';
@@ -651,8 +661,10 @@ describe('vwc-audio-player', () => {
 				// Clean up
 				resolveFetch &&
 					resolveFetch({
+						blob: () => Promise.resolve(new Blob()),
 						arrayBuffer: () => Promise.resolve(new ArrayBuffer(8)),
 					});
+				consoleErrorSpy.mockRestore();
 			});
 		});
 	});
