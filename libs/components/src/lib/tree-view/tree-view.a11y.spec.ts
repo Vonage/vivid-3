@@ -1,4 +1,5 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import type { TreeItem } from '../tree-item/tree-item';
 import '../tree-item';
 import type { TreeView } from './tree-view';

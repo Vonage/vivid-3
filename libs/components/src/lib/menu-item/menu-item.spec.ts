@@ -1,4 +1,8 @@
-import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
 import '.';
 import '../menu';
 import { fireEvent } from '@testing-library/dom';

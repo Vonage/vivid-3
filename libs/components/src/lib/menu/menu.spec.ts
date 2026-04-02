@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 import {
 	keyArrowDown,
 	keyArrowUp,

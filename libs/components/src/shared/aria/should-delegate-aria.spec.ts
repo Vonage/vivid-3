@@ -1,4 +1,4 @@
-import { elementUpdated } from '@repo/shared';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import type { DelegatesAriaElement } from './delegates-aria';
 import {
 	ariaAttributeName,

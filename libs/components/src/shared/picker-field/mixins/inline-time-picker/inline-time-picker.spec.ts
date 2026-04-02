@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import * as TrappedFocus from '../../../patterns/trapped-focus';
 import type { InlineTimePicker } from './inline-time-picker';
 import '.';

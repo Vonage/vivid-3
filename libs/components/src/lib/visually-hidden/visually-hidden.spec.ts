@@ -1,4 +1,4 @@
-import { fixture } from '@repo/shared';
+import { fixture } from '@repo/shared/test-utils/fixture';
 import { VisuallyHidden } from './visually-hidden';
 import '.';
 

@@ -1,4 +1,4 @@
-import { fixture } from '@repo/shared';
+import { fixture } from '@repo/shared/test-utils/fixture';
 import { siblingsOfType } from './siblings-of-type';
 
 describe('siblingsOfType', () => {

@@ -1,5 +1,5 @@
 import { html, ViewTemplate } from '@microsoft/fast-element';
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { DataGrid, DataGridSelectionMode } from './data-grid';
 import '.';
 import type { DataGridRow } from './data-grid-row';

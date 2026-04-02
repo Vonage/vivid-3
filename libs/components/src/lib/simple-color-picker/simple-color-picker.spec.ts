@@ -1,5 +1,5 @@
 import 'element-internals-polyfill';
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { SimpleColorPicker } from './simple-color-picker';
 import '.';
 

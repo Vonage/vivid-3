@@ -1,4 +1,4 @@
-import { elementUpdated } from '@repo/shared';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
 import { RteBase } from './base';

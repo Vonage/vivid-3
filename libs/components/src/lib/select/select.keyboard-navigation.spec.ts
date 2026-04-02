@@ -1,6 +1,6 @@
 import 'element-internals-polyfill';
 
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import {
 	keyArrowDown,
 	keyArrowUp,

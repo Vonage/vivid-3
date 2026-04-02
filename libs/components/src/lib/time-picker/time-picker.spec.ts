@@ -1,4 +1,5 @@
-import { createFormHTML, elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import { createFormHTML } from '@repo/shared/test-utils/form-association';
 import { setLocale } from '../../shared/localization';
 import type { Popup } from '../popup/popup';
 import type { Button } from '../button/button';
