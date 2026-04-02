@@ -112,14 +112,17 @@ export class DateTimePicker extends TimeSelectionPicker(
 	@attr({ converter: ValidDateFilter, attribute: 'max-date' })
 	maxDate: string;
 
+	/** @internal */
 	override get _resolvedMinDate() {
 		return this.minDate || extractDatePart(this.min);
 	}
 
+	/** @internal */
 	override get _resolvedMaxDate() {
 		return this.maxDate || extractDatePart(this.max);
 	}
 
+	/** @internal */
 	override get _resolvedMinTime() {
 		return (
 			this.minTime ||
@@ -130,6 +133,7 @@ export class DateTimePicker extends TimeSelectionPicker(
 		);
 	}
 
+	/** @internal */
 	override get _resolvedMaxTime() {
 		return (
 			this.maxTime ||

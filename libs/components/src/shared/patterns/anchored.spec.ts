@@ -12,6 +12,7 @@ describe('Anchored', () => {
 		template: anchorSlotTemplateFactory(),
 	})
 	class AnchoredElement extends Anchored(VividElement) {
+		/** @internal */
 		_anchorElChanged = _anchorElChanged;
 	}
 

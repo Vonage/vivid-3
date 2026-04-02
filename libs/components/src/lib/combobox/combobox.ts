@@ -144,7 +144,9 @@ export class Combobox extends WithContextualHelp(
 	 */
 	@attr({ mode: 'boolean', attribute: 'fixed-dropdown' }) fixedDropdown = false;
 
+	/** @internal */
 	_popup!: Popup;
+	/** @internal */
 	_anchor!: HTMLElement;
 
 	/**

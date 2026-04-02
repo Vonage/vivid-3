@@ -19,6 +19,7 @@ export class OptionTag extends Localized(VividElement) {
 	@attr({ mode: 'boolean' }) disabled = false;
 	@observable hasIconPlaceholder = false;
 
+	/** @internal */
 	_onClickRemove() {
 		this.$emit('remove', undefined, {
 			bubbles: false,
