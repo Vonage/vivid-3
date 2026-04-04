@@ -14,7 +14,7 @@ Basic.args = {
 
 const LinkTemplate = () => ({
 	components: { VBreadcrumbItem },
-	template: `<VBreadcrumbItem text="Breadcrumb" href="https://vivid.vonage.com" />`,
+	template: `<VBreadcrumbItem text="Breadcrumb" href="https://apps.vivid.vonage.com" />`,
 });
 export const Link = LinkTemplate.bind({});
 
@@ -29,11 +29,11 @@ const CombinedTemplate = () => ({
 	template: `<div style="display: flex">
     <VBreadcrumbItem
       text="Breadcrumb"
-      href="https://vivid.vonage.com" />
+      href="https://apps.vivid.vonage.com" />
 
     <VBreadcrumbItem
       text="Breadcrumb"
-      href="https://vivid.vonage.com" />
+      href="https://apps.vivid.vonage.com" />
 
     <VBreadcrumbItem
       text="..." />
