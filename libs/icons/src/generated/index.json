@@ -1272,9 +1272,7 @@
   {
     "id": "audio-max-line",
     "name": "audio-max",
-    "aliases": [
-      "audio-max"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "line",
     "keywords": [
@@ -1304,9 +1302,7 @@
   {
     "id": "audio-mid-line",
     "name": "audio-mid",
-    "aliases": [
-      "audio-mid"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "line",
     "keywords": [
@@ -1336,9 +1332,7 @@
   {
     "id": "audio-min-line",
     "name": "audio-min",
-    "aliases": [
-      "audio-min"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "line",
     "keywords": [
@@ -1368,9 +1362,7 @@
   {
     "id": "audio-mute-line",
     "name": "audio-mute",
-    "aliases": [
-      "audio-mute"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "line",
     "keywords": [
@@ -1404,9 +1396,7 @@
   {
     "id": "audio-off-2-line",
     "name": "audio-off-2",
-    "aliases": [
-      "audio-off-2"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "line",
     "keywords": [
@@ -1440,9 +1430,7 @@
   {
     "id": "audio-off-line",
     "name": "audio-off",
-    "aliases": [
-      "audio-off"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "line",
     "keywords": [
@@ -1538,9 +1526,7 @@
   {
     "id": "hearing-line",
     "name": "hearing",
-    "aliases": [
-      "hearing"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "line",
     "keywords": [
@@ -1642,9 +1628,7 @@
   {
     "id": "microphone-2-solid",
     "name": "microphone-2",
-    "aliases": [
-      "microphone-full"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "solid",
     "keywords": [
@@ -1658,7 +1642,7 @@
     "id": "microphone-line",
     "name": "microphone",
     "aliases": [
-      "microphone"
+      "microphone-full"
     ],
     "category": "audio",
     "style": "line",
@@ -1673,7 +1657,7 @@
     "id": "microphone-solid",
     "name": "microphone",
     "aliases": [
-      "microphone-2-full"
+      "microphone-full"
     ],
     "category": "audio",
     "style": "solid",
@@ -1702,7 +1686,6 @@
     "id": "note-solid",
     "name": "note",
     "aliases": [
-      "note",
       "note-full"
     ],
     "category": "audio",
@@ -1715,9 +1698,7 @@
   {
     "id": "shout-line",
     "name": "shout",
-    "aliases": [
-      "shout"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "line",
     "keywords": [
@@ -1753,9 +1734,7 @@
   {
     "id": "volume-decrease-line",
     "name": "volume-decrease",
-    "aliases": [
-      "volume-decrease"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "line",
     "keywords": [
@@ -1789,9 +1768,7 @@
   {
     "id": "volume-increase-line",
     "name": "volume-increase",
-    "aliases": [
-      "volume-increase"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "line",
     "keywords": [
@@ -1856,8 +1833,7 @@
     "id": "volume-off-2-line",
     "name": "volume-off-2",
     "aliases": [
-      "volume-off",
-      "volume-off-2"
+      "volume-off"
     ],
     "category": "audio",
     "style": "line",
@@ -1958,9 +1934,7 @@
   {
     "id": "whisper-line",
     "name": "whisper",
-    "aliases": [
-      "whisper"
-    ],
+    "aliases": [],
     "category": "audio",
     "style": "line",
     "keywords": [
@@ -2369,7 +2343,6 @@
     "id": "facebook-mono",
     "name": "facebook",
     "aliases": [
-      "facebook",
       "brand-facebook"
     ],
     "category": "brand",
@@ -2996,7 +2969,6 @@
     "id": "rss-color",
     "name": "rss",
     "aliases": [
-      "rss",
       "brand-rss-color",
       "brand-rss"
     ],
@@ -3286,9 +3258,7 @@
   {
     "id": "vonage-mono",
     "name": "vonage",
-    "aliases": [
-      "vonage"
-    ],
+    "aliases": [],
     "category": "brand",
     "style": "mono",
     "keywords": [
@@ -3862,9 +3832,7 @@
   {
     "id": "click-to-call-line",
     "name": "click-to-call",
-    "aliases": [
-      "click-to-call"
-    ],
+    "aliases": [],
     "category": "calling",
     "style": "line",
     "keywords": [
@@ -4108,9 +4076,7 @@
   {
     "id": "hash-line",
     "name": "hash",
-    "aliases": [
-      "hash"
-    ],
+    "aliases": [],
     "category": "calling",
     "style": "line",
     "keywords": [
@@ -4322,7 +4288,6 @@
     "id": "mobile-arrow-right-solid",
     "name": "mobile-arrow-right",
     "aliases": [
-      "mobile-arrow-right",
       "mobile-arrow-right-full"
     ],
     "category": "calling",
@@ -4870,9 +4835,7 @@
   {
     "id": "unhold-line",
     "name": "unhold",
-    "aliases": [
-      "unhold"
-    ],
+    "aliases": [],
     "category": "calling",
     "style": "line",
     "keywords": [
@@ -4888,9 +4851,7 @@
   {
     "id": "unhold-solid",
     "name": "unhold",
-    "aliases": [
-      "unhold"
-    ],
+    "aliases": [],
     "category": "calling",
     "style": "solid",
     "keywords": [
@@ -4906,9 +4867,7 @@
   {
     "id": "chart-line",
     "name": "chart",
-    "aliases": [
-      "chart"
-    ],
+    "aliases": [],
     "category": "charts",
     "style": "line",
     "keywords": [
@@ -4940,9 +4899,7 @@
   {
     "id": "condition-line",
     "name": "condition",
-    "aliases": [
-      "condition"
-    ],
+    "aliases": [],
     "category": "charts",
     "style": "line",
     "keywords": [
@@ -5004,9 +4961,7 @@
   {
     "id": "flow-line",
     "name": "flow",
-    "aliases": [
-      "flow"
-    ],
+    "aliases": [],
     "category": "charts",
     "style": "line",
     "keywords": [
@@ -5070,9 +5025,7 @@
   {
     "id": "pie-chart-line",
     "name": "pie-chart",
-    "aliases": [
-      "pie-chart"
-    ],
+    "aliases": [],
     "category": "charts",
     "style": "line",
     "keywords": [
@@ -5100,9 +5053,7 @@
   {
     "id": "report-line",
     "name": "report",
-    "aliases": [
-      "report"
-    ],
+    "aliases": [],
     "category": "charts",
     "style": "line",
     "keywords": [
@@ -5162,9 +5113,7 @@
   {
     "id": "check-circle-line",
     "name": "check-circle",
-    "aliases": [
-      "check-circle"
-    ],
+    "aliases": [],
     "category": "check",
     "style": "line",
     "keywords": [
@@ -5192,9 +5141,7 @@
   {
     "id": "check-double-line",
     "name": "check-double",
-    "aliases": [
-      "check-double"
-    ],
+    "aliases": [],
     "category": "check",
     "style": "line",
     "keywords": [
@@ -5224,9 +5171,7 @@
   {
     "id": "check-line",
     "name": "check",
-    "aliases": [
-      "check"
-    ],
+    "aliases": [],
     "category": "check",
     "style": "line",
     "keywords": [
@@ -5386,9 +5331,7 @@
   {
     "id": "checkbox-unchecked-line",
     "name": "checkbox-unchecked",
-    "aliases": [
-      "checkbox-unchecked"
-    ],
+    "aliases": [],
     "category": "check",
     "style": "line",
     "keywords": [
@@ -5520,9 +5463,7 @@
   {
     "id": "switch-line",
     "name": "switch",
-    "aliases": [
-      "switch"
-    ],
+    "aliases": [],
     "category": "check",
     "style": "line",
     "keywords": [
@@ -5822,9 +5763,7 @@
   {
     "id": "calculator-line",
     "name": "calculator",
-    "aliases": [
-      "calculator"
-    ],
+    "aliases": [],
     "category": "commerce",
     "style": "line",
     "keywords": [
@@ -5856,9 +5795,7 @@
   {
     "id": "cart-full-line",
     "name": "cart-full",
-    "aliases": [
-      "cart-full"
-    ],
+    "aliases": [],
     "category": "commerce",
     "style": "line",
     "keywords": [
@@ -5894,9 +5831,7 @@
   {
     "id": "cart-line",
     "name": "cart",
-    "aliases": [
-      "cart"
-    ],
+    "aliases": [],
     "category": "commerce",
     "style": "line",
     "keywords": [
@@ -5930,9 +5865,7 @@
   {
     "id": "credit-card-line",
     "name": "credit-card",
-    "aliases": [
-      "credit-card"
-    ],
+    "aliases": [],
     "category": "commerce",
     "style": "line",
     "keywords": [
@@ -5997,8 +5930,7 @@
     "id": "packet-2-line",
     "name": "packet-2",
     "aliases": [
-      "packet",
-      "packet-2"
+      "packet"
     ],
     "category": "commerce",
     "style": "line",
@@ -6067,9 +5999,7 @@
   {
     "id": "refresh-dollar-line",
     "name": "refresh-dollar",
-    "aliases": [
-      "refresh-dollar"
-    ],
+    "aliases": [],
     "category": "commerce",
     "style": "line",
     "keywords": [
@@ -6131,9 +6061,7 @@
   {
     "id": "store-line",
     "name": "store",
-    "aliases": [
-      "store"
-    ],
+    "aliases": [],
     "category": "commerce",
     "style": "line",
     "keywords": [
@@ -6161,9 +6089,7 @@
   {
     "id": "wallet-line",
     "name": "wallet",
-    "aliases": [
-      "wallet"
-    ],
+    "aliases": [],
     "category": "commerce",
     "style": "line",
     "keywords": [
@@ -6193,9 +6119,7 @@
   {
     "id": "broadcast-line",
     "name": "broadcast",
-    "aliases": [
-      "broadcast"
-    ],
+    "aliases": [],
     "category": "connectivity",
     "style": "line",
     "keywords": [
@@ -6299,9 +6223,7 @@
   {
     "id": "cloud-line",
     "name": "cloud",
-    "aliases": [
-      "cloud"
-    ],
+    "aliases": [],
     "category": "connectivity",
     "style": "line",
     "keywords": [
@@ -6365,9 +6287,7 @@
   {
     "id": "cloud-upload-line",
     "name": "cloud-upload",
-    "aliases": [
-      "cloud-upload"
-    ],
+    "aliases": [],
     "category": "connectivity",
     "style": "line",
     "keywords": [
@@ -6431,9 +6351,7 @@
   {
     "id": "quit-line",
     "name": "quit",
-    "aliases": [
-      "quit"
-    ],
+    "aliases": [],
     "category": "connectivity",
     "style": "line",
     "keywords": [
@@ -6526,9 +6444,7 @@
   {
     "id": "calendar-line",
     "name": "calendar",
-    "aliases": [
-      "calendar"
-    ],
+    "aliases": [],
     "category": "connectivity",
     "style": "line",
     "keywords": [
@@ -6588,9 +6504,7 @@
   {
     "id": "salesforce-line",
     "name": "salesforce",
-    "aliases": [
-      "salesforce"
-    ],
+    "aliases": [],
     "category": "connectivity",
     "style": "line",
     "keywords": [
@@ -6622,9 +6536,7 @@
   {
     "id": "snooze-line",
     "name": "snooze",
-    "aliases": [
-      "snooze"
-    ],
+    "aliases": [],
     "category": "connectivity",
     "style": "line",
     "keywords": [
@@ -6652,9 +6564,7 @@
   {
     "id": "wifi-line",
     "name": "wifi",
-    "aliases": [
-      "wifi"
-    ],
+    "aliases": [],
     "category": "connectivity",
     "style": "line",
     "keywords": [
@@ -6684,9 +6594,7 @@
   {
     "id": "coverage-line",
     "name": "coverage",
-    "aliases": [
-      "coverage"
-    ],
+    "aliases": [],
     "category": "connectivity",
     "style": "line",
     "keywords": [
@@ -6774,11 +6682,25 @@
     ]
   },
   {
+    "id": "mcp-line",
+    "name": "mcp",
+    "aliases": [],
+    "category": "connectivity",
+    "style": "line",
+    "keywords": []
+  },
+  {
+    "id": "mcp-solid",
+    "name": "mcp",
+    "aliases": [],
+    "category": "connectivity",
+    "style": "solid",
+    "keywords": []
+  },
+  {
     "id": "backspace-line",
     "name": "backspace",
-    "aliases": [
-      "backspace"
-    ],
+    "aliases": [],
     "category": "delete",
     "style": "line",
     "keywords": [
@@ -6951,9 +6873,7 @@
   {
     "id": "remove-line",
     "name": "remove",
-    "aliases": [
-      "remove"
-    ],
+    "aliases": [],
     "category": "delete",
     "style": "line",
     "keywords": [
@@ -6981,9 +6901,7 @@
   {
     "id": "devices-line",
     "name": "devices",
-    "aliases": [
-      "devices"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7031,9 +6949,7 @@
   {
     "id": "fax-2-line",
     "name": "fax-2",
-    "aliases": [
-      "fax-2"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7071,9 +6987,7 @@
   {
     "id": "fax-add-line",
     "name": "fax-add",
-    "aliases": [
-      "fax-add"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7163,9 +7077,7 @@
   {
     "id": "fax-inbound-line",
     "name": "fax-inbound",
-    "aliases": [
-      "fax-inbound"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7209,9 +7121,7 @@
   {
     "id": "fax-line",
     "name": "fax",
-    "aliases": [
-      "fax"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7251,9 +7161,7 @@
   {
     "id": "fax-outbound-line",
     "name": "fax-outbound",
-    "aliases": [
-      "fax-outbound"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7297,9 +7205,7 @@
   {
     "id": "fax-pending-line",
     "name": "fax-pending",
-    "aliases": [
-      "fax-pending"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7335,10 +7241,7 @@
   {
     "id": "fax-scheduled-line",
     "name": "fax-scheduled",
-    "aliases": [
-      "fax-failed",
-      "fax-scheduled"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7375,9 +7278,7 @@
   {
     "id": "headset-line",
     "name": "headset",
-    "aliases": [
-      "headset"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7397,9 +7298,7 @@
   {
     "id": "laptop-line",
     "name": "laptop",
-    "aliases": [
-      "laptop"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7421,9 +7320,7 @@
   {
     "id": "mobile-2-line",
     "name": "mobile-2",
-    "aliases": [
-      "mobile-2"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7467,9 +7364,7 @@
   {
     "id": "mobile-devices-line",
     "name": "mobile-devices",
-    "aliases": [
-      "mobile-devices"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7515,9 +7410,7 @@
   {
     "id": "mobile-line",
     "name": "mobile",
-    "aliases": [
-      "mobile"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7613,9 +7506,7 @@
   {
     "id": "print-line",
     "name": "print",
-    "aliases": [
-      "print"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7655,9 +7546,7 @@
   {
     "id": "virtual-voicemail-line",
     "name": "virtual-voicemail",
-    "aliases": [
-      "virtual-voicemail"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7685,9 +7574,7 @@
   {
     "id": "voicemail-line",
     "name": "voicemail",
-    "aliases": [
-      "voicemail"
-    ],
+    "aliases": [],
     "category": "devices",
     "style": "line",
     "keywords": [
@@ -7714,7 +7601,6 @@
     "id": "voicemail-transcript-line",
     "name": "voicemail-transcript",
     "aliases": [
-      "voicemail-transcript",
       "voicemail-2"
     ],
     "category": "devices",
@@ -7745,9 +7631,7 @@
   {
     "id": "emoji-line",
     "name": "emoji",
-    "aliases": [
-      "emoji"
-    ],
+    "aliases": [],
     "category": "emoji",
     "style": "line",
     "keywords": [
@@ -7777,9 +7661,7 @@
   {
     "id": "happy-line",
     "name": "happy",
-    "aliases": [
-      "happy"
-    ],
+    "aliases": [],
     "category": "emoji",
     "style": "line",
     "keywords": [
@@ -7807,9 +7689,7 @@
   {
     "id": "puzzled-line",
     "name": "puzzled",
-    "aliases": [
-      "puzzled"
-    ],
+    "aliases": [],
     "category": "emoji",
     "style": "line",
     "keywords": [
@@ -7835,9 +7715,7 @@
   {
     "id": "smile-line",
     "name": "smile",
-    "aliases": [
-      "smile"
-    ],
+    "aliases": [],
     "category": "emoji",
     "style": "line",
     "keywords": [
@@ -7867,9 +7745,7 @@
   {
     "id": "surprised-line",
     "name": "surprised",
-    "aliases": [
-      "surprised"
-    ],
+    "aliases": [],
     "category": "emoji",
     "style": "line",
     "keywords": [
@@ -7893,9 +7769,7 @@
   {
     "id": "unhappy-line",
     "name": "unhappy",
-    "aliases": [
-      "unhappy"
-    ],
+    "aliases": [],
     "category": "emoji",
     "style": "line",
     "keywords": [
@@ -7949,9 +7823,7 @@
   {
     "id": "image-line",
     "name": "image",
-    "aliases": [
-      "image"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8051,9 +7923,7 @@
   {
     "id": "copy-2-line",
     "name": "copy-2",
-    "aliases": [
-      "copy-2"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8089,9 +7959,7 @@
   {
     "id": "copy-line",
     "name": "copy",
-    "aliases": [
-      "copy"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8207,9 +8075,7 @@
   {
     "id": "download-line",
     "name": "download",
-    "aliases": [
-      "download"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8275,9 +8141,7 @@
   {
     "id": "file-add-line",
     "name": "file-add",
-    "aliases": [
-      "file-add"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8326,9 +8190,7 @@
   {
     "id": "file-audio-line",
     "name": "file-audio",
-    "aliases": [
-      "file-audio"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8396,9 +8258,7 @@
   {
     "id": "file-doc-line",
     "name": "file-doc",
-    "aliases": [
-      "file-doc"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8428,9 +8288,7 @@
   {
     "id": "file-dollar-line",
     "name": "file-dollar",
-    "aliases": [
-      "file-dollar"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8462,9 +8320,7 @@
   {
     "id": "file-edit-line",
     "name": "file-edit",
-    "aliases": [
-      "file-edit"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8512,9 +8368,7 @@
   {
     "id": "file-gear-line",
     "name": "file-gear",
-    "aliases": [
-      "file-gear"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8638,9 +8492,7 @@
   {
     "id": "file-pdf-line",
     "name": "file-pdf",
-    "aliases": [
-      "file-pdf"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8672,9 +8524,7 @@
   {
     "id": "file-paragraph-line",
     "name": "file-paragraph",
-    "aliases": [
-      "file-paragraph"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8714,9 +8564,7 @@
   {
     "id": "file-plus-line",
     "name": "file-plus",
-    "aliases": [
-      "file-plus"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8790,9 +8638,7 @@
   {
     "id": "file-ppt-line",
     "name": "file-ppt",
-    "aliases": [
-      "file-ppt"
-    ],
+    "aliases": [],
     "category": "file",
     "style": "line",
     "keywords": [
@@ -8825,7 +8671,7 @@
     "id": "file-search-line",
     "name": "file-search",
     "aliases": [
-      "file-search"
+      ""
     ],
     "category": "file",
     "style": "line",
@@ -8981,7 +8827,7 @@
     "id": "file-video-line",
     "name": "file-video",
     "aliases": [
-      "file-video"
+      ""
     ],
     "category": "file",
     "style": "line",
@@ -9021,7 +8867,7 @@
     "id": "file-xls-line",
     "name": "file-xls",
     "aliases": [
-      "file-xls"
+      ""
     ],
     "category": "file",
     "style": "line",
@@ -9055,7 +8901,7 @@
     "id": "file-zip-line",
     "name": "file-zip",
     "aliases": [
-      "file-zip"
+      ""
     ],
     "category": "file",
     "style": "line",
@@ -9087,7 +8933,7 @@
     "id": "files-line",
     "name": "files",
     "aliases": [
-      "files"
+      ""
     ],
     "category": "file",
     "style": "line",
@@ -9129,7 +8975,7 @@
     "id": "gallery-line",
     "name": "gallery",
     "aliases": [
-      "gallery"
+      ""
     ],
     "category": "file",
     "style": "line",
@@ -9193,7 +9039,7 @@
     "id": "notes-line",
     "name": "notes",
     "aliases": [
-      "notes"
+      ""
     ],
     "category": "file",
     "style": "line",
@@ -9259,7 +9105,7 @@
     "id": "stack-line",
     "name": "stack",
     "aliases": [
-      "stack"
+      ""
     ],
     "category": "file",
     "style": "line",
@@ -9333,7 +9179,7 @@
     "id": "upload-line",
     "name": "upload",
     "aliases": [
-      "upload"
+      ""
     ],
     "category": "file",
     "style": "line",
@@ -10754,7 +10600,7 @@
     "id": "app-line",
     "name": "app",
     "aliases": [
-      "app"
+      ""
     ],
     "category": "layout",
     "style": "line",
@@ -10798,7 +10644,7 @@
     "id": "app-plus-line",
     "name": "app-plus",
     "aliases": [
-      "app-plus"
+      ""
     ],
     "category": "layout",
     "style": "line",
@@ -10894,7 +10740,7 @@
     "id": "bottom-tabs-line",
     "name": "bottom-tabs",
     "aliases": [
-      "bottom-tabs"
+      ""
     ],
     "category": "layout",
     "style": "line",
@@ -10934,7 +10780,7 @@
     "id": "code-snippet-line",
     "name": "code-snippet",
     "aliases": [
-      "code-snippet"
+      ""
     ],
     "category": "layout",
     "style": "line",
@@ -10980,7 +10826,7 @@
     "id": "grid-two-line",
     "name": "grid-two",
     "aliases": [
-      "grid-two"
+      ""
     ],
     "category": "layout",
     "style": "line",
@@ -11102,7 +10948,6 @@
     "id": "mockup-line",
     "name": "mockup",
     "aliases": [
-      "mockup",
       "sidebar"
     ],
     "category": "layout",
@@ -11143,7 +10988,7 @@
     "id": "modal-line",
     "name": "modal",
     "aliases": [
-      "modal"
+      ""
     ],
     "category": "layout",
     "style": "line",
@@ -11229,7 +11074,7 @@
     "id": "table-2-line",
     "name": "table-2",
     "aliases": [
-      "table-2"
+      ""
     ],
     "category": "layout",
     "style": "line",
@@ -11307,7 +11152,7 @@
     "id": "ambulance-line",
     "name": "ambulance",
     "aliases": [
-      "ambulance"
+      ""
     ],
     "category": "location",
     "style": "line",
@@ -11339,7 +11184,7 @@
     "id": "car-line",
     "name": "car",
     "aliases": [
-      "car"
+      ""
     ],
     "category": "location",
     "style": "line",
@@ -11403,7 +11248,7 @@
     "id": "hospital-line",
     "name": "hospital",
     "aliases": [
-      "hospital"
+      ""
     ],
     "category": "location",
     "style": "line",
@@ -11435,7 +11280,7 @@
     "id": "hoteling-line",
     "name": "hoteling",
     "aliases": [
-      "hoteling"
+      ""
     ],
     "category": "location",
     "style": "line",
@@ -11597,7 +11442,7 @@
     "id": "van-line",
     "name": "van",
     "aliases": [
-      "van"
+      ""
     ],
     "category": "location",
     "style": "line",
@@ -11665,7 +11510,7 @@
     "id": "chat-2-line",
     "name": "chat-2",
     "aliases": [
-      "chat-2"
+      ""
     ],
     "category": "messaging",
     "style": "line",
@@ -11753,7 +11598,6 @@
     "id": "chat-line",
     "name": "chat",
     "aliases": [
-      "chat",
       "chat-line"
     ],
     "category": "messaging",
@@ -11797,7 +11641,7 @@
     "id": "compose-line",
     "name": "compose",
     "aliases": [
-      "compose"
+      ""
     ],
     "category": "messaging",
     "style": "line",
@@ -11839,7 +11683,7 @@
     "id": "envelope-line",
     "name": "envelope",
     "aliases": [
-      "envelope"
+      ""
     ],
     "category": "messaging",
     "style": "line",
@@ -11917,7 +11761,7 @@
     "id": "inbox-2-line",
     "name": "inbox-2",
     "aliases": [
-      "inbox-2"
+      ""
     ],
     "category": "messaging",
     "style": "line",
@@ -11961,7 +11805,7 @@
     "id": "inbox-3-line",
     "name": "inbox-3",
     "aliases": [
-      "inbox-3"
+      ""
     ],
     "category": "messaging",
     "style": "line",
@@ -11995,7 +11839,7 @@
     "id": "inbox-line",
     "name": "inbox",
     "aliases": [
-      "inbox"
+      ""
     ],
     "category": "messaging",
     "style": "line",
@@ -12070,7 +11914,7 @@
     "id": "mailbox-line",
     "name": "mailbox",
     "aliases": [
-      "mailbox"
+      ""
     ],
     "category": "messaging",
     "style": "line",
@@ -12110,7 +11954,7 @@
     "id": "message-line",
     "name": "message",
     "aliases": [
-      "message"
+      ""
     ],
     "category": "messaging",
     "style": "line",
@@ -12208,7 +12052,7 @@
     "id": "sms-line",
     "name": "sms",
     "aliases": [
-      "sms"
+      ""
     ],
     "category": "messaging",
     "style": "line",
@@ -12280,9 +12124,7 @@
   {
     "id": "smart-reply-solid",
     "name": "smart-reply",
-    "aliases": [
-      "message-full"
-    ],
+    "aliases": [],
     "category": "messaging",
     "style": "solid",
     "keywords": [
@@ -12350,7 +12192,7 @@
     "id": "books-line",
     "name": "books",
     "aliases": [
-      "books"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -12506,7 +12348,7 @@
     "id": "flash-2-line",
     "name": "flash-2",
     "aliases": [
-      "flash-2"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -12538,7 +12380,7 @@
     "id": "flash-line",
     "name": "flash",
     "aliases": [
-      "flash"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -12570,7 +12412,7 @@
     "id": "gear-line",
     "name": "gear",
     "aliases": [
-      "gear"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -12652,7 +12494,7 @@
     "id": "infinity-line",
     "name": "infinity",
     "aliases": [
-      "infinity"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -12684,7 +12526,7 @@
     "id": "key-line",
     "name": "key",
     "aliases": [
-      "key"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -12746,7 +12588,7 @@
     "id": "lock-line",
     "name": "lock",
     "aliases": [
-      "lock"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -12786,7 +12628,7 @@
     "id": "megaphone-line",
     "name": "megaphone",
     "aliases": [
-      "megaphone"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -12830,7 +12672,7 @@
     "id": "pin-2-line",
     "name": "pin-2",
     "aliases": [
-      "pin-2"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -12896,7 +12738,7 @@
     "id": "plug-line",
     "name": "plug",
     "aliases": [
-      "plug"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -12940,7 +12782,7 @@
     "id": "puzzle-line",
     "name": "puzzle",
     "aliases": [
-      "puzzle"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -12980,7 +12822,7 @@
     "id": "quote-line",
     "name": "quote",
     "aliases": [
-      "quote"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -13014,7 +12856,7 @@
     "id": "shield-line",
     "name": "shield",
     "aliases": [
-      "shield"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -13118,7 +12960,7 @@
     "id": "sticker-line",
     "name": "sticker",
     "aliases": [
-      "sticker"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -13148,7 +12990,7 @@
     "id": "tooltip-line",
     "name": "tooltip",
     "aliases": [
-      "tooltip"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -13178,7 +13020,7 @@
     "id": "umbrella-line",
     "name": "umbrella",
     "aliases": [
-      "umbrella"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -13208,7 +13050,7 @@
     "id": "unlock-line",
     "name": "unlock",
     "aliases": [
-      "unlock"
+      ""
     ],
     "category": "objects",
     "style": "line",
@@ -13297,19 +13139,19 @@
     ]
   },
   {
-    "id": "knowledge-assist-stye-line",
+    "id": "knowledge-assist-line",
     "name": "knowledge-assist",
     "aliases": [],
     "category": "objects",
-    "style": "stye=line",
+    "style": "line",
     "keywords": []
   },
   {
-    "id": "knowledge-assist-stye-solid",
+    "id": "knowledge-assist-solid",
     "name": "knowledge-assist",
     "aliases": [],
     "category": "objects",
-    "style": "stye=solid",
+    "style": "solid",
     "keywords": []
   },
   {
@@ -13340,7 +13182,7 @@
     "id": "ai-2-line",
     "name": "ai-2",
     "aliases": [
-      "ai-2"
+      ""
     ],
     "category": "science",
     "style": "line",
@@ -13386,7 +13228,7 @@
     "id": "ai-3-line",
     "name": "ai-3",
     "aliases": [
-      "ai-3"
+      ""
     ],
     "category": "science",
     "style": "line",
@@ -13432,7 +13274,7 @@
     "id": "ai-line",
     "name": "ai",
     "aliases": [
-      "ai"
+      ""
     ],
     "category": "science",
     "style": "line",
@@ -13478,7 +13320,7 @@
     "id": "atoms-line",
     "name": "atoms",
     "aliases": [
-      "atoms"
+      ""
     ],
     "category": "science",
     "style": "line",
@@ -13534,7 +13376,7 @@
     "id": "brain-line",
     "name": "brain",
     "aliases": [
-      "brain"
+      ""
     ],
     "category": "science",
     "style": "line",
@@ -13610,7 +13452,6 @@
     "id": "mind-map-line",
     "name": "mind-map",
     "aliases": [
-      "mind-map",
       "mind-map-full"
     ],
     "category": "science",
@@ -13707,7 +13548,7 @@
     "id": "heart-line",
     "name": "heart",
     "aliases": [
-      "heart"
+      ""
     ],
     "category": "social",
     "style": "line",
@@ -13771,7 +13612,6 @@
     "id": "link-line",
     "name": "link",
     "aliases": [
-      "link",
       "link-add-line"
     ],
     "category": "social",
@@ -13909,7 +13749,7 @@
     "id": "rocket-line",
     "name": "rocket",
     "aliases": [
-      "rocket"
+      ""
     ],
     "category": "social",
     "style": "line",
@@ -13965,7 +13805,7 @@
     "id": "share-2-line",
     "name": "share-2",
     "aliases": [
-      "share-2"
+      ""
     ],
     "category": "social",
     "style": "line",
@@ -13999,7 +13839,7 @@
     "id": "star-line",
     "name": "star",
     "aliases": [
-      "star"
+      ""
     ],
     "category": "social",
     "style": "line",
@@ -14033,7 +13873,7 @@
     "id": "thumbs-down-line",
     "name": "thumbs-down",
     "aliases": [
-      "thumbs-down"
+      ""
     ],
     "category": "social",
     "style": "line",
@@ -14075,7 +13915,7 @@
     "id": "thumbs-up-line",
     "name": "thumbs-up",
     "aliases": [
-      "thumbs-up"
+      ""
     ],
     "category": "social",
     "style": "line",
@@ -14207,7 +14047,7 @@
     "id": "bookmark-line",
     "name": "bookmark",
     "aliases": [
-      "bookmark"
+      ""
     ],
     "category": "sort",
     "style": "line",
@@ -14423,7 +14263,7 @@
     "id": "list-filter-line",
     "name": "list-filter",
     "aliases": [
-      "list-filter"
+      ""
     ],
     "category": "sort",
     "style": "line",
@@ -14535,7 +14375,7 @@
     "id": "preferences-line",
     "name": "preferences",
     "aliases": [
-      "preferences"
+      ""
     ],
     "category": "sort",
     "style": "line",
@@ -14644,7 +14484,7 @@
     "id": "search-line",
     "name": "search",
     "aliases": [
-      "search"
+      ""
     ],
     "category": "sort",
     "style": "line",
@@ -14740,7 +14580,7 @@
     "id": "sort-line",
     "name": "sort",
     "aliases": [
-      "sort"
+      ""
     ],
     "category": "sort",
     "style": "line",
@@ -14768,7 +14608,7 @@
     "id": "tag-add-line",
     "name": "tag-add",
     "aliases": [
-      "tag-add"
+      ""
     ],
     "category": "sort",
     "style": "line",
@@ -14808,7 +14648,7 @@
     "id": "tag-line",
     "name": "tag",
     "aliases": [
-      "tag"
+      ""
     ],
     "category": "sort",
     "style": "line",
@@ -14844,7 +14684,7 @@
     "id": "tag-search-line",
     "name": "tag-search",
     "aliases": [
-      "tag-search"
+      ""
     ],
     "category": "sort",
     "style": "line",
@@ -14880,7 +14720,7 @@
     "id": "tag-detach-line",
     "name": "tag-detach",
     "aliases": [
-      "tag-detach"
+      ""
     ],
     "category": "sort",
     "style": "line",
@@ -14921,11 +14761,17 @@
     "category": "sort",
     "style": "line",
     "keywords": [
-      "filter",
-      "tool",
-      "settings",
-      "category",
-      "funnel"
+      "search",
+      "zoom",
+      "glass",
+      "find",
+      "lens",
+      "view",
+      "explore",
+      "lookup",
+      "magnify",
+      "ai",
+      "smart search"
     ]
   },
   {
@@ -14935,11 +14781,17 @@
     "category": "sort",
     "style": "solid",
     "keywords": [
-      "filter",
-      "tool",
-      "settings",
-      "category",
-      "funnel"
+      "search",
+      "zoom",
+      "glass",
+      "find",
+      "lens",
+      "view",
+      "explore",
+      "lookup",
+      "magnify",
+      "ai",
+      "smart search"
     ]
   },
   {
@@ -15022,7 +14874,7 @@
     "id": "alarm-line",
     "name": "alarm",
     "aliases": [
-      "alarm"
+      ""
     ],
     "category": "time",
     "style": "line",
@@ -15060,7 +14912,7 @@
     "id": "clock-line",
     "name": "clock",
     "aliases": [
-      "clock"
+      ""
     ],
     "category": "time",
     "style": "line",
@@ -15134,7 +14986,7 @@
     "id": "history-line",
     "name": "history",
     "aliases": [
-      "history"
+      ""
     ],
     "category": "time",
     "style": "line",
@@ -15174,7 +15026,7 @@
     "id": "sand-clock-line",
     "name": "sand-clock",
     "aliases": [
-      "sand-clock"
+      ""
     ],
     "category": "time",
     "style": "line",
@@ -15206,7 +15058,7 @@
     "id": "stopwatch-line",
     "name": "stopwatch",
     "aliases": [
-      "stopwatch"
+      ""
     ],
     "category": "time",
     "style": "line",
@@ -15574,7 +15426,7 @@
     "id": "clipboard-add-line",
     "name": "clipboard-add",
     "aliases": [
-      "clipboard-add"
+      ""
     ],
     "category": "tools",
     "style": "line",
@@ -15642,7 +15494,7 @@
     "id": "code-line",
     "name": "code",
     "aliases": [
-      "code"
+      ""
     ],
     "category": "tools",
     "style": "line",
@@ -15789,7 +15641,7 @@
     "id": "cursor-line",
     "name": "cursor",
     "aliases": [
-      "cursor"
+      ""
     ],
     "category": "tools",
     "style": "line",
@@ -15827,7 +15679,7 @@
     "id": "design-tools-line",
     "name": "design-tools",
     "aliases": [
-      "design-tools"
+      ""
     ],
     "category": "tools",
     "style": "line",
@@ -15875,7 +15727,7 @@
     "id": "edit-line",
     "name": "edit",
     "aliases": [
-      "edit"
+      ""
     ],
     "category": "tools",
     "style": "line",
@@ -16057,7 +15909,7 @@
     "id": "light-bulb-line",
     "name": "light-bulb",
     "aliases": [
-      "light-bulb"
+      ""
     ],
     "category": "tools",
     "style": "line",
@@ -16175,7 +16027,7 @@
     "id": "palette-line",
     "name": "palette",
     "aliases": [
-      "palette"
+      ""
     ],
     "category": "tools",
     "style": "line",
@@ -16325,7 +16177,7 @@
     "id": "pentool-line",
     "name": "pentool",
     "aliases": [
-      "pentool"
+      ""
     ],
     "category": "tools",
     "style": "line",
@@ -16371,7 +16223,7 @@
     "id": "save-line",
     "name": "save",
     "aliases": [
-      "save"
+      ""
     ],
     "category": "tools",
     "style": "line",
@@ -16831,7 +16683,7 @@
     "id": "add-group-line",
     "name": "add-group",
     "aliases": [
-      "add-group"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -16877,7 +16729,7 @@
     "id": "add-user-line",
     "name": "add-user",
     "aliases": [
-      "add-user"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -16923,7 +16775,7 @@
     "id": "address-book-line",
     "name": "address-book",
     "aliases": [
-      "address-book"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -17169,7 +17021,7 @@
     "id": "group-2-line",
     "name": "group-2",
     "aliases": [
-      "group-2"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -17215,7 +17067,7 @@
     "id": "group-3-line",
     "name": "group-3",
     "aliases": [
-      "group-3"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -17261,7 +17113,7 @@
     "id": "group-4-line",
     "name": "group-4",
     "aliases": [
-      "group-4"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -17357,7 +17209,7 @@
     "id": "group-6-line",
     "name": "group-6",
     "aliases": [
-      "group-6"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -17403,7 +17255,7 @@
     "id": "group-7-line",
     "name": "group-7",
     "aliases": [
-      "group-7"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -17449,7 +17301,7 @@
     "id": "group-8-line",
     "name": "group-8",
     "aliases": [
-      "group-8"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -17495,7 +17347,7 @@
     "id": "group-9-line",
     "name": "group-9",
     "aliases": [
-      "group-9"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -17632,7 +17484,7 @@
     "id": "group-line",
     "name": "group",
     "aliases": [
-      "group"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -17722,7 +17574,7 @@
     "name": "home-user",
     "aliases": [
       "home",
-      "home-user"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -17841,7 +17693,7 @@
     "id": "profile-line",
     "name": "profile",
     "aliases": [
-      "profile"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -17879,7 +17731,7 @@
     "id": "receptionist-line",
     "name": "receptionist",
     "aliases": [
-      "receptionist"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -18047,7 +17899,7 @@
     "id": "user-admin-line",
     "name": "user-admin",
     "aliases": [
-      "user-admin"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -18129,7 +17981,7 @@
     "id": "user-line",
     "name": "user",
     "aliases": [
-      "user"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -18172,7 +18024,7 @@
     "id": "user-lock-line",
     "name": "user-lock",
     "aliases": [
-      "user-lock"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -18256,7 +18108,7 @@
     "id": "user-sync-2-line",
     "name": "user-sync-2",
     "aliases": [
-      "user-sync-2"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -18406,7 +18258,7 @@
     "id": "user-sync-line",
     "name": "user-sync",
     "aliases": [
-      "user-sync"
+      ""
     ],
     "category": "user",
     "style": "line",
@@ -18724,7 +18576,7 @@
     "id": "camera-line",
     "name": "camera",
     "aliases": [
-      "camera"
+      ""
     ],
     "category": "video",
     "style": "line",
@@ -18758,7 +18610,7 @@
     "id": "camera-switch-line",
     "name": "camera-switch",
     "aliases": [
-      "camera-switch"
+      ""
     ],
     "category": "video",
     "style": "line",
@@ -19156,7 +19008,7 @@
     "id": "pause-line",
     "name": "pause",
     "aliases": [
-      "pause"
+      ""
     ],
     "category": "video",
     "style": "line",
@@ -19212,7 +19064,7 @@
     "id": "play-line",
     "name": "play",
     "aliases": [
-      "play"
+      ""
     ],
     "category": "video",
     "style": "line",
@@ -19292,7 +19144,6 @@
     "id": "rec-line",
     "name": "rec",
     "aliases": [
-      "rec",
       "circle-nested"
     ],
     "category": "video",
@@ -19325,7 +19176,7 @@
     "id": "screen-share-line",
     "name": "screen-share",
     "aliases": [
-      "screen-share"
+      ""
     ],
     "category": "video",
     "style": "line",
@@ -19395,7 +19246,7 @@
     "id": "stop-line",
     "name": "stop",
     "aliases": [
-      "stop"
+      ""
     ],
     "category": "video",
     "style": "line",
@@ -19425,7 +19276,7 @@
     "id": "stream-line",
     "name": "stream",
     "aliases": [
-      "stream"
+      ""
     ],
     "category": "video",
     "style": "line",
@@ -19505,7 +19356,7 @@
     "id": "video-active-line",
     "name": "video-active",
     "aliases": [
-      "video-active"
+      ""
     ],
     "category": "video",
     "style": "line",
@@ -19541,7 +19392,7 @@
     "id": "video-conference-line",
     "name": "video-conference",
     "aliases": [
-      "video-conference"
+      ""
     ],
     "category": "video",
     "style": "line",
@@ -19573,7 +19424,7 @@
     "id": "video-line",
     "name": "video",
     "aliases": [
-      "video"
+      ""
     ],
     "category": "video",
     "style": "line",
@@ -19605,7 +19456,7 @@
     "id": "video-off-line",
     "name": "video-off",
     "aliases": [
-      "video-off"
+      ""
     ],
     "category": "video",
     "style": "line",
@@ -19865,7 +19716,7 @@
     "id": "density-high-line",
     "name": "density-high",
     "aliases": [
-      "density-high"
+      ""
     ],
     "category": "view",
     "style": "line",
@@ -19901,7 +19752,7 @@
     "id": "density-medium-line",
     "name": "density-medium",
     "aliases": [
-      "density-medium"
+      ""
     ],
     "category": "view",
     "style": "line",
@@ -19937,7 +19788,7 @@
     "id": "duplicate-line",
     "name": "duplicate",
     "aliases": [
-      "duplicate"
+      ""
     ],
     "category": "view",
     "style": "line",
@@ -19977,7 +19828,7 @@
     "id": "enlarge-screen-2-line",
     "name": "enlarge-screen-2",
     "aliases": [
-      "enlarge-screen-2"
+      ""
     ],
     "category": "view",
     "style": "line",
@@ -20017,7 +19868,7 @@
     "id": "eye-hide-line",
     "name": "eye-hide",
     "aliases": [
-      "eye-hide"
+      ""
     ],
     "category": "view",
     "style": "line",
@@ -20057,7 +19908,7 @@
     "id": "eye-line",
     "name": "eye",
     "aliases": [
-      "eye"
+      ""
     ],
     "category": "view",
     "style": "line",
@@ -20199,7 +20050,7 @@
     "id": "menu-line",
     "name": "menu",
     "aliases": [
-      "menu"
+      ""
     ],
     "category": "view",
     "style": "line",
@@ -20237,7 +20088,7 @@
     "id": "minus-line",
     "name": "minus",
     "aliases": [
-      "minus"
+      ""
     ],
     "category": "view",
     "style": "line",
@@ -20359,7 +20210,7 @@
     "id": "plus-line",
     "name": "plus",
     "aliases": [
-      "plus"
+      ""
     ],
     "category": "view",
     "style": "line",
