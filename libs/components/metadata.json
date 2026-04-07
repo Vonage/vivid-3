@@ -10125,8 +10125,8 @@
 				},
 				{
 					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
+					"description": "Fires a custom 'input' event when the value has changed",
+					"type": "CustomEvent<undefined>"
 				},
 				{
 					"name": "keydown",
