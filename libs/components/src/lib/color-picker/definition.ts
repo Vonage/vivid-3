@@ -2,14 +2,11 @@ import { createRegisterFunction } from '../../shared/design-system/createRegiste
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { popupDefinition } from '../popup/definition';
 import { iconDefinition } from '../icon/definition';
-import {
-	buttonDefinition,
-	textFieldDefinition,
-	tooltipDefinition,
-} from '../components';
+import { textFieldDefinition } from '../text-field/definition';
+import { buttonDefinition } from '../button/definition';
+import { tooltipDefinition } from '../tooltip/definition';
 import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
 import styles from './color-picker.scss?inline';
-
 import { ColorPicker } from './color-picker';
 import { ColorPickerTemplate as template } from './color-picker.template';
 
