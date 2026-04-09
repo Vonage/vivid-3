@@ -819,6 +819,32 @@ describe('vwc-menu', () => {
 
 			expect(item1.expanded).toBe(false);
 		});
+
+		it('should not open the parent menu when a submenu emits vwc-popup:open', async () => {
+			element.open = false;
+			await elementUpdated(element);
+
+			const submenu = item1.querySelector('vwc-menu') as Menu;
+			submenu.dispatchEvent(
+				new CustomEvent('vwc-popup:open', { bubbles: true, composed: true })
+			);
+			await elementUpdated(element);
+
+			expect(element.open).toBe(false);
+		});
+
+		it('should not close the parent menu when a submenu emits vwc-popup:close', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			const submenu = item1.querySelector('vwc-menu') as Menu;
+			submenu.dispatchEvent(
+				new CustomEvent('vwc-popup:close', { bubbles: true, composed: true })
+			);
+			await elementUpdated(element);
+
+			expect(element.open).toBe(true);
+		});
 	});
 
 	function focusOutOfBody() {
