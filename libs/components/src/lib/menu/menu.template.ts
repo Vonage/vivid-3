@@ -32,6 +32,9 @@ export const MenuTemplate = (context: VividElementDefinitionContext) => {
 
 	function handlePopupEvents(x: Menu, e: Event, state: boolean) {
 		e.stopPropagation();
+
+		if (e.target !== x) return;
+
 		x.open = state;
 	}
 
