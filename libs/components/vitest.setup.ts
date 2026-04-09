@@ -114,3 +114,19 @@ preventPopupCodeRunningAfterWindowClose();
 			DragEventPolyfill as unknown as typeof DragEvent;
 	}
 })();
+
+// computePosition triggers getComputedStyle repeatedly, which is very slow in jsdom and does not work either since there is no layout.
+// Stub out globally for performance. Test that want the original use their own vi.mock which overrides this stub.
+vi.mock(import('@floating-ui/dom'), async (importOriginal) => {
+	const actual = await importOriginal();
+	return {
+		...actual,
+		computePosition: vi.fn().mockResolvedValue({
+			x: 0,
+			y: 0,
+			placement: 'bottom',
+			strategy: 'fixed',
+			middlewareData: { hide: { referenceHidden: false }, arrow: {} },
+		}),
+	};
+});
