@@ -2,6 +2,7 @@
 @use '@repo/shared/mixins/focus' as focus-variables;
 @use '@repo/shared/utils' as utils;
 @use 'partials/variables' as variables;
+@use '@repo/shared/mixins/motion' as motion;
 @use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta,
 	$shades: primary,
@@ -231,7 +232,10 @@ $track-thickness: 2px;
 		content: '';
 		inline-size: var(#{variables.$thumb-interaction-indicator-size});
 		opacity: var(#{variables.$thumb-interaction-indicator-alpha}, 0);
-		transition: opacity 0.2s ease-out 0s;
+
+		@include motion.motion-safe {
+			transition: opacity 0.2s ease-out 0s;
+		}
 	}
 
 	&::after {
@@ -269,7 +273,10 @@ $track-thickness: 2px;
 :host([internal-part]) {
 	.thumb-container {
 		opacity: 0;
-		transition: opacity 0.2s ease;
+
+		@include motion.motion-safe {
+			transition: opacity 0.2s ease;
+		}
 	}
 	.control {
 		&.horizontal {

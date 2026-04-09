@@ -89,6 +89,10 @@
 			"dependsOn": ["build"],
 			"passThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH"]
 		},
+		"test:browser": {
+			"dependsOn": ["build"],
+			"passThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH"]
+		},
 		"e2e:ui": {
 			"dependsOn": ["build"],
 			"cache": false,

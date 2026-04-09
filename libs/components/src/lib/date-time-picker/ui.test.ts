@@ -3,82 +3,10 @@ import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
 	renderTemplate,
-	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 import { useFakeTime } from '../../visual-tests/time';
-import type { DateTimePicker } from './date-time-picker';
 
 const components = ['date-time-picker', 'contextual-help'];
-
-test('should show the component', async ({ page }: { page: Page }) => {
-	const template = `
-	<style>
-		.space-for-popup {
-			height: 450px;
-			width: 500px;
-			flex-shrink: 0;
-		}
-		.layout {
-			display: flex;
-			padding: 8px;
-			box-sizing: border-box;
-		}
-		.grid {
-			display: flex;
-			flex-direction: column;
-			gap: 20px;
-			width: 300px;
-		}
-	</style>
-	<div class="layout">
-		<div class="space-for-popup">
-			<vwc-date-time-picker id="date-picker"></vwc-date-time-picker>
-		</div>
-		<div class="space-for-popup">
-			<vwc-date-time-picker id="month-picker"></vwc-date-time-picker>
-		</div>
-		<div class="grid">
-			<vwc-date-time-picker label="Label"></vwc-date-time-picker>
-			<vwc-date-time-picker helper-text="Helper text"></vwc-date-time-picker>
-			<vwc-date-time-picker error-text="Error text"></vwc-date-time-picker>
-			<vwc-date-time-picker value="2011-11-11T11:11:11"></vwc-date-time-picker>
-			<vwc-date-time-picker label="Label">
-				<vwc-contextual-help slot="contextual-help">Example contextual help</vwc-contextual-help>
-			</vwc-date-time-picker>
-			<vwc-date-time-picker scale="condensed" label="Condensed"></vwc-date-time-picker>
-		</div>
-	</div>`;
-
-	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
-	await page.setViewportSize({ width: 1300, height: 550 });
-
-	await loadComponents({
-		page,
-		components,
-	});
-
-	await renderTemplate({
-		page,
-		template,
-		setup: async () => {
-			await page.locator('#date-picker #picker-button').click();
-
-			// Prevent clicking the month picker from closing the date picker
-			await page.evaluate(() => {
-				const datePicker = document.querySelector(
-					'#month-picker'
-				) as DateTimePicker;
-				datePicker.addEventListener('click', (e) => e.stopPropagation());
-			});
-
-			await page.locator('#month-picker #picker-button').click();
-
-			await page.locator('#month-picker .title-action').click();
-		},
-	});
-
-	await takeScreenshot(page, 'date-time-picker');
-});
 
 test('selecting a date and time', async ({ page }: { page: Page }) => {
 	const template = '<vwc-date-time-picker></vwc-date-time-picker>';

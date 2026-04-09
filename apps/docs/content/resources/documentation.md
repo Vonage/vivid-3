@@ -99,7 +99,7 @@ You can also choose from these layout options: `full` | `blocks` | `columns` | `
 
 ## Component Pages
 
-Each component page is split into sub pages (represented in the _tab-like_ navigation at the top of the page). When a new component is added using the generator, the following documentation sub-page files are produced:
+Each component page is split into sub pages (represented in the _tab-like_ navigation at the top of the page):
 
 - **Variations**: `VARIATIONS.md`
   - Examples of the component in all possible visual states
@@ -112,15 +112,11 @@ Each component page is split into sub pages (represented in the _tab-like_ navig
 - **Use Cases**: `USE-CASES.md` - shows examples different ways the component can be used
 - **Accessibility**: `ACCESSIBILITY.md` - show advice ono how to use the component in an accessible way
 
-Each of these generated sub page files contain example content (markdown) to help our component docs stay consistent. Delete parts you don't need, but maintain the order / format of the ramaining parts.
-
-See the [component generator files](https://github.com/Vonage/vivid-3/tree/main/turbo/generators/component/templates) for examples of the recommended content & structure of each sub page.
+Each of these sub page files contain example content (markdown) to help our component docs stay consistent. Not every component needs all sub pages.
 
 ### Configuration
 
-Some component pages will not need every one of the sub-pages, this can be configured in the [`components.json`](https://github.com/Vonage/vivid-3/tree/main/apps/docs/content_data/components.json) file in the docs app.
-
-When a new component is added using the generator, this object is added to the `components.json`.
+Some component pages will not need every one of the sub-pages, this can be configured in the [`components.json`](https://github.com/Vonage/vivid-3/tree/main/apps/docs/content_data/components.json) file in the docs app:
 
 ```js
 [
@@ -132,10 +128,10 @@ When a new component is added using the generator, this object is added to the `
 		// slug for the component page url (eg. /components/my-component). Since slug is unique, it also serves for an kay / id of the concept in the docs.
 		"slug": "my-component",
 
-		// optional, not generated - parent of the current page in the hierarchy. Please refer to `eleventyNavigation` plugin.
+		// optional - parent of the current page in the hierarchy. Please refer to `eleventyNavigation` plugin.
 		"parent": "[...]",
 
-		// optional, not generated - children of the current page in the hierarchy. Please refer to `eleventyNavigation` plugin."
+		// optional - children of the current page in the hierarchy. Please refer to `eleventyNavigation` plugin."
 		"children: ["...", "..."]
 	},
 	[...]

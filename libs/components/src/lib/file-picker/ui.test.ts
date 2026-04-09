@@ -3,7 +3,6 @@ import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
 	renderTemplate,
-	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = [
@@ -35,93 +34,6 @@ const addFile = async (
 		dataTransfer,
 	});
 };
-
-test('should show the component', async ({ page }: { page: Page }) => {
-	const template = `<div style="background-color: var(--vvd-color-neutral-50); padding: 8px;"><vwc-layout column-basis="block">
-  <vwc-file-picker label="Pick files" helper-text="multiple files of any type" max-file-size="0.001" accept="image/*">
-  	Drag & Drop or click to upload
-		</vwc-file-picker>
-		</div>
-  <vwc-file-picker label="Pick files" helper-text="multiple files of any type" size="expanded">
-  	Drag & Drop or click to upload
-		</vwc-file-picker>
-		<vwc-file-picker label="Pick files" helper-text="multiple files of any type" error-text="error-text">
-  	Drag & Drop or click to upload
-		</vwc-file-picker>
-  	<vwc-file-picker label="Pick files">
-			Drag & Drop or click to upload
-			<vwc-contextual-help slot="contextual-help">Example contextual help</vwc-contextual-help>
-		</vwc-file-picker>
-	</vwc-layout>`;
-
-	await page.setViewportSize({ width: 500, height: 1200 });
-
-	await loadComponents({
-		page,
-		components,
-	});
-	await renderTemplate({
-		page,
-		template,
-		setup: async () => {
-			await page.keyboard.press('Tab');
-
-			await addFile(page, 'valid.png', 100, 'image/png');
-			await addFile(page, 'tooBig.png', 100000, 'image/png');
-			await addFile(page, 'wrongType.exe', 100, 'application/x-msdownload');
-
-			await page.evaluate(async () => {
-				await new Promise((resolve) => requestAnimationFrame(resolve));
-			});
-
-			// blur to show error
-			await page.mouse.click(0, 0);
-
-			await page.keyboard.press('Tab');
-		},
-	});
-
-	await takeScreenshot(page, 'file-picker');
-});
-
-test('should show disabled state', async ({ page }: { page: Page }) => {
-	const template = `
-		<vwc-layout column-basis="block">
-			<vwc-file-picker disabled label="Upload files"> Drag & Drop or click to upload </vwc-file-picker>
-			<vwc-file-picker label="Upload files"> Drag & Drop or click to upload </vwc-file-picker>
-		</vwc-layout>
-	`;
-
-	await page.setViewportSize({ width: 500, height: 500 });
-
-	await loadComponents({ page, components });
-	await renderTemplate({
-		page,
-		template,
-		setup: async () => {
-			await addFile(
-				page,
-				'report.pdf',
-				1024,
-				'application/pdf',
-				'vwc-file-picker:last-child .control'
-			);
-			await addFile(
-				page,
-				'photo.jpg',
-				2048,
-				'image/jpeg',
-				'vwc-file-picker:last-child .control'
-			);
-			await page.evaluate(() => {
-				(document.querySelectorAll('vwc-file-picker')[1] as any).disabled =
-					true;
-			});
-		},
-	});
-
-	await takeScreenshot(page, 'file-picker-disabled');
-});
 
 test.describe('form association', () => {
 	const getFileFromFormData = async (page: Page) =>

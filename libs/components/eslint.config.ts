@@ -18,4 +18,11 @@ export default defineConfig([
 			'@typescript-eslint/no-unnecessary-condition': 'off',
 		},
 	},
+	{
+		files: ['**/*.browser-spec.tsx'],
+		rules: {
+			// Allow property names used as labels
+			'@typescript-eslint/naming-convention': 'off',
+		},
+	},
 ]);

@@ -1,0 +1,8 @@
+{
+	"extends": "@repo/typescript-config/components.json",
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "@repo/vvd-jsx"
+	},
+	"include": ["src"]
+}
