@@ -130,3 +130,57 @@ vi.mock(import('@floating-ui/dom'), async (importOriginal) => {
 		}),
 	};
 });
+
+// FAST schedules DOM updates with rAF.
+// Tests rely on elementUpdated() to wait for the next AF, which means that they literally sleep for 1/60s.
+// Replace rAF with an implementation that sleeps for 0s while maintaining similar behaviour otherwise.
+(() => {
+	// Capture real timers so that vi.useFakeTimers() does not freeze rAF
+	const realSetTimeout = globalThis.setTimeout.bind(globalThis);
+	const realClearTimeout = globalThis.clearTimeout.bind(globalThis);
+	let nextAnimationFrameId = 1;
+	let animationFrameCallbacks = new Map<number, FrameRequestCallback>();
+	let pendingAnimationFrameFlush: number | null = null;
+
+	const flushAnimationFrame = () => {
+		pendingAnimationFrameFlush = null;
+		const callbacks = animationFrameCallbacks;
+		animationFrameCallbacks = new Map();
+		const time = performance.now();
+
+		for (const callback of callbacks.values()) {
+			callback(time);
+		}
+	};
+
+	const scheduleAnimationFrameFlush = () => {
+		pendingAnimationFrameFlush = realSetTimeout(() => {
+			pendingAnimationFrameFlush = realSetTimeout(
+				flushAnimationFrame,
+				0
+			) as unknown as number;
+		}, 0) as unknown as number;
+	};
+
+	window.requestAnimationFrame = (callback: FrameRequestCallback): number => {
+		const id = nextAnimationFrameId++;
+		animationFrameCallbacks.set(id, callback);
+
+		if (pendingAnimationFrameFlush === null) {
+			scheduleAnimationFrameFlush();
+		}
+
+		return id;
+	};
+
+	window.cancelAnimationFrame = (id: number): void => {
+		animationFrameCallbacks.delete(id);
+		if (
+			animationFrameCallbacks.size === 0 &&
+			pendingAnimationFrameFlush !== null
+		) {
+			realClearTimeout(pendingAnimationFrameFlush);
+			pendingAnimationFrameFlush = null;
+		}
+	};
+})();
