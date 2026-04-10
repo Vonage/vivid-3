@@ -30,6 +30,9 @@ jobs:
 
       eslint_plugin_release_created: ${{ steps.release.outputs['libs/eslint-plugin--release_created'] }}
       eslint_plugin_release_sha: ${{ steps.release.outputs['libs/eslint-plugin--sha'] }}
+
+      vivid_marketing_icons_release_created: ${{ steps.release.outputs['libs/marketing-icons--release_created'] }}
+      vivid_marketing_icons_release_sha: ${{ steps.release.outputs['libs/marketing-icons--sha'] }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -160,4 +163,12 @@ jobs:
     needs: should-release
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
     uses: ./.github/workflows/_deploy-s3.yml
+    secrets: inherit
+
+  vivid-marketing-icons-publish:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.vivid_marketing_icons_release_created == 'true' || github.event.inputs.force-release == 'true' }}
+    uses: ./.github/workflows/_publish-marketing-icons.yml
+    with:
+      sha: ${{ needs.release-please.outputs.vivid_marketing_icons_release_sha || github.sha }}
     secrets: inherit
