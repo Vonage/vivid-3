@@ -1,0 +1,67 @@
+.github/actions/upload-marketing-icons/action.yml
+  a28522466139ccd8 1,3-38
+.github/workflows/_publish-marketing-icons.yml
+  a28522466139ccd8 1-56
+libs/marketing-icons/scripts/fetch-icons.ts
+  a28522466139ccd8 1-87
+libs/tools/src/fetch-icons/create-flag-icon-entry.ts
+  a28522466139ccd8 1-19
+libs/tools/src/fetch-icons/fetch-icons.ts
+  a28522466139ccd8 31,81,83,115,130-132,135-137,140-144,151,156,165
+libs/marketing-icons/package.json
+  a28522466139ccd8 1-17
+libs/tools/src/fetch-icons/is-flag.ts
+  a28522466139ccd8 1-8
+.github/actions/upload-marketing-icons/manual.js
+  a28522466139ccd8 1-81
+libs/tools/src/fetch-icons/is-brand.ts
+  a28522466139ccd8 1-8
+.release-please-manifest.json
+  a28522466139ccd8 8-9
+libs/tools/src/fetch-icons/index.ts
+  a28522466139ccd8 4-7
+libs/marketing-icons/tsconfig.json
+  a28522466139ccd8 1-10
+libs/marketing-icons/.gitignore
+  a28522466139ccd8 1
+libs/icons/scripts/fetch-icons.ts
+  a28522466139ccd8 1-9
+release-please-config.json
+  a28522466139ccd8 15-17
+.github/workflows/release-please.yml
+  a28522466139ccd8 33-35,167-174
+libs/tools/src/fetch-icons/types.ts
+  a28522466139ccd8 56-57,60-61,82
+.github/actions/upload-marketing-icons/package.json
+  a28522466139ccd8 1-16
+.github/actions/upload-marketing-icons/src/index.js
+  a28522466139ccd8 1-31
+libs/tools/src/shared/write-file.util.ts
+  a28522466139ccd8 4,6-10
+libs/marketing-icons/README.md
+  a28522466139ccd8 1-57
+libs/tools/src/fetch-icons/create-brand-icon-entry.ts
+  a28522466139ccd8 1-18
+.github/actions/upload-marketing-icons/src/upload-marketing-icons.js
+  a28522466139ccd8 1-81
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.7",
+  "base_commit_sha": "d8006f9879cdf1ab6897494ab75d4c99892774cf",
+  "prompts": {
+    "a28522466139ccd8": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_28e1fceeaffeDgcZeBPYdpkE7y",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 909,
+      "total_deletions": 338,
+      "accepted_lines": 586,
+      "overriden_lines": 2
+    }
+  }
+}
