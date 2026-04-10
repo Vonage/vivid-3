@@ -1,0 +1,21 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.7",
+  "base_commit_sha": "127fa876d93088b1ca1b2e62be64c000142092f1",
+  "prompts": {
+    "a28522466139ccd8": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_28e1fceeaffeDgcZeBPYdpkE7y",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 53,
+      "overriden_lines": 0
+    }
+  }
+}
