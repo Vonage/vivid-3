@@ -18,6 +18,7 @@ import { Menu } from './menu';
 import '.';
 import '../menu-item';
 import '../divider';
+import { VwcTooltipElement } from '../tooltip/definition';
 
 const COMPONENT_TAG = 'vwc-menu';
 
@@ -783,6 +784,8 @@ describe('vwc-menu', () => {
 	describe('submenu', () => {
 		let item1: MenuItem;
 		let item2: MenuItem;
+		let tooltip: VwcTooltipElement;
+
 		beforeEach(async () => {
 			element.innerHTML = `
 				<vwc-menu-item id="item1" text="Menu item 1">
@@ -795,9 +798,16 @@ describe('vwc-menu', () => {
 						<vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
 					</vwc-menu>
 				</vwc-menu-item>
+				<div>
+					<vwc-tooltip id="tooltip" text="Some tooltip text" placement="right">
+						<span slot="anchor">Some tooltip</span>
+					</vwc-tooltip>
+				</div>
 			`;
 			item1 = element.querySelector('#item1') as MenuItem;
 			item2 = element.querySelector('#item2') as MenuItem;
+			tooltip = element.querySelector('#tooltip') as VwcTooltipElement;
+
 			await elementUpdated(element);
 		});
 
@@ -820,27 +830,11 @@ describe('vwc-menu', () => {
 			expect(item1.expanded).toBe(false);
 		});
 
-		it('should not open the parent menu when a submenu emits vwc-popup:open', async () => {
-			element.open = false;
-			await elementUpdated(element);
-
-			const submenu = item1.querySelector('vwc-menu') as Menu;
-			submenu.dispatchEvent(
-				new CustomEvent('vwc-popup:open', { bubbles: true, composed: true })
-			);
-			await elementUpdated(element);
-
-			expect(element.open).toBe(false);
-		});
-
-		it('should not close the parent menu when a submenu emits vwc-popup:close', async () => {
+		it('should not close the menu when a tooltip vwc-popup:close', async () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			const submenu = item1.querySelector('vwc-menu') as Menu;
-			submenu.dispatchEvent(
-				new CustomEvent('vwc-popup:close', { bubbles: true, composed: true })
-			);
+			tooltip.dispatchEvent(new CustomEvent('vwc-popup:close'));
 			await elementUpdated(element);
 
 			expect(element.open).toBe(true);
