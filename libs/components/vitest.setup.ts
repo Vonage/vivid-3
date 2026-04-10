@@ -136,11 +136,11 @@ vi.mock(import('@floating-ui/dom'), async (importOriginal) => {
 // Replace rAF with an implementation that sleeps for 0s while maintaining similar behaviour otherwise.
 (() => {
 	// Capture real timers so that vi.useFakeTimers() does not freeze rAF
-	const realSetTimeout = globalThis.setTimeout.bind(globalThis);
-	const realClearTimeout = globalThis.clearTimeout.bind(globalThis);
+	const realSetImmediate = globalThis.setImmediate.bind(globalThis);
+	const realClearImmediate = globalThis.clearImmediate.bind(globalThis);
 	let nextAnimationFrameId = 1;
 	let animationFrameCallbacks = new Map<number, FrameRequestCallback>();
-	let pendingAnimationFrameFlush: number | null = null;
+	let pendingAnimationFrameFlush: NodeJS.Immediate | null = null;
 
 	const flushAnimationFrame = () => {
 		pendingAnimationFrameFlush = null;
@@ -154,12 +154,9 @@ vi.mock(import('@floating-ui/dom'), async (importOriginal) => {
 	};
 
 	const scheduleAnimationFrameFlush = () => {
-		pendingAnimationFrameFlush = realSetTimeout(() => {
-			pendingAnimationFrameFlush = realSetTimeout(
-				flushAnimationFrame,
-				0
-			) as unknown as number;
-		}, 0) as unknown as number;
+		pendingAnimationFrameFlush = realSetImmediate(() => {
+			pendingAnimationFrameFlush = realSetImmediate(flushAnimationFrame);
+		});
 	};
 
 	window.requestAnimationFrame = (callback: FrameRequestCallback): number => {
@@ -179,7 +176,7 @@ vi.mock(import('@floating-ui/dom'), async (importOriginal) => {
 			animationFrameCallbacks.size === 0 &&
 			pendingAnimationFrameFlush !== null
 		) {
-			realClearTimeout(pendingAnimationFrameFlush);
+			realClearImmediate(pendingAnimationFrameFlush);
 			pendingAnimationFrameFlush = null;
 		}
 	};
