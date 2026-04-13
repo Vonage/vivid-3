@@ -99,7 +99,7 @@ export class IdrefsController implements ReactiveController {
 	#updateResolution() {
 		this.#cleanupObserver();
 
-		if (!this.#isConnected) {
+		if (!(this.#isConnected && this.host.isConnected)) {
 			return;
 		}
 
@@ -142,8 +142,7 @@ export class IdrefsController implements ReactiveController {
 				this.#cleanupObserver();
 			}
 		});
-		const root = this.host.getRootNode();
-		this.#observer.observe(root instanceof ShadowRoot ? root : root, {
+		this.#observer.observe(this.host.getRootNode(), {
 			childList: true,
 			subtree: true,
 		});
