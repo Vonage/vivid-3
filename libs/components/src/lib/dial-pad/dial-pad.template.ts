@@ -62,8 +62,12 @@ const DIAL_PAD_BUTTONS = [
 	),
 ];
 
-const getClasses = ({ noInput }: DialPad) =>
-	classNames('base', ['no-input', Boolean(noInput)]);
+const getClasses = ({ noInput, size }: DialPad) =>
+	classNames(
+		'base',
+		[`size-${size}`, Boolean(size)],
+		['no-input', Boolean(noInput)]
+	);
 
 function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 	if (
@@ -196,6 +200,7 @@ function renderTextField(
 			@focus="${stopPropagation}"
 			@blur="${stopPropagation}"
 			?autofocus="${(x) => x.autofocus}"
+			scale="${(x) => (x.size === 'condensed' ? 'condensed' : 'normal')}">
 			>
          ${when(
 						(x) => x.value && x.value.length && x.value.length > 0,
@@ -279,7 +284,7 @@ function renderDigits(
 
 function renderDialButton(buttonTag: InlineTemplateDirective) {
 	return html<DialPad>`<${buttonTag} class="call-btn"
-        size="expanded"
+        size="${(x) => (x.size === 'condensed' ? 'normal' : 'expanded')}"
         appearance="filled"
         icon="${(x) => (x.callActive ? 'disable-call-line' : 'call-line')}"
         connotation="${(x) => (x.callActive ? 'alert' : 'cta')}"
