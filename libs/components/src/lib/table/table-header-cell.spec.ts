@@ -55,4 +55,51 @@ describe('Table header cell', () => {
 			});
 		});
 	});
+
+	describe('when a "sort" event is dispatched on the element', () => {
+		const dispatchSortEvent = (direction: string | null) => {
+			element.dispatchEvent(
+				new CustomEvent('sort', { detail: direction, bubbles: true })
+			);
+		};
+
+		it('sets aria-sort to "ascending" when the sort direction is "asc"', async () => {
+			dispatchSortEvent('asc');
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-sort')).toBe('ascending');
+		});
+
+		it('sets aria-sort to "descending" when the sort direction is "desc"', async () => {
+			dispatchSortEvent('desc');
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-sort')).toBe('descending');
+		});
+
+		it('sets aria-sort to "none" when the sort direction is "none"', async () => {
+			dispatchSortEvent('none');
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-sort')).toBe('none');
+		});
+
+		it('removes the aria-sort attribute when the sort direction is null', async () => {
+			element.setAttribute('aria-sort', 'ascending');
+			dispatchSortEvent(null);
+			await elementUpdated(element);
+			expect(element.hasAttribute('aria-sort')).toBe(false);
+		});
+
+		it('removes the aria-sort attribute when the sort direction is an unrecognised value', async () => {
+			element.setAttribute('aria-sort', 'ascending');
+			dispatchSortEvent('unknown');
+			await elementUpdated(element);
+			expect(element.hasAttribute('aria-sort')).toBe(false);
+		});
+
+		it('no longer responds to "sort" events after the element is disconnected', async () => {
+			element.remove();
+			dispatchSortEvent('asc');
+			await elementUpdated(element);
+			expect(element.hasAttribute('aria-sort')).toBe(false);
+		});
+	});
 });

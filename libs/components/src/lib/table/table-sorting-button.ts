@@ -19,7 +19,7 @@ export class TableSortingButton extends DelegatesAria(VividElement) {
 
 	directionChanged() {
 		this.dispatchEvent(
-			new CustomEvent('table-sorting-direction-change', {
+			new CustomEvent('sort', {
 				detail: this.direction,
 				bubbles: true,
 				composed: true,
@@ -27,10 +27,10 @@ export class TableSortingButton extends DelegatesAria(VividElement) {
 		);
 	}
 
-	#nextDirection(current: undefined | null | 'none' | 'asc' | 'desc') {
-		if (!current || current === 'none') {
+	get #nextDirection() {
+		if (!this.direction || this.direction === 'none') {
 			return 'asc';
-		} else if (current === 'asc') {
+		} else if (this.direction === 'asc') {
 			return 'desc';
 		} else {
 			return 'none';
@@ -38,9 +38,8 @@ export class TableSortingButton extends DelegatesAria(VividElement) {
 	}
 
 	toggleSort() {
-		const newDirection = this.#nextDirection(this.direction);
-		const prevented = !this.$emit('sort', newDirection);
+		const prevented = !this.$emit('sort', this.#nextDirection);
 		if (prevented) return;
-		this.direction = newDirection;
+		this.direction = this.#nextDirection;
 	}
 }

@@ -8,15 +8,15 @@ import { HostSemantics } from '../../shared/aria/host-semantics';
  * @event {CustomEvent<HTMLElement>} cell-focused - Fires when the cell or its contents receive focus
  */
 export class TableHeaderCell extends HostSemantics(VividElement) {
-	override connectedCallback() {
+	override connectedCallback(): void {
 		super.connectedCallback();
-		super.addEventListener(
-			'table-sorting-direction-change',
-			this.#slottableRequestHandler
+		this.addEventListener(
+			'sort',
+			this.#sortHandler as EventListenerOrEventListenerObject
 		);
 	}
 
-	#slottableRequestHandler(event: CustomEvent) {
+	#sortHandler(event: CustomEvent): void {
 		const direction = event.detail;
 
 		if (direction === 'asc') {
@@ -33,8 +33,8 @@ export class TableHeaderCell extends HostSemantics(VividElement) {
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.removeEventListener(
-			'table-sorting-direction-change',
-			this.#slottableRequestHandler
+			'sort',
+			this.#sortHandler as EventListenerOrEventListenerObject
 		);
 	}
 }
