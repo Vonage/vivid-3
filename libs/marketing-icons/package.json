@@ -1,0 +1,18 @@
+{
+	"name": "@vonage/vivid-marketing-icons",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"fetch": "tsx scripts/fetch-icons.ts"
+	},
+	"devDependencies": {
+		"@figma/rest-api-spec": "catalog:",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/tools": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@types/node": "catalog:",
+		"dotenv": "catalog:",
+		"tsx": "catalog:"
+	}
+}
