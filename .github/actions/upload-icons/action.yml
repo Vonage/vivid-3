@@ -16,9 +16,14 @@ inputs:
     description: icon set version
     required: true
 
-  source-dirs:
-    description: Array of source directories where 'index.json' resides (newline separated)
-    required: true
+  mode:
+    description: Upload mode — 'icons' (default) or 'marketing-icons'
+    required: false
+    default: icons
+
+  source-dir:
+    description: Source directory containing index.json and icon files
+    required: false
 
   bucket:
     description: Target S3 bucket name
