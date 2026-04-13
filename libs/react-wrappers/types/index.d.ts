@@ -576,6 +576,22 @@ declare namespace JSX {
 			HTMLElement
 		> &
 			Partial<{}>;
+		'vvd3-kbd-key': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{
+				name: KbdKeyName | undefined;
+				keyboard: KbdKeyKeyboard | undefined;
+				appearance: KbdKeyAppearance | undefined;
+				size: KbdKeySize | undefined;
+				'keyshortcuts-key': string | undefined;
+			}>;
+		'vvd3-kbd-shortcut': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{}>;
 		'vvd3-layout': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -757,6 +773,11 @@ declare namespace JSX {
 				name: string;
 				required: boolean;
 			}>;
+		'vvd3-platform-switch': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{}>;
 		'vvd3-popover': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement

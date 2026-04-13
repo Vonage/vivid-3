@@ -33,6 +33,8 @@ import type {
 	VwcFilePickerElement,
 	VwcHeaderElement,
 	VwcIconElement,
+	VwcKbdKeyElement,
+	VwcKbdShortcutElement,
 	VwcLayoutElement,
 	VwcMenuElement,
 	VwcMenuItemElement,
@@ -43,6 +45,7 @@ import type {
 	VwcNumberFieldElement,
 	VwcOptionElement,
 	VwcPaginationElement,
+	VwcPlatformSwitchElement,
 	VwcPopoverElement,
 	VwcProgressElement,
 	VwcProgressRingElement,
@@ -105,6 +108,9 @@ type DefaultVividTagNameMap = {
 	'vwc-data-grid-cell': VwcDataGridCellElement;
 	'vwc-data-grid': VwcDataGridElement;
 	'vwc-data-grid-row': VwcDataGridRowElement;
+	'vwc-kbd-key': VwcKbdKeyElement;
+	'vwc-kbd-shortcut': VwcKbdShortcutElement;
+	'vwc-platform-switch': VwcPlatformSwitchElement;
 	'vwc-table': VwcTableElement;
 	'vwc-table-body': VwcTableBodyElement;
 	'vwc-table-cell': VwcTableCellElement;

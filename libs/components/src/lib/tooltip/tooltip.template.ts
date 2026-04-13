@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import { elements, html, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
@@ -28,7 +28,13 @@ ${renderInLightDOM(html<Tooltip>`<span slot="_description" id="${(x) => x._descr
 	}}"
   exportparts="vvd-theme-alternate">
   <div part="vvd-theme-alternate" class="tooltip" role="tooltip">
-		<slot name="_description"></slot>
+		<span class="text"><slot name="_description"></slot></span>
+		<slot name="kbd-shortcut"
+			${slotted({
+				property: '_kbdShortcutSlotted',
+				filter: elements(),
+			})}
+		></slot>
   </div>
 </${popupTag}>`;
 };
