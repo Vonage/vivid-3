@@ -1,14 +1,10 @@
-import {
-	createIconEntry,
-	createBrandIconEntry,
-	createFlagIconEntry,
-	isBrand,
-	isFlag,
-	fetchIcons,
-	writeFile,
-} from '@repo/tools';
+import { createIconEntry, fetchIcons, writeFile } from '@repo/tools';
 import 'dotenv/config';
 import { svg } from './svg.output';
+import { createBrandIconEntry } from './create-brand-icon-entry';
+import { createFlagIconEntry } from './create-flag-icon-entry';
+import { isBrand } from './is-brand';
+import { isFlag } from './is-flag';
 import { allIcons } from './filter-icons';
 
 const figmaFileId = 'isdKI406usLCxZ2U8ljDrn';

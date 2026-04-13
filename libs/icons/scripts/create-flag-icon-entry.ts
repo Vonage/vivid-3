@@ -1,5 +1,4 @@
-import { createIconEntry } from './create-icon-entry';
-import type { CreateIconEntryFunction } from './types';
+import { createIconEntry, type CreateIconEntryFunction } from '@repo/tools';
 import type { Node } from '@figma/rest-api-spec';
 
 export const createFlagIconEntry: CreateIconEntryFunction = (
