@@ -428,6 +428,22 @@ describe('vwc-text-field', () => {
 			expect(await inputPromise).toEqual(true);
 		});
 
+		it('should emit an input event even if propagation is stopped on the native input', async function () {
+			const innerInput = getInput();
+			innerInput.addEventListener('input', (e) => e.stopPropagation());
+
+			const inputPromise = new Promise((res) =>
+				element.addEventListener('input', () => res(true))
+			);
+			innerInput.dispatchEvent(
+				new InputEvent('input', {
+					bubbles: true,
+					composed: true,
+				})
+			);
+			expect(await inputPromise).toEqual(true);
+		});
+
 		it('should emit a change event', async function () {
 			const inputPromise = new Promise((res) =>
 				element.addEventListener('change', () => res(true))

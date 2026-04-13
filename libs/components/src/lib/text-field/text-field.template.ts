@@ -84,7 +84,7 @@ export const TextfieldTemplate = (context: VividElementDefinitionContext) => {
 							slot="_control"
 							id="${(x) => getControlId(x._uniqueId)}"
 							class="_vvd-3-text-field-safari-workaround"
-							@input="${(x) => x.handleTextInput()}"
+							@input="${(x, c) => x.handleTextInput(c.event as InputEvent)}"
 							@change="${(x) => x.handleChange()}"
 							@blur="${(x) => {
 								x.$emit('blur', undefined, { bubbles: false });
