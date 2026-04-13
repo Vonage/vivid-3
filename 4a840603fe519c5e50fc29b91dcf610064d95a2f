@@ -1,0 +1,39 @@
+libs/marketing-icons/scripts/create-flag-icon-entry.ts
+  a28522466139ccd8 1-18
+libs/marketing-icons/scripts/create-brand-icon-entry.ts
+  a28522466139ccd8 1-17
+libs/icons/scripts/fetch-icons.ts
+  a28522466139ccd8 1,4-7
+libs/marketing-icons/scripts/is-flag.ts
+  a28522466139ccd8 1-8
+libs/marketing-icons/package.json
+  a28522466139ccd8 10
+libs/icons/scripts/create-brand-icon-entry.ts
+  a28522466139ccd8 1
+libs/marketing-icons/scripts/is-brand.ts
+  a28522466139ccd8 1-8
+libs/marketing-icons/scripts/fetch-icons.ts
+  a28522466139ccd8 1,5-8
+libs/icons/scripts/create-flag-icon-entry.ts
+  a28522466139ccd8 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "4a840603fe519c5e50fc29b91dcf610064d95a2f",
+  "prompts": {
+    "a28522466139ccd8": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_28e1fceeaffeDgcZeBPYdpkE7y",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 386,
+      "total_deletions": 205,
+      "accepted_lines": 386,
+      "overriden_lines": 0
+    }
+  }
+}
