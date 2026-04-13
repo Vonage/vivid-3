@@ -1,6 +1,10 @@
 import 'element-internals-polyfill';
 
-import { elementUpdated, fixture, getControlElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@repo/shared/test-utils/fixture';
 import {
 	keyEnd,
 	keyEscape,

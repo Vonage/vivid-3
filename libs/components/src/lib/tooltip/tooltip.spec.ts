@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	fixture,
 	getControlElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 import { fireEvent } from '@testing-library/dom';
 import type { Button } from '../button/button';
 import type { Popup } from '../popup/popup';

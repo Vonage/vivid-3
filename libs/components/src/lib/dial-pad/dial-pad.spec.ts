@@ -1,4 +1,8 @@
-import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
 import { Updates } from '@microsoft/fast-element';
 import type { TextField } from '../text-field/text-field';
 import type { Button } from '../button/button';

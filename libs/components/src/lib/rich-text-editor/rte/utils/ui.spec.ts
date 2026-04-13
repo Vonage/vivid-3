@@ -1,4 +1,4 @@
-import { elementUpdated } from '@repo/shared';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import { RteToolbarFeature } from '../features/toolbar';
 import { RteBase } from '../features/base';
 import { setup } from '../__tests__/test-utils';

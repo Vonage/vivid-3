@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import '.';
 import '../option';
 import userEvent, { type UserEvent } from '@testing-library/user-event';

@@ -1,9 +1,6 @@
-import {
-	elementUpdated,
-	fixture,
-	getResolvedTextContent,
-	setupDelegatesFocusPolyfill,
-} from '@repo/shared';
+import { setupDelegatesFocusPolyfill } from '@repo/shared/test-utils/delegates-focus-polyfill';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import { getResolvedTextContent } from '@repo/shared/test-utils/shadow-roots';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';

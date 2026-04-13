@@ -1,5 +1,9 @@
 import { html } from '@microsoft/fast-element';
-import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
 import { DataGridRow } from './data-grid-row';
 import '.';
 import type { DataGridCell } from './data-grid-cell';

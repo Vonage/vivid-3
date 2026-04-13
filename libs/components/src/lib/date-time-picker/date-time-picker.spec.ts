@@ -1,6 +1,8 @@
 import { Updates } from '@microsoft/fast-element';
 
-import { createFormHTML, fixture, getResolvedTextContent } from '@repo/shared';
+import { fixture } from '@repo/shared/test-utils/fixture';
+import { createFormHTML } from '@repo/shared/test-utils/form-association';
+import { getResolvedTextContent } from '@repo/shared/test-utils/shadow-roots';
 import enGB from '../../locales/en-GB';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';

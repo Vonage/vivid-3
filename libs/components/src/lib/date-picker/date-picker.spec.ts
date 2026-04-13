@@ -1,10 +1,7 @@
-import {
-	createFormHTML,
-	elementUpdated,
-	fixture,
-	getResolvedTextContent,
-	setupDelegatesFocusPolyfill,
-} from '@repo/shared';
+import { setupDelegatesFocusPolyfill } from '@repo/shared/test-utils/delegates-focus-polyfill';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import { createFormHTML } from '@repo/shared/test-utils/form-association';
+import { getResolvedTextContent } from '@repo/shared/test-utils/shadow-roots';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { setLocale } from '../../shared/localization';

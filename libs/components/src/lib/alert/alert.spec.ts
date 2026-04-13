@@ -3,7 +3,7 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';

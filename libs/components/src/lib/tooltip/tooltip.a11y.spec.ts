@@ -1,9 +1,9 @@
+import { axe } from '@repo/shared/test-utils/axe';
 import {
 	ADD_TEMPLATE_TO_FIXTURE,
-	axe,
 	elementUpdated,
 	fixture,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 import type { Button } from '../button/button';
 import type { Tooltip } from './tooltip';
 import '.';

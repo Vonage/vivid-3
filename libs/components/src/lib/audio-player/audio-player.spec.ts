@@ -1,4 +1,8 @@
-import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
 import { Connotation, MediaSkipBy } from '../enums';
 import type { Button } from '../button/button';
 import type { Slider } from '../slider/slider';

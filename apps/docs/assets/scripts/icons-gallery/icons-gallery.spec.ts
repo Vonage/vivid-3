@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import './icons-gallery';
 import type { DocsIconsGallery } from './icons-gallery';
 
