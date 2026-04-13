@@ -3,6 +3,8 @@
 dist
 coverage
 tmp
+.nyc_output
+blob-results
 
 # Ignore auto-generated files:
 package-lock.json
@@ -12,6 +14,7 @@ pnpm-lock.yaml
 .11ty-vite
 test-results
 apps/vue-docs/docs/components
+libs/components/custom-elements.json
 libs/vue-wrappers/web-types.json
 libs/vue-wrappers/stories
 libs/test-utils/**/*.generated.ts
