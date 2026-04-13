@@ -1,0 +1,41 @@
+.github/workflows/_publish-icons.yml
+  a28522466139ccd8 42
+.github/actions/upload-icons/README.md
+  a28522466139ccd8 37-42,44-45
+.github/actions/upload-icons/manual.js
+  a28522466139ccd8 1-5,13-18,21-22,25-28,63,73-85,87-89,97-99
+.github/actions/upload-icons/src/index.js
+  a28522466139ccd8 8-9,14,17-19,21-30,32
+.github/actions/upload-icons/src/upload-icons.js
+  a28522466139ccd8 2-3,14-17,19-22,24
+.github/actions/upload-icons/action.yml
+  a28522466139ccd8 19-26
+.github/actions/upload-icons/src/requests/icons.js
+  a28522466139ccd8 1-98
+.github/actions/upload-icons/src/requests/marketing-icons.js
+  a28522466139ccd8 10-11
+.github/actions/upload-icons/package.json
+  a28522466139ccd8 3
+.github/workflows/_publish-marketing-icons.yml
+  a28522466139ccd8 50,52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "bd1940df79c1f725959ca7959d66204cfbb3462f",
+  "prompts": {
+    "a28522466139ccd8": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_28e1fceeaffeDgcZeBPYdpkE7y",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 85,
+      "total_deletions": 130,
+      "accepted_lines": 247,
+      "overriden_lines": 0
+    }
+  }
+}
