@@ -4795,6 +4795,182 @@
 			}
 		},
 		{
+			"name": "kbd-key",
+			"className": "KbdKey",
+			"registerFunctionName": "registerKbdKey",
+			"description": "",
+			"props": [
+				{
+					"name": "name",
+					"description": "The key to display.",
+					"type": "'Enter' | 'Tab' | 'Space' | 'Backspace' | 'Delete' | 'Escape' | 'Shift' | 'Ctrl' | 'Alt' | 'Cmd' | 'Mod' | 'ArrowUp' | 'ArrowDown' | 'ArrowLeft' | 'ArrowRight' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | 'F1' | 'F2' | 'F3' | 'F4' | 'F5' | 'F6' | 'F7' | 'F8' | 'F9' | 'F10' | 'F11' | 'F12' | 'Custom'",
+					"attributeName": "name",
+					"propertyName": "name"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "default",
+					"description": "Default slot for custom content (used when name is \"Custom\")."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
+			"name": "kbd-shortcut",
+			"className": "KbdShortcut",
+			"registerFunctionName": "registerKbdShortcut",
+			"description": "",
+			"props": [],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{ "name": "default", "description": "Default slot for Kbd elements." }
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
+			"name": "kbd-shortcut-text",
+			"className": "KbdShortcutText",
+			"registerFunctionName": "registerKbdShortcutText",
+			"description": "",
+			"props": [],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "default",
+					"description": "Default slot for text content in aria-keyshortcuts format."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
 			"name": "layout",
 			"className": "Layout",
 			"registerFunctionName": "registerLayout",
@@ -5164,6 +5340,10 @@
 			],
 			"methods": [],
 			"slots": [
+				{
+					"name": "kbd-shortcut",
+					"description": "Used to display a keyboard shortcut alongside the menu item text."
+				},
 				{
 					"name": "meta",
 					"description": "Assign nodes to the `meta` slot to set a badge or an additional icon."
@@ -6207,6 +6387,63 @@
 					{ "name": "nextButton", "args": ["shadow", ".next-button"] },
 					{ "name": "prevButton", "args": ["shadow", ".prev-button"] }
 				]
+			}
+		},
+		{
+			"name": "platform-switch",
+			"className": "PlatformSwitch",
+			"registerFunctionName": "registerPlatformSwitch",
+			"description": "Displays at most one of its children based on `data-*` filter attributes.\n\nEach child can declare constraints via data attributes, e.g.\n`data-os=\"apple\"`. The component shows the first child whose\nconstraints all match and hides the rest.\n\nIf no child matches, nothing is displayed.",
+			"props": [],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "default",
+					"description": "Default slot accepts children with optional `data-*` filter attributes."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
 			}
 		},
 		{
@@ -10602,6 +10839,10 @@
 				{
 					"name": "anchor",
 					"description": "Used to set the anchor element for the tooltip."
+				},
+				{
+					"name": "kbd-shortcut",
+					"description": "Used to display a keyboard shortcut alongside the tooltip text."
 				}
 			],
 			"testUtils": {

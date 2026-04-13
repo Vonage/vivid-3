@@ -127,6 +127,18 @@
 		"slug": "icon"
 	},
 	{
+		"title": "Kbd Key",
+		"slug": "kbd-key"
+	},
+	{
+		"title": "Kbd Shortcut",
+		"slug": "kbd-shortcut"
+	},
+	{
+		"title": "Kbd Shortcut Text",
+		"slug": "kbd-shortcut-text"
+	},
+	{
 		"title": "Layout",
 		"slug": "layout"
 	},
@@ -164,6 +176,10 @@
 		"title": "Partials",
 		"children": ["Country", "Status"],
 		"slug": "partials"
+	},
+	{
+		"title": "Platform Switch",
+		"slug": "platform-switch"
 	},
 	{
 		"title": "Popover",

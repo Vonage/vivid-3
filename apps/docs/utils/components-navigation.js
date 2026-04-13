@@ -8,7 +8,17 @@ const componentByTitle = new Map(
 	components.map((component) => [component.title, component])
 );
 
+// Collect all child titles so we can skip them in the main loop
+// instead of splicing during iteration (which skips items).
+const childTitles = new Set(
+	components.flatMap((component) => component.children ?? [])
+);
+
 for (const component of components) {
+	if (childTitles.has(component.title)) {
+		continue;
+	}
+
 	const manifest = manifestsBySlug.get(component.slug);
 
 	if (manifest && !isPublicStatus(manifest.status)) {
@@ -32,11 +42,6 @@ for (const component of components) {
 			},
 			...component.children.map((childTitle) => {
 				const childItem = componentByTitle.get(childTitle);
-
-				const childIndex = components.indexOf(childItem);
-				if (childIndex > 0) {
-					components.splice(childIndex, 1);
-				}
 
 				return {
 					...childItem,

@@ -130,6 +130,55 @@ describe('vwc-tooltip', () => {
 		});
 	});
 
+	describe('kbd-shortcut slot', () => {
+		it('should render a kbd-shortcut slot inside the tooltip', async () => {
+			const kbdShortcutSlot = element.shadowRoot?.querySelector(
+				'slot[name="kbd-shortcut"]'
+			);
+			expect(kbdShortcutSlot).toBeTruthy();
+		});
+
+		it('should hide the wrapper when no content is slotted', async () => {
+			const wrapper = element.shadowRoot?.querySelector(
+				'.kbd-shortcut-wrapper'
+			);
+			expect(wrapper?.classList.contains('empty')).toBe(true);
+		});
+
+		it('should show parens when content is slotted', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} text="Copy">
+					<span slot="kbd-shortcut">Ctrl+C</span>
+				</${COMPONENT_TAG}>`
+			)) as Tooltip;
+			await elementUpdated(element);
+			await elementUpdated(element);
+
+			const wrapper = element.shadowRoot?.querySelector(
+				'.kbd-shortcut-wrapper'
+			);
+			expect(wrapper).toBeTruthy();
+			expect(wrapper?.classList.contains('empty')).toBe(false);
+			expect(wrapper?.textContent).toContain('(');
+			expect(wrapper?.textContent).toContain(')');
+		});
+
+		it('should hide the wrapper when slotted content is hidden', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} text="Copy">
+					<span slot="kbd-shortcut" style="display: none;">Hidden</span>
+				</${COMPONENT_TAG}>`
+			)) as Tooltip;
+			await elementUpdated(element);
+			await elementUpdated(element);
+
+			const wrapper = element.shadowRoot?.querySelector(
+				'.kbd-shortcut-wrapper'
+			);
+			expect(wrapper?.classList.contains('empty')).toBe(true);
+		});
+	});
+
 	describe('anchor', () => {
 		beforeEach(async () => {
 			element.anchor = anchor.id;

@@ -524,6 +524,15 @@ describe('vwc-menu-item', () => {
 			expect(submenuSlotElement).toBeTruthy();
 		});
 
+		it('should render kbd-shortcut slot', async function () {
+			const kbdShortcutSlotElement = element.shadowRoot?.querySelector(
+				'.base slot[name="kbd-shortcut"]'
+			);
+			await elementUpdated(element);
+
+			expect(kbdShortcutSlotElement).toBeTruthy();
+		});
+
 		it('should add class .has-meta if slot is slotted', async function () {
 			const slottedElement = document.createElement('div');
 			slottedElement.slot = 'meta';

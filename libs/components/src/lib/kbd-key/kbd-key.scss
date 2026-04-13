@@ -1,0 +1,43 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/border-radius' as border-radius;
+
+:host {
+	display: inline-block;
+}
+
+.base {
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid currentColor;
+	border-radius: #{border-radius.$border-radius-semi-condensed};
+	background-color: transparent;
+	box-shadow: 0 1px 0 1px currentColor;
+	color: inherit;
+	font: inherit;
+	min-block-size: 1.25em;
+	min-inline-size: 1.25em;
+	opacity: 0.8;
+	padding-block: 0;
+	padding-inline: 0.2em;
+	user-select: none;
+	vertical-align: baseline;
+	white-space: nowrap;
+
+	/* Symbol keys (arrows, enter, backspace etc.) get slightly larger font */
+	&.symbol {
+		font-size: 1.125em;
+		line-height: 1;
+	}
+
+	/* Space bar is wider */
+	&.wide {
+		min-inline-size: 4em;
+	}
+
+	/* Custom slot content inherits styling */
+	&.custom {
+		gap: 0.25em;
+	}
+}

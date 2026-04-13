@@ -170,6 +170,53 @@ import { VButton, VIcon, VTooltip } from '@vonage/vivid-vue';
 
 ## CSS Variables
 
+### Kbd Shortcut Slot
+
+Use the `kbd-shortcut` slot to display a keyboard shortcut alongside the tooltip text.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview center 150px
+<script setup lang="ts">
+import { VButton, VIcon, VKbdKey, VKbdShortcut, VTooltip } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VTooltip text="Copy" placement="right">
+		<template #anchor>
+			<VButton appearance="filled" icon="copy-line" aria-label="Copy" />
+		</template>
+		<template #kbd-shortcut>
+			<VKbdShortcut>
+				<VKbdKey name="Ctrl" />
+				<VKbdKey name="C" />
+			</VKbdShortcut>
+		</template>
+	</VTooltip>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview center 150px
+<vwc-tooltip text="Copy" placement="right">
+	<vwc-button slot="anchor" appearance="filled" icon="copy-line" aria-label="Copy"></vwc-button>
+	<vwc-kbd-shortcut slot="kbd-shortcut">
+		<vwc-kbd-key name="Ctrl"></vwc-kbd-key>
+		<vwc-kbd-key name="C"></vwc-kbd-key>
+	</vwc-kbd-shortcut>
+</vwc-tooltip>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## CSS Variables
+
 ### Max Inline Size
 
 The `--tooltip-max-inline-size` variable sets the Tooltip's max inline size.

@@ -1,0 +1,21 @@
+concept: Kbd Shortcut
+id: kbd-shortcut
+description: Displays a combination of keyboard keys separated by a "+" symbol.
+status: alpha
+slug: kbd-shortcut
+keywords:
+  - keyboard
+  - shortcut
+  - keybinding
+  - combo
+  - hotkey
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: kbd-shortcut
+    design: https://figma.com/...

@@ -1,0 +1,22 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
+
+:host {
+	display: inline-block;
+}
+
+.base {
+	display: inline-flex;
+	align-items: center;
+	white-space: nowrap;
+}
+
+.keys {
+	display: inline-flex;
+	align-items: center;
+}
+
+.separator {
+	padding-inline: 4px;
+	color: var(#{constants.$vvd-color-neutral-600});
+	font: var(#{constants.$vvd-typography-base-condensed});
+}

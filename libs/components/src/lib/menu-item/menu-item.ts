@@ -30,6 +30,7 @@ export type MenuItemConnotation = ExtractFromEnum<
  * @component menu-item
  * @slot meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  * @slot trailing-meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
+ * @slot kbd-shortcut - Used to display a keyboard shortcut alongside the menu item text.
  * @slot submenu - Assign a Menu to the `submenu` slot to add a submenu.
  * @event {CustomEvent<HTMLElement>} expanded-change - Fired when the expanded state changes.
  * @event {CustomEvent<undefined>} change - Fired when the item is triggered. Does not fire when a submenu is collapsed or expanded.

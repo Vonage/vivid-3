@@ -1,0 +1,22 @@
+concept: Kbd Shortcut Text
+id: kbd-shortcut-text
+description: Displays a keyboard shortcut from an aria-keyshortcuts format string.
+status: alpha
+slug: kbd-shortcut-text
+keywords:
+  - keyboard
+  - shortcut
+  - keybinding
+  - combo
+  - hotkey
+  - aria-keyshortcuts
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: kbd-shortcut-text
+    design: https://figma.com/...

@@ -120,6 +120,17 @@
 	order: 3;
 }
 
+.kbd-shortcut-slot {
+	display: contents;
+
+	&::slotted(*) {
+		margin-inline-start: auto;
+		padding-inline-start: 16px;
+		font-size: 0.85em;
+		opacity: 0.7;
+	}
+}
+
 .text {
 	display: flex;
 	overflow: hidden;
