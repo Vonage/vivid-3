@@ -1,0 +1,19 @@
+concept: Platform Switch
+id: platform-switch
+description: Switches displayed content based on the user's platform.
+status: alpha
+slug: platform-switch
+keywords:
+  - platform
+  - os
+  - switch
+  - conditional
+  - filter
+documentation:
+  code: ./README.md
+  variations: ./VARIATIONS.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: platform-switch
+    design: https://figma.com/...

@@ -1,0 +1,80 @@
+/* stylelint-disable custom-property-pattern */
+
+@use '@repo/tokens/scss/tokens.constants' as constants;
+@use '@repo/shared/mixins/border-radius' as border-radius;
+@use '@repo/shared/mixins/connotation/config' with (
+	$connotations: accent,
+	$shades: primary primary-text soft contrast firm faint dim pale,
+	$default: accent
+);
+@use '@repo/shared/mixins/connotation' as connotation;
+@use '@repo/shared/mixins/appearance/config' as appearance-config with (
+	$appearances: outlined subtle subtle-light,
+	$states: idle,
+	$default: outlined
+);
+@use '@repo/shared/mixins/appearance' as appearance;
+
+:host {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.base {
+	@include connotation.connotation(kbd-key);
+	@include appearance.appearance;
+
+	& {
+		display: inline-flex;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: center;
+		border: 0 none;
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		block-size: var(--_kbd-key-size);
+		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+		color: var(#{appearance.get-appearance-token(text)});
+		font: var(#{constants.$vvd-typography-base-condensed});
+		font-size: calc(var(--_kbd-key-size) / 2);
+		min-inline-size: var(--_kbd-key-size);
+		padding-inline: calc(var(--_kbd-key-size) / 4);
+		white-space: nowrap;
+	}
+
+	/* Dropshadow appearance extends outlined with canvas bg and drop shadow */
+	&.appearance-dropshadow {
+		/* Shadow offset scales with key size: 1.66px at 40px base = 0.0415 ratio */
+		--_kbd-key-shadow-size: calc(var(--_kbd-key-size) * 0.0415);
+
+		background-color: var(#{constants.$vvd-color-canvas});
+		box-shadow:
+			inset 0 0 0 1px var(#{constants.$vvd-color-neutral-300}),
+			var(--_kbd-key-shadow-size) var(--_kbd-key-shadow-size) 0 0
+				var(#{constants.$vvd-color-neutral-300});
+		color: var(#{constants.$vvd-color-canvas-text});
+	}
+
+	&.size-super-condensed {
+		--_kbd-key-size: 12px;
+
+		border-radius: #{border-radius.$border-radius-condensed};
+	}
+
+	&.size-condensed {
+		--_kbd-key-size: 16px;
+
+		border-radius: #{border-radius.$border-radius-condensed};
+	}
+
+	&:not(.size-super-condensed, .size-condensed, .size-expanded) {
+		--_kbd-key-size: 24px;
+
+		border-radius: #{border-radius.$border-radius-semi-condensed};
+	}
+
+	&.size-expanded {
+		--_kbd-key-size: 40px;
+
+		border-radius: #{border-radius.$border-radius-normal};
+	}
+}

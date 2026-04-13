@@ -5,6 +5,8 @@ import {
 } from '@repo/shared/test-utils/fixture';
 import '.';
 import '../menu';
+import '../kbd-key';
+import '../kbd-shortcut';
 import { fireEvent } from '@testing-library/dom';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import {
@@ -526,6 +528,37 @@ describe('vwc-menu-item', () => {
 			await elementUpdated(element);
 
 			expect(submenuSlotElement).toBeTruthy();
+		});
+
+		it('should render kbd-shortcut slot', async function () {
+			const kbdShortcutSlotElement = element.shadowRoot?.querySelector(
+				'.base slot[name="kbd-shortcut"]'
+			);
+			await elementUpdated(element);
+
+			expect(kbdShortcutSlotElement).toBeTruthy();
+		});
+
+		it('should set aria-keyshortcuts when a kbd-shortcut is slotted', async function () {
+			element = (await fixture(
+				`<${COMPONENT_TAG} text="Copy">
+					<vwc-kbd-shortcut slot="kbd-shortcut">
+						<vwc-kbd-key name="Control"></vwc-kbd-key>
+						<vwc-kbd-key name="C"></vwc-kbd-key>
+					</vwc-kbd-shortcut>
+				</${COMPONENT_TAG}>`
+			)) as MenuItem;
+			await elementUpdated(element);
+			await new Promise((r) => requestAnimationFrame(r));
+			await elementUpdated(element);
+
+			expect(element.getAttribute('aria-keyshortcuts')).toBe('Control+C');
+		});
+
+		it('should not set aria-keyshortcuts when no kbd-shortcut is slotted', async function () {
+			await elementUpdated(element);
+
+			expect(element.hasAttribute('aria-keyshortcuts')).toBe(false);
 		});
 
 		it('should add class .has-meta if slot is slotted', async function () {

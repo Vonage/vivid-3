@@ -126,6 +126,10 @@
 		"slug": "icon"
 	},
 	{
+		"title": "Kbd Shortcut",
+		"slug": "kbd-shortcut"
+	},
+	{
 		"title": "Layout",
 		"slug": "layout"
 	},
@@ -176,6 +180,10 @@
 			}
 		],
 		"slug": "partials"
+	},
+	{
+		"title": "Platform Switch",
+		"slug": "platform-switch"
 	},
 	{
 		"title": "Popover",

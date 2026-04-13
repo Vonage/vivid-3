@@ -151,6 +151,65 @@ import { VBadge, VMenu, VMenuItem } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
+### Kbd Shortcut Slot
+
+Use the `kbd-shortcut` slot to display a keyboard shortcut alongside the menu item text.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 200px
+<script setup lang="ts">
+import { VKbdKey, VKbdShortcut, VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VMenu open aria-label="Example menu">
+		<VMenuItem text="Copy" icon="copy-line">
+			<template #kbd-shortcut>
+				<VKbdShortcut>
+					<VKbdKey name="Control" />
+					<VKbdKey name="C" />
+				</VKbdShortcut>
+			</template>
+		</VMenuItem>
+		<VMenuItem text="Paste" icon="paste-line">
+			<template #kbd-shortcut>
+				<VKbdShortcut>
+					<VKbdKey name="Control" />
+					<VKbdKey name="V" />
+				</VKbdShortcut>
+			</template>
+		</VMenuItem>
+	</VMenu>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 200px
+<vwc-menu open aria-label="Example menu">
+	<vwc-menu-item text="Copy" icon="copy-line">
+		<vwc-kbd-shortcut slot="kbd-shortcut">
+			<vwc-kbd-key name="Control"></vwc-kbd-key>
+			<vwc-kbd-key name="C"></vwc-kbd-key>
+		</vwc-kbd-shortcut>
+	</vwc-menu-item>
+	<vwc-menu-item text="Paste" icon="paste-line">
+		<vwc-kbd-shortcut slot="kbd-shortcut">
+			<vwc-kbd-key name="Control"></vwc-kbd-key>
+			<vwc-kbd-key name="V"></vwc-kbd-key>
+		</vwc-kbd-shortcut>
+	</vwc-menu-item>
+</vwc-menu>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Submenu Slot
 
 Assign a Menu to the `submenu` slot to create a submenu.
