@@ -114,3 +114,70 @@ preventPopupCodeRunningAfterWindowClose();
 			DragEventPolyfill as unknown as typeof DragEvent;
 	}
 })();
+
+// computePosition triggers getComputedStyle repeatedly, which is very slow in jsdom and does not work either since there is no layout.
+// Stub out globally for performance. Test that want the original use their own vi.mock which overrides this stub.
+vi.mock(import('@floating-ui/dom'), async (importOriginal) => {
+	const actual = await importOriginal();
+	return {
+		...actual,
+		computePosition: vi.fn().mockResolvedValue({
+			x: 0,
+			y: 0,
+			placement: 'bottom',
+			strategy: 'fixed',
+			middlewareData: { hide: { referenceHidden: false }, arrow: {} },
+		}),
+	};
+});
+
+// FAST schedules DOM updates with rAF.
+// Tests rely on elementUpdated() to wait for the next AF, which means that they literally sleep for 1/60s.
+// Replace rAF with an implementation that sleeps for 0s while maintaining similar behaviour otherwise.
+(() => {
+	// Capture real timers so that vi.useFakeTimers() does not freeze rAF
+	const realSetImmediate = globalThis.setImmediate.bind(globalThis);
+	const realClearImmediate = globalThis.clearImmediate.bind(globalThis);
+	let nextAnimationFrameId = 1;
+	let animationFrameCallbacks = new Map<number, FrameRequestCallback>();
+	let pendingAnimationFrameFlush: NodeJS.Immediate | null = null;
+
+	const flushAnimationFrame = () => {
+		pendingAnimationFrameFlush = null;
+		const callbacks = animationFrameCallbacks;
+		animationFrameCallbacks = new Map();
+		const time = performance.now();
+
+		for (const callback of callbacks.values()) {
+			callback(time);
+		}
+	};
+
+	const scheduleAnimationFrameFlush = () => {
+		pendingAnimationFrameFlush = realSetImmediate(() => {
+			pendingAnimationFrameFlush = realSetImmediate(flushAnimationFrame);
+		});
+	};
+
+	window.requestAnimationFrame = (callback: FrameRequestCallback): number => {
+		const id = nextAnimationFrameId++;
+		animationFrameCallbacks.set(id, callback);
+
+		if (pendingAnimationFrameFlush === null) {
+			scheduleAnimationFrameFlush();
+		}
+
+		return id;
+	};
+
+	window.cancelAnimationFrame = (id: number): void => {
+		animationFrameCallbacks.delete(id);
+		if (
+			animationFrameCallbacks.size === 0 &&
+			pendingAnimationFrameFlush !== null
+		) {
+			realClearImmediate(pendingAnimationFrameFlush);
+			pendingAnimationFrameFlush = null;
+		}
+	};
+})();

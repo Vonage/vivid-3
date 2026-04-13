@@ -3759,6 +3759,13 @@
 					"propertyName": "placeholder"
 				},
 				{
+					"name": "size",
+					"description": "Controls the vertical size of the dial pad",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "size",
+					"propertyName": "size"
+				},
+				{
 					"name": "value",
 					"description": "Value of the phone input element",
 					"type": "string",
@@ -10125,8 +10132,8 @@
 				},
 				{
 					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
+					"description": "Fires a custom 'input' event when the value has changed",
+					"type": "CustomEvent<undefined>"
 				},
 				{
 					"name": "keydown",

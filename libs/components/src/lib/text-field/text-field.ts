@@ -96,6 +96,7 @@ const installSafariWorkaroundStyleIfNeeded = (forElement: TextField) => {
  * @slot leading-action-items - Used to add action items to the start of the text-field.
  * @slot action-items - Used to add action items to the end of the text-field.
  * @slot helper-text - Describes how to use the text-field. Alternative to the `helper-text` attribute.
+ * @event {CustomEvent<undefined>} input - Fires a custom 'input' event when the value has changed
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
  * @vueModel modelValue value input `event.currentTarget.value`
  * @testAction fill fill #control
@@ -358,8 +359,14 @@ export class TextField extends WithContextualHelp(
 	 * Handles the internal control's `input` event
 	 * @internal
 	 */
-	handleTextInput(): void {
+	handleTextInput(event: InputEvent): void {
 		this.value = this.control.value;
+
+		// Re-emit input event at the host
+		// Although the event would naturally bubble to the host as well, this works around cases like an issue with the
+		// Keeper browser extension which will stop propagation of input on the internal control.
+		event.stopPropagation();
+		this.$emit('input');
 	}
 
 	/**
