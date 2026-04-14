@@ -1,0 +1,42 @@
+libs/components/src/lib/combobox/combobox.spec.ts
+  8423e87b57e8b547 936,947
+libs/components/src/lib/combobox/combobox.ts
+  8423e87b57e8b547 102-106,512,514,531-539
+libs/components/src/lib/combobox/combobox.template.ts
+  8423e87b57e8b547 115
+libs/components/src/lib/combobox/combobox.scss
+  8423e87b57e8b547 125,127-128
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "6f8fdf4bf6bf129d7b515cbd203d7b4e4f99944c",
+  "prompts": {
+    "8423e87b57e8b547": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_278dec9aeffe37nQFN0yrEen1k",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 33,
+      "total_deletions": 3,
+      "accepted_lines": 24,
+      "overriden_lines": 1
+    },
+    "a28522466139ccd8": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_28e1fceeaffeDgcZeBPYdpkE7y",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 51,
+      "overriden_lines": 0
+    }
+  }
+}
