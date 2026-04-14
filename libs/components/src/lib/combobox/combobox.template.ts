@@ -112,6 +112,7 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 	return html<Combobox>`
 		<template
 			tabindex="${(x) => (!x.disabled ? '0' : null)}"
+			class="${(x) => classNames(['has-activedescendant', Boolean(x._activeDescendant) && x.open])}"
 			@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
 			@focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
 			@keydown="${(x, { event }) => {
