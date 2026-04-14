@@ -307,11 +307,15 @@ describe('Foundation Button', () => {
 
 	describe('connectedCallback without control', () => {
 		it('should not throw when control is not set', async () => {
-			const { element } = await setup();
+			const { connect, disconnect, element } = await setup();
+
+			await connect();
 
 			(element as any).control = null;
 
 			expect(() => element.connectedCallback()).not.toThrow();
+
+			await disconnect();
 		});
 	});
 
