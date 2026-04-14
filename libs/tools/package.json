@@ -7,7 +7,8 @@
 	"module": "src/index.ts",
 	"types": "src/index.ts",
 	"bin": {
-		"move-manifest-to-dist": "src/move-manifest-to-dist.ts"
+		"move-manifest-to-dist": "src/move-manifest-to-dist.ts",
+		"relativize-coverage": "src/relativize-coverage.ts"
 	},
 	"files": [
 		"src/fetch-icons/index.ts"

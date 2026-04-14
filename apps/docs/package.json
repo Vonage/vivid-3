@@ -16,7 +16,7 @@
 		"stylelint": "stylelint 'assets/**/*.{css,scss}'",
 		"stylelint:fix": "stylelint 'assets/**/*.{css,scss}' --fix",
 		"test": "vitest run",
-		"test:coverage": "vitest run --coverage",
+		"test:coverage": "vitest run --coverage && relativize-coverage .",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
@@ -44,6 +44,7 @@
 		"@repo/shared": "workspace:*",
 		"@repo/stylelint-config": "workspace:*",
 		"@repo/tokens": "workspace:*",
+		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@types/jsdom": "catalog:",
