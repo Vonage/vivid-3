@@ -4,11 +4,10 @@
 
 button {
 	border: none;
+	border-radius: #{border-radius-variables.$border-radius-normal};
+	aspect-ratio: 1;
 	background: transparent;
 	cursor: pointer;
-	aspect-ratio: 1;
-
-	border-radius: #{border-radius-variables.$border-radius-normal};
 }
 
 button:focus-visible {
