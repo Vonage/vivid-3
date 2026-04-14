@@ -140,5 +140,23 @@ describe('RteCharacterCountFeature', () => {
 
 			expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('He|llo')"`);
 		});
+
+		it('should allow deleting text when document already exceeds the limit', async () => {
+			const rte = await setup(features({ limit: 3 }), [p('Hello')]);
+
+			rte.selectText('Hell[o]');
+			rte.keydown('Backspace');
+
+			expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('Hell|')"`);
+		});
+
+		it('should block typing when document already exceeds the limit', async () => {
+			const rte = await setup(features({ limit: 3 }), [p('Hello')]);
+
+			rte.placeCursor('Hello|');
+			await rte.typeTextAtCursor('X');
+
+			expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('Hello|')"`);
+		});
 	});
 });
