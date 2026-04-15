@@ -176,19 +176,44 @@ module.exports = async (eleventyConfig) => {
 	});
 
 	eleventyConfig.addFilter('includeMd', (filePath) => {
-		if (
-			!filePath.endsWith('.md') ||
-			!filePath.startsWith('./libs/components/src/lib/')
-		)
+		if (!filePath || !filePath.endsWith('.md')) return '';
+
+		let markdownPath;
+		if (path.isAbsolute(filePath)) {
+			markdownPath = filePath;
+		} else if (filePath.startsWith('./libs/components/src/lib/')) {
+			markdownPath = path.resolve(
+				WORKSPACE_ROOT,
+				filePath.replaceAll('../', '')
+			);
+		} else {
 			return '';
+		}
 
-		const markdownPath = path.resolve(
-			WORKSPACE_ROOT,
-			filePath.replaceAll('../', '')
-		);
 		if (!fs.existsSync(markdownPath)) return '';
-
 		return fs.readFileSync(markdownPath, 'utf8');
+	});
+
+	eleventyConfig.addFilter('cleanLLM', (content) => {
+		if (!content) return '';
+
+		return (
+			content
+				// Remove HTML tags and attributes
+				.replace(/<[^>]*>/g, '')
+				// Remove all markdown code blocks (```...```)
+				.replace(/```[\s\S]*?```/gs, '')
+				// Remove ```html preview ... ``` code blocks
+				.replace(/```*```/gs, '')
+				// Remove other code blocks (empty or with preview commands)
+				.replace(/```\s*preview[^`]*```/gs, '')
+				// Remove empty code blocks
+				.replace(/```\s*```/gs, '')
+				// Remove multiple consecutive newlines
+				.replace(/\n{4,}/g, '\n\n')
+				// Trim whitespace
+				.trim()
+		);
 	});
 
 	eleventyConfig.addFilter('onlyPublicPages', onlyPublicPages);

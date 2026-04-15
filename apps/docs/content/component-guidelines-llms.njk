@@ -9,4 +9,5 @@ eleventyComputed:
   pageTitle: '{{ component.concept }} - Guidelines'
 ---
 # {{ pageTitle }}
-{{ component.documentation.guidelines | includeMd | safe }}
+
+{{ component.documentation.guidelines | includeMd | cleanLLM | safe }}

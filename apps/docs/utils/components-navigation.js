@@ -8,7 +8,10 @@ const componentByTitle = new Map(
 	components.map((component) => [component.title, component])
 );
 
-for (const component of components) {
+// Create a copy of components to avoid modification during iteration
+const componentsCopy = [...components];
+
+for (const component of componentsCopy) {
 	const manifest = manifestsBySlug.get(component.slug);
 
 	if (manifest && !isPublicStatus(manifest.status)) {

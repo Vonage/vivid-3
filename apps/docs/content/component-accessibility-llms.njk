@@ -9,4 +9,4 @@ eleventyComputed:
   pageTitle: "{{ component.concept }} - Accessibility"
 ---
 # {{ pageTitle }}
-{{ component.documentation.accessibility | includeMd | safe }}
+{{ component.documentation.accessibility | includeMd | cleanLLM | safe }}
