@@ -9390,17 +9390,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{
-					"name": "directionChanged",
-					"args": [
-						{ "name": "n", "type": "any" },
-						{ "name": "old", "type": "any" }
-					],
-					"returnType": "void"
-				},
-				{ "name": "toggleSort", "args": [], "returnType": "void" }
-			],
+			"methods": [{ "name": "toggleSort", "args": [], "returnType": "void" }],
 			"slots": [{ "name": "default", "description": "Default slot." }],
 			"testUtils": {
 				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],

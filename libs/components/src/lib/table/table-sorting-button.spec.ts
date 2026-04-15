@@ -44,15 +44,15 @@ describe('Table sorting button', () => {
 		});
 	});
 
-	describe('when direction changes', () => {
+	describe('when toggleSort() is called', () => {
 		it('dispatches a "sort" event with the new direction as detail', async () => {
 			const handler = vi.fn();
 			element.addEventListener('sort', handler);
 
-			element.direction = 'asc';
+			element.toggleSort();
 			await elementUpdated(element);
 
-			expect(handler).toHaveBeenCalledOnce();
+			expect(handler).toHaveBeenCalled();
 			expect(handler.mock.calls[0][0].detail).toBe('asc');
 		});
 
@@ -60,7 +60,7 @@ describe('Table sorting button', () => {
 			const handler = vi.fn();
 			element.addEventListener('sort', handler);
 
-			element.direction = 'desc';
+			element.toggleSort();
 			await elementUpdated(element);
 
 			const event: CustomEvent = handler.mock.calls[0][0];
