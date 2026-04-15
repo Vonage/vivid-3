@@ -6,14 +6,15 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @public
  * @component table-sorting-button
  * @slot - Default slot.
- */
+* @event {CustomEvent<undefined>} sort - Emitted when sorting button is clicked.
+*/
 export class TableSortingButton extends DelegatesAria(VividElement) {
 	/**
-	 * The connotation the tab should have.
+	 * Current direction of the sorting
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: connotation
+	 * HTML Attribute: direction
 	 */
 	@attr direction?: null | 'none' | 'asc' | 'desc';
 
