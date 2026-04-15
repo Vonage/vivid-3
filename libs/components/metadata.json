@@ -2093,6 +2093,85 @@
 			}
 		},
 		{
+			"name": "country-group",
+			"className": "CountryGroup",
+			"registerFunctionName": "registerCountryGroup",
+			"description": "",
+			"props": [
+				{
+					"name": "maxRows",
+					"description": "Maximum number of layout rows to show before overflowing into the hover popover.\nWhen unset, defaults to 1 row.",
+					"type": "number",
+					"attributeName": "max-rows",
+					"propertyName": "maxRows"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [
+				{ "name": "countryItemsChanged", "args": [], "returnType": "void" },
+				{ "name": "handleMouseEnter", "args": [], "returnType": "void" },
+				{ "name": "handleMouseLeave", "args": [], "returnType": "void" },
+				{
+					"name": "popupKeydown",
+					"args": [{ "name": "e", "type": "Event" }],
+					"returnType": "void"
+				},
+				{
+					"name": "popupOpenChanged",
+					"args": [{ "name": "oldValue", "type": "undefined | false | true" }],
+					"returnType": "void"
+				}
+			],
+			"slots": [
+				{
+					"name": "default",
+					"description": "One or more `vwc-country` elements (Country only)."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
 			"name": "data-grid",
 			"className": "DataGrid",
 			"registerFunctionName": "registerDataGrid",
