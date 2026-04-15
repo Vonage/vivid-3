@@ -12,6 +12,9 @@
 		"libs/icons": {
 			"component": "vivid-icons"
 		},
+		"libs/marketing-icons": {
+			"component": "vivid-marketing-icons"
+		},
 		"libs/vue-wrappers": {
 			"component": "vivid-vue",
 			"skip-github-release": true

@@ -1,8 +1,8 @@
-const { upload } = require('./src/upload-icons.js');
-const { resolve } = require('node:path');
-const { defineCommand, runMain } = require('citty');
-const iconsPackageJson = require('../../../libs/icons/package.json');
-const iconsVersion = iconsPackageJson.version;
+import { upload } from './src/upload-icons.js';
+import { resolve } from 'node:path';
+import { defineCommand, runMain } from 'citty';
+import iconsPackageJson from '../../../libs/icons/package.json' with { type: 'json' };
+import marketingIconsPackageJson from '../../../libs/marketing-icons/package.json' with { type: 'json' };
 
 const main = defineCommand({
 	meta: {
@@ -10,11 +10,22 @@ const main = defineCommand({
 		description: 'This script should be executed ONLY in local environment.',
 	},
 	args: {
+		mode: {
+			type: 'string',
+			alias: 'm',
+			description: "Upload mode: 'icons' (default) or 'marketing-icons'",
+			default: 'icons',
+		},
 		version: {
 			type: 'string',
-			description: 'Your name',
+			description:
+				'Package version (defaults to version from package.json for the selected mode)',
 			alias: 'v',
-			default: iconsVersion,
+		},
+		'source-dir': {
+			type: 'string',
+			description:
+				'Source directory containing index.json and icon files (defaults based on mode)',
 		},
 		key: {
 			type: 'string',
@@ -49,7 +60,7 @@ const main = defineCommand({
 		dry: {
 			type: 'boolean',
 			alias: 'd',
-			description: 'If you actually want to perform upload',
+			description: 'Print what would be uploaded without actually uploading',
 			default: false,
 		},
 	},
@@ -59,8 +70,23 @@ const main = defineCommand({
 			return;
 		}
 
+		const isMarketing = args.mode === 'marketing-icons';
+		const version =
+			args.version ||
+			(isMarketing
+				? marketingIconsPackageJson.version
+				: iconsPackageJson.version);
+		const sourceDir = resolve(
+			args['source-dir'] ||
+				(isMarketing
+					? '../../../libs/marketing-icons/src/generated'
+					: '../../../libs/icons/src/generated')
+		);
+
 		console.log('Uploading icons with the following configuration:');
-		console.log(`- Version: ${args.version}`);
+		console.log(`- Mode: ${args.mode}`);
+		console.log(`- Version: ${version}`);
+		console.log(`- Source directory: ${sourceDir}`);
 		console.log(`- Bucket: ${args.bucket}`);
 		console.log(`- Base folder: ${args.folder}`);
 		console.log(`- Region: ${args.region}`);
@@ -68,8 +94,9 @@ const main = defineCommand({
 		upload({
 			accessKey: args.key,
 			secretAccessKey: args.secret,
-			version: args.version,
-			sourceDirs: [resolve('../../../libs/icons/src/generated')],
+			version,
+			mode: args.mode,
+			sourceDir,
 			bucket: args.bucket,
 			baseFolder: args.folder,
 			region: args.region,

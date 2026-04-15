@@ -39,5 +39,4 @@ jobs:
           bucket: ${{ vars.ICONS_BUCKET }}
           base-folder: ${{ vars.ICONS_BASE_FOLDER }}
           version: ${{ steps.get-icons-version.outputs.icons_version }}
-          source-dirs: |
-            ./libs/icons/src/generated/
+          source-dir: ./libs/icons/src/generated/

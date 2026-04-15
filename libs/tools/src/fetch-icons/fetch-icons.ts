@@ -28,6 +28,7 @@ export async function fetchIcons(
 		createEntry: createIconEntry,
 		dir: './src/icons/',
 		filter: (node) => node.name.includes('icon'),
+		format: 'svg',
 		forceUpdate: false,
 		indexFileName: 'index.json',
 		outputs: [
@@ -77,9 +78,9 @@ export async function fetchIcons(
 		const imageLinks = await client
 			.fileImages(figmaFileId, {
 				ids: chunkedIds,
-				format: 'svg',
+				format: options.format,
 				scale: 1,
-				svg_simplify_stroke: true,
+				...(options.format === 'svg' ? { svg_simplify_stroke: true } : {}),
 			})
 			.then((r) => {
 				return r.data.images;
@@ -111,7 +112,7 @@ export async function fetchIcons(
 
 	logger.success('Wrote index.json file with all icons metadata.');
 
-	// Now, fetch each SVG source and generate Fast Element icon component.
+	// Now, fetch each icon image and write it using the configured outputs.
 
 	const iconPromises: Promise<IconEntry>[] = Array.from(iconsMap.values())
 		.filter((entry) => {
@@ -126,23 +127,33 @@ export async function fetchIcons(
 		})
 		.map((entry) => {
 			return new Promise(async (resolvePromise, rejectPromise) => {
-				const svgSource = await retry(
+				const isBinary = options.format !== 'svg';
+
+				const content = await retry(
 					async () => {
 						const response = await fetch(entry.imageUrl);
+						if (isBinary) {
+							return Buffer.from(await response.arrayBuffer());
+						}
 						return await response.text();
 					},
-					(result) => isSvg(result),
+					(result) => {
+						if (isBinary) {
+							return Buffer.isBuffer(result) && (result as Buffer).length > 0;
+						}
+						return isSvg(result as string);
+					},
 					3,
 					500
 				).catch(() => {
 					iconsMap.delete(entry.figmaNodeId);
 					logger.error(
-						`Failed to fetch SVG for icon: ${entry.name} (${entry.figmaNodeId})`
+						`Failed to fetch ${options.format} for icon: ${entry.name} (${entry.figmaNodeId})`
 					);
 					rejectPromise();
 				});
 
-				if (!svgSource) {
+				if (!content) {
 					rejectPromise();
 					return;
 				}
@@ -151,7 +162,7 @@ export async function fetchIcons(
 					const fileName = output.fileName(entry);
 					const filePath = resolve(options.dir, fileName);
 					if (!existsSync(filePath) || options.forceUpdate) {
-						const fileContent = output.template(entry, svgSource);
+						const fileContent = output.template(entry, content);
 						if (fileContent === undefined) continue;
 						writeFile(filePath, fileContent);
 
