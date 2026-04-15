@@ -13,6 +13,7 @@ keywords:
 documentation:
   code: ./README.md
   accessibility: ./ACCESSIBILITY.md
+  useCases: ./USE-CASES.md
   variations: ./VARIATIONS.md
 links:
   figma: https://www.figma.com/design/vDH2AytCxEvOulJ7olf9cS/%F0%9F%9A%80-Vivid-Live?node-id=10362-372

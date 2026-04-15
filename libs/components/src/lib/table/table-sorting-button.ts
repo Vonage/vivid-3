@@ -6,8 +6,8 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @public
  * @component table-sorting-button
  * @slot - Default slot.
-* @event {CustomEvent<undefined>} sort - Emitted when sorting button is clicked.
-*/
+ * @event {CustomEvent<undefined>} sort - Emitted when sorting button is clicked.
+ */
 export class TableSortingButton extends DelegatesAria(VividElement) {
 	/**
 	 * Current direction of the sorting
@@ -17,16 +17,6 @@ export class TableSortingButton extends DelegatesAria(VividElement) {
 	 * HTML Attribute: direction
 	 */
 	@attr direction?: null | 'none' | 'asc' | 'desc';
-
-	directionChanged() {
-		this.dispatchEvent(
-			new CustomEvent('sort', {
-				detail: this.direction,
-				bubbles: true,
-				composed: true,
-			})
-		);
-	}
 
 	get #nextDirection() {
 		if (!this.direction || this.direction === 'none') {
@@ -42,5 +32,12 @@ export class TableSortingButton extends DelegatesAria(VividElement) {
 		const prevented = !this.$emit('sort', this.#nextDirection);
 		if (prevented) return;
 		this.direction = this.#nextDirection;
+		this.dispatchEvent(
+			new CustomEvent('sort', {
+				detail: this.direction,
+				bubbles: true,
+				composed: true,
+			})
+		);
 	}
 }

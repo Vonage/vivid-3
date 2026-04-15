@@ -9346,7 +9346,7 @@
 			"props": [
 				{
 					"name": "direction",
-					"description": "The connotation the tab should have.",
+					"description": "Current direction of the sorting",
 					"type": "'none' | 'desc' | 'asc'",
 					"attributeName": "direction",
 					"propertyName": "direction"
@@ -9382,11 +9382,23 @@
 					"name": "keyup",
 					"description": "Fires when a key is released.",
 					"type": "KeyboardEvent"
+				},
+				{
+					"name": "sort",
+					"description": "Emitted when sorting button is clicked.",
+					"type": "CustomEvent<undefined>"
 				}
 			],
 			"vueModels": [],
 			"methods": [
-				{ "name": "directionChanged", "args": [], "returnType": "void" },
+				{
+					"name": "directionChanged",
+					"args": [
+						{ "name": "n", "type": "any" },
+						{ "name": "old", "type": "any" }
+					],
+					"returnType": "void"
+				},
 				{ "name": "toggleSort", "args": [], "returnType": "void" }
 			],
 			"slots": [{ "name": "default", "description": "Default slot." }],
