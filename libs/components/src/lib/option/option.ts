@@ -254,6 +254,7 @@ export class ListboxOption extends HostSemantics(
 	 */
 	@observable _vvdSearchText = '';
 
+	/** @internal */
 	@volatile
 	get _hasMatchedText() {
 		return Boolean(this.matchedText ?? this._vvdSearchText);
