@@ -33,7 +33,7 @@
 		"stylelint": "stylelint 'src/**/*.{css,scss}'",
 		"stylelint:fix": "stylelint 'src/**/*.{css,scss}' --fix",
 		"test": "vitest run",
-		"test:coverage": "vitest run --coverage",
+		"test:coverage": "vitest run --coverage && relativize-coverage .",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
@@ -43,6 +43,7 @@
 		"@microsoft/fast-element": "catalog:",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/stylelint-config": "workspace:*",
+		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"vitest": "catalog:",

@@ -10,99 +10,93 @@ const { paragraph: p } = docFactories;
 
 describe('RteBase', () => {
 	it('should add only paragraph node by default', async () => {
-		const { view } = await setup([new RteBase()]);
+		const rte = await setup([new RteBase()]);
 
-		expect(view.state.schema.nodes.paragraph).toBeDefined();
-		expect(view.state.schema.nodes.heading1).not.toBeDefined();
-		expect(view.state.schema.nodes.heading2).not.toBeDefined();
-		expect(view.state.schema.nodes.heading3).not.toBeDefined();
+		expect(rte.view.state.schema.nodes.paragraph).toBeDefined();
+		expect(rte.view.state.schema.nodes.heading1).not.toBeDefined();
+		expect(rte.view.state.schema.nodes.heading2).not.toBeDefined();
+		expect(rte.view.state.schema.nodes.heading3).not.toBeDefined();
 	});
 
 	it('should not add paragraph node when disabled', async () => {
-		const { view } = await setup([
+		const rte = await setup([
 			new RteBase({ paragraph: false, heading1: true }),
 		]);
 
-		expect(view.state.schema.nodes.paragraph).toBeUndefined();
+		expect(rte.view.state.schema.nodes.paragraph).toBeUndefined();
 	});
 
 	it('should add heading1 node when enabled', async () => {
-		const { view } = await setup([new RteBase({ heading1: true })]);
+		const rte = await setup([new RteBase({ heading1: true })]);
 
-		expect(view.state.schema.nodes.heading1).toBeDefined();
+		expect(rte.view.state.schema.nodes.heading1).toBeDefined();
 	});
 
 	it('should add heading2 node when enabled', async () => {
-		const { view } = await setup([new RteBase({ heading2: true })]);
+		const rte = await setup([new RteBase({ heading2: true })]);
 
-		expect(view.state.schema.nodes.heading2).toBeDefined();
+		expect(rte.view.state.schema.nodes.heading2).toBeDefined();
 	});
 
 	it('should add heading3 node when enabled', async () => {
-		const { view } = await setup([new RteBase({ heading3: true })]);
+		const rte = await setup([new RteBase({ heading3: true })]);
 
-		expect(view.state.schema.nodes.heading3).toBeDefined();
+		expect(rte.view.state.schema.nodes.heading3).toBeDefined();
 	});
 
 	describe('keyboard handling', () => {
 		describe('Enter/Shift-Enter', () => {
 			it('should split paragraph when pressing Enter', async () => {
-				const { placeCursor, keydown, docStr, element } = await setup(
-					[new RteBase()],
-					[p('Hello world')]
-				);
+				const rte = await setup([new RteBase()], [p('Hello world')]);
 
-				placeCursor('Hello| world');
-				keydown('Enter');
-				await elementUpdated(element);
+				rte.placeCursor('Hello| world');
+				rte.keydown('Enter');
+				await elementUpdated(rte.element);
 
-				expect(docStr()).toMatchInlineSnapshot(
+				expect(rte.docStr()).toMatchInlineSnapshot(
 					`"paragraph('Hello'), paragraph('| world')"`
 				);
 			});
 
 			it('should split paragraph when pressing Shift+Enter', async () => {
-				const { placeCursor, keydown, docStr, element } = await setup(
-					[new RteBase()],
-					[p('Hello world')]
-				);
+				const rte = await setup([new RteBase()], [p('Hello world')]);
 
-				placeCursor('Hello| world');
-				keydown('Enter', { shift: true });
-				await elementUpdated(element);
+				rte.placeCursor('Hello| world');
+				rte.keydown('Enter', { shift: true });
+				await elementUpdated(rte.element);
 
-				expect(docStr()).toMatchInlineSnapshot(
+				expect(rte.docStr()).toMatchInlineSnapshot(
 					`"paragraph('Hello'), paragraph('| world')"`
 				);
 			});
 
 			describe('WHEN hard break feature enabled', () => {
 				it('should insert hard break when pressing Shift+Enter', async () => {
-					const { placeCursor, keydown, docStr, element } = await setup(
+					const rte = await setup(
 						[new RteBase(), new RteHardBreakFeature()],
 						[p('Hello world')]
 					);
 
-					placeCursor('Hello| world');
-					keydown('Enter', { shift: true });
-					await elementUpdated(element);
+					rte.placeCursor('Hello| world');
+					rte.keydown('Enter', { shift: true });
+					await elementUpdated(rte.element);
 
-					expect(docStr()).toMatchInlineSnapshot(
+					expect(rte.docStr()).toMatchInlineSnapshot(
 						`"paragraph('Hello', hardBreak(), '| world')"`
 					);
 				});
 
 				it('should keep Enter behavior', async () => {
-					const { placeCursor, keydown, docStr, element } = await setup(
+					const rte = await setup(
 						[new RteBase(), new RteHardBreakFeature()],
 						[p('Hello world')]
 					);
 
-					placeCursor('Hello| world');
-					keydown('Enter');
-					await elementUpdated(element);
+					rte.placeCursor('Hello| world');
+					rte.keydown('Enter');
+					await elementUpdated(rte.element);
 
-					expect(docStr()).toMatchInlineSnapshot(
+					expect(rte.docStr()).toMatchInlineSnapshot(
 						`"paragraph('Hello'), paragraph('| world')"`
 					);
 				});

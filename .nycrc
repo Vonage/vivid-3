@@ -25,6 +25,8 @@
 		"libs/tokens/**",
 		"libs/tokens-new/**",
 		"libs/internal-eslint-plugin/**",
+		"libs/metadata-extractor/**",
+		"libs/test-utils/**",
 		"libs/components/src/visual-tests/**",
 		"libs/components/src/locales/**",
 		"libs/design-tokens/scripts/build.ts",
