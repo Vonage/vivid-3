@@ -25,6 +25,8 @@ export const countryGroupDefinition = defineVividComponent(
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerCountryGroup = createRegisterFunction(countryGroupDefinition);
+export const registerCountryGroup = createRegisterFunction(
+	countryGroupDefinition
+);
 
 export { CountryGroup as VwcCountryGroupElement };

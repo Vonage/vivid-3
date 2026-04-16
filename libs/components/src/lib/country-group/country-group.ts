@@ -22,7 +22,7 @@ export class CountryGroup extends VividElement {
 	 * Maximum number of layout rows to show before overflowing into the hover popover.
 	 * When unset, defaults to 1 row.
 	 *
-	 * @public
+	 * @internal
 	 * @remarks HTML Attribute: max-rows
 	 */
 	@attr({ attribute: 'max-rows', converter: nullableNumberConverter })
@@ -193,9 +193,6 @@ export class CountryGroup extends VividElement {
 		const maxRows = this.#effectiveMaxRows();
 
 		if (k <= 0) {
-			return false;
-		}
-		if (k > items.length) {
 			return false;
 		}
 
