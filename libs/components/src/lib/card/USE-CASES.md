@@ -1,3 +1,62 @@
+## Login Form Inside Card
+
+```html preview
+<form>
+	<vwc-card class="signin" headline="Sign in" subtitle="Use your account credentials to continue">
+
+		<vwc-layout row-spacing="small" class="fields">
+			
+			<vwc-text-field
+				label="Email address"
+				type="email"
+				name="email"
+				autocomplete="username"
+				required
+			></vwc-text-field>
+
+			<!-- Password -->
+			<vwc-text-field
+				label="Password"
+				type="password"
+				name="password"
+				autocomplete="current-password"
+				required
+			></vwc-text-field>
+
+			<!-- Remember me -->
+			<vwc-checkbox
+				label="Remember me"
+				name="remember"
+			></vwc-checkbox>
+		
+		</vwc-layout>
+
+		<div class="actions" slot="footer">
+			<vwc-button
+				appearance="ghost"
+				label="Forgot password?"
+				type="button"
+			></vwc-button>
+
+			<vwc-button
+				appearance="filled"
+				connotation="cta"
+				label="Sign in"
+				type="submit"
+			></vwc-button>
+		</div>
+
+	</vwc-card>
+</form>
+
+<style>
+	.signin {
+		max-inline-size: 400px;
+		margin: 2rem auto;
+	}
+</style>
+```ß
+
 ## Cards Inside a Layout
 
 When placing cards inside Layout component or inside flex parent the cards are stretched to fit the highest card.

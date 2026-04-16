@@ -1814,6 +1814,10 @@
 			"methods": [],
 			"slots": [
 				{
+					"name": "body",
+					"description": "The body slot is for the main content of the card. Displayed between the header and footer content."
+				},
+				{
 					"name": "footer",
 					"description": "The footer slot is for content in the card footer."
 				},

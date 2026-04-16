@@ -150,7 +150,23 @@ appearance="outlined"
 ></vwc-button>
 </vwc-card>
 
+<vwc-card
+headline="Card with body Slot"
+subtitle="Extra text below the card headline"
+>
+<div slot="body">
+This is custom content in the body slot.
+</div>
+</vwc-card>
+
 <vwc-card>
+<div slot="body">
+This is custom content in the body slot.
+</div>
+</vwc-card>
+
+<vwc-card>
+
 <vwc-layout gutters="small" slot="main">
 Assign custom template using "main" slot.
 </vwc-layout>

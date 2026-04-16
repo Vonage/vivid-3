@@ -42,6 +42,76 @@ registerCard('your-prefix');
 
 ## Slots
 
+### Body Slot
+
+This is the slot for any content that you need to display after header content (Headline, Subtitle). It can be used instead of, or in conjunction with the text attribute.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VCard, VTable, VTableHead, VTableBody, VTableRow, VTableCell, VTableHeaderCell } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCard headline="Vivid Card Component (headline)" subtitle="Extra text below the card headline (subtitle)">
+		<template #body>
+			<VTable>
+				<VTableHead>
+					<VTableRow>
+						<VTableHeaderCell>Name</VTableHeaderCell>
+						<VTableHeaderCell>Job Title</VTableHeaderCell>
+					</VTableRow>
+				</VTableHead>
+				<VTableBody>
+					<VTableRow>
+						<VTableCell>Marty McFly</VTableCell>
+						<VTableCell>Student</VTableCell>
+					</VTableRow>
+					<VTableRow>
+						<VTableCell>Dr Emit Brown</VTableCell>
+						<VTableCell>Scientist</VTableCell>
+					</VTableRow>
+				</VTableBody>
+			</VTable>
+		</template>
+	</VCard>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<vwc-card headline="Vivid Card Component (headline)" subtitle="Extra text below the card headline (subtitle)">
+	<vwc-table slot="body">
+		<vwc-table-head>
+			<vwc-table-row>
+				<vwc-table-header-cell>Name</vwc-table-header-cell>
+				<vwc-table-header-cell>Job Title</vwc-table-header-cell>
+			</vwc-table-row>
+		</vwc-table-head>
+		<vwc-table-body>
+			<vwc-table-row>
+				<vwc-table-cell>Marty McFly</vwc-table-cell>
+				<vwc-table-cell>Student</vwc-table-cell>
+			</vwc-table-row>
+			<vwc-table-row>
+				<vwc-table-cell>Dr Emit Brown</vwc-table-cell>
+				<vwc-table-cell>Scientist</vwc-table-cell>
+			</vwc-table-row>
+		</vwc-table-body>
+	</vwc-table>
+</vwc-card>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+
 ### Graphic Slot
 
 Use the `graphic` slot for **Icons** or custom images.
