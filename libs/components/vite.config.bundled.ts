@@ -1,6 +1,7 @@
 /// <reference types="vitest/config" />
 import * as fs from 'fs';
 import * as path from 'path';
+import { globSync } from 'glob';
 import { defineConfig, mergeConfig } from 'vite';
 import baseConfig from './vite.config.base';
 
@@ -8,7 +9,7 @@ import baseConfig from './vite.config.base';
 // These can be imported directly in the browser
 
 function generateRollupInput() {
-	const components = fs.globSync('*/index.ts', { cwd: './src/lib/' });
+	const components = globSync('*/index.ts', { cwd: './src/lib/' });
 
 	return Object.fromEntries(
 		components.map((componentDefinitionPath) => [

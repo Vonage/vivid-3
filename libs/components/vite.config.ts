@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
+import { globSync } from 'glob';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { defineConfig, mergeConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -7,7 +8,7 @@ import baseConfig from './vite.config.base';
 
 function generateRollupInput() {
 	const locales = fs.readdirSync('./src/locales');
-	const components = fs.globSync('*/definition.ts', { cwd: './src/lib/' });
+	const components = globSync('*/definition.ts', { cwd: './src/lib/' });
 	return {
 		index: 'src/index.ts',
 		...Object.fromEntries(

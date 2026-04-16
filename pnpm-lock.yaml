@@ -667,6 +667,9 @@ importers:
       element-internals-polyfill:
         specifier: ^3.0.2
         version: 3.0.2
+      glob:
+        specifier: 'catalog:'
+        version: 13.0.6
       http-server:
         specifier: 'catalog:'
         version: 14.1.1
