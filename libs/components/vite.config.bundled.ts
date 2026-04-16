@@ -1,5 +1,4 @@
 /// <reference types="vitest/config" />
-import * as fs from 'fs';
 import * as path from 'path';
 import { globSync } from 'glob';
 import { defineConfig, mergeConfig } from 'vite';
