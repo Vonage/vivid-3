@@ -1299,6 +1299,13 @@
 					"propertyName": "ping"
 				},
 				{
+					"name": "pressed",
+					"description": "Indicates the button is in a pressed/toggled state.\nSets `aria-pressed` on the button element.",
+					"type": "boolean",
+					"attributeName": "pressed",
+					"propertyName": "pressed"
+				},
+				{
 					"name": "referrerpolicy",
 					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",

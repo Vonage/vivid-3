@@ -11,6 +11,19 @@ import type { VividElementDefinitionContext } from '../../shared/design-system/d
 import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Button, ButtonSize } from './button';
 
+function getEffectiveAppearance(
+	appearance: string | undefined,
+	pressed: boolean
+): string {
+	const resolvedAppearance = appearance ?? 'ghost';
+	if (pressed) {
+		if (resolvedAppearance === 'ghost') return 'subtle';
+		if (resolvedAppearance === 'ghost-light') return 'subtle-light';
+		if (resolvedAppearance === 'outlined') return 'filled';
+	}
+	return resolvedAppearance;
+}
+
 const getClasses = ({
 	connotation,
 	appearance,
@@ -26,11 +39,12 @@ const getClasses = ({
 	ariaExpanded,
 	active,
 	dropdownIndicator,
+	pressed,
 }: Button) =>
 	classNames(
 		'control',
 		[`connotation-${connotation}`, Boolean(connotation)],
-		[`appearance-${appearance}`, Boolean(appearance)],
+		`appearance-${getEffectiveAppearance(appearance, pressed)}`,
 		['disabled', disabled || pending],
 		[`shape-${shape}`, Boolean(shape)],
 		[`size-${size}`, Boolean(size)],
@@ -114,6 +128,7 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 		${delegateAria({
 			ariaLabel: null,
 			ariaDisabled: (x) => x.disabled || x.pending,
+			ariaPressed: (x) => (x.pressed ? 'true' : (x.ariaPressed ?? null)),
 		})}
 		${ref('control')}
 		@click="${(x, c) => x.clickHandler(c.event)}"

@@ -146,6 +146,34 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button label="Active" active></vwc-button>
 	</div>
 	<div style="margin: 5px;">
+		<vwc-button pressed appearance="ghost" label='accent' connotation='accent'></vwc-button>
+		<vwc-button pressed appearance="ghost" label='cta' connotation='cta'></vwc-button>
+		<vwc-button pressed appearance="ghost" label='success' connotation='success'></vwc-button>
+		<vwc-button pressed appearance="ghost" label='alert' connotation='alert'></vwc-button>
+		<vwc-button pressed appearance="ghost" label='announcement' connotation='announcement'></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button pressed appearance="ghost-light" label='accent' connotation='accent'></vwc-button>
+		<vwc-button pressed appearance="ghost-light" label='cta' connotation='cta'></vwc-button>
+		<vwc-button pressed appearance="ghost-light" label='success' connotation='success'></vwc-button>
+		<vwc-button pressed appearance="ghost-light" label='alert' connotation='alert'></vwc-button>
+		<vwc-button pressed appearance="ghost-light" label='announcement' connotation='announcement'></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button pressed disabled appearance="ghost" label='accent' connotation='accent'></vwc-button>
+		<vwc-button pressed disabled appearance="ghost" label='cta' connotation='cta'></vwc-button>
+		<vwc-button pressed disabled appearance="ghost" label='success' connotation='success'></vwc-button>
+		<vwc-button pressed disabled appearance="ghost" label='alert' connotation='alert'></vwc-button>
+		<vwc-button pressed disabled appearance="ghost" label='announcement' connotation='announcement'></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button pressed pending appearance="ghost" label='accent' connotation='accent'></vwc-button>
+		<vwc-button pressed pending appearance="ghost" label='cta' connotation='cta'></vwc-button>
+		<vwc-button pressed pending appearance="ghost" label='success' connotation='success'></vwc-button>
+		<vwc-button pressed pending appearance="ghost" label='alert' connotation='alert'></vwc-button>
+		<vwc-button pressed pending appearance="ghost" label='announcement' connotation='announcement'></vwc-button>
+	</div>
+	<div style="margin: 5px;">
 		<vwc-button active appearance="ghost" label='accent' connotation='accent'></vwc-button>
 		<vwc-button active appearance="ghost" label='cta' connotation='cta'></vwc-button>
 		<vwc-button active appearance="ghost" label='success' connotation='success'></vwc-button>
