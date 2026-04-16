@@ -145,7 +145,7 @@ describe('vwc-card', () => {
 	describe('card body', () => {
 		it('should have body slot ', async function () {
 			const bodySlotElement = element.shadowRoot?.querySelector(
-				'.body-wrapper sslot[name="body"]'
+				'.body-wrapper slot[name="body"]'
 			);
 
 			expect(bodySlotElement).toBeTruthy();
