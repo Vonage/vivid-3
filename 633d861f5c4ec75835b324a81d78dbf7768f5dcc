@@ -1,0 +1,49 @@
+libs/components/src/lib/slider/slider.spec.ts
+  85797823972a4b22 256-262,602-625
+libs/components/src/lib/range-slider/range-slider.ts
+  85797823972a4b22 538,545,625,632-639
+libs/components/src/lib/range-slider/range-slider.spec.ts
+  85797823972a4b22 343-345,489-512
+libs/components/src/lib/audio-player/audio-player.ts
+  85797823972a4b22 412
+libs/components/src/lib/slider/slider.ts
+  85797823972a4b22 304,313,653,663-668
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "633d861f5c4ec75835b324a81d78dbf7768f5dcc",
+  "prompts": {
+    "85797823972a4b22": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_26e768de0ffeVmpcW7jHPeu7dw",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 217,
+      "total_deletions": 124,
+      "accepted_lines": 98,
+      "overriden_lines": 1
+    },
+    "a28522466139ccd8": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_28e1fceeaffeDgcZeBPYdpkE7y",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 51,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_2df0e3a986e719": {
+      "author": "Konrad Sieńkowski"
+    }
+  }
+}
