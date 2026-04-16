@@ -340,7 +340,9 @@ describe('vwc-range-slider', () => {
 			await elementUpdated(element);
 
 			thumbs.start.focus();
-			thumbs.start.blur();
+			thumbs.start.dispatchEvent(
+				new FocusEvent('blur', { relatedTarget: document.body })
+			);
 			await elementUpdated(element);
 
 			expect(getPopup(thumbs.start)!.open).toBe(false);
@@ -483,6 +485,30 @@ describe('vwc-range-slider', () => {
 
 			expect(element.shadowRoot!.activeElement).toBe(thumbs[thumb]);
 			expect(thumbs[thumb].classList).toContain('focus-visible');
+		});
+
+		it('should not show focus ring when tab is switched and returned after non-visible focus', async () => {
+			thumbs[thumb].dispatchEvent(new MouseEvent('mousedown'));
+			window.dispatchEvent(new MouseEvent('mouseup'));
+
+			Object.defineProperty(document, 'hidden', {
+				value: true,
+				configurable: true,
+			});
+			document.dispatchEvent(new Event('visibilitychange'));
+			thumbs[thumb].dispatchEvent(
+				new FocusEvent('blur', { relatedTarget: null })
+			);
+
+			thumbs[thumb].dispatchEvent(new FocusEvent('focus'));
+			Object.defineProperty(document, 'hidden', {
+				value: false,
+				configurable: true,
+			});
+			document.dispatchEvent(new Event('visibilitychange'));
+			await elementUpdated(element);
+
+			expect(thumbs[thumb].classList).not.toContain('focus-visible');
 		});
 	});
 

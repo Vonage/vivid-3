@@ -535,12 +535,14 @@ export class RangeSlider extends Localized(
 		);
 		this.#registerThumbListeners();
 		this.#updateThumbPositions();
+		document.addEventListener('visibilitychange', this.#onVisibilityChange);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.#unregisterThumbListeners();
 		this.#unregisterDragListeners();
+		document.removeEventListener('visibilitychange', this.#onVisibilityChange);
 	}
 
 	// --- Event handling ---
@@ -620,10 +622,21 @@ export class RangeSlider extends Localized(
 		if (!this.#isNonVisibleFocus) {
 			this._visiblyFocusedThumb = this.#getThumbIdFromEvent(e);
 		}
+		this.#isNonVisibleFocus = false;
 	};
 
 	#onThumbBlur = () => {
 		this._visiblyFocusedThumb = null;
+	};
+
+	#onVisibilityChange = () => {
+		if (
+			document.hidden &&
+			(this.shadowRoot!.activeElement === this._startThumbEl ||
+				this.shadowRoot!.activeElement === this._endThumbEl)
+		) {
+			this.#isNonVisibleFocus = true;
+		}
 	};
 
 	#onMouseOver = (e: MouseEvent) => {

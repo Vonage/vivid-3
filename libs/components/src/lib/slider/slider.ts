@@ -301,6 +301,7 @@ export class Slider extends Localized(
 		this.setThumbPositionForOrientation(this.direction);
 
 		this.#registerThumbListeners();
+		document.addEventListener('visibilitychange', this.#onVisibilityChange);
 	}
 
 	/**
@@ -309,6 +310,7 @@ export class Slider extends Localized(
 	override disconnectedCallback() {
 		this.setupListeners(true);
 		this.#unregisterThumbListeners();
+		document.removeEventListener('visibilitychange', this.#onVisibilityChange);
 	}
 
 	/**
@@ -648,6 +650,7 @@ export class Slider extends Localized(
 		if (!this.#isNonVisibleFocus) {
 			this._focusVisible = true;
 		}
+		this.#isNonVisibleFocus = false;
 	};
 
 	/**
@@ -655,6 +658,12 @@ export class Slider extends Localized(
 	 */
 	_onFocusOut = () => {
 		this._focusVisible = false;
+	};
+
+	#onVisibilityChange = () => {
+		if (document.hidden && this.shadowRoot!.activeElement !== null) {
+			this.#isNonVisibleFocus = true;
+		}
 	};
 
 	#onMouseOver = () => {
