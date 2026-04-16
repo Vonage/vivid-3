@@ -1,5 +1,6 @@
 /// <reference types="vitest/config" />
 import * as fs from 'fs';
+import * as path from 'path';
 import { defineConfig, mergeConfig } from 'vite';
 import baseConfig from './vite.config.base';
 
@@ -7,17 +8,12 @@ import baseConfig from './vite.config.base';
 // These can be imported directly in the browser
 
 function generateRollupInput() {
-	const components = fs
-		.readdirSync('./src/lib/', {
-			withFileTypes: true,
-		})
-		.filter((entry) => entry.isDirectory())
-		.map((entry) => entry.name);
+	const components = fs.globSync('*/index.ts', { cwd: './src/lib/' });
 
 	return Object.fromEntries(
-		components.map((componentName) => [
-			`${componentName}/index`,
-			`src/lib/${componentName}/index.ts`,
+		components.map((componentDefinitionPath) => [
+			componentDefinitionPath.replace('.ts', ''),
+			path.resolve('src', 'lib', componentDefinitionPath),
 		])
 	);
 }

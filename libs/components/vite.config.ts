@@ -7,13 +7,7 @@ import baseConfig from './vite.config.base';
 
 function generateRollupInput() {
 	const locales = fs.readdirSync('./src/locales');
-	const components = fs
-		.readdirSync('./src/lib/', {
-			withFileTypes: true,
-		})
-		.filter((entry) => entry.isDirectory())
-		.map((entry) => entry.name);
-
+	const components = fs.globSync('*/definition.ts', { cwd: './src/lib/' });
 	return {
 		index: 'src/index.ts',
 		...Object.fromEntries(
@@ -24,9 +18,9 @@ function generateRollupInput() {
 		),
 		// Force vite to split up the build. This is important to enable tree-shaking
 		...Object.fromEntries(
-			components.map((componentName) => [
-				`${componentName}/definition`,
-				`src/lib/${componentName}/definition.ts`,
+			components.map((componentDefinitionPath) => [
+				componentDefinitionPath.replace('.ts', ''),
+				path.resolve('src', 'lib', componentDefinitionPath),
 			])
 		),
 	};
