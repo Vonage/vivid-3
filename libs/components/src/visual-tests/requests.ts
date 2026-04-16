@@ -11,10 +11,11 @@ export class InFlightRequests {
 	};
 
 	private onRequestFailed = (request: Request) => {
-		// eslint-disable-next-line no-console
-		console.warn(
-			`Request failed: ${request.url()} Reason: ${request.failure()}`
-		);
+		const errorText = request.failure()?.errorText;
+		if (errorText !== 'net::ERR_ABORTED') {
+			// eslint-disable-next-line no-console
+			console.warn(`Request failed: ${request.url()} Reason: ${errorText}`);
+		}
 		this.inFlightRequests.delete(request);
 	};
 
