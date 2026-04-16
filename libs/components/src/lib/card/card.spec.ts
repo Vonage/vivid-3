@@ -143,9 +143,9 @@ describe('vwc-card', () => {
 	});
 
 	describe('card body', () => {
-		it('should have footer slot ', async function () {
+		it('should have body slot ', async function () {
 			const bodySlotElement = element.shadowRoot?.querySelector(
-				'.body-wrapperslot[name="body"]'
+				'.body-wrapper sslot[name="body"]'
 			);
 
 			expect(bodySlotElement).toBeTruthy();
