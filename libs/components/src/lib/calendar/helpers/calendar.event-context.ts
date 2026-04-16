@@ -1,6 +1,4 @@
-import { isEmpty, not } from 'ramda';
 import type { Calendar } from '../calendar';
-// import { isCellOrHeader } from './calendar.keyboard-interactions';
 
 export interface CalendarEventContext {
 	day?: number;
@@ -72,5 +70,5 @@ export const getEventContext = function (
 		...(hour != undefined && { hour }),
 	};
 
-	return not(isEmpty(context)) ? context : null;
+	return Object.keys(context).length > 0 ? context : null;
 };
