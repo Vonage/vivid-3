@@ -1033,6 +1033,120 @@ const instance = config.instantiateEditor();
 </vwc-tab-panel>
 </vwc-tabs>
 
+### RteCharacterCountFeature
+
+Counts the number of characters in the document and optionally enforces a character limit.
+
+When a `limit` is set, the editor blocks input that would exceed the limit. Pasted content is automatically truncated to fit within the remaining space.
+
+The character count is based on the text content of the document. Block separators (e.g. between paragraphs) are not counted, but leaf nodes like hard breaks count as one character.
+
+**Example usage:**
+
+```ts
+new RteCharacterCountFeature({ limit: 280 });
+```
+
+**Configuration options:**
+
+- `limit?: number`: Maximum number of characters allowed. When set, input that would exceed the limit is blocked and pasted content is truncated to fit. If not set, characters are counted but not limited.
+
+**Feature API:**
+
+- `characters: number` (read-only): The current number of characters in the document.
+- `limit: number | undefined` (read-only): The configured character limit, or `undefined` if no limit is set.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+{% raw %}
+
+```vue preview
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VRichTextEditor } from '@vonage/vivid-vue';
+import { RteBase, RteCharacterCountFeature, RteConfig, RteToolbarFeature, RteBoldFeature } from '@vonage/vivid';
+
+const CHARACTER_LIMIT = 100;
+
+const config = new RteConfig([new RteBase(), new RteToolbarFeature(), new RteBoldFeature(), new RteCharacterCountFeature({ limit: CHARACTER_LIMIT })]);
+
+const characters = ref(0);
+
+const instance = config.instantiateEditor({
+	initialDocument: {
+		type: 'doc',
+		content: [
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'Try typing beyond the character limit.' }],
+			},
+		],
+	},
+	onChange: () => {
+		characters.value = instance.feature(RteCharacterCountFeature).characters;
+	},
+});
+
+characters.value = instance.feature(RteCharacterCountFeature).characters;
+</script>
+
+<template>
+	<VRichTextEditor style="block-size: 200px" :instance="instance">
+		<template #status>
+			<div style="text-align: end; padding: 4px 8px; font: var(--vvd-typography-base-condensed); color: var(--vvd-color-neutral-600)">{{ characters }}/{{ CHARACTER_LIMIT }}</div>
+		</template>
+	</VRichTextEditor>
+</template>
+```
+
+{% endraw %}
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<vwc-rich-text-editor style="block-size: 200px">
+	<div id="charCount" slot="status" style="text-align: end; padding: 4px 8px; font: var(--vvd-typography-base-condensed); color: var(--vvd-color-neutral-600)"></div>
+</vwc-rich-text-editor>
+
+<script>
+	customElements.whenDefined('vwc-rich-text-editor').then(() => {
+		const CHARACTER_LIMIT = 100;
+		const rteComponent = document.querySelector('vwc-rich-text-editor');
+		const charCount = document.querySelector('#charCount');
+
+		const config = new RteConfig([new RteBase(), new RteToolbarFeature(), new RteBoldFeature(), new RteCharacterCountFeature({ limit: CHARACTER_LIMIT })]);
+
+		const updateCharCount = () => {
+			const { characters } = instance.feature(RteCharacterCountFeature);
+			charCount.textContent = `${characters}/${CHARACTER_LIMIT}`;
+		};
+
+		const instance = config.instantiateEditor({
+			initialDocument: {
+				type: 'doc',
+				content: [
+					{
+						type: 'paragraph',
+						content: [{ type: 'text', text: 'Try typing beyond the character limit.' }],
+					},
+				],
+			},
+			onChange: updateCharCount,
+		});
+
+		rteComponent.instance = instance;
+		updateCharCount();
+	});
+</script>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### RteHardBreakFeature
 
 Allows inserting hard line breaks (`<br>`).
