@@ -19,7 +19,7 @@ const features = (config: RteTextBlockPickerConfig) => [
 
 describe('RteTextBlockPickerFeature', () => {
 	it('should render a paragraph styles dropdown in the toolbar with the current block type selected', async () => {
-		const { toolbarSelect, option, docStr, selectAll } = await setup(
+		const rte = await setup(
 			features({
 				options: [
 					{
@@ -33,28 +33,28 @@ describe('RteTextBlockPickerFeature', () => {
 				],
 			})
 		);
-		toolbarSelect('Paragraph styles').click();
+		rte.toolbarSelect('Paragraph styles').click();
 
-		expect(option(toolbarSelect('Paragraph styles'), 'Body').selected).toBe(
-			true
-		);
+		expect(
+			rte.option(rte.toolbarSelect('Paragraph styles'), 'Body').selected
+		).toBe(true);
 
-		selectAll(); // special selection
+		rte.selectAll(); // special selection
 
-		expect(option(toolbarSelect('Paragraph styles'), 'Body').selected).toBe(
-			true
-		);
+		expect(
+			rte.option(rte.toolbarSelect('Paragraph styles'), 'Body').selected
+		).toBe(true);
 
-		option(toolbarSelect('Paragraph styles'), 'Title').click();
+		rte.option(rte.toolbarSelect('Paragraph styles'), 'Title').click();
 
-		expect(docStr()).toMatchInlineSnapshot(`"[heading1()|]"`);
-		expect(option(toolbarSelect('Paragraph styles'), 'Title').selected).toBe(
-			true
-		);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"[heading1()|]"`);
+		expect(
+			rte.option(rte.toolbarSelect('Paragraph styles'), 'Title').selected
+		).toBe(true);
 	});
 
 	it('should have no selected option when cursor spans different block types', async () => {
-		const { toolbarSelect, selectText, selectAll } = await setup(
+		const rte = await setup(
 			features({
 				options: [
 					{
@@ -70,17 +70,17 @@ describe('RteTextBlockPickerFeature', () => {
 			[h1('Title'), p('Body')]
 		);
 
-		selectText('Tit[le', 'Bo]dy');
+		rte.selectText('Tit[le', 'Bo]dy');
 
-		expect(toolbarSelect('Paragraph styles').value).toBe('');
+		expect(rte.toolbarSelect('Paragraph styles').value).toBe('');
 
-		selectAll(); // special selection
+		rte.selectAll(); // special selection
 
-		expect(toolbarSelect('Paragraph styles').value).toBe('');
+		expect(rte.toolbarSelect('Paragraph styles').value).toBe('');
 	});
 
 	it('should show no selection cursor is in a non-text-block node', async () => {
-		const { toolbarSelect } = await setup(
+		const rte = await setup(
 			[
 				new RteBase(),
 				new RteTextBlockPickerFeature({
@@ -97,11 +97,11 @@ describe('RteTextBlockPickerFeature', () => {
 			[bulletList(listItem('item'))]
 		);
 
-		expect(toolbarSelect('Paragraph styles').value).toBe('');
+		expect(rte.toolbarSelect('Paragraph styles').value).toBe('');
 	});
 
 	it('should should not convert non-text-blocks', async () => {
-		const { keydown, docStr } = await setup(
+		const rte = await setup(
 			[
 				new RteBase(),
 				new RteTextBlockPickerFeature({
@@ -122,13 +122,15 @@ describe('RteTextBlockPickerFeature', () => {
 			[bulletList(listItem('item'))]
 		);
 
-		keydown('1', { ctrl: true, alt: true });
+		rte.keydown('1', { ctrl: true, alt: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"bulletList(listItem('|item'))"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(
+			`"bulletList(listItem('|item'))"`
+		);
 	});
 
 	it('should render textblock attributes in the DOM', async () => {
-		const { view } = await setup(
+		const rte = await setup(
 			[
 				new RteBase(),
 				new RteTextBlockPickerFeature({
@@ -145,7 +147,7 @@ describe('RteTextBlockPickerFeature', () => {
 			[p.attrs({ textAlign: 'center' })('Centered')]
 		);
 
-		const dom = view.dom;
+		const dom = rte.view.dom;
 		const paragraph = dom.querySelector('p')!;
 
 		expect(paragraph.style.textAlign).toBe('center');
