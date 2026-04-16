@@ -2207,7 +2207,8 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.value"
+					"valueMapping": "event.currentTarget.value",
+					"lazyEventNames": ["change"]
 				}
 			],
 			"methods": [
@@ -3158,7 +3159,8 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.value"
+					"valueMapping": "event.currentTarget.value",
+					"lazyEventNames": ["change"]
 				}
 			],
 			"methods": [
@@ -3616,7 +3618,8 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.value"
+					"valueMapping": "event.currentTarget.value",
+					"lazyEventNames": ["change"]
 				}
 			],
 			"methods": [
@@ -3834,7 +3837,8 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.value"
+					"valueMapping": "event.currentTarget.value",
+					"lazyEventNames": ["change"]
 				}
 			],
 			"methods": [
@@ -5848,13 +5852,15 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.value"
+					"valueMapping": "event.currentTarget.value",
+					"lazyEventNames": ["change"]
 				},
 				{
 					"name": "valueAsNumber",
 					"propName": "valueAsNumber",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.valueAsNumber"
+					"valueMapping": "event.currentTarget.valueAsNumber",
+					"lazyEventNames": ["change"]
 				}
 			],
 			"methods": [
@@ -7511,13 +7517,15 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.value"
+					"valueMapping": "event.currentTarget.value",
+					"lazyEventNames": ["change"]
 				},
 				{
 					"name": "values",
 					"propName": "values",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.values"
+					"valueMapping": "event.currentTarget.values",
+					"lazyEventNames": ["change"]
 				}
 			],
 			"methods": [
@@ -7787,7 +7795,8 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.value"
+					"valueMapping": "event.currentTarget.value",
+					"lazyEventNames": ["change"]
 				}
 			],
 			"methods": [
@@ -8211,7 +8220,8 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.value"
+					"valueMapping": "event.currentTarget.value",
+					"lazyEventNames": ["change"]
 				}
 			],
 			"methods": [
@@ -9869,7 +9879,8 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.value"
+					"valueMapping": "event.currentTarget.value",
+					"lazyEventNames": ["change"]
 				}
 			],
 			"methods": [
@@ -10155,7 +10166,8 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.value"
+					"valueMapping": "event.currentTarget.value",
+					"lazyEventNames": ["change"]
 				}
 			],
 			"methods": [
@@ -10372,7 +10384,8 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "event.currentTarget.value"
+					"valueMapping": "event.currentTarget.value",
+					"lazyEventNames": ["change"]
 				}
 			],
 			"methods": [

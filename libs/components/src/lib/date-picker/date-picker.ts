@@ -18,7 +18,7 @@ import { SingleDatePickerMixin } from '../../shared/picker-field/mixins/single-d
  * @slot helper-text - Describes how to use the date-picker. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} input - Emitted when the date is changed by the user.
  * @event {CustomEvent<undefined>} change - Emitted when the date is changed by the user.
- * @vueModel modelValue value input `event.currentTarget.value`
+ * @vueModel modelValue value input,@lazy:change `event.currentTarget.value`
  * @testAction selectDate selectDate
  */
 export class DatePicker extends SingleDatePickerMixin(

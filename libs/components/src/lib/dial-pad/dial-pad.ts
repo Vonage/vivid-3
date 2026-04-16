@@ -25,7 +25,7 @@ export type DialPadSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @event {CustomEvent<HTMLElement>}keypad-click - Emitted when a digit button is clicked
  * @event {CustomEvent<undefined>} dial - Emitted when the call button is clicked
  * @event {CustomEvent<undefined>} end-call - Emitted when the end call button is clicked
- * @vueModel modelValue value input `event.currentTarget.value`
+ * @vueModel modelValue value input,@lazy:change `event.currentTarget.value`
  *
  */
 

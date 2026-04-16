@@ -49,7 +49,7 @@ export type SelectSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @slot helper-text - Describes how to use the select. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} input - Fires a custom 'input' event when the value updates
  * @event {CustomEvent<HTMLElement>} change - Fires a custom 'change' event when the value updates
- * @vueModel modelValue value input `event.currentTarget.value`
+ * @vueModel modelValue value input,@lazy:change `event.currentTarget.value`
  * @testAction selectOptionByValue selectOptionByValue
  * @testAction selectOptionByText selectOptionByText
  */
