@@ -20,9 +20,9 @@ const BADGE_PLACEHOLDER_PX = 40;
 export class CountryGroup extends VividElement {
 	/**
 	 * Maximum number of layout rows to show before overflowing into the hover popover.
-	 * When unset, defaults to 1 row.
+	 * When unset, there is no row limit.
 	 *
-	 * @internal
+	 * @public
 	 * @remarks HTML Attribute: max-rows
 	 */
 	@attr({ attribute: 'max-rows', converter: nullableNumberConverter })
@@ -33,6 +33,9 @@ export class CountryGroup extends VividElement {
 	 */
 	@observable countryItems: Country[] = [];
 
+	/**
+	 * @internal
+	 */
 	countryItemsChanged(): void {
 		this.visibleCount = null;
 		// Slotted updates can run while the browser is still finishing
@@ -67,6 +70,9 @@ export class CountryGroup extends VividElement {
 	 */
 	@observable popupOpen = false;
 
+	/**
+	 * @internal
+	 */
 	popupOpenChanged(oldValue?: boolean): void {
 		if (oldValue === undefined) {
 			return;
@@ -139,7 +145,7 @@ export class CountryGroup extends VividElement {
 	}
 
 	#effectiveMaxRows(): number {
-		return this.maxRows ?? 1;
+		return this.maxRows ?? Number.POSITIVE_INFINITY;
 	}
 
 	#measure(): void {
@@ -254,16 +260,25 @@ export class CountryGroup extends VividElement {
 		}
 	}
 
+	/**
+	 * @internal
+	 */
 	handleMouseEnter(): void {
 		if (this.overflowCount > 0) {
 			this.popupOpen = true;
 		}
 	}
 
+	/**
+	 * @internal
+	 */
 	handleMouseLeave(): void {
 		this.popupOpen = false;
 	}
 
+	/**
+	 * @internal
+	 */
 	popupKeydown(e: Event): void {
 		if (
 			this.popupOpen &&

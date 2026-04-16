@@ -72,17 +72,19 @@ describe('vwc-country-group', () => {
 		}
 	});
 
-	describe('Accessibility', () => {
-		it('creates a Country Group element instance', () => {
+	describe('Basics', () => {
+		it('creates the component', () => {
 			expect(element).toBeInstanceOf(CountryGroup);
 		});
 
-		it('applies accessible host attributes (role + tabindex)', () => {
+		it('sets host role and tabindex for accessibility', () => {
 			expect(element.getAttribute('role')).toBe('group');
 			expect(element.getAttribute('tabindex')).toBe('0');
 		});
+	});
 
-		it('derives an aria-label from the slotted countries (code + label)', async () => {
+	describe('ARIA Label', () => {
+		it('builds aria-label from slotted countries (code + label)', async () => {
 			await elementUpdated(element);
 			const label = element.getAttribute('aria-label');
 			expect(label).toContain('UK');
@@ -90,7 +92,7 @@ describe('vwc-country-group', () => {
 			expect(label).toContain('US');
 		});
 
-		it('omits empty country labels when building aria-label', async () => {
+		it('skips empty country labels', async () => {
 			const empty = document.createElement('vwc-country');
 			element.appendChild(empty);
 
@@ -109,7 +111,19 @@ describe('vwc-country-group', () => {
 		});
 	});
 
-	describe('Overflow + Popup', () => {
+	describe('max-rows', () => {
+		it('reflects max-rows attribute into maxRows property', async () => {
+			element.setAttribute('max-rows', '2');
+			await elementUpdated(element);
+			expect(element.maxRows).toBe(2);
+
+			element.removeAttribute('max-rows');
+			await elementUpdated(element);
+			expect(element.maxRows).toBeNull();
+		});
+	});
+
+	describe('Overflow Popover', () => {
 		it('computes overflowCount from visibleCount', async () => {
 			expect(element.overflowCount).toBe(0);
 
@@ -119,7 +133,7 @@ describe('vwc-country-group', () => {
 			expect(element.overflowCount).toBe(2);
 		});
 
-		it('shows an overflow badge and toggles the popup via hover handlers', async () => {
+		it('opens and closes the popover on hover when overflowing', async () => {
 			element.visibleCount = 1;
 			await elementUpdated(element);
 
@@ -137,7 +151,19 @@ describe('vwc-country-group', () => {
 			expect(element.popupOpen).toBe(false);
 		});
 
-		it('closes the popup on Escape (component keydown handler)', async () => {
+		it('does not open the popover when there is no overflow', async () => {
+			element.visibleCount = element.countryItems.length;
+			await elementUpdated(element);
+
+			expect(element.overflowCount).toBe(0);
+
+			element.handleMouseEnter();
+			await elementUpdated(element);
+
+			expect(element.popupOpen).toBe(false);
+		});
+
+		it('closes the popover on Escape (component keydown)', async () => {
 			element.visibleCount = 1;
 			element.popupOpen = true;
 			await elementUpdated(element);
@@ -148,7 +174,17 @@ describe('vwc-country-group', () => {
 			expect(element.popupOpen).toBe(false);
 		});
 
-		it('closes the popup on Escape (document listener)', async () => {
+		it('keeps the popover open on non-Escape (component keydown)', async () => {
+			element.popupOpen = true;
+			await elementUpdated(element);
+
+			element.popupKeydown(new KeyboardEvent('keydown', { key: 'Enter' }));
+			await elementUpdated(element);
+
+			expect(element.popupOpen).toBe(true);
+		});
+
+		it('closes the popover on Escape (document listener)', async () => {
 			// Ensure popupOpenChanged adds the document listener (oldValue must be defined).
 			element.popupOpen = true;
 			await elementUpdated(element);
@@ -159,11 +195,51 @@ describe('vwc-country-group', () => {
 			expect(element.popupOpen).toBe(false);
 		});
 
-		it('ignores the initial popupOpenChanged call (oldValue undefined)', () => {
+		it('keeps the popover open on non-Escape (document listener)', async () => {
+			element.popupOpen = true;
+			await elementUpdated(element);
+
+			document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+			await elementUpdated(element);
+
+			expect(element.popupOpen).toBe(true);
+		});
+
+		it('ignores initial popupOpenChanged call (oldValue undefined)', () => {
 			expect(() => element.popupOpenChanged(undefined)).not.toThrow();
 		});
 
-		it('wires template events (mouseenter / mouseleave / keydown) to component logic', async () => {
+		it('does not observe rowEl when it is unavailable', async () => {
+			const observed: unknown[] = [];
+			originalResizeObserver = globalThis.ResizeObserver;
+			globalThis.ResizeObserver = class {
+				constructor() {
+					// no-op
+				}
+				observe(target: unknown) {
+					observed.push(target);
+				}
+				disconnect() {
+					// no-op
+				}
+			} as unknown as typeof ResizeObserver;
+
+			const el = new CountryGroup();
+			Object.defineProperty(el, 'rowEl', {
+				get: () => undefined,
+				set: () => {
+					// ignore
+				},
+				configurable: true,
+			});
+			document.body.appendChild(el);
+			await elementUpdated(el);
+
+			// When `rowEl` is not available, we only observe the host.
+			expect(observed.length).toBe(1);
+		});
+
+		it('handles template mouse and keyboard events', async () => {
 			// Force overflow so the popup and badge exist in the DOM.
 			element.visibleCount = 1;
 			await elementUpdated(element);
@@ -195,7 +271,7 @@ describe('vwc-country-group', () => {
 	});
 
 	describe('Layout Measurement', () => {
-		it('measures layout and calculates visibleCount', async () => {
+		it('measures layout and sets visibleCount', async () => {
 			immediateRaf();
 
 			// Provide stable DOM metrics for measurement code paths.
@@ -224,7 +300,39 @@ describe('vwc-country-group', () => {
 			expect(element.visibleCount).toBeGreaterThan(0);
 		});
 
-		it('falls back to showing at least one item when nothing fits', async () => {
+		it('ignores items not on the last row when computing badge fit', async () => {
+			immediateRaf();
+
+			const el = await createCountryGroup();
+			el.setAttribute('max-rows', '2');
+			await elementUpdated(el);
+
+			const rowEl = el.shadowRoot?.querySelector('.row') as HTMLElement;
+			expect(rowEl).toBeTruthy();
+			setReadonlyNumber(rowEl, 'clientWidth', 500);
+			setReadonlyNumber(rowEl, 'offsetHeight', 10);
+
+			const items = Array.from(
+				el.querySelectorAll('vwc-country')
+			) as HTMLElement[];
+			expect(items.length).toBe(3);
+
+			// Make item[1] the "last row" item for k=2, while item[0] is on a different row.
+			setReadonlyNumber(items[0], 'offsetTop', 0);
+			setReadonlyNumber(items[1], 'offsetTop', 20);
+			setReadonlyNumber(items[2], 'offsetTop', 40);
+			for (const it of items) {
+				setReadonlyNumber(it, 'offsetWidth', 10);
+			}
+
+			el.countryItems = items as unknown as CountryGroup['countryItems'];
+			el.countryItemsChanged();
+			await elementUpdated(el);
+
+			expect(el.visibleCount).toBeGreaterThan(0);
+		});
+
+		it('shows at least one item even when nothing fits', async () => {
 			immediateRaf();
 
 			const solo = await createCountryGroup(
@@ -251,7 +359,7 @@ describe('vwc-country-group', () => {
 			expect(solo.visibleCount).toBe(1);
 		});
 
-		it('treats a full fit as valid (no overflow badge required)', async () => {
+		it('shows all items when everything fits (no overflow badge)', async () => {
 			immediateRaf();
 
 			const rowEl = element.shadowRoot?.querySelector('.row') as HTMLElement;
@@ -274,7 +382,7 @@ describe('vwc-country-group', () => {
 			expect(element.visibleCount).toBe(items.length);
 		});
 
-		it('reacts to ResizeObserver callback by scheduling a re-measure', async () => {
+		it('re-measures on ResizeObserver callback', async () => {
 			immediateRaf();
 
 			const instances: Array<{ trigger: () => void }> = [];
@@ -313,7 +421,7 @@ describe('vwc-country-group', () => {
 			await elementUpdated(el);
 		});
 
-		it('handles a zero-width container during measurement', async () => {
+		it('handles zero-width container during measurement', async () => {
 			immediateRaf();
 
 			const rowEl = element.shadowRoot?.querySelector('.row') as HTMLElement;
@@ -330,7 +438,7 @@ describe('vwc-country-group', () => {
 			expect(element.visibleCount).toBe(items.length);
 		});
 
-		it('sets visibleCount=0 when there are no slotted items', async () => {
+		it('sets visibleCount=0 when there are no items', async () => {
 			immediateRaf();
 
 			const rowEl = element.shadowRoot?.querySelector('.row') as HTMLElement;
@@ -344,7 +452,7 @@ describe('vwc-country-group', () => {
 			expect(element.visibleCount).toBe(0);
 		});
 
-		it('skips measurement when the row element reference is missing', async () => {
+		it('skips measurement when rowEl reference is missing', async () => {
 			immediateRaf();
 
 			(element as unknown as { rowEl?: HTMLElement }).rowEl = undefined;
@@ -357,7 +465,7 @@ describe('vwc-country-group', () => {
 			expect(element.visibleCount).toBeNull();
 		});
 
-		it('respects maxRows when calculating the number of visible items', async () => {
+		it('respects maxRows when calculating visible items', async () => {
 			immediateRaf();
 
 			element.maxRows = 1;
