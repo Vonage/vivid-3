@@ -142,6 +142,30 @@ describe('vwc-card', () => {
 		});
 	});
 
+	describe('card body', () => {
+		it('should have footer slot ', async function () {
+			const bodySlotElement = element.shadowRoot?.querySelector(
+				'.body-wrapperslot[name="body"]'
+			);
+
+			expect(bodySlotElement).toBeTruthy();
+		});
+
+		it('should remove hide-body class from .base if body is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'body';
+			slottedElement.id = 'body';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementHasNoBody = element.shadowRoot
+				?.querySelector('.base')
+				?.classList.contains('hide-body');
+
+			expect(baseElementHasNoBody).toEqual(false);
+		});
+	});
+
 	describe('card footer', () => {
 		it('should have footer slot ', async function () {
 			const footerSlotElement = element.shadowRoot?.querySelector(
@@ -218,7 +242,7 @@ describe('vwc-card', () => {
 
 	describe('clickable card: card as a link', () => {
 		beforeEach(async () => {
-			await setProperty(element, 'href', 'https://vivid.vonage.com');
+			await setProperty(element, 'href', 'https://apps.vivid.vonage.com');
 		});
 
 		it('should render a card with href attribute as anchor element', async function () {
