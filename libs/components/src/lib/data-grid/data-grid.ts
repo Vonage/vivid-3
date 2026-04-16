@@ -22,8 +22,8 @@ import {
 	keyPageUp,
 } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { DataGridCell } from './data-grid-cell';
-import { DataGridRow } from './data-grid-row';
+import type { DataGridCell } from './data-grid-cell';
+import type { DataGridRow } from './data-grid-row';
 import { DataGridRowTypes, GenerateHeaderOptions } from './data-grid.options';
 
 interface SelectionMetaData {

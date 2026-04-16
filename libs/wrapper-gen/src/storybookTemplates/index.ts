@@ -4,7 +4,7 @@ import { renderStorybookTemplate } from './renderStorybookTemplate';
 import { formatFiles } from '../utils/formatFiles';
 import { wrappedComponentName } from '../vueWrappers/name';
 import { makeImportedTypesResolver } from '../common/importedTypes';
-import { TypeResolver } from '../common/types';
+import type { TypeResolver } from '../common/types';
 import type { ComponentDef, Metadata } from '@repo/metadata-extractor';
 
 const StorybooksTemplatesFolder = '../vue-wrappers/stories/generated';

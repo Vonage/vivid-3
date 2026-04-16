@@ -1,7 +1,7 @@
 import type { DateStr } from '../../datetime/dateStr';
 import type { AbstractConstructor } from '../../utils/mixins';
-import { type CalendarPickerElement } from './calendar-picker';
-import { type SingleValuePickerElement } from './single-value-picker';
+import type { CalendarPickerElement } from './calendar-picker';
+import type { SingleValuePickerElement } from './single-value-picker';
 
 /**
  * Mixin for pickers that use a calendar to pick a single date.

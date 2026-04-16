@@ -3,7 +3,7 @@ import * as path from 'path';
 import { renderDocPage } from './renderDocsPage';
 import { wrappedComponentName } from '../vueWrappers/name';
 import { makeImportedTypesResolver } from '../common/importedTypes';
-import { TypeResolver } from '../common/types';
+import type { TypeResolver } from '../common/types';
 import type { ComponentDef, Metadata } from '@repo/metadata-extractor';
 
 const DocsComponentsFolder = '../../apps/vue-docs/docs/components';

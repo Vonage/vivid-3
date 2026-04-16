@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { TableCell } from './table-cell';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { TableCell } from './table-cell';
 import '.';
 
 const COMPONENT_TAG = 'vwc-table-cell';

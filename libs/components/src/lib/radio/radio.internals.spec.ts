@@ -1,4 +1,4 @@
-import { elementUpdated } from '@repo/shared';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import type { MockInstance } from 'vitest';
 import type { RadioGroup } from '../radio-group/radio-group';
 import { Radio } from './radio';

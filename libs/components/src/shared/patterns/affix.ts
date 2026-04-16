@@ -2,7 +2,7 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import { attr, html, observable, slotted } from '@microsoft/fast-element';
 import { Icon } from '../../lib/icon/icon';
 import type { VividElementDefinitionContext } from '../design-system/defineVividComponent';
-import { VividElement } from '../foundation/vivid-element/vivid-element';
+import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor, MixinType } from '../utils/mixins';
 
 /**

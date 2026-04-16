@@ -1,5 +1,6 @@
-import { type MarkType, type Node } from 'prosemirror-model';
-import { type Command, EditorState, SelectionRange } from 'prosemirror-state';
+import type { MarkType, Node } from 'prosemirror-model';
+import type { EditorState, SelectionRange } from 'prosemirror-state';
+import type { Command } from 'prosemirror-state';
 import { RemoveMarkStep } from 'prosemirror-transform';
 import {
 	featureFacade,

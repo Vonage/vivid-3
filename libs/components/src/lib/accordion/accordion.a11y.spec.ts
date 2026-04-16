@@ -1,6 +1,7 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import type { AccordionItem } from '../accordion-item/accordion-item';
-import { Accordion } from './accordion';
+import type { Accordion } from './accordion';
 import '../accordion-item';
 import '.';
 

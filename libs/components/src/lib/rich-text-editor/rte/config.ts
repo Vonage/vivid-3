@@ -1,12 +1,8 @@
 import { Schema } from 'prosemirror-model';
 import type { Constructor } from '../../../shared/utils/mixins';
 import { RteInstance, type RteInstanceOptions } from './instance';
-import {
-	getFeatureImpl,
-	RteFeature,
-	RteFeatureImpl,
-	sortedContributions,
-} from './feature';
+import type { RteFeature, RteFeatureImpl } from './feature';
+import { getFeatureImpl, sortedContributions } from './feature';
 import { TextblockAttrs } from './utils/textblock-attrs';
 import { impl } from './utils/impl';
 import { TextblockMarks } from './utils/textblock-marks';

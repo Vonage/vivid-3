@@ -1,5 +1,5 @@
 import { observable, Updates, volatile } from '@microsoft/fast-element';
-import { PickerField } from '../picker-field';
+import type { PickerField } from '../picker-field';
 import {
 	addDays,
 	compareDateStr,

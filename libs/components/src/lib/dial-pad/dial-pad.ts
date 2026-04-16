@@ -1,7 +1,7 @@
 import { attr, observable } from '@microsoft/fast-element';
 import type { Size } from '../enums.js';
 import { Localized } from '../../shared/patterns';
-import { TextField } from '../text-field/text-field';
+import type { TextField } from '../text-field/text-field';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { Button } from '../button/button';

@@ -1,10 +1,10 @@
 import userEvent from '@testing-library/user-event';
 import {
-	createFormHTML,
 	elementUpdated,
 	fixture,
 	getControlElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
+import { createFormHTML } from '@repo/shared/test-utils/form-association';
 import '.';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';

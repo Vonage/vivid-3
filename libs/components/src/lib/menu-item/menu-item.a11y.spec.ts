@@ -1,4 +1,5 @@
-import { axe, fixture } from '@repo/shared';
+import { axe } from '@repo/shared/test-utils/axe';
+import { fixture } from '@repo/shared/test-utils/fixture';
 import '.';
 
 const COMPONENT_TAG = 'vwc-menu-item';
