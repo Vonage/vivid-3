@@ -1,0 +1,36 @@
+.github/workflows/_publish-marketing-icons.yml
+  222176cc184dca76 29,32,42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "3bde1859d1f3992819f71f346216212aebf94914",
+  "prompts": {
+    "222176cc184dca76": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_264d1cd05ffe5SJYLuLtSXovVQ",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 3,
+      "total_deletions": 18,
+      "accepted_lines": 3,
+      "overriden_lines": 0
+    },
+    "9d22642bc775831b": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_265432341ffeS0db3SjAp7aaAg",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 23688,
+      "total_deletions": 24037,
+      "accepted_lines": 8525,
+      "overriden_lines": 85
+    }
+  }
+}
