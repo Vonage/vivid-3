@@ -189,15 +189,19 @@ module.exports = async (eleventyConfig) => {
 	 */
 	function extractTextFromHTML(html) {
 		// Remove script, style, and other non-content tags
-		let text = html
-			.replace(/<\s*script[^>]*>[\s\S]*?<\s*\/\s*script\s*>/gi, '')
-			.replace(/<\s*style[^>]*>[\s\S]*?<\s*\/\s*style\s*>/gi, '')
-			.replace(/<\s*noscript[^>]*>[\s\S]*?<\s*\/\s*noscript\s*>/gi, '')
-			.replace(/<\s*template[^>]*>[\s\S]*?<\s*\/\s*template\s*>/gi, '')
-			.replace(/<\s*svg[^>]*>[\s\S]*?<\s*\/\s*svg\s*>/gi, '');
-
-		// Remove HTML tags but preserve content
-		text = text.replace(/<[^>]+>/g, ' ');
+		let text = html;
+		let previous;
+		do {
+			previous = text;
+			text = text
+				.replace(/<\s*script[^>]*>[\s\S]*?<\s*\/\s*script\s*>/gi, '')
+				.replace(/<\s*style[^>]*>[\s\S]*?<\s*\/\s*style\s*>/gi, '')
+				.replace(/<\s*noscript[^>]*>[\s\S]*?<\s*\/\s*noscript\s*>/gi, '')
+				.replace(/<\s*template[^>]*>[\s\S]*?<\s*\/\s*template\s*>/gi, '')
+				.replace(/<\s*svg[^>]*>[\s\S]*?<\s*\/\s*svg\s*>/gi, '')
+				// Remove HTML tags but preserve content
+				.replace(/<[^>]+>/g, ' ');
+		} while (text !== previous);
 
 		// Normalize whitespace
 		text = text
