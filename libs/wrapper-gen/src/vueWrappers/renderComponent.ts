@@ -1,17 +1,18 @@
-import { TypeResolver } from '../common/types';
+import type { TypeResolver } from '../common/types';
 import { vuePropTypes } from './vuePropTypes';
 import { wrappedComponentName } from './name';
 import { determinePropForwarding } from './propForwarding';
-import { Import, importsForTypes, renderImports } from './imports';
+import type { Import } from './imports';
+import { importsForTypes, renderImports } from './imports';
 import { getEventType } from './types';
 import { renderJsDoc } from './jsDoc';
 import { resolveVueModels, modifiersPropName } from './vueModels';
 import { getExportedClassName } from '../common/component';
 import type { ComponentDef } from '@repo/metadata-extractor';
+import type { TypeStr } from '@repo/metadata-extractor/metadata/type-str';
 import {
 	parseTypeImports,
 	parseTypeStr,
-	TypeStr,
 } from '@repo/metadata-extractor/metadata/type-str';
 import { camelCase } from 'change-case';
 import { vue3EventHandlerName } from './events';

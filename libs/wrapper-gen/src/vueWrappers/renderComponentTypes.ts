@@ -1,4 +1,5 @@
-import { Import, importsForTypes, renderImports } from './imports';
+import type { Import } from './imports';
+import { importsForTypes, renderImports } from './imports';
 import { wrappedComponentName } from './name';
 import { getEventType } from './types';
 import { renderJsDoc } from './jsDoc';

@@ -1,4 +1,5 @@
-import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import type { Mock } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchIcons } from './fetch-icons';
 import { getClient } from './cached-client';
 import { walk } from 'figmash';

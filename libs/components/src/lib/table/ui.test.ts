@@ -258,3 +258,24 @@ test('should handle responsive scrolling', async ({ page }: { page: Page }) => {
 
 	await takeScreenshot(page, 'table-scrolling');
 });
+
+test('should support sorting', async ({ page }: { page: Page }) => {
+	const template = `<div style="margin: 5px; max-height: 100px; width: 100%;">
+		<vwc-table-sorting-button direction="none"></vwc-table-sorting-button>
+		<vwc-table-sorting-button direction="asc"></vwc-table-sorting-button>
+		<vwc-table-sorting-button direction="desc"></vwc-table-sorting-button>
+	</div>`;
+
+	await page.setViewportSize({ width: 150, height: 70 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await renderTemplate({
+		page,
+		template,
+	});
+
+	await takeScreenshot(page, 'table-sorting');
+});

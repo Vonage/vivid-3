@@ -1,7 +1,7 @@
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark } from 'prosemirror-commands';
 import { createMarkToggle } from '../utils/ui';
-import { RteInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
 import {
 	featureFacade,
 	type SchemaContribution,

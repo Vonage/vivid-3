@@ -5,7 +5,7 @@ import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import { menuName } from '../menu/name';
-import { MenuItem } from './menu-item';
+import type { MenuItem } from './menu-item';
 import { MenuItemRole } from './menu-item-role';
 
 const getIndicatorIcon = (x: MenuItem) => {

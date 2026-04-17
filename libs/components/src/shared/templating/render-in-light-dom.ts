@@ -1,9 +1,9 @@
+import type { ExecutionContext } from '@microsoft/fast-element';
 import {
 	type AddViewBehaviorFactory,
 	type Binding,
 	type BindingDirective,
 	type CaptureType,
-	ExecutionContext,
 	type Expression,
 	type ExpressionObserver,
 	HTMLDirective,

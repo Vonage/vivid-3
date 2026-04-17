@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { DefaultTheme } from 'vitepress';
+import type { DefaultTheme } from 'vitepress';
 import { existsSync } from 'fs';
 
 const ExamplesFolder = path.resolve(path.join(__dirname, '..', 'examples'));

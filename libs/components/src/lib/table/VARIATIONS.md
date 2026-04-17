@@ -367,3 +367,43 @@ import { VBadge, VButton, VCountry, VStatus, VTable, VTableBody, VTableCell, VTa
 
 </vwc-tab-panel>
 </vwc-tabs>
+
+## Sorting
+
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+	<p>
+		There are more examples including various sorting mechanisms. <a href="/components/table/use-cases/#sorting">Please check out use cases</a>.
+	</p>
+</vwc-note>
+
+Standard sorting (alphabetical or numerical) is straightforward, but real-world tables often require complex, custom strategies. Additionally, data handling varies between client-side processing and server-side requests. A built-in mechanism would be too rigid to support these diverse use cases.
+
+This is why we provide the `vwc-table-sorting-button` as a visual-only component. It handles the UI affordances - the button and direction indicators - without enforcing any logic.
+
+- When clicked, it emits a `sort` event to trigger your custom logic.
+- The component updates its own direction state by default. To manage the state externally, you can intercept this by calling `event.preventDefault()` (or using Vue’s `@sort.prevent` modifier).
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts" type="module">
+import { VTableSortingButton } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VTableSortingButton />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<vwc-table-sorting-button></vwc-table-sorting-button>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>

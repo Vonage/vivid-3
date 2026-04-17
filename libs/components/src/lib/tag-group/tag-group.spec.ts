@@ -1,4 +1,4 @@
-import { fixture, getBaseElement } from '@repo/shared';
+import { fixture, getBaseElement } from '@repo/shared/test-utils/fixture';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { TagGroup } from './tag-group';
 import '.';

@@ -1,11 +1,11 @@
+import { setupDelegatesFocusPolyfill } from '@repo/shared/test-utils/delegates-focus-polyfill';
 import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
-	getResolvedTextContent,
-	setupDelegatesFocusPolyfill,
-} from '@repo/shared';
-import { Button } from '../../../lib/button/button';
+} from '@repo/shared/test-utils/fixture';
+import { getResolvedTextContent } from '@repo/shared/test-utils/shadow-roots';
+import type { Button } from '../../../lib/button/button';
 import type { CalendarPickerElement } from './calendar-picker';
 
 const cleanWhitespace = (text: string) => text.replace(/\s+/g, ' ').trim();

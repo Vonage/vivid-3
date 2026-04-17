@@ -1,6 +1,6 @@
 import { customElement, html, observable } from '@microsoft/fast-element';
 import { describe } from 'vitest';
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { delegateAria, DelegatesAria } from './delegates-aria';
 

@@ -1,5 +1,5 @@
 import { wrappedComponentName } from '../vueWrappers/name';
-import { TypeResolver } from '../common/types';
+import type { TypeResolver } from '../common/types';
 import type { ComponentDef } from '@repo/metadata-extractor';
 import { camelCase } from 'change-case';
 

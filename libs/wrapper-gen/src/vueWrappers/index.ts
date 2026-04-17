@@ -7,7 +7,7 @@ import { formatFiles } from '../utils/formatFiles';
 import { wrappedComponentName } from './name';
 import { fetchIconsManifest } from '../common/icons';
 import { makeImportedTypesResolver } from '../common/importedTypes';
-import { TypeResolver } from '../common/types';
+import type { TypeResolver } from '../common/types';
 import { renderComponentTypes } from './renderComponentTypes';
 import renderTypes from './renderTypes';
 import type { ComponentDef, Metadata } from '@repo/metadata-extractor';

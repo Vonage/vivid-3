@@ -1,4 +1,4 @@
-import { VividElement } from '../foundation/vivid-element/vivid-element';
+import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor } from '../utils/mixins';
 
 const ignoredEvents = new WeakSet<Event>();

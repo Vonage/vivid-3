@@ -25,26 +25,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - uses: pnpm/action-setup@v4
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '20.19.0'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Fetch marketing icons from Figma
-        run: pnpm --filter @vonage/vivid-marketing-icons run fetch
-        env:
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-
       - name: Get marketing icons version from package.json
-        id: get-version
+        id: get-marketing-icons-version
         run: |
           VERSION=$(jq -r .version ./libs/marketing-icons/package.json)
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "marketing_icons_version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Publish marketing icons to CDN
         uses: ./.github/actions/upload-icons
@@ -54,5 +39,5 @@ jobs:
           secret-access-key: ${{ secrets.ICONS_S3_SECRET_ACCESS_KEY }}
           bucket: ${{ vars.ICONS_BUCKET }}
           base-folder: ${{ vars.ICONS_BASE_FOLDER }}
-          version: ${{ steps.get-version.outputs.version }}
+          version: ${{ steps.get-marketing-icons-version.outputs.marketing_icons_version }}
           source-dir: ./libs/marketing-icons/src/generated/

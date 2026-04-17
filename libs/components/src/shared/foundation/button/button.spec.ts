@@ -3,10 +3,10 @@ import { eventClick } from '@microsoft/fast-web-utilities';
 import { fixture } from '../test-utilities/fixture';
 import { createRegisterFunction } from '../../design-system/createRegisterFunction';
 import { defineVividComponent } from '../../design-system/defineVividComponent';
+import type { VividFoundationButton } from './index';
 import {
 	VividFoundationButton as Button,
 	buttonTemplate as template,
-	VividFoundationButton,
 } from './index';
 
 const buttonDefinition = defineVividComponent(
@@ -302,6 +302,32 @@ describe('Foundation Button', () => {
 			element.click();
 
 			await disconnect();
+		});
+	});
+
+	describe('connectedCallback without control', () => {
+		it('should not throw when control is not set', async () => {
+			const { connect, disconnect, element } = await setup();
+
+			await connect();
+
+			(element as any).control = null;
+
+			expect(() => element.connectedCallback()).not.toThrow();
+
+			await disconnect();
+		});
+	});
+
+	describe('disconnectedCallback without control', () => {
+		it('should not throw when control is not set', async () => {
+			const { connect, element } = await setup();
+
+			await connect();
+
+			(element as any).control = null;
+
+			expect(() => element.disconnectedCallback()).not.toThrow();
 		});
 	});
 

@@ -1,10 +1,10 @@
-import {
+import type {
 	CallExpression,
 	ClassDeclaration,
 	Expression,
 	Identifier,
-	Node,
 } from 'ts-morph';
+import { Node } from 'ts-morph';
 
 export interface HierarchyEntry {
 	classDeclaration: ClassDeclaration;
