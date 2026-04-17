@@ -37,13 +37,13 @@
 	},
 	{
 		"title": "Calendar",
-		"children": ["Calendar Event"],
+		"children": [
+			{
+				"title": "Calendar Event",
+				"slug": "calendar-event"
+			}
+		],
 		"slug": "calendar"
-	},
-	{
-		"title": "Calendar Event",
-		"parent": "Calendar",
-		"slug": "calendar-event"
 	},
 	{
 		"title": "Card",
@@ -55,7 +55,12 @@
 	},
 	{
 		"title": "Color Picker",
-		"children": ["Simple Color Picker"],
+		"children": [
+			{
+				"title": "Simple Color Picker",
+				"slug": "simple-color-picker"
+			}
+		],
 		"slug": "color-picker"
 	},
 	{
@@ -67,28 +72,22 @@
 		"slug": "contextual-help"
 	},
 	{
-		"title": "Country",
-		"parent": "Partials",
-		"slug": "country"
-	},
-	{
 		"title": "Data Grid",
 		"slug": "data-grid"
 	},
 	{
 		"title": "Date Picker",
-		"children": ["Date Range Picker", "Date Time Picker"],
+		"children": [
+			{
+				"title": "Date Range Picker",
+				"slug": "date-range-picker"
+			},
+			{
+				"title": "Date Time Picker",
+				"slug": "date-time-picker"
+			}
+		],
 		"slug": "date-picker"
-	},
-	{
-		"title": "Date Range Picker",
-		"parent": "Date Picker",
-		"slug": "date-range-picker"
-	},
-	{
-		"title": "Date Time Picker",
-		"parent": "Date Picker",
-		"slug": "date-time-picker"
 	},
 	{
 		"title": "Dial Pad",
@@ -132,13 +131,13 @@
 	},
 	{
 		"title": "Menu",
-		"children": ["Menu Item"],
+		"children": [
+			{
+				"title": "Menu Item",
+				"slug": "menu-item"
+			}
+		],
 		"slug": "menu"
-	},
-	{
-		"title": "Menu Item",
-		"parent": "Menu",
-		"slug": "menu-item"
 	},
 	{
 		"title": "Navigation",
@@ -162,7 +161,16 @@
 	},
 	{
 		"title": "Partials",
-		"children": ["Country", "Status"],
+		"children": [
+			{
+				"title": "Country",
+				"slug": "country"
+			},
+			{
+				"title": "Status",
+				"slug": "status"
+			}
+		],
 		"slug": "partials"
 	},
 	{
@@ -210,22 +218,12 @@
 		"slug": "side-drawer"
 	},
 	{
-		"title": "Simple Color Picker",
-		"parent": "Color Picker",
-		"slug": "simple-color-picker"
-	},
-	{
 		"title": "Slider",
 		"slug": "slider"
 	},
 	{
 		"title": "Split Button",
 		"slug": "split-button"
-	},
-	{
-		"title": "Status",
-		"parent": "Partials",
-		"slug": "status"
 	},
 	{
 		"title": "Switch",
@@ -264,13 +262,13 @@
 		"slug": "tooltip"
 	},
 	{
-		"title": "Tree Item",
-		"parent": "Tree View",
-		"slug": "tree-item"
-	},
-	{
 		"title": "Tree View",
-		"children": ["Tree Item"],
+		"children": [
+			{
+				"title": "Tree Item",
+				"slug": "tree-item"
+			}
+		],
 		"slug": "tree-view"
 	},
 	{

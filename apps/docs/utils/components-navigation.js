@@ -4,10 +4,6 @@ const components = require('../content/_data/components.json');
 
 const navItems = [];
 
-const componentByTitle = new Map(
-	components.map((component) => [component.title, component])
-);
-
 for (const component of components) {
 	const manifest = manifestsBySlug.get(component.slug);
 
@@ -15,12 +11,14 @@ for (const component of components) {
 		continue;
 	}
 
-	const entry = {
-		...component,
-		key: component.title,
+	const createNavItem = (entry) => ({
+		...entry,
+		key: entry.title,
 		parentKey: 'Components',
-		url: `/components/${component.slug}/`,
-	};
+		url: `/components/${entry.slug}/`,
+	});
+
+	const entry = createNavItem(component);
 
 	if (component.children) {
 		entry.children = [
@@ -30,19 +28,14 @@ for (const component of components) {
 				parentKey: entry.key,
 				children: undefined,
 			},
-			...component.children.map((childTitle) => {
-				const childItem = componentByTitle.get(childTitle);
-
-				const childIndex = components.indexOf(childItem);
-				if (childIndex > 0) {
-					components.splice(childIndex, 1);
-				}
+			...component.children.map((childComponent) => {
+				const childEntry = createNavItem(childComponent);
 
 				return {
-					...childItem,
-					key: childItem.title,
+					...childEntry,
+					key: childEntry.title,
 					parentKey: entry.key,
-					url: `/components/${childItem.slug}/`,
+					url: `/components/${childEntry.slug}/`,
 					children: undefined,
 				};
 			}),
