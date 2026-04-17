@@ -188,12 +188,17 @@ module.exports = async (eleventyConfig) => {
 	 */
 	function extractTextFromHTML(html) {
 		// Remove script, style, and other non-content tags
-		let text = html
-			.replace(/<\s*script[^>]*>[\s\S]*?<\s*\/\s*script\s*>/gi, '')
-			.replace(/<\s*style[^>]*>[\s\S]*?<\s*\/\s*style\s*>/gi, '')
-			.replace(/<\s*noscript[^>]*>[\s\S]*?<\s*\/\s*noscript\s*>/gi, '')
-			.replace(/<\s*template[^>]*>[\s\S]*?<\s*\/\s*template\s*>/gi, '')
-			.replace(/<\s*svg[^>]*>[\s\S]*?<\s*\/\s*svg\s*>/gi, '');
+		let text = html;
+ 		let previousText;
+ 		do {
+ 			previousText = text;
+ 			text = text
+ 				.replace(/<\s*script[^>]*>[\s\S]*?<\s*\/\s*script\s*>/gi, '')
+ 				.replace(/<\s*style[^>]*>[\s\S]*?<\s*\/\s*style\s*>/gi, '')
+ 				.replace(/<\s*noscript[^>]*>[\s\S]*?<\s*\/\s*noscript\s*>/gi, '')
+ 				.replace(/<\s*template[^>]*>[\s\S]*?<\s*\/\s*template\s*>/gi, '')
+ 				.replace(/<\s*svg[^>]*>[\s\S]*?<\s*\/\s*svg\s*>/gi, '');
+ 		} while (text !== previousText);
 
 		// Convert HTML to markdown
 		// Headings
