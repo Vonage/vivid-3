@@ -6,6 +6,7 @@ const markdownLibrary = require('./libraries/markdown-it');
 const CleanCSS = require('clean-css');
 const fs = require('fs');
 const path = require('path');
+const sanitizeHtml = require('sanitize-html');
 const packageInstallation = require('./shortcodes/packageInstallation');
 const { globSync } = require('glob');
 const { spawnSync } = require('child_process');
@@ -187,24 +188,59 @@ module.exports = async (eleventyConfig) => {
 	 * Extract plain text from HTML content with basic formatting preservation
 	 */
 	function extractTextFromHTML(html) {
-		// Simple approach: remove dangerous tags and strip all HTML
-		let text = html;
+		const cleanHtml = sanitizeHtml(html, {
+			allowedTags: [
+				'a',
+				'strong',
+				'b',
+				'em',
+				'i',
+				'code',
+				'p',
+				'br',
+				'ul',
+				'ol',
+				'li',
+				'h1',
+				'h2',
+				'h3',
+				'h4',
+				'h5',
+				'h6',
+				'blockquote',
+			],
+			allowedAttributes: {
+				a: ['href'],
+			},
+			allowedSchemes: ['http', 'https', 'mailto', 'tel'],
+			allowedSchemesByTag: {
+				a: ['http', 'https', 'mailto', 'tel'],
+			},
+			selfClosing: ['br'],
+		});
 
-		// Remove script and style blocks completely (basic approach)
-		text = text.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
-		text = text.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
+		let text = cleanHtml;
 
-		// Replace common block elements with double newlines for paragraphs
+		// Preserve line breaks and paragraph structure.
+		text = text.replace(/<br\s*\/?>/gi, '\n');
 		text = text.replace(/<\/p>/gi, '\n\n');
 		text = text.replace(/<\/div>/gi, '\n\n');
 		text = text.replace(/<\/h[1-6]>/gi, '\n\n');
 		text = text.replace(/<\/li>/gi, '\n');
-		text = text.replace(/<br\s*\/?>/gi, '\n');
 
-		// Remove all HTML tags
+		// Convert links to markdown style, ignoring empty anchors.
+		text = text.replace(
+			/<a[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi,
+			(match, href, content) => {
+				const trimmed = content.trim();
+				return trimmed ? `[${trimmed}](${href})` : '';
+			}
+		);
+
+		// Remove all remaining HTML tags.
 		text = text.replace(/<[^>]+>/g, '');
 
-		// Decode essential HTML entities
+		// Decode essential HTML entities.
 		text = text
 			.replace(/&nbsp;/g, ' ')
 			.replace(/&amp;/g, '&')
@@ -213,7 +249,6 @@ module.exports = async (eleventyConfig) => {
 			.replace(/&quot;/g, '"')
 			.replace(/&#39;/g, "'");
 
-		// Normalize whitespace while preserving paragraph breaks
 		text = text.replace(/[\t\r]+/g, ' ');
 		text = text.replace(/ +/g, ' ');
 		text = text.replace(/ *\n */g, '\n');
