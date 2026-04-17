@@ -207,7 +207,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</div>
 		<div class="wrapper-div">
 			<vwc-avatar
-				href="https://vivid.vonage.com"
+				href="https://apps.vivid.vonage.com"
 				target="_blank"
 				shape="pill"
 				aria-label="Link to the Vivid documentation"
@@ -223,7 +223,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-icon slot="icon" name="more-vertical-solid" label="Menu"></vwc-icon>
 			</vwc-avatar>
 			<vwc-avatar
-				href="https://vivid.vonage.com"
+				href="https://apps.vivid.vonage.com"
 				target="_blank"
 				shape="pill"
 				aria-label="Link to the Vivid documentation"

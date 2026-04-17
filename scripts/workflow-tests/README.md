@@ -33,7 +33,7 @@ Additionally, a SOCKS5 endpoint is exposed on port 5555.
 For example, on MacOS you can open the deployed docs site in Chrome with this command:
 
 ```shell
-/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="/tmp/chrome-profile" --proxy-server="socks5://127.0.0.1:5555" --ignore-certificate-errors "https://vivid.vonage.com/"
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="/tmp/chrome-profile" --proxy-server="socks5://127.0.0.1:5555" --ignore-certificate-errors "https://apps.vivid.vonage.com/"
 ```
 
 ## Stub Services
@@ -72,7 +72,7 @@ It tries to fetch from local Moto S3 and falls back to the production upstream.
 
 Endpoints:
 
-- https://vivid.vonage.com/ -> http://localhost:3006/
+- https://apps.vivid.vonage.com/ -> http://localhost:3006/
 - https://icon.resources.vonage.com/ -> http://localhost:3007/
 
 ### GitHub API
