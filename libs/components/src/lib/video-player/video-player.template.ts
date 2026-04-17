@@ -2,7 +2,7 @@ import { html } from '@microsoft/fast-element';
 
 import { classNames } from '@microsoft/fast-web-utilities';
 import { renderSvgIcons } from './vivid-video-svg';
-import { VideoPlayer } from './video-player';
+import type { VideoPlayer } from './video-player';
 
 const getClasses = (_: VideoPlayer) => classNames('control');
 

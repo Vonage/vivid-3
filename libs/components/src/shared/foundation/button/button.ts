@@ -181,7 +181,10 @@ export class VividFoundationButton extends DelegatesAria(
 			});
 		}
 
-		const elements = Array.from(this.control.children) as HTMLSpanElement[];
+		const elements = (
+			this.control ? Array.from(this.control.children) : []
+		) as HTMLSpanElement[];
+
 		elements.forEach((span: HTMLSpanElement) => {
 			span.addEventListener('click', this.handleClick);
 		});
@@ -193,7 +196,10 @@ export class VividFoundationButton extends DelegatesAria(
 	public override disconnectedCallback(): void {
 		super.disconnectedCallback();
 
-		const elements = Array.from(this.control.children) as HTMLSpanElement[];
+		const elements = (
+			this.control ? Array.from(this.control.children) : []
+		) as HTMLSpanElement[];
+
 		elements.forEach((span: HTMLSpanElement) => {
 			span.removeEventListener('click', this.handleClick);
 		});

@@ -1,4 +1,4 @@
-import { ClassDeclaration, PropertyDeclaration } from 'ts-morph';
+import type { ClassDeclaration, PropertyDeclaration } from 'ts-morph';
 import type { HierarchyEntry } from '../class-hierarchy';
 import type { ResolverCtx } from '../../types/resolver';
 import { isPrivateOrInternal } from '../../types/visibility';

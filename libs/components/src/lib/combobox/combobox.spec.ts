@@ -3,11 +3,11 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 import type { Mock } from 'vitest';
 import { Size } from '../enums';
 import type { Popup } from '../popup/popup';
-import { ListboxOption } from '../option/option';
+import type { ListboxOption } from '../option/option';
 import type { Icon } from '../icon/icon';
 import {
 	itShouldDisplayErrorTextFeedback,

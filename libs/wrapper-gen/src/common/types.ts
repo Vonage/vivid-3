@@ -1,8 +1,10 @@
+import type {
+	TypeRef,
+	TypeStr,
+} from '@repo/metadata-extractor/metadata/type-str';
 import {
 	parseTypeStr,
 	toTypeStr,
-	TypeRef,
-	TypeStr,
 } from '@repo/metadata-extractor/metadata/type-str';
 
 export const isStringLiteral = (typeRef: TypeRef) =>

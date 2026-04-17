@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { MediaSkipBy } from '../enums';
 import { DEFAULT_PLAYBACK_RATES, VideoPlayer } from './video-player';
 import '.';

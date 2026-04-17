@@ -21,13 +21,13 @@ The manual CLI tool allows you to upload icons manually from your local machine.
 Run the manual upload tool with the following command:
 
 ```bash
-node manual.js -k <S3 access key> -s <S3 secret access key>
+node manual.mjs -k <S3 access key> -s <S3 secret access key>
 ```
 
 You can also setup other options when using the tool
 
 ```bash
-node manual.js --help
+node manual.mjs --help
 This script should be executed ONLY in local environment. (manual icons upload)
 
 USAGE manual icons upload [OPTIONS] -k, --key -s, --secret

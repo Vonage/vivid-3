@@ -1,4 +1,8 @@
-import { elementUpdated, fixture, getControlElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@repo/shared/test-utils/fixture';
 import { Icon } from '../icon/icon';
 
 import type { TreeView } from '../tree-view/tree-view';

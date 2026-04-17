@@ -1,4 +1,4 @@
-import { elementUpdated } from '@repo/shared';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import { docFactories } from '../__tests__/doc-factories';
 import { setup as standardSetup } from '../__tests__/test-utils';
 import { asyncGeneratorMock } from '../__tests__/async-generator';

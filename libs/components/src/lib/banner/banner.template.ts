@@ -1,9 +1,5 @@
-import {
-	html,
-	InlineTemplateDirective,
-	slotted,
-	when,
-} from '@microsoft/fast-element';
+import type { InlineTemplateDirective } from '@microsoft/fast-element';
+import { html, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,

@@ -3,7 +3,7 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 import { Connotation } from '../enums';
 import type { Checkbox } from '../checkbox/checkbox';
 import type { Radio } from '../radio/radio';
