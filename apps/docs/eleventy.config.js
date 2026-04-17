@@ -184,23 +184,27 @@ module.exports = async (eleventyConfig) => {
 	}
 
 	/**
-	 * Extract and convert HTML content to markdown, preserving formatting and structure
+	 * Extract plain text from HTML content with basic formatting preservation
 	 */
 	function extractTextFromHTML(html) {
-		// Remove script, style, and other non-content tags first
+		// Simple approach: remove dangerous tags and strip all HTML
 		let text = html;
-		let previousText;
-		do {
-			previousText = text;
-			// Use more specific patterns to avoid CodeScan warnings
-			text = text.replace(/<script(\s[^>]*)?>[^]*?<\/script>/gi, '');
-			text = text.replace(/<style(\s[^>]*)?>[^]*?<\/style>/gi, '');
-			text = text.replace(/<noscript(\s[^>]*)?>[^]*?<\/noscript>/gi, '');
-			text = text.replace(/<template(\s[^>]*)?>[^]*?<\/template>/gi, '');
-			text = text.replace(/<svg(\s[^>]*)?>[^]*?<\/svg>/gi, '');
-		} while (text !== previousText);
 
-		// Decode HTML entities after tag removal (only essential ones)
+		// Remove script and style blocks completely (basic approach)
+		text = text.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
+		text = text.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
+
+		// Replace common block elements with double newlines for paragraphs
+		text = text.replace(/<\/p>/gi, '\n\n');
+		text = text.replace(/<\/div>/gi, '\n\n');
+		text = text.replace(/<\/h[1-6]>/gi, '\n\n');
+		text = text.replace(/<\/li>/gi, '\n');
+		text = text.replace(/<br\s*\/?>/gi, '\n');
+
+		// Remove all HTML tags
+		text = text.replace(/<[^>]+>/g, '');
+
+		// Decode essential HTML entities
 		text = text
 			.replace(/&nbsp;/g, ' ')
 			.replace(/&amp;/g, '&')
@@ -209,27 +213,11 @@ module.exports = async (eleventyConfig) => {
 			.replace(/&quot;/g, '"')
 			.replace(/&#39;/g, "'");
 
-		// Simple HTML to text conversion - avoid complex regex patterns
-		// Just remove tags and preserve basic structure
-		text = text.replace(/<br\s*\/?>/gi, '\n');
-		text = text.replace(/<\/p>/gi, '\n\n');
-		text = text.replace(/<\/div>/gi, '\n\n');
-		text = text.replace(/<\/h[1-6]>/gi, '\n\n');
-		text = text.replace(/<\/li>/gi, '\n');
-
-		// Remove all remaining HTML tags
-		text = text.replace(/<[^>]+>/g, '');
-
 		// Normalize whitespace while preserving paragraph breaks
-		// First, normalize tabs and carriage returns to spaces
 		text = text.replace(/[\t\r]+/g, ' ');
-		// Collapse multiple spaces (but not newlines) to single space
 		text = text.replace(/ +/g, ' ');
-		// Remove spaces at the start/end of lines
 		text = text.replace(/ *\n */g, '\n');
-		// Collapse multiple newlines (more than 2) to double newline for paragraphs
 		text = text.replace(/\n{3,}/g, '\n\n');
-		// Final trim
 		text = text.trim();
 
 		return text;
