@@ -436,9 +436,10 @@ module.exports = async (eleventyConfig) => {
 		if (!content) return '';
 
 		return (
-			content
-				// Remove HTML tags and attributes
-				.replace(/<[^>]*>/g, '')
+			sanitizeHtml(content, {
+				allowedTags: [],
+				allowedAttributes: {},
+			})
 				// Remove all markdown code blocks (```...```)
 				.replace(/```[\s\S]*?```/gs, '')
 				// Remove ```html preview ... ``` code blocks
