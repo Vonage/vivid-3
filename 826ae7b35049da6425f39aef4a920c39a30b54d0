@@ -1,0 +1,28 @@
+libs/components/src/lib/audio-player/audio-player.ts
+  h_2df0e3a986e719 413,415
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "826ae7b35049da6425f39aef4a920c39a30b54d0",
+  "prompts": {
+    "a28522466139ccd8": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_28e1fceeaffeDgcZeBPYdpkE7y",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 51,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_2df0e3a986e719": {
+      "author": "Konrad Sieńkowski"
+    }
+  }
+}
