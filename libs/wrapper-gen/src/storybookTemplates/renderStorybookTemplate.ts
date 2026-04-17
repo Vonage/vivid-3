@@ -1,15 +1,10 @@
 import { pascalCase } from 'change-case';
-import {
-	isNumberLiteral,
-	isStringLiteral,
-	TypeResolver,
-} from '../common/types';
+import type { TypeResolver } from '../common/types';
+import { isNumberLiteral, isStringLiteral } from '../common/types';
 import { wrappedComponentName } from '../vueWrappers/name';
 import type { ComponentDef } from '@repo/metadata-extractor';
-import {
-	parseTypeStr,
-	TypeUnion,
-} from '@repo/metadata-extractor/metadata/type-str';
+import type { TypeUnion } from '@repo/metadata-extractor/metadata/type-str';
+import { parseTypeStr } from '@repo/metadata-extractor/metadata/type-str';
 
 const isBasicString = (type: TypeUnion) =>
 	type.length === 1 && type[0] === 'string';

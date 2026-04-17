@@ -1,8 +1,9 @@
-import { Import, importsForTypes, renderImports } from './imports';
+import type { Import } from './imports';
+import { importsForTypes, renderImports } from './imports';
 import { wrappedComponentName } from './name';
 import { getEventType } from './types';
 import { renderJsDoc } from './jsDoc';
-import { resolveVueModels } from './vueModels';
+import { resolveVueModels, modifiersPropName } from './vueModels';
 import { getExportedClassName } from '../common/component';
 import type { ComponentDef } from '@repo/metadata-extractor';
 import {
@@ -13,7 +14,7 @@ import { camelCase } from 'change-case';
 import { vue3EventHandlerName } from './events';
 
 export const renderComponentTypes = (componentDef: ComponentDef) => {
-	const { props, vueModelEvents } = resolveVueModels(componentDef);
+	const { props, vueModels, vueModelEvents } = resolveVueModels(componentDef);
 
 	const typeImports: Import[] = [
 		{
@@ -87,6 +88,18 @@ export const renderComponentTypes = (componentDef: ComponentDef) => {
 		...vueModelEvents.map(renderEventType(true)),
 	].join(',\n');
 
+	const modifiersPropTypesSrc = vueModels
+		.map((vueModel) => {
+			const modifiers = ['trim?: true', 'number?: true'];
+			if (vueModel.lazyEventNames?.length) {
+				modifiers.push('lazy?: true');
+			}
+			return `
+				/** Modifiers for the ${vueModel.name} v-model */
+				${modifiersPropName(vueModel.name)}?: { ${modifiers.join('; ')} }`;
+		})
+		.join(',\n');
+
 	return `
 ${renderImports(typeImports, true)}
 
@@ -96,6 +109,7 @@ export interface ${wrappedComponentName(componentDef)}Events {
 
 export interface ${wrappedComponentName(componentDef)}Props {
 	${propTypesSrc}
+	${modifiersPropTypesSrc}
 	${eventHandlersSrc}
 }
 `;

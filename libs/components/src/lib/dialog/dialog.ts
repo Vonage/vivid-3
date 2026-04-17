@@ -168,6 +168,7 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 		}
 	}
 
+	/** @internal */
 	get _showDismissButton() {
 		return this.#isDismissibleVia('dismiss-button');
 	}

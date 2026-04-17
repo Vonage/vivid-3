@@ -29,7 +29,6 @@ export default mergeConfig(
 			lib: {
 				entry: input,
 				name: 'components',
-				formats: ['es', 'cjs'],
 				cssFileName: 'style',
 			},
 			minify: true,

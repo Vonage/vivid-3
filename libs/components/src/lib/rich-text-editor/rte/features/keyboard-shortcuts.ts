@@ -1,4 +1,4 @@
-import { type Command } from 'prosemirror-state';
+import type { Command } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 import {
 	contributionPriority,
@@ -6,7 +6,8 @@ import {
 	type PluginContribution,
 	RteFeatureImpl,
 } from '../feature';
-import { type RteInstance, RteInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
+import type { RteInstance } from '../instance';
 
 /**
  * A keyboard shortcut handler. Return `true` to consume the key (prevent default behavior), `false` to let other handlers run.

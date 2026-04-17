@@ -97,6 +97,7 @@ module.exports = async (eleventyConfig) => {
 			],
 			build: {
 				emptyOutDir: false,
+				chunkSizeWarningLimit: 2000,
 			},
 			resolve: {
 				alias: {

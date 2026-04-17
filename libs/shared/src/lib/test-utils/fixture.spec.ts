@@ -1,13 +1,12 @@
 import {
 	ADD_TEMPLATE_TO_FIXTURE,
-	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
 	getControlElement,
-	listenToFormSubmission,
 	setProperty,
-} from '.';
+} from './fixture';
+import { createFormHTML, listenToFormSubmission } from './form-association';
 
 class DummyElement extends HTMLElement {
 	connectedCallback() {

@@ -3,11 +3,11 @@ import {
 	isNumberLiteral,
 	isStringLiteral,
 } from '../common/types';
-import {
-	parseTypeStr,
+import type {
 	TypeRef,
 	TypeStr,
 } from '@repo/metadata-extractor/metadata/type-str';
+import { parseTypeStr } from '@repo/metadata-extractor/metadata/type-str';
 
 /// Removes any type parameters, e.g. CustomEvent<number> -> CustomEvent
 const stripTypeParameters = (typeStr: TypeRef) => typeStr.replace(/<.*>/, '');

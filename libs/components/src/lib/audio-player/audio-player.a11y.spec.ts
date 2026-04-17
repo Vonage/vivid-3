@@ -1,5 +1,6 @@
-import { axe, fixture } from '@repo/shared';
-import { AudioPlayer } from './audio-player';
+import { axe } from '@repo/shared/test-utils/axe';
+import { fixture } from '@repo/shared/test-utils/fixture';
+import type { AudioPlayer } from './audio-player';
 import '.';
 
 const COMPONENT_TAG = 'vwc-audio-player';

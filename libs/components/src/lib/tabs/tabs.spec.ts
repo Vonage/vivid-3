@@ -1,8 +1,12 @@
-import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
 import type { MockInstance } from 'vitest';
 import { Connotation } from '../enums';
 import type { Tab } from '../tab/tab';
-import { TabPanel } from '../tab-panel/tab-panel';
+import type { TabPanel } from '../tab-panel/tab-panel';
 import { Tabs, TabsGutters } from './tabs';
 import '.';
 

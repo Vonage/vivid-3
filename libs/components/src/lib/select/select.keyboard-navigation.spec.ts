@@ -1,14 +1,14 @@
 import 'element-internals-polyfill';
 
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import {
 	keyArrowDown,
 	keyArrowUp,
 	keyEnd,
 	keyHome,
 } from '@microsoft/fast-web-utilities';
-import { ListboxOption } from '../option/option';
-import { Select } from './select';
+import type { ListboxOption } from '../option/option';
+import type { Select } from './select';
 import '.';
 
 describe('vwc-select keyboard navigation', () => {

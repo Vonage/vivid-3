@@ -22,6 +22,7 @@ export { RteAtomFeature } from './features/atom';
 export { RteInputRuleFeature } from './features/input-rule';
 export { RteKeyboardShortcutsFeature } from './features/keyboard-shortcuts';
 export { RteSuggestFeature } from './features/suggest';
+export { RteCharacterCountFeature } from './features/character-count';
 
 export { RteHtmlParser } from './html-parser';
 export { RteHtmlSerializer } from './html-serializer';

@@ -1,18 +1,15 @@
-import {
+import type {
 	ExecutionContext,
-	html,
 	InlineTemplateDirective,
-	ref,
-	repeat,
-	when,
 } from '@microsoft/fast-element';
+import { html, ref, repeat, when } from '@microsoft/fast-element';
 import { classNames, keyEnter } from '@microsoft/fast-web-utilities';
 import { Button } from '../button/button';
 import { TextField } from '../text-field/text-field';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { VisuallyHidden } from '../visually-hidden/visually-hidden';
-import { DialPad } from './dial-pad';
+import type { DialPad } from './dial-pad';
 
 class DialPadButton {
 	value: string;

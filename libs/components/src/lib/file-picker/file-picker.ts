@@ -265,6 +265,9 @@ export class FilePicker extends WithContextualHelp(
 	 * @internal
 	 */
 	_onDragEnter() {
+		if (this.disabled) {
+			return true;
+		}
 		this._dragHover = true;
 		return true;
 	}
@@ -273,6 +276,10 @@ export class FilePicker extends WithContextualHelp(
 	 * @internal
 	 */
 	_onDragOver(e: DragEvent) {
+		if (this.disabled) {
+			return true;
+		}
+
 		if (!e.dataTransfer) {
 			return true;
 		}
@@ -290,6 +297,9 @@ export class FilePicker extends WithContextualHelp(
 	 * @internal
 	 */
 	_onDragLeave(e: DragEvent) {
+		if (this.disabled) {
+			return true;
+		}
 		// Only remove the class if we're leaving the control element itself
 		/* v8 ignore else -- @preserve */
 		if (e.currentTarget === e.target) {
@@ -302,6 +312,10 @@ export class FilePicker extends WithContextualHelp(
 	 * @internal
 	 */
 	_onDrop(e: DragEvent) {
+		if (this.disabled) {
+			return true;
+		}
+
 		this._dragHover = false;
 
 		if (!e.dataTransfer) {
@@ -322,6 +336,9 @@ export class FilePicker extends WithContextualHelp(
 	 * @internal
 	 */
 	_onDragEnd() {
+		if (this.disabled) {
+			return true;
+		}
 		this._dragHover = false;
 		return true;
 	}
@@ -330,6 +347,10 @@ export class FilePicker extends WithContextualHelp(
 	 * @internal
 	 */
 	_onControlClick() {
+		/* v8 ignore if -- @preserve */
+		if (this.disabled) {
+			return;
+		}
 		this._hiddenInput.click(); // Forward click to trigger the file dialog
 	}
 
@@ -337,6 +358,9 @@ export class FilePicker extends WithContextualHelp(
 	 * @internal
 	 */
 	_onRemoveFileClick(file: File) {
+		if (this.disabled) {
+			return;
+		}
 		this._allFiles = this._allFiles.filter((f) => f !== file);
 		this.$emit('change');
 	}

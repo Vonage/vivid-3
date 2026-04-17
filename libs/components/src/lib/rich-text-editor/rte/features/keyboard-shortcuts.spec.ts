@@ -1,4 +1,4 @@
-import { elementUpdated } from '@repo/shared';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
 import type { RteInstance } from '../instance';
@@ -16,7 +16,7 @@ const escapeDeselectShortcuts: Record<string, KeyboardShortcutHandler> = {
 
 describe('RteKeyboardShortcutsFeature', () => {
 	it('should prevent default when handler returns true (no-arg)', async () => {
-		const { placeCursor, keydown, docStr, element } = await setup(
+		const rte = await setup(
 			[
 				new RteBase(),
 				new RteKeyboardShortcutsFeature('prevent-enter', {
@@ -26,15 +26,15 @@ describe('RteKeyboardShortcutsFeature', () => {
 			[p('Hello world')]
 		);
 
-		placeCursor('Hello| world');
-		keydown('Enter');
-		await elementUpdated(element);
+		rte.placeCursor('Hello| world');
+		rte.keydown('Enter');
+		await elementUpdated(rte.element);
 
-		expect(docStr()).toBe(`paragraph('Hello| world')`);
+		expect(rte.docStr()).toBe(`paragraph('Hello| world')`);
 	});
 
 	it('should prevent default when handler returns true (rteInstance)', async () => {
-		const { placeCursor, keydown, docStr, element } = await setup(
+		const rte = await setup(
 			[
 				new RteBase(),
 				new RteKeyboardShortcutsFeature('prevent-enter-cmd', {
@@ -46,15 +46,15 @@ describe('RteKeyboardShortcutsFeature', () => {
 			[p('Hello world')]
 		);
 
-		placeCursor('Hello| world');
-		keydown('Enter');
-		await elementUpdated(element);
+		rte.placeCursor('Hello| world');
+		rte.keydown('Enter');
+		await elementUpdated(rte.element);
 
-		expect(docStr()).toBe(`paragraph('Hello| world')`);
+		expect(rte.docStr()).toBe(`paragraph('Hello| world')`);
 	});
 
 	it('should allow default when handler returns false', async () => {
-		const { placeCursor, keydown, docStr, element } = await setup(
+		const rte = await setup(
 			[
 				new RteBase(),
 				new RteKeyboardShortcutsFeature('allow-enter', {
@@ -64,18 +64,18 @@ describe('RteKeyboardShortcutsFeature', () => {
 			[p('Hello world')]
 		);
 
-		placeCursor('Hello| world');
-		keydown('Enter');
-		await elementUpdated(element);
+		rte.placeCursor('Hello| world');
+		rte.keydown('Enter');
+		await elementUpdated(rte.element);
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello'), paragraph('| world')"`
 		);
 	});
 
 	it('should support multiple key bindings', async () => {
 		const shiftEnter = 'Shift-Enter';
-		const { placeCursor, keydown, docStr, element } = await setup(
+		const rte = await setup(
 			[
 				new RteBase(),
 				new RteKeyboardShortcutsFeature('multi', {
@@ -88,15 +88,15 @@ describe('RteKeyboardShortcutsFeature', () => {
 			[p('Line one')]
 		);
 
-		placeCursor('Line |one');
-		keydown('Enter');
-		await elementUpdated(element);
-		expect(docStr()).toBe(`paragraph('Line |one')`);
+		rte.placeCursor('Line |one');
+		rte.keydown('Enter');
+		await elementUpdated(rte.element);
+		expect(rte.docStr()).toBe(`paragraph('Line |one')`);
 
-		placeCursor('Line |one');
-		keydown('Enter', { shift: true });
-		await elementUpdated(element);
-		expect(docStr()).toBe(`paragraph('Line |one')`);
+		rte.placeCursor('Line |one');
+		rte.keydown('Enter', { shift: true });
+		await elementUpdated(rte.element);
+		expect(rte.docStr()).toBe(`paragraph('Line |one')`);
 	});
 
 	describe('Tab prevent default', () => {
@@ -108,15 +108,13 @@ describe('RteKeyboardShortcutsFeature', () => {
 		];
 
 		it('should prevent default Tab behavior', async () => {
-			const { placeCursor, keydown, docStr, element } = await setup(features, [
-				p('Hello world'),
-			]);
+			const rte = await setup(features, [p('Hello world')]);
 
-			placeCursor('Hello| world');
-			keydown('Tab');
-			await elementUpdated(element);
+			rte.placeCursor('Hello| world');
+			rte.keydown('Tab');
+			await elementUpdated(rte.element);
 
-			expect(docStr()).toBe(`paragraph('Hello| world')`);
+			expect(rte.docStr()).toBe(`paragraph('Hello| world')`);
 		});
 	});
 });

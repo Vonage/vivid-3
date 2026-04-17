@@ -49,7 +49,10 @@ export default defineComponent({
 
         importedType: {type: null as unknown as PropType<ButtonSize>, default: undefined},
 
-        externalType: {type: null as unknown as PropType<any>, default: undefined}
+        externalType: {type: null as unknown as PropType<any>, default: undefined},
+modelModifiers: {type: Object as PropType<Record<string, boolean>>, default: () => ({})},
+sameEventModifiers: {type: Object as PropType<Record<string, boolean>>, default: () => ({})},
+startModifiers: {type: Object as PropType<Record<string, boolean>>, default: () => ({})}
 			},
   emits: [
 			
@@ -63,6 +66,12 @@ export default defineComponent({
  * @type {Event}
  */
 					'input',
+
+					/**
+ * This is a change event
+ * @type {Event}
+ */
+					'change',
 
 					/**
  * @type {CustomEvent<{a: string | number}>}
@@ -115,17 +124,30 @@ export default defineComponent({
 			currentTarget: VwcExampleComponentElement
 		}) => {
           
+          
           this.$emit('example-event', event);
         },'input': (event: Event & {
 			currentTarget: VwcExampleComponentElement
 		}) => {
-          this.$emit('update:modelValue', event.currentTarget.value);
+          if (!this.modelModifiers?.lazy) {
+            this.$emit('update:modelValue', event.currentTarget.value);
+          }
 this.$emit('update:sameEvent', event.currentTarget.exampleProp);
+          
           this.$emit('input', event);
+        },'change': (event: Event & {
+			currentTarget: VwcExampleComponentElement
+		}) => {
+          
+          if (this.modelModifiers?.lazy) {
+            this.$emit('update:modelValue', event.currentTarget.value);
+          }
+          this.$emit('change', event);
         },'input:start': (event: CustomEvent<{a: string | number}> & {
 			currentTarget: VwcExampleComponentElement
 		}) => {
           this.$emit('update:start', event.currentTarget.start);
+          
           this.$emit('input:start', event);
         },'slottable-request': (event: SlottableRequestEvent) => {
 		if (isRemoveRequest(event.data)) {
@@ -154,17 +176,30 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
 			currentTarget: VwcExampleComponentElement
 		}) => {
 					 
+					 
           this.$emit('example-event', event);
         },'onInput': (event: Event & {
 			currentTarget: VwcExampleComponentElement
 		}) => {
-					 this.$emit('update:modelValue', event.currentTarget.value);
+					 if (!this.modelModifiers?.lazy) {
+            this.$emit('update:modelValue', event.currentTarget.value);
+          }
 this.$emit('update:sameEvent', event.currentTarget.exampleProp);
+					 
           this.$emit('input', event);
+        },'onChange': (event: Event & {
+			currentTarget: VwcExampleComponentElement
+		}) => {
+					 
+					 if (this.modelModifiers?.lazy) {
+            this.$emit('update:modelValue', event.currentTarget.value);
+          }
+          this.$emit('change', event);
         },'onInput:start': (event: CustomEvent<{a: string | number}> & {
 			currentTarget: VwcExampleComponentElement
 		}) => {
 					 this.$emit('update:start', event.currentTarget.start);
+					 
           this.$emit('input:start', event);
         },'onSlottable-request': (event: SlottableRequestEvent) => {
 		if (isRemoveRequest(event.data)) {
@@ -241,7 +276,10 @@ export default defineComponent({
 
         importedType: {type: null as unknown as PropType<ButtonSize>, default: undefined},
 
-        externalType: {type: null as unknown as PropType<any>, default: undefined}
+        externalType: {type: null as unknown as PropType<any>, default: undefined},
+modelModifiers: {type: Object as PropType<Record<string, boolean>>, default: () => ({})},
+sameEventModifiers: {type: Object as PropType<Record<string, boolean>>, default: () => ({})},
+startModifiers: {type: Object as PropType<Record<string, boolean>>, default: () => ({})}
 			},
   emits: {
 			
@@ -257,6 +295,14 @@ export default defineComponent({
  * @type {Event}
  */
 				['input'](event: Event & {
+			currentTarget: VwcExampleComponentElement
+		}) { return true },
+
+				/**
+ * This is a change event
+ * @type {Event}
+ */
+				['change'](event: Event & {
 			currentTarget: VwcExampleComponentElement
 		}) { return true },
 

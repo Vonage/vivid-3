@@ -9,7 +9,7 @@ import { extractAccessorsFromHierarchy } from '../components/extractors/accessor
 import { extractPropertiesFromHierarchy } from '../components/extractors/properties';
 import { extractAttrsFromHierarchy } from '../components/extractors/attrs';
 import { resolveClassHierarchy } from '../components/class-hierarchy';
-import { type Metadata } from './format';
+import type { Metadata } from './format';
 import { traverseAliasChain } from '../types/alias-chain';
 import { patchIcons } from './patch-icons';
 import { patchEvents } from './patch-events';

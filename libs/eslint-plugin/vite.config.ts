@@ -22,7 +22,7 @@ export default mergeConfig(
 			},
 			target: 'esnext',
 			rolldownOptions: {
-				external: ['eslint-plugin-vue/lib/utils/index.js'],
+				external: ['eslint-plugin-vue/lib/utils/index.js', /^node:/],
 			},
 		},
 	})

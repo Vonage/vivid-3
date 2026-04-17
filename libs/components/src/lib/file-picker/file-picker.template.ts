@@ -36,11 +36,12 @@ const renderFileSize = (x: FilePicker, size: number) => {
 		${dictFileSizeUnits[selectedUnit]}`;
 };
 
-const getClasses = ({ size, _dragHover }: FilePicker) =>
+const getClasses = ({ size, _dragHover, disabled }: FilePicker) =>
 	classNames(
 		'control',
 		[`size-${size}`, Boolean(size)],
-		['drag-hover', _dragHover]
+		['drag-hover', _dragHover],
+		['disabled', disabled]
 	);
 
 export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
@@ -57,11 +58,12 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 				<slot name="contextual-help" ${slotted('_contextualHelpSlottedContent')}></slot>
 			</div>
 			<div class="control-wrapper">
-				<button
-					type="button"
-					${ref('control')}
-					class="${getClasses}"
-					@click="${(x) => x._onControlClick()}"
+			<button
+				type="button"
+				${ref('control')}
+				class="${getClasses}"
+				?disabled="${(x) => x.disabled}"
+				@click="${(x) => x._onControlClick()}"
 					@keydown="${
 						/* v8 ignore next -- @preserve -- Prevent implicit form submission on Enter */
 						() => false
@@ -98,10 +100,11 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 						<${iconTag} name="info-line" size="-6"></${iconTag}>
 						${(x) => x.validationError}
 					</div>
-					<${buttonTag}
-						class="remove-btn" icon="delete-line" appearance="ghost-light" size="condensed"
-						aria-label="${(_, c) => c.parent.locale.filePicker.removeFileLabel}"
-						@click="${(x, c) => c.parent._onRemoveFileClick(x.file)}"></${buttonTag}>
+				<${buttonTag}
+					class="remove-btn" icon="delete-line" appearance="ghost-light" size="condensed"
+					?disabled="${(_, c) => c.parent.disabled}"
+					aria-label="${(_, c) => c.parent.locale.filePicker.removeFileLabel}"
+					@click="${(x, c) => c.parent._onRemoveFileClick(x.file)}"></${buttonTag}>
 				</div>`
 				)}
 			</div>
@@ -111,6 +114,7 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 			class="hidden-input"
 			aria-hidden="true"
 			type="file"
+			?disabled="${(x) => x.disabled}"
 			?multiple="${(x) => !x.singleFile && (x.maxFiles == null || x.maxFiles > 1)}"
 			accept="${(x) => x.accept || null}"
 			tabindex="-1"

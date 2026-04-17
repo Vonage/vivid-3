@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';

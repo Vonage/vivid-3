@@ -75,7 +75,6 @@
 		"prosemirror-state": "^1.4.4",
 		"prosemirror-transform": "^1.11.0",
 		"prosemirror-view": "^1.41.6",
-		"ramda": "catalog:",
 		"uuid": "^11.1.0",
 		"vanilla-colorful": "^0.7.2",
 		"video.js": "^8.23.7"
@@ -98,7 +97,6 @@
 		"@testing-library/dom": "^10.4.1",
 		"@testing-library/user-event": "catalog:",
 		"@types/node": "catalog:",
-		"@types/ramda": "catalog:",
 		"@vonage/vivid-icons": "workspace:*",
 		"cem-plugin-async-function": "^0.0.5",
 		"cem-plugin-jsdoc-example": "^0.0.9",

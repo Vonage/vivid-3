@@ -1,8 +1,9 @@
-import { createFormHTML, elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import { createFormHTML } from '@repo/shared/test-utils/form-association';
 import { setLocale } from '../../shared/localization';
-import { Popup } from '../popup/popup';
-import { Button } from '../button/button';
-import { TextField } from '../text-field/text-field';
+import type { Popup } from '../popup/popup';
+import type { Button } from '../button/button';
+import type { TextField } from '../text-field/text-field';
 import enGB from '../../locales/en-GB';
 import enUS from '../../locales/en-US';
 import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';

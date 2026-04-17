@@ -1,5 +1,6 @@
-import { axe, fixture } from '@repo/shared';
-import { SimpleColorPicker } from './simple-color-picker';
+import { axe } from '@repo/shared/test-utils/axe';
+import { fixture } from '@repo/shared/test-utils/fixture';
+import type { SimpleColorPicker } from './simple-color-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-simple-color-picker';

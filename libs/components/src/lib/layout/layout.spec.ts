@@ -1,4 +1,8 @@
-import { elementUpdated, fixture, getControlElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@repo/shared/test-utils/fixture';
 import { LayoutSize } from '../enums';
 import { AUTO_SIZING, Layout } from './layout';
 import '.';

@@ -27,8 +27,7 @@
 		"@vonage/vivid-icons": "workspace:*",
 		"@vonage/vivid-test-utils": "workspace:*",
 		"@vonage/vivid-vue": "workspace:*",
-		"lodash": "^4.17.23",
-		"ramda": "catalog:"
+		"lodash": "^4.17.23"
 	},
 	"devDependencies": {
 		"@11ty/eleventy": "^3.1.2",
@@ -50,7 +49,6 @@
 		"@types/jsdom": "catalog:",
 		"@types/lodash": "^4.17.24",
 		"@types/markdown-it": "^14.1.0",
-		"@types/ramda": "catalog:",
 		"@vitejs/plugin-vue": "catalog:",
 		"change-case": "catalog:",
 		"clean-css": "^5.3.3",
