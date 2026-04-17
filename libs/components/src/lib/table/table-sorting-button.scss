@@ -1,0 +1,17 @@
+@use '@repo/shared/mixins/border-radius' as border-radius-variables;
+@use '@repo/shared/mixins/focus' as focus;
+@use '@repo/shared/mixins/focus' as focus-variables;
+
+button {
+	border: none;
+	border-radius: #{border-radius-variables.$border-radius-normal};
+	aspect-ratio: 1;
+	background: transparent;
+	cursor: pointer;
+}
+
+button:focus-visible {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	@include focus.focus;
+}
