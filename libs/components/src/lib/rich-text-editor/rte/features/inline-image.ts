@@ -1,4 +1,4 @@
-import { type Node, type NodeSpec } from 'prosemirror-model';
+import type { Node, NodeSpec } from 'prosemirror-model';
 import {
 	type Command,
 	type EditorState,

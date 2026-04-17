@@ -1,4 +1,4 @@
-import { elementUpdated } from '@repo/shared';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import { setup } from '../../__tests__/test-utils';
 import { docFactories } from '../../__tests__/doc-factories';
 import { RteBase } from '../base';
@@ -18,20 +18,20 @@ const emojiFeatures = [
 describe('RteInputRulesFeature', () => {
 	describe('when input rules are configured without enterHandler', () => {
 		it('should apply input rules on typing', async () => {
-			const { typeTextAtCursor, docStr } = await setup(emojiFeatures);
+			const rte = await setup(emojiFeatures);
 
-			await typeTextAtCursor(':)');
+			await rte.typeTextAtCursor(':)');
 
-			expect(docStr()).toMatchInlineSnapshot(`"paragraph('😊|')"`);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('😊|')"`);
 		});
 
 		it('should undo input rule with Backspace', async () => {
-			const { typeTextAtCursor, keydown, docStr } = await setup(emojiFeatures);
+			const rte = await setup(emojiFeatures);
 
-			await typeTextAtCursor(':)');
-			keydown('Backspace');
+			await rte.typeTextAtCursor(':)');
+			rte.keydown('Backspace');
 
-			expect(docStr()).toMatchInlineSnapshot(`"paragraph(':)|')"`);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph(':)|')"`);
 		});
 	});
 
@@ -50,52 +50,47 @@ describe('RteInputRulesFeature', () => {
 		];
 
 		it('should apply input rule on space', async () => {
-			const { typeTextAtCursor, docStr } = await setup(tagFeatures);
+			const rte = await setup(tagFeatures);
 
-			await typeTextAtCursor('#hello ');
+			await rte.typeTextAtCursor('#hello ');
 
-			expect(docStr()).toMatchInlineSnapshot(
+			expect(rte.docStr()).toMatchInlineSnapshot(
 				`"paragraph(tag[value="hello"](), ' |')"`
 			);
 		});
 
 		it('should apply input rule on Enter', async () => {
-			const { typeTextAtCursor, keydown, docStr, element } =
-				await setup(tagFeatures);
+			const rte = await setup(tagFeatures);
 
-			await typeTextAtCursor('#hello');
-			keydown('Enter');
-			await elementUpdated(element);
+			await rte.typeTextAtCursor('#hello');
+			rte.keydown('Enter');
+			await elementUpdated(rte.element);
 
-			expect(docStr()).toMatchInlineSnapshot(
+			expect(rte.docStr()).toMatchInlineSnapshot(
 				`"paragraph(tag[value="hello"](), ' '), paragraph(|)"`
 			);
 		});
 
 		it('should not apply Enter rule when regex does not match', async () => {
-			const { typeTextAtCursor, keydown, docStr, element } =
-				await setup(tagFeatures);
+			const rte = await setup(tagFeatures);
 
-			await typeTextAtCursor('no match here');
-			keydown('Enter');
-			await elementUpdated(element);
+			await rte.typeTextAtCursor('no match here');
+			rte.keydown('Enter');
+			await elementUpdated(rte.element);
 
-			expect(docStr()).toMatchInlineSnapshot(
+			expect(rte.docStr()).toMatchInlineSnapshot(
 				`"paragraph('no match here'), paragraph(|)"`
 			);
 		});
 
 		it('should not apply Enter rule with range selection', async () => {
-			const { selectText, keydown, docStr, element } = await setup(
-				tagFeatures,
-				[p('#hello')]
-			);
+			const rte = await setup(tagFeatures, [p('#hello')]);
 
-			selectText('[#hello]');
-			keydown('Enter');
-			await elementUpdated(element);
+			rte.selectText('[#hello]');
+			rte.keydown('Enter');
+			await elementUpdated(rte.element);
 
-			expect(docStr()).toMatchInlineSnapshot(`"paragraph(), paragraph(|)"`);
+			expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph(), paragraph(|)"`);
 		});
 	});
 
@@ -115,11 +110,11 @@ describe('RteInputRulesFeature', () => {
 		];
 
 		it('should apply both input rules correctly', async () => {
-			const { typeTextAtCursor, docStr } = await setup(multipleFeatures);
+			const rte = await setup(multipleFeatures);
 
-			await typeTextAtCursor(':) #hello ');
+			await rte.typeTextAtCursor(':) #hello ');
 
-			expect(docStr()).toMatchInlineSnapshot(
+			expect(rte.docStr()).toMatchInlineSnapshot(
 				`"paragraph('😊 ', tag[value="hello"]())"`
 			);
 		});

@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { TextField } from './text-field';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { TextField } from './text-field';
 import '.';
 
 const COMPONENT_TAG = 'vwc-text-field';

@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Combobox } from './combobox';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { Combobox } from './combobox';
 import '.';
 
 const COMPONENT_TAG = 'vwc-combobox';

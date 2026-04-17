@@ -1,9 +1,9 @@
 import type { EditorView } from 'prosemirror-view';
-import { MarkType } from 'prosemirror-model';
-import { EditorState } from 'prosemirror-state';
+import type { MarkType } from 'prosemirror-model';
+import type { EditorState } from 'prosemirror-state';
 import { toggleMark } from 'prosemirror-commands';
 import { Button } from '../../../button/button';
-import { RteInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
 import { Tooltip } from '../../../tooltip/tooltip';
 import { Menu } from '../../../menu/menu';
 import { MenuItem } from '../../../menu-item/menu-item';

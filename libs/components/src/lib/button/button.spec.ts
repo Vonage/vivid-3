@@ -3,7 +3,7 @@ import {
 	fixture,
 	getControlElement,
 	setProperty,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';

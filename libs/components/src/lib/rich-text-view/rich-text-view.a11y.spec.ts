@@ -1,5 +1,6 @@
-import { axe, fixture } from '@repo/shared';
-import { RichTextView } from './rich-text-view';
+import { axe } from '@repo/shared/test-utils/axe';
+import { fixture } from '@repo/shared/test-utils/fixture';
+import type { RichTextView } from './rich-text-view';
 import '.';
 
 const COMPONENT_TAG = 'vwc-rich-text-view';

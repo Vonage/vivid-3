@@ -1,11 +1,6 @@
-import {
-	attr,
-	html,
-	ref,
-	type TemplateValue,
-	ViewTemplate,
-} from '@microsoft/fast-element';
-import { VividElement } from '../foundation/vivid-element/vivid-element';
+import type { ViewTemplate } from '@microsoft/fast-element';
+import { attr, html, ref, type TemplateValue } from '@microsoft/fast-element';
+import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor, MixinType } from '../utils/mixins';
 import { delegateAria, DelegatesAria } from '../aria/delegates-aria';
 import type { BoundAriaProperties } from '../aria/delegate-aria-behavior';

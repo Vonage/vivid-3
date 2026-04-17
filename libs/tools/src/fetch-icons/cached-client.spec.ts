@@ -1,4 +1,5 @@
-import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import type { Mock } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { getClient } from './cached-client';
 import { Client } from 'figma-js';
 import { hash } from 'ohash';

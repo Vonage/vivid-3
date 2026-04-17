@@ -98,6 +98,13 @@ export class Combobox extends WithContextualHelp(
 	private filter = '';
 
 	/**
+	 * Tracks whether the user is navigating options with arrow keys
+	 *
+	 * @internal
+	 */
+	private _isNavigatingWithKeyboard = false;
+
+	/**
 	 * Sets the element's appearance
 	 *
 	 * @public
@@ -137,7 +144,9 @@ export class Combobox extends WithContextualHelp(
 	 */
 	@attr({ mode: 'boolean', attribute: 'fixed-dropdown' }) fixedDropdown = false;
 
+	/** @internal */
 	_popup!: Popup;
+	/** @internal */
 	_anchor!: HTMLElement;
 
 	/**
@@ -502,7 +511,9 @@ export class Combobox extends WithContextualHelp(
 
 				/* v8 ignore else -- @preserve */
 				if (this.filteredOptions.length > 0) {
+					this._isNavigatingWithKeyboard = true;
 					super.keydownHandler(e);
+					this._isNavigatingWithKeyboard = false;
 				}
 
 				if (this.isAutocompleteInline) {
@@ -515,6 +526,16 @@ export class Combobox extends WithContextualHelp(
 			default: {
 				return true;
 			}
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	protected override setSelectedOptions(): void {
+		super.setSelectedOptions();
+		if (!this._isNavigatingWithKeyboard) {
+			this._activeDescendant = '';
 		}
 	}
 

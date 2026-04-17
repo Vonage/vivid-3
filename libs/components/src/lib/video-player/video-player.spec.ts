@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { MediaSkipBy } from '../enums';
 import { DEFAULT_PLAYBACK_RATES, VideoPlayer } from './video-player';
 import '.';
@@ -108,6 +108,10 @@ describe('vwc-video-player', () => {
 		});
 
 		it('should initialize the video when a valid src is provided', async () => {
+			const consoleErrorSpy = vi
+				.spyOn(console, 'error')
+				.mockImplementation(vi.fn());
+
 			element = (await fixture(
 				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 			)) as VideoPlayer;
@@ -120,6 +124,8 @@ describe('vwc-video-player', () => {
 
 			expect(bigPlayButtonExistsWithoutASource).toBeFalsy();
 			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
+
+			consoleErrorSpy.mockRestore();
 		});
 	});
 

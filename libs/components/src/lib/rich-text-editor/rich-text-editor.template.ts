@@ -1,6 +1,6 @@
 import { html, ref, type ViewTemplate } from '@microsoft/fast-element';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { RichTextEditor } from './rich-text-editor';
+import type { RichTextEditor } from './rich-text-editor';
 
 export const RichTextEditorTemplate = (
 	ctx: VividElementDefinitionContext

@@ -1,4 +1,4 @@
-import { type CalendarPickerLocale } from '../calendar-picker.locale';
+import type { CalendarPickerLocale } from '../calendar-picker.locale';
 import { buildMonthPickerGrid } from './monthPickerGrid';
 
 const enUsLocale = {

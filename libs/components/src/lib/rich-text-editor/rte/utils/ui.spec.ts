@@ -1,9 +1,9 @@
-import { elementUpdated } from '@repo/shared';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import { RteToolbarFeature } from '../features/toolbar';
 import { RteBase } from '../features/base';
 import { setup } from '../__tests__/test-utils';
 import type { Tooltip } from '../../../tooltip/tooltip';
-import { VwcMenuElement } from '../../../menu/definition';
+import type { VwcMenuElement } from '../../../menu/definition';
 import { RteTextBlockPickerFeature } from '../features/text-block-picker';
 import type { Select } from '../../../select/select';
 import {
@@ -32,7 +32,7 @@ describe('UiCtx', () => {
 
 describe('createSelect', () => {
 	it('should hide the tooltip when the select is open', async () => {
-		const { toolbarSelect } = await setup([
+		const rte = await setup([
 			new RteBase({ heading1: true, heading2: true }),
 			new RteTextBlockPickerFeature({
 				options: [
@@ -45,7 +45,7 @@ describe('createSelect', () => {
 			new RteToolbarFeature(),
 		]);
 
-		const select = toolbarSelect('Paragraph styles');
+		const select = rte.toolbarSelect('Paragraph styles');
 		const tooltip = select.nextElementSibling as Tooltip;
 
 		expect(tooltip.open).toBe(false);
@@ -70,11 +70,8 @@ describe('createSelect', () => {
 	});
 
 	it('should not call onSelect when value is empty', async () => {
-		const { instance, view } = await setup([
-			new RteBase(),
-			new RteToolbarFeature(),
-		]);
-		const ctx = new UiCtx(view, instance[impl], {
+		const rte = await setup([new RteBase(), new RteToolbarFeature()]);
+		const ctx = new UiCtx(rte.view, rte.instance[impl], {
 			popupPlacement: 'bottom',
 		});
 		const onSelect = vitest.fn();
@@ -113,8 +110,8 @@ describe('createButton', () => {
 	});
 
 	it('should set anchor to button when trigger is wrapped button', async () => {
-		const { instance } = await setup([new RteBase(), new RteToolbarFeature()]);
-		const ctx = new UiCtx(null as any, instance[impl], {
+		const rte = await setup([new RteBase(), new RteToolbarFeature()]);
+		const ctx = new UiCtx(null as any, rte.instance[impl], {
 			popupPlacement: 'bottom',
 		});
 		const buttonWrapper = createButton(ctx, { label: 'Button' });
@@ -131,8 +128,8 @@ describe('createButton', () => {
 
 describe('createMenu', () => {
 	it('should set anchor to trigger when trigger is regular element', async () => {
-		const { instance } = await setup([new RteBase(), new RteToolbarFeature()]);
-		const ctx = new UiCtx(null as any, instance[impl], {
+		const rte = await setup([new RteBase(), new RteToolbarFeature()]);
+		const ctx = new UiCtx(null as any, rte.instance[impl], {
 			popupPlacement: 'bottom',
 		});
 		const button = document.createElement('button');
@@ -147,8 +144,8 @@ describe('createMenu', () => {
 	});
 
 	it('should set anchor to button when trigger is wrapped button', async () => {
-		const { instance } = await setup([new RteBase(), new RteToolbarFeature()]);
-		const ctx = new UiCtx(null as any, instance[impl], {
+		const rte = await setup([new RteBase(), new RteToolbarFeature()]);
+		const ctx = new UiCtx(null as any, rte.instance[impl], {
 			popupPlacement: 'bottom',
 		});
 		const buttonWrapper = createButton(ctx, { label: 'Button' });
@@ -165,22 +162,19 @@ describe('createMenu', () => {
 
 describe('createSingleSlot', () => {
 	const setupForSlot = async () => {
-		const { element, view, instance } = await setup([
-			new RteBase(),
-			new RteToolbarFeature(),
-		]);
+		const rte = await setup([new RteBase(), new RteToolbarFeature()]);
 		return {
 			assignInput: async (slotName: string, value: string) => {
 				const input = document.createElement('input');
 				input.slot = slotName;
 				input.value = value;
-				element.appendChild(input);
-				await elementUpdated(element);
+				rte.element.appendChild(input);
+				await elementUpdated(rte.element);
 				return {
 					input,
 					unassign: async () => {
 						input.remove();
-						await elementUpdated(element);
+						await elementUpdated(rte.element);
 					},
 					triggerChange: () => {
 						const event = new InputEvent('change', {
@@ -193,12 +187,12 @@ describe('createSingleSlot', () => {
 				};
 			},
 			renderSlot: async (slotName: string, initialValue: string) => {
-				const ctx = new UiCtx(view, instance[impl], {
+				const ctx = new UiCtx(rte.view, rte.instance[impl], {
 					popupPlacement: 'bottom',
 				});
 				let value = initialValue;
 				const onChange = vitest.fn();
-				element.shadowRoot!.appendChild(
+				rte.element.shadowRoot!.appendChild(
 					createSingleSlot(ctx, {
 						name: slotName,
 						assignedProps: {

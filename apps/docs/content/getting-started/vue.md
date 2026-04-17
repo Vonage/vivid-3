@@ -274,6 +274,43 @@ This works fine, but with Vivid Vue we can use the `v-model` syntax to shorten t
 <VTextField label="Search" v-model="searchText" />
 ```
 
+## V-Model modifiers
+
+You can also use the `.trim`, `.number` and `.lazy` v-model modifiers with Vivid components.
+
+{% raw %}
+
+```vue preview
+<script setup lang="ts">
+import { VTextField } from '@vonage/vivid-vue';
+import { ref } from 'vue';
+
+const trimmedValue = ref('');
+const numberValue = ref<any>(0);
+const lazyValue = ref('');
+</script>
+
+<template>
+	<VTextField label="With .trim" v-model.trim="trimmedValue" />
+	<pre>{{ JSON.stringify(trimmedValue) }}</pre>
+	<VTextField label="With .number" v-model.number="numberValue" />
+	<pre>{{ JSON.stringify(numberValue) }}</pre>
+	<VTextField label="With .lazy" v-model.lazy="lazyValue" />
+	<pre>{{ JSON.stringify(lazyValue) }}</pre>
+</template>
+```
+
+{% endraw %}
+
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line" label="Note:"></vwc-icon>
+
+Using the `.number` modifier will not reflect a change in the type of the binding.
+
+The `.lazy` modifier is not supported in Vue 2.
+
+</vwc-note>
+
 ### Default Slots
 
 The `default` slot maps to the same syntax in both Vivid Vue & web components.
