@@ -110,10 +110,8 @@ module.exports = async (eleventyConfig) => {
 			if (lowerPath.startsWith('/components')) return 4;
 			if (lowerPath.startsWith('/accessibility')) return 7;
 			if (lowerPath === '/') return -1; // Home page first
-
 			return 999; // Other pages last
 		}
-
 		const ignorePatterns = [
 			'**/assets/**',
 			'**/pagefind/**',
@@ -121,24 +119,20 @@ module.exports = async (eleventyConfig) => {
 			'**/llms-full.txt',
 			'**/404.html',
 		];
-
 		// Collect HTML files
 		const htmlFiles = globSync(`${OUTPUT_DIR}/**/*.html`, {
 			ignore: ignorePatterns,
 		});
-
 		// Collect .txt files (like individual llms.txt exports)
 		const txtFiles = globSync(`${OUTPUT_DIR}/**/*.txt`, {
 			ignore: ['**/llms-full.txt', ...ignorePatterns],
 		});
 
 		const entries = [];
-
 		// Process HTML files
 		for (const filePath of htmlFiles) {
 			const html = fs.readFileSync(filePath, 'utf8');
 			const text = extractTextFromHTML(html);
-
 			if (text) {
 				const normalizedPath = normalizePath(
 					filePath.replace(`${OUTPUT_DIR}/`, '')
@@ -154,7 +148,6 @@ module.exports = async (eleventyConfig) => {
 		// Process .txt files
 		for (const filePath of txtFiles) {
 			const text = fs.readFileSync(filePath, 'utf8').trim();
-
 			if (text) {
 				const normalizedPath = normalizePath(
 					filePath.replace(`${OUTPUT_DIR}/`, '')
@@ -179,7 +172,6 @@ module.exports = async (eleventyConfig) => {
 		const output = entries
 			.map((entry) => `=== ${entry.path} ===\n\n${entry.content}`)
 			.join('\n\n');
-
 		const outputPath = path.join(OUTPUT_DIR, 'llms-full.txt');
 		fs.writeFileSync(outputPath, output, 'utf8');
 		console.log(`[11ty] Generated ${outputPath} (${entries.length} pages)`);
