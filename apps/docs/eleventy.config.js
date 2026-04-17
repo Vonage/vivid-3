@@ -61,7 +61,186 @@ module.exports = async (eleventyConfig) => {
 				content: '',
 			});
 		}
+
+		// Generate llms_full.txt from entire site content
+		await generateLLMSFullExport();
 	});
+
+	/**
+	 * Generate llms_full.txt containing the entire site content in machine-readable format
+	 */
+	async function generateLLMSFullExport() {
+		// Build navigation order map from nav-groups
+		const navGroupFiles = globSync(`${DOCS_DIR}/content/nav-groups/*.md`);
+		const navGroupOrder = new Map();
+
+		for (const file of navGroupFiles) {
+			const content = fs.readFileSync(file, 'utf8');
+			const match = content.match(/title:\s*(.+)\n[\s\S]*?order:\s*(\d+)/);
+			if (match) {
+				const title = match[1].trim();
+				const order = parseInt(match[2], 10);
+				navGroupOrder.set(title.toLowerCase(), { title, order });
+			}
+		}
+
+		// Determine section order from path
+		function getSectionOrder(path) {
+			const lowerPath = path.toLowerCase();
+
+			// Check for specific sections
+			if (lowerPath.startsWith('/whats-new'))
+				return navGroupOrder.get("what's new")?.order || 1;
+			if (lowerPath.startsWith('/getting-started'))
+				return navGroupOrder.get('getting started')?.order || 0;
+			if (lowerPath.startsWith('/guides'))
+				return navGroupOrder.get('guides')?.order || 3;
+			if (lowerPath.startsWith('/designs'))
+				return navGroupOrder.get('designs')?.order || 5;
+			if (lowerPath.startsWith('/design-tokens'))
+				return navGroupOrder.get('design tokens')?.order || 5;
+			if (lowerPath.startsWith('/migration-guides'))
+				return navGroupOrder.get('migration guides')?.order || 6;
+			if (lowerPath.startsWith('/resources'))
+				return navGroupOrder.get('resources')?.order || 8;
+			if (lowerPath.startsWith('/icons'))
+				return navGroupOrder.get('icons')?.order || 9;
+			if (lowerPath.startsWith('/components')) return 4; // Components between guides and designs
+			if (lowerPath.startsWith('/accessibility')) return 7; // Root section
+			if (lowerPath === '/') return -1; // Home page first
+
+			return 999; // Other pages last
+		}
+
+		const ignorePatterns = [
+			'**/assets/**',
+			'**/pagefind/**',
+			'**/whats-new/**',
+			'**/llms_full.txt',
+			'**/404.html',
+		];
+
+		// Collect HTML files
+		const htmlFiles = globSync(`${OUTPUT_DIR}/**/*.html`, {
+			ignore: ignorePatterns,
+		});
+
+		// Collect .txt files (like individual llms.txt exports)
+		const txtFiles = globSync(`${OUTPUT_DIR}/**/*.txt`, {
+			ignore: ['**/llms_full.txt', ...ignorePatterns],
+		});
+
+		const entries = [];
+
+		// Process HTML files
+		for (const filePath of htmlFiles) {
+			const html = fs.readFileSync(filePath, 'utf8');
+			const text = extractTextFromHTML(html);
+
+			if (text) {
+				const normalizedPath = normalizePath(
+					filePath.replace(`${OUTPUT_DIR}/`, '')
+				);
+				entries.push({
+					path: normalizedPath,
+					content: text,
+					sectionOrder: getSectionOrder(normalizedPath),
+				});
+			}
+		}
+
+		// Process .txt files
+		for (const filePath of txtFiles) {
+			const text = fs.readFileSync(filePath, 'utf8').trim();
+
+			if (text) {
+				const normalizedPath = normalizePath(
+					filePath.replace(`${OUTPUT_DIR}/`, '')
+				);
+				entries.push({
+					path: normalizedPath,
+					content: text,
+					sectionOrder: getSectionOrder(normalizedPath),
+				});
+			}
+		}
+
+		// Sort by section order, then by path
+		entries.sort((a, b) => {
+			if (a.sectionOrder !== b.sectionOrder) {
+				return a.sectionOrder - b.sectionOrder;
+			}
+			return a.path.localeCompare(b.path);
+		});
+
+		// Generate output
+		const output = entries
+			.map((entry) => `=== ${entry.path} ===\n\n${entry.content}`)
+			.join('\n\n');
+
+		const outputPath = path.join(OUTPUT_DIR, 'llms_full.txt');
+		fs.writeFileSync(outputPath, output, 'utf8');
+		console.log(`[11ty] Generated ${outputPath} (${entries.length} pages)`);
+	}
+
+	/**
+	 * Extract plain text from HTML content
+	 */
+	function extractTextFromHTML(html) {
+		// Remove script, style, and other non-content tags
+		let text = html
+			.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+			.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+			.replace(/<noscript\b[^<]*(?:(?!<\/noscript>)<[^<]*)*<\/noscript>/gi, '')
+			.replace(/<template\b[^<]*(?:(?!<\/template>)<[^<]*)*<\/template>/gi, '')
+			.replace(/<svg\b[^<]*(?:(?!<\/svg>)<[^<]*)*<\/svg>/gi, '');
+
+		// Remove HTML tags but preserve content
+		text = text.replace(/<[^>]+>/g, ' ');
+
+		// Normalize whitespace
+		text = text
+			.replace(/&nbsp;/g, ' ')
+			.replace(/&amp;/g, '&')
+			.replace(/&lt;/g, '<')
+			.replace(/&gt;/g, '>')
+			.replace(/&quot;/g, '"')
+			.replace(/&#39;/g, "'")
+			.replace(/[\r\n\t]+/g, ' ')
+			.replace(/\s+/g, ' ')
+			.trim();
+
+		return text;
+	}
+
+	/**
+	 * Normalize file path to URL format
+	 */
+	function normalizePath(filePath) {
+		// Convert to forward slashes
+		filePath = filePath.replace(/\\/g, '/');
+
+		// Remove index.html → directory
+		if (filePath.endsWith('index.html')) {
+			filePath = filePath.slice(0, -'index.html'.length);
+		}
+
+		// Remove trailing slash, unless it's root
+		if (filePath !== '/' && filePath.endsWith('/')) {
+			filePath = filePath.slice(0, -1);
+		}
+
+		// Ensure root path
+		if (!filePath || filePath === '') {
+			return '/';
+		}
+
+		if (!filePath.startsWith('/')) {
+			filePath = '/' + filePath;
+		}
+
+		return filePath;
+	}
 
 	const EleventyVitePlugin = await import('@11ty/eleventy-plugin-vite');
 
@@ -97,7 +276,6 @@ module.exports = async (eleventyConfig) => {
 			],
 			build: {
 				emptyOutDir: false,
-				chunkSizeWarningLimit: 2000,
 			},
 			resolve: {
 				alias: {
@@ -177,19 +355,44 @@ module.exports = async (eleventyConfig) => {
 	});
 
 	eleventyConfig.addFilter('includeMd', (filePath) => {
-		if (
-			!filePath.endsWith('.md') ||
-			!filePath.startsWith('./libs/components/src/lib/')
-		)
+		if (!filePath || !filePath.endsWith('.md')) return '';
+
+		let markdownPath;
+		if (path.isAbsolute(filePath)) {
+			markdownPath = filePath;
+		} else if (filePath.startsWith('./libs/components/src/lib/')) {
+			markdownPath = path.resolve(
+				WORKSPACE_ROOT,
+				filePath.replaceAll('../', '')
+			);
+		} else {
 			return '';
+		}
 
-		const markdownPath = path.resolve(
-			WORKSPACE_ROOT,
-			filePath.replaceAll('../', '')
-		);
 		if (!fs.existsSync(markdownPath)) return '';
-
 		return fs.readFileSync(markdownPath, 'utf8');
+	});
+
+	eleventyConfig.addFilter('cleanLLM', (content) => {
+		if (!content) return '';
+
+		return (
+			content
+				// Remove HTML tags and attributes
+				.replace(/<[^>]*>/g, '')
+				// Remove all markdown code blocks (```...```)
+				.replace(/```[\s\S]*?```/gs, '')
+				// Remove ```html preview ... ``` code blocks
+				.replace(/```*```/gs, '')
+				// Remove other code blocks (empty or with preview commands)
+				.replace(/```\s*preview[^`]*```/gs, '')
+				// Remove empty code blocks
+				.replace(/```\s*```/gs, '')
+				// Remove multiple consecutive newlines
+				.replace(/\n{4,}/g, '\n\n')
+				// Trim whitespace
+				.trim()
+		);
 	});
 
 	eleventyConfig.addFilter('onlyPublicPages', onlyPublicPages);

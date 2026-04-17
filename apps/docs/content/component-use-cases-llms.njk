@@ -9,4 +9,5 @@ eleventyComputed:
   pageTitle: "{{ component.concept }} - Use Cases"
 ---
 # {{ pageTitle }}
-{{ component.documentation.useCases | includeMd | safe }}
+
+{{ component.documentation.useCases | includeMd | cleanLLM | safe }}
