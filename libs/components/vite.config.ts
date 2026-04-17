@@ -78,7 +78,6 @@ export default mergeConfig(
 			lib: {
 				entry: input,
 				name: 'components',
-				formats: ['es', 'cjs'],
 				cssFileName: 'style',
 			},
 			minify: false,
@@ -90,7 +89,6 @@ export default mergeConfig(
 					/^prosemirror-(?!.*\.css($|\?))/,
 					'dompurify',
 					'date-fns',
-					'ramda',
 					'uuid',
 					/^vanilla-colorful/,
 					/^video\.js/,

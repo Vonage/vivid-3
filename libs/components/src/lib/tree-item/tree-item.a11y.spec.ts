@@ -1,7 +1,8 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import type { TreeView } from '../tree-view/tree-view';
 import '../tree-view';
-import { TreeItem } from './tree-item';
+import type { TreeItem } from './tree-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tree-item';

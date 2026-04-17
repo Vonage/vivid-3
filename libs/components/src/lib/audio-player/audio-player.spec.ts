@@ -1,9 +1,13 @@
-import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
 import { Connotation, MediaSkipBy } from '../enums';
-import { Button } from '../button/button';
-import { Slider } from '../slider/slider';
+import type { Button } from '../button/button';
+import type { Slider } from '../slider/slider';
 import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
-import { MenuItem } from '../menu-item/menu-item';
+import type { MenuItem } from '../menu-item/menu-item';
 import type { Menu } from '../menu/menu';
 import { AudioPlayer } from './audio-player';
 import '.';
@@ -32,7 +36,7 @@ class AudioMock extends Audio {
 	}
 }
 
-beforeAll(() => {
+beforeEach(() => {
 	// Mock URL methods
 	Object.defineProperty(URL, 'createObjectURL', {
 		value: mockCreateObjectURL,
@@ -47,7 +51,7 @@ beforeAll(() => {
 	window.Audio = AudioMock as any;
 });
 
-afterAll(() => {
+afterEach(() => {
 	// Restore original implementations
 	Object.defineProperty(URL, 'createObjectURL', {
 		value: originalCreateObjectURL,
@@ -56,12 +60,6 @@ afterAll(() => {
 		value: originalRevokeObjectURL,
 	});
 	window.Audio = originalAudio;
-});
-
-beforeEach(() => {
-	// Reset mocks before each test
-	mockCreateObjectURL.mockClear();
-	mockRevokeObjectURL.mockClear();
 });
 
 describe('vwc-audio-player', () => {
@@ -154,17 +152,17 @@ describe('vwc-audio-player', () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG} timestamp src="${SOURCE}"></${COMPONENT_TAG}>`
 		)) as AudioPlayer;
-
-		vi.spyOn(nativeAudioElement, 'play').mockImplementation(() => {
+		const audio = nativeAudioElement;
+		vi.spyOn(audio, 'play').mockImplementation(() => {
 			return new Promise((res) => {
-				vi.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(false);
-				nativeAudioElement.dispatchEvent(new Event('play'));
+				vi.spyOn(audio, 'paused', 'get').mockReturnValue(false);
+				audio.dispatchEvent(new Event('play', { bubbles: false }));
 				res();
 			});
 		});
-		vi.spyOn(nativeAudioElement, 'pause').mockImplementation(async () => {
-			vi.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(true);
-			nativeAudioElement.dispatchEvent(new Event('pause'));
+		vi.spyOn(audio, 'pause').mockImplementation(async () => {
+			vi.spyOn(audio, 'paused', 'get').mockReturnValue(true);
+			audio.dispatchEvent(new Event('pause', { bubbles: false }));
 		});
 
 		pauseButton = getPauseButtonElement();
@@ -318,7 +316,7 @@ describe('vwc-audio-player', () => {
 						this.setAttribute('src', value);
 					});
 
-				const consoleSpy = vi.spyOn(console, 'log');
+				const consoleSpy = vi.spyOn(console, 'log').mockImplementation(vi.fn());
 
 				element['setSrc'](originalUrl, mockBlob);
 
@@ -518,6 +516,10 @@ describe('vwc-audio-player', () => {
 			});
 
 			it('should handle errors during fetch and clean up the abort controller', async () => {
+				const consoleErrorSpy = vi
+					.spyOn(console, 'error')
+					.mockImplementation(vi.fn());
+
 				element.durationFallback = true;
 				setAudioElementDuration(Infinity);
 				element.src = 'https://example.com/audio.mp3';
@@ -533,6 +535,8 @@ describe('vwc-audio-player', () => {
 
 				// The abort controller should be cleaned up
 				expect((element as any).fetchAbortController).toBeUndefined();
+
+				consoleErrorSpy.mockRestore();
 			});
 
 			it('should call URL.createObjectURL when setting source with a blob', () => {
@@ -633,6 +637,10 @@ describe('vwc-audio-player', () => {
 					};
 				});
 
+				const consoleErrorSpy = vi
+					.spyOn(console, 'error')
+					.mockImplementation(vi.fn());
+
 				element.durationFallback = true;
 				setAudioElementDuration(Infinity);
 				element.src = 'https://example.com/audio1.mp3';
@@ -651,8 +659,10 @@ describe('vwc-audio-player', () => {
 				// Clean up
 				resolveFetch &&
 					resolveFetch({
+						blob: () => Promise.resolve(new Blob()),
 						arrayBuffer: () => Promise.resolve(new ArrayBuffer(8)),
 					});
+				consoleErrorSpy.mockRestore();
 			});
 		});
 	});
@@ -775,18 +785,24 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should call play only once if dragged twice', async () => {
+			let pollCallback: (() => void) | undefined;
+			const setIntervalSpy = vi
+				.spyOn(window, 'setInterval')
+				.mockImplementationOnce((fn) => {
+					pollCallback = fn;
+					return 0 as any;
+				});
 			setCurrentTimeAndDuration(10, 100);
 			element.play();
-			await elementUpdated(element);
 
 			dragSliderTo(20);
 			dragSliderTo(25);
-			await elementUpdated(element);
+			setIntervalSpy.mockRestore();
+			pollCallback!();
 
 			const playSpy = vi.spyOn(element, 'play');
 			stopSliderDrag();
-			getSliderElement().value = '20';
-			await elementUpdated(element);
+			pollCallback!();
 
 			expect(playSpy).toHaveBeenCalledTimes(1);
 		});
@@ -896,18 +912,25 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should keep playing when stop dragging the slider', async () => {
-			const duration = 100;
-			setCurrentTimeAndDuration(10, duration);
+			let pollCallback: (() => void) | undefined;
+			const setIntervalSpy = vi
+				.spyOn(window, 'setInterval')
+				.mockImplementationOnce((fn) => {
+					pollCallback = fn;
+					return 0 as any;
+				});
+			setCurrentTimeAndDuration(10, 100);
 			element.play();
-			await elementUpdated(element);
 
 			dragSliderTo(20);
-			await elementUpdated(element);
+			setIntervalSpy.mockRestore();
+			expect(element.paused).toBe(true);
+
+			pollCallback!();
+			expect(element.paused).toBe(true);
 
 			stopSliderDrag();
-			getSliderElement().value = '25';
-			await elementUpdated(element);
-
+			pollCallback!();
 			expect(element.paused).toBe(false);
 		});
 	});
@@ -942,7 +965,7 @@ describe('vwc-audio-player', () => {
 			element.addEventListener('play', playSpy);
 
 			slider.isDragging = true;
-			nativeAudioElement.dispatchEvent(new Event('play'));
+			nativeAudioElement.dispatchEvent(new Event('play', { bubbles: false }));
 			await elementUpdated(element);
 
 			expect(playSpy).not.toHaveBeenCalled();
@@ -954,7 +977,7 @@ describe('vwc-audio-player', () => {
 			element.addEventListener('pause', pauseSpy);
 
 			slider.isDragging = true;
-			nativeAudioElement.dispatchEvent(new Event('pause'));
+			nativeAudioElement.dispatchEvent(new Event('pause', { bubbles: false }));
 			await elementUpdated(element);
 
 			expect(pauseSpy).not.toHaveBeenCalled();

@@ -98,7 +98,7 @@ const installSafariWorkaroundStyleIfNeeded = (forElement: TextField) => {
  * @slot helper-text - Describes how to use the text-field. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} input - Fires a custom 'input' event when the value has changed
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
- * @vueModel modelValue value input `event.currentTarget.value`
+ * @vueModel modelValue value input,@lazy:change `event.currentTarget.value`
  * @testAction fill fill #control
  * @testAction clear clear #control
  * @testAction blur blur #control

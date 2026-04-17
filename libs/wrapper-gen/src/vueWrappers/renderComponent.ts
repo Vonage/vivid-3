@@ -1,17 +1,18 @@
-import { TypeResolver } from '../common/types';
+import type { TypeResolver } from '../common/types';
 import { vuePropTypes } from './vuePropTypes';
 import { wrappedComponentName } from './name';
 import { determinePropForwarding } from './propForwarding';
-import { Import, importsForTypes, renderImports } from './imports';
+import type { Import } from './imports';
+import { importsForTypes, renderImports } from './imports';
 import { getEventType } from './types';
 import { renderJsDoc } from './jsDoc';
-import { resolveVueModels } from './vueModels';
+import { resolveVueModels, modifiersPropName } from './vueModels';
 import { getExportedClassName } from '../common/component';
 import type { ComponentDef } from '@repo/metadata-extractor';
+import type { TypeStr } from '@repo/metadata-extractor/metadata/type-str';
 import {
 	parseTypeImports,
 	parseTypeStr,
-	TypeStr,
 } from '@repo/metadata-extractor/metadata/type-str';
 import { camelCase } from 'change-case';
 import { vue3EventHandlerName } from './events';
@@ -43,7 +44,7 @@ export const renderComponent = (
 
 	const { props, vueModels, vueModelEvents } = resolveVueModels(componentDef);
 
-	if (props.length > 0) {
+	if (props.length > 0 || vueModels.length > 0) {
 		imports.push({ name: 'PropType', fromModule: vueModule });
 	}
 
@@ -168,8 +169,13 @@ export const renderComponent = (
 
 	const eventsSrc = [
 		...componentDef.events.map(({ name, type }) => {
+			// Models whose primary event is this event
 			const eventVueModels = vueModels.filter((model) =>
 				model.eventNames.includes(name)
+			);
+			// Models whose lazy event is this event
+			const lazyVueModels = vueModels.filter((model) =>
+				model.lazyEventNames?.includes(name)
 			);
 			return `'${name}': (event: ${getEventType(
 				type,
@@ -177,10 +183,20 @@ export const renderComponent = (
 				false
 			)}) => {
           ${eventVueModels
-						.map(
-							(vueModel) =>
-								`this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});`
-						)
+						.map((vueModel) => {
+							const modProp = modifiersPropName(vueModel.name);
+							const emitCode = `this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});`;
+							if (vueModel.lazyEventNames?.length) {
+								return `if (!this.${modProp}?.lazy) {\n            ${emitCode}\n          }`;
+							}
+							return emitCode;
+						})
+						.join('\n')}
+          ${lazyVueModels
+						.map((vueModel) => {
+							const modProp = modifiersPropName(vueModel.name);
+							return `if (this.${modProp}?.lazy) {\n            this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});\n          }`;
+						})
 						.join('\n')}
           this.$emit('${name}', event);
         }`;
@@ -190,8 +206,13 @@ export const renderComponent = (
 
 	const eventsV3Src = [
 		...componentDef.events.map(({ name, type }) => {
+			// Models whose primary event is this event
 			const eventVueModels = vueModels.filter((model) =>
 				model.eventNames.includes(name)
+			);
+			// Models whose lazy event is this event
+			const lazyVueModels = vueModels.filter((model) =>
+				model.lazyEventNames?.includes(name)
 			);
 			return `'${vue3EventHandlerName(name)}': (event: ${getEventType(
 				type,
@@ -199,10 +220,20 @@ export const renderComponent = (
 				false
 			)}) => {
 					 ${eventVueModels
-							.map(
-								(vueModel) =>
-									`this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});`
-							)
+							.map((vueModel) => {
+								const modProp = modifiersPropName(vueModel.name);
+								const emitCode = `this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});`;
+								if (vueModel.lazyEventNames?.length) {
+									return `if (!this.${modProp}?.lazy) {\n            ${emitCode}\n          }`;
+								}
+								return emitCode;
+							})
+							.join('\n')}
+					 ${lazyVueModels
+							.map((vueModel) => {
+								const modProp = modifiersPropName(vueModel.name);
+								return `if (this.${modProp}?.lazy) {\n            this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});\n          }`;
+							})
 							.join('\n')}
           this.$emit('${name}', event);
         }`;
@@ -239,6 +270,10 @@ export const renderComponent = (
 	 * myProp: {type: [String, Number] as PropType<string | number>, default: undefined},
 	 * Note: When there are no props, props key needs to be omitted or the typings will break in Vue 3.
 	 */
+	const modifiersProps = vueModels.map(
+		(vueModel) =>
+			`${modifiersPropName(vueModel.name)}: {type: Object as PropType<Record<string, boolean>>, default: () => ({})}`
+	);
 	const propDefinitionsSrc = props.length
 		? `props: { ${props
 				.flatMap((prop) => {
@@ -265,6 +300,7 @@ export const renderComponent = (
 					parseTypeImports(type).typeStr
 				}>, default: undefined}`;
 				})
+				.concat(...modifiersProps)
 				.join(',\n')}
 			},`
 		: '';

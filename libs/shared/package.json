@@ -4,7 +4,12 @@
 	"private": true,
 	"type": "module",
 	"exports": {
-		".": "./src/index.ts",
+		"./test-utils/axe": "./src/lib/test-utils/axe.ts",
+		"./test-utils/fixture": "./src/lib/test-utils/fixture.ts",
+		"./test-utils/form-association": "./src/lib/test-utils/form-association/index.ts",
+		"./test-utils/delegates-focus-polyfill": "./src/lib/test-utils/delegatesFocusPolyfill.ts",
+		"./test-utils/active-element": "./src/lib/test-utils/active-element.ts",
+		"./test-utils/shadow-roots": "./src/lib/test-utils/shadow-roots.ts",
 		"./utils": {
 			"sass": "./src/lib/sass/utils/index.scss"
 		},
@@ -33,7 +38,7 @@
 		"stylelint": "stylelint 'src/**/*.{css,scss}'",
 		"stylelint:fix": "stylelint 'src/**/*.{css,scss}' --fix",
 		"test": "vitest run",
-		"test:coverage": "vitest run --coverage",
+		"test:coverage": "vitest run --coverage && relativize-coverage .",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
@@ -43,6 +48,7 @@
 		"@microsoft/fast-element": "catalog:",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/stylelint-config": "workspace:*",
+		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"vitest": "catalog:",

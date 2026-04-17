@@ -13,7 +13,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<style>
 				#wrapper {
 					width: 1000px;
-					height: 3000px;
+					height: 3200px;
 					padding: 12px;
 				}
 				.wrapper-div {
@@ -150,7 +150,23 @@ appearance="outlined"
 ></vwc-button>
 </vwc-card>
 
+<vwc-card
+headline="Card with body Slot"
+subtitle="Extra text below the card headline"
+>
+<div slot="body">
+This is custom content in the body slot.
+</div>
+</vwc-card>
+
 <vwc-card>
+<div slot="body">
+This is custom content in the body slot.
+</div>
+</vwc-card>
+
+<vwc-card>
+
 <vwc-layout gutters="small" slot="main">
 Assign custom template using "main" slot.
 </vwc-layout>
@@ -398,7 +414,7 @@ subtitle="Extra text below the card headline"
 </div>
 `;
 
-	await page.setViewportSize({ width: 1024, height: 3000 });
+	await page.setViewportSize({ width: 1024, height: 3200 });
 
 	await loadComponents({
 		page,

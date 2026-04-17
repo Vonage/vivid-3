@@ -1,8 +1,5 @@
-import {
-	ExecutionContext,
-	HTMLView,
-	ViewTemplate,
-} from '@microsoft/fast-element';
+import type { HTMLView } from '@microsoft/fast-element';
+import { ExecutionContext, ViewTemplate } from '@microsoft/fast-element';
 
 /**
  * Options used to customize the creation of the test fixture.

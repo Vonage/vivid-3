@@ -1,4 +1,5 @@
-import { type Command, EditorState } from 'prosemirror-state';
+import type { EditorState } from 'prosemirror-state';
+import type { Command } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 import { createButton, createButtonGroup, createMenu } from '../utils/ui';
 import {

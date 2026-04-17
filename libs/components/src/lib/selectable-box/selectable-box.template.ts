@@ -5,7 +5,7 @@ import { Checkbox } from '../checkbox/checkbox';
 import { Radio } from '../radio/radio';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { delegateAria } from '../../shared/aria/delegates-aria';
-import { SelectableBox } from './selectable-box';
+import type { SelectableBox } from './selectable-box';
 
 const getClasses = ({
 	connotation,

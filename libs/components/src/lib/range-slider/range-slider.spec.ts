@@ -1,4 +1,8 @@
-import { elementUpdated, fixture, getControlElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@repo/shared/test-utils/fixture';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { Connotation } from '../enums';
 import { setLocale } from '../../shared/localization';

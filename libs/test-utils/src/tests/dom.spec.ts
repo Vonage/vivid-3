@@ -4,7 +4,7 @@ import { expect, test } from 'vitest';
 import { enableAutoUnmount, mount } from '@vue/test-utils';
 import { vividDOM } from '../dom';
 import { testCases } from './test-cases';
-import { elementUpdated } from '@repo/shared';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 
 enableAutoUnmount(afterEach);
 

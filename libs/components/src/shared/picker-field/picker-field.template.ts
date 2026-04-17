@@ -4,7 +4,7 @@ import type { VividElementDefinitionContext } from '../design-system/defineVivid
 import { Popup } from '../../lib/popup/popup';
 import { TextField } from '../../lib/text-field/text-field';
 import { Button } from '../../lib/button/button';
-import { PickerField } from './picker-field';
+import type { PickerField } from './picker-field';
 
 export const PickerFieldTemplate = (
 	context: VividElementDefinitionContext,

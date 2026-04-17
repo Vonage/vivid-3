@@ -14,11 +14,12 @@
 	"scripts": {
 		"build": "vite build",
 		"test": "vitest run",
-		"test:coverage": "vitest run --coverage",
+		"test:coverage": "vitest run --coverage && relativize-coverage .",
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"@microsoft/fast-element": "catalog:",
+		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@typescript-eslint/utils": "^8.0.0",

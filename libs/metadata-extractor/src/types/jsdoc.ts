@@ -1,4 +1,5 @@
-import { type ClassDeclaration, JSDocableNode, type JSDocTag } from 'ts-morph';
+import type { JSDocableNode } from 'ts-morph';
+import type { ClassDeclaration, JSDocTag } from 'ts-morph';
 
 export const getJSDocTags = (
 	node: JSDocableNode,

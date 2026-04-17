@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { Icon } from '../icon/icon';
 import { Badge } from './badge';
 import '.';

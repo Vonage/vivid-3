@@ -1,10 +1,8 @@
-import {
-	html,
+import type {
 	InlineTemplateDirective,
-	slotted,
 	ViewTemplate,
-	when,
 } from '@microsoft/fast-element';
+import { html, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';
@@ -17,7 +15,8 @@ const getClasses = (_: Card) =>
 	classNames(
 		'base',
 		['hide-footer', !_.footerSlottedContent || !_.footerSlottedContent.length],
-		['hide-header', shouldHideHeader(_)]
+		['hide-header', shouldHideHeader(_)],
+		['hide-body', !_.bodySlottedContent || !_.bodySlottedContent.length]
 	);
 
 function renderHeaderIcon(iconTag: InlineTemplateDirective) {
@@ -116,6 +115,9 @@ function renderCardContent(context: VividElementDefinitionContext) {
 								${renderHeader(iconTag)} ${renderMetaSlot()}
 							</div>
 							${when((x) => x.text, text())}
+							<div class="body-wrapper">
+								<slot name="body" ${slotted('bodySlottedContent')}></slot>
+							</div>
 						</div>
 					</slot>
 					<div class="footer">

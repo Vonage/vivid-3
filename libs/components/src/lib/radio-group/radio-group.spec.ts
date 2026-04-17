@@ -3,8 +3,8 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-	listenToFormSubmission,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
+import { listenToFormSubmission } from '@repo/shared/test-utils/form-association';
 import type { Radio } from '../radio/radio';
 import {
 	itShouldDisplayErrorTextFeedback,

@@ -45,7 +45,6 @@ catalog:
   '@types/lodash': ^4.17.24
   '@types/markdown-it': ^14.1.0
   '@types/node': ^20.19.25
-  '@types/ramda': ^0.31.1
   '@types/react': ^18.3.27
   '@types/react-dom': ^18.3.7
   '@typescript-eslint/eslint-plugin': ^8.0.0
@@ -115,7 +114,6 @@ catalog:
   prosemirror-state: ^1.4.4
   prosemirror-transform: ^1.11.0
   prosemirror-view: ^1.41.6
-  ramda: ^0.32.0
   react: ^18.3.1
   react-dom: ^18.3.1
   resolve.exports: ^2.0.3

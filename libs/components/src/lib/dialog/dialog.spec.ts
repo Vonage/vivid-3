@@ -1,4 +1,8 @@
-import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
 import * as dialogPolyfill from 'dialog-polyfill';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';

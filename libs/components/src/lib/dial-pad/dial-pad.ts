@@ -1,7 +1,7 @@
 import { attr, observable } from '@microsoft/fast-element';
 import type { Size } from '../enums.js';
 import { Localized } from '../../shared/patterns';
-import { TextField } from '../text-field/text-field';
+import type { TextField } from '../text-field/text-field';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { Button } from '../button/button';
@@ -25,7 +25,7 @@ export type DialPadSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @event {CustomEvent<HTMLElement>}keypad-click - Emitted when a digit button is clicked
  * @event {CustomEvent<undefined>} dial - Emitted when the call button is clicked
  * @event {CustomEvent<undefined>} end-call - Emitted when the end call button is clicked
- * @vueModel modelValue value input `event.currentTarget.value`
+ * @vueModel modelValue value input,@lazy:change `event.currentTarget.value`
  *
  */
 

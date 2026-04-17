@@ -13,7 +13,7 @@ import { BaseColorPicker } from '../../shared/color-picker';
  * @component simple-color-picker
  * @slot anchor - Slot for attaching the toggle button
  * @event {CustomEvent<undefined>} change - Fires when the value changes
- * @vueModel modelValue value input `event.currentTarget.value`
+ * @vueModel modelValue value input,@lazy:change `event.currentTarget.value`
  */
 export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	/**
