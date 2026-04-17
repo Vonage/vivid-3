@@ -201,11 +201,11 @@ module.exports = async (eleventyConfig) => {
 		// Normalize whitespace
 		text = text
 			.replace(/&nbsp;/g, ' ')
-			.replace(/&amp;/g, '&')
 			.replace(/&lt;/g, '<')
 			.replace(/&gt;/g, '>')
 			.replace(/&quot;/g, '"')
 			.replace(/&#39;/g, "'")
+			.replace(/&amp;/g, '&')
 			.replace(/[\r\n\t]+/g, ' ')
 			.replace(/\s+/g, ' ')
 			.trim();
