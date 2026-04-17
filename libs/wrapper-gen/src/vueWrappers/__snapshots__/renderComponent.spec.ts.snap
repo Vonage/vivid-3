@@ -121,13 +121,13 @@ startModifiers: {type: Object as PropType<Record<string, boolean>>, default: () 
             class: 'vvd-component',
             domProps: { ...((this.forcedDomProp) !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}),...((this.importedType) !== undefined ? {'importedType': this.importedType } : {}),...((this.externalType) !== undefined ? {'externalType': this.externalType } : {}) },
             on: { 'example-event': (event: Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) => {
           
           
           this.$emit('example-event', event);
         },'input': (event: Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) => {
           if (!this.modelModifiers?.lazy) {
             this.$emit('update:modelValue', event.currentTarget.value);
@@ -136,7 +136,7 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
           
           this.$emit('input', event);
         },'change': (event: Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) => {
           
           if (this.modelModifiers?.lazy) {
@@ -144,7 +144,7 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
           }
           this.$emit('change', event);
         },'input:start': (event: CustomEvent<{a: string | number}> & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) => {
           this.$emit('update:start', event.currentTarget.start);
           
@@ -173,13 +173,13 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
           ref: 'element',
           class: 'vvd-component',
           ...handleVue3Props({...((this.sameEvent ?? this.exampleProp) !== undefined ? {'^example-prop': this.sameEvent ?? this.exampleProp } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'^icon-type': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^current-value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanProp) !== undefined && (this.booleanProp) !== false ? {'^boolean-prop': this.booleanProp } : {}),...((this.importedType) !== undefined ? {'.importedType': this.importedType } : {}),...((this.externalType) !== undefined ? {'.externalType': this.externalType } : {})}),'onExampleEvent': (event: Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) => {
 					 
 					 
           this.$emit('example-event', event);
         },'onInput': (event: Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) => {
 					 if (!this.modelModifiers?.lazy) {
             this.$emit('update:modelValue', event.currentTarget.value);
@@ -188,7 +188,7 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
 					 
           this.$emit('input', event);
         },'onChange': (event: Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) => {
 					 
 					 if (this.modelModifiers?.lazy) {
@@ -196,7 +196,7 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
           }
           this.$emit('change', event);
         },'onInput:start': (event: CustomEvent<{a: string | number}> & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) => {
 					 this.$emit('update:start', event.currentTarget.start);
 					 
@@ -288,14 +288,14 @@ startModifiers: {type: Object as PropType<Record<string, boolean>>, default: () 
  * @type {Event}
  */
 				['example-event'](event: Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) { return true },
 
 				/**
  * @type {Event}
  */
 				['input'](event: Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) { return true },
 
 				/**
@@ -303,14 +303,14 @@ startModifiers: {type: Object as PropType<Record<string, boolean>>, default: () 
  * @type {Event}
  */
 				['change'](event: Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) { return true },
 
 				/**
  * @type {CustomEvent<{a: string | number}>}
  */
 				['input:start'](event: CustomEvent<{a: string | number}> & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		}) { return true },
 
 				/**
