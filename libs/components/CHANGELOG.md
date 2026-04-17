@@ -4,6 +4,32 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.17.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.16.0...vivid-v5.17.0) (2026-04-17)
+
+
+### Features
+
+* **card:** adds new body slot (VIV-000) ([#2864](https://github.com/Vonage/vivid-3/issues/2864)) ([def34a4](https://github.com/Vonage/vivid-3/commit/def34a493898e472e28a2564a7eabf354d00c5c5))
+* **dial-pad:** adds size attr and condensed variant (VIV-3151)  ([#2837](https://github.com/Vonage/vivid-3/issues/2837)) ([d53ad9e](https://github.com/Vonage/vivid-3/commit/d53ad9e25a816153b732e70f6e5cb01dd75b0d9c))
+* **file-picker:** add disabled state (APIVIV-15) ([#2859](https://github.com/Vonage/vivid-3/issues/2859)) ([a5f8f44](https://github.com/Vonage/vivid-3/commit/a5f8f44d4946e3d607fd9dde63542a9c1d52c5aa))
+* **rich-text-editor:** add character count feature (VIV-3205) ([#2854](https://github.com/Vonage/vivid-3/issues/2854)) ([e7097a3](https://github.com/Vonage/vivid-3/commit/e7097a3bb9706548848c0598f2fed6443ca5e568))
+* **table:** table sorting button (APIVIV-24) ([#2851](https://github.com/Vonage/vivid-3/issues/2851)) ([154b4ae](https://github.com/Vonage/vivid-3/commit/154b4ae48a064c3351e854e0b1ddae2853e93566))
+* **vue-wrappers:** support v-model modifiers (VIV-3202) ([#2849](https://github.com/Vonage/vivid-3/issues/2849)) ([cd59f5f](https://github.com/Vonage/vivid-3/commit/cd59f5fbb1e61ab151d9183b98bc7a687b16b33d))
+
+
+### Bug Fixes
+
+* **combobox:** fix focus jumping to selected option on listbox open (APIVIV-19) ([#2853](https://github.com/Vonage/vivid-3/issues/2853)) ([2a9fc08](https://github.com/Vonage/vivid-3/commit/2a9fc0852fb88245c8be7cd1923254d7ae2daa55))
+* **menu:** fix tooltip unintentionally closing menu (APIVIV-10) ([#2845](https://github.com/Vonage/vivid-3/issues/2845)) ([721376b](https://github.com/Vonage/vivid-3/commit/721376b4f8fdc9d6533c5a4deb8fda3cc71b185c))
+* **picker-field:** fix visible focus when opening the picker (APIVIV-18) ([#2836](https://github.com/Vonage/vivid-3/issues/2836)) ([192c98f](https://github.com/Vonage/vivid-3/commit/192c98f60cfec04c13cc636f1eac2e161071c363))
+* **select:** fix visible focus on selected option (APIVIV-23) ([#2835](https://github.com/Vonage/vivid-3/issues/2835)) ([a460c10](https://github.com/Vonage/vivid-3/commit/a460c10e34dc992c0777d755844ac96163e8f820))
+* **text-field:** ensure input is always emitted to fix Keeper extension issue (VIV-3161) ([#2840](https://github.com/Vonage/vivid-3/issues/2840)) ([60790b7](https://github.com/Vonage/vivid-3/commit/60790b707fcebfe9248d7423408eb3461c5a465d))
+
+
+### Performance Improvements
+
+* **tests:** improve test performance (VIV-000) ([#2846](https://github.com/Vonage/vivid-3/issues/2846)) ([97df291](https://github.com/Vonage/vivid-3/commit/97df29139764bc47a0ce416a179baf68b617e0b8))
+
 ## [5.16.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.15.1...vivid-v5.16.0) (2026-03-24)
 
 
