@@ -1,5 +1,5 @@
-import { elementUpdated, fixture } from '@repo/shared';
-import { TableSortingButton } from './table-sorting-button';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { TableSortingButton } from './table-sorting-button';
 import '.';
 
 const COMPONENT_TAG = 'vwc-table-sorting-button';
