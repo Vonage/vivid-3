@@ -31,7 +31,7 @@ export function getIconsRequests(config) {
 
 	const entries = JSON.parse(jsonString);
 
-	const assets = getAssets(entries);
+	const assets = getAssets(entries, sourceDir);
 
 	requests.push({
 		Bucket: config.bucket,
