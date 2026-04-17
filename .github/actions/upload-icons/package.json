@@ -1,6 +1,5 @@
 {
 	"private": true,
-	"type": "module",
 	"scripts": {
 		"build": "esbuild src/index.js --bundle --platform=node --target=node20 --format=cjs --outfile=dist/index.js --tree-shaking=true --minify",
 		"manual": "node manual.js"
