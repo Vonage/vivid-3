@@ -237,17 +237,31 @@ module.exports = async (eleventyConfig) => {
 			}
 		);
 
-		// Remove all remaining HTML tags.
-		text = text.replace(/<[^>]+>/g, '');
+		// Remove any remaining HTML tags using sanitize-html to avoid incomplete regex sanitization.
+		text = sanitizeHtml(text, {
+			allowedTags: [],
+			allowedAttributes: {},
+		});
 
-		// Decode essential HTML entities.
-		text = text
-			.replace(/&nbsp;/g, ' ')
-			.replace(/&amp;/g, '&')
-			.replace(/&lt;/g, '<')
-			.replace(/&gt;/g, '>')
-			.replace(/&quot;/g, '"')
-			.replace(/&#39;/g, "'");
+		// Decode essential HTML entities in a single pass to avoid double-unescaping.
+		text = text.replace(/&(nbsp|amp|lt|gt|quot|#39);/g, (match, entity) => {
+			switch (entity) {
+				case 'nbsp':
+					return ' ';
+				case 'amp':
+					return '&';
+				case 'lt':
+					return '<';
+				case 'gt':
+					return '>';
+				case 'quot':
+					return '"';
+				case '#39':
+					return "'";
+				default:
+					return match;
+			}
+		});
 
 		text = text.replace(/[\t\r]+/g, ' ');
 		text = text.replace(/ +/g, ' ');
