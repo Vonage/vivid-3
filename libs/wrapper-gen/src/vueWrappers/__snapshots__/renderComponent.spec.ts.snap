@@ -130,9 +130,9 @@ startModifiers: {type: Object as PropType<Record<string, boolean>>, default: () 
 			currentTarget: VwcExampleComponentElement | null
 		}) => {
           if (!this.modelModifiers?.lazy) {
-            this.$emit('update:modelValue', event.currentTarget.value);
+            this.$emit('update:modelValue', event.currentTarget?.value);
           }
-this.$emit('update:sameEvent', event.currentTarget.exampleProp);
+this.$emit('update:sameEvent', event.currentTarget?.exampleProp);
           
           this.$emit('input', event);
         },'change': (event: Event & {
@@ -140,13 +140,13 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
 		}) => {
           
           if (this.modelModifiers?.lazy) {
-            this.$emit('update:modelValue', event.currentTarget.value);
+            this.$emit('update:modelValue', event.currentTarget?.value);
           }
           this.$emit('change', event);
         },'input:start': (event: CustomEvent<{a: string | number}> & {
 			currentTarget: VwcExampleComponentElement | null
 		}) => {
-          this.$emit('update:start', event.currentTarget.start);
+          this.$emit('update:start', event.currentTarget?.start);
           
           this.$emit('input:start', event);
         },'slottable-request': (event: SlottableRequestEvent) => {
@@ -182,9 +182,9 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
 			currentTarget: VwcExampleComponentElement | null
 		}) => {
 					 if (!this.modelModifiers?.lazy) {
-            this.$emit('update:modelValue', event.currentTarget.value);
+            this.$emit('update:modelValue', event.currentTarget?.value);
           }
-this.$emit('update:sameEvent', event.currentTarget.exampleProp);
+this.$emit('update:sameEvent', event.currentTarget?.exampleProp);
 					 
           this.$emit('input', event);
         },'onChange': (event: Event & {
@@ -192,13 +192,13 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
 		}) => {
 					 
 					 if (this.modelModifiers?.lazy) {
-            this.$emit('update:modelValue', event.currentTarget.value);
+            this.$emit('update:modelValue', event.currentTarget?.value);
           }
           this.$emit('change', event);
         },'onInput:start': (event: CustomEvent<{a: string | number}> & {
 			currentTarget: VwcExampleComponentElement | null
 		}) => {
-					 this.$emit('update:start', event.currentTarget.start);
+					 this.$emit('update:start', event.currentTarget?.start);
 					 
           this.$emit('input:start', event);
         },'onSlottable-request': (event: SlottableRequestEvent) => {

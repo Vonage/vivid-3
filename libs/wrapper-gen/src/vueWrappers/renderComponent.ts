@@ -177,6 +177,9 @@ export const renderComponent = (
 			const lazyVueModels = vueModels.filter((model) =>
 				model.lazyEventNames?.includes(name)
 			);
+
+			const optionalChainCurrentTarget = (src: string) =>
+				src.replaceAll(/\bevent\.currentTarget\./g, 'event.currentTarget?.');
 			return `'${name}': (event: ${getEventType(
 				type,
 				getExportedClassName(componentDef.name),
@@ -185,7 +188,9 @@ export const renderComponent = (
           ${eventVueModels
 						.map((vueModel) => {
 							const modProp = modifiersPropName(vueModel.name);
-							const emitCode = `this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});`;
+							const emitCode = `this.$emit('update:${vueModel.name}', ${optionalChainCurrentTarget(
+								vueModel.valueMapping
+							)});`;
 							if (vueModel.lazyEventNames?.length) {
 								return `if (!this.${modProp}?.lazy) {\n            ${emitCode}\n          }`;
 							}
@@ -195,7 +200,9 @@ export const renderComponent = (
           ${lazyVueModels
 						.map((vueModel) => {
 							const modProp = modifiersPropName(vueModel.name);
-							return `if (this.${modProp}?.lazy) {\n            this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});\n          }`;
+							return `if (this.${modProp}?.lazy) {\n            this.$emit('update:${vueModel.name}', ${optionalChainCurrentTarget(
+								vueModel.valueMapping
+							)});\n          }`;
 						})
 						.join('\n')}
           this.$emit('${name}', event);
@@ -214,6 +221,9 @@ export const renderComponent = (
 			const lazyVueModels = vueModels.filter((model) =>
 				model.lazyEventNames?.includes(name)
 			);
+
+			const optionalChainCurrentTarget = (src: string) =>
+				src.replaceAll(/\bevent\.currentTarget\./g, 'event.currentTarget?.');
 			return `'${vue3EventHandlerName(name)}': (event: ${getEventType(
 				type,
 				getExportedClassName(componentDef.name),
@@ -222,7 +232,9 @@ export const renderComponent = (
 					 ${eventVueModels
 							.map((vueModel) => {
 								const modProp = modifiersPropName(vueModel.name);
-								const emitCode = `this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});`;
+								const emitCode = `this.$emit('update:${vueModel.name}', ${optionalChainCurrentTarget(
+									vueModel.valueMapping
+								)});`;
 								if (vueModel.lazyEventNames?.length) {
 									return `if (!this.${modProp}?.lazy) {\n            ${emitCode}\n          }`;
 								}
@@ -232,7 +244,9 @@ export const renderComponent = (
 					 ${lazyVueModels
 							.map((vueModel) => {
 								const modProp = modifiersPropName(vueModel.name);
-								return `if (this.${modProp}?.lazy) {\n            this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});\n          }`;
+								return `if (this.${modProp}?.lazy) {\n            this.$emit('update:${vueModel.name}', ${optionalChainCurrentTarget(
+									vueModel.valueMapping
+								)});\n          }`;
 							})
 							.join('\n')}
           this.$emit('${name}', event);
