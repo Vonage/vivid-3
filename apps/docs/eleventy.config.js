@@ -187,8 +187,16 @@ module.exports = async (eleventyConfig) => {
 	 * Extract and convert HTML content to markdown, preserving formatting and structure
 	 */
 	function extractTextFromHTML(html) {
+		// First, decode HTML entities to avoid double-processing
+		let text = html
+			.replace(/&nbsp;/g, ' ')
+			.replace(/&amp;/g, '&')
+			.replace(/&lt;/g, '<')
+			.replace(/&gt;/g, '>')
+			.replace(/&quot;/g, '"')
+			.replace(/&#39;/g, "'");
+
 		// Remove script, style, and other non-content tags
-		let text = html;
  		let previousText;
  		do {
  			previousText = text;
@@ -245,15 +253,6 @@ module.exports = async (eleventyConfig) => {
 
 		// Remove any remaining HTML tags
 		text = text.replace(/<[^>]+>/g, '');
-
-		// Decode HTML entities
-		text = text
-			.replace(/&nbsp;/g, ' ')
-			.replace(/&amp;/g, '&')
-			.replace(/&lt;/g, '<')
-			.replace(/&gt;/g, '>')
-			.replace(/&quot;/g, '"')
-			.replace(/&#39;/g, "'");
 
 		// Normalize whitespace while preserving paragraph breaks
 		// First, normalize tabs and carriage returns to spaces
