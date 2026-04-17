@@ -9,7 +9,6 @@ const path = require('path');
 const packageInstallation = require('./shortcodes/packageInstallation');
 const { globSync } = require('glob');
 const { spawnSync } = require('child_process');
-const sanitizeHtml = require('sanitize-html');
 const {
 	resetExampleIndex,
 } = require('./code-example-preview/createCodeExample');
@@ -63,12 +62,12 @@ module.exports = async (eleventyConfig) => {
 			});
 		}
 
-		// Generate llms_full.txt from entire site content
+		// Generate llms-full.txt from entire site content
 		await generateLLMSFullExport();
 	});
 
 	/**
-	 * Generate llms_full.txt containing the entire site content in machine-readable format
+	 * Generate llms-full.txt containing the entire site content in machine-readable format
 	 */
 	async function generateLLMSFullExport() {
 		// Build navigation order map from nav-groups
@@ -101,13 +100,13 @@ module.exports = async (eleventyConfig) => {
 			if (lowerPath.startsWith('/design-tokens'))
 				return navGroupOrder.get('design tokens')?.order || 5;
 			if (lowerPath.startsWith('/migration-guides'))
-				return navGroupOrder.get('migration guides')?.order || 6;
+				return navGroupOrder.get('migration guides')?.order || 9;
 			if (lowerPath.startsWith('/resources'))
 				return navGroupOrder.get('resources')?.order || 8;
 			if (lowerPath.startsWith('/icons'))
-				return navGroupOrder.get('icons')?.order || 9;
-			if (lowerPath.startsWith('/components')) return 4; // Components between guides and designs
-			if (lowerPath.startsWith('/accessibility')) return 7; // Root section
+				return navGroupOrder.get('icons')?.order || 6;
+			if (lowerPath.startsWith('/components')) return 4;
+			if (lowerPath.startsWith('/accessibility')) return 7; 
 			if (lowerPath === '/') return -1; // Home page first
 
 			return 999; // Other pages last
@@ -117,7 +116,7 @@ module.exports = async (eleventyConfig) => {
 			'**/assets/**',
 			'**/pagefind/**',
 			'**/whats-new/**',
-			'**/llms_full.txt',
+			'**/llms-full.txt',
 			'**/404.html',
 		];
 
@@ -128,7 +127,7 @@ module.exports = async (eleventyConfig) => {
 
 		// Collect .txt files (like individual llms.txt exports)
 		const txtFiles = globSync(`${OUTPUT_DIR}/**/*.txt`, {
-			ignore: ['**/llms_full.txt', ...ignorePatterns],
+			ignore: ['**/llms-full.txt', ...ignorePatterns],
 		});
 
 		const entries = [];
@@ -179,41 +178,89 @@ module.exports = async (eleventyConfig) => {
 			.map((entry) => `=== ${entry.path} ===\n\n${entry.content}`)
 			.join('\n\n');
 
-		const outputPath = path.join(OUTPUT_DIR, 'llms_full.txt');
+		const outputPath = path.join(OUTPUT_DIR, 'llms-full.txt');
 		fs.writeFileSync(outputPath, output, 'utf8');
 		console.log(`[11ty] Generated ${outputPath} (${entries.length} pages)`);
 	}
 
 	/**
-	 * Extract plain text from HTML content
+	 * Extract and convert HTML content to markdown, preserving formatting and structure
 	 */
 	function extractTextFromHTML(html) {
 		// Remove script, style, and other non-content tags
-		let text = html;
-		let previous;
-		do {
-			previous = text;
-			text = text
-				.replace(/<\s*script[^>]*>[\s\S]*?<\s*\/\s*script\s*>/gi, '')
-				.replace(/<\s*style[^>]*>[\s\S]*?<\s*\/\s*style\s*>/gi, '')
-				.replace(/<\s*noscript[^>]*>[\s\S]*?<\s*\/\s*noscript\s*>/gi, '')
-				.replace(/<\s*template[^>]*>[\s\S]*?<\s*\/\s*template\s*>/gi, '')
-				.replace(/<\s*svg[^>]*>[\s\S]*?<\s*\/\s*svg\s*>/gi, '')
-				// Remove HTML tags but preserve content
-				.replace(/<[^>]+>/g, ' ');
-		} while (text !== previous);
+		let text = html
+			.replace(/<\s*script[^>]*>[\s\S]*?<\s*\/\s*script\s*>/gi, '')
+			.replace(/<\s*style[^>]*>[\s\S]*?<\s*\/\s*style\s*>/gi, '')
+			.replace(/<\s*noscript[^>]*>[\s\S]*?<\s*\/\s*noscript\s*>/gi, '')
+			.replace(/<\s*template[^>]*>[\s\S]*?<\s*\/\s*template\s*>/gi, '')
+			.replace(/<\s*svg[^>]*>[\s\S]*?<\s*\/\s*svg\s*>/gi, '');
 
-		// Normalize whitespace
+		// Convert HTML to markdown
+		// Headings
+		text = text.replace(/<\s*h1\b[^>]*>([\s\S]*?)<\s*\/\s*h1\s*>/gi, '\n\n# $1\n\n');
+		text = text.replace(/<\s*h2\b[^>]*>([\s\S]*?)<\s*\/\s*h2\s*>/gi, '\n\n## $1\n\n');
+		text = text.replace(/<\s*h3\b[^>]*>([\s\S]*?)<\s*\/\s*h3\s*>/gi, '\n\n### $1\n\n');
+		text = text.replace(/<\s*h4\b[^>]*>([\s\S]*?)<\s*\/\s*h4\s*>/gi, '\n\n#### $1\n\n');
+		text = text.replace(/<\s*h5\b[^>]*>([\s\S]*?)<\s*\/\s*h5\s*>/gi, '\n\n##### $1\n\n');
+		text = text.replace(/<\s*h6\b[^>]*>([\s\S]*?)<\s*\/\s*h6\s*>/gi, '\n\n###### $1\n\n');
+
+		// Bold and strong
+		text = text.replace(/<\s*(strong|b)\b[^>]*>([\s\S]*?)<\s*\/\s*\1\s*>/gi, '**$2**');
+
+		// Italic and emphasis
+		text = text.replace(/<\s*(em|i)\b[^>]*>([\s\S]*?)<\s*\/\s*\1\s*>/gi, '*$2*');
+
+		// Code
+		text = text.replace(/<\s*code\b[^>]*>([\s\S]*?)<\s*\/\s*code\s*>/gi, '`$1`');
+
+		// Links
+		text = text.replace(/<\s*a\s+href=["']([^"']*)["'][^>]*>([\s\S]*?)<\s*\/\s*a\s*>/gi, '[$2]($1)');
+
+		// Unordered lists
+		text = text.replace(/<\s*li\b[^>]*>([\s\S]*?)<\s*\/\s*li\s*>/gi, '\n- $1');
+		text = text.replace(/<\s*ul\b[^>]*>/gi, '\n');
+		text = text.replace(/<\s*\/\s*ul\s*>/gi, '\n');
+
+		// Ordered lists
+		text = text.replace(/<\s*ol\b[^>]*>/gi, '\n');
+		text = text.replace(/<\s*\/\s*ol\s*>/gi, '\n');
+
+		// Blockquotes
+		text = text.replace(/<\s*blockquote\b[^>]*>([\s\S]*?)<\s*\/\s*blockquote\s*>/gi, (match, content) => {
+			const lines = content.trim().split('\n');
+			return '\n\n' + lines.map(line => '> ' + line.trim()).join('\n') + '\n\n';
+		});
+
+		// Line breaks and horizontal rules
+		text = text.replace(/<\s*(br|hr)\s*\/?>/gi, '\n');
+
+		// Paragraphs and block elements
+		text = text.replace(/<\s*p\b[^>]*>([\s\S]*?)<\s*\/\s*p\s*>/gi, '\n\n$1\n\n');
+		text = text.replace(/<\s*div\b[^>]*>([\s\S]*?)<\s*\/\s*div\s*>/gi, '\n\n$1\n\n');
+
+		// Remove any remaining HTML tags
+		text = text.replace(/<[^>]+>/g, '');
+
+		// Decode HTML entities
 		text = text
 			.replace(/&nbsp;/g, ' ')
+			.replace(/&amp;/g, '&')
 			.replace(/&lt;/g, '<')
 			.replace(/&gt;/g, '>')
 			.replace(/&quot;/g, '"')
-			.replace(/&#39;/g, "'")
-			.replace(/&amp;/g, '&')
-			.replace(/[\r\n\t]+/g, ' ')
-			.replace(/\s+/g, ' ')
-			.trim();
+			.replace(/&#39;/g, "'");
+
+		// Normalize whitespace while preserving paragraph breaks
+		// First, normalize tabs and carriage returns to spaces
+		text = text.replace(/[\t\r]+/g, ' ');
+		// Collapse multiple spaces (but not newlines) to single space
+		text = text.replace(/ +/g, ' ');
+		// Remove spaces at the start/end of lines
+		text = text.replace(/ *\n */g, '\n');
+		// Collapse multiple newlines (more than 2) to double newline for paragraphs
+		text = text.replace(/\n{3,}/g, '\n\n');
+		// Final trim
+		text = text.trim();
 
 		return text;
 	}
@@ -381,13 +428,10 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addFilter('cleanLLM', (content) => {
 		if (!content) return '';
 
-		const sanitized = sanitizeHtml(content, {
-			allowedTags: [],
-			allowedAttributes: {},
-		});
-
 		return (
-			sanitized
+			content
+				// Remove HTML tags and attributes
+				.replace(/<[^>]*>/g, '')
 				// Remove all markdown code blocks (```...```)
 				.replace(/```[\s\S]*?```/gs, '')
 				// Remove ```html preview ... ``` code blocks
