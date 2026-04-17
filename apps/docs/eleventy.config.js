@@ -9,6 +9,7 @@ const path = require('path');
 const packageInstallation = require('./shortcodes/packageInstallation');
 const { globSync } = require('glob');
 const { spawnSync } = require('child_process');
+const sanitizeHtml = require('sanitize-html');
 const {
 	resetExampleIndex,
 } = require('./code-example-preview/createCodeExample');
@@ -376,10 +377,13 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addFilter('cleanLLM', (content) => {
 		if (!content) return '';
 
+		const sanitized = sanitizeHtml(content, {
+			allowedTags: [],
+			allowedAttributes: {},
+		});
+
 		return (
-			content
-				// Remove HTML tags and attributes
-				.replace(/<[^>]*>/g, '')
+			sanitized
 				// Remove all markdown code blocks (```...```)
 				.replace(/```[\s\S]*?```/gs, '')
 				// Remove ```html preview ... ``` code blocks
