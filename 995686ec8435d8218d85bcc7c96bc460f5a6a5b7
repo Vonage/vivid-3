@@ -1,0 +1,62 @@
+libs/components/src/lib/simple-color-picker/simple-color-picker.ts
+  9d22642bc775831b 16
+libs/components/src/lib/color-picker/color-picker.ts
+  9d22642bc775831b 55
+libs/metadata-extractor/src/metadata/extractor.ts
+  9d22642bc775831b 162
+libs/components/src/lib/text-area/text-area.ts
+  9d22642bc775831b 59
+libs/vue-wrappers/src/__tests__/eventForwardingVue3.spec.ts
+  h_2df0e3a986e719 41
+  9d22642bc775831b 1-40,42-81
+libs/wrapper-gen/src/vueWrappers/renderComponent.ts
+  9d22642bc775831b 32,408
+libs/components/metadata.json
+  9d22642bc775831b 185,559,639,697,736,820,1066,1154,1255,1382,1721,2036,2075,3312,3362,3523,3764-3767,3769-3770,3773-3774,3823,3880,4156,4359,4418,4850,5126,5188,5695,5750,6573,6947,7160,7194,7215,7236,7284,7332,7563,7749,8312,8379,8499
+libs/vue-wrappers/src/utils/vue.ts
+  h_2df0e3a986e719 9-10
+  9d22642bc775831b 4-8
+libs/wrapper-gen/src/vueWrappers/renderComponentTypes.ts
+  9d22642bc775831b 103-110,114-116,118-120,123-125,129-131
+libs/vue-wrappers/src/__tests__/eventForwardingVue2.spec.ts
+  h_2df0e3a986e719 46
+  9d22642bc775831b 1-45,47-76
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "995686ec8435d8218d85bcc7c96bc460f5a6a5b7",
+  "prompts": {
+    "9d22642bc775831b": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_265432341ffeS0db3SjAp7aaAg",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 21641,
+      "total_deletions": 21263,
+      "accepted_lines": 8797,
+      "overriden_lines": 2
+    },
+    "a28522466139ccd8": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_28e1fceeaffeDgcZeBPYdpkE7y",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 51,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_2df0e3a986e719": {
+      "author": "Konrad Sieńkowski"
+    }
+  }
+}
