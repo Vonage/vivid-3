@@ -8,11 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.head_ref }}
 
       - name: Cache turbo build setup
@@ -46,26 +45,12 @@ jobs:
           git --no-pager diff --exit-code ./libs/components/metadata.json
         continue-on-error: true
 
-      - name: Setup git config
-        if: steps.diff.outcome == 'failure'
-        run: |
-          if git log -1 --pretty=%B | grep 'Update metadata'; then
-            echo "Last commit is already a metadata update. Skipping to prevent loop."
-            exit 1
-          fi
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ./libs/components/metadata.json
-          git commit -m "Update metadata"
-          git push
-
       - uses: mshick/add-pr-comment@v2
         if: steps.diff.outcome == 'failure'
         with:
           allow-repeats: 'true'
           message: |
-            :warning: The generated metadata has changed. I have updated the metadata file for you. Please review the changes:
+            :warning: The generated metadata has changed. Please update `libs/components/metadata.json` by running `pnpm turbo run @vonage/vivid#build` and committing the result.
 
             <details><summary>View Diff</summary>
 
@@ -74,3 +59,9 @@ jobs:
             ```
 
             </details>
+
+      - name: Fail if metadata is outdated
+        if: steps.diff.outcome == 'failure'
+        run: |
+          echo "::error::metadata.json is outdated. Please run 'pnpm turbo run @vonage/vivid#build' and commit the updated file."
+          exit 1
