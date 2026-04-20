@@ -16,39 +16,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires a custom 'change' event when the active item changes",
 					"type": "CustomEvent<string | null>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [],
@@ -142,39 +112,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires a custom 'change' event when the button is invoked",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [],
@@ -242,38 +182,7 @@
 					"propertyName": "tight"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -367,39 +276,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
 					"name": "close",
 					"description": "Fired when the Alert is closed",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				},
 				{
 					"name": "open",
@@ -537,36 +416,6 @@
 				}
 			],
 			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				},
 				{
 					"name": "pause",
 					"description": "Fires when the audio playback is paused.",
@@ -707,38 +556,7 @@
 					"propertyName": "type"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -818,38 +636,7 @@
 					"propertyName": "text"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -907,38 +694,7 @@
 					"propertyName": "text"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [{ "name": "remove", "args": [], "returnType": "void" }],
 			"slots": [
@@ -977,38 +733,7 @@
 			"registerFunctionName": "registerBreadcrumb",
 			"description": "",
 			"props": [],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -1092,38 +817,7 @@
 					"propertyName": "type"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [],
@@ -1369,38 +1063,7 @@
 					"propertyName": "value"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [
 				{
@@ -1488,38 +1151,7 @@
 					"propertyName": "stickyMode"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -1620,38 +1252,7 @@
 					"propertyName": "start"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [],
@@ -1778,38 +1379,7 @@
 					"propertyName": "type"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -1962,39 +1532,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Emitted when the checked state changes.",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "input",
 					"description": "Emitted when the checked state changes.",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -2167,39 +1712,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires when the value changes",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
+					"description": "Fires when the value of the element changes.",
 					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -2413,39 +1933,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires a custom 'change' event when the value updates",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -2543,38 +2033,7 @@
 					"propertyName": "placement"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -2613,38 +2072,7 @@
 					"propertyName": "label"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -2756,39 +2184,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "cell-click",
 					"description": "Event that fires when a cell is clicked",
 					"type": "CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [],
@@ -2854,11 +2252,6 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "cell-click",
 					"description": "Event that fires when a cell is clicked",
 					"type": "CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>"
@@ -2867,31 +2260,6 @@
 					"name": "cell-focused",
 					"description": "Fires a custom 'cell-focused' event when focus is on the cell or its contents",
 					"type": "CustomEvent<HTMLElement>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				},
 				{
 					"name": "sort",
@@ -2979,39 +2347,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "cell-click",
 					"description": "Event that fires when a cell is clicked",
 					"type": "CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				},
 				{
 					"name": "row-focused",
@@ -3119,39 +2457,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Emitted when the date is changed by the user.",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "input",
 					"description": "Emitted when the date is changed by the user.",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -3330,24 +2643,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Emitted when either the start or end value changes",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
 				},
 				{
 					"name": "input",
@@ -3363,16 +2661,6 @@
 					"name": "input:start",
 					"description": "Event emitted when the start value changes",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -3578,39 +2866,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Emitted when the date is changed by the user.",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "input",
 					"description": "Emitted when the date is changed by the user.",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -3792,11 +3055,6 @@
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
 					"name": "dial",
 					"description": "Emitted when the call button is clicked",
 					"type": "CustomEvent<undefined>"
@@ -3817,19 +3075,9 @@
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
 					"name": "keypad-click",
 					"description": "Emitted when a digit button is clicked",
 					"type": "CustomEvent<HTMLElement>"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -3969,44 +3217,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "cancel",
 					"description": "The `cancel` event fires when the user requests to close the dialog. You can prevent the dialog from closing by calling `.preventDefault()` on the event.",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
 					"name": "close",
 					"description": "The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property.",
 					"type": "CustomEvent<string>"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				},
 				{
 					"name": "open",
@@ -4091,38 +3309,7 @@
 					"propertyName": "orientation"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [],
@@ -4172,38 +3359,7 @@
 					"propertyName": "iconDecoration"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -4364,38 +3520,7 @@
 					"propertyName": "value"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [
 				{
@@ -4562,39 +3687,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Emitted when files are added or removed.",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [],
@@ -4666,38 +3761,7 @@
 					"propertyName": "elevationShadow"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -4756,38 +3820,7 @@
 					"propertyName": "size"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -4844,38 +3877,7 @@
 					"propertyName": "rowSpacing"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -4948,39 +3950,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
 					"name": "close",
 					"description": "Fired when the menu is closed",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				},
 				{
 					"name": "open",
@@ -5122,44 +4094,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fired when the item is triggered. Does not fire when a submenu is collapsed or expanded.",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
 					"name": "expanded-change",
 					"description": "Fired when the expanded state changes.",
 					"type": "CustomEvent<HTMLElement>"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -5211,38 +4153,7 @@
 			"registerFunctionName": "registerNav",
 			"description": "",
 			"props": [],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -5306,36 +4217,6 @@
 				}
 			],
 			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				},
 				{
 					"name": "toggle",
 					"description": "Event emitted when the nav disclosure is toggled.",
@@ -5475,38 +4356,7 @@
 					"propertyName": "type"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -5565,38 +4415,7 @@
 					"propertyName": "icon"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -5812,39 +4631,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires a custom 'change' event when the value has changed",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "input",
 					"description": "Fires a custom 'input' event when the value has changed",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -6053,38 +4847,7 @@
 					"propertyName": "value"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -6153,36 +4916,6 @@
 				}
 			],
 			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				},
 				{
 					"name": "pagination-change",
 					"description": "Fires when the page changes.",
@@ -6290,39 +5023,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
 					"name": "close",
 					"description": "Fired when the popover closes.",
 					"type": "CustomEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				},
 				{
 					"name": "open",
@@ -6420,38 +5123,7 @@
 					"propertyName": "value"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [],
@@ -6513,38 +5185,7 @@
 					"propertyName": "value"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [],
@@ -6645,39 +5286,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires a custom 'change' event when the value changes",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [],
@@ -6787,39 +5398,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires a custom 'change' event when the value changes",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -7009,24 +5590,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Event emitted when either the start or end value changes.",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
 				},
 				{
 					"name": "input",
@@ -7042,16 +5608,6 @@
 					"name": "input:start",
 					"description": "Event emitted when the start value changes",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -7136,38 +5692,7 @@
 					"propertyName": "instance"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -7222,38 +5747,7 @@
 					"propertyName": "view"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -7472,39 +5966,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fired when the selected options change",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "input",
 					"description": "Fired when the selected options change",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				},
 				{
 					"name": "search-text-change",
@@ -7755,39 +6224,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires a custom 'change' event when the value updates",
 					"type": "CustomEvent<HTMLElement>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "input",
 					"description": "Fires a custom 'input' event when the value updates",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -7925,39 +6369,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fired when the checked state changes",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [],
@@ -8027,44 +6441,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "cancel",
 					"description": "Fired when the user requests to close the side-drawer. You can prevent the side drawer from closing by calling `.preventDefault()` on the event.",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
 					"name": "close",
 					"description": "Fired when the side drawer is closed.",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				},
 				{
 					"name": "open",
@@ -8180,39 +6564,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires when the value changes",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
+					"description": "Fires when the value of the element changes.",
 					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -8380,39 +6739,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires a custom 'change' event when the slider value changes",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -8554,39 +6883,9 @@
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "indicator-click",
 					"description": "Event emitted when the indicator button is clicked",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [],
@@ -8645,38 +6944,7 @@
 					"propertyName": "status"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -8779,39 +7047,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Emits a custom change event when the checked state changes",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -8919,38 +7157,7 @@
 					"propertyName": "tabIndex"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -8984,38 +7191,7 @@
 			"registerFunctionName": "registerTabPanel",
 			"description": "",
 			"props": [],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -9036,38 +7212,7 @@
 			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -9088,38 +7233,7 @@
 			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -9142,39 +7256,9 @@
 			"props": [],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "cell-focused",
 					"description": "Fires when the cell or its contents receive focus",
 					"type": "CustomEvent<HTMLElement>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [],
@@ -9197,38 +7281,7 @@
 			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -9251,39 +7304,9 @@
 			"props": [],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "cell-focused",
 					"description": "Fires when the cell or its contents receive focus",
 					"type": "CustomEvent<HTMLElement>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [],
@@ -9306,38 +7329,7 @@
 			"registerFunctionName": "registerTable",
 			"description": "",
 			"props": [],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -9410,39 +7402,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires a custom 'change' event when a tab is clicked or during keyboard navigation",
 					"type": "CustomEvent<HTMLElement>"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [],
@@ -9547,36 +7509,6 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				},
-				{
 					"name": "removed",
 					"description": "Fires when the tag is removed",
 					"type": "CustomEvent<undefined>"
@@ -9628,38 +7560,7 @@
 			"registerFunctionName": "registerTagGroup",
 			"description": "",
 			"props": [],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -9839,39 +7740,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Emits a custom 'change' event when the textarea emits a change event",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
+					"description": "Fires when the value of the element changes.",
 					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -10126,39 +8002,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Fires a custom 'change' event when the value has changed",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "input",
 					"description": "Fires a custom 'input' event when the value has changed",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -10344,39 +8195,14 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "change",
 					"description": "Emitted when the time is changed by the user.",
 					"type": "CustomEvent<undefined>"
 				},
 				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
 					"name": "input",
 					"description": "Emitted when the time is changed by the user.",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				}
 			],
 			"vueModels": [
@@ -10483,38 +8309,7 @@
 					"propertyName": "placement"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -10581,38 +8376,7 @@
 					"propertyName": "text"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [
@@ -10682,39 +8446,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
 					"name": "expanded-change",
 					"description": "Fires a custom 'expanded-change' event when the expanded state changes",
 					"type": "CustomEvent<HTMLElement>"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				},
 				{
 					"name": "selected-change",
@@ -10762,38 +8496,7 @@
 					"propertyName": "renderCollapsedNodes"
 				}
 			],
-			"events": [
-				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
-				}
-			],
+			"events": [],
 			"vueModels": [],
 			"methods": [],
 			"slots": [{ "name": "default", "description": "Default slot." }],
@@ -10859,39 +8562,9 @@
 			],
 			"events": [
 				{
-					"name": "blur",
-					"description": "Fires when the element loses focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "click",
-					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
-					"type": "MouseEvent"
-				},
-				{
 					"name": "ended",
 					"description": "Fired when the video is ended",
 					"type": "CustomEvent<undefined>"
-				},
-				{
-					"name": "focus",
-					"description": "Fires when the element receives focus.",
-					"type": "FocusEvent"
-				},
-				{
-					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
-					"type": "Event"
-				},
-				{
-					"name": "keydown",
-					"description": "Fires when a key is pressed.",
-					"type": "KeyboardEvent"
-				},
-				{
-					"name": "keyup",
-					"description": "Fires when a key is released.",
-					"type": "KeyboardEvent"
 				},
 				{
 					"name": "pause",

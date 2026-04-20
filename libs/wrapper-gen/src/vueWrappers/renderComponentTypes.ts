@@ -100,17 +100,35 @@ export const renderComponentTypes = (componentDef: ComponentDef) => {
 		})
 		.join(',\n');
 
+	const hasEvents = componentDef.events.length > 0 || vueModelEvents.length > 0;
+
+	const hasProps =
+		props.length > 0 ||
+		vueModels.length > 0 ||
+		componentDef.events.length > 0 ||
+		vueModelEvents.length > 0;
+
 	return `
 ${renderImports(typeImports, true)}
 
-export interface ${wrappedComponentName(componentDef)}Events {
+${
+	hasEvents
+		? `export interface ${wrappedComponentName(componentDef)}Events {
 	${eventTypesSrc}
+}`
+		: `// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface ${wrappedComponentName(componentDef)}Events {}`
 }
 
-export interface ${wrappedComponentName(componentDef)}Props {
+${
+	hasProps
+		? `export interface ${wrappedComponentName(componentDef)}Props {
 	${propTypesSrc}
 	${modifiersPropTypesSrc}
 	${eventHandlersSrc}
+}`
+		: `// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface ${wrappedComponentName(componentDef)}Props {}`
 }
 `;
 };

@@ -12,7 +12,6 @@ import { resolveClassHierarchy } from '../components/class-hierarchy';
 import type { Metadata } from './format';
 import { traverseAliasChain } from '../types/alias-chain';
 import { patchIcons } from './patch-icons';
-import { patchEvents } from './patch-events';
 import { ICONS_MANIFEST_URL } from '@vonage/vivid-icons';
 import { getRegisterFunctionName } from '../components/register-function';
 import { createMetadataTypeRenderer } from './render-type';
@@ -160,5 +159,5 @@ export async function extractMetadata(packageRoot: string): Promise<Metadata> {
 		iconsManifestUrl: ICONS_MANIFEST_URL,
 	};
 
-	return stableMetadata(patchEvents(patchIcons(metadata)));
+	return stableMetadata(patchIcons(metadata));
 }

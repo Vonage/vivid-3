@@ -29,6 +29,7 @@ export const renderComponent = (
 		{ name: 'ref', fromModule: vueModule },
 		{ name: 'h', fromModule: vueModule },
 		{ name: 'isVue2', fromModule: '../../utils/vue' },
+		{ name: 'getListeners', fromModule: '../../utils/vue' },
 		{ name: 'handleVue3Props', fromModule: '../../utils/ssr' },
 		{ name: 'VNodeData', fromModule: vueModule },
 		{ name: componentDef.registerFunctionName, fromModule: '@vonage/vivid' },
@@ -404,7 +405,7 @@ export const renderComponent = (
             attrs: { ${attrsV2Src} },
             class: 'vvd-component',
             ${domPropsV2Src ? `domProps: { ${domPropsV2Src} },` : ''}
-            on: { ${eventsSrc} },
+            on: { ...getListeners(this), ${eventsSrc} },
         }, [
 					${slotsV2.join(',\n')}
         ]);
