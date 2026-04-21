@@ -629,6 +629,7 @@ export class RangeSlider extends Localized(
 		this._visiblyFocusedThumb = null;
 	};
 
+	// Workaround: focusin fires on browser tab return and is indistinguishable from keyboard focus.
 	#onVisibilityChange = () => {
 		if (
 			document.hidden &&

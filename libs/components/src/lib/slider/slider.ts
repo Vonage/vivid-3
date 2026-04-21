@@ -660,6 +660,7 @@ export class Slider extends Localized(
 		this._focusVisible = false;
 	};
 
+	// Workaround: focusin fires on browser tab return and is indistinguishable from keyboard focus.
 	#onVisibilityChange = () => {
 		if (document.hidden && this.shadowRoot!.activeElement !== null) {
 			this.#isNonVisibleFocus = true;
