@@ -19,7 +19,7 @@ export class CountryGroup extends VividElement {
 	 */
 	countryItemsChanged(): void {
 		this.visibleCount = null;
-		
+
 		queueMicrotask(() => {
 			this.#syncChildAccessibility();
 			this.#updateGroupAriaLabel();
@@ -71,7 +71,7 @@ export class CountryGroup extends VividElement {
 	override connectedCallback(): void {
 		super.connectedCallback();
 		this.setAttribute('role', 'group');
-		
+
 		Updates.enqueue(() => {
 			this.#ensureIntersectionObserver();
 			this.#syncIntersectionTargets();
@@ -133,7 +133,7 @@ export class CountryGroup extends VividElement {
 		this.#fitQueued = true;
 		requestAnimationFrame(() => {
 			this.#fitQueued = false;
-			
+
 			this.#ensureIntersectionObserver();
 			this.#syncIntersectionTargets();
 
@@ -249,7 +249,7 @@ export class CountryGroup extends VividElement {
 		grid.replaceChildren();
 		for (let i = visible; i < items.length; i++) {
 			const c = items[i].cloneNode(true) as HTMLElement;
-			
+
 			c.style.display = '';
 			c.setAttribute('aria-hidden', 'true');
 			grid.appendChild(c);
