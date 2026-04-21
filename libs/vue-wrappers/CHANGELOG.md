@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.17.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v5.16.0...vivid-vue-v5.17.0) (2026-04-17)
+
+
+### Features
+
+* **vue-wrappers:** support v-model modifiers (VIV-3202) ([#2849](https://github.com/Vonage/vivid-3/issues/2849)) ([cd59f5f](https://github.com/Vonage/vivid-3/commit/cd59f5fbb1e61ab151d9183b98bc7a687b16b33d))
+
 ## [5.16.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v5.15.1...vivid-vue-v5.16.0) (2026-03-24)
 
 

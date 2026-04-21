@@ -305,6 +305,32 @@ describe('Foundation Button', () => {
 		});
 	});
 
+	describe('connectedCallback without control', () => {
+		it('should not throw when control is not set', async () => {
+			const { connect, disconnect, element } = await setup();
+
+			await connect();
+
+			(element as any).control = null;
+
+			expect(() => element.connectedCallback()).not.toThrow();
+
+			await disconnect();
+		});
+	});
+
+	describe('disconnectedCallback without control', () => {
+		it('should not throw when control is not set', async () => {
+			const { connect, element } = await setup();
+
+			await connect();
+
+			(element as any).control = null;
+
+			expect(() => element.disconnectedCallback()).not.toThrow();
+		});
+	});
+
 	describe("of 'disabled'", () => {
 		it.skip('should not propagate when clicked', async () => {
 			const { connect, disconnect, element, parent } = await setup();

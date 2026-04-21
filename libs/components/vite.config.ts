@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
+import { globSync } from 'glob';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { defineConfig, mergeConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -7,13 +8,7 @@ import baseConfig from './vite.config.base';
 
 function generateRollupInput() {
 	const locales = fs.readdirSync('./src/locales');
-	const components = fs
-		.readdirSync('./src/lib/', {
-			withFileTypes: true,
-		})
-		.filter((entry) => entry.isDirectory())
-		.map((entry) => entry.name);
-
+	const components = globSync('*/definition.ts', { cwd: './src/lib/' });
 	return {
 		index: 'src/index.ts',
 		...Object.fromEntries(
@@ -24,9 +19,9 @@ function generateRollupInput() {
 		),
 		// Force vite to split up the build. This is important to enable tree-shaking
 		...Object.fromEntries(
-			components.map((componentName) => [
-				`${componentName}/definition`,
-				`src/lib/${componentName}/definition.ts`,
+			components.map((componentDefinitionPath) => [
+				componentDefinitionPath.replace('.ts', ''),
+				path.resolve('src', 'lib', componentDefinitionPath),
 			])
 		),
 	};
