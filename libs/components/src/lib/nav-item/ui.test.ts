@@ -22,10 +22,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </div> <div style="margin: 5px;">
     <vwc-layout gutters="small"><div><vwc-nav>
 	<vwc-nav-item href="#" text="Account">
-		<vwc-icon slot="icon" name="profile"></vwc-icon>
+		<vwc-icon slot="icon" name="profile-line"></vwc-icon>
 	</vwc-nav-item>
 	<vwc-nav-item href="#" aria-label="Account">
-		<vwc-icon slot="icon" name="profile"></vwc-icon>
+		<vwc-icon slot="icon" name="profile-line"></vwc-icon>
 	</vwc-nav-item>
 </vwc-nav>
 </div></vwc-layout>
@@ -37,7 +37,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </div> <div style="margin: 5px;">
     <vwc-layout gutters="small"><div><vwc-nav>
 	<vwc-nav-item appearance="ghost-light" href="#" text="Account">
-		<vwc-icon slot="icon" name="profile"></vwc-icon>
+		<vwc-icon slot="icon" name="profile-line"></vwc-icon>
 	</vwc-nav-item>
 	<vwc-nav-item appearance="ghost-light" href="#" text="Settings" current="">
 		<vwc-icon slot="icon" name="gear-line"></vwc-icon>
@@ -47,7 +47,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </div> <div style="margin: 5px;">
     <vwc-layout gutters="small"><div><vwc-nav>
 	<vwc-nav-item appearance="ghost-light" connotation="cta" href="#" text="Account">
-		<vwc-icon slot="icon" name="profile"></vwc-icon>
+		<vwc-icon slot="icon" name="profile-line"></vwc-icon>
 	</vwc-nav-item>
 	<vwc-nav-item appearance="ghost-light" connotation="cta" href="#" text="Settings" current="">
 		<vwc-icon slot="icon" name="gear-line"></vwc-icon>

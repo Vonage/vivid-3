@@ -28,7 +28,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </div> <div style="margin: 5px;">
     <vwc-layout gutters="small"><div><vwc-nav>
 	<vwc-nav-disclosure label="1st level item">
-		<vwc-icon slot="icon" name="profile"></vwc-icon>
+		<vwc-icon slot="icon" name="profile-line"></vwc-icon>
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
 	<vwc-nav></vwc-nav>
@@ -37,7 +37,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </div> <div style="margin: 5px;">
     <vwc-layout gutters="small"><div><vwc-nav>
 	<vwc-nav-disclosure>
-		<vwc-icon slot="icon" name="profile"></vwc-icon>
+		<vwc-icon slot="icon" name="profile-line"></vwc-icon>
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
 	<vwc-nav></vwc-nav>
@@ -46,7 +46,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </div> <div style="margin: 5px;">
     <vwc-layout gutters="small"><div><vwc-nav>
 	<vwc-nav-disclosure label="1st level item" current="">
-		<vwc-icon slot="icon" name="profile"></vwc-icon>
+		<vwc-icon slot="icon" name="profile-line"></vwc-icon>
 		<vwc-nav-item href="#" text="2nd level item" current=""></vwc-nav-item>
 	</vwc-nav-disclosure>
 </vwc-nav>
@@ -54,7 +54,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </div> <div style="margin: 5px;">
     <vwc-layout gutters="small"><div><vwc-nav>
 	<vwc-nav-disclosure appearance="ghost-light" label="1st level item" current="">
-		<vwc-icon slot="icon" name="profile"></vwc-icon>
+		<vwc-icon slot="icon" name="profile-line"></vwc-icon>
 		<vwc-nav-item appearance="ghost-light" href="#" text="2nd level item" current=""></vwc-nav-item>
 	</vwc-nav-disclosure>
 </vwc-nav>
@@ -62,7 +62,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </div> <div style="margin: 5px;">
     <vwc-layout gutters="small"><div><vwc-nav>
 	<vwc-nav-disclosure appearance="ghost-light" connotation="cta" label="1st level item" current="">
-		<vwc-icon slot="icon" name="profile"></vwc-icon>
+		<vwc-icon slot="icon" name="profile-line"></vwc-icon>
 		<vwc-nav-item appearance="ghost-light" connotation="cta" href="#" text="2nd level item" current=""></vwc-nav-item>
 	</vwc-nav-disclosure>
 </vwc-nav>
@@ -79,7 +79,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 </div> <div style="margin: 5px;">
     <vwc-layout gutters="small"><div><vwc-nav>
 	<vwc-nav-disclosure label="1st level item">
-		<vwc-icon slot="icon" name="profile"></vwc-icon>
+		<vwc-icon slot="icon" name="profile-line"></vwc-icon>
 		<vwc-badge slot="meta" text="beta" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
