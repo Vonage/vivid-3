@@ -1,16 +1,7 @@
-import {
-	attr,
-	nullableNumberConverter,
-	observable,
-	Updates,
-	volatile,
-} from '@microsoft/fast-element';
+import { observable, Updates, volatile } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { Country } from '../country/country';
-
-const GAP_PX = 8;
-const BADGE_PLACEHOLDER_PX = 40;
 
 /**
  * @public
@@ -18,16 +9,6 @@ const BADGE_PLACEHOLDER_PX = 40;
  * @slot default - One or more `vwc-country` elements (Country only).
  */
 export class CountryGroup extends VividElement {
-	/**
-	 * Maximum number of layout rows to show before overflowing into the hover popover.
-	 * When unset, there is no row limit.
-	 *
-	 * @public
-	 * @remarks HTML Attribute: max-rows
-	 */
-	@attr({ attribute: 'max-rows', converter: nullableNumberConverter })
-	maxRows: number | null = null;
-
 	/**
 	 * @internal
 	 */
@@ -38,14 +19,12 @@ export class CountryGroup extends VividElement {
 	 */
 	countryItemsChanged(): void {
 		this.visibleCount = null;
-		// Slotted updates can run while the browser is still finishing
-		// `document.createElement()`. Host/child attribute writes must not run in that
-		// phase (NotSupportedError: "The result must not have attributes").
+		
 		queueMicrotask(() => {
 			this.#syncChildAccessibility();
 			this.#updateGroupAriaLabel();
 		});
-		this.#scheduleMeasure();
+		this.#requestFit();
 	}
 
 	/**
@@ -87,37 +66,92 @@ export class CountryGroup extends VividElement {
 	rowEl!: HTMLElement;
 	overflowWrapEl!: HTMLElement;
 	overflowGridEl!: HTMLDivElement;
+	badgeEl?: HTMLElement;
 
 	override connectedCallback(): void {
 		super.connectedCallback();
 		this.setAttribute('role', 'group');
-		this.setAttribute('tabindex', '0');
+		
 		Updates.enqueue(() => {
-			this.#resizeObserver.observe(this);
-			if (this.rowEl) {
-				this.#resizeObserver.observe(this.rowEl);
-			}
-			this.#scheduleMeasure();
+			this.#ensureIntersectionObserver();
+			this.#syncIntersectionTargets();
+			this.#requestFit();
 		});
 	}
 
 	override disconnectedCallback(): void {
-		this.#resizeObserver.disconnect();
+		this.#intersectionObserver?.disconnect();
 		document.removeEventListener('keydown', this.#closePopupOnEscape);
 		super.disconnectedCallback();
 	}
 
-	#resizeObserver = new ResizeObserver(() => this.#scheduleMeasure());
-
-	#measureQueued = false;
-	#scheduleMeasure(): void {
-		if (this.#measureQueued) {
+	#intersectionObserver: IntersectionObserver | null = null;
+	#intersectionState = new Map<Element, boolean>();
+	#fitQueued = false;
+	#ensureIntersectionObserver(): void {
+		if (this.#intersectionObserver) {
 			return;
 		}
-		this.#measureQueued = true;
+		if (typeof IntersectionObserver === 'undefined') {
+			return;
+		}
+		this.#intersectionObserver = new IntersectionObserver(
+			(entries) => {
+				for (const e of entries) {
+					const fullyVisible =
+						e.isIntersecting && (e.intersectionRatio ?? 0) >= 0.99;
+					this.#intersectionState.set(e.target, fullyVisible);
+				}
+				this.#recomputeVisibleCountFromIntersection();
+			},
+			{
+				root: this.rowEl,
+				threshold: [0.99],
+			}
+		);
+	}
+
+	#syncIntersectionTargets(): void {
+		if (!this.#intersectionObserver) {
+			return;
+		}
+		this.#intersectionObserver.disconnect();
+		this.#intersectionState.clear();
+
+		for (const item of this.countryItems) {
+			this.#intersectionObserver.observe(item);
+		}
+		if (this.badgeEl) {
+			this.#intersectionObserver.observe(this.badgeEl);
+		}
+	}
+
+	#requestFit(): void {
+		if (this.#fitQueued) {
+			return;
+		}
+		this.#fitQueued = true;
 		requestAnimationFrame(() => {
-			this.#measureQueued = false;
-			this.#measure();
+			this.#fitQueued = false;
+			
+			this.#ensureIntersectionObserver();
+			this.#syncIntersectionTargets();
+
+			// Fallback: if IO isn't available, we don't attempt layout calculations.
+			// It shows all items (no overflow badge behavior).
+			if (!this.#intersectionObserver) {
+				this.visibleCount = this.countryItems.length;
+				this.#applyVisibility(this.countryItems.length);
+				this.#queueFillOverflowGrid();
+				return;
+			}
+
+			this.visibleCount = this.countryItems.length;
+			this.#applyVisibility(this.countryItems.length);
+			this.#queueFillOverflowGrid();
+			Updates.enqueue(() => {
+				this.#syncIntersectionTargets();
+			});
 		});
 	}
 
@@ -144,95 +178,58 @@ export class CountryGroup extends VividElement {
 		return '';
 	}
 
-	#effectiveMaxRows(): number {
-		return this.maxRows ?? Number.POSITIVE_INFINITY;
-	}
-
-	#measure(): void {
-		const items = this.countryItems;
-		if (!this.rowEl) {
-			return;
-		}
-		if (!items.length) {
-			this.visibleCount = 0;
-			return;
-		}
-
-		const rowWidth = this.rowEl.clientWidth;
-		if (rowWidth <= 0) {
-			this.visibleCount = items.length;
-			this.#applyVisibility(items.length);
-			this.#queueFillOverflowGrid();
-			return;
-		}
-
-		let lo = 0;
-		let hi = items.length;
-		let best = 0;
-		while (lo <= hi) {
-			const mid = Math.floor((lo + hi) / 2);
-			if (this.#layoutFits(mid)) {
-				best = mid;
-				lo = mid + 1;
-			} else {
-				hi = mid - 1;
-			}
-		}
-
-		if (best === 0) {
-			best = 1;
-		}
-
-		this.visibleCount = best;
-		this.#applyVisibility(best);
-		this.#queueFillOverflowGrid();
-	}
-
 	#queueFillOverflowGrid(): void {
 		Updates.enqueue(() => {
 			requestAnimationFrame(() => this.#fillOverflowGrid());
 		});
 	}
 
-	#layoutFits(k: number): boolean {
+	#recomputeVisibleCountFromIntersection(): void {
+		if (!this.#intersectionObserver) {
+			return;
+		}
 		const items = this.countryItems;
-		const maxRows = this.#effectiveMaxRows();
-
-		if (k <= 0) {
-			return false;
+		if (!items.length) {
+			this.visibleCount = 0;
+			return;
 		}
 
+		// Determine the first item that is not fully visible.
+		let firstHidden = -1;
 		for (let i = 0; i < items.length; i++) {
-			items[i].style.display = i < k ? '' : 'none';
-		}
-		void this.rowEl.offsetHeight;
-
-		const rowTops = new Set<number>();
-		for (let i = 0; i < k; i++) {
-			rowTops.add(Math.round(items[i].offsetTop));
-		}
-		if (rowTops.size > maxRows) {
-			return false;
-		}
-
-		const needBadge = k < items.length;
-		if (!needBadge) {
-			return true;
-		}
-
-		const rowWidth = this.rowEl.clientWidth;
-		const badgeReserve = BADGE_PLACEHOLDER_PX + GAP_PX;
-		const lastTop = items[k - 1].offsetTop;
-		let sum = 0;
-		let count = 0;
-		for (let i = 0; i < k; i++) {
-			if (Math.abs(items[i].offsetTop - lastTop) <= 1) {
-				sum += items[i].offsetWidth;
-				count++;
+			if (!(this.#intersectionState.get(items[i]) ?? false)) {
+				firstHidden = i;
+				break;
 			}
 		}
-		const rowGaps = count > 1 ? (count - 1) * GAP_PX : 0;
-		return sum + rowGaps + badgeReserve <= rowWidth + 0.5;
+
+		// Everything is visible: show all, no badge.
+		if (firstHidden === -1) {
+			if (this.visibleCount !== items.length) {
+				this.visibleCount = items.length;
+				this.#applyVisibility(items.length);
+				this.#queueFillOverflowGrid();
+				Updates.enqueue(() => this.#syncIntersectionTargets());
+			}
+			return;
+		}
+
+		let nextVisible = Math.max(1, firstHidden);
+
+		//  if the badge is present but not fully visible, hide one more.
+		if (this.badgeEl) {
+			const badgeOk = this.#intersectionState.get(this.badgeEl) ?? false;
+			if (!badgeOk) {
+				nextVisible = Math.max(1, nextVisible - 1);
+			}
+		}
+
+		if (this.visibleCount !== nextVisible) {
+			this.visibleCount = nextVisible;
+			this.#applyVisibility(nextVisible);
+			this.#queueFillOverflowGrid();
+			Updates.enqueue(() => this.#syncIntersectionTargets());
+		}
 	}
 
 	#applyVisibility(visible: number): void {
@@ -252,8 +249,7 @@ export class CountryGroup extends VividElement {
 		grid.replaceChildren();
 		for (let i = visible; i < items.length; i++) {
 			const c = items[i].cloneNode(true) as HTMLElement;
-			// Clones copy inline `display: none` from #applyVisibility; reset so the
-			// popover grid can show them.
+			
 			c.style.display = '';
 			c.setAttribute('aria-hidden', 'true');
 			grid.appendChild(c);

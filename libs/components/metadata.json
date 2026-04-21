@@ -2097,15 +2097,7 @@
 			"className": "CountryGroup",
 			"registerFunctionName": "registerCountryGroup",
 			"description": "",
-			"props": [
-				{
-					"name": "maxRows",
-					"description": "Maximum number of layout rows to show before overflowing into the hover popover.\nWhen unset, defaults to 1 row.",
-					"type": "number",
-					"attributeName": "max-rows",
-					"propertyName": "maxRows"
-				}
-			],
+			"props": [],
 			"events": [
 				{
 					"name": "blur",
@@ -2139,21 +2131,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{ "name": "countryItemsChanged", "args": [], "returnType": "void" },
-				{ "name": "handleMouseEnter", "args": [], "returnType": "void" },
-				{ "name": "handleMouseLeave", "args": [], "returnType": "void" },
-				{
-					"name": "popupKeydown",
-					"args": [{ "name": "e", "type": "Event" }],
-					"returnType": "void"
-				},
-				{
-					"name": "popupOpenChanged",
-					"args": [{ "name": "oldValue", "type": "undefined | false | true" }],
-					"returnType": "void"
-				}
-			],
+			"methods": [],
 			"slots": [
 				{
 					"name": "default",

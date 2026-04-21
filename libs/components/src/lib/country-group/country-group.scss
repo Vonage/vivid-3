@@ -13,6 +13,7 @@
 .row {
 	position: relative;
 	display: flex;
+	overflow: hidden;
 	flex-wrap: wrap;
 	align-items: center;
 	gap: 8px;

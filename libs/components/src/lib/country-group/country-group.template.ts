@@ -30,6 +30,7 @@ export const CountryGroupTemplate = (
 					html<CountryGroup>`
 						<div class="overflow-wrap" ${ref('overflowWrapEl')}>
 							<${badgeTag}
+								${ref('badgeEl')}
 								connotation="accent"
 								appearance="subtle-light"
 								shape="pill"
