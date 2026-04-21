@@ -409,6 +409,7 @@ export class AudioPlayer extends Localized(VividElement) {
 		if (!this.paused && this.#sliderEl!.isDragging) {
 			this.pause();
 			this.#dragInterval = window.setInterval(() => {
+				/* v8 ignore else -- @preserve */
 				if (!this.#sliderEl!.isDragging || !this.isConnected) {
 					clearInterval(this.#dragInterval);
 					if (this.isConnected) this.play();

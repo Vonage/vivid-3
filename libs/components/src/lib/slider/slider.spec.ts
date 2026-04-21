@@ -257,7 +257,13 @@ describe('vwc-slider', () => {
 			thumb.dispatchEvent(new MouseEvent('mousedown'));
 			window.dispatchEvent(new MouseEvent('mouseup'));
 		};
-		const blurThumb = () => getControlElement(element).blur();
+		const blurThumb = () =>
+			element.dispatchEvent(
+				new FocusEvent('focusout', {
+					bubbles: true,
+					relatedTarget: document.body,
+				})
+			);
 		const startDraggingThumb = () =>
 			thumb.dispatchEvent(new MouseEvent('mousedown'));
 		const startDraggingThumbByClickingOnTrack = () =>
@@ -596,6 +602,30 @@ describe('vwc-slider', () => {
 				getControlElement(element)
 			);
 			expect(thumb.classList).toContain('focus-visible');
+		});
+
+		it('should not show focus ring when tab is switched and returned after non-visible focus', async () => {
+			element.dispatchEvent(new MouseEvent('mousedown'));
+			window.dispatchEvent(new MouseEvent('mouseup'));
+
+			Object.defineProperty(document, 'hidden', {
+				value: true,
+				configurable: true,
+			});
+			document.dispatchEvent(new Event('visibilitychange'));
+			element.dispatchEvent(
+				new FocusEvent('focusout', { bubbles: true, relatedTarget: null })
+			);
+
+			element.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
+			Object.defineProperty(document, 'hidden', {
+				value: false,
+				configurable: true,
+			});
+			document.dispatchEvent(new Event('visibilitychange'));
+			await elementUpdated(element);
+
+			expect(thumb.classList).not.toContain('focus-visible');
 		});
 	});
 
