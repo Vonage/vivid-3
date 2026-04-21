@@ -1,0 +1,25 @@
+libs/components/src/lib/slider/slider.ts
+  85797823972a4b22 663
+libs/components/src/lib/range-slider/range-slider.ts
+  85797823972a4b22 632
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "39ac24ca6e553e1d65d665c960efa03a86020402",
+  "prompts": {
+    "85797823972a4b22": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_26e768de0ffeVmpcW7jHPeu7dw",
+        "model": "github-copilot/claude-sonnet-4.6"
+      },
+      "human_author": "Konrad Sieńkowski",
+      "messages": [],
+      "total_additions": 2,
+      "total_deletions": 0,
+      "accepted_lines": 2,
+      "overriden_lines": 0
+    }
+  }
+}
