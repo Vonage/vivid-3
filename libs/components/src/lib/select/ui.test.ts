@@ -124,11 +124,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						justify-self: flex-start;
 					}
 				</style>
-				<vwc-select icon="heart" aria-label="Options Selector" scale="condensed">
+				<vwc-select icon="heart-line" aria-label="Options Selector" scale="condensed">
 					<vwc-option value="1" text="Option 1"></vwc-option>
 					<vwc-option value="2" text="Option 2"></vwc-option>
 				</vwc-select>
-				<vwc-select icon="heart" aria-label="Options Selector" scale="normal">
+				<vwc-select icon="heart-line" aria-label="Options Selector" scale="normal">
 					<vwc-option value="1" text="Option 1"></vwc-option>
 					<vwc-option value="2" text="Option 2"></vwc-option>
 				</vwc-select>
