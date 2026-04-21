@@ -1,10 +1,11 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import type { CountryGroup } from './country-group';
 import '.';
 
 const COMPONENT_TAG = 'vwc-country-group';
 
-describe('a11y: vwc-country-group', () => {
+describe('a11y: country-group', () => {
 	let element: CountryGroup;
 
 	beforeAll(async () => {

@@ -180,14 +180,11 @@ export class CountryGroup extends VividElement {
 
 	#queueFillOverflowGrid(): void {
 		Updates.enqueue(() => {
-			requestAnimationFrame(() => this.#fillOverflowGrid());
+			requestAnimationFrame(() => this.fillOverflowGrid());
 		});
 	}
 
 	#recomputeVisibleCountFromIntersection(): void {
-		if (!this.#intersectionObserver) {
-			return;
-		}
 		const items = this.countryItems;
 		if (!items.length) {
 			this.visibleCount = 0;
@@ -239,7 +236,10 @@ export class CountryGroup extends VividElement {
 		}
 	}
 
-	#fillOverflowGrid(): void {
+	/**
+	 * @internal
+	 */
+	fillOverflowGrid(): void {
 		const items = this.countryItems;
 		const grid = this.overflowGridEl;
 		const visible = this.visibleCount ?? items.length;

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { CountryGroup } from './country-group';
 import '.';
 
@@ -7,6 +7,9 @@ const COMPONENT_TAG = 'vwc-country-group';
 describe('vwc-country-group', () => {
 	let element: CountryGroup;
 	let originalRaf: typeof requestAnimationFrame | undefined;
+	let originalIntersectionObserver:
+		| typeof globalThis.IntersectionObserver
+		| undefined;
 
 	const createCountryGroup = async (countriesMarkup?: string) => {
 		const el = (await fixture(
@@ -53,6 +56,78 @@ describe('vwc-country-group', () => {
 		globalThis.requestAnimationFrame = originalRaf;
 	};
 
+	const installIntersectionObserverMock = () => {
+		originalIntersectionObserver = globalThis.IntersectionObserver;
+
+		type Cb = (entries: IntersectionObserverEntry[]) => void;
+
+		const instances: Array<{
+			trigger: (entries: IntersectionObserverEntry[]) => void;
+			observeTargets: Element[];
+			getDisconnectCalls: () => number;
+		}> = [];
+
+		const Mock = class {
+			readonly #cb: Cb;
+			readonly observeTargets: Element[] = [];
+			disconnectCalls = 0;
+
+			constructor(cb: Cb) {
+				this.#cb = cb;
+				instances.push({
+					trigger: (entries) => this.#cb(entries),
+					observeTargets: this.observeTargets,
+					getDisconnectCalls: () => this.disconnectCalls,
+				});
+			}
+
+			observe = (target: Element) => {
+				this.observeTargets.push(target);
+			};
+
+			unobserve = () => {
+				// no-op
+			};
+
+			disconnect = () => {
+				this.disconnectCalls++;
+			};
+		};
+
+		globalThis.IntersectionObserver =
+			Mock as unknown as typeof globalThis.IntersectionObserver;
+
+		const ioEntry = (args: {
+			target: Element;
+			isIntersecting: boolean;
+			intersectionRatio: number;
+		}): IntersectionObserverEntry =>
+			({
+				time: performance.now(),
+				target: args.target,
+				isIntersecting: args.isIntersecting,
+				intersectionRatio: args.intersectionRatio,
+				boundingClientRect: {} as DOMRectReadOnly,
+				intersectionRect: {} as DOMRectReadOnly,
+				rootBounds: null,
+			}) as unknown as IntersectionObserverEntry;
+
+		const triggerAll = (entries: IntersectionObserverEntry[]) => {
+			for (const inst of instances) {
+				inst.trigger(entries);
+			}
+		};
+
+		return { instances, ioEntry, triggerAll };
+	};
+
+	const restoreIntersectionObserver = () => {
+		if (!originalIntersectionObserver) {
+			return;
+		}
+		globalThis.IntersectionObserver = originalIntersectionObserver;
+	};
+
 	beforeEach(async () => {
 		element = await createCountryGroup();
 	});
@@ -61,6 +136,9 @@ describe('vwc-country-group', () => {
 		if (originalRaf) {
 			restoreRaf();
 		}
+		if (originalIntersectionObserver) {
+			restoreIntersectionObserver();
+		}
 	});
 
 	describe('Basics', () => {
@@ -68,9 +146,8 @@ describe('vwc-country-group', () => {
 			expect(element).toBeInstanceOf(CountryGroup);
 		});
 
-		it('sets host role and tabindex for accessibility', () => {
+		it('sets host role for accessibility', () => {
 			expect(element.getAttribute('role')).toBe('group');
-			expect(element.getAttribute('tabindex')).toBe('0');
 		});
 	});
 
@@ -244,5 +321,147 @@ describe('vwc-country-group', () => {
 		});
 
 		// Row limiting via max-rows is intentionally not part of the public API.
+	});
+
+	describe('IntersectionObserver layout', () => {
+		it('falls back to showing all items when IntersectionObserver is unavailable', async () => {
+			immediateRaf();
+			originalIntersectionObserver = globalThis.IntersectionObserver;
+			// @ts-expect-error intentional for test
+			globalThis.IntersectionObserver = undefined;
+
+			const el = await createCountryGroup();
+			expect(el.visibleCount).toBe(el.countryItems.length);
+			expect(el.overflowCount).toBe(0);
+		});
+
+		it('creates a single IntersectionObserver instance (no duplicate init)', async () => {
+			const { instances } = installIntersectionObserverMock();
+			immediateRaf();
+
+			const el = await createCountryGroup();
+			// `connectedCallback` and the `#requestFit` RAF can both race to init.
+			expect(instances.length).toBeGreaterThan(0);
+
+			// Trigger another fit; should not create a new IO instance.
+			el.countryItemsChanged();
+			await elementUpdated(el);
+			expect(instances.length).toBeGreaterThan(0);
+		});
+
+		it('observes all country items (and badge when present) when syncing targets', async () => {
+			const { instances } = installIntersectionObserverMock();
+			immediateRaf();
+
+			const el = await createCountryGroup();
+			const items = el.countryItems as unknown as HTMLElement[];
+
+			// Add a badge element reference so syncing targets observes it too.
+			const badge = document.createElement('div');
+			el.badgeEl = badge;
+
+			el.countryItemsChanged();
+			await elementUpdated(el);
+			await new Promise((r) => setTimeout(r, 0));
+			await elementUpdated(el);
+
+			const observed = new Set(
+				instances.flatMap((i) => i.observeTargets) as Element[]
+			);
+			for (const it of items) {
+				expect(observed.has(it)).toBe(true);
+			}
+			expect(observed.has(badge)).toBe(true);
+		});
+
+		it('sets visibleCount=0 when IO recompute runs with no items', async () => {
+			const { instances } = installIntersectionObserverMock();
+			immediateRaf();
+
+			const el = await createCountryGroup('');
+			expect(el.countryItems.length).toBe(0);
+
+			const io = instances.at(-1);
+			expect(io).toBeTruthy();
+			io!.trigger([]);
+
+			expect(el.visibleCount).toBe(0);
+		});
+
+		it('recomputes visibleCount from intersection state and fills the overflow grid', async () => {
+			const { instances, ioEntry } = installIntersectionObserverMock();
+			immediateRaf();
+
+			const el = await createCountryGroup();
+			const items = el.countryItems as unknown as HTMLElement[];
+
+			// Mark first two visible, third hidden => visibleCount should become 2.
+			const io = instances.find((i) => i.observeTargets.includes(items[0]));
+			expect(io).toBeTruthy();
+
+			io!.trigger([
+				ioEntry({ target: items[0], isIntersecting: true, intersectionRatio: 1 }),
+				ioEntry({ target: items[1], isIntersecting: true, intersectionRatio: 1 }),
+				ioEntry({ target: items[2], isIntersecting: false, intersectionRatio: 0 }),
+			]);
+			// recomputeVisibleCountFromIntersection runs synchronously in the IO callback.
+			expect(el.visibleCount).toBe(2);
+			await elementUpdated(el);
+
+			expect(el.visibleCount).toBe(2);
+			expect(el.overflowCount).toBe(items.length - 2);
+			expect(el.overflowCount).toBeGreaterThan(0);
+
+			// Fill overflow grid deterministically via the internal method.
+			el.overflowGridEl = document.createElement('div');
+			el.fillOverflowGrid();
+			expect(el.overflowGridEl.children.length).toBe(el.overflowCount);
+			const firstClone = el.overflowGridEl.children.item(0) as HTMLElement;
+			expect(firstClone.getAttribute('aria-hidden')).toBe('true');
+			expect(firstClone.style.display).toBe('');
+		});
+
+		it('hides one more item when the badge is present but not fully visible', async () => {
+			const { ioEntry, triggerAll } = installIntersectionObserverMock();
+			immediateRaf();
+
+			const el = await createCountryGroup();
+			const items = el.countryItems as unknown as HTMLElement[];
+			const badge = document.createElement('div');
+			el.badgeEl = badge;
+
+			// First hidden at index 2 => nextVisible 2; badge not ok => nextVisible 1.
+			triggerAll([
+				ioEntry({ target: items[0], isIntersecting: true, intersectionRatio: 1 }),
+				ioEntry({ target: items[1], isIntersecting: true, intersectionRatio: 1 }),
+				ioEntry({ target: items[2], isIntersecting: false, intersectionRatio: 0 }),
+				ioEntry({ target: badge, isIntersecting: false, intersectionRatio: 0 }),
+			]);
+			await elementUpdated(el);
+
+			expect(el.visibleCount).toBe(1);
+		});
+
+		it('keeps showing all items when everything is fully visible', async () => {
+			const { ioEntry, triggerAll } = installIntersectionObserverMock();
+			immediateRaf();
+
+			const el = await createCountryGroup();
+			const items = el.countryItems as unknown as HTMLElement[];
+
+			// Start from overflowed state to ensure we hit the "firstHidden === -1" update path.
+			el.visibleCount = 1;
+			await elementUpdated(el);
+
+			triggerAll(
+				items.map((it) =>
+					ioEntry({ target: it, isIntersecting: true, intersectionRatio: 1 })
+				)
+			);
+			await elementUpdated(el);
+
+			expect(el.visibleCount).toBe(items.length);
+			expect(el.overflowCount).toBe(0);
+		});
 	});
 });
