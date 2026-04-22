@@ -11,24 +11,24 @@ export interface VExampleComponentEvents {
  * This is an example event
  */
 				'example-event': Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		},
 
 				
 				'input': Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		},
 
 				/**
  * This is a change event
  */
 				'change': Event & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		},
 
 				
 				'input:start': CustomEvent<{a: string | number}> & {
-			currentTarget: VwcExampleComponentElement
+			currentTarget: VwcExampleComponentElement | null
 		},
 
 				/**

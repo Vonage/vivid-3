@@ -1,6 +1,7 @@
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import tableStyles from './table.scss?inline';
+import tableSortingButtonStyles from './table-sorting-button.scss?inline';
 import tableHeadStyles from './table-head.scss?inline';
 import tableBodyStyles from './table-body.scss?inline';
 import tableRowStyles from './table-row.scss?inline';
@@ -18,6 +19,9 @@ import { TableHeaderCell } from './table-header-cell';
 import { TableHeaderCellTemplate } from './table-header-cell.template';
 import { TableCell } from './table-cell';
 import { TableCellTemplate } from './table-cell.template';
+import { TableSortingButton } from './table-sorting-button';
+import { TableSortingButtonTemplate } from './table-sorting-button.template';
+import { iconDefinition } from '../icon/definition';
 
 /**
  * @internal
@@ -77,6 +81,17 @@ export const tableHeadDefinition = defineVividComponent(
 /**
  * @internal
  */
+export const tableSortingButtonDefinition = defineVividComponent(
+	'table-sorting-button',
+	TableSortingButton,
+	TableSortingButtonTemplate,
+	[iconDefinition],
+	{ styles: tableSortingButtonStyles }
+);
+
+/**
+ * @internal
+ */
 export const tableDefinition = defineVividComponent(
 	'table',
 	Table,
@@ -87,6 +102,7 @@ export const tableDefinition = defineVividComponent(
 		tableRowDefinition,
 		tableHeadDefinition,
 		tableBodyDefinition,
+		tableSortingButtonDefinition,
 	],
 	{ styles: tableStyles }
 );
@@ -105,4 +121,5 @@ export {
 	TableRow as VwcTableRowElement,
 	TableHeaderCell as VwcTableHeaderCellElement,
 	TableCell as VwcTableCellElement,
+	TableSortingButton as VwcTableSortingButtonElement,
 };

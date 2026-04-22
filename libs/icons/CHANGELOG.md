@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.10.0](https://github.com/Vonage/vivid-3/compare/vivid-icons-v4.9.0...vivid-icons-v4.10.0) (2026-04-17)
+
+
+### Features
+
+* **icons:** add knowledge-assist and mcp icons (VIV-000) ([#2839](https://github.com/Vonage/vivid-3/issues/2839)) ([fc0dd52](https://github.com/Vonage/vivid-3/commit/fc0dd52a3b2ead9a79e7bad27814774fd19bae2f))
+* **icons:** update microphone icon (VIV-000) ([#2852](https://github.com/Vonage/vivid-3/issues/2852)) ([f981464](https://github.com/Vonage/vivid-3/commit/f98146403dfc328f9c3084f64f96ed8bee53da76))
+
 ## [4.9.0](https://github.com/Vonage/vivid-3/compare/vivid-icons-v4.8.0...vivid-icons-v4.9.0) (2026-03-09)
 
 

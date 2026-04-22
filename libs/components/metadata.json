@@ -7345,6 +7345,71 @@
 			}
 		},
 		{
+			"name": "table-sorting-button",
+			"className": "TableSortingButton",
+			"registerFunctionName": "registerTable",
+			"description": "",
+			"props": [
+				{
+					"name": "direction",
+					"description": "Current direction of the sorting",
+					"type": "'none' | 'desc' | 'asc'",
+					"attributeName": "direction",
+					"propertyName": "direction"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "sort",
+					"description": "Emitted when sorting button is clicked.",
+					"type": "CustomEvent<undefined>"
+				}
+			],
+			"vueModels": [],
+			"methods": [{ "name": "toggleSort", "args": [], "returnType": "void" }],
+			"slots": [{ "name": "default", "description": "Default slot." }],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
 			"name": "tabs",
 			"className": "Tabs",
 			"registerFunctionName": "registerTabs",
@@ -8592,5 +8657,5 @@
 			}
 		}
 	],
-	"iconsManifestUrl": "https://icon.resources.vonage.com/v4.9.0/manifest.json"
+	"iconsManifestUrl": "https://icon.resources.vonage.com/v4.10.0/manifest.json"
 }

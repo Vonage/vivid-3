@@ -20,11 +20,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 		<div class="wrapper">
 			<vwc-nav>
-				<vwc-nav-item href="#" icon="profile" text="Account" onclick="onClick(this)" current></vwc-nav-item>
+				<vwc-nav-item href="#" icon="profile-line" text="Account" onclick="onClick(this)" current></vwc-nav-item>
 				<vwc-nav-item href="#" icon="inbox-line" text="Inbox" onclick="onClick(this)">
 					<vwc-badge slot="meta" text="21" connotation="alert" appearance="subtle" shape="pill"></vwc-badge>
 				</vwc-nav-item>
-				<vwc-nav-item href="#" icon="ai" text="AI Studio" onclick="onClick(this)">
+				<vwc-nav-item href="#" icon="ai-line" text="AI Studio" onclick="onClick(this)">
 					<vwc-badge slot="meta" text="new" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
 				</vwc-nav-item>
 				<vwc-nav-item href="#" icon="books-line" text="Documentation" onclick="onClick(this)">
