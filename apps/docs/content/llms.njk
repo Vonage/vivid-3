@@ -59,30 +59,29 @@ IMPORTANT: Not all components has all documentation part (for example "guideline
 For granular details on specific components (APIs, slots, and examples), refer to the following sub-documentation structure:
 
 ## Components
-{% for component in components %}
+{% for component in componentsNew %}
 
-* **{{ component.title }}** - {{ component.description }}
-{%- if component.guidelines %}
-  * [General usage guidelines](/components/{{ component | componentSlug }}/guidelines/llms.txt)
+* **{{ component.concept }}** - {{ component.description }}
+{%- if component.documentation.guidelines %}
+  * [General usage guidelines](/components/{{ component.slug }}/guidelines/llms.txt)
 {%- endif %}
-{%- if component.code %}
-  * [Code usage](/components/{{ component | componentSlug }}/code/llms.txt)
+{%- if component.documentation.code %}
+  * [Code usage](/components/{{ component.slug }}/code/llms.txt)
 {%- endif %}
-{%- if component.useCases %}
-  * [Use cases](/components/{{ component | componentSlug }}/use-cases/llms.txt)
+{%- if component.documentation.useCases %}
+  * [Use cases](/components/{{ component.slug }}/use-cases/llms.txt)
 {%- endif %}
-{%- if component.variations %}
-  * [Variations](/components/{{ component | componentSlug }}/variations/llms.txt)
+{%- if component.documentation.variations %}
+  * [Variations](/components/{{ component.slug }}/variations/llms.txt)
 {%- endif %}
-{%- if component.accessibility %}
-  * [Accessibility](/components/{{ component | componentSlug }}/accessibility/llms.txt)
+{%- if component.documentation.accessibility %}
+  * [Accessibility](/components/{{ component.slug }}/accessibility/llms.txt)
 {%- endif %}
 {% endfor %}
 
 ### Quick Component Selector
 
-* **Inputs:** `vwc-text-field`, `vwc-select`, `vwc-checkbox`, `vwc-radio`.
+* **Inputs:** `vwc-text-field`, `vwc-select`, `vwc-checkbox`, `vwc-radio-group`.
 * **Feedback:** `vwc-alert`, `vwc-banner`, `vwc-badge`, `vwc-progress-bar`.
 * **Containers:** `vwc-card`, `vwc-accordion`, `vwc-dialog`.
 * **Navigation:** `vwc-tabs`, `vwc-breadcrumb`, `vwc-menu`.
-

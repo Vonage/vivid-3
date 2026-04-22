@@ -260,12 +260,14 @@
 <vwc-note connotation="information" headline="Figma file">
 	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
 
-The [icon-only button](/link/to/figma) is a separate component in Figma.
+The icon-only button is a separate component in Figma.
 
 </vwc-note>
 
-<docs-do-dont headline="Use Icon-only buttons when space is limited" reverse>
+<docs-do-dont reverse>
 <div slot="description">
+
+### Use Icon-only buttons when space is limited
 
 - Examples: toolbar or in the `meta` slot of a [card](/components/card)
 - Clarify the purpose of the button using a [tooltip](/components/tooltip)
@@ -317,7 +319,7 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 </docs-do-dont>
 
 <docs-do-dont>
-<docs-do slot="description" caption="Use left icons to emphasize meaning and right icons to imply directionality or to indicate a button will open a menu.">
+<docs-do slot="description">
 
 ```html preview center example 72px
 <div class="container">
@@ -337,9 +339,11 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 </style>
 ```
 
+Do use left icons to emphasize meaning and right icons to imply directionality or to indicate a button will open a menu.
+
 </docs-do>
 
-<docs-do dont caption="Use left icons to imply directionality or to indicate a button will open a popover. Don't use right icons to emphasize meaning.">
+<docs-do dont>
 
 ```html preview center example 72px
 <div class="container">
@@ -359,14 +363,18 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 </style>
 ```
 
+Don't use left icons to imply directionality or to indicate a button will open a popover. Don't use right icons to emphasize meaning.
+
 </docs-do>
 </docs-do-dont>
 
 ## Size
 
-<docs-do-dont headline="Use smaller size buttons when space is limited" reverse>
+<docs-do-dont reverse>
 
 <div slot="description">
+
+### Use smaller size buttons when space is limited
 
 The smaller size buttons (`condensed` and `super-condensed`) are useful when used inside other components (inside [data-grid-cell](/components/data-grid/#cell) or [action-group](/components/action-group/) for a [toolbar](/components/button/use-cases/#toolbars)) as they take up less space.
 
@@ -383,27 +391,31 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 	</vwc-action-group>
 </div>
 <div class="container">
-	<vwc-data-grid>
-		<vwc-data-grid-row row-type="header">
-			<vwc-data-grid-cell cell-type="columnheader">User</vwc-data-grid-cell>
-			<vwc-data-grid-cell class="controls" cell-type="columnheader"></vwc-data-grid-cell>
-		</vwc-data-grid-row>
-		<vwc-data-grid-row>
-			<vwc-data-grid-cell>Joe</vwc-data-grid-cell>
-			<vwc-data-grid-cell class="controls">
-				<vwc-button appearance="outlined" size="condensed" aria-label="Edit">
-					<vwc-icon slot="icon" name="edit-line"></vwc-icon>
-				</vwc-button>
-				<vwc-button appearance="outlined" size="condensed" aria-label="Delete" connotation="alert">
-					<vwc-icon slot="icon" name="delete-line"></vwc-icon>
-				</vwc-button>
-			</vwc-data-grid-cell>
-		</vwc-data-grid-row>
-	</vwc-data-grid>
+	<vwc-table>
+		<vwc-table-head>
+			<vwc-table-row>
+				<vwc-table-header-cell>User</vwc-table-header-cell>
+				<vwc-table-header-cell></vwc-table-header-cell>
+			</vwc-table-row>
+		</vwc-table-head>
+		<vwc-table-body>
+			<vwc-table-row>
+				<vwc-table-cell>Joe</vwc-table-cell>
+				<vwc-table-cell class="controls">
+					<vwc-button appearance="ghost" size="condensed" aria-label="Edit">
+						<vwc-icon slot="icon" name="edit-line"></vwc-icon>
+					</vwc-button>
+					<vwc-button appearance="ghost" size="condensed" aria-label="Delete" connotation="alert">
+						<vwc-icon slot="icon" name="delete-line"></vwc-icon>
+					</vwc-button>
+				</vwc-table-cell>
+			</vwc-table-row>
+		</vwc-table-body>
+	</vwc-table>
 </div>
 
 <style>
-	.conainer {
+	.container {
 		display: block;
 		padding: 8px 0;
 	}
@@ -418,7 +430,9 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 </docs-do-dont>
 
 <docs-do-dont>
-<docs-do slot="description" headline="Use same button size for adjacent buttons">
+<docs-do slot="description">
+
+Use same button size for adjacent buttons
 
 ```html preview center example 290px
 <vwc-dialog open headline="Delete appointment" icon="delete-line" icon-placement="side" class="dialog">
@@ -435,7 +449,9 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 ```
 
 </docs-do>
-<docs-do dont headline="Don't use different size buttons for adjacent buttons">
+<docs-do dont>
+
+Don't use different size buttons for adjacent buttons"
 
 ```html preview center example 290px
 <vwc-dialog open headline="Delete appointment" icon-placement="side" class="dialog">
@@ -458,13 +474,15 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 ## Ghost Buttons
 
 <docs-do-dont>
-<docs-do slot="description" headline="Use ghost buttons inside a container">
+<docs-do slot="description">
+
+Use ghost buttons inside a container
 
 ```html preview example 110px
 <vwc-action-group>
 	<vwc-tooltip text="Undo" placement="bottom-start">
 		<vwc-button slot="anchor" size="condensed">
-			<vwc slot="icon" name="reply-line"></vwc-icon>
+			<vwc-icon slot="icon" name="reply-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-button label="Copy" size="condensed"></vwc-button>
@@ -482,13 +500,15 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 ```
 
 </docs-do>
-<docs-do dont headline="Don't use ghost buttons without a container">
+<docs-do dont>
+
+Don't use ghost buttons without a container
 
 ```html preview example 110px
 <div class="container">
 	<vwc-tooltip text="Undo" placement="bottom-start">
 		<vwc-button slot="anchor" size="condensed">
-			<vwc slot="icon" name="reply-line"></vwc-icon>
+			<vwc-icon slot="icon" name="reply-line"></vwc-icon>
 		</vwc-button>
 	</vwc-tooltip>
 	<vwc-button label="Copy" size="condensed"></vwc-button>
@@ -509,25 +529,14 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 
 ## Disabled Buttons
 
-### Why Disabled Buttons Are Problematic
+[Disabled buttons often create confusion and poor UX](/whats-new/why-disabled-buttons-often-lead-to-poor-ux/).
 
-1. **Cause deception**<br />The call to action text draws users to click, but nothing happens. This causes confusion, leading users to think that the interface is broken.
-2. **Insufficient contrast**<br />Even if the button is disabled, the button label is still crucial for understanding the interface.
-3. **No feedback**<br />Without feedback, users don't know what has gone wrong or how to fix the error.
-4. **System complexity**<br />Disabled buttons are often used to prevent wasteful clicks, but this puts pressure on the design / implementation to provide robust inline validation. The reality is, inline validation systems can fail, leaving the user stuck with a disabled button and no way to complete the form.
+They can feel deceptive—users are drawn to click a clear call to action, but nothing happens. Without feedback, it’s unclear what went wrong or how to fix it, and reduced contrast can make labels harder to read. Since placeholders are only hints, blocking progress with a disabled state often shifts too much responsibility onto validation systems, which can fail and leave users stuck.
 
-### When Disabled Buttons Can Be Useful
-
-While disabled buttons often create more problems than they solve, there are limited scenarios where they can improve the user experience if designed carefully:
-
-1. **Preventing duplicate submissions**<br />After a critical action such as submitting a payment, booking, or form, the button can be temporarily disabled to avoid multiple clicks and duplicate transactions. This should always be paired with visible feedback (e.g., changing the label to “Processing…” and showing a spinner). We have the [`pending` feature](/components/button/#pending) for this situation.
-2. **Communicating temporary unavailability**<br/>Buttons may be disabled while content is loading or while a dependent process finishes (eg. waiting for a verification SMS). This should be short-lived, and the button state must be updated as soon as the action becomes available.
-
-### Best Practices
-
-- Always provide visible and accessible feedback when a button is disabled (e.g., helper text, inline validation, or an explanatory tooltip).
-- Prefer inline error messages and contextual feedback over disabling buttons—this often gives a clearer and more usable experience.
+In most cases, it’s better to keep buttons enabled and provide clear, inline feedback. Disabled states can still be useful in limited scenarios, such as preventing duplicate submissions (e.g. showing a “Processing…” state) or indicating short-lived unavailability while something loads. In all cases, ensure users get clear, accessible feedback explaining what’s happening and what to do next.
 
 ## Related Components
 
 - [Split Button](/components/split-button/)
+- [FAB](/components/fab/)
+- [Action Group](/components/action-group/)
