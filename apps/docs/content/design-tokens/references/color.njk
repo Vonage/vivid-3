@@ -6,73 +6,60 @@ title: Color
 order: 10
 ---
 {% include '../../_includes/tokens-table.njk' %}
-{% from '../../_includes/tokens-table.njk' import tokensList, heading %}
-{% macro preview(item) %}
-  <div class="token-preview" style="background-color: {{ item.preview }}"> </div>
-{% endmacro %}
-
-<h1>Color tokens</h1>
-<p>
-	Covers semantic color families, usage guidance for backgrounds, solids, borders, and text, and the full neutral, accent, status, and accent-alt scales.
-</p>
-<p>
-	Used for properties like foreground and background colors, surfaces, border colors, etc.
-</p>
+{% from '../../_includes/tokens-table.njk' import tokensList, heading, preview %}
 
 
-{{ heading('Neutral', '2') }}
-<p>
-	<strong>Keywords:</strong>
-	default, archived, history, saved/previously saved, date created, read message, expired job, no change
-</p>
-{{ tokensList(tokens.color.neutral, preview) }}
+<h1>Color usage</h1>
+<p>Color is a core element of the Vivid:Apps design system. This guide outlines the principles, patterns, and token structure that define how color is applied across components and experiences.</p>
 
-{{ heading('Neutral Alt', '2') }}
-<p>
-	<strong>Keywords:</strong>
-	default, archived, history, saved/previously saved, date created, read message, expired job, no change
-</p>
-{{ tokensList(tokens.color['neutral-alt'], preview) }}
+<div class="core-colors">
+	{{ heading('Core colors', '2') }}
 
-{{ heading('Accent', '2') }}
-<p>
-	<strong>Keywords:</strong>
-	primary, brand, cta, action, highlight, standout, emphasis
-</p>
-{{ tokensList(tokens.color.accent, preview) }}
+	<vwc-note connotation="information">
+		<p><b>Core color tokens</b> should only be used to construct semantic and pattern design tokens, never used directly in code.</p>
+	</vwc-note>
 
-{{ heading('Accent Alt', '2') }}
-<p>
-	<strong>Keywords:</strong>
-	primary, brand, cta, action, highlight, standout, emphasis
-</p>
-{{ tokensList(tokens.color['accent-alt'], preview) }}
+	{{ heading('Brand palette', '3') }}
+	<p>The brand palette includes the primary and accent colors, which are used to express the brand identity and create visual interest. These colors should be used sparingly to maintain their impact and ensure accessibility.</p>
 
-{{ heading('Positive', '2') }}
-<p>
-	<strong>Keywords:</strong>
-	success, complete, new section, new segment, new message, positive message, contacted/sent message, new job, new candidate, trending upward, above average, complete,
-</p>
-{{ tokensList(tokens.color.positive, preview) }}
+	<div class="token-category">	
+	{{ tokensList(tokens.color.primary, preview, 'Primary') }}
+	{{ tokensList(tokens.color.accent, preview, 'Accent') }}
+	</div>
 
-{{ heading('Critical', '2') }}
-<p>
-	<strong>Keywords:</strong>
-	high risk, high urgency, error, failed, delete, critical message, late/overdue, trending downward, unsatisfactory, overdue
-</p>
-{{ tokensList(tokens.color.critical, preview) }}
+	{{ heading('Neutral palette', '3') }}
+	<p>The neutral palette provides a range of grays that can be used for backgrounds, surfaces, borders, and text. The neutral colors are designed to work harmoniously with the brand colors and provide a solid foundation for the overall color scheme.</p>
+	<div class="token-category">
+		{{ tokensList(tokens.color.neutral, preview, 'Neutral') }}
+		{{ tokensList(tokens.color['neutral-tint'], preview, 'Neutral Tint') }}
+	</div>
 
-{{ heading('Information', '2') }}
-<p>
-	<strong>Keywords:</strong>
-	help, updated, scheduled, guidance message, unread, updated resume, previously contacted, average
-</p>
-{{ tokensList(tokens.color.info, preview) }}
+	{{ heading('Status palette', '3') }}
+	<p>The status palette includes colors that are used to communicate meaning and provide feedback to users. These colors should be used consistently across the product to ensure clear communication and a cohesive user experience.</p>
+	<div class="token-category">
+		{{ tokensList(tokens.color['info'], preview, 'Info') }}
+		{{ tokensList(tokens.color['success'], preview, 'Success') }}
+		{{ tokensList(tokens.color['warning'], preview, 'Warning') }}
+		{{ tokensList(tokens.color['danger'], preview, 'Danger') }}
+	</div>
+</div>
 
-{{ heading('Caution', '2') }}
-<p>
-	<strong>Keywords:</strong>
-	low risk, low urgency, pending, upcoming, caution message, draft (label), not yet contacted, rating, below average, partially paid
-</p>
-{{ tokensList(tokens.color.caution, preview) }}
+<style>
+	.core-colors {
+		container-type: inline-size;
+	}
 
+	.token-category {
+  	display: grid;
+		grid-template-columns: 1fr;
+		gap: 16px;
+		padding-block-start: 8px;
+	}
+
+	/* Switch to two columns when container ≥ 650px */
+	@container (min-width: 650px) {
+		.token-category {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>
