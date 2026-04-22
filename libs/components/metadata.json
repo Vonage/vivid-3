@@ -3110,6 +3110,13 @@
 					"propertyName": "required"
 				},
 				{
+					"name": "scale",
+					"description": "Sets the display size of the picker field input element.",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "scale",
+					"propertyName": "scale"
+				},
+				{
 					"name": "value",
 					"description": "The current value of the element.",
 					"type": "string",
@@ -3312,6 +3319,13 @@
 					"type": "boolean",
 					"attributeName": "required",
 					"propertyName": "required"
+				},
+				{
+					"name": "scale",
+					"description": "Sets the display size of the picker field input element.",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "scale",
+					"propertyName": "scale"
 				},
 				{
 					"name": "start",
@@ -3560,6 +3574,13 @@
 					"type": "boolean",
 					"attributeName": "required",
 					"propertyName": "required"
+				},
+				{
+					"name": "scale",
+					"description": "Sets the display size of the picker field input element.",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "scale",
+					"propertyName": "scale"
 				},
 				{
 					"name": "secondsStep",
@@ -10391,6 +10412,13 @@
 					"type": "boolean",
 					"attributeName": "required",
 					"propertyName": "required"
+				},
+				{
+					"name": "scale",
+					"description": "Sets the display size of the picker field input element.",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "scale",
+					"propertyName": "scale"
 				},
 				{
 					"name": "secondsStep",

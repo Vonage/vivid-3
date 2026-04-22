@@ -5,7 +5,7 @@ import {
 	Observable,
 	observable,
 } from '@microsoft/fast-element';
-import type { TextField } from '../../lib/text-field/text-field';
+import type { TextField, TextFieldSize } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import { handleEscapeKeyAndStopPropogation } from '../dialog';
 import {
@@ -35,6 +35,14 @@ export abstract class PickerField extends WithContextualHelp(
 	)
 ) {
 	// --- Attributes ---
+	/**
+	 * Sets the display size of the picker field input element.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: scale
+	 */
+	@attr() scale?: TextFieldSize;
+
 	/**
 	 * Whether the date-picker is readonly.
 	 * @public

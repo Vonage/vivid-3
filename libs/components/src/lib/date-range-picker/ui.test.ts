@@ -40,6 +40,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-date-range-picker label="Label">
 				<vwc-contextual-help slot="contextual-help">Example contextual help</vwc-contextual-help>
 			</vwc-date-range-picker>
+			<vwc-date-range-picker scale="condensed" label="Condensed"></vwc-date-range-picker>
 		</div>
 	</div>`;
 
