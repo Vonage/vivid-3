@@ -175,6 +175,9 @@ const jaJP: Locale = {
 	select: {
 		clearButtonLabel: '選択をクリア',
 	},
+	countryGroup: {
+		ariaLabelPrefix: '国:',
+	},
 	searchableSelect: {
 		clearButtonLabel: '選択をクリア',
 		noOptionsMessage: 'オプションがありません',

@@ -175,6 +175,9 @@ const zhCN: Locale = {
 	select: {
 		clearButtonLabel: '清除选择',
 	},
+	countryGroup: {
+		ariaLabelPrefix: '国家',
+	},
 	searchableSelect: {
 		clearButtonLabel: '清除选择',
 		noOptionsMessage: '没有选项',

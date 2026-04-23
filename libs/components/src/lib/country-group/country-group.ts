@@ -1,129 +1,150 @@
-import { observable, Updates, volatile } from '@microsoft/fast-element';
+import { observable, Updates } from '@microsoft/fast-element';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
-import type { Country } from '../country/country';
+import { Localized } from '../../shared/patterns';
+import { countries } from '../country/countries-data';
+
+const FULLY_VISIBLE_INTERSECTION_RATIO = 0.99;
 
 /**
  * @public
  * @component country-group
  * @slot default - One or more `vwc-country` elements (Country only).
  */
-export class CountryGroup extends VividElement {
+export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 	/**
+	 * Assigned elements from the default slot.
 	 * @internal
 	 */
-	@observable countryItems: Country[] = [];
+	@observable items: HTMLElement[] = [];
 
 	/**
+	 * Number of visible items (prefix) according to IO.
 	 * @internal
 	 */
-	countryItemsChanged(): void {
-		this.visibleCount = null;
-
-		queueMicrotask(() => {
-			this.#syncChildAccessibility();
-			this.#updateGroupAriaLabel();
-		});
-		this.#requestFit();
-	}
+	@observable lastVisibleIndex = 0;
 
 	/**
+	 * Computed aria-label for the group, built from slotted countries.
 	 * @internal
 	 */
-	@observable visibleCount: number | null = null;
+	@observable computedAriaLabel: string | null = null;
 
 	/**
-	 * @internal
-	 */
-	@volatile
-	get overflowCount(): number {
-		if (!this.countryItems.length) {
-			return 0;
-		}
-		const visible = this.visibleCount ?? this.countryItems.length;
-		return Math.max(0, this.countryItems.length - visible);
-	}
-
-	/**
+	 * Whether the overflow popup is open.
 	 * @internal
 	 */
 	@observable popupOpen = false;
 
-	/**
-	 * @internal
-	 */
-	popupOpenChanged(oldValue?: boolean): void {
-		if (oldValue === undefined) {
-			return;
+	containerEl!: HTMLDivElement;
+	slotEl!: HTMLSlotElement;
+	badgeEl?: HTMLElement;
+	sentinelEl?: HTMLElement;
+	overflowWrapEl?: HTMLDivElement;
+	overflowGridEl?: HTMLDivElement;
+
+	get overflowCount(): number {
+		return Math.max(0, this.items.length - this.lastVisibleIndex);
+	}
+
+	#observer: IntersectionObserver | null = null;
+	#visibleMap = new Map<Element, boolean>();
+	#fitQueued = false;
+	#commitQueued = false;
+	#candidateVisible = -1;
+	#candidateStreak = 0;
+
+	#countryNameForCode(code: string): string {
+		if (!code) {
+			return '';
 		}
-		if (this.popupOpen) {
-			document.addEventListener('keydown', this.#closePopupOnEscape);
-		} else {
-			document.removeEventListener('keydown', this.#closePopupOnEscape);
+		return (
+			countries.find((c) => c.code.toUpperCase() === code.toUpperCase())
+				?.label ?? ''
+		);
+	}
+
+	#applyLayout(visibleCount: number, mode: 'final' | 'fit'): void {
+		for (let i = 0; i < this.items.length; i++) {
+			const el = this.items[i];
+
+			// reserve one flex "slot" for the badge right after the last visible item:
+			// overflow items get +1 order so they come after the badge.
+			el.style.order = `${i < visibleCount ? i : i + 1}`;
+
+			if (i < visibleCount) {
+				el.style.display = '';
+				el.style.position = '';
+				el.style.inset = '';
+				el.style.visibility = '';
+				el.style.pointerEvents = '';
+				continue;
+			}
+
+			el.style.display = '';
+			el.style.pointerEvents = 'none';
+
+			if (mode === 'final') {
+				// remove from layout, but keep observable (no display:none).
+				el.style.position = 'absolute';
+				el.style.inset = '0 auto auto 0';
+				el.style.visibility = 'hidden';
+			} else {
+				// back into flow for IO measurement, but not visible to user.
+				el.style.position = '';
+				el.style.inset = '';
+				el.style.visibility = 'hidden';
+			}
 		}
 	}
 
-	rowEl!: HTMLElement;
-	overflowWrapEl!: HTMLElement;
-	overflowGridEl!: HTMLDivElement;
-	badgeEl?: HTMLElement;
-
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.setAttribute('role', 'group');
 
 		Updates.enqueue(() => {
-			this.#ensureIntersectionObserver();
-			this.#syncIntersectionTargets();
+			if (!this.$fastController.isConnected) {
+				return;
+			}
+
+			this.#syncFromSlot();
+			this.#updateAriaLabel();
+			this.slotEl?.addEventListener('slotchange', this.#onSlotChange);
+			this.#ensureObserver();
 			this.#requestFit();
 		});
 	}
 
 	override disconnectedCallback(): void {
-		this.#intersectionObserver?.disconnect();
-		document.removeEventListener('keydown', this.#closePopupOnEscape);
+		this.slotEl?.removeEventListener('slotchange', this.#onSlotChange);
+		this.#observer?.disconnect();
+		this.#observer = null;
+		this.#visibleMap.clear();
+		this.#candidateVisible = -1;
+		this.#candidateStreak = 0;
+		document.removeEventListener('keydown', this.#onDocumentKeydown);
 		super.disconnectedCallback();
 	}
 
-	#intersectionObserver: IntersectionObserver | null = null;
-	#intersectionState = new Map<Element, boolean>();
-	#fitQueued = false;
-	#ensureIntersectionObserver(): void {
-		if (this.#intersectionObserver) {
+	#onSlotChange = () => {
+		this.#syncFromSlot();
+		this.#updateAriaLabel();
+		this.#requestFit();
+	};
+
+	#ensureObserver(): void {
+		if (this.#observer) {
 			return;
 		}
+
 		if (typeof IntersectionObserver === 'undefined') {
+			this.lastVisibleIndex = this.items.length;
 			return;
 		}
-		this.#intersectionObserver = new IntersectionObserver(
-			(entries) => {
-				for (const e of entries) {
-					const fullyVisible =
-						e.isIntersecting && (e.intersectionRatio ?? 0) >= 0.99;
-					this.#intersectionState.set(e.target, fullyVisible);
-				}
-				this.#recomputeVisibleCountFromIntersection();
-			},
-			{
-				root: this.rowEl,
-				threshold: [0.99],
-			}
-		);
-	}
 
-	#syncIntersectionTargets(): void {
-		if (!this.#intersectionObserver) {
-			return;
-		}
-		this.#intersectionObserver.disconnect();
-		this.#intersectionState.clear();
-
-		for (const item of this.countryItems) {
-			this.#intersectionObserver.observe(item);
-		}
-		if (this.badgeEl) {
-			this.#intersectionObserver.observe(this.badgeEl);
-		}
+		this.#observer = new IntersectionObserver(this.#handleIntersection, {
+			root: this,
+			threshold: [FULLY_VISIBLE_INTERSECTION_RATIO],
+		});
 	}
 
 	#requestFit(): void {
@@ -131,138 +152,167 @@ export class CountryGroup extends VividElement {
 			return;
 		}
 		this.#fitQueued = true;
+		this.#prepareForFit();
+
 		requestAnimationFrame(() => {
 			this.#fitQueued = false;
-
-			this.#ensureIntersectionObserver();
-			this.#syncIntersectionTargets();
-
-			// Fallback: if IO isn't available, we don't attempt layout calculations.
-			// It shows all items (no overflow badge behavior).
-			if (!this.#intersectionObserver) {
-				this.visibleCount = this.countryItems.length;
-				this.#applyVisibility(this.countryItems.length);
-				this.#queueFillOverflowGrid();
-				return;
-			}
-
-			this.visibleCount = this.countryItems.length;
-			this.#applyVisibility(this.countryItems.length);
-			this.#queueFillOverflowGrid();
-			Updates.enqueue(() => {
-				this.#syncIntersectionTargets();
-			});
+			this.#observeAll();
 		});
 	}
 
-	#syncChildAccessibility(): void {
-		for (const el of this.countryItems) {
-			el.setAttribute('aria-hidden', 'true');
-		}
-	}
-
-	#updateGroupAriaLabel(): void {
-		const parts = this.countryItems.map((el) => this.#countryLabel(el));
-		this.setAttribute('aria-label', parts.filter(Boolean).join(', '));
-	}
-
-	#countryLabel(el: Country): string {
-		const label = el.label?.trim();
-		const code = el.code?.trim();
-		if (label) {
-			return label;
-		}
-		if (code) {
-			return code.toUpperCase();
-		}
-		return '';
-	}
-
-	#queueFillOverflowGrid(): void {
-		Updates.enqueue(() => {
-			requestAnimationFrame(() => this.fillOverflowGrid());
-		});
-	}
-
-	#recomputeVisibleCountFromIntersection(): void {
-		const items = this.countryItems;
-		if (!items.length) {
-			this.visibleCount = 0;
+	#observeAll(): void {
+		if (!this.#observer) {
 			return;
 		}
+		this.#observer.disconnect();
+		for (const el of this.items) {
+			this.#observer.observe(el);
+		}
+		if (this.sentinelEl) {
+			this.#observer.observe(this.sentinelEl);
+		}
+		if (this.badgeEl) this.#observer.observe(this.badgeEl);
+	}
 
-		// Determine the first item that is not fully visible.
+	#syncFromSlot(): void {
+		const assigned = this.slotEl?.assignedElements({ flatten: true }) ?? [];
+		this.items = assigned.filter(
+			(n): n is HTMLElement => n instanceof HTMLElement
+		);
+		// Assume visible until IO says otherwise
+		this.#visibleMap.clear();
+		for (const el of this.items) {
+			this.#visibleMap.set(el, true);
+		}
+		this.lastVisibleIndex = this.items.length;
+		this.#applyLayout(this.lastVisibleIndex, 'final');
+	}
+
+	#updateAriaLabel(): void {
+		const prefix = this.locale.countryGroup.ariaLabelPrefix;
+
+		const names: string[] = [];
+		for (const el of this.items) {
+			const label = (el.getAttribute('label') ?? '').trim();
+			const code = (el.getAttribute('code') ?? '').trim();
+			const fullName = this.#countryNameForCode(code);
+			const value = label || fullName || code;
+			if (value) {
+				names.push(value);
+			}
+		}
+
+		const joined = names.join(', ');
+		this.computedAriaLabel = joined ? `${prefix} ${joined}` : prefix;
+	}
+
+	#handleIntersection = (entries: IntersectionObserverEntry[]) => {
+		let sawSentinel = false;
+		let sawNonSentinel = false;
+		for (const entry of entries) {
+			if (entry.target === this.sentinelEl) {
+				sawSentinel = true;
+				continue;
+			}
+			sawNonSentinel = true;
+			this.#visibleMap.set(
+				entry.target,
+				(entry.intersectionRatio ?? 0) >= FULLY_VISIBLE_INTERSECTION_RATIO
+			);
+		}
+
+		// resize => queue a re-fit to refresh item intersections.
+		if (sawSentinel) {
+			this.#requestFit();
+			// if this callback only had the sentinel, wait for the next callback
+			// with real item entries before recomputing.
+			if (!sawNonSentinel) {
+				return;
+			}
+		}
+
 		let firstHidden = -1;
-		for (let i = 0; i < items.length; i++) {
-			if (!(this.#intersectionState.get(items[i]) ?? false)) {
+		for (let i = 0; i < this.items.length; i++) {
+			if (!(this.#visibleMap.get(this.items[i]) ?? true)) {
 				firstHidden = i;
 				break;
 			}
 		}
+		let nextVisible = firstHidden === -1 ? this.items.length : firstHidden;
 
-		// Everything is visible: show all, no badge.
-		if (firstHidden === -1) {
-			if (this.visibleCount !== items.length) {
-				this.visibleCount = items.length;
-				this.#applyVisibility(items.length);
-				this.#queueFillOverflowGrid();
-				Updates.enqueue(() => this.#syncIntersectionTargets());
-			}
+		// edge case: the badge can cause its own overflow.
+		// if the *only* hidden item is the last one, and the badge itself is fully
+		// visible, then removing the badge should allow the last item to fit.
+		if (
+			firstHidden === this.items.length - 1 &&
+			this.badgeEl &&
+			(this.#visibleMap.get(this.badgeEl) ?? false)
+		) {
+			nextVisible = this.items.length;
+		}
+
+		// if there is overflow, ensure the badge itself fits. If it doesn't, show one
+		// fewer item so the badge can sit on the last visible line instead of wrapping.
+		if (
+			nextVisible < this.items.length &&
+			this.badgeEl &&
+			this.#visibleMap.has(this.badgeEl) &&
+			this.#visibleMap.get(this.badgeEl) === false
+		) {
+			nextVisible = Math.max(1, nextVisible - 1);
+		}
+		this.#proposeVisibleCount(nextVisible);
+	};
+
+	#proposeVisibleCount(nextVisible: number): void {
+		// require the same value twice in a row to avoid threshold flapping.
+		if (this.#candidateVisible === nextVisible) {
+			this.#candidateStreak++;
+		} else {
+			this.#candidateVisible = nextVisible;
+			this.#candidateStreak = 1;
+		}
+
+		if (this.#candidateStreak < 2) {
 			return;
 		}
 
-		let nextVisible = Math.max(1, firstHidden);
-
-		//  if the badge is present but not fully visible, hide one more.
-		if (this.badgeEl) {
-			const badgeOk = this.#intersectionState.get(this.badgeEl) ?? false;
-			if (!badgeOk) {
-				nextVisible = Math.max(1, nextVisible - 1);
-			}
-		}
-
-		if (this.visibleCount !== nextVisible) {
-			this.visibleCount = nextVisible;
-			this.#applyVisibility(nextVisible);
-			this.#queueFillOverflowGrid();
-			Updates.enqueue(() => this.#syncIntersectionTargets());
-		}
-	}
-
-	#applyVisibility(visible: number): void {
-		const items = this.countryItems;
-		for (let i = 0; i < items.length; i++) {
-			items[i].style.display = i < visible ? '' : 'none';
-		}
-	}
-
-	/**
-	 * @internal
-	 */
-	fillOverflowGrid(): void {
-		const items = this.countryItems;
-		const grid = this.overflowGridEl;
-		const visible = this.visibleCount ?? items.length;
-		if (!grid || visible >= items.length) {
+		if (this.lastVisibleIndex === nextVisible) {
 			return;
 		}
-		grid.replaceChildren();
-		for (let i = visible; i < items.length; i++) {
-			const c = items[i].cloneNode(true) as HTMLElement;
 
-			c.style.display = '';
-			c.setAttribute('aria-hidden', 'true');
-			grid.appendChild(c);
+		if (this.#commitQueued) {
+			return;
 		}
+		this.#commitQueued = true;
+
+		requestAnimationFrame(() => {
+			this.#commitQueued = false;
+			// if (!this.$fastController.isConnected) {
+			// 	return;
+			// }
+			this.lastVisibleIndex = this.#candidateVisible;
+			this.#applyLayout(this.lastVisibleIndex, 'final');
+
+			if (this.overflowCount === 0) {
+				this.popupOpen = false;
+			}
+			Updates.enqueue(() => this.fillOverflowGrid());
+		});
+	}
+
+	#prepareForFit(): void {
+		this.#applyLayout(this.lastVisibleIndex, 'fit');
 	}
 
 	/**
 	 * @internal
 	 */
 	handleMouseEnter(): void {
-		if (this.overflowCount > 0) {
-			this.popupOpen = true;
+		if (this.overflowCount === 0) {
+			return;
 		}
+		this.popupOpen = true;
 	}
 
 	/**
@@ -276,17 +326,54 @@ export class CountryGroup extends VividElement {
 	 * @internal
 	 */
 	popupKeydown(e: Event): void {
-		if (
-			this.popupOpen &&
-			handleEscapeKeyAndStopPropogation(e as KeyboardEvent)
-		) {
-			this.popupOpen = false;
+		const ev = e as KeyboardEvent;
+		if (ev.key !== 'Escape') {
+			return;
+		}
+		ev.stopPropagation();
+		this.popupOpen = false;
+	}
+
+	/**
+	 * @internal
+	 */
+	popupOpenChanged(oldValue: boolean | undefined): void {
+		if (oldValue === undefined) {
+			return;
+		}
+		if (this.popupOpen) {
+			document.addEventListener('keydown', this.#onDocumentKeydown);
+			Updates.enqueue(() => this.fillOverflowGrid());
+		} else {
+			document.removeEventListener('keydown', this.#onDocumentKeydown);
 		}
 	}
 
-	#closePopupOnEscape = (e: KeyboardEvent) => {
-		if (e.key === 'Escape') {
-			this.popupOpen = false;
+	#onDocumentKeydown = (e: KeyboardEvent) => {
+		if (e.key !== 'Escape') {
+			return;
 		}
+		this.popupOpen = false;
 	};
+
+	/**
+	 * @internal
+	 */
+	fillOverflowGrid(): void {
+		if (!this.overflowGridEl) {
+			return;
+		}
+		if (this.overflowCount === 0) {
+			return;
+		}
+
+		this.overflowGridEl.replaceChildren();
+		const overflowed = this.items.slice(this.lastVisibleIndex);
+		for (const it of overflowed) {
+			const clone = it.cloneNode(true) as HTMLElement;
+			clone.setAttribute('aria-hidden', 'true');
+			clone.removeAttribute('style');
+			this.overflowGridEl.appendChild(clone);
+		}
+	}
 }

@@ -177,6 +177,9 @@ const deDE: Locale = {
 	select: {
 		clearButtonLabel: 'Auswahl löschen',
 	},
+	countryGroup: {
+		ariaLabelPrefix: 'Länder:',
+	},
 	searchableSelect: {
 		clearButtonLabel: 'Auswahl löschen',
 		noOptionsMessage: 'Keine Optionen',
