@@ -588,9 +588,9 @@ describe('vwc-country-group', () => {
 		const el = await createGroup();
 		await expect(
 			(async () => {
-			(el as any).sentinelEl = undefined;
-			(el as any).connectedCallback();
-			await flush(el);
+				(el as any).sentinelEl = undefined;
+				(el as any).connectedCallback();
+				await flush(el);
 			})()
 		).resolves.toBeUndefined();
 	});
