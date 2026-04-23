@@ -5,9 +5,9 @@
 </div>
 {% endmacro %}
 
-{% macro tokensList(list, preview, headingText="{token group}") %}
+{% macro tokensList(list, preview, headingText="{token group}", headlingLevel = "5") %}
 <div class="token-group">
-	{{ heading(headingText, '4', 'hidden') }}
+	{{ heading(headingText, headingLevel, 'hidden') }}
 	{% for item in list %}
 			{{ preview(item) }}
 	{% endfor %}
@@ -85,3 +85,141 @@
 }
 </style>
 
+{% macro colorScaleExample(list, colorScale, scaleItem, startIndex = 0, endIndex = 0, rangeLabel = '') %}
+  {% set valid = [] %}
+
+  {% for item in list %}
+    {% if item.preview and (item.preview | length == 7) %}
+      {% set valid = valid.concat([item]) %}
+    {% endif %}
+  {% endfor %}
+
+  {% set count = valid | length %}
+  {% if count > 0 %}
+    {% set start = (startIndex / count) * 100 %}
+    {% set end = ((endIndex + 1) / count) * 100 %}
+  {% else %}
+    {% set start = 0 %}
+    {% set end = 0 %}
+  {% endif %}
+
+  <div class="scale-example {% if rangeLabel %}scale-example--has-range{% endif %}">
+    <div class="scale-inner">
+      {{ colorScale(valid, scaleItem) }}
+
+      {% if rangeLabel %}
+        <div class="scale-range"
+             style="left: {{ start }}%; width: {{ end - start }}%;">
+          <span class="scale-range__label">{{ rangeLabel }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
+
+{% macro colorScale(list, scaleItem) %}
+  {% set valid = [] %}
+
+  {% for item in list %}
+    {% if item.preview and (item.preview | length == 7) %}
+      {% set valid = valid.concat([item]) %}
+    {% endif %}
+  {% endfor %}
+
+  <div class="color-scale">
+    {% for item in valid %}
+      {{ scaleItem(item, loop.index0) }}
+    {% endfor %}
+  </div>
+
+  <div class="color-scale">
+    {% for item in valid | reverse %}
+      {{ scaleItem(item, loop.index0) }}
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro scaleItem(item, i = '0') %}
+  <div class="scale-item" style="background-color: {{ item.preview }}; color: contrast-color({{ item.preview }})">
+    {{ i }}
+  </div>
+{% endmacro %}
+
+<style>
+	.scale-example {
+		margin-block-start: 4px;
+		padding: 1.5rem;
+		border-radius: 8px;
+		background-color: var(--vvd-color-neutral-tint-50);
+		border: 1px solid var(--vvd-color-neutral-tint-200);
+	}
+
+	/* Extra space only when range is present */
+	.scale-example--has-range .scale-inner {
+		padding-block-start: 1rem;
+	}
+
+	.scale-inner {
+		position: relative;
+		width: 100%;
+	}
+
+	.scale-range {
+		position: absolute;
+		top: 0px;
+		height: 2px;
+		background: currentColor;
+		text-align: center;
+		overflow: visible;
+
+		&::before, &:after {
+			content: '';
+			display: inline-block;
+			position: absolute;
+			height: 8px;
+			inset-block-end: -8px;
+		}
+
+		&::before {
+			inset-inline-start: 0;   
+			border-inline-start: 2px solid var(--vvd-color-cta-500);
+		}
+
+		&::after {
+			inset-inline-end: 0;
+			border-inline-end: 2px solid var(--vvd-color-cta-500);
+		}
+	}
+
+	.scale-range__label {
+		position: relative;
+		top: -0.66rem;
+		left: 0;
+		white-space: nowrap;
+		font-size: 14px;
+		background-color: var(--vvd-color-neutral-tint-50);
+		padding: 0 4px;
+	}
+
+	.color-scale {
+		display: flex;
+		flex-wrap: nowrap;
+		gap: 4px;
+		width: 100%;
+	}
+
+	.color-scale:first-of-type {
+		margin-block-end: 4px;
+	}
+
+	.scale-item {
+		flex: 1 1 0;
+		aspect-ratio: 1 / 1;
+		min-width: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 500;
+	}
+</style>
