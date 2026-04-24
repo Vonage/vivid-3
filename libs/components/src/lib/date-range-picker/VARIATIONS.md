@@ -220,6 +220,55 @@ import { VDateRangePicker } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Scale
+
+The `scale` attribute controls the Date Range Picker input element display size.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 460px
+<script setup lang="ts">
+import { VDateRangePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VDateRangePicker scale="normal" label="Normal" />
+		<VDateRangePicker scale="condensed" label="Condensed" />
+	</div>
+</template>
+
+<style scoped>
+.container {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 460px
+<div class="container">
+	<vwc-date-range-picker scale="normal" label="Normal"></vwc-date-range-picker>
+	<vwc-date-range-picker scale="condensed" label="Condensed"></vwc-date-range-picker>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 Add the `disabled` attribute to disable the Date Range Picker.

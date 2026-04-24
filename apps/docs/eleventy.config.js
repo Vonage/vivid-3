@@ -6,12 +6,14 @@ const markdownLibrary = require('./libraries/markdown-it');
 const CleanCSS = require('clean-css');
 const fs = require('fs');
 const path = require('path');
+const sanitizeHtml = require('sanitize-html');
 const packageInstallation = require('./shortcodes/packageInstallation');
 const { globSync } = require('glob');
 const { spawnSync } = require('child_process');
 const {
 	resetExampleIndex,
 } = require('./code-example-preview/createCodeExample');
+const { extractTextFromHTML, normalizePath } = require('./utils/llms');
 const { githubEditLinkFromPath } = require('./filters/githubEditLink');
 const { isNavItemActive } = require('./filters/isNavItemActive');
 const { onlyPublicPages } = require('./filters/publicPages');
@@ -61,7 +63,119 @@ module.exports = async (eleventyConfig) => {
 				content: '',
 			});
 		}
+
+		// Generate llms-full.txt from entire site content
+		await generateLLMSFullExport();
 	});
+
+	/**
+	 * Generate llms-full.txt containing the entire site content in machine-readable format
+	 */
+	async function generateLLMSFullExport() {
+		// Build navigation order map from nav-groups
+		const navGroupFiles = globSync(`${DOCS_DIR}/content/nav-groups/*.md`);
+		const navGroupOrder = new Map();
+
+		for (const file of navGroupFiles) {
+			const content = fs.readFileSync(file, 'utf8');
+			const match = content.match(/title:\s*(.+)\n[\s\S]*?order:\s*(\d+)/);
+			if (match) {
+				const title = match[1].trim();
+				const order = parseInt(match[2], 10);
+				navGroupOrder.set(title.toLowerCase(), { title, order });
+			}
+		}
+
+		// Determine section order from path
+		function getSectionOrder(path) {
+			const lowerPath = path.toLowerCase();
+
+			// Check for specific sections
+			if (lowerPath.startsWith('/whats-new'))
+				return navGroupOrder.get("what's new")?.order || 1;
+			if (lowerPath.startsWith('/getting-started'))
+				return navGroupOrder.get('getting started')?.order || 0;
+			if (lowerPath.startsWith('/guides'))
+				return navGroupOrder.get('guides')?.order || 3;
+			if (lowerPath.startsWith('/designs'))
+				return navGroupOrder.get('designs')?.order || 5;
+			if (lowerPath.startsWith('/design-tokens'))
+				return navGroupOrder.get('design tokens')?.order || 5;
+			if (lowerPath.startsWith('/migration-guides'))
+				return navGroupOrder.get('migration guides')?.order || 9;
+			if (lowerPath.startsWith('/resources'))
+				return navGroupOrder.get('resources')?.order || 8;
+			if (lowerPath.startsWith('/icons'))
+				return navGroupOrder.get('icons')?.order || 6;
+			if (lowerPath.startsWith('/components')) return 4;
+			if (lowerPath.startsWith('/accessibility')) return 7;
+			if (lowerPath === '/') return -1; // Home page first
+			return 999; // Other pages last
+		}
+		const ignorePatterns = [
+			'**/assets/**',
+			'**/pagefind/**',
+			'**/whats-new/**',
+			'**/llms-full.txt',
+			'**/404.html',
+		];
+		// Collect HTML files
+		const htmlFiles = globSync(`${OUTPUT_DIR}/**/*.html`, {
+			ignore: ignorePatterns,
+		});
+		// Collect .txt files (like individual llms.txt exports)
+		const txtFiles = globSync(`${OUTPUT_DIR}/**/*.txt`, {
+			ignore: ['**/llms-full.txt', ...ignorePatterns],
+		});
+
+		const entries = [];
+		// Process HTML files
+		for (const filePath of htmlFiles) {
+			const html = fs.readFileSync(filePath, 'utf8');
+			const text = extractTextFromHTML(html);
+			if (text) {
+				const normalizedPath = normalizePath(
+					filePath.replace(`${OUTPUT_DIR}/`, '')
+				);
+				entries.push({
+					path: normalizedPath,
+					content: text,
+					sectionOrder: getSectionOrder(normalizedPath),
+				});
+			}
+		}
+
+		// Process .txt files
+		for (const filePath of txtFiles) {
+			const text = fs.readFileSync(filePath, 'utf8').trim();
+			if (text) {
+				const normalizedPath = normalizePath(
+					filePath.replace(`${OUTPUT_DIR}/`, '')
+				);
+				entries.push({
+					path: normalizedPath,
+					content: text,
+					sectionOrder: getSectionOrder(normalizedPath),
+				});
+			}
+		}
+
+		// Sort by section order, then by path
+		entries.sort((a, b) => {
+			if (a.sectionOrder !== b.sectionOrder) {
+				return a.sectionOrder - b.sectionOrder;
+			}
+			return a.path.localeCompare(b.path);
+		});
+
+		// Generate output
+		const output = entries
+			.map((entry) => `=== ${entry.path} ===\n\n${entry.content}`)
+			.join('\n\n');
+		const outputPath = path.join(OUTPUT_DIR, 'llms-full.txt');
+		fs.writeFileSync(outputPath, output, 'utf8');
+		console.log(`[11ty] Generated ${outputPath} (${entries.length} pages)`);
+	}
 
 	const EleventyVitePlugin = await import('@11ty/eleventy-plugin-vite');
 
@@ -97,7 +211,6 @@ module.exports = async (eleventyConfig) => {
 			],
 			build: {
 				emptyOutDir: false,
-				chunkSizeWarningLimit: 2000,
 			},
 			resolve: {
 				alias: {
@@ -177,19 +290,45 @@ module.exports = async (eleventyConfig) => {
 	});
 
 	eleventyConfig.addFilter('includeMd', (filePath) => {
-		if (
-			!filePath.endsWith('.md') ||
-			!filePath.startsWith('./libs/components/src/lib/')
-		)
+		if (!filePath || !filePath.endsWith('.md')) return '';
+
+		let markdownPath;
+		if (path.isAbsolute(filePath)) {
+			markdownPath = filePath;
+		} else if (filePath.startsWith('./libs/components/src/lib/')) {
+			markdownPath = path.resolve(
+				WORKSPACE_ROOT,
+				filePath.replaceAll('../', '')
+			);
+		} else {
 			return '';
+		}
 
-		const markdownPath = path.resolve(
-			WORKSPACE_ROOT,
-			filePath.replaceAll('../', '')
-		);
 		if (!fs.existsSync(markdownPath)) return '';
-
 		return fs.readFileSync(markdownPath, 'utf8');
+	});
+
+	eleventyConfig.addFilter('cleanLLM', (content) => {
+		if (!content) return '';
+
+		return (
+			sanitizeHtml(content, {
+				allowedTags: [],
+				allowedAttributes: {},
+			})
+				// Remove all markdown code blocks (```...```)
+				.replace(/```[\s\S]*?```/gs, '')
+				// Remove ```html preview ... ``` code blocks
+				.replace(/```*```/gs, '')
+				// Remove other code blocks (empty or with preview commands)
+				.replace(/```\s*preview[^`]*```/gs, '')
+				// Remove empty code blocks
+				.replace(/```\s*```/gs, '')
+				// Remove multiple consecutive newlines
+				.replace(/\n{4,}/g, '\n\n')
+				// Trim whitespace
+				.trim()
+		);
 	});
 
 	eleventyConfig.addFilter('onlyPublicPages', onlyPublicPages);

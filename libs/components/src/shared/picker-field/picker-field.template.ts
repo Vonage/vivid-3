@@ -26,6 +26,7 @@ export const PickerFieldTemplate = (
 				error-text='${(x) => x.errorValidationMessage}'
 				placeholder='${(x) => x._textFieldPlaceholder}'
 				size='${(x) => x._textFieldSize}'
+				scale='${(x) => x.scale}'
 				current-value='${(x) => x._presentationValue}'
 				?disabled='${(x) => x.disabled}'
 				?readonly='${(x) => x.readOnly}'

@@ -222,6 +222,55 @@ import { VDatePicker } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Scale
+
+The `scale` attribute controls the Date Picker input element display size.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 400px
+<script setup lang="ts">
+import { VDatePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VDatePicker scale="normal" label="Normal" />
+		<VDatePicker scale="condensed" label="Condensed" />
+	</div>
+</template>
+
+<style scoped>
+.container {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 400px
+<div class="container">
+	<vwc-date-picker scale="normal" label="Normal"></vwc-date-picker>
+	<vwc-date-picker scale="condensed" label="Condensed"></vwc-date-picker>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 Add the `disabled` attribute to disable the date picker.
