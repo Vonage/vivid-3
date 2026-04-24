@@ -3,7 +3,7 @@
 exports[`renderComponent > should render a component 1`] = `
 "
 import { defineComponent, ref, h, VNodeData, PropType } from 'vue';
-import { isVue2 } from '../../utils/vue';
+import { isVue2, getListeners } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
@@ -120,7 +120,7 @@ startModifiers: {type: Object as PropType<Record<string, boolean>>, default: () 
             attrs: { ...((this.sameEvent ?? this.exampleProp) !== undefined ? {'example-prop': this.sameEvent ?? this.exampleProp } : {}),...((this.typeUnion) !== undefined ? {'type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'icon-type': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'current-value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'start': this.start } : {}),...((this.booleanProp) !== undefined ? {'boolean-prop': this.booleanProp } : {}) },
             class: 'vvd-component',
             domProps: { ...((this.forcedDomProp) !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}),...((this.importedType) !== undefined ? {'importedType': this.importedType } : {}),...((this.externalType) !== undefined ? {'externalType': this.externalType } : {}) },
-            on: { 'example-event': (event: Event & {
+            on: { ...getListeners(this), 'example-event': (event: Event & {
 			currentTarget: VwcExampleComponentElement | null
 		}) => {
           
@@ -229,7 +229,7 @@ this.$emit('update:sameEvent', event.currentTarget?.exampleProp);
 exports[`renderComponent > should render a component as a Vue 3 stub 1`] = `
 "
 import { defineComponent, ref, h, VNodeData, PropType } from 'vue3';
-import { isVue2 } from '../../utils/vue';
+import { isVue2, getListeners } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
@@ -374,7 +374,7 @@ startModifiers: {type: Object as PropType<Record<string, boolean>>, default: () 
 exports[`renderComponent > should render a minimal component 1`] = `
 "
 import { defineComponent, ref, h, VNodeData } from 'vue';
-import { isVue2 } from '../../utils/vue';
+import { isVue2, getListeners } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
@@ -410,7 +410,7 @@ export default defineComponent({
             attrs: {  },
             class: 'vvd-component',
             
-            on: {  },
+            on: { ...getListeners(this),  },
         }, [
 					this.$slots.default,
 
@@ -435,7 +435,7 @@ export default defineComponent({
 exports[`renderComponent > should render minimal component as a Vue 3 stub 1`] = `
 "
 import { defineComponent, ref, h, VNodeData } from 'vue3';
-import { isVue2 } from '../../utils/vue';
+import { isVue2, getListeners } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
