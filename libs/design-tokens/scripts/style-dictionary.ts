@@ -4,7 +4,7 @@ import { cssConfig, cssPlatform } from './css/css.config';
 import { flutterConfig, flutterPlatform } from './flutter/flutter.config';
 
 const config: Config = {
-	source: ['src/*/*.dtcg.json'],
+	source: ['src/*/core/*.dtcg.json'],
 	hooks: {
 		actions: {
 			...cssConfig.actions,

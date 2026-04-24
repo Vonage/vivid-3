@@ -9,7 +9,7 @@ const {
 module.exports.getTokens = async function () {
 	let styleDictionaryInstance = await styleDictionary.init();
 	styleDictionaryInstance = await styleDictionaryInstance.extend({
-		source: ['../../libs/design-tokens/src/*/*.dtcg.json'],
+		source: ['../../libs/design-tokens/src/*/*/*.dtcg.json'],
 	});
 
 	const cssTokens = await styleDictionaryInstance.getPlatformTokens('css');

@@ -112,7 +112,7 @@
 		"$value": {
 			"colorSpace": "srgb",
 			"components": [0.8392, 0.1294, 0.6118],
-			"alpha": 0.851,
+			"alpha": 0.85,
 			"hex": "#D6219CD9"
 		}
 	},
@@ -121,7 +121,7 @@
 		"$value": {
 			"colorSpace": "srgb",
 			"components": [0.8392, 0.1294, 0.6118],
-			"alpha": 0.902,
+			"alpha": 0.9,
 			"hex": "#D6219CE6"
 		}
 	},
@@ -238,7 +238,7 @@
 		"$value": {
 			"colorSpace": "srgb",
 			"components": [0.6, 0.2549, 1.0],
-			"alpha": 0.851,
+			"alpha": 0.85,
 			"hex": "#9941FFD9"
 		}
 	},
@@ -247,7 +247,7 @@
 		"$value": {
 			"colorSpace": "srgb",
 			"components": [0.6, 0.2549, 1.0],
-			"alpha": 0.902,
+			"alpha": 0.9,
 			"hex": "#9941FFE6"
 		}
 	}
