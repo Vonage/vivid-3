@@ -153,7 +153,7 @@ describe('vwc-country-group', () => {
 		expect(onlyEmpty.computedAriaLabel).toBe('Countries:');
 	});
 
-it('starts tracking country visibility once', async () => {
+	it('starts tracking country visibility once', async () => {
 		const { instances } = installIOMock();
 		const el = await createGroup();
 
