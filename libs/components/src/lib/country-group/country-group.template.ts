@@ -13,7 +13,6 @@ export const CountryGroupTemplate = (
 	return html<CountryGroup>`
 		<div
 			class="container"
-			${ref('containerEl')}
 			${delegateAria({
 				role: 'group',
 				ariaLabel: (x) => x.ariaLabel || x.computedAriaLabel,

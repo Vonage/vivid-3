@@ -1,7 +1,8 @@
 import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
-import { describe, expect, it, vi } from 'vitest';
+import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import '.';
 import type { CountryGroup } from './country-group';
+import type { Country } from '../country/country';
 
 const TAG = 'vwc-country-group';
 const ORIGINAL_IO = globalThis.IntersectionObserver;
@@ -107,8 +108,15 @@ const setOverflow = async (el: CountryGroup, lastVisibleIndex: number) => {
 };
 
 describe('vwc-country-group', () => {
-	afterEach(() => {
+	beforeEach(() => {
+		installIOMock();
+	});
+
+	afterAll(() => {
 		globalThis.IntersectionObserver = ORIGINAL_IO;
+	});
+
+	afterEach(() => {
 		globalThis.requestAnimationFrame = ORIGINAL_RAF;
 		vi.restoreAllMocks();
 	});
@@ -145,7 +153,7 @@ describe('vwc-country-group', () => {
 		expect(onlyEmpty.computedAriaLabel).toBe('Countries:');
 	});
 
-	it('starts tracking country visibility once (and falls back when tracking is unavailable)', async () => {
+it('starts tracking country visibility once', async () => {
 		const { instances } = installIOMock();
 		const el = await createGroup();
 
@@ -160,11 +168,6 @@ describe('vwc-country-group', () => {
 			?.dispatchEvent(new Event('slotchange'));
 		await flush(el);
 		expect(instances.length).toBe(1);
-
-		globalThis.IntersectionObserver = undefined as any;
-		runRafImmediately();
-		const el2 = await createGroup();
-		expect(el2.lastVisibleIndex).toBe(el2.items.length);
 	});
 
 	it('does not crash if it gets disconnected during startup', async () => {
@@ -334,7 +337,7 @@ describe('vwc-country-group', () => {
 		);
 		// simulate an item list that includes an element not present in the map
 		const extra = document.createElement('div');
-		el.items = [...el.items, extra];
+		el.items = [...el.items, extra] as Country[];
 
 		const inst = instances.at(-1)!;
 		// omit `extra` from the entries so it stays missing in the map
@@ -462,21 +465,6 @@ describe('vwc-country-group', () => {
 		expect(el.popupOpen).toBe(false);
 
 		expect(() => el.popupOpenChanged(undefined)).not.toThrow();
-
-		const addSpy = vi.spyOn(document, 'addEventListener');
-		const removeSpy = vi.spyOn(document, 'removeEventListener');
-		el.popupOpen = true;
-		el.popupOpenChanged(false);
-		expect(addSpy).toHaveBeenCalledWith('keydown', expect.any(Function));
-		el.popupOpen = false;
-		el.popupOpenChanged(true);
-		expect(removeSpy).toHaveBeenCalledWith('keydown', expect.any(Function));
-
-		el.popupOpen = true;
-		document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-		expect(el.popupOpen).toBe(true);
-		document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-		expect(el.popupOpen).toBe(false);
 
 		el.overflowGridEl = undefined;
 		el.fillOverflowGrid();

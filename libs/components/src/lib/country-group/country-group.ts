@@ -3,6 +3,8 @@ import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { Localized } from '../../shared/patterns';
 import { countries } from '../country/countries-data';
+import type { Badge } from '../badge/badge';
+import { Country } from '../country/country';
 
 const FULLY_VISIBLE_INTERSECTION_RATIO = 0.99;
 
@@ -16,7 +18,7 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 	 * Assigned elements from the default slot.
 	 * @internal
 	 */
-	@observable items: HTMLElement[] = [];
+	@observable items: Country[] = [];
 
 	/**
 	 * Number of visible items (prefix) according to IO.
@@ -36,10 +38,9 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 	 */
 	@observable popupOpen = false;
 
-	containerEl!: HTMLDivElement;
 	slotEl!: HTMLSlotElement;
-	badgeEl?: HTMLElement;
-	sentinelEl?: HTMLElement;
+	badgeEl?: Badge;
+	sentinelEl?: HTMLSpanElement;
 	overflowWrapEl?: HTMLDivElement;
 	overflowGridEl?: HTMLDivElement;
 
@@ -121,7 +122,6 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 		this.#visibleMap.clear();
 		this.#candidateVisible = -1;
 		this.#candidateStreak = 0;
-		document.removeEventListener('keydown', this.#onDocumentKeydown);
 		super.disconnectedCallback();
 	}
 
@@ -133,11 +133,6 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 
 	#ensureObserver(): void {
 		if (this.#observer) {
-			return;
-		}
-
-		if (typeof IntersectionObserver === 'undefined') {
-			this.lastVisibleIndex = this.items.length;
 			return;
 		}
 
@@ -176,9 +171,7 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 
 	#syncFromSlot(): void {
 		const assigned = this.slotEl?.assignedElements({ flatten: true }) ?? [];
-		this.items = assigned.filter(
-			(n): n is HTMLElement => n instanceof HTMLElement
-		);
+		this.items = assigned.filter((n): n is Country => n instanceof Country);
 		// Assume visible until IO says otherwise
 		this.#visibleMap.clear();
 		for (const el of this.items) {
@@ -288,9 +281,6 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 
 		requestAnimationFrame(() => {
 			this.#commitQueued = false;
-			// if (!this.$fastController.isConnected) {
-			// 	return;
-			// }
 			this.lastVisibleIndex = this.#candidateVisible;
 			this.#applyLayout(this.lastVisibleIndex, 'final');
 
@@ -342,19 +332,9 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 			return;
 		}
 		if (this.popupOpen) {
-			document.addEventListener('keydown', this.#onDocumentKeydown);
 			Updates.enqueue(() => this.fillOverflowGrid());
-		} else {
-			document.removeEventListener('keydown', this.#onDocumentKeydown);
 		}
 	}
-
-	#onDocumentKeydown = (e: KeyboardEvent) => {
-		if (e.key !== 'Escape') {
-			return;
-		}
-		this.popupOpen = false;
-	};
 
 	/**
 	 * @internal

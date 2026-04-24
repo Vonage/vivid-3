@@ -152,11 +152,3 @@ import { VCountryGroup, VCountry } from '@vonage/vivid-vue';
 
   </vwc-tab-panel>
 </vwc-tabs>
-
-## API Reference
-
-### Slots
-
-| **Name**    | **Description**          |
-| ----------- | ------------------------ |
-| **default** | `Country` children only. |
