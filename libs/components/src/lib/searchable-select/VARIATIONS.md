@@ -396,6 +396,71 @@ import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Scale
+
+The `scale` attribute controls the display size of the Searchable Select.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 230px
+<script setup lang="ts">
+import { VSearchableSelect, VOption } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VSearchableSelect scale="normal" label="Normal" placeholder="Select an option">
+			<VOption value="1" text="Option 1" />
+			<VOption value="2" text="Option 2" />
+			<VOption value="3" text="Option 3" />
+		</VSearchableSelect>
+		<VSearchableSelect scale="condensed" label="Condensed" placeholder="Select an option">
+			<VOption value="1" text="Option 1" />
+			<VOption value="2" text="Option 2" />
+			<VOption value="3" text="Option 3" />
+		</VSearchableSelect>
+	</div>
+</template>
+
+<style scoped>
+.container {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 230px
+<div class="container">
+	<vwc-searchable-select scale="normal" label="Normal" placeholder="Select an option">
+		<vwc-option value="1" text="Option 1"></vwc-option>
+		<vwc-option value="2" text="Option 2"></vwc-option>
+		<vwc-option value="3" text="Option 3"></vwc-option>
+	</vwc-searchable-select>
+	<vwc-searchable-select scale="condensed" label="Condensed" placeholder="Select an option">
+		<vwc-option value="1" text="Option 1"></vwc-option>
+		<vwc-option value="2" text="Option 2"></vwc-option>
+		<vwc-option value="3" text="Option 3"></vwc-option>
+	</vwc-searchable-select>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Multiple
 
 The `multiple` attribute allows the user to select more than one option.

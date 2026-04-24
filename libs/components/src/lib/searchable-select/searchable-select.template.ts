@@ -18,6 +18,7 @@ const getStateClasses = (x: SearchableSelect) =>
 		['disabled', x.disabled],
 		[`appearance-${x.appearance}`, Boolean(x.appearance)],
 		[`shape-${x.shape}`, Boolean(x.shape)],
+		[`size-${x.scale}`, Boolean(x.scale)],
 		['error', Boolean(x.errorValidationMessage)],
 		['success', !!x.successText],
 		['has-highlighted-option', x._highlightedOptionIndex !== null]
@@ -59,6 +60,7 @@ const tagTemplateFactory = (
 				:label="${(x, c) => getComponent(c)._tagLabelForValue(x)}"
 				:shape="${(_, c) => getComponent(c).shape}"
 				:connotation="${(x, c) => getComponent(c)._tagConnotationForValue(x)}"
+				:scale="${(_, c) => getComponent(c).scale}"
 				?disabled="${(x, c) => getComponent(c)._isTagDisabled(x)}"
 				@remove="${(x, c) => getComponent(c)._onTagRemoved(x)}"
 				@keydown="${(_, c) => getComponent(c)._onTagKeydown(c.event as KeyboardEvent)}"
@@ -82,6 +84,7 @@ const elidedTagTemplateFactory = (
 			tabindex="-1"
 			:label="${(x, c) => getComponent(x, c)._numElidedTags.toString()}"
 			:shape="${(x, c) => getComponent(x, c).shape}"
+			:scale="${(x, c) => getComponent(x, c).scale}"
 			?disabled="${(x, c) => getComponent(x, c).disabled}"
 			@mousedown="${() => false}">
 		</${optionTagTag}>

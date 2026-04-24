@@ -105,6 +105,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						>Example Contextual Help</vwc-contextual-help
 					>
 				</vwc-searchable-select>
+				<vwc-searchable-select scale="condensed" label="Condensed">
+					<vwc-option value="1" text="Option 1"</vwc-option>
+				</vwc-searchable-select>
+				<vwc-searchable-select scale="condensed" label="Condensed with multiple selected" multiple>
+					<vwc-option value="1" text="Option 1" selected></vwc-option>
+					<vwc-option value="2" text="Option 2" selected></vwc-option>
+				</vwc-searchable-select>
 				<div style="padding-bottom: 200px;">
 					<vwc-searchable-select multiple label="label" enable-select-all id="select-all" open>
 						<vwc-option value="afghanistan" text="Afghanistan">
@@ -136,7 +143,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		},
 	});
 
-	await page.setViewportSize({ width: 350, height: 2200 });
+	await page.setViewportSize({ width: 350, height: 2350 });
 
 	await takeScreenshot(page, 'searchable-select');
 });
