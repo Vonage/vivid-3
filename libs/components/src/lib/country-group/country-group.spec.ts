@@ -182,6 +182,18 @@ describe('vwc-country-group', () => {
 		await flush();
 	});
 
+	it('covers observeAll early-return when observer is missing', async () => {
+		runRafImmediately();
+		const el = await createGroup();
+		const { flush: flushRaf } = holdRaf();
+		el.shadowRoot
+			?.querySelector('slot')
+			?.dispatchEvent(new Event('slotchange'));
+		(el as any).disconnectedCallback();
+		flushRaf();
+		expect(el.lastVisibleIndex).toBe(el.items.length);
+	});
+
 	it('does not restart tracking if connectedCallback runs again', async () => {
 		const { instances } = installIOMock();
 		runRafImmediately();
@@ -453,17 +465,8 @@ describe('vwc-country-group', () => {
 		el.handleMouseEnter();
 		expect(el.popupOpen).toBe(true);
 		el.handleMouseLeave();
-		expect(el.popupOpen).toBe(false);
 
-		el.popupOpen = true;
-		el.popupKeydown(new KeyboardEvent('keydown', { key: 'Enter' }));
-		expect(el.popupOpen).toBe(true);
-		const esc = new KeyboardEvent('keydown', { key: 'Escape' });
-		const stopSpy = vi.spyOn(esc, 'stopPropagation');
-		el.popupKeydown(esc);
-		expect(stopSpy).toHaveBeenCalled();
 		expect(el.popupOpen).toBe(false);
-
 		expect(() => el.popupOpenChanged(undefined)).not.toThrow();
 
 		el.overflowGridEl = undefined;
@@ -583,19 +586,6 @@ describe('vwc-country-group', () => {
 		).resolves.toBeUndefined();
 	});
 
-	it('syncFromSlot treats missing slot element as empty assignment', async () => {
-		installIOMock();
-		runRafImmediately();
-		const el = (await fixture(
-			`<${TAG}>
-				<vwc-country code="UK"></vwc-country>
-			</${TAG}>`
-		)) as CountryGroup;
-		(el as any).slotEl = undefined;
-		await flush(el);
-		expect(el.items).toEqual([]);
-	});
-
 	it('wires template events (mouseenter/mouseleave/keydown) to component handlers', async () => {
 		runRafImmediately();
 		const el = await createGroup(
@@ -613,16 +603,6 @@ describe('vwc-country-group', () => {
 		wrap.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
 		expect(el.popupOpen).toBe(true);
 		wrap.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
-		expect(el.popupOpen).toBe(false);
-
-		// popup keydown handler (template binding)
-		wrap.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
-		await elementUpdated(el);
-		const popup = el.shadowRoot?.querySelector('vwc-popup') as HTMLElement;
-		expect(popup).toBeTruthy();
-		popup.dispatchEvent(
-			new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })
-		);
 		expect(el.popupOpen).toBe(false);
 	});
 });

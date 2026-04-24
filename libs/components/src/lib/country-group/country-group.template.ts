@@ -53,7 +53,6 @@ export const CountryGroupTemplate = (
 					:anchor="${(x) => x.overflowWrapEl}"
 					:open="${(x) => x.popupOpen}"
 					exportparts="vvd-theme-alternate"
-					@keydown="${(x, c) => x.popupKeydown(c.event as Event)}"
 				>
 					<div
 						class="overflow-grid"

@@ -170,7 +170,7 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 	}
 
 	#syncFromSlot(): void {
-		const assigned = this.slotEl?.assignedElements({ flatten: true }) ?? [];
+		const assigned = this.slotEl.assignedElements({ flatten: true });
 		this.items = assigned.filter((n): n is Country => n instanceof Country);
 		// Assume visible until IO says otherwise
 		this.#visibleMap.clear();
@@ -309,18 +309,6 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 	 * @internal
 	 */
 	handleMouseLeave(): void {
-		this.popupOpen = false;
-	}
-
-	/**
-	 * @internal
-	 */
-	popupKeydown(e: Event): void {
-		const ev = e as KeyboardEvent;
-		if (ev.key !== 'Escape') {
-			return;
-		}
-		ev.stopPropagation();
 		this.popupOpen = false;
 	}
 
