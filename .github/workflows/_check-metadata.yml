@@ -2,9 +2,6 @@ name: ✔️ Check Metadata
 
 on:
   workflow_call:
-    secrets:
-      VNG_VVD_PAT:
-        required: true
 
 jobs:
   check-metadata:
@@ -15,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.VNG_VVD_PAT }} # Use PAT to allow the action commit to trigger CI workflow again
+          token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.head_ref }}
 
       - name: Cache turbo build setup
