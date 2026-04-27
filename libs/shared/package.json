@@ -10,6 +10,7 @@
 		"./test-utils/delegates-focus-polyfill": "./src/lib/test-utils/delegatesFocusPolyfill.ts",
 		"./test-utils/active-element": "./src/lib/test-utils/active-element.ts",
 		"./test-utils/shadow-roots": "./src/lib/test-utils/shadow-roots.ts",
+		"./test-utils/intersection-observer-mock": "./src/lib/test-utils/intersection-observer-mock.ts",
 		"./utils": {
 			"sass": "./src/lib/sass/utils/index.scss"
 		},

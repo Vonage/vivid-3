@@ -169,6 +169,10 @@
 			{
 				"title": "Status",
 				"slug": "status"
+			},
+			{
+				"title": "Country Group",
+				"slug": "country-group"
 			}
 		],
 		"slug": "partials"

@@ -2100,6 +2100,32 @@
 			}
 		},
 		{
+			"name": "country-group",
+			"className": "CountryGroup",
+			"registerFunctionName": "registerCountryGroup",
+			"description": "",
+			"props": [],
+			"events": [],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "default",
+					"description": "One or more `vwc-country` elements (Country only)."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
 			"name": "data-grid",
 			"className": "DataGrid",
 			"registerFunctionName": "registerDataGrid",

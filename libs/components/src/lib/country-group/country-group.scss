@@ -1,0 +1,37 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
+
+:host {
+	display: flex;
+	overflow: hidden;
+	flex-direction: column;
+	block-size: 100%;
+	inline-size: 100%;
+}
+
+.container {
+	position: relative;
+	display: flex;
+	flex: 1 1 auto;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	align-items: center;
+	gap: 8px;
+	min-block-size: 0;
+}
+
+.container slot {
+	display: contents;
+}
+
+.overflow-wrap {
+	align-self: center;
+	line-height: 0;
+}
+
+.overflow-grid {
+	display: grid;
+	padding: 8px;
+	font: var(#{constants.$vvd-typography-base});
+	gap: 8px;
+	grid-template-columns: repeat(3, auto);
+}

@@ -1,0 +1,19 @@
+concept: Country Group
+id: country-group
+description: Displays multiple Country items with consistent layout and hover popover overflow.
+status: alpha
+slug: country-group
+keywords:
+  - country
+  - flag
+  - group
+  - overflow
+documentation:
+  legacy: ./README.md
+links:
+  figma: https://www.figma.com/design/vDH2AytCxEvOulJ7olf9cS/%F0%9F%9A%80-Vivid-Live?m=dev&node-id=11009-13963&t=oSEjE4wXcesMkeeO-1
+elements:
+  - tag: country-group
+    design: https://figma.com/...
+  - tag: country
+    design: https://figma.com/...

@@ -175,6 +175,9 @@ const enUS: Locale = {
 	select: {
 		clearButtonLabel: 'Clear selection',
 	},
+	countryGroup: {
+		ariaLabelPrefix: 'Countries:',
+	},
 	searchableSelect: {
 		clearButtonLabel: 'Clear selection',
 		noOptionsMessage: 'No options',
