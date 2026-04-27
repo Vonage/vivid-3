@@ -2,8 +2,8 @@ import { observable, Updates } from '@microsoft/fast-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { Localized } from '../../shared/patterns';
-import { countries } from '../country/countries-data';
 import type { Badge } from '../badge/badge';
+import { countries } from '../country/countries-data';
 import { Country } from '../country/country';
 
 const FULLY_VISIBLE_INTERSECTION_RATIO = 0.99;
@@ -74,6 +74,7 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 			el.style.order = `${i < visibleCount ? i : i + 1}`;
 
 			if (i < visibleCount) {
+				el.setAttribute('data-visible', 'true');
 				el.style.display = '';
 				el.style.position = '';
 				el.style.inset = '';
@@ -82,6 +83,7 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 				continue;
 			}
 
+			el.setAttribute('data-visible', 'false');
 			el.style.display = '';
 			el.style.pointerEvents = 'none';
 
@@ -166,7 +168,9 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 		if (this.sentinelEl) {
 			this.#observer.observe(this.sentinelEl);
 		}
-		if (this.badgeEl) this.#observer.observe(this.badgeEl);
+		if (this.badgeEl && this.overflowCount > 0) {
+			this.#observer.observe(this.badgeEl);
+		}
 	}
 
 	#syncFromSlot(): void {
@@ -299,9 +303,6 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 	 * @internal
 	 */
 	handleMouseEnter(): void {
-		if (this.overflowCount === 0) {
-			return;
-		}
 		this.popupOpen = true;
 	}
 

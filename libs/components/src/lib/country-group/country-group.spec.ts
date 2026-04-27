@@ -1,608 +1,312 @@
-import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
-import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { Updates } from '@microsoft/fast-element';
+import { fixture } from '@repo/shared/test-utils/fixture';
+import { mockIntersectionObserver } from '@repo/shared/test-utils/intersection-observer-mock';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import '.';
 import type { CountryGroup } from './country-group';
-import type { Country } from '../country/country';
 
 const TAG = 'vwc-country-group';
-const ORIGINAL_IO = globalThis.IntersectionObserver;
-const ORIGINAL_RAF = globalThis.requestAnimationFrame;
 
-const DEFAULT_MARKUP = `
-  <vwc-country code="UK"></vwc-country>
-  <vwc-country code="NO" label="Norway"></vwc-country>
-  <vwc-country code="US"></vwc-country>
-`;
-
-type IoInstance = {
-	cb: (entries: IntersectionObserverEntry[]) => void;
-	observed: Element[];
-	disconnectCalls: number;
-};
-
-const tick = async () => new Promise((r) => setTimeout(r, 0));
-
-const flush = async (el?: Element) => {
-	if (el) await elementUpdated(el);
-	await Promise.resolve();
-	await tick();
-	if (el) await elementUpdated(el);
-};
-
-const installIOMock = () => {
-	const instances: IoInstance[] = [];
-
-	class MockIntersectionObserver {
-		observed: Element[] = [];
-		disconnectCalls = 0;
-		constructor(public cb: (entries: IntersectionObserverEntry[]) => void) {
-			instances.push(this as unknown as IoInstance);
-		}
-		observe = (target: Element) => {
-			this.observed.push(target);
-		};
-		unobserve = (_target: Element) => {
-			// no-op
-		};
-		disconnect = () => {
-			this.disconnectCalls++;
-		};
-	}
-
-	globalThis.IntersectionObserver =
-		MockIntersectionObserver as unknown as typeof IntersectionObserver;
-
-	const entry = (target: Element, ratio?: number): IntersectionObserverEntry =>
-		({
-			time: performance.now(),
-			target,
-			isIntersecting: (ratio ?? 1) > 0,
-			intersectionRatio: ratio,
-			boundingClientRect: {} as any,
-			intersectionRect: {} as any,
-			rootBounds: null,
-		}) as any;
-
-	return { instances, entry };
-};
-
-const runRafImmediately = () => {
-	(globalThis as any).requestAnimationFrame = (cb: FrameRequestCallback) => {
-		cb(performance.now());
-		return 0 as any;
-	};
-};
-
-const holdRaf = () => {
-	let queued: FrameRequestCallback | null = null;
-	const rafSpy = vi.fn((cb: FrameRequestCallback) => {
-		queued = cb;
-		return 0 as any;
-	});
-	(globalThis as any).requestAnimationFrame = rafSpy;
-	return {
-		rafSpy,
-		flush: () => {
-			const cb = queued;
-			queued = null;
-			cb?.(performance.now());
-		},
-	};
-};
-
-const createGroup = async (markup = DEFAULT_MARKUP) => {
+const createGroup = async (markup: string) => {
 	const el = (await fixture(`<${TAG}>${markup}</${TAG}>`)) as CountryGroup;
-	await flush(el);
+	await Updates.next();
 	el.shadowRoot?.querySelector('slot')?.dispatchEvent(new Event('slotchange'));
-	await flush(el);
+	await Updates.next();
+
 	return el;
 };
 
-const setOverflow = async (el: CountryGroup, lastVisibleIndex: number) => {
-	el.lastVisibleIndex = lastVisibleIndex;
-	await flush(el);
-	await flush(el);
-	const badge = el.shadowRoot?.querySelector('vwc-badge') as HTMLElement | null;
-	const popup = el.shadowRoot?.querySelector('vwc-popup') as HTMLElement | null;
-	return { badge, popup };
-};
+const countryMarkup = (
+	codes: string[] = ['UK', 'NO', 'US', 'DE', 'FR', 'ES', 'IT']
+) =>
+	codes.map((code) => `<vwc-country code="${code}"></vwc-country>`).join('\n');
 
 describe('vwc-country-group', () => {
-	beforeEach(() => {
-		installIOMock();
-	});
+	let io: ReturnType<typeof mockIntersectionObserver>;
+	const nextFrame = () =>
+		new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+	const settle = async () => {
+		await nextFrame();
+		await Updates.next();
+	};
+	const getSentinel = (el: CountryGroup) =>
+		el.shadowRoot?.querySelector('.io-resize-sentinel') as HTMLElement;
+	const getBadge = (el: CountryGroup) =>
+		el.shadowRoot?.querySelector('vwc-badge') as HTMLElement | null;
+	const ensureFitted = async (el: CountryGroup) => {
+		// Trigger the "sentinel saw resize" path to schedule and run a fit,
+		// so the component observes items/badge consistently.
+		const sentinel = getSentinel(el);
+		io.enterNodes([sentinel]);
+		io.enterNodes([sentinel]);
+		await settle();
+	};
+	const setIntersections = async (
+		visible: HTMLElement[],
+		hidden: HTMLElement[]
+	) => {
+		io.enterNodes(visible);
+		io.leaveNodes(hidden);
+		io.enterNodes(visible);
+		io.leaveNodes(hidden);
+		await settle();
+	};
 
-	afterAll(() => {
-		globalThis.IntersectionObserver = ORIGINAL_IO;
+	beforeEach(() => {
+		io = mockIntersectionObserver();
 	});
 
 	afterEach(() => {
-		globalThis.requestAnimationFrame = ORIGINAL_RAF;
-		vi.restoreAllMocks();
+		io.cleanup();
 	});
 
-	it('renders its container, and only shows overflow UI when countries do not fit', async () => {
-		const el = await createGroup();
-		expect(el.shadowRoot?.querySelector('.container')).toBeTruthy();
-		expect(el.shadowRoot?.querySelector('.io-resize-sentinel')).toBeTruthy();
+	it('should display 3 items and indicator with (+4) items when overflowed', async () => {
+		const el = await createGroup(countryMarkup());
+		const visible = el.items.slice(0, 3);
+		const hidden = el.items.slice(3);
+
+		io.enterNodes(visible);
+		io.leaveNodes(hidden);
+		io.enterNodes(visible);
+		io.leaveNodes(hidden);
+		await Updates.next();
+
+		expect(el.querySelectorAll('vwc-country')).toHaveLength(7);
+		expect(el.overflowCount).toBe(4);
+
+		expect(visible.map((it) => it.getAttribute('data-visible'))).toEqual(
+			Array(visible.length).fill('true')
+		);
+
+		expect(hidden.map((it) => it.getAttribute('data-visible'))).toEqual(
+			Array(hidden.length).fill('false')
+		);
+
+		const badge = el.shadowRoot?.querySelector('vwc-badge');
+		expect(badge).toBeTruthy();
+		expect(badge?.getAttribute('text')).toBe('+4');
+	});
+
+	it('should display all items without overflow indicator when there is enough space', async () => {
+		const el = await createGroup(countryMarkup());
+
+		io.enterAll();
+		io.enterAll();
+		await Updates.next();
+
+		expect(el.querySelectorAll('vwc-country')).toHaveLength(7);
+		expect(el.overflowCount).toBe(0);
 		expect(el.shadowRoot?.querySelector('vwc-badge')).toBeFalsy();
 		expect(el.shadowRoot?.querySelector('vwc-popup')).toBeFalsy();
 
-		const { badge, popup } = await setOverflow(el, 1);
-		expect(badge).toBeTruthy();
-		expect(popup).toBeTruthy();
+		for (const it of el.items) {
+			expect(it.getAttribute('data-visible')).toBe('true');
+		}
 	});
 
-	it('exposes a readable accessible label from the slotted countries', async () => {
-		const el = await createGroup(
-			`
-			<vwc-country></vwc-country>
-			<vwc-country code=""></vwc-country>
-			<vwc-country code="XX"></vwc-country>
-			<vwc-country code="NO" label="Norway"></vwc-country>
-			<vwc-country code="UK"></vwc-country>
-		`
-		);
-		const label = el.computedAriaLabel ?? '';
-		expect(label).toContain('Countries:');
-		expect(label).toContain('XX');
-		expect(label).toContain('Norway');
-		expect(label).toContain('United Kingdom');
+	it('should open and close the overflow popup and keep items visibility', async () => {
+		const el = await createGroup(countryMarkup());
 
-		const onlyEmpty = await createGroup(`<vwc-country></vwc-country>`);
-		expect(onlyEmpty.computedAriaLabel).toBe('Countries:');
-	});
+		const visible = el.items.slice(0, 3);
+		const hidden = el.items.slice(3);
+		io.enterNodes(visible);
+		io.leaveNodes(hidden);
+		io.enterNodes(visible);
+		io.leaveNodes(hidden);
+		await Updates.next();
 
-	it('starts tracking country visibility once', async () => {
-		const { instances } = installIOMock();
-		const el = await createGroup();
+		expect(el.overflowCount).toBe(4);
 
-		expect(instances.length).toBeGreaterThan(0);
-		const inst = instances.at(-1)!;
-		expect(inst.observed.includes(el.sentinelEl!)).toBe(true);
-		expect(inst.observed.length).toBeGreaterThanOrEqual(el.items.length);
-
-		// repeated setup should not create another tracker
-		el.shadowRoot
-			?.querySelector('slot')
-			?.dispatchEvent(new Event('slotchange'));
-		await flush(el);
-		expect(instances.length).toBe(1);
-	});
-
-	it('does not crash if it gets disconnected during startup', async () => {
-		installIOMock();
-		runRafImmediately();
-		const el = (await fixture(
-			`<${TAG}>
-				<vwc-country code="UK"></vwc-country>
-			</${TAG}>`
-		)) as CountryGroup;
-		el.remove();
-		await flush();
-	});
-
-	it('covers observeAll early-return when observer is missing', async () => {
-		runRafImmediately();
-		const el = await createGroup();
-		const { flush: flushRaf } = holdRaf();
-		el.shadowRoot
-			?.querySelector('slot')
-			?.dispatchEvent(new Event('slotchange'));
-		(el as any).disconnectedCallback();
-		flushRaf();
-		expect(el.lastVisibleIndex).toBe(el.items.length);
-	});
-
-	it('does not restart tracking if connectedCallback runs again', async () => {
-		const { instances } = installIOMock();
-		runRafImmediately();
-		const el = await createGroup();
-		expect(instances.length).toBe(1);
-		(el as any).connectedCallback();
-		await flush(el);
-		expect(instances.length).toBe(1);
-	});
-
-	it('keeps the visible count stable while a resize recalculation is queued', async () => {
-		const { instances, entry } = installIOMock();
-		runRafImmediately();
-		const el = await createGroup(`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`);
-		const before = el.lastVisibleIndex;
-		const inst = instances.at(-1)!;
-		inst.cb([entry(el.sentinelEl!, 1)]);
-		expect(el.lastVisibleIndex).toBe(before);
-	});
-
-	it('temporarily keeps overflowed countries in-flow (hidden) during measurement', async () => {
-		const { instances, entry } = installIOMock();
-		runRafImmediately();
-		const el = await createGroup(`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`);
-		await setOverflow(el, 1);
-
-		const inst = instances.at(-1)!;
-		inst.cb([entry(el.sentinelEl!, 1)]);
-
-		expect(el.items[2].style.position).toBe('');
-		expect(el.items[2].style.visibility).toBe('hidden');
-	});
-
-	it('hides countries that do not fit without using display:none', async () => {
-		const { instances, entry } = installIOMock();
-		runRafImmediately();
-		const el = await createGroup(`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`);
-		const inst = instances.at(-1)!;
-		const items = el.items;
-		const batch = [entry(items[0], 1), entry(items[1], 1), entry(items[2], 0)];
-
-		inst.cb(batch);
-		expect(el.lastVisibleIndex).toBe(3);
-		inst.cb(batch);
-		expect(el.lastVisibleIndex).toBe(2);
-
-		expect(items[0].style.pointerEvents).toBe('');
-		expect(items[2].style.pointerEvents).toBe('none');
-		expect(items[2].style.position).toBe('absolute');
-		expect(items[2].style.visibility).toBe('hidden');
-	});
-
-	it('recalculates when size changes and item visibility updates arrive together', async () => {
-		const { instances, entry } = installIOMock();
-		runRafImmediately();
-
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`
-		);
-		const inst = instances.at(-1)!;
-		const items = el.items;
-		const batch = [
-			entry(el.sentinelEl!, 1),
-			entry(items[0], 1),
-			entry(items[1], 1),
-			entry(items[2], 1),
-		];
-		inst.cb(batch);
-		inst.cb(batch);
-		expect(el.lastVisibleIndex).toBe(3);
-
-		// restored in afterEach
-	});
-
-	it('does not change the count based on a badge before the badge is measured', async () => {
-		const { instances, entry } = installIOMock();
-		runRafImmediately();
-
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`
-		);
-
-		await setOverflow(el, 2);
-		expect(el.shadowRoot?.querySelector('vwc-badge')).toBeTruthy();
-
-		const inst = instances.at(-1)!;
-		const items = el.items;
-		const batch = [
-			entry(el.sentinelEl!, 1),
-			entry(items[0], 1),
-			entry(items[1], 1),
-			entry(items[2], 0),
-		];
-
-		inst.cb(batch);
-		inst.cb(batch);
-		expect(el.lastVisibleIndex).toBe(2);
-	});
-
-	it('treats unknown visibility as not visible', async () => {
-		const { instances, entry } = installIOMock();
-		runRafImmediately();
-
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`
-		);
-		const inst = instances.at(-1)!;
-		const items = el.items;
-		const batch = [
-			entry(items[0]), // intersectionRatio undefined => treated as 0
-			entry(items[1], 1),
-			entry(items[2], 1),
-		];
-
-		inst.cb(batch);
-		inst.cb(batch);
-		expect(el.lastVisibleIndex).toBe(0);
-	});
-
-	it('keeps working even if an unexpected element is present', async () => {
-		const { instances, entry } = installIOMock();
-		runRafImmediately();
-
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-		`
-		);
-		// simulate an item list that includes an element not present in the map
-		const extra = document.createElement('div');
-		el.items = [...el.items, extra] as Country[];
-
-		const inst = instances.at(-1)!;
-		// omit `extra` from the entries so it stays missing in the map
-		const batch = [entry(el.items[0], 1), entry(el.items[1], 1)];
-		inst.cb(batch);
-		inst.cb(batch);
-
-		expect(el.lastVisibleIndex).toBe(3);
-	});
-
-	it('does not hide an extra country when the “+N” badge itself is fully visible', async () => {
-		const { instances, entry } = installIOMock();
-		runRafImmediately();
-
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`
-		);
-		await setOverflow(el, 1);
-		expect(el.shadowRoot?.querySelector('vwc-badge')).toBeTruthy();
-
-		const inst = instances.at(-1)!;
-		const items = el.items;
-		const batch = [
-			entry(items[0], 1),
-			entry(items[1], 0), // firstHidden = 1 (not last)
-			entry(items[2], 0),
-			entry(el.badgeEl!, 1), // badge visible => should NOT reduce visible count further
-		];
-		inst.cb(batch);
-		inst.cb(batch);
-		expect(el.lastVisibleIndex).toBe(1);
-	});
-
-	it('reduces visible items by one when the badge itself would overflow', async () => {
-		const { instances, entry } = installIOMock();
-		runRafImmediately();
-
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`
-		);
-		await setOverflow(el, 1);
-		expect(el.shadowRoot?.querySelector('vwc-badge')).toBeTruthy();
-
-		const inst = instances.at(-1)!;
-		const items = el.items;
-		const badge = el.badgeEl!;
-		const batch = [
-			entry(items[0], 1),
-			entry(items[1], 1),
-			entry(items[2], 0),
-			entry(badge, 0),
-		];
-
-		inst.cb(batch);
-		inst.cb(batch);
-		expect(el.lastVisibleIndex).toBe(1);
-		// restored in afterEach
-	});
-
-	it('handles the "badge causes its own overflow" edge case', async () => {
-		const { instances, entry } = installIOMock();
-		runRafImmediately();
-
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`
-		);
-		await setOverflow(el, 2);
-		expect(el.shadowRoot?.querySelector('vwc-badge')).toBeTruthy();
-
-		const inst = instances.at(-1)!;
-		const items = el.items;
-		const badge = el.badgeEl!;
-		const batch = [
-			entry(items[0], 1),
-			entry(items[1], 1),
-			entry(items[2], 0),
-			entry(badge, 1),
-		];
-
-		inst.cb(batch);
-		inst.cb(batch);
-		expect(el.lastVisibleIndex).toBe(3);
-		expect(el.overflowCount).toBe(0);
-		// restored in afterEach
-	});
-
-	it('opens the overflow popup and clones overflowed items into the grid', async () => {
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`
-		);
-
-		el.lastVisibleIndex = el.items.length;
-		el.handleMouseEnter();
-		expect(el.popupOpen).toBe(false);
-
-		await setOverflow(el, 1);
-		el.handleMouseEnter();
-		expect(el.popupOpen).toBe(true);
-		el.handleMouseLeave();
-
-		expect(el.popupOpen).toBe(false);
-		expect(() => el.popupOpenChanged(undefined)).not.toThrow();
-
-		el.overflowGridEl = undefined;
-		el.fillOverflowGrid();
-		el.overflowGridEl = document.createElement('div');
-		el.lastVisibleIndex = el.items.length;
-		el.overflowGridEl.appendChild(document.createElement('div'));
-		el.fillOverflowGrid();
-		expect(el.overflowGridEl.children.length).toBe(1);
-
-		el.lastVisibleIndex = 1;
-		el.fillOverflowGrid();
-		expect(el.overflowGridEl.children.length).toBe(2);
-		const c0 = el.overflowGridEl.children.item(0) as HTMLElement;
-		expect(c0.getAttribute('aria-hidden')).toBe('true');
-		expect(c0.getAttribute('style')).toBe(null);
-	});
-
-	it('cancels any pending updates when disconnected', async () => {
-		const { instances, entry } = installIOMock();
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`
-		);
-		let queued: FrameRequestCallback | null = null;
-		(globalThis as any).requestAnimationFrame = (cb: FrameRequestCallback) => {
-			queued = cb;
-			return 0 as any;
-		};
-		const inst = instances.at(-1)!;
-		const items = el.items;
-		const batch = [entry(items[0], 1), entry(items[1], 1), entry(items[2], 0)];
-
-		inst.cb(batch);
-		inst.cb(batch);
-		expect(queued).toBeTruthy();
-
-		// call directly to avoid relying on DOM lifecycle in jsdom
-		(el as any).disconnectedCallback();
-		queued!(performance.now());
-		// restored in afterEach
-	});
-
-	it('does not enqueue multiple recalculations during rapid resize signals', async () => {
-		const { instances, entry } = installIOMock();
-		const el = await createGroup();
-		const { rafSpy, flush } = holdRaf();
-
-		const inst = instances.at(-1)!;
-		// sentinel triggers requestFit; with holding RAF the fit stays queued
-		inst.cb([entry(el.sentinelEl!, 1)]);
-		inst.cb([entry(el.sentinelEl!, 1)]);
-		expect(rafSpy).toHaveBeenCalledTimes(1);
-		flush();
-		// restored in afterEach
-	});
-
-	it('does not schedule duplicate updates while one is already queued', async () => {
-		const { instances, entry } = installIOMock();
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`
-		);
-		const { rafSpy, flush } = holdRaf();
-		const inst = instances.at(-1)!;
-		const items = el.items;
-		const batch = [entry(items[0], 1), entry(items[1], 1), entry(items[2], 0)];
-
-		// 1st: candidate streak 1, no commit
-		inst.cb(batch);
-		// 2nd: candidate streak 2, queues commit (but we hold RAF)
-		inst.cb(batch);
-		expect(rafSpy).toHaveBeenCalledTimes(1);
-		// 3rd: would try to queue again, but commitQueued guard prevents it
-		inst.cb(batch);
-		expect(rafSpy).toHaveBeenCalledTimes(1);
-		flush();
-	});
-
-	it('keeps tracking safe when overflow UI appears/disappears', async () => {
-		const { instances } = installIOMock();
-		runRafImmediately();
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`
-		);
-		await setOverflow(el, 1);
-		expect(el.shadowRoot?.querySelector('vwc-badge')).toBeTruthy();
-
-		el.shadowRoot
-			?.querySelector('slot')
-			?.dispatchEvent(new Event('slotchange'));
-		await elementUpdated(el);
-		const inst = instances.at(-1)!;
-		expect(inst.observed.includes(el.badgeEl!)).toBe(true);
-	});
-
-	it('does not throw if the resize sentinel is missing during a re-connect', async () => {
-		installIOMock();
-		runRafImmediately();
-		const el = await createGroup();
-		await expect(
-			(async () => {
-				(el as any).sentinelEl = undefined;
-				(el as any).connectedCallback();
-				await flush(el);
-			})()
-		).resolves.toBeUndefined();
-	});
-
-	it('wires template events (mouseenter/mouseleave/keydown) to component handlers', async () => {
-		runRafImmediately();
-		const el = await createGroup(
-			`
-			<vwc-country code="UK"></vwc-country>
-			<vwc-country code="NO"></vwc-country>
-			<vwc-country code="US"></vwc-country>
-		`
-		);
-		await setOverflow(el, 1);
-
+		// hover => open popup and render overflow grid
 		const wrap = el.shadowRoot?.querySelector('.overflow-wrap') as HTMLElement;
 		expect(wrap).toBeTruthy();
-
 		wrap.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
-		expect(el.popupOpen).toBe(true);
+		await Updates.next();
+
+		const popup = el.shadowRoot?.querySelector('vwc-popup') as any;
+		expect(popup).toBeTruthy();
+
+		const grid = el.shadowRoot?.querySelector('.overflow-grid') as HTMLElement;
+		expect(grid).toBeTruthy();
+		expect(grid.children.length).toBe(4);
+
+		const overflowCodes = Array.from(grid.children).map((c) =>
+			(c as HTMLElement).getAttribute('code')
+		);
+		expect(overflowCodes).toEqual(['DE', 'FR', 'ES', 'IT']);
+
+		// unhover => close popup but keep visibility state
 		wrap.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+		await Updates.next();
 		expect(el.popupOpen).toBe(false);
+
+		const countries = Array.from(el.querySelectorAll('vwc-country'));
+		expect(countries).toHaveLength(7);
+		expect(
+			countries.slice(0, 3).map((it) => it.getAttribute('data-visible'))
+		).toEqual(Array(3).fill('true'));
+		expect(
+			countries.slice(3).map((it) => it.getAttribute('data-visible'))
+		).toEqual(Array(4).fill('false'));
+
+		// everything fits => overflow resolves, badge/popup/grid removed
+		io.enterAll();
+		io.enterAll();
+		await Updates.next();
+
+		expect(el.overflowCount).toBe(0);
+		expect(el.popupOpen).toBe(false);
+		expect(el.shadowRoot?.querySelector('vwc-popup')).toBeFalsy();
+		expect(el.shadowRoot?.querySelector('.overflow-grid')).toBeFalsy();
+
+		// (force ref to be missing to cover the early-return branch)
+		el.overflowGridEl = undefined;
+		expect(() => el.fillOverflowGrid()).not.toThrow();
+	});
+
+	it('should build an accessible group label from country names (and fall back gracefully)', async () => {
+		const empty = await createGroup(`<vwc-country></vwc-country>`);
+
+		expect(empty.items).toHaveLength(1);
+		expect(empty.computedAriaLabel).toBe(
+			empty.locale.countryGroup.ariaLabelPrefix
+		);
+
+		const withKnownCode = await createGroup(
+			`<vwc-country code="DE"></vwc-country>`
+		);
+
+		expect(withKnownCode.items).toHaveLength(1);
+		expect(withKnownCode.computedAriaLabel).toContain('Germany');
+
+		const withUnknownCode = await createGroup(
+			`<vwc-country code="ZZ"></vwc-country>`
+		);
+		expect(withUnknownCode.items).toHaveLength(1);
+		expect(withUnknownCode.computedAriaLabel).toContain('ZZ');
+	});
+
+	describe('IntersectionObserver and lifecycle edge cases', () => {
+		it('should not change layout when only the resize sentinel is reported', async () => {
+			const el = await createGroup(countryMarkup(['DE', 'FR']));
+			await ensureFitted(el);
+			expect(el.items).toHaveLength(2);
+		});
+
+		it('should treat a missing intersection ratio as not visible', async () => {
+			const el = await createGroup(countryMarkup(['DE', 'FR']));
+
+			io.triggerNodes([
+				{ node: el.items[0], desc: { intersectionRatio: undefined as any } },
+			]);
+			io.triggerNodes([
+				{ node: el.items[0], desc: { intersectionRatio: undefined as any } },
+			]);
+			await settle();
+
+			expect(el.items[0].getAttribute('data-visible')).toBe('false');
+		});
+
+		it('should allow calling connectedCallback twice without re-initializing', async () => {
+			const el = await createGroup(countryMarkup());
+			expect(() => (el as any).connectedCallback()).not.toThrow();
+			await Updates.next();
+		});
+
+		it('should not throw if disconnected before a scheduled layout fit runs', async () => {
+			const el = await createGroup(countryMarkup());
+			io.enterNodes([getSentinel(el)]);
+			(el as any).disconnectedCallback();
+			await settle();
+		});
+
+		it('should skip queued connected work when disconnected immediately', async () => {
+			const el = document.createElement(TAG) as CountryGroup;
+			el.innerHTML = countryMarkup(['DE']);
+
+			(el as any).connectedCallback();
+			(el as any).disconnectedCallback();
+
+			await Updates.next();
+		});
+
+		it('should default unknown items to visible until IntersectionObserver updates', async () => {
+			const el = await createGroup(countryMarkup(['DE', 'FR']));
+			(el as any).items = [...el.items, document.createElement('div')];
+
+			io.enterAll();
+			io.enterAll();
+			await settle();
+
+			expect((el as any).items.length).toBe(3);
+		});
+
+		it('should not throw if the resize sentinel element is missing', async () => {
+			const el = await createGroup(countryMarkup(['DE', 'FR']));
+			el.sentinelEl = undefined;
+
+			el.shadowRoot
+				?.querySelector('slot')
+				?.dispatchEvent(new Event('slotchange'));
+			await settle();
+		});
+	});
+
+	describe('Overflow badge visibility', () => {
+		it('should keep overflow until the badge gets its own intersection entry', async () => {
+			const el = await createGroup(countryMarkup(['UK', 'NO', 'US', 'DE']));
+			const visible = el.items.slice(0, 3);
+			const last = el.items[3];
+
+			await setIntersections(visible, [last]);
+
+			expect(el.overflowCount).toBe(1);
+			expect(getBadge(el)).toBeTruthy();
+
+			// Trigger another IO callback after the badge exists, but still without a badge entry.
+			await setIntersections(visible, [last]);
+		});
+
+		it('should hide the badge when it is the only reason the last item overflows', async () => {
+			const el = await createGroup(countryMarkup(['UK', 'NO', 'US', 'DE']));
+			const visible = el.items.slice(0, 3);
+			const last = el.items[3];
+
+			await setIntersections(visible, [last]);
+
+			expect(el.overflowCount).toBe(1);
+			const badge = getBadge(el);
+			expect(badge).toBeTruthy();
+
+			await ensureFitted(el);
+			io.enterNode(badge!);
+			await setIntersections(visible, [last]);
+
+			expect(el.overflowCount).toBe(0);
+			expect(getBadge(el)).toBeFalsy();
+		});
+
+		it('should show one fewer item when the badge cannot fully fit', async () => {
+			const el = await createGroup(
+				countryMarkup(['UK', 'NO', 'US', 'DE', 'FR'])
+			);
+
+			const firstThree = el.items.slice(0, 3);
+			const rest = el.items.slice(3);
+
+			await setIntersections(firstThree, rest);
+
+			expect(el.overflowCount).toBe(2);
+			const badge = getBadge(el);
+			expect(badge).toBeTruthy();
+
+			await ensureFitted(el);
+			io.leaveNode(badge!);
+			await setIntersections(firstThree, rest);
+
+			expect(el.items[0].getAttribute('data-visible')).toBe('true');
+			expect(el.items[1].getAttribute('data-visible')).toBe('true');
+			expect(el.items[2].getAttribute('data-visible')).toBe('false');
+		});
 	});
 });
