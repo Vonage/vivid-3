@@ -311,133 +311,50 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await renderTemplate({
 		page,
-		template: `<div style="width: 720px; height:480px; background-color: #ddd;">
-			<vwc-rich-text-editor style="width: 720px; max-block-size: 240px;"></vwc-rich-text-editor>
-		</div>`,
+		template: `
+			<div style="display: flex; gap: 16px; padding: 16px; align-items: flex-start;">
+				<div style="width: 200px;">
+					<div>Default (grows)</div>
+					<vwc-rich-text-editor id="rte-default"></vwc-rich-text-editor>
+				</div>
+				<div style="width: 200px;">
+					<div>block-size: 160px</div>
+					<vwc-rich-text-editor id="rte-fixed" style="block-size: 160px;"></vwc-rich-text-editor>
+				</div>
+				<div style="width: 200px;">
+					<div>max-block-size: 160px</div>
+					<vwc-rich-text-editor id="rte-max" style="max-block-size: 160px;"></vwc-rich-text-editor>
+				</div>
+				<div style="width: 200px;">
+					<div>min-block-size: 300px</div>
+					<vwc-rich-text-editor id="rte-min" style="min-block-size: 300px;"></vwc-rich-text-editor>
+				</div>
+			</div>
+		`,
 		setup: async () => {
 			await page.evaluate(() => {
-				const rteElement = document.querySelector('vwc-rich-text-editor')!;
-				const config = new RteConfig([
-					new RteBase({
-						heading1: true,
-						heading2: true,
-						heading3: true,
-					}),
-					new RteTextBlockPickerFeature({
-						options: [
-							{
-								node: 'heading1',
-								label: 'Heading 1',
-							},
-							{
-								node: 'heading2',
-								label: 'Heading 2',
-							},
-							{
-								node: 'heading3',
-								label: 'Heading 3',
-							},
-							{
-								node: 'paragraph',
-								label: 'Paragraph',
-							},
-						],
-					}),
-					new RteToolbarFeature(),
-					new RteFontSizePickerFeature({
-						options: [
-							{ label: 'Extra Large', size: '24px' },
-							{ label: 'Large', size: '18px' },
-							{ label: 'Normal', size: '14px' },
-							{ label: 'Small', size: '12px' },
-						],
-					}),
-					new RteBoldFeature(),
-					new RteItalicFeature(),
-					new RteUnderlineFeature(),
-					new RteStrikethroughFeature(),
-					new RteMonospaceFeature(),
-					new RteAlignmentFeature(),
-				]);
-				rteElement.instance = config.instantiateEditor({
-					initialDocument: {
-						type: 'doc',
-						content: [
-							{
-								type: 'heading1',
-								content: [{ type: 'text', text: 'heading1' }],
-							},
-							{
-								type: 'heading2',
-								content: [{ type: 'text', text: 'heading2' }],
-							},
-							{
-								type: 'heading3',
-								content: [{ type: 'text', text: 'heading3' }],
-							},
-							{
-								type: 'paragraph',
-								content: [{ type: 'text', text: 'paragraph' }],
-							},
-							{
-								type: 'paragraph',
-								content: [
-									{ type: 'text', text: 'bold', marks: [{ type: 'bold' }] },
-									{ type: 'text', text: ' ' },
-									{ type: 'text', text: 'italic', marks: [{ type: 'italic' }] },
-									{ type: 'text', text: ' ' },
-									{
-										type: 'text',
-										text: 'underline',
-										marks: [{ type: 'underline' }],
-									},
-									{ type: 'text', text: ' ' },
-									{
-										type: 'text',
-										text: 'strikethrough',
-										marks: [{ type: 'strikethrough' }],
-									},
-									{ type: 'text', text: ' ' },
-									{
-										type: 'text',
-										text: 'monospace',
-										marks: [{ type: 'monospace' }],
-									},
-									{ type: 'text', text: ' ' },
-								],
-							},
-							{
-								type: 'paragraph',
-								content: [
-									{
-										type: 'text',
-										text: 'small',
-										marks: [{ type: 'fontSize', attrs: { size: '12px' } }],
-									},
-									{ type: 'text', text: ' ' },
-									{ type: 'text', text: 'normal' },
-									{ type: 'text', text: ' ' },
-									{
-										type: 'text',
-										text: 'large',
-										marks: [{ type: 'fontSize', attrs: { size: '18px' } }],
-									},
-									{ type: 'text', text: ' ' },
-									{
-										type: 'text',
-										text: 'extra large',
-										marks: [{ type: 'fontSize', attrs: { size: '24px' } }],
-									},
-								],
-							},
-						],
-					},
-				});
+				const initialDoc = {
+					type: 'doc' as const,
+					content: Array.from({ length: 6 }, (_, i) => ({
+						type: 'paragraph',
+						content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
+					})),
+				};
+				for (const id of ['rte-default', 'rte-fixed', 'rte-max', 'rte-min']) {
+					const el = document.getElementById(id)!;
+					const config = new RteConfig([
+						new RteBase(),
+						new RteToolbarFeature(),
+					]);
+					(el as any).instance = config.instantiateEditor({
+						initialDocument: initialDoc,
+					});
+				}
 			});
 		},
 	});
 
-	await takeScreenshot(page, 'rich-text-editor-max-block-size');
+	await takeScreenshot(page, 'rich-text-editor-block-sizes');
 
 	await renderTemplate({
 		page,
