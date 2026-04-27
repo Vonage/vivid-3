@@ -35,14 +35,3 @@
 	gap: 8px;
 	grid-template-columns: repeat(3, auto);
 }
-
-.io-resize-sentinel {
-	position: absolute;
-	display: block;
-	block-size: 150%;
-	inline-size: 150%;
-	inset-block-start: 0;
-	inset-inline-start: 0;
-	opacity: 0;
-	pointer-events: none;
-}

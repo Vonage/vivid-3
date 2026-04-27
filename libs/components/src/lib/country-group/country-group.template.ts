@@ -19,7 +19,6 @@ export const CountryGroupTemplate = (
 			})}
 		>
 			<slot ${ref('slotEl')}></slot>
-			<span class="io-resize-sentinel" ${ref('sentinelEl')}></span>
 			${when(
 				(x) => x.overflowCount > 0,
 				html<CountryGroup>`

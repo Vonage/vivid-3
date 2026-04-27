@@ -23,24 +23,11 @@ const countryMarkup = (
 
 describe('vwc-country-group', () => {
 	let io: ReturnType<typeof mockIntersectionObserver>;
-	const nextFrame = () =>
-		new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
 	const settle = async () => {
-		await nextFrame();
 		await Updates.next();
 	};
-	const getSentinel = (el: CountryGroup) =>
-		el.shadowRoot?.querySelector('.io-resize-sentinel') as HTMLElement;
 	const getBadge = (el: CountryGroup) =>
 		el.shadowRoot?.querySelector('vwc-badge') as HTMLElement | null;
-	const ensureFitted = async (el: CountryGroup) => {
-		// Trigger the "sentinel saw resize" path to schedule and run a fit,
-		// so the component observes items/badge consistently.
-		const sentinel = getSentinel(el);
-		io.enterNodes([sentinel]);
-		io.enterNodes([sentinel]);
-		await settle();
-	};
 	const setIntersections = async (
 		visible: HTMLElement[],
 		hidden: HTMLElement[]
@@ -187,10 +174,11 @@ describe('vwc-country-group', () => {
 	});
 
 	describe('IntersectionObserver and lifecycle edge cases', () => {
-		it('should not change layout when only the resize sentinel is reported', async () => {
-			const el = await createGroup(countryMarkup(['DE', 'FR']));
-			await ensureFitted(el);
-			expect(el.items).toHaveLength(2);
+		it('should do nothing when connectedCallback runs while not connected', async () => {
+			const el = document.createElement(TAG) as CountryGroup;
+			el.innerHTML = countryMarkup(['DE']);
+
+			expect(() => (el as any).connectedCallback()).not.toThrow();
 		});
 
 		it('should treat a missing intersection ratio as not visible', async () => {
@@ -213,13 +201,6 @@ describe('vwc-country-group', () => {
 			await Updates.next();
 		});
 
-		it('should not throw if disconnected before a scheduled layout fit runs', async () => {
-			const el = await createGroup(countryMarkup());
-			io.enterNodes([getSentinel(el)]);
-			(el as any).disconnectedCallback();
-			await settle();
-		});
-
 		it('should skip queued connected work when disconnected immediately', async () => {
 			const el = document.createElement(TAG) as CountryGroup;
 			el.innerHTML = countryMarkup(['DE']);
@@ -239,16 +220,6 @@ describe('vwc-country-group', () => {
 			await settle();
 
 			expect((el as any).items.length).toBe(3);
-		});
-
-		it('should not throw if the resize sentinel element is missing', async () => {
-			const el = await createGroup(countryMarkup(['DE', 'FR']));
-			el.sentinelEl = undefined;
-
-			el.shadowRoot
-				?.querySelector('slot')
-				?.dispatchEvent(new Event('slotchange'));
-			await settle();
 		});
 	});
 
@@ -273,12 +244,14 @@ describe('vwc-country-group', () => {
 			const last = el.items[3];
 
 			await setIntersections(visible, [last]);
+			await setIntersections(visible, [last]);
 
 			expect(el.overflowCount).toBe(1);
 			const badge = getBadge(el);
 			expect(badge).toBeTruthy();
 
-			await ensureFitted(el);
+			// Ensure the component has a visibility entry for the badge (and it is true),
+			io.enterNode(badge!);
 			io.enterNode(badge!);
 			await setIntersections(visible, [last]);
 
@@ -295,12 +268,13 @@ describe('vwc-country-group', () => {
 			const rest = el.items.slice(3);
 
 			await setIntersections(firstThree, rest);
+			await setIntersections(firstThree, rest);
 
 			expect(el.overflowCount).toBe(2);
 			const badge = getBadge(el);
 			expect(badge).toBeTruthy();
-
-			await ensureFitted(el);
+			// Ensure the component has a visibility entry for the badge (and it is false),
+			io.leaveNode(badge!);
 			io.leaveNode(badge!);
 			await setIntersections(firstThree, rest);
 

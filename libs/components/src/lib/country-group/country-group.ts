@@ -1,4 +1,4 @@
-import { observable, Updates } from '@microsoft/fast-element';
+import { observable } from '@microsoft/fast-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { Localized } from '../../shared/patterns';
@@ -40,7 +40,6 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 
 	slotEl!: HTMLSlotElement;
 	badgeEl?: Badge;
-	sentinelEl?: HTMLSpanElement;
 	overflowWrapEl?: HTMLDivElement;
 	overflowGridEl?: HTMLDivElement;
 
@@ -50,8 +49,6 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 
 	#observer: IntersectionObserver | null = null;
 	#visibleMap = new Map<Element, boolean>();
-	#fitQueued = false;
-	#commitQueued = false;
 	#candidateVisible = -1;
 	#candidateStreak = 0;
 
@@ -104,17 +101,11 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 	override connectedCallback(): void {
 		super.connectedCallback();
 
-		Updates.enqueue(() => {
-			if (!this.$fastController.isConnected) {
-				return;
-			}
-
-			this.#syncFromSlot();
-			this.#updateAriaLabel();
-			this.slotEl?.addEventListener('slotchange', this.#onSlotChange);
-			this.#ensureObserver();
-			this.#requestFit();
-		});
+		this.#syncFromSlot();
+		this.#updateAriaLabel();
+		this.slotEl?.addEventListener('slotchange', this.#onSlotChange);
+		this.#ensureObserver();
+		this.#requestFit();
 	}
 
 	override disconnectedCallback(): void {
@@ -145,31 +136,21 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 	}
 
 	#requestFit(): void {
-		if (this.#fitQueued) {
-			return;
-		}
-		this.#fitQueued = true;
 		this.#prepareForFit();
 
-		requestAnimationFrame(() => {
-			this.#fitQueued = false;
-			this.#observeAll();
-		});
+		this.#observeAll();
 	}
 
 	#observeAll(): void {
-		if (!this.#observer) {
-			return;
-		}
-		this.#observer.disconnect();
+		const observer = this.#observer!;
+		observer.disconnect();
+
 		for (const el of this.items) {
-			this.#observer.observe(el);
+			observer.observe(el);
 		}
-		if (this.sentinelEl) {
-			this.#observer.observe(this.sentinelEl);
-		}
+
 		if (this.badgeEl && this.overflowCount > 0) {
-			this.#observer.observe(this.badgeEl);
+			observer.observe(this.badgeEl);
 		}
 	}
 
@@ -204,14 +185,7 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 	}
 
 	#handleIntersection = (entries: IntersectionObserverEntry[]) => {
-		let sawSentinel = false;
-		let sawNonSentinel = false;
 		for (const entry of entries) {
-			if (entry.target === this.sentinelEl) {
-				sawSentinel = true;
-				continue;
-			}
-			sawNonSentinel = true;
 			this.#visibleMap.set(
 				entry.target,
 				(entry.intersectionRatio ?? 0) >= FULLY_VISIBLE_INTERSECTION_RATIO
@@ -219,14 +193,7 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 		}
 
 		// resize => queue a re-fit to refresh item intersections.
-		if (sawSentinel) {
-			this.#requestFit();
-			// if this callback only had the sentinel, wait for the next callback
-			// with real item entries before recomputing.
-			if (!sawNonSentinel) {
-				return;
-			}
-		}
+		this.#requestFit();
 
 		let firstHidden = -1;
 		for (let i = 0; i < this.items.length; i++) {
@@ -278,21 +245,13 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 			return;
 		}
 
-		if (this.#commitQueued) {
-			return;
+		this.lastVisibleIndex = this.#candidateVisible;
+		this.#applyLayout(this.lastVisibleIndex, 'final');
+
+		if (this.overflowCount === 0) {
+			this.popupOpen = false;
 		}
-		this.#commitQueued = true;
-
-		requestAnimationFrame(() => {
-			this.#commitQueued = false;
-			this.lastVisibleIndex = this.#candidateVisible;
-			this.#applyLayout(this.lastVisibleIndex, 'final');
-
-			if (this.overflowCount === 0) {
-				this.popupOpen = false;
-			}
-			Updates.enqueue(() => this.fillOverflowGrid());
-		});
+		this.fillOverflowGrid();
 	}
 
 	#prepareForFit(): void {
@@ -321,7 +280,7 @@ export class CountryGroup extends Localized(DelegatesAria(VividElement)) {
 			return;
 		}
 		if (this.popupOpen) {
-			Updates.enqueue(() => this.fillOverflowGrid());
+			this.fillOverflowGrid();
 		}
 	}
 
