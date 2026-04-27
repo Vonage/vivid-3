@@ -1,4 +1,5 @@
 const tsx = require('tsx/cjs/api');
+const path = require('path');
 
 const unregister = tsx.register();
 
@@ -8,8 +9,10 @@ const {
 
 module.exports.getTokens = async function () {
 	let styleDictionaryInstance = await styleDictionary.init();
+	// Use absolute path to avoid working directory issues
+	const designTokensPath = path.resolve(__dirname, '../../../../../libs/design-tokens/src/*/*/*.dtcg.json');
 	styleDictionaryInstance = await styleDictionaryInstance.extend({
-		source: ['../../libs/design-tokens/src/*/*/*.dtcg.json'],
+		source: [designTokensPath],
 	});
 
 	const cssTokens = await styleDictionaryInstance.getPlatformTokens('css');
@@ -34,7 +37,7 @@ module.exports.getTokens = async function () {
 			type: cssToken.$type,
 			css: cssToken.name,
 			flutter: flutterToken.name,
-			preview: cssToken.$value,
+			preview: cssToken.$value.hex || cssToken.$value,
 		};
 
 		const categoryGroup = (output[category] ??= {});

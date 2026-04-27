@@ -171,10 +171,16 @@ export const cssPlatform: PlatformConfig = {
 	buildPath: './dist/',
 	files: [
 		{
-			destination: 'color-default.css',
+			destination: 'core-color.css',
 			format: 'css/variables',
 			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('color'),
+			filter: (token) => token.filePath.includes('color') && token.filePath.includes('core'),
+		},
+		{
+			destination: 'semantic-color.css',
+			format: 'css/variables',
+			/* v8 ignore next -- @preserve */
+			filter: (token) => token.filePath.includes('color') && token.filePath.includes('semantic'),
 		},
 		{
 			destination: 'density-default.css',

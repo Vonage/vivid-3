@@ -43,8 +43,8 @@
 	font-weight: 500;
 }
 
-.token-preview:before {
-    position: absolute;;
+.token-preview::before {
+    position: absolute;
     z-index: -1;
     background-color: inherit;
     background-image: linear-gradient(45deg, var(--vvd-color-neutral-50) 25%, transparent 25%), linear-gradient(135deg, var(--vvd-color-neutral-50) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--vvd-color-neutral-50) 75%), linear-gradient(135deg, transparent 75%, var(--vvd-color-neutral-50) 75%);
@@ -52,7 +52,7 @@
     background-size: 20px 20px;
     content: "";
     inset: 0;
-    opacity: .5;
+    opacity: 1;
 }
 
 .token-preview--typography {
@@ -85,12 +85,20 @@
 }
 </style>
 
-{% macro colorScaleExample(list, colorScale, scaleItem, startIndex = 0, endIndex = 0, rangeLabel = '') %}
+{% macro colorScaleExample(list, colorScale, scaleItem, startIndex = 0, endIndex = 0, rangeLabel = '', alpha = false) %}
   {% set valid = [] %}
 
   {% for item in list %}
-    {% if item.preview and (item.preview | length == 7) %}
-      {% set valid = valid.concat([item]) %}
+    {% if item.preview %}
+      {% if alpha %}
+        {% if item.preview | length == 9 %}
+          {% set valid = valid.concat([item]) %}
+        {% endif %}
+      {% else %}
+        {% if item.preview | length == 7 %}
+          {% set valid = valid.concat([item]) %}
+        {% endif %}
+      {% endif %}
     {% endif %}
   {% endfor %}
 
@@ -105,7 +113,7 @@
 
   <div class="scale-example {% if rangeLabel %}scale-example--has-range{% endif %}">
     <div class="scale-inner">
-      {{ colorScale(valid, scaleItem) }}
+      {{ colorScale(valid, scaleItem, alpha) }}
 
       {% if rangeLabel %}
         <div class="scale-range"
@@ -118,11 +126,11 @@
 {% endmacro %}
 
 
-{% macro colorScale(list, scaleItem) %}
+{% macro colorScale(list, scaleItem, alpha = false) %}
   {% set valid = [] %}
 
   {% for item in list %}
-    {% if item.preview and (item.preview | length == 7) %}
+    {% if item.preview and (item.preview | length == 7 or (alpha and item.preview | length == 9)) %}
       {% set valid = valid.concat([item]) %}
     {% endif %}
   {% endfor %}
@@ -133,16 +141,20 @@
     {% endfor %}
   </div>
 
-  <div class="color-scale">
-    {% for item in valid | reverse %}
-      {{ scaleItem(item, loop.index0) }}
-    {% endfor %}
-  </div>
+  {% if not alpha %}
+    <div class="color-scale">
+      {% for item in valid | reverse %}
+        {{ scaleItem(item, loop.index0) }}
+      {% endfor %}
+    </div>
+  {% endif %}
 {% endmacro %}
 
 {% macro scaleItem(item, i = '0') %}
-  <div class="scale-item" style="background-color: {{ item.preview }}; color: contrast-color({{ item.preview }})">
-    {{ i }}
+  <div class="scale-item">
+		<div class="scale-item-inner" style="background-color: {{ item.preview }}; color: contrast-color({{ item.preview }})">
+      {{ i }}
+    </div>
   </div>
 {% endmacro %}
 
@@ -214,6 +226,7 @@
 	}
 
 	.scale-item {
+		position: relative;
 		flex: 1 1 0;
 		aspect-ratio: 1 / 1;
 		min-width: 0;
@@ -221,5 +234,29 @@
 		align-items: center;
 		justify-content: center;
 		font-weight: 500;
+		max-width: 61px;
 	}
+
+	.scale-item-inner {
+		position: absolute;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 12px;
+	}
+
+	.scale-item::before {
+    position: absolute;
+    z-index: 0;
+		background-color: #f0f0f0;
+    background-image: linear-gradient(45deg, var(--vvd-color-neutral-800) 25%, transparent 25%), linear-gradient(135deg, var(--vvd-color-neutral-800) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--vvd-color-neutral-800) 75%), linear-gradient(135deg, transparent 75%, var(--vvd-color-neutral-800) 75%);
+    background-position: 0 0, 8px 0, 8px -8px, 0 8px;
+    background-size: 16px 16px;
+    content: "";
+    inset: 0;
+    opacity: 1;
+}
 </style>

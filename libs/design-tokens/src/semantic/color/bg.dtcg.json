@@ -1,0 +1,58 @@
+{
+  "vivid/color/bg/canvas": {
+    "$type": "color",
+    "$value": "{vivid/color/neutral/0}"
+  },
+  "vivid/color/bg/surface/default": {
+    "$type": "color",
+    "$value": "{vivid/color/neutral/0}"
+  },
+  "vivid/color/bg/surface/strong": {
+    "$type": "color",
+    "$value": "{vivid/color/neutral/200}"
+  },
+  "vivid/color/bg/surface/subtle": {
+    "$type": "color",
+    "$value": "{vivid/color/neutral/100}"
+  },
+  "vivid/color/bg/surface/muted": {
+    "$type": "color",
+    "$value": "{vivid/color/neutral/50}"
+  },
+  "vivid/color/bg/surface/inverted": {
+    "$type": "color",
+    "$value": "{vivid/color/neutral/950}"
+  },
+  "vivid/color/bg/neutral/strong": {
+    "$type": "color",
+    "$value": "{vivid/color/neutral/950}"
+  },
+  "vivid/color/bg/neutral/muted": {
+    "$type": "color",
+    "$value": "{vivid/color/neutral/50}"
+  },
+  "vivid/color/bg/primary/strong": {
+    "$type": "color",
+    "$value": "{vivid/color/primary/500}"
+  },
+  "vivid/color/bg/primary/muted": {
+    "$type": "color",
+    "$value": "{vivid/color/primary/50}"
+  },
+  "vivid/color/bg/accent/strong": {
+    "$type": "color",
+    "$value": "{vivid/color/accent/500}"
+  },
+  "vivid/color/bg/accent/muted": {
+    "$type": "color",
+    "$value": "{vivid/color/accent/50}"
+  },
+  "vivid/color/bg/info/strong": {
+    "$type": "color",
+    "$value": "{vivid/color/info/500}"
+  },
+  "vivid/color/bg/info/muted": {
+    "$type": "color",
+    "$value": "{vivid/color/info/50}"
+  }
+}
