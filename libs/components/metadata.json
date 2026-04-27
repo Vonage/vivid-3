@@ -2097,10 +2097,50 @@
 			"className": "CountryGroup",
 			"registerFunctionName": "registerCountryGroup",
 			"description": "",
-			"props": [],
+			"props": [
+				{
+					"name": "badgeElement",
+					"type": "@vonage/vivid#VwcBadgeElement",
+					"propertyName": "badgeElement"
+				},
+				{
+					"name": "countryItems",
+					"type": "@vonage/vivid#VwcCountryElement[]",
+					"propertyName": "countryItems"
+				},
+				{
+					"name": "overflowedCountries",
+					"type": "Set<@vonage/vivid#VwcCountryElement>",
+					"propertyName": "overflowedCountries"
+				},
+				{
+					"name": "popupOpened",
+					"type": "boolean",
+					"propertyName": "popupOpened"
+				}
+			],
 			"events": [],
 			"vueModels": [],
-			"methods": [],
+			"methods": [
+				{
+					"name": "countryItemsChanged",
+					"args": [
+						{
+							"name": "_oldItems",
+							"type": "@vonage/vivid#VwcCountryElement[]"
+						},
+						{ "name": "newItems", "type": "@vonage/vivid#VwcCountryElement[]" }
+					],
+					"returnType": "void"
+				},
+				{
+					"name": "handleChanges",
+					"args": [
+						{ "name": "entries", "type": "IntersectionObserverEntry[]" }
+					],
+					"returnType": "void"
+				}
+			],
 			"slots": [
 				{
 					"name": "default",

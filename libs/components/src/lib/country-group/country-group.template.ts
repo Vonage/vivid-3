@@ -1,66 +1,56 @@
-import { html, ref, when } from '@microsoft/fast-element';
-import { delegateAria } from '../../shared/aria/delegates-aria';
+import { elements, html, ref, slotted, when } from '@microsoft/fast-element';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { Badge } from '../badge/badge';
+import { Country } from '../country/country';
 import { Popup } from '../popup/popup';
 import type { CountryGroup } from './country-group';
 
 export const CountryGroupTemplate = (
 	context: VividElementDefinitionContext
 ) => {
+	const countryTagName = context.tagFor(Country, true);
 	const badgeTag = context.tagFor(Badge);
 	const popupTag = context.tagFor(Popup);
-	return html<CountryGroup>`
-		<div
-			class="container"
-			${delegateAria({
-				role: 'group',
-				ariaLabel: (x) => x.ariaLabel || x.computedAriaLabel,
-			})}
-		>
-			<slot ${ref('slotEl')}></slot>
-			<span class="io-resize-sentinel" ${ref('sentinelEl')}></span>
-			${when(
-				(x) => x.overflowCount > 0,
-				html<CountryGroup>`
-					<div
-						class="overflow-wrap"
-						${ref('overflowWrapEl')}
-						style="order: ${(x) => x.lastVisibleIndex};"
-						@mouseenter="${(x) => x.handleMouseEnter()}"
-						@mouseleave="${(x) => x.handleMouseLeave()}"
-					>
-						<${badgeTag}
-							${ref('badgeEl')}
-							connotation="cta"
-							appearance="duotone"
-							shape="pill"
-							text="${(x) => '+' + x.overflowCount}"
-						></${badgeTag}>
-					</div>
-				`
-			)}
-		</div>
 
-		${when(
-			(x) => x.overflowCount > 0,
-			html<CountryGroup>`
-				<${popupTag}
-					strategy="fixed"
-					placement="top"
-					alternate
-					arrow
-					:anchor="${(x) => x.overflowWrapEl}"
-					:open="${(x) => x.popupOpen}"
-					exportparts="vvd-theme-alternate"
-				>
-					<div
-						class="overflow-grid"
-						${ref('overflowGridEl')}
-						aria-hidden="true"
-					></div>
-				</${popupTag}>
-			`
-		)}
+	return html<CountryGroup>`
+		<template>
+			<div class="container"
+					 @mouseenter="${(x) => (x.popupOpened = true)}"
+					 @mouseleave="${(x) => (x.popupOpened = false)}">
+				<slot
+					${ref('slotElement')}
+					${slotted({
+						property: 'countryItems',
+						filter: elements(countryTagName),
+					})}
+				></slot>
+				${when(
+					(x) => x.overflowedCountries.size > 0,
+					html<CountryGroup>`
+						<div class="badge"
+								 ${ref('badgeElement')}>
+							<${badgeTag}
+								connotation="accent"
+								appearance="subtle-light"
+								shape="pill"
+								text="${(x) => '+' + x.overflowedCountries.size}"
+							></${badgeTag}>
+						</div>`
+				)}
+			</div>
+			<${popupTag}
+				placement="top"
+				alternate
+				arrow
+				:anchor="${(x) => x.badgeElement}"
+				:open="${(x) => x.popupOpened}"
+				exportparts="vvd-theme-alternate"
+			>
+				<div
+					${ref('popupContents')}
+					class="popupContents">
+				</div>
+			</${popupTag}>
+		</template>
 	`;
 };
