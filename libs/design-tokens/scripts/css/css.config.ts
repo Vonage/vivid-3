@@ -158,7 +158,7 @@ export const cssPlatform: PlatformConfig = {
 	options: {
 		selector: '.vvd-root, ::part(vvd-root)',
 	},
-	basePxFontSize: 14,
+	basePxFontSize: 16,
 	transforms: [
 		'vvd/value/css/color',
 		'vvd/name/css',
@@ -181,6 +181,12 @@ export const cssPlatform: PlatformConfig = {
 			format: 'css/variables',
 			/* v8 ignore next -- @preserve */
 			filter: (token) => token.filePath.includes('color') && token.filePath.includes('semantic'),
+		},
+		{
+			destination: 'core-space.css',
+			format: 'css/variables',
+			/* v8 ignore next -- @preserve */
+			filter: (token) => token.filePath.includes('core') && token.filePath.includes('space'),
 		},
 		{
 			destination: 'density-default.css',

@@ -1,0 +1,25 @@
+---
+permalink: /design-tokens/references/space/
+parent: Token Types  and Reference Pages
+title: Space
+order: 20
+---
+
+{% include '../../_includes/tokens-table.njk' %}
+{% from '../../_includes/tokens-table.njk' import heading, spacingTokensTable %}
+
+<h1>Space</h1>
+<p>Spacing creates structure, rhythm, and clarity across interfaces. A well-defined spacing system helps teams build layouts and UI patterns consistently, making products easier to use and visually more cohesive.</p>
+{{ heading('Overview', '2') }}
+{{ heading('8px base unit', '3') }}
+<p>Vivid:App's spacing system is built on a <b>8px base unit</b>. This base unit determines the spacing scale and ensures visual consistency across apps.</p>
+
+{{ heading('Spacing scale', '3') }}
+<p>At the core of the spacing system is a defined <b>spacing scale</b> — a limited set of spacing values used consistently across components and layouts.</p>
+<p>The scale is built from multiples of the base unit, ranging from <b>0px to 80px</b>, providing enough flexibility for a wide range of use cases while encouraging consistency and reducing arbitrary spacing decisions.</p>
+
+{{ heading('Core space tokens', '2') }}
+<p>The 8px base unit also forms the basis of our space token system, as the base unit <code>vivid-space-100</code>. Every space token is a multiple of this base unit, the number suffix representing the percentage of the base unit.</p>
+<P>For example, <code>--vivid-space-200</code> is 200% of the size of the base unit, therefore represents 16px.</p>
+
+{{ spacingTokensTable(tokens.space) }}

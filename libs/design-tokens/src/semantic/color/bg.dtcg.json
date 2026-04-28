@@ -7,17 +7,17 @@
     "$type": "color",
     "$value": "{vivid/color/neutral/0}"
   },
-  "vivid/color/bg/surface/strong": {
+  "vivid/color/bg/surface/muted": {
     "$type": "color",
-    "$value": "{vivid/color/neutral/200}"
+    "$value": "{vivid/color/neutral/50}"
   },
   "vivid/color/bg/surface/subtle": {
     "$type": "color",
     "$value": "{vivid/color/neutral/100}"
   },
-  "vivid/color/bg/surface/muted": {
+  "vivid/color/bg/surface/strong": {
     "$type": "color",
-    "$value": "{vivid/color/neutral/50}"
+    "$value": "{vivid/color/neutral/200}"
   },
   "vivid/color/bg/surface/inverted": {
     "$type": "color",

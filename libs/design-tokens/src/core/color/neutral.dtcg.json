@@ -107,15 +107,6 @@
 			"hex": "#0D0D0D"
 		}
 	},
-	"vivid/color/neutral/1000": {
-		"$type": "color",
-		"$value": {
-			"colorSpace": "srgb",
-			"components": [0.0, 0.0, 0.0],
-			"alpha": 1.0,
-			"hex": "#000000"
-		}
-	},
 	"vivid/color/neutral/alpha/80": {
 		"$type": "color",
 		"$value": {

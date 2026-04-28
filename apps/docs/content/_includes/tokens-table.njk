@@ -260,3 +260,45 @@
     opacity: 1;
 }
 </style>
+
+{% macro spacingTokensTable(list) %}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell class="token-name">Token</vwc-table-header-cell>
+			<vwc-table-header-cell class="align-number base-unit">% of base unit</vwc-table-header-cell>
+			<vwc-table-header-cell class="align-number rem">REM</vwc-table-header-cell>
+			<vwc-table-header-cell class="align-number px">Pixels</vwc-table-header-cell>
+			<vwc-table-header-cell>Preview</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		{% for key, tokenArray in list %}
+			{% set item = tokenArray[0] %}
+			<vwc-table-row>
+				<vwc-table-cell><code>--{{ item.css }}</code></vwc-table-cell>
+				<vwc-table-cell class="align-number">{{ key }}%</vwc-table-cell>
+				<vwc-table-cell class="align-number">{{ item.preview }}</vwc-table-cell>
+				<vwc-table-cell class="align-number">{{ item.description }}</vwc-table-cell>
+				<vwc-table-cell><div class="space-preview" style="inline-size: {{ item.preview }}"></div></vwc-table-cell>
+			</vwc-table-row>
+		{% endfor %}
+	</vwc-table-body>
+</vwc-table>
+{% endmacro %}
+
+<style>
+	.align-number {
+		text-align: right;
+	}
+	.token-name {
+		width: 220px;
+	}
+	.base-unit, .rem, .px {
+		width: 120px;
+	}
+	.space-preview {
+		height: 16px;
+		background-color: var(--vvd-color-cta-500);
+	}
+</style>

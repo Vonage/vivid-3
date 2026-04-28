@@ -200,6 +200,10 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addFilter('snakeCase', snakeCase);
 	eleventyConfig.addFilter('trainCase', trainCase);
 
+	eleventyConfig.addFilter('json', function (value, indent = 2) {
+		return JSON.stringify(value, null, indent);
+	});
+
 	eleventyConfig.addFilter('cssmin', function (code) {
 		return new CleanCSS({}).minify(code).styles;
 	});
