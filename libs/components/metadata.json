@@ -5830,6 +5830,7 @@
 			"props": [
 				{
 					"name": "appearance",
+					"description": "Sets the appearance of the Searchable Select element.",
 					"type": "'fieldset' | 'ghost'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
@@ -5980,6 +5981,13 @@
 					"propertyName": "required"
 				},
 				{
+					"name": "scale",
+					"description": "Sets the display size of the Searchable Select element.",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "scale",
+					"propertyName": "scale"
+				},
+				{
 					"name": "selectAllText",
 					"description": "Overrides the default \"Select All\" text.",
 					"type": "string",
@@ -5993,6 +6001,7 @@
 				},
 				{
 					"name": "shape",
+					"description": "Sets the shape of the Searchable Select element.",
 					"type": "'rounded' | 'pill'",
 					"attributeName": "shape",
 					"propertyName": "shape"
