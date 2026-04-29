@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { getFlagIconName } from './country-code-to-flag-icon';
+import { getFlagIconName } from './utils';
 
 /**
  * @public

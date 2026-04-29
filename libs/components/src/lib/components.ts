@@ -18,6 +18,7 @@ export * from './combobox/definition';
 export * from './contextual-help/definition';
 export * from './country/definition';
 export * from './country-group/definition';
+export * from './flag/definition';
 export * from './data-grid/definition';
 export * from './table/definition';
 export * from './date-picker/definition';

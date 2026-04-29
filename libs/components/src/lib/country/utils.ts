@@ -1,8 +1,5 @@
 import { countries, type Country } from './countries-data';
 
-export type { Country };
-export { countries };
-
 const CODE_TO_COUNTRY = new Map<string, Country>(
 	countries.map((c) => [c.code, c])
 );
