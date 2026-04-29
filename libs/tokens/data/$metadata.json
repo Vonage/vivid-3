@@ -1,0 +1,15 @@
+{
+	"tokenSetOrder": [
+		"globals/color/alphahex.tokens.json",
+		"globals/color/palette.tokens.json",
+		"globals/size.tokens.json",
+		"globals/font.tokens.json",
+		"globals/typography-scale.tokens.json",
+		"typography.tokens.json",
+		"themes/light/elevation.tokens.json",
+		"themes/light/semantics.tokens.json",
+		"themes/dark/elevation.tokens.json",
+		"themes/dark/semantics.tokens.json",
+		"size.tokens.json"
+	]
+}

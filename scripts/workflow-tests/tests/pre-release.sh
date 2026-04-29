@@ -42,6 +42,7 @@ packages_to_check=(
   "@vonage/vivid|${preview_version}"
   "@vonage/vivid-vue|${preview_version}"
   "@vonage/vivid-test-utils|${preview_version}"
+  "@vonage/vivid-react|${preview_version}"
 )
 
 for entry in "${packages_to_check[@]}"; do

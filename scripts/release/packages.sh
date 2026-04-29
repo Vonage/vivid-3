@@ -16,6 +16,7 @@ declare -A PKG_DIRS=(
   ["@vonage/vivid-icons"]="libs/icons"
   ["@vonage/eslint-plugin-vivid"]="libs/eslint-plugin"
   ["@vonage/vivid-vue"]="libs/vue-wrappers"
+  ["@vonage/vivid-react"]="libs/react-wrappers"
   ["@vonage/vivid-test-utils"]="libs/test-utils"
   ["@vonage/vivid-marketing-icons"]="libs/marketing-icons"
 )
@@ -26,6 +27,7 @@ declare -A OUTPUT_KEYS=(
   ["@vonage/vivid-icons"]="should_release_icons"
   ["@vonage/eslint-plugin-vivid"]="should_release_eslint_plugin"
   ["@vonage/vivid-vue"]="should_release_vue"
+  ["@vonage/vivid-react"]="should_release_react"
   ["@vonage/vivid-test-utils"]="should_release_test_utils"
   ["@vonage/vivid-marketing-icons"]="should_release_marketing_icons"
 )
@@ -36,6 +38,7 @@ declare -A TAG_PREFIXES=(
   ["@vonage/vivid-icons"]="vivid-icons"
   ["@vonage/eslint-plugin-vivid"]="eslint-plugin"
   ["@vonage/vivid-vue"]="vivid-vue"
+  ["@vonage/vivid-react"]="vivid-react"
   ["@vonage/vivid-test-utils"]="test-utils"
   ["@vonage/vivid-marketing-icons"]="vivid-marketing-icons"
 )

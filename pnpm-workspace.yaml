@@ -38,6 +38,7 @@ catalog:
   '@storybook/vue3': ^7.6.20
   '@storybook/vue3-vite': ^7.6.20
   '@testing-library/dom': ^10.0.0
+  '@testing-library/react': ^16.3.0
   '@testing-library/user-event': ^14.6.1
   '@turbo/gen': ^2.8.13
   '@types/eslint': ^9.0.0
@@ -72,7 +73,7 @@ catalog:
   dotenv: ^17.3.1
   element-internals-polyfill: ^3.0.2
   eleventy-plugin-nesting-toc: ^1.3.0
-  esbuild: ^0.27.0
+  esbuild: ^0.27.3
   eslint: ^10.0.2
   eslint-config-prettier: ^10.0.0
   eslint-plugin-ban: ^2.0.0
@@ -146,6 +147,9 @@ catalogs:
     vue: ^3.5.29
     vue3: npm:vue@^3.5.29
 
+ignoredBuiltDependencies:
+  - '@vaadin/vaadin-usage-statistics'
+
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - core-js-pure
@@ -153,8 +157,14 @@ onlyBuiltDependencies:
   - esbuild
 
 overrides:
-  '@ts-morph/common>minimatch': 10.2.1
+  '@ts-morph/common>minimatch': ^10.2.3
   braces: 3.0.3
   minimist: 1.2.8
   nconf: 0.13.0
   path-to-regexp: 0.2.5
+
+peerDependencyRules:
+  allowAny:
+    - vue
+  ignoreMissing:
+    - vue

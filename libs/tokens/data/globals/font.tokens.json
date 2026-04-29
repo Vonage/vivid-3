@@ -1,0 +1,26 @@
+{
+	"fontFamily": {
+		"upright": {
+			"value": "Montserrat",
+			"type": "fontFamilies"
+		},
+		"monospace": {
+			"value": "Roboto Mono",
+			"type": "fontFamilies"
+		}
+	},
+	"fontWeight": {
+		"semiBold": {
+			"value": "600",
+			"type": "fontWeights"
+		},
+		"medium": {
+			"value": "500",
+			"type": "fontWeights"
+		},
+		"regular": {
+			"value": "400",
+			"type": "fontWeights"
+		}
+	}
+}
