@@ -1,0 +1,17 @@
+{
+  "vivid/font-family/sans-serif": {
+    "$value": "SpeziaCompleteVariableUpright, Montserrat, Roboto, Helvetica, Arial, sans-serif",
+    "$type": "fontFamily",
+    "$description": "Primary font family for UI elements and body text."
+  },
+  "vivid/font-family/sans-serif-display": {
+    "$value": "SpeziaCompleteVariableUpright, Montserrat, Roboto, Helvetica, Arial, sans-serif",
+    "$type": "fontFamily",
+    "$description": "Display font family for headings and large text."
+  },
+  "vivid/font-family/sans-serif-monospace": {
+    "$value": "SpeziaMonoCompleteVariable, SF Mono, SF Mono Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace",
+    "$type": "fontFamily",
+    "$description": "Monospace font family for code snippets and technical text."
+  }
+}

@@ -15,6 +15,7 @@ const config: Config = {
 			...flutterConfig.transforms,
 		},
 		formats: {
+			...cssConfig.formats,
 			...flutterConfig.formats,
 		},
 	},

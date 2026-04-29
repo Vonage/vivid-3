@@ -1,0 +1,22 @@
+{
+	"vivid/text/line-height/tight": {
+		"$value": "1.25",
+		"$type": "line-height",
+		"$description": "Tight line height - 1.25"
+	},
+  "vivid/text/line-height/snug": {
+		"$value": "1.33",
+		"$type": "line-height",
+		"$description": "Snug line height - 1.33"
+	},
+	"vivid/text/line-height/normal": {
+		"$value": "1.429",
+		"$type": "line-height",
+		"$description": "Normal line height - 1.429"
+	},
+	"vivid/text/line-height/long": {
+		"$value": "1.75",
+		"$type": "line-height",
+		"$description": "Long line height - 1.75"
+	}
+}

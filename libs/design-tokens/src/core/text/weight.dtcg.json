@@ -1,0 +1,22 @@
+{
+	"vivid/text/weight/light": {
+    "$value": "300",
+    "$type": "font-weight",
+    "$description": "Light text weight - 300"
+  },
+  "vivid/text/weight/normal": {
+    "$value": "400",
+    "$type": "font-weight",
+    "$description": "Normal text weight - 400"
+  },
+  "vivid/text/weight/medium": {
+    "$value": "500",
+    "$type": "font-weight",
+    "$description": "Medium text weight - 500"
+  },
+  "vivid/text/weight/semibold": {
+    "$value": "600",
+    "$type": "font-weight",
+    "$description": "Semibold text weight - 600"
+  }
+}

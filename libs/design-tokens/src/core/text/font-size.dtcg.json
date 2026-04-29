@@ -1,0 +1,47 @@
+{
+	"vivid/text/font-size/xs": {
+		"$value": "0.75rem",
+		"$type": "font-size",
+		"$description": "Extra small font size - 0.75rem"
+	},
+	"vivid/text/font-size/sm": {
+		"$value": "0.875rem",
+		"$type": "font-size",
+		"$description": "Small font size"
+	},
+	"vivid/text/font-size/md": {
+		"$value": "1rem",
+		"$type": "font-size",
+		"$description": "Base font size"
+	},
+	"vivid/text/font-size/lg": {
+		"$value": "1.25rem",
+		"$type": "font-size",
+		"$description": "Large font size"
+	},
+	"vivid/text/font-size/xl": {
+		"$value": "1.625rem",
+		"$type": "font-size",
+		"$description": "2X large font size"
+	},
+	"vivid/text/font-size/2xl": {
+		"$value": "2rem",
+		"$type": "font-size",
+		"$description": "2X large font size"
+	},
+	"vivid/text/font-size/3xl": {
+		"$value": "2.5rem",
+		"$type": "font-size",
+		"$description": "3X large font size"
+	},
+  "vivid/text/font-size/4xl": {
+		"$value": "3.25rem",
+		"$type": "font-size",
+		"$description": "4X large font size"
+	},
+  "vivid/text/font-size/5xl": {
+    "$value": "4rem",
+    "$type": "font-size",
+    "$description": "5X large font size"
+  }
+}

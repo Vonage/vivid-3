@@ -85,6 +85,89 @@ export const cssConfig: Hooks = {
 			},
 		},
 	},
+	formats: {
+		'vvd/css/variables-with-typography': async ({ dictionary, options = {}, file }) => {
+			const selector = Array.isArray(options.selector)
+				? options.selector
+				: options.selector
+				? [options.selector]
+				: [':root'];
+
+			const header = await fileHeader({ file, options });
+			const indentation = options.formatting?.indentation || '  ';
+
+			const serializeReference = (value: any): string => {
+				if (typeof value === 'string') {
+					return value.replace(/{([^}]+)}/g, (_match, tokenPath) => `var(--${tokenPath.replace(/\//g, '-')})`);
+				}
+				if (typeof value === 'number') {
+					return String(value);
+				}
+				if (value == null) {
+					return '';
+				}
+				if (typeof value === 'object') {
+					if ('$value' in value) return serializeReference(value.$value);
+					if ('value' in value) return serializeReference(value.value);
+					return String(value);
+				}
+				return String(value);
+			};
+
+			const serializeTypography = (value: any): string => {
+				const fontFamily = serializeReference(value.fontFamily);
+				const fontSize = serializeReference(value.fontSize);
+				const lineHeight = serializeReference(value.lineHeight);
+				const fontWeight = serializeReference(value.fontWeight ?? '');
+
+				return `${fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`.trim();
+			};
+
+			const content = dictionary.allTokens
+				.map((token) => {
+					const value = options.usesDtcg ? token.$value : token.value;
+
+					const formattedValue =
+						typeof value === 'object' &&
+						value !== null &&
+						'fontFamily' in value &&
+						'fontSize' in value &&
+						'lineHeight' in value
+							? serializeTypography(value)
+							: serializeReference(value);
+
+					if (typeof formattedValue !== 'string' || formattedValue === '') {
+						return undefined;
+					}
+
+					const comment = token.$description ?? token.comment;
+					let line = `${indentation}--${token.name}: ${formattedValue};`;
+					if (comment) {
+						line += ` /** ${comment} */`;
+					}
+					return line;
+				})
+				.filter(Boolean)
+				.join('\n');
+
+			const nestInSelector = (content: string, selector: string, indentation: string) =>
+				`${indentation}${selector} {\n${content}\n${indentation}}`;
+
+			return (
+				header +
+				selector
+					.reverse()
+					.reduce((content, currentSelector, index) =>
+						nestInSelector(
+							content,
+							currentSelector,
+							indentation.repeat(selector.length - 1 - index),
+						),
+					content) +
+				'\n'
+			);
+		},
+	},
 	transforms: {
 		'vvd/value/css/color': {
 			type: 'value',
@@ -102,25 +185,48 @@ export const cssConfig: Hooks = {
 				return `${token.$value.value}px`;
 			},
 		},
-		// 'vvd/value/css/typography': {
-		// 	type: 'value',
-		// 	/* v8 ignore next -- @preserve */
-		// 	filter: (token) => token.$type === 'typography',
-		// 	transform(token, platform) {
-		// 		const fontSize = `${
-		// 			token.$value.fontSize.value / platform.basePxFontSize
-		// 		}rem`;
-		// 		const lineHeight = `${
-		// 			token.$value.lineHeight / platform.basePxFontSize
-		// 		}rem`;
-		// 		const fontFamily = token.$value.fontFamily
-		// 			.toLocaleLowerCase()
-		// 			.includes('mono')
-		// 			? 'SpeziaMonoCompleteVariable'
-		// 			: 'SpeziaCompleteVariableUpright';
-		// 		return `${token.$value.fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`;
-		// 	},
-		// },
+		'vvd/value/css/fontFamily': {
+			type: 'value',
+			/* v8 ignore next -- @preserve */
+			filter: (token) => token.$type === 'fontFamily',
+			transform(token) {
+				return token.$value;
+			},
+		},
+		'vvd/value/css/typography': {
+			type: 'value',
+			/* v8 ignore next -- @preserve */
+			filter: (token) => {
+				const source = token.$value ?? token.value;
+				return (
+					source &&
+					typeof source === 'object' &&
+					'fontFamily' in source &&
+					'fontSize' in source &&
+					'lineHeight' in source
+				);
+			},
+			transform(token) {
+				const resolve = (value: any): string => {
+					if (typeof value === 'string') return value;
+					if (typeof value === 'number') return String(value);
+					if (value == null) return '';
+					if (typeof value === 'object') {
+						if ('$value' in value) return resolve(value.$value);
+						if ('value' in value) return resolve(value.value);
+					}
+					return String(value);
+				};
+
+				const source = token.$value ?? token.value;
+				const fontFamily = resolve(source.fontFamily);
+				const fontSize = resolve(source.fontSize);
+				const lineHeight = resolve(source.lineHeight);
+				const fontWeight = resolve(source.fontWeight);
+
+				return `${fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`;
+			},
+		},
 		'vvd/value/css/shadow': {
 			type: 'value',
 			/* v8 ignore next -- @preserve */
@@ -163,8 +269,9 @@ export const cssPlatform: PlatformConfig = {
 		'vvd/value/css/color',
 		'vvd/name/css',
 		'vvd/value/css/dimension',
+		'vvd/value/css/fontFamily',
+		'vvd/value/css/typography',
 		'vvd/value/css/shadow',
-		// 'vvd/value/css/typography',
 		'size/pxToRem',
 		'vvd/value/css/roundRems',
 	],
@@ -189,35 +296,17 @@ export const cssPlatform: PlatformConfig = {
 			filter: (token) => token.filePath.includes('core') && token.filePath.includes('space'),
 		},
 		{
-			destination: 'density-default.css',
+			destination: 'core-text.css',
 			format: 'css/variables',
 			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('density'),
+			filter: (token) => token.filePath.includes('core') && (token.filePath.includes('text') || token.filePath.includes('font-family')),
 		},
 		{
-			destination: 'elevation-default.css',
-			format: 'css/variables',
+			destination: 'semantic-text.css',
+			format: 'vvd/css/variables-with-typography',
 			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('elevation'),
+			filter: (token) => token.filePath.includes('text') && token.filePath.includes('semantic'),
 		},
-		{
-			destination: 'radius-default.css',
-			format: 'css/variables',
-			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('radius'),
-		},
-		{
-			destination: 'size-default.css',
-			format: 'css/variables',
-			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('size'),
-		},
-		// {
-		// 	destination: 'typography-default.css',
-		// 	format: 'css/variables',
-		// 	/* v8 ignore next -- @preserve */
-		// 	filter: (token) => token.filePath.includes('typography'),
-		// },
 	],
 	actions: ['vvd/css/createIndex', 'vvd/css/addFontsLinks'],
 };
