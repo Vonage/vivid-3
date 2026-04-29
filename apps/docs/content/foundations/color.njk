@@ -1,0 +1,170 @@
+---
+permalink: /foundations/color/
+parent: Foundations
+layout: article.njk
+title: Color
+order: 10
+---
+{% include '../_includes/tokens-table-new.njk' %}
+{% from '../_includes/tokens-table-new.njk' import tokensList, heading, preview, colorScale, scaleItem, colorScaleExample %}
+
+<h1>Color</h1>
+<p>Color is a core element of the Vivid:Apps design system. This guide outlines the principles, patterns, and token structure that define how color is applied across components and experiences.</p>
+
+{{ heading('Overview', '2') }}
+{{ heading('Color modes', '3') }}
+<p>Vivid:Apps offers two color modes, <b>light</b> and <b>dark</b>. Every pattern in Vivid:Apps is built to work across both color modes out of the box.</p>
+
+{{ heading('Color design tokens', '3') }}
+<p>Vivid:Apps provides color through design tokens - a layer of abstraction that enables consistency, maintainability, and theming across the system. In code, these tokens are exposed as CSS variables, while in Figma they are represented as variables.</p>
+<p>For example, when using a token such as <code>color-surface-default</code> for a background, its value will automatically adapt based on the active colour mode.</p>
+
+{{ heading('Design token groups', '3') }}
+<p>Vivid:Apps design tokens are categorized into three groups:</p>
+
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell>Group</vwc-table-header-cell>
+			<vwc-table-header-cell>Description</vwc-table-header-cell>
+			<vwc-table-header-cell style="min-width: 270px;">Example</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		<vwc-table-row>
+			<vwc-table-header-cell>Core</vwc-table-header-cell>
+			<vwc-table-cell>The lowest level tokens and map directly to a raw value.</vwc-table-cell>
+			<vwc-table-cell><code>vivid-color-primary-600</code></vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-header-cell>Semantic</vwc-table-header-cell>
+			<vwc-table-cell>Represent global UI patterns such as text, borders, shadows, and backgrounds.</vwc-table-cell>
+			<vwc-table-cell><code>vivid-color-surface-muted</code></vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-header-cell>Pattern</vwc-table-header-cell>
+			<vwc-table-cell>Used for values that are more specific or unique than semantic tokens.</vwc-table-cell>
+			<vwc-table-cell><code>vivid-color-focus-outline</code></vwc-table-cell>
+		</vwc-table-row>
+	</vwc-table-body>
+</vwc-table>
+
+{{ heading('Core colors', '2') }}
+<vwc-note connotation="information">
+	<p><b>Core color tokens</b> should only be used to construct semantic and pattern design tokens and never used directly in code.</p>
+</vwc-note>
+{{ heading('Color scales', '3') }}
+<p>Vivid:Apps' colors scales provides a range of shades from light to dark, the neutral scale includes white. They are available in both light and dark modes.</p>
+<p>The direction of all the core color scales are inverted between modes: the light scale starts at the lightest shade, while the dark scale starts at the darkest. This inversion allows both themes to share the same semantic colour tokens, reducing the need for mode-specific overrides.</p>
+
+<div><b>Neutral color scale</b></div>
+{{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem ) }}
+<br />
+<div><b>All other color scales</b></div>
+{{ colorScaleExample(tokens.color.primary, colorScale, scaleItem ) }}
+
+{{ heading('Alpha colors', '4') }}
+<p>Alpha colors have varying levels of transparency or opacity (80%, 85%, 90%) and are available for all core colors. They are useful for creating layered visual effects, such as overlays and hover states, and help UI adapt to different background colors and elevations.</p>
+{{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 0, 0, '', true ) }}
+
+{{ heading('Neutral colors', '3') }}
+<p>Neutral colors apply to most surface backgrounds, text, and shapes in our interfaces. They don't typically have a meaning associated with them, though they can imply things like disabled states.</p>
+{{ heading('Backgrounds', '4') }}
+<p>The first few steps are typically used for surafce and canvas background colours. The most commonly used are <code>color-bg-surface-default</code>  and <code>color-bg-surface-muted</code>.</p>
+<p>Text and border contrast is measured against <code>color-surface-muted</code>, ensuring consistent and accessible contrast ratios across both muted and default backgrounds.</p>
+{{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 0, 3, 'Backgrounds' ) }}
+
+{{ heading('Borders & dividers', '4') }}
+<p>The next steps (4 to 6 on the neutral scale and 3 to 5 on other scales) are typically used for borders and dividers.</p>
+{{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 4, 6, 'Borders' ) }}
+
+{{ heading('Text & icons', '4') }}
+<p>The next steps (7 to 11 on the neutral scale and 6 to 10 on other scales) are typically used for text and icons.</p>
+{{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 7, 11, 'Text & icons' ) }}
+
+<div class="core-colors">
+	{{ heading('Color palettes', '3') }}
+	{{ heading('Brand', '4') }}
+	<p>The brand palette includes the primary and accent colors, which are used to express the brand identity and create visual interest.</p>
+	<div class="token-category">	
+	{{ tokensList(tokens.color.primary, preview, 'Primary') }}
+	{{ tokensList(tokens.color.accent, preview, 'Accent') }}
+	</div>
+
+	{{ heading('Neutral', '4') }}
+	<p>The neutral palette provides a range of grays that can be used for backgrounds, surfaces, borders, and text. The neutral colors are designed to work harmoniously with the brand colors and provide a solid foundation for the overall color scheme.</p>
+	<p>It also includes a neutral-tint variant to add some brand warmth into backgrounds.</p>
+	<div class="token-category">
+		{{ tokensList(tokens.color.neutral, preview, 'Neutral') }}
+		{{ tokensList(tokens.color['neutral-tint'], preview, 'Neutral tint') }}
+	</div>
+
+	{{ heading('Status', '4') }}
+	<p>The status palette includes colors that are used to communicate meaning and provide feedback to users. These colors should be used consistently across the product to ensure clear communication and a cohesive user experience.</p>
+	<div class="token-category">
+		{{ tokensList(tokens.color['info'], preview, 'Info') }}
+		{{ tokensList(tokens.color['success'], preview, 'Success') }}
+		{{ tokensList(tokens.color['warning'], preview, 'Warning') }}
+		{{ tokensList(tokens.color['danger'], preview, 'Danger') }}
+	</div>
+</div>
+
+<style>
+	.core-colors {
+		container-type: inline-size;
+	}
+
+	.token-category {
+  	display: grid;
+		grid-template-columns: 1fr;
+		gap: 16px;
+		padding-block-start: 8px;
+	}
+
+	/* Switch to two columns when container ≥ 650px */
+	@container (min-width: 650px) {
+		.token-category {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>
+
+{{ heading('Color roles', '2') }}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell>Color role</vwc-table-header-cell>
+			<vwc-table-header-cell>Usage</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="accent" text="Neutral"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Default text / surfaces and secondary UI elements.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="cta" text="Primary"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates primary interactive elements, important actions and selected states.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="announcement" text="Accent"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates something new, such as onboarding or new feature information.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="information" text="Info"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Informational UI, or communicates something is in progress.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="success" text="Success"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicate a favorable outcome, such as a success message.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="warning" text="Warning"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates caution to prevent a mistake or error from occurring.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="alert" text="Danger"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates danger or error states.</vwc-table-cell>
+		</vwc-table-row>
+	</vwc-table-body>
+</vwc-table>

@@ -1,0 +1,304 @@
+{% macro heading(text, level="1", hidden='') %}
+<div class="heading-wrapper h2 {{hidden}}" data-pagefind-weight="1">
+	<h{{ level }} id="{{ text | kebabCase }}" data-pagefind-weight="1">{{ text }}</h{{ level }}>
+	<a class="anchor" href="#{{ text | kebabCase }}" aria-labelledby="{{ text | kebabCase }}"><vwc-icon name="link-solid"></vwc-icon></a>
+</div>
+{% endmacro %}
+
+{% macro tokensList(list, preview, headingText="{token group}", headlingLevel = "5") %}
+<div class="token-group">
+	{{ heading(headingText, headingLevel, 'hidden') }}
+	{% for item in list %}
+			{{ preview(item) }}
+	{% endfor %}
+	</div>
+{% endmacro %}
+
+{% macro preview(item) %}
+  <div class="token-preview" style="background-color: {{ item.preview }}; color: contrast-color({{ item.preview }})">
+		<div>{{ item.css | replace('vivid-color-', '') }}</div><div>{{ item.preview }}</div>
+	</div>
+{% endmacro %}
+
+<style>
+.hidden {
+	position:absolute;
+	clip: rect(0 0 0 0);
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.token-group {
+	padding-block-end: 16px;
+}
+
+.token-preview {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px;
+	font-weight: 500;
+}
+
+.token-preview::before {
+    position: absolute;
+    z-index: -1;
+    background-color: inherit;
+    background-image: linear-gradient(45deg, var(--vvd-color-neutral-50) 25%, transparent 25%), linear-gradient(135deg, var(--vvd-color-neutral-50) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--vvd-color-neutral-50) 75%), linear-gradient(135deg, transparent 75%, var(--vvd-color-neutral-50) 75%);
+    background-position: 0 0, 10px 0, 10px -10px, 0 10px;
+    background-size: 20px 20px;
+    content: "";
+    inset: 0;
+    opacity: 1;
+}
+
+.token-preview--typography {
+	justify-content: flex-start;
+	text-align: left;
+}
+
+.token-preview-box {
+	width: 3rem;
+	height: 3rem;
+}
+
+.token-preview-box--shadow {
+	border-radius: 8px;
+}
+
+.token-preview-box--radius {
+	border: 0 solid var(--vvd-color-neutral-500);
+	border-width: 1px 1px 0 0;
+}
+
+.token-preview-density {
+	border: 1px solid var(--vvd-color-neutral-500);
+	border-width: 1px 0;
+	color: var(--vvd-color-neutral-500);
+}
+
+.token-preview-size {
+	background-color: var(--vvd-color-neutral-200);
+}
+</style>
+
+{% macro colorScaleExample(list, colorScale, scaleItem, startIndex = 0, endIndex = 0, rangeLabel = '', alpha = false) %}
+  {% set valid = [] %}
+
+  {% for item in list %}
+    {% if item.preview %}
+      {% if alpha %}
+        {% if item.preview | length == 9 %}
+          {% set valid = valid.concat([item]) %}
+        {% endif %}
+      {% else %}
+        {% if item.preview | length == 7 %}
+          {% set valid = valid.concat([item]) %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% set count = valid | length %}
+  {% if count > 0 %}
+    {% set start = (startIndex / count) * 100 %}
+    {% set end = ((endIndex + 1) / count) * 100 %}
+  {% else %}
+    {% set start = 0 %}
+    {% set end = 0 %}
+  {% endif %}
+
+  <div class="scale-example {% if rangeLabel %}scale-example--has-range{% endif %}">
+    <div class="scale-inner">
+      {{ colorScale(valid, scaleItem, alpha) }}
+
+      {% if rangeLabel %}
+        <div class="scale-range"
+             style="left: {{ start }}%; width: {{ end - start }}%;">
+          <span class="scale-range__label">{{ rangeLabel }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
+
+{% macro colorScale(list, scaleItem, alpha = false) %}
+  {% set valid = [] %}
+
+  {% for item in list %}
+    {% if item.preview and (item.preview | length == 7 or (alpha and item.preview | length == 9)) %}
+      {% set valid = valid.concat([item]) %}
+    {% endif %}
+  {% endfor %}
+
+  <div class="color-scale">
+    {% for item in valid %}
+      {{ scaleItem(item, loop.index0) }}
+    {% endfor %}
+  </div>
+
+  {% if not alpha %}
+    <div class="color-scale">
+      {% for item in valid | reverse %}
+        {{ scaleItem(item, loop.index0) }}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro scaleItem(item, i = '0') %}
+  <div class="scale-item">
+		<div class="scale-item-inner" style="background-color: {{ item.preview }}; color: contrast-color({{ item.preview }})">
+      {{ i }}
+    </div>
+  </div>
+{% endmacro %}
+
+<style>
+	.scale-example {
+		margin-block-start: 4px;
+		padding: 1.5rem;
+		border-radius: 8px;
+		background-color: var(--vvd-color-neutral-tint-50);
+		border: 1px solid var(--vvd-color-neutral-tint-200);
+	}
+
+	/* Extra space only when range is present */
+	.scale-example--has-range .scale-inner {
+		padding-block-start: 1rem;
+	}
+
+	.scale-inner {
+		position: relative;
+		width: 100%;
+	}
+
+	.scale-range {
+		position: absolute;
+		top: 0px;
+		height: 2px;
+		background: currentColor;
+		text-align: center;
+		overflow: visible;
+
+		&::before, &:after {
+			content: '';
+			display: inline-block;
+			position: absolute;
+			height: 8px;
+			inset-block-end: -8px;
+		}
+
+		&::before {
+			inset-inline-start: 0;   
+			border-inline-start: 2px solid var(--vvd-color-cta-500);
+		}
+
+		&::after {
+			inset-inline-end: 0;
+			border-inline-end: 2px solid var(--vvd-color-cta-500);
+		}
+	}
+
+	.scale-range__label {
+		position: relative;
+		top: -0.66rem;
+		left: 0;
+		white-space: nowrap;
+		font-size: 14px;
+		background-color: var(--vvd-color-neutral-tint-50);
+		padding: 0 4px;
+	}
+
+	.color-scale {
+		display: flex;
+		flex-wrap: nowrap;
+		gap: 4px;
+		width: 100%;
+	}
+
+	.color-scale:first-of-type {
+		margin-block-end: 4px;
+	}
+
+	.scale-item {
+		position: relative;
+		flex: 1 1 0;
+		aspect-ratio: 1 / 1;
+		min-width: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 500;
+		max-width: 61px;
+	}
+
+	.scale-item-inner {
+		position: absolute;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 12px;
+	}
+
+	.scale-item::before {
+    position: absolute;
+    z-index: 0;
+		background-color: #f0f0f0;
+    background-image: linear-gradient(45deg, var(--vvd-color-neutral-800) 25%, transparent 25%), linear-gradient(135deg, var(--vvd-color-neutral-800) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--vvd-color-neutral-800) 75%), linear-gradient(135deg, transparent 75%, var(--vvd-color-neutral-800) 75%);
+    background-position: 0 0, 8px 0, 8px -8px, 0 8px;
+    background-size: 16px 16px;
+    content: "";
+    inset: 0;
+    opacity: 1;
+}
+</style>
+
+{% macro spacingTokensTable(list) %}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell class="token-name">Token</vwc-table-header-cell>
+			<vwc-table-header-cell class="align-number base-unit">% of base unit</vwc-table-header-cell>
+			<vwc-table-header-cell class="align-number rem">REM</vwc-table-header-cell>
+			<vwc-table-header-cell class="align-number px">Pixels</vwc-table-header-cell>
+			<vwc-table-header-cell>Preview</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		{% for key, tokenArray in list %}
+			{% set item = tokenArray[0] %}
+			<vwc-table-row>
+				<vwc-table-cell><code>--{{ item.css }}</code></vwc-table-cell>
+				<vwc-table-cell class="align-number">{{ key }}%</vwc-table-cell>
+				<vwc-table-cell class="align-number">{{ item.preview }}</vwc-table-cell>
+				<vwc-table-cell class="align-number">{{ item.description }}</vwc-table-cell>
+				<vwc-table-cell><div class="space-preview" style="inline-size: {{ item.preview }}"></div></vwc-table-cell>
+			</vwc-table-row>
+		{% endfor %}
+	</vwc-table-body>
+</vwc-table>
+{% endmacro %}
+
+<style>
+	.align-number {
+		text-align: right;
+	}
+	.token-name {
+		width: 220px;
+	}
+	.base-unit, .rem, .px {
+		width: 120px;
+	}
+	.space-preview {
+		height: 16px;
+		background-color: var(--vvd-color-cta-500);
+	}
+</style>

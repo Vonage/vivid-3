@@ -1,58 +1,72 @@
 {
   "vivid/color/bg/canvas": {
     "$type": "color",
-    "$value": "{vivid/color/neutral/0}"
+    "$value": "{vivid/color/neutral/0}",
+    "$description": "The default page background colour, used as the base canvas for application layouts and large surface areas."
   },
   "vivid/color/bg/surface/default": {
     "$type": "color",
-    "$value": "{vivid/color/neutral/0}"
+    "$value": "{vivid/color/neutral/0}",
+    "$description": "The default background colour for primary UI surfaces such as cards, panels, and containers."
   },
   "vivid/color/bg/surface/muted": {
     "$type": "color",
-    "$value": "{vivid/color/neutral/50}"
+    "$value": "{vivid/color/neutral/50}",
+    "$description": "A soft surface background used to subtly distinguish sections, grouped content, or secondary containers."
   },
   "vivid/color/bg/surface/subtle": {
     "$type": "color",
-    "$value": "{vivid/color/neutral/100}"
+    "$value": "{vivid/color/neutral/100}",
+    "$description": "A lightly emphasised surface background used to create gentle separation between layers of content."
   },
   "vivid/color/bg/surface/strong": {
     "$type": "color",
-    "$value": "{vivid/color/neutral/200}"
+    "$value": "{vivid/color/neutral/200}",
+    "$description": "A stronger neutral surface background used for higher emphasis containers or more pronounced visual separation."
   },
   "vivid/color/bg/surface/inverted": {
     "$type": "color",
-    "$value": "{vivid/color/neutral/950}"
+    "$value": "{vivid/color/neutral/950}",
+    "$description": "An inverted surface background used for dark surfaces, overlays, or areas requiring high contrast against light UI."
   },
   "vivid/color/bg/neutral/strong": {
     "$type": "color",
-    "$value": "{vivid/color/neutral/950}"
+    "$value": "{vivid/color/neutral/950}",
+    "$description": "A high-emphasis neutral background used for strong visual weight, prominent containers, or inverse UI treatments."
   },
   "vivid/color/bg/neutral/muted": {
     "$type": "color",
-    "$value": "{vivid/color/neutral/50}"
+    "$value": "{vivid/color/neutral/50}",
+    "$description": "A low-emphasis neutral background used for subtle fills, background accents, or secondary neutral surfaces."
   },
   "vivid/color/bg/primary/strong": {
     "$type": "color",
-    "$value": "{vivid/color/primary/500}"
+    "$value": "{vivid/color/primary/500}",
+    "$description": "A strong primary background used for prominent branded surfaces, key actions, or high-emphasis primary UI elements."
   },
   "vivid/color/bg/primary/muted": {
     "$type": "color",
-    "$value": "{vivid/color/primary/50}"
+    "$value": "{vivid/color/primary/50}",
+    "$description": "A subtle primary-tinted background used to communicate brand presence with low visual emphasis."
   },
   "vivid/color/bg/accent/strong": {
     "$type": "color",
-    "$value": "{vivid/color/accent/500}"
+    "$value": "{vivid/color/accent/500}",
+    "$description": "A strong accent background used to highlight secondary branded elements or areas of visual emphasis."
   },
   "vivid/color/bg/accent/muted": {
     "$type": "color",
-    "$value": "{vivid/color/accent/50}"
+    "$value": "{vivid/color/accent/50}",
+    "$description": "A subtle accent-tinted background used for gentle emphasis, decoration, or supporting accent surfaces."
   },
   "vivid/color/bg/info/strong": {
     "$type": "color",
-    "$value": "{vivid/color/info/500}"
+    "$value": "{vivid/color/info/500}",
+    "$description": "A strong informational background used for prominent info states, highlighted messages, or emphasis surfaces."
   },
   "vivid/color/bg/info/muted": {
     "$type": "color",
-    "$value": "{vivid/color/info/50}"
+    "$value": "{vivid/color/info/50}",
+    "$description": "A subtle informational background used for low-emphasis messaging, status surfaces, or informational highlights."
   }
 }
