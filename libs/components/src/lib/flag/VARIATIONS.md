@@ -39,6 +39,29 @@ import { VFlag } from '@vonage/vivid-vue';
 
 The `size` attribute controls the rendered dimensions using the same predefined scale as `vwc-icon`.
 
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VFlag } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div style="display: flex; gap: 12px; align-items: center;">
+		<VFlag code="DE" label="Germany" size="-4" />
+		<VFlag code="DE" label="Germany" size="0" />
+		<VFlag code="DE" label="Germany" size="2" />
+		<VFlag code="DE" label="Germany" size="4" />
+	</div>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
 ```html preview
 <div style="display: flex; gap: 12px; align-items: center;">
 	<vwc-flag code="DE" label="Germany" size="-4"></vwc-flag>
@@ -48,11 +71,36 @@ The `size` attribute controls the rendered dimensions using the same predefined 
 </div>
 ```
 
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Decorative vs Informative
 
 When `label` is omitted (or whitespace-only), the flag is treated as decorative and `aria-hidden="true"` is applied automatically.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VFlag } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<p><VFlag code="US" /> United States</p>
+	<p><VFlag code="US" label="United States" /> United States</p>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
 
 ```html preview
 <p><vwc-flag code="US"></vwc-flag> United States</p>
 <p><vwc-flag code="US" label="United States"></vwc-flag> United States</p>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
