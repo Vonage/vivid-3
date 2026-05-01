@@ -9,7 +9,7 @@
 );
 @use '@repo/shared/mixins/connotation' as connotation;
 @use '@repo/shared/mixins/appearance/config' as appearance-config with (
-	$appearances: outlined subtle subtle-light,
+	$appearances: outlined subtle,
 	$states: idle,
 	$default: outlined
 );
@@ -54,25 +54,26 @@
 		color: var(#{constants.$vvd-color-canvas-text});
 	}
 
-	&.size-super-condensed {
-		--_kbd-key-size: 12px;
-
-		border-radius: #{border-radius.$border-radius-condensed};
-	}
-
 	&.size-condensed {
 		--_kbd-key-size: 16px;
 
 		border-radius: #{border-radius.$border-radius-condensed};
+		font-size: 10px;
 	}
 
-	&:not(.size-super-condensed, .size-condensed, .size-expanded) {
+	&:not(.size-condensed, .size-expanded, .size-super-expanded) {
 		--_kbd-key-size: 24px;
 
 		border-radius: #{border-radius.$border-radius-semi-condensed};
 	}
 
 	&.size-expanded {
+		--_kbd-key-size: 32px;
+
+		border-radius: #{border-radius.$border-radius-normal};
+	}
+
+	&.size-super-expanded {
 		--_kbd-key-size: 40px;
 
 		border-radius: #{border-radius.$border-radius-normal};

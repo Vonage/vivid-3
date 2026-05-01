@@ -3897,7 +3897,7 @@
 			"props": [
 				{
 					"name": "appearance",
-					"type": "'outlined' | 'subtle' | 'subtle-light' | 'dropshadow'",
+					"type": "'outlined' | 'subtle' | 'dropshadow'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},
@@ -3924,7 +3924,7 @@
 				},
 				{
 					"name": "size",
-					"type": "'condensed' | 'normal' | 'expanded' | 'super-condensed'",
+					"type": "'condensed' | 'normal' | 'expanded' | 'super-expanded'",
 					"attributeName": "size",
 					"propertyName": "size"
 				}

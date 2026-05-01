@@ -122,13 +122,13 @@ export type KbdKeyKeyboard = 'auto' | 'standard' | 'apple';
 export type KbdKeyAppearance =
 	| ExtractFromEnum<
 			Appearance,
-			Appearance.Subtle | Appearance.SubtleLight | Appearance.Outlined
+			Appearance.Subtle | Appearance.Outlined
 	  >
 	| 'dropshadow';
 
 export type KbdKeySize = ExtractFromEnum<
 	Size,
-	Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded
+	Size.Condensed | Size.Normal | Size.Expanded | Size.SuperExpanded
 >;
 
 /**

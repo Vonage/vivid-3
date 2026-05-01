@@ -24,44 +24,36 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			</style>
 			<table>
 				<tr>
-					<td><vwc-kbd-key size="super-condensed" name="Custom" appearance="outlined"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
-					<td><vwc-kbd-key size="super-condensed" name="Custom" appearance="subtle"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
-					<td><vwc-kbd-key size="super-condensed" name="Custom" appearance="subtle-light"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
-					<td><vwc-kbd-key size="super-condensed" name="Custom" appearance="dropshadow"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
-					<td><vwc-kbd-key size="super-condensed" name="Custom" appearance="outlined">Ctrl</vwc-kbd-key></td>
-					<td><vwc-kbd-key size="super-condensed" name="Custom" appearance="subtle">Ctrl</vwc-kbd-key></td>
-					<td><vwc-kbd-key size="super-condensed" name="Custom" appearance="subtle-light">Ctrl</vwc-kbd-key></td>
-					<td><vwc-kbd-key size="super-condensed" name="Custom" appearance="dropshadow">Ctrl</vwc-kbd-key></td>
-				</tr>
-				<tr>
 					<td><vwc-kbd-key size="condensed" name="Custom" appearance="outlined"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
 					<td><vwc-kbd-key size="condensed" name="Custom" appearance="subtle"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
-					<td><vwc-kbd-key size="condensed" name="Custom" appearance="subtle-light"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
 					<td><vwc-kbd-key size="condensed" name="Custom" appearance="dropshadow"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
 					<td><vwc-kbd-key size="condensed" name="Custom" appearance="outlined">Ctrl</vwc-kbd-key></td>
 					<td><vwc-kbd-key size="condensed" name="Custom" appearance="subtle">Ctrl</vwc-kbd-key></td>
-					<td><vwc-kbd-key size="condensed" name="Custom" appearance="subtle-light">Ctrl</vwc-kbd-key></td>
 					<td><vwc-kbd-key size="condensed" name="Custom" appearance="dropshadow">Ctrl</vwc-kbd-key></td>
 				</tr>
 				<tr>
 					<td><vwc-kbd-key size="normal" name="Custom" appearance="outlined"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
 					<td><vwc-kbd-key size="normal" name="Custom" appearance="subtle"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
-					<td><vwc-kbd-key size="normal" name="Custom" appearance="subtle-light"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
 					<td><vwc-kbd-key size="normal" name="Custom" appearance="dropshadow"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
 					<td><vwc-kbd-key size="normal" name="Custom" appearance="outlined">Ctrl</vwc-kbd-key></td>
 					<td><vwc-kbd-key size="normal" name="Custom" appearance="subtle">Ctrl</vwc-kbd-key></td>
-					<td><vwc-kbd-key size="normal" name="Custom" appearance="subtle-light">Ctrl</vwc-kbd-key></td>
 					<td><vwc-kbd-key size="normal" name="Custom" appearance="dropshadow">Ctrl</vwc-kbd-key></td>
 				</tr>
 				<tr>
 					<td><vwc-kbd-key size="expanded" name="Custom" appearance="outlined"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
 					<td><vwc-kbd-key size="expanded" name="Custom" appearance="subtle"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
-					<td><vwc-kbd-key size="expanded" name="Custom" appearance="subtle-light"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
 					<td><vwc-kbd-key size="expanded" name="Custom" appearance="dropshadow"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
 					<td><vwc-kbd-key size="expanded" name="Custom" appearance="outlined">Ctrl</vwc-kbd-key></td>
 					<td><vwc-kbd-key size="expanded" name="Custom" appearance="subtle">Ctrl</vwc-kbd-key></td>
-					<td><vwc-kbd-key size="expanded" name="Custom" appearance="subtle-light">Ctrl</vwc-kbd-key></td>
 					<td><vwc-kbd-key size="expanded" name="Custom" appearance="dropshadow">Ctrl</vwc-kbd-key></td>
+				</tr>
+				<tr>
+					<td><vwc-kbd-key size="super-expanded" name="Custom" appearance="outlined"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
+					<td><vwc-kbd-key size="super-expanded" name="Custom" appearance="subtle"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
+					<td><vwc-kbd-key size="super-expanded" name="Custom" appearance="dropshadow"><vwc-icon name="quit-line"></vwc-icon></vwc-kbd-key></td>
+					<td><vwc-kbd-key size="super-expanded" name="Custom" appearance="outlined">Ctrl</vwc-kbd-key></td>
+					<td><vwc-kbd-key size="super-expanded" name="Custom" appearance="subtle">Ctrl</vwc-kbd-key></td>
+					<td><vwc-kbd-key size="super-expanded" name="Custom" appearance="dropshadow">Ctrl</vwc-kbd-key></td>
 				</tr>
 			</table>
 			<table>
