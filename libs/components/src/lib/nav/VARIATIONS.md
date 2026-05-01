@@ -126,10 +126,12 @@ import { VNav, VNavItem, VNavDisclosure } from '@vonage/vivid-vue';
 
 If the `text` is omitted, the **`Nav Item`** will be displayed as an icon-only Nav Item.
 
+In this mode, content placed in the `meta` slot (e.g. a counter badge) is displayed as a floating element centered on the top-right corner of the icon.
+
 <vwc-note connotation="information" headline="Accessibility Tip">
 <vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 
-When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
+When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element's purpose, even when it's represented only by an icon or visual styling.
 
 </vwc-note>
 
@@ -139,7 +141,7 @@ When an element has no visible text, provide an accessible name using the <nobr>
 
 ```vue preview 250px
 <script setup lang="ts">
-import { VIcon, VNav, VNavItem } from '@vonage/vivid-vue';
+import { VBadge, VIcon, VNav, VNavItem } from '@vonage/vivid-vue';
 </script>
 
 <template>
@@ -149,6 +151,10 @@ import { VIcon, VNav, VNavItem } from '@vonage/vivid-vue';
 		</VNavItem>
 		<VNavItem href="#" aria-label="Inbox">
 			<template #icon><VIcon name="inbox-line" /></template>
+		</VNavItem>
+		<VNavItem href="#" aria-label="Messages">
+			<template #icon><VIcon name="chat-line" /></template>
+			<template #meta><VBadge aria-label="3 new messages" text="3" connotation="alert" shape="pill" /></template>
 		</VNavItem>
 		<VNavItem href="#" aria-label="Tools">
 			<template #icon><VIcon name="design-tools-line" /></template>
@@ -171,6 +177,10 @@ import { VIcon, VNav, VNavItem } from '@vonage/vivid-vue';
 	</vwc-nav-item>
 	<vwc-nav-item href="#" aria-label="Inbox">
 		<vwc-icon slot="icon" name="inbox-line"></vwc-icon>
+	</vwc-nav-item>
+	<vwc-nav-item href="#" aria-label="Messages">
+		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+		<vwc-badge slot="meta" aria-label="3 new messages" text="3" connotation="alert" shape="pill"></vwc-badge>
 	</vwc-nav-item>
 	<vwc-nav-item href="#" aria-label="Tools">
 		<vwc-icon slot="icon" name="design-tools-line"></vwc-icon>
