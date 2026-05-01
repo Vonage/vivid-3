@@ -302,3 +302,33 @@
 		background-color: var(--vvd-color-cta-500);
 	}
 </style>
+
+{% macro typescaleTable(list) %}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell>Preview</vwc-table-header-cell>
+			<vwc-table-header-cell>Token</vwc-table-header-cell>
+			<vwc-table-header-cell>Variant</vwc-table-header-cell>
+			<vwc-table-header-cell>Weight</vwc-table-header-cell>
+			<vwc-table-header-cell>Size</vwc-table-header-cell>
+			<vwc-table-header-cell>Line height</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		{% for item in list %}
+			<vwc-table-row>
+				<vwc-table-cell>
+					{% set fontValue = item.preview.fontWeight ~ ' ' ~ item.preview.fontStretch ~ ' ' ~ item.preview.fontSize ~ '/' ~ item.preview.lineHeight ~ ' ' ~ item.preview.fontFamily %}
+					<div style="font: {{ fontValue }}">Aa</div>
+				</vwc-table-cell>
+				<vwc-table-cell style="vertical-align: top;"><code>{{ item.css | replace('vivid-text-', '') }}</code></vwc-table-cell>
+				<vwc-table-cell style="vertical-align: top;">{{ item.preview.fontStretch }}</vwc-table-cell>
+				<vwc-table-cell style="vertical-align: top;">{{ item.preview.fontWeight }}</vwc-table-cell>
+				<vwc-table-cell style="vertical-align: top;">{{ item.preview.fontSize }} / {{ (item.preview.fontSize | replace('rem', '') | float * 16) | round }}px</vwc-table-cell>
+				<vwc-table-cell style="vertical-align: top;">{{ item.preview.lineHeight }} / {{ (item.preview.lineHeight | replace('rem', '') | float * 16) | round }}px</vwc-table-cell>
+			</vwc-table-row>
+		{% endfor %}
+	</vwc-table-body>
+</vwc-table>
+{% endmacro %}

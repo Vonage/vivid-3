@@ -1,0 +1,68 @@
+{
+  "vivid/text/heading/2xl": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/font-family/sans-serif}",
+      "fontSize": "{vivid/text/font-size/5xl}",
+      "lineHeight": "{vivid/text/line-height/2xl}",
+      "fontWeight": "{vivid/text/weight/medium}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
+    },
+    "$description": "Use for Dashboard metrics, hero content. Use sparingly."
+  },
+  "vivid/text/heading/xl": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/font-family/sans-serif}",
+      "fontSize": "{vivid/text/font-size/4xl}",
+      "lineHeight": "{vivid/text/line-height/xl}",
+      "fontWeight": "{vivid/text/weight/medium}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
+    },
+    "$description": "Smaller version of 2xl, use for Dashboard metrics, hero content. Use sparingly."
+  },
+  "vivid/text/heading/lg": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/font-family/sans-serif}",
+      "fontSize": "{vivid/text/font-size/3xl}",
+      "lineHeight": "{vivid/text/line-height/lg}",
+      "fontWeight": "{vivid/text/weight/medium}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
+    },
+    "$description": "Heading text style for small emphasis content, such as captions and secondary UI text."
+  },
+  "vivid/text/heading/md": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/font-family/sans-serif}",
+      "fontSize": "{vivid/text/font-size/2xl}",
+      "lineHeight": "{vivid/text/line-height/md}",
+      "fontWeight": "{vivid/text/weight/medium}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
+    },
+    "$description": "Heading text style for small emphasis content, such as captions and secondary UI text."
+  },
+  "vivid/text/heading/sm": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/font-family/sans-serif}",
+      "fontSize": "{vivid/text/font-size/xl}",
+      "lineHeight": "{vivid/text/line-height/sm}",
+      "fontWeight": "{vivid/text/weight/medium}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
+    },
+    "$description": "Heading text style for small emphasis content, such as captions and secondary UI text."
+  },
+  "vivid/text/heading/xs": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/font-family/sans-serif}",
+      "fontSize": "{vivid/text/font-size/lg}",
+      "lineHeight": "{vivid/text/line-height/xs}",
+      "fontWeight": "{vivid/text/weight/medium}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
+    },
+    "$description": "Heading text style for small emphasis content, such as captions and secondary UI text."
+  }
+}

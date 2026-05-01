@@ -1,6 +1,6 @@
 const tsx = require('tsx/cjs/api');
 const path = require('path');
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const unregister = tsx.register();
 
 const {
