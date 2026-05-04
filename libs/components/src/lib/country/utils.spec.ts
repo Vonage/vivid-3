@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { getDialCode, getFlagIconName } from './country-code-to-flag-icon';
+import { getDialCode, getFlagIconName } from './utils';
 
-describe('country-code-to-flag-icon', () => {
+describe('country utils', () => {
 	describe('getDialCode', () => {
 		it('returns undefined when countryCode is undefined', () => {
 			expect(getDialCode(undefined)).toBeUndefined();

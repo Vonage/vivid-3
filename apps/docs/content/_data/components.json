@@ -118,6 +118,10 @@
 		"slug": "file-picker"
 	},
 	{
+		"title": "Flag",
+		"slug": "flag"
+	},
+	{
 		"title": "Header",
 		"slug": "header"
 	},

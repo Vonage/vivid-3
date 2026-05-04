@@ -3,8 +3,9 @@ import {
 	fixture,
 	getControlElement,
 } from '@repo/shared/test-utils/fixture';
-import { type Icon, resolveIcon } from './icon';
 import '.';
+import { resolveIcon } from '../../shared/icon/utils';
+import type { Icon } from './icon';
 
 const COMPONENT_TAG = 'vwc-icon';
 
