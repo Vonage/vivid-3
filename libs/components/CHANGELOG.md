@@ -4,6 +4,23 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [5.18.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.17.0...vivid-v5.18.0) (2026-05-04)
+
+
+### Features
+
+* **button:** add `pressed` prop (VIV-3226) ([#2876](https://github.com/Vonage/vivid-3/issues/2876)) ([f5b1de5](https://github.com/Vonage/vivid-3/commit/f5b1de55e3e046de691694c95a87044961d7d9dc))
+* **country-group:** add country-group component (APIVIV-11)  ([#2858](https://github.com/Vonage/vivid-3/issues/2858)) ([ae755ab](https://github.com/Vonage/vivid-3/commit/ae755ab5109531e35ce6c060007b7ef10942bdca))
+* **date-picker, date-range-picker, date-time-picker, time-picker:** add scale attribute (APIVIV-3) ([#2877](https://github.com/Vonage/vivid-3/issues/2877)) ([6ddb443](https://github.com/Vonage/vivid-3/commit/6ddb443b2e204fc772db94c60a70491ac4735ef7))
+* **flag:** add flag component (APIVIV-29) ([#2887](https://github.com/Vonage/vivid-3/issues/2887)) ([bb10d9c](https://github.com/Vonage/vivid-3/commit/bb10d9cc481b8af70bca6a397aa025a4f23c7adc))
+* **searchable-select:** add scale support (APIVIV-4) ([#2879](https://github.com/Vonage/vivid-3/issues/2879)) ([18f3099](https://github.com/Vonage/vivid-3/commit/18f30990cef2fefe743c27ab651e1012dc0ec310))
+
+
+### Bug Fixes
+
+* **rich-text-editor:** support min-block-size (VIV-3235) ([#2880](https://github.com/Vonage/vivid-3/issues/2880)) ([bd00b9e](https://github.com/Vonage/vivid-3/commit/bd00b9eb9a4c26a6a81c50ff4daab38c4d6acaf5))
+* **slider, range-slider:** fix focus ring appearing when switching browser tabs (APIVIV-9) ([#2866](https://github.com/Vonage/vivid-3/issues/2866)) ([65fd2f5](https://github.com/Vonage/vivid-3/commit/65fd2f51dea068fb039cae89c00881e202ba9890))
+
 ## [5.17.0](https://github.com/Vonage/vivid-3/compare/vivid-v5.16.0...vivid-v5.17.0) (2026-04-17)
 
 

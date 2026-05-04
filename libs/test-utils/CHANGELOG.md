@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.18.0](https://github.com/Vonage/vivid-3/compare/test-utils-v5.17.0...test-utils-v5.18.0) (2026-05-04)
+
+
+### Features
+
+* **flag:** add flag component (APIVIV-29) ([#2887](https://github.com/Vonage/vivid-3/issues/2887)) ([bb10d9c](https://github.com/Vonage/vivid-3/commit/bb10d9cc481b8af70bca6a397aa025a4f23c7adc))
+* **option:** add `trailing-meta` slot (VIV-2792) ([#2524](https://github.com/Vonage/vivid-3/issues/2524)) ([6948f2b](https://github.com/Vonage/vivid-3/commit/6948f2be5e71e15f19fedf60c00bad98dea5ccb7))
+
+
+### Bug Fixes
+
+* **rich-text-editor:** fix types not being emitted (VIV-000) ([#2757](https://github.com/Vonage/vivid-3/issues/2757)) ([030568d](https://github.com/Vonage/vivid-3/commit/030568dd2dfa290ec67c8c53c95c350904617a62))
+
 ## [5.17.0](https://github.com/Vonage/vivid-3/compare/test-utils-v5.16.0...test-utils-v5.17.0) (2026-04-17)
 
 
