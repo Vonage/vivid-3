@@ -7,7 +7,7 @@ Local docker harness for running GitHub Actions workflows through `act` while st
 ```shell
 ./bin/create.sh # (Re-)creates the environment in env/
 ./bin/start.sh # Starts the local environment
-./tests/<test>.ts # Runs a workflow test
+./tests/<test>.sh # Runs a workflow test
 ./bin/stop.sh # Stops the local environment
 ./bin/destroy.sh # Destroys the environment
 ```
@@ -27,6 +27,8 @@ The act cache is persisted across environments in an external volume `vvdworkflo
 All workflow traffic is intercepted by mitmproxy with a custom addon (`./proxy/addon.py`) that handles routing requests to the appropriate stub service if needed. The proxy root CA cert is installed in the workflow containers.
 
 All requests are logged to `./env/logs/proxy.requests.jsonl`.
+
+A web interface for inspecting proxy traffic is available at http://localhost:8081/. The password is generated when running `create.sh` and printed to stdout.
 
 Additionally, a SOCKS5 endpoint is exposed on port 5555.
 
@@ -77,14 +79,15 @@ Endpoints:
 
 ### GitHub API
 
-A custom server simulates the GitHub API as far as necessary for actions like release-please.
+A custom server simulates the GitHub API as far as necessary for actions like changesets/action and the release workflow.
 
 The state is stored in: `env/state/github-stub.json`
 
 ### GitHub Git Server
 
-A custom server serves the local git repository over HTTP, so that actions can clone it.
+Apache httpd with `git-http-backend` serves the local git repository over HTTP, so that actions can clone from and push to it.
 
 ## Limitations
 
 - Currently, credentials are not being validated
+- All jobs run sequentially to limit memory consumption

@@ -5,11 +5,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 source "${SCRIPT_DIR}/../bin/common.sh"
 load_env_config
 
-VERDACCIO_NPM_URL="http://127.0.0.1:${VERDACCIO_NPM_PORT}"
-VERDACCIO_GITHUB_URL="http://127.0.0.1:${VERDACCIO_GITHUB_PORT}"
+test_start "pre-release" "Pre-release workflow publishes a preview package to npm and GitHub Packages"
 
-current_version="$(jq -r '.version' "${ENV_DIR}/repo/libs/components/package.json")"
-IFS=. read -r major minor patch <<<"${current_version}"
+load_package_versions
+IFS=. read -r major minor patch <<<"${VIVID_VERSION}"
 preview_version="${major}.$((minor + 1)).0-preview.0"
 
 print_section "Run pre-release workflow"
@@ -37,8 +36,19 @@ EOF
 
 run_act_workflow workflow_dispatch "${event_file}" pre-release.yml
 
-print_section "Assert preview version exists in local npm registry"
-assert_npm_package_published "${VERDACCIO_NPM_URL}" "@vonage%2fvivid" "@vonage/vivid" "${preview_version}"
-assert_npm_package_published "${VERDACCIO_GITHUB_URL}" "@vonage%2fvivid" "@vonage/vivid" "${preview_version}"
+print_section "Assert preview packages published to npm and GitHub Packages"
 
-echo "Pre-release test passed"
+packages_to_check=(
+  "@vonage/vivid|${preview_version}"
+  "@vonage/vivid-vue|${preview_version}"
+  "@vonage/vivid-test-utils|${preview_version}"
+)
+
+for entry in "${packages_to_check[@]}"; do
+  pkg="${entry%%|*}"
+  ver="${entry#*|}"
+  assert_package_published_to_npm "${pkg}" "${ver}"
+  assert_package_published_to_github "${pkg}" "${ver}"
+done
+
+test_success

@@ -23,8 +23,6 @@ on:
     secrets:
       NPM_VVD_VNG_AUTOMATION_TOKEN:
         required: true
-      VNG_VVD_PAT:
-        required: true
 
 jobs:
   npm-publish:
@@ -81,6 +79,8 @@ jobs:
 
   github-publish:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -126,10 +126,10 @@ jobs:
           echo "published=false" >> "$GITHUB_OUTPUT"
           fi
         env:
-          AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
+          AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to GitHub registry
         if: steps.check.outputs.published == 'false'
         run: pnpm publish --no-git-checks --tag ${{ inputs.tag }} ${{ inputs.path }} --registry=https://npm.pkg.github.com "--//npm.pkg.github.com/:_authToken=$AUTH_TOKEN"
         env:
-          AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
+          AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
