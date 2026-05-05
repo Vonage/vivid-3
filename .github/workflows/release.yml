@@ -48,6 +48,9 @@ jobs:
       - name: Create/Update Release Pull Request with changesets in the repo
         uses: changesets/action@v1
         id: changesets
+        with:
+          title: 'chore: release main'
+          commit: 'chore: release main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
