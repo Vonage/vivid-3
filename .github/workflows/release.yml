@@ -16,6 +16,7 @@ permissions:
   issues: write
   pull-requests: write
   id-token: write
+  packages: write
 
 jobs:
   changesets:
