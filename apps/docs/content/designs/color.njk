@@ -1,0 +1,16 @@
+---
+permalink: /designs/color/
+title: Color
+order: 2
+---
+{% include '../_includes/tokens-table-new.njk' %}
+{% from '../_includes/tokens-table-new.njk' import heading, colorTokenTable %}
+
+<h1>Color</h1>
+
+<p>An overview of all available color variables.</p>
+
+{{ heading('Semantic', '2') }}
+{{ colorTokenTable(tokens.color.bg, 'Background', 3) }}
+{{ colorTokenTable(tokens.color.border, 'Border', 3) }}
+{{ colorTokenTable(tokens.color.text, 'Text', 3) }} 

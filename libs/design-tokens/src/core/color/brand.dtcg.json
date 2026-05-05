@@ -1,5 +1,5 @@
 {
-	"vivid/color/accent/50": {
+	"vivid/color/announcement/50": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -8,7 +8,7 @@
 			"hex": "#FFEDFB"
 		}
 	},
-	"vivid/color/accent/100": {
+	"vivid/color/announcement/100": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -17,7 +17,7 @@
 			"hex": "#FFDCF7"
 		}
 	},
-	"vivid/color/accent/200": {
+	"vivid/color/announcement/200": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -26,7 +26,7 @@
 			"hex": "#F8B9E7"
 		}
 	},
-	"vivid/color/accent/300": {
+	"vivid/color/announcement/300": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -35,7 +35,7 @@
 			"hex": "#FB8FD8"
 		}
 	},
-	"vivid/color/accent/400": {
+	"vivid/color/announcement/400": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -44,7 +44,7 @@
 			"hex": "#E560BB"
 		}
 	},
-	"vivid/color/accent/500": {
+	"vivid/color/announcement/500": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -53,7 +53,7 @@
 			"hex": "#D6219C"
 		}
 	},
-	"vivid/color/accent/600": {
+	"vivid/color/announcement/600": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -62,7 +62,7 @@
 			"hex": "#BB1E89"
 		}
 	},
-	"vivid/color/accent/700": {
+	"vivid/color/announcement/700": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -71,7 +71,7 @@
 			"hex": "#8F1669"
 		}
 	},
-	"vivid/color/accent/800": {
+	"vivid/color/announcement/800": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -80,7 +80,7 @@
 			"hex": "#620256"
 		}
 	},
-	"vivid/color/accent/900": {
+	"vivid/color/announcement/900": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -89,7 +89,7 @@
 			"hex": "#32082C"
 		}
 	},
-	"vivid/color/accent/950": {
+	"vivid/color/announcement/950": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -98,7 +98,7 @@
 			"hex": "#1D031A"
 		}
 	},
-	"vivid/color/accent/alpha/80": {
+	"vivid/color/announcement/alpha/80": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -107,7 +107,7 @@
 			"hex": "#D6219CCC"
 		}
 	},
-	"vivid/color/accent/alpha/85": {
+	"vivid/color/announcement/alpha/85": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",
@@ -116,7 +116,7 @@
 			"hex": "#D6219CD9"
 		}
 	},
-	"vivid/color/accent/alpha/90": {
+	"vivid/color/announcement/alpha/90": {
 		"$type": "color",
 		"$value": {
 			"colorSpace": "srgb",

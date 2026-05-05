@@ -1,0 +1,7 @@
+{
+  "vivid/color/text/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/950}",
+    "$description": "A default text color used for primary text content."
+  }
+}

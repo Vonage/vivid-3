@@ -1,0 +1,9 @@
+{"vivid/text/font-style/condensed": {
+  "$type": "fontStyle",
+  "$value": "condensed"
+},
+"vivid/text/font-style/ultra-condensed": {
+  "$type": "fontStyle",
+  "$value": "ultra-condensed"
+}
+}

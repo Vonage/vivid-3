@@ -1,9 +1,0 @@
-{"vivid/text/font-stretch/condensed": {
-  "$type": "fontStretch",
-  "$value": "condensed"
-},
-"vivid/text/font-stretch/ultra-condensed": {
-  "$type": "fontStretch",
-  "$value": "ultra-condensed"
-}
-}
