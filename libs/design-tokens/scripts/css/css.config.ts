@@ -290,6 +290,18 @@ export const cssPlatform: PlatformConfig = {
 			filter: (token) => token.filePath.includes('color') && token.filePath.includes('semantic'),
 		},
 		{
+			destination: 'pattern-color.css',
+			format: 'css/variables',
+			/* v8 ignore next -- @preserve */
+			filter: (token) => token.filePath.includes('color') && token.filePath.includes('pattern'),
+		},
+		{
+			destination: 'core-border.css',
+			format: 'css/variables',
+			/* v8 ignore next -- @preserve */
+			filter: (token) => token.filePath.includes('core') && token.filePath.includes('border'),
+		},
+		{
 			destination: 'core-space.css',
 			format: 'css/variables',
 			/* v8 ignore next -- @preserve */

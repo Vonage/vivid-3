@@ -1,0 +1,62 @@
+{
+  "vivid/control/border/color/default": {
+    "$type": "color/border",
+    "$value": "{vivid/color/border/strong}",
+    "$description": "A default border color for control elements."
+  },
+  "vivid/control/bg/color/default": {
+    "$type": "color/background",
+    "$value": "{vivid/color/neutral/0}",
+    "$description": "A default background color for control elements."
+  },
+  "vivid/control/text/color/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/text/default}",
+    "$description": "A default text color for control elements."
+  },
+  "vivid/control/border/color/disabled": {
+    "$type": "color/border",
+    "$value": "{vivid/color/border/disabled}",
+    "$description": "A disabled border color for control elements."
+  },
+  "vivid/control/bg/color/disabled": {
+    "$type": "color/background",
+    "$value": "{vivid/color/bg/disabled}",
+    "$description": "A disabled background color for control elements."
+  },
+  "vivid/control/text/color/disabled": {
+    "$type": "color/text",
+    "$value": "{vivid/color/text/disabled}",
+    "$description": "A disabled text color for control elements."
+  },
+  "vivid/control/border/color/error": {
+    "$type": "color/border",
+    "$value": "{vivid/color/border/danger/default}",
+    "$description": "A error state border color for control elements."
+  },
+  "vivid/control/bg/color/error": {
+    "$type": "color/background",
+    "$value": "{vivid/color/bg/danger/muted}",
+    "$description": "A error state background color for control elements."
+  },
+  "vivid/control/border/color/success": {
+    "$type": "color/border",
+    "$value": "{vivid/color/border/success/default}",
+    "$description": "A success state border color for control elements."
+  },
+  "vivid/control/bg/color/success": {
+    "$type": "color/background",
+    "$value": "{vivid/color/bg/success/muted}",
+    "$description": "A success state background color for control elements."
+  },
+  "vivid/control/text/color/success": {
+    "$type": "color/text",
+    "$value": "{vivid/color/text/success/default}",
+    "$description": "A default color for success icons within control elements."
+  },
+  "vivid/control/text/color/error": {
+    "$type": "color/text",
+    "$value": "{vivid/color/text/danger/default}",
+    "$description": "A default color for error icons within control elements."
+  }
+}

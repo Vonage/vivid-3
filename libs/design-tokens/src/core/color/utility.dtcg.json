@@ -1,0 +1,11 @@
+{
+  "vivid/color/transparent": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [0.0, 0.0, 0.0],
+      "alpha": 0.0,
+      "hex": "#00000000"
+    }
+  }
+}

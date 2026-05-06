@@ -1,0 +1,42 @@
+{
+  "vivid/border/radius/none": {
+    "$type": "border-radius",
+    "$value": "0px",
+    "$description": "No border radius, resulting in sharp corners."
+  },
+  "vivid/border/radius/xs": {
+    "$type": "border-radius",
+    "$value": "2px",
+    "$description": "A x-small border radius for subtle rounding of corners."
+  },
+  "vivid/border/radius/sm": {
+    "$type": "border-radius",
+    "$value": "4px",
+    "$description": "A small border radius for subtle rounding of corners."
+  },
+  "vivid/border/radius/md": {
+    "$type": "border-radius",
+    "$value": "8px",
+    "$description": "A medium border radius for moderate rounding of corners."
+  },
+  "vivid/border/radius/lg": {
+    "$type": "border-radius",
+    "$value": "16px",
+    "$description": "A large border radius for more pronounced rounding of corners."
+  },
+  "vivid/border/radius/xl": {
+    "$type": "border-radius",
+    "$value": "24px",
+    "$description": "An extra-large border radius for significant rounding of corners."
+   },
+  "vivid/border/radius/pill": {
+    "$type": "border-radius",
+    "$value": "9999px",
+    "$description": "A pill-shaped border radius that creates fully rounded corners, often used for buttons or badges."
+   },
+  "vivid/border/radius/circular": {
+    "$type": "border-radius",
+    "$value": "50%",
+    "$description": "A circular border radius that creates a perfect circle when applied to a square element, often used for avatars or circular buttons."
+  }
+}

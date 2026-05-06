@@ -1,0 +1,272 @@
+{
+  "vivid/action/strong/neutral/bg/color/default": {
+    "$type": "color/background",
+    "$value": "{vivid/color/neutral/950}",
+    "$description": "A strong neutral background color used for default action states."
+  },
+  "vivid/action/strong/neutral/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/neutral/800}",
+    "$description": "A strong neutral background color used for default action hover states."
+  },
+  "vivid/action/strong/neutral/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/neutral/700}",
+    "$description": "A strong neutral background color used for default action active states."
+  },
+  "vivid/action/strong/announcement/bg/color/default": {
+    "$type": "color/background",
+    "$value": "{vivid/color/announcement/500}",
+    "$description": "A strong announcement background color used for announcement action states."
+  },
+  "vivid/action/strong/announcement/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/announcement/600}",
+    "$description": "A strong announcement background color used for announcement action hover states."
+  },
+  "vivid/action/strong/announcement/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/announcement/700}",
+    "$description": "A strong announcement background color used for announcement action active states."
+  },
+  "vivid/action/strong/primary/bg/color/default": {
+    "$type": "color/background",
+    "$value": "{vivid/color/primary/500}",
+    "$description": "A strong primary background color used for primary action states."
+  },
+  "vivid/action/strong/primary/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/primary/600}",
+    "$description": "A strong primary background color used for primary action hover states."
+  },
+  "vivid/action/strong/primary/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/primary/700}",
+    "$description": "A strong primary background color used for primary action active states."
+  },
+  "vivid/action/strong/danger/bg/color/default": {
+    "$type": "color/background",
+    "$value": "{vivid/color/danger/500}",
+    "$description": "A strong danger background color used for danger action states."
+  },
+  "vivid/action/strong/danger/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/danger/600}",
+    "$description": "A strong danger background color used for danger action hover states."
+  },
+  "vivid/action/strong/danger/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/danger/700}",
+    "$description": "A strong danger background color used for danger action active states."
+  },
+  "vivid/action/strong/success/bg/color/default": {
+    "$type": "color/background",
+    "$value": "{vivid/color/success/500}",
+    "$description": "A strong success background color used for success action states."
+  },
+  "vivid/action/strong/success/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/success/600}",
+    "$description": "A strong success background color used for success action hover states."
+  },
+  "vivid/action/strong/success/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/success/700}",
+    "$description": "A strong success background color used for success action active states."
+  },
+  "vivid/action/strong/global/text/color/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/0}",
+    "$description": "A text color used for high contrast content on strong backgrounds or surfaces."
+  },
+  "vivid/action/strong/global/bg/color/disabled": {
+    "$type": "color/background",
+    "$value": "{vivid/color/neutral/100}",
+    "$description": "A strong neutral background color used for disabled action states."
+  },
+  "vivid/action/strong/global/text/color/disabled": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/300}",
+    "$description": "A strong neutral text color used for disabled action states."
+  },
+  "vivid/action/medium/neutral/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/neutral/alpha/80}",
+    "$description": "A medium neutral background color used for medium-emphasis action hover states."
+  },
+  "vivid/action/medium/neutral/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/neutral/alpha/90}",
+    "$description": "A medium neutral background color used for medium-emphasis action active states."
+  },
+  "vivid/action/medium/neutral/bg/color/text/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/950}",
+    "$description": "A medium neutral text color used for medium-emphasis content on medium-emphasis backgrounds or surfaces."
+  },
+  "vivid/action/medium/primary/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/primary/alpha/80}",
+    "$description": "A medium primary background color used for medium-emphasis action hover states."
+  },
+  "vivid/action/medium/primary/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/primary/alpha/90}",
+    "$description": "A medium primary background color used for medium-emphasis action active states."
+  },
+  "vivid/action/medium/primary/text/color/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/primary/600}",
+    "$description": "A medium primary text color used for medium-emphasis content on medium-emphasis backgrounds or surfaces."
+  },
+  "vivid/action/medium/announcement/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/announcement/alpha/80}",
+    "$description": "A medium announcement background color used for medium-emphasis action hover states."
+  },
+  "vivid/action/medium/announcement/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/announcement/alpha/90}",
+    "$description": "A medium announcement background color used for medium-emphasis action active states."
+  },
+  "vivid/action/medium/announcement/text/color/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/announcement/600}",
+    "$description": "A medium announcement text color used for medium-emphasis content on medium-emphasis backgrounds or surfaces."
+  },
+  "vivid/action/medium/success/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/success/alpha/80}",
+    "$description": "A medium success background color used for medium-emphasis action hover states."
+  },
+  "vivid/action/medium/success/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/success/alpha/90}",
+    "$description": "A medium success background color used for medium-emphasis action active states."
+  },
+  "vivid/action/medium/success/text/color/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/success/600}",
+    "$description": "A medium success text color used for medium-emphasis content on medium-emphasis backgrounds or surfaces."
+  },
+  "vivid/action/medium/danger/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/danger/alpha/80}",
+    "$description": "A medium danger background color used for medium-emphasis action hover states."
+  },
+  "vivid/action/medium/danger/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/danger/alpha/90}",
+    "$description": "A medium danger background color used for medium-emphasis action active states."
+  },
+  "vivid/action/medium/danger/text/color/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/danger/600}",
+    "$description": "A medium danger text color used for medium-emphasis content on medium-emphasis backgrounds or surfaces."
+  },
+  "vivid/action/medium/global/bg/color/default": {
+    "$type": "color/background",
+    "$value": "{vivid/color/transparent}",
+    "$description": "A transparent background color used for medium-emphasis global action default states."
+  },
+  "vivid/action/medium/global/text/color/disabled": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/300}",
+    "$description": "A medium neutral text color used for medium-emphasis global action disabled states."
+  },
+  "vivid/action/medium/global/border/color/default": {
+    "$type": "color/border",
+    "$value": "{vivid/color/neutral/300}",
+    "$description": "A neutral border color used for medium-emphasis global action default states."
+  },
+  "vivid/action/low/neutral/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/neutral/alpha/80}",
+    "$description": "A low neutral background color used for low-emphasis action hover states."
+  },
+  "vivid/action/low/neutral/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/neutral/alpha/90}",
+    "$description": "A low neutral background color used for low-emphasis action active states."
+  },
+  "vivid/action/low/neutral/text/color/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/950}",
+    "$description": "A low neutral text color used for low-emphasis content on low-emphasis backgrounds or surfaces."
+  },
+  "vivid/action/low/primary/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/primary/alpha/80}",
+    "$description": "A low primary background color used for low-emphasis action hover states."
+  },
+  "vivid/action/low/primary/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/primary/alpha/90}",
+    "$description": "A low primary background color used for low-emphasis action active states."
+  },
+  "vivid/action/low/primary/text/color/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/primary/600}",
+    "$description": "A low primary text color used for low-emphasis content on low-emphasis backgrounds or surfaces."
+  },
+  "vivid/action/low/announcement/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/announcement/alpha/80}",
+    "$description": "A low announcement background color used for low-emphasis action hover states."
+  },
+  "vivid/action/low/announcement/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/announcement/alpha/90}",
+    "$description": "A low announcement background color used for low-emphasis action active states."
+  },
+  "vivid/action/low/announcement/text/color/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/announcement/600}",
+    "$description": "A low announcement text color used for low-emphasis content on low-emphasis backgrounds or surfaces."
+  },
+  "vivid/action/low/success/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/success/alpha/80}",
+    "$description": "A low success background color used for low-emphasis action hover states."
+  },
+  "vivid/action/low/success/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/success/alpha/90}",
+    "$description": "A low success background color used for low-emphasis action active states."
+  },
+  "vivid/action/low/success/text/color/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/success/600}",
+    "$description": "A low success text color used for low-emphasis content on low-emphasis backgrounds or surfaces."
+  },
+  "vivid/action/low/danger/bg/color/hover": {
+    "$type": "color/background",
+    "$value": "{vivid/color/danger/alpha/80}",
+    "$description": "A low danger background color used for low-emphasis action hover states."
+  },
+  "vivid/action/low/danger/bg/color/active": {
+    "$type": "color/background",
+    "$value": "{vivid/color/danger/alpha/90}",
+    "$description": "A low danger background color used for low-emphasis action active states."
+  },
+  "vivid/action/low/danger/text/color/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/danger/600}",
+    "$description": "A low danger text color used for low-emphasis content on low-emphasis backgrounds or surfaces."
+  },
+  "vivid/action/low/global/bg/color/default": {
+    "$type": "color/background",
+    "$value": "{vivid/color/transparent}",
+    "$description": "A transparent background color used for low-emphasis global action default states."
+  },
+  "vivid/action/low/global/text/color/disabled": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/300}",
+    "$description": "A low neutral text color used for low-emphasis global action disabled states."
+  },
+  "vivid/action/low/global/border/color/default": {
+    "$type": "color/border",
+    "$value": "{vivid/color/transparent}",
+    "$description": "A transparent border color used for low-emphasis global action default states."
+  }
+}

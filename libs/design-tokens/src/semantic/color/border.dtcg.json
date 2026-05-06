@@ -14,74 +14,44 @@
     "$value": "{vivid/color/neutral/300}",
     "$description": "A muted border color used for low-emphasis borders, dividers, and strokes."
   },
-  "vivid/color/border/primary/strong": {
-    "$type": "color/border",
-    "$value": "{vivid/color/primary/500}",
-    "$description": "A primary border color used to communicate brand presence and highlight key elements."
-  },
-  "vivid/color/border/primary/muted": {
+  "vivid/color/border/primary/default": {
     "$type": "color/border",
     "$value": "{vivid/color/primary/300}",
     "$description": "A primary border color used to communicate brand presence and highlight key elements."
   },
-  "vivid/color/border/announcement/strong": {
-    "$type": "color/border",
-    "$value": "{vivid/color/announcement/500}",
-    "$description": "An accent border color used to highlight secondary branded elements or areas of visual emphasis."
-  },
-  "vivid/color/border/announcement/muted": {
+  "vivid/color/border/announcement/default": {
     "$type": "color/border",
     "$value": "{vivid/color/announcement/300}",
-    "$description": "A muted accent border color used for subtle emphasis, decoration, or supporting accent elements."
+    "$description": "An accent border color used for subtle emphasis, decoration, or supporting accent elements."
   },
-  "vivid/color/border/info/strong": {
-    "$type": "color/border",
-    "$value": "{vivid/color/info/500}",
-    "$description": "An informational border color used to highlight info states, messages, or emphasis elements."
-  },
-  "vivid/color/border/info/muted": {
+  "vivid/color/border/info/default": {
     "$type": "color/border",
     "$value": "{vivid/color/info/300}",
-    "$description": "A muted informational border color used for subtle emphasis, decoration, or supporting info elements."
+    "$description": "A informational border color used for subtle emphasis, decoration, or supporting info elements."
   },
-  "vivid/color/border/danger/strong": {
-    "$type": "color/border",
-    "$value": "{vivid/color/danger/500}",
-    "$description": "A danger border color used to highlight danger states, messages, or emphasis elements."
-  },
-  "vivid/color/border/danger/muted": {
+  "vivid/color/border/danger/default": {
     "$type": "color/border",
     "$value": "{vivid/color/danger/300}",
-    "$description": "A muted danger border color used for subtle emphasis, decoration, or supporting danger elements."
+    "$description": "A danger border color used for subtle emphasis, decoration, or supporting danger elements."
   },
-  "vivid/color/border/warning/strong": {
-    "$type": "color/border",
-    "$value": "{vivid/color/warning/400}",
-    "$description": "A warning border color used to highlight warning states, messages, or emphasis elements."
-  },
-  "vivid/color/border/warning/muted": {
+  "vivid/color/border/warning/default": {
     "$type": "color/border",
     "$value": "{vivid/color/warning/300}",
-    "$description": "A muted warning border color used for subtle emphasis, decoration, or supporting warning elements."
+    "$description": "A warning border color used for subtle emphasis, decoration, or supporting warning elements."
   },
-  "vivid/color/border/success/strong": {
-    "$type": "color/border",
-    "$value": "{vivid/color/success/500}",
-    "$description": "A success border color used to highlight success states, messages, or emphasis elements."
-  },
-  "vivid/color/border/success/muted": {
+  "vivid/color/border/success/default": {
     "$type": "color/border",
     "$value": "{vivid/color/success/300}",
-    "$description": "A muted success border color used for subtle emphasis, decoration, or supporting success elements."
+    "$description": "A success border color used for subtle emphasis, decoration, or supporting success elements."
   },
-  "vivid/color/border/neutral/strong": {
-    "$type": "color/border",
-    "$value": "{vivid/color/neutral/500}",
-    "$description": "A strong neutral border color used for high-emphasis borders, dividers, and strokes."
-  },
-  "vivid/color/border/neutral/muted": {
+  "vivid/color/border/neutral/default": {
     "$type": "color/border",
     "$value": "{vivid/color/neutral/300}",
-    "$description": "A muted neutral border color used for low-emphasis borders, dividers"
+    "$description": "A neutral border color used for low-emphasis borders, dividers"
+  },
+  "vivid/color/border/disabled": {
+    "$type": "color/border",
+    "$value": "{vivid/color/neutral/300}",
+    "$description": "A border color used to indicate disabled states or non-interactive surfaces."
   }
 }

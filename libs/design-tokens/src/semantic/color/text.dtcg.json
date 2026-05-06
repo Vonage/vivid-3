@@ -3,5 +3,90 @@
     "$type": "color/text",
     "$value": "{vivid/color/neutral/950}",
     "$description": "A default text color used for primary text content."
+  },
+  "vivid/color/text/muted": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/700}",
+    "$description": "A muted text color used for primary text content."
+  },
+  "vivid/color/text/disabled": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/600}",
+    "$description": "A disabled text color used for non-interactive text content."
+  },
+  "vivid/color/text/on-emphasis": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/0}",
+    "$description": "A text color used for high contrast content on strong backgrounds or surfaces."
+  },
+  "vivid/color/text/warning/on-emphasis": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/950}",
+    "$description": "A text color used for high contrast content on strong backgrounds or surfaces."
+  },
+  "vivid/color/text/on-inverse": {
+    "$type": "color/text",
+    "$value": "{vivid/color/neutral/0}",
+    "$description": "A text color used for high contrast content on dark backgrounds, overlays, or inverse surfaces."
+  },
+  "vivid/color/text/primary/strong": {
+    "$type": "color/text",
+    "$value": "{vivid/color/primary/800}",
+    "$description": "A primary text color used to communicate brand presence and highlight key content."
+  },
+  "vivid/color/text/primary/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/primary/500}",
+    "$description": "A primary text color used to communicate brand presence and highlight key content."
+  },
+  "vivid/color/text/announcement/strong": {
+    "$type": "color/text",
+    "$value": "{vivid/color/announcement/800}",
+    "$description": "An accent text color used to highlight new features, announcements, or secondary branded content."
+  },
+  "vivid/color/text/announcement/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/announcement/500}",
+    "$description": "An accent text color used to highlight new features, announcements, or secondary branded content."
+  },
+  "vivid/color/text/info/strong": {
+    "$type": "color/text",
+    "$value": "{vivid/color/info/800}",
+    "$description": "An informational text color used to highlight info states, messages, or emphasis content."
+  },
+  "vivid/color/text/info/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/info/500}",
+    "$description": "An informational text color used to highlight info states, messages, or emphasis content."
+  },
+  "vivid/color/text/danger/strong": {
+    "$type": "color/text",
+    "$value": "{vivid/color/danger/800}",
+    "$description": "A danger text color used to highlight danger states, messages, or emphasis content."
+  },
+  "vivid/color/text/danger/default": {
+    "$type": "color/text",
+    "$value": "{vivid/color/danger/500}",
+    "$description": "A danger text color used to highlight danger states, messages, or emphasis content."
+   },
+   "vivid/color/text/warning/strong": {
+    "$type": "color/text",
+    "$value": "{vivid/color/warning/800}",
+    "$description": "A warning text color used to highlight warning states, messages, or emphasis content."
+   },
+    "vivid/color/text/warning/default": {
+      "$type": "color/text",
+      "$value": "{vivid/color/warning/500}",
+      "$description": "A warning text color used to highlight warning states, messages, or emphasis content."
+    },
+    "vivid/color/text/success/strong": {
+    "$type": "color/text",
+    "$value": "{vivid/color/success/800}",
+    "$description": "A success text color used to highlight success states, messages, or emphasis content."
+   },
+    "vivid/color/text/success/default": {
+      "$type": "color/text",
+      "$value": "{vivid/color/success/500}",
+      "$description": "A success text color used to highlight success states, messages, or emphasis content."
+    }
   }
-}
