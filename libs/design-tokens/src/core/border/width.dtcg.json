@@ -1,16 +1,16 @@
 {
   "vivid/border/width/thin": {
-    "$type": "dimension",
+    "$type": "border/width",
     "$value": "1px",
     "$description": "Thin border width used for default strokes, dividers, and component outlines."
   },
   "vivid/border/width/medium": {
-    "$type": "dimension",
+    "$type": "border/width",
     "$value": "2px",
     "$description": "Medium border width used for emphasis, focus rings, and stronger outlines."
   },
   "vivid/border/width/thick": {
-    "$type": "dimension",
+    "$type": "border/width",
     "$value": "4px",
     "$description": "Heavy border width used sparingly for high emphasis decoration or accent treatments."
   }
