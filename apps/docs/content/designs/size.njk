@@ -1,0 +1,19 @@
+---
+permalink: /designs/size/
+title: Size
+order: 2.75
+---
+
+{% include '../_includes/tokens-table-new.njk' %}
+{% from '../_includes/tokens-table-new.njk' import heading, spacingTokensTable, borderTokenTable %}
+
+<h1>Size</h1>
+
+<p>An overview of all available size variables.</p>
+
+{{ heading('Space', '2') }}
+{{ spacingTokensTable(tokens.space) }}
+
+{{ heading('Border', '2') }}
+{{ borderTokenTable(tokens.border.width, 'Width') }}
+{{ borderTokenTable(tokens.border.radius, 'Radius') }}

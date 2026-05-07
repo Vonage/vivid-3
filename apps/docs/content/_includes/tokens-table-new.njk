@@ -338,31 +338,36 @@
 <vwc-table>
 	<vwc-table-head>
 		<vwc-table-row>
-			<vwc-table-header-cell>Preview</vwc-table-header-cell>
+			<vwc-table-header-cell></vwc-table-header-cell>
 			<vwc-table-header-cell>Token</vwc-table-header-cell>
+			<vwc-table-header-cell>Description</vwc-table-header-cell>
 			<vwc-table-header-cell>Output value</vwc-table-header-cell>
 		</vwc-table-row>
 	</vwc-table-head>
 	<vwc-table-body>
 		{% for item in list %}
 			<vwc-table-row>
-				<vwc-table-cell style="width: 3rem;">
+				<vwc-table-cell style="width: 4rem;">
 					{{ colorTokenPreview(item) }}
 				</vwc-table-cell>
-				<vwc-table-cell><code>{{ item.css | replace('vivid-color-', '') }}</code></vwc-table-cell>
-				<vwc-table-cell>{{ item.preview }}</vwc-table-cell>
+				<vwc-table-cell style="width: 18rem;"><code>{{ item.css | replace('vivid-color-', '') | replace('vivid-action-', '') }}</code></vwc-table-cell>
+				<vwc-table-cell>{{ item.description }}</vwc-table-cell>	
+				<vwc-table-cell style="width: 8rem;"><code>{{ item.preview }}</code></vwc-table-cell>
 			</vwc-table-row>
 		{% endfor %}
 	</vwc-table-body>
 </vwc-table>
+<!-- <pre>{{ list | json }}</pre> -->
 {% endmacro %}
 
 {% macro colorTokenPreview(item) %}
 	{% if item.type == 'color/background' %}
-		<div class="color-token-preview-bg" style="background-color: {{ item.preview }}; border: 1px solid light-dark(var(--vvd-color-neutral-200), transparent)"></div>
+		<div class="color-token-preview-bg">
+			<div style="background-color: {{ item.preview }}; border: 1px solid light-dark(var(--vvd-color-neutral-200), transparent)"></div>
+		</div>
 
 	{% elif item.type == 'color/text' %}
-		<div class="color-token-preview-text" style="color: {{ item.preview }};">Aa</div>
+		<div class="color-token-preview-text" style="color: {{ item.preview }}; background-color: contrast-color({{ item.preview }})">Aa</div>
 
 	{% elif item.type == 'color/border' %}
 		<div class="color-token-preview-border" style="border: 1px solid {{ item.preview }};"></div>
@@ -374,14 +379,90 @@
 
 <style>
 	.color-token-preview-bg, .color-token-preview-border {
-		width: 20px;
-		height: 20px;
+		position: relative;
+		width: 1.5rem;
+		height: 1.5rem;
 		border-radius: 2px;
 	}
 
 	.color-token-preview-text {
-		font-size: 20px;
+		font-size: 1.25rem;
 		font-weight: 500;
-		line-height: 32px;
+		line-height: 2rem;
+		display: inline-block;
+		padding: 0 0.25rem;
+		border-radius: 4px;
+	}
+
+	.color-token-preview-bg::before {
+    position: absolute;
+    z-index: 0;
+		background-color: #f0f0f0;
+    background-image: linear-gradient(45deg, var(--vvd-color-neutral-800) 25%, transparent 25%), linear-gradient(135deg, var(--vvd-color-neutral-800) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--vvd-color-neutral-800) 75%), linear-gradient(135deg, transparent 75%, var(--vvd-color-neutral-800) 75%);
+    background-position: 0 0, 8px 0, 8px -8px, 0 8px;
+    background-size: 16px 16px;
+    content: "";
+    inset: 0;
+    opacity: 1;
+	}
+	.color-token-preview-bg div {
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+	}
+</style>
+
+{% macro borderTokenTable(list, headingText, headingLevel = 3) %}
+{{ heading(headingText, headingLevel) }}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell></vwc-table-header-cell>
+			<vwc-table-header-cell>Token</vwc-table-header-cell>
+			<vwc-table-header-cell>Description</vwc-table-header-cell>
+			<vwc-table-header-cell>Output value</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		{% for item in list %}
+			<vwc-table-row>
+				<vwc-table-cell style="width: 4rem;">
+					{{ borderTokenPreview(item) }}
+				</vwc-table-cell>
+				<vwc-table-cell style="width: 18rem;"><code>{{ item.css | replace('vivid-color-', '') | replace('vivid-action-', '') }}</code></vwc-table-cell>
+				<vwc-table-cell>{{ item.description }}</vwc-table-cell>	
+				<vwc-table-cell style="width: 8rem;"><code>{{ item.preview }}</code></vwc-table-cell>
+			</vwc-table-row>
+		{% endfor %}
+	</vwc-table-body>
+</vwc-table>
+<!-- <pre>{{ list | json }}</pre> -->
+{% endmacro %}
+
+{% macro borderTokenPreview(item) %}
+	{% if item.type == 'border/radius' %}
+		<div class="border-token-preview radius" style="border-radius: {{ item.preview }};"></div>
+	{% elif item.type == 'border/width' %}
+		<div class="border-token-preview width" style="border-width: {{ item.preview }}"></div>
+	{% else %}
+		<pre>{{ item | json }}</pre>
+	{% endif %}
+{% endmacro %}
+
+<style>
+	.border-token-preview {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+	.border-token-preview.radius {
+		background: var(--vvd-color-cta-500);
+	}
+	.border-token-preview.width {
+		border-color: var(--vvd-color-cta-500);
+		border-style: solid;
+		border-radius: 4px;
 	}
 </style>

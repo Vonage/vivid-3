@@ -82,6 +82,46 @@ order: 10
 <p>The next steps (7 to 11 on the neutral scale and 6 to 10 on other scales) are typically used for text and icons.</p>
 {{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 7, 11, 'Text & icons' ) }}
 
+{{ heading('Color roles', '3') }}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell>Color role</vwc-table-header-cell>
+			<vwc-table-header-cell>Usage</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="accent" text="Neutral"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Default text / surfaces and secondary UI elements.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="cta" text="Primary"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates primary interactive elements, important actions and selected states.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="announcement" text="Announcement"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates something new, such as onboarding or new feature information.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="information" text="Info"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Informational UI, or communicates something is in progress.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="success" text="Success"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicate a favorable outcome, such as a success message.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="warning" text="Warning"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates caution to prevent a mistake or error from occurring.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="alert" text="Danger"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates danger or error states.</vwc-table-cell>
+		</vwc-table-row>
+	</vwc-table-body>
+</vwc-table>
+
 <div class="core-colors">
 	{{ heading('Color palettes', '3') }}
 	{{ heading('Brand', '4') }}
@@ -128,43 +168,3 @@ order: 10
 		}
 	}
 </style>
-
-{{ heading('Color roles', '2') }}
-<vwc-table>
-	<vwc-table-head>
-		<vwc-table-row>
-			<vwc-table-header-cell>Color role</vwc-table-header-cell>
-			<vwc-table-header-cell>Usage</vwc-table-header-cell>
-		</vwc-table-row>
-	</vwc-table-head>
-	<vwc-table-body>
-		<vwc-table-row>
-			<vwc-table-cell><vwc-badge connotation="accent" text="Neutral"></vwc-badge></vwc-table-cell>
-			<vwc-table-cell>Default text / surfaces and secondary UI elements.</vwc-table-cell>
-		</vwc-table-row>
-		<vwc-table-row>
-			<vwc-table-cell><vwc-badge connotation="cta" text="Primary"></vwc-badge></vwc-table-cell>
-			<vwc-table-cell>Communicates primary interactive elements, important actions and selected states.</vwc-table-cell>
-		</vwc-table-row>
-		<vwc-table-row>
-			<vwc-table-cell><vwc-badge connotation="announcement" text="Announcement"></vwc-badge></vwc-table-cell>
-			<vwc-table-cell>Communicates something new, such as onboarding or new feature information.</vwc-table-cell>
-		</vwc-table-row>
-		<vwc-table-row>
-			<vwc-table-cell><vwc-badge connotation="information" text="Info"></vwc-badge></vwc-table-cell>
-			<vwc-table-cell>Informational UI, or communicates something is in progress.</vwc-table-cell>
-		</vwc-table-row>
-		<vwc-table-row>
-			<vwc-table-cell><vwc-badge connotation="success" text="Success"></vwc-badge></vwc-table-cell>
-			<vwc-table-cell>Communicate a favorable outcome, such as a success message.</vwc-table-cell>
-		</vwc-table-row>
-		<vwc-table-row>
-			<vwc-table-cell><vwc-badge connotation="warning" text="Warning"></vwc-badge></vwc-table-cell>
-			<vwc-table-cell>Communicates caution to prevent a mistake or error from occurring.</vwc-table-cell>
-		</vwc-table-row>
-		<vwc-table-row>
-			<vwc-table-cell><vwc-badge connotation="alert" text="Danger"></vwc-badge></vwc-table-cell>
-			<vwc-table-cell>Communicates danger or error states.</vwc-table-cell>
-		</vwc-table-row>
-	</vwc-table-body>
-</vwc-table>

@@ -11,28 +11,27 @@ order: 30
 <p>Typography is how Vivid:Apps communicates through text. It creates hierarchy, improves readability, reinforces brand expression, and helps interfaces feel consistent across products.</p>
 <p>In Vivid:Apps, typography is defined through <b>design tokens</b>, applied through <b>semantic text styles</b>, and implemented consistently across design and code.</p>
 
-{{ heading('Typographic styles', '2') }}
-{{ heading('Overview', '3') }}
+{{ heading('Overview', '2') }}
 <p>Typography design tokens use <code>rem</code> units to support a more <a href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html">accessible</a> browser zoom experience. Line-height values are unitless and tailored to each text style, ensuring consistent alignment to a 4px grid.</p>
 <p>Each typography style is intentionally defined through "shorthand" tokens, combining font size, family, weight, and line height into a single CSS <code>font</code> declaration for simple and consistent implementation.</p>
 
-{{ heading('Typeface', '3') }}
+{{ heading('Typeface', '2') }}
 <p>Vivid:Apps uses a typography stack optimised for clarity, performance, international language support, and cross-platform consistency</p>
 <p>Our primary typeface is <a href="https://luzi-type.ch/spezia">Spezia</a>.</p>
 <img src="/assets/images/spezia.png" alt="" style="display: inline-block; max-height: 50px;float: right" />
 <div style="max-width: 400px;">
-  {{ heading('Primary typeface', '4') }}
+  {{ heading('Primary typeface', '3') }}
   <p><b>Spezia</b> is used for UI text, headings, labels, forms, navigation, and messaging and should be the default type choice in product experiences.</p>
 </div>
 <img src="/assets/images/spezia-mono.png" alt="Spezia mono typeface" style="display: block; max-height: 50px; float: right;" />
 <div style="max-width: 400px;">
-  {{ heading('Monospace typeface', '4') }}
+  {{ heading('Monospace typeface', '3') }}
   <p><b>Spezia mono</b> is used for code, inline code snippets, keyboard commands, tokens / technical identifiers.</p>
 </div>
 
-{{ heading('Typescale', '3') }}
+{{ heading('Typescale', '2') }}
 
-{{ heading('Heading', '4') }}
+{{ heading('Heading', '3') }}
 <p>Headings come in a range of sizes for different contexts:</p>
 <ul>
   <li><strong>2xl</strong> and <strong>xl</strong> are suitable for dashboard metrics, hero / high emphasis content.</li>
@@ -43,11 +42,11 @@ order: 30
 </ul>
 {{ typescaleTable(tokens.text.heading) }}
 
-{{ heading('Body', '4') }}
+{{ heading('Body', '3') }}
 <p>Used for paragraphs, sentences, and most text-based communication.</p>
 {{ typescaleTable(tokens.text.body) }}
 
-{{ heading('Code', '4') }}
+{{ heading('Code', '3') }}
 <p>Used for inline code snippets, preformatted text, and technical identifiers such as tokens or keyboard commands.</p>
 {{ typescaleTable(tokens.text.code) }}
 
