@@ -5,7 +5,7 @@ order: 2.75
 ---
 
 {% include '../_includes/tokens-table-new.njk' %}
-{% from '../_includes/tokens-table-new.njk' import heading, spacingTokensTable, borderTokenTable %}
+{% from '../_includes/tokens-table-new.njk' import heading, spacingTokensTable, borderTokenTable, controlSpacingTokenTable %}
 
 <h1>Size</h1>
 
@@ -17,3 +17,10 @@ order: 2.75
 {{ heading('Border', '2') }}
 {{ borderTokenTable(tokens.border.width, 'Width') }}
 {{ borderTokenTable(tokens.border.radius, 'Radius') }}
+
+{{ heading('Control spacing', '2') }}
+{{ controlSpacingTokenTable(tokens.control.xsmall, 'xsmall') }}
+{{ controlSpacingTokenTable(tokens.control.small, 'small') }}
+{{ controlSpacingTokenTable(tokens.control.medium, 'medium') }}
+{{ controlSpacingTokenTable(tokens.control.large, 'large') }}
+{{ controlSpacingTokenTable(tokens.control.xlarge, 'xlarge') }}

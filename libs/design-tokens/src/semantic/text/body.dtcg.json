@@ -1,5 +1,5 @@
 {
-  "vivid/text/body/lg": {
+  "vivid/text/body/lg/regular": {
     "$type": "typography",
     "$value": {
       "fontFamily": "{vivid/text/font-family/sans-serif}",
@@ -10,7 +10,7 @@
     },
     "$description": "Body text style for large emphasis content, such as important paragraphs and highlighted UI text."
   },
-  "vivid/text/body/md": {
+  "vivid/text/body/md/regular": {
     "$type": "typography",
     "$value": {
       "fontFamily": "{vivid/text/font-family/sans-serif}",
@@ -21,13 +21,46 @@
     },
     "$description": "Default body text style for medium emphasis content, such as paragraphs and general UI text."
   },
-  "vivid/text/body/sm": {
+  "vivid/text/body/sm/regular": {
     "$type": "typography",
     "$value": {
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/xs}",
       "lineHeight": "{vivid/text/line-height/3xs}",
       "fontWeight": "{vivid/text/weight/normal}",
+      "fontStyle": "{vivid/text/font-style/ultra-condensed}"
+    },
+    "$description": "Body text style for small emphasis content, such as captions and secondary UI text."
+  },
+  "vivid/text/body/lg/bold": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/text/font-family/sans-serif}",
+      "fontSize": "{vivid/text/font-size/md}",
+      "lineHeight": "{vivid/text/line-height/xs}",
+      "fontWeight": "{vivid/text/weight/semibold}",
+      "fontStyle": "{vivid/text/font-style/ultra-condensed}"
+    },
+    "$description": "Body text style for large emphasis content, such as important paragraphs and highlighted UI text."
+  },
+  "vivid/text/body/md/bold": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/text/font-family/sans-serif}",
+      "fontSize": "{vivid/text/font-size/sm}",
+      "lineHeight": "{vivid/text/line-height/2xs}",
+      "fontWeight": "{vivid/text/weight/semibold}",
+      "fontStyle": "{vivid/text/font-style/ultra-condensed}"
+    },
+    "$description": "Default body text style for medium emphasis content, such as paragraphs and general UI text."
+  },
+  "vivid/text/body/sm/bold": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/text/font-family/sans-serif}",
+      "fontSize": "{vivid/text/font-size/xs}",
+      "lineHeight": "{vivid/text/line-height/3xs}",
+      "fontWeight": "{vivid/text/weight/semibold}",
       "fontStyle": "{vivid/text/font-style/ultra-condensed}"
     },
     "$description": "Body text style for small emphasis content, such as captions and secondary UI text."

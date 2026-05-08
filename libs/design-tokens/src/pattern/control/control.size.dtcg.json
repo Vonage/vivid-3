@@ -15,7 +15,7 @@
     "$description": "A horizontal padding size for extra small control elements"
   },
   "vivid/control/xsmall/size": {
-    "$type": "spacing/size",
+    "$type": "spacing/block-size",
     "$value": "{vivid/space/250}",
     "$description": "Block size for extra small control elements"
   },
@@ -35,7 +35,7 @@
     "$description": "A normal horizontal padding size for small control elements"
   },
   "vivid/control/small/size": {
-    "$type": "spacing/size",
+    "$type": "spacing/block-size",
     "$value": "{vivid/space/300}",
     "$description": "Block size for small control elements"
   },
@@ -55,7 +55,7 @@
     "$description": "A horizontal padding size for medium control elements"
   },
   "vivid/control/medium/size": {
-    "$type": "spacing/size",
+    "$type": "spacing/block-size",
     "$value": "{vivid/space/400}",
     "$description": "Block size for medium control elements"
   },
@@ -75,7 +75,7 @@
     "$description": "A horizontal padding size for large control elements"
   },
   "vivid/control/large/size": {
-    "$type": "spacing/size",
+    "$type": "spacing/block-size",
     "$value": "{vivid/space/500}",
     "$description": "Block size for large control elements"
   },
@@ -95,7 +95,7 @@
     "$description": "A horizontal padding size for extra large control elements"
   },
   "vivid/control/xlarge/size": {
-    "$type": "spacing/size",
+    "$type": "spacing/block-size",
     "$value": "{vivid/space/600}",
     "$description": "Block size for extra large control elements"
   }

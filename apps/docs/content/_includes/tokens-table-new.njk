@@ -466,3 +466,143 @@
 		border-radius: 4px;
 	}
 </style>
+
+{% macro controlSpacingTokenTable(list, headingText, headingLevel = 3) %}
+{{ heading(headingText, headingLevel) }}
+<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell></vwc-table-header-cell>
+			<vwc-table-header-cell>Token</vwc-table-header-cell>
+			<vwc-table-header-cell>Output value</vwc-table-header-cell>
+			<vwc-table-header-cell>Source value</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		{% for item in list %}
+			<vwc-table-row>
+				<vwc-table-cell style="width: 8rem;">
+					{{ controlSpacingTokenPreview(item) }}
+				</vwc-table-cell>
+				<vwc-table-cell style="width: 18rem;"><code>{{ item.css | replace('vivid-color-', '') | replace('vivid-action-', '') }}</code></vwc-table-cell>
+				<vwc-table-cell style="width: 8rem;"><code>{{ item.preview }}</code></vwc-table-cell>
+				<vwc-table-cell></vwc-table-cell>	
+			</vwc-table-row>
+		{% endfor %}
+	</vwc-table-body>
+</vwc-table>
+<!--pre>{{ list | json }}</pre-->
+<style>
+	.control-spacing-token-preview.size-{{ headingText }} {
+	{% for item in list %}
+		--_{{ item.type | replace('spacing/', '') }}: {{ item.preview }};
+	{% endfor %}
+
+	{% for item in list %}
+		{{ item.type | replace('spacing/', '') }}: var(--_{{ item.type | replace('spacing/', '') }});
+	{% endfor %}
+	}
+</style>
+{% endmacro %}
+
+{% macro controlSpacingTokenPreview(item, list) %}
+		<div class="control-spacing-token-preview size-{{ item.semantic }}" style="padding-block: 0px;">
+			<span class="control-icon"></span>
+			<span class="control-label">{{ item.semantic }}</span>
+			<span class="control-display prop-{{ item.type | replace('spacing/', '') }}"></span>
+		</div>
+{% endmacro %}
+
+<style>
+	.control-spacing-token-preview {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		border: 1px solid var(--vvd-color-neutral-400);
+		border-radius: 6px;
+	}
+
+	.control-spacing-token-preview .control-icon {
+		display: inline-block;
+		width: 0.75rem;
+		height: 0.75rem;
+		background-color: var(--vvd-color-neutral-600);
+		border-radius: 4px;
+	}
+
+	.control-display {
+		display: inline-block;
+		position: absolute;
+		background-color: var(--vvd-color-cta-200);
+		border: 1px solid color var(--vvd-color-cta-400);
+	}
+
+	.control-display.prop-gap {
+		inset-inline-start: calc(var(--_padding-inline) + 0.75rem);
+		inset-block-start: 0;
+		inset-block-end: 0;
+		inline-size: var(--_gap);
+	}
+
+	.control-display.prop-padding-block {
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		inset: 0;
+		background: transparent;
+		border: 0;
+	}
+
+	.control-display.prop-padding-block::before,
+	.control-display.prop-padding-block::after {
+		content: '';
+		display: inline-block;
+		position: absolute;
+		width: 100%;
+		block-size: var(--_padding-block);
+		background-color: var(--vvd-color-cta-200);
+		border: 1px solid color var(--vvd-color-cta-400);
+	}
+
+	.control-display.prop-padding-block::before {
+		inset-block-start: 0;
+	}
+
+	.control-display.prop-padding-block::after {
+		inset-block-end: 0;
+	}
+
+	.control-display.prop-padding-inline {
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		inset: 0;
+		background: transparent;
+		border: 0;
+	}
+
+	.control-display.prop-padding-inline::before,
+	.control-display.prop-padding-inline::after {
+		content: '';
+		display: inline-block;
+		position: absolute;
+		inset-block: 0;
+		inline-size: var(--_padding-inline);
+		background-color: var(--vvd-color-cta-200);
+		border: 1px solid color var(--vvd-color-cta-400);
+	}
+
+	.control-display.prop-padding-inline::before {
+		inset-inline-start: 0;
+	}
+
+	.control-display.prop-padding-inline::after {
+		inset-inline-end: 0;
+	}
+
+	.control-display.prop-block-size {
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		inset: 0;
+	}
+</style>
