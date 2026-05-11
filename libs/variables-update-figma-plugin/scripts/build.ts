@@ -15,10 +15,15 @@ function setValueByPath(
 	value: any
 ): void {
 	const keys = path.split('.');
+	const unsafeKeys = new Set(['__proto__', 'constructor', 'prototype']);
 	let current = obj;
 
 	for (let i = 0; i < keys.length - 1; i++) {
 		const key = keys[i];
+
+		if (unsafeKeys.has(key)) {
+			return;
+		}
 
 		if (!(key in current) || typeof current[key] !== 'object') {
 			current[key] = {};
@@ -27,7 +32,12 @@ function setValueByPath(
 		current = current[key];
 	}
 
-	current[keys[keys.length - 1]] = value;
+	const lastKey = keys[keys.length - 1];
+	if (unsafeKeys.has(lastKey)) {
+		return;
+	}
+
+	current[lastKey] = value;
 }
 
 (async () => {
