@@ -9,6 +9,10 @@ const __dirname = fileURLToPath(new URL('..', import.meta.url));
 
 const watchMode = process.argv.slice(2)[0] === 'watch';
 
+function isPrototypePollutionKey(key: string): boolean {
+	return key === '__proto__' || key === 'constructor' || key === 'prototype';
+}
+
 function setValueByPath(
 	obj: Record<string, any>,
 	path: string,
@@ -20,6 +24,10 @@ function setValueByPath(
 	for (let i = 0; i < keys.length - 1; i++) {
 		const key = keys[i];
 
+		if (isPrototypePollutionKey(key)) {
+			throw new Error(`Unsafe path segment: ${key}`);
+		}
+
 		if (!(key in current) || typeof current[key] !== 'object') {
 			current[key] = {};
 		}
@@ -27,7 +35,12 @@ function setValueByPath(
 		current = current[key];
 	}
 
-	current[keys[keys.length - 1]] = value;
+	const lastKey = keys[keys.length - 1];
+	if (isPrototypePollutionKey(lastKey)) {
+		throw new Error(`Unsafe path segment: ${lastKey}`);
+	}
+
+	current[lastKey] = value;
 }
 
 (async () => {
