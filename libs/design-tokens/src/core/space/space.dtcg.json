@@ -63,6 +63,14 @@
 		},
 		"$description": "24px"
 	},
+	"vivid/space/350": {
+		"$type": "dimension",
+		"$value": {
+			"value": 28,
+			"unit": "px"
+		},
+		"$description": "24px"
+	},
 	"vivid/space/400": {
 		"$type": "dimension",
 		"$value": {
@@ -70,6 +78,14 @@
 			"unit": "px"
 		},
 		"$description": "32px"
+	},
+	"vivid/space/450": {
+		"$type": "dimension",
+		"$value": {
+			"value": 36,
+			"unit": "px"
+		},
+		"$description": "36px"
 	},
 	"vivid/space/500": {
 		"$type": "dimension",
@@ -87,6 +103,14 @@
 		},
 		"$description": "48px"
 	},
+	"vivid/space/700": {
+		"$type": "dimension",
+		"$value": {
+			"value": 56,
+			"unit": "px"
+		},
+		"$description": "56px"
+	},
 	"vivid/space/800": {
 		"$type": "dimension",
 		"$value": {
@@ -94,6 +118,14 @@
 			"unit": "px"
 		},
 		"$description": "64px"
+	},
+	"vivid/space/900": {
+		"$type": "dimension",
+		"$value": {
+			"value": 72,
+			"unit": "px"
+		},
+		"$description": "72px"
 	},
 	"vivid/space/1000": {
 		"$type": "dimension",

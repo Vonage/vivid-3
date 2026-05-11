@@ -543,34 +543,6 @@
 		inline-size: var(--_gap);
 	}
 
-	.control-display.prop-padding-block {
-		z-index: -1;
-		width: 100%;
-		height: 100%;
-		inset: 0;
-		background: transparent;
-		border: 0;
-	}
-
-	.control-display.prop-padding-block::before,
-	.control-display.prop-padding-block::after {
-		content: '';
-		display: inline-block;
-		position: absolute;
-		width: 100%;
-		block-size: var(--_padding-block);
-		background-color: var(--vvd-color-cta-200);
-		border: 1px solid color var(--vvd-color-cta-400);
-	}
-
-	.control-display.prop-padding-block::before {
-		inset-block-start: 0;
-	}
-
-	.control-display.prop-padding-block::after {
-		inset-block-end: 0;
-	}
-
 	.control-display.prop-padding-inline {
 		z-index: -1;
 		width: 100%;

@@ -20,14 +20,18 @@
 		"$type": "line-height"
 	},
   "vivid/text/line-height/xs": {
-		"$value": "1.5rem",
+		"$value": "1.75rem",
 		"$type": "line-height"
 	},
   "vivid/text/line-height/2xs": {
-		"$value": "1.25rem",
+		"$value": "1.5rem",
 		"$type": "line-height"
 	},
   "vivid/text/line-height/3xs": {
+		"$value": "1.25rem",
+		"$type": "line-height"
+	},
+  "vivid/text/line-height/4xs": {
 		"$value": "1rem",
 		"$type": "line-height"
 	}

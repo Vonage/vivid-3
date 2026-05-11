@@ -1,0 +1,21 @@
+{
+  "vivid/accordion/heading/bg/default": {
+    "$type": "color/bg",
+    "$value": "{vivid.action.low.neutral.bg.color.default}",
+    "$description": ""
+  },
+  "vivid/accordion/heading/bg/hover": {
+    "$type": "color/bg",
+    "$value": "{vivid.action.low.neutral.bg.color.hover}",
+    "$description": ""
+  },
+   "vivid/accordion/heading/bg/active": {
+    "$type": "color/bg",
+    "$value": "{vivid.action.low.neutral.bg.color.active}",
+    "$description": ""
+  },
+  "vivid/accordion/divider/color": {
+    "$type": "color/border",
+    "$value": "{vivid.color.border.default}"
+  }
+}

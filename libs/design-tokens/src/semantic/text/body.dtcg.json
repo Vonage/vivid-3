@@ -4,7 +4,7 @@
     "$value": {
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/md}",
-      "lineHeight": "{vivid/text/line-height/xs}",
+      "lineHeight": "{vivid/text/line-height/2xs}",
       "fontWeight": "{vivid/text/weight/normal}",
       "fontStyle": "{vivid/text/font-style/ultra-condensed}"
     },
@@ -15,7 +15,7 @@
     "$value": {
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/sm}",
-      "lineHeight": "{vivid/text/line-height/2xs}",
+      "lineHeight": "{vivid/text/line-height/3xs}",
       "fontWeight": "{vivid/text/weight/normal}",
       "fontStyle": "{vivid/text/font-style/ultra-condensed}"
     },
@@ -26,7 +26,7 @@
     "$value": {
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/xs}",
-      "lineHeight": "{vivid/text/line-height/3xs}",
+      "lineHeight": "{vivid/text/line-height/4xs}",
       "fontWeight": "{vivid/text/weight/normal}",
       "fontStyle": "{vivid/text/font-style/ultra-condensed}"
     },
@@ -37,7 +37,7 @@
     "$value": {
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/md}",
-      "lineHeight": "{vivid/text/line-height/xs}",
+      "lineHeight": "{vivid/text/line-height/2xs}",
       "fontWeight": "{vivid/text/weight/semibold}",
       "fontStyle": "{vivid/text/font-style/ultra-condensed}"
     },
@@ -48,8 +48,8 @@
     "$value": {
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/sm}",
-      "lineHeight": "{vivid/text/line-height/2xs}",
-      "fontWeight": "{vivid/text/weight/semibold}",
+      "lineHeight": "{vivid/text/line-height/3xs}",
+      "fontWeight": "{vivid/text/weight/normal}",
       "fontStyle": "{vivid/text/font-style/ultra-condensed}"
     },
     "$description": "Default body text style for medium emphasis content, such as paragraphs and general UI text."
@@ -59,7 +59,7 @@
     "$value": {
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/xs}",
-      "lineHeight": "{vivid/text/line-height/3xs}",
+      "lineHeight": "{vivid/text/line-height/4xs}",
       "fontWeight": "{vivid/text/weight/semibold}",
       "fontStyle": "{vivid/text/font-style/ultra-condensed}"
     },

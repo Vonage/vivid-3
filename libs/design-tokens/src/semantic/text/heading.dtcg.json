@@ -64,5 +64,16 @@
       "fontStyle": "{vivid/text/font-style/condensed}"
     },
     "$description": "Heading text style for small emphasis content, such as captions and secondary UI text."
+  },
+  "vivid/text/heading/2xs": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/text/font-family/sans-serif}",
+      "fontSize": "{vivid/text/font-size/md}",
+      "lineHeight": "{vivid/text/line-height/2xs}",
+      "fontWeight": "{vivid/text/weight/medium}",
+      "fontStyle": "{vivid/text/font-style/condensed}"
+    },
+    "$description": "Heading text style for small component titles and lower emphasis content."
   }
 }

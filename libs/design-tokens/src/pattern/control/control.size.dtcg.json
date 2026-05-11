@@ -4,11 +4,6 @@
     "$value": "{vivid/space/50}",
     "$description": "A gap size for extra small control elements"
   },
-  "vivid/control/xsmall/padding-block": {
-    "$type": "spacing/padding-block",
-    "$value": "{vivid/space/25}",
-    "$description": "A vertical padding size for extra small control elements"
-  },
   "vivid/control/xsmall/padding-inline": {
     "$type": "spacing/padding-inline",
     "$value": "{vivid/space/100}",
@@ -23,11 +18,6 @@
     "$type": "spacing/gap",
     "$value": "{vivid/space/50}",
     "$description": "A gap size for small control elements"
-  },
-  "vivid/control/small/padding-block": {
-    "$type": "spacing/padding-block",
-    "$value": "{vivid/space/50}",
-    "$description": "A vertical padding size for small control elements"
   },
   "vivid/control/small/padding-inline": {
     "$type": "spacing/padding-inline",
@@ -44,11 +34,6 @@
     "$value": "{vivid/space/100}",
     "$description": "A gap size for medium control elements"
   },
-  "vivid/control/medium/padding-block": {
-    "$type": "spacing/padding-block",
-    "$value": "{vivid/space/100}",
-    "$description": "A vertical padding size for medium control elements"
-  },
   "vivid/control/medium/padding-inline": {
     "$type": "spacing/padding-inline",
     "$value": "{vivid/space/150}",
@@ -64,11 +49,6 @@
     "$value": "{vivid/space/100}",
     "$description": "A gap size for large control elements"
   },
-  "vivid/control/large/padding-block": {
-    "$type": "spacing/padding-block",
-    "$value": "{vivid/space/100}",
-    "$description": "A vertical padding size for large control elements"
-  },
   "vivid/control/large/padding-inline": {
     "$type": "spacing/padding-inline",
     "$value": "{vivid/space/200}",
@@ -83,11 +63,6 @@
     "$type": "spacing/gap",
     "$value": "{vivid/space/100}",
     "$description": "A gap size for extra large control elements"
-  },
-  "vivid/control/xlarge/padding-block": {
-    "$type": "spacing/padding-block",
-    "$value": "{vivid/space/150}",
-    "$description": "A vertical padding size for extra large control elements"
   },
   "vivid/control/xlarge/padding-inline": {
     "$type": "spacing/padding-inline",

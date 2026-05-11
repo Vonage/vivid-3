@@ -14,10 +14,10 @@
     "$value": "{vivid/color/neutral/50}",
     "$description": "A soft surface background used to subtly distinguish sections, grouped content, or secondary containers."
   },
-  "vivid/color/bg/surface/subtle": {
+  "vivid/color/bg/backdrop": {
     "$type": "color/background",
-    "$value": "{vivid/color/neutral/100}",
-    "$description": "A lightly emphasised surface background used to create gentle separation between layers of content."
+    "$value": "{vivid/color/neutral-tint/alpha/80}",
+    "$description": "A semi transparent background color for modal backdrop"
   },
   "vivid/color/bg/surface/strong": {
     "$type": "color/background",
