@@ -11,10 +11,31 @@
 }
 
 .tooltip {
+	display: flex;
 	width: var(#{variables.$tooltip-inline-size}, auto);
 	box-sizing: border-box;
+	align-items: center;
 	padding: 8px 12px;
 	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base-bold});
+	gap: 8px;
 	max-inline-size: var(#{variables.$tooltip-max-inline-size}, 30ch);
+}
+
+.text {
+	flex: 1;
+}
+
+.kbd-shortcut-wrapper {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	font-size: 0.85em;
+	gap: 2px;
+	opacity: 0.8;
+	white-space: nowrap;
+
+	&.empty {
+		display: none;
+	}
 }

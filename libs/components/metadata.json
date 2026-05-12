@@ -3933,6 +3933,96 @@
 			}
 		},
 		{
+			"name": "kbd-key",
+			"className": "KbdKey",
+			"registerFunctionName": "registerKbdKey",
+			"description": "",
+			"props": [
+				{
+					"name": "appearance",
+					"type": "'outlined' | 'subtle' | 'dropshadow'",
+					"attributeName": "appearance",
+					"propertyName": "appearance"
+				},
+				{
+					"name": "keyboard",
+					"description": "The keyboard layout to use for display.\nWhen set to \"auto\" (default), detects the current platform.\nWhen set to \"standard\", displays keys for non-Apple platforms.\nWhen set to \"apple\", displays keys for Apple platforms.",
+					"type": "'auto' | 'standard' | 'apple'",
+					"attributeName": "keyboard",
+					"propertyName": "keyboard"
+				},
+				{
+					"name": "keyshortcutsKey",
+					"description": "Overrides the aria-keyshortcuts key name contributed by this element.\nThe value must be a valid `aria-keyshortcuts` key token (e.g. `\"F1\"`, `\"Power\"`).\nUse this when `name=\"Custom\"` and the slot's text content is not a valid\naria-keyshortcuts value, e.g. when the slot contains an icon.",
+					"type": "string",
+					"attributeName": "keyshortcuts-key",
+					"propertyName": "keyshortcutsKey"
+				},
+				{
+					"name": "name",
+					"description": "The key to display. Use \"Custom\" to show arbitrary content via the default slot.",
+					"type": "'Alt' | 'Control' | 'Shift' | 'Enter' | 'Tab' | 'Space' | 'Backspace' | 'Escape' | 'ArrowUp' | 'ArrowDown' | 'ArrowLeft' | 'ArrowRight' | 'End' | 'Home' | 'PageUp' | 'PageDown' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | 'Mod' | 'Custom'",
+					"attributeName": "name",
+					"propertyName": "name"
+				},
+				{
+					"name": "size",
+					"type": "'condensed' | 'normal' | 'expanded' | 'super-expanded'",
+					"attributeName": "size",
+					"propertyName": "size"
+				}
+			],
+			"events": [],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "default",
+					"description": "Default slot for custom content (used when name is \"Custom\")."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
+			"name": "kbd-shortcut",
+			"className": "KbdShortcut",
+			"registerFunctionName": "registerKbdShortcut",
+			"description": "",
+			"props": [],
+			"events": [],
+			"vueModels": [],
+			"methods": [
+				{
+					"name": "getKeyshortcutsValue",
+					"description": "Returns a valid aria-keyshortcuts value based on the slotted kbd-key elements.\nModifiers are sorted to be first as required by the spec.\nReturns null if no keys are available.",
+					"args": [],
+					"returnType": "null | string"
+				}
+			],
+			"slots": [
+				{ "name": "default", "description": "Default slot for Kbd elements." }
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
 			"name": "layout",
 			"className": "Layout",
 			"registerFunctionName": "registerLayout",
@@ -4040,7 +4130,7 @@
 				{
 					"name": "trigger",
 					"description": "Sets trigger method of Menu",
-					"type": "'off' | 'auto' | 'legacy'",
+					"type": "'auto' | 'off' | 'legacy'",
 					"attributeName": "trigger",
 					"propertyName": "trigger"
 				}
@@ -4211,6 +4301,10 @@
 			],
 			"methods": [],
 			"slots": [
+				{
+					"name": "kbd-shortcut",
+					"description": "Used to display a keyboard shortcut alongside the menu item text."
+				},
 				{
 					"name": "meta",
 					"description": "Assign nodes to the `meta` slot to set a badge or an additional icon."
@@ -5047,6 +5141,32 @@
 					{ "name": "nextButton", "args": ["shadow", ".next-button"] },
 					{ "name": "prevButton", "args": ["shadow", ".prev-button"] }
 				]
+			}
+		},
+		{
+			"name": "platform-switch",
+			"className": "PlatformSwitch",
+			"registerFunctionName": "registerPlatformSwitch",
+			"description": "",
+			"props": [],
+			"events": [],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "default",
+					"description": "Default slot accepts children with optional platform constraints."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
 			}
 		},
 		{
@@ -8531,6 +8651,10 @@
 				{
 					"name": "anchor",
 					"description": "Used to set the anchor element for the tooltip."
+				},
+				{
+					"name": "kbd-shortcut",
+					"description": "Used to display a keyboard shortcut alongside the tooltip text."
 				}
 			],
 			"testUtils": {

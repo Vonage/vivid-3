@@ -1,4 +1,4 @@
-import { html } from '@microsoft/fast-element';
+import { elements, html, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
@@ -8,6 +8,9 @@ import type { Tooltip } from './tooltip';
 
 const getClasses = ({ open }: Tooltip) =>
 	classNames('control', ['open', Boolean(open)]);
+
+const getShortcutClasses = ({ _hasKbdShortcut }: Tooltip) =>
+	classNames('kbd-shortcut-wrapper', ['empty', !_hasKbdShortcut]);
 
 export const TooltipTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
@@ -26,7 +29,18 @@ ${anchorSlotTemplate}
 	}}"
   exportparts="vvd-theme-alternate">
   <div part="vvd-theme-alternate" class="tooltip" role="tooltip">
-		${(x) => x.text}
+		<span class="text">${(x) => x.text}</span
+		><span class="${getShortcutClasses}"
+			>(<slot
+				name="kbd-shortcut"
+				class="kbd-shortcut-slot"
+				${slotted({
+					property: '_kbdShortcutSlotted',
+					filter: elements(),
+				})}
+			></slot
+			>)</span
+		>
   </div>
 </${popupTag}>`;
 };

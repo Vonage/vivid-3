@@ -30,6 +30,7 @@ export type MenuItemConnotation = ExtractFromEnum<
  * @component menu-item
  * @slot meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  * @slot trailing-meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
+ * @slot kbd-shortcut - Used to display a keyboard shortcut alongside the menu item text.
  * @slot submenu - Assign a Menu to the `submenu` slot to add a submenu.
  * @event {CustomEvent<HTMLElement>} expanded-change - Fired when the expanded state changes.
  * @event {CustomEvent<undefined>} change - Fired when the item is triggered. Does not fire when a submenu is collapsed or expanded.
@@ -287,6 +288,28 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	@observable metaSlottedContent?: HTMLElement[];
 	/** @internal */
 	@observable trailingMetaSlottedContent?: HTMLElement[];
+
+	/** @internal */
+	@observable _kbdShortcutSlotted?: Element[];
+
+	/** @internal */
+	_kbdShortcutSlottedChanged() {
+		Updates.enqueue(() => this.#updateAriaKeyshortcuts());
+	}
+
+	#updateAriaKeyshortcuts() {
+		const shortcut = (this._kbdShortcutSlotted ?? []).find(
+			(el) => typeof (el as any).getKeyshortcutsValue === 'function'
+		);
+
+		const value = (shortcut as any)?.getKeyshortcutsValue() ?? null;
+
+		if (value) {
+			this.setAttribute('aria-keyshortcuts', value);
+		} else {
+			this.removeAttribute('aria-keyshortcuts');
+		}
+	}
 
 	/**
 	 * @internal

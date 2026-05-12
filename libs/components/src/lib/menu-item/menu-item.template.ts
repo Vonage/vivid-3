@@ -99,6 +99,14 @@ export const MenuItemTemplate = (context: VividElementDefinitionContext) => {
 					name="trailing-meta"
 					${slotted('trailingMetaSlottedContent')}
 				></slot>
+				<slot
+					name="kbd-shortcut"
+					class="kbd-shortcut-slot"
+					${slotted({
+						property: '_kbdShortcutSlotted',
+						filter: elements(),
+					})}
+				></slot>
 				${when(
 					(x) => x.hasSubmenu,
 					html`<${iconTag} class="chevron" name="chevron-right-line"></${iconTag}>`
