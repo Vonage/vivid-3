@@ -46,7 +46,7 @@
   "vivid/text/heading/sm": {
     "$type": "typography",
     "$value": {
-      "fontFamily": "{vivid/text/font-family/sans-serif}",
+      "fontFamily": "{vivid/text/font-family/sans-serif-display}",
       "fontSize": "{vivid/text/font-size/xl}",
       "lineHeight": "{vivid/text/line-height/sm}",
       "fontWeight": "{vivid/text/weight/medium}",
@@ -57,7 +57,7 @@
   "vivid/text/heading/xs": {
     "$type": "typography",
     "$value": {
-      "fontFamily": "{vivid/text/font-family/sans-serif}",
+      "fontFamily": "{vivid/text/font-family/sans-serif-display}",
       "fontSize": "{vivid/text/font-size/lg}",
       "lineHeight": "{vivid/text/line-height/xs}",
       "fontWeight": "{vivid/text/weight/medium}",
@@ -68,7 +68,7 @@
   "vivid/text/heading/2xs": {
     "$type": "typography",
     "$value": {
-      "fontFamily": "{vivid/text/font-family/sans-serif}",
+      "fontFamily": "{vivid/text/font-family/sans-serif-display}",
       "fontSize": "{vivid/text/font-size/md}",
       "lineHeight": "{vivid/text/line-height/2xs}",
       "fontWeight": "{vivid/text/weight/medium}",

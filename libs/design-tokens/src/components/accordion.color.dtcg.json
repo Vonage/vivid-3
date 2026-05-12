@@ -1,7 +1,7 @@
 {
   "vivid/accordion/heading/bg/default": {
     "$type": "color/bg",
-    "$value": "{vivid.action.low.neutral.bg.color.default}",
+    "$value": "{vivid.action.low.neutral.bg.color.rest}",
     "$description": ""
   },
   "vivid/accordion/heading/bg/hover": {

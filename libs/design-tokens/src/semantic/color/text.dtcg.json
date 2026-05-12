@@ -14,12 +14,12 @@
     "$value": "{vivid/color/neutral/600}",
     "$description": "A disabled text color used for non-interactive text content."
   },
-  "vivid/color/text/on-emphasis": {
+  "vivid/color/text/on-strong": {
     "$type": "color/text",
     "$value": "{vivid/color/neutral/0}",
     "$description": "A text color used for high contrast content on strong backgrounds or surfaces."
   },
-  "vivid/color/text/warning/on-emphasis": {
+  "vivid/color/text/warning/on-strong": {
     "$type": "color/text",
     "$value": "{vivid/color/neutral/950}",
     "$description": "A text color used for high contrast content on strong backgrounds or surfaces."

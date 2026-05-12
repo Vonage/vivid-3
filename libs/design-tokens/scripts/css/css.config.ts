@@ -273,7 +273,6 @@ export const cssPlatform: PlatformConfig = {
 		'vvd/value/css/typography',
 		'vvd/value/css/shadow',
 		'size/pxToRem',
-		'vvd/value/css/roundRems',
 	],
 	buildPath: './dist/',
 	files: [
@@ -314,10 +313,10 @@ export const cssPlatform: PlatformConfig = {
 			filter: (token) => token.filePath.includes('core') && token.filePath.includes('border'),
 		},
 		{
-			destination: 'core-space.css',
+			destination: 'core-size.css',
 			format: 'css/variables',
 			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('core') && token.filePath.includes('space'),
+			filter: (token) => token.filePath.includes('core') && token.filePath.includes('/size'),
 		},
 		{
 			destination: 'core-text.css',
