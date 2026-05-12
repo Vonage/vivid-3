@@ -4,7 +4,7 @@ import { defineConfig } from 'eslint/config';
 export default defineConfig([
 	...baseConfig,
 	{
-		files: ['**/*.ts', '**/*.tsx', '**/*.stories.js'],
+		files: ['**/*.ts', '**/*.tsx'],
 		rules: {
 			'@typescript-eslint/no-unused-vars': 'off',
 			'@typescript-eslint/ban-ts-comment': 'off',
