@@ -6,7 +6,14 @@
 			"repo": "Vonage/vivid-3"
 		}
 	],
-	"fixed": [["@vonage/vivid", "@vonage/vivid-vue", "@vonage/vivid-test-utils"]],
+	"fixed": [
+		[
+			"@vonage/vivid",
+			"@vonage/vivid-vue",
+			"@vonage/vivid-test-utils",
+			"@vonage/vivid-react"
+		]
+	],
 	"baseBranch": "main",
 	"updateInternalDependencies": "patch",
 	"privatePackages": false

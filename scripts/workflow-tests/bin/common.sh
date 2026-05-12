@@ -249,6 +249,7 @@ load_package_versions() {
   VIVID_VERSION="$(jq -r '.version' "${ENV_DIR}/repo/libs/components/package.json")"
   VIVID_VUE_VERSION="$(jq -r '.version' "${ENV_DIR}/repo/libs/vue-wrappers/package.json")"
   TEST_UTILS_VERSION="$(jq -r '.version' "${ENV_DIR}/repo/libs/test-utils/package.json")"
+  VIVID_REACT_VERSION="$(jq -r '.version' "${ENV_DIR}/repo/libs/react-wrappers/package.json")"
   ESLINT_PLUGIN_VERSION="$(jq -r '.version' "${ENV_DIR}/repo/libs/eslint-plugin/package.json")"
   DESIGN_TOKENS_VERSION="$(jq -r '.version' "${ENV_DIR}/repo/libs/design-tokens/package.json")"
   ICONS_VERSION="$(jq -r '.version' "${ENV_DIR}/repo/libs/icons/package.json")"

@@ -10,6 +10,7 @@ declare -A RELEASE_FLAGS=(
   ["@vonage/vivid-icons"]="$SHOULD_RELEASE_ICONS"
   ["@vonage/eslint-plugin-vivid"]="$SHOULD_RELEASE_ESLINT_PLUGIN"
   ["@vonage/vivid-vue"]="$SHOULD_RELEASE_VUE"
+  ["@vonage/vivid-react"]="$SHOULD_RELEASE_REACT"
   ["@vonage/vivid-test-utils"]="$SHOULD_RELEASE_TEST_UTILS"
   ["@vonage/vivid-marketing-icons"]="$SHOULD_RELEASE_MARKETING_ICONS"
 )
@@ -20,6 +21,7 @@ declare -A REQUIRED_RESULTS=(
   ["@vonage/vivid-icons"]="$ICONS_PUBLISH_RESULT"
   ["@vonage/eslint-plugin-vivid"]="$ESLINT_PLUGIN_PUBLISH_RESULT"
   ["@vonage/vivid-vue"]="$VIVID_VUE_PUBLISH_RESULT"
+  ["@vonage/vivid-react"]="$VIVID_REACT_PUBLISH_RESULT"
   ["@vonage/vivid-test-utils"]="$TEST_UTILS_PUBLISH_RESULT"
   ["@vonage/vivid-marketing-icons"]="$MARKETING_ICONS_PUBLISH_RESULT"
 )

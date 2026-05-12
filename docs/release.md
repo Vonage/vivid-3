@@ -14,7 +14,7 @@ After making a change, run `pnpm changeset` and:
   - Examples:
     - `fix(button): fix disabled state (VIV-1234)`
     - `chore: update dependencies (VIV-1234)`
-- The version of `@vonage/vivid`, `@vonage/vivid-vue` and `@vonage/vivid-test-utils` is automatically kept in sync
+- The version of `@vonage/vivid`, `@vonage/vivid-vue`, `@vonage/vivid-test-utils` and `@vonage/vivid-react` is automatically kept in sync
   - When making changes to components, add the changeset only to `@vonage/vivid`
   - Only add changesets to the derived packages if there are specific changes to them
 

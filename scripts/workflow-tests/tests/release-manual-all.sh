@@ -49,6 +49,7 @@ npm_packages=(
   "@vonage/vivid|${VIVID_VERSION}"
   "@vonage/vivid-vue|${VIVID_VUE_VERSION}"
   "@vonage/vivid-test-utils|${TEST_UTILS_VERSION}"
+  "@vonage/vivid-react|${VIVID_REACT_VERSION}"
   "@vonage/eslint-plugin-vivid|${ESLINT_PLUGIN_VERSION}"
 )
 
@@ -122,6 +123,7 @@ tags_json="$(get_tags)"
 tag_specs=(
   "vivid-vue-v${VIVID_VUE_VERSION}"
   "test-utils-v${TEST_UTILS_VERSION}"
+  "vivid-react-v${VIVID_REACT_VERSION}"
 )
 
 for tag in "${tag_specs[@]}"; do

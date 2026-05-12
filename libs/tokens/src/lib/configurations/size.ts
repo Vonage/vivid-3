@@ -30,12 +30,8 @@ SD.registerTransform({
 });
 
 export default {
-	source: [
-		'../../node_modules/@vonage/vivid-figma-tokens/data/size.tokens.json',
-	],
-	include: [
-		'../../node_modules/@vonage/vivid-figma-tokens/data/globals/size.tokens.json',
-	],
+	source: ['../../data/size.tokens.json'],
+	include: ['../../data/globals/size.tokens.json'],
 	platforms: {
 		scss: {
 			transforms: [

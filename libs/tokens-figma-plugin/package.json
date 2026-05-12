@@ -1,0 +1,37 @@
+{
+	"name": "@repo/tokens-figma-plugin",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Figma plugin for exporting Vivid tokens and opening a pull request.",
+	"license": "Apache-2.0",
+	"type": "module",
+	"files": [
+		"dist",
+		"manifest.json"
+	],
+	"scripts": {
+		"build": "tsx scripts/build.ts",
+		"dev": "tsx scripts/build.ts watch"
+	},
+	"dependencies": {
+		"@octokit/core": "^7.0.2",
+		"figma-kit": "1.0.0-beta.19",
+		"figvar2dtcg": "^0.0.2",
+		"figwire": "^0.0.2",
+		"octokit-plugin-create-pull-request": "^6.0.1",
+		"react": "catalog:",
+		"react-dom": "catalog:"
+	},
+	"devDependencies": {
+		"@figma/plugin-typings": "^1.113.0",
+		"@types/node": "catalog:",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"@vitejs/plugin-react": "^4.3.4",
+		"rimraf": "^6.0.1",
+		"tsx": "catalog:",
+		"typescript": "catalog:",
+		"vite": "catalog:",
+		"vite-plugin-singlefile": "^2.1.0"
+	}
+}

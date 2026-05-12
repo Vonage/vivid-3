@@ -1,0 +1,30 @@
+<% banner %>
+/*
+Code in this file were generated using following JSON:
+<% descriptor-json %>
+*/
+import PropTypes from 'prop-types'
+import wrapper from '@repo/react-component-wrapper'
+<% imports %>
+<% react-import %>
+
+<% jsdoc.class %>
+const <% component-class-name %> = wrapper('<% tag %>',  {
+    events: [<% events %>],
+    attributes: [<% attributes %>],
+    properties: [<% properties %>]
+});
+
+<% component-class-name %>.propTypes = {
+<% prop-types %>
+}
+
+<% component-class-name %>.defaultProps = {
+<% default-props %>
+}
+
+<% component-class-name %>.displayName = '<% component-class-name %>'
+
+<% compound-components %>
+
+export default <% component-class-name %>

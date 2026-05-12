@@ -27,6 +27,7 @@ jobs:
       should_release_icons: ${{ steps.release.outputs.should_release_icons }}
       should_release_eslint_plugin: ${{ steps.release.outputs.should_release_eslint_plugin }}
       should_release_vue: ${{ steps.release.outputs.should_release_vue }}
+      should_release_react: ${{ steps.release.outputs.should_release_react }}
       should_release_test_utils: ${{ steps.release.outputs.should_release_test_utils }}
       should_release_marketing_icons: ${{ steps.release.outputs.should_release_marketing_icons }}
     steps:
@@ -136,6 +137,15 @@ jobs:
       sha: ${{ github.sha }}
     secrets: inherit
 
+  vivid-react-publish:
+    needs: changesets
+    if: needs.changesets.outputs.should_release_react == 'true'
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: ./libs/react-wrappers/dist
+      sha: ${{ github.sha }}
+    secrets: inherit
+
   create-release-metadata:
     needs:
       - changesets
@@ -144,6 +154,7 @@ jobs:
       - vivid-design-tokens-flutter-publish
       - vivid-icons-publish
       - vivid-vue-publish
+      - vivid-react-publish
       - test-utils-publish
       - eslint-plugin-publish
       - deploy-s3
@@ -166,6 +177,7 @@ jobs:
           SHOULD_RELEASE_VUE: ${{ needs.changesets.outputs.should_release_vue }}
           SHOULD_RELEASE_TEST_UTILS: ${{ needs.changesets.outputs.should_release_test_utils }}
           SHOULD_RELEASE_MARKETING_ICONS: ${{ needs.changesets.outputs.should_release_marketing_icons }}
+          SHOULD_RELEASE_REACT: ${{ needs.changesets.outputs.should_release_react }}
           VIVID_PUBLISH_RESULT: ${{ needs.vivid-publish.result }}
           DESIGN_TOKENS_PUBLISH_RESULT: ${{ needs.vivid-design-tokens-publish.result }}
           DESIGN_TOKENS_FLUTTER_PUBLISH_RESULT: ${{ needs.vivid-design-tokens-flutter-publish.result }}
@@ -175,4 +187,5 @@ jobs:
           ESLINT_PLUGIN_PUBLISH_RESULT: ${{ needs.eslint-plugin-publish.result }}
           DEPLOY_S3_RESULT: ${{ needs.deploy-s3.result }}
           MARKETING_ICONS_PUBLISH_RESULT: ${{ needs.vivid-marketing-icons-publish.result }}
+          VIVID_REACT_PUBLISH_RESULT: ${{ needs.vivid-react-publish.result }}
         run: bash scripts/release/create-release-metadata.sh

@@ -30,7 +30,7 @@ CHANGESET
 run_changeset_version
 load_package_versions
 
-[[ "${VIVID_VERSION}" == "${VIVID_VUE_VERSION}" && "${VIVID_VERSION}" == "${TEST_UTILS_VERSION}" ]] \
+[[ "${VIVID_VERSION}" == "${VIVID_VUE_VERSION}" && "${VIVID_VERSION}" == "${TEST_UTILS_VERSION}" && "${VIVID_VERSION}" == "${VIVID_REACT_VERSION}" ]] \
   || test_fail "Expected the fixed version group to be updated together"
 
 print_section "Prepare: create pre-existing tags for unaffected packages"
@@ -68,6 +68,7 @@ packages_to_assert=(
   "@vonage/vivid|${VIVID_VERSION}"
   "@vonage/vivid-vue|${VIVID_VUE_VERSION}"
   "@vonage/vivid-test-utils|${TEST_UTILS_VERSION}"
+  "@vonage/vivid-react|${VIVID_REACT_VERSION}"
 )
 
 for entry in "${packages_to_assert[@]}"; do
@@ -104,6 +105,7 @@ tags_json="$(get_tags)"
 tag_specs=(
   "vivid-vue-v${VIVID_VUE_VERSION}"
   "test-utils-v${TEST_UTILS_VERSION}"
+  "vivid-react-v${VIVID_REACT_VERSION}"
 )
 
 for tag in "${tag_specs[@]}"; do

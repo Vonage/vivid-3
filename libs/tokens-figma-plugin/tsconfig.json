@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"lib": ["es6", "DOM"],
+		"strict": true,
+		"types": ["@figma/plugin-typings"],
+		"moduleResolution": "Bundler",
+		"module": "ESNext",
+		"jsx": "react-jsx",
+		"verbatimModuleSyntax": true,
+		"noEmit": true,
+		"skipLibCheck": true,
+		"paths": {
+			"@shared/*": ["./src/shared/*"],
+			"@ui/*": ["./src/ui/*"],
+			"@main/*": ["./src/main/*"]
+		}
+	}
+}
