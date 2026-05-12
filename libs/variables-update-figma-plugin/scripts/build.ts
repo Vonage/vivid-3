@@ -25,7 +25,12 @@ function setValueByPath(
 			return;
 		}
 
-		if (!(key in current) || typeof current[key] !== 'object') {
+		const hasOwnKey = Object.prototype.hasOwnProperty.call(current, key);
+		if (
+			!hasOwnKey ||
+			typeof current[key] !== 'object' ||
+			current[key] === null
+		) {
 			current[key] = {};
 		}
 
