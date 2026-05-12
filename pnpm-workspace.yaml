@@ -136,6 +136,10 @@ catalogs:
 ignoredBuiltDependencies:
   - '@vaadin/vaadin-usage-statistics'
 
+minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  - '@vonage/*'
+
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - core-js-pure
