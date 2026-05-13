@@ -1,5 +1,11 @@
 # Change Log - @vonage/vivid
 
+## 5.19.0
+
+### Minor Changes
+
+- [#2895](https://github.com/Vonage/vivid-3/pull/2895) [`7076be9`](https://github.com/Vonage/vivid-3/commit/7076be9bdb9d76049bcd0b1754506a7eb14355f6) Thanks [@RichardHelm](https://github.com/RichardHelm)! - feat(nav-item): support floating indicators in icon-only mode (VIV-3156)
+
 ## 5.18.0
 
 ### Minor Changes
