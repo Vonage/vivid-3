@@ -154,7 +154,9 @@ describe('vwc-dialog', () => {
 			expect(contentElementWhenUndefined).toBeNull();
 			expect(contentElement).toBeTruthy();
 			expect(contentElement?.textContent?.trim()).toEqual(content);
-			expect(dialogEl.getAttribute('aria-labelledby')).toBe('dialog-headline dialog-subtitle');
+			expect(dialogEl.getAttribute('aria-labelledby')).toBe(
+				'dialog-headline dialog-subtitle'
+			);
 		});
 	});
 
@@ -171,7 +173,9 @@ describe('vwc-dialog', () => {
 			expect(headlineElement).toBeTruthy();
 			expect(headlineElement?.textContent?.trim()).toEqual(content);
 			expect(headlineElement?.id).toBe('dialog-headline');
-			expect(dialogEl.getAttribute('aria-labelledby')).toBe('dialog-headline dialog-subtitle');
+			expect(dialogEl.getAttribute('aria-labelledby')).toBe(
+				'dialog-headline dialog-subtitle'
+			);
 		});
 	});
 
