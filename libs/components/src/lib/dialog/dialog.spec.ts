@@ -178,6 +178,18 @@ describe('vwc-dialog', () => {
 			expect(getDismissButton()).not.toBeNull();
 		});
 
+		it('should render dismiss button as the first element in the header', async () => {
+			element.headline = 'Dialog title';
+			await elementUpdated(element);
+
+			const header = element.shadowRoot?.querySelector('.header');
+			const dismissButton = getDismissButton();
+
+			expect(header).toBeTruthy();
+			expect(dismissButton).toBeTruthy();
+			expect(header?.firstElementChild).toBe(dismissButton);
+		});
+
 		it('should not render dismiss button when no-dismiss-button is set', async function () {
 			element.noDismissButton = true;
 			await elementUpdated(element);
