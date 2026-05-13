@@ -1,6 +1,6 @@
 {
 	"name": "@vonage/vivid-react",
-	"version": "5.18.0",
+	"version": "5.19.0",
 	"description": "Vivid wrappers for React with IDE autocomplete support and TypeScript typings.",
 	"keywords": [
 		"Vivid",
