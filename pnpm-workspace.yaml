@@ -115,7 +115,7 @@ catalog:
   stylelint-no-unsupported-browser-features: ^8.1.1
   tsx: ^4.21.0
   typescript: 5.9.3
-  uuid: ^11.1.0
+  uuid: ^14.0.0
   vanilla-colorful: ^0.7.2
   video.js: ^8.23.7
   vite: ^8.0.0
