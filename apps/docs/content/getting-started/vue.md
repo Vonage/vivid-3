@@ -554,7 +554,3 @@ You can use this to create a component that forwards all props, events and slots
 	</VTextField>
 </template>
 ```
-
-## Examples
-
-You can find examples for each component in the [Vivid Vue Examples Library](/vivid-vue/components/).

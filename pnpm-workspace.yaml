@@ -26,17 +26,6 @@ catalog:
   '@pnpm/exportable-manifest': ^1000.4.1
   '@pnpm/read-project-manifest': ^1001.2.5
   '@pnpm/workspace.read-manifest': ^1000.2.10
-  '@storybook/addon-essentials': ^7.6.20
-  '@storybook/addon-interactions': ^7.6.20
-  '@storybook/addon-links': ^7.6.20
-  '@storybook/blocks': ^7.6.20
-  '@storybook/builder-vite': ^7.6.20
-  '@storybook/manager-api': ^7.6.20
-  '@storybook/testing-library': ^0.2.2
-  '@storybook/vue': ^7.6.17
-  '@storybook/vue-vite': ^7.6.17
-  '@storybook/vue3': ^7.6.20
-  '@storybook/vue3-vite': ^7.6.20
   '@testing-library/dom': ^10.0.0
   '@testing-library/react': ^16.3.0
   '@testing-library/user-event': ^14.6.1
@@ -52,7 +41,6 @@ catalog:
   '@typescript-eslint/parser': ^8.0.0
   '@typescript-eslint/utils': ^8.0.0
   '@vitejs/plugin-vue': ^6.0.0
-  '@vitejs/plugin-vue2': ^2.3.4
   '@vitest/coverage-v8': ^4.1.0
   '@vitest/ui': ^4.1.0
   '@vue/test-utils': ^2.4.6
@@ -120,7 +108,6 @@ catalog:
   resolve.exports: ^2.0.3
   sass: ^1.97.3
   slugify: ^1.6.6
-  storybook: ^7.6.20
   style-dictionary: ^5.3.3
   stylelint: ^16.25.0
   stylelint-config-idiomatic-order: ^10.0.0
@@ -134,7 +121,6 @@ catalog:
   vite: ^8.0.0
   vite-plugin-dts: ^4.5.4
   vite-plugin-static-copy: ^3.3.0
-  vitepress: 2.0.0-alpha.14
   vitest: ^4.1.0
   vitest-axe: ^0.1.0
   vitest-fetch-mock: ^0.4.5
