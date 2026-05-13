@@ -355,7 +355,12 @@ export const generateWrappersV3 =
 				join(typesDir, `index.d.ts`),
 				getTemplate('types', OutputLanguage.TypeScript).replace(
 					TemplateToken.ELEMENT_TYPES,
-					classDeclarations
+					[...classDeclarations]
+						.sort((a, b) =>
+							`${componentPrefix}-${camel2kebab(a.name)}`.localeCompare(
+								`${componentPrefix}-${camel2kebab(b.name)}`
+							)
+						)
 						.map(({ attributes, name }) => {
 							const componentTagName = `${componentPrefix}-${camel2kebab(name)}`;
 							return getTemplate('element-type', OutputLanguage.TypeScript)
