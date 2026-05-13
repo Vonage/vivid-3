@@ -3,8 +3,8 @@
     "$type": "typography",
     "$value": {
       "fontFamily": "{vivid/text/font-family/sans-serif-monospace}",
-      "fontSize": "{vivid/text/font-size/sm}",
-      "lineHeight": "{vivid/text/line-height/2xs}",
+      "fontSize": "{vivid/text/font-size/350}",
+      "lineHeight": "{vivid/text/line-height/500}",
       "fontWeight": "{vivid/text/weight/normal}",
       "fontStyle": "{vivid/text/font-style/ultra-condensed}"
     },
@@ -14,8 +14,8 @@
     "$type": "typography",
     "$value": {
       "fontFamily": "{vivid/text/font-family/sans-serif-monospace}",
-      "fontSize": "{vivid/text/font-size/xs}",
-      "lineHeight": "{vivid/text/line-height/3xs}",
+      "fontSize": "{vivid/text/font-size/300}",
+      "lineHeight": "{vivid/text/line-height/400}",
       "fontWeight": "{vivid/text/weight/normal}",
       "fontStyle": "{vivid/text/font-style/ultra-condensed}"
     },
