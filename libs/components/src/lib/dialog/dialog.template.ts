@@ -41,7 +41,9 @@ function headline() {
 }
 
 function subtitle() {
-	return html<Dialog>` <h3 class="subtitle" id="dialog-subtitle>${(x) => x.subtitle}</h3> `;
+	return html<Dialog>`
+		<h3 class="subtitle" id="dialog-subtitle">${(x) => x.subtitle}</h3>
+	`;
 }
 
 function renderHeaderText() {
