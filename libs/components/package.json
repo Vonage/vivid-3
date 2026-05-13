@@ -75,7 +75,7 @@
 		"prosemirror-state": "^1.4.4",
 		"prosemirror-transform": "^1.11.0",
 		"prosemirror-view": "^1.41.6",
-		"uuid": "^11.1.0",
+		"uuid": "^14.0.0",
 		"vanilla-colorful": "^0.7.2",
 		"video.js": "^8.23.7"
 	},
