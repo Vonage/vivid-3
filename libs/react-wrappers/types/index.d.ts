@@ -53,6 +53,19 @@ declare namespace JSX {
 				open: boolean;
 				icon: string | undefined;
 			}>;
+		'vvd3-badge': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{
+				connotation: BadgeConnotation | undefined;
+				shape: BadgeShape | undefined;
+				size: BadgeSize | undefined;
+				appearance: BadgeAppearance | undefined;
+				text: string | undefined;
+				'icon-trailing': boolean;
+				icon: string | undefined;
+			}>;
 		'vvd3-audio-player': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -91,19 +104,6 @@ declare namespace JSX {
 				rel: string | undefined;
 				target: '_self' | '_blank' | '_parent' | '_top' | undefined;
 				type: string | undefined;
-			}>;
-		'vvd3-badge': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				connotation: BadgeConnotation | undefined;
-				shape: BadgeShape | undefined;
-				size: BadgeSize | undefined;
-				appearance: BadgeAppearance | undefined;
-				text: string | undefined;
-				'icon-trailing': boolean;
-				icon: string | undefined;
 			}>;
 		'vvd3-banner': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
@@ -363,28 +363,6 @@ declare namespace JSX {
 				name: string;
 				required: boolean;
 			}>;
-		'vvd3-date-range-picker': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				start: string;
-				end: string;
-				'current-start': string;
-				'current-end': string;
-				min: string;
-				max: string;
-				scale: TextFieldSize | undefined;
-				readonly: boolean;
-				'helper-text': string | undefined;
-				'error-text': string | undefined;
-				label: string | undefined;
-				'current-value': string;
-				value: string;
-				disabled: boolean;
-				name: string;
-				required: boolean;
-			}>;
 		'vvd3-date-time-picker': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -410,25 +388,35 @@ declare namespace JSX {
 				name: string;
 				required: boolean;
 			}>;
-		'vvd3-dial-pad': React.DetailedHTMLProps<
+		'vvd3-date-range-picker': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
 		> &
 			Partial<{
-				'helper-text': string | null;
-				placeholder: string | null;
+				start: string;
+				end: string;
+				'current-start': string;
+				'current-end': string;
+				min: string;
+				max: string;
+				scale: TextFieldSize | undefined;
+				readonly: boolean;
+				'helper-text': string | undefined;
+				'error-text': string | undefined;
+				label: string | undefined;
+				'current-value': string;
 				value: string;
-				pattern: string;
 				disabled: boolean;
-				pending: boolean;
-				'call-active': boolean;
-				'no-call': boolean;
-				'no-input': boolean;
-				size: DialPadSize | undefined;
-				'end-call-button-label': string | null;
-				'call-button-label': string | null;
-				'delete-aria-label': string | null;
-				autofocus: boolean;
+				name: string;
+				required: boolean;
+			}>;
+		'vvd3-divider': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{
+				orientation: Orientation;
+				appearance: DividerAppearance | undefined;
 			}>;
 		'vvd3-dialog': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
@@ -449,14 +437,6 @@ declare namespace JSX {
 				modal: boolean;
 				'scrollable-body': boolean;
 			}>;
-		'vvd3-divider': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				orientation: Orientation;
-				appearance: DividerAppearance | undefined;
-			}>;
 		'vvd3-elevation': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -466,15 +446,25 @@ declare namespace JSX {
 				'no-shadow': boolean | undefined;
 				'not-relative': boolean | undefined;
 			}>;
-		'vvd3-empty-state': React.DetailedHTMLProps<
+		'vvd3-dial-pad': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
 		> &
 			Partial<{
-				connotation: EmptyStateConnotation | undefined;
-				headline: string | undefined;
-				icon: string | undefined;
-				'icon-decoration': EmptyStateIconDecoration | undefined;
+				'helper-text': string | null;
+				placeholder: string | null;
+				value: string;
+				pattern: string;
+				disabled: boolean;
+				pending: boolean;
+				'call-active': boolean;
+				'no-call': boolean;
+				'no-input': boolean;
+				size: DialPadSize | undefined;
+				'end-call-button-label': string | null;
+				'call-button-label': string | null;
+				'delete-aria-label': string | null;
+				autofocus: boolean;
 			}>;
 		'vvd3-fab': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
@@ -499,6 +489,16 @@ declare namespace JSX {
 				disabled: boolean;
 				name: string;
 				required: boolean;
+			}>;
+		'vvd3-empty-state': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{
+				connotation: EmptyStateConnotation | undefined;
+				headline: string | undefined;
+				icon: string | undefined;
+				'icon-decoration': EmptyStateIconDecoration | undefined;
 			}>;
 		'vvd3-file-picker': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
@@ -539,27 +539,6 @@ declare namespace JSX {
 				'elevation-shadow': boolean;
 				alternate: boolean;
 			}>;
-		'vvd3-icon': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				connotation: IconConnotation | undefined;
-				size: -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5 | undefined;
-				label: string | undefined;
-				name: string | undefined;
-			}>;
-		'vvd3-layout': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				gutters: Gutters | undefined;
-				'column-basis': ColumnBasis | undefined;
-				'column-spacing': ColumnSpacing | undefined;
-				'row-spacing': RowSpacing | undefined;
-				'auto-sizing': 'fit' | 'fill' | undefined;
-			}>;
 		'vvd3-menu': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -572,6 +551,16 @@ declare namespace JSX {
 				'position-strategy': Strategy | undefined;
 				open: boolean;
 				anchor: AnchorType | undefined;
+			}>;
+		'vvd3-icon': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{
+				connotation: IconConnotation | undefined;
+				size: -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5 | undefined;
+				label: string | undefined;
+				name: string | undefined;
 			}>;
 		'vvd3-menu-item': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
@@ -588,6 +577,17 @@ declare namespace JSX {
 				'check-trailing': boolean;
 				'check-appearance': 'normal' | 'tick-only' | undefined;
 				icon: string | undefined;
+			}>;
+		'vvd3-layout': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{
+				gutters: Gutters | undefined;
+				'column-basis': ColumnBasis | undefined;
+				'column-spacing': ColumnSpacing | undefined;
+				'row-spacing': RowSpacing | undefined;
+				'auto-sizing': 'fit' | 'fill' | undefined;
 			}>;
 		'vvd3-nav': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
@@ -685,6 +685,20 @@ declare namespace JSX {
 				'icon-trailing': boolean;
 				icon: string | undefined;
 			}>;
+		'vvd3-popup': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{
+				open: boolean;
+				dismissible: boolean;
+				arrow: boolean;
+				alternate: boolean;
+				placement: Placement | undefined;
+				'animation-frame': boolean;
+				strategy: Strategy | undefined;
+				offset: number | null;
+			}>;
 		'vvd3-pagination': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -710,19 +724,17 @@ declare namespace JSX {
 				arrow: boolean;
 				open: boolean;
 			}>;
-		'vvd3-popup': React.DetailedHTMLProps<
+		'vvd3-progress-ring': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
 		> &
 			Partial<{
-				open: boolean;
-				dismissible: boolean;
-				arrow: boolean;
-				alternate: boolean;
-				placement: Placement | undefined;
-				'animation-frame': boolean;
-				strategy: Strategy | undefined;
-				offset: number | null;
+				connotation: ProgressRingConnotation | undefined;
+				size: -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5 | undefined;
+				value: number | null;
+				min: number;
+				max: number;
+				paused: boolean;
 			}>;
 		'vvd3-progress': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
@@ -732,18 +744,6 @@ declare namespace JSX {
 				shape: ProgressShape | undefined;
 				connotation: ProgressConnotation | undefined;
 				reverse: boolean;
-				value: number | null;
-				min: number;
-				max: number;
-				paused: boolean;
-			}>;
-		'vvd3-progress-ring': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				connotation: ProgressRingConnotation | undefined;
-				size: -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5 | undefined;
 				value: number | null;
 				min: number;
 				max: number;
@@ -781,6 +781,16 @@ declare namespace JSX {
 				orientation: Orientation | 'horizontal' | 'vertical';
 				'helper-text': string | undefined;
 			}>;
+		'vvd3-popover': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{}>;
+		'vvd3-rich-text-editor': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{}>;
 		'vvd3-range-slider': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -806,21 +816,6 @@ declare namespace JSX {
 				name: string;
 				required: boolean;
 			}>;
-		'vvd3-rich-text-view': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-popover': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rich-text-editor': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
 		'vvd3-option-tag': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -864,6 +859,27 @@ declare namespace JSX {
 				name: string;
 				required: boolean;
 			}>;
+		'vvd3-rich-text-view': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{}>;
+		'vvd3-simple-color-picker': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{
+				placement: Placement | undefined;
+				'swatches-per-row': number;
+				anchor: AnchorType | undefined;
+				open: boolean;
+				label: string | undefined;
+				'current-value': string;
+				value: string;
+				disabled: boolean;
+				name: string;
+				required: boolean;
+			}>;
 		'vvd3-select': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -889,19 +905,6 @@ declare namespace JSX {
 				name: string;
 				required: boolean;
 			}>;
-		'vvd3-selectable-box': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				checked: boolean;
-				'clickable-box': boolean;
-				connotation: SelectableBoxConnotation | undefined;
-				'control-type': SelectableBoxControlType | undefined;
-				'control-placement': SelectableBoxControlPlacement;
-				tight: boolean;
-				disabled: boolean;
-			}>;
 		'vvd3-side-drawer': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -911,22 +914,6 @@ declare namespace JSX {
 				modal: boolean;
 				open: boolean;
 				trailing: boolean;
-			}>;
-		'vvd3-simple-color-picker': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				placement: Placement | undefined;
-				'swatches-per-row': number;
-				anchor: AnchorType | undefined;
-				open: boolean;
-				label: string | undefined;
-				'current-value': string;
-				value: string;
-				disabled: boolean;
-				name: string;
-				required: boolean;
 			}>;
 		'vvd3-slider': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
@@ -947,6 +934,19 @@ declare namespace JSX {
 				disabled: boolean;
 				name: string;
 				required: boolean;
+			}>;
+		'vvd3-selectable-box': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{
+				checked: boolean;
+				'clickable-box': boolean;
+				connotation: SelectableBoxConnotation | undefined;
+				'control-type': SelectableBoxControlType | undefined;
+				'control-placement': SelectableBoxControlPlacement;
+				tight: boolean;
+				disabled: boolean;
 			}>;
 		'vvd3-split-button': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
@@ -1190,13 +1190,6 @@ declare namespace JSX {
 				disabled: boolean;
 				icon: string | undefined;
 			}>;
-		'vvd3-tree-view': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				'render-collapsed-nodes': boolean;
-			}>;
 		'vvd3-video-player': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -1214,6 +1207,13 @@ declare namespace JSX {
 			HTMLElement
 		> &
 			Partial<{}>;
+		'vvd3-tree-view': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{
+				'render-collapsed-nodes': boolean;
+			}>;
 		'vvd3-rte-config': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -1433,6 +1433,13 @@ declare namespace JSX {
 				name: string;
 				required: boolean;
 			}>;
+		'vvd3-listbox': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{
+				disabled: boolean;
+			}>;
 		'vvd3-base-progress': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -1442,13 +1449,6 @@ declare namespace JSX {
 				min: number;
 				max: number;
 				paused: boolean;
-			}>;
-		'vvd3-listbox': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				disabled: boolean;
 			}>;
 		'vvd3-vivid-element': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,

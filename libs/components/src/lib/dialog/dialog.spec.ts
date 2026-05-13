@@ -169,13 +169,27 @@ describe('vwc-dialog', () => {
 			expect(headlineElement).toBeTruthy();
 			expect(headlineElement?.textContent?.trim()).toEqual(content);
 			expect(headlineElement?.id).toBe('dialog-headline');
-			expect(dialogEl.getAttribute('aria-labelledby')).toBe('dialog-headline');
+			expect(dialogEl.getAttribute('aria-labelledby')).toBe(
+				'dialog-headline dialog-subtitle'
+			);
 		});
 	});
 
 	describe('no-dismiss-button', function () {
 		it('should render a dismiss button when no-dismiss-button is not set', async function () {
 			expect(getDismissButton()).not.toBeNull();
+		});
+
+		it('should render dismiss button as the first element in the header', async () => {
+			element.headline = 'Dialog title';
+			await elementUpdated(element);
+
+			const header = element.shadowRoot?.querySelector('.header');
+			const dismissButton = getDismissButton();
+
+			expect(header).toBeTruthy();
+			expect(dismissButton).toBeTruthy();
+			expect(header?.firstElementChild).toBe(dismissButton);
 		});
 
 		it('should not render dismiss button when no-dismiss-button is set', async function () {
