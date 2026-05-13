@@ -41,7 +41,7 @@ function headline() {
 }
 
 function subtitle() {
-	return html<Dialog>` <h3 class="subtitle">${(x) => x.subtitle}</h3> `;
+	return html<Dialog>` <h3 class="subtitle" id="dialog-subtitle>${(x) => x.subtitle}</h3> `;
 }
 
 function renderHeaderText() {
@@ -70,12 +70,13 @@ export const DialogTemplate = (context: VividElementDefinitionContext) => {
 	return html<Dialog>`
 	<${elevationTag} dp="8" not-relative>
 		<dialog class="${getClasses}"
+
 				@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
 				@cancel="${(_, c) => c.event.preventDefault()}"
 				${delegateAria({
 					ariaModal: (x) => String(x._openedAsModal),
 				})}
-				aria-labelledby="${(x) => (x.headline ? 'dialog-headline' : null)}"
+				aria-labelledby="${(x) => (x.headline || x.subtitle ? 'dialog-headline dialog-subtitle' : null)}"
 		>
 			<slot name="main">
 				<div class="main-wrapper">
