@@ -13,7 +13,7 @@ catalog:
   '@codemirror/theme-one-dark': ^6.1.3
   '@codemirror/view': ^6.39.16
   '@custom-elements-manifest/analyzer': ^0.5.7
-  '@eslint/eslintrc': ^3.2.0
+  '@eslint/eslintrc': ^3.3.5
   '@eslint/js': ^10.0.1
   '@figma/rest-api-spec': ^0.35.0
   '@floating-ui/dom': ^1.7.6
@@ -27,22 +27,22 @@ catalog:
   '@pnpm/read-project-manifest': ^1001.2.5
   '@pnpm/workspace.read-manifest': ^1000.2.10
   '@testing-library/dom': ^10.0.0
-  '@testing-library/react': ^16.3.0
+  '@testing-library/react': ^16.3.2
   '@testing-library/user-event': ^14.6.1
   '@turbo/gen': ^2.8.13
-  '@types/eslint': ^9.0.0
-  '@types/jsdom': ^28.0.0
+  '@types/eslint': ^9.6.1
+  '@types/jsdom': ^28.0.1
   '@types/lodash': ^4.17.24
   '@types/markdown-it': ^14.1.0
-  '@types/node': ^20.19.25
-  '@types/react': ^18.3.27
+  '@types/node': ^20.19.40
+  '@types/react': ^18.3.28
   '@types/react-dom': ^18.3.7
-  '@typescript-eslint/eslint-plugin': ^8.0.0
-  '@typescript-eslint/parser': ^8.0.0
-  '@typescript-eslint/utils': ^8.0.0
-  '@vitejs/plugin-vue': ^6.0.0
-  '@vitest/coverage-v8': ^4.1.0
-  '@vitest/ui': ^4.1.0
+  '@typescript-eslint/eslint-plugin': ^8.59.2
+  '@typescript-eslint/parser': ^8.59.2
+  '@typescript-eslint/utils': ^8.59.2
+  '@vitejs/plugin-vue': ^6.0.6
+  '@vitest/coverage-v8': ^4.1.5
+  '@vitest/ui': ^4.1.5
   '@vue/test-utils': ^2.4.6
   cem-plugin-async-function: ^0.0.5
   cem-plugin-jsdoc-example: ^0.0.9
@@ -58,30 +58,30 @@ catalog:
   date-fns: ^4.0.0
   dialog-polyfill: ^0.5.6
   dompurify: ^3.3.1
-  dotenv: ^17.3.1
+  dotenv: ^17.4.2
   element-internals-polyfill: ^3.0.2
   eleventy-plugin-nesting-toc: ^1.3.0
-  esbuild: ^0.27.3
-  eslint: ^10.0.2
-  eslint-config-prettier: ^10.0.0
+  esbuild: ^0.27.7
+  eslint: ^10.3.0
+  eslint-config-prettier: ^10.1.8
   eslint-plugin-ban: ^2.0.0
-  eslint-plugin-compat: ^7.0.0
+  eslint-plugin-compat: ^7.0.2
   eslint-plugin-import: ^2.32.0
   eslint-plugin-tsdoc: ^0.4.0
-  eslint-plugin-unused-imports: ^4.0.0
-  eslint-plugin-vue: ^10.0.0
+  eslint-plugin-unused-imports: ^4.4.1
+  eslint-plugin-vue: ^10.9.1
   expr-eval: ^2.0.2
   figma-js: 1.16.1-0
   figmash: ^0.0.3
-  glob: ^13.0.0
-  globals: ^17.4.0
+  glob: ^13.0.6
+  globals: ^17.6.0
   highlight.js: ^11.11.1
   htmx.org: ^2.0.0
   http-server: ^14.1.1
   is-svg: ^6.1.0
   istanbul-merge: ^2.0.0
-  jsdom: ^28.0.0
-  lodash: ^4.17.23
+  jsdom: ^28.1.0
+  lodash: ^4.18.1
   markdown-it: ^14.0.0
   markdown-it-anchor: ^9.0.0
   markdown-table: ^3.0.4
@@ -90,8 +90,8 @@ catalog:
   ohash: ^2.0.11
   pagefind: ^1.4.0
   playwright: 1.57.0
-  prettier: ^3.8.1
-  prettier-plugin-packagejson: ^3.0.0
+  prettier: ^3.8.3
+  prettier-plugin-packagejson: ^3.0.2
   prosemirror-commands: ^1.7.1
   prosemirror-dropcursor: ^1.8.2
   prosemirror-gapcursor: ^1.3.2
@@ -106,10 +106,10 @@ catalog:
   react: ^18.3.1
   react-dom: ^18.3.1
   resolve.exports: ^2.0.3
-  sass: ^1.97.3
+  sass: ^1.99.0
   slugify: ^1.6.6
-  style-dictionary: ^5.3.3
-  stylelint: ^16.25.0
+  style-dictionary: ^5.4.0
+  stylelint: ^16.26.1
   stylelint-config-idiomatic-order: ^10.0.0
   stylelint-config-standard-scss: ^15.0.1
   stylelint-no-unsupported-browser-features: ^8.1.1
@@ -118,10 +118,10 @@ catalog:
   uuid: ^11.1.0
   vanilla-colorful: ^0.7.2
   video.js: ^8.23.7
-  vite: ^8.0.0
+  vite: ^8.0.12
   vite-plugin-dts: ^4.5.4
-  vite-plugin-static-copy: ^3.3.0
-  vitest: ^4.1.0
+  vite-plugin-static-copy: ^3.4.0
+  vitest: ^4.1.5
   vitest-axe: ^0.1.0
   vitest-fetch-mock: ^0.4.5
   wait-on: ^8.0.5
@@ -130,13 +130,14 @@ catalogs:
   vue2:
     vue: ^2.7.16
   vue3:
-    vue: ^3.5.29
-    vue3: npm:vue@^3.5.29
+    vue: ^3.5.34
+    vue3: npm:vue@^3.5.34
 
 ignoredBuiltDependencies:
   - '@vaadin/vaadin-usage-statistics'
 
 minimumReleaseAge: 4320
+
 minimumReleaseAgeExclude:
   - '@vonage/*'
 
