@@ -54,7 +54,7 @@ catalog:
   codemirror: ^6.0.2
   concurrently: ^9.2.1
   custom-elements-manifest: ^2.1.0
-  cypress: ^15.0.0
+  cypress: 15.13.1
   date-fns: ^4.0.0
   dialog-polyfill: ^0.5.6
   dompurify: ^3.3.1
