@@ -116,11 +116,12 @@ export const cssConfig: Hooks = {
 
 			const serializeTypography = (value: any): string => {
 				const fontFamily = serializeReference(value.fontFamily);
+				const fontStretch = serializeReference(value.fontStretch);
 				const fontSize = serializeReference(value.fontSize);
 				const lineHeight = serializeReference(value.lineHeight);
 				const fontWeight = serializeReference(value.fontWeight ?? '');
 
-				return `${fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`.trim();
+				return `${fontWeight} ${fontStretch}% ${fontSize}/${lineHeight} ${fontFamily}`.trim();
 			};
 
 			const content = dictionary.allTokens

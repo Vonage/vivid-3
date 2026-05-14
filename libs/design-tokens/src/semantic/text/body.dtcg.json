@@ -5,10 +5,10 @@
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/400}",
       "lineHeight": "{vivid/text/line-height/600}",
-      "fontWeight": "{vivid/text/weight/normal}",
-      "fontStyle": "{vivid/text/font-style/ultra-condensed}"
+      "fontWeight": "{vivid/text/weight/400}",
+      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
     },
-    "$description": "Body text style for large emphasis content, such as important paragraphs and highlighted UI text."
+    "$description": "body font-stretch for large emphasis content, such as important paragraphs and highlighted UI text."
   },
   "vivid/text/body/md/regular": {
     "$type": "typography",
@@ -16,10 +16,10 @@
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/350}",
       "lineHeight": "{vivid/text/line-height/500}",
-      "fontWeight": "{vivid/text/weight/normal}",
-      "fontStyle": "{vivid/text/font-style/ultra-condensed}"
+      "fontWeight": "{vivid/text/weight/400}",
+      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
     },
-    "$description": "Default body text style for medium emphasis content, such as paragraphs and general UI text."
+    "$description": "Default body font-stretch for medium emphasis content, such as paragraphs and general UI text."
   },
   "vivid/text/body/sm/regular": {
     "$type": "typography",
@@ -27,10 +27,10 @@
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/300}",
       "lineHeight": "{vivid/text/line-height/400}",
-      "fontWeight": "{vivid/text/weight/normal}",
-      "fontStyle": "{vivid/text/font-style/ultra-condensed}"
+      "fontWeight": "{vivid/text/weight/400}",
+      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
     },
-    "$description": "Body text style for small emphasis content, such as captions and secondary UI text."
+    "$description": "body font-stretch for small emphasis content, such as captions and secondary UI text."
   },
   "vivid/text/body/lg/bold": {
     "$type": "typography",
@@ -38,10 +38,10 @@
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/400}",
       "lineHeight": "{vivid/text/line-height/600}",
-      "fontWeight": "{vivid/text/weight/semibold}",
-      "fontStyle": "{vivid/text/font-style/ultra-condensed}"
+      "fontWeight": "{vivid/text/weight/600}",
+      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
     },
-    "$description": "Body text style for large emphasis content, such as important paragraphs and highlighted UI text."
+    "$description": "body font-stretch for large emphasis content, such as important paragraphs and highlighted UI text."
   },
   "vivid/text/body/md/bold": {
     "$type": "typography",
@@ -49,10 +49,10 @@
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/350}",
       "lineHeight": "{vivid/text/line-height/500}",
-      "fontWeight": "{vivid/text/weight/normal}",
-      "fontStyle": "{vivid/text/font-style/ultra-condensed}"
+      "fontWeight": "{vivid/text/weight/600}",
+      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
     },
-    "$description": "Default body text style for medium emphasis content, such as paragraphs and general UI text."
+    "$description": "Default body font-stretch for medium emphasis content, such as paragraphs and general UI text."
   },
   "vivid/text/body/sm/bold": {
     "$type": "typography",
@@ -60,9 +60,9 @@
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/300}",
       "lineHeight": "{vivid/text/line-height/400}",
-      "fontWeight": "{vivid/text/weight/semibold}",
-      "fontStyle": "{vivid/text/font-style/ultra-condensed}"
+      "fontWeight": "{vivid/text/weight/600}",
+      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
     },
-    "$description": "Body text style for small emphasis content, such as captions and secondary UI text."
+    "$description": "body font-stretch for small emphasis content, such as captions and secondary UI text."
   }
 }

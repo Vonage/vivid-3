@@ -5,8 +5,8 @@
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/1600}",
       "lineHeight": "{vivid/text/line-height/2000}",
-      "fontWeight": "{vivid/text/weight/medium}",
-      "fontStyle": "{vivid/text/font-style/condensed}"
+      "fontWeight": "{vivid/text/weight/500}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
     },
     "$description": "Use for Dashboard metrics, hero content. Use sparingly."
   },
@@ -16,8 +16,8 @@
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/1400}",
       "lineHeight": "{vivid/text/line-height/1800}",
-      "fontWeight": "{vivid/text/weight/medium}",
-      "fontStyle": "{vivid/text/font-style/condensed}"
+      "fontWeight": "{vivid/text/weight/500}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
     },
     "$description": "Smaller version of 2xl, use for Dashboard metrics, hero content. Use sparingly."
   },
@@ -27,8 +27,8 @@
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/1000}",
       "lineHeight": "{vivid/text/line-height/1600}",
-      "fontWeight": "{vivid/text/weight/medium}",
-      "fontStyle": "{vivid/text/font-style/condensed}"
+      "fontWeight": "{vivid/text/weight/500}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
     },
     "$description": "Heading text style for small emphasis content, such as captions and secondary UI text."
   },
@@ -38,8 +38,8 @@
       "fontFamily": "{vivid/text/font-family/sans-serif}",
       "fontSize": "{vivid/text/font-size/800}",
       "lineHeight": "{vivid/text/line-height/1200}",
-      "fontWeight": "{vivid/text/weight/medium}",
-      "fontStyle": "{vivid/text/font-style/condensed}"
+      "fontWeight": "{vivid/text/weight/500}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
     },
     "$description": "Heading text style for small emphasis content, such as captions and secondary UI text."
   },
@@ -49,8 +49,8 @@
       "fontFamily": "{vivid/text/font-family/sans-serif-display}",
       "fontSize": "{vivid/text/font-size/700}",
       "lineHeight": "{vivid/text/line-height/1000}",
-      "fontWeight": "{vivid/text/weight/medium}",
-      "fontStyle": "{vivid/text/font-style/condensed}"
+      "fontWeight": "{vivid/text/weight/500}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
     },
     "$description": "Heading text style for small emphasis content, such as captions and secondary UI text."
   },
@@ -60,8 +60,8 @@
       "fontFamily": "{vivid/text/font-family/sans-serif-display}",
       "fontSize": "{vivid/text/font-size/600}",
       "lineHeight": "{vivid/text/line-height/900}",
-      "fontWeight": "{vivid/text/weight/medium}",
-      "fontStyle": "{vivid/text/font-style/condensed}"
+      "fontWeight": "{vivid/text/weight/500}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
     },
     "$description": "Heading text style for small emphasis content, such as captions and secondary UI text."
   },
@@ -71,8 +71,8 @@
       "fontFamily": "{vivid/text/font-family/sans-serif-display}",
       "fontSize": "{vivid/text/font-size/500}",
       "lineHeight": "{vivid/text/line-height/800}",
-      "fontWeight": "{vivid/text/weight/medium}",
-      "fontStyle": "{vivid/text/font-style/condensed}"
+      "fontWeight": "{vivid/text/weight/500}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
     },
     "$description": "Heading text style for small component titles and lower emphasis content."
   },
@@ -82,8 +82,8 @@
       "fontFamily": "{vivid/text/font-family/sans-serif-display}",
       "fontSize": "{vivid/text/font-size/450}",
       "lineHeight": "{vivid/text/line-height/700}",
-      "fontWeight": "{vivid/text/weight/medium}",
-      "fontStyle": "{vivid/text/font-style/condensed}"
+      "fontWeight": "{vivid/text/weight/500}",
+      "fontStretch": "{vivid/text/font-stretch/condensed}"
     },
     "$description": "Heading text style for small component titles and lowest emphasis content."
   }

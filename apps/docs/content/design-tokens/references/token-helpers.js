@@ -7,6 +7,11 @@ const {
 	styleDictionary,
 } = require('../../../../../libs/design-tokens/scripts/style-dictionary');
 
+const elements = ['bg', 'fill', 'surface', 'text', 'border'];
+const roles = ['neutral', 'primary', 'announcement', 'info', 'success', 'warning', 'danger', 'inverse'];
+const prominences = ['strong', 'subtle', 'secondary', 'tertiary'];
+const states = ['hover', 'active', 'selected', 'disabled', 'error', 'valid'];
+
 module.exports.getTokens = async function () {
 	let styleDictionaryInstance = await styleDictionary.init();
 	// Use absolute path to avoid working directory issues
@@ -25,12 +30,23 @@ module.exports.getTokens = async function () {
 		const cssToken = cssTokens.tokenMap.get(tokenName);
 		const flutterToken = flutterTokens.tokenMap.get(tokenName);
 		const cleanName = tokenName.replace(/[{}]/gm, '');
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const [_prefix, category, semantic, scale] = cleanName.split('/');
+		const nameArr = cleanName.split('/');
+		const element = nameArr.filter(part => elements.includes(part)).join('-');
+		const role = nameArr.filter(part => roles.includes(part)).join('-');
+		const prominence = nameArr.filter(part => prominences.includes(part)).join('-');
+		const state = nameArr.filter(part => states.includes(part)).join('-');
+		const category = nameArr[1];
+		const semantic = nameArr[2];
+		const scale = nameArr[3];
 
 		const entry = {
 			name: cleanName,
 			category,
+			tokenType: cssToken.docs?.tokenType,
+			element,
+			role,
+			prominence,
+			state,
 			semantic,
 			scale,
 			description: cssToken.$description ?? '',

@@ -103,21 +103,18 @@
   {% endfor %}
 
   {% set count = valid | length %}
-  {% if count > 0 %}
-    {% set start = (startIndex / count) * 100 %}
-    {% set end = ((endIndex + 1) / count) * 100 %}
-  {% else %}
-    {% set start = 0 %}
-    {% set end = 0 %}
-  {% endif %}
 
   <div class="scale-example {% if rangeLabel %}scale-example--has-range{% endif %}">
-    <div class="scale-inner">
+    <div class="scale-inner" style="max-width: calc({{ count }} * 61px + {{ (count - 1) * 4 }}px);">
       {{ colorScale(valid, scaleItem, alpha) }}
 
-      {% if rangeLabel %}
+      {% if rangeLabel and count > 0 %}
+        {% set gapPx = 4 %}
+        {% set totalGapPx = (count - 1) * gapPx %}
+        {% set spanCount = endIndex - startIndex + 1 %}
+        {% set spanGaps = endIndex - startIndex %}
         <div class="scale-range"
-             style="left: {{ start }}%; width: {{ end - start }}%;">
+             style="left: calc({{ startIndex }} * ((100% - {{ totalGapPx }}px) / {{ count }} + {{ gapPx }}px)); width: calc({{ spanCount }} * (100% - {{ totalGapPx }}px) / {{ count }} + {{ spanGaps * gapPx }}px);">
           <span class="scale-range__label">{{ rangeLabel }}</span>
         </div>
       {% endif %}
@@ -265,22 +262,18 @@
 <vwc-table>
 	<vwc-table-head>
 		<vwc-table-row>
+			<vwc-table-header-cell style="width: 120px;">Preview</vwc-table-header-cell>
 			<vwc-table-header-cell class="token-name">Token</vwc-table-header-cell>
-			<vwc-table-header-cell class="align-number base-unit">% of base unit</vwc-table-header-cell>
-			<vwc-table-header-cell class="align-number rem">REM</vwc-table-header-cell>
-			<vwc-table-header-cell class="align-number px">Pixels</vwc-table-header-cell>
-			<vwc-table-header-cell>Preview</vwc-table-header-cell>
+			<vwc-table-header-cell class="px">Description</vwc-table-header-cell>
 		</vwc-table-row>
 	</vwc-table-head>
 	<vwc-table-body>
 		{% for key, tokenArray in list %}
 			{% set item = tokenArray[0] %}
 			<vwc-table-row>
-				<vwc-table-cell><code>--{{ item.css }}</code></vwc-table-cell>
-				<vwc-table-cell class="align-number">{{ key }}%</vwc-table-cell>
-				<vwc-table-cell class="align-number">{{ item.preview }}</vwc-table-cell>
-				<vwc-table-cell class="align-number">{{ item.description }}</vwc-table-cell>
 				<vwc-table-cell><div class="space-preview" style="inline-size: {{ item.preview }}"></div></vwc-table-cell>
+				<vwc-table-cell><code>{{ item.css | replace('vivid-', '') }}</code></vwc-table-cell>
+				<vwc-table-cell>{{ item.description }}</vwc-table-cell>
 			</vwc-table-row>
 		{% endfor %}
 	</vwc-table-body>
@@ -293,9 +286,6 @@
 	}
 	.token-name {
 		width: 220px;
-	}
-	.base-unit, .rem, .px {
-		width: 120px;
 	}
 	.space-preview {
 		height: 16px;
@@ -361,17 +351,24 @@
 {% endmacro %}
 
 {% macro colorTokenPreview(item) %}
-	{% if item.type == 'color/background' %}
-		<div class="color-token-preview-bg">
-			<div style="background-color: {{ item.preview }}; border: 1px solid light-dark(var(--vvd-color-neutral-200), transparent)"></div>
+	{% if 'text' in item.name %}
+		<div class="color-token-preview-text">
+			<vwc-tooltip text="{{ item.preview }}" placement="left">
+				<div slot="anchor" class="color-token-preview-text" style="color: {{ item.preview }}; background-color: contrast-color({{ item.preview }})">Aa</div>
+			</vwc-tooltip>
 		</div>
-
-	{% elif item.type == 'color/text' %}
-		<div class="color-token-preview-text" style="color: {{ item.preview }}; background-color: contrast-color({{ item.preview }})">Aa</div>
-
-	{% elif item.type == 'color/border' %}
-		<div class="color-token-preview-border" style="border: 1px solid {{ item.preview }};"></div>
-
+	{% elif '/bg' in item.name %}
+		<div class="color-token-preview-bg">
+			<vwc-tooltip text="{{ item.preview }}" placement="left">
+				<div slot="anchor" style="background-color: {{ item.preview }}; border: 1px solid light-dark(var(--vvd-color-neutral-200), transparent)"></div>
+			</vwc-tooltip>
+		</div>
+	{% elif '/border' in item.name %}
+		<div class="color-token-preview-border">
+			<vwc-tooltip text="{{ item.preview }}" placement="left">
+				<div slot="anchor" class="color-token-preview-border" style="border: 2px solid {{ item.preview }};"></div>
+			</vwc-tooltip>	
+		</div>
 	{% else %}
 		<pre>{{ item | json }}</pre>
 	{% endif %}
@@ -390,7 +387,7 @@
 		font-weight: 500;
 		line-height: 2rem;
 		display: inline-block;
-		padding: 0 0.25rem;
+		padding: 0 0.125rem;
 		border-radius: 4px;
 	}
 
@@ -414,6 +411,29 @@
 		z-index: 1;
 	}
 </style>
+
+{% macro tokenReferenceTable(groups) %}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell style="width: 68px;"></vwc-table-header-cell>
+			<vwc-table-header-cell>Token</vwc-table-header-cell>
+			<vwc-table-header-cell>Description</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		{% for group in groups %}
+			{% for item in group %}
+				<vwc-table-row>
+					<vwc-table-cell>{{ colorTokenPreview(item) }}</vwc-table-cell>
+					<vwc-table-cell style="width: 18rem;"><code>{{ item.css | replace('vivid-', '') }}</code></vwc-table-cell>
+					<vwc-table-cell>{{ item.description }}</vwc-table-cell>
+				</vwc-table-row>
+			{% endfor %}
+		{% endfor %}
+	</vwc-table-body>
+</vwc-table>
+{% endmacro %}
 
 {% macro borderTokenTable(list, headingText, headingLevel = 3) %}
 {{ heading(headingText, headingLevel) }}

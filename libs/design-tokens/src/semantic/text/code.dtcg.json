@@ -5,10 +5,10 @@
       "fontFamily": "{vivid/text/font-family/sans-serif-monospace}",
       "fontSize": "{vivid/text/font-size/350}",
       "lineHeight": "{vivid/text/line-height/500}",
-      "fontWeight": "{vivid/text/weight/normal}",
-      "fontStyle": "{vivid/text/font-style/ultra-condensed}"
+      "fontWeight": "{vivid/text/weight/400}",
+      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
     },
-    "$description": "Code text style for medium emphasis content, such as inline code snippets and preformatted text."
+    "$description": "Code font-stretch for medium emphasis content, such as inline code snippets and preformatted text."
   },
   "vivid/text/code/block": {
     "$type": "typography",
@@ -16,9 +16,9 @@
       "fontFamily": "{vivid/text/font-family/sans-serif-monospace}",
       "fontSize": "{vivid/text/font-size/300}",
       "lineHeight": "{vivid/text/line-height/400}",
-      "fontWeight": "{vivid/text/weight/normal}",
-      "fontStyle": "{vivid/text/font-style/ultra-condensed}"
+      "fontWeight": "{vivid/text/weight/400}",
+      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
     },
-    "$description": "Code text style for medium emphasis content, such as inline code snippets and preformatted text."
+    "$description": "Code font-stretch for medium emphasis content, such as inline code snippets and preformatted text."
   }
 }

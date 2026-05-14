@@ -1,0 +1,10 @@
+{
+  "vivid/text/font-stretch/condensed": {
+    "$type": "number",
+    "$value": 75
+  },
+  "vivid/text/font-stretch/ultra-condensed": {
+    "$type": "number",
+    "$value": 50
+  }
+}

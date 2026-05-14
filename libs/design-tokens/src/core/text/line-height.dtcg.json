@@ -9,6 +9,11 @@
 		"$type": "dimension",
 		"$description": "20px"
 	},
+	"vivid/text/line-height/600": {
+		"$value": "{vivid/size/500}",
+		"$type": "dimension",
+		"$description": "24px"
+	},
 	"vivid/text/line-height/700": {
 		"$value": "{vivid/size/700}",
 		"$type": "dimension",
