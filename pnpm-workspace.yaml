@@ -153,6 +153,7 @@ overrides:
   minimist: 1.2.8
   nconf: 0.13.0
   path-to-regexp: 0.2.5
+  unrun: 0.2.37
 
 peerDependencyRules:
   allowAny:
