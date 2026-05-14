@@ -180,7 +180,7 @@ export const createOptionalTooltip = (
 export const createButton = (
 	ctx: UiCtx,
 	props: {
-		variant?: Prop<'toolbar' | 'popover' | 'popover-primary'>;
+		variant?: Prop<'toolbar' | 'toolbar-menu' | 'popover' | 'popover-primary'>;
 		label: Prop<string>;
 		icon?: Prop<string>;
 		noTooltip?: boolean;
@@ -199,6 +199,11 @@ export const createButton = (
 		variant() === 'popover-primary' ? 'outlined' : 'ghost-light';
 	const appearance = () =>
 		ctx.evalProp(props.active) ? 'filled' : appearanceInactive();
+	const connotation = () =>
+		ctx.evalProp(props.connotation) ??
+		(variant() === 'toolbar-menu' && ctx.evalProp(props.active)
+			? 'cta'
+			: undefined);
 	const disabled = () =>
 		Boolean(ctx.evalProp(ctx.props.disabled) || ctx.evalProp(props.disabled));
 
@@ -211,8 +216,9 @@ export const createButton = (
 			disabled,
 			icon: props.icon,
 			autofocus: props.autofocus,
-			connotation: props.connotation,
+			connotation,
 			[props.icon ? 'ariaLabel' : 'label']: props.label,
+			ariaPressed: () => (ctx.evalProp(props.active) ? 'true' : null),
 		},
 		[
 			on('click', props.onClick, (onClick) => () => {
@@ -304,10 +310,12 @@ export const createMenuItem = (
 export const createButtonGroup = (
 	ctx: UiCtx,
 	props: {
+		slot?: string;
 		children: Array<Node>;
 	}
 ) =>
 	createDiv(ctx, {
+		slot: props.slot,
 		className: 'ui-button-group',
 		children: props.children,
 	});
