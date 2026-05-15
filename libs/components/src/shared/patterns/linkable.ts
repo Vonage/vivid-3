@@ -3,7 +3,7 @@ import { attr, html, ref, type TemplateValue } from '@microsoft/fast-element';
 import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor, MixinType } from '../utils/mixins';
 import { delegateAria, DelegatesAria } from '../aria/delegates-aria';
-import type { BoundAriaProperties } from '../aria/delegate-aria-behavior';
+import type { BoundAriaProperties } from '../aria/aria-binding-directive';
 
 /**
  * Mixin for components that can be links, inherits attributes from {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.

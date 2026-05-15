@@ -6,7 +6,6 @@ import type { VividElementDefinitionContext } from '../../shared/design-system/d
 import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import { menuName } from '../menu/name';
 import type { MenuItem } from './menu-item';
-import { MenuItemRole } from './menu-item-role';
 
 const getIndicatorIcon = (x: MenuItem) => {
 	if (x.checkedAppearance === 'tick-only') {
@@ -74,7 +73,6 @@ export const MenuItemTemplate = (context: VividElementDefinitionContext) => {
 	return html<MenuItem>`
 		<template
 			${applyHostSemantics({
-				role: MenuItemRole.menuitem,
 				ariaHasPopup: (x) => (x.hasSubmenu ? 'menu' : void 0),
 				ariaChecked: (x) => (x.controlType ? x.checked : void 0),
 				ariaDisabled: (x) => x.disabled,

@@ -28,7 +28,7 @@ const reflectAriaProperty = (
 	if (shouldRemoveAriaAttributes(element._vividAriaBehaviour)) {
 		// Remove ARIA attribute if present
 		// By default, FAST would reflect the attribute change back and set the property to null
-		// To avoid element, we temporarily set FAST's backing value to null while performing the removal
+		// To avoid this, we temporarily set FAST's backing value to null while performing the removal
 		// This way FAST will think the property is up to date and skip the update
 		const value = element[ariaProperty];
 		(element as any)[`_${ariaProperty}`] = null;

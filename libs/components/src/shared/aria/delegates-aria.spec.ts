@@ -94,4 +94,13 @@ describe('DelegatesAria', () => {
 
 		expect('vvdAriaCurrent' in element.dataset).toBe(false);
 	});
+
+	it('should not forward aria properties when value is false', async () => {
+		const element = fixture(`<dummy-element></dummy-element>`) as DummyElement;
+		element.ariaPressed = false as any;
+
+		await elementUpdated(element);
+
+		expect(getDelegateTarget(element).hasAttribute('aria-pressed')).toBe(false);
+	});
 });
