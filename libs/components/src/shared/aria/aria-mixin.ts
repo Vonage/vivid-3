@@ -128,7 +128,7 @@ export const AriaMixin = <T extends Constructor<FASTElement & HTMLElement>>(
 		constructor(...args: any[]) {
 			super(...args);
 			// Default to null for all ARIA properties
-			// This is not needed if DOM implements AriaMixin as null would already be the default
+			// This is not needed in modern DOMs with aria property support, as null would already be the default
 			// As a performance improvement set the FAST backing value, to skip running change handlers for all properties
 			for (const ariaProperty of ariaMixinProperties) {
 				(this as any)[`_${ariaProperty}`] = null;
@@ -142,11 +142,13 @@ export const AriaMixin = <T extends Constructor<FASTElement & HTMLElement>>(
 	}
 
 	for (const ariaProperty of ariaMixinProperties) {
+		// Declare all aria properties as FAST attributes, which makes them observable and trigger the changed method
 		attr({
 			attribute: ariaAttributeName(ariaProperty),
 			mode: 'fromView',
 		})(AriaMixinElement.prototype, ariaProperty);
 
+		// Observe changes through the changed callback
 		(AriaMixinElement.prototype as any)[`${ariaProperty}Changed`] = function (
 			this: AriaMixinElement
 		) {
