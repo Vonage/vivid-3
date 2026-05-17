@@ -80,7 +80,7 @@
 		"video.js": "^8.23.7"
 	},
 	"devDependencies": {
-		"@custom-elements-manifest/analyzer": "^0.5.7",
+		"@custom-elements-manifest/analyzer": "^0.11.0",
 		"@microsoft/api-extractor": "^7.55.0",
 		"@playwright/test": "catalog:",
 		"@repo/cem-analyzer-plugins": "workspace:*",
@@ -107,7 +107,7 @@
 		"element-internals-polyfill": "^3.0.2",
 		"glob": "catalog:",
 		"http-server": "catalog:",
-		"playwright": "1.57.0",
+		"playwright": "1.60.0",
 		"sass": "catalog:",
 		"tsx": "catalog:",
 		"typescript": "catalog:",

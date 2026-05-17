@@ -11,7 +11,7 @@
 	},
 	"devDependencies": {
 		"citty": "^0.2.1",
-		"esbuild": "^0.27.3"
+		"esbuild": "^0.28.0"
 	},
 	"packageManager": "pnpm@^10.23.0"
 }
