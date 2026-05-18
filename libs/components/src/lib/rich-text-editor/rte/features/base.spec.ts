@@ -119,6 +119,9 @@ describe('RteBase', () => {
 			expect(rte.view.editable).toBe(false);
 			expect(rte.toolbarButton('Bold').disabled).toBe(true);
 			expect(rte.popovers.classList.contains('popovers--disabled')).toBe(true);
+			expect(
+				rte.view.dom.parentElement!.classList.contains('editor--disabled')
+			).toBe(true);
 
 			baseFeature.disabled = false;
 
@@ -126,6 +129,9 @@ describe('RteBase', () => {
 			expect(rte.view.editable).toBe(true);
 			expect(rte.toolbarButton('Bold').disabled).toBe(false);
 			expect(rte.popovers.classList.contains('popovers--disabled')).toBe(false);
+			expect(
+				rte.view.dom.parentElement!.classList.contains('editor--disabled')
+			).toBe(false);
 		});
 
 		it('should prevent default on click events for links etc.', async () => {

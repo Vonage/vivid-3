@@ -148,7 +148,7 @@ An example document could look like this:
 						"imageUrl": "/vonage.png",
 						"alt": "Vonage Logo",
 						"size": null,
-						"natualWidth": 100,
+						"naturalWidth": 100,
 						"naturalHeight": 50
 					}
 				}
@@ -401,7 +401,7 @@ const parser = new RteHtmlParser(config);
 const doc = parser.parseDocument('<p>Hello <strong>World</strong></p>');
 // -> { type: 'doc', content: [...] }
 const frag = parser.parseFragment('<p>Hello <strong>World</strong></p>');
-// -> { type: 'paragraph', content: [...] }
+// -> [{ type: 'paragraph', content: [...] }]
 
 const serializer = new RteHtmlSerializer(config);
 serializer.serializeDocument(doc); // -> '<p>Hello <strong>World</strong></p>'
@@ -457,7 +457,7 @@ const parser = new RteHtmlParser(config, {
 		rules.marks.bold.push({ tag: 'span.bold' });
 	},
 });
-parser.parseFragment("<div class='paragraph'><span class='bold'>Hello</span> world</div>"); // -> { type: 'paragraph', content: [...] }
+parser.parseFragment("<div class='paragraph'><span class='bold'>Hello</span> world</div>"); // -> [{ type: 'paragraph', content: [...] }]
 ```
 
 For serialization, you can override the default serializers for nodes and marks. Serializers need to return a ProseMirror [DOMOutputSpec](https://prosemirror.net/docs/ref/#model.DOMOutputSpec):
@@ -488,7 +488,7 @@ You can use the instance to get and modify the document programmatically.
 The `onChange` callback is called whenever the document changes.
 
 ```ts
-const instance = config.instantiateEditor([], {
+const instance = config.instantiateEditor({
 	onChange: () => {
 		console.log('Document changed:', instance.getDocument());
 	},
@@ -516,7 +516,7 @@ config.instantiateEditor({
 
 ### Methods
 
-### getDocument
+#### getDocument
 
 ```ts
 /**
@@ -525,7 +525,7 @@ config.instantiateEditor({
 getDocument(): RteDocument;
 ```
 
-### replaceSelection
+#### replaceSelection
 
 ```ts
 /**
@@ -548,7 +548,7 @@ replaceSelection(
 ): void;
 ```
 
-### replaceDocument
+#### replaceDocument
 
 ```ts
 /**
@@ -692,7 +692,7 @@ function handleReset() {
 </vwc-tab-panel>
 </vwc-tabs>
 
-## feature
+#### feature
 
 Some features expose a run-time API that can be accessed via the `feature` method. See the documentation of each feature for details.
 
@@ -1256,7 +1256,7 @@ new RteKeyboardShortcutsFeature('escape-deselect', {
 
 **Configuration options:**
 
-- `id: string`(required):
+- `id: string` (required):
   Unique identifier for this feature instance.
 - `options.shortcuts` (record):</br>
   Map of key name to `KeyboardShortcutHandler`. Keys use ProseMirror key names (e.g. `"Enter"`, `"Shift-Enter"`, `"Mod-b"`).
@@ -1470,7 +1470,7 @@ Adds a font size picker to the toolbar to change the font size of the selected t
 **Example usage:**
 
 ```ts
-new RteFontSizeFeature({
+new RteFontSizePickerFeature({
 	options: [
 		{ size: '24px', label: 'Extra Large' },
 		{ size: '18px', label: 'Large' },
@@ -1484,7 +1484,7 @@ new RteFontSizeFeature({
 **Configuration options:**
 
 - `options: FontSizeOption[]` (required): The available font sizes from largest to smallest. Note that different font sizes can occur in the document when external HTML is pasted / dragged in.
-- `onBlocks?: FontSizeOnBlock[]` (required): Which blocks the font sizes can be applied to. If not provided, the mark can be applied on all blocks.
+- `onBlocks?: FontSizeOnBlock[]` (optional): Which blocks the font sizes can be applied to. If not provided, the mark can be applied on all blocks.
 
 `FontSizeOption`:
 
@@ -1551,7 +1551,7 @@ const instance = config.instantiateEditor({
 		content: [
 			{
 				type: 'heading1',
-				content: [{ type: 'text', text: 'Text size cannot be change on this heading' }],
+				content: [{ type: 'text', text: 'Text size cannot be changed on this heading' }],
 			},
 			{
 				type: 'heading2',
@@ -1632,7 +1632,7 @@ const instance = config.instantiateEditor({
 				content: [
 					{
 						type: 'heading1',
-						content: [{ type: 'text', text: 'Text size cannot be change on this heading' }],
+						content: [{ type: 'text', text: 'Text size cannot be changed on this heading' }],
 					},
 					{
 						type: 'heading2',
@@ -2786,7 +2786,7 @@ Called whenever the user drops content over the editor viewport.
 
 Remember to call `event.preventDefault()` to prevent the default browser behavior.
 
-- `onViewportDragEnd: () => void` (optional)
+- `onViewportDragFinish: () => void` (optional)
 
 Called whenever dragging over the viewport ends, including after a drop.
 
@@ -3448,7 +3448,7 @@ const instance = config.instantiateEditor({
 
 ### RteSuggestFeature
 
-Enables regex-based suggestions for implementing features like variables (`{name}`), mentions (`@user`), tags (`#topic`) or emojis (`:smile:`). The feature watches for text patterns before the cursor and can either auto-replace them or show a suggestions popover.
+Enables regex-based suggestions for implementing features like variables (`{name}`), mentions (`@user`), tags (`#topic`) or emojis (`:smile:`). The feature watches for text patterns before the cursor and shows a suggestions popover.
 
 This feature works well together with `RteAtomFeature` - use `RteSuggestFeature` to trigger the suggestion UI and insert atoms into the document.
 
