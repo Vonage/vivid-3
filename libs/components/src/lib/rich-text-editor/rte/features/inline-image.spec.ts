@@ -1,3 +1,4 @@
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import { docFactories } from '../__tests__/doc-factories';
 import { setup } from '../__tests__/test-utils';
 import { asyncGeneratorMock } from '../__tests__/async-generator';
@@ -237,6 +238,43 @@ describe('RteInlineImageFeature', () => {
 			rte.selectImage('Image');
 
 			expect(rte.openPopover()!.anchorEl).toBe(rte.getImageWrapper());
+		});
+
+		it('should do nothing when Escape is pressed with no image selected', async () => {
+			const rte = await setup(featuresWithConfig(), [
+				p(
+					text('Hello'),
+					img.attrs({
+						imageUrl: '/image.jpg',
+						alt: 'Image',
+					})()
+				),
+			]);
+
+			rte.placeCursor('|Hello');
+			rte.keydown('Escape');
+
+			expect(rte.openPopover()).toBe(undefined);
+		});
+
+		it('should close the popover when Escape is pressed', async () => {
+			const rte = await setup(featuresWithConfig(), [
+				p(
+					img.attrs({
+						imageUrl: '/image.jpg',
+						alt: 'Image',
+					})()
+				),
+			]);
+
+			rte.selectImage('Image');
+			await elementUpdated(rte.element);
+			expect(rte.openPopover()?.open).toBe(true);
+
+			rte.keydown('Escape');
+			await elementUpdated(rte.element);
+
+			expect(rte.openPopover()).toBe(undefined);
 		});
 
 		it('should show the current size option as active', async () => {
