@@ -32,12 +32,12 @@ export const NavDisclosureTemplate = (
 		x
 	) => x.open}>
 		<summary class="${getClasses}"
-			aria-controls="disclosure-content"
 			${delegateAria({
 				role: 'button',
 				ariaExpanded: (x) => x.open,
 				ariaCurrent: (x) =>
 					x.open ? null : x.current || x.ariaCurrent ? 'true' : null,
+				ariaControls: 'disclosure-content',
 			})}
 		>
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
