@@ -53,6 +53,11 @@ declare namespace JSX {
 				open: boolean;
 				icon: string | undefined;
 			}>;
+		'vvd3-aria-binding-directive': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{}>;
 		'vvd3-audio-player': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -410,11 +415,6 @@ declare namespace JSX {
 				name: string;
 				required: boolean;
 			}>;
-		'vvd3-delegate-aria-behavior': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
 		'vvd3-dial-pad': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -556,11 +556,6 @@ declare namespace JSX {
 				'elevation-shadow': boolean;
 				alternate: boolean;
 			}>;
-		'vvd3-host-semantics-behavior': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
 		'vvd3-icon': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
