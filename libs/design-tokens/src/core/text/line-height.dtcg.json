@@ -10,7 +10,7 @@
 		"$description": "20px"
 	},
 	"vivid/text/line-height/600": {
-		"$value": "{vivid/size/500}",
+		"$value": "{vivid/size/600}",
 		"$type": "dimension",
 		"$description": "24px"
 	},
@@ -35,9 +35,14 @@
 		"$description": "40px"
 	},
 	"vivid/text/line-height/1200": {
-		"$value": "{vivid/size/1000}",
+		"$value": "{vivid/size/1200}",
 		"$type": "dimension",
 		"$description": "48px"
+	},
+	"vivid/text/line-height/1400": {
+		"$value": "{vivid/size/1400}",
+		"$type": "dimension",
+		"$description": "56px"
 	},
 	"vivid/text/line-height/1600": {
 		"$value": "{vivid/size/1600}",

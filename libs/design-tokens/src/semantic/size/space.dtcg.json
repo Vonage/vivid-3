@@ -1,5 +1,5 @@
 {
-	"vivid/space/0": {
+	"vivid/size/space/0": {
 		"$type": "dimension",
 		"$value": {
 			"value": 0,
@@ -7,7 +7,7 @@
 		},
 		"$description": "0px (0% of 4px)"
 	},
-	"vivid/space/25": {
+	"vivid/size/space/25": {
 		"$type": "dimension",
 		"$value": {
 			"value": 1,
@@ -15,7 +15,7 @@
 		},
 		"$description": "1px (25% of 4x)"
 	},
-	"vivid/space/50": {
+	"vivid/size/space/50": {
 		"$type": "dimension",
 		"$value": {
 			"value": 2,
@@ -23,7 +23,7 @@
 		},
 		"$description": "2px (50% of 4px)"
 	},
-	"vivid/space/100": {
+	"vivid/size/space/100": {
 		"$type": "dimension",
 		"$value": {
 			"value": 4,
@@ -31,7 +31,7 @@
 		},
 		"$description": "4px (100% of 4px)"
 	},
-	"vivid/space/150": {
+	"vivid/size/space/150": {
 		"$type": "dimension",
 		"$value": {
 			"value": 6,
@@ -39,7 +39,7 @@
 		},
 		"$description": "6px (1.5 x 4px)"
 	},
-	"vivid/space/200": {
+	"vivid/size/space/200": {
 		"$type": "dimension",
 		"$value": {
 			"value": 8,
@@ -47,7 +47,7 @@
 		},
 		"$description": "8px (2 x 4px)"
 	},
-	"vivid/space/300": {
+	"vivid/size/space/300": {
 		"$type": "dimension",
 		"$value": {
 			"value": 12,
@@ -55,7 +55,7 @@
 		},
 		"$description": "12px (3 x 4px)"
 	},
-	"vivid/space/400": {
+	"vivid/size/space/400": {
 		"$type": "dimension",
 		"$value": {
 			"value": 16,
@@ -63,7 +63,7 @@
 		},
 		"$description": "16px (4 x 4px)"
 	},
-	"vivid/space/500": {
+	"vivid/size/space/500": {
 		"$type": "dimension",
 		"$value": {
 			"value": 20,
@@ -71,7 +71,7 @@
 		},
 		"$description": "20px (5 x 4px)"
 	},
-	"vivid/space/600": {
+	"vivid/size/space/600": {
 		"$type": "dimension",
 		"$value": {
 			"value": 24,
@@ -79,7 +79,7 @@
 		},
 		"$description": "24px (6 x 4px)"
 	},
-	"vivid/space/800": {
+	"vivid/size/space/800": {
 		"$type": "dimension",
 		"$value": {
 			"value": 32,
@@ -87,7 +87,7 @@
 		},
 		"$description": "32px (8 x 4px)"
 	},
-	"vivid/space/1000": {
+	"vivid/size/space/1000": {
 		"$type": "dimension",
 		"$value": {
 			"value": 40,
@@ -95,7 +95,7 @@
 		},
 		"$description": "40px (10 x 4px)"
 	},
-	"vivid/space/1200": {
+	"vivid/size/space/1200": {
 		"$type": "dimension",
 		"$value": {
 			"value": 48,
@@ -103,7 +103,7 @@
 		},
 		"$description": "48px (12 x 4px)"
 	},
-	"vivid/space/1600": {
+	"vivid/size/space/1600": {
 		"$type": "dimension",
 		"$value": {
 			"value": 64,
@@ -111,7 +111,7 @@
 		},
 		"$description": "64px (16 x 4px)"
 	},
-	"vivid/space/2000": {
+	"vivid/size/space/2000": {
 		"$type": "dimension",
 		"$value": {
 			"value": 80,

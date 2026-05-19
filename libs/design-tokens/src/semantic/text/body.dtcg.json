@@ -1,68 +1,105 @@
 {
-  "vivid/text/body/lg/regular": {
-    "$type": "typography",
-    "$value": {
-      "fontFamily": "{vivid/text/font-family/sans-serif}",
-      "fontSize": "{vivid/text/font-size/400}",
-      "lineHeight": "{vivid/text/line-height/600}",
-      "fontWeight": "{vivid/text/weight/400}",
-      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
-    },
-    "$description": "body font-stretch for large emphasis content, such as important paragraphs and highlighted UI text."
+  "vivid/text/body/font-family": {
+    "$type": "fontFamily",
+    "$value": "{vivid/text/font-family/sans-serif}",
+    "$description": "The font family used for all body text."
   },
-  "vivid/text/body/md/regular": {
-    "$type": "typography",
-    "$value": {
-      "fontFamily": "{vivid/text/font-family/sans-serif}",
-      "fontSize": "{vivid/text/font-size/350}",
-      "lineHeight": "{vivid/text/line-height/500}",
-      "fontWeight": "{vivid/text/weight/400}",
-      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
-    },
-    "$description": "Default body font-stretch for medium emphasis content, such as paragraphs and general UI text."
+  "vivid/text/body/font-stretch": {
+    "$type": "number",
+    "$value": "{vivid/text/font-stretch/ultra-condensed}",
+    "$description": "The font stretch applied to all body text."
   },
-  "vivid/text/body/sm/regular": {
-    "$type": "typography",
-    "$value": {
-      "fontFamily": "{vivid/text/font-family/sans-serif}",
-      "fontSize": "{vivid/text/font-size/300}",
-      "lineHeight": "{vivid/text/line-height/400}",
-      "fontWeight": "{vivid/text/weight/400}",
-      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
-    },
-    "$description": "body font-stretch for small emphasis content, such as captions and secondary UI text."
+  "vivid/text/body/sm/font-weight/normal": {
+    "$type": "number",
+    "$value": "{vivid/text/font-weight/400}",
+    "$description": "The default font weight for small body text."
   },
-  "vivid/text/body/lg/bold": {
-    "$type": "typography",
-    "$value": {
-      "fontFamily": "{vivid/text/font-family/sans-serif}",
-      "fontSize": "{vivid/text/font-size/400}",
-      "lineHeight": "{vivid/text/line-height/600}",
-      "fontWeight": "{vivid/text/weight/600}",
-      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
-    },
-    "$description": "body font-stretch for large emphasis content, such as important paragraphs and highlighted UI text."
+  "vivid/text/body/sm/font-weight/bold": {
+    "$type": "number",
+    "$value": "{vivid/text/font-weight/500}",
+    "$description": "The bold font weight for small body text."
   },
-  "vivid/text/body/md/bold": {
-    "$type": "typography",
-    "$value": {
-      "fontFamily": "{vivid/text/font-family/sans-serif}",
-      "fontSize": "{vivid/text/font-size/350}",
-      "lineHeight": "{vivid/text/line-height/500}",
-      "fontWeight": "{vivid/text/weight/600}",
-      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
-    },
-    "$description": "Default body font-stretch for medium emphasis content, such as paragraphs and general UI text."
+  "vivid/text/body/sm/font-size": {
+    "$type": "dimension",
+    "$value": "{vivid/text/font-size/300}",
+    "$description": "Font size for small body text."
   },
-  "vivid/text/body/sm/bold": {
+  "vivid/text/body/sm/line-height": {
+    "$type": "dimension",
+    "$value": "{vivid/text/line-height/400}",
+    "$description": "Line height for small body text."
+  },
+  "vivid/text/body/md/font-weight/normal": {
+    "$type": "number",
+    "$value": "{vivid/text/font-weight/400}",
+    "$description": "The default font weight for medium body text."
+  },
+  "vivid/text/body/md/font-weight/bold": {
+    "$type": "number",
+    "$value": "{vivid/text/font-weight/500}",
+    "$description": "The bold font weight for medium body text."
+  },
+  "vivid/text/body/md/font-size": {
+    "$type": "dimension",
+    "$value": "{vivid/text/font-size/350}",
+    "$description": "Font size for medium body text."
+  },
+  "vivid/text/body/md/line-height": {
+    "$type": "dimension",
+    "$value": "{vivid/text/line-height/500}",
+    "$description": "Line height for medium body text."
+  },
+  "vivid/text/body/lg/font-weight/normal": {
+    "$type": "number",
+    "$value": "{vivid/text/font-weight/300}",
+    "$description": "The default font weight for large body text."
+  },
+  "vivid/text/body/lg/font-weight/bold": {
+    "$type": "number",
+    "$value": "{vivid/text/font-weight/500}",
+    "$description": "The bold font weight for large body text."
+  },
+  "vivid/text/body/lg/font-size": {
+    "$type": "dimension",
+    "$value": "{vivid/text/font-size/400}",
+    "$description": "Font size for large body text."
+  },
+  "vivid/text/body/lg/line-height": {
+    "$type": "dimension",
+    "$value": "{vivid/text/line-height/600}",
+    "$description": "Line height for large body text."
+  },
+  "vivid/text/body/sm": {
     "$type": "typography",
     "$value": {
-      "fontFamily": "{vivid/text/font-family/sans-serif}",
-      "fontSize": "{vivid/text/font-size/300}",
-      "lineHeight": "{vivid/text/line-height/400}",
-      "fontWeight": "{vivid/text/weight/600}",
-      "fontStretch": "{vivid/text/font-stretch/ultra-condensed}"
+      "fontFamily": "{vivid/text/body/font-family}",
+      "fontSize": "{vivid/text/body/sm/font-size}",
+      "lineHeight": "{vivid/text/body/sm/line-height}",
+      "fontWeight": "{vivid/text/body/sm/font-weight/normal}",
+      "fontStretch": "{vivid/text/body/font-stretch}"
     },
-    "$description": "body font-stretch for small emphasis content, such as captions and secondary UI text."
+    "$description": "A small body size for captions, helper text, and secondary UI text."
+  },
+  "vivid/text/body/md": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/text/body/font-family}",
+      "fontSize": "{vivid/text/body/md/font-size}",
+      "lineHeight": "{vivid/text/body/md/line-height}",
+      "fontWeight": "{vivid/text/body/md/font-weight/normal}",
+      "fontStretch": "{vivid/text/body/font-stretch}"
+    },
+    "$description": "The default body size for paragraphs and general UI text."
+  },
+  "vivid/text/body/lg": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "{vivid/text/body/font-family}",
+      "fontSize": "{vivid/text/body/lg/font-size}",
+      "lineHeight": "{vivid/text/body/lg/line-height}",
+      "fontWeight": "{vivid/text/body/lg/font-weight/normal}",
+      "fontStretch": "{vivid/text/body/font-stretch}"
+    },
+    "$description": "A large body size for high-emphasis content such as lead or important paragraphs and highlighted UI text."
   }
 }

@@ -5,7 +5,7 @@
       "value": 2,
       "unit": "px"
     },
-    "$description": ""
+    "$description": "Small border radius for subtle rounding, used on compact elements such as checkboxes."
   },
   "vivid/border/radius/md": {
     "$type": "dimension",
@@ -13,7 +13,7 @@
       "value": 4,
       "unit": "px"
     },
-    "$description": ""
+    "$description": "Medium border radius for smaller components such as buttons, and inputs."
   },
   "vivid/border/radius/lg": {
     "$type": "dimension",
@@ -21,7 +21,7 @@
       "value": 8,
       "unit": "px"
     },
-    "$description": ""
+    "$description": "A large border radius for container elements such as dialogs and cards."
   },
   "vivid/border/radius/full": {
     "$type": "dimension",
@@ -29,6 +29,6 @@
       "value": 9999,
       "unit": "px"
     },
-    "$description": ""
+    "$description": "A fully rounded border radius that produces a pill or circle shape."
    }
 }

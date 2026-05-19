@@ -320,6 +320,12 @@ export const cssPlatform: PlatformConfig = {
 			filter: (token) => token.filePath.includes('core') && token.filePath.includes('/size'),
 		},
 		{
+			destination: 'semantic-size.css',
+			format: 'css/variables',
+			/* v8 ignore next -- @preserve */
+			filter: (token) => token.filePath.includes('semantic') && token.filePath.includes('/size'),
+		},
+		{
 			destination: 'core-text.css',
 			format: 'css/variables',
 			/* v8 ignore next -- @preserve */
@@ -329,7 +335,7 @@ export const cssPlatform: PlatformConfig = {
 			destination: 'semantic-text.css',
 			format: 'vvd/css/variables-with-typography',
 			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('text') && token.filePath.includes('semantic'),
+			filter: (token) => token.filePath.includes('text') && token.filePath.includes('semantic') && !token.filePath.includes('color')
 		},
 	],
 	actions: ['vvd/css/createIndex', 'vvd/css/addFontsLinks'],

@@ -7,10 +7,10 @@
       "tokenType": "color/text"
     }
   },
-  "vivid/color/text/muted": {
+  "vivid/color/text/secondary": {
     "$type": "color",
     "$value": "{vivid/color/neutral/700}",
-    "$description": "A muted text color used for primary text content.",
+    "$description": "Use for text with a secondary level of prominence.",
     "$extensions": {
       "tokenType": "color/text"
     }
@@ -49,7 +49,7 @@
   },
   "vivid/color/text/link/visited": {
     "$type": "color",
-    "$value": "{vivid/color/info/700}",
+    "$value": "{vivid/color/info/600}",
     "$description": "A text color used for previously visited link elements in their default resting state.",
     "$extensions": {
       "tokenType": "color/text"
@@ -57,7 +57,7 @@
   },
   "vivid/color/text/link/visited/hover": {
     "$type": "color",
-    "$value": "{vivid/color/info/600}",
+    "$value": "{vivid/color/info/700}",
     "$description": "A text color used for previously visited link elements when hovered.",
     "$extensions": {
       "tokenType": "color/text"
