@@ -566,6 +566,11 @@ declare namespace JSX {
 				label: string | undefined;
 				name: string | undefined;
 			}>;
+		'vvd3-idrefs-controller': React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> &
+			Partial<{}>;
 		'vvd3-inline-time-picker': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement

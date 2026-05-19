@@ -15,7 +15,8 @@ export function applyHostSemantics<T>(
 ): CaptureType<T, any> {
 	return new AriaBindingDirective({
 		boundProperties,
-		forwardedProperties: new Set(),
+		forwardedValueProperties: new Set(),
+		forwardedIdrefsProperties: new Set(),
 		requireHost: true,
 	});
 }

@@ -71,7 +71,7 @@ export const ReactiveControllerHostSupport = <
 		 */
 		_addController(controller: ReactiveController): void {
 			this.#controllers.add(controller);
-			if (this.isConnected) {
+			if (this.$fastController.isConnected) {
 				controller.hostConnected?.();
 			}
 		}
