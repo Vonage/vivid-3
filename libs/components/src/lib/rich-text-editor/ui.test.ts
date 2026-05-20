@@ -417,4 +417,64 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	await takeScreenshot(page, 'placeholder-heading-right');
+
+	await renderTemplate({
+		page,
+		template: `
+			<div style="display: flex; gap: 16px; padding: 16px; align-items: flex-start;">
+				<div style="width: 300px;">
+					<div>Disabled</div>
+					<vwc-rich-text-editor id="rte-disabled" style="width: 300px;"></vwc-rich-text-editor>
+				</div>
+				<div style="width: 300px;">
+					<div>Disabled (placeholder)</div>
+					<vwc-rich-text-editor id="rte-disabled-placeholder" style="width: 300px;"></vwc-rich-text-editor>
+				</div>
+			</div>
+		`,
+		setup: async () => {
+			await page.evaluate(() => {
+				const initialDoc = {
+					type: 'doc' as const,
+					content: [
+						{
+							type: 'paragraph',
+							content: [{ type: 'text', text: 'Some text content' }],
+						},
+					],
+				};
+
+				const emptyDoc = { type: 'doc' as const, content: [] };
+
+				const makeConfig = () =>
+					new RteConfig([
+						new RteBase(),
+						new RtePlaceholderFeature({ text: 'Placeholder text...' }),
+						new RteToolbarFeature(),
+						new RteBoldFeature(),
+					]);
+
+				const disabledEl = document.getElementById('rte-disabled')!;
+				const disabledConfig = makeConfig();
+				const disabledInstance = disabledConfig.instantiateEditor({
+					initialDocument: initialDoc,
+				});
+				(disabledEl as any).instance = disabledInstance;
+				disabledInstance.feature(RteBase).disabled = true;
+
+				const disabledPlaceholderEl = document.getElementById(
+					'rte-disabled-placeholder'
+				)!;
+				const disabledPlaceholderConfig = makeConfig();
+				const disabledPlaceholderInstance =
+					disabledPlaceholderConfig.instantiateEditor({
+						initialDocument: emptyDoc,
+					});
+				(disabledPlaceholderEl as any).instance = disabledPlaceholderInstance;
+				disabledPlaceholderInstance.feature(RteBase).disabled = true;
+			});
+		},
+	});
+
+	await takeScreenshot(page, 'rich-text-editor-disabled');
 });

@@ -103,18 +103,20 @@ export class RteCoreImpl extends RteFeatureImpl {
 							view.dom.getRootNode() as ShadowRoot
 						).querySelector('.popovers')!;
 
-						const updatePopoversDisabled = () => {
-							popovers.classList.toggle(
-								'popovers--disabled',
-								this.disabled.getValue(rte)
+						const updateDisabled = () => {
+							const disabled = this.disabled.getValue(rte);
+							popovers.classList.toggle('popovers--disabled', disabled);
+							view.dom.parentElement!.classList.toggle(
+								'editor--disabled',
+								disabled
 							);
 						};
 
-						updatePopoversDisabled();
+						updateDisabled();
 
 						return {
 							update: () => {
-								updatePopoversDisabled();
+								updateDisabled();
 							},
 						};
 					},

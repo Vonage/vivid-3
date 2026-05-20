@@ -1,51 +1,23 @@
-import {
-	type CaptureType,
-	HTMLDirective,
-	StatelessAttachedAttributeDirective,
-	type ViewController,
-} from '@microsoft/fast-element';
+import type { CaptureType } from '@microsoft/fast-element';
 import type { Constructor, MixinType } from '../utils/mixins';
 import type { VividElement } from '../foundation/vivid-element/vivid-element';
-import { ariaMixinProperties } from './aria-mixin';
 import {
+	AriaBindingDirective,
 	type BoundAriaProperties,
-	HostSemanticsBehavior,
-} from './host-semantics-behavior';
+} from './aria-binding-directive';
 
-class HostSemanticsDirective<T> extends StatelessAttachedAttributeDirective<T> {
-	/**
-	 * The structural id of the DOM node to which the created behavior will apply.
-	 */
-	targetNodeId: string = '';
-
-	constructor(private boundProperties: BoundAriaProperties<T>) {
-		super('vvd-host-semantics' as any);
-	}
-
-	override bind(controller: ViewController): void {
-		// Get the target element (the element the directive is attached to)
-		const targetElement = controller.targets[this.targetNodeId] as HTMLElement;
-
-		// In Fast Element 2.7.0, controller.source is the custom element when used on template
-		const behavior = new HostSemanticsBehavior(
-			targetElement, // Pass the target element as target
-			{
-				boundProperties: this.boundProperties,
-				forwardedProperties: new Set(
-					ariaMixinProperties.filter((p) => !(p in this.boundProperties))
-				),
-			}
-		);
-		behavior.bind(controller);
-	}
-}
-
-HTMLDirective.define(HostSemanticsDirective);
-
+/**
+ * Directive to set ARIA properties to the host element.
+ * This is not technically necessary but allows us to change aria handling for host semantics later.
+ */
 export function applyHostSemantics<T>(
 	boundProperties: BoundAriaProperties<T> = {}
 ): CaptureType<T, any> {
-	return new HostSemanticsDirective(boundProperties);
+	return new AriaBindingDirective({
+		boundProperties,
+		forwardedProperties: new Set(),
+		requireHost: true,
+	});
 }
 
 /**
