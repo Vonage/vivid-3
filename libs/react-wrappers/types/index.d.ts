@@ -482,28 +482,17 @@ declare namespace JSX {
 				name: string;
 				required: boolean;
 			}>;
-<<<<<<< HEAD
-		'vvd3-empty-state': React.DetailedHTMLProps<
-=======
 		'vvd3-feature-state': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
 		> &
 			Partial<{}>;
 		'vvd3-feedback-message': React.DetailedHTMLProps<
->>>>>>> main
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
 		> &
 			Partial<{
-<<<<<<< HEAD
-				connotation: EmptyStateConnotation | undefined;
-				headline: string | undefined;
-				icon: string | undefined;
-				'icon-decoration': EmptyStateIconDecoration | undefined;
-=======
 				type: FeedbackType;
->>>>>>> main
 			}>;
 		'vvd3-file-picker': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
@@ -544,8 +533,6 @@ declare namespace JSX {
 				'elevation-shadow': boolean;
 				alternate: boolean;
 			}>;
-<<<<<<< HEAD
-=======
 		'vvd3-icon': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -598,7 +585,6 @@ declare namespace JSX {
 				'icon-trailing': boolean;
 				icon: string | undefined;
 			}>;
->>>>>>> main
 		'vvd3-menu': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -792,16 +778,12 @@ declare namespace JSX {
 				arrow: boolean;
 				open: boolean;
 			}>;
-<<<<<<< HEAD
-		'vvd3-progress-ring': React.DetailedHTMLProps<
-=======
 		'vvd3-popover': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
 		> &
 			Partial<{}>;
 		'vvd3-popup': React.DetailedHTMLProps<
->>>>>>> main
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
 		> &
@@ -893,16 +875,12 @@ declare namespace JSX {
 				name: string;
 				required: boolean;
 			}>;
-<<<<<<< HEAD
-		'vvd3-option-tag': React.DetailedHTMLProps<
-=======
 		'vvd3-rich-text-editor': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
 		> &
 			Partial<{}>;
 		'vvd3-rich-text-view': React.DetailedHTMLProps<
->>>>>>> main
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
 		> &
@@ -1460,8 +1438,6 @@ declare namespace JSX {
 				disabled: boolean;
 				icon: string | undefined;
 			}>;
-<<<<<<< HEAD
-=======
 		'vvd3-tree-view': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -1474,7 +1450,6 @@ declare namespace JSX {
 			HTMLElement
 		> &
 			Partial<{}>;
->>>>>>> main
 		'vvd3-video-player': React.DetailedHTMLProps<
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
@@ -1492,213 +1467,7 @@ declare namespace JSX {
 			HTMLElement
 		> &
 			Partial<{}>;
-<<<<<<< HEAD
-		'vvd3-tree-view': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				'render-collapsed-nodes': boolean;
-			}>;
-		'vvd3-rte-config': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-config-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-feature': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-html-parser': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-html-serializer': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-html-serializer-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-instance': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-instance-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-feature-state': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-textblock-attrs': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-textblock-marks': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-ui-ctx': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-alignment-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-base-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-bold-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-character-count-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-drop-handler-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-file-handler-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-font-size-picker-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-hard-break-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-inline-image-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-italic-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-keyboard-shortcuts-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-link-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-list-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-monospace-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-placeholder-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-strikethrough-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-text-block-picker-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-text-color-picker-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-toolbar-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-underline-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-basic-text-blocks-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-core-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-cursor-fix-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-foreign-html-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-history-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-input-rules-feature-impl': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{}>;
-		'vvd3-rte-text-style-feature-impl': React.DetailedHTMLProps<
-=======
 		'vvd3-vivid-element': React.DetailedHTMLProps<
->>>>>>> main
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
 		> &
@@ -1722,28 +1491,7 @@ declare namespace JSX {
 				name: string;
 				required: boolean;
 			}>;
-<<<<<<< HEAD
-		'vvd3-listbox': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				disabled: boolean;
-			}>;
-		'vvd3-base-progress': React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLElement>,
-			HTMLElement
-		> &
-			Partial<{
-				value: number | null;
-				min: number;
-				max: number;
-				paused: boolean;
-			}>;
-		'vvd3-vivid-element': React.DetailedHTMLProps<
-=======
 		'vvd3-vvd-hex-input': React.DetailedHTMLProps<
->>>>>>> main
 			React.HTMLAttributes<HTMLElement>,
 			HTMLElement
 		> &
