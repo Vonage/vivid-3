@@ -11,6 +11,7 @@ import type { TypeResolver } from '../common/types';
 import { renderComponentTypes } from './renderComponentTypes';
 import renderTypes from './renderTypes';
 import type { ComponentDef, Metadata } from '@repo/metadata-extractor';
+import { logger } from '@repo/tools/shared/logger';
 
 const LibraryGeneratedFolder = '../vue-wrappers/src/generated';
 
@@ -41,8 +42,7 @@ function generateComponentFor(
 		renderComponentTypes(component)
 	);
 
-	// eslint-disable-next-line no-console
-	console.log(`${wrappedComponentName(component)} generated.`);
+	logger.debug(`${wrappedComponentName(component)} generated.`);
 }
 
 export async function generateVueWrappers(metadata: Metadata) {

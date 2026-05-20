@@ -22,6 +22,7 @@ import {
 } from './consts.js';
 import fsExtra from 'fs-extra';
 const { copySync } = fsExtra;
+import { logger } from '@repo/tools/shared/logger';
 
 const renderPropertyJsDoc = (tag) => (property) =>
 	`* @param ${property.type ? `{${property.type}}` : ''} ${property.name} ${property.description ? `- ${property.description}` : ''} ${property.attribute ? `attribute: &lt;${getComponentName(tag)} ${property.attribute} />` : ''}`;
@@ -93,7 +94,7 @@ export const getVividPackageName = (componentPath) => {
 export const prepareDir = (p, clean = true, verbose = true) => {
 	if (clean && existsSync(p)) {
 		if (verbose) {
-			console.info(`Clearing folder: ${p}`);
+			logger.debug(`Clearing folder: ${p}`);
 		}
 		rmSync(p, { recursive: true });
 	}
@@ -163,7 +164,7 @@ export const getVividPackageNames = ({ dependencies, devDependencies }) => {
 		...Object.keys(devDependencies),
 	];
 	const result = unique(packages).filter(isVividPackageName);
-	console.log(
+	logger.debug(
 		`Vivid packages detected from ${FileName.packageJson}: \n${result.map((x) => `  - ${x}`).join('\n')}`
 	);
 	return result;
@@ -194,7 +195,7 @@ export const compileTypescript = (rootDir) => async (outDir) =>
 	spawnSync('node', [
 		'./node_modules/typescript/lib/tsc.js',
 		'--project',
-		filePath('tsconfig.json'),
+		filePath('tsconfig.wrappers.json'),
 		'--rootDir',
 		rootDir,
 		'--outDir',
@@ -206,7 +207,7 @@ export const copyStaticAssets = (outputDir, assets) => () => {
 		const source = filePath(file);
 		const dest = filePath(join(outputDir, file));
 		copySync(source, dest);
-		console.info(`Copy static asset ${source} => ${dest}`);
+		logger.debug(`Copy static asset ${source} => ${dest}`);
 	};
 	assets.split(',').map((assetFileName) => cp(assetFileName));
 };

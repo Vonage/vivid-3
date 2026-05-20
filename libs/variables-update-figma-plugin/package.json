@@ -26,6 +26,7 @@
 	},
 	"devDependencies": {
 		"@figma/plugin-typings": "^1.125.0",
+		"@repo/vite-config": "workspace:*",
 		"@types/node": "catalog:",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",

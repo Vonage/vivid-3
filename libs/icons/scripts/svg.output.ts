@@ -1,4 +1,4 @@
-import type { OutputFormat } from '@repo/tools';
+import type { OutputFormat } from '@repo/tools/fetch-icons/types';
 
 export const svg: OutputFormat = {
 	fileName: (entry) => `${entry.id}.svg`,

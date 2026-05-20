@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as http from 'node:http';
 import * as path from 'node:path';
-import { createServer as createViteServer, type UserConfig } from 'vite';
+import { createServer as createViteServer } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { NodePackageImporter } from 'sass';
 import * as indexHandler from './index/handler.js';
@@ -41,11 +41,8 @@ async function start() {
 		css: {
 			preprocessorOptions: {
 				scss: {
-					api: 'modern-compiler',
 					importers: [new NodePackageImporter()],
-				} as NonNullable<
-					NonNullable<UserConfig['css']>['preprocessorOptions']
-				>['scss'],
+				},
 			},
 		},
 		server: {

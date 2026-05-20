@@ -3,16 +3,25 @@
 	"version": "1.0.0",
 	"private": true,
 	"type": "module",
-	"main": "src/index.ts",
-	"module": "src/index.ts",
-	"types": "src/index.ts",
+	"exports": {
+		"./fetch-icons/cached-client": "./src/fetch-icons/cached-client.ts",
+		"./fetch-icons/create-icon-entry": "./src/fetch-icons/create-icon-entry.ts",
+		"./fetch-icons/fetch-icons": "./src/fetch-icons/fetch-icons.ts",
+		"./fetch-icons/manifest-types": "./src/fetch-icons/manifest-types.ts",
+		"./fetch-icons/types": "./src/fetch-icons/types.ts",
+		"./shared/chunk-array": "./src/shared/chunk-array.util.ts",
+		"./shared/ensure-dir": "./src/shared/ensure-dir.util.ts",
+		"./shared/logger": "./src/shared/logger.util.ts",
+		"./shared/read-file": "./src/shared/read-file.util.ts",
+		"./shared/read-json": "./src/shared/read-json.util.ts",
+		"./shared/retry": "./src/shared/retry.util.ts",
+		"./shared/write-file": "./src/shared/write-file.util.ts",
+		"./shared/write-json": "./src/shared/write-json.util.ts"
+	},
 	"bin": {
 		"move-manifest-to-dist": "src/move-manifest-to-dist.ts",
 		"relativize-coverage": "src/relativize-coverage.ts"
 	},
-	"files": [
-		"src/fetch-icons/index.ts"
-	],
 	"scripts": {
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",

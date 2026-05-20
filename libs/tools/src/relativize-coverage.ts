@@ -8,6 +8,7 @@
 
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { logger } from './shared/logger.util';
 
 const relativizeCoverage = async (
 	projectDir: string,
@@ -36,7 +37,7 @@ const relativizeCoverage = async (
 	}
 
 	await writeFile(coveragePath, JSON.stringify(result));
-	process.stdout.write(`Relativized paths in ${coveragePath}\n`);
+	logger.debug(`Relativized paths in ${coveragePath}\n`);
 };
 
 const [, , projectDir] = process.argv;

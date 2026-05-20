@@ -1,9 +1,10 @@
 import { defineConfig, mergeConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import baseViteConfig from '@repo/vite-config/base';
 import baseVitestConfig from '@repo/vitest-config/base';
 
 export default mergeConfig(
-	baseVitestConfig,
+	mergeConfig(baseViteConfig, baseVitestConfig),
 	defineConfig({
 		plugins: [dts()],
 

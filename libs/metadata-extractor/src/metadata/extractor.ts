@@ -22,7 +22,7 @@ import path from 'node:path';
 import { stableMetadata } from './stable-metadata';
 import { propNameForAttribute } from '../components/attributes';
 import { createProject } from '../project/create-project';
-import { logger } from '@repo/tools';
+import { logger } from '@repo/tools/shared/logger';
 
 export async function extractMetadata(packageRoot: string): Promise<Metadata> {
 	const project = createProject(packageRoot);

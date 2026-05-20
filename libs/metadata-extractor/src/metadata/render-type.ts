@@ -7,7 +7,7 @@ import type {
 	SymbolStructure,
 	TypeStructure,
 } from '../types/structure';
-import { logger } from '@repo/tools';
+import { logger } from '@repo/tools/shared/logger';
 
 /**
  * Render types for the metadata. Renders types as typescript literals while replacing exported and imported types with `@package/name#name`.

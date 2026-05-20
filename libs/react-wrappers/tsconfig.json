@@ -1,18 +1,7 @@
 {
+	"extends": "@repo/typescript-config/tsc.json",
 	"compilerOptions": {
-		"target": "ES2022",
-		"module": "ESNext",
-		"moduleResolution": "node",
-		"jsx": "react",
-		"declaration": true,
-		"emitDeclarationOnly": true,
-		"outDir": "./dist",
-		"rootDir": ".",
-		"typeRoots": ["./types", "../../node_modules/@types"],
-		"types": ["node", "react", "react-dom", "vitest/globals"],
-		"esModuleInterop": true,
-		"strict": true,
-		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true
-	}
+		"lib": ["ESNext"]
+	},
+	"include": ["*.ts"]
 }

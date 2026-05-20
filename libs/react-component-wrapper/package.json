@@ -27,6 +27,7 @@
 		"@repo/eslint-config": "workspace:*",
 		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
+		"@repo/vite-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@testing-library/react": "catalog:",
 		"@types/lodash": "catalog:",

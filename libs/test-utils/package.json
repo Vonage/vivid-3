@@ -52,6 +52,7 @@
 		"@repo/shared": "workspace:*",
 		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
+		"@repo/vite-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@repo/wrapper-gen": "workspace:*",
 		"@types/node": "catalog:",

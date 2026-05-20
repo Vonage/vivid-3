@@ -2,7 +2,7 @@ import { getPackageEntryPoints } from 'pkg-entry-points';
 import * as fs from 'node:fs';
 import path from 'node:path';
 import { tryGuessSourcePath } from './guess-source-path';
-import { logger } from '@repo/tools';
+import { logger } from '@repo/tools/shared/logger';
 
 /**
  * subpath -> filepath relative to packageRoot

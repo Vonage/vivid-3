@@ -1,6 +1,6 @@
 import { assert } from '../utils/assert';
 import type { NodeId, NodeStructure, SymbolStructure } from './structure';
-import { logger } from '@repo/tools';
+import { logger } from '@repo/tools/shared/logger';
 
 /**
  * Traces a symbol across aliases such as reexports and type aliases and visits all nodes that aliased by it.
