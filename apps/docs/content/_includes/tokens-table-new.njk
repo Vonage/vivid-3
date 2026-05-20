@@ -544,7 +544,7 @@
 				<vwc-table-cell style="width: 8rem;">
 					{{ controlSpacingTokenPreview(item) }}
 				</vwc-table-cell>
-				<vwc-table-cell style="width: 18rem;"><code>{{ item.css | replace('vivid-color-', '') | replace('vivid-action-', '') }}</code></vwc-table-cell>
+				<vwc-table-cell style="width: 15rem;"><code>{{ item.css | replace('vivid-color-', '') | replace('vivid-action-', '') }}</code></vwc-table-cell>
 				<vwc-table-cell style="width: 8rem;"><code>{{ item.preview }}</code></vwc-table-cell>
 				<vwc-table-cell><code>{{ item.reference }}</code></vwc-table-cell>	
 			</vwc-table-row>
@@ -555,11 +555,11 @@
 <style>
 	.control-spacing-token-preview.size-{{ headingText }} {
 	{% for item in list %}
-		--_{{ item.type | replace('spacing/', '') }}: {{ item.preview }};
+		--_{{ item.tokenType | replace('spacing/', '') }}: {{ item.preview }};
 	{% endfor %}
 
 	{% for item in list %}
-		{{ item.type | replace('spacing/', '') }}: var(--_{{ item.type | replace('spacing/', '') }});
+		{{ item.tokenType | replace('spacing/', '') }}: var(--_{{ item.tokenType | replace('spacing/', '') }});
 	{% endfor %}
 	}
 </style>
@@ -569,7 +569,7 @@
 		<div class="control-spacing-token-preview size-{{ item.semantic }}" style="padding-block: 0px;">
 			<span class="control-icon"></span>
 			<span class="control-label">{{ item.semantic }}</span>
-			<span class="control-display prop-{{ item.type | replace('spacing/', '') }}"></span>
+			<span class="control-display prop-{{ item.tokenType | replace('spacing/', '') }}"></span>
 		</div>
 {% endmacro %}
 
