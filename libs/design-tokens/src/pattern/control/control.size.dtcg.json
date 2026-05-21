@@ -1,122 +1,134 @@
 {
-  "vivid/control/xsmall/gap": {
-    "$type": "dimension",
-    "$value": "{vivid/size/space/100}",
-    "$description": "A gap size for extra small control elements",
-    "$extensions": {
-      "tokenType": "spacing/gap"
-    }
-  },
-  "vivid/control/xsmall/padding-inline": {
-    "$type": "dimension",
-    "$value": "{vivid/size/space/200}",
-    "$description": "A horizontal padding size for extra small control elements",
-    "$extensions": {
-      "tokenType": "spacing/padding-inline"
-    }
-  },
-  "vivid/control/xsmall/size": {
-    "$type": "dimension",
-    "$value": "{vivid/size/height/500}",
-    "$description": "Block size for extra small control elements",
-    "$extensions": {
-      "tokenType": "spacing/block-size"
-    }
-  },
-  "vivid/control/small/gap": {
-    "$type": "dimension",
-    "$value": "{vivid/size/space/100}",
-    "$description": "A gap size for small control elements",
-    "$extensions": {
-      "tokenType": "spacing/gap"
-    }
-  },
-  "vivid/control/small/padding-inline": {
-    "$type": "dimension",
-    "$value": "{vivid/size/space/200}",
-    "$description": "A normal horizontal padding size for small control elements",
-    "$extensions": {
-      "tokenType": "spacing/padding-inline"
-    }
-  },
-  "vivid/control/small/size": {
-    "$type": "dimension",
-    "$value": "{vivid/size/height/600}",
-    "$description": "Block size for small control elements",
-    "$extensions": {
-      "tokenType": "spacing/block-size"
-    }
-  },
-  "vivid/control/medium/gap": {
-    "$type": "dimension",
-    "$value": "{vivid/size/space/200}",
-    "$description": "A gap size for medium control elements",
-    "$extensions": {
-      "tokenType": "spacing/gap"
-    }
-  },
-  "vivid/control/medium/padding-inline": {
-    "$type": "dimension",
-    "$value": "{vivid/size/space/300}",
-    "$description": "A horizontal padding size for medium control elements",
-    "$extensions": {
-      "tokenType": "spacing/padding-inline"
-    }
-  },
-  "vivid/control/medium/size": {
-    "$type": "dimension",
-    "$value": "{vivid/size/height/800}",
-    "$description": "Block size for medium control elements",
-    "$extensions": {
-      "tokenType": "spacing/block-size"
-    }
-  },
-  "vivid/control/large/gap": {
-    "$type": "dimension",
-    "$value": "{vivid/size/space/200}",
-    "$description": "A gap size for large control elements",
-    "$extensions": {
-      "tokenType": "spacing/gap"
-    }
-  },
-  "vivid/control/large/padding-inline": {
-    "$type": "dimension",
-    "$value": "{vivid/size/space/400}",
-    "$description": "A horizontal padding size for large control elements",
-    "$extensions": {
-      "tokenType": "spacing/padding-inline"
-    }
-  },
-  "vivid/control/large/size": {
-    "$type": "dimension",
-    "$value": "{vivid/size/height/1000}",
-    "$description": "Block size for large control elements",
-    "$extensions": {
-      "tokenType": "spacing/block-size"
-    }
-  },
-  "vivid/control/xlarge/gap": {
-    "$type": "dimension",
-    "$value": "{vivid/size/space/200}",
-    "$description": "A gap size for extra large control elements",
-    "$extensions": {
-      "tokenType": "spacing/gap"
-    }
-  },
-  "vivid/control/xlarge/padding-inline": {
-    "$type": "dimension",
-    "$value": "{vivid/size/space/500}",
-    "$description": "A horizontal padding size for extra large control elements",
-    "$extensions": {
-      "tokenType": "spacing/padding-inline"
-    }
-  },
-  "vivid/control/xlarge/size": {
-    "$type": "dimension",
-    "$value": "{vivid/size/height/1200}",
-    "$description": "Block size for extra large control elements",
-    "$extensions": {
-      "tokenType": "spacing/block-size"
+  "control": {
+    "xsmall": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{size.space.100}",
+        "$description": "A gap size for extra small control elements",
+        "$extensions": {
+          "tokenType": "spacing/gap"
+        }
+      },
+      "padding-inline": {
+        "$type": "dimension",
+        "$value": "{size.space.200}",
+        "$description": "A horizontal padding size for extra small control elements",
+        "$extensions": {
+          "tokenType": "spacing/padding-inline"
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.height.500}",
+        "$description": "Block size for extra small control elements",
+        "$extensions": {
+          "tokenType": "spacing/block-size"
+        }
+      }
+    },
+    "small": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{size.space.100}",
+        "$description": "A gap size for small control elements",
+        "$extensions": {
+          "tokenType": "spacing/gap"
+        }
+      },
+      "padding-inline": {
+        "$type": "dimension",
+        "$value": "{size.space.200}",
+        "$description": "A normal horizontal padding size for small control elements",
+        "$extensions": {
+          "tokenType": "spacing/padding-inline"
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.height.600}",
+        "$description": "Block size for small control elements",
+        "$extensions": {
+          "tokenType": "spacing/block-size"
+        }
+      }
+    },
+    "medium": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{size.space.200}",
+        "$description": "A gap size for medium control elements",
+        "$extensions": {
+          "tokenType": "spacing/gap"
+        }
+      },
+      "padding-inline": {
+        "$type": "dimension",
+        "$value": "{size.space.300}",
+        "$description": "A horizontal padding size for medium control elements",
+        "$extensions": {
+          "tokenType": "spacing/padding-inline"
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.height.800}",
+        "$description": "Block size for medium control elements",
+        "$extensions": {
+          "tokenType": "spacing/block-size"
+        }
+      }
+    },
+    "large": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{size.space.200}",
+        "$description": "A gap size for large control elements",
+        "$extensions": {
+          "tokenType": "spacing/gap"
+        }
+      },
+      "padding-inline": {
+        "$type": "dimension",
+        "$value": "{size.space.400}",
+        "$description": "A horizontal padding size for large control elements",
+        "$extensions": {
+          "tokenType": "spacing/padding-inline"
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.height.1000}",
+        "$description": "Block size for large control elements",
+        "$extensions": {
+          "tokenType": "spacing/block-size"
+        }
+      }
+    },
+    "xlarge": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{size.space.200}",
+        "$description": "A gap size for extra large control elements",
+        "$extensions": {
+          "tokenType": "spacing/gap"
+        }
+      },
+      "padding-inline": {
+        "$type": "dimension",
+        "$value": "{size.space.500}",
+        "$description": "A horizontal padding size for extra large control elements",
+        "$extensions": {
+          "tokenType": "spacing/padding-inline"
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.height.1200}",
+        "$description": "Block size for extra large control elements",
+        "$extensions": {
+          "tokenType": "spacing/block-size"
+        }
+      }
     }
   }
 }

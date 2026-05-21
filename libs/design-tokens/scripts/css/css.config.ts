@@ -1,4 +1,4 @@
-import type { Hooks, PlatformConfig } from 'style-dictionary/types';
+import type { Hooks, PlatformConfig, TransformedToken } from 'style-dictionary/types';
 import { fileHeader } from 'style-dictionary/utils';
 import { getHex } from '../utils/hexify.util';
 
@@ -98,7 +98,7 @@ export const cssConfig: Hooks = {
 
 			const serializeReference = (value: any): string => {
 				if (typeof value === 'string') {
-					return value.replace(/{([^}]+)}/g, (_match, tokenPath) => `var(--${tokenPath.replace(/\//g, '-')})`);
+					return value.replace(/{([^}]+)}/g, (_match, tokenPath) => `var(--viv-${tokenPath.replace(/\./g, '-')})`);
 				}
 				if (typeof value === 'number') {
 					return String(value);
@@ -114,14 +114,20 @@ export const cssConfig: Hooks = {
 				return String(value);
 			};
 
-			const serializeTypography = (value: any): string => {
-				const fontFamily = serializeReference(value.fontFamily);
-				const fontStretch = serializeReference(value.fontStretch);
-				const fontSize = serializeReference(value.fontSize);
-				const lineHeight = serializeReference(value.lineHeight);
-				const fontWeight = serializeReference(value.fontWeight ?? '');
+			const serializeTypography = (value: any, token: TransformedToken): string => {
+				const baseName = token.path.filter((p) => p !== 'DEFAULT').join('-');
+				const originalValue = (token.original as any)?.$value;
 
-				return `${fontWeight} ${fontStretch}% ${fontSize}/${lineHeight} ${fontFamily}`.trim();
+				const hasPerScaleFontWeight = dictionary.allTokens.some(t => t.name === `viv-${baseName}-font-weight`);
+				const fontWeight = hasPerScaleFontWeight
+					? `var(--viv-${baseName}-font-weight)`
+					: serializeReference(originalValue?.fontWeight ?? value.fontWeight);
+				const fontSize = `var(--viv-${baseName}-font-size)`;
+				const lineHeight = `var(--viv-${baseName}-line-height)`;
+				const fontFamily = serializeReference(originalValue?.fontFamily ?? value.fontFamily);
+				const fontStretch = serializeReference(originalValue?.fontStretch ?? value.fontStretch);
+
+				return `${fontWeight} ${fontStretch} ${fontSize}/${lineHeight} ${fontFamily}`.trim();
 			};
 
 			const content = dictionary.allTokens
@@ -134,7 +140,7 @@ export const cssConfig: Hooks = {
 						'fontFamily' in value &&
 						'fontSize' in value &&
 						'lineHeight' in value
-							? serializeTypography(value)
+							? serializeTypography(value, token)
 							: serializeReference(value);
 
 					if (typeof formattedValue !== 'string' || formattedValue === '') {
@@ -255,7 +261,7 @@ export const cssConfig: Hooks = {
 		'vvd/name/css': {
 			type: 'name',
 			transform(token) {
-				return token.name.replace(/\//g, '-');
+				return 'viv-' + token.path.filter((p: string) => p !== 'DEFAULT').join('-');
 			},
 		},
 	},

@@ -1,226 +1,246 @@
 {
-  "vivid/color/text": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/950}",
-    "$description": "A default text color used for primary text content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/secondary": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/700}",
-    "$description": "Use for text with a secondary level of prominence.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/disabled": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/600}",
-    "$description": "A disabled text color used for non-interactive text content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/link": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/600}",
-    "$description": "A text color used for interactive link elements in their default resting state.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/link/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/700}",
-    "$description": "A text color used for interactive link elements when hovered.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/link/active": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/800}",
-    "$description": "A text color used for interactive link elements when pressed or active.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/link/visited": {
-    "$type": "color",
-    "$value": "{vivid/color/info/600}",
-    "$description": "A text color used for previously visited link elements in their default resting state.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/link/visited/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/info/700}",
-    "$description": "A text color used for previously visited link elements when hovered.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/link/visited/active": {
-    "$type": "color",
-    "$value": "{vivid/color/info/800}",
-    "$description": "A text color used for previously visited link elements when pressed or active.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/on-inverse": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/0}",
-    "$description": "A text color used for high contrast content on dark backgrounds, overlays, or inverse surfaces.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/primary/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/800}",
-    "$description": "A primary text color used to communicate brand presence and highlight key content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/primary": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/500}",
-    "$description": "A primary text color used to communicate brand presence and highlight key content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/primary/on-strong": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/0}",
-    "$description": "A text color for use on primary strong fill elements to ensure accessible contrast.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/announcement/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/announcement/800}",
-    "$description": "An accent text color used to highlight new features, announcements, or secondary branded content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/announcement": {
-    "$type": "color",
-    "$value": "{vivid/color/announcement/500}",
-    "$description": "An accent text color used to highlight new features, announcements, or secondary branded content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/announcement/on-strong": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/0}",
-    "$description": "A text color for use on announcement strong fill elements to ensure accessible contrast.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/info/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/info/800}",
-    "$description": "An informational text color used to highlight info states, messages, or emphasis content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/info": {
-    "$type": "color",
-    "$value": "{vivid/color/info/500}",
-    "$description": "An informational text color used to highlight info states, messages, or emphasis content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/info/on-strong": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/0}",
-    "$description": "A text color for use on info strong fill elements to ensure accessible contrast.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/danger/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/danger/800}",
-    "$description": "A danger text color used to highlight danger states, messages, or emphasis content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/danger": {
-    "$type": "color",
-    "$value": "{vivid/color/danger/500}",
-    "$description": "A danger text color used to highlight danger states, messages, or emphasis content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/danger/on-strong": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/0}",
-    "$description": "A text color for use on danger strong fill elements to ensure accessible contrast.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/warning/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/warning/800}",
-    "$description": "A warning text color used to highlight warning states, messages, or emphasis content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/warning": {
-    "$type": "color",
-    "$value": "{vivid/color/warning/500}",
-    "$description": "A warning text color used to highlight warning states, messages, or emphasis content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/warning/on-strong": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/950}",
-    "$description": "A text color for use on warning strong fill elements to ensure accessible contrast.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/success/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/success/800}",
-    "$description": "A success text color used to highlight success states, messages, or emphasis content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/success": {
-    "$type": "color",
-    "$value": "{vivid/color/success/500}",
-    "$description": "A success text color used to highlight success states, messages, or emphasis content.",
-    "$extensions": {
-      "tokenType": "color/text"
-    }
-  },
-  "vivid/color/text/success/on-strong": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/0}",
-    "$description": "A text color for use on success strong fill elements to ensure accessible contrast.",
-    "$extensions": {
-      "tokenType": "color/text"
+  "color": {
+    "text": {
+      "DEFAULT": {
+        "$type": "color",
+        "$value": "{color.neutral.950}",
+        "$description": "A default text color used for primary text content.",
+        "$extensions": {
+          "tokenType": "color/text"
+        }
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{color.neutral.700}",
+        "$description": "Use for text with a secondary level of prominence.",
+        "$extensions": {
+          "tokenType": "color/text"
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.neutral.600}",
+        "$description": "A disabled text color used for non-interactive text content.",
+        "$extensions": {
+          "tokenType": "color/text"
+        }
+      },
+      "link": {
+        "DEFAULT": {
+          "$type": "color",
+          "$value": "{color.primary.600}",
+          "$description": "A text color used for interactive link elements in their default resting state.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.primary.700}",
+          "$description": "A text color used for interactive link elements when hovered.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{color.primary.800}",
+          "$description": "A text color used for interactive link elements when pressed or active.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "visited": {
+          "DEFAULT": {
+            "$type": "color",
+            "$value": "{color.info.600}",
+            "$description": "A text color used for previously visited link elements in their default resting state.",
+            "$extensions": {
+              "tokenType": "color/text"
+            }
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.info.700}",
+            "$description": "A text color used for previously visited link elements when hovered.",
+            "$extensions": {
+              "tokenType": "color/text"
+            }
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.info.800}",
+            "$description": "A text color used for previously visited link elements when pressed or active.",
+            "$extensions": {
+              "tokenType": "color/text"
+            }
+          }
+        }
+      },
+      "on-inverse": {
+        "$type": "color",
+        "$value": "{color.neutral.0}",
+        "$description": "A text color used for high contrast content on dark backgrounds, overlays, or inverse surfaces.",
+        "$extensions": {
+          "tokenType": "color/text"
+        }
+      },
+      "primary": {
+        "DEFAULT": {
+          "$type": "color",
+          "$value": "{color.primary.500}",
+          "$description": "A primary text color used to communicate brand presence and highlight key content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.primary.800}",
+          "$description": "A primary text color used to communicate brand presence and highlight key content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "on-strong": {
+          "$type": "color",
+          "$value": "{color.neutral.0}",
+          "$description": "A text color for use on primary strong fill elements to ensure accessible contrast.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        }
+      },
+      "announcement": {
+        "DEFAULT": {
+          "$type": "color",
+          "$value": "{color.announcement.500}",
+          "$description": "An accent text color used to highlight new features, announcements, or secondary branded content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.announcement.800}",
+          "$description": "An accent text color used to highlight new features, announcements, or secondary branded content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "on-strong": {
+          "$type": "color",
+          "$value": "{color.neutral.0}",
+          "$description": "A text color for use on announcement strong fill elements to ensure accessible contrast.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        }
+      },
+      "info": {
+        "DEFAULT": {
+          "$type": "color",
+          "$value": "{color.info.500}",
+          "$description": "An informational text color used to highlight info states, messages, or emphasis content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.info.800}",
+          "$description": "An informational text color used to highlight info states, messages, or emphasis content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "on-strong": {
+          "$type": "color",
+          "$value": "{color.neutral.0}",
+          "$description": "A text color for use on info strong fill elements to ensure accessible contrast.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        }
+      },
+      "danger": {
+        "DEFAULT": {
+          "$type": "color",
+          "$value": "{color.danger.500}",
+          "$description": "A danger text color used to highlight danger states, messages, or emphasis content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.danger.800}",
+          "$description": "A danger text color used to highlight danger states, messages, or emphasis content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "on-strong": {
+          "$type": "color",
+          "$value": "{color.neutral.0}",
+          "$description": "A text color for use on danger strong fill elements to ensure accessible contrast.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        }
+      },
+      "warning": {
+        "DEFAULT": {
+          "$type": "color",
+          "$value": "{color.warning.500}",
+          "$description": "A warning text color used to highlight warning states, messages, or emphasis content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.warning.800}",
+          "$description": "A warning text color used to highlight warning states, messages, or emphasis content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "on-strong": {
+          "$type": "color",
+          "$value": "{color.neutral.950}",
+          "$description": "A text color for use on warning strong fill elements to ensure accessible contrast.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        }
+      },
+      "success": {
+        "DEFAULT": {
+          "$type": "color",
+          "$value": "{color.success.500}",
+          "$description": "A success text color used to highlight success states, messages, or emphasis content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.success.800}",
+          "$description": "A success text color used to highlight success states, messages, or emphasis content.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "on-strong": {
+          "$type": "color",
+          "$value": "{color.neutral.0}",
+          "$description": "A text color for use on success strong fill elements to ensure accessible contrast.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        }
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import type { Config } from 'style-dictionary';
+import type { Config } from 'style-dictionary/types';
 import StyleDictionary from 'style-dictionary';
 import { cssConfig, cssPlatform } from './css/css.config';
 import { flutterConfig, flutterPlatform } from './flutter/flutter.config';

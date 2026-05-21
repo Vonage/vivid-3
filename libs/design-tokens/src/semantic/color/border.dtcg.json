@@ -1,90 +1,94 @@
 {
-  "vivid/color/border": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/400}",
-    "$description": "A default border color used for standard borders, dividers, and strokes.",
-    "$extensions": {
-      "tokenType": "color/border"
-    }
-  },
-  "vivid/color/border/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/500}",
-    "$description": "A strong border color used for high-emphasis borders, dividers, and strokes.",
-    "$extensions": {
-      "tokenType": "color/border"
-    }
-  },
-  "vivid/color/border/muted": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/300}",
-    "$description": "A muted border color used for low-emphasis borders, dividers, and strokes.",
-    "$extensions": {
-      "tokenType": "color/border"
-    }
-  },
-  "vivid/color/border/primary": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/300}",
-    "$description": "A primary border color used to communicate brand presence and highlight key elements.",
-    "$extensions": {
-      "tokenType": "color/border"
-    }
-  },
-  "vivid/color/border/announcement": {
-    "$type": "color",
-    "$value": "{vivid/color/announcement/300}",
-    "$description": "An accent border color used for subtle emphasis, decoration, or supporting accent elements.",
-    "$extensions": {
-      "tokenType": "color/border"
-    }
-  },
-  "vivid/color/border/info": {
-    "$type": "color",
-    "$value": "{vivid/color/info/300}",
-    "$description": "A informational border color used for subtle emphasis, decoration, or supporting info elements.",
-    "$extensions": {
-      "tokenType": "color/border"
-    }
-  },
-  "vivid/color/border/danger": {
-    "$type": "color",
-    "$value": "{vivid/color/danger/300}",
-    "$description": "A danger border color used for subtle emphasis, decoration, or supporting danger elements.",
-    "$extensions": {
-      "tokenType": "color/border"
-    }
-  },
-  "vivid/color/border/warning": {
-    "$type": "color",
-    "$value": "{vivid/color/warning/300}",
-    "$description": "A warning border color used for subtle emphasis, decoration, or supporting warning elements.",
-    "$extensions": {
-      "tokenType": "color/border"
-    }
-  },
-  "vivid/color/border/success": {
-    "$type": "color",
-    "$value": "{vivid/color/success/300}",
-    "$description": "A success border color used for subtle emphasis, decoration, or supporting success elements.",
-    "$extensions": {
-      "tokenType": "color/border"
-    }
-  },
-  "vivid/color/border/neutral": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/300}",
-    "$description": "A neutral border color used for low-emphasis borders, dividers",
-    "$extensions": {
-      "tokenType": "color/border"
-    }
-  },
-  "vivid/color/border/disabled": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/300}",
-    "$description": "A border color used to indicate disabled states or non-interactive surfaces.",
-    "$extensions": {
-      "tokenType": "color/border"
+  "color": {
+    "border": {
+      "DEFAULT": {
+        "$type": "color",
+        "$value": "{color.neutral.400}",
+        "$description": "A default border color used for standard borders, dividers, and strokes.",
+        "$extensions": {
+          "tokenType": "color/border"
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.neutral.500}",
+        "$description": "A strong border color used for high-emphasis borders, dividers, and strokes.",
+        "$extensions": {
+          "tokenType": "color/border"
+        }
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{color.neutral.300}",
+        "$description": "A muted border color used for low-emphasis borders, dividers, and strokes.",
+        "$extensions": {
+          "tokenType": "color/border"
+        }
+      },
+      "primary": {
+        "$type": "color",
+        "$value": "{color.primary.300}",
+        "$description": "A primary border color used to communicate brand presence and highlight key elements.",
+        "$extensions": {
+          "tokenType": "color/border"
+        }
+      },
+      "announcement": {
+        "$type": "color",
+        "$value": "{color.announcement.300}",
+        "$description": "An accent border color used for subtle emphasis, decoration, or supporting accent elements.",
+        "$extensions": {
+          "tokenType": "color/border"
+        }
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{color.info.300}",
+        "$description": "A informational border color used for subtle emphasis, decoration, or supporting info elements.",
+        "$extensions": {
+          "tokenType": "color/border"
+        }
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "{color.danger.300}",
+        "$description": "A danger border color used for subtle emphasis, decoration, or supporting danger elements.",
+        "$extensions": {
+          "tokenType": "color/border"
+        }
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{color.warning.300}",
+        "$description": "A warning border color used for subtle emphasis, decoration, or supporting warning elements.",
+        "$extensions": {
+          "tokenType": "color/border"
+        }
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{color.success.300}",
+        "$description": "A success border color used for subtle emphasis, decoration, or supporting success elements.",
+        "$extensions": {
+          "tokenType": "color/border"
+        }
+      },
+      "neutral": {
+        "$type": "color",
+        "$value": "{color.neutral.300}",
+        "$description": "A neutral border color used for low-emphasis borders, dividers",
+        "$extensions": {
+          "tokenType": "color/border"
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.neutral.300}",
+        "$description": "A border color used to indicate disabled states or non-interactive surfaces.",
+        "$extensions": {
+          "tokenType": "color/border"
+        }
+      }
     }
   }
 }

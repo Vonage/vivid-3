@@ -1,426 +1,468 @@
 {
-  "vivid/color/bg": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/0}",
-    "$description": "The default page background colour, used as the base canvas for application layouts and large surface areas.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/inverse": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/950}",
-    "$description": "Use for high contrast page or component backgrounds.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/0}",
-    "$description": "The background color for elements with the highest level of prominence, like a card.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/alpha/90}",
-    "$description": "The hover state color for elements with the highest level of prominence.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/active": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/alpha/80}",
-    "$description": "The active state color for elements with the highest level of prominence.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/selected": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/100}",
-    "$description": "The selected state color for elements with the highest level of prominence.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/disabled": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/alpha/85}",
-    "$description": "The disabled state surface color.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/secondary": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/50}",
-    "$description": "The background color for elements with a secondary level of prominence.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/tertiary": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/100}",
-    "$description": "The background color for elements with a tertiary level of prominence.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/inverse": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/950}",
-    "$description": "The background color for elements with a tertiary level of prominence.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/neutral": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/50}",
-    "$description": "Use to apply the neutral color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-   "vivid/color/bg/surface/primary": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/50}",
-    "$description": "Use to apply the primary color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/announcement": {
-    "$type": "color",
-    "$value": "{vivid/color/announcement/50}",
-    "$description": "Use to apply the announcement color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/info": {
-    "$type": "color",
-    "$value": "{vivid/color/info/50}",
-    "$description": "Use to apply the info color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/success": {
-    "$type": "color",
-    "$value": "{vivid/color/success/50}",
-    "$description": "Use to apply the success color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/warning": {
-    "$type": "color",
-    "$value": "{vivid/color/warning/50}",
-    "$description": "Use to apply the warning color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/surface/danger": {
-    "$type": "color",
-    "$value": "{vivid/color/danger/50}",
-    "$description": "Use to apply the danger color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/disabled": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/100}",
-    "$description": "The disabled color for smaller elements, like buttons",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/neutral/subtle": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/alpha/85}",
-    "$description": "Use to apply the neutral color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/neutral/subtle/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/alpha/90}",
-    "$description": "Use to apply the neutral color to elements in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/neutral/subtle/active": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/alpha/80}",
-    "$description": "Use to apply the neutral color to elements in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/neutral/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/950}",
-    "$description": "Use to apply the neutral color to elements with high emphasis.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/neutral/strong/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/800}",
-    "$description": "Use to apply the neutral color to elements with high emphasis in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/neutral/strong/active": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral/700}",
-    "$description": "Use to apply the neutral color to elements with high emphasis in active state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/primary/subtle": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/alpha/85}",
-    "$description": "Use to apply the primary color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/primary/subtle/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/alpha/90}",
-    "$description": "Use to apply the primary color to elements in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/primary/subtle/active": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/alpha/80}",
-    "$description": "Use to apply the primary color to elements in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/primary/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/500}",
-    "$description": "Use to apply the primary color to elements with high emphasis.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/primary/strong/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/600}",
-    "$description": "Use to apply the primary color to elements with high emphasis in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/primary/strong/active": {
-    "$type": "color",
-    "$value": "{vivid/color/primary/700}",
-    "$description": "Use to apply the primary color to elements with high emphasis in active state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/announcement/subtle": {
-    "$type": "color",
-    "$value": "{vivid/color/announcement/alpha/85}",
-    "$description": "Use to apply the announcement color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/announcement/subtle/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/announcement/alpha/90}",
-    "$description": "Use to apply the announcement color to elements in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/announcement/subtle/active": {
-    "$type": "color",
-    "$value": "{vivid/color/announcement/alpha/80}",
-    "$description": "Use to apply the announcement color to elements in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/announcement/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/announcement/500}",
-    "$description": "Use to apply the announcement color to elements with high emphasis.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/announcement/strong/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/announcement/600}",
-    "$description": "Use to apply the announcement color to elements with high emphasis in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/announcement/strong/active": {
-    "$type": "color",
-    "$value": "{vivid/color/announcement/700}",
-    "$description": "Use to apply the announcement color to elements with high emphasis in active state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/success/subtle": {
-    "$type": "color",
-    "$value": "{vivid/color/success/alpha/85}",
-    "$description": "Use to apply the success color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/success/subtle/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/success/alpha/90}",
-    "$description": "Use to apply the success color to elements in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/success/subtle/active": {
-    "$type": "color",
-    "$value": "{vivid/color/success/alpha/80}",
-    "$description": "Use to apply the success color to elements in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/success/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/success/500}",
-    "$description": "Use to apply the success color to elements with high emphasis.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/success/strong/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/success/600}",
-    "$description": "Use to apply the success color to elements with high emphasis in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/success/strong/active": {
-    "$type": "color",
-    "$value": "{vivid/color/success/700}",
-    "$description": "Use to apply the success color to elements with high emphasis in active state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/danger/subtle": {
-    "$type": "color",
-    "$value": "{vivid/color/danger/alpha/85}",
-    "$description": "Use to apply the danger color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/danger/subtle/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/danger/alpha/90}",
-    "$description": "Use to apply the danger color to elements in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/danger/subtle/active": {
-    "$type": "color",
-    "$value": "{vivid/color/danger/alpha/80}",
-    "$description": "Use to apply the danger color to elements in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/danger/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/danger/500}",
-    "$description": "Use to apply the danger color to elements with high emphasis.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/danger/strong/hover": {
-    "$type": "color",
-    "$value": "{vivid/color/danger/600}",
-    "$description": "Use to apply the danger color to elements with high emphasis in hover state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/danger/strong/active": {
-    "$type": "color",
-    "$value": "{vivid/color/danger/700}",
-    "$description": "Use to apply the danger color to elements with high emphasis in active state.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/info/subtle": {
-    "$type": "color",
-    "$value": "{vivid/color/info/alpha/85}",
-    "$description": "Use to apply the info color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/info/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/info/500}",
-    "$description": "Use to apply the info color to elements with high emphasis.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/warning/subtle": {
-    "$type": "color",
-    "$value": "{vivid/color/warning/alpha/85}",
-    "$description": "Use to apply the warning color to elements.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/fill/warning/strong": {
-    "$type": "color",
-    "$value": "{vivid/color/warning/500}",
-    "$description": "Use to apply the warning color to elements with high emphasis.",
-    "$extensions": {
-      "tokenType": "color/background"
-    }
-  },
-  "vivid/color/bg/backdrop": {
-    "$type": "color",
-    "$value": "{vivid/color/neutral-tint/alpha/80}",
-    "$description": "A semi transparent background color for backdrops (eg. dialog component)",
-    "$extensions": {
-      "tokenType": "color/background"
+  "color": {
+    "bg": {
+      "DEFAULT": {
+        "$type": "color",
+        "$value": "{color.neutral.0}",
+        "$description": "The default page background colour, used as the base canvas for application layouts and large surface areas.",
+        "$extensions": {
+          "tokenType": "color/background"
+        }
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{color.neutral.950}",
+        "$description": "Use for high contrast page or component backgrounds.",
+        "$extensions": {
+          "tokenType": "color/background"
+        }
+      },
+      "surface": {
+        "DEFAULT": {
+          "$type": "color",
+          "$value": "{color.neutral.0}",
+          "$description": "The background color for elements with the highest level of prominence, like a card.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.neutral.alpha.90}",
+          "$description": "The hover state color for elements with the highest level of prominence.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{color.neutral.alpha.80}",
+          "$description": "The active state color for elements with the highest level of prominence.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{color.neutral.100}",
+          "$description": "The selected state color for elements with the highest level of prominence.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.neutral.alpha.85}",
+          "$description": "The disabled state surface color.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": "{color.neutral.50}",
+          "$description": "The background color for elements with a secondary level of prominence.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "tertiary": {
+          "$type": "color",
+          "$value": "{color.neutral.100}",
+          "$description": "The background color for elements with a tertiary level of prominence.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "inverse": {
+          "$type": "color",
+          "$value": "{color.neutral.950}",
+          "$description": "The background color for elements with a tertiary level of prominence.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "neutral": {
+          "$type": "color",
+          "$value": "{color.neutral.50}",
+          "$description": "Use to apply the neutral color to elements.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "primary": {
+          "$type": "color",
+          "$value": "{color.primary.50}",
+          "$description": "Use to apply the primary color to elements.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "announcement": {
+          "$type": "color",
+          "$value": "{color.announcement.50}",
+          "$description": "Use to apply the announcement color to elements.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "info": {
+          "$type": "color",
+          "$value": "{color.info.50}",
+          "$description": "Use to apply the info color to elements.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "success": {
+          "$type": "color",
+          "$value": "{color.success.50}",
+          "$description": "Use to apply the success color to elements.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "{color.warning.50}",
+          "$description": "Use to apply the warning color to elements.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "{color.danger.50}",
+          "$description": "Use to apply the danger color to elements.",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        }
+      },
+      "fill": {
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.neutral.100}",
+          "$description": "The disabled color for smaller elements, like buttons",
+          "$extensions": {
+            "tokenType": "color/background"
+          }
+        },
+        "neutral": {
+          "subtle": {
+            "DEFAULT": {
+              "$type": "color",
+              "$value": "{color.neutral.alpha.85}",
+              "$description": "Use to apply the neutral color to elements.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.neutral.alpha.90}",
+              "$description": "Use to apply the neutral color to elements in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.neutral.alpha.80}",
+              "$description": "Use to apply the neutral color to elements in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            }
+          },
+          "strong": {
+            "DEFAULT": {
+              "$type": "color",
+              "$value": "{color.neutral.950}",
+              "$description": "Use to apply the neutral color to elements with high emphasis.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.neutral.800}",
+              "$description": "Use to apply the neutral color to elements with high emphasis in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.neutral.700}",
+              "$description": "Use to apply the neutral color to elements with high emphasis in active state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            }
+          }
+        },
+        "primary": {
+          "subtle": {
+            "DEFAULT": {
+              "$type": "color",
+              "$value": "{color.primary.alpha.85}",
+              "$description": "Use to apply the primary color to elements.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.primary.alpha.90}",
+              "$description": "Use to apply the primary color to elements in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.primary.alpha.80}",
+              "$description": "Use to apply the primary color to elements in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            }
+          },
+          "strong": {
+            "DEFAULT": {
+              "$type": "color",
+              "$value": "{color.primary.500}",
+              "$description": "Use to apply the primary color to elements with high emphasis.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.primary.600}",
+              "$description": "Use to apply the primary color to elements with high emphasis in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.primary.700}",
+              "$description": "Use to apply the primary color to elements with high emphasis in active state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            }
+          }
+        },
+        "announcement": {
+          "subtle": {
+            "DEFAULT": {
+              "$type": "color",
+              "$value": "{color.announcement.alpha.85}",
+              "$description": "Use to apply the announcement color to elements.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.announcement.alpha.90}",
+              "$description": "Use to apply the announcement color to elements in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.announcement.alpha.80}",
+              "$description": "Use to apply the announcement color to elements in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            }
+          },
+          "strong": {
+            "DEFAULT": {
+              "$type": "color",
+              "$value": "{color.announcement.500}",
+              "$description": "Use to apply the announcement color to elements with high emphasis.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.announcement.600}",
+              "$description": "Use to apply the announcement color to elements with high emphasis in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.announcement.700}",
+              "$description": "Use to apply the announcement color to elements with high emphasis in active state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            }
+          }
+        },
+        "success": {
+          "subtle": {
+            "DEFAULT": {
+              "$type": "color",
+              "$value": "{color.success.alpha.85}",
+              "$description": "Use to apply the success color to elements.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.success.alpha.90}",
+              "$description": "Use to apply the success color to elements in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.success.alpha.80}",
+              "$description": "Use to apply the success color to elements in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            }
+          },
+          "strong": {
+            "DEFAULT": {
+              "$type": "color",
+              "$value": "{color.success.500}",
+              "$description": "Use to apply the success color to elements with high emphasis.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.success.600}",
+              "$description": "Use to apply the success color to elements with high emphasis in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.success.700}",
+              "$description": "Use to apply the success color to elements with high emphasis in active state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            }
+          }
+        },
+        "danger": {
+          "subtle": {
+            "DEFAULT": {
+              "$type": "color",
+              "$value": "{color.danger.alpha.85}",
+              "$description": "Use to apply the danger color to elements.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.danger.alpha.90}",
+              "$description": "Use to apply the danger color to elements in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.danger.alpha.80}",
+              "$description": "Use to apply the danger color to elements in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            }
+          },
+          "strong": {
+            "DEFAULT": {
+              "$type": "color",
+              "$value": "{color.danger.500}",
+              "$description": "Use to apply the danger color to elements with high emphasis.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{color.danger.600}",
+              "$description": "Use to apply the danger color to elements with high emphasis in hover state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.danger.700}",
+              "$description": "Use to apply the danger color to elements with high emphasis in active state.",
+              "$extensions": {
+                "tokenType": "color/background"
+              }
+            }
+          }
+        },
+        "info": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{color.info.alpha.85}",
+            "$description": "Use to apply the info color to elements.",
+            "$extensions": {
+              "tokenType": "color/background"
+            }
+          },
+          "strong": {
+            "$type": "color",
+            "$value": "{color.info.500}",
+            "$description": "Use to apply the info color to elements with high emphasis.",
+            "$extensions": {
+              "tokenType": "color/background"
+            }
+          }
+        },
+        "warning": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{color.warning.alpha.85}",
+            "$description": "Use to apply the warning color to elements.",
+            "$extensions": {
+              "tokenType": "color/background"
+            }
+          },
+          "strong": {
+            "$type": "color",
+            "$value": "{color.warning.500}",
+            "$description": "Use to apply the warning color to elements with high emphasis.",
+            "$extensions": {
+              "tokenType": "color/background"
+            }
+          }
+        }
+      },
+      "backdrop": {
+        "$type": "color",
+        "$value": "{color.neutral-tint.alpha.80}",
+        "$description": "A semi transparent background color for backdrops (eg. dialog component)",
+        "$extensions": {
+          "tokenType": "color/background"
+        }
+      }
     }
   }
 }

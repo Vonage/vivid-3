@@ -30,16 +30,16 @@ async function getTokens() {
 	for (const tokenName of styleDictionaryInstance.tokenMap.keys()) {
 		const cssToken = cssTokens.tokenMap.get(tokenName);
 		const flutterToken = flutterTokens.tokenMap.get(tokenName);
-		const cleanName = tokenName.replace(/[{}]/gm, '');
-		const nameArr = cleanName.split('/');
+		const cleanName = tokenName.replace(/[{}]/gm, '').replace(/\.DEFAULT/g, '');
+		const nameArr = cleanName.split('.');
 		const element = nameArr.filter(part => elements.includes(part)).join('-');
 		const role = nameArr.filter(part => roles.includes(part)).join('-');
 		const prominence = nameArr.filter(part => prominences.includes(part)).join('-');
 		const state = nameArr.filter(part => states.includes(part)).join('-');
-		const scale = nameArr.find(part => scales.includes(part)) || nameArr[3];
-		const subGroup = nameArr[3] !== scale ? nameArr[3] : null;
-		const category = nameArr[1];
-		const semantic = nameArr[2];
+		const scale = nameArr.find(part => scales.includes(part)) || nameArr[2];
+		const subGroup = nameArr[2] !== scale ? nameArr[2] : null;
+		const category = nameArr[0];
+		const semantic = nameArr[1];
 
 		const originalValue = cssToken.original?.$value;
 		const reference = typeof originalValue === 'string' && originalValue.startsWith('{') ? originalValue : undefined;

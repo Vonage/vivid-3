@@ -1,10 +1,14 @@
 {
-  "vivid/text/font-stretch/condensed": {
-    "$type": "string",
-    "$value": "condensed"
-  },
-  "vivid/text/font-stretch/ultra-condensed": {
-    "$type": "string",
-    "$value": "ultra-condensed"
+  "text": {
+    "font-stretch": {
+      "condensed": {
+        "$type": "string",
+        "$value": "condensed"
+      },
+      "ultra-condensed": {
+        "$type": "string",
+        "$value": "ultra-condensed"
+      }
+    }
   }
 }

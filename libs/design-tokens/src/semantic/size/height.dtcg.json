@@ -1,27 +1,31 @@
 {
-	"vivid/size/height/500": {
-		"$type": "dimension",
-		"$value": "{vivid/size/500}",
-		"$description": "20px (500% of 4px)"
-	},
-  "vivid/size/height/600": {
-		"$type": "dimension",
-		"$value": "{vivid/size/600}",
-		"$description": "24px (600% of 4px)"
-	},
-  "vivid/size/height/800": {
-		"$type": "dimension",
-		"$value": "{vivid/size/800}",
-		"$description": "32px (800% of 4px)"
-	},
-  "vivid/size/height/1000": {
-		"$type": "dimension",
-		"$value": "{vivid/size/1000}",
-		"$description": "40px (1000% of 4px)"
-	},
-  "vivid/size/height/1200": {
-		"$type": "dimension",
-		"$value": "{vivid/size/1200}",
-		"$description": "48px (1200% of 4px)"
-	}
+  "size": {
+    "height": {
+      "500": {
+        "$type": "dimension",
+        "$value": "{size.500}",
+        "$description": "20px (500% of 4px)"
+      },
+      "600": {
+        "$type": "dimension",
+        "$value": "{size.600}",
+        "$description": "24px (600% of 4px)"
+      },
+      "800": {
+        "$type": "dimension",
+        "$value": "{size.800}",
+        "$description": "32px (800% of 4px)"
+      },
+      "1000": {
+        "$type": "dimension",
+        "$value": "{size.1000}",
+        "$description": "40px (1000% of 4px)"
+      },
+      "1200": {
+        "$type": "dimension",
+        "$value": "{size.1200}",
+        "$description": "48px (1200% of 4px)"
+      }
+    }
+  }
 }
