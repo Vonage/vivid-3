@@ -197,8 +197,12 @@ export const createButton = (
 		variant() === 'toolbar' ? 'super-condensed' : 'condensed';
 	const appearanceInactive = () =>
 		variant() === 'popover-primary' ? 'outlined' : 'ghost-light';
+	const appearanceActive = () =>
+		variant() === 'toolbar-menu' || variant() === 'popover'
+			? 'filled'
+			: appearanceInactive();
 	const appearance = () =>
-		ctx.evalProp(props.active) ? 'filled' : appearanceInactive();
+		ctx.evalProp(props.active) ? appearanceActive() : appearanceInactive();
 	const connotation = () =>
 		ctx.evalProp(props.connotation) ??
 		(variant() === 'toolbar-menu' && ctx.evalProp(props.active)
@@ -218,7 +222,11 @@ export const createButton = (
 			autofocus: props.autofocus,
 			connotation,
 			[props.icon ? 'ariaLabel' : 'label']: props.label,
-			ariaPressed: () => (ctx.evalProp(props.active) ? 'true' : null),
+			pressed: () => Boolean(ctx.evalProp(props.active)),
+			ariaPressed:
+				props.active !== undefined
+					? () => (ctx.evalProp(props.active!) ? 'true' : 'false')
+					: undefined,
 		},
 		[
 			on('click', props.onClick, (onClick) => () => {

@@ -399,7 +399,7 @@ export async function setup(
 		await elementUpdated(element);
 	};
 
-	const isActive = (button: Button) => button.appearance === 'filled';
+	const isActive = (button: Button) => button.pressed;
 
 	const openMenu = () =>
 		element.shadowRoot!.querySelector<Menu>(
