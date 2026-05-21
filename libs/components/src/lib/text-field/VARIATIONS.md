@@ -458,7 +458,7 @@ import { VTextField } from '@vonage/vivid-vue';
 </script>
 
 <template>
-	<VTextField disabled label="Username" />
+	<VTextField disabled label="Username" value="Disabled" />
 </template>
 ```
 
@@ -467,7 +467,7 @@ import { VTextField } from '@vonage/vivid-vue';
 <vwc-tab-panel>
 
 ```html preview
-<vwc-text-field disabled label="Username"></vwc-text-field>
+<vwc-text-field disabled label="Username" value="Disabled"></vwc-text-field>
 ```
 
 </vwc-tab-panel>
