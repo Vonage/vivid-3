@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.19.0
+
+### Patch Changes
+
+- Updated dependencies [[`f1ef02f`](https://github.com/Vonage/vivid-3/commit/f1ef02f649bbf0b86b50a39d505c4a290cdbab80), [`f1ef02f`](https://github.com/Vonage/vivid-3/commit/f1ef02f649bbf0b86b50a39d505c4a290cdbab80), [`f1ef02f`](https://github.com/Vonage/vivid-3/commit/f1ef02f649bbf0b86b50a39d505c4a290cdbab80), [`7076be9`](https://github.com/Vonage/vivid-3/commit/7076be9bdb9d76049bcd0b1754506a7eb14355f6), [`9a862a7`](https://github.com/Vonage/vivid-3/commit/9a862a7e2c5bce2b9ede4562dd48982756c47607)]:
+  - @vonage/vivid@5.19.0
+
 ## 5.18.0
 
 ### Minor Changes
