@@ -15,7 +15,7 @@
           "value": 1,
           "unit": "px"
         },
-        "$description": "1px (25% of 4x)"
+        "$description": "1px (25% of 4px)"
       },
       "50": {
         "$type": "dimension",

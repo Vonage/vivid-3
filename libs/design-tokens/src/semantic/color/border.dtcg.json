@@ -76,7 +76,7 @@
       "neutral": {
         "$type": "color",
         "$value": "{color.neutral.300}",
-        "$description": "A neutral border color used for low-emphasis borders, dividers",
+        "$description": "A neutral border color used for low-emphasis borders, dividers, and strokes.",
         "$extensions": {
           "tokenType": "color/border"
         }

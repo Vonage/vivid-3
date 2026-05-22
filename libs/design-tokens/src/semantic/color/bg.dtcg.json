@@ -77,7 +77,7 @@
         "inverse": {
           "$type": "color",
           "$value": "{color.neutral.950}",
-          "$description": "The background color for elements with a tertiary level of prominence.",
+          "$description": "The background color for elements displayed on an inverse (dark) surface.",
           "$extensions": {
             "tokenType": "color/background"
           }
@@ -169,7 +169,7 @@
             "active": {
               "$type": "color",
               "$value": "{color.neutral.alpha.80}",
-              "$description": "Use to apply the neutral color to elements in hover state.",
+              "$description": "Use to apply the neutral color to elements in active state.",
               "$extensions": {
                 "tokenType": "color/background"
               }
@@ -223,7 +223,7 @@
             "active": {
               "$type": "color",
               "$value": "{color.primary.alpha.80}",
-              "$description": "Use to apply the primary color to elements in hover state.",
+              "$description": "Use to apply the primary color to elements in active state.",
               "$extensions": {
                 "tokenType": "color/background"
               }
@@ -277,7 +277,7 @@
             "active": {
               "$type": "color",
               "$value": "{color.announcement.alpha.80}",
-              "$description": "Use to apply the announcement color to elements in hover state.",
+              "$description": "Use to apply the announcement color to elements in active state.",
               "$extensions": {
                 "tokenType": "color/background"
               }
@@ -331,7 +331,7 @@
             "active": {
               "$type": "color",
               "$value": "{color.success.alpha.80}",
-              "$description": "Use to apply the success color to elements in hover state.",
+              "$description": "Use to apply the success color to elements in active state.",
               "$extensions": {
                 "tokenType": "color/background"
               }
@@ -385,7 +385,7 @@
             "active": {
               "$type": "color",
               "$value": "{color.danger.alpha.80}",
-              "$description": "Use to apply the danger color to elements in hover state.",
+              "$description": "Use to apply the danger color to elements in active state.",
               "$extensions": {
                 "tokenType": "color/background"
               }

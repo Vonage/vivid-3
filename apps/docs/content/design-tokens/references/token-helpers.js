@@ -36,10 +36,13 @@ module.exports.getTokens = async function () {
 		const role = nameArr.filter(part => roles.includes(part)).join('-');
 		const prominence = nameArr.filter(part => prominences.includes(part)).join('-');
 		const state = nameArr.filter(part => states.includes(part)).join('-');
-		const scale = nameArr.find(part => scales.includes(part)) || nameArr[2];
-		const subGroup = nameArr[2] !== scale ? nameArr[2] : null;
+		const foundScale = nameArr.find(part => scales.includes(part));
+		const scale = foundScale || nameArr[2];
 		const category = nameArr[0];
 		const semantic = nameArr[1];
+		const subGroup = nameArr[2] !== scale
+			? nameArr[2]
+			: (category === 'control' && foundScale && nameArr.length > 3 ? nameArr[2] : null);
 
 		const originalValue = cssToken.original?.$value;
 		const reference = typeof originalValue === 'string' && originalValue.startsWith('{') ? originalValue : undefined;
@@ -68,7 +71,7 @@ module.exports.getTokens = async function () {
 		semanticGroup.push(entry);
 		if (cssToken.$type === 'typography') {
 			semanticGroup[nameArr[nameArr.length - 1]] = entry;
-		} else if (scale && isNaN(Number(scale))) {
+		} else if (scale && isNaN(Number(scale)) && subGroup !== scale) {
 			semanticGroup[scale] = entry;
 		}
 		if (subGroup) {

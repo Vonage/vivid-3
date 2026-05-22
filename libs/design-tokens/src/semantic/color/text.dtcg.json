@@ -77,6 +77,24 @@
           }
         }
       },
+      "on-strong": {
+        "DEFAULT": {
+          "$type": "color",
+          "$value": "{color.neutral.0}",
+          "$description": "A text color for use on primary strong fill elements to ensure accessible contrast.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        },
+        "inverse": {
+          "$type": "color",
+          "$value": "{color.neutral.950}",
+          "$description": "A text color for use on primary strong fill elements in inverse contexts to ensure accessible contrast.",
+          "$extensions": {
+            "tokenType": "color/text"
+          }
+        }
+      },
       "on-inverse": {
         "$type": "color",
         "$value": "{color.neutral.0}",
@@ -101,14 +119,6 @@
           "$extensions": {
             "tokenType": "color/text"
           }
-        },
-        "on-strong": {
-          "$type": "color",
-          "$value": "{color.neutral.0}",
-          "$description": "A text color for use on primary strong fill elements to ensure accessible contrast.",
-          "$extensions": {
-            "tokenType": "color/text"
-          }
         }
       },
       "announcement": {
@@ -124,14 +134,6 @@
           "$type": "color",
           "$value": "{color.announcement.800}",
           "$description": "An accent text color used to highlight new features, announcements, or secondary branded content.",
-          "$extensions": {
-            "tokenType": "color/text"
-          }
-        },
-        "on-strong": {
-          "$type": "color",
-          "$value": "{color.neutral.0}",
-          "$description": "A text color for use on announcement strong fill elements to ensure accessible contrast.",
           "$extensions": {
             "tokenType": "color/text"
           }
@@ -153,14 +155,6 @@
           "$extensions": {
             "tokenType": "color/text"
           }
-        },
-        "on-strong": {
-          "$type": "color",
-          "$value": "{color.neutral.0}",
-          "$description": "A text color for use on info strong fill elements to ensure accessible contrast.",
-          "$extensions": {
-            "tokenType": "color/text"
-          }
         }
       },
       "danger": {
@@ -176,14 +170,6 @@
           "$type": "color",
           "$value": "{color.danger.800}",
           "$description": "A danger text color used to highlight danger states, messages, or emphasis content.",
-          "$extensions": {
-            "tokenType": "color/text"
-          }
-        },
-        "on-strong": {
-          "$type": "color",
-          "$value": "{color.neutral.0}",
-          "$description": "A text color for use on danger strong fill elements to ensure accessible contrast.",
           "$extensions": {
             "tokenType": "color/text"
           }
@@ -205,14 +191,6 @@
           "$extensions": {
             "tokenType": "color/text"
           }
-        },
-        "on-strong": {
-          "$type": "color",
-          "$value": "{color.neutral.950}",
-          "$description": "A text color for use on warning strong fill elements to ensure accessible contrast.",
-          "$extensions": {
-            "tokenType": "color/text"
-          }
         }
       },
       "success": {
@@ -228,14 +206,6 @@
           "$type": "color",
           "$value": "{color.success.800}",
           "$description": "A success text color used to highlight success states, messages, or emphasis content.",
-          "$extensions": {
-            "tokenType": "color/text"
-          }
-        },
-        "on-strong": {
-          "$type": "color",
-          "$value": "{color.neutral.0}",
-          "$description": "A text color for use on success strong fill elements to ensure accessible contrast.",
           "$extensions": {
             "tokenType": "color/text"
           }
