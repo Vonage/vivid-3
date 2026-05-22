@@ -1,5 +1,21 @@
 # Change Log - @vonage/vivid
 
+## 5.19.0
+
+### Minor Changes
+
+- [#2909](https://github.com/Vonage/vivid-3/pull/2909) [`81a3964`](https://github.com/Vonage/vivid-3/commit/81a3964) Thanks [@RichardHelm](https://github.com/RichardHelm)! - feat(rich-text-editor): improve text-align-menu visual style (VIV-3204)
+
+- [#2914](https://github.com/Vonage/vivid-3/pull/2914) [`d5d35ec`](https://github.com/Vonage/vivid-3/commit/d5d35ec) Thanks [@TaylorJ76](https://github.com/TaylorJ76)! - feat(form-fields): disabled text color add more contrast (VIV-000)
+
+- [#2895](https://github.com/Vonage/vivid-3/pull/2895) [`7076be9`](https://github.com/Vonage/vivid-3/commit/7076be9bdb9d76049bcd0b1754506a7eb14355f6) Thanks [@RichardHelm](https://github.com/RichardHelm)! - feat(nav-item): support floating indicators in icon-only mode (VIV-3156)
+
+- [#2907](https://github.com/Vonage/vivid-3/pull/2907) [`9a862a7`](https://github.com/Vonage/vivid-3/commit/9a862a7e2c5bce2b9ede4562dd48982756c47607) Thanks [@RichardHelm](https://github.com/RichardHelm)! - feat(rich-text-editor): improve disabled style (VIV-3204)
+
+### Patch Changes
+
+- [#2902](https://github.com/Vonage/vivid-3/pull/2902) [`6a3b284`](https://github.com/Vonage/vivid-3/commit/6a3b284) Thanks [@TaylorJ76](https://github.com/TaylorJ76)! - fix(dialog): header is navigable (with screen reader) when focus goes to dismiss button (VIV-2881)
+
 ## 5.18.0
 
 ### Minor Changes
