@@ -131,7 +131,7 @@ $selectors: (
 	h5,
 	.heading5,
 	h6,
-	.heading6  {
+	.heading6 {
 		#{map.get($selectors, 'bold')} {
 			font-weight: 500;
 		}
