@@ -106,6 +106,18 @@ $selectors: (
 		margin-block: 24px;
 	}
 
+	h5,
+	.heading5 {
+		font: var(#{constants.$vvd-typography-heading-5});
+		margin-block: 18px;
+	}
+
+	h6,
+	.heading6 {
+		font: var(#{constants.$vvd-typography-heading-6});
+		margin-block: 16px;
+	}
+
 	.headline,
 	.subtitle,
 	h1,
