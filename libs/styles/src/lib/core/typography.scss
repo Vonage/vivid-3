@@ -109,13 +109,13 @@ $selectors: (
 	h5,
 	.heading5 {
 		font: var(#{constants.$vvd-typography-heading-5});
-		margin-block: 18px;
+		margin-block: 16px;
 	}
 
 	h6,
 	.heading6 {
 		font: var(#{constants.$vvd-typography-heading-6});
-		margin-block: 16px;
+		margin-block: 14px;
 	}
 
 	.headline,
@@ -127,7 +127,11 @@ $selectors: (
 	h3,
 	.heading3,
 	h4,
-	.heading4 {
+	.heading4,
+	h5,
+	.heading5,
+	h6,
+	.heading6  {
 		#{map.get($selectors, 'bold')} {
 			font-weight: 500;
 		}
