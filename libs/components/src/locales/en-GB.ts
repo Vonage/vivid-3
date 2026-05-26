@@ -231,6 +231,8 @@ const enGB: Locale = {
 		linkUrl: 'URL',
 		linkTextPlaceholder: 'Type text to convert into link',
 		linkUrlPlaceholder: 'Insert link URL',
+		linkUrlHelperText:
+			'Enter a destination (e.g., https://, mailto:, or tel:).',
 		cancel: 'Cancel',
 		apply: 'Apply',
 		close: 'Close',

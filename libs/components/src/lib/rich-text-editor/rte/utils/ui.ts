@@ -433,6 +433,7 @@ export const createTextField = (
 		slot?: string;
 		autofocus?: boolean;
 		type?: 'url';
+		helperText?: Prop<string>;
 		onInput?: (value: string) => void;
 	}
 ) => {
@@ -446,6 +447,7 @@ export const createTextField = (
 			slot: props.slot,
 			autofocus: props.autofocus,
 			type: props.type,
+			helperText: props.helperText,
 		},
 		[
 			on('input', props.onInput, (onInput) => () => {

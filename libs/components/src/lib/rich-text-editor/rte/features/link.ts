@@ -301,6 +301,8 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 							type: 'url',
 							placeholder: () =>
 								ctx.rte.getLocale().richTextEditor.linkUrlPlaceholder,
+							helperText: () =>
+								ctx.rte.getLocale().richTextEditor.linkUrlHelperText,
 							slot: 'header',
 							value: () => this.getCurrentLink(ctx.view.state)?.href || '',
 							onInput: () => {
