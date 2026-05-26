@@ -1,7 +1,9 @@
 import {
 	ariaAttributeName,
+	type AriaIdrefsPropertyName,
 	type AriaMixinElement,
 	type AriaPropertyName,
+	type AriaValuePropertyName,
 } from './aria-mixin';
 import {
 	DOM,
@@ -18,7 +20,8 @@ import {
 	subscribeToAriaPropertyChanges,
 	unsubscribeFromAriaPropertyChanges,
 } from './aria-change-subscription';
-import type { DelegatesAriaElement } from './delegates-aria';
+import { IdrefsController } from './idrefs-controller';
+import type { VividElement } from '../foundation/vivid-element/vivid-element';
 
 const setAriaAttribute = (
 	target: HTMLElement,
@@ -41,9 +44,11 @@ export type BoundAriaProperties<T> = Partial<{
 type AriaBindingDirectiveOptions<T> = {
 	/** Aria attributes set by the component template */
 	boundProperties: BoundAriaProperties<T>;
-	/** Attributes forwarded from the host to the target */
-	forwardedProperties: Set<AriaPropertyName>;
-	/** Whether to directive must be used on the host */
+	/** Value attributes forwarded from the host to the target */
+	forwardedValueProperties: Set<AriaValuePropertyName>;
+	/** Idrefs attributes forwarded from the host to the target */
+	forwardedIdrefsProperties: Set<AriaIdrefsPropertyName>;
+	/** Whether the directive must be used on the host */
 	requireHost?: boolean;
 };
 
@@ -86,7 +91,7 @@ export class AriaBindingDirective<
 		return this._propertyBindingBehaviours!;
 	}
 
-	bind(controller: ViewController<DelegatesAriaElement>) {
+	bind(controller: ViewController<AriaMixinElement>) {
 		const source = controller.source;
 		const target = controller.targets[this.targetNodeId!] as HTMLElement;
 
@@ -94,19 +99,40 @@ export class AriaBindingDirective<
 			throw new Error('Target element must be the same as the source element');
 		}
 
-		for (const behaviour of this.propertyBindingBehaviours)
+		for (const behaviour of this.propertyBindingBehaviours) {
 			behaviour.bind(controller);
+		}
 
-		for (const key of this.options.forwardedProperties) {
+		for (const key of this.options.forwardedValueProperties) {
 			setAriaAttribute(target, key, source[key]);
+		}
+
+		const setIdrefElementsOnTarget = (property: AriaIdrefsPropertyName) => {
+			(target as any)[`${property}Elements`] =
+				IdrefsController.resolvedElements(source as VividElement, property);
+		};
+
+		for (const key of this.options.forwardedIdrefsProperties) {
+			setIdrefElementsOnTarget(key);
 		}
 
 		const onAriaPropertyChange = (
 			source: AriaMixinElement,
 			property: AriaPropertyName
 		) => {
-			if (this.options.forwardedProperties.has(property)) {
+			if (
+				this.options.forwardedValueProperties.has(
+					property as AriaValuePropertyName
+				)
+			) {
 				setAriaAttribute(target, property, source[property]);
+			}
+			if (
+				this.options.forwardedIdrefsProperties.has(
+					property as AriaIdrefsPropertyName
+				)
+			) {
+				setIdrefElementsOnTarget(property as AriaIdrefsPropertyName);
 			}
 		};
 		subscribeToAriaPropertyChanges(source, onAriaPropertyChange);

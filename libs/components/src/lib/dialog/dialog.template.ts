@@ -77,8 +77,9 @@ export const DialogTemplate = (context: VividElementDefinitionContext) => {
 				@cancel="${(_, c) => c.event.preventDefault()}"
 				${delegateAria({
 					ariaModal: (x) => String(x._openedAsModal),
+					ariaLabelledBy: (x) =>
+						x.headline ? 'dialog-headline dialog-subtitle' : null,
 				})}
-				aria-labelledby="${(x) => (x.headline || x.subtitle ? 'dialog-headline dialog-subtitle' : null)}"
 		>
 			<slot name="main">
 				<div class="main-wrapper">

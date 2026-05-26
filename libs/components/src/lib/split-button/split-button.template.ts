@@ -53,10 +53,10 @@ function indicatorButton(context: VividElementDefinitionContext) {
 		<button
 			${ref('_indicator')}
 			class="indicator ${getClasses}"
-			aria-label="${(x) =>
-				x.indicatorAriaLabel || x.locale.splitButton.showMoreActionsLabel}"
 			${delegateAria(
 				{
+					ariaLabel: (x) =>
+						x.indicatorAriaLabel || x.locale.splitButton.showMoreActionsLabel,
 					ariaExpanded: (x) => x.ariaExpanded,
 					ariaDisabled: (x) => x.disabled,
 				},

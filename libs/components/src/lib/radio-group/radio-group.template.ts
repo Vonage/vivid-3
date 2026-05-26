@@ -20,10 +20,10 @@ export const RadioGroupTemplate = (context: VividElementDefinitionContext) => {
 						ariaDisabled: (x) => x.disabled,
 						ariaReadOnly: (x) => x.readOnly,
 						ariaOrientation: (x) => x.orientation,
+						ariaInvalid: (x) => (x.errorText ? 'true' : 'false'),
+						ariaLabelledBy: 'label',
+						ariaDescribedBy: (x) => x._feedbackDescribedBy,
 					})}
-					aria-labelledby="label"
-					aria-describedby="${(x) => x._feedbackDescribedBy}"
-					aria-invalid="${(x) => (x.errorText ? 'true' : 'false')}"
 					class="control positioning-region ${(x) =>
 						x.orientation === Orientation.horizontal
 							? 'horizontal'

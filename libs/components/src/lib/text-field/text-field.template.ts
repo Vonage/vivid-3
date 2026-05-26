@@ -106,10 +106,11 @@ export const TextfieldTemplate = (context: VividElementDefinitionContext) => {
 							autocomplete="${(x) => x.autoComplete}"
 							type="${(x) => x.type}"
 							inputmode="${(x) => x.inputMode}"
-							aria-describedby="${(x) => x._feedbackDescribedBy} ${(x) =>
-								x.charCount && x.maxlength ? x._charCountDescribedBy : null}"
 							value="${(x) => x.initialValue}"
-							${delegateAria()}
+							${delegateAria({
+								ariaDescribedBy: (x) =>
+									`${x._feedbackDescribedBy} ${x.charCount && x.maxlength ? x._charCountDescribedBy : null}`,
+							})}
 							${ref('control')}
 						/>`
 					)}

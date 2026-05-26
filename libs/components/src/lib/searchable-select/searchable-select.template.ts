@@ -144,16 +144,18 @@ function renderFieldset(context: VividElementDefinitionContext) {
 						id="control"
 						class="control"
 						autocomplete="off"
-						aria-controls="listbox"
-						aria-describedby="${(x) => x._feedbackDescribedBy} ${(x) =>
-							x.multiple && x.maxSelected && x.maxSelected >= 1
-								? 'selection-count'
-								: null}"
 						${delegateAria({
 							role: 'combobox',
 							ariaAutoComplete: 'list',
 							ariaHasPopup: 'listbox',
 							ariaExpanded: (x) => x.open,
+							ariaControls: 'listbox',
+							ariaDescribedBy: (x) =>
+								`${x._feedbackDescribedBy} ${
+									x.multiple && x.maxSelected && x.maxSelected >= 1
+										? 'selection-count'
+										: null
+								}`,
 						})}
 						placeholder="${(x) =>
 							x.multiple && x.values.length ? '' : x.placeholder}"

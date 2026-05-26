@@ -73,8 +73,9 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 					@dragleave="${(x, c) => x._onDragLeave(c.event as DragEvent)}"
 					@drop="${(x, c) => x._onDrop(c.event as DragEvent)}"
 					@dragend="${(x) => x._onDragEnd()}"
-					aria-describedby="${(x) => x._feedbackDescribedBy}"
-					${delegateAria()}
+					${delegateAria({
+						ariaDescribedBy: (x) => x._feedbackDescribedBy,
+					})}
 				>
 					<${iconTag}
 						class="upload-icon"

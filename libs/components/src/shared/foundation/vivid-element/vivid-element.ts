@@ -1,5 +1,6 @@
 import { FASTElement } from '@microsoft/fast-element';
 import { AriaMixin } from '../../aria/aria-mixin';
+import { ReactiveControllerHostSupport } from '../../framework/reactive-controller';
 import { ReplacedPropHandling } from '../../deprecation/replaced-props';
 
 // Replaced at build time
@@ -12,7 +13,9 @@ declare const __PACKAGE_VERSION__: string;
  * @testAction focus focus #locator
  * @testAction blur blur #locator
  */
-export class VividElement extends AriaMixin(ReplacedPropHandling(FASTElement)) {
+export class VividElement extends AriaMixin(
+	ReplacedPropHandling(ReactiveControllerHostSupport(FASTElement))
+) {
 	/**
 	 * The current version of the Vivid library, which is useful for debugging.
 	 * It can be accessed from any Vivid element via `<el>.constructor.VIVID_VERSION`.
