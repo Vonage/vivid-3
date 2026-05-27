@@ -45,9 +45,9 @@ export class RenderInLightDomBehaviour<TSource extends VividElement>
 			this.source.appendChild(this.insertionPoint);
 		}
 
-		controller.onUnbind(this);
 		this.templateBindingObserver.bind(controller);
 		this.handleChange(this.source, this.templateBindingObserver);
+		controller.onUnbind(this);
 	}
 
 	unbind(_controller: ViewController): void {
