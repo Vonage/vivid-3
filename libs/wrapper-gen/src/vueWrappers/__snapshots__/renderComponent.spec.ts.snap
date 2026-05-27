@@ -2,14 +2,15 @@
 
 exports[`renderComponent > should render a component 1`] = `
 "
-import { defineComponent, ref, h, VNodeData, PropType } from 'vue';
-import { isVue2, getListeners } from '../../utils/vue';
-import { handleVue3Props } from '../../utils/ssr';
+import { defineComponent, ref, h } from 'vue';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
+import { isVue2, getListeners } from '../../utils/vue';
+import { handleVue3Props } from '../../utils/ssr';
 import { isRemoveRequest } from '../../utils/slottableRequest';
 import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
 import type { VwcExampleComponentElement, ButtonSize } from '@vonage/vivid';
+import type { VNodeData, PropType } from 'vue';
 import type { IconId } from '../icons';
 import type { SlottableRequestEvent } from '../../utils/slottableRequest';
 
@@ -228,16 +229,13 @@ this.$emit('update:sameEvent', event.currentTarget?.exampleProp);
 
 exports[`renderComponent > should render a component as a Vue 3 stub 1`] = `
 "
-import { defineComponent, ref, h, VNodeData, PropType } from 'vue3';
-import { isVue2, getListeners } from '../../utils/vue';
-import { handleVue3Props } from '../../utils/ssr';
+import { defineComponent, ref } from 'vue3';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
 import { isRemoveRequest } from '../../utils/slottableRequest';
-import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
 import type { VwcExampleComponentElement, ButtonSize } from '@vonage/vivid';
+import type { PropType, SlotsType } from 'vue3';
 import type { IconId } from '../icons';
-import type { SlotsType } from 'vue3';
 import type { SlottableRequestEvent } from '../../utils/slottableRequest';
 
 
@@ -247,10 +245,6 @@ import type { SlottableRequestEvent } from '../../utils/slottableRequest';
 export default defineComponent({
   name: 'VExampleComponent',
   
-  model: isVue2 ? {
-    prop: 'modelValue',
-    event: 'update:modelValue'
-  } : undefined,
   props: { /**
  * This is an example prop
  */
@@ -373,13 +367,13 @@ startModifiers: {type: Object as PropType<Record<string, boolean>>, default: () 
 
 exports[`renderComponent > should render a minimal component 1`] = `
 "
-import { defineComponent, ref, h, VNodeData } from 'vue';
-import { isVue2, getListeners } from '../../utils/vue';
-import { handleVue3Props } from '../../utils/ssr';
+import { defineComponent, ref, h } from 'vue';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
-import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
+import { isVue2, getListeners } from '../../utils/vue';
+import { handleVue3Props } from '../../utils/ssr';
 import type { VwcExampleComponentElement } from '@vonage/vivid';
+import type { VNodeData } from 'vue';
 
 
 
@@ -434,12 +428,9 @@ export default defineComponent({
 
 exports[`renderComponent > should render minimal component as a Vue 3 stub 1`] = `
 "
-import { defineComponent, ref, h, VNodeData } from 'vue3';
-import { isVue2, getListeners } from '../../utils/vue';
-import { handleVue3Props } from '../../utils/ssr';
+import { defineComponent, ref } from 'vue3';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
-import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
 import type { VwcExampleComponentElement } from '@vonage/vivid';
 import type { SlotsType } from 'vue3';
 
