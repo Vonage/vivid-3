@@ -8,6 +8,13 @@ import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { renderInLightDOM } from './render-in-light-dom';
 
+const reconnect = async (element: Element) => {
+	const parent = element.parentElement!;
+	element.remove();
+	parent.appendChild(element);
+	await elementUpdated(element);
+};
+
 describe('renderInLightDom', () => {
 	const DummyElement = () => {
 		class DummyElement extends VividElement {
@@ -69,5 +76,51 @@ describe('renderInLightDom', () => {
 		await elementUpdated(element);
 
 		expect(element.textContent!.trim()).toBe('prop is not Hello');
+	});
+
+	it('should not duplicate light DOM nodes on reconnect', async () => {
+		FASTElementDefinition.compose(DummyElement(), {
+			template: html`${renderInLightDOM(html`<div id="light"></div>`)}`,
+			name: `dummy-4`,
+		}).define();
+
+		const element = fixture(`<dummy-4></dummy-4>`);
+		expect(element.querySelectorAll('#light')).toHaveLength(1);
+
+		await reconnect(element);
+
+		expect(element.querySelectorAll('#light')).toHaveLength(1);
+	});
+
+	it('should not accumulate light DOM nodes across multiple reconnects', async () => {
+		FASTElementDefinition.compose(DummyElement(), {
+			template: html`${renderInLightDOM(html`<div id="light"></div>`)}`,
+			name: `dummy-5`,
+		}).define();
+
+		const element = fixture(`<dummy-5></dummy-5>`);
+
+		await reconnect(element);
+		await reconnect(element);
+		await reconnect(element);
+
+		expect(element.querySelectorAll('#light')).toHaveLength(1);
+	});
+
+	it('should keep light DOM content correct after reconnect', async () => {
+		FASTElementDefinition.compose(DummyElement(), {
+			template: html`${renderInLightDOM(
+				html`<div id="light">${(x) => x.prop}</div>`
+			)}`,
+			name: `dummy-6`,
+		}).define();
+
+		const element = fixture(`<dummy-6></dummy-6>`);
+		expect(element.querySelector('#light')!.textContent).toBe('Hello');
+
+		await reconnect(element);
+
+		expect(element.querySelectorAll('#light')).toHaveLength(1);
+		expect(element.querySelector('#light')!.textContent).toBe('Hello');
 	});
 });

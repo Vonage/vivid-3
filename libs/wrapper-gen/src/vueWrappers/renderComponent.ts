@@ -27,14 +27,18 @@ export const renderComponent = (
 	const imports: Import[] = [
 		{ name: 'defineComponent', fromModule: vueModule },
 		{ name: 'ref', fromModule: vueModule },
-		{ name: 'h', fromModule: vueModule },
-		{ name: 'isVue2', fromModule: '../../utils/vue' },
-		{ name: 'getListeners', fromModule: '../../utils/vue' },
-		{ name: 'handleVue3Props', fromModule: '../../utils/ssr' },
-		{ name: 'VNodeData', fromModule: vueModule },
 		{ name: componentDef.registerFunctionName, fromModule: '@vonage/vivid' },
 		{ name: 'registerComponent', fromModule: '../../utils/register' },
 	];
+
+	if (!isVue3Stub) {
+		imports.push(
+			{ name: 'h', fromModule: vueModule },
+			{ name: 'isVue2', fromModule: '../../utils/vue' },
+			{ name: 'getListeners', fromModule: '../../utils/vue' },
+			{ name: 'handleVue3Props', fromModule: '../../utils/ssr' }
+		);
+	}
 
 	const typeImports: Import[] = [
 		{
@@ -43,10 +47,14 @@ export const renderComponent = (
 		},
 	];
 
+	if (!isVue3Stub) {
+		typeImports.push({ name: 'VNodeData', fromModule: vueModule });
+	}
+
 	const { props, vueModels, vueModelEvents } = resolveVueModels(componentDef);
 
 	if (props.length > 0 || vueModels.length > 0) {
-		imports.push({ name: 'PropType', fromModule: vueModule });
+		typeImports.push({ name: 'PropType', fromModule: vueModule });
 	}
 
 	// Import referenced types
@@ -353,13 +361,15 @@ export const renderComponent = (
 				.join(',\n')}]`;
 
 	// For vue2, we rename v-model prop and event to the vue3 default names
-	const vue2VModelSrc = vueModels.some((model) => model.name === 'modelValue')
-		? `
+	// Vue 3 stubs don't need this — the render body is `return null` and Vue 3 doesn't use `model`
+	const vue2VModelSrc =
+		!isVue3Stub && vueModels.some((model) => model.name === 'modelValue')
+			? `
   model: isVue2 ? {
     prop: 'modelValue',
     event: 'update:modelValue'
   } : undefined,`
-		: '';
+			: '';
 
 	const namedSlots = componentDef.slots.filter(
 		(slot) => slot.name !== 'default' && !slot.dynamicProps
@@ -376,7 +386,7 @@ export const renderComponent = (
 			)
 			.join(',');
 
-	if (namedSlots || hasScopedSlots) {
+	if (!isVue3Stub && (namedSlots.length || hasScopedSlots)) {
 		imports.push({
 			name: 'handleNamedSlotV2',
 			fromModule: '../../utils/slots',

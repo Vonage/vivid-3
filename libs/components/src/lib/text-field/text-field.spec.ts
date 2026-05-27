@@ -15,6 +15,7 @@ import {
 	itShouldDisplayHelperTextFeedback,
 	itShouldDisplaySuccessTextFeedback,
 	itShouldDisplayValidationErrorFeedback,
+	itShouldNotDuplicateFeedbackOnReconnect,
 } from '../../shared/feedback/should-display-feedback.spec';
 import { TextField, TextFieldType } from './text-field';
 import '.';
@@ -722,6 +723,7 @@ describe('vwc-text-field', () => {
 			() => element,
 			() => getInput()
 		);
+		itShouldNotDuplicateFeedbackOnReconnect(() => element);
 	});
 
 	describe('ARIA delegation', function () {

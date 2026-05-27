@@ -13,6 +13,7 @@ import {
 } from '@microsoft/fast-web-utilities';
 import { Size } from '../enums';
 import type { ListboxOption } from '../option/option';
+import { itShouldNotDuplicateFeedbackOnReconnect } from '../../shared/feedback/should-display-feedback.spec';
 import { Select } from './select';
 import '.';
 
@@ -1374,6 +1375,8 @@ describe('vwc-select', () => {
 
 			expect(element.open).toBe(false);
 		});
+
+		itShouldNotDuplicateFeedbackOnReconnect(() => element);
 	});
 
 	it('should not add non-option children to the proxy options', async () => {

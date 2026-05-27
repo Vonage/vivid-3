@@ -45,23 +45,30 @@ export class RenderInLightDomBehaviour<TSource extends VividElement>
 			this.source.appendChild(this.insertionPoint);
 		}
 
+		controller.onUnbind(this);
 		this.templateBindingObserver.bind(controller);
 		this.handleChange(this.source, this.templateBindingObserver);
 	}
 
-	// unbind(): void {
-	// 	this.source = null;
-
-	// 	if (this.view) {
-	// 		this.view.unbind();
-	// 	}
-	// 	// The observer will be automatically cleaned up when the behavior is destroyed
-	// }
+	unbind(_controller: ViewController): void {
+		if (this.view) {
+			const firstChild = (this.view as any).firstChild as Node | null;
+			if (firstChild?.parentNode) {
+				this.view.remove();
+			}
+			this.view.unbind();
+			this.view = undefined;
+		}
+		if (this.insertionPoint) {
+			this.insertionPoint.parentNode?.removeChild(this.insertionPoint);
+			this.insertionPoint = undefined;
+		}
+	}
 
 	/**
 	 * Handles change of the template itself.
 	 */
-	handleChange(source: any, args: any): void {
+	handleChange(_source: any, args: any): void {
 		// Check if this is a template change notification
 		/* v8 ignore else -- @preserve */
 		if (args === this.templateBindingObserver) {
