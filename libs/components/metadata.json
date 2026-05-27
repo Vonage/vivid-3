@@ -5794,6 +5794,14 @@
 			"methods": [],
 			"slots": [
 				{
+					"name": "editor-after",
+					"description": "Displayed after the scrollable editor area."
+				},
+				{
+					"name": "editor-before",
+					"description": "Displayed before the scrollable editor area."
+				},
+				{
 					"name": "editor-end",
 					"description": "Displayed at the end of the scrollable editor area."
 				},

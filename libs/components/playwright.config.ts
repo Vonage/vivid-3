@@ -41,7 +41,7 @@ const config: PlaywrightTestConfig = {
 	},
 	webServer: {
 		command: isDocker
-			? `pnpm concurrently "../../scripts/start-playwright-docker.sh" "pnpm wait-on tcp:localhost:3000 && pnpm turbo run @vonage/vivid#build && pnpm http-server -p ${port} ../.."`
+			? `pnpm concurrently "../../scripts/start-playwright-docker.sh" "pnpm wait-on tcp:localhost:3000 && sleep 1 && pnpm turbo run @vonage/vivid#build && pnpm http-server -p ${port} ../.."`
 			: `pnpm turbo run @vonage/vivid#build && pnpx http-server -p ${port} ../..`,
 		url: `http://localhost:${port}`,
 		stdout: 'ignore',
