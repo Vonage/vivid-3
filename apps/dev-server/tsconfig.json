@@ -1,0 +1,7 @@
+{
+	"extends": "@repo/typescript-config/components.json",
+	"compilerOptions": {
+		"types": []
+	},
+	"include": ["src/**/*.ts"]
+}
