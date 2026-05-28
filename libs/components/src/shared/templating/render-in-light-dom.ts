@@ -40,17 +40,19 @@ export class RenderInLightDomBehaviour<TSource extends VividElement>
 		this.context = controller.context;
 		this.controller = controller;
 
+		/* v8 ignore else -- @preserve */
 		if (!this.insertionPoint) {
 			this.insertionPoint = document.createComment('');
 			this.source.appendChild(this.insertionPoint);
 		}
 
+		controller.onUnbind(this);
 		this.templateBindingObserver.bind(controller);
 		this.handleChange(this.source, this.templateBindingObserver);
-		controller.onUnbind(this);
 	}
 
 	unbind(_controller: ViewController): void {
+		/* v8 ignore else -- @preserve */
 		if (this.view) {
 			const firstChild = (this.view as any).firstChild as Node | null;
 			if (firstChild?.parentNode) {
@@ -59,6 +61,7 @@ export class RenderInLightDomBehaviour<TSource extends VividElement>
 			this.view.unbind();
 			this.view = undefined;
 		}
+		/* v8 ignore else -- @preserve */
 		if (this.insertionPoint) {
 			this.insertionPoint.parentNode?.removeChild(this.insertionPoint);
 			this.insertionPoint = undefined;

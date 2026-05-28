@@ -123,4 +123,23 @@ describe('renderInLightDom', () => {
 		expect(element.querySelectorAll('#light')).toHaveLength(1);
 		expect(element.querySelector('#light')!.textContent).toBe('Hello');
 	});
+
+	it('should recover after light DOM nodes are externally removed before disconnect', async () => {
+		FASTElementDefinition.compose(DummyElement(), {
+			template: html`${renderInLightDOM(html`<div id="light"></div>`)}`,
+			name: `dummy-7`,
+		}).define();
+
+		const element = fixture(`<dummy-7></dummy-7>`);
+		expect(element.querySelectorAll('#light')).toHaveLength(1);
+
+		// Simulate external removal of light DOM content before the element is disconnected
+		while (element.firstChild) {
+			element.removeChild(element.firstChild);
+		}
+
+		await reconnect(element);
+
+		expect(element.querySelectorAll('#light')).toHaveLength(1);
+	});
 });
