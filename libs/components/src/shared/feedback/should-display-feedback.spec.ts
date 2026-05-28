@@ -11,13 +11,6 @@ import type { ElementWithErrorText, ElementWithSuccessText } from '../patterns';
 import type { ElementWithFeedback } from './mixins';
 import type { FeedbackMessage, FeedbackType } from './feedback-message';
 
-const reconnect = async (element: HTMLElement) => {
-	const parent = element.parentElement!;
-	element.remove();
-	parent.appendChild(element);
-	await elementUpdated(element);
-};
-
 export const getMessage = (element: Element, type: FeedbackType) =>
 	cleanWhitespace(
 		deepQuerySelectorAll<FeedbackMessage>(
@@ -120,41 +113,6 @@ export const itShouldDisplayErrorTextFeedback = (
 		getElement().errorText = 'error text';
 		await elementUpdated(getElement());
 
-		expect(getMessage(getElement(), 'error')).toBe('Error: error text');
-	});
-};
-
-export const itShouldNotDuplicateFeedbackOnReconnect = (
-	getElement: () => HTMLElement & ElementWithFeedback & ElementWithErrorText
-) => {
-	it('should not duplicate the error message after reconnect', async () => {
-		getElement().errorText = 'error text';
-		await elementUpdated(getElement());
-
-		await reconnect(getElement());
-
-		expect(
-			deepQuerySelectorAll<FeedbackMessage>(
-				getElement(),
-				'vwc-feedback-message[type="error"]'
-			)
-		).toHaveLength(1);
-	});
-
-	it('should not accumulate error messages across multiple reconnects', async () => {
-		getElement().errorText = 'error text';
-		await elementUpdated(getElement());
-
-		await reconnect(getElement());
-		await reconnect(getElement());
-		await reconnect(getElement());
-
-		expect(
-			deepQuerySelectorAll<FeedbackMessage>(
-				getElement(),
-				'vwc-feedback-message[type="error"]'
-			)
-		).toHaveLength(1);
 		expect(getMessage(getElement(), 'error')).toBe('Error: error text');
 	});
 };

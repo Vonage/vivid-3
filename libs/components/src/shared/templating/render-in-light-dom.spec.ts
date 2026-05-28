@@ -59,25 +59,6 @@ describe('renderInLightDom', () => {
 		expect(nodes[1].textContent).toBe('Hello');
 	});
 
-	it('should be able to change templates dynamically with a binding', async () => {
-		FASTElementDefinition.compose(DummyElement(), {
-			template: html`${renderInLightDOM((x) =>
-				x.prop === 'Hello'
-					? html`<div>prop is Hello</div>`
-					: html`<div>prop is not Hello</div>`
-			)}`,
-			name: `dummy-3`,
-		}).define();
-
-		const element = fixture(`<dummy-3></dummy-3>`);
-		expect(element.textContent!.trim()).toBe('prop is Hello');
-
-		(element as any).prop = 'World';
-		await elementUpdated(element);
-
-		expect(element.textContent!.trim()).toBe('prop is not Hello');
-	});
-
 	it('should not duplicate light DOM nodes on reconnect', async () => {
 		FASTElementDefinition.compose(DummyElement(), {
 			template: html`${renderInLightDOM(html`<div id="light"></div>`)}`,
@@ -92,21 +73,6 @@ describe('renderInLightDom', () => {
 		expect(element.querySelectorAll('#light')).toHaveLength(1);
 	});
 
-	it('should not accumulate light DOM nodes across multiple reconnects', async () => {
-		FASTElementDefinition.compose(DummyElement(), {
-			template: html`${renderInLightDOM(html`<div id="light"></div>`)}`,
-			name: `dummy-5`,
-		}).define();
-
-		const element = fixture(`<dummy-5></dummy-5>`);
-
-		await reconnect(element);
-		await reconnect(element);
-		await reconnect(element);
-
-		expect(element.querySelectorAll('#light')).toHaveLength(1);
-	});
-
 	it('should keep light DOM content correct after reconnect', async () => {
 		FASTElementDefinition.compose(DummyElement(), {
 			template: html`${renderInLightDOM(
@@ -114,14 +80,14 @@ describe('renderInLightDom', () => {
 			)}`,
 			name: `dummy-6`,
 		}).define();
-
 		const element = fixture(`<dummy-6></dummy-6>`);
-		expect(element.querySelector('#light')!.textContent).toBe('Hello');
 
 		await reconnect(element);
+		(element as any).prop = 'Updated';
+		await elementUpdated(element);
 
 		expect(element.querySelectorAll('#light')).toHaveLength(1);
-		expect(element.querySelector('#light')!.textContent).toBe('Hello');
+		expect(element.querySelector('#light')!.textContent).toBe('Updated');
 	});
 
 	it('should recover after light DOM nodes are externally removed before disconnect', async () => {

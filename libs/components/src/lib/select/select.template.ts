@@ -197,7 +197,7 @@ export const SelectTemplate = (context: VividElementDefinitionContext) => {
 			})}
 			aria-controls="${(x) => x.listboxId}"
 			aria-activedescendant="${(x) => (x.open ? x._activeDescendant : null)}"
-			aria-describedby="${(x) => x?._feedbackDescribedBy ?? null}"
+			aria-describedby="${(x) => x._feedbackDescribedBy}"
 			tabindex="${(x) => (!x.disabled ? '0' : null)}"
 			@click="${ifNotFromFeedback<MouseEvent>((x, e) => x.clickHandler(e))}"
 			@focusin="${ifNotFromFeedback<FocusEvent>((x, e) => x.focusinHandler(e))}"

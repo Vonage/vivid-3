@@ -37,7 +37,12 @@ jobs:
 
       - name: Check Components Metadata
         id: diff
-        run: git --no-pager diff --exit-code ./libs/components/metadata.json
+        run: |
+          echo 'DIFF_CONTENT<<EOF' >> "$GITHUB_OUTPUT"
+          git --no-pager diff --exit-code ./libs/components/metadata.json >> "$GITHUB_OUTPUT" || true
+          echo 'EOF' >> "$GITHUB_OUTPUT"
+
+          git --no-pager diff --exit-code ./libs/components/metadata.json
         continue-on-error: true
 
       - uses: mshick/add-pr-comment@v2
@@ -46,6 +51,14 @@ jobs:
           allow-repeats: 'true'
           message: |
             :warning: The generated metadata has changed. Please update `libs/components/metadata.json` by running `pnpm turbo run @vonage/vivid#build` and committing the result.
+
+            <details><summary>View Diff</summary>
+
+            ```diff
+            ${{ steps.diff.outputs.DIFF_CONTENT }}
+            ```
+
+            </details>
 
       - name: Fail if metadata is outdated
         if: steps.diff.outcome == 'failure'

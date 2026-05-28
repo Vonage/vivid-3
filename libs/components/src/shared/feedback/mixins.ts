@@ -1,16 +1,10 @@
 import { attr, html, observable, slotted } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
 import type { Constructor, MixinType } from '../utils/mixins';
 import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { VividElementDefinitionContext } from '../design-system/defineVividComponent';
 import { renderInLightDOM } from '../templating/render-in-light-dom';
 import { generateRandomId } from '../utils/randomId';
 import { FeedbackMessage, type FeedbackType } from './feedback-message';
-
-const lightDOMFeedbackTemplateCache = new WeakMap<
-	VividElementDefinitionContext,
-	ViewTemplate
->();
 
 /**
  * Mixin for elements that display a feedback message.
@@ -145,28 +139,23 @@ export const WithLightDOMFeedback = <T extends Constructor<VividElement>>(
 		 * @internal
 		 */
 		override _getFeedbackTemplate(ctx: VividElementDefinitionContext) {
-			let template = lightDOMFeedbackTemplateCache.get(ctx);
-			if (!template) {
-				const feedbackTag = ctx.tagFor(FeedbackMessage);
-				template = html<ElementWithLightDOMFeedback>`
-					<slot name="_feedback"></slot>
-					${renderInLightDOM(html<ElementWithLightDOMFeedback>`<${feedbackTag}
-						slot="_feedback"
-						id="${(x) => x._feedbackId}"
-						:type="${(x) => x._internalFeedback().type}"
-					>
-						${(x) => x._internalFeedback().message}
-					</${feedbackTag}>`)}
-					<${feedbackTag} :type="${(x) => x._slottedHelperTextFeedbackType()}">
-						<slot
-							name="helper-text"
-							${slotted('_helperTextSlottedContent')}
-						></slot>
-					</${feedbackTag}>
-				`;
-				lightDOMFeedbackTemplateCache.set(ctx, template);
-			}
-			return template;
+			const feedbackTag = ctx.tagFor(FeedbackMessage);
+			return html<ElementWithLightDOMFeedback>`
+				<slot name="_feedback"></slot>
+				${renderInLightDOM(html<ElementWithLightDOMFeedback>`<${feedbackTag}
+					slot="_feedback"
+					id="${(x) => x._feedbackId}"
+					:type="${(x) => x._internalFeedback().type}"
+				>
+					${(x) => x._internalFeedback().message}
+				</${feedbackTag}>`)}
+				<${feedbackTag} :type="${(x) => x._slottedHelperTextFeedbackType()}">
+					<slot
+						name="helper-text"
+						${slotted('_helperTextSlottedContent')}
+					></slot>
+				</${feedbackTag}>
+			`;
 		}
 	}
 
