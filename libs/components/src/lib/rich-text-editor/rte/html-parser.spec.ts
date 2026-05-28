@@ -12,6 +12,7 @@ import {
 	type SchemaContribution,
 } from './feature';
 import { RteToolbarFeature } from './features/toolbar';
+import { RteHardBreakFeature } from './features/hard-break';
 
 const config = new RteConfig([
 	new RteBase({
@@ -162,5 +163,26 @@ describe('RteHtmlParser', () => {
 				size: null,
 			})(),
 		]);
+	});
+
+	it('should split parent when parsing <br> with hard break feature disabled', async () => {
+		const configWithoutHardBreak = new RteConfig([new RteBase()]);
+		const parser = new RteHtmlParser(configWithoutHardBreak);
+
+		expect(parser.parseDocument('<p>Hello<br>world</p>')).toEqual(
+			doc(p(text('Hello')), p(text('world')))
+		);
+	});
+
+	it('should parse <br> as hard break when hard break feature is enabled', async () => {
+		const configWithHardBreak = new RteConfig([
+			new RteBase(),
+			new RteHardBreakFeature(),
+		]);
+		const parser = new RteHtmlParser(configWithHardBreak);
+
+		expect(parser.parseDocument('<p>Hello<br>world</p>')).toEqual(
+			doc(p(text('Hello'), { type: 'hardBreak' }, text('world')))
+		);
 	});
 });

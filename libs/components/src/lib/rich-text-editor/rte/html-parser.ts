@@ -144,5 +144,12 @@ const buildDomParser = (
 		});
 	}
 
+	// Default rule for <br>'s:
+	// If no rule handled them, split the parent, e.g. <p>a<br>b</p> -> <p>a</p><p>b</b>
+	parserRules.push({
+		tag: 'br',
+		closeParent: true,
+	});
+
 	return new DOMParser(schema, parserRules);
 };
