@@ -4,16 +4,28 @@ import { event2PropName, getProperties } from './utils.js';
 
 const getEvents = (tag) =>
 	(tag.events || []).map((x) => x.propName || event2PropName(x.name || x));
-const isTypeSet = (type) => /(".*?" \|)/.test(type);
+// Handles both double-quoted ("foo") and single-quoted ('foo') string literal unions
+const isTypeSet = (type) => /(['"].*?['"] \|)/.test(type);
 const isStringTypeSet = (type) =>
-	/".*"[ |]?/.test(type) && /".*"[ |]?/.exec(type)[0] === type;
+	/['"].*['"][ |]?/.test(type) &&
+	/['"].*['"][ |]?/.exec(type)[0] === type;
 const isBoolean = (type) => /^(true|false)$/.test(type) || type === 'boolean';
 const isArray = (type) => /(.*)\[\]$/gm.test(type) || type === 'array';
-const isNumber = (type) => /(integer)/.test(type) || type === 'number | null';
+const isNumber = (type) => /(integer)/.test(type);
+
+// Normalizes multiline CEM types (e.g. "| string\n\t\t| null") to their inline form.
+const normalizeType = (type) => {
+	if (!type || !type.includes('\n')) return type;
+	return type
+		.replace(/\s*\|\s*/g, ' | ')
+		.replace(/^\s*\|\s*/, '')
+		.trim();
+};
 
 // TypeScript
-export const mapType = (type) =>
-	[
+export const mapType = (type) => {
+	const t = normalizeType(type);
+	return [
 		'boolean',
 		'Boolean',
 		'boolean | undefined',
@@ -23,16 +35,20 @@ export const mapType = (type) =>
 		'string | number',
 		'string | HTMLElement',
 		'number',
+		'number | null',
+		'number | undefined',
+		'HTMLElement | undefined',
 		'unknown',
-	].indexOf(type) >= 0 || isTypeSet(type)
-		? type
-		: isBoolean(type)
+	].indexOf(t) >= 0 || isTypeSet(t)
+		? t
+		: isBoolean(t)
 			? 'boolean'
-			: isNumber(type)
+			: isNumber(t)
 				? 'number'
-				: isArray(type)
+				: isArray(t)
 					? 'any[]'
-					: `any /* ${type} */`;
+					: `any /* ${t} */`;
+};
 
 export const getProps = (tag) => {
 	const eventsProps = getEvents(tag).map(
