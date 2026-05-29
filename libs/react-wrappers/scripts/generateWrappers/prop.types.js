@@ -16,10 +16,12 @@ export const mapType = (type) =>
 	[
 		'boolean',
 		'Boolean',
+		'boolean | undefined',
 		'string',
 		'string | null',
 		'string | undefined',
 		'string | number',
+		'string | HTMLElement',
 		'number',
 		'unknown',
 	].indexOf(type) >= 0 || isTypeSet(type)
