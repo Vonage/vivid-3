@@ -83,11 +83,11 @@
 				"type": "fontSizes"
 			},
 			"heading-5": {
-				"value": "{size.font.scale.base} * 1",
+				"value": "{size.font.scale.base} * 1.125",
 				"type": "fontSizes"
 			},
 			"heading-6": {
-				"value": "{size.font.scale.base} * 0.875",
+				"value": "{size.font.scale.base} * 1",
 				"type": "fontSizes"
 			},
 			"base": {
