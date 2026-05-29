@@ -1,0 +1,22 @@
+{
+	"name": "@repo/dev-server",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "tsx src/server.ts",
+		"lint": "eslint . --max-warnings=0",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@repo/eslint-config": "workspace:*",
+		"@repo/styles": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@vitejs/plugin-vue": "catalog:",
+		"@vonage/vivid": "workspace:*",
+		"@vonage/vivid-vue": "workspace:*",
+		"sass": "catalog:",
+		"tsx": "catalog:",
+		"vite": "catalog:",
+		"vue": "catalog:vue3"
+	}
+}
