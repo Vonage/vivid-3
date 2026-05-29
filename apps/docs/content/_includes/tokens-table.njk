@@ -1,0 +1,94 @@
+{% macro heading(text, level="1") %}
+<div class="heading-wrapper h2">
+	<h{{ level }} id="{{ text | kebabCase }}" data-pagefind-weight="1">{{ text }}</h{{ level }}>
+	<a class="anchor" href="#{{ text | kebabCase }}" aria-labelledby="{{ text | kebabCase }}"><vwc-icon name="link-solid"></vwc-icon></a>
+</div>
+{% endmacro %}
+
+{% macro tokensList(list, preview) %}
+<div class="token-group">
+	{% for item in list %}
+		<div class="token-presentation">
+			<div class="token-names">
+				<div class="variable">
+					Figma: <code>{{ item.name }}</code>
+				</div>
+				<div class="variable">
+					CSS: <code>--{{ item.css }}</code>
+				</div>
+				<div class="variable">
+					Flutter: <code>{{ item.flutter }}</code>
+				</div>
+			</div>
+			{{ preview(item) }}
+		</div>
+	{% endfor %}
+	</div>
+{% endmacro %}
+
+<style>
+.token-group {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.token-presentation {
+	display: flex;
+	align-items: center;
+	justify-items: stretch;
+	gap: 1rem;
+	padding-bottom: 2rem;
+}
+
+.token-presentation:not(:last-child) {
+	border-block-end: 1px solid var(--vvd-color-neutral-200);
+}
+
+.token-names {
+	flex: 1 1 auto;
+}
+
+.variable {
+	padding: 0.3em;
+}
+
+.token-preview {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 250px;
+	min-height: 96px;
+	border-radius: 8px;
+}
+
+.token-preview--typography {
+	justify-content: flex-start;
+	text-align: left;
+}
+
+.token-preview-box {
+	width: 3rem;
+	height: 3rem;
+}
+
+.token-preview-box--shadow {
+	border-radius: 8px;
+}
+
+.token-preview-box--radius {
+	border: 0 solid var(--vvd-color-neutral-500);
+	border-width: 1px 1px 0 0;
+}
+
+.token-preview-density {
+	border: 1px solid var(--vvd-color-neutral-500);
+	border-width: 1px 0;
+	color: var(--vvd-color-neutral-500);
+}
+
+.token-preview-size {
+	background-color: var(--vvd-color-neutral-200);
+}
+</style>
+

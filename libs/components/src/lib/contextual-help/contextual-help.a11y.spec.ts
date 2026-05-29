@@ -1,5 +1,6 @@
-import { axe, fixture } from '@repo/shared';
-import { ContextualHelp } from './contextual-help';
+import { axe } from '@repo/shared/test-utils/axe';
+import { fixture } from '@repo/shared/test-utils/fixture';
+import type { ContextualHelp } from './contextual-help';
 import '.';
 
 const COMPONENT_TAG = 'vwc-contextual-help';

@@ -33,13 +33,13 @@ export const CheckboxTemplate = (context: VividElementDefinitionContext) => {
 	return html`<template>
 		<div
 			class="${getClasses}"
-			aria-describedby="${(x) => x._feedbackDescribedBy}"
 			${delegateAria({
 				role: 'checkbox',
 				ariaChecked: (x) => (x.indeterminate ? 'mixed' : x.checked),
 				ariaRequired: (x) => x.required,
 				ariaDisabled: (x) => x.disabled,
 				ariaReadOnly: (x) => x.readOnly,
+				ariaDescribedBy: (x) => x._feedbackDescribedBy,
 			})}
 			tabindex="${(x) =>
 				x.tabindex !== null ? x.tabindex : x.disabled ? null : 0}"

@@ -1,0 +1,15 @@
+concept: Partials
+id: partials
+description: small, reusable UI building blocks representing certain data.
+status: alpha
+slug: partials
+keywords:
+  - partials
+  - data
+  - country
+  - flag
+  - dial-code
+  - region
+  - locale
+documentation:
+  legacy: ./README.md

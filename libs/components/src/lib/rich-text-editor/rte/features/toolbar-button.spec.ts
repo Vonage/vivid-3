@@ -1,5 +1,5 @@
 import { setup } from '../__tests__/test-utils';
-import { RteConfig } from '../config';
+import type { RteConfig } from '../config';
 import { RteBase } from './base';
 import { RteToolbarFeature } from './toolbar';
 import { RteToolbarButtonFeature } from './toolbar-button';

@@ -1,4 +1,4 @@
-import { PickerField } from '../picker-field';
+import type { PickerField } from '../picker-field';
 import type { AbstractConstructor, MixinType } from '../../utils/mixins';
 
 /**

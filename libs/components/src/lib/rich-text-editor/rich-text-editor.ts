@@ -2,7 +2,7 @@ import { observable } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { WithObservableLocale } from '../../shared/patterns';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { RteInstance } from './rte/instance';
+import type { RteInstance } from './rte/instance';
 import { impl } from './rte/utils/impl';
 
 /**

@@ -1,0 +1,11 @@
+{
+	"api": "1.0.0",
+	"editorType": ["figma"],
+	"id": "vivid-tokens-figma-plugin",
+	"name": "Vivid Tokens",
+	"main": "dist/main.js",
+	"ui": "dist/index.html",
+	"networkAccess": {
+		"allowedDomains": ["https://api.github.com"]
+	}
+}

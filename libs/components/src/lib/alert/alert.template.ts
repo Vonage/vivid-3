@@ -1,9 +1,5 @@
-import {
-	html,
-	InlineTemplateDirective,
-	ref,
-	when,
-} from '@microsoft/fast-element';
+import type { InlineTemplateDirective } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import {

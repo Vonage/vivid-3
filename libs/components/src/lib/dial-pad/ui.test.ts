@@ -55,6 +55,9 @@ test.describe('dial-pad', () => {
 					error-text="The input is invalid"
 				></vwc-dial-pad>
 			</div>
+			<div style="margin: 5px;">
+				<vwc-dial-pad size="condensed" placeholder="Condensed Dial Pad"></vwc-dial-pad>
+			</div>
 		`;
 
 		await loadComponents({

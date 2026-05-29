@@ -1,5 +1,5 @@
-import { elementUpdated, fixture } from '@repo/shared';
-import { RichTextView } from '../../rich-text-view/rich-text-view';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { RichTextView } from '../../rich-text-view/rich-text-view';
 import '../../rich-text-view';
 import { RteConfig } from './config';
 import { RteBase } from './features/base';

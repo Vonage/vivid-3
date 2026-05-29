@@ -1,3 +1,4 @@
+@use '@repo/tokens/scss/tokens.constants' as constants;
 @use '@repo/shared/mixins/focus' as focus;
 @use '@repo/shared/mixins/focus' as focus-variables;
 
@@ -17,4 +18,9 @@
 	&::after {
 		@include focus.focus-in-pseudo-element;
 	}
+}
+
+.editor--disabled .ProseMirror {
+	color: var(#{constants.$vvd-color-neutral-300});
+	cursor: not-allowed;
 }

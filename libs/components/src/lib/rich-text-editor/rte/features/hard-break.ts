@@ -1,4 +1,4 @@
-import { type Command } from 'prosemirror-state';
+import type { Command } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 import {
 	contributionPriority,

@@ -1,10 +1,12 @@
 import {
-	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
+import {
+	createFormHTML,
 	listenToFormSubmission,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/form-association';
 import { Connotation } from '../enums';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import {

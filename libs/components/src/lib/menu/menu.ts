@@ -389,6 +389,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		Updates.enqueue(() => (this.open = newValue));
 	};
 
+	/** @internal */
 	_onFocusout = (e: FocusEvent) => {
 		const focusTarget = e.relatedTarget as Node;
 		const focusMovedAway =

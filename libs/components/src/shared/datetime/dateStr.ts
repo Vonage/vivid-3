@@ -1,4 +1,4 @@
-import { formatISO } from 'date-fns';
+import { formatISO } from 'date-fns/formatISO';
 
 /// Date format: YYYY-MM-DD
 export type DateStr = string;

@@ -15,7 +15,7 @@ import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
-import { Connotation } from '../enums';
+import type { Connotation } from '../enums';
 import { FormElement, Localized } from '../../shared/patterns';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -535,12 +535,14 @@ export class RangeSlider extends Localized(
 		);
 		this.#registerThumbListeners();
 		this.#updateThumbPositions();
+		document.addEventListener('visibilitychange', this.#onVisibilityChange);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.#unregisterThumbListeners();
 		this.#unregisterDragListeners();
+		document.removeEventListener('visibilitychange', this.#onVisibilityChange);
 	}
 
 	// --- Event handling ---
@@ -620,10 +622,22 @@ export class RangeSlider extends Localized(
 		if (!this.#isNonVisibleFocus) {
 			this._visiblyFocusedThumb = this.#getThumbIdFromEvent(e);
 		}
+		this.#isNonVisibleFocus = false;
 	};
 
 	#onThumbBlur = () => {
 		this._visiblyFocusedThumb = null;
+	};
+
+	// Workaround: focusin fires on browser tab return and is indistinguishable from keyboard focus.
+	#onVisibilityChange = () => {
+		if (
+			document.hidden &&
+			(this.shadowRoot!.activeElement === this._startThumbEl ||
+				this.shadowRoot!.activeElement === this._endThumbEl)
+		) {
+			this.#isNonVisibleFocus = true;
+		}
 	};
 
 	#onMouseOver = (e: MouseEvent) => {

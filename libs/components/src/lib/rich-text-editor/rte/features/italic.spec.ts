@@ -14,10 +14,8 @@ const features = [
 
 describe('RteItalicFeature', () => {
 	it('should add an italic mark to the schema', async () => {
-		const { docStr } = await setup(features, [
-			p(text.marks(italic())('Hello')),
-		]);
-		expect(docStr()).toMatchInlineSnapshot(`"paragraph(<italic>'|Hello')"`);
+		const rte = await setup(features, [p(text.marks(italic())('Hello'))]);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph(<italic>'|Hello')"`);
 	});
 
 	it('should deserialize italic from HTML', async () => {
@@ -36,59 +34,51 @@ describe('RteItalicFeature', () => {
 	});
 
 	it('should toggle italic mark of selected text on Mod-i', async () => {
-		const { selectText, keydown, docStr } = await setup(features, [
-			p('Hello world'),
-		]);
+		const rte = await setup(features, [p('Hello world')]);
 
-		selectText('[world]');
-		keydown('i', { ctrl: true });
+		rte.selectText('[world]');
+		rte.keydown('i', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello ', <italic>'[world|]')"`
 		);
 
-		keydown('i', { ctrl: true });
+		rte.keydown('i', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
 	});
 
 	it('should remember the italic mark when no text is selected', async () => {
-		const { placeCursor, keydown, docStr, typeTextAtCursor } = await setup(
-			features,
-			[p('Hello world')]
-		);
+		const rte = await setup(features, [p('Hello world')]);
 
-		placeCursor('Hello |world');
-		keydown('i', { ctrl: true });
+		rte.placeCursor('Hello |world');
+		rte.keydown('i', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello |<italic>|world')"`
 		);
 
-		await typeTextAtCursor('beautiful ');
+		await rte.typeTextAtCursor('beautiful ');
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello ', <italic>'beautiful |', 'world')"`
 		);
 	});
 
 	it('should add a toolbar item that toggles italic', async () => {
-		const { toolbarButton, isActive, selectText, docStr } = await setup(
-			features,
-			[p('Hello world')]
-		);
+		const rte = await setup(features, [p('Hello world')]);
 
-		selectText('[world]');
-		toolbarButton('Italic').click();
+		rte.selectText('[world]');
+		rte.toolbarButton('Italic').click();
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello ', <italic>'[world|]')"`
 		);
-		expect(isActive(toolbarButton('Italic'))).toBe(true);
+		expect(rte.isActive(rte.toolbarButton('Italic'))).toBe(true);
 
-		toolbarButton('Italic').click();
+		rte.toolbarButton('Italic').click();
 
-		expect(docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
-		expect(isActive(toolbarButton('Italic'))).toBe(false);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
+		expect(rte.isActive(rte.toolbarButton('Italic'))).toBe(false);
 	});
 });

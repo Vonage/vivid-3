@@ -185,8 +185,7 @@
 		cursor: not-allowed;
 	}
 
-	&:focus:not(.title-action),
-	&.title-action:focus-visible {
+	&:focus-visible {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 		color: var(#{constants.$vvd-color-canvas-text});

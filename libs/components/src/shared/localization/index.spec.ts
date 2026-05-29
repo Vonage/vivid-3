@@ -1,7 +1,6 @@
 import enUS from '../../locales/en-US';
 import enGB from '../../locales/en-GB';
-import { setLocale } from '../../index';
-import { currentLocale } from './index';
+import { currentLocale, setLocale } from './index';
 
 describe('currentLocale', () => {
 	it('should be initialized to en-US', () => {

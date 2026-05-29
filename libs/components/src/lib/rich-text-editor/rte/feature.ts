@@ -2,15 +2,11 @@ import type { SchemaSpec } from 'prosemirror-model';
 import type { Plugin } from 'prosemirror-state';
 import type { Constructor } from '../../../shared/utils/mixins';
 import type { RteInstanceImpl } from './instance';
-import {
-	TextblockAttrs,
-	type TextblockAttrSpec,
-} from './utils/textblock-attrs';
+import type { TextblockAttrs } from './utils/textblock-attrs';
+import type { TextblockAttrSpec } from './utils/textblock-attrs';
 import type { ToolbarItemSpec } from './features/toolbar';
-import {
-	TextblockMarks,
-	type TextblockMarkSpec,
-} from './utils/textblock-marks';
+import type { TextblockMarks } from './utils/textblock-marks';
+import type { TextblockMarkSpec } from './utils/textblock-marks';
 import type { InputRuleSpec } from './features/internal/input-rules';
 
 // Features bundle everything related to a specific editor capability together.

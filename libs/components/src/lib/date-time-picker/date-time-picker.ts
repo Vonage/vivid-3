@@ -46,7 +46,7 @@ const ValidDateTimeFilter: ValueConverter = {
  * @slot helper-text - Describes how to use the date-picker. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} input - Emitted when the date is changed by the user.
  * @event {CustomEvent<undefined>} change - Emitted when the date is changed by the user.
- * @vueModel modelValue value input `event.currentTarget.value`
+ * @vueModel modelValue value input,@lazy:change `event.currentTarget.value`
  * @testAction selectDateTime selectDateTime
  */
 export class DateTimePicker extends TimeSelectionPicker(
@@ -112,14 +112,17 @@ export class DateTimePicker extends TimeSelectionPicker(
 	@attr({ converter: ValidDateFilter, attribute: 'max-date' })
 	maxDate: string;
 
+	/** @internal */
 	override get _resolvedMinDate() {
 		return this.minDate || extractDatePart(this.min);
 	}
 
+	/** @internal */
 	override get _resolvedMaxDate() {
 		return this.maxDate || extractDatePart(this.max);
 	}
 
+	/** @internal */
 	override get _resolvedMinTime() {
 		return (
 			this.minTime ||
@@ -130,6 +133,7 @@ export class DateTimePicker extends TimeSelectionPicker(
 		);
 	}
 
+	/** @internal */
 	override get _resolvedMaxTime() {
 		return (
 			this.maxTime ||

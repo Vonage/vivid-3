@@ -1,5 +1,5 @@
 import type { CalendarPickerLocale } from '../calendar-picker.locale';
-import { type Month } from '../../../datetime/month';
+import type { Month } from '../../../datetime/month';
 
 export interface MonthPickerGridCell {
 	month: Month;

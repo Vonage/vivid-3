@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Select } from './select';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { Select } from './select';
 import '.';
 
 const COMPONENT_TAG = 'vwc-select';

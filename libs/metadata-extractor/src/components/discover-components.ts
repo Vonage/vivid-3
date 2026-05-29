@@ -1,4 +1,4 @@
-import { ClassDeclaration, Project, SourceFile } from 'ts-morph';
+import type { ClassDeclaration, Project, SourceFile } from 'ts-morph';
 import { getComponentName, hasJSDocTag } from '../types/jsdoc';
 
 export interface DiscoveredComponent {

@@ -1,5 +1,5 @@
 import type { DriverT } from './drivers/driver';
-import { BaseComponent, BaseWrapper } from './base';
+import type { BaseComponent, BaseWrapper } from './base';
 import { attributeSelector } from './utils/cssSelectors';
 
 export function byTestId<D extends DriverT, W extends BaseWrapper<D>>(

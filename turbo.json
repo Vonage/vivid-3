@@ -23,24 +23,10 @@
 				"$TURBO_DEFAULT$",
 				"$TURBO_ROOT$/libs/components/metadata.json"
 			],
-			"outputs": [
-				"web-types.json",
-				"stories/generated/**",
-				"src/generated/**/*.ts",
-				"dist/**"
-			]
+			"outputs": ["web-types.json", "src/generated/**/*.ts", "dist/**"]
 		},
 		"@repo/vivid-design-tokens#build": {
 			"outputs": ["dist/**"]
-		},
-		"@repo/vue-docs#build": {
-			"dependsOn": ["^build"],
-			"outputs": [
-				"docs/components/_index.json",
-				"docs/components/*.md",
-				"!docs/components/index.md",
-				"dist/**"
-			]
 		},
 		"@vonage/vivid-test-utils#build": {
 			"dependsOn": ["^build"],

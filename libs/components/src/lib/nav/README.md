@@ -244,6 +244,43 @@ import { VBadge, VNav, VNavItem, VNavDisclosure } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
+When a **Nav Item** is in icon-only mode (icon set, no text), the `meta` slot is displayed as a floating element centered on the top-right corner of the icon.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VBadge, VIcon, VNav, VNavItem } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VNav>
+		<VNavItem href="#" aria-label="Messages">
+			<template #icon><VIcon name="chat-line" /></template>
+			<template #meta><VBadge aria-label="3 new messages" text="3" connotation="alert" shape="pill" /></template>
+		</VNavItem>
+	</VNav>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<vwc-nav>
+	<vwc-nav-item href="#" aria-label="Messages">
+		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+		<vwc-badge slot="meta" aria-label="3 new messages" text="3" connotation="alert" shape="pill"></vwc-badge>
+	</vwc-nav-item>
+</vwc-nav>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Icon Slot
 
 Set the `icon` slot to add an icon to the **Nav Item** and the **Nav Disclosure**.

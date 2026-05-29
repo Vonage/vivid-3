@@ -1,4 +1,8 @@
-import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
 import { Connotation } from '../enums';
 import { Icon } from '../icon/icon';
 import { Tab } from './tab';

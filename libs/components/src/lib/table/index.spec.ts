@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import type { Table } from './table';
 import type { TableBody } from './table-body';
 import type { TableCell } from './table-cell';

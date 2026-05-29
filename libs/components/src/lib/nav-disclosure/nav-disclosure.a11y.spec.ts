@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { NavDisclosure } from './nav-disclosure';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { NavDisclosure } from './nav-disclosure';
 import '.';
 
 const COMPONENT_TAG = 'vwc-nav-disclosure';

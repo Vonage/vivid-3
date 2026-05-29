@@ -88,6 +88,11 @@ export const exampleComponent: ComponentDef = {
 			type: 'Event',
 		},
 		{
+			name: 'change',
+			description: 'This is a change event',
+			type: 'Event',
+		},
+		{
 			name: 'input:start',
 			type: 'CustomEvent<{a: string | number}>',
 		},
@@ -98,6 +103,7 @@ export const exampleComponent: ComponentDef = {
 			propName: 'value',
 			eventNames: ['input'],
 			valueMapping: 'event.currentTarget.value',
+			lazyEventNames: ['change'],
 		},
 		{
 			name: 'sameEvent',

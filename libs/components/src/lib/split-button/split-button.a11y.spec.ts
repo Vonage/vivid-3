@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { SplitButton } from './split-button';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { SplitButton } from './split-button';
 import '.';
 
 const COMPONENT_TAG = 'vwc-split-button';

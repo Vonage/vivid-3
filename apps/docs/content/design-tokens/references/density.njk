@@ -1,0 +1,45 @@
+---
+permalink: /design-tokens/references/density/
+parent: Token Types  and Reference Pages
+title: Density
+order: 30
+---
+{% include '../../_includes/tokens-table.njk' %}
+{% from '../../_includes/tokens-table.njk' import tokensList, heading %}
+{% macro preview(item) %}
+<div class="token-preview">
+  	<div style="border: 1px solid var(--vvd-color-neutral-500); color: var(--vvd-color-neutral-500); border-width: 1px 0; padding: {{ item.preview }} 10px;">
+	  	Hello
+  	</div>
+  </div>
+{% endmacro %}
+
+<h1>Density</h1>
+
+<p>
+Explains how spacing works. These tokens affect the inner and outer spacing between the UI elements. It provides the regular, condensed, and extended semantic sets.
+</p>
+<p>
+Used for properties like paddings, margins and gaps
+</p>
+
+{{ heading('Condensed', '2') }}
+<p>
+	<strong>Keywords:</strong>
+	condensed, compact, dense, tight, narrow, reduced spacing
+</p>
+{{ tokensList(tokens.density.condensed, preview) }}
+
+{{ heading('Regular', '2') }}
+<p>
+	<strong>Keywords:</strong>
+	regular, default, standard, normal, base spacing
+</p>
+{{ tokensList(tokens.density.regular, preview) }}
+
+{{ heading('Extended', '2') }}
+<p>
+	<strong>Keywords:</strong>
+	extended, spacious, loose, wide, generous, increased spacing
+</p>
+{{ tokensList(tokens.density.extended, preview) }}

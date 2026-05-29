@@ -1,19 +1,19 @@
 import { attr, observable, volatile } from '@microsoft/fast-element';
+import type { DateRange } from '../../shared/datetime/dateRange';
 import {
 	compareDateStr,
 	type DateStr,
 	isValidDateStr,
 } from '../../shared/datetime/dateStr';
+import { formatPresentationDate } from '../../shared/datetime/presentationDate';
 import {
 	formatPresentationDateRange,
 	formatRange,
 	parsePresentationDateRange,
 } from '../../shared/datetime/presentationDateRange';
-import { formatPresentationDate } from '../../shared/datetime/presentationDate';
-import type { DateRange } from '../../shared/datetime/dateRange';
-import { PickerField } from '../../shared/picker-field/picker-field';
 import { CalendarPicker } from '../../shared/picker-field/mixins/calendar-picker';
 import { MinMaxCalendarPicker } from '../../shared/picker-field/mixins/min-max-calendar-picker';
+import { PickerField } from '../../shared/picker-field/picker-field';
 
 const isFormAssociatedTryingToSetFormValue = (
 	value: File | string | FormData | null

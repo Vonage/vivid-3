@@ -1,8 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import type { Metadata } from '@repo/metadata-extractor';
+import { fileURLToPath } from 'url';
 
-const dirname = path.dirname(import.meta.url).replace('file:/', '');
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const MetadataPath = path.join(dirname, '../../components/metadata.json');
 

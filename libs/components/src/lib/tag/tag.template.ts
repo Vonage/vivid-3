@@ -1,4 +1,5 @@
-import { html, InlineTemplateDirective, when } from '@microsoft/fast-element';
+import type { InlineTemplateDirective } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,

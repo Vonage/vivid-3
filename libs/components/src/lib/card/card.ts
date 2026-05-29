@@ -17,6 +17,7 @@ export type CardAppearance = ExtractFromEnum<
 /**
  * @public
  * @component card
+ * @slot body - The body slot is for the main content of the card. Displayed between the header and footer content.
  * @slot graphic - The graphic slot overrides the icon property.
  * @slot media - The media slot is mainly for images or video content above the card header.
  * @slot meta - The meta slot is for action content in the card header.
@@ -81,6 +82,8 @@ export class Card extends Linkable(VividElement) {
 	})
 	clickableCard = false;
 
+	/** @internal */
+	@observable bodySlottedContent?: HTMLElement[];
 	/** @internal */
 	@observable footerSlottedContent?: HTMLElement[];
 	/** @internal */

@@ -1,8 +1,8 @@
+import type { InlineTemplateDirective } from '@microsoft/fast-element';
 import {
 	children,
 	elements,
 	html,
-	InlineTemplateDirective,
 	ref,
 	repeat,
 	when,

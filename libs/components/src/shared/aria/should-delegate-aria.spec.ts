@@ -1,13 +1,15 @@
-import { elementUpdated } from '@repo/shared';
-import { type DelegatesAriaElement } from './delegates-aria';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
+import type { DelegatesAriaElement } from './delegates-aria';
 import {
 	ariaAttributeName,
-	ariaMixinProperties,
-	type AriaPropertyName,
+	ariaValueProperties,
+	type AriaValuePropertyName,
 } from './aria-mixin';
 
-export const allAriaPropertiesExcept = (exceptProperties: AriaPropertyName[]) =>
-	ariaMixinProperties.filter(
+export const allAriaPropertiesExcept = (
+	exceptProperties: AriaValuePropertyName[]
+) =>
+	ariaValueProperties.filter(
 		(p) => p !== 'role' && !exceptProperties.includes(p)
 	);
 
@@ -18,14 +20,14 @@ export const itShouldDelegateAllAriaAttributes = (
 	itShouldDelegateAriaAttributes(
 		getHost,
 		getTarget,
-		ariaMixinProperties.filter((p) => p !== 'role')
+		ariaValueProperties.filter((p) => p !== 'role')
 	);
 };
 
 export const itShouldDelegateAriaAttributes = (
 	getHost: () => DelegatesAriaElement,
 	getTarget: () => HTMLElement,
-	ariaProperties: readonly AriaPropertyName[]
+	ariaProperties: readonly AriaValuePropertyName[]
 ) => {
 	it.each(ariaProperties)(
 		'should delegate %s to target element',

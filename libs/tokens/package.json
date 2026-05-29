@@ -16,15 +16,15 @@
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
 		"test": "vitest run",
-		"test:coverage": "vitest run --coverage",
+		"test:coverage": "vitest run --coverage && relativize-coverage .",
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
+		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@types/node": "catalog:",
-		"@vonage/vivid-figma-tokens": "github:vonage/vivid-figma-tokens#v1.4.0",
 		"expr-eval": "^2.0.2",
 		"style-dictionary": "catalog:",
 		"tsx": "catalog:",

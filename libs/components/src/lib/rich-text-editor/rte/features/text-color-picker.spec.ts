@@ -1,6 +1,6 @@
 import { docFactories } from '../__tests__/doc-factories';
 import { setup as standardSetup } from '../__tests__/test-utils';
-import { RteFeature } from '../feature';
+import type { RteFeature } from '../feature';
 import { RteBase } from './base';
 import { RteToolbarFeature } from './toolbar';
 import {

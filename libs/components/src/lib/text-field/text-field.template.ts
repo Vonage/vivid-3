@@ -84,7 +84,7 @@ export const TextfieldTemplate = (context: VividElementDefinitionContext) => {
 							slot="_control"
 							id="${(x) => getControlId(x._uniqueId)}"
 							class="_vvd-3-text-field-safari-workaround"
-							@input="${(x) => x.handleTextInput()}"
+							@input="${(x, c) => x.handleTextInput(c.event as InputEvent)}"
 							@change="${(x) => x.handleChange()}"
 							@blur="${(x) => {
 								x.$emit('blur', undefined, { bubbles: false });
@@ -106,10 +106,11 @@ export const TextfieldTemplate = (context: VividElementDefinitionContext) => {
 							autocomplete="${(x) => x.autoComplete}"
 							type="${(x) => x.type}"
 							inputmode="${(x) => x.inputMode}"
-							aria-describedby="${(x) => x._feedbackDescribedBy} ${(x) =>
-								x.charCount && x.maxlength ? x._charCountDescribedBy : null}"
 							value="${(x) => x.initialValue}"
-							${delegateAria()}
+							${delegateAria({
+								ariaDescribedBy: (x) =>
+									`${x._feedbackDescribedBy} ${x.charCount && x.maxlength ? x._charCountDescribedBy : null}`,
+							})}
 							${ref('control')}
 						/>`
 					)}

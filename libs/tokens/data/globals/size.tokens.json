@@ -1,0 +1,48 @@
+{
+	"size": {
+		"designUnit": {
+			"type": "sizing",
+			"value": "4"
+		},
+		"base": {
+			"type": "sizing",
+			"value": "{size.unitMultiplier.10} + {size.unitMultiplier.1} * {size.density}"
+		},
+		"density": {
+			"comment": "global density integer is used to scale all components sizes. allowed values are 0, 1, -1 (0 being default)",
+			"value": "0",
+			"type": "sizing",
+			"public": true,
+			"@property": {
+				"syntax": "integer",
+				"inherits": true
+			}
+		},
+		"unitMultiplier": {
+			"1": {
+				"type": "sizing",
+				"value": "{size.designUnit}"
+			},
+			"2": {
+				"type": "sizing",
+				"value": "{size.designUnit} * 2"
+			},
+			"3": {
+				"type": "sizing",
+				"value": "{size.designUnit} * 3"
+			},
+			"4": {
+				"type": "sizing",
+				"value": "{size.designUnit} * 4"
+			},
+			"5": {
+				"type": "sizing",
+				"value": "{size.designUnit} * 5"
+			},
+			"10": {
+				"type": "sizing",
+				"value": "{size.designUnit} * 10"
+			}
+		}
+	}
+}

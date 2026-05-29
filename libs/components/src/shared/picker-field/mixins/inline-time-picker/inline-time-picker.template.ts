@@ -2,7 +2,7 @@ import { html, repeat, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { scrollIntoView } from '../../../utils/scrollIntoView';
 import { ignoreEventInFocusTraps } from '../../../patterns';
-import { type PickerOption } from './picker-option';
+import type { PickerOption } from './picker-option';
 import type { InlineTimePicker } from './inline-time-picker';
 import {
 	type Column,

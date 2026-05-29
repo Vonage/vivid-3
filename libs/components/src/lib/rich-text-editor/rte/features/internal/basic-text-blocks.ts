@@ -1,5 +1,6 @@
 import type { Node, NodeSpec } from 'prosemirror-model';
-import { type Command, EditorState } from 'prosemirror-state';
+import type { EditorState } from 'prosemirror-state';
+import type { Command } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 import { type PluginContribution, RteFeatureImpl } from '../../feature';
 import type { RteInstanceImpl } from '../../instance';

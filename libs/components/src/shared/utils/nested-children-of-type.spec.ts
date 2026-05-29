@@ -1,4 +1,4 @@
-import { fixture } from '@repo/shared';
+import { fixture } from '@repo/shared/test-utils/fixture';
 import { nestedChildrenOfType } from './nested-children-of-type';
 
 describe('nestedChildrenOfType', () => {

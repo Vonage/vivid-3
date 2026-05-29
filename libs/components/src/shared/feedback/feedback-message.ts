@@ -1,4 +1,5 @@
-import { attr, html, ViewTemplate, when } from '@microsoft/fast-element';
+import type { ViewTemplate } from '@microsoft/fast-element';
+import { attr, html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { iconDefinition } from '../../lib/icon/definition';
 import { Icon } from '../../lib/icon/icon';

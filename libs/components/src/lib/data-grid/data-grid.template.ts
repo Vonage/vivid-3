@@ -1,10 +1,5 @@
-import {
-	children,
-	elements,
-	ExecutionContext,
-	html,
-	slotted,
-} from '@microsoft/fast-element';
+import type { ExecutionContext } from '@microsoft/fast-element';
+import { children, elements, html, slotted } from '@microsoft/fast-element';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { DataGridRow } from './data-grid-row';
 import type { DataGrid } from './data-grid';

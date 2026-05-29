@@ -1,5 +1,6 @@
 /* Eslint confuses ts-morph's Symbol with builtin symbol */
-import { Node, type SourceFile, type Symbol, Type } from 'ts-morph';
+import type { Type } from 'ts-morph';
+import { Node, type SourceFile, type Symbol } from 'ts-morph';
 import { getComponentName } from './jsdoc';
 import { relative } from 'node:path';
 import { isPrivateOrInternal } from './visibility';

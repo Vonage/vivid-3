@@ -64,9 +64,10 @@ export const TextAreaTemplate = (context: VividElementDefinitionContext) => {
 				?disabled="${(x) => x.disabled}"
 				?required="${(x) => x.required}"
 				?spellcheck="${(x) => x.spellcheck}"
-				aria-describedby="${(x) => x._feedbackDescribedBy} ${(x) =>
-					x.charCount && x.maxlength ? x._charCountDescribedBy : null}"
-				${delegateAria()}
+				${delegateAria({
+					ariaDescribedBy: (x) =>
+						`${x._feedbackDescribedBy} ${x.charCount && x.maxlength ? x._charCountDescribedBy : null}`,
+				})}
 				@input="${(x) => x.handleTextInput()}"
 				@change="${(x) => x.handleChange()}"
 				${ref('control')}

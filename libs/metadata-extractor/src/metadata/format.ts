@@ -35,6 +35,7 @@ export interface ComponentDef {
 		propName: string; // Name of the prop that will be used for v-model, e.g. 'value'
 		eventNames: string[]; // Name of the events that will be used for v-model, e.g. 'change'
 		valueMapping: string; // Code for extracting the new value from event. E.g. "event.target.value"
+		lazyEventNames?: string[]; // Optional: events to use for .lazy modifier, e.g. ['change']. If omitted, .lazy is a no-op.
 	}[];
 	methods: {
 		name: string;

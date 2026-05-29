@@ -39,18 +39,6 @@ const handleLocationChange = () => {
 	}
 };
 
-const onBeforeProcessNode = (e: CustomEvent) => {
-	const element = e.detail.elt;
-
-	// Disable Turbo for links to the Vivid Vue documentation
-	if (
-		element.tagName === 'A' &&
-		element.getAttribute('href')?.startsWith('/vivid-vue')
-	) {
-		element.setAttribute('hx-boost', 'false');
-	}
-};
-
 const handleScrollAfterSwap = (e: CustomEvent) => {
 	const anchor = e.detail.pathInfo.anchor;
 
@@ -63,10 +51,6 @@ const handleScrollAfterSwap = (e: CustomEvent) => {
 
 window.addEventListener('popstate', handleLocationChange);
 window.addEventListener('htmx:pushedIntoHistory', handleLocationChange);
-window.addEventListener(
-	'htmx:beforeProcessNode',
-	onBeforeProcessNode as EventListener
-);
 window.addEventListener(
 	'htmx:afterSwap',
 	handleScrollAfterSwap as EventListener

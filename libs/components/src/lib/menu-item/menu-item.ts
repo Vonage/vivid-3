@@ -6,7 +6,7 @@ import {
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import { AffixIcon } from '../../shared/patterns/affix';
 import type { Menu } from '../menu/menu';
-import { Connotation } from '../enums';
+import type { Connotation } from '../enums';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { replaces } from '../../shared/deprecation/replaced-props';

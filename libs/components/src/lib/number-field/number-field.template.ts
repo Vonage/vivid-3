@@ -111,8 +111,9 @@ export const NumberFieldTemplate = (context: VividElementDefinitionContext) => {
 						?spellcheck="${(x) => x.spellcheck}"
 						:value="${(x) => x._presentationValue}"
 						type="text"
-						aria-describedby="${(x) => x._feedbackDescribedBy}"
-						${delegateAria()}
+						${delegateAria({
+							ariaDescribedBy: (x) => x._feedbackDescribedBy,
+						})}
 						${ref('control')}
 					/>
 				</div>

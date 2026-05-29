@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { beforeAll } from 'vitest';
 import { createRegisterFunction } from '../design-system/createRegisterFunction';
 import type { Icon } from '../../lib/icon/icon';

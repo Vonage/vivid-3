@@ -1,4 +1,5 @@
-import { ExecutionContext, html, ref, slotted } from '@microsoft/fast-element';
+import type { ExecutionContext } from '@microsoft/fast-element';
+import { html, ref, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tabs } from './tabs.js';
 

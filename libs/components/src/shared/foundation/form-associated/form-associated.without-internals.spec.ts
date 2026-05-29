@@ -1,9 +1,9 @@
+import type { ValidateTest } from './form-associated.common-tests.spec';
 import {
 	checkableFormAssociatedCommonTests,
 	formAssociatedCommonTests,
 	setup,
 	TestElement,
-	ValidateTest,
 } from './form-associated.common-tests.spec';
 
 describe('FormAssociated when ElementInternals is not supported', () => {

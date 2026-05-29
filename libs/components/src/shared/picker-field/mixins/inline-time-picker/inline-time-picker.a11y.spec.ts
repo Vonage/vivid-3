@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { InlineTimePicker } from './inline-time-picker';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { InlineTimePicker } from './inline-time-picker';
 import './index';
 
 const COMPONENT_TAG = 'vwc-inline-time-picker';

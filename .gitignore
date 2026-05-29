@@ -44,3 +44,6 @@ blob-results
 .nx/cache
 .nx/workspace-data
 .turbo
+
+*storybook.log
+storybook-static

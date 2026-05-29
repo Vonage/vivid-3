@@ -1,12 +1,14 @@
+import { getActiveElementPiercingShadowRoot } from '@repo/shared/test-utils/active-element';
+import { setupDelegatesFocusPolyfill } from '@repo/shared/test-utils/delegates-focus-polyfill';
 import {
-	createFormHTML,
 	elementUpdated,
 	fixture,
-	getActiveElementPiercingShadowRoot,
 	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
+import {
+	createFormHTML,
 	listenToFormSubmission,
-	setupDelegatesFocusPolyfill,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/form-association';
 import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import type { Popup } from '../../lib/popup/popup';

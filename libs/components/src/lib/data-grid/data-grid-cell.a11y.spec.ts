@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { DataGridCell } from './data-grid-cell';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { DataGridCell } from './data-grid-cell';
 import { DataGridCellSortStates } from './data-grid.options';
 import '.';
 

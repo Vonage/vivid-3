@@ -14,10 +14,10 @@ const features = [
 
 describe('RteStrikethroughFeature', () => {
 	it('should add a strikethrough mark to the schema', async () => {
-		const { docStr } = await setup(features, [
+		const rte = await setup(features, [
 			p(text.marks(strikethrough())('Hello')),
 		]);
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph(<strikethrough>'|Hello')"`
 		);
 	});
@@ -42,74 +42,66 @@ describe('RteStrikethroughFeature', () => {
 	});
 
 	it('should toggle strikethrough mark of selected text on Alt+Shift+5', async () => {
-		const { selectText, docStr, keydown } = await setup(features, [
-			p('Hello world'),
-		]);
+		const rte = await setup(features, [p('Hello world')]);
 
-		selectText('[world]');
-		keydown('5', { alt: true, shift: true });
+		rte.selectText('[world]');
+		rte.keydown('5', { alt: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello ', <strikethrough>'[world|]')"`
 		);
 
-		keydown('5', { alt: true, shift: true });
+		rte.keydown('5', { alt: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
 	});
 
 	it('should toggle strikethrough mark of selected text on Cmd+Shift+X', async () => {
-		const { selectText, docStr, keydown } = await setup(features, [
-			p('Hello world'),
-		]);
+		const rte = await setup(features, [p('Hello world')]);
 
-		selectText('[world]');
-		keydown('X', { cmd: true, shift: true });
+		rte.selectText('[world]');
+		rte.keydown('X', { cmd: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello ', <strikethrough>'[world|]')"`
 		);
 
-		keydown('X', { cmd: true, shift: true });
+		rte.keydown('X', { cmd: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
 	});
 
 	it('should remember the strikethrough mark when no text is selected', async () => {
-		const { placeCursor, docStr, typeTextAtCursor, toolbarButton } =
-			await setup(features, [p('Hello world')]);
+		const rte = await setup(features, [p('Hello world')]);
 
-		placeCursor('Hello |world');
-		toolbarButton('Strikethrough').click();
+		rte.placeCursor('Hello |world');
+		rte.toolbarButton('Strikethrough').click();
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello |<strikethrough>|world')"`
 		);
 
-		await typeTextAtCursor('beautiful ');
+		await rte.typeTextAtCursor('beautiful ');
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello ', <strikethrough>'beautiful |', 'world')"`
 		);
 	});
 
 	it('should add a toolbar item that toggles strikethrough', async () => {
-		const { toolbarButton, isActive, selectText, docStr } = await setup(
-			features,
-			[p('Hello world')]
-		);
+		const rte = await setup(features, [p('Hello world')]);
 
-		selectText('[world]');
-		toolbarButton('Strikethrough').click();
+		rte.selectText('[world]');
+		rte.toolbarButton('Strikethrough').click();
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello ', <strikethrough>'[world|]')"`
 		);
-		expect(isActive(toolbarButton('Strikethrough'))).toBe(true);
+		expect(rte.isActive(rte.toolbarButton('Strikethrough'))).toBe(true);
 
-		toolbarButton('Strikethrough').click();
+		rte.toolbarButton('Strikethrough').click();
 
-		expect(docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
-		expect(isActive(toolbarButton('Strikethrough'))).toBe(false);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
+		expect(rte.isActive(rte.toolbarButton('Strikethrough'))).toBe(false);
 	});
 });

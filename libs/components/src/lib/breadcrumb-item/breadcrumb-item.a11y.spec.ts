@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { BreadcrumbItem } from './breadcrumb-item';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { BreadcrumbItem } from './breadcrumb-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-breadcrumb-item';

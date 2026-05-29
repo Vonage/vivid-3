@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Tag } from './tag';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { Tag } from './tag';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tag';

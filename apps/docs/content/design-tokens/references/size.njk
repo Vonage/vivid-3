@@ -1,0 +1,39 @@
+---
+permalink: /design-tokens/references/size/
+parent: Token Types  and Reference Pages
+title: Size
+order: 50
+---
+
+{% include '../../_includes/tokens-table.njk' %}
+{% from '../../_includes/tokens-table.njk' import tokensList, heading %}
+{% macro preview(item) %}
+  <div class="token-preview">
+  	<div style="width: {{ item.preview }}; height: {{ item.preview }}; background-color: var(--vvd-color-neutral-200);">
+  	</div>
+  </div>
+{% endmacro %}
+
+<h1>Size</h1>
+
+<p>
+Details how size tokens help standardize icons, UI elements, and layout blocks, with a reference table for medium and large families.
+<p>
+<p>
+Used for sizes of internal UI elements like text, icons, carets.
+</p>
+<p>
+Do not use these tokens for any spacing, margins, paddings or external width or height definitions of elements. External widths and heights should always be defined dynamically by the size of the contents and their paddings, never statically by a token.
+</p>
+
+{{ heading('Medium', '2') }}
+<p>
+Used as a default, for most of the cases
+<p>
+{{ tokensList(tokens.size.medium, preview) }}
+
+{{ heading('Large', '2') }}
+<p>
+Used for elements that are semantically larger, or to create more emphasis. Examples include large icons, large buttons, and layout blocks.
+</p>
+{{ tokensList(tokens.size.large, preview) }}

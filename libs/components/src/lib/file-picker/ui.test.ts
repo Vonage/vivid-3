@@ -18,7 +18,8 @@ const addFile = async (
 	page: Page,
 	fileName: string,
 	fileSize: number,
-	fileType: string
+	fileType: string,
+	selector = 'vwc-file-picker:first-child .control'
 ) => {
 	const dataTransfer = await page.evaluateHandle(
 		([name, size, type]) => {
@@ -30,7 +31,7 @@ const addFile = async (
 		[fileName, fileSize, fileType] as const
 	);
 
-	await page.dispatchEvent('vwc-file-picker:first-child .control', 'drop', {
+	await page.dispatchEvent(selector, 'drop', {
 		dataTransfer,
 	});
 };
@@ -81,6 +82,45 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	await takeScreenshot(page, 'file-picker');
+});
+
+test('should show disabled state', async ({ page }: { page: Page }) => {
+	const template = `
+		<vwc-layout column-basis="block">
+			<vwc-file-picker disabled label="Upload files"> Drag & Drop or click to upload </vwc-file-picker>
+			<vwc-file-picker label="Upload files"> Drag & Drop or click to upload </vwc-file-picker>
+		</vwc-layout>
+	`;
+
+	await page.setViewportSize({ width: 500, height: 500 });
+
+	await loadComponents({ page, components });
+	await renderTemplate({
+		page,
+		template,
+		setup: async () => {
+			await addFile(
+				page,
+				'report.pdf',
+				1024,
+				'application/pdf',
+				'vwc-file-picker:last-child .control'
+			);
+			await addFile(
+				page,
+				'photo.jpg',
+				2048,
+				'image/jpeg',
+				'vwc-file-picker:last-child .control'
+			);
+			await page.evaluate(() => {
+				(document.querySelectorAll('vwc-file-picker')[1] as any).disabled =
+					true;
+			});
+		},
+	});
+
+	await takeScreenshot(page, 'file-picker-disabled');
 });
 
 test.describe('form association', async () => {

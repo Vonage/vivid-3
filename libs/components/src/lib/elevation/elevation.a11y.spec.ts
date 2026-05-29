@@ -1,5 +1,6 @@
-import { axe, fixture } from '@repo/shared';
-import { Elevation } from './elevation';
+import { axe } from '@repo/shared/test-utils/axe';
+import { fixture } from '@repo/shared/test-utils/fixture';
+import type { Elevation } from './elevation';
 import '.';
 
 const COMPONENT_TAG = 'vwc-elevation';

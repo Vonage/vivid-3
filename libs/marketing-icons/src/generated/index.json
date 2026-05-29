@@ -1,0 +1,46 @@
+[
+  {
+    "id": "facebook-mono",
+    "name": "facebook",
+    "aliases": [
+      "brand-facebook"
+    ],
+    "category": "brand",
+    "style": "mono",
+    "keywords": [
+      "facebook"
+    ]
+  },
+  {
+    "id": "linkedin-mono",
+    "name": "linkedin",
+    "aliases": [
+      "brand-linkedin"
+    ],
+    "category": "brand",
+    "style": "mono",
+    "keywords": [
+      "linkedin"
+    ]
+  },
+  {
+    "id": "vonage-mono",
+    "name": "vonage",
+    "aliases": [],
+    "category": "brand",
+    "style": "mono",
+    "keywords": [
+      "vonage"
+    ]
+  },
+  {
+    "id": "x-twitter-mono",
+    "name": "x-twitter",
+    "aliases": [],
+    "category": "brand",
+    "style": "mono",
+    "keywords": [
+      "x-twitter"
+    ]
+  }
+]

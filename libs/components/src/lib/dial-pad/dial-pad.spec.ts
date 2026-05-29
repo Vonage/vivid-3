@@ -1,7 +1,11 @@
-import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
 import { Updates } from '@microsoft/fast-element';
-import { TextField } from '../text-field/text-field';
-import { Button } from '../button/button';
+import type { TextField } from '../text-field/text-field';
+import type { Button } from '../button/button';
 import { DialPad } from './dial-pad';
 import '.';
 
@@ -430,6 +434,33 @@ describe('vwc-dial-pad', () => {
 			await Updates.next();
 			getCallButton(element).click();
 			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('size', () => {
+		it('should set class when size is set', async () => {
+			element.size = 'normal';
+			await Updates.next();
+			expect(getBaseElement(element).classList.contains('size-normal')).toBe(
+				true
+			);
+		});
+
+		it('should should not set class when size is not set', async () => {
+			const baseEl = getBaseElement(element);
+			expect(baseEl.classList.contains('size-normal')).toBe(false);
+		});
+
+		it('should set scale=condensed on text input when size is set to condensed', async () => {
+			element.size = 'condensed';
+			await Updates.next();
+			expect(getTextField(element).getAttribute('scale')).toBe('condensed');
+		});
+
+		it('should set size=normal on the call button when size is set to condensed', async () => {
+			element.size = 'condensed';
+			await Updates.next();
+			expect(getCallButton(element).getAttribute('size')).toBe('normal');
 		});
 	});
 

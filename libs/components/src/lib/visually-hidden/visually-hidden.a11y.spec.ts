@@ -1,5 +1,6 @@
-import { axe, fixture } from '@repo/shared';
-import { VisuallyHidden } from './visually-hidden';
+import { axe } from '@repo/shared/test-utils/axe';
+import { fixture } from '@repo/shared/test-utils/fixture';
+import type { VisuallyHidden } from './visually-hidden';
 import '.';
 
 const COMPONENT_TAG = 'vwc-visually-hidden';

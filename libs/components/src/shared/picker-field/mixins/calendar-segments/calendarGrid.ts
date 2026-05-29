@@ -2,7 +2,7 @@ import { addDays } from 'date-fns';
 import type { CalendarPickerLocale } from '../calendar-picker.locale';
 import { type DateStr, formatDateStr } from '../../../datetime/dateStr';
 
-import { type Month } from '../../../datetime/month';
+import type { Month } from '../../../datetime/month';
 
 export interface Weekday {
 	name: string;

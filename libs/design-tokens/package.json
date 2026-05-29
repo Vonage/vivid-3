@@ -11,11 +11,12 @@
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
 		"test": "vitest run",
-		"test:coverage": "vitest run --coverage",
+		"test:coverage": "vitest run --coverage && relativize-coverage .",
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
+		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"style-dictionary": "catalog:",

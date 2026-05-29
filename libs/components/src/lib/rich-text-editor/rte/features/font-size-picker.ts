@@ -1,10 +1,11 @@
-import { Mark } from 'prosemirror-model';
-import { type Command, EditorState } from 'prosemirror-state';
+import type { Mark } from 'prosemirror-model';
+import type { EditorState } from 'prosemirror-state';
+import type { Command } from 'prosemirror-state';
 import { toggleMark } from 'prosemirror-commands';
 import { keymap } from 'prosemirror-keymap';
 import { RemoveMarkStep } from 'prosemirror-transform';
 import { createButton, createMenu, createMenuItem } from '../utils/ui';
-import { RteInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
 import {
 	featureFacade,
 	RteFeatureImpl,

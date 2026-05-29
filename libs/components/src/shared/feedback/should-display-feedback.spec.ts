@@ -1,9 +1,11 @@
 import {
-	deepQuerySelectorAll,
 	elementUpdated,
 	getControlElement,
+} from '@repo/shared/test-utils/fixture';
+import {
+	deepQuerySelectorAll,
 	getResolvedTextContent,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/shadow-roots';
 import type { FormAssociatedElement } from '../foundation/form-associated/form-associated';
 import type { ElementWithErrorText, ElementWithSuccessText } from '../patterns';
 import type { ElementWithFeedback } from './mixins';

@@ -1,5 +1,9 @@
 import 'element-internals-polyfill';
-import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
 import type { HexColorPicker } from 'vanilla-colorful/hex-color-picker.js';
 import type { HexInput } from 'vanilla-colorful/hex-input.js';
 import type { TextField } from '../text-field/text-field';

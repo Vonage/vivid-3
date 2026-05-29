@@ -1,4 +1,4 @@
-import { type ValueConverter } from '@microsoft/fast-element';
+import type { ValueConverter } from '@microsoft/fast-element';
 import { numberConverter } from './numberConverter';
 
 class ValueConverterHarness<T> {

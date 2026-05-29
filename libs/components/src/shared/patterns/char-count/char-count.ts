@@ -1,5 +1,5 @@
 import { attr, html, ref } from '@microsoft/fast-element';
-import { VividElement } from '../../foundation/vivid-element/vivid-element';
+import type { VividElement } from '../../foundation/vivid-element/vivid-element';
 import type { Constructor, MixinType } from '../../utils/mixins';
 import { VisuallyHidden } from '../../../lib/visually-hidden/visually-hidden';
 import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';

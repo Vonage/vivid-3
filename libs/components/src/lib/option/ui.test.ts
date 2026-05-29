@@ -5,7 +5,7 @@ import {
 	renderTemplate,
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
-import { ListboxOption } from './option';
+import type { ListboxOption } from './option';
 
 const components = ['option', 'badge'];
 test('should show the component', async ({ page }: { page: Page }) => {

@@ -1,5 +1,5 @@
 import { attr } from '@microsoft/fast-element';
-import { Appearance, Connotation } from '../enums';
+import type { Appearance, Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';

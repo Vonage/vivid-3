@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { AccordionItem } from './accordion-item';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { AccordionItem } from './accordion-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-accordion-item';

@@ -1,4 +1,5 @@
-import { format, parse } from 'date-fns';
+import { format } from 'date-fns/format';
+import { parse } from 'date-fns/parse';
 import type { CalendarPickerLocale } from '../picker-field/mixins/calendar-picker.locale';
 import { type DateStr, formatDateStr, parseDateStr } from './dateStr';
 

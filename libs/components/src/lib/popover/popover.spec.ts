@@ -4,7 +4,7 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 import * as floatingUI from '@floating-ui/dom';
 import type { ComputePositionReturn } from '@floating-ui/dom';
 import type { Button } from '../button/button';

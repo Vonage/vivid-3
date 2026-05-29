@@ -4,11 +4,8 @@ import {
 	undoInputRule,
 } from 'prosemirror-inputrules';
 import { keymap } from 'prosemirror-keymap';
-import {
-	type EditorState,
-	TextSelection,
-	type Transaction,
-} from 'prosemirror-state';
+import type { TextSelection } from 'prosemirror-state';
+import type { EditorState, Transaction } from 'prosemirror-state';
 import {
 	contributionPriority,
 	type PluginContribution,

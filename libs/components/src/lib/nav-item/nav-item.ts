@@ -1,7 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { AffixIcon, Linkable } from '../../shared/patterns';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { Appearance, Connotation } from '../enums';
+import type { Appearance, Connotation } from '../enums';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { replaces } from '../../shared/deprecation/replaced-props';
 

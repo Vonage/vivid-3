@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Dialog } from './dialog';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { Dialog } from './dialog';
 import { setDialogPolyfill } from './dialog.spec';
 import '.';
 

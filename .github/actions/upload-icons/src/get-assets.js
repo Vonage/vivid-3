@@ -2,9 +2,9 @@ import { resolve } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 
-export function getAssets(entries) {
+export function getAssets(entries, sourceDir) {
 	return entries.map((entry) => {
-		const filePath = resolve(entry.dir, `${entry.id}.svg`);
+		const filePath = resolve(sourceDir, `${entry.id}.svg`);
 
 		const svg = readFileSync(filePath, 'utf8');
 

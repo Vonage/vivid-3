@@ -99,47 +99,44 @@ describe('RteAlignmentFeature', () => {
 	});
 
 	it('should set left alignment with Mod+Shift+L', async () => {
-		const { keydown, docStr } = await setup(features, [
+		const rte = await setup(features, [
 			p.attrs({ textAlign: 'center' })('Text'),
 		]);
 
-		keydown('L', { ctrl: true });
+		rte.keydown('L', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph[textAlign="left"]('|Text')"`
 		);
 	});
 
 	it('should set center alignment with Mod+Shift+E', async () => {
-		const { keydown, docStr } = await setup(features, [p('Text')]);
+		const rte = await setup(features, [p('Text')]);
 
-		keydown('E', { ctrl: true });
+		rte.keydown('E', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph[textAlign="center"]('|Text')"`
 		);
 	});
 
 	it('should set right alignment with Mod+Shift+R', async () => {
-		const { keydown, docStr } = await setup(features, [p('Text')]);
+		const rte = await setup(features, [p('Text')]);
 
-		keydown('R', { ctrl: true });
+		rte.keydown('R', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph[textAlign="right"]('|Text')"`
 		);
 	});
 
 	it('should apply alignment to multiple paragraphs in selection', async () => {
-		const { selectText, keydown, docStr } = await setup(features, [
-			p('First'),
-			p('Second'),
-		]);
+		const rte = await setup(features, [p('First'), p('Second')]);
 
-		selectText('[First', 'Second]');
-		keydown('E', { ctrl: true });
+		rte.selectText('[First', 'Second]');
+		rte.keydown('E', { ctrl: true });
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
 			paragraph[textAlign="center"]('[First'),
@@ -150,57 +147,55 @@ describe('RteAlignmentFeature', () => {
 	});
 
 	it('should add toolbar menu to toggle alignment', async () => {
-		const { toolbarButton, click, docStr, isActive } = await setup(features, [
-			p('Text'),
-		]);
+		const rte = await setup(features, [p('Text')]);
 
-		expect(toolbarButton('Alignment').icon).toBe('align-left-line');
+		expect(rte.toolbarButton('Alignment').icon).toBe('align-left-line');
 
-		await click(toolbarButton('Alignment'));
+		await rte.click(rte.toolbarButton('Alignment'));
 
-		expect(isActive(toolbarButton('Left'))).toBe(true);
-		expect(isActive(toolbarButton('Center'))).toBe(false);
-		expect(isActive(toolbarButton('Right'))).toBe(false);
+		expect(rte.isActive(rte.toolbarButton('Left'))).toBe(true);
+		expect(rte.isActive(rte.toolbarButton('Center'))).toBe(false);
+		expect(rte.isActive(rte.toolbarButton('Right'))).toBe(false);
 
-		await click(toolbarButton('Center'));
+		await rte.click(rte.toolbarButton('Center'));
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph[textAlign="center"]('|Text')"`
 		);
-		expect(toolbarButton('Alignment').icon).toBe('align-center-line');
+		expect(rte.toolbarButton('Alignment').icon).toBe('align-center-line');
 
-		await click(toolbarButton('Alignment'));
+		await rte.click(rte.toolbarButton('Alignment'));
 
-		expect(isActive(toolbarButton('Left'))).toBe(false);
-		expect(isActive(toolbarButton('Center'))).toBe(true);
+		expect(rte.isActive(rte.toolbarButton('Left'))).toBe(false);
+		expect(rte.isActive(rte.toolbarButton('Center'))).toBe(true);
 	});
 
 	it('should show no active alignment when the selection contains mixed alignment', async () => {
-		const { toolbarButton, click, isActive, selectAll } = await setup(
-			features,
-			[p('Left'), p.attrs({ textAlign: 'right' })('Right')]
-		);
-
-		selectAll();
-
-		expect(toolbarButton('Alignment').icon).toBe('align-left-line');
-
-		await click(toolbarButton('Alignment'));
-
-		expect(isActive(toolbarButton('Left'))).toBe(false);
-		expect(isActive(toolbarButton('Center'))).toBe(false);
-		expect(isActive(toolbarButton('Right'))).toBe(false);
-	});
-
-	it('should should keep alignment when inserting a new default block', async () => {
-		const { placeCursor, keydown, docStr } = await setup(features, [
+		const rte = await setup(features, [
+			p('Left'),
 			p.attrs({ textAlign: 'right' })('Right'),
 		]);
 
-		placeCursor('Right|');
-		keydown('Enter');
+		rte.selectAll();
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.toolbarButton('Alignment').icon).toBe('align-left-line');
+
+		await rte.click(rte.toolbarButton('Alignment'));
+
+		expect(rte.isActive(rte.toolbarButton('Left'))).toBe(false);
+		expect(rte.isActive(rte.toolbarButton('Center'))).toBe(false);
+		expect(rte.isActive(rte.toolbarButton('Right'))).toBe(false);
+	});
+
+	it('should should keep alignment when inserting a new default block', async () => {
+		const rte = await setup(features, [
+			p.attrs({ textAlign: 'right' })('Right'),
+		]);
+
+		rte.placeCursor('Right|');
+		rte.keydown('Enter');
+
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
 			paragraph[textAlign="right"]('Right'),
@@ -209,10 +204,10 @@ describe('RteAlignmentFeature', () => {
 		`
 		);
 
-		placeCursor('|Right');
-		keydown('Enter');
+		rte.placeCursor('|Right');
+		rte.keydown('Enter');
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
 			paragraph[textAlign="right"](),
@@ -224,14 +219,14 @@ describe('RteAlignmentFeature', () => {
 	});
 
 	it('should should keep alignment when splitting a block', async () => {
-		const { placeCursor, keydown, docStr } = await setup(features, [
+		const rte = await setup(features, [
 			h1.attrs({ textAlign: 'right' })('Right'),
 		]);
 
-		placeCursor('Rig|ht');
-		keydown('Enter');
+		rte.placeCursor('Rig|ht');
+		rte.keydown('Enter');
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`
 			"
 			heading1[textAlign="right"]('Rig'),

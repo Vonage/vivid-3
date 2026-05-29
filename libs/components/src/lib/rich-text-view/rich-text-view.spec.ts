@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { RteConfig } from '../rich-text-editor/rte/config';
 import { RteBase } from '../rich-text-editor/rte/features/base';
 import { RteBoldFeature } from '../rich-text-editor/rte/features/bold';

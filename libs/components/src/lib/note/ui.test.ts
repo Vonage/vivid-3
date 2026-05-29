@@ -13,7 +13,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<div style="margin: 5px;">
 			<vwc-note
 				connotation="success"
-				icon="check-circle"
+				icon="check-circle-line"
 				headline="Changes saved successfully"
 			>
 				Your changes have been saved successfully. You can now continue working.

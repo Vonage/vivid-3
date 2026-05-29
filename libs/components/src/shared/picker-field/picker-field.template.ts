@@ -4,7 +4,7 @@ import type { VividElementDefinitionContext } from '../design-system/defineVivid
 import { Popup } from '../../lib/popup/popup';
 import { TextField } from '../../lib/text-field/text-field';
 import { Button } from '../../lib/button/button';
-import { PickerField } from './picker-field';
+import type { PickerField } from './picker-field';
 
 export const PickerFieldTemplate = (
 	context: VividElementDefinitionContext,
@@ -26,6 +26,7 @@ export const PickerFieldTemplate = (
 				error-text='${(x) => x.errorValidationMessage}'
 				placeholder='${(x) => x._textFieldPlaceholder}'
 				size='${(x) => x._textFieldSize}'
+				scale='${(x) => x.scale}'
 				current-value='${(x) => x._presentationValue}'
 				?disabled='${(x) => x.disabled}'
 				?readonly='${(x) => x.readOnly}'

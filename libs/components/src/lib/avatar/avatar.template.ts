@@ -1,9 +1,8 @@
-import {
-	html,
+import type {
 	InlineTemplateDirective,
 	ViewTemplate,
-	when,
 } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import { delegateAria } from '../../shared/aria/delegates-aria';

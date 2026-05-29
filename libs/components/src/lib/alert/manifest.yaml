@@ -13,6 +13,7 @@ documentation:
   accessibility: ./ACCESSIBILITY.md
   useCases: ./USE-CASES.md
   variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
 links:
   figma: https://figma.com/...
 elements:

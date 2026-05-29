@@ -3,11 +3,11 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 import type { Mock } from 'vitest';
 import { Size } from '../enums';
 import type { Popup } from '../popup/popup';
-import { ListboxOption } from '../option/option';
+import type { ListboxOption } from '../option/option';
 import type { Icon } from '../icon/icon';
 import {
 	itShouldDisplayErrorTextFeedback,
@@ -933,7 +933,7 @@ describe('vwc-combobox', () => {
 			expect(control.getAttribute('aria-expanded')).toBe('true');
 		});
 
-		it("should set the aria-activedescendant attribute to the selected option id when the listbox is open, but this doesn't actually work because the option is in light DOM", async () => {
+		it('should not set aria-activedescendant when the listbox is opened with a pre-selected option', async () => {
 			element.innerHTML = `
 				<vwc-option value="1" text="1"></vwc-option>
 				<vwc-option value="2" text="2" id="option-2" selected></vwc-option>
@@ -944,7 +944,7 @@ describe('vwc-combobox', () => {
 			await elementUpdated(element);
 
 			const control = getControlElement(element);
-			expect(control.getAttribute('aria-activedescendant')).toBe('option-2');
+			expect(control.getAttribute('aria-activedescendant')).toBe('');
 		});
 	});
 });

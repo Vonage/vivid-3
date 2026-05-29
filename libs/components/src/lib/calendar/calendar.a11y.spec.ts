@@ -1,5 +1,6 @@
-import { axe, fixture } from '@repo/shared';
-import { Calendar } from './calendar';
+import { axe } from '@repo/shared/test-utils/axe';
+import { fixture } from '@repo/shared/test-utils/fixture';
+import type { Calendar } from './calendar';
 import '.';
 import '../calendar-event';
 

@@ -1,4 +1,4 @@
-import { elementUpdated } from '@repo/shared';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
 import type { RteFragment } from '../document';
@@ -53,65 +53,60 @@ const features = [
 describe('RteInputRuleFeature', () => {
 	describe('without matchAfterWhitespace', () => {
 		it('should trigger immediately when the pattern matches', async () => {
-			const { placeCursor, typeTextAtCursor, docStr } = await setup(features, [
-				p('Hello '),
-			]);
+			const rte = await setup(features, [p('Hello ')]);
 
-			placeCursor('Hello |');
-			await typeTextAtCursor(':)');
+			rte.placeCursor('Hello |');
+			await rte.typeTextAtCursor(':)');
 
-			expect(docStr()).toBe(`paragraph('Hello 😊|')`);
+			expect(rte.docStr()).toBe(`paragraph('Hello 😊|')`);
 		});
 	});
 
 	describe('with matchAfterWhitespace', () => {
 		it('should trigger when space is typed after a match', async () => {
-			const { placeCursor, typeTextAtCursor, docStr } = await setup(features, [
-				p('Hello '),
-			]);
+			const rte = await setup(features, [p('Hello ')]);
 
-			placeCursor('Hello |');
-			await typeTextAtCursor('#world');
+			rte.placeCursor('Hello |');
+			await rte.typeTextAtCursor('#world');
 
-			expect(docStr()).toMatchInlineSnapshot(`"paragraph('Hello #world|')"`);
+			expect(rte.docStr()).toMatchInlineSnapshot(
+				`"paragraph('Hello #world|')"`
+			);
 
-			await typeTextAtCursor(' ');
+			await rte.typeTextAtCursor(' ');
 
-			expect(docStr()).toMatchInlineSnapshot(
+			expect(rte.docStr()).toMatchInlineSnapshot(
 				`"paragraph('Hello ', tag[value="world"](), ' |')"`
 			);
 		});
 
 		it('should trigger when enter is pressed after a match', async () => {
-			const { placeCursor, typeTextAtCursor, docStr, keydown, element } =
-				await setup(features, [p('Hello ')]);
+			const rte = await setup(features, [p('Hello ')]);
 
-			placeCursor('Hello |');
-			await typeTextAtCursor('#world');
-			keydown('Enter');
-			await elementUpdated(element);
+			rte.placeCursor('Hello |');
+			await rte.typeTextAtCursor('#world');
+			rte.keydown('Enter');
+			await elementUpdated(rte.element);
 
-			expect(docStr()).toMatchInlineSnapshot(
+			expect(rte.docStr()).toMatchInlineSnapshot(
 				`"paragraph('Hello ', tag[value="world"]()), paragraph(|)"`
 			);
 
-			await typeTextAtCursor(' ');
+			await rte.typeTextAtCursor(' ');
 
-			expect(docStr()).toMatchInlineSnapshot(
+			expect(rte.docStr()).toMatchInlineSnapshot(
 				`"paragraph('Hello ', tag[value="world"]()), paragraph(' |')"`
 			);
 		});
 
 		it('should not trigger Enter rule with range selection', async () => {
-			const { selectText, keydown, docStr, element } = await setup(features, [
-				p('Hello #world'),
-			]);
+			const rte = await setup(features, [p('Hello #world')]);
 
-			selectText('Hello [#world|]');
-			keydown('Enter');
-			await elementUpdated(element);
+			rte.selectText('Hello [#world|]');
+			rte.keydown('Enter');
+			await elementUpdated(rte.element);
 
-			expect(docStr()).toMatchInlineSnapshot(
+			expect(rte.docStr()).toMatchInlineSnapshot(
 				`"paragraph('Hello '), paragraph(|)"`
 			);
 		});
@@ -119,42 +114,34 @@ describe('RteInputRuleFeature', () => {
 
 	describe('undo behavior', () => {
 		it('should undo replacement when pressing Backspace', async () => {
-			const { placeCursor, typeTextAtCursor, docStr, keydown } = await setup(
-				features,
-				[p('Hello ')]
-			);
+			const rte = await setup(features, [p('Hello ')]);
 
-			placeCursor('Hello |');
-			await typeTextAtCursor(':)');
-			keydown('Backspace');
+			rte.placeCursor('Hello |');
+			await rte.typeTextAtCursor(':)');
+			rte.keydown('Backspace');
 
-			expect(docStr()).toBe(`paragraph('Hello :)|')`);
+			expect(rte.docStr()).toBe(`paragraph('Hello :)|')`);
 		});
 	});
 
 	describe('rejected matches', () => {
 		it('should do nothing when a pattern matches but handler returns null', async () => {
-			const { placeCursor, typeTextAtCursor, docStr } = await setup(features, [
-				p('Hello '),
-			]);
+			const rte = await setup(features, [p('Hello ')]);
 
-			placeCursor('Hello |');
-			await typeTextAtCursor(':x');
+			rte.placeCursor('Hello |');
+			await rte.typeTextAtCursor(':x');
 
-			expect(docStr()).toBe(`paragraph('Hello :x|')`);
+			expect(rte.docStr()).toBe(`paragraph('Hello :x|')`);
 		});
 
 		it('should use default Enter handling when a pattern matches but handler returns null', async () => {
-			const { placeCursor, typeTextAtCursor, docStr, keydown } = await setup(
-				features,
-				[p('Hello ')]
-			);
+			const rte = await setup(features, [p('Hello ')]);
 
-			placeCursor('Hello |');
-			await typeTextAtCursor('#x');
-			keydown('Enter');
+			rte.placeCursor('Hello |');
+			await rte.typeTextAtCursor('#x');
+			rte.keydown('Enter');
 
-			expect(docStr()).toMatchInlineSnapshot(
+			expect(rte.docStr()).toMatchInlineSnapshot(
 				`"paragraph('Hello #x'), paragraph(|)"`
 			);
 		});

@@ -30,11 +30,6 @@ export const MenuTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 	const anchorSlotTemplate = anchorSlotTemplateFactory();
 
-	function handlePopupEvents(x: Menu, e: Event, state: boolean) {
-		e.stopPropagation();
-		x.open = state;
-	}
-
 	return html<Menu>`
 		<template @focusout="${(x, c) => x._onFocusout(c.event as FocusEvent)}">
 			${anchorSlotTemplate}
@@ -46,8 +41,6 @@ export const MenuTemplate = (context: VividElementDefinitionContext) => {
 				:strategy="${(x) => x.positionStrategy}"
 				:offset=${(x) => x.offset || x._popupOffset}
 				@keydown="${(x, c) => handleEscapeKey(x, c.event as KeyboardEvent)}"
-				@vwc-popup:open="${(x, c) => handlePopupEvents(x, c.event, true)}"
-				@vwc-popup:close="${(x, c) => handlePopupEvents(x, c.event, false)}"
 			>
 			<div class="${getClasses}">
 				<div class="header">

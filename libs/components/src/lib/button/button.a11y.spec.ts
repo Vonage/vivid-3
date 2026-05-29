@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { Button } from './button';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { Button } from './button';
 import '.';
 
 const COMPONENT_TAG = 'vwc-button';
@@ -36,6 +37,16 @@ describe('a11y: vwc-button', () => {
 		it('should pass html a11y test', async () => {
 			element.icon = 'home';
 			element.ariaLabel = 'Back to homepage';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
+
+	describe('pressed', () => {
+		it('should pass html a11y test when pressed', async () => {
+			element.label = 'Mute';
+			element.pressed = true;
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();

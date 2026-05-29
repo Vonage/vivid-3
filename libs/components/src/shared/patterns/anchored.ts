@@ -1,5 +1,5 @@
 import { attr, DOM, html, observable, slotted } from '@microsoft/fast-element';
-import { VividElement } from '../foundation/vivid-element/vivid-element';
+import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor, MixinType } from '../utils/mixins';
 
 type AnchorType = string | HTMLElement;

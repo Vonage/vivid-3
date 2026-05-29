@@ -73,6 +73,18 @@
 	padding: 24px;
 }
 
+.body-wrapper {
+	padding-top: 16px;
+}
+
+.hide-header .body-wrapper {
+	padding-top: 0;
+}
+
+.hide-body .body-wrapper {
+	display: none;
+}
+
 .header {
 	display: flex;
 	flex: 1;

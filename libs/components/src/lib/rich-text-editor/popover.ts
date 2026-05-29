@@ -55,6 +55,11 @@ export class Popover extends VividElement {
 			this.anchorEl?.dataset.blockPopover === 'true' || false;
 	};
 
+	/** Closes the popover. It reopens when anchorEl changes to a new element that does not block it. */
+	dismiss() {
+		this.anchorBlocksPopover = true;
+	}
+
 	@observable anchorEl?: HTMLElement;
 	anchorElChanged(prev?: HTMLElement, next?: HTMLElement) {
 		prev?.removeEventListener(

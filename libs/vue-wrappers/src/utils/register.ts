@@ -1,4 +1,5 @@
-import { onBeforeMount, Ref, ref } from 'vue';
+import type { Ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { CustomComponentPrefix } from '../init/prefix';
 
 /**

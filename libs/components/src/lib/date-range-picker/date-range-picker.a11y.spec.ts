@@ -1,10 +1,7 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	setupDelegatesFocusPolyfill,
-} from '@repo/shared';
-import { DateRangePicker } from './date-range-picker';
+import { axe } from '@repo/shared/test-utils/axe';
+import { setupDelegatesFocusPolyfill } from '@repo/shared/test-utils/delegates-focus-polyfill';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { DateRangePicker } from './date-range-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-date-range-picker';

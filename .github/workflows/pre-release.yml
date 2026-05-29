@@ -20,6 +20,10 @@ on:
         default: '0'
 
 name: pre-release
+
+permissions:
+  packages: write
+
 jobs:
   get-version:
     runs-on: ubuntu-latest

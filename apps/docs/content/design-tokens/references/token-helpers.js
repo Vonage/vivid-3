@@ -6,38 +6,26 @@ const {
 	styleDictionary,
 } = require('../../../../../libs/design-tokens/scripts/style-dictionary');
 
-module.exports.getTokens = async function (type) {
+module.exports.getTokens = async function () {
 	let styleDictionaryInstance = await styleDictionary.init();
 	styleDictionaryInstance = await styleDictionaryInstance.extend({
 		source: ['../../libs/design-tokens/src/*.dtcg.json'],
 	});
 
-	const names = Array.from(
-		await styleDictionaryInstance.tokenMap.keys()
-	).filter((key) => {
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const [_prefix, category, _semantic, _scale] = key
-			.replace(/[{}]/gm, '')
-			.split('/');
-		return category === type;
-	});
-
-	if (names.length === 0) {
-		return [];
-	}
-
 	const cssTokens = await styleDictionaryInstance.getPlatformTokens('css');
 	const flutterTokens =
 		await styleDictionaryInstance.getPlatformTokens('flutter');
 
-	return names.map((name) => {
-		const cssToken = cssTokens.tokenMap.get(name);
-		const flutterToken = flutterTokens.tokenMap.get(name);
-		const cleanName = name.replace(/[{}]/gm, '');
+	const output = {};
+
+	for (const tokenName of styleDictionaryInstance.tokenMap.keys()) {
+		const cssToken = cssTokens.tokenMap.get(tokenName);
+		const flutterToken = flutterTokens.tokenMap.get(tokenName);
+		const cleanName = tokenName.replace(/[{}]/gm, '');
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const [_prefix, category, semantic, scale] = cleanName.split('/');
 
-		return {
+		const entry = {
 			name: cleanName,
 			category,
 			semantic,
@@ -48,7 +36,14 @@ module.exports.getTokens = async function (type) {
 			flutter: flutterToken.name,
 			preview: cssToken.$value,
 		};
-	});
+
+		const categoryGroup = (output[category] ??= {});
+		const semanticGroup = (categoryGroup[semantic] ??= []);
+
+		semanticGroup.push(entry);
+	}
+
+	return output;
 };
 
 unregister();

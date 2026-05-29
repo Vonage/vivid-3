@@ -1,5 +1,5 @@
 import { customElement } from '@microsoft/fast-element';
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import type { Mock, MockInstance } from 'vitest';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { Anchored, anchorSlotTemplateFactory } from './anchored';
@@ -12,6 +12,7 @@ describe('Anchored', () => {
 		template: anchorSlotTemplateFactory(),
 	})
 	class AnchoredElement extends Anchored(VividElement) {
+		/** @internal */
 		_anchorElChanged = _anchorElChanged;
 	}
 

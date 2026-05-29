@@ -1,4 +1,4 @@
-import { fixture } from '@repo/shared';
+import { fixture } from '@repo/shared/test-utils/fixture';
 import { firstOfType } from './first-of-type';
 
 describe('firstOfType', () => {

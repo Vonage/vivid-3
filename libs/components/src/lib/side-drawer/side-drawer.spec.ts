@@ -1,4 +1,8 @@
-import { elementUpdated, fixture, getControlElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@repo/shared/test-utils/fixture';
 import { SideDrawer } from './side-drawer';
 import '.';
 

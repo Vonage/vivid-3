@@ -1,4 +1,8 @@
-import { elementUpdated, fixture, getControlElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@repo/shared/test-utils/fixture';
 import type { Icon } from '../icon/icon';
 import { Button } from '../button/button';
 import { Connotation } from '../enums';

@@ -10,13 +10,7 @@ import { existsSync, readFileSync, writeFileSync } from 'fs';
 const PORT = parseInt(process.env.PORT!);
 const GITHUB_REPOSITORY_OWNER = process.env.GITHUB_REPOSITORY_OWNER!;
 const GITHUB_REPOSITORY_NAME = process.env.GITHUB_REPOSITORY_NAME!;
-const PROJECT_REPOSITORY = `${GITHUB_REPOSITORY_OWNER}/${GITHUB_REPOSITORY_NAME}`;
 const STATE_PATH = '/env/state/github-stub.json';
-const REPO_ROOT = '/env/repo';
-const RELEASE_PLEASE_FILES = [
-	'.release-please-manifest.json',
-	'release-please-config.json',
-];
 
 if (!existsSync(STATE_PATH)) writeState({ repos: {} });
 
@@ -39,33 +33,17 @@ function hashInt(value: string): number {
 	);
 }
 
-function gitBlobSha(content: Buffer): string {
-	return createHash('sha1')
-		.update(`blob ${content.length}\0`)
-		.update(content)
-		.digest('hex');
-}
-
 function isoNow(): string {
 	return new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
-}
-
-function repoFiles(repoKey: string): Record<string, any> {
-	if (repoKey !== PROJECT_REPOSITORY) return {};
-	const files: Record<string, any> = {};
-	for (const rel of RELEASE_PLEASE_FILES) {
-		const p = `${REPO_ROOT}/${rel}`;
-		if (!existsSync(p)) continue;
-		const content = readFileSync(p);
-		const sha = gitBlobSha(content as unknown as Buffer);
-		files[rel] = { path: rel, sha, size: content.length, content };
-	}
-	return files;
 }
 
 function save(state: any, key: string, rs: any) {
 	state.repos[key] = rs;
 	writeState(state);
+}
+
+function refUrl(key: string, ref: string): string {
+	return `https://api.github.com/repos/${key}/git/${ref}`;
 }
 
 Bun.serve({
@@ -74,11 +52,11 @@ Bun.serve({
 		'/graphql': {
 			POST: async (req) => {
 				const { query = '', variables = {} } = await req.json();
+				const state = readState();
 				const key =
 					variables.owner && variables.repo
 						? `${variables.owner}/${variables.repo}`
-						: '';
-				const state = readState();
+						: `${GITHUB_REPOSITORY_OWNER}/${GITHUB_REPOSITORY_NAME}`;
 				const rs = repoState(state, key);
 
 				if (query.includes('releases(')) {
@@ -101,21 +79,64 @@ Bun.serve({
 					});
 				}
 
-				if (query.includes('pullRequestsSince(')) {
-					return Response.json({
-						data: {
-							repository: {
-								ref: {
-									target: {
-										history: {
-											nodes: [],
-											pageInfo: { hasNextPage: false, endCursor: null },
-										},
+				if (query.includes('repository(')) {
+					const repoMatches = Array.from(
+						query.matchAll(
+							/a(\d+):\s*repository\(\s*owner:\s*"([^"]+)"\s*name:\s*"([^"]+)"/g
+						)
+					);
+					const commitMatches = Array.from(
+						query.matchAll(
+							/a([0-9a-f]{7,40}):\s*object\(expression:\s*"([^"]+)"\)/g
+						)
+					);
+					const pullMatches = Array.from(
+						query.matchAll(/pr__(\d+):\s*pullRequest\(number:\s*(\d+)\)/g)
+					);
+					const data: Record<string, any> = {};
+
+					for (const [, repoIndex, owner, repo] of repoMatches) {
+						const repoKey = `${owner}/${repo}`;
+						const repoPulls = repoState(state, repoKey).pulls;
+						const repoData: Record<string, any> = {};
+
+						for (const [, field, expression] of commitMatches) {
+							repoData[`a${field}`] = {
+								commitUrl: `https://github.com/${repoKey}/commit/${expression}`,
+								associatedPullRequests: { nodes: [] },
+								author: {
+									user: {
+										login: 'pull-author',
+										url: 'https://github.com/pull-author',
 									},
 								},
-							},
-						},
-					});
+							};
+						}
+
+						for (const [, field, pullNumber] of pullMatches) {
+							const pull = repoPulls.find(
+								(p: any) => p.number === parseInt(pullNumber)
+							);
+							const login = pull?.head?.label?.split(':')[0] ?? owner;
+							repoData[`pr__${field}`] = {
+								url:
+									pull?.html_url ??
+									`https://github.com/${repoKey}/pull/${pullNumber}`,
+								author: {
+									login,
+									url: `https://github.com/${login}`,
+								},
+								mergeCommit: {
+									commitUrl: `https://github.com/${repoKey}/commit/${pullNumber}`,
+									abbreviatedOid: `${pullNumber}`.padStart(7, '0'),
+								},
+							};
+						}
+
+						data[`a${repoIndex}`] = repoData;
+					}
+
+					return Response.json({ data });
 				}
 
 				return Response.json(
@@ -144,37 +165,17 @@ Bun.serve({
 		'/repos/:owner/:repo/git/trees/:ref': {
 			GET: (req) => {
 				const { owner, repo, ref } = req.params;
-				const key = `${owner}/${repo}`;
-				const files = repoFiles(key);
 				return Response.json({
 					sha: ref,
-					tree: Object.values(files).map((e: any) => ({
-						path: e.path,
-						mode: '100644',
-						type: 'blob',
-						sha: e.sha,
-						size: e.size,
-						url: `https://api.github.com/repos/${key}/git/blobs/${e.sha}`,
-					})),
+					tree: [],
 					truncated: false,
 				});
 			},
 		},
 
 		'/repos/:owner/:repo/git/blobs/:sha': {
-			GET: (req) => {
-				const { owner, repo, sha } = req.params;
-				const file = Object.values(repoFiles(`${owner}/${repo}`)).find(
-					(f: any) => f.sha === sha
-				);
-				if (!file)
-					return Response.json({ message: 'Not Found' }, { status: 404 });
-				return Response.json({
-					sha: (file as any).sha,
-					size: (file as any).size,
-					content: Buffer.from((file as any).content).toString('base64'),
-					encoding: 'base64',
-				});
+			GET: () => {
+				return Response.json({ message: 'Not Found' }, { status: 404 });
 			},
 		},
 
@@ -185,19 +186,61 @@ Bun.serve({
 				const state = readState();
 				const rs = repoState(state, key);
 				const { ref, sha } = await req.json();
-				if (rs.refs.some((r: any) => r.ref === ref)) {
-					return Response.json(
-						{ message: 'Reference already exists', ref },
-						{ status: 422 }
-					);
+				// Idempotent: return existing ref if it already exists
+				const existing = rs.refs.find((r: any) => r.ref === ref);
+				if (existing) {
+					return Response.json({
+						ref: existing.ref,
+						url: existing.url,
+						object: { type: 'commit', sha: existing.sha },
+					});
 				}
-				const url = `https://api.github.com/repos/${key}/git/${ref}`;
+				const url = refUrl(key, ref);
 				rs.refs.push({ ref, sha, url });
 				save(state, key, rs);
 				return Response.json(
 					{ ref, url, object: { type: 'commit', sha } },
 					{ status: 201 }
 				);
+			},
+		},
+
+		'/repos/:owner/:repo/git/refs/*': {
+			PATCH: async (req) => {
+				const { owner, repo } = req.params;
+				const key = `${owner}/${repo}`;
+				const refName = `refs/${decodeURIComponent(
+					new URL(req.url).pathname.slice(
+						`/repos/${owner}/${repo}/git/refs/`.length
+					)
+				)}`;
+				const state = readState();
+				const rs = repoState(state, key);
+				const ref = rs.refs.find((r: any) => r.ref === refName);
+				if (!ref)
+					return Response.json({ message: 'Not Found' }, { status: 404 });
+				const { sha } = await req.json();
+				ref.sha = sha;
+				save(state, key, rs);
+				return Response.json({
+					ref: ref.ref,
+					url: ref.url,
+					object: { type: 'commit', sha: ref.sha },
+				});
+			},
+			DELETE: async (req) => {
+				const { owner, repo } = req.params;
+				const key = `${owner}/${repo}`;
+				const refName = `refs/${decodeURIComponent(
+					new URL(req.url).pathname.slice(
+						`/repos/${owner}/${repo}/git/refs/`.length
+					)
+				)}`;
+				const state = readState();
+				const rs = repoState(state, key);
+				rs.refs = rs.refs.filter((r: any) => r.ref !== refName);
+				save(state, key, rs);
+				return new Response(null, { status: 204 });
 			},
 		},
 
@@ -289,6 +332,13 @@ Bun.serve({
 				const state = readState();
 				const rs = repoState(state, key);
 				const p = await req.json();
+				// Idempotent: return existing release if one with the same tag exists
+				const existing = rs.releases.find(
+					(r: any) => r.tag_name === p.tag_name
+				);
+				if (existing) {
+					return Response.json(existing);
+				}
 				const release = {
 					id: Date.now(),
 					tag_name: p.tag_name,
@@ -301,6 +351,15 @@ Bun.serve({
 					created_at: isoNow(),
 				};
 				rs.releases.push(release);
+				// Also create a tag ref (mirrors real GitHub API behaviour)
+				const tagRef = `refs/tags/${p.tag_name}`;
+				if (!rs.refs.some((r: any) => r.ref === tagRef)) {
+					rs.refs.push({
+						ref: tagRef,
+						sha: release.target_commitish,
+						url: refUrl(key, tagRef),
+					});
+				}
 				save(state, key, rs);
 				return Response.json(release, { status: 201 });
 			},
@@ -309,7 +368,27 @@ Bun.serve({
 		'/repos/:owner/:repo/pulls': {
 			GET: (req) => {
 				const { owner, repo } = req.params;
-				return Response.json(repoState(readState(), `${owner}/${repo}`).pulls);
+				const url = new URL(req.url);
+				const headParam = url.searchParams.get('head');
+				const baseParam = url.searchParams.get('base');
+				const stateParam = url.searchParams.get('state');
+
+				let pulls = repoState(readState(), `${owner}/${repo}`).pulls;
+
+				if (headParam) {
+					// head is "owner:branch" or just "branch"
+					const headBranch = headParam.includes(':')
+						? headParam.split(':').slice(1).join(':')
+						: headParam;
+					pulls = pulls.filter((p: any) => p.head.ref === headBranch);
+				}
+				if (baseParam) {
+					pulls = pulls.filter((p: any) => p.base.ref === baseParam);
+				}
+				if (stateParam) {
+					pulls = pulls.filter((p: any) => p.state === stateParam);
+				}
+				return Response.json(pulls);
 			},
 			POST: async (req) => {
 				const { owner, repo } = req.params;
@@ -320,15 +399,45 @@ Bun.serve({
 				const number = rs.pulls.length + 1;
 				const pull = {
 					number,
-					title: p.title,
-					head: { ref: p.head },
-					base: { ref: p.base },
+					title: p.title || '',
+					body: p.body || '',
+					head: { ref: p.head, label: `${owner}:${p.head}` },
+					base: { ref: p.base, label: `${owner}:${p.base}` },
 					state: 'open',
 					html_url: `https://github.com/${key}/pull/${number}`,
 				};
 				rs.pulls.push(pull);
 				save(state, key, rs);
 				return Response.json(pull, { status: 201 });
+			},
+		},
+
+		'/repos/:owner/:repo/pulls/:number': {
+			GET: (req) => {
+				const { owner, repo, number } = req.params;
+				const pull = repoState(readState(), `${owner}/${repo}`).pulls.find(
+					(p: any) => p.number === parseInt(number)
+				);
+				if (!pull)
+					return Response.json({ message: 'Not Found' }, { status: 404 });
+				return Response.json(pull);
+			},
+			PATCH: async (req) => {
+				const { owner, repo, number } = req.params;
+				const key = `${owner}/${repo}`;
+				const state = readState();
+				const rs = repoState(state, key);
+				const idx = rs.pulls.findIndex(
+					(p: any) => p.number === parseInt(number)
+				);
+				if (idx === -1)
+					return Response.json({ message: 'Not Found' }, { status: 404 });
+				const updates = await req.json();
+				if (updates.title !== undefined) rs.pulls[idx].title = updates.title;
+				if (updates.body !== undefined) rs.pulls[idx].body = updates.body;
+				if (updates.state !== undefined) rs.pulls[idx].state = updates.state;
+				save(state, key, rs);
+				return Response.json(rs.pulls[idx]);
 			},
 		},
 	},

@@ -1,4 +1,4 @@
-import { elementUpdated } from '@repo/shared';
+import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import { vitest } from 'vitest';
 import { setup } from '../__tests__/test-utils';
 import { mockFile } from '../../../file-picker/__mocks__/data-transfer';

@@ -1,13 +1,13 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import '.';
 import '../option';
 import userEvent, { type UserEvent } from '@testing-library/user-event';
 import type { Mock } from 'vitest';
-import { Popup } from '../popup/popup';
-import { ListboxOption } from '../option/option';
-import { Button } from '../button/button';
-import { Icon } from '../icon/icon';
-import { ProgressRing } from '../progress-ring/progress-ring';
+import type { Popup } from '../popup/popup';
+import type { ListboxOption } from '../option/option';
+import type { Button } from '../button/button';
+import type { Icon } from '../icon/icon';
+import type { ProgressRing } from '../progress-ring/progress-ring';
 import { VividFoundationButton } from '../../shared/foundation/button';
 import {
 	allAriaPropertiesExcept,
@@ -19,7 +19,7 @@ import {
 	itShouldDisplaySuccessTextFeedback,
 	itShouldDisplayValidationErrorFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
-import { OptionTag } from './option-tag';
+import type { OptionTag } from './option-tag';
 import { SearchableSelect } from './searchable-select';
 
 // Workaround: Remove handleUnsupportedDelegatesFocus (which we don't need) because it breaks when used with user-event

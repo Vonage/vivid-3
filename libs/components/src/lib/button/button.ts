@@ -164,6 +164,20 @@ export class Button extends AffixIconWithTrailing(
 	active = false;
 
 	/**
+	 * Indicates the button is in a pressed/toggled state.
+	 * Sets `aria-pressed` on the button element.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: pressed
+	 */
+	@attr({
+		mode: 'boolean',
+		attribute: 'pressed',
+	})
+	pressed = false;
+
+	/**
 	 * Indicates the button's label.
 	 *
 	 * @public

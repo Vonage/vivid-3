@@ -1,18 +1,15 @@
-import {
+import type {
 	ExecutionContext,
-	html,
 	InlineTemplateDirective,
-	ref,
-	repeat,
-	when,
 } from '@microsoft/fast-element';
+import { html, ref, repeat, when } from '@microsoft/fast-element';
 import { classNames, keyEnter } from '@microsoft/fast-web-utilities';
 import { Button } from '../button/button';
 import { TextField } from '../text-field/text-field';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { VisuallyHidden } from '../visually-hidden/visually-hidden';
-import { DialPad } from './dial-pad';
+import type { DialPad } from './dial-pad';
 
 class DialPadButton {
 	value: string;
@@ -62,8 +59,12 @@ const DIAL_PAD_BUTTONS = [
 	),
 ];
 
-const getClasses = ({ noInput }: DialPad) =>
-	classNames('base', ['no-input', Boolean(noInput)]);
+const getClasses = ({ noInput, size }: DialPad) =>
+	classNames(
+		'base',
+		[`size-${size}`, Boolean(size)],
+		['no-input', Boolean(noInput)]
+	);
 
 function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 	if (
@@ -196,6 +197,7 @@ function renderTextField(
 			@focus="${stopPropagation}"
 			@blur="${stopPropagation}"
 			?autofocus="${(x) => x.autofocus}"
+			scale="${(x) => (x.size === 'condensed' ? 'condensed' : 'normal')}">
 			>
          ${when(
 						(x) => x.value && x.value.length && x.value.length > 0,
@@ -279,7 +281,7 @@ function renderDigits(
 
 function renderDialButton(buttonTag: InlineTemplateDirective) {
 	return html<DialPad>`<${buttonTag} class="call-btn"
-        size="expanded"
+        size="${(x) => (x.size === 'condensed' ? 'normal' : 'expanded')}"
         appearance="filled"
         icon="${(x) => (x.callActive ? 'disable-call-line' : 'call-line')}"
         connotation="${(x) => (x.callActive ? 'alert' : 'cta')}"

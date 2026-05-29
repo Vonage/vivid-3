@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { Appearance } from '../enums.js';
 import { Divider } from './divider';
 import '.';

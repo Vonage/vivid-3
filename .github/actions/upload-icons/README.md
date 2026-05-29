@@ -21,26 +21,28 @@ The manual CLI tool allows you to upload icons manually from your local machine.
 Run the manual upload tool with the following command:
 
 ```bash
-node manual.js -k <S3 access key> -s <S3 secret access key>
+node manual.mjs -k <S3 access key> -s <S3 secret access key>
 ```
 
 You can also setup other options when using the tool
 
 ```bash
-node manual.js --help
+node manual.mjs --help
 This script should be executed ONLY in local environment. (manual icons upload)
 
 USAGE manual icons upload [OPTIONS] -k, --key -s, --secret
 
 OPTIONS
 
-                                -v, --version="4.8.0"    Your name
-                                 -k, --key (required)    AWS access key
-                              -s, --secret (required)    AWS secret access key
-                      -b, --bucket="vivid-icons-prod"    AWS bucket
+                                    -m, --mode="icons"    Upload mode: 'icons' (default) or 'marketing-icons'
+                                 -v, --version="4.8.0"    Package version
+                                  -k, --key (required)    AWS access key
+                               -s, --secret (required)    AWS secret access key
+                                        --source-dir=""    Source directory containing index.json and icon files
+                       -b, --bucket="vivid-icons-prod"    AWS bucket
   -f, --folder="3f7739a0-a898-4f69-a82b-ad9d743170b6"    AWS base folder
-                             -r, --region="us-east-1"    AWS region
-                                            -d, --dry    If you actually want to perform upload
+                              -r, --region="us-east-1"    AWS region
+                                             -d, --dry    Print what would be uploaded without actually uploading
 ```
 
 ## Maintaining the Action

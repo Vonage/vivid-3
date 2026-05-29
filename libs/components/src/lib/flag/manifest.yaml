@@ -1,0 +1,21 @@
+concept: Flag
+id: flag
+description: Displays a country flag based on an ISO country code.
+status: alpha
+slug: flag
+keywords:
+  - flag
+  - country
+  - region
+  - locale
+documentation:
+  code: ./README.md
+  accessibility: ./ACCESSIBILITY.md
+  variations: ./VARIATIONS.md
+  guidelines: ./GUIDELINES.md
+  useCases: ./USE-CASES.md
+links:
+  figma: https://figma.com/...
+elements:
+  - tag: flag
+    design: https://figma.com/...

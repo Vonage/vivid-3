@@ -1,4 +1,4 @@
-import { type MarkType } from 'prosemirror-model';
+import type { MarkType } from 'prosemirror-model';
 import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import { featureFacade, RteFeatureImpl } from '../feature';

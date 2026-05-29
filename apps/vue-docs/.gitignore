@@ -1,5 +1,0 @@
-node_modules
-docs/.vitepress/cache
-
-docs/components/*
-!docs/components/index.md

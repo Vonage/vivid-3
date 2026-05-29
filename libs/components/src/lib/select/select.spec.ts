@@ -1,6 +1,10 @@
 import 'element-internals-polyfill';
 
-import { elementUpdated, fixture, getControlElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@repo/shared/test-utils/fixture';
 import {
 	keyEnd,
 	keyEscape,
@@ -8,7 +12,7 @@ import {
 	keyTab,
 } from '@microsoft/fast-web-utilities';
 import { Size } from '../enums';
-import { ListboxOption } from '../option/option';
+import type { ListboxOption } from '../option/option';
 import { Select } from './select';
 import '.';
 

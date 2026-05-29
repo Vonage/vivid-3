@@ -8,7 +8,8 @@ import { Menu } from '../menu/menu';
 import { MenuItem } from '../menu-item/menu-item';
 import { getPlaybackRatesArray } from '../../shared/utils/playbackRates';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { AudioPlayer, formatTime, SKIP_DIRECTIONS } from './audio-player';
+import type { AudioPlayer } from './audio-player';
+import { formatTime, SKIP_DIRECTIONS } from './audio-player';
 
 const getClasses = ({
 	notime,

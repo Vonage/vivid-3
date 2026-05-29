@@ -1,9 +1,9 @@
-import {
+import type {
 	ClassDeclaration,
 	Decorator,
-	Node,
 	PropertyDeclaration,
 } from 'ts-morph';
+import { Node } from 'ts-morph';
 import { assert } from '../../utils/assert';
 import type { HierarchyEntry } from '../class-hierarchy';
 import type { ResolverCtx } from '../../types/resolver';

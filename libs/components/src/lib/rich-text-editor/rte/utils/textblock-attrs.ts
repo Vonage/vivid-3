@@ -1,4 +1,4 @@
-import { Node } from 'prosemirror-model';
+import type { Node } from 'prosemirror-model';
 
 /**
  * An attribute that applies to all textblock nodes.

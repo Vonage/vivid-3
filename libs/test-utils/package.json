@@ -1,6 +1,6 @@
 {
 	"name": "@vonage/vivid-test-utils",
-	"version": "5.16.0",
+	"version": "5.19.0",
 	"type": "module",
 	"exports": {
 		"./dom": {
@@ -37,6 +37,7 @@
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
 		"test": "vitest run",
+		"test:coverage": "vitest run --coverage && relativize-coverage .",
 		"typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tools.json"
 	},
 	"dependencies": {
@@ -49,15 +50,16 @@
 		"@repo/eslint-config": "workspace:*",
 		"@repo/metadata-extractor": "workspace:*",
 		"@repo/shared": "workspace:*",
+		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@repo/wrapper-gen": "workspace:*",
 		"@types/node": "catalog:",
 		"@vitejs/plugin-vue": "catalog:",
 		"@vonage/vivid-vue": "workspace:*",
-		"@vue/test-utils": "^2.4.6",
+		"@vue/test-utils": "^2.4.10",
 		"concurrently": "catalog:",
-		"cypress": "^15.11.0",
+		"cypress": "catalog:",
 		"tsx": "catalog:",
 		"vite": "catalog:",
 		"vitest": "catalog:",

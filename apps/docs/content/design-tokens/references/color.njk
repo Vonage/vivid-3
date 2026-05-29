@@ -1,0 +1,78 @@
+---
+permalink: /design-tokens/references/color/
+parent: Token Types  and Reference Pages
+layout: article.njk
+title: Color
+order: 10
+---
+{% include '../../_includes/tokens-table.njk' %}
+{% from '../../_includes/tokens-table.njk' import tokensList, heading %}
+{% macro preview(item) %}
+  <div class="token-preview" style="background-color: {{ item.preview }}"> </div>
+{% endmacro %}
+
+<h1>Color tokens</h1>
+<p>
+	Covers semantic color families, usage guidance for backgrounds, solids, borders, and text, and the full neutral, accent, status, and accent-alt scales.
+</p>
+<p>
+	Used for properties like foreground and background colors, surfaces, border colors, etc.
+</p>
+
+
+{{ heading('Neutral', '2') }}
+<p>
+	<strong>Keywords:</strong>
+	default, archived, history, saved/previously saved, date created, read message, expired job, no change
+</p>
+{{ tokensList(tokens.color.neutral, preview) }}
+
+{{ heading('Neutral Alt', '2') }}
+<p>
+	<strong>Keywords:</strong>
+	default, archived, history, saved/previously saved, date created, read message, expired job, no change
+</p>
+{{ tokensList(tokens.color['neutral-alt'], preview) }}
+
+{{ heading('Accent', '2') }}
+<p>
+	<strong>Keywords:</strong>
+	primary, brand, cta, action, highlight, standout, emphasis
+</p>
+{{ tokensList(tokens.color.accent, preview) }}
+
+{{ heading('Accent Alt', '2') }}
+<p>
+	<strong>Keywords:</strong>
+	primary, brand, cta, action, highlight, standout, emphasis
+</p>
+{{ tokensList(tokens.color['accent-alt'], preview) }}
+
+{{ heading('Positive', '2') }}
+<p>
+	<strong>Keywords:</strong>
+	success, complete, new section, new segment, new message, positive message, contacted/sent message, new job, new candidate, trending upward, above average, complete,
+</p>
+{{ tokensList(tokens.color.positive, preview) }}
+
+{{ heading('Critical', '2') }}
+<p>
+	<strong>Keywords:</strong>
+	high risk, high urgency, error, failed, delete, critical message, late/overdue, trending downward, unsatisfactory, overdue
+</p>
+{{ tokensList(tokens.color.critical, preview) }}
+
+{{ heading('Information', '2') }}
+<p>
+	<strong>Keywords:</strong>
+	help, updated, scheduled, guidance message, unread, updated resume, previously contacted, average
+</p>
+{{ tokensList(tokens.color.info, preview) }}
+
+{{ heading('Caution', '2') }}
+<p>
+	<strong>Keywords:</strong>
+	low risk, low urgency, pending, upcoming, caution message, draft (label), not yet contacted, rating, below average, partially paid
+</p>
+{{ tokensList(tokens.color.caution, preview) }}
+

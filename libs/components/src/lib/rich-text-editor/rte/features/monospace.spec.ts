@@ -14,10 +14,10 @@ const features = [
 
 describe('RteMonospaceFeature', () => {
 	it('should add a monospace mark to the schema', async () => {
-		const { docStr } = await setup(features, [
-			p(text.marks(monospace())('Hello')),
-		]);
-		expect(docStr()).toMatchInlineSnapshot(`"paragraph(<monospace>'|Hello')"`);
+		const rte = await setup(features, [p(text.marks(monospace())('Hello'))]);
+		expect(rte.docStr()).toMatchInlineSnapshot(
+			`"paragraph(<monospace>'|Hello')"`
+		);
 	});
 
 	it('should deserialize monospace from HTML', async () => {
@@ -38,59 +38,51 @@ describe('RteMonospaceFeature', () => {
 	});
 
 	it('should toggle monospace mark of selected text on Mod-M', async () => {
-		const { selectText, keydown, docStr } = await setup(features, [
-			p('Hello world'),
-		]);
+		const rte = await setup(features, [p('Hello world')]);
 
-		selectText('[world]');
-		keydown('M', { ctrl: true, shift: true });
+		rte.selectText('[world]');
+		rte.keydown('M', { ctrl: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello ', <monospace>'[world|]')"`
 		);
 
-		keydown('M', { ctrl: true, shift: true });
+		rte.keydown('M', { ctrl: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
 	});
 
 	it('should remember the monospace mark when no text is selected', async () => {
-		const { placeCursor, keydown, docStr, typeTextAtCursor } = await setup(
-			features,
-			[p('Hello world')]
-		);
+		const rte = await setup(features, [p('Hello world')]);
 
-		placeCursor('Hello |world');
-		keydown('M', { ctrl: true, shift: true });
+		rte.placeCursor('Hello |world');
+		rte.keydown('M', { ctrl: true, shift: true });
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello |<monospace>|world')"`
 		);
 
-		await typeTextAtCursor('beautiful ');
+		await rte.typeTextAtCursor('beautiful ');
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello ', <monospace>'beautiful |', 'world')"`
 		);
 	});
 
 	it('should add a toolbar item that toggles monospace', async () => {
-		const { toolbarButton, isActive, selectText, docStr } = await setup(
-			features,
-			[p('Hello world')]
-		);
+		const rte = await setup(features, [p('Hello world')]);
 
-		selectText('[world]');
-		toolbarButton('Monospace').click();
+		rte.selectText('[world]');
+		rte.toolbarButton('Monospace').click();
 
-		expect(docStr()).toMatchInlineSnapshot(
+		expect(rte.docStr()).toMatchInlineSnapshot(
 			`"paragraph('Hello ', <monospace>'[world|]')"`
 		);
-		expect(isActive(toolbarButton('Monospace'))).toBe(true);
+		expect(rte.isActive(rte.toolbarButton('Monospace'))).toBe(true);
 
-		toolbarButton('Monospace').click();
+		rte.toolbarButton('Monospace').click();
 
-		expect(docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
-		expect(isActive(toolbarButton('Monospace'))).toBe(false);
+		expect(rte.docStr()).toMatchInlineSnapshot(`"paragraph('Hello [world|]')"`);
+		expect(rte.isActive(rte.toolbarButton('Monospace'))).toBe(false);
 	});
 });

@@ -6,7 +6,8 @@ import {
 	type TagParseRule,
 } from 'prosemirror-model';
 import DOMPurify from 'dompurify';
-import { type RteConfig, RteConfigImpl } from './config';
+import type { RteConfigImpl } from './config';
+import type { RteConfig } from './config';
 import type { RteDocument, RteFragment } from './document';
 import { impl } from './utils/impl';
 import { domPurifyConfig } from './utils/sanitization';

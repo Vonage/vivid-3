@@ -1,0 +1,127 @@
+:root {
+	--gap: 16px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+}
+
+.formRow {
+	display: flex;
+	gap: var(--gap);
+	align-items: center;
+	box-sizing: border-box;
+}
+
+.padded {
+	padding: 0 0 var(--gap) 0;
+}
+
+.section {
+	padding: var(--gap);
+}
+
+.sectionFlexRow {
+	padding: var(--gap);
+	display: flex;
+	gap: var(--gap);
+}
+
+.section:not(:last-child) {
+	border-bottom: 1px solid var(--figma-color-border);
+}
+
+.colorList {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--figma-color-border);
+	border-radius: var(--radius-large);
+}
+
+.colorRow {
+	box-sizing: border-box;
+	width: auto;
+	padding: var(--gap);
+}
+
+.colorRow:not(:last-child) {
+	border-bottom: 1px solid var(--figma-color-border);
+}
+
+.colorPreview {
+	border-radius: var(--radius-medium);
+	display: flex;
+	width: 100%;
+	overflow: hidden;
+}
+
+.colorPreview * {
+	flex: 1 1 auto;
+	width: 100%;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 10px;
+	font-family: monospace;
+}
+
+.separator {
+	border-bottom: 1px solid var(--figma-color-border);
+}
+
+.layout {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+}
+
+.header {
+	flex: 0 0 auto;
+}
+
+.body {
+	flex: 1 1 auto;
+	overflow-y: auto;
+}
+
+.footer {
+	flex: 0 0 auto;
+}
+
+.sliders {
+	display: flex;
+	height: 80px;
+}
+
+.slider {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.slider > input {
+	writing-mode: vertical-lr;
+	flex: 0 0 100%;
+	height: 100%;
+}
+
+.listRow {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--gap) calc(var(--gap) / 2);
+	border-radius: 4px;
+}
+
+.listRow:hover {
+	background-color: var(--figma-color-bg-hover);
+}
+
+.listRowActions {
+	display: flex;
+	gap: var(--gap);
+}

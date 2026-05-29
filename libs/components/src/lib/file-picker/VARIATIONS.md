@@ -131,6 +131,35 @@ import { VFilePicker } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Disabled
+
+The `disabled` attribute disables the File Picker.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview
+<script setup lang="ts">
+import { VFilePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VFilePicker disabled label="Upload file"> Drag & Drop or click to upload </VFilePicker>
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview
+<vwc-file-picker disabled label="Upload file"> Drag & Drop or click to upload </vwc-file-picker>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Size
 
 Use the `size` attribute to set the file picker's block-size.

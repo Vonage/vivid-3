@@ -1,4 +1,5 @@
-import { type Command, EditorState } from 'prosemirror-state';
+import type { EditorState } from 'prosemirror-state';
+import type { Command } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 import { createButton, createButtonGroup, createMenu } from '../utils/ui';
 import {
@@ -83,6 +84,7 @@ export class RteAlignmentFeatureImpl extends RteFeatureImpl {
 							}),
 							children: [
 								createButtonGroup(ctx, {
+									slot: 'header',
 									children: alignments.map((align, index) =>
 										createButton(ctx, {
 											icon: align.icon,
@@ -90,8 +92,8 @@ export class RteAlignmentFeatureImpl extends RteFeatureImpl {
 												ctx.rte.getLocale().richTextEditor.alignments[
 													align.label
 												],
-											slot: 'header',
 											noTooltip: true,
+											variant: 'toolbar-menu',
 											autofocus: () => {
 												const currentAlign = this.getAlignmentFromSelection(
 													ctx.view.state

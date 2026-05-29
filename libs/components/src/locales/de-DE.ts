@@ -177,6 +177,9 @@ const deDE: Locale = {
 	select: {
 		clearButtonLabel: 'Auswahl löschen',
 	},
+	countryGroup: {
+		ariaLabelPrefix: 'Länder:',
+	},
 	searchableSelect: {
 		clearButtonLabel: 'Auswahl löschen',
 		noOptionsMessage: 'Keine Optionen',
@@ -230,6 +233,7 @@ const deDE: Locale = {
 		linkUrl: 'URL',
 		linkTextPlaceholder: 'Text eingeben, um Link zu erstellen',
 		linkUrlPlaceholder: 'Link-URL einfügen',
+		linkUrlHelperText: 'Ziel eingeben (z. B. https://, mailto: oder tel:)',
 		cancel: 'Abbrechen',
 		apply: 'Anwenden',
 		close: 'Schließen',

@@ -18,6 +18,7 @@ import type {
 	VwcComboboxElement,
 	VwcContextualHelpElement,
 	VwcCountryElement,
+	VwcCountryGroupElement,
 	VwcDataGridCellElement,
 	VwcDataGridElement,
 	VwcDataGridRowElement,
@@ -100,6 +101,7 @@ type DefaultVividTagNameMap = {
 	'vwc-contextual-help': VwcContextualHelpElement;
 	'vwc-combobox': VwcComboboxElement;
 	'vwc-country': VwcCountryElement;
+	'vwc-country-group': VwcCountryGroupElement;
 	'vwc-data-grid-cell': VwcDataGridCellElement;
 	'vwc-data-grid': VwcDataGridElement;
 	'vwc-data-grid-row': VwcDataGridRowElement;

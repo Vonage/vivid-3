@@ -1,5 +1,9 @@
 import { html } from '@microsoft/fast-element';
-import { elementUpdated, fixture, getBaseElement } from '@repo/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
 import type { Mock } from 'vitest';
 import { currentLocale, setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';

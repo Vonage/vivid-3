@@ -1,5 +1,13 @@
 {
 	"singleQuote": true,
 	"trailingComma": "es5",
-	"plugins": ["prettier-plugin-packagejson"]
+	"plugins": ["@prettier/plugin-oxc", "prettier-plugin-packagejson"],
+	"overrides": [
+		{
+			"files": "**/*.md",
+			"options": {
+				"printWidth": 999999
+			}
+		}
+	]
 }

@@ -53,10 +53,12 @@ export interface IconEntry {
 	style: IconStyle;
 }
 
+export type ImageFormat = 'svg' | 'png';
+
 export type TemplateFunction = (
 	entry: IconEntry,
-	svg: string
-) => string | undefined;
+	content: string | Buffer
+) => string | Buffer | undefined;
 export type PathFunction = (entry: IconEntry) => string;
 
 export interface OutputFormat {
@@ -77,6 +79,7 @@ export interface FetchIconsOptions {
 	createEntry: CreateIconEntryFunction;
 	dir: string;
 	filter: NodeFilterFunction;
+	format: ImageFormat;
 	forceUpdate: boolean;
 	indexFileName: string;
 	outputs: OutputFormat[];

@@ -2,6 +2,10 @@ import {
 	rule as noAttributeDefaultValue,
 	RULE_NAME as noAttributeDefaultValueName,
 } from './rules/no-attribute-default-value';
+import {
+	rule as underscoreMemberRequiresInternal,
+	RULE_NAME as underscoreMemberRequiresInternalName,
+} from './rules/underscore-member-requires-internal';
 
 /**
  * Import your custom workspace rules at the top of this file.
@@ -30,6 +34,7 @@ const eslintPlugin = {
 	 */
 	rules: {
 		[noAttributeDefaultValueName]: noAttributeDefaultValue,
+		[underscoreMemberRequiresInternalName]: underscoreMemberRequiresInternal,
 	},
 };
 

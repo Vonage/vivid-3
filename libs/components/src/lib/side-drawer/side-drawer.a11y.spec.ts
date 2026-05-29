@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { SideDrawer } from './side-drawer';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { SideDrawer } from './side-drawer';
 import '.';
 
 const COMPONENT_TAG = 'vwc-side-drawer';

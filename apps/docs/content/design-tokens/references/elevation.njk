@@ -1,0 +1,28 @@
+---
+permalink: /design-tokens/references/elevation/
+parent: Token Types  and Reference Pages
+title: Elevation
+order: 60
+---
+{% include '../../_includes/tokens-table.njk' %}
+{% from '../../_includes/tokens-table.njk' import tokensList, heading %}
+{% macro preview(item) %}
+<div class="token-preview">
+	<div style="width: 3rem; height: 3rem; border-radius: 8px; box-shadow: {{ item.preview }};">
+	</div>
+</div>
+{% endmacro %}
+
+<h1>Elevation</h1>
+<p>
+Explains depth, shadows, and layering, and includes the full elevation scale for regular surfaces.
+</p>
+
+<p>
+Used for properties like container shadow.
+</p>
+
+{{ heading('Default', '2') }}
+{{ tokensList(tokens.elevation.default, preview) }}
+
+

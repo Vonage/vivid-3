@@ -3,7 +3,7 @@ import {
 	type ExpressionNotifier,
 	Observable,
 } from '@microsoft/fast-element';
-import { VividElement } from '../foundation/vivid-element/vivid-element';
+import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor } from '../utils/mixins';
 import type { Locale } from '../localization/Locale';
 import { currentLocale } from '../localization';

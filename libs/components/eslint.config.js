@@ -98,6 +98,7 @@ export default defineConfig([
 			],
 			'@typescript-eslint/no-explicit-any': 'off',
 			'@repo/repo/no-attribute-default-value': 'error',
+			'@repo/repo/underscore-member-requires-internal': 'error',
 			'compat/compat': 'error',
 			'@typescript-eslint/explicit-member-accessibility': [
 				'error',

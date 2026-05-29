@@ -135,6 +135,8 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 			return true;
 		};
 
+		let popup: Popover;
+
 		return [
 			this.contribution(
 				new Plugin({
@@ -154,7 +156,7 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 						const ctx = new UiCtx(view, rte, {
 							popupPlacement: 'bottom',
 						});
-						const popup = rte.createComponent(Popover);
+						popup = rte.createComponent(Popover);
 						popup.anchorId = 'current-link';
 						const content = createDiv(ctx, {
 							className: 'link-popover',
@@ -176,7 +178,7 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 											label: () => ctx.rte.getLocale().richTextEditor.close,
 											noTooltip: true,
 											onClick: () => {
-												popup.requestOpenState(false);
+												popup.dismiss();
 											},
 										}),
 									],
@@ -249,6 +251,14 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 			),
 			this.contribution(
 				keymap({
+					Escape: (state) => {
+						const link = this.getCurrentLink(state);
+						if (link) {
+							popup?.dismiss();
+							return true;
+						}
+						return false;
+					},
 					'Mod-k': insertLinkCommand,
 				})
 			),
@@ -301,6 +311,8 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 							type: 'url',
 							placeholder: () =>
 								ctx.rte.getLocale().richTextEditor.linkUrlPlaceholder,
+							helperText: () =>
+								ctx.rte.getLocale().richTextEditor.linkUrlHelperText,
 							slot: 'header',
 							value: () => this.getCurrentLink(ctx.view.state)?.href || '',
 							onInput: () => {
@@ -396,40 +408,49 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 		const isTargetLink = (node: Node) =>
 			linkMark.isInSet(node.marks)?.attrs.href === targetHref;
 
-		// Now, find the start / end of the link and validate that all text nodes in the selection belong to the same link
-		let linkStart = -1;
-		let linkEnd = -1;
-		let selectionValid = true;
+		// Collect all contiguous runs of the target link within the paragraph.
+		// Using runs (rather than a single start/end scan) ensures that two
+		// separate links sharing the same href are treated as distinct ranges.
+		type Run = { start: number; end: number };
+		let currentRun: Run | null = null;
+		const runs: Run[] = [];
+
 		state.doc.nodesBetween($from.start(), $to.end(), (node, pos) => {
 			if (!node.isText) {
 				return true;
 			}
-
 			const nodeEnd = pos + node.nodeSize;
-
 			if (isTargetLink(node)) {
-				if (linkStart === -1) {
-					linkStart = pos;
+				if (!currentRun) {
+					currentRun = { start: pos, end: nodeEnd };
+					runs.push(currentRun);
+				} else {
+					currentRun.end = nodeEnd;
 				}
-				linkEnd = nodeEnd;
-			} else if (nodeEnd > selection.from && pos < selection.to) {
-				selectionValid = false;
+			} else {
+				currentRun = null;
 			}
-
 			return false;
 		});
 
-		if (!selectionValid || linkStart === -1) {
+		// Find the specific run that fully contains the current selection
+		const selectionRun = runs.find(
+			(run) => run.start <= selection.from && run.end >= selection.to
+		);
+		if (!selectionRun) {
 			return null;
 		}
 
-		const linkText = state.doc.textBetween(linkStart, linkEnd, ' ');
-
+		const linkText = state.doc.textBetween(
+			selectionRun.start,
+			selectionRun.end,
+			' '
+		);
 		return {
 			text: linkText,
 			href: targetHref,
-			start: linkStart,
-			end: linkEnd,
+			start: selectionRun.start,
+			end: selectionRun.end,
 		};
 	}
 

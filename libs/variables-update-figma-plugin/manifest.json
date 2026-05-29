@@ -1,0 +1,8 @@
+{
+	"api": "1.0.0",
+	"editorType": ["figma"],
+	"id": "vivid-variables-update-figma-plugin",
+	"name": "Vivid Variables Update",
+	"main": "dist/main.js",
+	"ui": "dist/index.html"
+}

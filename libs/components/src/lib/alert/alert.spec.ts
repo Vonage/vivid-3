@@ -3,14 +3,14 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import type { Icon } from '../icon/icon';
 import { Connotation } from '../enums';
-import { Button } from '../button/button';
+import type { Button } from '../button/button';
 import type { AlertConnotation } from './alert';
 import { Alert, CONNOTATION_ICON_MAP } from './alert';
 import '.';

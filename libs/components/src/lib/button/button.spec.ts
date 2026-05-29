@@ -3,7 +3,7 @@ import {
 	fixture,
 	getControlElement,
 	setProperty,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
@@ -189,6 +189,79 @@ describe('vwc-button', () => {
 			await elementUpdated(element);
 
 			expect(getControlElement(element).classList).toContain('active');
+		});
+	});
+
+	describe('pressed', () => {
+		it('should default to false', async () => {
+			expect(element.pressed).toBe(false);
+		});
+
+		it('should apply appearance-subtle class when pressed is true and no appearance is set', async () => {
+			element.pressed = true;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList).toContain(
+				'appearance-subtle'
+			);
+		});
+
+		it('should apply appearance-subtle when pressed is true and appearance is ghost', async () => {
+			element.appearance = 'ghost';
+			element.pressed = true;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList).toContain(
+				'appearance-subtle'
+			);
+		});
+
+		it('should apply appearance-subtle-light when pressed is true and appearance is ghost-light', async () => {
+			element.appearance = 'ghost-light';
+			element.pressed = true;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList).toContain(
+				'appearance-subtle-light'
+			);
+		});
+
+		it('should have no visual effect when pressed is true and appearance is filled', async () => {
+			element.appearance = 'filled';
+			element.pressed = true;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList).toContain(
+				'appearance-filled'
+			);
+		});
+
+		it('should apply appearance-filled when pressed is true and appearance is outlined', async () => {
+			element.appearance = 'outlined';
+			element.pressed = true;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList).toContain(
+				'appearance-filled'
+			);
+		});
+
+		it('should set aria-pressed="true" when pressed is true', async () => {
+			element.pressed = true;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).getAttribute('aria-pressed')).toBe(
+				'true'
+			);
+		});
+
+		it('should not set aria-pressed when pressed is false', async () => {
+			element.pressed = false;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).hasAttribute('aria-pressed')).toBe(
+				false
+			);
 		});
 	});
 

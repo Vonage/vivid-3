@@ -1,8 +1,8 @@
 import { html, ViewTemplate } from '@microsoft/fast-element';
-import { elementUpdated, fixture } from '@repo/shared';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { DataGrid, DataGridSelectionMode } from './data-grid';
 import '.';
-import { DataGridRow } from './data-grid-row';
+import type { DataGridRow } from './data-grid-row';
 
 const COMPONENT_TAG = 'vwc-data-grid';
 

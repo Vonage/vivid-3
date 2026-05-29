@@ -6,7 +6,7 @@ import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { Tooltip } from '../tooltip/tooltip';
-import { SimpleColorPicker } from './simple-color-picker';
+import type { SimpleColorPicker } from './simple-color-picker';
 
 const getClasses = (_: SimpleColorPicker) => classNames('control');
 

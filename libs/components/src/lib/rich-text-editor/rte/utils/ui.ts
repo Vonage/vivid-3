@@ -1,9 +1,9 @@
 import type { EditorView } from 'prosemirror-view';
-import { MarkType } from 'prosemirror-model';
-import { EditorState } from 'prosemirror-state';
+import type { MarkType } from 'prosemirror-model';
+import type { EditorState } from 'prosemirror-state';
 import { toggleMark } from 'prosemirror-commands';
 import { Button } from '../../../button/button';
-import { RteInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
 import { Tooltip } from '../../../tooltip/tooltip';
 import { Menu } from '../../../menu/menu';
 import { MenuItem } from '../../../menu-item/menu-item';
@@ -180,7 +180,7 @@ export const createOptionalTooltip = (
 export const createButton = (
 	ctx: UiCtx,
 	props: {
-		variant?: Prop<'toolbar' | 'popover' | 'popover-primary'>;
+		variant?: Prop<'toolbar' | 'toolbar-menu' | 'popover' | 'popover-primary'>;
 		label: Prop<string>;
 		icon?: Prop<string>;
 		noTooltip?: boolean;
@@ -197,8 +197,17 @@ export const createButton = (
 		variant() === 'toolbar' ? 'super-condensed' : 'condensed';
 	const appearanceInactive = () =>
 		variant() === 'popover-primary' ? 'outlined' : 'ghost-light';
+	const appearanceActive = () =>
+		variant() === 'toolbar-menu' || variant() === 'popover'
+			? 'filled'
+			: appearanceInactive();
 	const appearance = () =>
-		ctx.evalProp(props.active) ? 'filled' : appearanceInactive();
+		ctx.evalProp(props.active) ? appearanceActive() : appearanceInactive();
+	const connotation = () =>
+		ctx.evalProp(props.connotation) ??
+		(variant() === 'toolbar-menu' && ctx.evalProp(props.active)
+			? 'cta'
+			: undefined);
 	const disabled = () =>
 		Boolean(ctx.evalProp(ctx.props.disabled) || ctx.evalProp(props.disabled));
 
@@ -211,8 +220,13 @@ export const createButton = (
 			disabled,
 			icon: props.icon,
 			autofocus: props.autofocus,
-			connotation: props.connotation,
+			connotation,
 			[props.icon ? 'ariaLabel' : 'label']: props.label,
+			pressed: () => Boolean(ctx.evalProp(props.active)),
+			ariaPressed:
+				props.active !== undefined
+					? () => (ctx.evalProp(props.active!) ? 'true' : 'false')
+					: undefined,
 		},
 		[
 			on('click', props.onClick, (onClick) => () => {
@@ -304,10 +318,12 @@ export const createMenuItem = (
 export const createButtonGroup = (
 	ctx: UiCtx,
 	props: {
+		slot?: string;
 		children: Array<Node>;
 	}
 ) =>
 	createDiv(ctx, {
+		slot: props.slot,
 		className: 'ui-button-group',
 		children: props.children,
 	});
@@ -425,6 +441,7 @@ export const createTextField = (
 		slot?: string;
 		autofocus?: boolean;
 		type?: 'url';
+		helperText?: Prop<string>;
 		onInput?: (value: string) => void;
 	}
 ) => {
@@ -438,6 +455,7 @@ export const createTextField = (
 			slot: props.slot,
 			autofocus: props.autofocus,
 			type: props.type,
+			helperText: props.helperText,
 		},
 		[
 			on('input', props.onInput, (onInput) => () => {

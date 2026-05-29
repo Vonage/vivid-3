@@ -1,11 +1,5 @@
-import {
-	Fragment,
-	type Node,
-	NodeRange,
-	NodeType,
-	ResolvedPos,
-	Slice,
-} from 'prosemirror-model';
+import type { NodeType, ResolvedPos } from 'prosemirror-model';
+import { Fragment, type Node, NodeRange, Slice } from 'prosemirror-model';
 import { keymap } from 'prosemirror-keymap';
 import {
 	AllSelection,
@@ -26,7 +20,7 @@ import {
 	type StyleContribution,
 	type ToolbarItemContribution,
 } from '../feature';
-import { RteInstanceImpl } from '../instance';
+import type { RteInstanceImpl } from '../instance';
 import { createButton } from '../utils/ui';
 import type { TextblockAttrs } from '../utils/textblock-attrs';
 import { defaultTextblockForMatch } from '../utils/default-textblock';

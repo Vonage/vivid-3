@@ -1,11 +1,5 @@
-import {
-	html,
-	InlineTemplateDirective,
-	ref,
-	repeat,
-	slotted,
-	when,
-} from '@microsoft/fast-element';
+import type { InlineTemplateDirective } from '@microsoft/fast-element';
+import { html, ref, repeat, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { TextField } from '../text-field/text-field';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';

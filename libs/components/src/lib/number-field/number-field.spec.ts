@@ -1,13 +1,15 @@
 import 'element-internals-polyfill';
 
 import {
-	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
 	getControlElement,
+} from '@repo/shared/test-utils/fixture';
+import {
+	createFormHTML,
 	listenToFormSubmission,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/form-association';
 import { Shape, Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';

@@ -32,11 +32,11 @@ export default defineConfig({
 		rolldownOptions: {
 			external: ['vue', '@vonage/vivid'],
 			output: {
+				codeSplitting: false,
 				globals: {
 					vue: 'Vue',
 					'@vonage/vivid': 'Vivid',
 				},
-				inlineDynamicImports: true,
 			},
 		},
 	},

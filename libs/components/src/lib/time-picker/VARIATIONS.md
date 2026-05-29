@@ -318,6 +318,55 @@ import { VTimePicker } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Scale
+
+The `scale` attribute controls the Time Picker input element display size.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 360px
+<script setup lang="ts">
+import { VTimePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<div class="container">
+		<VTimePicker scale="normal" label="Normal" />
+		<VTimePicker scale="condensed" label="Condensed" />
+	</div>
+</template>
+
+<style scoped>
+.container {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 360px
+<div class="container">
+	<vwc-time-picker scale="normal" label="Normal"></vwc-time-picker>
+	<vwc-time-picker scale="condensed" label="Condensed"></vwc-time-picker>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Disabled
 
 The `disabled` attribute disables the Time Picker input element.

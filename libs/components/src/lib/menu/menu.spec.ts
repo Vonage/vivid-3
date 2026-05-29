@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 import {
 	keyArrowDown,
 	keyArrowUp,
@@ -12,12 +12,13 @@ import {
 } from '@microsoft/fast-web-utilities';
 import type { Button } from '../button/button';
 import type { Popup } from '../popup/popup';
-import { MenuItem } from '../menu-item/menu-item';
+import type { MenuItem } from '../menu-item/menu-item';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Menu } from './menu';
 import '.';
 import '../menu-item';
 import '../divider';
+import type { VwcTooltipElement } from '../tooltip/definition';
 
 const COMPONENT_TAG = 'vwc-menu';
 
@@ -783,6 +784,8 @@ describe('vwc-menu', () => {
 	describe('submenu', () => {
 		let item1: MenuItem;
 		let item2: MenuItem;
+		let tooltip: VwcTooltipElement;
+
 		beforeEach(async () => {
 			element.innerHTML = `
 				<vwc-menu-item id="item1" text="Menu item 1">
@@ -795,9 +798,16 @@ describe('vwc-menu', () => {
 						<vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
 					</vwc-menu>
 				</vwc-menu-item>
+				<div>
+					<vwc-tooltip id="tooltip" text="Some tooltip text" placement="right">
+						<span slot="anchor">Some tooltip</span>
+					</vwc-tooltip>
+				</div>
 			`;
 			item1 = element.querySelector('#item1') as MenuItem;
 			item2 = element.querySelector('#item2') as MenuItem;
+			tooltip = element.querySelector('#tooltip') as VwcTooltipElement;
+
 			await elementUpdated(element);
 		});
 
@@ -818,6 +828,16 @@ describe('vwc-menu', () => {
 			await elementUpdated(element);
 
 			expect(item1.expanded).toBe(false);
+		});
+
+		it('should not close the menu when a tooltip vwc-popup:close', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			tooltip.dispatchEvent(new CustomEvent('vwc-popup:close'));
+			await elementUpdated(element);
+
+			expect(element.open).toBe(true);
 		});
 	});
 

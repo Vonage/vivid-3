@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { DataGrid } from './data-grid';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { DataGrid } from './data-grid';
 import '.';
 
 const COMPONENT_TAG = 'vwc-data-grid';

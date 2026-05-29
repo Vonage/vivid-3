@@ -1,10 +1,10 @@
 import userEvent from '@testing-library/user-event';
 import {
-	createFormHTML,
 	elementUpdated,
 	fixture,
 	getControlElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
+import { createFormHTML } from '@repo/shared/test-utils/form-association';
 import '.';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
@@ -91,6 +91,7 @@ describe('vwc-file-picker', () => {
 			expect(element.maxFileSize).toEqual(256);
 			expect(element.maxFiles).toBeNull();
 			expect(element.accept).toBeUndefined();
+			expect(element.disabled).toBe(false);
 			expect([element.files, element.rejectedFiles]).toEqual([[], []]);
 			expect(element.invalidFileTypeError).toBeUndefined();
 			expect(element.maxFilesExceededError).toBeUndefined();
@@ -803,6 +804,122 @@ describe('vwc-file-picker', () => {
 			getControlElement(element).dispatchEvent(keydownEvent);
 
 			expect(preventDefaultSpy).toHaveBeenCalled();
+		});
+	});
+
+	describe('disabled', () => {
+		beforeEach(() => {
+			element.disabled = true;
+		});
+
+		it('should set disabled class on the control button', async () => {
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('disabled')).toBe(
+				true
+			);
+		});
+
+		it('should set disabled attribute on the control button', async () => {
+			await elementUpdated(element);
+			expect((getControlElement(element) as HTMLButtonElement).disabled).toBe(
+				true
+			);
+		});
+
+		it('should set disabled attribute on the hidden file input', async () => {
+			await elementUpdated(element);
+			expect(hiddenInput.disabled).toBe(true);
+		});
+
+		it('should not open file dialog when clicking on the control element', async () => {
+			const clickSpy = vi.spyOn(hiddenInput, 'click');
+
+			await userEvent.click(getControlElement(element));
+
+			expect(clickSpy).not.toHaveBeenCalled();
+		});
+
+		it('should not add files when dropped', async () => {
+			const file = await generateFile('london.png', 1);
+			const dataTransfer = new DataTransfer();
+			Object.defineProperty(dataTransfer, 'files', {
+				value: [file],
+				configurable: true,
+			});
+
+			getControlElement(element).dispatchEvent(
+				new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer })
+			);
+			await elementUpdated(element);
+
+			expect(element.files).toEqual([]);
+		});
+
+		it('should not show drag-hover state on dragenter', async () => {
+			getControlElement(element).dispatchEvent(
+				new DragEvent('dragenter', { bubbles: true, cancelable: true })
+			);
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList.contains('drag-hover')).toBe(
+				false
+			);
+		});
+
+		it('should not prevent default on dragover', () => {
+			const dragOverEvent = new DragEvent('dragover', {
+				bubbles: true,
+				cancelable: true,
+				dataTransfer: new DataTransfer(),
+			});
+
+			getControlElement(element).dispatchEvent(dragOverEvent);
+
+			expect(dragOverEvent.defaultPrevented).toBe(false);
+		});
+
+		it('should not change drag-hover state on dragleave when disabled', async () => {
+			getControlElement(element).dispatchEvent(
+				new DragEvent('dragleave', { bubbles: true, cancelable: true })
+			);
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList.contains('drag-hover')).toBe(
+				false
+			);
+		});
+
+		it('should not change drag-hover state on dragend when disabled', async () => {
+			getControlElement(element).dispatchEvent(
+				new DragEvent('dragend', { bubbles: true, cancelable: true })
+			);
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList.contains('drag-hover')).toBe(
+				false
+			);
+		});
+
+		it('should not remove files when the remove button is clicked', async () => {
+			element.disabled = false;
+			addFiles([await generateFile('london.png', 1)]);
+			await elementUpdated(element);
+			element.disabled = true;
+			await elementUpdated(element);
+
+			getRemoveButton(0).click();
+
+			expect(element.files.length).toBe(1);
+		});
+
+		it('should disable the remove buttons for listed files', async () => {
+			element.disabled = false;
+			addFiles([await generateFile('london.png', 1)]);
+			await elementUpdated(element);
+			element.disabled = true;
+			await elementUpdated(element);
+
+			expect(getRemoveButton(0).disabled).toBe(true);
 		});
 	});
 

@@ -6,11 +6,15 @@ set -euo pipefail
 export PYTHONUNBUFFERED=1
 rm -f /tmp/mitmwireguard.log
 
-echo "[start.sh] Starting mitmdump with WireGuard mode..."
+echo "[start.sh] Starting mitmweb with WireGuard mode..."
 
-stdbuf -oL mitmdump \
+stdbuf -oL mitmweb \
   --mode wireguard \
   --mode socks5@0.0.0.0:5555 \
+  --web-host 0.0.0.0 \
+  --web-port 8081 \
+  --no-web-open-browser \
+  --set web_password="${MITMWEB_PASSWORD}" \
   --set connection_strategy=lazy \
   --set confdir=/env/config/certs \
   --set block_global=false \
@@ -19,7 +23,7 @@ MTPID=$!
 
 timeout=30
 elapsed=0
-echo "[start.sh] Waiting for mitmdump to output configuration..."
+echo "[start.sh] Waiting for mitmweb to output configuration..."
 while [ "${elapsed}" -lt "${timeout}" ]; do
   if grep -q "WireGuard server listening" /tmp/mitmwireguard.log; then
     echo "[start.sh] Configuration output detected."
@@ -30,7 +34,7 @@ while [ "${elapsed}" -lt "${timeout}" ]; do
 done
 
 if [ "${elapsed}" -eq "${timeout}" ]; then
-  echo "[start.sh] Timeout waiting for mitmdump output."
+  echo "[start.sh] Timeout waiting for mitmweb output."
 else
   awk '/^\[Interface\]/{flag=1} flag { if ($0 ~ /^-+/) { exit } else { print } }' /tmp/mitmwireguard.log \
     | grep -v '^DNS = ' > /env/config/wireguard/wg0.conf

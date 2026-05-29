@@ -1,17 +1,17 @@
 import type { DriverT } from './drivers/driver';
-import { BaseWrapper } from './base';
+import type { BaseWrapper } from './base';
 import { runSequence } from './utils/runSequence';
-import {
-	type AccordionItemWrapper,
-	type ButtonWrapper,
-	type ComboboxWrapper,
-	type DatePickerWrapper,
-	type DateRangePickerWrapper,
-	type DateTimePickerWrapper,
-	type NavDisclosureWrapper,
-	type PaginationWrapper,
-	TagWrapper,
-	type TimePickerWrapper,
+import type { TagWrapper } from './components.generated';
+import type {
+	AccordionItemWrapper,
+	ButtonWrapper,
+	ComboboxWrapper,
+	DatePickerWrapper,
+	DateRangePickerWrapper,
+	DateTimePickerWrapper,
+	NavDisclosureWrapper,
+	PaginationWrapper,
+	TimePickerWrapper,
 } from './components.generated';
 import * as queries from './queries';
 import { attributeSelector } from './utils/cssSelectors';

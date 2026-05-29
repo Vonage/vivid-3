@@ -1,10 +1,12 @@
 import {
-	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
+} from '@repo/shared/test-utils/fixture';
+import {
+	createFormHTML,
 	listenToFormSubmission,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/form-association';
 import { Icon } from '../icon/icon';
 import { Size } from '../enums';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
@@ -419,6 +421,22 @@ describe('vwc-text-field', () => {
 				element.addEventListener('input', () => res(true))
 			);
 			const innerInput = getInput();
+			innerInput.dispatchEvent(
+				new InputEvent('input', {
+					bubbles: true,
+					composed: true,
+				})
+			);
+			expect(await inputPromise).toEqual(true);
+		});
+
+		it('should emit an input event even if propagation is stopped on the native input', async function () {
+			const innerInput = getInput();
+			innerInput.addEventListener('input', (e) => e.stopPropagation());
+
+			const inputPromise = new Promise((res) =>
+				element.addEventListener('input', () => res(true))
+			);
 			innerInput.dispatchEvent(
 				new InputEvent('input', {
 					bubbles: true,

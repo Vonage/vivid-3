@@ -1,5 +1,5 @@
 import { FASTElement, html } from '@microsoft/fast-element';
-import { fixture } from '@repo/shared';
+import { fixture } from '@repo/shared/test-utils/fixture';
 import { createRegisterFunction } from './createRegisterFunction';
 import {
 	defineVividComponent,

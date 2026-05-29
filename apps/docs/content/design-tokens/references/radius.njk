@@ -1,0 +1,58 @@
+---
+permalink: /design-tokens/references/radius/
+parent: Token Types  and Reference Pages
+title: Radius
+order: 40
+---
+{% include '../../_includes/tokens-table.njk' %}
+{% from '../../_includes/tokens-table.njk' import tokensList, heading %}
+{% macro preview(item) %}
+ <div class="token-preview">
+   	<div style="width: 3rem; height: 3rem; border: 0 solid var(--vvd-color-neutral-500); border-width: 1px 1px 0 0; border-top-right-radius: {{ item.preview }};">
+		</div>
+ </div>
+{% endmacro %}
+
+{% macro previewPill(item) %}
+ <div class="token-preview">
+   	<div style="width: 6rem; height: 2rem; border: 1px solid var(--vvd-color-neutral-500); border-width: 1px; border-radius: {{ item.preview }};">
+		</div>
+ </div>
+{% endmacro %}
+
+{% macro previewCircle(item) %}
+ <div class="token-preview">
+   	<div style="width: 3rem; height: 3rem; border: 1px solid var(--vvd-color-neutral-500);  border-radius: {{ item.preview }};">
+		</div>
+ </div>
+{% endmacro %}
+
+<h1>Radius</h1>
+
+<p>
+Covers shape families (rectangle, pill, circle), when each is appropriate, and the full scale for each radius group.
+<p>
+</p>
+Used for properties like border radii that affect the shape of the element.
+</p>
+
+{{ heading('Rectangle', '2') }}
+<p>
+Tokens used for rectangular elements
+</p>
+{{ tokensList(tokens.radius.rectangle, preview) }}
+
+{{ heading('Pill', '2') }}
+<p>
+Token used for pill-shaped elements.
+</p>
+{{ tokensList(tokens.radius.pill, previewPill) }}
+
+{{ heading('Circle', '2') }}
+<p>
+Token used for circle-shaped elements.
+</p>
+{{ tokensList(tokens.radius.circle, previewCircle) }}
+
+
+

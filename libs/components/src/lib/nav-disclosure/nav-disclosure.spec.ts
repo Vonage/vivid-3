@@ -3,7 +3,7 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-} from '@repo/shared';
+} from '@repo/shared/test-utils/fixture';
 import { Connotation } from '../enums';
 import { Icon } from '../icon/icon';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';

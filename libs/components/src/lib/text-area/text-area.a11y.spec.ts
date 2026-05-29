@@ -1,5 +1,6 @@
-import { axe, elementUpdated, fixture } from '@repo/shared';
-import { TextArea } from './text-area';
+import { axe } from '@repo/shared/test-utils/axe';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { TextArea } from './text-area';
 import '.';
 
 const COMPONENT_TAG = 'vwc-text-area';

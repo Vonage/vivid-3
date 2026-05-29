@@ -409,9 +409,10 @@ export class AudioPlayer extends Localized(VividElement) {
 		if (!this.paused && this.#sliderEl!.isDragging) {
 			this.pause();
 			this.#dragInterval = window.setInterval(() => {
-				if (!this.#sliderEl!.isDragging) {
+				/* v8 ignore else -- @preserve */
+				if (!this.#sliderEl!.isDragging || !this.isConnected) {
 					clearInterval(this.#dragInterval);
-					this.play();
+					if (this.isConnected) this.play();
 				}
 			}, 0);
 		}

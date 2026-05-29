@@ -5,7 +5,7 @@ import {
 	Observable,
 	Updates,
 } from '@microsoft/fast-element';
-import { Appearance, Shape } from '../enums';
+import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIconWithTrailing,
 	FormElement,
@@ -30,6 +30,10 @@ export type SearchableSelectAppearance = ExtractFromEnum<
 export type SearchableSelectShape = ExtractFromEnum<
 	Shape,
 	Shape.Rounded | Shape.Pill
+>;
+export type SearchableSelectSize = ExtractFromEnum<
+	Size,
+	Size.Condensed | Size.Normal
 >;
 
 const TagGapPx = 8;
@@ -58,8 +62,8 @@ const isFormAssociatedTryingToSetFormValue = (
  * @event {CustomEvent<undefined>} input - Fired when the selected options change
  * @event {CustomEvent<undefined>} search-text-change - Fired when the search text changes
  * @event {CustomEvent<undefined>} change - Fired when the selected options change
- * @vueModel modelValue value input `event.currentTarget.value`
- * @vueModel values values input `event.currentTarget.values`
+ * @vueModel modelValue value input,@lazy:change `event.currentTarget.value`
+ * @vueModel values values input,@lazy:change `event.currentTarget.values`
  * @testAction selectOptionByValue selectOptionByValue
  * @testAction selectOptionByText selectOptionByText
  * @testQuery values values
@@ -79,7 +83,7 @@ export class SearchableSelect extends WithContextualHelp(
 	)
 ) {
 	/**
-	 *
+	 * Sets the appearance of the Searchable Select element.
 	 *
 	 * @public
 	 * HTML Attribute: appearance
@@ -87,12 +91,20 @@ export class SearchableSelect extends WithContextualHelp(
 	@attr appearance?: SearchableSelectAppearance;
 
 	/**
-	 *
+	 * Sets the shape of the Searchable Select element.
 	 *
 	 * @public
 	 * HTML Attribute: shape
 	 */
 	@attr shape?: SearchableSelectShape;
+
+	/**
+	 * Sets the display size of the Searchable Select element.
+	 *
+	 * @public
+	 * HTML Attribute: scale
+	 */
+	@attr() scale?: SearchableSelectSize;
 
 	/**
 	 *

@@ -1,7 +1,5 @@
-import {
-	parseTypeImports,
-	TypeUnion,
-} from '@repo/metadata-extractor/metadata/type-str';
+import type { TypeUnion } from '@repo/metadata-extractor/metadata/type-str';
+import { parseTypeImports } from '@repo/metadata-extractor/metadata/type-str';
 
 export type Import = {
 	name: string;

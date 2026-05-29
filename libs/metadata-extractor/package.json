@@ -20,6 +20,7 @@
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
 		"test": "vitest run",
+		"test:coverage": "vitest run --coverage && relativize-coverage .",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
