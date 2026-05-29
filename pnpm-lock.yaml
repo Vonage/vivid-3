@@ -19,8 +19,8 @@ catalogs:
       specifier: ^0.35.0
       version: 0.35.0
     '@microsoft/fast-element':
-      specifier: 2.8.3
-      version: 2.8.3
+      specifier: ^2.10.4
+      version: 2.10.4
     '@microsoft/fast-web-utilities':
       specifier: ^6.0.0
       version: 6.0.0
@@ -293,7 +293,7 @@ importers:
     dependencies:
       '@microsoft/fast-element':
         specifier: 'catalog:'
-        version: 2.8.3
+        version: 2.10.4
       '@microsoft/fast-web-utilities':
         specifier: 'catalog:'
         version: 6.0.0
@@ -459,7 +459,7 @@ importers:
         version: 0.5.7
       '@microsoft/fast-element':
         specifier: 'catalog:'
-        version: 2.8.3
+        version: 2.10.4
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
@@ -501,7 +501,7 @@ importers:
         version: 1.7.6
       '@microsoft/fast-element':
         specifier: 'catalog:'
-        version: 2.8.3
+        version: 2.10.4
       '@microsoft/fast-web-utilities':
         specifier: 'catalog:'
         version: 6.0.0
@@ -743,7 +743,7 @@ importers:
     dependencies:
       '@microsoft/fast-element':
         specifier: 'catalog:'
-        version: 2.8.3
+        version: 2.10.4
     devDependencies:
       '@figma/rest-api-spec':
         specifier: 'catalog:'
@@ -774,7 +774,7 @@ importers:
     devDependencies:
       '@microsoft/fast-element':
         specifier: 'catalog:'
-        version: 2.8.3
+        version: 2.10.4
       '@repo/tools':
         specifier: workspace:*
         version: link:../tools
@@ -1164,7 +1164,7 @@ importers:
     devDependencies:
       '@microsoft/fast-element':
         specifier: 'catalog:'
-        version: 2.8.3
+        version: 2.10.4
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
@@ -3138,8 +3138,8 @@ packages:
     resolution: {integrity: sha512-yK6OycD46gIzLRpj6ueVUWPk1ACSpkN1LBo05gY1qPTylbWyUCanXfH7+VgkI5LJrJoRSQR5F04XuCffCXLOBw==}
     hasBin: true
 
-  '@microsoft/fast-element@2.8.3':
-    resolution: {integrity: sha512-dQPyOoMCJMIMdsIicNcKPvLu3Um8VM5wk/UARFXRYJAdZ7j9cEvEn5trc7y0blnXlPk9tTkah77oWqUSFi0pyg==}
+  '@microsoft/fast-element@2.10.4':
+    resolution: {integrity: sha512-OkHIlMztq7+PgkRF1LscgBd/MVzMhGrWPkJRDvOEqdqEdZOKocKvaKcUKZubIBz4RpLIrhLD3lOJzCsspk6jXg==}
 
   '@microsoft/fast-web-utilities@6.0.0':
     resolution: {integrity: sha512-ckCA4Xn91ja1Qz+jhGGL1Q3ZeuRpA5VvYcRA7GzA1NP545sl14bwz3tbHCq8jIk+PL7mkSaIveGMYuJB2L4Izg==}
@@ -12468,7 +12468,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@microsoft/fast-element@2.8.3': {}
+  '@microsoft/fast-element@2.10.4': {}
 
   '@microsoft/fast-web-utilities@6.0.0':
     dependencies:
