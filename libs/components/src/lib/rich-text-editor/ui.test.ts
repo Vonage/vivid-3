@@ -315,19 +315,59 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<div style="display: flex; gap: 16px; padding: 16px; align-items: flex-start;">
 				<div style="width: 200px;">
 					<div>Default (grows)</div>
-					<vwc-rich-text-editor id="rte-default"></vwc-rich-text-editor>
+					<vwc-rich-text-editor id="rte-default">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
 				</div>
 				<div style="width: 200px;">
-					<div>block-size: 160px</div>
-					<vwc-rich-text-editor id="rte-fixed" style="block-size: 160px;"></vwc-rich-text-editor>
+					<div>block-size: 260px</div>
+					<vwc-rich-text-editor id="rte-fixed" style="block-size: 260px;">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
 				</div>
 				<div style="width: 200px;">
-					<div>max-block-size: 160px</div>
-					<vwc-rich-text-editor id="rte-max" style="max-block-size: 160px;"></vwc-rich-text-editor>
+					<div>max-block-size: 260px</div>
+					<vwc-rich-text-editor id="rte-max" style="max-block-size: 260px;">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
 				</div>
 				<div style="width: 200px;">
-					<div>min-block-size: 300px</div>
-					<vwc-rich-text-editor id="rte-min" style="min-block-size: 300px;"></vwc-rich-text-editor>
+					<div>min-block-size: 500px</div>
+					<vwc-rich-text-editor id="rte-min" style="min-block-size: 500px;">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
+				</div>
+				<div style="width: 200px;">
+					<div>scroll min-block-size: 500px</div>
+					<style> #rte-min-scrollable::part(editor-scrollable-area) { min-block-size: 500px } </style>
+					<vwc-rich-text-editor id="rte-min-scrollable">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
+				</div>
+				<div style="width: 200px;">
+					<div>editor min-block-size: 500px</div>
+					<style> #rte-min-editor::part(editor) { min-block-size: 500px } </style>
+					<vwc-rich-text-editor id="rte-min-editor">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
 				</div>
 			</div>
 		`,
@@ -340,7 +380,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
 					})),
 				};
-				for (const id of ['rte-default', 'rte-fixed', 'rte-max', 'rte-min']) {
+				for (const id of [
+					'rte-default',
+					'rte-fixed',
+					'rte-max',
+					'rte-min',
+					'rte-min-scrollable',
+					'rte-min-editor',
+				]) {
 					const el = document.getElementById(id)!;
 					const config = new RteConfig([
 						new RteBase(),

@@ -259,10 +259,16 @@ export class RteInstanceImpl {
 	view: EditorView | null = null;
 
 	createView(target: HTMLElement) {
-		this.view = new EditorView(target, {
-			state: this.state,
-			dispatchTransaction: this.dispatchTransaction,
-		});
+		this.view = new EditorView(
+			(editor) => {
+				editor.part = 'editor';
+				target.appendChild(editor);
+			},
+			{
+				state: this.state,
+				dispatchTransaction: this.dispatchTransaction,
+			}
+		);
 	}
 
 	destroyViewIfNeeded() {

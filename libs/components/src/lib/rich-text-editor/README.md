@@ -3993,11 +3993,35 @@ const instance = config.instantiateEditor({
 </vwc-tab-panel>
 </vwc-tabs>
 
+### CSS Parts
+
+#### Editor Scrollable Area
+
+Use the `editor-scrollable-area` CSS part to style the element containing the scrollable content, which is composed of the `editor-start` slotted content, editor and `editor-end` slotted content.
+
+```css
+::part(editor-scrollable-area) {
+	min-block-size: 200px;
+}
+```
+
+#### Editor
+
+Use the `editor` CSS part to style the editor element, which contains the editable content.
+
+```css
+::part(editor) {
+	min-block-size: 200px;
+}
+```
+
 ## Slots
 
-### editor-start / editor-end
+### Content Before or After the Editor
 
-Content placed in these slots is displayed at the start or end of the scrollable editor area.
+Content placed in the `editor-start` / `editor-end` slots is displayed at the start / end of the scrollable editor area.
+
+Content placed in the `editor-before` / `editor-after` slots is displayed before / after the scrollable editor area.
 
 You can use the `--editor-padding-inline` and `--editor-padding-block` CSS variables to match the padding of the editor content.
 
@@ -4026,6 +4050,17 @@ const instance = config.instantiateEditor({
 
 <template>
 	<VRichTextEditor style="block-size: 300px" :instance="instance">
+		<template #editor-before>
+			<div
+				style="
+					background-color: var(--vvd-color-information-50);
+					padding-inline: var(--editor-padding-inline);
+					padding-block: var(--editor-padding-block);
+				"
+			>
+				Editor Before Content
+			</div>
+		</template>
 		<template #editor-start>
 			<div
 				style="
@@ -4048,6 +4083,17 @@ const instance = config.instantiateEditor({
 				Editor End Content
 			</div>
 		</template>
+		<template #editor-after>
+			<div
+				style="
+					background-color: var(--vvd-color-information-50);
+					padding-inline: var(--editor-padding-inline);
+					padding-block: var(--editor-padding-block);
+				"
+			>
+				Editor After Content
+			</div>
+		</template>
 	</VRichTextEditor>
 </template>
 ```
@@ -4058,8 +4104,10 @@ const instance = config.instantiateEditor({
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 300px">
+	<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
 	<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
 	<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+	<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
 </vwc-rich-text-editor>
 
 <script>

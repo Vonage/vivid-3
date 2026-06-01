@@ -10,6 +10,15 @@
 
 // Note: Cannot call this .base, as Select sets a base class on itself
 .rte {
+	--editor-padding-inline: var(
+		#{variables.$rich-text-editor-padding-inline},
+		16px
+	);
+	--editor-padding-block: var(
+		#{variables.$rich-text-editor-padding-block},
+		8px
+	);
+
 	display: flex;
 	flex-direction: column;
 	block-size: 100%;
@@ -32,15 +41,6 @@
 }
 
 .editor-scroll-area {
-	--editor-padding-inline: var(
-		#{variables.$rich-text-editor-padding-inline},
-		16px
-	);
-	--editor-padding-block: var(
-		#{variables.$rich-text-editor-padding-block},
-		8px
-	);
-
 	display: flex;
 	flex: 1;
 	flex-direction: column;
