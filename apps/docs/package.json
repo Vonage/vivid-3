@@ -28,7 +28,7 @@
 		"@vonage/vivid-test-utils": "workspace:*",
 		"@vonage/vivid-vue": "workspace:*",
 		"lodash": "^4.18.1",
-		"sanitize-html": "^2.17.3"
+		"sanitize-html": "^2.17.4"
 	},
 	"devDependencies": {
 		"@11ty/eleventy": "^3.1.5",
