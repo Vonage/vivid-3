@@ -41,6 +41,11 @@
 			"cache": false,
 			"persistent": true
 		},
+		"@vonage/vivid#dev": {
+			"dependsOn": ["build"],
+			"cache": false,
+			"persistent": true
+		},
 		"dev:bundled": {
 			"dependsOn": ["^build"],
 			"cache": false,

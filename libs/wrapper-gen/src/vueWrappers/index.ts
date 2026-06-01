@@ -46,6 +46,10 @@ function generateComponentFor(
 }
 
 export async function generateVueWrappers(metadata: Metadata) {
+	// Clear generated components folder to remove any stale files from previous builds
+	fs.rmSync(path.resolve(ComponentsFolder), { recursive: true, force: true });
+	fs.mkdirSync(path.resolve(ComponentsFolder), { recursive: true });
+
 	// auto-generate icons
 	fs.writeFileSync(
 		path.join(LibraryGeneratedFolder, 'icons.ts'),

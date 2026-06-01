@@ -69,7 +69,7 @@ export default mergeConfig(
 				: undefined,
 		],
 		build: {
-			emptyOutDir: true,
+			emptyOutDir: !isWatchMode, // Do not clear type definitions in watch mode
 			lib: {
 				entry: input,
 				name: 'components',
