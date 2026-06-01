@@ -13,7 +13,7 @@ Reducing layers makes tokens easier to understand, adopt, and scale - especially
 
 But there’s a risk in going too far.
 
-> If everything is just a semantic scale, we lose the *intent* behind how tokens are used.
+> If everything is just a semantic scale, we lose the _intent_ behind how tokens are used.
 
 ## The gap: scales don’t express usage
 
@@ -26,7 +26,7 @@ color-neutral-200
 
 are great for consistency — but they don’t tell you:
 
-> *When should I use this?*
+> _When should I use this?_
 
 That decision gets pushed back onto every developer and designer - and that’s where inconsistency creeps in.
 
@@ -42,10 +42,10 @@ color.text.muted
 
 They:
 
-* remove guesswork
-* improve consistency across teams
-* embed accessibility decisions
-* are far easier for AI to interpret
+- remove guesswork
+- improve consistency across teams
+- embed accessibility decisions
+- are far easier for AI to interpret
 
 This is where tokens become **usable**, not just defined.
 
@@ -70,15 +70,15 @@ This isn’t about bringing back complex token hierarchies.
 
 It’s about keeping the right layers:
 
-* **Base tokens** → consistency & theming
-* **Functional tokens** → clarity & accessibility
-* **Pattern tokens** → UI consistency & reuse
+- **Base tokens** → consistency & theming
+- **Functional tokens** → clarity & accessibility
+- **Pattern tokens** → UI consistency & reuse
 
 👉 And avoiding:
 
-* component-specific tokens
-* deep alias chains
-* over-engineering
+- component-specific tokens
+- deep alias chains
+- over-engineering
 
 ## Why this matters now
 
@@ -90,7 +90,7 @@ AI doesn’t understand:
 color-neutral-300
 ```
 
-But it *does* understand:
+But it _does_ understand:
 
 ```
 color.text.muted
