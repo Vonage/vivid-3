@@ -4,7 +4,7 @@ import {
 	fixture,
 	getBaseElement,
 } from '@repo/shared/test-utils/fixture';
-import { getResolvedTextContent } from '@repo/shared/test-utils/shadow-roots';
+import { resolveAccessibleName } from '@repo/shared/test-utils/shadow-roots';
 import type { Button } from '../../../lib/button/button';
 import type { CalendarPickerElement } from './calendar-picker';
 
@@ -257,7 +257,7 @@ export const calendarPickerSpec = <T extends CalendarPickerElement>(
 
 		it('should announce the current date as today', () => {
 			expect(
-				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-10')))
+				cleanWhitespace(resolveAccessibleName(getDateButton('2023-08-10')))
 			).toBe('10 today');
 		});
 
@@ -390,7 +390,7 @@ export const calendarPickerSpec = <T extends CalendarPickerElement>(
 
 		it('should announce the current month as current', async () => {
 			expect(
-				cleanWhitespace(getResolvedTextContent(getMonthButton('2023-08')))
+				cleanWhitespace(resolveAccessibleName(getMonthButton('2023-08')))
 			).toContain('current');
 		});
 
@@ -404,14 +404,14 @@ export const calendarPickerSpec = <T extends CalendarPickerElement>(
 
 		it('should announce the selected month as selected', async () => {
 			expect(
-				cleanWhitespace(getResolvedTextContent(getMonthButton('2023-08')))
+				cleanWhitespace(resolveAccessibleName(getMonthButton('2023-08')))
 			).toContain('selected');
 		});
 
 		it('should announce a month as both current and selected when the current month is selected', async () => {
 			expect(
-				cleanWhitespace(getResolvedTextContent(getMonthButton('2023-08')))
-			).toBe('Aug current selected');
+				cleanWhitespace(resolveAccessibleName(getMonthButton('2023-08')))
+			).toBe('August current selected');
 		});
 
 		it('should switch to the previous year when clicking the previous year button', async () => {
