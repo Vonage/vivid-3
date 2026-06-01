@@ -54,6 +54,24 @@
 			},
 			"type": "typography"
 		},
+		"heading-5": {
+			"value": {
+				"fontFamily": "{fontFamily.upright}",
+				"fontWeight": "{fontWeight.medium}",
+				"lineHeight": "{lineHeight.heading-5}",
+				"fontSize": "{size.font.heading-5}"
+			},
+			"type": "typography"
+		},
+		"heading-6": {
+			"value": {
+				"fontFamily": "{fontFamily.upright}",
+				"fontWeight": "{fontWeight.medium}",
+				"lineHeight": "{lineHeight.heading-6}",
+				"fontSize": "{size.font.heading-6}"
+			},
+			"type": "typography"
+		},
 		"base": {
 			"value": {
 				"fontFamily": "{fontFamily.upright}",
