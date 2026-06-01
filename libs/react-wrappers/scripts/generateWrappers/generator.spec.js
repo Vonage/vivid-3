@@ -332,7 +332,7 @@ describe('generator', () => {
 			const content = vi.mocked(fsExtra.outputFile).mock.calls[0][1];
 			expect(content).toMatchInlineSnapshot(`
 				"  onChange?: (event: SyntheticEvent) => void,
-				  "ariaSelected"?: any /* boolean | undefined */,
+				  "ariaSelected"?: boolean | undefined,
 				  "field1"?: any /* AccordionExpandMode */,
 				  "field2"?: string | null,
 				  "activeItemIndex"?: number"
@@ -351,10 +351,55 @@ describe('generator', () => {
 			const content = vi.mocked(fsExtra.outputFile).mock.calls[0][1];
 			expect(content).toMatchInlineSnapshot(`
 				"  onChange?: (event: SyntheticEvent) => void,
-				  "ariaSelected"?: any /* boolean | undefined */,
+				  "ariaSelected"?: boolean | undefined,
 				  "field2"?: string | null,
 				  "activeItemIndex"?: number"
 			`);
+		});
+
+		it('should type boolean | undefined props correctly (not as any)', async () => {
+			const data = cloneMockData();
+			data.modules[0].declarations[1].members.push({
+				kind: 'field',
+				name: 'disabled',
+				type: { text: 'boolean | undefined' },
+				privacy: 'public',
+			});
+
+			setTokenTemplateMock(TemplateToken.PROPS);
+			await generateWrappersV3InstanceTS({ elements: data });
+
+			const content = vi.mocked(fsExtra.outputFile).mock.calls[0][1];
+			expect(content).toContain('"disabled"?: boolean | undefined');
+			expect(content).not.toContain('"disabled"?: any');
+		});
+
+		it('should type string | HTMLElement props correctly (not as any)', async () => {
+			const data = cloneMockData();
+			data.modules[0].declarations[1].members.push({
+				kind: 'field',
+				name: 'anchor',
+				type: { text: 'string | HTMLElement' },
+				privacy: 'public',
+			});
+
+			setTokenTemplateMock(TemplateToken.PROPS);
+			await generateWrappersV3InstanceTS({ elements: data });
+
+			const content = vi.mocked(fsExtra.outputFile).mock.calls[0][1];
+			expect(content).toContain('"anchor"?: string | HTMLElement');
+			expect(content).not.toContain('"anchor"?: any');
+		});
+
+		it('should expose anchor on VwcMenu with correct type via Vivid3ComponentsExtraPropertiesMap', async () => {
+			const data = cloneMockData();
+			data.modules[0].declarations[1].name = 'Menu';
+
+			setTokenTemplateMock(TemplateToken.PROPS);
+			await generateWrappersV3InstanceTS({ elements: data });
+
+			const content = vi.mocked(fsExtra.outputFile).mock.calls[0][1];
+			expect(content).toContain('"anchor"?: string | HTMLElement');
 		});
 
 		it('should replace component registration for DataGridRow with empty string', async () => {
