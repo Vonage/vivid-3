@@ -8,6 +8,13 @@ import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { renderInLightDOM } from './render-in-light-dom';
 
+const reconnect = async (element: Element) => {
+	const parent = element.parentElement!;
+	element.remove();
+	parent.appendChild(element);
+	await elementUpdated(element);
+};
+
 describe('renderInLightDom', () => {
 	const DummyElement = () => {
 		class DummyElement extends VividElement {
@@ -52,22 +59,53 @@ describe('renderInLightDom', () => {
 		expect(nodes[1].textContent).toBe('Hello');
 	});
 
-	it('should be able to change templates dynamically with a binding', async () => {
+	it('should not duplicate light DOM nodes on reconnect', async () => {
 		FASTElementDefinition.compose(DummyElement(), {
-			template: html`${renderInLightDOM((x) =>
-				x.prop === 'Hello'
-					? html`<div>prop is Hello</div>`
-					: html`<div>prop is not Hello</div>`
-			)}`,
-			name: `dummy-3`,
+			template: html`${renderInLightDOM(html`<div id="light"></div>`)}`,
+			name: `dummy-4`,
 		}).define();
 
-		const element = fixture(`<dummy-3></dummy-3>`);
-		expect(element.textContent!.trim()).toBe('prop is Hello');
+		const element = fixture(`<dummy-4></dummy-4>`);
+		expect(element.querySelectorAll('#light')).toHaveLength(1);
 
-		(element as any).prop = 'World';
+		await reconnect(element);
+
+		expect(element.querySelectorAll('#light')).toHaveLength(1);
+	});
+
+	it('should keep light DOM content correct after reconnect', async () => {
+		FASTElementDefinition.compose(DummyElement(), {
+			template: html`${renderInLightDOM(
+				html`<div id="light">${(x) => x.prop}</div>`
+			)}`,
+			name: `dummy-6`,
+		}).define();
+		const element = fixture(`<dummy-6></dummy-6>`);
+
+		await reconnect(element);
+		(element as any).prop = 'Updated';
 		await elementUpdated(element);
 
-		expect(element.textContent!.trim()).toBe('prop is not Hello');
+		expect(element.querySelectorAll('#light')).toHaveLength(1);
+		expect(element.querySelector('#light')!.textContent).toBe('Updated');
+	});
+
+	it('should recover after light DOM nodes are externally removed before disconnect', async () => {
+		FASTElementDefinition.compose(DummyElement(), {
+			template: html`${renderInLightDOM(html`<div id="light"></div>`)}`,
+			name: `dummy-7`,
+		}).define();
+
+		const element = fixture(`<dummy-7></dummy-7>`);
+		expect(element.querySelectorAll('#light')).toHaveLength(1);
+
+		// Simulate external removal of light DOM content before the element is disconnected
+		while (element.firstChild) {
+			element.removeChild(element.firstChild);
+		}
+
+		await reconnect(element);
+
+		expect(element.querySelectorAll('#light')).toHaveLength(1);
 	});
 });
