@@ -7,8 +7,7 @@ const getEvents = (tag) =>
 // Handles both double-quoted ("foo") and single-quoted ('foo') string literal unions
 const isTypeSet = (type) => /(['"].*?['"] \|)/.test(type);
 const isStringTypeSet = (type) =>
-	/['"].*['"][ |]?/.test(type) &&
-	/['"].*['"][ |]?/.exec(type)[0] === type;
+	/['"].*['"][ |]?/.test(type) && /['"].*['"][ |]?/.exec(type)[0] === type;
 const isBoolean = (type) => /^(true|false)$/.test(type) || type === 'boolean';
 const isArray = (type) => /(.*)\[\]$/gm.test(type) || type === 'array';
 const isNumber = (type) => /(integer)/.test(type);
