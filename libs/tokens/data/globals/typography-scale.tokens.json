@@ -24,6 +24,14 @@
 			"value": "1.4",
 			"type": "lineHeights"
 		},
+		"heading-5": {
+			"value": "1.4",
+			"type": "lineHeights"
+		},
+		"heading-6": {
+			"value": "1.4",
+			"type": "lineHeights"
+		},
 		"base": {
 			"value": "1.4285714285714286",
 			"type": "lineHeights"
@@ -72,6 +80,14 @@
 			},
 			"heading-4": {
 				"value": "{size.font.scale.base} * 1.25",
+				"type": "fontSizes"
+			},
+			"heading-5": {
+				"value": "{size.font.scale.base} * 1.125",
+				"type": "fontSizes"
+			},
+			"heading-6": {
+				"value": "{size.font.scale.base} * 1",
 				"type": "fontSizes"
 			},
 			"base": {

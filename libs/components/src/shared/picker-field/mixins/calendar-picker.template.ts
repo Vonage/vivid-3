@@ -251,7 +251,6 @@ function renderCalendarGrid(context: VividElementDefinitionContext) {
 
 function renderMonthPickerGrid(context: VividElementDefinitionContext) {
 	const dividerTag = context.tagFor(Divider);
-	const visuallyHiddenTag = context.tagFor(VisuallyHidden);
 
 	return html<MonthPickerSegment, CalendarPickerElement>`
 		<${dividerTag}
@@ -299,7 +298,24 @@ function renderMonthPickerGrid(context: VividElementDefinitionContext) {
 											)
 												? 1
 												: -1}"
-										aria-label="${(x) => x.monthName}"
+										aria-label="${(x, c) => {
+											const picker = c.parentContext.parentContext.parent;
+											const announcements = [x.monthName];
+
+											if (areMonthsEqual(x.month, picker._currentMonth)) {
+												announcements.push(
+													picker.locale.calendarPicker.currentLabel
+												);
+											}
+
+											if (areMonthsEqual(x.month, picker._selectedMonth)) {
+												announcements.push(
+													picker.locale.calendarPicker.selectedLabel
+												);
+											}
+
+											return announcements.join(' ');
+										}}"
 										data-month="${(x) => monthToStr(x.month)}"
 										?disabled="${(x, c) =>
 											!c.parentContext.parentContext.parent._isMonthInValidRange(
@@ -320,24 +336,6 @@ function renderMonthPickerGrid(context: VividElementDefinitionContext) {
 											)}"
 									>
 										${(x) => x.label}
-										<${visuallyHiddenTag}>${(x, c) => {
-											const picker = c.parentContext.parentContext.parent;
-											const announcements = [];
-
-											if (areMonthsEqual(x.month, picker._currentMonth)) {
-												announcements.push(
-													picker.locale.calendarPicker.currentLabel
-												);
-											}
-
-											if (areMonthsEqual(x.month, picker._selectedMonth)) {
-												announcements.push(
-													picker.locale.calendarPicker.selectedLabel
-												);
-											}
-
-											return announcements.join(' ');
-										}}</${visuallyHiddenTag}>
 									</button>
 								</span>
 							`
