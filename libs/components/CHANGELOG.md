@@ -1,5 +1,27 @@
 # Change Log - @vonage/vivid
 
+## 5.20.0
+
+### Minor Changes
+
+- [#2957](https://github.com/Vonage/vivid-3/pull/2957) [`afe4295`](https://github.com/Vonage/vivid-3/commit/afe4295e9389b5cd0d2c970f304d4b5727ae3721) Thanks [@RichardHelm](https://github.com/RichardHelm)! - feat(rich-text-editor): split blocks on br tags in html parser (VIV-3260)
+
+- [#2953](https://github.com/Vonage/vivid-3/pull/2953) [`9ead9ae`](https://github.com/Vonage/vivid-3/commit/9ead9ae05cd4aeea6636897fbdccf3f8eae340ae) Thanks [@TaylorJ76](https://github.com/TaylorJ76)! - feat(typography): adds level 5 and 6 heading tokens and styles (VIV-3251)
+
+- [#2945](https://github.com/Vonage/vivid-3/pull/2945) [`d24567b`](https://github.com/Vonage/vivid-3/commit/d24567b2c31d41eac5659970bd8b3522c9b4899e) Thanks [@RichardHelm](https://github.com/RichardHelm)! - feat(rich-text-editor): add URL helper text (VIV-3217)
+
+- [#2955](https://github.com/Vonage/vivid-3/pull/2955) [`78164e7`](https://github.com/Vonage/vivid-3/commit/78164e755018796b0dba7694a03138af3e2c5c99) Thanks [@RichardHelm](https://github.com/RichardHelm)! - feat(rich-text-editor): add before/after slots and editor/scrollable parts (VIV-3263)
+
+- [#2946](https://github.com/Vonage/vivid-3/pull/2946) [`14d8b24`](https://github.com/Vonage/vivid-3/commit/14d8b2456d2bb5eee90f19acb624c12a8fbb0686) Thanks [@RichardHelm](https://github.com/RichardHelm)! - fix(rich-text-editor): fix toolbar buttons pressed appearance and a11y (VIV-3215)
+
+### Patch Changes
+
+- [#2960](https://github.com/Vonage/vivid-3/pull/2960) [`9bf32a0`](https://github.com/Vonage/vivid-3/commit/9bf32a0141584c335241d2059edfa3460cbca33b) Thanks [@RichardHelm](https://github.com/RichardHelm)! - fix(components): fix bindings re-evaluation bug by updating FAST (VIV-3272)
+
+- [#2943](https://github.com/Vonage/vivid-3/pull/2943) [`6dfd20d`](https://github.com/Vonage/vivid-3/commit/6dfd20d2c3040e45616c4795fc1065fd2c758ff9) Thanks [@RichardHelm](https://github.com/RichardHelm)! - fix(rich-text-editor): close popovers on esc (VIV-3222)
+
+- [#2966](https://github.com/Vonage/vivid-3/pull/2966) [`df3f9f8`](https://github.com/Vonage/vivid-3/commit/df3f9f890f4111f852e13fba795ac6681b49c0fe) Thanks [@RichardHelm](https://github.com/RichardHelm)! - fix(icon): announce icons as a single img element (VIV-3219)
+
 ## 5.19.0
 
 ### Minor Changes
