@@ -336,7 +336,10 @@ class RteSuggestFeatureImpl extends RteFeatureImpl {
 				},
 			},
 			view: (view) => {
-				const ctx = new UiCtx(view, rte, { popupPlacement: 'bottom' });
+				const ctx = new UiCtx(view, rte, {
+					popupPlacement: 'bottom',
+					shouldReturnFocusToEditor: true,
+				});
 				const popover = rte.createComponent(Popover);
 				popover.anchorId = `suggest-anchor-${this.featureId}`;
 				popover.kind = 'autocomplete';

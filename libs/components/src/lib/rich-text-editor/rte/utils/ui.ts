@@ -38,6 +38,7 @@ const on = <E extends keyof HTMLElementEventMap, T>(
 /// Props available to all elements inside the context
 type CtxProps = {
 	popupPlacement: 'top' | 'bottom';
+	shouldReturnFocusToEditor: boolean;
 	menuOffset?: number;
 	disabled?: boolean;
 };
@@ -74,6 +75,11 @@ export class UiCtx {
 		for (const binding of this.bindings) {
 			binding();
 		}
+	}
+
+	/// Whether to return focus to the editor after a toolbar action
+	shouldReturnFocusToEditor(): boolean {
+		return this.evalProp(this.props.shouldReturnFocusToEditor);
 	}
 
 	/// Utility to more conveniently bind props to elements
@@ -230,7 +236,7 @@ export const createButton = (
 		},
 		[
 			on('click', props.onClick, (onClick) => () => {
-				if (!onClick()) {
+				if (!onClick() && ctx.shouldReturnFocusToEditor()) {
 					ctx.view.focus();
 				}
 			}),
@@ -306,7 +312,9 @@ export const createMenuItem = (
 					// Ignore non-user initiated change events
 					if (ctx.evalProp(props.checked) !== item.checked) {
 						onSelect();
-						ctx.view.focus();
+						if (ctx.shouldReturnFocusToEditor()) {
+							ctx.view.focus();
+						}
 					}
 				}
 			}),
@@ -396,7 +404,9 @@ export const createSelect = (
 				const value = select.value;
 				if (value) {
 					onSelect(value);
-					ctx.view.focus();
+					if (ctx.shouldReturnFocusToEditor()) {
+						ctx.view.focus();
+					}
 				}
 			}),
 		],
@@ -516,7 +526,9 @@ export const createSingleSlot = (
 		for (const [type, handler] of Object.entries(props.assignedEvents)) {
 			const listener: EventListener = (e) => {
 				handler(e);
-				ctx.view.focus();
+				if (ctx.shouldReturnFocusToEditor()) {
+					ctx.view.focus();
+				}
 			};
 			el.addEventListener(type, listener);
 			listeners.push({ el, type, handler: listener });

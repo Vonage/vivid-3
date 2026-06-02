@@ -300,6 +300,7 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 					view: (view) => {
 						const ctx = new UiCtx(view, rte, {
 							popupPlacement: 'bottom',
+							shouldReturnFocusToEditor: true,
 						});
 						popover = rte.createComponent(Popover);
 						popover.offset = 4;
