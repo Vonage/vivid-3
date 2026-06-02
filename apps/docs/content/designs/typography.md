@@ -16,6 +16,8 @@ Vivid defines a set of typefaces presets that are used by the components.
 --vvd-typography-heading-2
 --vvd-typography-heading-3
 --vvd-typography-heading-4
+--vvd-typography-heading-5
+--vvd-typography-heading-6
 --vvd-typography-base
 --vvd-typography-base-bold
 --vvd-typography-base-code
@@ -32,6 +34,8 @@ Vivid defines a set of typefaces presets that are used by the components.
 <div style="font: var(--vvd-typography-heading-2)">heading-2</div>
 <div style="font: var(--vvd-typography-heading-3)">heading-3</div>
 <div style="font: var(--vvd-typography-heading-4)">heading-4</div>
+<div style="font: var(--vvd-typography-heading-5)">heading-5</div>
+<div style="font: var(--vvd-typography-heading-6)">heading-6</div>
 <div style="font: var(--vvd-typography-base-condensed)">base-condensed</div>
 <div style="font: var(--vvd-typography-base-condensed-bold)">base-condensed-bold</div>
 <div style="font: var(--vvd-typography-base)">base</div>
@@ -58,10 +62,12 @@ All headings and `p` elements also receive a `margin-block`. Use the `tight` cla
 	}
 </style>
 <div class="wrapper">
-	<h1>heading-1</h1>
-	<h2>heading-2</h2>
-	<h3>heading-3</h3>
-	<h4>heading-4</h4>
+	<h1 class="tight">heading-1</h1>
+	<h2 class="tight">heading-2</h2>
+	<h3 class="tight">heading-3</h3>
+	<h4 class="tight">heading-4</h4>
+	<h5 class="tight">heading-5</h5>
+	<h6 class="tight">heading-6</h6>
 	<p>paragraph</p>
 	<b>bold</b>
 	<strong>strong</strong>
@@ -104,6 +110,8 @@ All headings and `p` elements also receive a `margin-block`. Use the `tight` cla
 	<div class="heading2 tight">heading-2</div>
 	<div class="heading3 tight">heading-3</div>
 	<div class="heading4 tight">heading-4</div>
+	<div class="heading5 tight">heading-5</div>
+	<div class="heading6 tight">heading-6</div>
 	<div class="font-base-code tight">base-code</div>
 	<div class="font-base-condensed tight">base-condensed</div>
 	<div class="font-base tight">font-base</div>

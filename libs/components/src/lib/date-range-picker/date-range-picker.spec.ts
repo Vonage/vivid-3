@@ -1,6 +1,6 @@
 import { setupDelegatesFocusPolyfill } from '@repo/shared/test-utils/delegates-focus-polyfill';
 import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
-import { getResolvedTextContent } from '@repo/shared/test-utils/shadow-roots';
+import { resolveAccessibleName } from '@repo/shared/test-utils/shadow-roots';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
@@ -450,13 +450,13 @@ describe('vwc-date-range-picker', () => {
 			await elementUpdated(element);
 
 			expect(
-				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-11')))
+				cleanWhitespace(resolveAccessibleName(getDateButton('2023-08-11')))
 			).toBe('11 selected');
 			expect(
-				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-12')))
+				cleanWhitespace(resolveAccessibleName(getDateButton('2023-08-12')))
 			).toBe('12 selected');
 			expect(
-				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-13')))
+				cleanWhitespace(resolveAccessibleName(getDateButton('2023-08-13')))
 			).toBe('13 selected');
 		});
 
@@ -466,7 +466,7 @@ describe('vwc-date-range-picker', () => {
 			await elementUpdated(element);
 
 			expect(
-				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-10')))
+				cleanWhitespace(resolveAccessibleName(getDateButton('2023-08-10')))
 			).toBe('10 today selected');
 		});
 

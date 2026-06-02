@@ -1,7 +1,7 @@
 import { setupDelegatesFocusPolyfill } from '@repo/shared/test-utils/delegates-focus-polyfill';
 import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { createFormHTML } from '@repo/shared/test-utils/form-association';
-import { getResolvedTextContent } from '@repo/shared/test-utils/shadow-roots';
+import { resolveAccessibleName } from '@repo/shared/test-utils/shadow-roots';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { setLocale } from '../../shared/localization';
@@ -332,7 +332,7 @@ describe('vwc-date-picker', () => {
 			await elementUpdated(element);
 
 			expect(
-				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-15')))
+				cleanWhitespace(resolveAccessibleName(getDateButton('2023-08-15')))
 			).toBe('15 selected');
 		});
 
@@ -341,7 +341,7 @@ describe('vwc-date-picker', () => {
 			await elementUpdated(element);
 
 			expect(
-				cleanWhitespace(getResolvedTextContent(getDateButton('2023-08-10')))
+				cleanWhitespace(resolveAccessibleName(getDateButton('2023-08-10')))
 			).toBe('10 today selected');
 		});
 

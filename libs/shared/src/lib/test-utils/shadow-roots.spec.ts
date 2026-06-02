@@ -1,4 +1,4 @@
-import { deepQuerySelectorAll, getResolvedTextContent } from './shadow-roots';
+import { deepQuerySelectorAll, resolveAccessibleName } from './shadow-roots';
 
 describe('deepQuerySelectorAll', () => {
 	it('should find elements in shadow roots', () => {
@@ -35,7 +35,7 @@ describe('getResolvedTextContent', () => {
 		child.textContent = 'Hello';
 		shadowRoot.appendChild(child);
 
-		const result = getResolvedTextContent(root);
+		const result = resolveAccessibleName(root);
 		expect(result).toBe('Hello');
 	});
 
@@ -49,7 +49,7 @@ describe('getResolvedTextContent', () => {
 		nested.innerHTML = `<slot slot="test" name="test"></slot>`;
 		root.shadowRoot!.appendChild(nested);
 
-		const result = getResolvedTextContent(nested);
+		const result = resolveAccessibleName(nested);
 
 		expect(result).toBe('Hello');
 	});

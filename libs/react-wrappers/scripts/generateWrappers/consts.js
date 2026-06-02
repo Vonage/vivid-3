@@ -201,6 +201,22 @@ export const ComponentsExtraPropertiesMap = {
 			type: 'string',
 		},
 	],
+	VwcButton: [
+		{
+			name: 'disabled',
+			type: 'boolean',
+		},
+		{
+			name: 'icon',
+			type: 'string | undefined',
+		},
+	],
+	VwcMenu: [
+		{
+			name: 'anchor',
+			type: 'string',
+		},
+	],
 };
 
 export const Vivid3ComponentsExtraPropertiesMap = {
@@ -306,6 +322,12 @@ export const Vivid3ComponentsExtraPropertiesMap = {
 		{
 			name: 'icon-trailing',
 			type: { text: 'boolean | undefined' },
+		},
+	],
+	Menu: [
+		{
+			name: 'anchor',
+			type: { text: 'string | HTMLElement' },
 		},
 	],
 	Tooltip: [
