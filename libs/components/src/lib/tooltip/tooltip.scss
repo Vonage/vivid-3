@@ -11,10 +11,14 @@
 }
 
 .tooltip {
+	display: flex;
 	width: var(#{variables.$tooltip-inline-size}, auto);
 	box-sizing: border-box;
+	flex-direction: column;
+	align-items: flex-start;
 	padding: 8px 12px;
 	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base-bold});
+	gap: 4px;
 	max-inline-size: var(#{variables.$tooltip-max-inline-size}, 30ch);
 }

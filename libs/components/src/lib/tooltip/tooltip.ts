@@ -1,6 +1,7 @@
 import { attr, DOM } from '@microsoft/fast-element';
 import type { Placement } from '@floating-ui/dom';
 import { Anchored } from '../../shared/patterns/anchored';
+import { WithKbdShortcut } from '../../shared/patterns/kbd-shortcut';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { generateRandomId } from '../../shared/utils/randomId';
 
@@ -12,7 +13,7 @@ import { generateRandomId } from '../../shared/utils/randomId';
  * @testQuery open open true
  * @testQuery closed open false
  */
-export class Tooltip extends Anchored(VividElement) {
+export class Tooltip extends WithKbdShortcut(Anchored(VividElement)) {
 	/**
 	 * Text content of the Tooltip
 	 *
@@ -28,6 +29,18 @@ export class Tooltip extends Anchored(VividElement) {
 	 * @internal
 	 */
 	_descriptionId = `vwc-tooltip-desc-${generateRandomId()}`;
+
+	/** @internal */
+	_kbdAriaShortcutsValueChanged() {
+		if (!this._anchorEl) {
+			return;
+		}
+		DOM.setAttribute(
+			this._anchorEl,
+			'aria-keyshortcuts',
+			this._kbdAriaShortcutsValue
+		);
+	}
 
 	override connectedCallback(): void {
 		super.connectedCallback();
@@ -59,6 +72,7 @@ export class Tooltip extends Anchored(VividElement) {
 			'aria-describedby',
 			existing ? `${existing} ${this._descriptionId}` : this._descriptionId
 		);
+		DOM.setAttribute(a, 'aria-keyshortcuts', this._kbdAriaShortcutsValue);
 	}
 
 	#cleanupAnchor(a: HTMLElement) {
@@ -81,6 +95,7 @@ export class Tooltip extends Anchored(VividElement) {
 			// Vivid elements with renamed aria attributes
 			(a as VividElement).ariaDescribedBy = newDescribedBy;
 		}
+		a.removeAttribute('aria-keyshortcuts');
 	}
 
 	#show = () => {

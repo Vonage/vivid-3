@@ -9,6 +9,8 @@ import type { Button } from '../button/button';
 import type { Popup } from '../popup/popup';
 import { Tooltip } from './tooltip';
 import '.';
+import '../kbd-key';
+import '../kbd-shortcut';
 
 const COMPONENT_TAG = 'vwc-tooltip';
 
@@ -135,6 +137,45 @@ describe('vwc-tooltip', () => {
 			fireEvent(document, new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(0);
+		});
+	});
+
+	describe('kbd-shortcut slot', () => {
+		it('should set aria-keyshortcuts on anchor', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} text="Copy">
+					<button slot="anchor">Anchor</button>
+					<vwc-kbd-shortcut slot="kbd-shortcut">
+						<vwc-kbd-key name="Control"></vwc-kbd-key>
+						<vwc-kbd-key name="C"></vwc-kbd-key>
+					</vwc-kbd-shortcut>
+				</${COMPONENT_TAG}>`
+			)) as Tooltip;
+			await elementUpdated(element);
+
+			expect(
+				element
+					.querySelector('[slot="anchor"]')!
+					.getAttribute('aria-keyshortcuts')!
+			).toBe('Control+C');
+		});
+
+		it('should cleanup aria-keyshortcuts from anchor', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} text="Copy">
+					<button slot="anchor">Anchor</button>
+					<vwc-kbd-shortcut slot="kbd-shortcut">
+						<vwc-kbd-key name="Control"></vwc-kbd-key>
+						<vwc-kbd-key name="C"></vwc-kbd-key>
+					</vwc-kbd-shortcut>
+				</${COMPONENT_TAG}>`
+			)) as Tooltip;
+			await elementUpdated(element);
+			const anchor = element.querySelector('[slot="anchor"]')!;
+
+			element.remove();
+
+			expect(anchor.hasAttribute('aria-keyshortcuts')).toBe(false);
 		});
 	});
 

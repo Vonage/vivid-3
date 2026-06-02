@@ -1,10 +1,11 @@
-import { attr, observable, Updates } from '@microsoft/fast-element';
+import { attr, DOM, observable, Updates } from '@microsoft/fast-element';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import { AffixIcon } from '../../shared/patterns/affix';
+import { WithKbdShortcut } from '../../shared/patterns/kbd-shortcut';
 import type { Menu } from '../menu/menu';
 import type { Connotation } from '../enums';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -41,7 +42,9 @@ export type MenuItemConnotation = ExtractFromEnum<
  * @testQuery disabled disabled
  * @testRef base shadow .base
  */
-export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
+export class MenuItem extends WithKbdShortcut(
+	HostSemantics(AffixIcon(VividElement))
+) {
 	/**
 	 * Sets the disabled state
 	 *
@@ -287,6 +290,11 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	@observable metaSlottedContent?: HTMLElement[];
 	/** @internal */
 	@observable trailingMetaSlottedContent?: HTMLElement[];
+
+	/** @internal */
+	_kbdAriaShortcutsValueChanged() {
+		DOM.setAttribute(this, 'aria-keyshortcuts', this._kbdAriaShortcutsValue);
+	}
 
 	/**
 	 * @internal
