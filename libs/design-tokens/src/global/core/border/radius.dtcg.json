@@ -1,0 +1,38 @@
+{
+	"border": {
+		"radius": {
+			"sm": {
+				"$type": "dimension",
+				"$value": {
+					"value": 2,
+					"unit": "px"
+				},
+				"$description": "Small border radius for subtle rounding, used on compact elements such as checkboxes."
+			},
+			"md": {
+				"$type": "dimension",
+				"$value": {
+					"value": 4,
+					"unit": "px"
+				},
+				"$description": "Medium border radius for smaller components such as buttons, and inputs."
+			},
+			"lg": {
+				"$type": "dimension",
+				"$value": {
+					"value": 8,
+					"unit": "px"
+				},
+				"$description": "A large border radius for container elements such as dialogs and cards."
+			},
+			"full": {
+				"$type": "dimension",
+				"$value": {
+					"value": 9999,
+					"unit": "px"
+				},
+				"$description": "A fully rounded border radius that produces a pill or circle shape."
+			}
+		}
+	}
+}

@@ -1,0 +1,56 @@
+{
+	"color": {
+		"bg": {
+			"inverse": {
+				"$type": "color",
+				"$value": "{color.neutral.1000}",
+				"$description": "Use for high contrast page or component backgrounds.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+      "backdrop": {
+				"$type": "color",
+				"$value": "{color.black}{color.alphahex.80}",
+				"$description": "A semi transparent background color for backdrops (eg. dialog, side drawer).",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			}
+    },
+    "surface": {
+      "DEFAULT": {
+        "$type": "color",
+        "$value": "{color.neutral.50}",
+        "$description": "The default surface background colour, used for cards, sheets, and other surfaces that sit on top of the main page background.",
+        "$extensions": {
+          "tokenType": "color/background"
+        }
+      },
+      "secondary": {
+				"$type": "color",
+				"$value": "{color.neutral.100}",
+				"$description": "The background color for elements with a secondary level of prominence.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"tertiary": {
+				"$type": "color",
+				"$value": "{color.neutral.200}",
+				"$description": "The background color for elements with a tertiary level of prominence.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"inverse": {
+				"$type": "color",
+				"$value": "{color.neutral.1000}",
+				"$description": "The background color for elements displayed on an inverse (dark) surface.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			}
+    }
+  }
+}

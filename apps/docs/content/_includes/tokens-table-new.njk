@@ -307,10 +307,12 @@
 		{% for item in list | reverse %}
 			{% if item.type == 'typography' %}
 				<vwc-table-row>
-					<vwc-table-cell style="vertical-align: top;"><code>{{ item.css | replace('text-', '') }}</code></vwc-table-cell>
+					<vwc-table-cell style="vertical-align: top;"><code>{{ item.css | replace('viv-text-', '') }}</code></vwc-table-cell>
 					<vwc-table-cell style="vertical-align: top;">
 						{% set fontValue = item.preview.fontWeight ~ ' ' ~ item.preview.fontStretch ~ ' ' ~ item.preview.fontSize ~ '/' ~ item.preview.lineHeight ~ ' ' ~ item.preview.fontFamily %}
-						<div style="font: {{ fontValue }}">The quick brown fox jumps over the lazy dog</div>
+						<div style="font: {{ fontValue }}">
+							The quick brown fox jumps over the lazy dog{% if 'body-' in item.css %}, then darts across the meadow in search of adventure. Along the way, it weaves between tall grasses, skirts around a bubbling stream, and pauses briefly beneath the shade of an ancient oak tree.{% endif %}
+						</div>
 					</vwc-table-cell>
 					<vwc-table-cell style="vertical-align: top;">{{ item.description }}</vwc-table-cell>
 				</vwc-table-row>
@@ -354,7 +356,7 @@
 				<div slot="anchor" class="color-token-preview-text" style="color: {{ item.preview }}; background-color: contrast-color({{ item.preview }})">Aa</div>
 			</vwc-tooltip>
 		</div>
-	{% elif '.bg' in item.name %}
+	{% elif item.tokenType == 'color/background' %}
 		<div class="color-token-preview-bg">
 			<vwc-tooltip text="{{ item.preview }}" placement="left">
 				<div slot="anchor" style="background-color: {{ item.preview }}; border: 1px solid light-dark(var(--vvd-color-neutral-200), transparent)"></div>
@@ -429,7 +431,7 @@
 							{{ textTokenPreview(item) }}
 						{% endif %}
 					</vwc-table-cell>
-					<vwc-table-cell style="width: 18rem;"><code>{{ item.css | replace('', '') }}</code></vwc-table-cell>
+					<vwc-table-cell style="width: 18rem;"><code>{{ item.css | replace('viv-', '') }}</code></vwc-table-cell>
 					<vwc-table-cell>{{ item.description }}</vwc-table-cell>
 				</vwc-table-row>
 			{% endfor %}

@@ -1,4 +1,8 @@
-import type { Hooks, PlatformConfig, TransformedToken } from 'style-dictionary/types';
+import type {
+	Hooks,
+	PlatformConfig,
+	TransformedToken,
+} from 'style-dictionary/types';
 import { fileHeader } from 'style-dictionary/utils';
 import { getHex } from '../utils/hexify.util';
 
@@ -86,19 +90,44 @@ export const cssConfig: Hooks = {
 		},
 	},
 	formats: {
-		'vvd/css/variables-with-typography': async ({ dictionary, options = {}, file }) => {
+		'vvd/css/variables-with-typography': async ({
+			dictionary,
+			options = {},
+			file,
+		}) => {
 			const selector = Array.isArray(options.selector)
 				? options.selector
 				: options.selector
-				? [options.selector]
-				: [':root'];
+					? [options.selector]
+					: [':root'];
 
 			const header = await fileHeader({ file, options });
 			const indentation = options.formatting?.indentation || '  ';
 
+			const pathToToken = new Map(
+				(dictionary.unfilteredAllTokens ?? dictionary.allTokens).map(
+					(t) => [t.path.join('.'), t]
+				)
+			);
+
+			const resolveAsVar = (originalValue: unknown): string | null => {
+				if (typeof originalValue !== 'string') return null;
+				const match = originalValue.match(/^\{([^}]+)\}$/);
+				if (!match) return null;
+				const refToken = pathToToken.get(match[1]);
+if (!refToken || refToken.filePath.includes('/core/')) return null;
+				const varName =
+					'viv-' +
+					refToken.path.filter((p: string) => p !== 'DEFAULT').join('-');
+				return `var(--${varName})`;
+			};
+
 			const serializeReference = (value: any): string => {
 				if (typeof value === 'string') {
-					return value.replace(/{([^}]+)}/g, (_match, tokenPath) => `var(--viv-${tokenPath.replace(/\./g, '-')})`);
+					return value.replace(
+						/{([^}]+)}/g,
+						(_match, tokenPath) => `var(--viv-${tokenPath.replace(/\./g, '-')})`
+					);
 				}
 				if (typeof value === 'number') {
 					return String(value);
@@ -114,34 +143,47 @@ export const cssConfig: Hooks = {
 				return String(value);
 			};
 
-			const serializeTypography = (value: any, token: TransformedToken): string => {
+			const serializeTypography = (
+				value: any,
+				token: TransformedToken
+			): string => {
 				const baseName = token.path.filter((p) => p !== 'DEFAULT').join('-');
 				const originalValue = (token.original as any)?.$value;
 
-				const hasPerScaleFontWeight = dictionary.allTokens.some(t => t.name === `viv-${baseName}-font-weight`);
+				const hasPerScaleFontWeight = dictionary.allTokens.some(
+					(t) => t.name === `viv-${baseName}-font-weight`
+				);
 				const fontWeight = hasPerScaleFontWeight
 					? `var(--viv-${baseName}-font-weight)`
 					: serializeReference(originalValue?.fontWeight ?? value.fontWeight);
 				const fontSize = `var(--viv-${baseName}-font-size)`;
 				const lineHeight = `var(--viv-${baseName}-line-height)`;
-				const fontFamily = serializeReference(originalValue?.fontFamily ?? value.fontFamily);
-				const fontStretch = serializeReference(originalValue?.fontStretch ?? value.fontStretch);
+				const fontFamily = serializeReference(
+					originalValue?.fontFamily ?? value.fontFamily
+				);
+				const fontStretch = serializeReference(
+					originalValue?.fontStretch ?? value.fontStretch
+				);
 
 				return `${fontWeight} ${fontStretch} ${fontSize}/${lineHeight} ${fontFamily}`.trim();
 			};
 
 			const content = dictionary.allTokens
 				.map((token) => {
+					const originalValue = (token.original as any)?.$value;
+					const varRef = resolveAsVar(originalValue);
 					const value = options.usesDtcg ? token.$value : token.value;
 
 					const formattedValue =
-						typeof value === 'object' &&
-						value !== null &&
-						'fontFamily' in value &&
-						'fontSize' in value &&
-						'lineHeight' in value
-							? serializeTypography(value, token)
-							: serializeReference(value);
+						varRef !== null
+							? varRef
+							: typeof value === 'object' &&
+								  value !== null &&
+								  'fontFamily' in value &&
+								  'fontSize' in value &&
+								  'lineHeight' in value
+								? serializeTypography(value, token)
+								: serializeReference(value);
 
 					if (typeof formattedValue !== 'string' || formattedValue === '') {
 						return undefined;
@@ -157,20 +199,25 @@ export const cssConfig: Hooks = {
 				.filter(Boolean)
 				.join('\n');
 
-			const nestInSelector = (content: string, selector: string, indentation: string) =>
-				`${indentation}${selector} {\n${content}\n${indentation}}`;
+			const nestInSelector = (
+				content: string,
+				selector: string,
+				indentation: string
+			) => `${indentation}${selector} {\n${content}\n${indentation}}`;
 
 			return (
 				header +
 				selector
 					.reverse()
-					.reduce((content, currentSelector, index) =>
-						nestInSelector(
-							content,
-							currentSelector,
-							indentation.repeat(selector.length - 1 - index),
-						),
-					content) +
+					.reduce(
+						(content, currentSelector, index) =>
+							nestInSelector(
+								content,
+								currentSelector,
+								indentation.repeat(selector.length - 1 - index)
+							),
+						content
+					) +
 				'\n'
 			);
 		},
@@ -261,13 +308,17 @@ export const cssConfig: Hooks = {
 		'vvd/name/css': {
 			type: 'name',
 			transform(token) {
-				return 'viv-' + token.path.filter((p: string) => p !== 'DEFAULT').join('-');
+				return (
+					'viv-' + token.path.filter((p: string) => p !== 'DEFAULT').join('-')
+				);
 			},
 		},
 	},
 };
 
-export const cssPlatform: PlatformConfig = {
+export type Theme = 'light' | 'dark';
+
+export const createCssPlatform = (theme: Theme): PlatformConfig => ({
 	options: {
 		selector: '.vvd-root, ::part(vvd-root)',
 	},
@@ -281,68 +332,52 @@ export const cssPlatform: PlatformConfig = {
 		'vvd/value/css/shadow',
 		'size/pxToRem',
 	],
-	buildPath: './dist/',
+	buildPath: `./dist/${theme}/`,
 	files: [
 		{
-			destination: 'core-color.css',
-			format: 'css/variables',
-			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('color') && token.filePath.includes('core'),
-		},
-		{
 			destination: 'semantic-color.css',
-			format: 'css/variables',
+			format: 'vvd/css/variables-with-typography',
 			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('color') && token.filePath.includes('semantic'),
+			filter: (token) =>
+				token.filePath.includes('color') && token.filePath.includes('semantic'),
 		},
 		{
 			destination: 'pattern-action-color.css',
-			format: 'css/variables',
+			format: 'vvd/css/variables-with-typography',
 			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('color') && token.filePath.includes('action'),
+			filter: (token) =>
+				token.filePath.includes('color') && token.filePath.includes('action'),
 		},
 		{
 			destination: 'pattern-control-color.css',
-			format: 'css/variables',
+			format: 'vvd/css/variables-with-typography',
 			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('color') && token.filePath.includes('control'),
+			filter: (token) =>
+				token.filePath.includes('color') && token.filePath.includes('control'),
 		},
 		{
 			destination: 'pattern-control-size.css',
-			format: 'css/variables',
+			format: 'vvd/css/variables-with-typography',
 			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('size') && token.filePath.includes('control'),
-		},
-		{
-			destination: 'core-border.css',
-			format: 'css/variables',
-			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('core') && token.filePath.includes('border'),
-		},
-		{
-			destination: 'core-size.css',
-			format: 'css/variables',
-			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('core') && token.filePath.includes('/size'),
+			filter: (token) =>
+				token.filePath.includes('size') && token.filePath.includes('control'),
 		},
 		{
 			destination: 'semantic-size.css',
-			format: 'css/variables',
+			format: 'vvd/css/variables-with-typography',
 			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('semantic') && token.filePath.includes('/size'),
-		},
-		{
-			destination: 'core-text.css',
-			format: 'css/variables',
-			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('core') && (token.filePath.includes('text') || token.filePath.includes('font-family')),
+			filter: (token) =>
+				token.filePath.includes('semantic') && token.filePath.includes('/size'),
 		},
 		{
 			destination: 'semantic-text.css',
 			format: 'vvd/css/variables-with-typography',
 			/* v8 ignore next -- @preserve */
-			filter: (token) => token.filePath.includes('text') && token.filePath.includes('semantic') && !token.filePath.includes('color')
+			filter: (token) =>
+				token.filePath.includes('text') &&
+				token.filePath.includes('semantic') &&
+				!token.filePath.includes('color'),
 		},
 	],
 	actions: ['vvd/css/createIndex', 'vvd/css/addFontsLinks'],
-};
+});

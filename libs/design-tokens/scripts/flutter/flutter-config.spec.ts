@@ -6,8 +6,14 @@ describe('Flutter Features', () => {
 	describe('Transforms', () => {
 		describe('vvd/value/flutter/borderRadius', () => {
 			it('Should be applied only to the radius tokens', () => {
-				const rightToken = { ...buildToken('', { $type: 'dimension' }), path: ['border', 'radius', 'sm'] };
-				const wrongToken = { ...buildToken('', { $type: 'dimension' }), path: ['size', 'regular', '700'] };
+				const rightToken = {
+					...buildToken('', { $type: 'dimension' }),
+					path: ['border', 'radius', 'sm'],
+				};
+				const wrongToken = {
+					...buildToken('', { $type: 'dimension' }),
+					path: ['size', 'regular', '700'],
+				};
 
 				const rightOut = flutterConfig.transforms[
 					'vvd/value/flutter/borderRadius'
@@ -242,7 +248,10 @@ describe('Flutter Features', () => {
 
 		describe('vvd/name/flutter', () => {
 			it('Should prefix with viv and convert path to camelCase', () => {
-				const token = { ...buildToken('', {}), path: ['color', 'critical', '500'] };
+				const token = {
+					...buildToken('', {}),
+					path: ['color', 'critical', '500'],
+				};
 
 				const out = flutterConfig.transforms['vvd/name/flutter'].transform(
 					token,
@@ -253,7 +262,10 @@ describe('Flutter Features', () => {
 			});
 
 			it('Should filter DEFAULT segments from the path', () => {
-				const token = { ...buildToken('', {}), path: ['color', 'bg', 'DEFAULT'] };
+				const token = {
+					...buildToken('', {}),
+					path: ['color', 'bg', 'DEFAULT'],
+				};
 
 				const out = flutterConfig.transforms['vvd/name/flutter'].transform(
 					token,

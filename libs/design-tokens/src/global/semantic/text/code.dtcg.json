@@ -1,0 +1,67 @@
+{
+	"text": {
+		"code": {
+			"font-family": {
+				"$type": "fontFamily",
+				"$value": "{text.font-family.sans-serif-monospace}",
+				"$description": "The font family used for all code text."
+			},
+			"font-stretch": {
+				"$type": "number",
+				"$value": "{text.font-stretch.ultra-condensed}",
+				"$description": "The font stretch applied to all code text."
+			},
+			"font-weight": {
+				"$type": "number",
+				"$value": "{text.font-weight.400}",
+				"$description": "The default font weight for code text."
+			},
+			"inline": {
+				"DEFAULT": {
+					"$type": "typography",
+					"$value": {
+						"fontFamily": "{text.code.font-family}",
+						"fontSize": "{text.code.inline.font-size}",
+						"lineHeight": "{text.code.inline.line-height}",
+						"fontWeight": "{text.code.font-weight}",
+						"fontStretch": "{text.code.font-stretch}"
+					},
+					"$description": "Code typography style for inline code snippets."
+				},
+				"font-size": {
+					"$type": "dimension",
+					"$value": "{text.font-size.350}",
+					"$description": "Font size for inline code."
+				},
+				"line-height": {
+					"$type": "dimension",
+					"$value": "{text.line-height.500}",
+					"$description": "Line height for inline code."
+				}
+			},
+			"block": {
+				"DEFAULT": {
+					"$type": "typography",
+					"$value": {
+						"fontFamily": "{text.code.font-family}",
+						"fontSize": "{text.code.block.font-size}",
+						"lineHeight": "{text.code.block.line-height}",
+						"fontWeight": "{text.code.font-weight}",
+						"fontStretch": "{text.code.font-stretch}"
+					},
+					"$description": "Code typography style for block code."
+				},
+				"font-size": {
+					"$type": "dimension",
+					"$value": "{text.font-size.300}",
+					"$description": "Font size for block code."
+				},
+				"line-height": {
+					"$type": "dimension",
+					"$value": "{text.line-height.400}",
+					"$description": "Line height for block code."
+				}
+			}
+		}
+	}
+}

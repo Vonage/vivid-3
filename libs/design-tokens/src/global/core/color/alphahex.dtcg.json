@@ -1,0 +1,74 @@
+{
+	"color": {
+		"alphahex": {
+      "0": {
+        "$value": "00",
+        "$type": "string"
+      },
+			"03": {
+				"$value": "08",
+				"$type": "string"
+			},
+			"05": {
+				"$value": "0d",
+				"$type": "string"
+			},
+			"06": {
+				"$value": "0f",
+				"$type": "string"
+			},
+			"08": {
+				"$value": "14",
+				"$type": "string"
+			},
+			"10": {
+				"$value": "1a",
+				"$type": "string"
+			},
+			"12": {
+				"$value": "1f",
+				"$type": "string"
+			},
+			"14": {
+				"$value": "24",
+				"$type": "string"
+			},
+			"16": {
+				"$value": "29",
+				"$type": "string"
+			},
+			"20": {
+				"$value": "33",
+				"$type": "string"
+			},
+			"25": {
+				"$value": "40",
+				"$type": "string"
+			},
+      "50": {
+        "$value": "80",
+        "$type": "string"
+      },
+      "75": {
+        "$value": "bf",
+        "$type": "string"
+      },
+			"80": {
+				"$value": "cc",
+				"$type": "string"
+			},
+			"85": {
+				"$value": "d9",
+				"$type": "string"
+			},
+			"90": {
+				"$value": "e6",
+				"$type": "string"
+			},
+      "100": {
+        "$value": "ff",
+        "$type": "string"
+      }
+		}
+	}
+}

@@ -13,5 +13,7 @@ const hexify = (num: number) => {
 
 export function getHex(token: ColorValue) {
 	const [r, g, b] = token.components;
-	return `#${hexify(r)}${hexify(g)}${hexify(b)}${hexify(token.alpha)}`;
+	const alpha = hexify(token.alpha);
+	const base = `#${hexify(r)}${hexify(g)}${hexify(b)}`;
+	return alpha === 'ff' ? base : `${base}${alpha}`;
 }

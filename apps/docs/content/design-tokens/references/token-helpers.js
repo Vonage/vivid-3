@@ -8,17 +8,28 @@ const {
 } = require('../../../../../libs/design-tokens/scripts/style-dictionary');
 
 const elements = ['bg', 'fill', 'surface', 'text', 'border'];
-const roles = ['neutral', 'primary', 'announcement', 'info', 'success', 'warning', 'danger', 'inverse'];
+const roles = [
+	'neutral',
+	'primary',
+	'announcement',
+	'info',
+	'success',
+	'warning',
+	'danger',
+	'inverse',
+];
 const prominences = ['strong', 'subtle', 'secondary', 'tertiary'];
 const states = ['hover', 'active', 'selected', 'disabled', 'error', 'valid'];
 const scales = ['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'];
 
 module.exports.getTokens = async function () {
 	let styleDictionaryInstance = await styleDictionary.init();
-	// Use absolute path to avoid working directory issues
-	const designTokensPath = path.resolve(__dirname, '../../../../../libs/design-tokens/src/*/*/*.dtcg.json');
+	const tokenBase = path.resolve(__dirname, '../../../../../libs/design-tokens/src');
 	styleDictionaryInstance = await styleDictionaryInstance.extend({
-		source: [designTokensPath],
+		source: [
+			`${tokenBase}/global/**/*.dtcg.json`,
+			`${tokenBase}/theme/light/**/*.dtcg.json`,
+		],
 	});
 
 	const cssTokens = await styleDictionaryInstance.getPlatformTokens('css');
@@ -32,20 +43,28 @@ module.exports.getTokens = async function () {
 		const flutterToken = flutterTokens.tokenMap.get(tokenName);
 		const cleanName = tokenName.replace(/[{}]/gm, '').replace(/\.DEFAULT/g, '');
 		const nameArr = cleanName.split('.');
-		const element = nameArr.filter(part => elements.includes(part)).join('-');
-		const role = nameArr.filter(part => roles.includes(part)).join('-');
-		const prominence = nameArr.filter(part => prominences.includes(part)).join('-');
-		const state = nameArr.filter(part => states.includes(part)).join('-');
-		const foundScale = nameArr.find(part => scales.includes(part));
+		const element = nameArr.filter((part) => elements.includes(part)).join('-');
+		const role = nameArr.filter((part) => roles.includes(part)).join('-');
+		const prominence = nameArr
+			.filter((part) => prominences.includes(part))
+			.join('-');
+		const state = nameArr.filter((part) => states.includes(part)).join('-');
+		const foundScale = nameArr.find((part) => scales.includes(part));
 		const scale = foundScale || nameArr[2];
 		const category = nameArr[0];
 		const semantic = nameArr[1];
-		const subGroup = nameArr[2] !== scale
-			? nameArr[2]
-			: (category === 'control' && foundScale && nameArr.length > 3 ? nameArr[2] : null);
+		const subGroup =
+			nameArr[2] !== scale
+				? nameArr[2]
+				: category === 'control' && foundScale && nameArr.length > 3
+					? nameArr[2]
+					: null;
 
 		const originalValue = cssToken.original?.$value;
-		const reference = typeof originalValue === 'string' && originalValue.startsWith('{') ? originalValue : undefined;
+		const reference =
+			typeof originalValue === 'string' && originalValue.startsWith('{')
+				? originalValue
+				: undefined;
 
 		const entry = {
 			name: cleanName,

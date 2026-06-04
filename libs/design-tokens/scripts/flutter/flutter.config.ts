@@ -120,7 +120,9 @@ export const flutterConfig: Hooks = {
 		'vvd/name/flutter': {
 			type: 'name',
 			transform(token) {
-				return ('viv-' + token.path.filter((p: string) => p !== 'DEFAULT').join('-')).replace(/([-_\/][a-z0-9])/g, ($1) =>
+				return (
+					'viv-' + token.path.filter((p: string) => p !== 'DEFAULT').join('-')
+				).replace(/([-_\/][a-z0-9])/g, ($1) =>
 					$1.toUpperCase().replace('-', '').replace('_', '').replace('/', '')
 				);
 			},

@@ -2,9 +2,12 @@ import type { Dictionary, TransformedToken } from 'style-dictionary/types';
 import { cssConfig, fontFaceDeclaration } from './css.config';
 import { buildToken } from '../utils/build-token';
 
-const stripHeader = (output: string) => output.replace(/\/\*\*[\s\S]*?\*\/\n\n/, '');
+const stripHeader = (output: string) =>
+	output.replace(/\/\*\*[\s\S]*?\*\/\n\n/, '');
 
-function makeToken(overrides: { name: string } & Partial<TransformedToken>): TransformedToken {
+function makeToken(
+	overrides: { name: string } & Partial<TransformedToken>
+): TransformedToken {
 	return {
 		filePath: 'virtual-file',
 		isSource: true,
@@ -313,14 +316,28 @@ describe('CSS Features', () => {
 
 		describe('vvd/name/css', () => {
 			it('Should prefix with viv- and join path segments with dashes', () => {
-				const token = { ...buildToken('', {}), path: ['color', 'neutral', '700'] };
-				const out = cssConfig.transforms['vvd/name/css'].transform(token, {}, {});
+				const token = {
+					...buildToken('', {}),
+					path: ['color', 'neutral', '700'],
+				};
+				const out = cssConfig.transforms['vvd/name/css'].transform(
+					token,
+					{},
+					{}
+				);
 				expect(out).toEqual('viv-color-neutral-700');
 			});
 
 			it('Should filter DEFAULT segments from the path', () => {
-				const token = { ...buildToken('', {}), path: ['color', 'bg', 'DEFAULT'] };
-				const out = cssConfig.transforms['vvd/name/css'].transform(token, {}, {});
+				const token = {
+					...buildToken('', {}),
+					path: ['color', 'bg', 'DEFAULT'],
+				};
+				const out = cssConfig.transforms['vvd/name/css'].transform(
+					token,
+					{},
+					{}
+				);
 				expect(out).toEqual('viv-color-bg');
 			});
 		});
@@ -328,36 +345,66 @@ describe('CSS Features', () => {
 
 	describe('Formats', () => {
 		describe('vvd/css/variables-with-typography', () => {
-			const format = cssConfig.formats['vvd/css/variables-with-typography'] as (args: any) => Promise<string>;
+			const format = cssConfig.formats['vvd/css/variables-with-typography'] as (
+				args: any
+			) => Promise<string>;
 
 			it('wraps content in :root selector by default', async () => {
-				const token = makeToken({ name: 'viv-color-bg', $value: '#fff', value: '#fff' });
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#fff',
+					value: '#fff',
+				});
 				const result = stripHeader(
-					await format({ dictionary: makeDictionary([token]), options: {}, file: {} })
+					await format({
+						dictionary: makeDictionary([token]),
+						options: {},
+						file: {},
+					})
 				);
 				expect(result).toContain(':root {');
 			});
 
 			it('wraps content in a custom string selector', async () => {
-				const token = makeToken({ name: 'viv-color-bg', $value: '#fff', value: '#fff' });
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#fff',
+					value: '#fff',
+				});
 				const result = stripHeader(
-					await format({ dictionary: makeDictionary([token]), options: { selector: '.vvd-root' }, file: {} })
+					await format({
+						dictionary: makeDictionary([token]),
+						options: { selector: '.vvd-root' },
+						file: {},
+					})
 				);
 				expect(result).toContain('.vvd-root {');
 				expect(result).not.toContain(':root {');
 			});
 
 			it('nests multiple selectors when selector is an array', async () => {
-				const token = makeToken({ name: 'viv-color-bg', $value: '#fff', value: '#fff' });
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#fff',
+					value: '#fff',
+				});
 				const result = stripHeader(
-					await format({ dictionary: makeDictionary([token]), options: { selector: [':root', '.theme-dark'] }, file: {} })
+					await format({
+						dictionary: makeDictionary([token]),
+						options: { selector: [':root', '.theme-dark'] },
+						file: {},
+					})
 				);
 				expect(result).toContain(':root {');
 				expect(result).toContain('.theme-dark {');
 			});
 
 			it('outputs plain string values', async () => {
-				const token = makeToken({ name: 'viv-color-bg', $value: '#ff0000', value: '#ff0000' });
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#ff0000',
+					value: '#ff0000',
+				});
 				const result = await format({
 					dictionary: makeDictionary([token]),
 					options: { usesDtcg: true },
@@ -367,17 +414,27 @@ describe('CSS Features', () => {
 			});
 
 			it('converts {reference} placeholders to var() in values', async () => {
-				const token = makeToken({ name: 'viv-color-bg', $value: '{color.neutral.500}', value: '' });
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '{color.neutral.500}',
+					value: '',
+				});
 				const result = await format({
 					dictionary: makeDictionary([token]),
 					options: { usesDtcg: true },
 					file: {},
 				});
-				expect(result).toContain('--viv-color-bg: var(--viv-color-neutral-500);');
+				expect(result).toContain(
+					'--viv-color-bg: var(--viv-color-neutral-500);'
+				);
 			});
 
 			it('outputs number values as strings', async () => {
-				const token = makeToken({ name: 'viv-text-font-weight-400', $value: 400, value: 400 });
+				const token = makeToken({
+					name: 'viv-text-font-weight-400',
+					$value: 400,
+					value: 400,
+				});
 				const result = await format({
 					dictionary: makeDictionary([token]),
 					options: { usesDtcg: true },
@@ -387,7 +444,11 @@ describe('CSS Features', () => {
 			});
 
 			it('filters out tokens with null values', async () => {
-				const token = makeToken({ name: 'viv-empty', $value: null, value: null });
+				const token = makeToken({
+					name: 'viv-empty',
+					$value: null,
+					value: null,
+				});
 				const result = await format({
 					dictionary: makeDictionary([token]),
 					options: { usesDtcg: true },
@@ -397,7 +458,11 @@ describe('CSS Features', () => {
 			});
 
 			it('resolves object values with $value property', async () => {
-				const token = makeToken({ name: 'viv-color-bg', $value: { $value: '#abc' }, value: null });
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: { $value: '#abc' },
+					value: null,
+				});
 				const result = await format({
 					dictionary: makeDictionary([token]),
 					options: { usesDtcg: true },
@@ -407,7 +472,11 @@ describe('CSS Features', () => {
 			});
 
 			it('resolves object values with value property', async () => {
-				const token = makeToken({ name: 'viv-color-bg', $value: { value: '#abc' }, value: null });
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: { value: '#abc' },
+					value: null,
+				});
 				const result = await format({
 					dictionary: makeDictionary([token]),
 					options: { usesDtcg: true },
@@ -428,11 +497,17 @@ describe('CSS Features', () => {
 					options: { usesDtcg: true },
 					file: {},
 				});
-				expect(result).toContain('--viv-color-bg: #fff; /** Background color */');
+				expect(result).toContain(
+					'--viv-color-bg: #fff; /** Background color */'
+				);
 			});
 
 			it('uses $value when usesDtcg is true', async () => {
-				const token = makeToken({ name: 'viv-color-bg', $value: '#dtcg', value: '#legacy' });
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#dtcg',
+					value: '#legacy',
+				});
 				const result = await format({
 					dictionary: makeDictionary([token]),
 					options: { usesDtcg: true },
@@ -442,7 +517,11 @@ describe('CSS Features', () => {
 			});
 
 			it('uses token.value when usesDtcg is false', async () => {
-				const token = makeToken({ name: 'viv-color-bg', $value: '#dtcg', value: '#legacy' });
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#dtcg',
+					value: '#legacy',
+				});
 				const result = await format({
 					dictionary: makeDictionary([token]),
 					options: { usesDtcg: false },
@@ -452,7 +531,11 @@ describe('CSS Features', () => {
 			});
 
 			it('uses custom indentation', async () => {
-				const token = makeToken({ name: 'viv-color-bg', $value: '#fff', value: '#fff' });
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#fff',
+					value: '#fff',
+				});
 				const result = await format({
 					dictionary: makeDictionary([token]),
 					options: { formatting: { indentation: '\t' } },
@@ -500,7 +583,9 @@ describe('CSS Features', () => {
 						file: {},
 					});
 
-					expect(result).toContain('--viv-text-heading-xl: var(--viv-text-heading-xl-font-weight)');
+					expect(result).toContain(
+						'--viv-text-heading-xl: var(--viv-text-heading-xl-font-weight)'
+					);
 				});
 
 				it('uses shared font-weight var via reference when no per-scale sub-token exists', async () => {
@@ -536,7 +621,9 @@ describe('CSS Features', () => {
 						file: {},
 					});
 
-					expect(result).toContain('--viv-text-code-inline: var(--viv-text-code-font-weight)');
+					expect(result).toContain(
+						'--viv-text-code-inline: var(--viv-text-code-font-weight)'
+					);
 				});
 
 				it('composes full typography shorthand with var() references', async () => {

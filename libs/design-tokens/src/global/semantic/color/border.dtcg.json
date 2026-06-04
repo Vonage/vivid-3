@@ -1,0 +1,94 @@
+{
+	"color": {
+		"border": {
+			"DEFAULT": {
+				"$type": "color",
+				"$value": "{color.neutral.400}",
+				"$description": "Standard border for general UI elements such as inputs, cards, and panels.",
+				"$extensions": {
+					"tokenType": "color/border"
+				}
+			},
+			"strong": {
+				"$type": "color",
+				"$value": "{color.neutral.500}",
+				"$description": "High-emphasis border for focused or active states, such as input focus rings.",
+				"$extensions": {
+					"tokenType": "color/border"
+				}
+			},
+			"muted": {
+				"$type": "color",
+				"$value": "{color.neutral.300}",
+				"$description": "Subtle border for low-emphasis separators, dividers, and non-interactive boundaries.",
+				"$extensions": {
+					"tokenType": "color/border"
+				}
+			},
+			"primary": {
+				"$type": "color",
+				"$value": "{color.primary.300}",
+				"$description": "Border for selected, focused, or primary interactive elements to communicate brand intent.",
+				"$extensions": {
+					"tokenType": "color/border"
+				}
+			},
+			"announcement": {
+				"$type": "color",
+				"$value": "{color.announcement.300}",
+				"$description": "Border for announcement or promotional UI elements such as banners and callouts.",
+				"$extensions": {
+					"tokenType": "color/border"
+				}
+			},
+			"info": {
+				"$type": "color",
+				"$value": "{color.info.300}",
+				"$description": "Border for informational states, such as info alerts, messages, or status indicators.",
+				"$extensions": {
+					"tokenType": "color/border"
+				}
+			},
+			"danger": {
+				"$type": "color",
+				"$value": "{color.danger.300}",
+				"$description": "Border for error and destructive states, such as invalid inputs or dangerous actions.",
+				"$extensions": {
+					"tokenType": "color/border"
+				}
+			},
+			"warning": {
+				"$type": "color",
+				"$value": "{color.warning.300}",
+				"$description": "Border for caution states, such as warnings or actions requiring user attention.",
+				"$extensions": {
+					"tokenType": "color/border"
+				}
+			},
+			"success": {
+				"$type": "color",
+				"$value": "{color.success.300}",
+				"$description": "Border for positive states, such as validated inputs or success confirmation.",
+				"$extensions": {
+					"tokenType": "color/border"
+				}
+			},
+			"neutral": {
+				"$type": "color",
+				"$value": "{color.neutral.300}",
+				"$description": "Neutral-connotation border for elements that need role-based intent without specific emphasis.",
+				"$extensions": {
+					"tokenType": "color/border"
+				}
+			},
+			"disabled": {
+				"$type": "color",
+				"$value": "{color.neutral.300}",
+				"$description": "Border for disabled, non-interactive elements.",
+				"$extensions": {
+					"tokenType": "color/border"
+				}
+			}
+		}
+	}
+}

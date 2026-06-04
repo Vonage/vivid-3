@@ -1,0 +1,30 @@
+{
+	"color": {
+		"bg": {
+			"DEFAULT": {
+				"$type": "color",
+				"$value": "{color.neutral.0}",
+				"$description": "The primary page background, used as the base canvas for application layouts and large surface areas.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"secondary": {
+				"$type": "color",
+				"$value": "{color.neutral.50}",
+				"$description": "A secondary page background for areas that need subtle visual separation from the primary background.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"tertiary": {
+				"$type": "color",
+				"$value": "{color.neutral.100}",
+				"$description": "A tertiary page background for areas that need stronger visual separation from the primary background.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			}
+		}
+	}
+}

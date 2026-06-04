@@ -1,0 +1,122 @@
+{
+	"color": {
+		"surface": {
+			"hover": {
+				"$type": "color",
+				"$value": "{color.primary.50}",
+				"$description": "Background for interactive surfaces, such as cards or panels, in their hover state.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"active": {
+				"$type": "color",
+				"$value": "{color.primary.100}",
+				"$description": "Background for interactive surfaces, such as cards or panels, in their pressed/active state.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"selected": {
+				"DEFAULT": {
+					"$type": "color",
+					"$value": "{color.neutral.100}",
+					"$description": "Background for surfaces in a selected state.",
+					"$extensions": {
+						"tokenType": "color/background"
+					}
+				},
+				"hover": {
+					"$type": "color",
+					"$value": "{color.neutral.50}",
+					"$description": "Background for selected surfaces in their hover state.",
+					"$extensions": {
+						"tokenType": "color/background"
+					}
+				}
+			},
+			"disabled": {
+				"$type": "color",
+				"$value": "{color.neutral.alpha.85}",
+				"$description": "Background for surfaces in a disabled, non-interactive state.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"neutral": {
+				"$type": "color",
+				"$value": "{color.neutral.50}",
+				"$description": "Neutral-tinted surface background for subtle visual grouping or separation.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"primary": {
+				"$type": "color",
+				"$value": "{color.primary.50}",
+				"$description": "Primary-tinted surface background used to brand or highlight an element.",
+				"$extensions": {
+					"tokenType": "color/background"
+				},
+				"selected": {
+					"DEFAULT": {
+						"$type": "color",
+						"$value": "{color.primary.100}",
+						"$description": "Background for surfaces in a selected state using the primary accent color.",
+						"$extensions": {
+							"tokenType": "color/background"
+						}
+					},
+					"hover": {
+						"$type": "color",
+						"$value": "{color.primary.50}",
+						"$description": "Background for primary-accented selected surfaces in their hover state.",
+						"$extensions": {
+							"tokenType": "color/background"
+						}
+					}
+				}
+			},
+			"announcement": {
+				"$type": "color",
+				"$value": "{color.announcement.50}",
+				"$description": "Announcement-tinted surface background for promotional or informational callouts.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"info": {
+				"$type": "color",
+				"$value": "{color.info.50}",
+				"$description": "Info-tinted surface background for informational messages or status indicators.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"success": {
+				"$type": "color",
+				"$value": "{color.success.50}",
+				"$description": "Success-tinted surface background for positive feedback or confirmation states.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"warning": {
+				"$type": "color",
+				"$value": "{color.warning.50}",
+				"$description": "Warning-tinted surface background for caution messages or states requiring attention.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			},
+			"danger": {
+				"$type": "color",
+				"$value": "{color.danger.50}",
+				"$description": "Danger-tinted surface background for error states or destructive actions.",
+				"$extensions": {
+					"tokenType": "color/background"
+				}
+			}
+		}
+	}
+}

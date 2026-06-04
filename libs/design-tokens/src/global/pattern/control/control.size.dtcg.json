@@ -1,0 +1,176 @@
+{
+	"control": {
+		"size": {
+			"xs": {
+				"gap": {
+					"$type": "dimension",
+					"$value": "{size.space.100}",
+					"$description": "A gap size for extra small control elements",
+					"$extensions": {
+						"tokenType": "spacing/gap"
+					}
+				},
+				"padding-inline": {
+					"$type": "dimension",
+					"$value": "{size.space.200}",
+					"$description": "A horizontal padding size for extra small control elements",
+					"$extensions": {
+						"tokenType": "spacing/padding-inline"
+					}
+				},
+				"height": {
+					"$type": "dimension",
+					"$value": "{size.height.500}",
+					"$description": "Block size for extra small control elements",
+					"$extensions": {
+						"tokenType": "spacing/block-size"
+					}
+				},
+				"border-radius": {
+					"$type": "dimension",
+					"$value": "{border.radius.md}",
+					"$description": "Border radius for extra small control elements",
+					"$extensions": {
+						"tokenType": "spacing/border-radius"
+					}
+				}
+			},
+			"sm": {
+				"gap": {
+					"$type": "dimension",
+					"$value": "{size.space.100}",
+					"$description": "A gap size for small control elements",
+					"$extensions": {
+						"tokenType": "spacing/gap"
+					}
+				},
+				"padding-inline": {
+					"$type": "dimension",
+					"$value": "{size.space.200}",
+					"$description": "A normal horizontal padding size for small control elements",
+					"$extensions": {
+						"tokenType": "spacing/padding-inline"
+					}
+				},
+				"height": {
+					"$type": "dimension",
+					"$value": "{size.height.600}",
+					"$description": "Block size for small control elements",
+					"$extensions": {
+						"tokenType": "spacing/block-size"
+					}
+				},
+				"border-radius": {
+					"$type": "dimension",
+					"$value": "{border.radius.md}",
+					"$description": "Border radius for small control elements",
+					"$extensions": {
+						"tokenType": "spacing/border-radius"
+					}
+				}
+			},
+			"md": {
+				"gap": {
+					"$type": "dimension",
+					"$value": "{size.space.200}",
+					"$description": "A gap size for medium control elements",
+					"$extensions": {
+						"tokenType": "spacing/gap"
+					}
+				},
+				"padding-inline": {
+					"$type": "dimension",
+					"$value": "{size.space.300}",
+					"$description": "A horizontal padding size for medium control elements",
+					"$extensions": {
+						"tokenType": "spacing/padding-inline"
+					}
+				},
+				"height": {
+					"$type": "dimension",
+					"$value": "{size.height.800}",
+					"$description": "Block size for medium control elements",
+					"$extensions": {
+						"tokenType": "spacing/block-size"
+					}
+				},
+				"border-radius": {
+					"$type": "dimension",
+					"$value": "{border.radius.md}",
+					"$description": "Border radius for medium control elements",
+					"$extensions": {
+						"tokenType": "spacing/border-radius"
+					}
+				}
+			},
+			"lg": {
+				"gap": {
+					"$type": "dimension",
+					"$value": "{size.space.200}",
+					"$description": "A gap size for large control elements",
+					"$extensions": {
+						"tokenType": "spacing/gap"
+					}
+				},
+				"padding-inline": {
+					"$type": "dimension",
+					"$value": "{size.space.400}",
+					"$description": "A horizontal padding size for large control elements",
+					"$extensions": {
+						"tokenType": "spacing/padding-inline"
+					}
+				},
+				"height": {
+					"$type": "dimension",
+					"$value": "{size.height.1000}",
+					"$description": "Block size for large control elements",
+					"$extensions": {
+						"tokenType": "spacing/block-size"
+					}
+				},
+				"border-radius": {
+					"$type": "dimension",
+					"$value": "{border.radius.lg}",
+					"$description": "Border radius for large control elements",
+					"$extensions": {
+						"tokenType": "spacing/border-radius"
+					}
+				}
+			},
+			"xl": {
+				"gap": {
+					"$type": "dimension",
+					"$value": "{size.space.200}",
+					"$description": "A gap size for extra large control elements",
+					"$extensions": {
+						"tokenType": "spacing/gap"
+					}
+				},
+				"padding-inline": {
+					"$type": "dimension",
+					"$value": "{size.space.500}",
+					"$description": "A horizontal padding size for extra large control elements",
+					"$extensions": {
+						"tokenType": "spacing/padding-inline"
+					}
+				},
+				"height": {
+					"$type": "dimension",
+					"$value": "{size.height.1200}",
+					"$description": "Block size for extra large control elements",
+					"$extensions": {
+						"tokenType": "spacing/block-size"
+					}
+				},
+				"border-radius": {
+					"$type": "dimension",
+					"$value": "{border.radius.lg}",
+					"$description": "Border radius for extra large control elements",
+					"$extensions": {
+						"tokenType": "spacing/border-radius"
+					}
+				}
+			}
+		}
+	}
+}

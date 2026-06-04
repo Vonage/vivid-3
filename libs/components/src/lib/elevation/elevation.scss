@@ -5,6 +5,37 @@
 $dps: 0 2 4 8 12 16 24;
 
 :host {
+	--vvd-color-shadow: #31304f;
+	--vvd-shadow-opacity-muted: 20%;
+	--vvd-shadow-opacity-strong: 25%;
+
+	--vvd-color-shadow-muted: color-mix(
+		in srgb,
+		var(--vvd-color-shadow) var(--vvd-shadow-opacity-muted),
+		transparent
+	);
+	--vvd-color-shadow-strong: color-mix(
+		in srgb,
+		var(--vvd-color-shadow) var(--vvd-shadow-opacity-strong),
+		transparent
+	);
+
+	--vvd-shadow-0dp: drop-shadow(1px 0px 0px #cccccc)
+		drop-shadow(0px 1px 0px #cccccc) drop-shadow(0px -1px 0px #cccccc)
+		drop-shadow(-1px 0px 0px #cccccc);
+	--vvd-shadow-2dp: drop-shadow(0px 1px 4px #0000001a)
+		drop-shadow(0px 1px 2px #0000000d) drop-shadow(0px 2px 1px #0000000d);
+	--vvd-shadow-4dp: drop-shadow(0px 2px 8px #0000001a)
+		drop-shadow(0px 2px 4px #0000000d) drop-shadow(0px 4px 2px #0000000d);
+	--vvd-shadow-8dp: drop-shadow(0px 2px 16px #0000001a)
+		drop-shadow(0px 8px 8px #0000000d) drop-shadow(0px 4px 4px #0000000d);
+	--vvd-shadow-12dp: drop-shadow(0px 4px 24px #0000001a)
+		drop-shadow(0px 12px 16px #0000000d) drop-shadow(0px 6px 8px #0000000d);
+	--vvd-shadow-16dp: drop-shadow(0px 6px 32px #0000001a)
+		drop-shadow(0px 16px 24px #0000000d) drop-shadow(0px 8px 12px #0000000d);
+	--vvd-shadow-24dp: drop-shadow(0px 12px 48px #0000001a)
+		drop-shadow(0px 24px 32px #0000000d) drop-shadow(0px 12px 16px #0000000d);
+
 	display: contents;
 }
 
@@ -30,6 +61,7 @@ $dps: 0 2 4 8 12 16 24;
 			block-size: 100%;
 			content: '';
 			filter: var(elevation.$vvd-elevation-shadow);
+			//box-shadow: var(elevation.$vvd-elevation-shadow);
 			inline-size: 100%;
 			inset-block-start: 0;
 			inset-inline-start: 0;

@@ -124,27 +124,36 @@ order: 2
 {{ heading('Background', '3') }}
 <p>Background colors form the baseline layer of all UI. The application itself has a background, and some components can also have a background if they are not built within a surface.</p>
 {{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 0, 2, 'Background' ) }}
+{{ heading('Background tokens', '4') }}
+{{ tokenReferenceTable([tokens.color.bg]) }}
 {{ heading('Surface', '3') }}
 <p>The most versatile colors in the system, used as the background for prominent UI elements such as cards and banners. Unlike plain backgrounds, surfaces can host multiple layered elements — making them the foundation for complex components and patterns.</p>
 <p>Surface colors also come in hierarchical levels, allowing you to increase or decrease visual emphasis on specific areas of the interface.</p>
 {{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 0, 3, 'Surface' ) }}
 {{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 0, 0, 'Surface' ) }}
+{{ heading('Surface tokens', '4') }}
+{{ tokenReferenceTable([tokens.color.surface]) }}
 {{ heading('Fill', '3') }}
 <p>Fill colors are used as the background for compact elements such as buttons and badges. They come in two types: subtle and strong. Subtle fills use alpha colors, making them suitable for use on a variety of backgrounds and surfaces. Strong fills are the most visually prominent colors in the interface, reserved for the highest emphasis UI elements.</p>
 {{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 0, 2, 'Fill (subtle)', true ) }}
 {{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 0, 2, 'Fill (subtle)', true ) }}
 {{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 9, 11, 'Fill (strong)' ) }}
 {{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 5, 7, 'Fill (strong)' ) }}
+{{ heading('Fill tokens', '4') }}
+{{ tokenReferenceTable([tokens.color.fill]) }}
 {{ heading('Border', '3') }}
 <p>Border colors define the edges and boundaries of UI elements, providing structure and separation between components. They range from subtle dividers that create visual grouping without drawing attention, to stronger boundaries that clearly delineate interactive or focused elements.</p>
 {{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 3, 5, 'Border' ) }}
 {{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 3, 3, 'Border' ) }}
+{{ heading('Border tokens', '4') }}
+{{ tokenReferenceTable([tokens.color.border]) }}
 {{ heading('Text', '3') }}
 <p>Text colors are applied to text and accompanying icon elements. They are designed to be accessible against their corresponding backgrounds and surfaces, but can be used on any background or surface where sufficient contrast is maintained.</p>
 <p>Elements on a strong fill use a dedicated on-strong text color, which is strictly paired with its corresponding fill and should not be used elsewhere.</p>
 {{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 7, 11, 'Text' ) }}
 {{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 5, 8, 'Text' ) }}
-
+{{ heading('Text tokens', '4') }}
+{{ tokenReferenceTable([tokens.color.text]) }}
 {{ heading('Tokens', '2') }}
 <p>Tokens are the mechanism for applying color consistently across Vivid. They abstract away raw values, making it straightforward to implement system-wide changes and ensuring color is always applied with intent.</p>
 {{ heading('Semantic', '3') }}
@@ -161,7 +170,7 @@ order: 2
 		<vwc-table-row>
 			<vwc-table-cell><vwc-badge text="Element" connotation="cta" appearance="subtle"></vwc-badge></vwc-table-cell>
 			<vwc-table-cell>The UI element the color is applied to.</vwc-table-cell>
-			<vwc-table-cell><code>bg</code>, <code>border</code>, <code>text</code></vwc-table-cell>
+			<vwc-table-cell><code>bg</code>, <code>surface</code>, <code>fill</code>, <code>border</code>, <code>text</code></vwc-table-cell>
 		</vwc-table-row>
 		<vwc-table-row>
 			<vwc-table-cell><vwc-badge text="Role" connotation="announcement" appearance="subtle"></vwc-badge></vwc-table-cell>
@@ -185,7 +194,7 @@ order: 2
 <div>
   <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
     <vwc-badge text="color" appearance="subtle"></vwc-badge>
-    -<vwc-badge text="bg-surface" connotation="cta" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="surface" connotation="cta" appearance="subtle"></vwc-badge>
     </span><br />
   <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
     <vwc-badge text="color" appearance="subtle"></vwc-badge>
@@ -194,13 +203,13 @@ order: 2
   </span><br />
   <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
     <vwc-badge text="color" appearance="subtle"></vwc-badge>
-    -<vwc-badge text="bg-fill" connotation="cta" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="fill" connotation="cta" appearance="subtle"></vwc-badge>
     -<vwc-badge text="success" connotation="announcement" appearance="subtle"></vwc-badge>
     -<vwc-badge text="subtle" connotation="information" appearance="subtle"></vwc-badge>
   </span><br />
   <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
     <vwc-badge text="color" appearance="subtle"></vwc-badge>
-    -<vwc-badge text="bg-fill" connotation="cta" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="fill" connotation="cta" appearance="subtle"></vwc-badge>
     -<vwc-badge text="primary" connotation="announcement" appearance="subtle"></vwc-badge>
     -<vwc-badge text="strong" connotation="information" appearance="subtle"></vwc-badge>
     -<vwc-badge text="hover" connotation="warning" appearance="subtle"></vwc-badge>
@@ -214,7 +223,7 @@ order: 2
   <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
     <vwc-badge text="color" appearance="subtle"></vwc-badge>
     -<vwc-badge text="form-control" connotation="success" appearance="filled"></vwc-badge>
-    -<vwc-badge text="bg-fill" connotation="cta" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="fill" connotation="cta" appearance="subtle"></vwc-badge>
     -<vwc-badge text="error" connotation="warning" appearance="subtle"></vwc-badge>
   </span> - <em>Background fill color for form controls when in error state</em><br />
   <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
@@ -223,7 +232,3 @@ order: 2
     -<vwc-badge text="text" connotation="cta" appearance="subtle"></vwc-badge>
   </span> - <em>Text color for form control helper text</em>
 </div>
-
-{{ heading('Reference table', '3') }}
-
-{{ tokenReferenceTable([tokens.color.bg,tokens.color.text,tokens.color.border]) }}
