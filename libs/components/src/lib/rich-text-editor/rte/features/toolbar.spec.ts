@@ -183,6 +183,7 @@ describe('RteToolbarFeature', () => {
 		});
 
 		it('should return focus to editor after selecting a menu item', async () => {
+			vi.useFakeTimers();
 			const rte = await setup([
 				new RteBase(),
 				new RteToolbarFeature(),
