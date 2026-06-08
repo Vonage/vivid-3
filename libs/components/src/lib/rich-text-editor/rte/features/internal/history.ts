@@ -3,8 +3,16 @@ import { keymap } from 'prosemirror-keymap';
 import { createButton } from '../../utils/ui';
 import { RteFeatureImpl, type ToolbarItemContribution } from '../../feature';
 
+type RteHistoryConfig = {
+	showToolbarButtons: boolean;
+};
+
 export class RteHistoryFeatureImpl extends RteFeatureImpl {
 	name = 'RteHistoryFeature';
+
+	constructor(private config: RteHistoryConfig) {
+		super();
+	}
 
 	override getPlugins() {
 		return [
@@ -20,6 +28,9 @@ export class RteHistoryFeatureImpl extends RteFeatureImpl {
 	}
 
 	override getToolbarItems(): ToolbarItemContribution[] {
+		if (!this.config.showToolbarButtons) {
+			return [];
+		}
 		return [
 			this.contribution(
 				{

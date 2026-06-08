@@ -714,6 +714,7 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 - `heading2?: boolean`: Add the `heading2` (`h2`) node. Defaults to false.
 - `heading3?: boolean`: Add the `heading3` (`h3`) node. Defaults to false.
 - `paragraph?: boolean`: Add the `paragraph` (`<p>`) node. Defaults to true.
+- `historyToolbarButtons?: boolean`: Show the undo/redo buttons in the toolbar. Defaults to true.
 
 **Feature API:**
 

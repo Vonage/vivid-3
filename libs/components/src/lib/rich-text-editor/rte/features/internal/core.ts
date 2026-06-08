@@ -19,7 +19,6 @@ import { defaultTextblockForMatch } from '../../utils/default-textblock';
 import uiCss from '../../utils/ui.style.scss?inline';
 import { FeatureState } from '../../utils/feature-state';
 import coreCss from './core.style.scss?inline';
-import { RteHistoryFeatureImpl } from './history';
 import { RteForeignHtmlFeatureImpl } from './foreign-html';
 import { RteCursorFixFeatureImpl } from './cursor-fix';
 
@@ -138,7 +137,6 @@ export class RteCoreImpl extends RteFeatureImpl {
 	override getFeatures(): RteFeatureImpl[] {
 		return [
 			this,
-			new RteHistoryFeatureImpl(),
 			new RteForeignHtmlFeatureImpl(),
 			new RteCursorFixFeatureImpl(),
 		];
