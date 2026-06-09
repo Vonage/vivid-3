@@ -1,0 +1,145 @@
+{
+	"elevation": {
+		"flat": {
+			"shadow": {
+				"DEFAULT": {
+					"$type": "shadow",
+					"$description": "No shadow, just a muted border to separate elements from the background.",
+					"$value": [
+						{ "offsetX": 1, "offsetY": 0, "blur": 0, "spread": 0, "color": "{elevation.flat.color.shadow}" },
+						{ "offsetX": 0, "offsetY": 1, "blur": 0, "spread": 0, "color": "{elevation.flat.color.shadow}" },
+						{ "offsetX": 0, "offsetY": -1, "blur": 0, "spread": 0, "color": "{elevation.flat.color.shadow}" },
+						{ "offsetX": -1, "offsetY": 0, "blur": 0, "spread": 0, "color": "{elevation.flat.color.shadow}" }
+					]
+				}
+			},
+			"surface": {
+				"$value": {
+					"bg": "{elevation.color.surface}",
+					"gradient": "{elevation.flat.color.gradient}"
+				},
+				"$description": "Surface colour for the flat elevation, typically the same as the base surface colour to maintain a flat appearance."
+			}
+		},
+		"raised": {
+			"shadow": {
+				"DEFAULT": {
+					"$type": "shadow",
+					"$description": "Minimal elevation for components resting just above the surface, such as cards and popovers.",
+					"$value": [
+						{ "offsetX": 0, "offsetY": 1, "blur": 4, "spread": 0, "color": "{elevation.raised.color.shadow.1}" },
+						{ "offsetX": 0, "offsetY": 1, "blur": 2, "spread": 0, "color": "{elevation.raised.color.shadow.2}" },
+						{ "offsetX": 0, "offsetY": 2, "blur": 1, "spread": 0, "color": "{elevation.raised.color.shadow.3}" }
+					]
+				}
+			},
+			"surface": {
+				"$value": {
+					"bg": "{elevation.color.surface}",
+					"gradient": "{elevation.raised.color.gradient}"
+				},
+				"$description": "Surface colour for the raised elevation, typically the same as the base surface colour with a subtle gradient (in dark mode)."
+			}
+		},
+		"floating": {
+			"shadow": {
+				"DEFAULT": {
+					"$type": "shadow",
+					"$description": "Low elevation for components such as cards, fixed headers and floating action buttons (FAB).",
+					"$value": [
+						{ "offsetX": 0, "offsetY": 2, "blur": 8, "spread": 0, "color": "{elevation.floating.color.shadow.1}" },
+						{ "offsetX": 0, "offsetY": 2, "blur": 4, "spread": 0, "color": "{elevation.floating.color.shadow.2}" },
+						{ "offsetX": 0, "offsetY": 4, "blur": 4, "spread": 0, "color": "{elevation.floating.color.shadow.3}" }
+					]
+				}
+			},
+			"surface": {
+				"$value": {
+					"bg": "{elevation.color.surface}",
+					"gradient": "{elevation.floating.color.gradient}"
+				},
+				"$description": "Surface colour for the floating elevation, typically the same as the base surface colour with a subtle gradient (in dark mode)."
+			}
+		},
+		"overlay": {
+			"shadow": {
+				"DEFAULT": {
+					"$type": "shadow",
+					"$description": "Medium elevation for overlayed elements such as dialogs and alerts.",
+					"$value": [
+						{ "offsetX": 0, "offsetY": 2, "blur": 16, "spread": 0, "color": "{elevation.overlay.color.shadow.1}" },
+						{ "offsetX": 0, "offsetY": 8, "blur": 8, "spread": 0, "color": "{elevation.overlay.color.shadow.2}" },
+						{ "offsetX": 0, "offsetY": 4, "blur": 4, "spread": 0, "color": "{elevation.overlay.color.shadow.3}" }
+					]
+				}
+			},
+			"surface": {
+				"$value": {
+					"bg": "{elevation.color.surface}",
+					"gradient": "{elevation.overlay.color.gradient}"
+				},
+				"$description": "Surface colour for the overlay elevation, typically the same as the base surface colour with a subtle gradient (in dark mode)."
+			}
+		},
+		"extension1": {
+			"shadow": {
+				"DEFAULT": {
+					"$type": "shadow",
+					"$description": "Elevated shadow for extended surfaces (not used in our components).",
+					"$value": [
+						{ "offsetX": 0, "offsetY": 4, "blur": 24, "spread": 0, "color": "{elevation.extension1.color.shadow.1}" },
+						{ "offsetX": 0, "offsetY": 12, "blur": 16, "spread": 0, "color": "{elevation.extension1.color.shadow.2}" },
+						{ "offsetX": 0, "offsetY": 6, "blur": 8, "spread": 0, "color": "{elevation.extension1.color.shadow.3}" }
+					]
+				}
+			},
+			"surface": {
+				"$value": {
+					"bg": "{elevation.color.surface}",
+					"gradient": "{elevation.extension1.color.gradient}"
+				},
+				"$description": "Surface colour for the extension1 elevation, typically the same as the base surface colour with a subtle gradient (in dark mode)."
+			}
+		},
+		"extension2": {
+			"shadow": {
+				"DEFAULT": {
+					"$type": "shadow",
+					"$description": "High elevation for extended surfaces (not used in our components).",
+					"$value": [
+						{ "offsetX": 0, "offsetY": 6, "blur": 32, "spread": 0, "color": "{elevation.extension2.color.shadow.1}" },
+						{ "offsetX": 0, "offsetY": 16, "blur": 24, "spread": 0, "color": "{elevation.extension2.color.shadow.2}" },
+						{ "offsetX": 0, "offsetY": 8, "blur": 12, "spread": 0, "color": "{elevation.extension2.color.shadow.3}" }
+					]
+				}
+			},
+			"surface": {
+				"$value": {
+					"bg": "{elevation.color.surface}",
+					"gradient": "{elevation.extension2.color.gradient}"
+				},
+				"$description": "Surface colour for the extension2 elevation, typically the same as the base surface colour with a subtle gradient (in dark mode)."
+			}
+		},
+		"extension3": {
+			"shadow": {
+				"DEFAULT": {
+					"$type": "shadow",
+					"$description": "Maximum elevation for extended surfaces (not used in our components).",
+					"$value": [
+						{ "offsetX": 0, "offsetY": 12, "blur": 48, "spread": 0, "color": "{elevation.extension3.color.shadow.1}" },
+						{ "offsetX": 0, "offsetY": 24, "blur": 32, "spread": 0, "color": "{elevation.extension3.color.shadow.2}" },
+						{ "offsetX": 0, "offsetY": 12, "blur": 16, "spread": 0, "color": "{elevation.extension3.color.shadow.3}" }
+					]
+				}
+			},
+			"surface": {
+				"$value": {
+					"bg": "{elevation.color.surface}",
+					"gradient": "{elevation.extension3.color.gradient}"
+				},
+				"$description": "Surface colour for the extension3 elevation, typically the same as the base surface colour with a subtle gradient (in dark mode)."
+			}
+		}
+	}
+}

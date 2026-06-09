@@ -11,7 +11,7 @@
 			},
       "backdrop": {
 				"$type": "color",
-				"$value": "{color.black}{color.alphahex.50}",
+				"$value": "{color.shadow.500}",
 				"$description": "A semi transparent background color for backdrops (eg. dialog, side drawer).",
 				"$extensions": {
 					"tokenType": "color/background"

@@ -90,6 +90,271 @@ export const cssConfig: Hooks = {
 		},
 	},
 	formats: {
+		'vvd/css/semantic-shadow': async ({ dictionary, options = {}, file }) => {
+			const selector = Array.isArray(options.selector)
+				? options.selector
+				: options.selector
+					? [options.selector]
+					: [':root'];
+
+			const header = await fileHeader({ file, options });
+			const indentation = options.formatting?.indentation || '  ';
+
+			const refToVar = (ref: string) =>
+				`var(--viv-${ref.slice(1, -1).replace(/\./g, '-')})`;
+
+			const lines: string[] = [];
+
+			for (const token of dictionary.allTokens) {
+				const stops: any[] = (token.original as any)?.$value ?? [];
+
+				for (let i = 0; i < stops.length; i++) {
+					const stop = stops[i];
+					const n = i + 1;
+					lines.push(
+						`${indentation}--${token.name}-${n}-size: ${stop.offsetX}px ${stop.offsetY}px ${stop.blur}px;`
+					);
+				}
+
+				const dropShadows = stops.map((stop, i) => {
+					const n = i + 1;
+					const sizeVar = `var(--${token.name}-${n}-size)`;
+					const colorVar =
+						typeof stop.color === 'string' && stop.color.startsWith('{')
+							? refToVar(stop.color)
+							: String(stop.color);
+					return `drop-shadow(${sizeVar} ${colorVar})`;
+				});
+
+				const composite = dropShadows.join(' ');
+				const comment = token.$description ?? token.comment;
+				let line = `${indentation}--${token.name}: ${composite};`;
+				if (comment) line += ` /** ${comment} */`;
+				lines.push(line);
+			}
+
+			const content = lines.join('\n');
+
+			const nestInSelector = (
+				content: string,
+				selector: string,
+				indentation: string
+			) => `${indentation}${selector} {\n${content}\n${indentation}}`;
+
+			return (
+				header +
+				selector
+					.reverse()
+					.reduce(
+						(content, currentSelector, index) =>
+							nestInSelector(
+								content,
+								currentSelector,
+								indentation.repeat(selector.length - 1 - index)
+							),
+						content
+					) +
+				'\n'
+			);
+		},
+		'vvd/css/elevation-surface': async ({ dictionary, options = {}, file }) => {
+			const selector = Array.isArray(options.selector)
+				? options.selector
+				: options.selector
+					? [options.selector]
+					: [':root'];
+
+			const header = await fileHeader({ file, options });
+			const indentation = options.formatting?.indentation || '  ';
+
+			const refToVar = (ref: string) =>
+				`var(--viv-${ref.slice(1, -1).replace(/\./g, '-')})`;
+
+			const toVar = (val: unknown): string => {
+				if (typeof val === 'string' && val.startsWith('{')) return refToVar(val);
+				return String(val);
+			};
+
+			const content = dictionary.allTokens
+				.map((token) => {
+					const original = (token.original as any)?.$value;
+					if (
+						!original ||
+						typeof original !== 'object' ||
+						!('bg' in original) ||
+						!('gradient' in original)
+					) {
+						return undefined;
+					}
+					const bgVar = toVar(original.bg);
+					const gradientVar = toVar(original.gradient);
+					const value = `linear-gradient(${gradientVar}, ${gradientVar}), ${bgVar}`;
+					const comment = token.$description ?? token.comment;
+					let line = `${indentation}--${token.name}: ${value};`;
+					if (comment) line += ` /** ${comment} */`;
+					return line;
+				})
+				.filter(Boolean)
+				.join('\n');
+
+			const nestInSelector = (
+				content: string,
+				selector: string,
+				indentation: string
+			) => `${indentation}${selector} {\n${content}\n${indentation}}`;
+
+			return (
+				header +
+				selector
+					.reverse()
+					.reduce(
+						(content, currentSelector, index) =>
+							nestInSelector(
+								content,
+								currentSelector,
+								indentation.repeat(selector.length - 1 - index)
+							),
+						content
+					) +
+				'\n'
+			);
+		},
+		'vvd/css/semantic-elevation': async ({ dictionary, options = {}, file }) => {
+			const selector = Array.isArray(options.selector)
+				? options.selector
+				: options.selector
+					? [options.selector]
+					: [':root'];
+
+			const header = await fileHeader({ file, options });
+			const indentation = options.formatting?.indentation || '  ';
+
+			const pathToToken = new Map(
+				(dictionary.unfilteredAllTokens ?? dictionary.allTokens).map(
+					(t) => [t.path.join('.'), t]
+				)
+			);
+
+			const resolveAsVar = (originalValue: unknown): string | null => {
+				if (typeof originalValue !== 'string') return null;
+				const match = originalValue.match(/^\{([^}]+)\}$/);
+				if (!match) return null;
+				const refToken = pathToToken.get(match[1]);
+				if (!refToken || refToken.filePath.includes('/core/')) return null;
+				const varName =
+					'viv-' +
+					refToken.path.filter((p: string) => p !== 'DEFAULT').join('-');
+				return `var(--${varName})`;
+			};
+
+			const serializeRef = (value: any): string => {
+				if (typeof value === 'string') {
+					return value.replace(
+						/{([^}]+)}/g,
+						(_match, tokenPath) =>
+							`var(--viv-${tokenPath.replace(/\./g, '-')})`
+					);
+				}
+				if (typeof value === 'number') return String(value);
+				if (value == null) return '';
+				if (typeof value === 'object') {
+					if ('$value' in value) return serializeRef(value.$value);
+					if ('value' in value) return serializeRef(value.value);
+					return String(value);
+				}
+				return String(value);
+			};
+
+			const refToVar = (ref: string) =>
+				`var(--viv-${ref.slice(1, -1).replace(/\./g, '-')})`;
+
+			const lines: string[] = [];
+
+			for (const token of dictionary.allTokens) {
+				const originalValue = (token.original as any)?.$value;
+				const comment = token.$description ?? token.comment;
+
+				if (token.$type === 'shadow') {
+					const stops: any[] = originalValue ?? [];
+					for (let i = 0; i < stops.length; i++) {
+						const stop = stops[i];
+						lines.push(
+							`${indentation}--${token.name}-${i + 1}-size: ${stop.offsetX}px ${stop.offsetY}px ${stop.blur}px;`
+						);
+					}
+					const composite = stops
+						.map((stop, i) => {
+							const sizeVar = `var(--${token.name}-${i + 1}-size)`;
+							const colorVar =
+								typeof stop.color === 'string' && stop.color.startsWith('{')
+									? refToVar(stop.color)
+									: String(stop.color);
+							return `drop-shadow(${sizeVar} ${colorVar})`;
+						})
+						.join(' ');
+					let line = `${indentation}--${token.name}: ${composite};`;
+					if (comment) line += ` /** ${comment} */`;
+					lines.push(line);
+				} else if (
+					originalValue &&
+					typeof originalValue === 'object' &&
+					!Array.isArray(originalValue) &&
+					'bg' in originalValue &&
+					'gradient' in originalValue
+				) {
+					const bgVar =
+						typeof originalValue.bg === 'string' &&
+						originalValue.bg.startsWith('{')
+							? refToVar(originalValue.bg)
+							: String(originalValue.bg);
+					const gradientVar =
+						typeof originalValue.gradient === 'string' &&
+						originalValue.gradient.startsWith('{')
+							? refToVar(originalValue.gradient)
+							: String(originalValue.gradient);
+					let line = `${indentation}--${token.name}: linear-gradient(${gradientVar}, ${gradientVar}), ${bgVar};`;
+					if (comment) line += ` /** ${comment} */`;
+					lines.push(line);
+				} else {
+					const varRef = resolveAsVar(originalValue);
+					const value = options.usesDtcg ? token.$value : token.value;
+					const formattedValue =
+						varRef !== null ? varRef : serializeRef(value);
+					if (
+						typeof formattedValue !== 'string' ||
+						formattedValue === ''
+					)
+						continue;
+					let line = `${indentation}--${token.name}: ${formattedValue};`;
+					if (comment) line += ` /** ${comment} */`;
+					lines.push(line);
+				}
+			}
+
+			const content = lines.join('\n');
+
+			const nestInSelector = (
+				content: string,
+				selector: string,
+				indentation: string
+			) => `${indentation}${selector} {\n${content}\n${indentation}}`;
+
+			return (
+				header +
+				selector
+					.reverse()
+					.reduce(
+						(content, currentSelector, index) =>
+							nestInSelector(
+								content,
+								currentSelector,
+								indentation.repeat(selector.length - 1 - index)
+							),
+						content
+					) +
+				'\n'
+			);
+		},
 		'vvd/css/variables-with-typography': async ({
 			dictionary,
 			options = {},
@@ -377,6 +642,14 @@ export const createCssPlatform = (theme: Theme): PlatformConfig => ({
 				token.filePath.includes('text') &&
 				token.filePath.includes('semantic') &&
 				!token.filePath.includes('color'),
+		},
+		{
+			destination: 'semantic-elevation.css',
+			format: 'vvd/css/semantic-elevation',
+			/* v8 ignore next -- @preserve */
+			filter: (token) =>
+				token.filePath.includes('semantic/elevation') &&
+				token.path[0] === 'elevation',
 		},
 	],
 	actions: ['vvd/css/createIndex', 'vvd/css/addFontsLinks'],

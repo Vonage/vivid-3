@@ -344,6 +344,90 @@ describe('CSS Features', () => {
 	});
 
 	describe('Formats', () => {
+		describe('vvd/css/semantic-shadow', () => {
+			const format = cssConfig.formats['vvd/css/semantic-shadow'] as (
+				args: any
+			) => Promise<string>;
+
+			const makeShadowToken = (name: string, stops: any[]) => ({
+				...makeToken({ name, $type: 'shadow', $value: 'box-shadow-ignored' }),
+				original: { $value: stops },
+			});
+
+			it('outputs size vars and composite drop-shadow for each stop', async () => {
+				const token = makeShadowToken('viv-shadow-raise', [
+					{ offsetX: 0, offsetY: 1, blur: 4, spread: 0, color: '{shadow.raise.1.color}' },
+					{ offsetX: 0, offsetY: 1, blur: 2, spread: 0, color: '{shadow.raise.2.color}' },
+					{ offsetX: 0, offsetY: 2, blur: 1, spread: 0, color: '{shadow.raise.3.color}' },
+				]);
+				const result = stripHeader(
+					await format({
+						dictionary: makeDictionary([token]),
+						options: { selector: '.vvd-root' },
+						file: {},
+					})
+				);
+
+				expect(result).toContain('--viv-shadow-raise-1-size: 0px 1px 4px;');
+				expect(result).toContain('--viv-shadow-raise-2-size: 0px 1px 2px;');
+				expect(result).toContain('--viv-shadow-raise-3-size: 0px 2px 1px;');
+				expect(result).toContain(
+					'--viv-shadow-raise: drop-shadow(var(--viv-shadow-raise-1-size) var(--viv-shadow-raise-1-color)) drop-shadow(var(--viv-shadow-raise-2-size) var(--viv-shadow-raise-2-color)) drop-shadow(var(--viv-shadow-raise-3-size) var(--viv-shadow-raise-3-color));'
+				);
+			});
+
+			it('converts DTCG color references to CSS var() in the composite', async () => {
+				const token = makeShadowToken('viv-shadow-flat', [
+					{ offsetX: 1, offsetY: 0, blur: 0, spread: 0, color: '{shadow.flat.color}' },
+					{ offsetX: 0, offsetY: 1, blur: 0, spread: 0, color: '{shadow.flat.color}' },
+				]);
+				const result = stripHeader(
+					await format({
+						dictionary: makeDictionary([token]),
+						options: { selector: '.vvd-root' },
+						file: {},
+					})
+				);
+
+				expect(result).toContain(
+					'--viv-shadow-flat: drop-shadow(var(--viv-shadow-flat-1-size) var(--viv-shadow-flat-color)) drop-shadow(var(--viv-shadow-flat-2-size) var(--viv-shadow-flat-color));'
+				);
+			});
+
+			it('wraps output in the provided selector', async () => {
+				const token = makeShadowToken('viv-shadow-raise', [
+					{ offsetX: 0, offsetY: 1, blur: 4, spread: 0, color: '{shadow.raise.1.color}' },
+				]);
+				const result = stripHeader(
+					await format({
+						dictionary: makeDictionary([token]),
+						options: { selector: '.vvd-root, ::part(vvd-root)' },
+						file: {},
+					})
+				);
+
+				expect(result).toContain('.vvd-root, ::part(vvd-root) {');
+			});
+
+			it('appends $description as a comment on the composite line', async () => {
+				const token = {
+					...makeShadowToken('viv-shadow-raise', [
+						{ offsetX: 0, offsetY: 1, blur: 4, spread: 0, color: '{shadow.raise.1.color}' },
+					]),
+					$description: 'Minimal elevation',
+				};
+				const result = stripHeader(
+					await format({
+						dictionary: makeDictionary([token]),
+						options: {},
+						file: {},
+					})
+				);
+
+				expect(result).toContain('/** Minimal elevation */');
+			});
+		});
+
 		describe('vvd/css/variables-with-typography', () => {
 			const format = cssConfig.formats['vvd/css/variables-with-typography'] as (
 				args: any

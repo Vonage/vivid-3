@@ -1,0 +1,27 @@
+---
+permalink: /designs/elevation/
+title: Elevation
+order: 4
+---
+{% include '../_includes/tokens-table-new.njk' %}
+{% from '../_includes/tokens-table-new.njk' import heading, elevationTokenTable, tokenReferenceTable %}
+
+<h1>Elevation</h1>
+<p>Elevation is the visual representation of depth in a user interface, helping to create hierarchy, focus, and a sense of spatial relationships between elements.</p>
+
+{{ heading('Shadow and surface', '2') }}
+<p>Each elevation level is defined by two properties working in tandem: a <strong>shadow</strong> and a <strong>surface</strong>. Together they ensure depth is always legible — the shadow in light mode, the surface tint in dark mode.</p>
+
+{{ heading('Shadow', '3') }}
+<p>The shadow conveys depth using multiple layered drop-shadows with increasing offset and blur — producing a naturalistic light-source impression that grows more pronounced at higher levels. The <code>flat</code> level is the exception: instead of a depth shadow it uses a thin border-like outline to distinguish the element from its background without implying lift.</p>
+
+{{ heading('Surface', '3') }}
+<p>The surface is the background of the elevated element. In light mode, surface color stays consistent across all levels — depth is communicated entirely by the shadow. In dark mode, shadows alone provide insufficient contrast, so a white gradient overlay is composited on top of the surface. Its opacity increases with each level, creating a progressively lighter tint that simulates material lift and keeps elevation perceptible across both themes.</p>
+
+{{ heading('Composite elevation tokens', '2') }}
+<p>Each level exposes two composite tokens — <code>shadow</code> and <code>surface</code> — that bundle all the underlying semantic color values into a single, ready-to-use output.</p>
+{{ elevationTokenTable(tokens.elevation) }}
+
+{{ heading('Semantic color tokens', '2') }}
+<p>These are the individual color tokens that the composite tokens reference. They define the shadow layer colors and the surface gradient at each elevation level, and adapt between light and dark themes.</p>
+{{ tokenReferenceTable([tokens.elevation.semanticColors]) }}

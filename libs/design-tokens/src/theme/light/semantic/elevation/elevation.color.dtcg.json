@@ -1,0 +1,181 @@
+{
+	"elevation": {
+		"color": {
+			"surface": {		
+				"$type": "color",
+				"$value": "{color.surface.DEFAULT}",
+				"$description": "Base colour for all elevation levels, representing the surface on which elements rest."
+			}
+		},
+		"flat": {
+			"color": {
+				"shadow": {
+					"$type": "color",
+					"$value": "{color.shadow.0}",
+					"$description": "Border colour used for the flat border-substitute shadow."
+				},
+				"gradient": {
+					"$type": "color",
+					"$value": "{color.transparent}",
+					"$description": "Gradient colour for the flat elevation."
+				}
+			}
+		},
+		"raised": {
+			"color": {
+				"shadow": {
+					"1": {
+						"$type": "color",
+						"$value": "{color.shadow.200}",
+						"$description": "Shadow colour for the first layer of the raised shadow."
+					},
+					"2": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the second layer of the raised shadow."
+					},
+					"3": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the third layer of the raised shadow."
+					}
+				},
+				"gradient": {
+					"$type": "color",
+					"$value": "{color.transparent}",
+					"$description": "Gradient colour for the raised elevation."
+				}
+			}
+		},
+		"floating": {
+			"color": {
+				"shadow": {
+					"1": {
+						"$type": "color",
+						"$value": "{color.shadow.200}",
+						"$description": "Shadow colour for the first layer of the floating shadow."
+					},
+					"2": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the second layer of the floating shadow."
+					},
+					"3": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the third layer of the floating shadow."
+					}
+				},
+				"gradient": {
+					"$type": "color",
+					"$value": "{color.transparent}",
+					"$description": "Gradient colour for the floating elevation."
+				}
+			}
+		},
+		"overlay": {
+			"color": {
+				"shadow": {
+					"1": {
+						"$type": "color",
+						"$value": "{color.shadow.200}",
+						"$description": "Shadow colour for the first layer of the overlay shadow."
+					},
+					"2": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the second layer of the overlay shadow."
+					},
+					"3": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the third layer of the overlay shadow."
+					}
+				},
+				"gradient": {
+					"$type": "color",
+					"$value": "{color.transparent}",
+					"$description": "Gradient colour for the overlay elevation."
+				}
+			}
+		},
+		"extension1": {
+			"color": {
+				"shadow": {
+					"1": {
+						"$type": "color",
+						"$value": "{color.shadow.200}",
+						"$description": "Shadow colour for the first layer of the extension1 shadow."
+					},
+					"2": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the second layer of the extension1 shadow."
+					},
+					"3": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the third layer of the extension1 shadow."
+					}
+				},
+				"gradient": {
+					"$type": "color",
+					"$value": "{color.transparent}",
+					"$description": "Gradient colour for the extension1 elevation."
+				}
+			}
+		},
+		"extension2": {
+			"color": {
+				"shadow": {
+					"1": {
+						"$type": "color",
+						"$value": "{color.shadow.200}",
+						"$description": "Shadow colour for the first layer of the extension2 shadow."
+					},
+					"2": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the second layer of the extension2 shadow."
+					},
+					"3": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the third layer of the extension2 shadow."
+					}
+				},
+				"gradient": {
+					"$type": "color",
+					"$value": "{color.transparent}",
+					"$description": "Gradient colour for the extension2 elevation."
+				}
+			}
+		},
+		"extension3": {
+			"color": {
+				"shadow": {
+					"1": {
+						"$type": "color",
+						"$value": "{color.shadow.300}",
+						"$description": "Shadow colour for the first layer of the extension3 shadow."
+					},
+					"2": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the second layer of the extension3 shadow."
+					},
+					"3": {
+						"$type": "color",
+						"$value": "{color.shadow.100}",
+						"$description": "Shadow colour for the third layer of the extension3 shadow."
+					}
+				},
+				"gradient": {
+					"$type": "color",
+					"$value": "{color.transparent}",
+					"$description": "Gradient colour for the extension3 elevation."
+				}
+			}
+		}
+	}
+}
