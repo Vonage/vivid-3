@@ -18,7 +18,7 @@ describe('firstOfType', () => {
 	it('should return the first child element of the specified type', () => {
 		const firstSpan = firstOfType(container, HTMLSpanElement);
 		expect(firstSpan).toBeInstanceOf(HTMLSpanElement);
-		expect(firstSpan?.textContent).toBe('One');
+		expect(firstSpan!.textContent).toBe('One');
 	});
 
 	it('should return null if no child of the specified type exists', () => {

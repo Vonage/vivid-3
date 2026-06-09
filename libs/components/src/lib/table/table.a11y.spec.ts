@@ -13,8 +13,7 @@ describe('Table accessibility', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}>
+		element = fixture(`<${COMPONENT_TAG}>
 				<vwc-table-head>
 					<vwc-table-row>
 						<vwc-table-header-cell>Column 1</vwc-table-header-cell>
@@ -31,8 +30,7 @@ describe('Table accessibility', () => {
 						<vwc-table-cell>Data 4</vwc-table-cell>
 					</vwc-table-row>
 				</vwc-table-body>
-			</${COMPONENT_TAG}>`
-		)) as Table;
+			</${COMPONENT_TAG}>`) as Table;
 
 		await elementUpdated(element);
 	});

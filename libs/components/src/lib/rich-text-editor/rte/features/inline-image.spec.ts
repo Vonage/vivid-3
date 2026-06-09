@@ -269,7 +269,7 @@ describe('RteInlineImageFeature', () => {
 
 			rte.selectImage('Image');
 			await elementUpdated(rte.element);
-			expect(rte.openPopover()?.open).toBe(true);
+			expect(rte.openPopover()!.open).toBe(true);
 
 			rte.keydown('Escape');
 			await elementUpdated(rte.element);

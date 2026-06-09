@@ -14,9 +14,7 @@ describe('vwc-progress-ring', () => {
 	let element: ProgressRing;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as ProgressRing;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as ProgressRing;
 	});
 
 	describe('basic', () => {
@@ -77,10 +75,10 @@ describe('vwc-progress-ring', () => {
 			element.value = 25;
 			const expectedValue = (element.value * 44) / 100;
 			await elementUpdated(element);
-			const determinateDiv = element.shadowRoot?.querySelector(
+			const determinateDiv = element.shadowRoot!.querySelector(
 				'.determinate'
 			) as HTMLElement;
-			expect(determinateDiv?.style.strokeDasharray).toEqual(
+			expect(determinateDiv.style.strokeDasharray).toEqual(
 				`${expectedValue}px 44px`
 			);
 		});
@@ -101,13 +99,13 @@ describe('vwc-progress-ring', () => {
 		});
 
 		it('should set class paused on base element', async function () {
-			const baseDiv = element.shadowRoot?.querySelector('.base');
+			const baseDiv = element.shadowRoot!.querySelector('.base');
 			const pausedClassExistsBeforeChange =
-				baseDiv?.classList.contains('paused');
+				baseDiv!.classList.contains('paused');
 			element.paused = true;
 			await elementUpdated(element);
 			const pausedClassExistsAfterChange =
-				baseDiv?.classList.contains('paused');
+				baseDiv!.classList.contains('paused');
 
 			expect(pausedClassExistsBeforeChange).toEqual(false);
 			expect(pausedClassExistsAfterChange).toEqual(true);
@@ -139,13 +137,13 @@ describe('vwc-progress-ring', () => {
 
 		it('should set connotation on the base div', async function () {
 			const connotation = Connotation.CTA;
-			const baseDiv = element.shadowRoot?.querySelector('.base');
-			const connotationClassExistsBeforeChange = baseDiv?.classList.contains(
+			const baseDiv = element.shadowRoot!.querySelector('.base');
+			const connotationClassExistsBeforeChange = baseDiv!.classList.contains(
 				`connotation-${connotation}`
 			);
 			element.connotation = connotation;
 			await elementUpdated(element);
-			const connotationClassExistsAfterChange = baseDiv?.classList.contains(
+			const connotationClassExistsAfterChange = baseDiv!.classList.contains(
 				`connotation-${connotation}`
 			);
 
@@ -157,11 +155,11 @@ describe('vwc-progress-ring', () => {
 	describe('size', function () {
 		let baseElement: Element | null | undefined;
 		beforeEach(function () {
-			baseElement = element.shadowRoot?.querySelector('.base');
+			baseElement = element.shadowRoot!.querySelector('.base');
 		});
 
 		it('should set size class only if exists', async function () {
-			const classListContainsSize = baseElement?.className
+			const classListContainsSize = baseElement!.className
 				.split(' ')
 				.reduce((contains: boolean, className: string) => {
 					return contains || className.indexOf('size-') > -1;
@@ -174,7 +172,7 @@ describe('vwc-progress-ring', () => {
 			const expectedClass = `size-${sizeValue}`;
 			element.setAttribute('size', sizeValue.toString());
 			await elementUpdated(element);
-			expect(baseElement?.classList.contains(expectedClass)).toEqual(true);
+			expect(baseElement!.classList.contains(expectedClass)).toEqual(true);
 		});
 	});
 
@@ -190,11 +188,11 @@ describe('vwc-progress-ring', () => {
 			element.ariaLabel = 'Label';
 
 			const baseElement = getBaseElement(element);
-			expect(baseElement?.getAttribute('role')).toBe('progressbar');
-			expect(baseElement?.getAttribute('aria-label')).toBe('Label');
-			expect(baseElement?.getAttribute('aria-valuemin')).toBe('10');
-			expect(baseElement?.getAttribute('aria-valuemax')).toBe('90');
-			expect(baseElement?.getAttribute('aria-valuenow')).toBe('20');
+			expect(baseElement.getAttribute('role')).toBe('progressbar');
+			expect(baseElement.getAttribute('aria-label')).toBe('Label');
+			expect(baseElement.getAttribute('aria-valuemin')).toBe('10');
+			expect(baseElement.getAttribute('aria-valuemax')).toBe('90');
+			expect(baseElement.getAttribute('aria-valuenow')).toBe('20');
 		});
 	});
 

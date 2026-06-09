@@ -18,9 +18,7 @@ describe('vwc-header', () => {
 	let element: Header;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Header;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Header;
 	});
 
 	describe('basic', () => {
@@ -40,7 +38,7 @@ describe('vwc-header', () => {
 
 	describe('elevation shadow', () => {
 		it('should default elevation to no-shadow', async () => {
-			const elevation = element.shadowRoot?.querySelector(
+			const elevation = element.shadowRoot!.querySelector(
 				ELEVATION_SELECTOR
 			) as Elevation;
 
@@ -51,7 +49,7 @@ describe('vwc-header', () => {
 			element.elevationShadow = true;
 			await elementUpdated(element);
 
-			const elevation = element.shadowRoot?.querySelector(
+			const elevation = element.shadowRoot!.querySelector(
 				ELEVATION_SELECTOR
 			) as Elevation;
 
@@ -64,7 +62,7 @@ describe('vwc-header', () => {
 			element.alternate = true;
 			await elementUpdated(element);
 
-			const container = element.shadowRoot?.querySelector(
+			const container = element.shadowRoot!.querySelector(
 				'.container'
 			) as HTMLElement;
 

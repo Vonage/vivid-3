@@ -23,9 +23,7 @@ describe('vwc-button', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Button;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Button;
 	});
 
 	describe('basic', () => {
@@ -52,7 +50,7 @@ describe('vwc-button', () => {
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				element.shadowRoot?.querySelector('slot[name="icon"]')
+				element.shadowRoot!.querySelector('slot[name="icon"]')
 			).toBeTruthy();
 		});
 
@@ -60,7 +58,7 @@ describe('vwc-button', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot!.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon.name).toEqual('home');
 		});
@@ -70,7 +68,7 @@ describe('vwc-button', () => {
 			element.iconTrailing = true;
 			await elementUpdated(element);
 
-			const trailingIcon = element.shadowRoot?.querySelector(
+			const trailingIcon = element.shadowRoot!.querySelector(
 				`.icon-trailing ${ICON_SELECTOR}`
 			);
 			expect(trailingIcon).toBeInstanceOf(HTMLElement);
@@ -82,7 +80,7 @@ describe('vwc-button', () => {
 			element.pending = true;
 			await elementUpdated(element);
 
-			const progress = element.shadowRoot?.querySelector(
+			const progress = element.shadowRoot!.querySelector(
 				PROGRESS_SELECTOR
 			) as ProgressRing;
 			expect(progress).toBeInstanceOf(ProgressRing);
@@ -94,7 +92,7 @@ describe('vwc-button', () => {
 			element.pending = true;
 			await elementUpdated(element);
 
-			const progress = element.shadowRoot?.querySelector(
+			const progress = element.shadowRoot!.querySelector(
 				PROGRESS_SELECTOR
 			) as ProgressRing;
 			expect(progress).toBeNull();
@@ -105,7 +103,7 @@ describe('vwc-button', () => {
 			element.pending = true;
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot!.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeNull();
 		});
 
@@ -115,7 +113,7 @@ describe('vwc-button', () => {
 			element.pending = true;
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot!.querySelector(ICON_SELECTOR) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
 		});
 
@@ -127,7 +125,7 @@ describe('vwc-button', () => {
 			await elementUpdated(element);
 
 			const control = getControlElement(element);
-			control?.click();
+			control.click();
 
 			expect(listener).not.toHaveBeenCalled();
 		});
@@ -144,7 +142,7 @@ describe('vwc-button', () => {
 				key: 'Enter',
 				bubbles: true,
 			});
-			control?.dispatchEvent(event);
+			control.dispatchEvent(event);
 
 			expect(listener).not.toHaveBeenCalled();
 		});
@@ -162,14 +160,14 @@ describe('vwc-button', () => {
 				code: 'Space',
 				bubbles: true,
 			});
-			control?.dispatchEvent(event);
+			control.dispatchEvent(event);
 
 			expect(listener).not.toHaveBeenCalled();
 		});
 	});
 
 	describe('dropdown-indicator', () => {
-		const getChevron = () => element.shadowRoot?.querySelector('.chevron');
+		const getChevron = () => element.shadowRoot!.querySelector('.chevron');
 
 		it('should not display a chevron if not set', async () => {
 			expect(getChevron()).toBe(null);
@@ -271,8 +269,8 @@ describe('vwc-button', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector('.control .text');
-			expect(control?.textContent?.trim()).toEqual(label);
+			const control = element.shadowRoot!.querySelector('.control .text');
+			expect(control!.textContent.trim()).toEqual(label);
 		});
 	});
 
@@ -282,7 +280,7 @@ describe('vwc-button', () => {
 			element.connotation = connotation;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(
+			const control = element.shadowRoot!.querySelector(
 				`.control.connotation-${connotation}`
 			);
 			expect(control).toBeInstanceOf(Element);
@@ -295,7 +293,7 @@ describe('vwc-button', () => {
 			element.shape = shape;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(
+			const control = element.shadowRoot!.querySelector(
 				`.control.shape-${shape}`
 			);
 			expect(control).toBeInstanceOf(Element);
@@ -308,7 +306,7 @@ describe('vwc-button', () => {
 			element.appearance = appearance;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(
+			const control = element.shadowRoot!.querySelector(
 				`.control.appearance-${appearance}`
 			);
 			expect(control).toBeInstanceOf(Element);
@@ -321,43 +319,43 @@ describe('vwc-button', () => {
 			element.size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(
+			const control = element.shadowRoot!.querySelector(
 				`.control.size-${size}`
 			);
-			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
+			expect(control!.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
 
 	describe('icon-only', () => {
 		it('should sets correct internal icon-only style when icon is set and label is undefined', async () => {
-			const control = element.shadowRoot?.querySelector(`.control`);
+			const control = element.shadowRoot!.querySelector(`.control`);
 
 			element.icon = 'home';
 			element.label = undefined;
 			await elementUpdated(element);
 
-			expect(control?.classList.contains(`icon-only`)).toBeTruthy();
+			expect(control!.classList.contains(`icon-only`)).toBeTruthy();
 
 			element.label = 'button';
 			await elementUpdated(element);
 
-			expect(control?.classList.contains(`icon-only`)).toBeFalsy();
+			expect(control!.classList.contains(`icon-only`)).toBeFalsy();
 		});
 
 		it('should remove icon-only when drop-down-indicator is added, icon is set and label is undefined', async () => {
-			const control = element.shadowRoot?.querySelector(`.control`);
+			const control = element.shadowRoot!.querySelector(`.control`);
 
 			element.icon = 'home';
 			element.label = undefined;
 			element.dropdownIndicator = true;
 			await elementUpdated(element);
 
-			expect(control?.classList.contains(`icon-only`)).toBeFalsy();
+			expect(control!.classList.contains(`icon-only`)).toBeFalsy();
 
 			element.dropdownIndicator = false;
 			await elementUpdated(element);
 
-			expect(control?.classList.contains(`icon-only`)).toBeTruthy();
+			expect(control!.classList.contains(`icon-only`)).toBeTruthy();
 		});
 
 		it('should set icon-only class if slot name="icon" is slotted', async () => {
@@ -375,7 +373,7 @@ describe('vwc-button', () => {
 		});
 
 		it('should add icon-only when drop-down-indicator is added, slotted icon is set and label is undefined', async () => {
-			const control = element.shadowRoot?.querySelector(`.control`);
+			const control = element.shadowRoot!.querySelector(`.control`);
 
 			const slottedElement = document.createElement('span');
 			slottedElement.slot = 'icon';
@@ -384,12 +382,12 @@ describe('vwc-button', () => {
 			element.dropdownIndicator = true;
 
 			await elementUpdated(element);
-			expect(control?.classList.contains(`icon-only`)).toBeFalsy();
+			expect(control!.classList.contains(`icon-only`)).toBeFalsy();
 
 			element.dropdownIndicator = false;
 			await elementUpdated(element);
 
-			expect(control?.classList.contains(`icon-only`)).toBeTruthy();
+			expect(control!.classList.contains(`icon-only`)).toBeTruthy();
 		});
 	});
 
@@ -397,7 +395,7 @@ describe('vwc-button', () => {
 		it('should have type="submit" on button by default', async () => {
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
+				element.shadowRoot!.querySelector(`.control`)!.getAttribute('type')
 			).toBe('submit');
 		});
 
@@ -406,16 +404,16 @@ describe('vwc-button', () => {
 			element.type = type;
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
+				element.shadowRoot!.querySelector(`.control`)!.getAttribute('type')
 			).toBe('button');
 		});
 
 		it('should have type="submit" on the button if anything other than "reset", "button" or "submit" is provided', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} type="wrongtype" label="Button"></${COMPONENT_TAG}>`
-			)) as Button;
+			) as Button;
 			expect(
-				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
+				element.shadowRoot!.querySelector(`.control`)!.getAttribute('type')
 			).toBe('submit');
 		});
 	});
@@ -440,7 +438,7 @@ describe('vwc-button', () => {
 			await setProperty(element, attribute, text);
 
 			expect(
-				element.shadowRoot?.querySelector('a')?.getAttribute(attribute)
+				element.shadowRoot!.querySelector('a')!.getAttribute(attribute)
 			).toEqual(text);
 		});
 	});
@@ -452,7 +450,7 @@ describe('vwc-button', () => {
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(
+			const control = element.shadowRoot!.querySelector(
 				`.control.appearance-${appearance}.disabled`
 			);
 			expect(control).toBeInstanceOf(Element);
@@ -463,7 +461,7 @@ describe('vwc-button', () => {
 			await elementUpdated(element);
 
 			const control = getControlElement(element);
-			expect(control?.getAttribute('aria-disabled')).toBe('true');
+			expect(control.getAttribute('aria-disabled')).toBe('true');
 		});
 
 		it('should not emit click when disabled', async () => {
@@ -474,7 +472,7 @@ describe('vwc-button', () => {
 			await elementUpdated(element);
 
 			const control = getControlElement(element);
-			control?.click();
+			control.click();
 
 			expect(listener).not.toHaveBeenCalled();
 		});
@@ -527,7 +525,7 @@ describe('vwc-button', () => {
 			});
 
 			it('should render a button with href attribute as anchor element', async function () {
-				expect(getControlElement(element)?.tagName).toEqual('A');
+				expect(getControlElement(element).tagName).toEqual('A');
 			});
 
 			describe.each([
@@ -544,7 +542,7 @@ describe('vwc-button', () => {
 					await setProperty(element, attribute, text);
 
 					expect(
-						element.shadowRoot?.querySelector('a')?.getAttribute(attribute)
+						element.shadowRoot!.querySelector('a')!.getAttribute(attribute)
 					).toEqual(text);
 				});
 			});

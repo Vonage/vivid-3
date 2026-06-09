@@ -13,9 +13,7 @@ describe('a11y: vwc-button', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Button;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Button;
 	});
 
 	it('should pass html a11y test', async () => {

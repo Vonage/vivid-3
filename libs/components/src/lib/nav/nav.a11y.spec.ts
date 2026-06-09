@@ -19,16 +19,16 @@ describe('a11y: vwc-nav', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}>${navItemsTemplate}</${COMPONENT_TAG}>`
-		)) as Nav;
+		) as Nav;
 	});
 
 	it('should pass html a11y test', async () => {
-		const exposedHtmlString = element.shadowRoot?.innerHTML.replace(
+		const exposedHtmlString = element.shadowRoot!.innerHTML.replace(
 			'<slot></slot>',
 			navItemsTemplate
-		) as string;
+		);
 		expect(await axe(exposedHtmlString)).toHaveNoViolations();
 	});
 });

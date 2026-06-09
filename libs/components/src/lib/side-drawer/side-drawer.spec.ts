@@ -12,11 +12,11 @@ describe('vwc-side-drawer', () => {
 	let element: SideDrawer;
 
 	const clickOnScrim = () =>
-		(element.shadowRoot?.querySelector('.scrim') as HTMLElement).click();
+		(element.shadowRoot!.querySelector('.scrim') as HTMLElement).click();
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}>
-								</${COMPONENT_TAG}>`)) as SideDrawer;
+		element = fixture(`<${COMPONENT_TAG}>
+								</${COMPONENT_TAG}>`) as SideDrawer;
 		await elementUpdated(element);
 	});
 
@@ -66,7 +66,7 @@ describe('vwc-side-drawer', () => {
 
 		it("should not bubble 'open' event", async () => {
 			const spy = vi.fn();
-			element.parentElement?.addEventListener('open', spy);
+			element.parentElement!.addEventListener('open', spy);
 			element.open = true;
 			await elementUpdated(element);
 			expect(spy).not.toBeCalled();
@@ -104,7 +104,7 @@ describe('vwc-side-drawer', () => {
 			element.modal = true;
 			element.open = true;
 			const spy = vi.fn();
-			element.parentElement?.addEventListener('close', spy);
+			element.parentElement!.addEventListener('close', spy);
 			element.open = false;
 
 			await elementUpdated(element);
@@ -124,10 +124,10 @@ describe('vwc-side-drawer', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			const appContent = element.shadowRoot?.querySelector(
+			const appContent = element.shadowRoot!.querySelector(
 				'.side-drawer-app-content'
 			);
-			expect(appContent?.hasAttribute('inert')).toBe(false);
+			expect(appContent!.hasAttribute('inert')).toBe(false);
 		});
 	});
 
@@ -147,10 +147,10 @@ describe('vwc-side-drawer', () => {
 			element.modal = true;
 			await elementUpdated(element);
 
-			const appContent = element.shadowRoot?.querySelector(
+			const appContent = element.shadowRoot!.querySelector(
 				'.side-drawer-app-content'
 			);
-			expect(appContent?.hasAttribute('inert')).toBe(false);
+			expect(appContent!.hasAttribute('inert')).toBe(false);
 		});
 
 		it('should render inert attribute on app content element when open', async () => {
@@ -158,10 +158,10 @@ describe('vwc-side-drawer', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			const appContent = element.shadowRoot?.querySelector(
+			const appContent = element.shadowRoot!.querySelector(
 				'.side-drawer-app-content'
 			);
-			expect(appContent?.hasAttribute('inert')).toBe(true);
+			expect(appContent!.hasAttribute('inert')).toBe(true);
 		});
 	});
 
@@ -170,7 +170,7 @@ describe('vwc-side-drawer', () => {
 			element.alternate = true;
 			await elementUpdated(element);
 
-			const controlWithPartAlternate = element.shadowRoot?.querySelector(
+			const controlWithPartAlternate = element.shadowRoot!.querySelector(
 				'[part~=vvd-theme-alternate]'
 			);
 			expect(controlWithPartAlternate).toBeInstanceOf(HTMLElement);

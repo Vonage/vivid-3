@@ -4,9 +4,9 @@ import {
 	fixture,
 	getControlElement,
 } from '@repo/shared/test-utils/fixture';
+import type { ComputePositionReturn } from '@floating-ui/dom';
 import * as floatingUI from '@floating-ui/dom';
 import type { Mock, MockInstance } from 'vitest';
-import type { ComputePositionReturn } from '@floating-ui/dom';
 import type { Button } from '../button/button';
 import { PlacementStrategy, Popup } from './popup';
 import '.';
@@ -32,15 +32,15 @@ describe('vwc-popup', () => {
 	}
 
 	function getPopupWrapper() {
-		return element.shadowRoot?.querySelector('.popup-wrapper') as HTMLElement;
+		return element.shadowRoot!.querySelector('.popup-wrapper') as HTMLElement;
 	}
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Popup;
-		anchor = (await fixture(
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popup;
+		anchor = fixture(
 			'<vwc-button id="anchor"></vwc-button>',
 			ADD_TEMPLATE_TO_FIXTURE
-		)) as Button;
+		) as Button;
 	});
 
 	afterEach(function () {
@@ -134,7 +134,7 @@ describe('vwc-popup', () => {
 
 		it('should be hidden when not in viewport', async function () {
 			await setupPopupToOpenWithAnchor();
-			await resetPosition(true);
+			resetPosition(true);
 			await element.updatePosition();
 
 			expect(element.popupEl.style.visibility).toEqual('hidden');
@@ -142,7 +142,7 @@ describe('vwc-popup', () => {
 
 		it('should be visible when in viewport', async function () {
 			await setupPopupToOpenWithAnchor();
-			await resetPosition(false);
+			resetPosition(false);
 
 			await element.updatePosition();
 			expect(element.popupEl.style.visibility).toEqual('visible');
@@ -154,7 +154,7 @@ describe('vwc-popup', () => {
 			await elementUpdated(element);
 			await setupPopupToOpenWithAnchor();
 			(computePositionResult.middlewareData.arrow as any) = { x: 5, y: 10 };
-			await resetPosition(false);
+			resetPosition(false);
 			await element.updatePosition();
 			expect(element.arrowEl.style.left).toEqual('5px');
 			expect(element.arrowEl.style.top).toEqual('10px');
@@ -221,7 +221,7 @@ describe('vwc-popup', () => {
 
 	describe('show', () => {
 		it('should set "open" to true', async () => {
-			element.show();
+			await element.show();
 
 			expect(element.open).toEqual(true);
 		});
@@ -232,7 +232,7 @@ describe('vwc-popup', () => {
 			) as HTMLElement;
 			popoverEl.showPopover = vi.fn();
 
-			element.show();
+			await element.show();
 
 			expect(getControlElement(element).classList).toContain('open');
 			expect(popoverEl.showPopover).toHaveBeenCalled();
@@ -284,27 +284,27 @@ describe('vwc-popup', () => {
 
 	describe('arrow', () => {
 		it('should remove the arrow class on the container if arrow is false', async () => {
-			expect(element.shadowRoot?.querySelector('.arrow')).toBeNull();
+			expect(element.shadowRoot!.querySelector('.arrow')).toBeNull();
 		});
 
 		it('should set the arrow class on the container if arrow is true', async () => {
 			element.arrow = true;
 			await elementUpdated(element);
 
-			expect(element.shadowRoot?.querySelector('.arrow')).not.toBeNull();
+			expect(element.shadowRoot!.querySelector('.arrow')).not.toBeNull();
 		});
 	});
 
 	describe('dismissible', () => {
 		it('should remove the dismiss class on the container if dismissible is false', async () => {
-			expect(element.shadowRoot?.querySelector('.dismissible')).toBeNull();
+			expect(element.shadowRoot!.querySelector('.dismissible')).toBeNull();
 		});
 
 		it('should set the dismiss class on the container if dismissible is true', async () => {
 			element.dismissible = true;
 
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.dismissible')).not.toBeNull();
+			expect(element.shadowRoot!.querySelector('.dismissible')).not.toBeNull();
 		});
 
 		it('should hide when dismiss button is clicked', async () => {
@@ -392,11 +392,11 @@ describe('vwc-popup', () => {
 				right: 1,
 				bottom: 1,
 				left: 1,
-			} as DOMRect;
+			};
 			vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
 				...clientRect,
 				...overrides,
-			});
+			} as DOMRect);
 		}
 
 		let rAFStub: MockInstance;

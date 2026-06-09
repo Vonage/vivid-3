@@ -18,9 +18,7 @@ describe('vwc-data-grid-cell', () => {
 	let element: DataGridCell;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as DataGridCell;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as DataGridCell;
 	});
 
 	describe('basic', () => {
@@ -136,7 +134,7 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 			expect(templateRendered).toBeTruthy();
 			expect(element.querySelector('#cell')).toBeNull();
-			expect(element.textContent?.trim()).toEqual('33');
+			expect(element.textContent.trim()).toEqual('33');
 		});
 	});
 
@@ -191,10 +189,10 @@ describe('vwc-data-grid-cell', () => {
 			it('should set "active" class on the base element', async () => {
 				const baseElement = getBaseElement(element);
 				const hasActiveClassBeforeFocus =
-					baseElement?.classList.contains('active');
+					baseElement.classList.contains('active');
 				element.dispatchEvent(new Event('focusin'));
 				expect(hasActiveClassBeforeFocus).toBeFalsy();
-				expect(baseElement?.classList.contains('active')).toBeTruthy();
+				expect(baseElement.classList.contains('active')).toBeTruthy();
 			});
 
 			it('should ignore additional focusin events', async () => {
@@ -287,12 +285,12 @@ describe('vwc-data-grid-cell', () => {
 		});
 
 		it('should set selected class on base when aria-selected true on init', async () => {
-			const newElement = (await fixture(
+			const newElement = fixture(
 				`<${COMPONENT_TAG} aria-selected="true"></${COMPONENT_TAG}>`
-			)) as DataGridCell;
+			) as DataGridCell;
 			await elementUpdated(newElement);
 			expect(
-				getBaseElement(newElement)?.classList.contains('selected')
+				getBaseElement(newElement).classList.contains('selected')
 			).toBeTruthy();
 		});
 
@@ -300,7 +298,7 @@ describe('vwc-data-grid-cell', () => {
 			element.setAttribute('aria-selected', 'true');
 			await elementUpdated(element);
 			expect(
-				getBaseElement(element)?.classList.contains('selected')
+				getBaseElement(element).classList.contains('selected')
 			).toBeTruthy();
 		});
 
@@ -311,7 +309,7 @@ describe('vwc-data-grid-cell', () => {
 			element.setAttribute('aria-selected', 'false');
 			await elementUpdated(element);
 			expect(
-				getBaseElement(element)?.classList.contains('selected')
+				getBaseElement(element).classList.contains('selected')
 			).toBeFalsy();
 		});
 
@@ -319,12 +317,12 @@ describe('vwc-data-grid-cell', () => {
 			element.setAttribute('aria-selected', 'true');
 			await elementUpdated(element);
 
-			const visuallyHiddenElement = element.shadowRoot?.querySelector(
+			const visuallyHiddenElement = element.shadowRoot!.querySelector(
 				'vwc-visually-hidden[data-announcement="selection"]'
 			);
 
 			expect(visuallyHiddenElement).toBeTruthy();
-			expect(visuallyHiddenElement?.textContent?.trim()).toEqual(
+			expect(visuallyHiddenElement!.textContent.trim()).toEqual(
 				currentLocale.locale.dataGrid.cell.selected
 			);
 		});
@@ -333,7 +331,7 @@ describe('vwc-data-grid-cell', () => {
 			element.setAttribute('aria-selected', 'false');
 			await elementUpdated(element);
 
-			const visuallyHiddenElement = element.shadowRoot?.querySelector(
+			const visuallyHiddenElement = element.shadowRoot!.querySelector(
 				'vwc-visually-hidden[data-announcement="selection"]'
 			);
 
@@ -377,12 +375,12 @@ describe('vwc-data-grid-cell', () => {
 		});
 
 		it('should set selected class on base when selected true on init', async () => {
-			const newElement = (await fixture(
+			const newElement = fixture(
 				`<${COMPONENT_TAG} selected></${COMPONENT_TAG}>`
-			)) as DataGridCell;
+			) as DataGridCell;
 			await elementUpdated(newElement);
 			expect(
-				getBaseElement(newElement)?.classList.contains('selected')
+				getBaseElement(newElement).classList.contains('selected')
 			).toBeTruthy();
 		});
 
@@ -390,7 +388,7 @@ describe('vwc-data-grid-cell', () => {
 			element.setAttribute('selected', '');
 			await elementUpdated(element);
 			expect(
-				getBaseElement(element)?.classList.contains('selected')
+				getBaseElement(element).classList.contains('selected')
 			).toBeTruthy();
 		});
 
@@ -401,7 +399,7 @@ describe('vwc-data-grid-cell', () => {
 			element.removeAttribute('selected');
 			await elementUpdated(element);
 			expect(
-				getBaseElement(element)?.classList.contains('selected')
+				getBaseElement(element).classList.contains('selected')
 			).toBeFalsy();
 		});
 	});
@@ -418,44 +416,44 @@ describe('vwc-data-grid-cell', () => {
 		it('should have a button role when sorting is enabled', async function () {
 			element.setAttribute('aria-sort', 'none');
 			await elementUpdated(element);
-			const buttonElement = element.shadowRoot?.querySelector('.content');
+			const buttonElement = element.shadowRoot!.querySelector('.content');
 
-			expect(buttonElement?.role).toEqual('button');
+			expect(buttonElement!.role).toEqual('button');
 		});
 
 		it('should show sort-solid icon in the header when "none" is set', async function () {
 			element.setAttribute('aria-sort', 'none');
 			await elementUpdated(element);
-			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			const sortIcons = element.shadowRoot!.querySelectorAll(ICON_TAG);
 
-			expect(sortIcons?.length).toEqual(1);
-			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-solid');
+			expect(sortIcons.length).toEqual(1);
+			expect(sortIcons[0].getAttribute('name')).toEqual('sort-solid');
 		});
 
 		it('should show sort-asc-solid icon when aria-sort is ascending', async function () {
 			element.setAttribute('aria-sort', 'ascending');
 			await elementUpdated(element);
-			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			const sortIcons = element.shadowRoot!.querySelectorAll(ICON_TAG);
 
-			expect(sortIcons?.length).toEqual(1);
-			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-asc-solid');
+			expect(sortIcons.length).toEqual(1);
+			expect(sortIcons[0].getAttribute('name')).toEqual('sort-asc-solid');
 		});
 
 		it('should show sort-desc-solid icon when aria-sort is descending', async function () {
 			element.setAttribute('aria-sort', 'descending');
 			await elementUpdated(element);
-			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			const sortIcons = element.shadowRoot!.querySelectorAll(ICON_TAG);
 
-			expect(sortIcons?.length).toEqual(1);
-			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-desc-solid');
+			expect(sortIcons.length).toEqual(1);
+			expect(sortIcons[0].getAttribute('name')).toEqual('sort-desc-solid');
 		});
 
 		it('should remove sorting icons when aria-sort is not set', async function () {
 			element.ariaSort = null;
 			await elementUpdated(element);
-			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			const sortIcons = element.shadowRoot!.querySelectorAll(ICON_TAG);
 
-			expect(sortIcons?.length).toEqual(0);
+			expect(sortIcons.length).toEqual(0);
 		});
 
 		it('should set aria-sort from columnDefinition', async function () {
@@ -498,44 +496,44 @@ describe('vwc-data-grid-cell', () => {
 		it('should have a button role when sorting is enabled', async function () {
 			element.sortDirection = 'none';
 			await elementUpdated(element);
-			const buttonElement = element.shadowRoot?.querySelector('.content');
+			const buttonElement = element.shadowRoot!.querySelector('.content');
 
-			expect(buttonElement?.role).toEqual('button');
+			expect(buttonElement!.role).toEqual('button');
 		});
 
 		it('should show sort-solid icon in the header when "none" is set', async function () {
 			element.sortDirection = 'none';
 			await elementUpdated(element);
-			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			const sortIcons = element.shadowRoot!.querySelectorAll(ICON_TAG);
 
-			expect(sortIcons?.length).toEqual(1);
-			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-solid');
+			expect(sortIcons.length).toEqual(1);
+			expect(sortIcons[0].getAttribute('name')).toEqual('sort-solid');
 		});
 
 		it('should show sort-asc-solid icon when aria-sort is ascending', async function () {
 			element.sortDirection = 'ascending';
 			await elementUpdated(element);
-			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			const sortIcons = element.shadowRoot!.querySelectorAll(ICON_TAG);
 
-			expect(sortIcons?.length).toEqual(1);
-			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-asc-solid');
+			expect(sortIcons.length).toEqual(1);
+			expect(sortIcons[0].getAttribute('name')).toEqual('sort-asc-solid');
 		});
 
 		it('should show sort-desc-solid icon when aria-sort is descending', async function () {
 			element.sortDirection = 'descending';
 			await elementUpdated(element);
-			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			const sortIcons = element.shadowRoot!.querySelectorAll(ICON_TAG);
 
-			expect(sortIcons?.length).toEqual(1);
-			expect(sortIcons?.[0].getAttribute('name')).toEqual('sort-desc-solid');
+			expect(sortIcons.length).toEqual(1);
+			expect(sortIcons[0].getAttribute('name')).toEqual('sort-desc-solid');
 		});
 
 		it('should remove sorting icons when aria-sort is not set', async function () {
 			element.sortDirection = undefined;
 			await elementUpdated(element);
-			const sortIcons = element.shadowRoot?.querySelectorAll(ICON_TAG);
+			const sortIcons = element.shadowRoot!.querySelectorAll(ICON_TAG);
 
-			expect(sortIcons?.length).toEqual(0);
+			expect(sortIcons.length).toEqual(0);
 		});
 
 		it('should set aria-sort from columnDefinition', async function () {
@@ -589,7 +587,7 @@ describe('vwc-data-grid-cell', () => {
 		}
 
 		function queryAnnouncement(target: DataGridCell) {
-			return target.shadowRoot?.querySelector(
+			return target.shadowRoot!.querySelector(
 				'vwc-visually-hidden[data-announcement="sort-state"]'
 			);
 		}
@@ -599,7 +597,7 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 
 			const announcement = queryAnnouncement(element);
-			expect(announcement?.textContent?.trim()).toEqual(
+			expect(announcement!.textContent.trim()).toEqual(
 				getExpectedAnnouncement(DataGridCellSortStates.none)
 			);
 		});
@@ -612,7 +610,7 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 
 			const announcement = queryAnnouncement(element);
-			expect(announcement?.textContent?.trim()).toEqual(
+			expect(announcement!.textContent.trim()).toEqual(
 				getExpectedAnnouncement(DataGridCellSortStates.ascending)
 			);
 		});
@@ -622,7 +620,7 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 
 			const announcement = queryAnnouncement(element);
-			expect(announcement?.textContent?.trim()).toEqual(
+			expect(announcement!.textContent.trim()).toEqual(
 				getExpectedAnnouncement(DataGridCellSortStates.descending)
 			);
 		});
@@ -632,7 +630,7 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 
 			const announcement = queryAnnouncement(element);
-			expect(announcement?.textContent?.trim()).toEqual(
+			expect(announcement!.textContent.trim()).toEqual(
 				getExpectedAnnouncement(DataGridCellSortStates.other)
 			);
 		});
@@ -649,7 +647,7 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 
 			const announcement = queryAnnouncement(element);
-			expect(announcement?.textContent?.trim()).toEqual(
+			expect(announcement!.textContent.trim()).toEqual(
 				getExpectedAnnouncement(DataGridCellSortStates.none)
 			);
 		});

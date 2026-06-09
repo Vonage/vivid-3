@@ -20,14 +20,12 @@ describe('vwc-tree-item', () => {
 	let treeItem2: TreeItem;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<vwc-tree-view>
+		element = fixture(`<vwc-tree-view>
 				<${COMPONENT_TAG} id="item1">
 					<${COMPONENT_TAG} slot="item"></${COMPONENT_TAG}>
 				</${COMPONENT_TAG}>
 				<${COMPONENT_TAG} id="item2"></${COMPONENT_TAG}>
-			</vwc-tree-view>`
-		)) as TreeView;
+			</vwc-tree-view>`) as TreeView;
 		await elementUpdated(element);
 
 		treeItem1 = element.querySelector('#item1') as TreeItem;
@@ -58,7 +56,7 @@ describe('vwc-tree-item', () => {
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				Boolean(treeItem1.shadowRoot?.querySelector('slot[name="icon"]'))
+				Boolean(treeItem1.shadowRoot!.querySelector('slot[name="icon"]'))
 			).toEqual(true);
 		});
 
@@ -71,7 +69,7 @@ describe('vwc-tree-item', () => {
 				ICON_SELECTOR
 			) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
-			expect(icon?.name).toEqual(iconName);
+			expect(icon.name).toEqual(iconName);
 		});
 	});
 
@@ -81,7 +79,7 @@ describe('vwc-tree-item', () => {
 			treeItem1.text = text;
 			await elementUpdated(treeItem1);
 
-			expect(getControlElement(treeItem1)?.textContent?.trim()).toEqual(text);
+			expect(getControlElement(treeItem1).textContent.trim()).toEqual(text);
 		});
 	});
 

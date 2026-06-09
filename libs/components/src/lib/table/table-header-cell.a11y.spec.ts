@@ -13,7 +13,7 @@ describe('Table header cell accessibility', () => {
 	});
 
 	beforeEach(async () => {
-		const div = (await fixture(`
+		const div = fixture(`
       <vwc-table>
 				<vwc-table-head>
 					<vwc-table-row>
@@ -26,13 +26,13 @@ describe('Table header cell accessibility', () => {
 					</vwc-table-row>
 				</vwc-table-body>
       </vwc-table>
-    `)) as HTMLDivElement;
+    `) as HTMLDivElement;
 		element = div.querySelector(COMPONENT_TAG) as TableHeaderCell;
 	});
 
 	describe('when used as a column header', () => {
 		it('meets accessibility requirements (no axe violations)', async () => {
-			const div = (await fixture(`
+			const div = fixture(`
 				<vwc-table>
 					<vwc-table-head>
 						<vwc-table-row>
@@ -45,7 +45,7 @@ describe('Table header cell accessibility', () => {
 						</vwc-table-row>
 					</vwc-table-body>
 				</vwc-table>
-			`)) as HTMLDivElement;
+			`) as HTMLDivElement;
 			element = div.querySelector(COMPONENT_TAG) as TableHeaderCell;
 			await elementUpdated(element);
 
@@ -55,14 +55,14 @@ describe('Table header cell accessibility', () => {
 
 	describe('when used as a row header', () => {
 		it('meets accessibility requirements (no axe violations)', async () => {
-			const div = (await fixture(`
+			const div = fixture(`
 				<vwc-table>
 					<vwc-table-row>
 						<${COMPONENT_TAG}>Header content</${COMPONENT_TAG}>
 						<vwc-table-cell>Cell content</vwc-table-cell>
 					</vwc-table-row>
 				</vwc-table>
-			`)) as HTMLDivElement;
+			`) as HTMLDivElement;
 			element = div.querySelector(COMPONENT_TAG) as TableHeaderCell;
 			await elementUpdated(element);
 

@@ -13,9 +13,9 @@ describe('a11y: vwc-simple-color-picker', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as SimpleColorPicker;
+		) as SimpleColorPicker;
 	});
 
 	describe('a11y', () => {

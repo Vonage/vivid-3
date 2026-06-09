@@ -13,9 +13,7 @@ describe('a11y: vwc-color-picker', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as ColorPicker;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as ColorPicker;
 	});
 
 	it('should pass html a11y test', async () => {

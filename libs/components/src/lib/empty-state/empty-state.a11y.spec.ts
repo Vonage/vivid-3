@@ -13,9 +13,7 @@ describe('a11y: vwc-empty-state', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as EmptyState;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as EmptyState;
 	});
 
 	it('should pass html a11y test', async () => {

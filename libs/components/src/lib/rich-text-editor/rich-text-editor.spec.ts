@@ -20,9 +20,9 @@ describe('vwc-rich-text-editor', () => {
 
 	beforeEach(async () => {
 		setLocale(enUS);
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as unknown as RichTextEditor;
+		) as unknown as RichTextEditor;
 	});
 
 	describe('basic', () => {

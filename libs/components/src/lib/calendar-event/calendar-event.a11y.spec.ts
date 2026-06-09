@@ -13,9 +13,7 @@ describe('a11y: vwc-calendar-event', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as CalendarEvent;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as CalendarEvent;
 	});
 
 	it('should pass html a11y test', async () => {

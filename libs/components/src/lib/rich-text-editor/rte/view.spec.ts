@@ -57,9 +57,9 @@ describe('convertToView', () => {
 		};
 
 		const getViewHtmlStructure = async (view: RteView) => {
-			const element = (await fixture(
+			const element = fixture(
 				`<vwc-rich-text-view></vwc-rich-text-view>`
-			)) as RichTextView;
+			) as RichTextView;
 			element.view = view;
 			await elementUpdated(element);
 

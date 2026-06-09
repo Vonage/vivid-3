@@ -14,7 +14,7 @@ describe('a11y: vwc-tabs', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(`
+		element = fixture(`
         <${COMPONENT_TAG} activeid="entrees">
           <vwc-tab label="Appetizers" id="apps"></vwc-tab>
           <vwc-tab label="Entrees" id="entrees"></vwc-tab>
@@ -44,7 +44,7 @@ describe('a11y: vwc-tabs', () => {
               <li>Limoncello and Ice Cream with Biscotti</li>
             </ol>
           </vwc-tab-panel>
-        </${COMPONENT_TAG}>`)) as Tabs;
+        </${COMPONENT_TAG}>`) as Tabs;
 	});
 
 	it('should pass html a11y test', async () => {

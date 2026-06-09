@@ -23,9 +23,7 @@ describe('vwc-pagination', () => {
 	let element: Pagination;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Pagination;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Pagination;
 	});
 
 	describe('basic', () => {
@@ -66,12 +64,12 @@ describe('vwc-pagination', () => {
 		it('should add a button when total is set to 1', async () => {
 			element.total = 1;
 			await elementUpdated(element);
-			const buttons = element.shadowRoot?.querySelectorAll(
+			const buttons = element.shadowRoot!.querySelectorAll(
 				'.vwc-pagination-button'
 			);
-			const firstButtonText = getButtonText(buttons?.item(0));
+			const firstButtonText = getButtonText(buttons.item(0));
 			expect(element.pagesList.length).toEqual(1);
-			expect(buttons?.length).toEqual(1);
+			expect(buttons.length).toEqual(1);
 			expect(firstButtonText).toEqual('1');
 		});
 
@@ -82,8 +80,8 @@ describe('vwc-pagination', () => {
 				await elementUpdated(element);
 				const buttons = getButtons(element);
 				expect(element.pagesList.length).toEqual(total);
-				expect(buttons?.length).toEqual(total);
-				buttons?.forEach((button: any, index: number) => {
+				expect(buttons.length).toEqual(total);
+				buttons.forEach((button: any, index: number) => {
 					const buttonText = getButtonText(button);
 					expect(buttonText).toEqual(`${index + 1}`);
 				});
@@ -95,20 +93,20 @@ describe('vwc-pagination', () => {
 			element.selectedIndex = 10;
 			await elementUpdated(element);
 			const buttonsAndDots =
-				getControlElement(element).querySelector('#buttons-wrapper')?.children;
-			expect(getButtonText(buttonsAndDots?.item(2))).toEqual('10');
-			expect(getButtonText(buttonsAndDots?.item(3))).toEqual('11');
-			expect(getButtonText(buttonsAndDots?.item(4))).toEqual('12');
+				getControlElement(element).querySelector('#buttons-wrapper')!.children;
+			expect(getButtonText(buttonsAndDots.item(2))).toEqual('10');
+			expect(getButtonText(buttonsAndDots.item(3))).toEqual('11');
+			expect(getButtonText(buttonsAndDots.item(4))).toEqual('12');
 		});
 
 		it('should add 1,2,3 buttons, 3 dots and the last page when over 7 total', async () => {
 			element.total = 20;
 			await elementUpdated(element);
 			const buttonsAndDots =
-				getControlElement(element).querySelector('#buttons-wrapper')?.children;
-			const dots = buttonsAndDots?.item(5);
-			const lastItem = buttonsAndDots?.item(6);
-			expect(buttonsAndDots?.length).toEqual(7);
+				getControlElement(element).querySelector('#buttons-wrapper')!.children;
+			const dots = buttonsAndDots.item(5);
+			const lastItem = buttonsAndDots.item(6);
+			expect(buttonsAndDots.length).toEqual(7);
 			expect(getButtonText(dots)).toEqual('...');
 			expect(getButtonText(lastItem)).toEqual(element.total.toString());
 		});
@@ -125,9 +123,9 @@ describe('vwc-pagination', () => {
 			element.selectedIndex = 4;
 			await elementUpdated(element);
 			const buttonsAndDots =
-				getControlElement(element).querySelector('#buttons-wrapper')?.children;
-			expect(getButtonText(buttonsAndDots?.item(1))).toEqual('...');
-			expect(getButtonText(buttonsAndDots?.item(5))).toEqual('...');
+				getControlElement(element).querySelector('#buttons-wrapper')!.children;
+			expect(getButtonText(buttonsAndDots.item(1))).toEqual('...');
+			expect(getButtonText(buttonsAndDots.item(5))).toEqual('...');
 		});
 
 		it('should set only the first as "..." when total over 7 and selected index is one before last', async function () {
@@ -135,10 +133,10 @@ describe('vwc-pagination', () => {
 			element.selectedIndex = 18;
 			await elementUpdated(element);
 			const buttonsAndDots =
-				getControlElement(element).querySelector('#buttons-wrapper')?.children;
-			expect(getButtonText(buttonsAndDots?.item(1))).toEqual('...');
+				getControlElement(element).querySelector('#buttons-wrapper')!.children;
+			expect(getButtonText(buttonsAndDots.item(1))).toEqual('...');
 			expect(
-				getButtonText(buttonsAndDots?.item(buttonsAndDots?.length - 2))
+				getButtonText(buttonsAndDots.item(buttonsAndDots.length - 2))
 			).toEqual('19');
 		});
 	});
@@ -180,20 +178,20 @@ describe('vwc-pagination', () => {
 			element.total = 20;
 			element.selectedIndex = 3;
 			await elementUpdated(element);
-			const button = element.shadowRoot
-				?.querySelectorAll('.vwc-pagination-button')
+			const button = element
+				.shadowRoot!.querySelectorAll('.vwc-pagination-button')
 				.item(3);
-			expect(button?.getAttribute('appearance')).toEqual('filled');
+			expect(button.getAttribute('appearance')).toEqual('filled');
 		});
 
 		it('should set appearance "filled" of selectedIndex when navigating beyond boundary', async function () {
 			element.total = 20;
 			element.selectedIndex = 4;
 			await elementUpdated(element);
-			const button = element.shadowRoot
-				?.querySelectorAll('.vwc-pagination-button')
+			const button = element
+				.shadowRoot!.querySelectorAll('.vwc-pagination-button')
 				.item(2);
-			expect(button?.getAttribute('appearance')).toEqual('filled');
+			expect(button.getAttribute('appearance')).toEqual('filled');
 		});
 
 		it('should set appearance "ghost" to any unselected buttons', async function () {
@@ -210,14 +208,14 @@ describe('vwc-pagination', () => {
 	});
 
 	describe('navIcons', function () {
-		let prevButton: Button | undefined | null;
-		let nextButton: Button | undefined | null;
+		let prevButton: Button | null;
+		let nextButton: Button | null;
 
 		beforeEach(async function () {
 			element.total = 20;
 			await elementUpdated(element);
-			prevButton = element.shadowRoot?.querySelector('.prev-button');
-			nextButton = element.shadowRoot?.querySelector('.next-button');
+			prevButton = element.shadowRoot!.querySelector<Button>('.prev-button');
+			nextButton = element.shadowRoot!.querySelector<Button>('.next-button');
 		});
 
 		it('should default to true', function () {
@@ -227,37 +225,37 @@ describe('vwc-pagination', () => {
 		it('should set icons if set to true', async function () {
 			element.navIcons = true;
 			await elementUpdated(element);
-			expect(prevButton?.hasAttribute('label')).toEqual(false);
-			expect(nextButton?.hasAttribute('label')).toEqual(false);
-			expect(prevButton?.getAttribute('icon')).toEqual('chevron-left-line');
-			expect(nextButton?.getAttribute('icon')).toEqual('chevron-right-line');
+			expect(prevButton!.hasAttribute('label')).toEqual(false);
+			expect(nextButton!.hasAttribute('label')).toEqual(false);
+			expect(prevButton!.getAttribute('icon')).toEqual('chevron-left-line');
+			expect(nextButton!.getAttribute('icon')).toEqual('chevron-right-line');
 		});
 
 		it('should use text buttons if set to false', async function () {
 			element.navIcons = false;
 			await elementUpdated(element);
-			expect(prevButton?.getAttribute('label')).toEqual('Previous');
-			expect(nextButton?.getAttribute('label')).toEqual('Next');
-			expect(prevButton?.hasAttribute('icon')).toEqual(false);
-			expect(nextButton?.hasAttribute('icon')).toEqual(false);
+			expect(prevButton!.getAttribute('label')).toEqual('Previous');
+			expect(nextButton!.getAttribute('label')).toEqual('Next');
+			expect(prevButton!.hasAttribute('icon')).toEqual(false);
+			expect(nextButton!.hasAttribute('icon')).toEqual(false);
 		});
 	});
 
 	describe('prev/next buttons', function () {
-		let prevButton: Button | undefined | null;
-		let nextButton: Button | undefined | null;
+		let prevButton: Button | null;
+		let nextButton: Button | null;
 
 		beforeEach(async function () {
 			element.total = 20;
 			await elementUpdated(element);
-			prevButton = element.shadowRoot?.querySelector('.prev-button');
-			nextButton = element.shadowRoot?.querySelector('.next-button');
+			prevButton = element.shadowRoot!.querySelector<Button>('.prev-button');
+			nextButton = element.shadowRoot!.querySelector<Button>('.next-button');
 		});
 
 		it('should set prevButton to enabled if selectedIndex is not 0', async function () {
 			element.selectedIndex = 3;
 			await elementUpdated(element);
-			expect(prevButton?.disabled).toEqual(false);
+			expect(prevButton!.disabled).toEqual(false);
 		});
 
 		it('should set nextButton to enabled if selectedIndex is not the last', async function () {
@@ -265,40 +263,40 @@ describe('vwc-pagination', () => {
 			await elementUpdated(element);
 			element.selectedIndex = 3;
 			await elementUpdated(element);
-			expect(nextButton?.hasAttribute('disabled')).toEqual(false);
+			expect(nextButton!.hasAttribute('disabled')).toEqual(false);
 		});
 
 		it('should set prevButton to disabled if selectedIndex is 0', async function () {
 			element.selectedIndex = 0;
 			await elementUpdated(element);
-			expect(prevButton?.hasAttribute('disabled')).toEqual(true);
+			expect(prevButton!.hasAttribute('disabled')).toEqual(true);
 		});
 
 		it('should set nextButton to disabled if selectedIndex is the last', async function () {
 			element.selectedIndex = 19;
 			await elementUpdated(element);
-			expect(nextButton?.hasAttribute('disabled')).toEqual(true);
+			expect(nextButton!.hasAttribute('disabled')).toEqual(true);
 		});
 
 		it('should increase selectedIndex when nextButton is clicked', async function () {
 			element.selectedIndex = 3;
 			await elementUpdated(element);
-			nextButton?.click();
+			nextButton!.click();
 			expect(element.selectedIndex).toEqual(4);
 		});
 
 		it('should decrease selectedIndex when prevButton is clicked', async function () {
 			element.selectedIndex = 3;
 			await elementUpdated(element);
-			prevButton?.click();
+			prevButton!.click();
 			expect(element.selectedIndex).toEqual(2);
 		});
 
 		it('should disabled buttons when no pages are shown', async function () {
 			element.total = 0;
 			await elementUpdated(element);
-			expect(prevButton?.hasAttribute('disabled')).toEqual(true);
-			expect(nextButton?.hasAttribute('disabled')).toEqual(true);
+			expect(prevButton!.hasAttribute('disabled')).toEqual(true);
+			expect(nextButton!.hasAttribute('disabled')).toEqual(true);
 		});
 	});
 
@@ -312,9 +310,7 @@ describe('vwc-pagination', () => {
 	describe('pagination-change event', function () {
 		describe('when setting initial values before connecting', function () {
 			it('should not fire when selectedIndex is set to its default value', async function () {
-				const pagination = document.createElement(
-					'vwc-pagination'
-				) as Pagination;
+				const pagination = document.createElement('vwc-pagination');
 				const listener = vi.fn();
 				pagination.addEventListener('pagination-change', listener);
 
@@ -327,9 +323,7 @@ describe('vwc-pagination', () => {
 			});
 
 			it('should not fire when selectedIndex is set to another value', async function () {
-				const pagination = document.createElement(
-					'vwc-pagination'
-				) as Pagination;
+				const pagination = document.createElement('vwc-pagination');
 				const listener = vi.fn();
 				pagination.addEventListener('pagination-change', listener);
 
@@ -344,9 +338,7 @@ describe('vwc-pagination', () => {
 
 		describe('when setting initial values after connecting which is what the react wrappers do', () => {
 			it('should not fire when selectedIndex is set to its default value', async function () {
-				const pagination = document.createElement(
-					'vwc-pagination'
-				) as Pagination;
+				const pagination = document.createElement('vwc-pagination');
 				const listener = vi.fn();
 				pagination.addEventListener('pagination-change', listener);
 
@@ -359,9 +351,7 @@ describe('vwc-pagination', () => {
 			});
 
 			it('should fire when selectedIndex is set to a different value', async function () {
-				const pagination = document.createElement(
-					'vwc-pagination'
-				) as Pagination;
+				const pagination = document.createElement('vwc-pagination');
 				const listener = vi.fn();
 				pagination.addEventListener('pagination-change', listener);
 
@@ -387,14 +377,14 @@ describe('vwc-pagination', () => {
 		beforeEach(async function () {
 			element.total = 20;
 			await elementUpdated(element);
-			buttons = element.shadowRoot?.querySelectorAll('.vwc-pagination-button');
+			buttons = element.shadowRoot!.querySelectorAll('.vwc-pagination-button');
 		});
 
 		it('should change selectedIndex when clicking a valid button', async function () {
 			const status = { clicked: false };
 			setEventListeners(status);
-			const button = buttons?.item(2);
-			button?.dispatchEvent(new MouseEvent('click'));
+			const button = buttons!.item(2);
+			button.dispatchEvent(new MouseEvent('click'));
 			expect(element.selectedIndex).toEqual(2);
 		});
 
@@ -403,15 +393,15 @@ describe('vwc-pagination', () => {
 			setEventListeners(status);
 			element.selectedIndex = 2;
 			const dots = getControlElement(element).querySelector('.dots');
-			dots?.dispatchEvent(new MouseEvent('click'));
+			dots!.dispatchEvent(new MouseEvent('click'));
 			expect(element.selectedIndex).toEqual(2);
 		});
 
 		it('should fire the "pagination-change" event with the selectedIndex, total and oldIndex', async function () {
 			const status = { clicked: false, event: new Event('test') };
 			setEventListeners(status);
-			const button = buttons?.item(2);
-			button?.dispatchEvent(new MouseEvent('click'));
+			const button = buttons!.item(2);
+			button.dispatchEvent(new MouseEvent('click'));
 			expect(status.clicked).toEqual(true);
 			expect((status.event as MouseEvent).detail).toEqual({
 				selectedIndex: 2,
@@ -425,8 +415,8 @@ describe('vwc-pagination', () => {
 			element.selectedIndex = 1;
 			await elementUpdated(element);
 			setEventListeners(status);
-			const button = buttons?.item(1);
-			button?.dispatchEvent(new MouseEvent('click'));
+			const button = buttons!.item(1);
+			button.dispatchEvent(new MouseEvent('click'));
 			expect(status.clicked).toEqual(false);
 		});
 
@@ -434,14 +424,14 @@ describe('vwc-pagination', () => {
 			const status = { clicked: false, event: new Event('test') };
 			setEventListeners(status);
 			const dots = getControlElement(element).querySelector('.dots');
-			dots?.dispatchEvent(new MouseEvent('click'));
+			dots!.dispatchEvent(new MouseEvent('click'));
 			expect(status.clicked).toEqual(false);
 		});
 	});
 
 	function getButtons(element: Pagination) {
 		return Array.from(
-			element.shadowRoot?.querySelectorAll(
+			element.shadowRoot!.querySelectorAll(
 				'.vwc-pagination-button'
 			) as unknown as Button[]
 		);
@@ -460,7 +450,7 @@ describe('vwc-pagination', () => {
 				bubbles: true,
 				composed: true,
 			});
-			button?.dispatchEvent(event);
+			button.dispatchEvent(event);
 			expect(element.selectedIndex).toEqual(3);
 		});
 
@@ -471,7 +461,7 @@ describe('vwc-pagination', () => {
 				bubbles: true,
 				composed: true,
 			});
-			button?.dispatchEvent(event);
+			button.dispatchEvent(event);
 			expect(element.selectedIndex).toEqual(1);
 		});
 
@@ -485,7 +475,7 @@ describe('vwc-pagination', () => {
 				composed: true,
 			});
 			button.dispatchEvent(event);
-			expect((element.shadowRoot?.activeElement as any).label).toEqual(
+			expect((element.shadowRoot!.activeElement as any).label).toEqual(
 				buttons[2].label
 			);
 		});
@@ -501,7 +491,7 @@ describe('vwc-pagination', () => {
 				composed: true,
 			});
 			button.dispatchEvent(event);
-			expect((element.shadowRoot?.activeElement as any).label).toEqual(
+			expect((element.shadowRoot!.activeElement as any).label).toEqual(
 				buttons[0].label
 			);
 		});
@@ -509,7 +499,7 @@ describe('vwc-pagination', () => {
 		it('should focus on prev button if focused on the first element', async function () {
 			element.selectedIndex = 5;
 			await elementUpdated(element);
-			const prevButton = element.shadowRoot?.querySelector(
+			const prevButton = element.shadowRoot!.querySelector(
 				'.prev-button'
 			) as Button;
 			const buttons = getButtons(element);
@@ -522,13 +512,13 @@ describe('vwc-pagination', () => {
 				composed: true,
 			});
 			button.dispatchEvent(event);
-			expect((element.shadowRoot?.activeElement as any).label).toEqual(
-				prevButton?.label
+			expect((element.shadowRoot!.activeElement as any).label).toEqual(
+				prevButton.label
 			);
 		});
 
 		it('should focus on prev button if focused on the first element', async function () {
-			const nextButton = element.shadowRoot?.querySelector(
+			const nextButton = element.shadowRoot!.querySelector(
 				'.next-button'
 			) as Button;
 			const buttons = getButtons(element);
@@ -540,8 +530,8 @@ describe('vwc-pagination', () => {
 				composed: true,
 			});
 			button.dispatchEvent(event);
-			expect((element.shadowRoot?.activeElement as any).label).toEqual(
-				nextButton?.label
+			expect((element.shadowRoot!.activeElement as any).label).toEqual(
+				nextButton.label
 			);
 		});
 	});
@@ -551,11 +541,11 @@ describe('vwc-pagination', () => {
 			element.total = 20;
 			await elementUpdated(element);
 			const buttons = Array.from(
-				element.shadowRoot?.querySelectorAll(
+				element.shadowRoot!.querySelectorAll(
 					'.vwc-pagination-button'
 				) as unknown as Button[]
 			);
-			const allButtonsAriaPressedFalse = buttons?.reduce((correct, button) => {
+			const allButtonsAriaPressedFalse = buttons.reduce((correct, button) => {
 				return correct && button.getAttribute('tabindex') === '0';
 			}, true);
 			expect(allButtonsAriaPressedFalse).toEqual(true);
@@ -569,7 +559,7 @@ describe('vwc-pagination', () => {
 			const allButtons = Array.from(
 				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
-			const allButtonsCondensed = allButtons?.reduce((correct, button) => {
+			const allButtonsCondensed = allButtons.reduce((correct, button) => {
 				return correct && button.size === Size.SuperCondensed;
 			}, true);
 			expect(allButtonsCondensed).toEqual(true);
@@ -583,7 +573,7 @@ describe('vwc-pagination', () => {
 			const allButtons = Array.from(
 				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
-			const allButtonsCondensed = allButtons?.reduce((correct, button) => {
+			const allButtonsCondensed = allButtons.reduce((correct, button) => {
 				return correct && button.size === Size.Normal;
 			}, true);
 			expect(allButtonsCondensed).toEqual(true);
@@ -597,7 +587,7 @@ describe('vwc-pagination', () => {
 			const allButtons = Array.from(
 				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
-			const allButtonsCondensed = allButtons?.reduce((correct, button) => {
+			const allButtonsCondensed = allButtons.reduce((correct, button) => {
 				return correct && button.size === Size.SuperCondensed;
 			}, true);
 			expect(allButtonsCondensed).toEqual(true);
@@ -614,8 +604,8 @@ describe('vwc-pagination', () => {
 				element.total = 20;
 				element.size = size;
 				await elementUpdated(element);
-				const dots = element.shadowRoot?.querySelector('.dots');
-				expect(dots?.classList.contains(className)).toEqual(true);
+				const dots = element.shadowRoot!.querySelector('.dots');
+				expect(dots!.classList.contains(className)).toEqual(true);
 			}
 		);
 	});
@@ -627,7 +617,7 @@ describe('vwc-pagination', () => {
 			const allButtons = Array.from(
 				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
-			const allButtonsRounded = allButtons?.reduce((correct, button) => {
+			const allButtonsRounded = allButtons.reduce((correct, button) => {
 				return correct && button.shape === Shape.Rounded;
 			}, true);
 			expect(allButtonsRounded).toEqual(true);
@@ -641,7 +631,7 @@ describe('vwc-pagination', () => {
 			const allButtons = Array.from(
 				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
-			const allButtonsPill = allButtons?.reduce((correct, button) => {
+			const allButtonsPill = allButtons.reduce((correct, button) => {
 				return correct && button.shape === Shape.Pill;
 			}, true);
 			expect(allButtonsPill).toEqual(true);
@@ -655,7 +645,7 @@ describe('vwc-pagination', () => {
 			const allButtons = Array.from(
 				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
-			const allButtonsRounded = allButtons?.reduce((correct, button) => {
+			const allButtonsRounded = allButtons.reduce((correct, button) => {
 				return correct && button.shape === Shape.Rounded;
 			}, true);
 			expect(allButtonsRounded).toEqual(true);
@@ -679,18 +669,18 @@ describe('vwc-pagination', () => {
 		it('should set descriptive aria-labels on the page buttons', async () => {
 			element.total = 10;
 			await elementUpdated(element);
-			const buttons = element.shadowRoot?.querySelectorAll(
+			const buttons = element.shadowRoot!.querySelectorAll(
 				'.vwc-pagination-button'
 			);
-			expect(buttons?.item(1)?.ariaLabel).toEqual('Go to page 2');
-			expect(buttons?.item(2)?.ariaLabel).toEqual('Go to page 3');
+			expect(buttons.item(1).ariaLabel).toEqual('Go to page 2');
+			expect(buttons.item(2).ariaLabel).toEqual('Go to page 3');
 		});
 
 		it('should set descriptive aria-labels on the prev/next buttons', async function () {
-			const prevButton = element.shadowRoot?.querySelector('.prev-button');
-			const nextButton = element.shadowRoot?.querySelector('.next-button');
-			expect(prevButton?.ariaLabel).toEqual('Go to previous page');
-			expect(nextButton?.ariaLabel).toEqual('Go to next page');
+			const prevButton = element.shadowRoot!.querySelector('.prev-button');
+			const nextButton = element.shadowRoot!.querySelector('.next-button');
+			expect(prevButton!.ariaLabel).toEqual('Go to previous page');
+			expect(nextButton!.ariaLabel).toEqual('Go to next page');
 		});
 	});
 });

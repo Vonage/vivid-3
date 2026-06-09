@@ -31,8 +31,8 @@ export const calendarPickerSpec = <T extends CalendarPickerElement>(
 
 	const getAllDateButtons = () =>
 		Array.from(
-			element.shadowRoot!.querySelectorAll('[data-date]')
-		) as HTMLButtonElement[];
+			element.shadowRoot!.querySelectorAll<HTMLButtonElement>('[data-date]')
+		);
 
 	const getMonthButton = (month: string) =>
 		element.shadowRoot!.querySelector(
@@ -41,8 +41,8 @@ export const calendarPickerSpec = <T extends CalendarPickerElement>(
 
 	const getAllMonthButtons = () =>
 		Array.from(
-			element.shadowRoot!.querySelectorAll('[data-month]')
-		) as HTMLButtonElement[];
+			element.shadowRoot!.querySelectorAll<HTMLButtonElement>('[data-month]')
+		);
 
 	const pressKey = (
 		key: string,
@@ -64,7 +64,7 @@ export const calendarPickerSpec = <T extends CalendarPickerElement>(
 				`[data-vvd-aria-label="${label}"]`
 			)) as Button;
 
-	const getDialogTitle = () => getTitleAction().textContent!.trim();
+	const getDialogTitle = () => getTitleAction().textContent.trim();
 
 	async function openPopup() {
 		pickerButton.click();
@@ -85,7 +85,7 @@ export const calendarPickerSpec = <T extends CalendarPickerElement>(
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as T;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as T;
 		pickerButton = element.shadowRoot!.querySelector(
 			'#picker-button'
 		) as Button;

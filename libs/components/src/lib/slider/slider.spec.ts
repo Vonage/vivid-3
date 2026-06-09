@@ -18,8 +18,7 @@ const COMPONENT_TAG = 'vwc-slider';
 describe('vwc-slider', () => {
 	let element: Slider;
 	let thumb: HTMLElement;
-	const getPopup = () =>
-		element.shadowRoot!.querySelector('.popup') as Popup | null;
+	const getPopup = () => element.shadowRoot!.querySelector<Popup>('.popup');
 
 	beforeEach(async () => {
 		vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(1000);
@@ -156,7 +155,7 @@ describe('vwc-slider', () => {
 				element.connotation = connotation;
 				await elementUpdated(element);
 				expect(
-					getControlElement(element)?.classList.contains(
+					getControlElement(element).classList.contains(
 						`connotation-${connotation}`
 					)
 				).toEqual(true);
@@ -166,9 +165,9 @@ describe('vwc-slider', () => {
 
 	describe('value', () => {
 		it('should default to the mid point between min and max', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} min="5" max="10"></${COMPONENT_TAG}>`
-			)) as Slider;
+			) as Slider;
 			await elementUpdated(element);
 
 			expect(element.value).toBe('8');
@@ -177,9 +176,9 @@ describe('vwc-slider', () => {
 		it.each(['3', '13'])(
 			'should fallback to the default if value is out of range [%s]',
 			async (value) => {
-				element = (await fixture(
+				element = fixture(
 					`<${COMPONENT_TAG} current-value="${value}" min="5" max="10"></${COMPONENT_TAG}>`
-				)) as Slider;
+				) as Slider;
 				await elementUpdated(element);
 
 				expect(element.value).toBe('8');
@@ -239,14 +238,14 @@ describe('vwc-slider', () => {
 			element.valueTextFormatter = (value) => `${value} bits`;
 			await elementUpdated(element);
 
-			expect(getPopup()!.textContent!.trim()).toBe('5 bits');
+			expect(getPopup()!.textContent.trim()).toBe('5 bits');
 		});
 
 		it('should display ariaValueText in the popup if provided', async () => {
 			element.ariaValueText = 'value text';
 			await elementUpdated(element);
 
-			expect(getPopup()!.textContent!.trim()).toBe('value text');
+			expect(getPopup()!.textContent.trim()).toBe('value text');
 		});
 
 		const hoverOverThumb = () =>
@@ -911,13 +910,13 @@ describe('vwc-slider', () => {
 			await elementUpdated(element);
 
 			const control = getControlElement(element);
-			expect(control?.getAttribute('role')).toBe('slider');
-			expect(control?.getAttribute('aria-label')).toBe('Label');
-			expect(control?.getAttribute('aria-valuemin')).toBe('3');
-			expect(control?.getAttribute('aria-valuemax')).toBe('10');
-			expect(control?.getAttribute('aria-valuetext')).toBe('5 bits');
-			expect(control?.getAttribute('aria-valuenow')).toBe('5');
-			expect(control?.getAttribute('aria-orientation')).toBe('horizontal');
+			expect(control.getAttribute('role')).toBe('slider');
+			expect(control.getAttribute('aria-label')).toBe('Label');
+			expect(control.getAttribute('aria-valuemin')).toBe('3');
+			expect(control.getAttribute('aria-valuemax')).toBe('10');
+			expect(control.getAttribute('aria-valuetext')).toBe('5 bits');
+			expect(control.getAttribute('aria-valuenow')).toBe('5');
+			expect(control.getAttribute('aria-orientation')).toBe('horizontal');
 		});
 
 		describe('valueTextFormatter', () => {

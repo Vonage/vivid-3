@@ -13,9 +13,7 @@ describe('vwc-calendar', () => {
 	let element: Calendar;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Calendar;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Calendar;
 	});
 
 	describe('basic', () => {
@@ -85,11 +83,11 @@ describe('vwc-calendar', () => {
 
 			await elementUpdated(element);
 
-			const firstColumnDate = element.shadowRoot?.querySelector(
+			const firstColumnDate = element.shadowRoot!.querySelector(
 				'.column-headers > :first-child small'
 			) as HTMLElement;
 
-			expect(firstColumnDate.textContent?.trim()).toEqual('יום ב׳');
+			expect(firstColumnDate.textContent.trim()).toEqual('יום ב׳');
 		});
 	});
 
@@ -99,7 +97,7 @@ describe('vwc-calendar', () => {
 
 			await elementUpdated(element);
 
-			const hour13th = element.shadowRoot?.querySelector(
+			const hour13th = element.shadowRoot!.querySelector(
 				'.row-headers > :nth-child(13)'
 			) as HTMLSpanElement;
 
@@ -108,7 +106,7 @@ describe('vwc-calendar', () => {
 				hour12: true,
 			}).format(new Date('2022-12-16T13:00:00.000'));
 
-			expect(hour13th.textContent?.trim()).toEqual(expectedTimeString);
+			expect(hour13th.textContent.trim()).toEqual(expectedTimeString);
 		});
 	});
 
@@ -117,7 +115,7 @@ describe('vwc-calendar', () => {
 		let context: CalendarEventContext | null;
 
 		beforeEach(async () => {
-			gridCell = element.shadowRoot?.querySelector(
+			gridCell = element.shadowRoot!.querySelector(
 				'[role="gridcell"i]:nth-child(3)'
 			) as HTMLElement;
 		});
@@ -131,12 +129,12 @@ describe('vwc-calendar', () => {
 
 			context = element.getEventContext(e);
 
-			expect(context?.day).toEqual(2);
-			expect(context?.hour).toEqual(0.53);
+			expect(context!.day).toEqual(2);
+			expect(context!.hour).toEqual(0.53);
 		});
 
 		it('should return hour from mouse clicking on a row header', async () => {
-			const rowHeader = element.shadowRoot?.querySelector(
+			const rowHeader = element.shadowRoot!.querySelector(
 				'[role="rowheader"]:nth-child(3)'
 			) as HTMLElement;
 			rowHeader.getBoundingClientRect = vi
@@ -156,12 +154,12 @@ describe('vwc-calendar', () => {
 
 			context = element.getEventContext(e);
 
-			expect(context?.day).toBeUndefined();
-			expect(context?.hour).toEqual(43.59);
+			expect(context!.day).toBeUndefined();
+			expect(context!.hour).toEqual(43.59);
 		});
 
 		it('should return null if mouse click outside grid managed area', async () => {
-			const grid = element.shadowRoot?.querySelector(
+			const grid = element.shadowRoot!.querySelector(
 				'[role="grid"]'
 			) as HTMLElement;
 
@@ -211,8 +209,8 @@ describe('vwc-calendar', () => {
 				new KeyboardEvent('keydown', { composed: true, keyCode: 13 })
 			);
 
-			expect(context?.day).toEqual(2);
-			expect(context?.hour).toBeUndefined();
+			expect(context!.day).toEqual(2);
+			expect(context!.hour).toBeUndefined();
 		});
 
 		it("should emit 'enter' keydown event with day and hour when focused on grid cell", async () => {
@@ -225,8 +223,8 @@ describe('vwc-calendar', () => {
 				new KeyboardEvent('keydown', { composed: true, keyCode: 32 })
 			);
 
-			expect(context?.day).toEqual(2);
-			expect(context?.hour).toEqual(undefined);
+			expect(context!.day).toEqual(2);
+			expect(context!.hour).toEqual(undefined);
 		});
 	});
 
@@ -236,7 +234,7 @@ describe('vwc-calendar', () => {
 			element.stickyMode = stickyMode;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(
+			const control = element.shadowRoot!.querySelector(
 				`.sticky-${stickyMode}`
 			);
 			expect(control).toBeInstanceOf(Element);
@@ -291,7 +289,7 @@ describe('vwc-calendar', () => {
 
 		beforeEach(async () => {
 			shadowRoot = element.shadowRoot as ShadowRoot;
-			grid = element.shadowRoot?.querySelector('[role="grid"i]') as HTMLElement;
+			grid = element.shadowRoot!.querySelector('[role="grid"i]') as HTMLElement;
 		});
 
 		it('should focus to default on initial keyboard interaction', async () => {
@@ -303,7 +301,7 @@ describe('vwc-calendar', () => {
 		});
 
 		it('should keep focus if not arrow key event', async () => {
-			const gridCell = shadowRoot?.querySelector(
+			const gridCell = shadowRoot!.querySelector(
 				'[role="columnheader"i]:nth-child(3)'
 			) as HTMLElement;
 
@@ -314,7 +312,7 @@ describe('vwc-calendar', () => {
 		});
 
 		it('should change focus on keyboard arrow interactions', async () => {
-			const gridCell = shadowRoot?.querySelector(
+			const gridCell = shadowRoot!.querySelector(
 				'[role="columnheader"i]:nth-child(3)'
 			) as HTMLElement;
 
@@ -342,7 +340,7 @@ describe('vwc-calendar', () => {
 		});
 
 		it('should circle back focus from last column to first', async () => {
-			const gridCell = shadowRoot?.querySelector(
+			const gridCell = shadowRoot!.querySelector(
 				'[role="columnheader"i]:nth-child(7)'
 			) as HTMLElement;
 
@@ -360,7 +358,7 @@ describe('vwc-calendar', () => {
 		});
 
 		it('should only apply arrow down on focused "em" (tabindexed) element', async () => {
-			const em = shadowRoot?.querySelector(
+			const em = shadowRoot!.querySelector(
 				'[role="columnheader"i]:nth-child(4) em'
 			) as HTMLElement;
 
@@ -385,7 +383,7 @@ describe('vwc-calendar', () => {
 			const columnHeader = shadowRoot.querySelector(
 				'[role="columnheader"i]:nth-child(3)'
 			);
-			const button = columnHeader?.querySelector(
+			const button = columnHeader!.querySelector(
 				'[role="button"i]'
 			) as HTMLButtonElement;
 			button.focus();
@@ -401,7 +399,7 @@ describe('vwc-calendar', () => {
 			const calendarEvent = document.createElement('vwc-calendar-event');
 			calendarEvent.slot = 'day-5';
 			element.appendChild(calendarEvent);
-			const calendarEventBase = calendarEvent.shadowRoot?.querySelector(
+			const calendarEventBase = calendarEvent.shadowRoot!.querySelector(
 				'.base'
 			) as HTMLDivElement;
 			calendarEventBase.focus();
@@ -416,10 +414,10 @@ describe('vwc-calendar', () => {
 });
 
 function getFirstColumnDate(element: Calendar) {
-	const firstColumnTimeEl = element.shadowRoot?.querySelector(
+	const firstColumnTimeEl = element.shadowRoot!.querySelector(
 		'.column-headers > :first-child time'
 	) as HTMLTimeElement;
-	const firstDatetime = firstColumnTimeEl?.getAttribute('datetime') as string;
+	const firstDatetime = firstColumnTimeEl.getAttribute('datetime') as string;
 	return new Date(firstDatetime);
 }
 

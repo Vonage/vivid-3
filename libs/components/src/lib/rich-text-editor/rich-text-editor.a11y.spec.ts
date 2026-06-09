@@ -11,9 +11,9 @@ describe('a11y: vwc-rich-text-editor', () => {
 	let element: RichTextEditor;
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as RichTextEditor;
+		) as RichTextEditor;
 		const config = new RteConfig([new RteBase()]);
 		element.instance = config.instantiateEditor();
 	});

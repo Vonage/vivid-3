@@ -13,7 +13,7 @@ describe('a11y: vwc-tag', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Tag;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Tag;
 	});
 
 	describe('selectable', () => {
@@ -23,7 +23,7 @@ describe('a11y: vwc-tag', () => {
 			await elementUpdated(element);
 			const exposedHTMLString = `
         <div role="group" aria-label="tag group">
-          ${element.shadowRoot?.innerHTML}
+          ${element.shadowRoot!.innerHTML}
         </div>
       `;
 
@@ -37,7 +37,7 @@ describe('a11y: vwc-tag', () => {
 			await elementUpdated(element);
 			const exposedHTMLString = `
         <div role="group" aria-label="tag group">
-          ${element.shadowRoot?.innerHTML}
+          ${element.shadowRoot!.innerHTML}
         </div>
       `;
 

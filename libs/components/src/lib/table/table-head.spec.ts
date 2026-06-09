@@ -8,9 +8,7 @@ describe('Table head', () => {
 	let element: TableHead;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TableHead;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as TableHead;
 	});
 
 	describe('when the component is set up', () => {

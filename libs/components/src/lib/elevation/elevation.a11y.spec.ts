@@ -13,9 +13,7 @@ describe('a11y: vwc-elevation', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Elevation;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Elevation;
 	});
 
 	it('should pass html a11y test', async () => {

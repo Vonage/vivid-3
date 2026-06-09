@@ -13,9 +13,7 @@ describe('a11y: vwc-data-grid', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as DataGrid;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as DataGrid;
 
 		await elementUpdated(element);
 	});

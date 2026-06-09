@@ -197,7 +197,7 @@ describe('vwc-toggletip', () => {
 			element.headline = 'A title!';
 			await elementUpdated(element);
 
-			expect(getHeadline()?.textContent?.trim()).toEqual(element.headline);
+			expect(getHeadline()!.textContent.trim()).toEqual(element.headline);
 		});
 
 		it('should remove headline element when headline is undefined', async () => {

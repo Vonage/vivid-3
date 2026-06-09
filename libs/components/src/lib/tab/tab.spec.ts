@@ -13,7 +13,7 @@ describe('vwc-tab', () => {
 	let element: Tab;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Tab;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Tab;
 	});
 
 	describe('basic', () => {
@@ -38,18 +38,18 @@ describe('vwc-tab', () => {
 
 	describe('label', () => {
 		it('should set label property', async () => {
-			expect(getBaseElement(element).textContent?.trim()).toEqual('');
+			expect(getBaseElement(element).textContent.trim()).toEqual('');
 			const label = 'lala';
 			element.label = label;
 			await elementUpdated(element);
-			expect(getBaseElement(element).textContent?.trim()).toEqual(label);
+			expect(getBaseElement(element).textContent.trim()).toEqual(label);
 		});
 	});
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+				Boolean(element.shadowRoot!.querySelector('slot[name="icon"]'))
 			).toEqual(true);
 		});
 
@@ -57,9 +57,9 @@ describe('vwc-tab', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector('vwc-icon');
+			const icon = element.shadowRoot!.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
-			expect(icon?.name).toEqual('home');
+			expect(icon!.name).toEqual('home');
 		});
 	});
 
@@ -69,7 +69,7 @@ describe('vwc-tab', () => {
 			element.iconTrailing = true;
 			await elementUpdated(element);
 
-			const trailingIcon = element.shadowRoot?.querySelector(
+			const trailingIcon = element.shadowRoot!.querySelector(
 				`.icon-trailing vwc-icon`
 			);
 			expect(trailingIcon).toBeInstanceOf(Icon);
@@ -78,26 +78,26 @@ describe('vwc-tab', () => {
 
 	describe('disabled', function () {
 		it('should set disabled class when disabled is true', async () => {
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeFalsy();
+			expect(element.shadowRoot!.querySelector('.disabled')).toBeFalsy();
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.disabled')).toBeTruthy();
 		});
 	});
 
 	describe('removable', function () {
 		it('should display the close button when removable is true', async () => {
-			expect(element.shadowRoot?.querySelector('.close')).toBeFalsy();
+			expect(element.shadowRoot!.querySelector('.close')).toBeFalsy();
 			element.toggleAttribute('removable', true);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.close')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.close')).toBeTruthy();
 		});
 
 		it('should set removable class when removable is true', async () => {
-			expect(element.shadowRoot?.querySelector('.removable')).toBeFalsy();
+			expect(element.shadowRoot!.querySelector('.removable')).toBeFalsy();
 			element.toggleAttribute('removable', true);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.removable')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.removable')).toBeTruthy();
 		});
 
 		describe('removable is true', () => {
@@ -107,12 +107,12 @@ describe('vwc-tab', () => {
 			});
 
 			it('should emit the close event when the close button is clicked', async () => {
-				const closeBtn = element.shadowRoot?.querySelector(
+				const closeBtn = element.shadowRoot!.querySelector(
 					'#close-btn'
 				) as HTMLButtonElement;
 				const spy = vi.fn();
 				element.addEventListener('close', spy);
-				closeBtn?.click();
+				closeBtn.click();
 				await elementUpdated(element);
 				expect(spy).toHaveBeenCalledTimes(1);
 			});

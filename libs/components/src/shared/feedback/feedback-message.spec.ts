@@ -1,8 +1,8 @@
 import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { beforeAll } from 'vitest';
 import { createRegisterFunction } from '../design-system/createRegisterFunction';
-import type { Icon } from '../../lib/icon/icon';
 import { FeedbackMessage, feedbackMessageDefinition } from './feedback-message';
+import type { Icon } from '../../lib/icon/icon';
 
 const COMPONENT_TAG = 'vwc-feedback-message';
 
@@ -12,8 +12,7 @@ describe('vwc-feedback-message', () => {
 	const getMessage = () =>
 		element.shadowRoot!.querySelector('.message') as HTMLElement;
 
-	const getIcon = () =>
-		element.shadowRoot!.querySelector('.icon') as Icon | null;
+	const getIcon = () => element.shadowRoot!.querySelector<Icon>('.icon');
 
 	const getMessageText = () =>
 		[getMessage(), ...getMessage().querySelector('slot')!.assignedNodes()]
@@ -26,9 +25,9 @@ describe('vwc-feedback-message', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as FeedbackMessage;
+		) as FeedbackMessage;
 	});
 
 	describe('basic', () => {

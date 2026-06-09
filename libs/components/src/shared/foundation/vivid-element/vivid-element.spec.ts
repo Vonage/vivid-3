@@ -32,9 +32,9 @@ describe('VividElement', () => {
 		}
 
 		beforeEach(async () => {
-			element = (await fixture(
+			element = fixture(
 				'<test-vivid-element></test-vivid-element>'
-			)) as TestVividElement;
+			) as TestVividElement;
 		});
 
 		afterEach(() => {

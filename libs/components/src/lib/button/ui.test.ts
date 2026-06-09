@@ -6,7 +6,6 @@ import {
 	renderTemplate,
 	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
-import type { Button } from './button';
 
 const components = ['button', 'icon'];
 test('should show the component', async ({ page }: { page: Page }) => {
@@ -275,9 +274,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		template,
 		setup: async () => {
 			await page.evaluate(() => {
-				const pendingButtons = document.querySelectorAll(
-					'vwc-button[pending]'
-				) as NodeListOf<Button>;
+				const pendingButtons = document.querySelectorAll('vwc-button[pending]');
 				pendingButtons.forEach((button) => {
 					const indicator = button.shadowRoot?.querySelector(
 						'vwc-progress-ring'

@@ -14,9 +14,7 @@ describe('a11y: vwc-date-picker', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as DatePicker;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as DatePicker;
 
 		setupDelegatesFocusPolyfill(element);
 	});

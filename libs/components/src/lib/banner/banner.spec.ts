@@ -19,9 +19,9 @@ async function toggleRemovable(element: Banner, removable = true) {
 }
 
 function getBannerMessageAttribute(element: Banner, attribute: string) {
-	return element.shadowRoot
-		?.querySelector('.banner-message')
-		?.getAttribute(attribute);
+	return element
+		.shadowRoot!.querySelector('.banner-message')!
+		.getAttribute(attribute);
 }
 
 const getIcon = (element: Banner): Icon | null =>
@@ -29,9 +29,9 @@ const getIcon = (element: Banner): Icon | null =>
 
 describe('vwc-banner', () => {
 	function dispatchAnimationEndEvent() {
-		const banner = element.shadowRoot?.querySelector('.control');
+		const banner = element.shadowRoot!.querySelector('.control');
 		const event = new Event('transitionend');
-		banner?.dispatchEvent(event);
+		banner!.dispatchEvent(event);
 	}
 
 	let element: Banner;
@@ -41,9 +41,7 @@ describe('vwc-banner', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Banner;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Banner;
 	});
 
 	describe('basic', () => {
@@ -72,8 +70,8 @@ describe('vwc-banner', () => {
 
 		function getText() {
 			const text =
-				element.shadowRoot?.querySelector('.banner-message')?.textContent;
-			return text?.trim();
+				element.shadowRoot!.querySelector('.banner-message')!.textContent;
+			return text.trim();
 		}
 
 		it('should init with undefined and set as empty string in DOM', function () {
@@ -149,9 +147,9 @@ describe('vwc-banner', () => {
 		it('should leave connotation class empty if not set', async function () {
 			possibleConnotations.forEach((connotation) => {
 				expect(
-					element.shadowRoot
-						?.querySelector('.control')
-						?.classList.contains(connotation)
+					element
+						.shadowRoot!.querySelector('.control')!
+						.classList.contains(connotation)
 				).toEqual(false);
 			});
 		});
@@ -161,9 +159,9 @@ describe('vwc-banner', () => {
 			(element.connotation as Connotation) = connotation;
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot
-					?.querySelector('.control')
-					?.classList.contains(`connotation-${connotation}`)
+				element
+					.shadowRoot!.querySelector('.control')!
+					.classList.contains(`connotation-${connotation}`)
 			).toEqual(true);
 		});
 
@@ -172,9 +170,9 @@ describe('vwc-banner', () => {
 				element.connotation = connotation as BannerConnotation;
 				await elementUpdated(element);
 
-				expect(getIcon(element)?.parentElement!.ariaLive).toBe(null);
+				expect(getIcon(element)!.parentElement!.ariaLive).toBe(null);
 
-				expect(getIcon(element)?.label).toBe(
+				expect(getIcon(element)!.label).toBe(
 					element.locale.connotationAnnoncement[
 						`${connotation as BannerConnotation}Icon`
 					]
@@ -185,7 +183,7 @@ describe('vwc-banner', () => {
 
 	describe('icon', function () {
 		const getIcon = () =>
-			element.shadowRoot?.querySelector('slot[name="icon"] > vwc-icon') as Icon;
+			element.shadowRoot!.querySelector('slot[name="icon"] > vwc-icon') as Icon;
 
 		it('should have an icon slot', async () => {
 			expect(getIcon()).toBeTruthy();
@@ -239,7 +237,7 @@ describe('vwc-banner', () => {
 		});
 
 		it('should remove the remove button when removable is false', async function () {
-			expect(element.shadowRoot?.querySelector('.dismiss-button')).toEqual(
+			expect(element.shadowRoot!.querySelector('.dismiss-button')).toEqual(
 				null
 			);
 		});
@@ -249,29 +247,29 @@ describe('vwc-banner', () => {
 			await elementUpdated(element);
 
 			expect(
-				element.shadowRoot
-					?.querySelector('.dismiss-button')
-					?.getAttribute('part')
+				element
+					.shadowRoot!.querySelector('.dismiss-button')!
+					.getAttribute('part')
 			).toEqual('vvd-theme-alternate');
 			element.connotation = Connotation.Warning;
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot
-					?.querySelector('.dismiss-button')
-					?.getAttribute('part')
+				element
+					.shadowRoot!.querySelector('.dismiss-button')!
+					.getAttribute('part')
 			).toEqual('');
 		});
 
 		it('should add a remove button when true', async function () {
 			await toggleRemovable(element, true);
 			expect(
-				element.shadowRoot?.querySelector('.dismiss-button')
+				element.shadowRoot!.querySelector('.dismiss-button')
 			).toBeInstanceOf(Button);
 		});
 
 		it('should remove banner on remove button click', async function () {
 			await toggleRemovable(element, true);
-			const dismissButton = element.shadowRoot?.querySelector(
+			const dismissButton = element.shadowRoot!.querySelector(
 				'.dismiss-button'
 			) as HTMLElement;
 			dismissButton.click();
@@ -281,14 +279,14 @@ describe('vwc-banner', () => {
 
 		it('should add class "removing" to banner on remove button click', async function () {
 			await toggleRemovable(element, true);
-			const dismissButton = element.shadowRoot?.querySelector(
+			const dismissButton = element.shadowRoot!.querySelector(
 				'.dismiss-button'
 			) as HTMLElement;
 			dismissButton.click();
 			expect(
-				element.shadowRoot
-					?.querySelector('.control')
-					?.classList.contains('removing')
+				element
+					.shadowRoot!.querySelector('.control')!
+					.classList.contains('removing')
 			).toEqual(true);
 		});
 	});

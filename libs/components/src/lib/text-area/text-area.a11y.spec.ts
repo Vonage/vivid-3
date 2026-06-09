@@ -13,9 +13,7 @@ describe('a11y: vwc-text-area', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TextArea;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as TextArea;
 	});
 
 	it('should pass html a11y test', async () => {

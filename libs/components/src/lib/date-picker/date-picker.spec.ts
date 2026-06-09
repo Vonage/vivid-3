@@ -34,7 +34,7 @@ describe('vwc-date-picker', () => {
 				`[data-vvd-aria-label="${label}"]`
 			)) as Button;
 
-	const getDialogTitle = () => titleAction.textContent!.trim();
+	const getDialogTitle = () => titleAction.textContent.trim();
 
 	function typeIntoTextField(text: string) {
 		textField.value = text;
@@ -67,9 +67,7 @@ describe('vwc-date-picker', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as DatePicker;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as DatePicker;
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
 		pickerButton = element.shadowRoot!.querySelector(
 			'#picker-button'

@@ -15,7 +15,7 @@ describe('a11y: flag', function () {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Flag;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Flag;
 		vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
 	});
 
@@ -36,9 +36,9 @@ describe('a11y: flag', function () {
 		vi.clearAllTimers();
 		vi.useRealTimers();
 
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG} code="DE" label="Germany"></${COMPONENT_TAG}>`
-		)) as Flag;
+		) as Flag;
 
 		expect(await axe(element)).toHaveNoViolations();
 	});

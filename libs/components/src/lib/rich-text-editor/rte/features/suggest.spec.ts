@@ -42,7 +42,7 @@ const setup = async (...args: Parameters<typeof standardSetup>) => {
 	return {
 		...rte,
 		isSuggestPopoverOpen: () => {
-			return getSuggestPopover()?.open;
+			return getSuggestPopover()!.open;
 		},
 		getSuggestItems: () =>
 			Array.from(
@@ -338,16 +338,16 @@ describe('RteSuggestFeature', () => {
 
 			await rte.typeTextAtCursor('@j');
 			await elementUpdated(rte.element);
-			expect(rte.getSelectedItem()?.text).toBe('john');
+			expect(rte.getSelectedItem()!.text).toBe('john');
 
 			rte.keydown('ArrowDown');
 			await elementUpdated(rte.element);
-			expect(rte.getSelectedItem()?.text).toBe('john');
+			expect(rte.getSelectedItem()!.text).toBe('john');
 			expect(rte.isSelectedItemVisuallyFocused()).toBe(true);
 
 			await rte.typeTextAtCursor('o');
 			await elementUpdated(rte.element);
-			expect(rte.getSelectedItem()?.text).toBe('john');
+			expect(rte.getSelectedItem()!.text).toBe('john');
 			expect(rte.isSelectedItemVisuallyFocused()).toBe(false);
 		});
 
@@ -365,27 +365,27 @@ describe('RteSuggestFeature', () => {
 
 			rte.keydown('ArrowDown');
 
-			expect(rte.getSelectedItem()?.text).toBe('jane');
+			expect(rte.getSelectedItem()!.text).toBe('jane');
 
 			rte.keydown('ArrowDown');
 
-			expect(rte.getSelectedItem()?.text).toBe('bob');
+			expect(rte.getSelectedItem()!.text).toBe('bob');
 
 			rte.keydown('ArrowDown');
 
-			expect(rte.getSelectedItem()?.text).toBe('bob');
+			expect(rte.getSelectedItem()!.text).toBe('bob');
 
 			rte.keydown('ArrowUp');
 
-			expect(rte.getSelectedItem()?.text).toBe('jane');
+			expect(rte.getSelectedItem()!.text).toBe('jane');
 
 			rte.keydown('ArrowUp');
 
-			expect(rte.getSelectedItem()?.text).toBe('john');
+			expect(rte.getSelectedItem()!.text).toBe('john');
 
 			rte.keydown('ArrowUp');
 
-			expect(rte.getSelectedItem()?.text).toBe('john');
+			expect(rte.getSelectedItem()!.text).toBe('john');
 		});
 
 		it('should insert selected suggestion with Enter', async () => {

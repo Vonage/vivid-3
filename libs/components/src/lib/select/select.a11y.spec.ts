@@ -13,9 +13,7 @@ describe('a11y: vwc-select', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Select;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Select;
 	});
 
 	it('should pass html a11y test', async () => {

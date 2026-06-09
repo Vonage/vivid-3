@@ -19,13 +19,11 @@ describe('vwc-tooltip', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Tooltip;
-		anchor = (await fixture(
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Tooltip;
+		anchor = fixture(
 			'<vwc-button id="anchor"></vwc-button>',
 			ADD_TEMPLATE_TO_FIXTURE
-		)) as Button;
+		) as Button;
 	});
 
 	it('should pass html a11y test', async () => {

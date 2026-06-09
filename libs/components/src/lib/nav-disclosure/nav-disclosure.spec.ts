@@ -15,9 +15,7 @@ describe('vwc-nav-disclosure', () => {
 	let element: NavDisclosure;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as NavDisclosure;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as NavDisclosure;
 	});
 
 	describe('basic', () => {
@@ -55,9 +53,9 @@ describe('vwc-nav-disclosure', () => {
 
 	describe('open', () => {
 		it('should have open attribute when open', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} open></${COMPONENT_TAG}>`
-			)) as NavDisclosure;
+			) as NavDisclosure;
 
 			await elementUpdated(element);
 			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
@@ -74,7 +72,7 @@ describe('vwc-nav-disclosure', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).textContent?.trim()).toEqual(label);
+			expect(getBaseElement(element).textContent.trim()).toEqual(label);
 		});
 	});
 
@@ -93,7 +91,7 @@ describe('vwc-nav-disclosure', () => {
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+				Boolean(element.shadowRoot!.querySelector('slot[name="icon"]'))
 			).toEqual(true);
 		});
 
@@ -101,16 +99,16 @@ describe('vwc-nav-disclosure', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector('vwc-icon');
+			const icon = element.shadowRoot!.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
-			expect(icon?.name).toEqual('home');
+			expect(icon!.name).toEqual('home');
 		});
 	});
 
 	describe('meta slot', () => {
 		it('should have meta slot', async () => {
 			expect(
-				element.shadowRoot?.querySelector('slot[name="meta"]')
+				element.shadowRoot!.querySelector('slot[name="meta"]')
 			).toBeTruthy();
 		});
 	});
@@ -162,9 +160,9 @@ describe('vwc-nav-disclosure', () => {
 			await elementUpdated(element);
 
 			expect(
-				element?.shadowRoot
-					?.querySelector('.control')
-					?.classList.contains(`appearance-${appearance}`)
+				element!
+					.shadowRoot!.querySelector('.control')!
+					.classList.contains(`appearance-${appearance}`)
 			).toBeTruthy();
 		});
 	});

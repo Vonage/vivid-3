@@ -13,14 +13,14 @@ describe('Table row accessibility', () => {
 	});
 
 	beforeEach(async () => {
-		const div = (await fixture(`
+		const div = fixture(`
       <div role="table">
         <${COMPONENT_TAG}>
           <div role="cell">Cell 1</div>
           <div role="cell">Cell 2</div>
         </${COMPONENT_TAG}>
       </div>
-    `)) as HTMLDivElement;
+    `) as HTMLDivElement;
 		element = div.querySelector(COMPONENT_TAG) as TableRow;
 	});
 

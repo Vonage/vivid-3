@@ -58,9 +58,7 @@ export const pickerFieldSpec = (
 	}
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as PickerField;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as PickerField;
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
 		pickerButton = element.shadowRoot!.querySelector(
 			'#picker-button'
@@ -247,7 +245,7 @@ export const pickerFieldSpec = (
 				composed: true,
 			});
 			event.preventDefault = vi.fn();
-			getActiveElementPiercingShadowRoot()?.dispatchEvent(event);
+			getActiveElementPiercingShadowRoot()!.dispatchEvent(event);
 
 			expect(event.preventDefault).not.toHaveBeenCalled();
 		});
@@ -337,11 +335,11 @@ export const pickerFieldSpec = (
 			() => textField.querySelector('input[slot=_control]')!
 		);
 		itShouldDisplayErrorTextFeedback(
-			() => element as any,
+			() => element,
 			() => textField.querySelector('input[slot=_control]')!
 		);
 		itShouldDisplayValidationErrorFeedback(
-			() => element as any,
+			() => element,
 			() => textField.querySelector('input[slot=_control]')!
 		);
 	});
@@ -360,7 +358,7 @@ export const pickerFieldSpec = (
 			);
 			expect(contextualHelpSlot).toBeTruthy();
 
-			expect(element._contextualHelpSlottedContent?.length).toBeGreaterThan(0);
+			expect(element._contextualHelpSlottedContent!.length).toBeGreaterThan(0);
 		});
 	});
 };

@@ -14,9 +14,9 @@ describe('a11y: vwc-audio-player', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG} timestamp src="${SOURCE}"></${COMPONENT_TAG}>`
-		)) as AudioPlayer;
+		) as AudioPlayer;
 	});
 
 	it('should pass html a11y test', async () => {

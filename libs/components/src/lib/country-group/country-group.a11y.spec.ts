@@ -16,12 +16,10 @@ describe('a11y: country-group', () => {
 
 	beforeEach(async () => {
 		io = mockIntersectionObserver();
-		element = (await fixture(
-			`<${COMPONENT_TAG} style="width: 320px">
+		element = fixture(`<${COMPONENT_TAG} style="width: 320px">
 				<vwc-country code="UK"></vwc-country>
 				<vwc-country code="DE"></vwc-country>
-			</${COMPONENT_TAG}>`
-		)) as CountryGroup;
+			</${COMPONENT_TAG}>`) as CountryGroup;
 		await elementUpdated(element);
 	});
 

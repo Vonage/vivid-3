@@ -16,9 +16,9 @@ describe('vwc-platform-switch', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as PlatformSwitch;
+		) as PlatformSwitch;
 	});
 
 	describe('basic', () => {
@@ -40,12 +40,10 @@ describe('vwc-platform-switch', () => {
 				'Macintosh; Intel Mac OS X'
 			);
 
-			element = (await fixture(
-				`<${COMPONENT_TAG}>
+			element = fixture(`<${COMPONENT_TAG}>
 					<span data-keyboard="apple">Apple</span>
 					<span>Fallback</span>
-				</${COMPONENT_TAG}>`
-			)) as PlatformSwitch;
+				</${COMPONENT_TAG}>`) as PlatformSwitch;
 			await elementUpdated(element);
 
 			const children = element.querySelectorAll('span');
@@ -58,12 +56,10 @@ describe('vwc-platform-switch', () => {
 		it('should hide the apple child and show the fallback on non-Apple', async () => {
 			vi.spyOn(navigator, 'userAgent', 'get').mockReturnValue('Linux x86_64');
 
-			element = (await fixture(
-				`<${COMPONENT_TAG}>
+			element = fixture(`<${COMPONENT_TAG}>
 					<span data-keyboard="apple">Apple</span>
 					<span>Fallback</span>
-				</${COMPONENT_TAG}>`
-			)) as PlatformSwitch;
+				</${COMPONENT_TAG}>`) as PlatformSwitch;
 			await elementUpdated(element);
 
 			const children = element.querySelectorAll('span');
@@ -76,11 +72,9 @@ describe('vwc-platform-switch', () => {
 		it('should hide all children when none match', async () => {
 			vi.spyOn(navigator, 'userAgent', 'get').mockReturnValue('Linux x86_64');
 
-			element = (await fixture(
-				`<${COMPONENT_TAG}>
+			element = fixture(`<${COMPONENT_TAG}>
 					<span data-keyboard="apple">Apple</span>
-				</${COMPONENT_TAG}>`
-			)) as PlatformSwitch;
+				</${COMPONENT_TAG}>`) as PlatformSwitch;
 			await elementUpdated(element);
 
 			const children = element.querySelectorAll('span');
@@ -94,12 +88,10 @@ describe('vwc-platform-switch', () => {
 				'Macintosh; Intel Mac OS X'
 			);
 
-			element = (await fixture(
-				`<${COMPONENT_TAG}>
+			element = fixture(`<${COMPONENT_TAG}>
 					<span data-keyboard="apple">First Apple</span>
 					<span data-keyboard="apple">Second Apple</span>
-				</${COMPONENT_TAG}>`
-			)) as PlatformSwitch;
+				</${COMPONENT_TAG}>`) as PlatformSwitch;
 			await elementUpdated(element);
 
 			const children = element.querySelectorAll('span');
@@ -114,9 +106,9 @@ describe('vwc-platform-switch', () => {
 				'Macintosh; Intel Mac OS X'
 			);
 
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-			)) as PlatformSwitch;
+			) as PlatformSwitch;
 
 			const span = document.createElement('span');
 			span.dataset.keyboard = 'apple';

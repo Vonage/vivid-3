@@ -34,7 +34,7 @@ describe('Foundation Button', () => {
 		await connect();
 
 		expect(
-			element.shadowRoot?.querySelector('button')?.hasAttribute('autofocus')
+			element.shadowRoot!.querySelector('button')!.hasAttribute('autofocus')
 		).toEqual(true);
 
 		await disconnect();
@@ -48,7 +48,7 @@ describe('Foundation Button', () => {
 		await connect();
 
 		expect(
-			element.shadowRoot?.querySelector('button')?.hasAttribute('disabled')
+			element.shadowRoot!.querySelector('button')!.hasAttribute('disabled')
 		).toEqual(true);
 
 		await disconnect();
@@ -63,7 +63,7 @@ describe('Foundation Button', () => {
 		await connect();
 
 		expect(
-			element.shadowRoot?.querySelector('button')?.getAttribute('form')
+			element.shadowRoot!.querySelector('button')!.getAttribute('form')
 		).toEqual(formId);
 
 		await disconnect();
@@ -78,7 +78,7 @@ describe('Foundation Button', () => {
 		await connect();
 
 		expect(
-			element.shadowRoot?.querySelector('button')?.getAttribute('formaction')
+			element.shadowRoot!.querySelector('button')!.getAttribute('formaction')
 		).toEqual(formaction);
 
 		await disconnect();
@@ -93,7 +93,7 @@ describe('Foundation Button', () => {
 		await connect();
 
 		expect(
-			element.shadowRoot?.querySelector('button')?.getAttribute('formenctype')
+			element.shadowRoot!.querySelector('button')!.getAttribute('formenctype')
 		).toEqual(formenctype);
 
 		await disconnect();
@@ -108,7 +108,7 @@ describe('Foundation Button', () => {
 		await connect();
 
 		expect(
-			element.shadowRoot?.querySelector('button')?.getAttribute('formmethod')
+			element.shadowRoot!.querySelector('button')!.getAttribute('formmethod')
 		).toEqual(formmethod);
 
 		await disconnect();
@@ -123,9 +123,9 @@ describe('Foundation Button', () => {
 		await connect();
 
 		expect(
-			element.shadowRoot
-				?.querySelector('button')
-				?.getAttribute('formnovalidate')
+			element
+				.shadowRoot!.querySelector('button')!
+				.getAttribute('formnovalidate')
 		).toEqual(formnovalidate.toString());
 
 		await disconnect();
@@ -140,7 +140,7 @@ describe('Foundation Button', () => {
 		await connect();
 
 		expect(
-			element.shadowRoot?.querySelector('button')?.getAttribute('formtarget')
+			element.shadowRoot!.querySelector('button')!.getAttribute('formtarget')
 		).toEqual(formtarget);
 
 		await disconnect();
@@ -155,7 +155,7 @@ describe('Foundation Button', () => {
 		await connect();
 
 		expect(
-			element.shadowRoot?.querySelector('button')?.getAttribute('name')
+			element.shadowRoot!.querySelector('button')!.getAttribute('name')
 		).toEqual(name);
 
 		await disconnect();
@@ -170,7 +170,7 @@ describe('Foundation Button', () => {
 		await connect();
 
 		expect(
-			element.shadowRoot?.querySelector('button')?.getAttribute('type')
+			element.shadowRoot!.querySelector('button')!.getAttribute('type')
 		).toEqual(type);
 
 		await disconnect();
@@ -185,7 +185,7 @@ describe('Foundation Button', () => {
 		await connect();
 
 		expect(
-			element.shadowRoot?.querySelector('button')?.getAttribute('value')
+			element.shadowRoot!.querySelector('button')!.getAttribute('value')
 		).toEqual(value);
 
 		await disconnect();
@@ -369,14 +369,11 @@ describe('Foundation Button', () => {
 
 			await Updates.next();
 
-			const elements = element.shadowRoot?.querySelectorAll('span');
-			if (elements) {
-				const spans: HTMLSpanElement[] = Array.from(elements);
-				spans.forEach((span: HTMLSpanElement) => {
-					span.click();
-					expect(wasClicked).toEqual(false);
-				});
-			}
+			const spans = Array.from(element.shadowRoot!.querySelectorAll('span'));
+			spans.forEach((span: HTMLSpanElement) => {
+				span.click();
+				expect(wasClicked).toEqual(false);
+			});
 
 			await disconnect();
 		});

@@ -24,13 +24,13 @@ describe('vwc-data-grid', () => {
 
 	const getRows = () =>
 		Array.from(
-			element.querySelectorAll('[data-vvd-component="data-grid-row"]')
-		) as DataGridRow[];
+			element.querySelectorAll<DataGridRow>(
+				'[data-vvd-component="data-grid-row"]'
+			)
+		);
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as DataGrid;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as DataGrid;
 
 		await elementUpdated(element);
 	});
@@ -153,7 +153,7 @@ describe('vwc-data-grid', () => {
 	});
 	describe('generateHeader', () => {
 		const getGeneratedHeader = () =>
-			element.querySelector('[row-type$="header"]') as DataGridRow | null;
+			element.querySelector<DataGridRow>('[row-type$="header"]');
 
 		beforeEach(async () => {
 			element.gridTemplateColumns = '1fr 25px';
@@ -311,8 +311,8 @@ describe('vwc-data-grid', () => {
 			const expectedFocsedCell = Array.from(
 				element.querySelectorAll(element.rowElementTag)
 			)
-				.at(-1)
-				?.querySelector('button');
+				.at(-1)!
+				.querySelector('button');
 			element.focusRowIndex = 2;
 			await elementUpdated(element);
 			expect(expectedFocsedCell).toEqual(document.activeElement);
@@ -331,8 +331,8 @@ describe('vwc-data-grid', () => {
 			const expectedFocsedCell = Array.from(
 				element.querySelectorAll(element.rowElementTag)
 			)
-				.at(-1)
-				?.querySelector('.second');
+				.at(-1)!
+				.querySelector('.second');
 			element.focusRowIndex = 2;
 			element.focusColumnIndex = 2;
 			await elementUpdated(element);
@@ -530,11 +530,12 @@ describe('vwc-data-grid', () => {
 			await elementUpdated(element);
 
 			const rows = getRows();
-			const cells = rows.map(
-				(row) =>
-					Array.from(
-						row.querySelectorAll('[data-vvd-component="data-grid-cell"]')
-					) as HTMLElement[]
+			const cells = rows.map((row) =>
+				Array.from(
+					row.querySelectorAll<HTMLElement>(
+						'[data-vvd-component="data-grid-cell"]'
+					)
+				)
 			);
 
 			for (let i = 0; i < rows.length; i++) {

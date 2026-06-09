@@ -13,9 +13,7 @@ describe('a11y: vwc-tab-panel', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TabPanel;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as TabPanel;
 	});
 
 	it('should pass html a11y test', async () => {

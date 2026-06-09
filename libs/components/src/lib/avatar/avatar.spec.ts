@@ -19,9 +19,7 @@ describe('vwc-avatar', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Avatar;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Avatar;
 		baseElement = getBaseElement(element);
 	});
 
@@ -46,7 +44,7 @@ describe('vwc-avatar', () => {
 			await elementUpdated(element);
 
 			expect(
-				baseElement?.classList.contains(`appearance-${appearance}`)
+				baseElement!.classList.contains(`appearance-${appearance}`)
 			).toBeTruthy();
 		});
 	});
@@ -58,7 +56,7 @@ describe('vwc-avatar', () => {
 			element.shape = shape;
 			await elementUpdated(element);
 
-			expect(baseElement?.classList.contains(`shape-${shape}`)).toBeTruthy();
+			expect(baseElement!.classList.contains(`shape-${shape}`)).toBeTruthy();
 		});
 	});
 
@@ -66,11 +64,11 @@ describe('vwc-avatar', () => {
 		it('should set the connotation class on base', async function () {
 			const connotation = Connotation.CTA;
 			const connotationClassExistsBeforeTheChange =
-				baseElement?.classList.contains(`connotation-${connotation}`);
+				baseElement!.classList.contains(`connotation-${connotation}`);
 
 			element.connotation = connotation;
 			await elementUpdated(element);
-			const connotationClassExistsAfterChange = baseElement?.classList.contains(
+			const connotationClassExistsAfterChange = baseElement!.classList.contains(
 				`connotation-${connotation}`
 			);
 
@@ -85,21 +83,21 @@ describe('vwc-avatar', () => {
 			element.size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.base.size-${size}`);
-			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
+			const control = element.shadowRoot!.querySelector(`.base.size-${size}`);
+			expect(control!.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
 
 	describe('avatar icon', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				element.shadowRoot?.querySelector('slot[name="icon"]')
+				element.shadowRoot!.querySelector('slot[name="icon"]')
 			).toBeTruthy();
 		});
 
 		it('should have the default icon', async () => {
 			const iconElement = baseElement.querySelector('vwc-icon');
-			expect(iconElement?.getAttribute('name')).toEqual('user-line');
+			expect(iconElement!.getAttribute('name')).toEqual('user-line');
 		});
 
 		it('should set the icon according to the icon property', async () => {
@@ -107,7 +105,7 @@ describe('vwc-avatar', () => {
 			element.setAttribute('icon', icon);
 			await elementUpdated(element);
 			const iconElement = baseElement.querySelector('vwc-icon');
-			expect(iconElement?.getAttribute('name')).toEqual(icon);
+			expect(iconElement!.getAttribute('name')).toEqual(icon);
 			expect(element.icon).toEqual(icon);
 		});
 	});
@@ -123,14 +121,14 @@ describe('vwc-avatar', () => {
 		it('should show the initials if name is set', async () => {
 			element.initials = 'John Doe';
 			await elementUpdated(element);
-			const text = baseElement.textContent?.trim();
+			const text = baseElement.textContent.trim();
 			expect(text).toEqual('Jo');
 		});
 
 		it('should show only 2 letters', async () => {
 			element.initials = 'John Doe the vague man';
 			await elementUpdated(element);
-			const text = baseElement.textContent?.trim();
+			const text = baseElement.textContent.trim();
 			expect(text).toEqual('Jo');
 		});
 	});
@@ -141,7 +139,7 @@ describe('vwc-avatar', () => {
 		});
 
 		it('should render an avatar with href attribute as anchor element', async () => {
-			expect(getBaseElement(element)?.tagName).toEqual('A');
+			expect(getBaseElement(element).tagName).toEqual('A');
 		});
 
 		describe.each([
@@ -157,7 +155,7 @@ describe('vwc-avatar', () => {
 				const text = 'link';
 				await setProperty(element, attribute, text);
 
-				expect(getBaseElement(element)?.getAttribute(attribute)).toEqual(text);
+				expect(getBaseElement(element).getAttribute(attribute)).toEqual(text);
 			});
 		});
 
@@ -174,8 +172,8 @@ describe('vwc-avatar', () => {
 		});
 
 		it('should render an avatar with clickable attribute as a button', async function () {
-			expect(getBaseElement(element)?.tagName).toEqual('BUTTON');
-			expect(getBaseElement(element)?.getAttribute('type')).toEqual('button');
+			expect(getBaseElement(element).tagName).toEqual('BUTTON');
+			expect(getBaseElement(element).getAttribute('type')).toEqual('button');
 		});
 
 		itShouldDelegateAriaAttributes(

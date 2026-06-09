@@ -45,9 +45,9 @@ describe('vwc-inline-time-picker', () => {
 			element.parentElement!.scrollTop + element.parentElement!.offsetHeight;
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as InlineTimePicker;
+		) as InlineTimePicker;
 
 		// Give elements heights so that they can be scrolled
 		Object.defineProperties(window.HTMLElement.prototype, {
@@ -215,7 +215,7 @@ describe('vwc-inline-time-picker', () => {
 			});
 
 			it('should show the meridies picker', async () => {
-				expect(element.shadowRoot?.querySelector('#meridies')).toBeInstanceOf(
+				expect(element.shadowRoot!.querySelector('#meridies')).toBeInstanceOf(
 					HTMLElement
 				);
 			});
@@ -232,7 +232,7 @@ describe('vwc-inline-time-picker', () => {
 			});
 
 			it('should hide the meridies picker', async () => {
-				expect(element.shadowRoot?.querySelector('#meridies')).toBe(null);
+				expect(element.shadowRoot!.querySelector('#meridies')).toBe(null);
 			});
 
 			it('should show the hours options from 0-23', async () => {
@@ -525,7 +525,7 @@ describe('vwc-inline-time-picker', () => {
 			getPickerItem('hours', '00').click();
 			await elementUpdated(element);
 
-			expect(element.shadowRoot?.activeElement?.id).toBe('minutes');
+			expect(element.shadowRoot!.activeElement!.id).toBe('minutes');
 		});
 
 		describe('keyboard navigation', () => {
@@ -658,7 +658,7 @@ describe('vwc-inline-time-picker', () => {
 			expect(focusSpy).toHaveBeenCalledWith(options);
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot!.activeElement?.parentElement?.classList
+				element.shadowRoot!.activeElement!.parentElement!.classList
 			).toContain('focused');
 		});
 
@@ -667,7 +667,7 @@ describe('vwc-inline-time-picker', () => {
 			await elementUpdated(element);
 
 			expect(
-				element.shadowRoot!.activeElement?.parentElement?.classList
+				element.shadowRoot!.activeElement!.parentElement!.classList
 			).toContain('focused');
 
 			const minutesPicker = element.shadowRoot!.querySelector(
@@ -685,7 +685,7 @@ describe('vwc-inline-time-picker', () => {
 
 			const pickers = element.shadowRoot!.querySelectorAll('.picker');
 			pickers.forEach((el) => {
-				expect(el.parentElement?.classList).not.toContain('focused');
+				expect(el.parentElement!.classList).not.toContain('focused');
 			});
 		});
 	});

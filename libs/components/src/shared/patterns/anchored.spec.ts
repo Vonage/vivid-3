@@ -23,9 +23,9 @@ describe('Anchored', () => {
 		anchor = document.createElement('div');
 		anchor.id = 'anchor';
 		_anchorElChanged.mockClear();
-		element = (await fixture(
+		element = fixture(
 			'<anchored-element></anchored-element>'
-		)) as AnchoredElement;
+		) as AnchoredElement;
 	});
 
 	afterEach(function () {

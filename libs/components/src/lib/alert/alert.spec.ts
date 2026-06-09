@@ -21,7 +21,7 @@ describe('vwc-alert', () => {
 	let element: Alert;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Alert;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Alert;
 	});
 
 	describe('basic', () => {
@@ -67,7 +67,7 @@ describe('vwc-alert', () => {
 
 	describe('headline', function () {
 		const getHeadline = () =>
-			getBaseElement(element).querySelector('.headline')?.textContent?.trim();
+			getBaseElement(element).querySelector('.headline')?.textContent.trim();
 
 		it('should init with undefined and set as empty string in DOM', function () {
 			expect(element.headline).toEqual(undefined);
@@ -94,7 +94,7 @@ describe('vwc-alert', () => {
 
 	describe('text', function () {
 		const getText = () =>
-			getBaseElement(element).querySelector('.main-text')?.textContent?.trim();
+			getBaseElement(element).querySelector('.main-text')?.textContent.trim();
 
 		it('should init with undefined and set as empty string in DOM', function () {
 			expect(element.text).toEqual(undefined);
@@ -124,7 +124,7 @@ describe('vwc-alert', () => {
 			element.removable = true;
 			await elementUpdated(element);
 			const spy = vi.fn();
-			const closeBtn = element.shadowRoot?.querySelector(
+			const closeBtn = element.shadowRoot!.querySelector(
 				'.dismiss-button'
 			) as Button;
 			closeBtn.addEventListener('focus', spy);
@@ -150,9 +150,9 @@ describe('vwc-alert', () => {
 
 		it('should leave connotation class empty if not set', async function () {
 			possibleConnotations.forEach((connotation) => {
-				expect(
-					getBaseElement(element)?.classList.contains(connotation)
-				).toEqual(false);
+				expect(getBaseElement(element).classList.contains(connotation)).toEqual(
+					false
+				);
 			});
 		});
 
@@ -161,9 +161,7 @@ describe('vwc-alert', () => {
 			(element.connotation as Connotation) = connotation;
 			await elementUpdated(element);
 			expect(
-				getBaseElement(element)?.classList.contains(
-					`connotation-${connotation}`
-				)
+				getBaseElement(element).classList.contains(`connotation-${connotation}`)
 			).toEqual(true);
 		});
 	});
@@ -245,7 +243,7 @@ describe('vwc-alert', () => {
 
 		it('should have an icon slot', async () => {
 			expect(
-				element.shadowRoot?.querySelector('slot[name="icon"]')
+				element.shadowRoot!.querySelector('slot[name="icon"]')
 			).toBeTruthy();
 		});
 
@@ -256,7 +254,7 @@ describe('vwc-alert', () => {
 			const iconEl = getIcon();
 
 			expect(iconEl).toBeDefined();
-			expect(iconEl?.name).toEqual('home');
+			expect(iconEl!.name).toEqual('home');
 		});
 
 		it('should have the connotation icon if connotation is set', async function () {
@@ -266,7 +264,7 @@ describe('vwc-alert', () => {
 				element.connotation = connotation as AlertConnotation;
 				await elementUpdated(element);
 
-				expect(getIcon()?.name).toEqual(iconName);
+				expect(getIcon()!.name).toEqual(iconName);
 			}
 		});
 
@@ -277,9 +275,9 @@ describe('vwc-alert', () => {
 				element.connotation = connotation as AlertConnotation;
 				await elementUpdated(element);
 
-				expect(getIcon()?.parentElement!.ariaLive).toBe('polite');
+				expect(getIcon()!.parentElement!.ariaLive).toBe('polite');
 
-				expect(getIcon()?.label).toBe(
+				expect(getIcon()!.label).toBe(
 					element.locale.connotationAnnoncement[
 						`${connotation as AlertConnotation}Icon`
 					]
@@ -291,7 +289,7 @@ describe('vwc-alert', () => {
 			element.setAttribute('icon', 'home');
 			element.setAttribute('connotation', 'warning');
 			await elementUpdated(element);
-			expect(getIcon()?.name).toEqual('home');
+			expect(getIcon()!.name).toEqual('home');
 		});
 	});
 
@@ -311,7 +309,7 @@ describe('vwc-alert', () => {
 			it('should have dismiss button when removable is true', async function () {
 				element.toggleAttribute('removable');
 				await elementUpdated(element);
-				const dismissButton: Button = element.shadowRoot?.querySelector(
+				const dismissButton: Button = element.shadowRoot!.querySelector(
 					'.dismiss-button'
 				) as Button;
 
@@ -319,7 +317,7 @@ describe('vwc-alert', () => {
 			});
 
 			it('should remove the remove button when removable is false', async function () {
-				expect(element.shadowRoot?.querySelector('.dismiss-button')).toEqual(
+				expect(element.shadowRoot!.querySelector('.dismiss-button')).toEqual(
 					null
 				);
 			});
@@ -328,7 +326,7 @@ describe('vwc-alert', () => {
 				element.open = true;
 				element.toggleAttribute('removable');
 				await elementUpdated(element);
-				const dismissButton: Button = element.shadowRoot?.querySelector(
+				const dismissButton: Button = element.shadowRoot!.querySelector(
 					'.dismiss-button'
 				) as Button;
 
@@ -432,12 +430,12 @@ describe('vwc-alert', () => {
 			const baseEl = getBaseElement(element);
 
 			const headline = baseEl.querySelector('.headline');
-			expect(headline?.tagName).toEqual('H2');
+			expect(headline!.tagName).toEqual('H2');
 		});
 
 		it('should set a role of alert on the base element', async () => {
 			const baseEl = getBaseElement(element);
-			expect(baseEl!.getAttribute('role')).toBe('alert');
+			expect(baseEl.getAttribute('role')).toBe('alert');
 		});
 	});
 
@@ -446,7 +444,7 @@ describe('vwc-alert', () => {
 			element.strategy = 'static';
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector('.strategy-static')
+				element.shadowRoot!.querySelector('.strategy-static')
 			).toBeTruthy();
 		});
 	});

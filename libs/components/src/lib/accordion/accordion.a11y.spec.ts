@@ -22,7 +22,7 @@ describe('a11y: vwc-accordion', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(COMPONENT_HTML)) as Accordion;
+		element = fixture(COMPONENT_HTML) as Accordion;
 		await elementUpdated(element);
 		const accordionItem1 = element.querySelector('#item1') as AccordionItem;
 		const accordionItem2 = element.querySelector('#item2') as AccordionItem;

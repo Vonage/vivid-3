@@ -300,12 +300,12 @@ describe('RteLinkFeature', () => {
 		// Move cursor to link b - popover should open
 		rte.placeCursor('link |b');
 		await elementUpdated(rte.element);
-		expect(rte.openPopover()?.open).toBe(true);
+		expect(rte.openPopover()!.open).toBe(true);
 
 		// Move cursor back to link a - popover should reopen
 		rte.placeCursor('link |a');
 		await elementUpdated(rte.element);
-		expect(rte.openPopover()?.open).toBe(true);
+		expect(rte.openPopover()!.open).toBe(true);
 	});
 
 	it('should treat two links with the same URL at different positions independently when dismissing', async () => {
@@ -327,7 +327,7 @@ describe('RteLinkFeature', () => {
 		// The second link (same URL, different position) should still show the popover
 		rte.placeCursor('sec|ond');
 		await elementUpdated(rte.element);
-		expect(rte.openPopover()?.open).toBe(true);
+		expect(rte.openPopover()!.open).toBe(true);
 	});
 
 	it('should remove the link when delete button is clicked', async () => {

@@ -17,12 +17,10 @@ describe('a11y: vwc-tree-view', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}>
+		element = fixture(`<${COMPONENT_TAG}>
         <vwc-tree-item id="item1"></vwc-tree-item>
         <vwc-tree-item id="item2"></vwc-tree-item>
-      </${COMPONENT_TAG}>`
-		)) as TreeView;
+      </${COMPONENT_TAG}>`) as TreeView;
 		await elementUpdated(element);
 
 		treeItem1 = element.querySelector('#item1') as TreeItem;
@@ -41,12 +39,12 @@ describe('a11y: vwc-tree-view', () => {
 		await elementUpdated(treeItem2);
 
 		const children = Array.from(element.children)
-			.map(({ shadowRoot }) => shadowRoot?.innerHTML)
+			.map(({ shadowRoot }) => shadowRoot!.innerHTML)
 			.join('');
-		const exposedHtmlString = element.shadowRoot?.innerHTML.replace(
+		const exposedHtmlString = element.shadowRoot!.innerHTML.replace(
 			'<slot></slot>',
 			children
-		) as string;
+		);
 
 		expect(await axe(exposedHtmlString)).toHaveNoViolations();
 	});

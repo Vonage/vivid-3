@@ -13,7 +13,7 @@ describe('a11y: vwc-badge', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Badge;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Badge;
 	});
 
 	it('should pass html a11y test', async () => {

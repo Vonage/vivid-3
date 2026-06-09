@@ -46,7 +46,7 @@ describe('flag', function () {
 	let element: Flag;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Flag;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Flag;
 		vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
 		responseFileType = 'image/svg+xml';
 		response = {

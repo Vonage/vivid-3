@@ -13,9 +13,9 @@ describe('a11y: vwc-visually-hidden', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}>Hidden text</${COMPONENT_TAG}>`
-		)) as VisuallyHidden;
+		) as VisuallyHidden;
 	});
 
 	describe('a11y', () => {

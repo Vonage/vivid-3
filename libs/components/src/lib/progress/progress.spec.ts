@@ -14,9 +14,7 @@ describe('vwc-progress', () => {
 	let element: Progress;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Progress;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Progress;
 	});
 
 	describe('basic', () => {
@@ -65,13 +63,13 @@ describe('vwc-progress', () => {
 
 		it('should set connotation on the base div', async function () {
 			const connotation = Connotation.CTA;
-			const baseDiv = element.shadowRoot?.querySelector('.base');
-			const connotationClassExistsBeforeChange = baseDiv?.classList.contains(
+			const baseDiv = element.shadowRoot!.querySelector('.base');
+			const connotationClassExistsBeforeChange = baseDiv!.classList.contains(
 				`connotation-${connotation}`
 			);
 			element.connotation = connotation;
 			await elementUpdated(element);
-			const connotationClassExistsAfterChange = baseDiv?.classList.contains(
+			const connotationClassExistsAfterChange = baseDiv!.classList.contains(
 				`connotation-${connotation}`
 			);
 
@@ -95,13 +93,13 @@ describe('vwc-progress', () => {
 		});
 
 		it('should set class paused on base element', async function () {
-			const baseDiv = element.shadowRoot?.querySelector('.base');
+			const baseDiv = element.shadowRoot!.querySelector('.base');
 			const pausedClassExistsBeforeChange =
-				baseDiv?.classList.contains('paused');
+				baseDiv!.classList.contains('paused');
 			element.paused = true;
 			await elementUpdated(element);
 			const pausedClassExistsAfterChange =
-				baseDiv?.classList.contains('paused');
+				baseDiv!.classList.contains('paused');
 
 			expect(pausedClassExistsBeforeChange).toEqual(false);
 			expect(pausedClassExistsAfterChange).toEqual(true);
@@ -144,10 +142,10 @@ describe('vwc-progress', () => {
 			element.max = 100;
 			element.value = 25;
 			await elementUpdated(element);
-			const determinateDiv = element.shadowRoot?.querySelector(
+			const determinateDiv = element.shadowRoot!.querySelector(
 				'.determinate'
 			) as HTMLElement;
-			expect(determinateDiv?.style.width).toEqual(`${element.value}%`);
+			expect(determinateDiv.style.width).toEqual(`${element.value}%`);
 		});
 	});
 
@@ -159,10 +157,10 @@ describe('vwc-progress', () => {
 		});
 
 		it('should add class "reverse" to base div', async function () {
-			const baseDiv = element.shadowRoot?.querySelector('.base');
+			const baseDiv = element.shadowRoot!.querySelector('.base');
 			element.reverse = true;
 			await elementUpdated(element);
-			expect(baseDiv?.classList.contains('reverse')).toEqual(true);
+			expect(baseDiv!.classList.contains('reverse')).toEqual(true);
 		});
 	});
 
@@ -174,10 +172,10 @@ describe('vwc-progress', () => {
 		});
 
 		it('should add class "shape" to base div', async function () {
-			const baseDiv = element.shadowRoot?.querySelector('.base');
+			const baseDiv = element.shadowRoot!.querySelector('.base');
 			element.shape = Shape.Rounded;
 			await elementUpdated(element);
-			expect(baseDiv?.classList.contains(`shape-${Shape.Rounded}`)).toEqual(
+			expect(baseDiv!.classList.contains(`shape-${Shape.Rounded}`)).toEqual(
 				true
 			);
 		});
@@ -194,11 +192,11 @@ describe('vwc-progress', () => {
 		it('should set the correct a11y attributes', () => {
 			element.ariaLabel = 'Label';
 			const baseElement = getBaseElement(element);
-			expect(baseElement?.getAttribute('role')).toBe('progressbar');
-			expect(baseElement?.getAttribute('aria-label')).toBe('Label');
-			expect(baseElement?.getAttribute('aria-valuemin')).toBe('10');
-			expect(baseElement?.getAttribute('aria-valuemax')).toBe('90');
-			expect(baseElement?.getAttribute('aria-valuenow')).toBe('20');
+			expect(baseElement.getAttribute('role')).toBe('progressbar');
+			expect(baseElement.getAttribute('aria-label')).toBe('Label');
+			expect(baseElement.getAttribute('aria-valuemin')).toBe('10');
+			expect(baseElement.getAttribute('aria-valuemax')).toBe('90');
+			expect(baseElement.getAttribute('aria-valuenow')).toBe('20');
 		});
 	});
 

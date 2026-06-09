@@ -6,7 +6,6 @@ import {
 } from '@repo/shared/test-utils/fixture';
 import { DataGridRow } from './data-grid-row';
 import '.';
-import type { DataGridCell } from './data-grid-cell';
 
 const COMPONENT_TAG = 'vwc-data-grid-row';
 
@@ -14,9 +13,7 @@ describe('vwc-data-grid-row', () => {
 	let element: DataGridRow;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as DataGridRow;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as DataGridRow;
 	});
 
 	// TODO::adds grid column style
@@ -198,9 +195,7 @@ describe('vwc-data-grid-row', () => {
 			];
 			element.rowData = { name: 'John', age: 30, set: 'set' };
 			await elementUpdated(element);
-			const cells = Array.from(
-				element.querySelectorAll('vwc-data-grid-cell')
-			) as DataGridCell[];
+			const cells = Array.from(element.querySelectorAll('vwc-data-grid-cell'));
 
 			element.dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'ArrowRight' })

@@ -1,6 +1,6 @@
 import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
+import type { KbdKeyName } from './kbd-key';
 import { KbdKey } from './kbd-key';
-import type { KbdKeyKeyboard, KbdKeyName } from './kbd-key';
 import '.';
 
 const COMPONENT_TAG = 'vwc-kbd-key';
@@ -13,9 +13,7 @@ describe('vwc-kbd-key', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as KbdKey;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as KbdKey;
 	});
 
 	describe('basic', () => {
@@ -37,8 +35,8 @@ describe('vwc-kbd-key', () => {
 
 	describe('name', () => {
 		it('should display nothing when not set', async () => {
-			const kbd = element.shadowRoot?.querySelector('kbd.base');
-			expect(kbd?.textContent?.trim()).toBe('');
+			const kbd = element.shadowRoot!.querySelector('kbd.base');
+			expect(kbd!.textContent.trim()).toBe('');
 		});
 
 		it('should display nothing and log a warning when name is not a supported key', async () => {
@@ -49,8 +47,8 @@ describe('vwc-kbd-key', () => {
 			element.name = 'Fn' as KbdKeyName;
 			await elementUpdated(element);
 
-			const kbd = element.shadowRoot?.querySelector('kbd.base');
-			expect(kbd?.textContent?.trim()).toBe('');
+			const kbd = element.shadowRoot!.querySelector('kbd.base');
+			expect(kbd!.textContent.trim()).toBe('');
 			expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('Fn'));
 
 			warnSpy.mockRestore();
@@ -67,8 +65,8 @@ describe('vwc-kbd-key', () => {
 			element.keyboard = 'auto';
 			await elementUpdated(element);
 
-			const kbd = element.shadowRoot?.querySelector('kbd.base');
-			expect(kbd?.textContent?.trim()).toBe('⌘');
+			const kbd = element.shadowRoot!.querySelector('kbd.base');
+			expect(kbd!.textContent.trim()).toBe('⌘');
 
 			vi.restoreAllMocks();
 		});
@@ -82,8 +80,8 @@ describe('vwc-kbd-key', () => {
 			element.keyboard = 'auto';
 			await elementUpdated(element);
 
-			const kbd = element.shadowRoot?.querySelector('kbd.base');
-			expect(kbd?.textContent?.trim()).toBe('⌘');
+			const kbd = element.shadowRoot!.querySelector('kbd.base');
+			expect(kbd!.textContent.trim()).toBe('⌘');
 
 			vi.restoreAllMocks();
 		});
@@ -95,8 +93,8 @@ describe('vwc-kbd-key', () => {
 			element.keyboard = 'standard';
 			await elementUpdated(element);
 
-			const kbd = element.shadowRoot?.querySelector('kbd.base');
-			expect(kbd?.textContent?.trim()).toBe('Ctrl');
+			const kbd = element.shadowRoot!.querySelector('kbd.base');
+			expect(kbd!.textContent.trim()).toBe('Ctrl');
 		});
 
 		it('should display "Mod" as ⌘ on Apple keyboard', async () => {
@@ -104,8 +102,8 @@ describe('vwc-kbd-key', () => {
 			element.keyboard = 'apple';
 			await elementUpdated(element);
 
-			const kbd = element.shadowRoot?.querySelector('kbd.base');
-			expect(kbd?.textContent?.trim()).toBe('⌘');
+			const kbd = element.shadowRoot!.querySelector('kbd.base');
+			expect(kbd!.textContent.trim()).toBe('⌘');
 		});
 	});
 
@@ -114,7 +112,7 @@ describe('vwc-kbd-key', () => {
 			element.name = 'Custom';
 			await elementUpdated(element);
 
-			const slot = element.shadowRoot?.querySelector('kbd.base slot');
+			const slot = element.shadowRoot!.querySelector('kbd.base slot');
 			expect(slot).toBeInstanceOf(HTMLSlotElement);
 		});
 
@@ -122,7 +120,7 @@ describe('vwc-kbd-key', () => {
 			element.name = 'A';
 			await elementUpdated(element);
 
-			const slot = element.shadowRoot?.querySelector('slot');
+			const slot = element.shadowRoot!.querySelector('slot');
 			expect(slot).toBeNull();
 		});
 	});
@@ -138,37 +136,37 @@ describe('vwc-kbd-key', () => {
 		});
 
 		it('should return textContent when name is "Custom" with slotted text', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} name="Custom"><span>Fn</span></${COMPONENT_TAG}>`
-			)) as KbdKey;
+			) as KbdKey;
 			expect(element._getKeyshortcutsKey()).toBe('Fn');
 		});
 
 		it('should return keyshortcuts-key attribute value when set', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} name="Custom" keyshortcuts-key="F1"></${COMPONENT_TAG}>`
-			)) as KbdKey;
+			) as KbdKey;
 			expect(element._getKeyshortcutsKey()).toBe('F1');
 		});
 
 		it('should prefer keyshortcuts-key over textContent for Custom keys', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} name="Custom" keyshortcuts-key="F1"><span>Fn</span></${COMPONENT_TAG}>`
-			)) as KbdKey;
+			) as KbdKey;
 			expect(element._getKeyshortcutsKey()).toBe('F1');
 		});
 
 		it('should prefer keyshortcuts-key over normal key name', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} name="A" keyshortcuts-key="F1"></${COMPONENT_TAG}>`
-			)) as KbdKey;
+			) as KbdKey;
 			expect(element._getKeyshortcutsKey()).toBe('F1');
 		});
 
 		it('should return null for empty keyshortcuts-key attribute', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} name="A" keyshortcuts-key=""></${COMPONENT_TAG}>`
-			)) as KbdKey;
+			) as KbdKey;
 			expect(element._getKeyshortcutsKey()).toBeNull();
 		});
 
@@ -184,8 +182,8 @@ describe('vwc-kbd-key', () => {
 		] as const)(
 			'should return "%s" for key "%s" (keyboard=%s)',
 			(key, keyboard, expected) => {
-				element.name = key as KbdKeyName;
-				if (keyboard) element.keyboard = keyboard as KbdKeyKeyboard;
+				element.name = key;
+				if (keyboard) element.keyboard = keyboard;
 				expect(element._getKeyshortcutsKey()).toBe(expected);
 			}
 		);
@@ -208,12 +206,12 @@ describe('vwc-kbd-key', () => {
 		] as const)(
 			'key "%s" (keyboard=%s) should have accessible name "%s"',
 			async (name, keyboard, expected) => {
-				element.name = name as KbdKeyName;
-				if (keyboard) element.keyboard = keyboard as KbdKeyKeyboard;
+				element.name = name;
+				if (keyboard) element.keyboard = keyboard;
 				await elementUpdated(element);
 
-				const kbd = element.shadowRoot?.querySelector('kbd.base');
-				expect(kbd?.getAttribute('aria-label')).toBe(expected);
+				const kbd = element.shadowRoot!.querySelector('kbd.base');
+				expect(kbd!.getAttribute('aria-label')).toBe(expected);
 			}
 		);
 
@@ -231,12 +229,12 @@ describe('vwc-kbd-key', () => {
 		] as const)(
 			'key "%s" (keyboard=%s) should have no aria-label',
 			async (name, keyboard) => {
-				element.name = name as KbdKeyName;
-				if (keyboard) element.keyboard = keyboard as KbdKeyKeyboard;
+				element.name = name;
+				if (keyboard) element.keyboard = keyboard;
 				await elementUpdated(element);
 
-				const kbd = element.shadowRoot?.querySelector('kbd.base');
-				expect(kbd?.hasAttribute('aria-label')).toBe(false);
+				const kbd = element.shadowRoot!.querySelector('kbd.base');
+				expect(kbd!.hasAttribute('aria-label')).toBe(false);
 			}
 		);
 	});

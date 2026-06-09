@@ -16,8 +16,7 @@ describe('vwc-switch', () => {
 
 	const setupFixture = async (html: string) => {
 		const fixtureElement = fixture(html) as HTMLElement;
-		if (fixtureElement instanceof HTMLFormElement)
-			form = fixtureElement as HTMLFormElement;
+		if (fixtureElement instanceof HTMLFormElement) form = fixtureElement;
 		element =
 			fixtureElement instanceof Switch
 				? fixtureElement
@@ -222,12 +221,12 @@ describe('vwc-switch', () => {
 			await elementUpdated(element);
 			expect(element.label).toEqual(labelText);
 			expect(
-				element.shadowRoot?.querySelector('.label')?.textContent?.trim()
+				element.shadowRoot!.querySelector('.label')!.textContent.trim()
 			).toEqual(labelText);
 		});
 
 		it('should hide the label if no label is supplied', function () {
-			expect(element.shadowRoot?.querySelector('.label')).toBeNull();
+			expect(element.shadowRoot!.querySelector('.label')).toBeNull();
 		});
 	});
 
@@ -254,7 +253,7 @@ describe('vwc-switch', () => {
 			const connotation = Connotation.CTA;
 			element.connotation = connotation;
 			await elementUpdated(element);
-			const connotationClassExistsAfterChange = control?.classList.contains(
+			const connotationClassExistsAfterChange = control.classList.contains(
 				`connotation-${connotation}`
 			);
 
@@ -265,13 +264,13 @@ describe('vwc-switch', () => {
 			const control = getControlElement(element);
 
 			const connotation = Connotation.CTA;
-			const connotationClassExistsBeforeChange = control?.classList.contains(
+			const connotationClassExistsBeforeChange = control.classList.contains(
 				`connotation-${connotation}`
 			);
 			element.checked = true;
 			element.connotation = connotation;
 			await elementUpdated(element);
-			const connotationClassExistsAfterChange = control?.classList.contains(
+			const connotationClassExistsAfterChange = control.classList.contains(
 				`connotation-${connotation}`
 			);
 
@@ -285,26 +284,26 @@ describe('vwc-switch', () => {
 			const control = getControlElement(element);
 
 			const appearanceFilledClassExistsBeforeChecked =
-				control?.classList.contains('appearance-filled');
+				control.classList.contains('appearance-filled');
 
 			element.checked = true;
 			await elementUpdated(element);
 
 			const appearanceFilledClassExistsAfterChecked =
-				control?.classList.contains('appearance-filled');
+				control.classList.contains('appearance-filled');
 
 			element.disabled = true;
 			await elementUpdated(element);
 
 			const appearanceFilledClassExistsAfterDisabled =
-				control?.classList.contains('appearance-filled');
+				control.classList.contains('appearance-filled');
 
 			element.disabled = false;
 			element.readOnly = true;
 			await elementUpdated(element);
 
 			const appearanceFilledClassExistsAfterReadonly =
-				control?.classList.contains('appearance-filled');
+				control.classList.contains('appearance-filled');
 
 			expect(appearanceFilledClassExistsBeforeChecked).toEqual(false);
 			expect(appearanceFilledClassExistsAfterChecked).toEqual(true);

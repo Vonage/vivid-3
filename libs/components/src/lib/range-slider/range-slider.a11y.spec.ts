@@ -13,9 +13,7 @@ describe('vwc-range-slider', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as RangeSlider;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as RangeSlider;
 	});
 
 	it('should pass html a11y test', async () => {

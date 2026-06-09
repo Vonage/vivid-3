@@ -39,7 +39,7 @@ describe('vwc-date-time-picker', () => {
 				`[data-vvd-aria-label="${label}"]`
 			)) as Button;
 
-	const getDialogTitle = () => titleAction.textContent!.trim();
+	const getDialogTitle = () => titleAction.textContent.trim();
 
 	function typeIntoTextField(text: string) {
 		textField.value = text;
@@ -67,8 +67,8 @@ describe('vwc-date-time-picker', () => {
 		await openPopup();
 
 		const calendarButtons = Array.from(
-			element.shadowRoot!.querySelectorAll('[data-date]')
-		) as HTMLButtonElement[];
+			element.shadowRoot!.querySelectorAll<HTMLButtonElement>('[data-date]')
+		);
 		return calendarButtons.every(
 			(button) => predicate(button.dataset.date!) === button.disabled
 		);
@@ -95,9 +95,9 @@ describe('vwc-date-time-picker', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as DateTimePicker;
+		) as DateTimePicker;
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
 		pickerButton = element.shadowRoot!.querySelector(
 			'#picker-button'

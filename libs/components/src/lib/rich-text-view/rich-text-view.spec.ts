@@ -35,9 +35,7 @@ describe('vwc-rich-text-view', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as RichTextView;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as RichTextView;
 	});
 
 	describe('basic', () => {

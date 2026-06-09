@@ -27,8 +27,8 @@ describe('vwc-select', () => {
 	 */
 	const getCheckedOptions = () =>
 		Array.from(
-			element.querySelectorAll('vwc-option[checked="true"]')
-		) as ListboxOption[];
+			element.querySelectorAll<ListboxOption>('vwc-option[checked="true"]')
+		);
 
 	/**
 	 * Active option is the last checked option in multi-select mode
@@ -55,7 +55,7 @@ describe('vwc-select', () => {
 			return (
 				getControlElement(element)
 					.querySelector('.selected-value')
-					?.textContent?.trim() ?? null
+					?.textContent.trim() ?? null
 			);
 		}
 		return null;
@@ -73,9 +73,7 @@ describe('vwc-select', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Select;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Select;
 	});
 
 	describe('basic', () => {
@@ -165,8 +163,8 @@ describe('vwc-select', () => {
 
 			expect(
 				getControlElement(element)
-					.querySelector('.selected-value')
-					?.textContent?.trim()
+					.querySelector('.selected-value')!
+					.textContent.trim()
 			).toEqual(label);
 		});
 	});
@@ -220,12 +218,12 @@ describe('vwc-select', () => {
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
-			const labelElement = element.shadowRoot?.querySelector('label');
-			expect(labelElement?.textContent?.trim()).toEqual(labelText);
+			const labelElement = element.shadowRoot!.querySelector('label');
+			expect(labelElement!.textContent.trim()).toEqual(labelText);
 		});
 
 		it('should show label element only if label is set', async function () {
-			const labelElement = element.shadowRoot?.querySelector('label');
+			const labelElement = element.shadowRoot!.querySelector('label');
 			expect(labelElement).toBeNull();
 		});
 
@@ -233,15 +231,15 @@ describe('vwc-select', () => {
 			element.multiple = true;
 			element.label = 'label';
 			await elementUpdated(element);
-			const labelElement = element.shadowRoot?.querySelector('label');
-			expect(labelElement?.getAttribute('for')).toBeNull();
+			const labelElement = element.shadowRoot!.querySelector('label');
+			expect(labelElement!.getAttribute('for')).toBeNull();
 		});
 	});
 
 	describe('icon', () => {
 		it('should have a icon slot', async () => {
 			expect(
-				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+				Boolean(element.shadowRoot!.querySelector('slot[name="icon"]'))
 			).toEqual(true);
 		});
 
@@ -250,7 +248,7 @@ describe('vwc-select', () => {
 			element.icon = icon;
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector(ICON_SELECTOR)?.getAttribute('name')
+				element.shadowRoot!.querySelector(ICON_SELECTOR)!.getAttribute('name')
 			).toEqual(icon);
 		});
 	});
@@ -278,7 +276,7 @@ describe('vwc-select', () => {
 	describe('disabled', function () {
 		it('should set disabled class for select when disabled is true', async () => {
 			const disableClassExistsWithDisabledFalse = Boolean(
-				element.shadowRoot?.querySelector('.control.disabled')
+				element.shadowRoot!.querySelector('.control.disabled')
 			);
 
 			element.toggleAttribute('disabled', true);
@@ -286,26 +284,26 @@ describe('vwc-select', () => {
 
 			expect(disableClassExistsWithDisabledFalse).toBeFalsy();
 			expect(
-				element.shadowRoot?.querySelector('.control.disabled')
+				element.shadowRoot!.querySelector('.control.disabled')
 			).toBeTruthy();
 		});
 	});
 
 	describe('multiple', () => {
 		it('should leave popup open when set', async function () {
-			const popup = element.shadowRoot?.querySelector('.popup');
+			const popup = element.shadowRoot!.querySelector('.popup');
 
 			element.multiple = true;
 			element.open = true;
 			await elementUpdated(element);
-			expect(popup?.hasAttribute('open')).toBeTruthy();
+			expect(popup!.hasAttribute('open')).toBeTruthy();
 		});
 
 		it('should render options only', async () => {
 			element.multiple = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.control')).toBeFalsy();
-			expect(element.shadowRoot?.querySelector('.popup')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.control')).toBeFalsy();
+			expect(element.shadowRoot!.querySelector('.popup')).toBeTruthy();
 		});
 
 		it('should set aria-haspopup to false', async () => {
@@ -366,10 +364,10 @@ describe('vwc-select', () => {
 			element.setAttribute('appearance', appearance);
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector('.control');
+			const control = element.shadowRoot!.querySelector('.control');
 
 			expect(
-				control?.classList.contains(`appearance-${appearance}`)
+				control!.classList.contains(`appearance-${appearance}`)
 			).toBeTruthy();
 		});
 	});
@@ -380,9 +378,9 @@ describe('vwc-select', () => {
 			element.setAttribute('shape', shape);
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector('.control');
+			const control = element.shadowRoot!.querySelector('.control');
 
-			expect(control?.classList.contains(`shape-${shape}`)).toBeTruthy();
+			expect(control!.classList.contains(`shape-${shape}`)).toBeTruthy();
 		});
 	});
 
@@ -393,7 +391,7 @@ describe('vwc-select', () => {
 		}
 
 		const visibleErrorMessage = () =>
-			element.querySelector('vwc-feedback-message')!.textContent!.trim();
+			element.querySelector('vwc-feedback-message')!.textContent.trim();
 
 		it('should hide error message when pristine', async function () {
 			setValidityToError();
@@ -412,13 +410,12 @@ describe('vwc-select', () => {
 		});
 
 		it('should initialize as valid if required constraint is met by defaulting to first value', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG} required>
+			element = fixture(`<${COMPONENT_TAG} required>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
+			await elementUpdated(element);
 
 			expect(element.validity.valid).toBe(true);
 		});
@@ -579,7 +576,7 @@ describe('vwc-select', () => {
 	describe('slot', () => {
 		it('should have a meta slot', async function () {
 			expect(
-				Boolean(element.shadowRoot?.querySelector('slot[name="meta"]'))
+				Boolean(element.shadowRoot!.querySelector('slot[name="meta"]'))
 			).toEqual(true);
 		});
 
@@ -615,13 +612,13 @@ describe('vwc-select', () => {
 			element.fixedDropdown = true;
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector('.popup')?.hasAttribute('strategy')
+				element.shadowRoot!.querySelector('.popup')!.hasAttribute('strategy')
 			).toBeFalsy();
 		});
 
 		it('should add strategy="absolute" when fixedDropdown is false', function () {
 			expect(
-				element.shadowRoot?.querySelector('.popup')?.getAttribute('strategy')
+				element.shadowRoot!.querySelector('.popup')!.getAttribute('strategy')
 			).toEqual('absolute');
 		});
 
@@ -632,7 +629,7 @@ describe('vwc-select', () => {
 
 			await toggleOpenState(true);
 
-			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+			const popup = element.shadowRoot!.querySelector('.popup') as HTMLElement;
 			const variableValue = window
 				.getComputedStyle(popup)
 				.getPropertyValue('--_select-fixed-width');
@@ -645,7 +642,7 @@ describe('vwc-select', () => {
 			element.fixedDropdown = true;
 			setBoundingClientRect(width);
 			await toggleOpenState(true);
-			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+			const popup = element.shadowRoot!.querySelector('.popup') as HTMLElement;
 			const variableValue = window
 				.getComputedStyle(popup)
 				.getPropertyValue('--_select-fixed-width');
@@ -663,7 +660,7 @@ describe('vwc-select', () => {
 			await toggleOpenState(false);
 			await toggleOpenState(true);
 
-			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+			const popup = element.shadowRoot!.querySelector('.popup') as HTMLElement;
 			const variableValue = window
 				.getComputedStyle(popup)
 				.getPropertyValue('--_select-fixed-width');
@@ -709,26 +706,22 @@ describe('vwc-select', () => {
 
 	describe('placeholder', function () {
 		it('should set selectedindex -1 when placeholder is set', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG} placeholder="placeholder">
+			element = fixture(`<${COMPONENT_TAG} placeholder="placeholder">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
 
 			await elementUpdated(element);
 			expect(element.selectedIndex).toEqual(-1);
 		});
 
 		it('should change selectedindex -1 when option selected', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG} placeholder="placeholder">
+			element = fixture(`<${COMPONENT_TAG} placeholder="placeholder">
 					<option value="1">1</option>
 					<option value="2" selected>2</option>
 					<option value="3">3</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
 
 			await elementUpdated(element);
 
@@ -736,32 +729,28 @@ describe('vwc-select', () => {
 		});
 
 		it('should display the placeholder when no option selected', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG} placeholder="placeholder">
+			element = fixture(`<${COMPONENT_TAG} placeholder="placeholder">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
 
 			await elementUpdated(element);
 			expect(getPlaceholder()).toBe('placeholder');
 		});
 
 		it('should display a selected option instead of the placeholder', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG} placeholder="placeholder">
+			element = fixture(`<${COMPONENT_TAG} placeholder="placeholder">
 					<option value="1">1</option>
 					<option value="2" selected>2</option>
 					<option value="3">3</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
 
 			await elementUpdated(element);
 			expect(
 				getControlElement(element)
-					.querySelector('.selected-value')
-					?.textContent?.trim()
+					.querySelector('.selected-value')!
+					.textContent.trim()
 			).toEqual('2');
 			expect(getControlElement(element).classList).not.toContain(
 				'shows-placeholder'
@@ -769,11 +758,9 @@ describe('vwc-select', () => {
 		});
 
 		it('should display the placeholder when the value is changed to a non-option and no valid options are available', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG} placeholder="placeholder">
+			element = fixture(`<${COMPONENT_TAG} placeholder="placeholder">
 					<option value="1">1</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
 			element.value = '1';
 			await elementUpdated(element);
 
@@ -785,25 +772,22 @@ describe('vwc-select', () => {
 		});
 
 		it('should be invalid if required and no value selected', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG} required placeholder="placeholder">
+			element = fixture(`<${COMPONENT_TAG} required placeholder="placeholder">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
 
 			expect(element.validity.valid).toBe(false);
 		});
 
 		it('should display placeholder if form resets and placeholder exists', async () => {
-			const form = (await fixture(
-				`<form><${COMPONENT_TAG} name="select" required placeholder="placeholder">
+			const form =
+				fixture(`<form><${COMPONENT_TAG} name="select" required placeholder="placeholder">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
-				</${COMPONENT_TAG}></form>`
-			)) as HTMLFormElement;
+				</${COMPONENT_TAG}></form>`) as HTMLFormElement;
 			element = form.children[0] as Select;
 			element.selectedIndex = 1;
 			await elementUpdated(element);
@@ -853,12 +837,12 @@ describe('vwc-select', () => {
 		});
 
 		it('should select the correct option when value is set before options and DOM insertion', async () => {
-			const select = document.createElement(COMPONENT_TAG) as Select;
+			const select = document.createElement(COMPONENT_TAG);
 
 			select.value = 'second';
 
 			['first', 'second', 'third'].forEach((val) => {
-				const option = document.createElement('vwc-option') as ListboxOption;
+				const option = document.createElement('vwc-option');
 				option.value = val;
 				option.text = val;
 				select.appendChild(option);
@@ -874,45 +858,40 @@ describe('vwc-select', () => {
 
 	describe('default value', () => {
 		it('should use the first defaultSelected option as initial value', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG}>
+			element = fixture(`<${COMPONENT_TAG}>
 					<option value="1">1</option>
 					<option value="2" selected>2</option>
 					<option value="3">3</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
+			await elementUpdated(element);
 
 			expect(element.value).toBe('2');
 		});
 
 		it('should use the first non-disabled option as initial value when no option is defaultSelected', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG}>
+			element = fixture(`<${COMPONENT_TAG}>
 					<option value="1" disabled>1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
+			await elementUpdated(element);
 
 			expect(element.value).toBe('2');
 		});
 
 		it('should have an empty value when there are no non-disabled options', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG}>
+			element = fixture(`<${COMPONENT_TAG}>
 					<option value="1" disabled>1</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
+			await elementUpdated(element);
 
 			expect(element.value).toBe('');
 		});
 
 		it('should set update value when new defaultSelected option is added', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG}>
+			element = fixture(`<${COMPONENT_TAG}>
 					<option value="1">1</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
 			await elementUpdated(element);
 
 			const option = document.createElement('option');
@@ -926,12 +905,10 @@ describe('vwc-select', () => {
 		});
 
 		it('should not update its value when a new non-defaultSelected option is added', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG}>
+			element = fixture(`<${COMPONENT_TAG}>
 					<option value="1">1</option>
 					<option value="2">2</option>
-				</${COMPONENT_TAG}>`
-			)) as Select;
+				</${COMPONENT_TAG}>`) as Select;
 			element.value = '2';
 			await elementUpdated(element);
 
@@ -1369,7 +1346,7 @@ describe('vwc-select', () => {
 			(
 				element
 					.querySelector('vwc-feedback-message')!
-					.shadowRoot!.querySelector(`.${'helper'}-message`) as HTMLElement
+					.shadowRoot!.querySelector(`.helper-message`) as HTMLElement
 			).dispatchEvent(new Event('click', { bubbles: true, composed: true }));
 
 			expect(element.open).toBe(false);

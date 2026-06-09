@@ -9,9 +9,7 @@ describe('vwc-tag-group', () => {
 	let element: TagGroup;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TagGroup;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as TagGroup;
 	});
 
 	describe('basic', () => {

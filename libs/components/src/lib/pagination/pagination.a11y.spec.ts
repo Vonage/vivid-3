@@ -13,9 +13,7 @@ describe('a11y: vwc-pagination', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Pagination;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Pagination;
 	});
 
 	it('should pass html a11y test', async () => {

@@ -543,7 +543,7 @@ describe('RteFontSizeFeature', () => {
 		);
 
 		rte.placeCursor('Hello |world');
-		rte.click(rte.toolbarButton('Bold')); // Add bold stored mark
+		await rte.click(rte.toolbarButton('Bold')); // Add bold stored mark
 
 		expect(
 			rte.element.shadowRoot!.querySelector('.ProseMirror .ProseMirror-widget')

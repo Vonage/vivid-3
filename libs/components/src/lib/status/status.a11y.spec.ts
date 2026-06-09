@@ -13,9 +13,9 @@ describe('a11y: vwc-status', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG} status="Positive">Description</${COMPONENT_TAG}>`
-		)) as Status;
+		) as Status;
 	});
 
 	it('should pass html a11y test', async () => {

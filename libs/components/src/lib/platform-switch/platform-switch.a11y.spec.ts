@@ -13,12 +13,10 @@ describe('a11y: vwc-platform-switch', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}>
+		element = fixture(`<${COMPONENT_TAG}>
 				<span data-keyboard="apple">Apple shortcut</span>
 				<span>Default shortcut</span>
-			</${COMPONENT_TAG}>`
-		)) as PlatformSwitch;
+			</${COMPONENT_TAG}>`) as PlatformSwitch;
 	});
 
 	describe('a11y', () => {

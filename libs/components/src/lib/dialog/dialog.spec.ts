@@ -115,7 +115,7 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should handle opening and closing the dialog before first mount', async function () {
-			element = document.createElement(COMPONENT_TAG) as Dialog;
+			element = document.createElement(COMPONENT_TAG);
 
 			element.open = true;
 
@@ -131,7 +131,7 @@ describe('vwc-dialog', () => {
 			const iconElement = dialogEl.querySelector('.icon');
 			expect(iconElementWhenUndefined).toBeNull();
 			expect(iconElement).toBeTruthy();
-			expect(iconElement?.getAttribute('name')).toEqual('home');
+			expect(iconElement!.getAttribute('name')).toEqual('home');
 		});
 	});
 
@@ -152,7 +152,7 @@ describe('vwc-dialog', () => {
 			const contentElement = dialogEl.querySelector('.subtitle');
 			expect(contentElementWhenUndefined).toBeNull();
 			expect(contentElement).toBeTruthy();
-			expect(contentElement?.textContent?.trim()).toEqual(content);
+			expect(contentElement!.textContent.trim()).toEqual(content);
 		});
 	});
 
@@ -167,8 +167,8 @@ describe('vwc-dialog', () => {
 
 			expect(headlineElementWhenUndefined).toBeNull();
 			expect(headlineElement).toBeTruthy();
-			expect(headlineElement?.textContent?.trim()).toEqual(content);
-			expect(headlineElement?.id).toBe('dialog-headline');
+			expect(headlineElement!.textContent.trim()).toEqual(content);
+			expect(headlineElement!.id).toBe('dialog-headline');
 			expect(dialogEl.getAttribute('aria-labelledby')).toBe(
 				'dialog-headline dialog-subtitle'
 			);
@@ -184,12 +184,12 @@ describe('vwc-dialog', () => {
 			element.headline = 'Dialog title';
 			await elementUpdated(element);
 
-			const header = element.shadowRoot?.querySelector('.header');
+			const header = element.shadowRoot!.querySelector('.header');
 			const dismissButton = getDismissButton();
 
 			expect(header).toBeTruthy();
 			expect(dismissButton).toBeTruthy();
-			expect(header?.firstElementChild).toBe(dismissButton);
+			expect(header!.firstElementChild).toBe(dismissButton);
 		});
 
 		it('should not render dismiss button when no-dismiss-button is set', async function () {
@@ -588,7 +588,7 @@ describe('vwc-dialog', () => {
 
 	describe('dialog body', () => {
 		it('should have body slot ', async function () {
-			const bodySlotElement = element.shadowRoot?.querySelector(
+			const bodySlotElement = element.shadowRoot!.querySelector(
 				'.body slot[name="body"]'
 			);
 
@@ -608,11 +608,11 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should add class of full-width to body div wrapper', async () => {
-			const bodyDiv = element.shadowRoot?.querySelector('.body');
+			const bodyDiv = element.shadowRoot!.querySelector('.body');
 			element.fullWidthBody = true;
 			await elementUpdated(element);
 			expect(element.hasAttribute('full-width-body')).toEqual(true);
-			expect(bodyDiv?.classList).toContain('full-width');
+			expect(bodyDiv!.classList).toContain('full-width');
 		});
 	});
 
@@ -620,7 +620,7 @@ describe('vwc-dialog', () => {
 		it.each(['footer', 'action-items'])(
 			'should have a %s slot ',
 			(slotName) => {
-				const slotElement = element.shadowRoot?.querySelector(
+				const slotElement = element.shadowRoot!.querySelector(
 					`.footer slot[name="${slotName}"]`
 				);
 

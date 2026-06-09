@@ -13,7 +13,7 @@ describe('vwc-fab', () => {
 	let element: Fab;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Fab;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Fab;
 	});
 
 	describe('basic', () => {
@@ -37,18 +37,18 @@ describe('vwc-fab', () => {
 
 	describe('label', () => {
 		it('should set label property', async () => {
-			expect(getControlElement(element).textContent?.trim()).toEqual('');
+			expect(getControlElement(element).textContent.trim()).toEqual('');
 			const label = 'lala';
 			element.label = label;
 			await elementUpdated(element);
-			expect(getControlElement(element).textContent?.trim()).toEqual(label);
+			expect(getControlElement(element).textContent.trim()).toEqual(label);
 		});
 	});
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+				Boolean(element.shadowRoot!.querySelector('slot[name="icon"]'))
 			).toEqual(true);
 		});
 
@@ -56,9 +56,9 @@ describe('vwc-fab', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector('vwc-icon');
+			const icon = element.shadowRoot!.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
-			expect(icon?.name).toEqual('home');
+			expect(icon!.name).toEqual('home');
 		});
 
 		it('should set icon-trailing property', async () => {
@@ -90,7 +90,7 @@ describe('vwc-fab', () => {
 
 		it('should have an icon slot', async () => {
 			expect(
-				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+				Boolean(element.shadowRoot!.querySelector('slot[name="icon"]'))
 			).toEqual(true);
 		});
 
@@ -113,7 +113,7 @@ describe('vwc-fab', () => {
 			slottedElement.slot = 'icon';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
-			expect(element.iconSlottedContent?.length).toEqual(1);
+			expect(element.iconSlottedContent!.length).toEqual(1);
 			expect(element.hasAttribute('iconSlottedContent')).toEqual(false);
 		});
 	});
@@ -142,19 +142,19 @@ describe('vwc-fab', () => {
 			element.size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(
+			const control = element.shadowRoot!.querySelector(
 				`.control.size-${size}`
 			);
-			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
+			expect(control!.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
 
 	describe('disabled', function () {
 		it('should set disabled class when disabled is true', async () => {
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeFalsy();
+			expect(element.shadowRoot!.querySelector('.disabled')).toBeFalsy();
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.disabled')).toBeTruthy();
 		});
 
 		it('should set aria-disabled on <button> when disabled', async () => {
@@ -162,7 +162,7 @@ describe('vwc-fab', () => {
 			await elementUpdated(element);
 
 			const control = getControlElement(element);
-			expect(control?.getAttribute('aria-disabled')).toBe('true');
+			expect(control.getAttribute('aria-disabled')).toBe('true');
 		});
 
 		it('should not emit click when disabled', async () => {
@@ -173,7 +173,7 @@ describe('vwc-fab', () => {
 			await elementUpdated(element);
 
 			const control = getControlElement(element);
-			control?.click();
+			control.click();
 
 			expect(listener).not.toHaveBeenCalled();
 		});

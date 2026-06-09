@@ -28,11 +28,7 @@ function toCommand(
 	handler: KeyboardShortcutHandler,
 	rteInstance: RteInstance
 ): Command {
-	if (handler.length === 0) {
-		return (_state, _dispatch) => (handler as () => boolean)();
-	}
-	return (_state, _dispatch) =>
-		(handler as (rte: RteInstance) => boolean)(rteInstance);
+	return (_state, _dispatch) => handler(rteInstance);
 }
 
 export class RteKeyboardShortcutsFeatureImpl extends RteFeatureImpl {

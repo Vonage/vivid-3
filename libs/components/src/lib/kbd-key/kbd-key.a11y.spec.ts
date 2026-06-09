@@ -13,9 +13,7 @@ describe('a11y: vwc-kbd-key', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as KbdKey;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as KbdKey;
 	});
 
 	it('should pass html a11y test with a name', async () => {
@@ -26,9 +24,9 @@ describe('a11y: vwc-kbd-key', () => {
 	});
 
 	it('should pass html a11y test with Custom slot', async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG} name="Custom">Fn</${COMPONENT_TAG}>`
-		)) as KbdKey;
+		) as KbdKey;
 		await elementUpdated(element);
 
 		expect(await axe(element)).toHaveNoViolations();

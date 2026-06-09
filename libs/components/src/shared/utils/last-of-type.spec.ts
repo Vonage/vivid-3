@@ -18,7 +18,7 @@ describe('lastOfType', () => {
 	it('should return the last child element of the specified type', () => {
 		const firstSpan = lastOfType(container, HTMLSpanElement);
 		expect(firstSpan).toBeInstanceOf(HTMLSpanElement);
-		expect(firstSpan?.textContent).toBe('Three');
+		expect(firstSpan!.textContent).toBe('Three');
 	});
 
 	it('should return null if no child of the specified type exists', () => {

@@ -26,7 +26,7 @@ describe('vwc-tag', () => {
 	let element: Tag;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Tag;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Tag;
 	});
 
 	describe('basic', () => {
@@ -52,7 +52,7 @@ describe('vwc-tag', () => {
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+				Boolean(element.shadowRoot!.querySelector('slot[name="icon"]'))
 			).toEqual(true);
 		});
 
@@ -62,7 +62,7 @@ describe('vwc-tag', () => {
 
 			const icon = element.shadowRoot!.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
-			expect(icon?.name).toEqual('home');
+			expect(icon!.name).toEqual('home');
 		});
 	});
 
@@ -72,8 +72,8 @@ describe('vwc-tag', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector('.base');
-			expect(base?.textContent?.trim()).toEqual(label);
+			const base = element.shadowRoot!.querySelector('.base');
+			expect(base!.textContent.trim()).toEqual(label);
 		});
 	});
 
@@ -168,7 +168,7 @@ describe('vwc-tag', () => {
 		});
 
 		it('should remove the selectable icon when selectable is false', async () => {
-			expect(element.shadowRoot?.querySelector('.selectable-icon')).toEqual(
+			expect(element.shadowRoot!.querySelector('.selectable-icon')).toEqual(
 				null
 			);
 		});
@@ -177,7 +177,7 @@ describe('vwc-tag', () => {
 			await toggleSelectable(element, true);
 			element.click();
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.selectable-icon')).toEqual(
+			expect(element.shadowRoot!.querySelector('.selectable-icon')).toEqual(
 				null
 			);
 		});
@@ -245,16 +245,16 @@ describe('vwc-tag', () => {
 		});
 
 		it('should add a remove button when true', async () => {
-			expect(element.shadowRoot?.querySelector('.dismiss-button')).toEqual(
+			expect(element.shadowRoot!.querySelector('.dismiss-button')).toEqual(
 				null
 			);
 			await toggleRemovable(element, true);
-			expect(element.shadowRoot?.querySelector('.dismiss-button')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.dismiss-button')).toBeTruthy();
 		});
 
 		it('should remove tag on remove button click', async () => {
 			await toggleRemovable(element, true);
-			const dismissButton = element.shadowRoot?.querySelector(
+			const dismissButton = element.shadowRoot!.querySelector(
 				'.dismiss-button'
 			) as HTMLElement;
 			dismissButton.click();

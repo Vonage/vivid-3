@@ -9,9 +9,7 @@ describe('vwc-status', () => {
 	let element: Status;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Status;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Status;
 	});
 
 	describe('basic', () => {
@@ -30,7 +28,7 @@ describe('vwc-status', () => {
 			element.status = statusText;
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector('.headline')?.textContent?.trim()
+				element.shadowRoot!.querySelector('.headline')!.textContent.trim()
 			).toEqual(statusText);
 		});
 	});
@@ -38,33 +36,33 @@ describe('vwc-status', () => {
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				element.shadowRoot?.querySelector('slot[name="icon"]')
+				element.shadowRoot!.querySelector('slot[name="icon"]')
 			).toBeTruthy();
 		});
 
 		it('should render default icon when connotation is set', async function () {
 			element.connotation = Connotation.Success;
 			await elementUpdated(element);
-			const iconElement = element.shadowRoot?.querySelector('vwc-icon');
-			expect(iconElement?.getAttribute('name')).toEqual('check-circle-solid');
+			const iconElement = element.shadowRoot!.querySelector('vwc-icon');
+			expect(iconElement!.getAttribute('name')).toEqual('check-circle-solid');
 		});
 
 		it('should render custom icon when icon is set', async function () {
 			element.setAttribute('icon', 'info-line');
 			await elementUpdated(element);
-			const iconElement = element.shadowRoot?.querySelector('vwc-icon');
-			expect(iconElement?.getAttribute('name')).toEqual('info-line');
+			const iconElement = element.shadowRoot!.querySelector('vwc-icon');
+			expect(iconElement!.getAttribute('name')).toEqual('info-line');
 		});
 	});
 
 	describe('connotation', () => {
 		it('should set connotation class on the base element', async function () {
 			const connotation = Connotation.Information;
-			const baseElement = element.shadowRoot?.querySelector('.base');
+			const baseElement = element.shadowRoot!.querySelector('.base');
 			element.connotation = connotation;
 			await elementUpdated(element);
 			expect(
-				baseElement?.classList?.contains(`connotation-${connotation}`)
+				baseElement!.classList.contains(`connotation-${connotation}`)
 			).toEqual(true);
 		});
 	});

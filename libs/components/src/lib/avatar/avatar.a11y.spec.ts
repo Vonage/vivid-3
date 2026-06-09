@@ -13,9 +13,7 @@ describe('a11y: vwc-avatar', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Avatar;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Avatar;
 	});
 
 	it('should pass html a11y test', async () => {

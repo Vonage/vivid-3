@@ -15,7 +15,7 @@ describe('a11y: icon', function () {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Icon;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Icon;
 		vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
 	});
 
@@ -27,9 +27,9 @@ describe('a11y: icon', function () {
 	it('should pass html a11y test', async () => {
 		vi.clearAllTimers();
 		vi.useRealTimers();
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG} name="home"></${COMPONENT_TAG}>`
-		)) as Icon;
+		) as Icon;
 
 		expect(await axe(element)).toHaveNoViolations();
 	});

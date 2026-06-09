@@ -24,7 +24,7 @@ describe('vwc-select keyboard navigation', () => {
 	});
 
 	async function setupSelect(html: string) {
-		const element = (await fixture(html)) as Select;
+		const element = fixture(html) as Select;
 
 		const focus = () => {
 			element.focus();
@@ -40,19 +40,19 @@ describe('vwc-select keyboard navigation', () => {
 		const selectedOption = () => {
 			const selectedIndex = element.selectedIndex;
 			const option = element.querySelectorAll('vwc-option')[selectedIndex];
-			return option?.text || null;
+			return option.text || null;
 		};
 
 		const checkedOptions = () => {
 			const options = Array.from(
-				element.querySelectorAll('vwc-option[checked="true"]')
-			) as ListboxOption[];
+				element.querySelectorAll<ListboxOption>('vwc-option[checked="true"]')
+			);
 			return options.map((o) => o.text);
 		};
 
 		const clickOption = async (text: string) => {
 			const option = Array.from(element.querySelectorAll('vwc-option')).find(
-				(o) => (o as ListboxOption).text === text
+				(o) => o.text === text
 			) as ListboxOption;
 			option.click();
 			await elementUpdated(element);
@@ -62,7 +62,7 @@ describe('vwc-select keyboard navigation', () => {
 			const checkedOption = element.querySelector(
 				'vwc-option[checked="true"]'
 			) as ListboxOption;
-			return checkedOption?.value || null;
+			return checkedOption.value || null;
 		};
 
 		return {

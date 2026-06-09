@@ -14,9 +14,9 @@ describe('a11y: vwc-inline-time-picker', () => {
 	let element: InlineTimePicker;
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as InlineTimePicker;
+		) as InlineTimePicker;
 	});
 
 	it('should pass html a11y test', async () => {
@@ -34,19 +34,19 @@ describe('a11y: vwc-inline-time-picker', () => {
 		await elementUpdated(element);
 
 		expect(
-			element.shadowRoot
-				?.querySelector('#hours')
-				?.getAttribute('aria-activedescendant')
+			element
+				.shadowRoot!.querySelector('#hours')!
+				.getAttribute('aria-activedescendant')
 		).toBe('hours-12');
 		expect(
-			element.shadowRoot
-				?.querySelector('#minutes')
-				?.getAttribute('aria-activedescendant')
+			element
+				.shadowRoot!.querySelector('#minutes')!
+				.getAttribute('aria-activedescendant')
 		).toBe('minutes-34');
 		expect(
-			element.shadowRoot
-				?.querySelector('#seconds')
-				?.getAttribute('aria-activedescendant')
+			element
+				.shadowRoot!.querySelector('#seconds')!
+				.getAttribute('aria-activedescendant')
 		).toBe('seconds-56');
 	});
 

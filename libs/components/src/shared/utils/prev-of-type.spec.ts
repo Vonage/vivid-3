@@ -19,7 +19,7 @@ describe('prevOfType', () => {
 		const prevSpan = prevOfType(secondDiv as HTMLElement, HTMLSpanElement);
 
 		expect(prevSpan).toBeInstanceOf(HTMLSpanElement);
-		expect(prevSpan?.id).toBe('one');
+		expect(prevSpan!.id).toBe('one');
 	});
 
 	it('should skip siblings of different types and return the previous matching sibling', () => {
@@ -27,7 +27,7 @@ describe('prevOfType', () => {
 		const prevSpan = prevOfType(thirdDiv as HTMLElement, HTMLSpanElement);
 
 		expect(prevSpan).toBeInstanceOf(HTMLSpanElement);
-		expect(prevSpan?.id).toBe('one');
+		expect(prevSpan!.id).toBe('one');
 	});
 
 	it('should return null if there is no previous sibling of the specified type', () => {

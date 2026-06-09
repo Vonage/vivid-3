@@ -14,9 +14,7 @@ describe('a11y: vwc-calendar', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Calendar;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Calendar;
 	});
 
 	/* skipped because "Certain ARIA roles must contain particular children (aria-required-children)" */
