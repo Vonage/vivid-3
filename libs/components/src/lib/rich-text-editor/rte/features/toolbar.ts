@@ -58,16 +58,51 @@ export class RteToolbarFeatureImpl extends RteFeatureImpl {
 			this.contribution(
 				new Plugin({
 					view: (view) => {
+						let focusCameFromEditorWithMouse = false;
+
 						const ctx = new UiCtx(view, rte, {
 							popupPlacement:
 								this.config?.popupDirection === 'outward' ? 'bottom' : 'top',
 							menuOffset: 8,
 							disabled: () => core.disabled.getValue(rte),
+							shouldReturnFocusToEditor: () => focusCameFromEditorWithMouse,
 						});
 
 						const toolbar = (
 							view.dom.getRootNode() as ShadowRoot
 						).querySelector('.toolbar')!;
+
+						// Track whether focus on the toolbar arrived from the editor via a
+						// mouse click, so that toolbar actions can optionally refocus the
+						// editor. Comparing the timestamp prevents the focusin that follows
+						// the same mousedown from clearing the flag.
+						let mouseDownTime = -Infinity;
+
+						const onMouseDown = () => {
+							if (view.hasFocus()) {
+								focusCameFromEditorWithMouse = true;
+							}
+							mouseDownTime = Date.now();
+						};
+
+						const onFocusIn = () => {
+							if (Date.now() - mouseDownTime > 250) {
+								focusCameFromEditorWithMouse = false;
+							}
+						};
+
+						const onFocusOut = (e: FocusEvent) => {
+							if (!toolbar.contains(e.relatedTarget as Node)) {
+								focusCameFromEditorWithMouse = false;
+							}
+						};
+
+						toolbar.addEventListener('mousedown', onMouseDown, {
+							capture: true,
+						});
+						toolbar.addEventListener('focusin', onFocusIn);
+						toolbar.addEventListener('focusout', onFocusOut as EventListener);
+
 						ctx.bindProp(
 							() => this.hidden.getValue(rte),
 							(hidden) => {
@@ -96,6 +131,15 @@ export class RteToolbarFeatureImpl extends RteFeatureImpl {
 							},
 							destroy() {
 								toolbar.innerHTML = '';
+								toolbar.removeEventListener('mousedown', onMouseDown, {
+									capture: true,
+								} as EventListenerOptions);
+								toolbar.removeEventListener('focusin', onFocusIn);
+								toolbar.removeEventListener(
+									'focusout',
+									onFocusOut as EventListener
+								);
+								focusCameFromEditorWithMouse = false;
 							},
 						};
 					},

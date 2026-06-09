@@ -73,6 +73,7 @@ describe('createSelect', () => {
 		const rte = await setup([new RteBase(), new RteToolbarFeature()]);
 		const ctx = new UiCtx(rte.view, rte.instance[impl], {
 			popupPlacement: 'bottom',
+			shouldReturnFocusToEditor: true,
 		});
 		const onSelect = vitest.fn();
 
@@ -113,6 +114,7 @@ describe('createButton', () => {
 		const rte = await setup([new RteBase(), new RteToolbarFeature()]);
 		const ctx = new UiCtx(null as any, rte.instance[impl], {
 			popupPlacement: 'bottom',
+			shouldReturnFocusToEditor: true,
 		});
 		const buttonWrapper = createButton(ctx, { label: 'Button' });
 		const menuContainer = createMenu(ctx, {
@@ -131,6 +133,7 @@ describe('createMenu', () => {
 		const rte = await setup([new RteBase(), new RteToolbarFeature()]);
 		const ctx = new UiCtx(null as any, rte.instance[impl], {
 			popupPlacement: 'bottom',
+			shouldReturnFocusToEditor: true,
 		});
 		const button = document.createElement('button');
 		const menuContainer = createMenu(ctx, {
@@ -147,6 +150,7 @@ describe('createMenu', () => {
 		const rte = await setup([new RteBase(), new RteToolbarFeature()]);
 		const ctx = new UiCtx(null as any, rte.instance[impl], {
 			popupPlacement: 'bottom',
+			shouldReturnFocusToEditor: true,
 		});
 		const buttonWrapper = createButton(ctx, { label: 'Button' });
 		const menuContainer = createMenu(ctx, {
@@ -189,6 +193,7 @@ describe('createSingleSlot', () => {
 			renderSlot: async (slotName: string, initialValue: string) => {
 				const ctx = new UiCtx(rte.view, rte.instance[impl], {
 					popupPlacement: 'bottom',
+					shouldReturnFocusToEditor: true,
 				});
 				let value = initialValue;
 				const onChange = vitest.fn();

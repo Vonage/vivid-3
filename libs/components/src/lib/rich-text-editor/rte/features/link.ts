@@ -155,6 +155,7 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 					view: (view) => {
 						const ctx = new UiCtx(view, rte, {
 							popupPlacement: 'bottom',
+							shouldReturnFocusToEditor: true,
 						});
 						popup = rte.createComponent(Popover);
 						popup.anchorId = 'current-link';
@@ -334,6 +335,7 @@ export class RteLinkFeatureImpl extends RteFeatureImpl {
 									urlField.value,
 									textField.value
 								)(state, dispatch);
+								this.toolbarMenu!.open = false;
 							},
 						});
 
