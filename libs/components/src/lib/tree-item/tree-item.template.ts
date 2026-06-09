@@ -17,11 +17,7 @@ import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import { TreeItem } from './tree-item';
 
 const getClasses = ({ disabled, selected }: TreeItem) =>
-	classNames(
-		'control',
-		['disabled', disabled],
-		['selected', Boolean(selected)]
-	);
+	classNames('control', ['disabled', disabled], ['selected', selected]);
 
 export const expandCollapseButton = (
 	context: VividElementDefinitionContext

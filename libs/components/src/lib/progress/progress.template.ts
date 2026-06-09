@@ -8,8 +8,8 @@ const getClasses = ({ connotation, shape, reverse, paused }: Progress) =>
 		'base',
 		[`connotation-${connotation}`, Boolean(connotation)],
 		[`shape-${shape}`, Boolean(shape)],
-		['reverse', Boolean(reverse)],
-		['paused', Boolean(paused)]
+		['reverse', reverse],
+		['paused', paused]
 	);
 
 function determinate() {

@@ -55,7 +55,7 @@ export default mergeConfig(
 					},
 					{
 						src: `${
-							new URL(await import.meta.resolve('@repo/styles/dist')).pathname
+							new URL(import.meta.resolve('@repo/styles/dist')).pathname
 						}/*`,
 						dest: './styles',
 					},

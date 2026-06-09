@@ -10,7 +10,7 @@ import type {
 
 type ImprovedMixinSupportContext = {
 	context: {
-		mixinClassNames: Record<string, string>;
+		mixinClassNames?: Record<string, string>;
 	};
 };
 
@@ -52,7 +52,7 @@ export const improvedMixinSupportPlugin = (): Plugin => ({
 	}: ModuleLinkPhaseParams & ImprovedMixinSupportContext) {
 		for (const declaration of moduleDoc.declarations ?? []) {
 			if (declaration.kind === 'mixin') {
-				const mixinClassName = context.mixinClassNames[declaration.name];
+				const mixinClassName = context.mixinClassNames![declaration.name];
 				const mixinClass = moduleDoc.declarations!.find(
 					(d) => d.kind === 'class' && d.name === mixinClassName
 				) as any;

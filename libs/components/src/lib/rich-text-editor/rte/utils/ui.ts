@@ -195,7 +195,7 @@ export const createButton = (
 		active?: Prop<boolean>;
 		disabled?: Prop<boolean>;
 		connotation?: Prop<'alert'>;
-		onClick?: () => void | boolean;
+		onClick?: (() => boolean) | (() => void);
 	}
 ) => {
 	const variant = () => ctx.evalProp(props.variant) ?? 'toolbar';

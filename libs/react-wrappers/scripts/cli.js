@@ -1,21 +1,21 @@
 import {
-	OutputLanguage,
+	Assets,
 	CLIArgument,
 	FileName,
-	Assets,
+	OutputLanguage,
 } from './generateWrappers/consts.js';
 import {
 	generateWrappers,
 	generateWrappersV3,
 } from './generateWrappers/generator.js';
 import {
-	isFileExists,
-	readMetaData,
+	copyStaticAssets,
+	getCustomElementTagsDefinitionsList,
+	getInputArgument,
 	getParsedJson,
 	getVividPackageNames,
-	getInputArgument,
-	getCustomElementTagsDefinitionsList,
-	copyStaticAssets,
+	isFileExists,
+	readMetaData,
 } from './generateWrappers/utils.js';
 
 const outputDir = getInputArgument(
@@ -30,7 +30,7 @@ const staticAssets = getInputArgument(CLIArgument.Assets, Assets);
 const cleanTemp = getInputArgument(CLIArgument.CleanTemp, true) !== 'false';
 
 // generate wrappers for Vivid 2.x
-isFileExists(FileName.packageJson)
+void isFileExists(FileName.packageJson)
 	.then(getParsedJson)
 	.then(getVividPackageNames)
 	.then(getCustomElementTagsDefinitionsList())

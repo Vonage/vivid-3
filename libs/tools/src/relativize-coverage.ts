@@ -40,8 +40,8 @@ const relativizeCoverage = async (
 	logger.debug(`Relativized paths in ${coveragePath}\n`);
 };
 
-const [, , projectDir] = process.argv;
+const [, , projectDir] = process.argv as Array<string | undefined>;
 const scriptDir = path.dirname(new URL(import.meta.url).pathname);
 const workspaceRoot = path.resolve(scriptDir, '../../..');
 
-relativizeCoverage(projectDir ?? process.cwd(), workspaceRoot);
+void relativizeCoverage(projectDir ?? process.cwd(), workspaceRoot);

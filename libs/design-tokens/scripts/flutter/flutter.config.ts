@@ -7,7 +7,7 @@ import { type ColorValue, getHex } from '../utils/hexify.util';
 import { fileHeader } from 'style-dictionary/utils';
 
 function double(value: string | number) {
-	return String(parseFloat(String(value)).toFixed(2));
+	return parseFloat(String(value)).toFixed(2);
 }
 
 function color(token: ColorValue) {
@@ -120,7 +120,7 @@ export const flutterConfig: Hooks = {
 		'vvd/name/flutter': {
 			type: 'name',
 			transform(token) {
-				return token.name.replace(/([-_\/][a-z0-9])/g, ($1) =>
+				return token.name.replace(/([-_/][a-z0-9])/g, ($1) =>
 					$1.toUpperCase().replace('-', '').replace('_', '').replace('/', '')
 				);
 			},

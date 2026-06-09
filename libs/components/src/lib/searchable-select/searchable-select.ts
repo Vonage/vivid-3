@@ -237,7 +237,7 @@ export class SearchableSelect extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	override valueChanged(prev: string, next: string) {
+	override valueChanged(prev: string | undefined, next: string) {
 		super.valueChanged(prev, next);
 
 		if (!this._areOptionsInitialized) {
@@ -560,7 +560,7 @@ export class SearchableSelect extends WithContextualHelp(
 			this.multiple && this.maxSelected && this.maxSelected >= 1
 				? this.locale.searchableSelect.maxSelectedMessage(
 						this.values.length,
-						this.maxSelected!
+						this.maxSelected
 					)
 				: '';
 
@@ -642,7 +642,7 @@ export class SearchableSelect extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	loadingChanged(_oldValue: boolean, newValue: boolean) {
+	loadingChanged(_oldValue: boolean | undefined, newValue: boolean) {
 		this._changeDescription =
 			this.locale.searchableSelect.loadingOptionsMessage;
 		if (_oldValue && !newValue) this._changeDescription = '';
@@ -882,7 +882,7 @@ export class SearchableSelect extends WithContextualHelp(
 			const isLastRow = this.maxLines && currentRowIndex === this.maxLines - 1;
 
 			const tagWidth = this.#measureTagWidth(
-				this._tagLabelForValue(this.values[i])!,
+				this._tagLabelForValue(this.values[i]),
 				true,
 				this.#tagIconOfOption(this.selectedOptions[i]) !== null
 			);
@@ -1048,13 +1048,13 @@ export class SearchableSelect extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	_onListboxClick(e: MouseEvent): boolean | void {
+	_onListboxClick(e: MouseEvent) {
 		if (this.disabled) {
 			return;
 		}
-		const capturedOption = (e.target as HTMLElement).closest(
+		const capturedOption = (e.target as HTMLElement).closest<ListboxOption>(
 			`option,[role=option],[data-vvd-component=option]`
-		) as ListboxOption | null;
+		);
 
 		if (capturedOption?.getAttribute('data-select-all') !== null) {
 			this._toggleSelectAll();
@@ -1259,8 +1259,8 @@ export class SearchableSelect extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	override nameChanged(previous: string, next: string) {
-		super.nameChanged!(previous, next);
+	override nameChanged(previous: string | undefined, next: string) {
+		super.nameChanged(previous, next);
 		this.#updateFormValue();
 	}
 

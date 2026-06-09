@@ -36,11 +36,7 @@ export const Anchored = <T extends Constructor<VividElement>>(Base: T) => {
 			const isOccupied = Boolean(
 				this._slottedAnchor && this._slottedAnchor.length > 0
 			);
-			DOM.setBooleanAttribute(
-				this as unknown as HTMLElement,
-				'slotted-anchor',
-				isOccupied
-			);
+			DOM.setBooleanAttribute(this, 'slotted-anchor', isOccupied);
 			this.#updateAnchorEl();
 		}
 
@@ -77,7 +73,7 @@ export const Anchored = <T extends Constructor<VividElement>>(Base: T) => {
 		#observer?: MutationObserver;
 		#observeMissingAnchor = (anchorId: string) => {
 			this.#observer = new MutationObserver(() => {
-				const anchor = document.getElementById(anchorId as string);
+				const anchor = document.getElementById(anchorId);
 				if (anchor) {
 					this._anchorEl = anchor;
 					this.#cleanupObserverIfNeeded();

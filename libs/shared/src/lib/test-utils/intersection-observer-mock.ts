@@ -154,11 +154,12 @@ export class MockedIntersectionObserver implements IntersectionObserver {
 		const nodeState = this.nodeStates[index];
 
 		this.nodeStates[index] = {
+			// eslint-disable-next-line @typescript-eslint/no-misused-spread
 			...nodeState,
 			time: performance.now() - this.timeOrigin,
 			target: node,
 			...desc,
-		} as IntersectionObserverEntry;
+		};
 
 		this.callback([this.nodeStates[index]], this);
 	}
@@ -172,6 +173,7 @@ export class MockedIntersectionObserver implements IntersectionObserver {
 
 		const nodeStates = nodeDescriptions.map(({ node, desc }, index) => {
 			const newState = {
+				// eslint-disable-next-line @typescript-eslint/no-misused-spread
 				...this.nodeStates[nodeIndexes[index]],
 				time: performance.now() - this.timeOrigin,
 				target: node,

@@ -96,7 +96,7 @@ export class RangeSlider extends Localized(
 	/**
 	 * @internal
 	 */
-	initialStartChanged(_: string, newValue: string) {
+	initialStartChanged(_: string | undefined, newValue: string) {
 		if (newValue && !this.dirtyValue) {
 			this.start = newValue;
 			this.dirtyValue = false;
@@ -165,7 +165,7 @@ export class RangeSlider extends Localized(
 	/**
 	 * @internal
 	 */
-	initialEndChanged(_: string, newValue: string) {
+	initialEndChanged(_: string | undefined, newValue: string) {
 		if (newValue && !this.dirtyValue) {
 			this.end = newValue;
 			this.dirtyValue = false;
@@ -358,8 +358,8 @@ export class RangeSlider extends Localized(
 	/**
 	 * @internal
 	 */
-	override nameChanged(previous: string, next: string) {
-		super.nameChanged!(previous, next);
+	override nameChanged(previous: string | undefined, next: string) {
+		super.nameChanged(previous, next);
 		this.#updateFormValue();
 	}
 

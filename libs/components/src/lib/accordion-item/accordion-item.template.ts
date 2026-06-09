@@ -60,7 +60,7 @@ const header = (context: VividElementDefinitionContext, hTagName: string) => {
 export const AccordionItemTemplate = (
 	context: VividElementDefinitionContext
 ) => html<AccordionItem>`
-	${(x) => header(context, 'h' + x.headinglevel)}
+	${(x) => header(context, `h${x.headinglevel}`)}
 	<div
 		id="${(x) => x.id}-panel"
 		aria-labelledby="${(x) => x.id}"

@@ -123,7 +123,7 @@ test('should show disabled state', async ({ page }: { page: Page }) => {
 	await takeScreenshot(page, 'file-picker-disabled');
 });
 
-test.describe('form association', async () => {
+test.describe('form association', () => {
 	const getFileFromFormData = async (page: Page) =>
 		page.evaluate(() => {
 			const form = document.querySelector('form') as HTMLFormElement;

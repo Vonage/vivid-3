@@ -191,7 +191,7 @@ export class VideoPlayer extends Localized(VividElement) {
 	}
 
 	#disposePlayer() {
-		this._player && this._player.dispose();
+		this._player?.dispose();
 	}
 
 	#setupVideoElement() {

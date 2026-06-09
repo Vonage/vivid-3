@@ -306,9 +306,9 @@ export class DateTimePicker extends TimeSelectionPicker(
 	 * @internal
 	 */
 	override _focusableElsWithinDialog() {
-		return this._dialogEl.querySelectorAll(
+		return this._dialogEl.querySelectorAll<HTMLElement>(
 			'#inline-time-picker, button, .vwc-button'
-		) as NodeListOf<HTMLElement>;
+		);
 	}
 
 	/**

@@ -40,7 +40,7 @@ class AtomView implements NodeView {
 
 		if (isGenerator(result)) {
 			this.dom.textContent = '';
-			this.handleResolvedGenerator(result);
+			void this.handleResolvedGenerator(result);
 		} else {
 			this.dom.textContent = result ?? '';
 		}

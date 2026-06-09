@@ -66,9 +66,7 @@ export async function fetchIcons(
 
 	logger.info(`Found ${iconsMap.size} icons in ${file.name} Figma file.`);
 
-	const ids = Array.from(iconsMap.values()).map(
-		(i) => i.figmaNodeId
-	) as string[];
+	const ids = Array.from(iconsMap.values()).map((i) => i.figmaNodeId);
 
 	// Split IDs into chunks of 500 (Figma API limit) and fetch image URLs for each chunk.
 	const chunked = chunkify(ids, 500);
@@ -126,6 +124,7 @@ export async function fetchIcons(
 			return true;
 		})
 		.map((entry) => {
+			// eslint-disable-next-line @typescript-eslint/no-misused-promises, no-async-promise-executor
 			return new Promise(async (resolvePromise, rejectPromise) => {
 				const isBinary = options.format !== 'svg';
 
@@ -150,11 +149,19 @@ export async function fetchIcons(
 					logger.error(
 						`Failed to fetch ${options.format} for icon: ${entry.name} (${entry.figmaNodeId})`
 					);
-					rejectPromise();
+					rejectPromise(
+						new Error(
+							`Failed to fetch ${options.format} for icon: ${entry.name} (${entry.figmaNodeId})`
+						)
+					);
 				});
 
 				if (!content) {
-					rejectPromise();
+					rejectPromise(
+						new Error(
+							`No content received for icon: ${entry.name} (${entry.figmaNodeId})`
+						)
+					);
 					return;
 				}
 

@@ -6,7 +6,7 @@ import type { Import } from './imports';
 import { importsForTypes, renderImports } from './imports';
 import { getEventType } from './types';
 import { renderJsDoc } from './jsDoc';
-import { resolveVueModels, modifiersPropName } from './vueModels';
+import { modifiersPropName, resolveVueModels } from './vueModels';
 import { getExportedClassName } from '../common/component';
 import type { ComponentDef } from '@repo/metadata-extractor';
 import type { TypeStr } from '@repo/metadata-extractor/metadata/type-str';
@@ -361,7 +361,7 @@ export const renderComponent = (
 			)
 			.join(',');
 
-	if (namedSlots || hasScopedSlots) {
+	if (namedSlots.length || hasScopedSlots) {
 		imports.push({
 			name: 'handleNamedSlotV2',
 			fromModule: '../../utils/slots',
@@ -378,7 +378,7 @@ export const renderComponent = (
 		this.$slots.default?.()`,
 	];
 
-	if (namedSlots) {
+	if (namedSlots.length) {
 		slotsV2.push(renderNamedSlots('vue2'));
 		slotsV3.push(renderNamedSlots('vue3'));
 	}

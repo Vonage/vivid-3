@@ -4,7 +4,9 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"fetch": "tsx scripts/fetch-icons.ts"
+		"fetch": "tsx scripts/fetch-icons.ts",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix"
 	},
 	"devDependencies": {
 		"@figma/rest-api-spec": "catalog:",
@@ -13,6 +15,7 @@
 		"@repo/typescript-config": "workspace:*",
 		"@types/node": "catalog:",
 		"dotenv": "catalog:",
+		"eslint": "catalog:",
 		"tsx": "catalog:"
 	}
 }

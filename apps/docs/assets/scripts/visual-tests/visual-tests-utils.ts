@@ -4,7 +4,7 @@ import markdownIt from 'markdown-it';
 import { JSDOM } from 'jsdom';
 import type { Page } from '@playwright/test';
 
-const BASE_URL = Boolean(process.env.PW_TEST_CONNECT_WS_ENDPOINT)
+const BASE_URL = process.env.PW_TEST_CONNECT_WS_ENDPOINT
 	? 'http://hostmachine:8080/playground/'
 	: 'http://localhost:8080/playground/';
 

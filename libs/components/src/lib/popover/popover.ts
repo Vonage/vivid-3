@@ -132,7 +132,7 @@ export class Popover extends Localized(DelegatesAria(VividElement)) {
 	/**
 	 * @internal
 	 */
-	openChanged(_oldValue: boolean, newValue: boolean) {
+	openChanged(_oldValue: boolean | undefined, newValue: boolean) {
 		if (!this._popoverEl) return;
 
 		const isOpen = this._popoverEl.matches(':popover-open');

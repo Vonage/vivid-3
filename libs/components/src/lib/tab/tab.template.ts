@@ -18,10 +18,10 @@ const getClasses = ({
 }: Tab) =>
 	classNames(
 		'base',
-		[`connotation-${connotation}`, Boolean(connotation) && Boolean(active)],
+		[`connotation-${connotation}`, Boolean(connotation) && active],
 		[`shape-${shape}`, Boolean(shape)],
-		['disabled', Boolean(disabled)],
-		['selected', Boolean(active)],
+		['disabled', disabled],
+		['selected', active],
 		['icon-trailing', iconTrailing],
 		['removable', removable]
 	);

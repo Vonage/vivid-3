@@ -265,7 +265,7 @@ export class Combobox extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	override valueChanged(prev: string, next: string) {
+	override valueChanged(prev: string | undefined, next: string) {
 		if (this.$fastController.isConnected && this.options) {
 			const selectedIndex = this.options.findIndex(
 				(el) => el.text.toLowerCase() === next.toLowerCase()
@@ -289,15 +289,15 @@ export class Combobox extends WithContextualHelp(
 	 * @param e - the mouse event
 	 * @internal
 	 */
-	override clickHandler(e: MouseEvent): boolean | void {
+	override clickHandler(e: MouseEvent): boolean | undefined {
 		if (this.disabled || this._isFromContextualHelp(e)) {
 			return;
 		}
 
 		if (this.open) {
-			const capturedOption = (e.target as HTMLElement).closest(
+			const capturedOption = (e.target as HTMLElement).closest<ListboxOption>(
 				`option,[role=option],[data-vvd-component=option]`
-			) as ListboxOption | null;
+			);
 
 			if (!capturedOption || capturedOption.disabled) {
 				return;
@@ -392,7 +392,7 @@ export class Combobox extends WithContextualHelp(
 	 * @param e - The focus event
 	 * @internal
 	 */
-	focusoutHandler(e: FocusEvent): boolean | void {
+	focusoutHandler(e: FocusEvent): boolean | undefined {
 		this.syncValue();
 
 		if (!this.open) {
@@ -406,6 +406,7 @@ export class Combobox extends WithContextualHelp(
 		}
 
 		this.open = false;
+		return;
 	}
 
 	/**
@@ -414,7 +415,7 @@ export class Combobox extends WithContextualHelp(
 	 * @param e - the input event
 	 * @internal
 	 */
-	inputHandler(e: InputEvent): boolean | void {
+	inputHandler(e: InputEvent): boolean | undefined {
 		this.filter = this.control.value;
 		this.filterOptions();
 
@@ -450,7 +451,7 @@ export class Combobox extends WithContextualHelp(
 	 * @param e - the keyboard event
 	 * @internal
 	 */
-	override keydownHandler(e: Event & KeyboardEvent): boolean | void {
+	override keydownHandler(e: Event & KeyboardEvent): boolean | undefined {
 		const key = e.key;
 
 		if (e.ctrlKey || e.shiftKey) {
@@ -467,7 +468,7 @@ export class Combobox extends WithContextualHelp(
 
 				this.open = false;
 				this.clearSelectionRange();
-				break;
+				return;
 			}
 
 			case 'Escape': {
@@ -478,14 +479,14 @@ export class Combobox extends WithContextualHelp(
 
 				if (this.open) {
 					this.open = false;
-					break;
+					return;
 				}
 
 				this.value = '';
 				this.control.value = '';
 				this.filter = '';
 				this.filterOptions();
-				break;
+				return;
 			}
 
 			case 'Tab': {
@@ -497,7 +498,7 @@ export class Combobox extends WithContextualHelp(
 
 				e.preventDefault();
 				this.open = false;
-				break;
+				return;
 			}
 
 			case 'ArrowUp':
@@ -506,7 +507,7 @@ export class Combobox extends WithContextualHelp(
 
 				if (!this.open) {
 					this.open = true;
-					break;
+					return;
 				}
 
 				/* v8 ignore else -- @preserve */
@@ -520,7 +521,7 @@ export class Combobox extends WithContextualHelp(
 					this.setInlineSelection();
 				}
 
-				break;
+				return;
 			}
 
 			default: {

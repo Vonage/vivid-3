@@ -95,7 +95,7 @@ export const cssPropertiesPlugin = (): Plugin => {
 					const result = compiler.compile(stylePath, {
 						importers: [importer, new sass.NodePackageImporter()],
 					});
-					const compiledCss = result.css.toString();
+					const compiledCss = result.css;
 
 					for (const line of compiledCss.split('\n')) {
 						const match = line.match(

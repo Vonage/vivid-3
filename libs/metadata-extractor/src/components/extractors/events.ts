@@ -57,7 +57,7 @@ function parseEventText(text: string): ExtractedEvent {
 
 	return {
 		name: nameMatch[1],
-		description: nameMatch[2]?.trim() || undefined,
+		description: (nameMatch[2] as string | undefined)?.trim() || undefined,
 		type,
 	};
 }

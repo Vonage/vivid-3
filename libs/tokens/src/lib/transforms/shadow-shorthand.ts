@@ -38,7 +38,7 @@ export default {
 		const type = token.type ?? token.$type;
 		return !!category?.includes('shadow') && type === 'boxShadow';
 	},
-	transform: (token, config, options) =>
+	transform: (token, _config, options) =>
 		Array.isArray(token.value ?? token.$value)
 			? parseShadowEffects(token.value ?? token.$value, options ?? {})
 			: (token.value ?? token.$value),

@@ -1,14 +1,12 @@
 import htmx from 'htmx.org';
-import type { NavItem } from './vivid.js';
+import { VwcNavItemElement } from '@vonage/vivid';
 
 window.htmx = htmx;
 
 window.addEventListener('DOMContentLoaded', () => {
-	const navItems = document.querySelectorAll(
-		'vwc-nav-item'
-	) as NodeListOf<NavItem>;
+	const navItems = document.querySelectorAll<VwcNavItemElement>('vwc-nav-item');
 	for (const navItem of navItems) {
-		navItem.setAttribute('hx-get', navItem.href);
+		navItem.setAttribute('hx-get', navItem.href!);
 		navItem.setAttribute('hx-push-url', 'true');
 		navItem.addEventListener('click', (e) => {
 			e.preventDefault();

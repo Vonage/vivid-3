@@ -31,7 +31,7 @@ const getClasses = ({
 	classNames(
 		'base',
 		[`connotation-${connotation}`, Boolean(connotation)],
-		['disabled', Boolean(disabled)],
+		['disabled', disabled],
 		['selected', Boolean(controlType && checked)],
 		['trailing', Boolean(controlType && (checkTrailing || Boolean(icon)))],
 		['item-checkbox', controlType === 'checkbox'],

@@ -1,9 +1,9 @@
 import {
-	FASTElement,
+	css,
 	customElement,
+	FASTElement,
 	html,
 	ref,
-	css,
 } from '@microsoft/fast-element';
 import type { Dialog } from '../vivid.js';
 import './search.style.scss';
@@ -21,7 +21,7 @@ const loadElement = async (
 			resolve();
 		};
 		element.onerror = (e) => {
-			reject(e);
+			reject(new Error(e as string));
 		};
 	});
 };
@@ -154,7 +154,7 @@ export class DocsSearch extends FASTElement {
 		// Open search when pressing CMD/CTRL + K
 		if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
 			e.preventDefault();
-			this.openSearch();
+			void this.openSearch();
 		}
 	};
 }

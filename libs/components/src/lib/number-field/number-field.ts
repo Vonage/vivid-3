@@ -186,7 +186,7 @@ export class NumberField extends WithContextualHelp(
 	// eslint-disable-next-line @repo/repo/no-attribute-default-value
 	step = 1;
 
-	stepChanged(_: number, next: number) {
+	stepChanged(_: number | undefined, next: number) {
 		this.proxy.setAttribute(
 			'step',
 			Number.isFinite(next) ? next.toString() : ''
@@ -208,7 +208,7 @@ export class NumberField extends WithContextualHelp(
 	 *
 	 * @internal
 	 */
-	maxChanged(_: number, next: number) {
+	maxChanged(_: number | undefined, next: number) {
 		this.max = Math.max(next, this.min ?? next);
 		this.proxy.max = this.max.toString();
 		this.validate();
@@ -229,7 +229,7 @@ export class NumberField extends WithContextualHelp(
 	 *
 	 * @internal
 	 */
-	minChanged(_: number, next: number) {
+	minChanged(_: number | undefined, next: number) {
 		this.min = Math.min(next, this.max ?? next);
 		this.proxy.min = this.min.toString();
 		this.validate();
@@ -269,7 +269,7 @@ export class NumberField extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	override valueChanged(previous: string, next: string) {
+	override valueChanged(previous: string | undefined, next: string) {
 		this.value = validNumber.test(next) ? next : '';
 
 		if (next !== this.value) {

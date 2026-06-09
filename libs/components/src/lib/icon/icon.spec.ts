@@ -18,7 +18,7 @@ describe('icon', function () {
 					resolve(response);
 				}, requestTime);
 				signal.addEventListener('abort', () => {
-					reject(signal.reason);
+					reject(new Error(signal.reason));
 				});
 			});
 		});

@@ -131,7 +131,7 @@ export class DataGrid extends VividElement {
 		columnDefinitions.forEach((_: ColumnDefinition) => {
 			templateColumns = `${templateColumns}${
 				templateColumns === '' ? '' : ' '
-			}${'1fr'}`;
+			}1fr`;
 		});
 		return templateColumns;
 	}
@@ -517,7 +517,7 @@ export class DataGrid extends VividElement {
 		let newFocusRowIndex: number;
 		const maxIndex = this.rowElements.length - 1;
 		const currentGridBottom: number = this.offsetHeight + this.scrollTop;
-		const lastRow: HTMLElement = this.rowElements[maxIndex] as HTMLElement;
+		const lastRow: HTMLElement = this.rowElements[maxIndex];
 
 		switch (e.key) {
 			case keyArrowUp:
@@ -580,9 +580,7 @@ export class DataGrid extends VividElement {
 					newFocusRowIndex <= maxIndex;
 					newFocusRowIndex++
 				) {
-					const thisRow: HTMLElement = this.rowElements[
-						newFocusRowIndex
-					] as HTMLElement;
+					const thisRow: HTMLElement = this.rowElements[newFocusRowIndex];
 					if (thisRow.offsetTop + thisRow.offsetHeight > currentGridBottom) {
 						let stickyHeaderOffset = 0;
 						if (
@@ -671,7 +669,7 @@ export class DataGrid extends VividElement {
 		if (this.isUpdatingFocus && this.contains(document.activeElement)) {
 			return;
 		}
-		if (this.pendingFocusUpdate === false) {
+		if (!this.pendingFocusUpdate) {
 			this.pendingFocusUpdate = true;
 			Updates.enqueue(() => this.updateFocus());
 		}
@@ -749,7 +747,7 @@ export class DataGrid extends VividElement {
 				this.generatedGridTemplateColumns === '' &&
 				this.rowElements.length > 0
 			) {
-				const firstRow: DataGridRow = this.rowElements[0] as DataGridRow;
+				const firstRow: DataGridRow = this.rowElements[0];
 				this.generatedGridTemplateColumns = new Array(
 					firstRow.cellElements.length
 				)
@@ -786,10 +784,7 @@ export class DataGrid extends VividElement {
 	 *
 	 * @internal
 	 */
-	slottedRowElementsChanged(
-		_oldValue: HTMLElement[],
-		_newValue: HTMLElement[]
-	) {
+	slottedRowElementsChanged() {
 		this._resetSelection();
 	}
 
@@ -803,17 +798,17 @@ export class DataGrid extends VividElement {
 	selectionMode?: DataGridSelectionMode;
 
 	get #selectedRows(): DataGridRow[] {
-		return this.rowElements.filter((row) => row.selected) as DataGridRow[];
+		return this.rowElements.filter((row) => row.selected);
 	}
 
 	get #selectedCells(): DataGridCell[] {
-		return this.rowElements.reduce((acc, row) => {
+		return this.rowElements.reduce<DataGridCell[]>((acc, row) => {
 			const rowChildren = Array.from(row.children) as DataGridCell[];
 			const selectedCells = rowChildren.filter(
 				(cell: DataGridCell) => cell.selected
 			);
 			return acc.concat(selectedCells);
-		}, [] as DataGridCell[]);
+		}, []);
 	}
 
 	/**
@@ -918,11 +913,13 @@ export class DataGrid extends VividElement {
 	 */
 	private _resetSelection = (clear = false) => {
 		const cells = Array.from(
-			this.querySelectorAll('[role="gridcell"], [cell-type="default"]')
-		) as DataGridCell[];
+			this.querySelectorAll<DataGridCell>(
+				'[role="gridcell"], [cell-type="default"]'
+			)
+		);
 		const rows = Array.from(
-			this.querySelectorAll('[role="row"], [row-type="default"]')
-		) as DataGridRow[];
+			this.querySelectorAll<DataGridCell>('[role="row"], [row-type="default"]')
+		);
 
 		if (
 			this.selectionMode === DataGridSelectionMode.singleCell ||

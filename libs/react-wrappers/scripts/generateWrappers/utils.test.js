@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
-	getVividPackageNames,
 	event2PropName,
-	prepareCompoundComponents,
 	getUniqueEvents,
+	getVividPackageNames,
+	prepareCompoundComponents,
 } from './utils.js';
 
 describe('utils', () => {

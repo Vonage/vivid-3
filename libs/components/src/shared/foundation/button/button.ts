@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { attr, Updates } from '@microsoft/fast-element';
 import { DelegatesAria } from '../../aria/delegates-aria';
 import { VividElement } from '../vivid-element/vivid-element';
@@ -25,7 +24,7 @@ export class VividFoundationButton extends DelegatesAria(
 	 */
 	@attr({ mode: 'boolean' })
 	// @ts-expect-error Type is incorrectly non-optional
-	public autofocus: boolean;
+	autofocus: boolean;
 
 	/**
 	 * @internal
@@ -41,7 +40,7 @@ export class VividFoundationButton extends DelegatesAria(
 	 */
 	@attr({ attribute: 'form' })
 	// @ts-expect-error Type is incorrectly non-optional
-	public formId: string;
+	formId: string;
 
 	/**
 	 * See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button | <button> element} for more details.
@@ -52,7 +51,7 @@ export class VividFoundationButton extends DelegatesAria(
 	 */
 	@attr
 	// @ts-expect-error Type is incorrectly non-optional
-	public formaction: string;
+	formaction: string;
 	// @ts-expect-error Function is delcared but not used
 	private formactionChanged(): void {
 		/* v8 ignore if -- @preserve */
@@ -70,7 +69,7 @@ export class VividFoundationButton extends DelegatesAria(
 	 */
 	@attr
 	// @ts-expect-error Type is incorrectly non-optional
-	public formenctype: string;
+	formenctype: string;
 	// @ts-expect-error Function is delcared but not used
 	private formenctypeChanged(): void {
 		/* v8 ignore if -- @preserve */
@@ -88,7 +87,7 @@ export class VividFoundationButton extends DelegatesAria(
 	 */
 	@attr
 	// @ts-expect-error Type is incorrectly non-optional
-	public formmethod: string;
+	formmethod: string;
 	// @ts-expect-error Function is delcared but not used
 	private formmethodChanged(): void {
 		/* v8 ignore if -- @preserve */
@@ -106,7 +105,7 @@ export class VividFoundationButton extends DelegatesAria(
 	 */
 	@attr({ mode: 'boolean' })
 	// @ts-expect-error Type is incorrectly non-optional
-	public formnovalidate: boolean;
+	formnovalidate: boolean;
 	// @ts-expect-error Function is delcared but not used
 	private formnovalidateChanged(): void {
 		/* v8 ignore if -- @preserve */
@@ -124,7 +123,7 @@ export class VividFoundationButton extends DelegatesAria(
 	 */
 	@attr
 	// @ts-expect-error Type is incorrectly non-optional
-	public formtarget: '_self' | '_blank' | '_parent' | '_top';
+	formtarget: '_self' | '_blank' | '_parent' | '_top';
 	// @ts-expect-error Function is delcared but not used
 	private formtargetChanged(): void {
 		/* v8 ignore if -- @preserve */
@@ -142,10 +141,10 @@ export class VividFoundationButton extends DelegatesAria(
 	 */
 	@attr
 	// @ts-expect-error Type is incorrectly non-optional
-	public type: 'submit' | 'reset' | 'button';
+	type: 'submit' | 'reset' | 'button';
 	// @ts-expect-error Function is delcared but not used
 	private typeChanged(
-		previous: 'submit' | 'reset' | 'button' | void,
+		previous: 'submit' | 'reset' | 'button' | undefined,
 		next: 'submit' | 'reset' | 'button'
 	): void {
 		/* v8 ignore if -- @preserve */
@@ -153,23 +152,24 @@ export class VividFoundationButton extends DelegatesAria(
 			this.proxy.type = this.type;
 		}
 
-		next === 'submit' && this.addEventListener('click', this.handleSubmission);
-		previous === 'submit' &&
+		if (next === 'submit')
+			this.addEventListener('click', this.handleSubmission);
+		if (previous === 'submit')
 			this.removeEventListener('click', this.handleSubmission);
-		next === 'reset' && this.addEventListener('click', this.handleFormReset);
-		previous === 'reset' &&
+		if (next === 'reset') this.addEventListener('click', this.handleFormReset);
+		if (previous === 'reset')
 			this.removeEventListener('click', this.handleFormReset);
 	}
 
 	/** {@inheritDoc (FormAssociated:interface).validate} */
-	public override validate(): void {
+	override validate(): void {
 		super.validate(this.control);
 	}
 
 	/**
 	 * @internal
 	 */
-	public override connectedCallback(): void {
+	override connectedCallback(): void {
 		super.connectedCallback();
 
 		this.proxy.setAttribute('type', this.type);
@@ -193,7 +193,7 @@ export class VividFoundationButton extends DelegatesAria(
 	/**
 	 * @internal
 	 */
-	public override disconnectedCallback(): void {
+	override disconnectedCallback(): void {
 		super.disconnectedCallback();
 
 		const elements = (
@@ -238,7 +238,7 @@ export class VividFoundationButton extends DelegatesAria(
 		this.form?.reset();
 	};
 
-	public control!: HTMLButtonElement;
+	control!: HTMLButtonElement;
 
 	/**
 	 * Overrides the focus call for where delegatesFocus is unsupported.
@@ -251,7 +251,10 @@ export class VividFoundationButton extends DelegatesAria(
 		if (this.$fastController.definition.shadowOptions) {
 			if (
 				window.ShadowRoot &&
-				!window.ShadowRoot.prototype.hasOwnProperty('delegatesFocus') &&
+				!Object.prototype.hasOwnProperty.call(
+					window.ShadowRoot.prototype,
+					'delegatesFocus'
+				) &&
 				this.$fastController.definition.shadowOptions.delegatesFocus
 			) {
 				Object.defineProperty(this, 'focus', {

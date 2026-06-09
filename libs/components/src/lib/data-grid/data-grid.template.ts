@@ -48,10 +48,7 @@ function setHeaderRow(x: DataGrid) {
 	}
 }
 
-function handleColumnSort<T extends DataGrid>(
-	_: T,
-	{ event }: ExecutionContext
-) {
+function handleColumnSort(_: unknown, { event }: ExecutionContext) {
 	event.stopPropagation();
 }
 

@@ -28,7 +28,7 @@ export const SingleDatePickerMixin = <
 		/**
 		 * @internal
 		 */
-		override valueChanged(previous: string, next: string) {
+		override valueChanged(previous: string | undefined, next: string) {
 			super.valueChanged(previous, next);
 			if (this.value) {
 				this._adjustSelectedMonthToEnsureVisibilityOf(this._dateValue());

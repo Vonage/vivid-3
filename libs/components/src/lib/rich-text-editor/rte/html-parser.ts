@@ -6,8 +6,7 @@ import {
 	type TagParseRule,
 } from 'prosemirror-model';
 import DOMPurify from 'dompurify';
-import type { RteConfigImpl } from './config';
-import type { RteConfig } from './config';
+import type { RteConfig, RteConfigImpl } from './config';
 import type { RteDocument, RteFragment } from './document';
 import { impl } from './utils/impl';
 import { domPurifyConfig } from './utils/sanitization';
@@ -131,16 +130,15 @@ const buildDomParser = (
 	}
 	for (const name in marks) {
 		marks[name]?.forEach((rule) => {
-			insert((rule = copy(rule) as ParseRule));
+			insert((rule = copy(rule)));
 			if (!(rule.mark || rule.ignore || (rule as StyleParseRule).clearMark))
 				rule.mark = name;
 		});
 	}
 	for (const name in nodes) {
 		nodes[name]?.forEach((rule) => {
-			insert((rule = copy(rule) as TagParseRule));
-			if (!((rule as TagParseRule).node || rule.ignore || rule.mark))
-				rule.node = name;
+			insert((rule = copy(rule)));
+			if (!(rule.node || rule.ignore || rule.mark)) rule.node = name;
 		});
 	}
 

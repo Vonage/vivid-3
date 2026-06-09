@@ -34,7 +34,7 @@ export const CountryGroupTemplate = (
 							connotation="cta"
 							appearance="duotone"
 							shape="pill"
-							text="${(x) => '+' + x.overflowCount}"
+							text="${(x) => `+${x.overflowCount}`}"
 						></${badgeTag}>
 					</div>
 				`

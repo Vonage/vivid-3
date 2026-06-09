@@ -49,7 +49,7 @@ export const resolveIcon = (
 			}
 			return svg;
 		})
-		.catch((err) => {
+		.catch((err: unknown) => {
 			// Remove aborted or failed fetches from cache
 			const entry = iconCache.get(key);
 			if (entry && entry.promise === promise) {

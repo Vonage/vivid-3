@@ -18,6 +18,7 @@ export interface CreateFormHTMLConfig {
 	formWrapper?: HTMLElement;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export function createFormHTML<T>({
 	fieldName,
 	fieldValue,
@@ -52,6 +53,8 @@ export function createFormHTML<T>({
 		button: (formWrapper.children[0] as HTMLFormElement).querySelector(
 			'button'
 		),
-		otherFormButton: formWrapper.children[1]?.querySelector('button'),
+		otherFormButton: (
+			formWrapper.children[1] as Element | undefined
+		)?.querySelector('button'),
 	};
 }

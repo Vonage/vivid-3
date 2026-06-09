@@ -324,7 +324,7 @@ describe('vwc-color-picker', () => {
 
 	describe('copy to clipboard', () => {
 		beforeEach(() => {
-			// @ts-expect-error test stub
+			// @ts-expect-error override with test stub
 			globalThis.navigator.clipboard = {
 				writeText: vi.fn().mockResolvedValue(undefined),
 			};

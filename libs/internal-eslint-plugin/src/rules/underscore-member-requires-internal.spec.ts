@@ -1,7 +1,7 @@
 import { RuleTester } from 'eslint';
 import tsParser from '@typescript-eslint/parser';
 import { convertAnnotatedSourceToFailureCase } from '../../../eslint-plugin/src/utils/testing';
-import { rule, RULE_NAME } from './underscore-member-requires-internal';
+import { rule } from './underscore-member-requires-internal';
 
 const ruleTester = new RuleTester({
 	languageOptions: {
@@ -9,7 +9,7 @@ const ruleTester = new RuleTester({
 	},
 });
 
-ruleTester.run(RULE_NAME, rule as never, {
+ruleTester.run('underscore-member-requires-internal', rule as never, {
 	valid: [
 		// private members are allowed
 		`class Test { private _foo = 1; }`,

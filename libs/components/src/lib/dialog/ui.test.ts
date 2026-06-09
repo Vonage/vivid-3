@@ -27,7 +27,7 @@ test('should set preventDefault to false on keydown event', async ({
 		template,
 	});
 
-	const input = await page.locator('#input');
+	const input = page.locator('#input');
 
 	await input.focus();
 	const typedValue = 'abc';

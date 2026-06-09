@@ -61,7 +61,7 @@ export class DialPad extends Localized(VividElement) {
 	 * HTML Attribute: value
 	 */
 	@attr({ mode: 'fromView' }) value = '';
-	valueChanged(_oldValue: string, newValue: string) {
+	valueChanged(_oldValue: string | undefined, newValue: string) {
 		if (
 			newValue !== undefined &&
 			newValue !== null &&
@@ -275,7 +275,7 @@ export class DialPad extends Localized(VividElement) {
 		} else {
 			this._clearErrorAnnouncement();
 		}
-		this.callActive ? this.$emit('end-call') : this.$emit('dial');
+		this.$emit(this.callActive ? 'end-call' : 'dial');
 	};
 
 	/**

@@ -104,7 +104,7 @@ export class Popup extends VividElement {
 		mode: 'boolean',
 	})
 	open = false;
-	openChanged(_: boolean, newValue: boolean): void {
+	openChanged(_: boolean | undefined, newValue: boolean): void {
 		this.#togglePopover();
 		this.#updateAutoUpdate();
 		this.$emit(newValue ? 'vwc-popup:open' : 'vwc-popup:close');
@@ -240,7 +240,7 @@ export class Popup extends VividElement {
 			this.#cleanup = autoUpdate(
 				this.anchorEl,
 				this.popupEl,
-				this.#autoUpdateCallback,
+				() => void this.#autoUpdateCallback(),
 				{
 					animationFrame: this.animationFrame,
 				}

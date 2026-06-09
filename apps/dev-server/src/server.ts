@@ -85,6 +85,7 @@ async function start() {
 		vueHandler.handleRequest,
 	];
 
+	// eslint-disable-next-line @typescript-eslint/no-misused-promises
 	const server = http.createServer(async (req, res) => {
 		try {
 			const url = new URL(req.url ?? '/', `http://localhost:${PORT}`);
@@ -138,4 +139,4 @@ async function start() {
 	});
 }
 
-start();
+void start();

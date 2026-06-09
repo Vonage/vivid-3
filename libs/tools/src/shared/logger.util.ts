@@ -12,7 +12,7 @@ type LogLevelKey = keyof typeof LogLevel;
 
 const envLogLevel = process.env.LOG_LEVEL ?? '';
 
-const logLevel = LogLevel.hasOwnProperty(envLogLevel)
+const logLevel = Object.prototype.hasOwnProperty.call(LogLevel, envLogLevel)
 	? LogLevel[envLogLevel as LogLevelKey]
 	: LogLevel.info;
 

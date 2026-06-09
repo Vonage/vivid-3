@@ -2,44 +2,44 @@ import { createRequire } from 'module';
 const packageJson = createRequire(import.meta.url)('../../package.json');
 import { getImportsFromTag } from './helpers/generator.js';
 import {
+	ClassNameAlias,
 	ComponentsEventsMap,
 	ComponentsEventsMapV3,
 	CompoundComponentsMap,
-	OutputLanguage,
 	FileName,
+	OutputLanguage,
 	Vivid3ComponentsExtraPropertiesMap,
-	ClassNameAlias,
 } from './consts.js';
 
 import fsExtra from 'fs-extra';
 const { pathExists, outputFile, outputJson } = fsExtra;
 
 import {
-	compileTypescript,
-	prepareDir,
-	getComponentName,
-	toJsonObjectsList,
-	filePath,
 	camel2kebab,
+	compileTypescript,
+	compoundComponentTemplate,
 	event2PropName,
-	renderJsDoc,
+	filePath,
+	getComponentName,
 	getIndexFileName,
+	getInstalledPackageVersion,
 	getProperties,
 	getUniqueEvents,
 	getVividPackageName,
 	prepareCompoundComponents,
-	compoundComponentTemplate,
-	getInstalledPackageVersion,
+	prepareDir,
+	renderJsDoc,
+	toJsonObjectsList,
 } from './utils.js';
 import { getTemplate, TemplateToken } from './templates/templates.js';
 import { join } from 'path';
 import {
-	getPropTypes,
 	getDefaultProps,
 	getProps,
+	getPropTypes,
 	mapType,
 } from './prop.types.js';
-import { writeFileSync, readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { logger } from '@repo/tools/shared/logger';
 
 const generateTypings = (outputDir) => async (tags) => {
@@ -137,7 +137,7 @@ export const generateWrappers =
 			return exists || outputFile(indexOutputFileName, content);
 		};
 
-		const getStoriesContent = (componentName, tag) =>
+		const getStoriesContent = (componentName) =>
 			getTemplate('stories', OutputLanguage.JavaScript)
 				.split(TemplateToken.COMPONENT_CLASS_NAME)
 				.join(componentName);

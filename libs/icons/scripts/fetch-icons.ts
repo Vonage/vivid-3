@@ -11,7 +11,7 @@ import { allIcons } from './filter-icons';
 
 const figmaFileId = 'isdKI406usLCxZ2U8ljDrn';
 
-(async () => {
+void (async () => {
 	const index = await fetchIcons(figmaFileId, {
 		dir: './src/generated/',
 		forceUpdate: false,

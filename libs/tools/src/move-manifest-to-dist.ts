@@ -23,7 +23,7 @@ const moveManifestToDist = async (
 	const workspaceManifest = await readWorkspaceManifest(workspaceRoot);
 	const manifest = await readProjectManifestOnly(projectDir);
 	const packageJson = (await createExportableManifest(projectDir, manifest, {
-		catalogs: getCatalogsFromWorkspaceManifest(workspaceManifest as any),
+		catalogs: getCatalogsFromWorkspaceManifest(workspaceManifest),
 	})) as any;
 
 	// Modify paths to remove 'dist/' prefix
@@ -75,4 +75,8 @@ const [, , projectDir] = process.argv;
 const dirname = path.dirname(new URL(import.meta.url).pathname);
 const workspaceRoot = path.resolve(dirname, '../../..');
 
-moveManifestToDist(workspaceRoot, projectDir, path.resolve(projectDir, 'dist'));
+void moveManifestToDist(
+	workspaceRoot,
+	projectDir,
+	path.resolve(projectDir, 'dist')
+);
