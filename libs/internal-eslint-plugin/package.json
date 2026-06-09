@@ -1,6 +1,7 @@
 {
 	"name": "@repo/eslint-plugin-repo",
 	"version": "1.0.0",
+	"private": true,
 	"type": "module",
 	"exports": {
 		".": {
@@ -9,8 +10,6 @@
 			"require": "./dist/index.cjs"
 		}
 	},
-	"main": "./index.cjs",
-	"module": "./index.js",
 	"scripts": {
 		"build": "vite build",
 		"test": "vitest run",
@@ -23,7 +22,8 @@
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vite-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
-		"@typescript-eslint/utils": "^8.59.2",
+		"@typescript-eslint/parser": "catalog:",
+		"@typescript-eslint/utils": "^8.61.0",
 		"eslint": "catalog:",
 		"vitest": "catalog:"
 	}

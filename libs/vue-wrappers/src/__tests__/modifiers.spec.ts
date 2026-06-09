@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { createApp, h, nextTick, ref, type App } from 'vue3';
+import { type App, createApp, h, nextTick, ref } from 'vue3';
 import VTextField from '../generated/components/VTextField';
 import { setCustomComponentPrefix } from '../init/prefix';
 

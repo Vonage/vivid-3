@@ -1,6 +1,7 @@
 import { createIconEntry } from '@repo/tools/fetch-icons/create-icon-entry';
 import { fetchIcons } from '@repo/tools/fetch-icons/fetch-icons';
 import { writeFile } from '@repo/tools/shared/write-file';
+import { logger } from '@repo/tools/shared/logger';
 import 'dotenv/config';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -17,11 +18,11 @@ const requestedIcons = JSON.parse(
 ) as string[];
 
 if (requestedIcons.length === 0) {
-	console.warn('icons.json is empty — nothing to fetch.');
+	logger.warning('icons.json is empty — nothing to fetch.');
 	process.exit(0);
 }
 
-(async () => {
+void (async () => {
 	const entries = await fetchIcons(figmaFileId, {
 		dir: './src/generated/',
 		format: 'png',
@@ -57,7 +58,7 @@ if (requestedIcons.length === 0) {
 		(id) => !entries.some((e) => e.id === id)
 	);
 	if (missing.length > 0) {
-		console.error(
+		logger.error(
 			`The following icon IDs from icons.json were not found in Figma:\n  ${missing.join('\n  ')}`
 		);
 		process.exit(1);
@@ -79,7 +80,7 @@ if (requestedIcons.length === 0) {
 		JSON.stringify(slimmedIndex, null, 2)
 	);
 
-	console.log(
+	logger.info(
 		`Done. Fetched ${entries.length} marketing icon(s) and wrote index.json.`
 	);
 })();

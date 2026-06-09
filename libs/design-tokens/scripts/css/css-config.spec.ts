@@ -287,23 +287,23 @@ describe('CSS Features', () => {
 		});
 
 		describe('vvd/css/addFontsLinks', () => {
-			it('Should affect only typography styles', () => {
-				cssConfig.actions['vvd/css/addFontsLinks'].do(
+			it('Should affect only typography styles', async () => {
+				await cssConfig.actions['vvd/css/addFontsLinks'].do(
 					{} as Dictionary,
 					platformConfig,
 					{},
-					mockedVolume as any
+					mockedVolume
 				);
 
 				expect(mockedVolume.writeFileSync).toHaveBeenCalledOnce();
 			});
 
-			it('Should affect only typography styles', () => {
-				cssConfig.actions['vvd/css/addFontsLinks'].do(
+			it('Should affect only typography styles', async () => {
+				await cssConfig.actions['vvd/css/addFontsLinks'].do(
 					{} as Dictionary,
 					platformConfig,
 					{},
-					mockedVolume as any
+					mockedVolume
 				);
 
 				expect(mockedVolume.writeFileSync).toHaveBeenCalledWith(
@@ -312,12 +312,12 @@ describe('CSS Features', () => {
 				);
 			});
 
-			it('Should be able to undo changes it does', () => {
-				cssConfig.actions['vvd/css/addFontsLinks'].undo(
+			it('Should be able to undo changes it does', async () => {
+				await cssConfig.actions['vvd/css/addFontsLinks'].undo(
 					{} as Dictionary,
 					platformConfig,
 					{},
-					mockedVolume as any
+					mockedVolume
 				);
 
 				expect(mockedVolume.writeFileSync).toHaveBeenCalledWith(
@@ -333,7 +333,7 @@ describe('CSS Features', () => {
 					{} as Dictionary,
 					platformConfig,
 					{},
-					mockedVolume as any
+					mockedVolume
 				);
 
 				const output = `/**
@@ -349,12 +349,12 @@ describe('CSS Features', () => {
 				);
 			});
 
-			it('Should be able to undo creating index file', () => {
-				cssConfig.actions['vvd/css/createIndex'].undo(
+			it('Should be able to undo creating index file', async () => {
+				await cssConfig.actions['vvd/css/createIndex'].undo(
 					{} as Dictionary,
 					platformConfig,
 					{},
-					mockedVolume as any
+					mockedVolume
 				);
 
 				expect(mockedVolume.unlinkSync).toHaveBeenCalledWith('./index.css');

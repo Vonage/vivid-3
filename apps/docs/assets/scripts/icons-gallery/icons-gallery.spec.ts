@@ -1,6 +1,11 @@
 import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import './icons-gallery';
 import type { DocsIconsGallery } from './icons-gallery';
+import {
+	VwcAlertElement,
+	VwcButtonElement,
+	VwcTagElement,
+} from '@vonage/vivid';
 
 vi.spyOn(window, 'fetch').mockResolvedValue({
 	json: async () => [
@@ -53,17 +58,20 @@ describe('docs-icons-gallery', () => {
 	};
 
 	const getShowMoreButton = () =>
-		element.shadowRoot!.querySelector('vwc-button[label="Show More"]') as any;
+		element.shadowRoot!.querySelector<VwcButtonElement>(
+			'vwc-button[label="Show More"]'
+		)!;
 
 	const clickOnIcon = (id: string) => {
-		const icon = element.shadowRoot!.querySelector(
+		const icon = element.shadowRoot!.querySelector<HTMLElement>(
 			`[data-icon=${id}]`
-		)! as HTMLElement;
+		)!;
 		icon.click();
 	};
 
 	const getVisibleAlertText = () => {
-		const alert = element.shadowRoot!.querySelector('vwc-alert') as any;
+		const alert =
+			element.shadowRoot!.querySelector<VwcAlertElement>('vwc-alert')!;
 		if (alert.open) {
 			return alert.getAttribute('text');
 		} else {
@@ -72,17 +80,17 @@ describe('docs-icons-gallery', () => {
 	};
 
 	const selectTag = (label: string) => {
-		const tag = element.shadowRoot!.querySelector(
+		const tag = element.shadowRoot!.querySelector<VwcTagElement>(
 			`vwc-tag[label="${label}"]`
-		) as any;
+		)!;
 		tag.selected = true;
 		tag.dispatchEvent(new Event('selected-change'));
 	};
 
 	const setup = async () => {
-		element = (await fixture(
+		element = fixture(
 			`<docs-icons-gallery></docs-icons-gallery>`
-		)) as DocsIconsGallery;
+		) as DocsIconsGallery;
 		textField = element.shadowRoot!.querySelector('vwc-text-field');
 		categorySelect = element.shadowRoot!.querySelector('vwc-select');
 		await elementUpdated(element);

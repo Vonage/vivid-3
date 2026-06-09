@@ -3936,7 +3936,7 @@
 				{
 					"name": "valueChanged",
 					"args": [
-						{ "name": "_oldValue", "type": "string" },
+						{ "name": "_oldValue", "type": "undefined | string" },
 						{ "name": "newValue", "type": "string" }
 					],
 					"returnType": "void"
@@ -5316,7 +5316,7 @@
 				{
 					"name": "openChanged",
 					"args": [
-						{ "name": "_", "type": "boolean" },
+						{ "name": "_", "type": "undefined | false | true" },
 						{ "name": "newValue", "type": "boolean" }
 					],
 					"returnType": "void"
@@ -6200,7 +6200,7 @@
 				{
 					"name": "stepChanged",
 					"args": [
-						{ "name": "_", "type": "number" },
+						{ "name": "_", "type": "undefined | number" },
 						{ "name": "next", "type": "number" }
 					],
 					"returnType": "void"

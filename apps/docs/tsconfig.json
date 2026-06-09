@@ -1,4 +1,13 @@
 {
 	"extends": "@repo/typescript-config/components.json",
-	"include": ["assets/scripts", "*.ts"]
+	"include": [
+		"assets/scripts",
+		"code-example-preview",
+		"filters",
+		"libraries",
+		"shortcodes",
+		"utils",
+		"*.ts",
+		"*.js"
+	]
 }

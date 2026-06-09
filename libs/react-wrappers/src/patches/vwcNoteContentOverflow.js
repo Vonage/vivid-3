@@ -16,5 +16,5 @@ const createStyleElement = () => {
 export const vwcNoteContentOverflowDecorator = (noteElement) =>
 	setTimeout(() => {
 		const component = noteElement?.shadowRoot;
-		component && component.append(createStyleElement());
+		component?.append(createStyleElement());
 	}, 0);

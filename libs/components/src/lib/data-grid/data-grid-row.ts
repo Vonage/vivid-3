@@ -234,37 +234,36 @@ export class DataGridRow extends HostSemantics(VividElement) {
 		if (e.defaultPrevented) {
 			return;
 		}
-		let newFocusColumnIndex = 0;
 		switch (e.key) {
-			case keyArrowLeft:
+			case keyArrowLeft: {
 				// focus left one cell
-				newFocusColumnIndex = Math.max(0, this.focusColumnIndex - 1);
-				(this.cellElements[newFocusColumnIndex] as HTMLElement).focus();
+				const newFocusColumnIndex = Math.max(0, this.focusColumnIndex - 1);
+				this.cellElements[newFocusColumnIndex].focus();
 				e.preventDefault();
 				break;
+			}
 
-			case keyArrowRight:
+			case keyArrowRight: {
 				// focus right one cell
-				newFocusColumnIndex = Math.min(
+				const newFocusColumnIndex = Math.min(
 					this.cellElements.length - 1,
 					this.focusColumnIndex + 1
 				);
-				(this.cellElements[newFocusColumnIndex] as HTMLElement).focus();
+				this.cellElements[newFocusColumnIndex].focus();
 				e.preventDefault();
 				break;
+			}
 
 			case keyHome:
 				if (!e.ctrlKey) {
-					(this.cellElements[0] as HTMLElement).focus();
+					this.cellElements[0].focus();
 					e.preventDefault();
 				}
 				break;
 			case keyEnd:
 				if (!e.ctrlKey) {
 					// focus last cell of the row
-					(
-						this.cellElements[this.cellElements.length - 1] as HTMLElement
-					).focus();
+					this.cellElements[this.cellElements.length - 1].focus();
 					e.preventDefault();
 				}
 				break;

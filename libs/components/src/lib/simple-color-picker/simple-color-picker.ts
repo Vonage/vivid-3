@@ -20,7 +20,7 @@ export class SimpleColorPicker extends Anchored(BaseColorPicker(VividElement)) {
 	/**
 	 * @internal
 	 */
-	openChanged(_oldValue: boolean, newValue: boolean): void {
+	openChanged(_oldValue: boolean | undefined, newValue: boolean): void {
 		this._updateListeners();
 
 		if (this._anchorEl) {

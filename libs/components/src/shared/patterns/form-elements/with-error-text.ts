@@ -20,7 +20,7 @@ export const WithErrorText = <T extends Constructor<FormElementElement>>(
 		/**
 		 * @internal
 		 */
-		errorTextChanged(_: string, newErrorText: string | undefined) {
+		errorTextChanged(_: string | undefined, newErrorText: string | undefined) {
 			if (newErrorText) {
 				this.#forceCustomError(newErrorText);
 			} else {

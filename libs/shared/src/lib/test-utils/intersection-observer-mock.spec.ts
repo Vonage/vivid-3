@@ -2,7 +2,7 @@ import {
 	MockedIntersectionObserver,
 	mockIntersectionObserver,
 } from './intersection-observer-mock';
-import { beforeEach, afterEach, vi } from 'vitest';
+import { afterEach, beforeEach, vi } from 'vitest';
 
 describe('mockIntersectionObserver', () => {
 	let io: ReturnType<typeof mockIntersectionObserver>;

@@ -56,10 +56,10 @@
 			"outputs": ["src/generated/*"]
 		},
 		"lint": {
-			"dependsOn": ["^build", "^lint"]
+			"dependsOn": ["build", "^lint"]
 		},
 		"lint:fix": {
-			"dependsOn": ["^build", "^lint:fix"],
+			"dependsOn": ["build", "^lint:fix"],
 			"cache": false
 		},
 		"stylelint": {

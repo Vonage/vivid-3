@@ -1,9 +1,9 @@
 import {
-	FASTElement,
-	customElement,
-	html,
-	css,
 	attr,
+	css,
+	customElement,
+	FASTElement,
+	html,
 } from '@microsoft/fast-element';
 
 @customElement({

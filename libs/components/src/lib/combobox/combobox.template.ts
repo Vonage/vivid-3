@@ -116,7 +116,7 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 			@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
 			@focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
 			@keydown="${(x, { event }) => {
-				x.open && handleEscapeKeyAndStopPropogation(event as KeyboardEvent);
+				if (x.open) handleEscapeKeyAndStopPropogation(event as KeyboardEvent);
 				return x.keydownHandler(event as KeyboardEvent);
 			}}"
 		>

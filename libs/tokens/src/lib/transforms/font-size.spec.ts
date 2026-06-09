@@ -1,7 +1,7 @@
 import type {
 	Config,
-	TransformedToken,
 	PlatformConfig,
+	TransformedToken,
 } from 'style-dictionary/types';
 import fontSize from './font-size';
 

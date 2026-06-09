@@ -5,7 +5,7 @@ import type { Button, Menu, MenuItem } from './vivid.js';
 type ThemeSetting = 'auto' | 'light' | 'dark';
 
 function getInitialThemeSetting(): ThemeSetting {
-	return (localStorage.getItem('theme') as ThemeSetting) || 'auto';
+	return (localStorage.getItem('theme') as ThemeSetting | null) || 'auto';
 }
 
 let currentThemeSetting = getInitialThemeSetting();

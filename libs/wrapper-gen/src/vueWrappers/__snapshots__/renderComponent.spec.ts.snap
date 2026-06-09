@@ -378,7 +378,6 @@ import { isVue2 } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
-import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
 import type { VwcExampleComponentElement } from '@vonage/vivid';
 
 
@@ -412,8 +411,7 @@ export default defineComponent({
             
             on: {  },
         }, [
-					this.$slots.default,
-
+					this.$slots.default
         ]);
       }
       // @ts-ignore
@@ -423,8 +421,7 @@ export default defineComponent({
           ...handleVue3Props({})
       } as unknown as VNodeData, [
           // @ts-ignore
-		this.$slots.default?.(),
-
+		this.$slots.default?.()
       ]);
     
   },
@@ -439,7 +436,6 @@ import { isVue2 } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
-import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
 import type { VwcExampleComponentElement } from '@vonage/vivid';
 import type { SlotsType } from 'vue3';
 

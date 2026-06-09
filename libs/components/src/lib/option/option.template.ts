@@ -14,8 +14,8 @@ const getClasses = (x: ListboxOption) =>
 		'base',
 		[`connotation-${x.connotation}`, Boolean(x.connotation)],
 		['disabled', x.disabled],
-		['selected', Boolean(x.selected)],
-		['hover', Boolean(x._highlighted)],
+		['selected', x.selected],
+		['hover', x._highlighted],
 		['active', Boolean(x.checked)],
 		['icon', Boolean(x.icon)],
 		['two-lines', Boolean(x.text?.length) && Boolean(x.textSecondary?.length)]

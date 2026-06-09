@@ -1,4 +1,4 @@
-import { isTypography, isFontSize, isSource, isSizing } from '.';
+import { isFontSize, isSizing, isSource, isTypography } from '.';
 
 describe('Filters', () => {
 	it('should return true if token of type typography', () => {

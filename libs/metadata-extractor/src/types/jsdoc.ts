@@ -24,7 +24,7 @@ export const getTagCommentText = (tag: JSDocTag) =>
 export const getDescription = (node: JSDocableNode): string | undefined =>
 	node
 		.getJsDocs()
-		.map((jsDoc) => resolveJSDocLinks(jsDoc.getDescription()?.trim() ?? ''))
+		.map((jsDoc) => resolveJSDocLinks(jsDoc.getDescription().trim()))
 		.find(Boolean);
 
 /**

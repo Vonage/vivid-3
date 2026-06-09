@@ -71,4 +71,4 @@ const main = async () => {
 	await generateVueVersionSwitch();
 };
 
-main();
+void main();

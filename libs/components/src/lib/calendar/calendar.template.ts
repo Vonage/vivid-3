@@ -99,7 +99,7 @@ export const CalendarTemplate = html<Calendar>`
 			${HoursTemplate}
 			<div class="calendar-grid-presentation" role="presentation">
 				<div class="hours" role="list">
-					${repeat(
+					${repeat<Calendar>(
 						(x) => Array.from({ length: x.hoursAsDatetime.length + 1 }),
 						html<string>` <div role="listitem"></div>`
 					)}

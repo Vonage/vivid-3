@@ -4,5 +4,5 @@
 		"noImplicitOverride": true,
 		"noUnusedLocals": true
 	},
-	"include": ["src", "scripts", "*.ts"]
+	"include": ["src", "scripts", "*.ts", "*.js"]
 }

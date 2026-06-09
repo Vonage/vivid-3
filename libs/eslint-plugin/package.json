@@ -30,7 +30,8 @@
 		"@repo/vitest-config": "workspace:*",
 		"@types/node": "catalog:",
 		"eslint": "catalog:",
-		"vitest": "catalog:"
+		"vitest": "catalog:",
+		"vue-eslint-parser": "^10.4.1"
 	},
 	"peerDependencies": {
 		"eslint": ">=0.8.0"

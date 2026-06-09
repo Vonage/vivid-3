@@ -1,8 +1,7 @@
 import { html } from '@microsoft/fast-element';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Table } from './table';
 
-export const TableTemplate = (context: VividElementDefinitionContext) => {
+export const TableTemplate = () => {
 	return html<Table>`
 		<template role="table">
 			<div part="inner-container" class="table-inner-container">

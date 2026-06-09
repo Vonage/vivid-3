@@ -453,7 +453,7 @@ export class DataGridCell extends Localized(HostSemantics(VividElement)) {
 	#getColumnDataKey() {
 		return this.columnDefinition && this.columnDefinition.columnDataKey
 			? this.columnDefinition.columnDataKey
-			: this.textContent!.trim();
+			: this.textContent.trim();
 	}
 
 	/**

@@ -7,8 +7,7 @@ import type { VividElementDefinitionContext } from '../../shared/design-system/d
 import { renderInLightDOM } from '../../shared/templating/render-in-light-dom';
 import type { Tooltip } from './tooltip';
 
-const getClasses = ({ open }: Tooltip) =>
-	classNames('control', ['open', Boolean(open)]);
+const getClasses = ({ open }: Tooltip) => classNames('control', ['open', open]);
 
 export const TooltipTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);

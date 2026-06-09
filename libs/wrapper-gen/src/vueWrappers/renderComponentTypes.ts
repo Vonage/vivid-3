@@ -3,7 +3,7 @@ import { importsForTypes, renderImports } from './imports';
 import { wrappedComponentName } from './name';
 import { getEventType } from './types';
 import { renderJsDoc } from './jsDoc';
-import { resolveVueModels, modifiersPropName } from './vueModels';
+import { modifiersPropName, resolveVueModels } from './vueModels';
 import { getExportedClassName } from '../common/component';
 import type { ComponentDef } from '@repo/metadata-extractor';
 import {

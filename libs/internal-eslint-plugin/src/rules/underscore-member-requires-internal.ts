@@ -1,9 +1,8 @@
 import { ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
+import type { Rule } from 'eslint';
 
-export const RULE_NAME = 'underscore-member-requires-internal';
-
-export const rule = ESLintUtils.RuleCreator(() => import.meta.url)({
-	name: RULE_NAME,
+export const rule = ESLintUtils.RuleCreator(() => 'https://vonage.vivid.com')({
+	name: 'underscore-member-requires-internal',
 	meta: {
 		type: 'problem',
 		fixable: 'code',
@@ -96,4 +95,4 @@ export const rule = ESLintUtils.RuleCreator(() => import.meta.url)({
 			MethodDefinition: check,
 		};
 	},
-});
+}) as unknown as Rule.RuleModule;

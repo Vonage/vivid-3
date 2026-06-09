@@ -526,7 +526,7 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 				// Move focus to new month
 				(
 					this._dialogEl.querySelector(
-						`[data-month="${monthToStr(newMonth!)}"]`
+						`[data-month="${monthToStr(newMonth)}"]`
 					) as HTMLButtonElement
 				).focus();
 

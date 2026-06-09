@@ -79,7 +79,7 @@ export class Accordion extends VividElement {
 
 	private findExpandedItem(): AccordionItem | null {
 		for (let item = 0; item < this.accordionItems.length; item++) {
-			if (this.accordionItems[item].hasAttribute('expanded') === true) {
+			if (this.accordionItems[item].hasAttribute('expanded')) {
 				return this.accordionItems[item] as AccordionItem;
 			}
 		}
@@ -91,7 +91,7 @@ export class Accordion extends VividElement {
 			return;
 		}
 		this.accordionIds = this.getItemIds();
-		this.activeid = this.accordionIds[this.activeItemIndex] as string;
+		this.activeid = this.accordionIds[this.activeItemIndex];
 		this.accordionItems.forEach((item: HTMLElement, index: number) => {
 			/* v8 ignore else -- @preserve */
 			if (item instanceof AccordionItem) {
@@ -102,9 +102,7 @@ export class Accordion extends VividElement {
 					if (expandedItem === null && index === 0) {
 						item.expanded = true;
 					} else {
-						item !== this.findExpandedItem()
-							? (item.expanded = false)
-							: (item.expanded = true);
+						item.expanded = item === this.findExpandedItem();
 					}
 				}
 			}

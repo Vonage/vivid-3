@@ -37,6 +37,7 @@
 		"@repo/vitest-config": "workspace:*",
 		"@types/jsdom": "catalog:",
 		"@vonage/vivid-icons": "workspace:*",
+		"eslint": "catalog:",
 		"markdown-table": "^3.0.4",
 		"node-fetch": "^3.3.2",
 		"tsx": "catalog:",

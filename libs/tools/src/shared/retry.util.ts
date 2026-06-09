@@ -10,9 +10,9 @@ export async function retry<R>(
 		const execute = () => {
 			attempts++;
 			if (attempts < times) {
-				setTimeout(attempt, delay);
+				setTimeout(() => void attempt(), delay);
 			} else {
-				reject('Max retries reached');
+				reject(new Error('Max retries reached'));
 			}
 		};
 
@@ -29,6 +29,6 @@ export async function retry<R>(
 			}
 		};
 
-		attempt();
+		void attempt();
 	});
 }

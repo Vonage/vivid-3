@@ -15,7 +15,7 @@ export const improvedAttrSupportPlugin = (): Plugin => ({
 		switch (node.kind) {
 			case ts.SyntaxKind.ClassDeclaration: {
 				const className = (node as any).name?.getText();
-				const classDoc = moduleDoc?.declarations?.find(
+				const classDoc = moduleDoc.declarations?.find(
 					(declaration) => declaration.name === className
 				);
 				for (const attr of (classDoc as any)?.attributes ?? []) {

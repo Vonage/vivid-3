@@ -107,7 +107,7 @@ export class RteFileHandlerFeatureImpl extends RteFeatureImpl {
 			if (result === null) {
 				return;
 			} else if (result instanceof Promise) {
-				handleAsyncResult(result, insertPoint);
+				void handleAsyncResult(result, insertPoint);
 			} else {
 				handleSyncResult(result, insertPoint);
 			}
@@ -165,14 +165,14 @@ export class RteFileHandlerFeatureImpl extends RteFeatureImpl {
 			this.contribution(
 				new Plugin({
 					props: {
-						handlePaste: (view, event) => {
+						handlePaste: (_view, event) => {
 							const files = Array.from(event.clipboardData!.files);
 							if (!files.length) return false;
 
 							handleFiles(files, { type: 'selection' });
 							return true;
 						},
-						handleDrop: (view, event, slice, moved) => {
+						handleDrop: (view, event) => {
 							const files = Array.from(event.dataTransfer!.files);
 							if (!files.length) return false;
 

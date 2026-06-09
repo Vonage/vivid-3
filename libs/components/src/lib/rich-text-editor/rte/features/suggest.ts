@@ -296,7 +296,10 @@ class RteSuggestFeatureImpl extends RteFeatureImpl {
 
 					// No match -> match
 					if (!prevState) {
-						this.startLoadingSuggestions(match.groups, dispatchSuggestAction);
+						void this.startLoadingSuggestions(
+							match.groups,
+							dispatchSuggestAction
+						);
 						return {
 							match,
 							loadingDecoration: loadingDecoration(true),
@@ -306,7 +309,10 @@ class RteSuggestFeatureImpl extends RteFeatureImpl {
 					// Match -> match
 					const matchChanged = match.groups[0] !== prevState.match.groups[0];
 					if (matchChanged) {
-						this.startLoadingSuggestions(match.groups, dispatchSuggestAction);
+						void this.startLoadingSuggestions(
+							match.groups,
+							dispatchSuggestAction
+						);
 					}
 					return {
 						...prevState,
@@ -433,7 +439,7 @@ class RteSuggestFeatureImpl extends RteFeatureImpl {
 						const showPopover = isPopoverOpen(suggestState);
 						popover.requestOpenState(showPopover);
 						if (showPopover) {
-							updatePopoverContent(suggestState!);
+							updatePopoverContent(suggestState);
 						} else {
 							updateEmptySlotShowing(false);
 						}
@@ -485,8 +491,8 @@ class RteSuggestFeatureImpl extends RteFeatureImpl {
 						}
 
 						const suggestion =
-							suggestState!.suggestions!.items[
-								suggestState!.suggestions!.selectedIndex
+							suggestState.suggestions!.items[
+								suggestState.suggestions!.selectedIndex
 							];
 						/* v8 ignore next 3 -- defensive: view is always passed by keymap @preserve */
 						if (view) {

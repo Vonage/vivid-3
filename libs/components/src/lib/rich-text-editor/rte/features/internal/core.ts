@@ -67,7 +67,7 @@ export class RteCoreImpl extends RteFeatureImpl {
 			splitBlockAs((node, atEnd, $from) => {
 				if (!atEnd) {
 					// If not at end, keep the same type
-					return { type: node.type, attrs: node.attrs! };
+					return { type: node.type, attrs: node.attrs };
 				}
 				// Otherwise, create a default textblock
 				return {
@@ -75,7 +75,7 @@ export class RteCoreImpl extends RteFeatureImpl {
 						$from
 							.node($from.depth - 1)
 							.contentMatchAt($from.indexAfter($from.depth - 1))
-					)!,
+					),
 					attrs: rte.textblockAttrs.extractFromNode(node),
 				};
 			})

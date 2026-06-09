@@ -8,7 +8,7 @@ import type { Slider } from './slider';
 const getClasses = ({ disabled, connotation }: Slider) =>
 	classNames(
 		'control',
-		['disabled', Boolean(disabled)],
+		['disabled', disabled],
 		[`connotation-${connotation}`, Boolean(connotation)]
 	);
 

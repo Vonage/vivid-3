@@ -99,7 +99,7 @@ export class TimePicker extends TimeSelectionPicker(
 	/**
 	 * @internal
 	 */
-	minChanged(_: string, newMin: string) {
+	minChanged(_: string | undefined, newMin: string) {
 		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.min = newMin;
@@ -120,7 +120,7 @@ export class TimePicker extends TimeSelectionPicker(
 	/**
 	 * @internal
 	 */
-	maxChanged(_: string, newMax: string) {
+	maxChanged(_: string | undefined, newMax: string) {
 		/* v8 ignore if -- @preserve */
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.max = newMax;
@@ -192,9 +192,9 @@ export class TimePicker extends TimeSelectionPicker(
 	 * @internal
 	 */
 	override _focusableElsWithinDialog() {
-		return this._dialogEl.querySelectorAll(
+		return this._dialogEl.querySelectorAll<HTMLElement>(
 			'#inline-time-picker, .vwc-button'
-		) as NodeListOf<HTMLElement>;
+		);
 	}
 
 	// --- Validation ---

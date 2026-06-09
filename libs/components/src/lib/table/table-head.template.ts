@@ -1,8 +1,7 @@
 import { html } from '@microsoft/fast-element';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { TableHead } from './table-head';
 
-export const TableHeadTemplate = (context: VividElementDefinitionContext) => {
+export const TableHeadTemplate = () => {
 	return html<TableHead>`
 		<template>
 			<slot></slot>

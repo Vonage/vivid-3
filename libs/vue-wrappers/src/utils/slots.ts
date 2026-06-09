@@ -2,9 +2,9 @@ import { h, type VNode } from 'vue';
 import type {
 	Fragment,
 	Text,
-	VNode as VNodeV3,
 	VNodeArrayChildren,
 	VNodeNormalizedChildren,
+	VNode as VNodeV3,
 } from 'vue3';
 
 const isTextNode = (node: VNode) => !node.tag && node.text;
@@ -26,7 +26,7 @@ export function handleNamedSlotV2(
 			);
 		} else {
 			if (!child.data) child.data = {};
-			child.data.attrs = { ...child.data?.attrs, slot };
+			child.data.attrs = { ...child.data.attrs, slot };
 			child.data.key = `${slot}-${index}`;
 		}
 	}

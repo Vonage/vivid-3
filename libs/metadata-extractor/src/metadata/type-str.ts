@@ -41,7 +41,7 @@ export interface ParsedTypeStr {
 	imports: Import[];
 }
 
-const IMPORT_REF_RE = /([@\w-\/]*)#(\w*)(<[^>]*>)?/g;
+const IMPORT_REF_RE = /([@\w-/]*)#(\w*)(<[^>]*>)?/g;
 
 export function parseTypeImports(typeStr: string): ParsedTypeStr {
 	const imports: Import[] = [];

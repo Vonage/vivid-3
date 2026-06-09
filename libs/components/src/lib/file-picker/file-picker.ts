@@ -125,8 +125,8 @@ export class FilePicker extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	override nameChanged(previous: string, next: string) {
-		super.nameChanged!(previous, next);
+	override nameChanged(previous: string | undefined, next: string) {
+		super.nameChanged(previous, next);
 		this.#updateFormValue();
 	}
 
@@ -324,7 +324,7 @@ export class FilePicker extends WithContextualHelp(
 
 		filesFromDataTransfer(e.dataTransfer)
 			.then((files) => this.#addFiles(files))
-			.catch((err) => {
+			.catch((err: unknown) => {
 				// eslint-disable-next-line no-console
 				console.error(err);
 			});

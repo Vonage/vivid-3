@@ -60,7 +60,8 @@ export class SideDrawer extends VividElement {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'open': {
-				this.open ? this.#open() : this.#close();
+				if (this.open) this.#open();
+				else this.#close();
 			}
 		}
 	}

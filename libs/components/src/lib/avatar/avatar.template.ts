@@ -24,7 +24,7 @@ const getClasses = ({ appearance, connotation, shape, size }: Avatar) =>
  */
 function renderIcon(iconTag: InlineTemplateDirective) {
 	return html<Avatar>`
-		<${iconTag} name="${(x) => (x.icon ? `${x.icon}` : 'user-line')}"></${iconTag}>
+		<${iconTag} name="${(x) => (x.icon ? x.icon : 'user-line')}"></${iconTag}>
 	`;
 }
 

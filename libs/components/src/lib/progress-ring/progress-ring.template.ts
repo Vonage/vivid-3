@@ -6,7 +6,7 @@ import type { ProgressRing } from './progress-ring';
 const getClasses = ({ connotation, size, paused }: ProgressRing) =>
 	classNames(
 		'base',
-		['disabled', !!paused],
+		['disabled', paused],
 		[`connotation-${connotation}`, !!connotation],
 		[`size-${size}`, !!size]
 	);

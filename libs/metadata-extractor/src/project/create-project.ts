@@ -33,7 +33,7 @@ const createSourceResolutionHost =
 				const result = ts.resolveModuleName(
 					moduleName,
 					containingFile,
-					compilerOptions as ts.CompilerOptions,
+					compilerOptions,
 					moduleResolutionHost
 				);
 

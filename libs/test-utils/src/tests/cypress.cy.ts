@@ -22,7 +22,7 @@ for (const testCase of testCases) {
 			Cypress.once('fail', failHandler);
 		}
 
-		testCase.test(vvd, (expectedState) => {
+		void testCase.test(vvd, (expectedState) => {
 			cy.get('pre').should('contain.text', JSON.stringify(expectedState));
 		});
 

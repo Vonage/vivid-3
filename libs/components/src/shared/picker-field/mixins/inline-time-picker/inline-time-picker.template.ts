@@ -76,9 +76,9 @@ export const scrollToOption = (
 	optionValue: string,
 	position: 'nearest' | 'start'
 ) => {
-	const element = x.shadowRoot!.querySelector(
+	const element = x.shadowRoot!.querySelector<HTMLElement>(
 		`#${picker}-${optionValue}`
-	) as HTMLElement | null;
+	);
 	if (!element) {
 		return;
 	}

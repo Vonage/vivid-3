@@ -3,22 +3,21 @@ import lodashFp from 'lodash/fp.js';
 const { flowRight, map, replace, reverse, startCase, uniqBy } = lodashFp;
 import {
 	access,
+	existsSync,
 	constants as fsConstants,
 	readFileSync,
-	existsSync,
 	rmSync,
 } from 'fs';
 const { F_OK } = fsConstants;
 import mkdirp from 'mkdirp';
 import { spawnSync } from 'child_process';
 import {
-	WCAConfig,
-	VividRepo,
+	ComponentsBindablePropertiesMap,
+	ComponentsExtraPropertiesMap,
+	ComponentsReadOnlyPropertiesMap,
 	FileName,
 	OutputLanguage,
-	ComponentsBindablePropertiesMap,
-	ComponentsReadOnlyPropertiesMap,
-	ComponentsExtraPropertiesMap,
+	WCAConfig,
 } from './consts.js';
 import fsExtra from 'fs-extra';
 const { copySync } = fsExtra;
@@ -187,7 +186,7 @@ export const getCustomElementTagsDefinitionsList =
 				const uniqueTags = unique(output.tags.map((x) => x.name)).map((x) =>
 					output.tags.find((y) => y.name === x)
 				);
-				return resolve(uniqueTags);
+				resolve(uniqueTags);
 			}
 		});
 

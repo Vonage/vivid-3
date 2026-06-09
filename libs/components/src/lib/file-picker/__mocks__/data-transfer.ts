@@ -42,7 +42,7 @@ class MockFileSystemFileEntry
 
 	file(
 		successCallback: (file: File) => void,
-		errorCallback?: (error: DOMException) => void
+		_errorCallback?: (error: DOMException) => void
 	) {
 		setTimeout(() => {
 			successCallback(this._file);
@@ -72,7 +72,7 @@ class MockFileSystemDirectoryEntry
 		return {
 			readEntries: (
 				successCallback: (entries: FileSystemEntry[]) => void,
-				errorCallback?: (error: DOMException) => void
+				_errorCallback?: (error: DOMException) => void
 			) => {
 				setTimeout(() => {
 					// Simulate the behavior where readEntries returns entries in chunks

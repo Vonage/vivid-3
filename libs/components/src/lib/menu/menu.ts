@@ -142,7 +142,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	/**
 	 * @internal
 	 */
-	handleMenuKeyDown(e: KeyboardEvent): void | boolean {
+	handleMenuKeyDown(e: KeyboardEvent): boolean | undefined {
 		if (e.defaultPrevented || this.menuItems === undefined) {
 			return;
 		}
@@ -207,7 +207,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		if (
 			this.expandedItem !== null &&
 			changedItem === this.expandedItem &&
-			changedItem.expanded === false
+			!changedItem.expanded
 		) {
 			this.expandedItem = null;
 		}
@@ -329,18 +329,16 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
-	openChanged(_: boolean, newValue: boolean): void {
+	openChanged(_: boolean | undefined, newValue: boolean): void {
 		if (newValue) {
 			// Ensure popup is shown and positioned so that focus can be set
-			this._popupEl?.show().then(() => this.focus());
+			void this._popupEl?.show().then(() => this.focus());
 		} else {
 			// TODO: Focus should be restored to the anchor element when the menu is closed
 			// However, it cannot be implemented without triggering visible focus
 		}
 
-		newValue
-			? this.$emit('open', undefined, { bubbles: false })
-			: this.$emit('close', undefined, { bubbles: false });
+		this.$emit(newValue ? 'open' : 'close', undefined, { bubbles: false });
 
 		if (this._anchorEl) {
 			this.#updateAnchor(this._anchorEl);

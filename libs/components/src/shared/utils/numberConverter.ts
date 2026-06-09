@@ -10,7 +10,7 @@ export const numberConverter: ValueConverter = {
 	},
 	fromView(value: string | number | null | undefined): number | undefined {
 		if (typeof value === 'string') {
-			value = parseFloat(value.toString());
+			value = parseFloat(value);
 		}
 
 		if (typeof value !== 'number') {

@@ -1,6 +1,5 @@
 import type { Page } from '@playwright/test';
 import { test } from '@playwright/test';
-import type { ProgressRing } from '../progress-ring/progress-ring';
 import {
 	loadComponents,
 	renderTemplate,
@@ -276,9 +275,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			await page.evaluate(() => {
 				const pendingButtons = document.querySelectorAll('vwc-button[pending]');
 				pendingButtons.forEach((button) => {
-					const indicator = button.shadowRoot?.querySelector(
-						'vwc-progress-ring'
-					) as ProgressRing;
+					const indicator =
+						button.shadowRoot!.querySelector('vwc-progress-ring');
 					if (indicator) indicator.value = 66;
 				});
 			});

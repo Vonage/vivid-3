@@ -3,5 +3,5 @@ import '../components/appearance-ui/appearance-ui.js';
 
 const runningInIframe = window.self !== window.top;
 if (!runningInIframe) {
-	import('./standalone-example.js');
+	await import('./standalone-example.js');
 }

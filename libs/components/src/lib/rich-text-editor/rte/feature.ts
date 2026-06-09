@@ -2,11 +2,15 @@ import type { SchemaSpec } from 'prosemirror-model';
 import type { Plugin } from 'prosemirror-state';
 import type { Constructor } from '../../../shared/utils/mixins';
 import type { RteInstanceImpl } from './instance';
-import type { TextblockAttrs } from './utils/textblock-attrs';
-import type { TextblockAttrSpec } from './utils/textblock-attrs';
+import type {
+	TextblockAttrs,
+	TextblockAttrSpec,
+} from './utils/textblock-attrs';
 import type { ToolbarItemSpec } from './features/toolbar';
-import type { TextblockMarks } from './utils/textblock-marks';
-import type { TextblockMarkSpec } from './utils/textblock-marks';
+import type {
+	TextblockMarks,
+	TextblockMarkSpec,
+} from './utils/textblock-marks';
 import type { InputRuleSpec } from './features/internal/input-rules';
 
 // Features bundle everything related to a specific editor capability together.
@@ -87,8 +91,8 @@ export abstract class RteFeatureImpl {
 	}
 
 	getSchema(
-		textblockAttrs: TextblockAttrs,
-		textblockMarks: TextblockMarks
+		_textblockAttrs: TextblockAttrs,
+		_textblockMarks: TextblockMarks
 	): SchemaContribution[] {
 		return [];
 	}
@@ -101,15 +105,15 @@ export abstract class RteFeatureImpl {
 		return [];
 	}
 
-	getPlugins(rte: RteInstanceImpl): PluginContribution[] {
+	getPlugins(_rte: RteInstanceImpl): PluginContribution[] {
 		return [];
 	}
 
-	getToolbarItems(rte: RteInstanceImpl): ToolbarItemContribution[] {
+	getToolbarItems(_rte: RteInstanceImpl): ToolbarItemContribution[] {
 		return [];
 	}
 
-	getInputRules(rte: RteInstanceImpl): InputRuleContribution[] {
+	getInputRules(_rte: RteInstanceImpl): InputRuleContribution[] {
 		return [];
 	}
 
@@ -120,7 +124,7 @@ export abstract class RteFeatureImpl {
 
 	// Exposes a public interface for this feature.
 	/* v8 ignore next */
-	getPublicInterface(rte: RteInstanceImpl): any {}
+	getPublicInterface(_rte: RteInstanceImpl): any {}
 }
 
 const featureImpls = new WeakMap<RteFeature, RteFeatureImpl>();
