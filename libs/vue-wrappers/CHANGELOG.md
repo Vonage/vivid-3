@@ -1,5 +1,14 @@
 # Changelog
 
+## 5.20.1
+
+### Patch Changes
+
+- [#2974](https://github.com/Vonage/vivid-3/pull/2974) [`fae4037`](https://github.com/Vonage/vivid-3/commit/fae4037ae3d5205c49c820f8fb278e1112ff886d) Thanks [@RichardHelm](https://github.com/RichardHelm)! - fix(vivid-vue): revert type changes (VIV-3274)
+
+- Updated dependencies [[`30bd079`](https://github.com/Vonage/vivid-3/commit/30bd0796765f6fa652e6c8592b2f3e7e88b60b18)]:
+  - @vonage/vivid@5.20.1
+
 ## 5.20.0
 
 ### Patch Changes

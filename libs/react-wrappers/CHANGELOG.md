@@ -1,5 +1,12 @@
 # @vonage/vivid-react
 
+## 5.20.1
+
+### Patch Changes
+
+- Updated dependencies [[`30bd079`](https://github.com/Vonage/vivid-3/commit/30bd0796765f6fa652e6c8592b2f3e7e88b60b18)]:
+  - @vonage/vivid@5.20.1
+
 ## 5.20.0
 
 ### Minor Changes
