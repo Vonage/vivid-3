@@ -237,6 +237,99 @@ describe('RteLinkFeature', () => {
 		expect(rte.openPopover()).toBe(undefined);
 	});
 
+	it('should do nothing when Escape is pressed with no link at cursor', async () => {
+		const rte = await setup(features, [p('Hello world')]);
+
+		rte.placeCursor('Hello |world');
+		rte.keydown('Escape');
+
+		expect(rte.openPopover()).toBe(undefined);
+	});
+
+	it('should close the popover when Escape is pressed', async () => {
+		const rte = await setup(features, [
+			p(
+				'Go to ',
+				text.marks(link({ href: 'https://example.com' }))('our website')
+			),
+		]);
+
+		rte.placeCursor('our websi|te');
+		await elementUpdated(rte.element);
+		rte.keydown('Escape');
+		await elementUpdated(rte.element);
+
+		expect(rte.openPopover()).toBe(undefined);
+	});
+
+	it('should keep the popover closed when typing inside the dismissed link', async () => {
+		const rte = await setup(features, [
+			p(
+				'Go to ',
+				text.marks(link({ href: 'https://example.com' }))('our website')
+			),
+		]);
+
+		rte.placeCursor('our web|site');
+		await elementUpdated(rte.element);
+		rte.keydown('Escape');
+		await elementUpdated(rte.element);
+		expect(rte.openPopover()).toBe(undefined);
+
+		// Type inside the link — end offset shifts but popup must stay closed
+		await rte.typeTextAtCursor(' great');
+		expect(rte.openPopover()).toBe(undefined);
+	});
+
+	it('should not reopen the popover after Escape until cursor moves to a different link', async () => {
+		const rte = await setup(features, [
+			p(
+				text.marks(link({ href: 'https://a.com' }))('link a'),
+				' and ',
+				text.marks(link({ href: 'https://b.com' }))('link b')
+			),
+		]);
+
+		// Place cursor on link a and dismiss
+		rte.placeCursor('link |a');
+		await elementUpdated(rte.element);
+		rte.keydown('Escape');
+		await elementUpdated(rte.element);
+		expect(rte.openPopover()).toBe(undefined);
+
+		// Move cursor to link b - popover should open
+		rte.placeCursor('link |b');
+		await elementUpdated(rte.element);
+		expect(rte.openPopover()?.open).toBe(true);
+
+		// Move cursor back to link a - popover should reopen
+		rte.placeCursor('link |a');
+		await elementUpdated(rte.element);
+		expect(rte.openPopover()?.open).toBe(true);
+	});
+
+	it('should treat two links with the same URL at different positions independently when dismissing', async () => {
+		const rte = await setup(features, [
+			p(
+				text.marks(link({ href: 'https://example.com' }))('first'),
+				' and ',
+				text.marks(link({ href: 'https://example.com' }))('second')
+			),
+		]);
+
+		// Dismiss the popover for the first link
+		rte.placeCursor('fir|st');
+		await elementUpdated(rte.element);
+		rte.keydown('Escape');
+		await elementUpdated(rte.element);
+		expect(rte.openPopover()).toBe(undefined);
+
+		// The second link (same URL, different position) should still show the popover
+		rte.placeCursor('sec|ond');
+		await elementUpdated(rte.element);
+		expect(rte.openPopover()?.open).toBe(true);
+	});
+
 	it('should remove the link when delete button is clicked', async () => {
 		const rte = await setup(features, [
 			p(

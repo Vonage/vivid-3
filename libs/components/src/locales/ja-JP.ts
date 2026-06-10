@@ -175,6 +175,9 @@ const jaJP: Locale = {
 	select: {
 		clearButtonLabel: '選択をクリア',
 	},
+	countryGroup: {
+		ariaLabelPrefix: '国:',
+	},
 	searchableSelect: {
 		clearButtonLabel: '選択をクリア',
 		noOptionsMessage: 'オプションがありません',
@@ -228,6 +231,8 @@ const jaJP: Locale = {
 		linkUrl: 'URL',
 		linkTextPlaceholder: 'リンクに変換するテキストを入力',
 		linkUrlPlaceholder: 'リンクURLを挿入',
+		linkUrlHelperText:
+			'リンク先を入力してください (例: https://, mailto:, tel:)',
 		cancel: 'キャンセル',
 		apply: '適用',
 		close: '閉じる',

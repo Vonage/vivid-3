@@ -175,6 +175,9 @@ const zhCN: Locale = {
 	select: {
 		clearButtonLabel: '清除选择',
 	},
+	countryGroup: {
+		ariaLabelPrefix: '国家',
+	},
 	searchableSelect: {
 		clearButtonLabel: '清除选择',
 		noOptionsMessage: '没有选项',
@@ -228,6 +231,7 @@ const zhCN: Locale = {
 		linkUrl: 'URL',
 		linkTextPlaceholder: '输入要转换为链接的文本',
 		linkUrlPlaceholder: '插入链接URL',
+		linkUrlHelperText: '输入目标地址 (例如：https://, mailto:, 或 tel:)',
 		cancel: '取消',
 		apply: '应用',
 		close: '关闭',

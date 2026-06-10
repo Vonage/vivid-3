@@ -8,8 +8,10 @@ import { impl } from './rte/utils/impl';
 /**
  * @public
  * @component rich-text-editor
+ * @slot editor-before - Displayed before the scrollable editor area.
  * @slot editor-start - Displayed at the start of the scrollable editor area.
  * @slot editor-end - Displayed at the end of the scrollable editor area.
+ * @slot editor-after - Displayed after the scrollable editor area.
  * @slot status - Displayed between the editor viewport and the toolbar.
  * @slot text-color-picker - Color picker for the RteTextColorFeature.
  * @dynamicSlot `{ url: string }` inline-image-placeholder - Placeholder content for inline images.

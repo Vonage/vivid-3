@@ -5,9 +5,7 @@ import cssAtRuleProperty from '../formatters/@property';
 SD.registerFormat(cssAtRuleProperty);
 
 export default {
-	source: [
-		'../../node_modules/@vonage/vivid-figma-tokens/data/globals/**/*.tokens.json',
-	],
+	source: ['../../data/globals/**/*.tokens.json'],
 	platforms: {
 		scss: {
 			transforms: ['name/kebab'],

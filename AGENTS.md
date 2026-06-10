@@ -7,6 +7,7 @@ The projects that we publish are:
 - `apps/docs/`: Public documentation website for Vivid.
 - `libs/components/`: Vivid component library, implemented as web components using the FAST library.
 - `libs/vue-wrappers/`: Auto-generated Vue Wrapper library for the Vivid components.
+- `libs/react-wrappers/`: Auto-generated React Wrapper library for the Vivid components.
 - `libs/styles/`: Style sheets.
 - `libs/eslint-plugin/`: ESLint plugin with Vivid-specific linting rules.
 - `libs/test-utils/`: Auto-generated wrappers to simplify writing tests for projects using Vivid components.

@@ -7,10 +7,9 @@ import {
 } from './attribute-removal';
 
 /**
- * Properties of the ARIAMixin (see: https://www.w3.org/TR/wai-aria-1.3/#ARIAMixin) which is applied to Element.
- * IDREF properties are omitted.
+ * Value properties of the ARIAMixin (see: https://www.w3.org/TR/wai-aria-1.3/#ARIAMixin) which is applied to Element.
  */
-export const ariaMixinProperties = [
+export const ariaValueProperties = [
 	'role',
 	'ariaAtomic',
 	'ariaAutoComplete',
@@ -55,7 +54,33 @@ export const ariaMixinProperties = [
 	'ariaRelevant', // Non-standard
 ] as const;
 
-export type AriaPropertyName = (typeof ariaMixinProperties)[number];
+/**
+ * Single-element IDREF properties of the ARIAMixin
+ * Not yet supported.
+ */
+// export const ariaIdrefProperties = ['ariaActiveDescendant'] as const;
+
+/**
+ * Multi-element IDREF properties of the ARIAMixin.
+ */
+export const ariaIdrefsProperties = [
+	'ariaControls',
+	'ariaDescribedBy',
+	'ariaDetails',
+	'ariaErrorMessage',
+	'ariaFlowTo',
+	'ariaLabelledBy',
+	'ariaOwns',
+] as const;
+
+export const ariaProperties = [
+	...ariaValueProperties,
+	...ariaIdrefsProperties,
+] as const;
+
+export type AriaValuePropertyName = (typeof ariaValueProperties)[number];
+export type AriaIdrefsPropertyName = (typeof ariaIdrefsProperties)[number];
+export type AriaPropertyName = AriaValuePropertyName | AriaIdrefsPropertyName;
 
 type AriaMixinProperties = {
 	[Property in AriaPropertyName]: string | null;
@@ -63,6 +88,7 @@ type AriaMixinProperties = {
 
 // Note: Typescript does not allow creating methods through mapped types
 type AriaMixinChangeHandlers = {
+	// Value properties
 	roleChanged(prev: string | null, next: string | null): void;
 	ariaAtomicChanged(prev: string | null, next: string | null): void;
 	ariaAutoCompleteChanged(prev: string | null, next: string | null): void;
@@ -105,10 +131,24 @@ type AriaMixinChangeHandlers = {
 	ariaValueNowChanged(prev: string | null, next: string | null): void;
 	ariaValueTextChanged(prev: string | null, next: string | null): void;
 	ariaRelevantChanged(prev: string | null, next: string | null): void;
+
+	// IDREFs properties
+	ariaControlsChanged(prev: string | null, next: string | null): void;
+	ariaDescribedByChanged(prev: string | null, next: string | null): void;
+	ariaDetailsChanged(prev: string | null, next: string | null): void;
+	ariaErrorMessageChanged(prev: string | null, next: string | null): void;
+	ariaFlowToChanged(prev: string | null, next: string | null): void;
+	ariaLabelledByChanged(prev: string | null, next: string | null): void;
+	ariaOwnsChanged(prev: string | null, next: string | null): void;
 };
 
-export const ariaAttributeName = (ariaPropertyName: AriaPropertyName): string =>
-	ariaPropertyName.replace('aria', 'aria-').toLowerCase();
+/**
+ * Derives the HTML attribute name from an ARIA property name.
+ * e.g. `ariaLabel` → `aria-label`
+ */
+export const ariaAttributeName = (
+	ariaPropertyName: AriaValuePropertyName | AriaIdrefsPropertyName
+): string => ariaPropertyName.replace('aria', 'aria-').toLowerCase();
 
 export type VividAriaBehaviour =
 	| 'default' /// Default behaviour, do nothing
@@ -128,9 +168,9 @@ export const AriaMixin = <T extends Constructor<FASTElement & HTMLElement>>(
 		constructor(...args: any[]) {
 			super(...args);
 			// Default to null for all ARIA properties
-			// This is not needed if DOM implements AriaMixin as null would already be the default
+			// This is not needed in modern DOMs with aria property support, as null would already be the default
 			// As a performance improvement set the FAST backing value, to skip running change handlers for all properties
-			for (const ariaProperty of ariaMixinProperties) {
+			for (const ariaProperty of ariaProperties) {
 				(this as any)[`_${ariaProperty}`] = null;
 			}
 		}
@@ -141,12 +181,14 @@ export const AriaMixin = <T extends Constructor<FASTElement & HTMLElement>>(
 		}
 	}
 
-	for (const ariaProperty of ariaMixinProperties) {
+	for (const ariaProperty of ariaProperties) {
+		// Declare all aria properties as FAST attributes, which makes them observable and trigger the changed method
 		attr({
 			attribute: ariaAttributeName(ariaProperty),
 			mode: 'fromView',
 		})(AriaMixinElement.prototype, ariaProperty);
 
+		// Observe changes through the changed callback
 		(AriaMixinElement.prototype as any)[`${ariaProperty}Changed`] = function (
 			this: AriaMixinElement
 		) {

@@ -311,133 +311,97 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await renderTemplate({
 		page,
-		template: `<div style="width: 720px; height:480px; background-color: #ddd;">
-			<vwc-rich-text-editor style="width: 720px; max-block-size: 240px;"></vwc-rich-text-editor>
-		</div>`,
+		template: `
+			<div style="display: flex; gap: 16px; padding: 16px; align-items: flex-start;">
+				<div style="width: 200px;">
+					<div>Default (grows)</div>
+					<vwc-rich-text-editor id="rte-default">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
+				</div>
+				<div style="width: 200px;">
+					<div>block-size: 260px</div>
+					<vwc-rich-text-editor id="rte-fixed" style="block-size: 260px;">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
+				</div>
+				<div style="width: 200px;">
+					<div>max-block-size: 260px</div>
+					<vwc-rich-text-editor id="rte-max" style="max-block-size: 260px;">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
+				</div>
+				<div style="width: 200px;">
+					<div>min-block-size: 500px</div>
+					<vwc-rich-text-editor id="rte-min" style="min-block-size: 500px;">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
+				</div>
+				<div style="width: 200px;">
+					<div>scroll min-block-size: 500px</div>
+					<style> #rte-min-scrollable::part(editor-scrollable-area) { min-block-size: 500px } </style>
+					<vwc-rich-text-editor id="rte-min-scrollable">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
+				</div>
+				<div style="width: 200px;">
+					<div>editor min-block-size: 500px</div>
+					<style> #rte-min-editor::part(editor) { min-block-size: 500px } </style>
+					<vwc-rich-text-editor id="rte-min-editor">
+						<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
+						<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
+						<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+						<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
+					</vwc-rich-text-editor>
+				</div>
+			</div>
+		`,
 		setup: async () => {
 			await page.evaluate(() => {
-				const rteElement = document.querySelector('vwc-rich-text-editor')!;
-				const config = new RteConfig([
-					new RteBase({
-						heading1: true,
-						heading2: true,
-						heading3: true,
-					}),
-					new RteTextBlockPickerFeature({
-						options: [
-							{
-								node: 'heading1',
-								label: 'Heading 1',
-							},
-							{
-								node: 'heading2',
-								label: 'Heading 2',
-							},
-							{
-								node: 'heading3',
-								label: 'Heading 3',
-							},
-							{
-								node: 'paragraph',
-								label: 'Paragraph',
-							},
-						],
-					}),
-					new RteToolbarFeature(),
-					new RteFontSizePickerFeature({
-						options: [
-							{ label: 'Extra Large', size: '24px' },
-							{ label: 'Large', size: '18px' },
-							{ label: 'Normal', size: '14px' },
-							{ label: 'Small', size: '12px' },
-						],
-					}),
-					new RteBoldFeature(),
-					new RteItalicFeature(),
-					new RteUnderlineFeature(),
-					new RteStrikethroughFeature(),
-					new RteMonospaceFeature(),
-					new RteAlignmentFeature(),
-				]);
-				rteElement.instance = config.instantiateEditor({
-					initialDocument: {
-						type: 'doc',
-						content: [
-							{
-								type: 'heading1',
-								content: [{ type: 'text', text: 'heading1' }],
-							},
-							{
-								type: 'heading2',
-								content: [{ type: 'text', text: 'heading2' }],
-							},
-							{
-								type: 'heading3',
-								content: [{ type: 'text', text: 'heading3' }],
-							},
-							{
-								type: 'paragraph',
-								content: [{ type: 'text', text: 'paragraph' }],
-							},
-							{
-								type: 'paragraph',
-								content: [
-									{ type: 'text', text: 'bold', marks: [{ type: 'bold' }] },
-									{ type: 'text', text: ' ' },
-									{ type: 'text', text: 'italic', marks: [{ type: 'italic' }] },
-									{ type: 'text', text: ' ' },
-									{
-										type: 'text',
-										text: 'underline',
-										marks: [{ type: 'underline' }],
-									},
-									{ type: 'text', text: ' ' },
-									{
-										type: 'text',
-										text: 'strikethrough',
-										marks: [{ type: 'strikethrough' }],
-									},
-									{ type: 'text', text: ' ' },
-									{
-										type: 'text',
-										text: 'monospace',
-										marks: [{ type: 'monospace' }],
-									},
-									{ type: 'text', text: ' ' },
-								],
-							},
-							{
-								type: 'paragraph',
-								content: [
-									{
-										type: 'text',
-										text: 'small',
-										marks: [{ type: 'fontSize', attrs: { size: '12px' } }],
-									},
-									{ type: 'text', text: ' ' },
-									{ type: 'text', text: 'normal' },
-									{ type: 'text', text: ' ' },
-									{
-										type: 'text',
-										text: 'large',
-										marks: [{ type: 'fontSize', attrs: { size: '18px' } }],
-									},
-									{ type: 'text', text: ' ' },
-									{
-										type: 'text',
-										text: 'extra large',
-										marks: [{ type: 'fontSize', attrs: { size: '24px' } }],
-									},
-								],
-							},
-						],
-					},
-				});
+				const initialDoc = {
+					type: 'doc' as const,
+					content: Array.from({ length: 6 }, (_, i) => ({
+						type: 'paragraph',
+						content: [{ type: 'text', text: `Paragraph ${i + 1}` }],
+					})),
+				};
+				for (const id of [
+					'rte-default',
+					'rte-fixed',
+					'rte-max',
+					'rte-min',
+					'rte-min-scrollable',
+					'rte-min-editor',
+				]) {
+					const el = document.getElementById(id)!;
+					const config = new RteConfig([
+						new RteBase(),
+						new RteToolbarFeature(),
+					]);
+					(el as any).instance = config.instantiateEditor({
+						initialDocument: initialDoc,
+					});
+				}
 			});
 		},
 	});
 
-	await takeScreenshot(page, 'rich-text-editor-max-block-size');
+	await takeScreenshot(page, 'rich-text-editor-block-sizes');
 
 	await renderTemplate({
 		page,
@@ -500,4 +464,64 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	await takeScreenshot(page, 'placeholder-heading-right');
+
+	await renderTemplate({
+		page,
+		template: `
+			<div style="display: flex; gap: 16px; padding: 16px; align-items: flex-start;">
+				<div style="width: 300px;">
+					<div>Disabled</div>
+					<vwc-rich-text-editor id="rte-disabled" style="width: 300px;"></vwc-rich-text-editor>
+				</div>
+				<div style="width: 300px;">
+					<div>Disabled (placeholder)</div>
+					<vwc-rich-text-editor id="rte-disabled-placeholder" style="width: 300px;"></vwc-rich-text-editor>
+				</div>
+			</div>
+		`,
+		setup: async () => {
+			await page.evaluate(() => {
+				const initialDoc = {
+					type: 'doc' as const,
+					content: [
+						{
+							type: 'paragraph',
+							content: [{ type: 'text', text: 'Some text content' }],
+						},
+					],
+				};
+
+				const emptyDoc = { type: 'doc' as const, content: [] };
+
+				const makeConfig = () =>
+					new RteConfig([
+						new RteBase(),
+						new RtePlaceholderFeature({ text: 'Placeholder text...' }),
+						new RteToolbarFeature(),
+						new RteBoldFeature(),
+					]);
+
+				const disabledEl = document.getElementById('rte-disabled')!;
+				const disabledConfig = makeConfig();
+				const disabledInstance = disabledConfig.instantiateEditor({
+					initialDocument: initialDoc,
+				});
+				(disabledEl as any).instance = disabledInstance;
+				disabledInstance.feature(RteBase).disabled = true;
+
+				const disabledPlaceholderEl = document.getElementById(
+					'rte-disabled-placeholder'
+				)!;
+				const disabledPlaceholderConfig = makeConfig();
+				const disabledPlaceholderInstance =
+					disabledPlaceholderConfig.instantiateEditor({
+						initialDocument: emptyDoc,
+					});
+				(disabledPlaceholderEl as any).instance = disabledPlaceholderInstance;
+				disabledPlaceholderInstance.feature(RteBase).disabled = true;
+			});
+		},
+	});
+
+	await takeScreenshot(page, 'rich-text-editor-disabled');
 });

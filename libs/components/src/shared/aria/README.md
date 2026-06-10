@@ -43,7 +43,13 @@ DelegatesAria is applied to components that delegate their aria attributes to a 
 html`<button ${delegateAria()}></button>`;
 ```
 
-This will forward all ARIA value attributes set on the component to the button element, expect `role` which requires special handling.
+This will forward all ARIA value attributes set on the component to the button element, except `role` which requires special handling.
+
+IDREF attributes (e.g. `aria-describedby`, `aria-controls`) are resolved to elements and applied to the button via the ARIA 1.3 `*Elements` reflection API (e.g. `ariaDescribedByElements`).
+
+If `*Elements` is set directly on the host, the value is forwarded as well.
+
+Note that `*Elements` can only reference elements in the same or parent DOM. It cannot reference elements in another shadow DOM.
 
 It is possible to provide bindings for specific properties:
 
@@ -52,6 +58,7 @@ html`<button
 	${delegateAria({
 		ariaLabel: 'Button',
 		ariaDisabled: (x) => x.disabled,
+		ariaDescribedBy: 'id-in-shadow-root',
 	})}
 ></button>`;
 ```
@@ -59,7 +66,7 @@ html`<button
 Which is equivalent to:
 
 ```ts
-html`<button aria-label="Button" aria-disabled="${(x) => x.disabled}"></button>`;
+html`<button aria-label="Button" aria-disabled="${(x) => x.disabled}" ariaDescribedBy="id-in-shadow-root"></button>`;
 ```
 
 Therefore, to set a default value you must explicitly do so:
@@ -86,5 +93,4 @@ As there is no point in forwarding attributes from the host to itself, the `appl
 
 ### Usage Notes
 
-- All value attributes on the host or delegation target should be set using the respective directive.
-- IDREF attributes cannot be delegated (yet). If consumers specify them, they will not work as expected.
+- All attributes on the host or delegation target should be set using the respective directive.

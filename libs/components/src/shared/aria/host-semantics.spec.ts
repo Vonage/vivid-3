@@ -11,6 +11,7 @@ describe('HostSemantics', () => {
 			${applyHostSemantics({
 				ariaDescription: 'default',
 				ariaLabel: (x) => x.label,
+				ariaOwns: 'owns',
 			})}
 		></template>`,
 	})
@@ -26,6 +27,7 @@ describe('HostSemantics', () => {
 
 		expect(element.getAttribute('aria-description')).toBe('default');
 		expect(element.getAttribute('aria-label')).toBe('label');
+		expect(element.getAttribute('aria-owns')).toBe('owns');
 	});
 
 	it('should throw an error when applyHostSemantics is applied to an element that is not the host', async () => {

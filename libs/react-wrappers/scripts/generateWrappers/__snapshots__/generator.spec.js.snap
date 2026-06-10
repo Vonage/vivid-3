@@ -1,0 +1,103 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generator > generateWrappersV3 > should replace TemplateToken.CLASS_JSDOC with JSDOC content 1`] = `
+"/** VwcClass1 
+* For more info on this Vivid element please visit https://vivid.deno.dev/components/class1 
+* @param {AccordionExpandMode} field1 - Field1Description **attribute** \`field-one\`
+* @param {string | null} field2  
+* @param {number} activeItemIndex  
+*/"
+`;
+
+exports[`generator > generateWrappersV3 > should replace TemplateToken.TAG_DESCRIPTOR_JSON with empty string 1`] = `
+"{
+ "kind": "class",
+ "description": "",
+ "name": "Class1",
+ "slots": [
+  {
+   "description": "Default slot.",
+   "name": ""
+  }
+ ],
+ "members": [
+  {
+   "kind": "field",
+   "name": "field1",
+   "type": {
+    "text": "AccordionExpandMode"
+   },
+   "description": "Field1Description",
+   "privacy": "public"
+  },
+  {
+   "kind": "field",
+   "name": "field2",
+   "type": {
+    "text": "string | null"
+   }
+  },
+  {
+   "kind": "field",
+   "name": "activeItemIndex",
+   "type": {
+    "text": "number"
+   },
+   "default": "0"
+  },
+  {
+   "kind": "method",
+   "name": "method1",
+   "return": {
+    "type": {
+     "text": "Array | null"
+    }
+   }
+  },
+  {
+   "kind": "method",
+   "name": "method2",
+   "return": {
+    "type": {
+     "text": "void"
+    }
+   },
+   "parameters": [
+    {
+     "name": "item",
+     "type": {
+      "text": "number"
+     }
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "type": {
+    "text": "CustomEvent<string | null>"
+   },
+   "description": "Fires a custom 'change' event when the active item changes",
+   "name": "change"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "field-one",
+   "type": {
+    "text": "AccordionExpandMode"
+   },
+   "description": "Attribute1Description",
+   "fieldName": "field1"
+  }
+ ],
+ "superclass": {
+  "name": "VividElement",
+  "module": "/libs/components/src/shared/foundation/vivid-element/vivid-element"
+ },
+ "vividComponent": {
+  "public": true,
+  "name": "accordion"
+ }
+}"
+`;

@@ -1,9 +1,10 @@
-import { html } from '@microsoft/fast-element';
+import { elements, html, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { renderInLightDOM } from '../../shared/templating/render-in-light-dom';
 import type { Tooltip } from './tooltip';
 
 const getClasses = ({ open }: Tooltip) =>
@@ -15,6 +16,7 @@ export const TooltipTemplate = (context: VividElementDefinitionContext) => {
 
 	return html<Tooltip>`
 ${anchorSlotTemplate}
+${renderInLightDOM(html<Tooltip>`<span slot="_description" id="${(x) => x._descriptionId}">${(x) => x.text}</span>`)}
 <${popupTag} class="${getClasses}" arrow alternate
 	:placement=${(x) => x.placement}
 	:anchor="${(x) => x._anchorEl}"
@@ -26,7 +28,13 @@ ${anchorSlotTemplate}
 	}}"
   exportparts="vvd-theme-alternate">
   <div part="vvd-theme-alternate" class="tooltip" role="tooltip">
-		${(x) => x.text}
+		<span class="text"><slot name="_description"></slot></span>
+		<slot name="kbd-shortcut"
+			${slotted({
+				property: '_kbdShortcutSlotted',
+				filter: elements(),
+			})}
+		></slot>
   </div>
 </${popupTag}>`;
 };

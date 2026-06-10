@@ -71,6 +71,10 @@ export function name(el: any) {
 	return el.name;
 }
 
+export function code(el: any) {
+	return el.code;
+}
+
 export function total(el: any) {
 	return el.total;
 }

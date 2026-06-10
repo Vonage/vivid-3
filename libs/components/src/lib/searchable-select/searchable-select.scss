@@ -61,6 +61,13 @@ $low-ink-color: --_low-ink-color;
 	@include appearance.appearance;
 
 	& {
+		#{variables.$searchable-select-block-size}: 24px;
+		#{variables.$searchable-select-padding-block}: 8px;
+		#{variables.$searchable-select-padding-inline}: 16px;
+		#{variables.$searchable-select-icon-size}: 20px;
+		#{variables.$searchable-select-border-radius}: #{border-radius-variables.$border-radius-normal};
+		#{variables.$searchable-select-gap}: 8px;
+
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -68,12 +75,23 @@ $low-ink-color: --_low-ink-color;
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 		color: var(#{appearance.get-appearance-token(text)});
 		font: var(#{constants.$vvd-typography-base});
-		gap: 8px;
-		padding-block: 8px;
-		padding-inline: 16px;
+		gap: var(#{variables.$searchable-select-gap});
+		padding-block: var(#{variables.$searchable-select-padding-block});
+		padding-inline: var(#{variables.$searchable-select-padding-inline});
 		transition:
 			box-shadow 0.2s,
 			background-color 0.2s;
+	}
+
+	&.size-condensed {
+		#{variables.$searchable-select-block-size}: 20px;
+		#{variables.$searchable-select-padding-block}: 6px;
+		#{variables.$searchable-select-padding-inline}: 12px;
+		#{variables.$searchable-select-gap}: 6px;
+
+		&:not(.shape-pill) {
+			#{variables.$searchable-select-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
+		}
 	}
 
 	@supports selector(:has(*)) {
@@ -92,7 +110,7 @@ $low-ink-color: --_low-ink-color;
 
 	/* Shape */
 	:host(:not([shape='pill'])) & {
-		border-radius: #{border-radius-variables.$border-radius-normal};
+		border-radius: var(#{variables.$searchable-select-border-radius});
 	}
 
 	:host([shape='pill']) & {
@@ -109,13 +127,13 @@ $low-ink-color: --_low-ink-color;
 	overflow: hidden;
 	flex: 1;
 	flex-direction: column;
-	gap: 8px;
-	min-block-size: 24px;
+	gap: var(#{variables.$searchable-select-gap});
+	min-block-size: var(#{variables.$searchable-select-block-size});
 }
 
 .tag-row {
 	display: flex;
-	gap: 8px;
+	gap: var(#{variables.$searchable-select-gap});
 	inline-size: 100%;
 
 	&.contains-only-input:not(:focus-within) {
@@ -136,7 +154,7 @@ input {
 	flex: 1;
 	border: none;
 	background: none;
-	block-size: 24px;
+	block-size: var(#{variables.$searchable-select-block-size});
 	font: var(#{constants.$vvd-typography-base});
 	max-inline-size: 100%;
 	min-inline-size: min(100px, 40%);
@@ -177,7 +195,7 @@ input {
 }
 
 slot[name='icon'] {
-	font-size: 20px;
+	font-size: var(#{variables.$searchable-select-icon-size});
 }
 
 .visually-hidden {

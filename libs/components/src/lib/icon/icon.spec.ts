@@ -3,8 +3,9 @@ import {
 	fixture,
 	getControlElement,
 } from '@repo/shared/test-utils/fixture';
-import { type Icon, resolveIcon } from './icon';
 import '.';
+import { resolveIcon } from '../../shared/icon/utils';
+import type { Icon } from './icon';
 
 const COMPONENT_TAG = 'vwc-icon';
 
@@ -226,7 +227,7 @@ describe('icon', function () {
 			expect(element.iconLoaded).toEqual(true);
 		});
 
-		it('should set aria-busy on the figure element when iconLoaded is false', async function () {
+		it('should set aria-busy on the control element when iconLoaded is false', async function () {
 			element.name = uniqueId();
 			await vi.runAllTimersAsync();
 			element.iconLoaded = false;
@@ -266,9 +267,14 @@ describe('icon', function () {
 				);
 			});
 
-			it('should render an empty label element', async function () {
-				const labelElement = getControlElement(element).querySelector('.label');
-				expect(labelElement?.textContent).toBe('');
+			it('should not set aria-label on the control element', async function () {
+				expect(getControlElement(element).hasAttribute('aria-label')).toBe(
+					false
+				);
+			});
+
+			it('should not set role on the control element', async function () {
+				expect(getControlElement(element).hasAttribute('role')).toBe(false);
 			});
 		});
 
@@ -281,11 +287,18 @@ describe('icon', function () {
 				);
 			});
 
-			it('should render the label element containing the label text', async function () {
+			it('should set aria-label to the label text on the control element', async function () {
 				element.label = 'test';
 				await elementUpdated(element);
-				const labelElement = getControlElement(element).querySelector('.label');
-				expect(labelElement?.textContent).toBe('test');
+				expect(getControlElement(element).getAttribute('aria-label')).toBe(
+					'test'
+				);
+			});
+
+			it('should set role to img on the control element', async function () {
+				element.label = 'test';
+				await elementUpdated(element);
+				expect(getControlElement(element).getAttribute('role')).toBe('img');
 			});
 		});
 	});

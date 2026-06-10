@@ -18,6 +18,7 @@ import type {
 	VwcComboboxElement,
 	VwcContextualHelpElement,
 	VwcCountryElement,
+	VwcCountryGroupElement,
 	VwcDataGridCellElement,
 	VwcDataGridElement,
 	VwcDataGridRowElement,
@@ -32,6 +33,8 @@ import type {
 	VwcFilePickerElement,
 	VwcHeaderElement,
 	VwcIconElement,
+	VwcKbdKeyElement,
+	VwcKbdShortcutElement,
 	VwcLayoutElement,
 	VwcMenuElement,
 	VwcMenuItemElement,
@@ -42,6 +45,7 @@ import type {
 	VwcNumberFieldElement,
 	VwcOptionElement,
 	VwcPaginationElement,
+	VwcPlatformSwitchElement,
 	VwcPopoverElement,
 	VwcProgressElement,
 	VwcProgressRingElement,
@@ -100,9 +104,13 @@ type DefaultVividTagNameMap = {
 	'vwc-contextual-help': VwcContextualHelpElement;
 	'vwc-combobox': VwcComboboxElement;
 	'vwc-country': VwcCountryElement;
+	'vwc-country-group': VwcCountryGroupElement;
 	'vwc-data-grid-cell': VwcDataGridCellElement;
 	'vwc-data-grid': VwcDataGridElement;
 	'vwc-data-grid-row': VwcDataGridRowElement;
+	'vwc-kbd-key': VwcKbdKeyElement;
+	'vwc-kbd-shortcut': VwcKbdShortcutElement;
+	'vwc-platform-switch': VwcPlatformSwitchElement;
 	'vwc-table': VwcTableElement;
 	'vwc-table-body': VwcTableBodyElement;
 	'vwc-table-cell': VwcTableCellElement;

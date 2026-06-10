@@ -4,7 +4,7 @@ import {
 } from '@repo/shared/test-utils/fixture';
 import {
 	deepQuerySelectorAll,
-	getResolvedTextContent,
+	resolveAccessibleName,
 } from '@repo/shared/test-utils/shadow-roots';
 import type { FormAssociatedElement } from '../foundation/form-associated/form-associated';
 import type { ElementWithErrorText, ElementWithSuccessText } from '../patterns';
@@ -17,7 +17,7 @@ export const getMessage = (element: Element, type: FeedbackType) =>
 			element,
 			`vwc-feedback-message[type="${type}"]`
 		)
-			.map((fm) => getResolvedTextContent(fm))
+			.map((fm) => resolveAccessibleName(fm))
 			.join(' ')
 	);
 
@@ -37,7 +37,7 @@ const resolveAccessibleDescription = (el: HTMLElement) =>
 					.join(',')
 			)
 		)
-			.map(getResolvedTextContent)
+			.map(resolveAccessibleName)
 			.join('')
 	);
 

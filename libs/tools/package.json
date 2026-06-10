@@ -19,10 +19,10 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@pnpm/catalogs.config": "^1000.0.5",
-		"@pnpm/exportable-manifest": "^1000.4.1",
-		"@pnpm/read-project-manifest": "^1001.2.5",
-		"@pnpm/workspace.read-manifest": "^1000.2.10"
+		"@pnpm/catalogs.config": "^1000.0.6",
+		"@pnpm/exportable-manifest": "^1000.4.2",
+		"@pnpm/read-project-manifest": "^1001.2.6",
+		"@pnpm/workspace.read-manifest": "^1000.3.1"
 	},
 	"devDependencies": {
 		"@figma/rest-api-spec": "catalog:",

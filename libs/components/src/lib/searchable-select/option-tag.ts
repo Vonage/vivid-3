@@ -1,6 +1,6 @@
 import { attr, observable } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import type { Connotation, Shape } from '../enums';
+import type { Connotation, Shape, Size } from '../enums';
 import { Localized } from '../../shared/patterns';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 
@@ -11,6 +11,8 @@ export type OptionTagConnotation = ExtractFromEnum<
 	Connotation.Accent | Connotation.CTA
 >;
 
+export type OptionTagSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
+
 export class OptionTag extends Localized(VividElement) {
 	@attr shape?: OptionTagShape;
 	@observable connotation?: OptionTagConnotation;
@@ -18,6 +20,7 @@ export class OptionTag extends Localized(VividElement) {
 	@attr({ mode: 'boolean' }) removable = false;
 	@attr({ mode: 'boolean' }) disabled = false;
 	@observable hasIconPlaceholder = false;
+	@attr() scale?: OptionTagSize;
 
 	/** @internal */
 	_onClickRemove() {

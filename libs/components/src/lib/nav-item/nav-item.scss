@@ -18,6 +18,8 @@
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/tokens/scss/size.variables' as size;
 
+$icon-size: 20px;
+
 .control {
 	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 12px;
@@ -60,10 +62,22 @@
 	@include appearance.appearance;
 
 	&.icon-only {
+		position: relative;
 		display: flex;
 		block-size: $min-block-size;
 		inline-size: $min-block-size;
 		place-content: center;
+
+		/* Float the meta slot over the top-right corner of the icon */
+		slot[name='meta'] {
+			$icon-corner: calc((#{$min-block-size} - #{$icon-size}) / 2);
+
+			position: absolute;
+			display: block;
+			inset-block-start: $icon-corner;
+			inset-inline-end: $icon-corner;
+			transform: translate(50%, -50%);
+		}
 	}
 
 	&:not(.icon-only) {
@@ -81,7 +95,13 @@
 	}
 }
 
+:host(:dir(rtl)) {
+	.icon-only slot[name='meta'] {
+		transform: translate(-50%, -50%);
+	}
+}
+
 slot[name='icon'] {
-	font-size: 20px;
+	font-size: $icon-size;
 	line-height: 1;
 }

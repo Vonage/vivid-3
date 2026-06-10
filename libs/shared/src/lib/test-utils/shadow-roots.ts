@@ -19,16 +19,22 @@ export function deepQuerySelectorAll<T extends Element>(
 }
 
 /**
- * Returns the textContent of an element while resolving any slots and shadow roots.
+ * Returns the accessible name of an element while resolving any slots and shadow roots.
+ * Note: Accessible name computation is not entirely spec compliant.
  */
-export function getResolvedTextContent(root: Element) {
+export function resolveAccessibleName(root: Element) {
 	let text = '';
 
 	function traverse(node: Node) {
 		if (node.nodeType === Node.TEXT_NODE) {
 			text += node.textContent;
 		} else if (node.nodeType === Node.ELEMENT_NODE) {
-			if (node instanceof HTMLSlotElement) {
+			const ariaLabel =
+				(node as HTMLElement).getAttribute('aria-label') ??
+				(node as any).ariaLabel;
+			if (ariaLabel) {
+				text += ariaLabel;
+			} else if (node instanceof HTMLSlotElement) {
 				const assignedNodes = node.assignedNodes({ flatten: true });
 				assignedNodes.forEach(traverse);
 			} else {

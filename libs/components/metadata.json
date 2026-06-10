@@ -1299,6 +1299,13 @@
 					"propertyName": "ping"
 				},
 				{
+					"name": "pressed",
+					"description": "Indicates the button is in a pressed/toggled state.\nSets `aria-pressed` on the button element.",
+					"type": "boolean",
+					"attributeName": "pressed",
+					"propertyName": "pressed"
+				},
+				{
 					"name": "referrerpolicy",
 					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
@@ -2188,7 +2195,7 @@
 				},
 				{
 					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
+					"description": "Fires when the value of the element changes.",
 					"type": "Event"
 				},
 				{
@@ -2665,6 +2672,63 @@
 			}
 		},
 		{
+			"name": "country-group",
+			"className": "CountryGroup",
+			"registerFunctionName": "registerCountryGroup",
+			"description": "",
+			"props": [],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "default",
+					"description": "One or more `vwc-country` elements (Country only)."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
 			"name": "data-grid",
 			"className": "DataGrid",
 			"registerFunctionName": "registerDataGrid",
@@ -3110,6 +3174,13 @@
 					"propertyName": "required"
 				},
 				{
+					"name": "scale",
+					"description": "Sets the display size of the picker field input element.",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "scale",
+					"propertyName": "scale"
+				},
+				{
 					"name": "value",
 					"description": "The current value of the element.",
 					"type": "string",
@@ -3312,6 +3383,13 @@
 					"type": "boolean",
 					"attributeName": "required",
 					"propertyName": "required"
+				},
+				{
+					"name": "scale",
+					"description": "Sets the display size of the picker field input element.",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "scale",
+					"propertyName": "scale"
 				},
 				{
 					"name": "start",
@@ -3560,6 +3638,13 @@
 					"type": "boolean",
 					"attributeName": "required",
 					"propertyName": "required"
+				},
+				{
+					"name": "scale",
+					"description": "Sets the display size of the picker field input element.",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "scale",
+					"propertyName": "scale"
 				},
 				{
 					"name": "secondsStep",
@@ -4646,6 +4731,80 @@
 			}
 		},
 		{
+			"name": "flag",
+			"className": "Flag",
+			"registerFunctionName": "registerFlag",
+			"description": "",
+			"props": [
+				{
+					"name": "code",
+					"description": "ISO 3166-1 alpha-2 country code (e.g. \"GB\", \"UK\", \"US\"). When set, the component shows the\nmatching flag (from the Vivid/Vonage icon set).",
+					"type": "string",
+					"attributeName": "code",
+					"propertyName": "code"
+				},
+				{
+					"name": "label",
+					"description": "Provides a (screen reader only) descriptive label for the flag.",
+					"type": "string",
+					"attributeName": "label",
+					"propertyName": "label"
+				},
+				{
+					"name": "size",
+					"description": "Controls the rendered size. Uses the same scale and behavior as `Icon.size`.",
+					"type": "0 | 1 | -1 | 2 | 3 | 4 | 5 | -6 | -5 | -4 | -3 | -2",
+					"attributeName": "size",
+					"propertyName": "size"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [{ "name": "code", "args": ["code"] }],
+				"refs": []
+			}
+		},
+		{
 			"name": "header",
 			"className": "Header",
 			"registerFunctionName": "registerHeader",
@@ -4803,6 +4962,158 @@
 			}
 		},
 		{
+			"name": "kbd-key",
+			"className": "KbdKey",
+			"registerFunctionName": "registerKbdKey",
+			"description": "",
+			"props": [
+				{
+					"name": "appearance",
+					"type": "'outlined' | 'subtle' | 'dropshadow'",
+					"attributeName": "appearance",
+					"propertyName": "appearance"
+				},
+				{
+					"name": "keyboard",
+					"description": "The keyboard layout to use for display.\nWhen set to \"auto\" (default), detects the current platform.\nWhen set to \"standard\", displays keys for non-Apple platforms.\nWhen set to \"apple\", displays keys for Apple platforms.",
+					"type": "'auto' | 'standard' | 'apple'",
+					"attributeName": "keyboard",
+					"propertyName": "keyboard"
+				},
+				{
+					"name": "keyshortcutsKey",
+					"description": "Overrides the aria-keyshortcuts key name contributed by this element.\nThe value must be a valid `aria-keyshortcuts` key token (e.g. `\"F1\"`, `\"Power\"`).\nUse this when `name=\"Custom\"` and the slot's text content is not a valid\naria-keyshortcuts value, e.g. when the slot contains an icon.",
+					"type": "string",
+					"attributeName": "keyshortcuts-key",
+					"propertyName": "keyshortcutsKey"
+				},
+				{
+					"name": "name",
+					"description": "The key to display. Use \"Custom\" to show arbitrary content via the default slot.",
+					"type": "'Alt' | 'Control' | 'Shift' | 'Enter' | 'Tab' | 'Space' | 'Backspace' | 'Escape' | 'ArrowUp' | 'ArrowDown' | 'ArrowLeft' | 'ArrowRight' | 'End' | 'Home' | 'PageUp' | 'PageDown' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | 'Mod' | 'Custom'",
+					"attributeName": "name",
+					"propertyName": "name"
+				},
+				{
+					"name": "size",
+					"type": "'condensed' | 'normal' | 'expanded' | 'super-condensed'",
+					"attributeName": "size",
+					"propertyName": "size"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "default",
+					"description": "Default slot for custom content (used when name is \"Custom\")."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
+			"name": "kbd-shortcut",
+			"className": "KbdShortcut",
+			"registerFunctionName": "registerKbdShortcut",
+			"description": "",
+			"props": [],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [
+				{
+					"name": "getKeyshortcutsValue",
+					"description": "Returns a valid aria-keyshortcuts value based on the slotted kbd-key elements.\nModifiers are sorted to be first as required by the spec.\nReturns null if no keys are available.",
+					"args": [],
+					"returnType": "null | string"
+				}
+			],
+			"slots": [
+				{ "name": "default", "description": "Default slot for Kbd elements." }
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
 			"name": "layout",
 			"className": "Layout",
 			"registerFunctionName": "registerLayout",
@@ -4941,7 +5252,7 @@
 				{
 					"name": "trigger",
 					"description": "Sets trigger method of Menu",
-					"type": "'off' | 'auto' | 'legacy'",
+					"type": "'auto' | 'off' | 'legacy'",
 					"attributeName": "trigger",
 					"propertyName": "trigger"
 				}
@@ -5172,6 +5483,10 @@
 			],
 			"methods": [],
 			"slots": [
+				{
+					"name": "kbd-shortcut",
+					"description": "Used to display a keyboard shortcut."
+				},
 				{
 					"name": "meta",
 					"description": "Assign nodes to the `meta` slot to set a badge or an additional icon."
@@ -6220,6 +6535,63 @@
 			}
 		},
 		{
+			"name": "platform-switch",
+			"className": "PlatformSwitch",
+			"registerFunctionName": "registerPlatformSwitch",
+			"description": "",
+			"props": [],
+			"events": [
+				{
+					"name": "blur",
+					"description": "Fires when the element loses focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "click",
+					"description": "Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.",
+					"type": "MouseEvent"
+				},
+				{
+					"name": "focus",
+					"description": "Fires when the element receives focus.",
+					"type": "FocusEvent"
+				},
+				{
+					"name": "input",
+					"description": "Fires when the value of an element has been changed.",
+					"type": "Event"
+				},
+				{
+					"name": "keydown",
+					"description": "Fires when a key is pressed.",
+					"type": "KeyboardEvent"
+				},
+				{
+					"name": "keyup",
+					"description": "Fires when a key is released.",
+					"type": "KeyboardEvent"
+				}
+			],
+			"vueModels": [],
+			"methods": [],
+			"slots": [
+				{
+					"name": "default",
+					"description": "Default slot accepts children with optional platform constraints."
+				}
+			],
+			"testUtils": {
+				"selectors": [{ "name": "byTestId", "args": ["byTestId"] }],
+				"actions": [
+					{ "name": "blur", "args": ["blur", "#locator"] },
+					{ "name": "focus", "args": ["focus", "#locator"] },
+					{ "name": "hover", "args": ["hover", "#locator"] }
+				],
+				"queries": [],
+				"refs": []
+			}
+		},
+		{
 			"name": "popover",
 			"className": "Popover",
 			"registerFunctionName": "registerPopover",
@@ -7172,6 +7544,14 @@
 			"methods": [],
 			"slots": [
 				{
+					"name": "editor-after",
+					"description": "Displayed after the scrollable editor area."
+				},
+				{
+					"name": "editor-before",
+					"description": "Displayed before the scrollable editor area."
+				},
+				{
 					"name": "editor-end",
 					"description": "Displayed at the end of the scrollable editor area."
 				},
@@ -7282,6 +7662,7 @@
 			"props": [
 				{
 					"name": "appearance",
+					"description": "Sets the appearance of the Searchable Select element.",
 					"type": "'fieldset' | 'ghost'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
@@ -7432,6 +7813,13 @@
 					"propertyName": "required"
 				},
 				{
+					"name": "scale",
+					"description": "Sets the display size of the Searchable Select element.",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "scale",
+					"propertyName": "scale"
+				},
+				{
 					"name": "selectAllText",
 					"description": "Overrides the default \"Select All\" text.",
 					"type": "string",
@@ -7445,6 +7833,7 @@
 				},
 				{
 					"name": "shape",
+					"description": "Sets the shape of the Searchable Select element.",
 					"type": "'rounded' | 'pill'",
 					"attributeName": "shape",
 					"propertyName": "shape"
@@ -8201,7 +8590,7 @@
 				},
 				{
 					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
+					"description": "Fires when the value of the element changes.",
 					"type": "Event"
 				},
 				{
@@ -9925,7 +10314,7 @@
 				},
 				{
 					"name": "input",
-					"description": "Fires when the value of an element has been changed.",
+					"description": "Fires when the value of the element changes.",
 					"type": "Event"
 				},
 				{
@@ -10393,6 +10782,13 @@
 					"propertyName": "required"
 				},
 				{
+					"name": "scale",
+					"description": "Sets the display size of the picker field input element.",
+					"type": "'condensed' | 'normal'",
+					"attributeName": "scale",
+					"propertyName": "scale"
+				},
+				{
 					"name": "secondsStep",
 					"description": "Distance between presented seconds options. If null, seconds are not presented.",
 					"type": "number",
@@ -10684,6 +11080,10 @@
 				{
 					"name": "anchor",
 					"description": "Used to set the anchor element for the tooltip."
+				},
+				{
+					"name": "kbd-shortcut",
+					"description": "Used to display a keyboard shortcut."
 				}
 			],
 			"testUtils": {

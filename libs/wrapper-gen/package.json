@@ -4,14 +4,6 @@
 	"private": true,
 	"type": "module",
 	"exports": {
-		"./docs": {
-			"types": "./dist/docs/index.d.ts",
-			"default": "./dist/docs/index.js"
-		},
-		"./storybookTemplates": {
-			"types": "./dist/storybookTemplates/index.d.ts",
-			"default": "./dist/storybookTemplates/index.js"
-		},
 		"./vueWrappers": {
 			"types": "./dist/vueWrappers/index.d.ts",
 			"default": "./dist/vueWrappers/index.js"

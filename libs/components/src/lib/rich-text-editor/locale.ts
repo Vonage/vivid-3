@@ -22,6 +22,7 @@ export interface RichTextEditorLocale {
 	linkUrl: string;
 	linkTextPlaceholder: string;
 	linkUrlPlaceholder: string;
+	linkUrlHelperText: string;
 	cancel: string;
 	apply: string;
 	close: string;

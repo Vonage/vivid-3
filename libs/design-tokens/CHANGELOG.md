@@ -1,78 +1,73 @@
 # Changelog
 
-## [5.15.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.14.0...vivid-design-tokens-v5.15.0) (2026-02-27)
+## 5.16.0
 
+### Minor Changes
+
+- [#2953](https://github.com/Vonage/vivid-3/pull/2953) [`9ead9ae`](https://github.com/Vonage/vivid-3/commit/9ead9ae05cd4aeea6636897fbdccf3f8eae340ae) Thanks [@TaylorJ76](https://github.com/TaylorJ76)! - feat(typography): adds level 5 and 6 heading tokens and styles (VIV-3251)
+
+## [5.15.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.14.0...vivid-design-tokens-v5.15.0) (2026-02-27)
 
 ### Miscellaneous Chores
 
-* **vivid-design-tokens:** Synchronize vivid versions
+- **vivid-design-tokens:** Synchronize vivid versions
 
 ## [5.14.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.13.0...vivid-design-tokens-v5.14.0) (2026-02-25)
 
-
 ### Miscellaneous Chores
 
-* **vivid-design-tokens:** Synchronize vivid versions
+- **vivid-design-tokens:** Synchronize vivid versions
 
 ## [5.13.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.12.0...vivid-design-tokens-v5.13.0) (2026-02-24)
 
-
 ### Miscellaneous Chores
 
-* **vivid-design-tokens:** Synchronize vivid versions
+- **vivid-design-tokens:** Synchronize vivid versions
 
 ## [5.12.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.11.0...vivid-design-tokens-v5.12.0) (2026-02-13)
 
-
 ### Miscellaneous Chores
 
-* **vivid-design-tokens:** Synchronize vivid versions
+- **vivid-design-tokens:** Synchronize vivid versions
 
 ## [5.11.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.10.0...vivid-design-tokens-v5.11.0) (2026-02-11)
 
-
 ### Miscellaneous Chores
 
-* **vivid-design-tokens:** Synchronize vivid versions
+- **vivid-design-tokens:** Synchronize vivid versions
 
 ## [5.10.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.9.0...vivid-design-tokens-v5.10.0) (2026-02-10)
 
-
 ### Miscellaneous Chores
 
-* **vivid-design-tokens:** Synchronize vivid versions
+- **vivid-design-tokens:** Synchronize vivid versions
 
 ## [5.9.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.8.0...vivid-design-tokens-v5.9.0) (2026-01-26)
 
-
 ### Miscellaneous Chores
 
-* **vivid-design-tokens:** Synchronize vivid versions
+- **vivid-design-tokens:** Synchronize vivid versions
 
 ## [5.8.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.7.0...vivid-design-tokens-v5.8.0) (2026-01-05)
 
-
 ### Miscellaneous Chores
 
-* **vivid-design-tokens:** Synchronize vivid versions
+- **vivid-design-tokens:** Synchronize vivid versions
 
 ## [5.7.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.6.0...vivid-design-tokens-v5.7.0) (2025-12-15)
 
-
 ### Miscellaneous Chores
 
-* **vivid-design-tokens:** Synchronize vivid versions
+- **vivid-design-tokens:** Synchronize vivid versions
 
 ## [5.6.0](https://github.com/Vonage/vivid-3/compare/vivid-design-tokens-v5.5.0...vivid-design-tokens-v5.6.0) (2025-12-05)
 
-
 ### Miscellaneous Chores
 
-* **vivid-design-tokens:** Synchronize vivid versions
+- **vivid-design-tokens:** Synchronize vivid versions
 
 ## 5.5.0 (2025-11-13)
 
-
 ### Features
 
-* **design-tokens:** add style-dictionary transforms for flutter (VIV-2981) ([#2591](https://github.com/Vonage/vivid-3/issues/2591)) ([2260070](https://github.com/Vonage/vivid-3/commit/2260070346aede68f6eb72033ee50718af7c1041))
+- **design-tokens:** add style-dictionary transforms for flutter (VIV-2981) ([#2591](https://github.com/Vonage/vivid-3/issues/2591)) ([2260070](https://github.com/Vonage/vivid-3/commit/2260070346aede68f6eb72033ee50718af7c1041))

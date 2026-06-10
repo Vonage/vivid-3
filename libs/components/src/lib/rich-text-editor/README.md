@@ -148,7 +148,7 @@ An example document could look like this:
 						"imageUrl": "/vonage.png",
 						"alt": "Vonage Logo",
 						"size": null,
-						"natualWidth": 100,
+						"naturalWidth": 100,
 						"naturalHeight": 50
 					}
 				}
@@ -401,7 +401,7 @@ const parser = new RteHtmlParser(config);
 const doc = parser.parseDocument('<p>Hello <strong>World</strong></p>');
 // -> { type: 'doc', content: [...] }
 const frag = parser.parseFragment('<p>Hello <strong>World</strong></p>');
-// -> { type: 'paragraph', content: [...] }
+// -> [{ type: 'paragraph', content: [...] }]
 
 const serializer = new RteHtmlSerializer(config);
 serializer.serializeDocument(doc); // -> '<p>Hello <strong>World</strong></p>'
@@ -457,7 +457,7 @@ const parser = new RteHtmlParser(config, {
 		rules.marks.bold.push({ tag: 'span.bold' });
 	},
 });
-parser.parseFragment("<div class='paragraph'><span class='bold'>Hello</span> world</div>"); // -> { type: 'paragraph', content: [...] }
+parser.parseFragment("<div class='paragraph'><span class='bold'>Hello</span> world</div>"); // -> [{ type: 'paragraph', content: [...] }]
 ```
 
 For serialization, you can override the default serializers for nodes and marks. Serializers need to return a ProseMirror [DOMOutputSpec](https://prosemirror.net/docs/ref/#model.DOMOutputSpec):
@@ -488,7 +488,7 @@ You can use the instance to get and modify the document programmatically.
 The `onChange` callback is called whenever the document changes.
 
 ```ts
-const instance = config.instantiateEditor([], {
+const instance = config.instantiateEditor({
 	onChange: () => {
 		console.log('Document changed:', instance.getDocument());
 	},
@@ -516,7 +516,7 @@ config.instantiateEditor({
 
 ### Methods
 
-### getDocument
+#### getDocument
 
 ```ts
 /**
@@ -525,7 +525,7 @@ config.instantiateEditor({
 getDocument(): RteDocument;
 ```
 
-### replaceSelection
+#### replaceSelection
 
 ```ts
 /**
@@ -548,7 +548,7 @@ replaceSelection(
 ): void;
 ```
 
-### replaceDocument
+#### replaceDocument
 
 ```ts
 /**
@@ -692,7 +692,7 @@ function handleReset() {
 </vwc-tab-panel>
 </vwc-tabs>
 
-## feature
+#### feature
 
 Some features expose a run-time API that can be accessed via the `feature` method. See the documentation of each feature for details.
 
@@ -1256,7 +1256,7 @@ new RteKeyboardShortcutsFeature('escape-deselect', {
 
 **Configuration options:**
 
-- `id: string`(required):
+- `id: string` (required):
   Unique identifier for this feature instance.
 - `options.shortcuts` (record):</br>
   Map of key name to `KeyboardShortcutHandler`. Keys use ProseMirror key names (e.g. `"Enter"`, `"Shift-Enter"`, `"Mod-b"`).
@@ -1470,7 +1470,7 @@ Adds a font size picker to the toolbar to change the font size of the selected t
 **Example usage:**
 
 ```ts
-new RteFontSizeFeature({
+new RteFontSizePickerFeature({
 	options: [
 		{ size: '24px', label: 'Extra Large' },
 		{ size: '18px', label: 'Large' },
@@ -1484,7 +1484,7 @@ new RteFontSizeFeature({
 **Configuration options:**
 
 - `options: FontSizeOption[]` (required): The available font sizes from largest to smallest. Note that different font sizes can occur in the document when external HTML is pasted / dragged in.
-- `onBlocks?: FontSizeOnBlock[]` (required): Which blocks the font sizes can be applied to. If not provided, the mark can be applied on all blocks.
+- `onBlocks?: FontSizeOnBlock[]` (optional): Which blocks the font sizes can be applied to. If not provided, the mark can be applied on all blocks.
 
 `FontSizeOption`:
 
@@ -1551,7 +1551,7 @@ const instance = config.instantiateEditor({
 		content: [
 			{
 				type: 'heading1',
-				content: [{ type: 'text', text: 'Text size cannot be change on this heading' }],
+				content: [{ type: 'text', text: 'Text size cannot be changed on this heading' }],
 			},
 			{
 				type: 'heading2',
@@ -1632,7 +1632,7 @@ const instance = config.instantiateEditor({
 				content: [
 					{
 						type: 'heading1',
-						content: [{ type: 'text', text: 'Text size cannot be change on this heading' }],
+						content: [{ type: 'text', text: 'Text size cannot be changed on this heading' }],
 					},
 					{
 						type: 'heading2',
@@ -2786,7 +2786,7 @@ Called whenever the user drops content over the editor viewport.
 
 Remember to call `event.preventDefault()` to prevent the default browser behavior.
 
-- `onViewportDragEnd: () => void` (optional)
+- `onViewportDragFinish: () => void` (optional)
 
 Called whenever dragging over the viewport ends, including after a drop.
 
@@ -3448,7 +3448,7 @@ const instance = config.instantiateEditor({
 
 ### RteSuggestFeature
 
-Enables regex-based suggestions for implementing features like variables (`{name}`), mentions (`@user`), tags (`#topic`) or emojis (`:smile:`). The feature watches for text patterns before the cursor and can either auto-replace them or show a suggestions popover.
+Enables regex-based suggestions for implementing features like variables (`{name}`), mentions (`@user`), tags (`#topic`) or emojis (`:smile:`). The feature watches for text patterns before the cursor and shows a suggestions popover.
 
 This feature works well together with `RteAtomFeature` - use `RteSuggestFeature` to trigger the suggestion UI and insert atoms into the document.
 
@@ -3993,11 +3993,35 @@ const instance = config.instantiateEditor({
 </vwc-tab-panel>
 </vwc-tabs>
 
+### CSS Parts
+
+#### Editor Scrollable Area
+
+Use the `editor-scrollable-area` CSS part to style the element containing the scrollable content, which is composed of the `editor-start` slotted content, editor and `editor-end` slotted content.
+
+```css
+::part(editor-scrollable-area) {
+	min-block-size: 200px;
+}
+```
+
+#### Editor
+
+Use the `editor` CSS part to style the editor element, which contains the editable content.
+
+```css
+::part(editor) {
+	min-block-size: 200px;
+}
+```
+
 ## Slots
 
-### editor-start / editor-end
+### Content Before or After the Editor
 
-Content placed in these slots is displayed at the start or end of the scrollable editor area.
+Content placed in the `editor-start` / `editor-end` slots is displayed at the start / end of the scrollable editor area.
+
+Content placed in the `editor-before` / `editor-after` slots is displayed before / after the scrollable editor area.
 
 You can use the `--editor-padding-inline` and `--editor-padding-block` CSS variables to match the padding of the editor content.
 
@@ -4026,6 +4050,17 @@ const instance = config.instantiateEditor({
 
 <template>
 	<VRichTextEditor style="block-size: 300px" :instance="instance">
+		<template #editor-before>
+			<div
+				style="
+					background-color: var(--vvd-color-information-50);
+					padding-inline: var(--editor-padding-inline);
+					padding-block: var(--editor-padding-block);
+				"
+			>
+				Editor Before Content
+			</div>
+		</template>
 		<template #editor-start>
 			<div
 				style="
@@ -4048,6 +4083,17 @@ const instance = config.instantiateEditor({
 				Editor End Content
 			</div>
 		</template>
+		<template #editor-after>
+			<div
+				style="
+					background-color: var(--vvd-color-information-50);
+					padding-inline: var(--editor-padding-inline);
+					padding-block: var(--editor-padding-block);
+				"
+			>
+				Editor After Content
+			</div>
+		</template>
 	</VRichTextEditor>
 </template>
 ```
@@ -4058,8 +4104,10 @@ const instance = config.instantiateEditor({
 
 ```html preview
 <vwc-rich-text-editor style="block-size: 300px">
+	<div slot="editor-before" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Before Content</div>
 	<div slot="editor-start" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor Start Content</div>
 	<div slot="editor-end" style="background-color: var(--vvd-color-alert-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor End Content</div>
+	<div slot="editor-after" style="background-color: var(--vvd-color-information-50); padding-inline: var(--editor-padding-inline); padding-block: var(--editor-padding-block);">Editor After Content</div>
 </vwc-rich-text-editor>
 
 <script>

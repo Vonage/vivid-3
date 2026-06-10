@@ -71,6 +71,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</vwc-nav-item>
 </vwc-nav>
 </div></vwc-layout>
+</div> <div style="margin: 5px;">
+    <vwc-layout gutters="small"><div><vwc-nav>
+	<vwc-nav-item href="#" aria-label="Messages">
+		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+		<vwc-badge slot="meta" text="3" connotation="alert" shape="pill"></vwc-badge>
+	</vwc-nav-item>
+</vwc-nav>
+</div></vwc-layout>
 </div>`;
 
 	await page.setViewportSize({ width: 200, height: 720 });

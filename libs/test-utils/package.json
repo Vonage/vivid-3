@@ -1,6 +1,6 @@
 {
 	"name": "@vonage/vivid-test-utils",
-	"version": "5.17.0",
+	"version": "5.20.0",
 	"type": "module",
 	"exports": {
 		"./dom": {
@@ -57,9 +57,9 @@
 		"@types/node": "catalog:",
 		"@vitejs/plugin-vue": "catalog:",
 		"@vonage/vivid-vue": "workspace:*",
-		"@vue/test-utils": "^2.4.6",
+		"@vue/test-utils": "^2.4.10",
 		"concurrently": "catalog:",
-		"cypress": "^15.11.0",
+		"cypress": "catalog:",
 		"tsx": "catalog:",
 		"vite": "catalog:",
 		"vitest": "catalog:",

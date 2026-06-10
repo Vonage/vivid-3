@@ -76,8 +76,9 @@ function renderButtonElement(content: ViewTemplate<Card>) {
 	return html<Card>`<button
 		class="${getClasses}"
 		type="button"
-		${delegateAria()}
-		aria-labelledby="${(x) => (x.headline ? 'card-headline' : null)}"
+		${delegateAria({
+			ariaLabelledBy: (x) => (x.headline ? 'card-headline' : null),
+		})}
 	>
 		${content}
 	</button>`;

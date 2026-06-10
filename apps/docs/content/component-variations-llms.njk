@@ -9,4 +9,5 @@ eleventyComputed:
   pageTitle: "{{ component.concept }} - Variations"
 ---
 # {{ pageTitle }}
-{{ component.documentation.variations | includeMd | safe }}
+
+{{ component.documentation.variations | includeMd | cleanLLM | safe }}

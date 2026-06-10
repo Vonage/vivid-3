@@ -20,6 +20,7 @@ import {
 	removeSymbol,
 } from '../../../../shared/utils/slottable-request';
 import inlineImageCss from './inline-image.style.scss?inline';
+import { keymap } from 'prosemirror-keymap';
 
 type SizeOption = 'small' | 'fit' | 'original';
 
@@ -285,6 +286,8 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 	}
 
 	override getPlugins(rte: RteInstanceImpl) {
+		let popover: Popover;
+
 		return [
 			this.contribution(
 				new Plugin({
@@ -297,8 +300,9 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 					view: (view) => {
 						const ctx = new UiCtx(view, rte, {
 							popupPlacement: 'bottom',
+							shouldReturnFocusToEditor: true,
 						});
-						const popover = rte.createComponent(Popover);
+						popover = rte.createComponent(Popover);
 						popover.offset = 4;
 						const content = createDiv(ctx, {
 							className: 'inline-image-popover',
@@ -369,6 +373,18 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 								popover.remove();
 							},
 						};
+					},
+				})
+			),
+			this.contribution(
+				keymap({
+					Escape: (state) => {
+						const image = this.getSelectedInlineImage(state);
+						if (image) {
+							popover?.dismiss();
+							return true;
+						}
+						return false;
 					},
 				})
 			),

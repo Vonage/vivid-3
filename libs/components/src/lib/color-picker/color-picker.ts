@@ -52,6 +52,7 @@ export const vcInputTag = VC_HEX_INPUT_TAG;
  * @slot popup-text - Overrides the default "Color Picker" title of the Popup window.
  * @slot swatches-text -  Overrides the default "Saved colors:" text above color swatches.
  * @event {CustomEvent<undefined>} change - Fires when the value changes
+ * @event {Event} input - Fires when the value of the element changes.
  * @vueModel modelValue value input,@lazy:change `event.currentTarget.value`
  */
 export class ColorPicker extends WithContextualHelp(

@@ -7,14 +7,16 @@ export const RichTextEditorTemplate = (
 ): ViewTemplate<RichTextEditor> => {
 	return html`<template :_ctx="${() => ctx}">
 		<div class="rte">
+			<slot name="editor-before"></slot>
 			<div class="editor-viewport" ${ref('editorViewportElement')}>
-				<div class="editor-scroll-area">
+				<div class="editor-scroll-area" part="editor-scrollable-area">
 					<slot name="editor-start"></slot>
 					<div class="editor rich-text" ${ref('_editorEl')}></div>
 					<div class="popovers"></div>
 					<slot name="editor-end"></slot>
 				</div>
 			</div>
+			<slot name="editor-after"></slot>
 			<slot name="status"></slot>
 			<div class="toolbar"></div>
 		</div>

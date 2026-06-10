@@ -1,0 +1,28 @@
+<% banner %>
+/*
+Code in this file were generated using following JSON:
+<% descriptor-json %>
+*/
+import React, { ReactNode, SyntheticEvent, ForwardRefExoticComponent } from 'react'
+import wrapper from '@repo/react-component-wrapper'
+<% imports %>
+
+const WrappedComponent = wrapper('<% tag %>',  {
+    events: [<% events %>],
+    attributes: [<% attributes %>],
+    properties: [<% properties %>]
+}) as ForwardRefExoticComponent<any>;
+
+<% jsdoc.class %>
+const <% component-class-name %> = (props:
+{
+  children?: ReactNode,
+  slot?: string,
+  id?: string,
+  style?: React.CSSProperties,
+  ref?: ((instance: HTMLDivElement | null) => void) | React.RefObject<HTMLDivElement> | null | undefined,
+<% props %>
+}
+): JSX.Element => <WrappedComponent {...props}>{props.children}</WrappedComponent>
+
+export default <% component-class-name %>

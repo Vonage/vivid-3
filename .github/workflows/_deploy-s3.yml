@@ -35,8 +35,7 @@ jobs:
 
       - name: Build docs
         run: |
-          pnpm turbo run build '--filter=./apps/*'
-          mv ./apps/vue-docs/dist ./apps/docs/dist/vivid-vue
+          pnpm turbo run build '--filter=./apps/docs'
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4

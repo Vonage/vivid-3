@@ -660,6 +660,70 @@ import { VButton } from '@vonage/vivid-vue';
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Pressed
+
+The `pressed` attribute indicates the button is in a pressed/toggled state. For `ghost`, `ghost-light` and `outlined` this is indicated with a change in appearance. For other appearance, update the icon or label to indicate the new state.
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```vue preview 72px
+<script setup lang="ts">
+import { ref } from 'vue';
+import { VButton } from '@vonage/vivid-vue';
+
+const ghostPressed = ref(true);
+const ghostLightPressed = ref(true);
+const outlinedPressed = ref(true);
+</script>
+
+<template>
+	<div class="container">
+		<VButton appearance="ghost" label="Ghost" :pressed="ghostPressed" @click="ghostPressed = !ghostPressed" />
+		<VButton appearance="ghost-light" label="Ghost Light" :pressed="ghostLightPressed" @click="ghostLightPressed = !ghostLightPressed" />
+		<VButton appearance="outlined" label="Outlined" :pressed="outlinedPressed" @click="outlinedPressed = !outlinedPressed" />
+	</div>
+</template>
+
+<style>
+.container {
+	display: flex;
+	gap: 16px;
+}
+</style>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web Component"></vwc-tab>
+<vwc-tab-panel>
+
+```html preview 72px
+<div class="container">
+	<vwc-button id="vp-ghost" appearance="ghost" label="Ghost" pressed></vwc-button>
+	<vwc-button id="vp-ghost-light" appearance="ghost-light" label="Ghost Light" pressed></vwc-button>
+	<vwc-button id="vp-outlined" appearance="outlined" label="Outlined" pressed></vwc-button>
+</div>
+
+<script>
+	['vp-ghost', 'vp-ghost-light', 'vp-outlined'].forEach((id) => {
+		document.getElementById(id).addEventListener('click', (e) => {
+			e.currentTarget.toggleAttribute('pressed');
+		});
+	});
+</script>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ## Dropdown Indicator
 
 When the button is used to trigger a menu / dropdown, you can set `dropdown-indicator` to add a chevron to the button.

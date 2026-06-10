@@ -38,6 +38,7 @@ const on = <E extends keyof HTMLElementEventMap, T>(
 /// Props available to all elements inside the context
 type CtxProps = {
 	popupPlacement: 'top' | 'bottom';
+	shouldReturnFocusToEditor: boolean;
 	menuOffset?: number;
 	disabled?: boolean;
 };
@@ -74,6 +75,11 @@ export class UiCtx {
 		for (const binding of this.bindings) {
 			binding();
 		}
+	}
+
+	/// Whether to return focus to the editor after a toolbar action
+	shouldReturnFocusToEditor(): boolean {
+		return this.evalProp(this.props.shouldReturnFocusToEditor);
 	}
 
 	/// Utility to more conveniently bind props to elements
@@ -180,7 +186,7 @@ export const createOptionalTooltip = (
 export const createButton = (
 	ctx: UiCtx,
 	props: {
-		variant?: Prop<'toolbar' | 'popover' | 'popover-primary'>;
+		variant?: Prop<'toolbar' | 'toolbar-menu' | 'popover' | 'popover-primary'>;
 		label: Prop<string>;
 		icon?: Prop<string>;
 		noTooltip?: boolean;
@@ -197,8 +203,17 @@ export const createButton = (
 		variant() === 'toolbar' ? 'super-condensed' : 'condensed';
 	const appearanceInactive = () =>
 		variant() === 'popover-primary' ? 'outlined' : 'ghost-light';
+	const appearanceActive = () =>
+		variant() === 'toolbar-menu' || variant() === 'popover'
+			? 'filled'
+			: appearanceInactive();
 	const appearance = () =>
-		ctx.evalProp(props.active) ? 'filled' : appearanceInactive();
+		ctx.evalProp(props.active) ? appearanceActive() : appearanceInactive();
+	const connotation = () =>
+		ctx.evalProp(props.connotation) ??
+		(variant() === 'toolbar-menu' && ctx.evalProp(props.active)
+			? 'cta'
+			: undefined);
 	const disabled = () =>
 		Boolean(ctx.evalProp(ctx.props.disabled) || ctx.evalProp(props.disabled));
 
@@ -211,12 +226,17 @@ export const createButton = (
 			disabled,
 			icon: props.icon,
 			autofocus: props.autofocus,
-			connotation: props.connotation,
+			connotation,
 			[props.icon ? 'ariaLabel' : 'label']: props.label,
+			pressed: () => Boolean(ctx.evalProp(props.active)),
+			ariaPressed:
+				props.active !== undefined
+					? () => (ctx.evalProp(props.active!) ? 'true' : 'false')
+					: undefined,
 		},
 		[
 			on('click', props.onClick, (onClick) => () => {
-				if (!onClick()) {
+				if (!onClick() && ctx.shouldReturnFocusToEditor()) {
 					ctx.view.focus();
 				}
 			}),
@@ -292,7 +312,9 @@ export const createMenuItem = (
 					// Ignore non-user initiated change events
 					if (ctx.evalProp(props.checked) !== item.checked) {
 						onSelect();
-						ctx.view.focus();
+						if (ctx.shouldReturnFocusToEditor()) {
+							ctx.view.focus();
+						}
 					}
 				}
 			}),
@@ -304,10 +326,12 @@ export const createMenuItem = (
 export const createButtonGroup = (
 	ctx: UiCtx,
 	props: {
+		slot?: string;
 		children: Array<Node>;
 	}
 ) =>
 	createDiv(ctx, {
+		slot: props.slot,
 		className: 'ui-button-group',
 		children: props.children,
 	});
@@ -380,7 +404,9 @@ export const createSelect = (
 				const value = select.value;
 				if (value) {
 					onSelect(value);
-					ctx.view.focus();
+					if (ctx.shouldReturnFocusToEditor()) {
+						ctx.view.focus();
+					}
 				}
 			}),
 		],
@@ -425,6 +451,7 @@ export const createTextField = (
 		slot?: string;
 		autofocus?: boolean;
 		type?: 'url';
+		helperText?: Prop<string>;
 		onInput?: (value: string) => void;
 	}
 ) => {
@@ -438,6 +465,7 @@ export const createTextField = (
 			slot: props.slot,
 			autofocus: props.autofocus,
 			type: props.type,
+			helperText: props.helperText,
 		},
 		[
 			on('input', props.onInput, (onInput) => () => {
@@ -498,7 +526,9 @@ export const createSingleSlot = (
 		for (const [type, handler] of Object.entries(props.assignedEvents)) {
 			const listener: EventListener = (e) => {
 				handler(e);
-				ctx.view.focus();
+				if (ctx.shouldReturnFocusToEditor()) {
+					ctx.view.focus();
+				}
 			};
 			el.addEventListener(type, listener);
 			listeners.push({ el, type, handler: listener });

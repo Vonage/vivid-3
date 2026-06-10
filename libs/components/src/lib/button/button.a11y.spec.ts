@@ -42,4 +42,14 @@ describe('a11y: vwc-button', () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
+
+	describe('pressed', () => {
+		it('should pass html a11y test when pressed', async () => {
+			element.label = 'Mute';
+			element.pressed = true;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

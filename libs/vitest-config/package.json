@@ -18,7 +18,8 @@
 		"build": "vite build"
 	},
 	"devDependencies": {
-		"@repo/typescript-config": "workspace:*"
+		"@repo/typescript-config": "workspace:*",
+		"vite": "catalog:"
 	},
 	"peerDependencies": {
 		"vitest": "catalog:"

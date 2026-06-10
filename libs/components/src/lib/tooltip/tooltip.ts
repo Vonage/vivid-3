@@ -1,7 +1,9 @@
-import { attr } from '@microsoft/fast-element';
+import { attr, DOM } from '@microsoft/fast-element';
 import type { Placement } from '@floating-ui/dom';
 import { Anchored } from '../../shared/patterns/anchored';
+import { WithKbdShortcut } from '../../shared/patterns/kbd-shortcut';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { generateRandomId } from '../../shared/utils/randomId';
 
 /**
  * @public
@@ -11,7 +13,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @testQuery open open true
  * @testQuery closed open false
  */
-export class Tooltip extends Anchored(VividElement) {
+export class Tooltip extends WithKbdShortcut(Anchored(VividElement)) {
 	/**
 	 * Text content of the Tooltip
 	 *
@@ -22,6 +24,23 @@ export class Tooltip extends Anchored(VividElement) {
 	@attr({ mode: 'fromView' }) placement?: Placement;
 
 	@attr({ mode: 'boolean' }) open = false;
+
+	/**
+	 * @internal
+	 */
+	_descriptionId = `vwc-tooltip-desc-${generateRandomId()}`;
+
+	/** @internal */
+	_kbdAriaShortcutsValueChanged() {
+		if (!this._anchorEl) {
+			return;
+		}
+		DOM.setAttribute(
+			this._anchorEl,
+			'aria-keyshortcuts',
+			this._kbdAriaShortcutsValue
+		);
+	}
 
 	override connectedCallback(): void {
 		super.connectedCallback();
@@ -46,8 +65,14 @@ export class Tooltip extends Anchored(VividElement) {
 		a.addEventListener('mouseout', this.#hide);
 		a.addEventListener('focusin', this.#show);
 		a.addEventListener('focusout', this.#hide);
-		a.setAttribute('aria-haspopup', 'true');
-		a.setAttribute('aria-expanded', String(this.open));
+
+		const existing =
+			a.getAttribute('aria-describedby') ?? (a as VividElement).ariaDescribedBy;
+		a.setAttribute(
+			'aria-describedby',
+			existing ? `${existing} ${this._descriptionId}` : this._descriptionId
+		);
+		DOM.setAttribute(a, 'aria-keyshortcuts', this._kbdAriaShortcutsValue);
 	}
 
 	#cleanupAnchor(a: HTMLElement) {
@@ -55,25 +80,31 @@ export class Tooltip extends Anchored(VividElement) {
 		a.removeEventListener('mouseout', this.#hide);
 		a.removeEventListener('focusin', this.#show);
 		a.removeEventListener('focusout', this.#hide);
-		a.removeAttribute('aria-haspopup');
-		a.removeAttribute('aria-expanded');
+		const describedBy =
+			a.getAttribute('aria-describedby') ??
+			(a as VividElement).ariaDescribedBy ??
+			'';
+		const tokens = describedBy
+			.split(' ')
+			.filter((t) => t !== this._descriptionId);
+		const newDescribedBy = tokens.length ? tokens.join(' ') : null;
+
+		if (a.hasAttribute('aria-describedby')) {
+			DOM.setAttribute(a, 'aria-describedby', newDescribedBy);
+		} else {
+			// Vivid elements with renamed aria attributes
+			(a as VividElement).ariaDescribedBy = newDescribedBy;
+		}
+		a.removeAttribute('aria-keyshortcuts');
 	}
 
 	#show = () => {
 		this.open = true;
-		this.#updateAnchorExpanded();
 	};
 
 	#hide = () => {
 		this.open = false;
-		this.#updateAnchorExpanded();
 	};
-
-	#updateAnchorExpanded() {
-		if (this._anchorEl) {
-			this._anchorEl.setAttribute('aria-expanded', String(this.open));
-		}
-	}
 
 	#updateListeners() {
 		document.removeEventListener('keydown', this.#closeOnEscape);

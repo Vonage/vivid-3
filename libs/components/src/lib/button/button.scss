@@ -7,12 +7,13 @@
 @use '@repo/shared/mixins/connotation/config' with (
 	$connotations: accent cta success alert announcement,
 	$shades: primary primary-text primary-increment contrast fierce firm soft
-		faint fierce-primary,
+		faint fierce-primary dim pale,
 	$default: accent
 );
 @use '@repo/shared/mixins/connotation' as connotation;
 @use '@repo/shared/mixins/appearance/config' as appearance-config with (
-	$appearances: filled outlined ghost ghost-light outlined-light,
+	$appearances: filled outlined ghost ghost-light outlined-light subtle
+		subtle-light,
 	$states: idle hover disabled active,
 	$default: ghost
 );

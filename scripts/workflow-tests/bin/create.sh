@@ -20,6 +20,9 @@ mkdir -p \
 # Clone repo
 git clone --quiet --no-hardlinks "${REPO_ROOT}" "${ENV_DIR}/repo"
 
+# Generate mitmweb password
+MITMWEB_PASSWORD=$(openssl rand -base64 16)
+
 # Create and load config
 cat > "${ENV_DIR}/config/config.env" <<EOF
 export HEAD_SHA=$(git -C "${ENV_DIR}/repo" rev-parse HEAD)
@@ -42,7 +45,6 @@ export GITHUB_REPOSITORY_OWNER=Vonage
 export GITHUB_REPOSITORY_NAME=vivid-3
 export NPM_LOCAL_AUTH_TOKEN=npm-local-token
 export GITHUB_LOCAL_TOKEN=github-local-token
-export GITHUB_PACKAGES_LOCAL_TOKEN=github-packages-local-token
 export ARTIFACTORY_LOCAL_TOKEN=local-artifactory-token
 export DOCS_S3_ACCESS_KEY=docs-local-access-key
 export DOCS_S3_SECRET_ACCESS_KEY=docs-local-secret-access-key
@@ -55,9 +57,14 @@ export ICONS_BUCKET=vvd-icons-local
 export ICONS_BASE_FOLDER=VIVID_ICONS_LOCAL
 export DOCS_PRODUCTION_DOMAIN=vivid.vonage.com
 export ICONS_PRODUCTION_DOMAIN=icon.resources.vonage.com
+export MITMWEB_PASSWORD=${MITMWEB_PASSWORD}
 EOF
 
 load_env_config
+
+# Point the cloned repo's origin to the real GitHub HTTPS URL
+git -C "${ENV_DIR}/repo" remote set-url origin \
+  "https://github.com/${GITHUB_REPOSITORY_OWNER}/${GITHUB_REPOSITORY_NAME}"
 
 # Create repos for git server
 mkdir -p "${ENV_DIR}/config/repos/${GITHUB_REPOSITORY_OWNER}"
@@ -66,6 +73,8 @@ git clone --bare --quiet \
   "${ENV_DIR}/config/repos/${GITHUB_REPOSITORY_OWNER}/${GITHUB_REPOSITORY_NAME}"
 git -C "${ENV_DIR}/config/repos/${GITHUB_REPOSITORY_OWNER}/${GITHUB_REPOSITORY_NAME}" \
   config uploadpack.allowAnySHA1InWant true
+git -C "${ENV_DIR}/config/repos/${GITHUB_REPOSITORY_OWNER}/${GITHUB_REPOSITORY_NAME}" \
+  config http.receivepack true
 
 # Create mitm ca cert
 openssl req -x509 -newkey rsa:2048 -sha256 -days 365 -nodes \
@@ -144,6 +153,7 @@ EOF
 cat > "${ENV_DIR}/config/Dockerfile.act-runner" <<'EOF'
 FROM ghcr.io/catthehacker/ubuntu:act-latest
 
+# Install awscli
 RUN arch="$(dpkg --print-architecture)" \
     && case "$arch" in \
          arm64) aws_arch="aarch64" ;; \
@@ -154,8 +164,17 @@ RUN arch="$(dpkg --print-architecture)" \
     && unzip -q /tmp/awscliv2.zip -d /tmp \
     && /tmp/aws/install \
     && rm -rf /tmp/aws /tmp/awscliv2.zip
-
 ENV AWS_PAGER=""
+
+# Install gh cli
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+        | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+        | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && apt-get update \
+    && apt-get install -y gh \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY certs/ca.crt /usr/local/share/ca-certificates/vvd-workflow-tests-proxy-ca.crt
 RUN update-ca-certificates
@@ -195,9 +214,14 @@ ENV PATH="/opt/node-shim:${PATH}"
 EOF
 
 cat > "${ENV_DIR}/config/Dockerfile.git-server" <<'EOF'
-FROM python:3-alpine
-RUN apk add --no-cache git
+FROM httpd:2-alpine
+RUN apk add --no-cache git git-daemon \
+    && git config --system --add safe.directory '*'
+COPY git-server.conf /usr/local/apache2/conf/httpd.conf.template
+CMD ["sh", "-c", "chmod -R a+rwX /repos && sed \"s/{{PORT}}/$PORT/g\" /usr/local/apache2/conf/httpd.conf.template > /usr/local/apache2/conf/httpd.conf && httpd-foreground"]
 EOF
+
+cp "${WORKFLOW_TESTS_ROOT}/stubs/git-server.conf" "${ENV_DIR}/config/git-server.conf"
 
 cat > "${ENV_DIR}/docker-compose.yml" <<EOF
 services:
@@ -222,6 +246,7 @@ services:
       ICONS_BUCKET: "${ICONS_BUCKET}"
       DOCS_PRODUCTION_DOMAIN: "${DOCS_PRODUCTION_DOMAIN}"
       ICONS_PRODUCTION_DOMAIN: "${ICONS_PRODUCTION_DOMAIN}"
+      MITMWEB_PASSWORD: "${MITMWEB_PASSWORD}"
     command: ["/bin/bash", "/opt/proxy/start.sh"]
     volumes:
       - ${ENV_DIR}:/env
@@ -229,6 +254,7 @@ services:
     tty: true
     ports:
       - "5555:5555"
+      - "8081:8081"
       - "51820:51820/udp"
     healthcheck:
       test: ["CMD-SHELL", "test -f /env/config/wireguard/wg0.conf"]
@@ -384,12 +410,9 @@ services:
       context: ${ENV_DIR}/config
       dockerfile: Dockerfile.git-server
     volumes:
-      - ${WORKFLOW_TESTS_ROOT}/stubs/git-server.py:/server.py:ro
       - ${ENV_DIR}/config/repos:/repos
     environment:
       PORT: "${GIT_SERVER_PORT}"
-      GIT_PROJECT_ROOT: /repos
-    command: ["python", "/server.py"]
     ports:
       - "127.0.0.1:${GIT_SERVER_PORT}:${GIT_SERVER_PORT}"
 
@@ -418,7 +441,6 @@ EOF
 cat > "${ENV_DIR}/github-secrets.env" <<EOF
 GITHUB_TOKEN=${GITHUB_LOCAL_TOKEN}
 NPM_VVD_VNG_AUTOMATION_TOKEN=${NPM_LOCAL_AUTH_TOKEN}
-VNG_VVD_PAT=${GITHUB_PACKAGES_LOCAL_TOKEN}
 DOCS_S3_ACCESS_KEY=${DOCS_S3_ACCESS_KEY}
 DOCS_S3_SECRET_ACCESS_KEY=${DOCS_S3_SECRET_ACCESS_KEY}
 AWS_REGION=${AWS_REGION}
@@ -435,3 +457,4 @@ ICONS_BASE_FOLDER=${ICONS_BASE_FOLDER}
 EOF
 
 printf 'Environment created: %s\n' "${ENV_DIR}"
+printf 'mitmweb password: %s\n' "${MITMWEB_PASSWORD}"

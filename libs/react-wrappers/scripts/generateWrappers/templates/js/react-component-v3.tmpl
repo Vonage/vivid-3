@@ -1,0 +1,19 @@
+<% banner %>
+/*
+Code in this file were generated using following JSON:
+<% descriptor-json %>
+*/
+import wrapper from '@repo/react-component-wrapper'
+import { register<% component-name %> } from '@vonage/vivid'
+
+register<% component-name %>('<% tag-prefix %>')
+
+const <% component-class-name %> = wrapper(`<% tag %>`,  {
+    events: [<% events %>],
+    attributes: [<% attributes %>],
+    properties: [<% properties %>]
+})
+
+<% component-class-name %>.displayName = '<% component-class-name %>'
+
+export default <% component-class-name %>
