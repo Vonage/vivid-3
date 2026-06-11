@@ -43,7 +43,7 @@
 		"prettier-plugin-packagejson": "catalog:",
 		"stylelint": "catalog:",
 		"tsx": "catalog:",
-		"turbo": "^2.9.12",
+		"turbo": "^2.9.14",
 		"typescript": "catalog:",
 		"vite": "catalog:",
 		"vite-plugin-dts": "catalog:"
