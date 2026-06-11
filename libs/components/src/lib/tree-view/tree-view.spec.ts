@@ -24,12 +24,10 @@ describe('vwc-tree-view', () => {
 	let treeItem2: TreeItem;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}>
+		element = fixture(`<${COMPONENT_TAG}>
 				<vwc-tree-item id="item1"></vwc-tree-item>
 				<vwc-tree-item id="item2"></vwc-tree-item>
-			</${COMPONENT_TAG}>`
-		)) as TreeView;
+			</${COMPONENT_TAG}>`) as TreeView;
 		await elementUpdated(element);
 
 		treeItem1 = element.querySelector('#item1') as TreeItem;
@@ -54,7 +52,7 @@ describe('vwc-tree-view', () => {
 
 	it('should have a slot', async () => {
 		await elementUpdated(element);
-		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
+		expect(Boolean(element.shadowRoot!.querySelector('slot'))).toEqual(true);
 	});
 
 	describe('tree-view focus', () => {
@@ -71,13 +69,11 @@ describe('vwc-tree-view', () => {
 		});
 
 		it('should move focus out if theres no slotted items', async () => {
-			const emptyTreeView = (await fixture(
-				`<${COMPONENT_TAG}>
-			</${COMPONENT_TAG}>`
-			)) as TreeView;
+			const emptyTreeView = fixture(`<${COMPONENT_TAG}>
+			</${COMPONENT_TAG}>`) as TreeView;
 			await elementUpdated(emptyTreeView);
-			const slot = emptyTreeView.shadowRoot?.querySelector('slot');
-			expect(slot?.childNodes.length).toBe(0);
+			const slot = emptyTreeView.shadowRoot!.querySelector('slot');
+			expect(slot!.childNodes.length).toBe(0);
 			expect(element.contains(document.activeElement)).toBeFalsy();
 		});
 
@@ -85,7 +81,7 @@ describe('vwc-tree-view', () => {
 			treeItem2.focus();
 			await elementUpdated(element);
 
-			(document.body as HTMLElement).focus();
+			document.body.focus();
 			await elementUpdated(element);
 
 			element.handleFocus(new FocusEvent('focus', { target: element } as any));
@@ -97,15 +93,13 @@ describe('vwc-tree-view', () => {
 
 	describe('tree-view blur', () => {
 		it('should set tabindex to 0', async () => {
-			const divEle = (await fixture(
-				`<div>
+			const divEle = fixture(`<div>
 					<${COMPONENT_TAG}>
 						<vwc-tree-item id="item1"></vwc-tree-item>
 						<vwc-tree-item id="item2"></vwc-tree-item>
 					</${COMPONENT_TAG}>
 					<button>Button</button>
-				</div>`
-			)) as HTMLDivElement;
+				</div>`) as HTMLDivElement;
 			element = divEle.querySelector(COMPONENT_TAG) as TreeView;
 			const button = divEle.querySelector('button') as HTMLButtonElement;
 			await elementUpdated(element);
@@ -222,14 +216,12 @@ describe('vwc-tree-view', () => {
 		let treeItem1_1: TreeItem;
 
 		beforeEach(async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG}>
+			element = fixture(`<${COMPONENT_TAG}>
 					<vwc-tree-item id="item1">
 						<vwc-tree-item id="item1_1"></vwc-tree-item>
 					</vwc-tree-item>
 					<vwc-tree-item id="item2"></vwc-tree-item>
-				</${COMPONENT_TAG}>`
-			)) as TreeView;
+				</${COMPONENT_TAG}>`) as TreeView;
 			await elementUpdated(element);
 
 			treeItem1 = element.querySelector('#item1') as TreeItem;
@@ -367,9 +359,7 @@ describe('vwc-tree-view', () => {
 		});
 
 		it('should return true if there are no tree-item supplied', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-			)) as TreeView;
+			element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as TreeView;
 			await elementUpdated(element);
 			element.focus();
 			await elementUpdated(element);

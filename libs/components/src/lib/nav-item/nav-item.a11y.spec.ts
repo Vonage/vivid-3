@@ -13,9 +13,7 @@ describe('a11y: vwc-nav-item', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as NavItem;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as NavItem;
 	});
 
 	it('should pass html a11y test', async () => {

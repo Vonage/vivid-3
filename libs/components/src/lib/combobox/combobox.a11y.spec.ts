@@ -13,9 +13,7 @@ describe('a11y: vwc-combobox', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Combobox;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Combobox;
 	});
 
 	it('should pass html a11y test', async () => {

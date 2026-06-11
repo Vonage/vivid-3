@@ -18,9 +18,9 @@ describe('vwc-nav', () => {
 	let element: Nav;
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}>${navItemsTemplate}</${COMPONENT_TAG}>`
-		)) as Nav;
+		) as Nav;
 	});
 
 	describe('basic', () => {

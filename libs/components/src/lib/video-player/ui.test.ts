@@ -89,21 +89,25 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			const videoWrapper = await page.$(
 				'#video-player-controls .vjs-controls-enabled'
 			);
-			videoWrapper?.evaluate((element) =>
+			await videoWrapper!.evaluate((element) =>
 				element.classList.add('vjs-user-active')
 			);
 			const volumePanel = await page.$(
 				'#video-player-controls .vjs-volume-panel'
 			);
-			volumePanel?.evaluate((element) => element.classList.add('vjs-hover'));
+			await volumePanel!.evaluate((element) =>
+				element.classList.add('vjs-hover')
+			);
 			const playbackRate = await page.$(
 				'#video-player-controls .vjs-playback-rate.vjs-control'
 			);
-			playbackRate?.evaluate((element) => element.classList.add('vjs-hover'));
+			await playbackRate!.evaluate((element) =>
+				element.classList.add('vjs-hover')
+			);
 			const captions = await page.$(
 				'#video-player-controls-2 .vjs-subs-caps-button.vjs-control'
 			);
-			captions?.evaluate((element) => element.classList.add('vjs-hover'));
+			await captions!.evaluate((element) => element.classList.add('vjs-hover'));
 		},
 	});
 

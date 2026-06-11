@@ -13,9 +13,7 @@ describe('vwc-divider', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Divider;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Divider;
 	});
 
 	it('should pass html a11y test', async () => {

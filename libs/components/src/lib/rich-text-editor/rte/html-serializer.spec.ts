@@ -53,7 +53,7 @@ describe('RteHtmlSerializer', () => {
 						'img',
 						{
 							src: node.attrs.imageUrl,
-							'data-attachment-id': `${new URL(node.attrs.imageUrl).hostname}`,
+							'data-attachment-id': new URL(node.attrs.imageUrl).hostname,
 							alt: node.attrs.alt,
 						},
 					],

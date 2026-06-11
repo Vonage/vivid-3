@@ -13,9 +13,7 @@ describe('a11y: vwc-split-button', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as SplitButton;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as SplitButton;
 	});
 
 	it('should pass html a11y test', async () => {

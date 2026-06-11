@@ -8,9 +8,7 @@ describe('Table row', () => {
 	let element: TableRow;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TableRow;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as TableRow;
 	});
 
 	describe('when the component is set up', () => {
@@ -29,7 +27,7 @@ describe('Table row', () => {
 			await elementUpdated(element);
 			const cell = element.querySelector('vwc-table-cell');
 			expect(cell).toBeTruthy();
-			expect(cell?.textContent).toContain('Cell 1');
+			expect(cell!.textContent).toContain('Cell 1');
 		});
 
 		it('has role="row" so screen readers know it is a row', async () => {

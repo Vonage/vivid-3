@@ -4,13 +4,10 @@ import {
 	fixture,
 	getBaseElement,
 } from '@repo/shared/test-utils/fixture';
-import type { HexColorPicker } from 'vanilla-colorful/hex-color-picker.js';
-import type { HexInput } from 'vanilla-colorful/hex-input.js';
-import type { TextField } from '../text-field/text-field';
-import type { Popup } from '../popup/popup';
-import type { Button } from '../button/button';
 import { ColorPicker } from './color-picker';
 import '.';
+import type { TextField } from '../text-field/text-field';
+import type { Button } from '../button/button';
 
 const COMPONENT_TAG = 'vwc-color-picker';
 
@@ -18,29 +15,21 @@ describe('vwc-color-picker', () => {
 	let element: ColorPicker;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as ColorPicker;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as ColorPicker;
 	});
 
-	const getPopup = () =>
-		element.shadowRoot?.querySelector('vwc-popup') as Popup | null;
+	const getPopup = () => element.shadowRoot!.querySelector('vwc-popup');
 	const getTextField = () =>
-		element.shadowRoot?.querySelector('#text-field') as TextField | null;
+		element.shadowRoot!.querySelector<TextField>('#text-field');
 	const getPickerButton = () =>
-		element.shadowRoot?.querySelector('.button') as HTMLButtonElement | null;
+		element.shadowRoot!.querySelector<HTMLButtonElement>('.button');
 
 	const getHexPicker = () =>
-		element.shadowRoot?.querySelector(
-			'vvd-hex-picker'
-		) as HexColorPicker | null;
-	const getHexInput = () =>
-		element.shadowRoot?.querySelector('vvd-hex-input') as HexInput | null;
+		element.shadowRoot!.querySelector('vvd-hex-picker');
+	const getHexInput = () => element.shadowRoot!.querySelector('vvd-hex-input');
 
 	const getCopyButton = () =>
-		element.shadowRoot?.querySelector(
-			'vwc-button[size="normal"]'
-		) as Button | null;
+		element.shadowRoot!.querySelector<Button>('vwc-button[size="normal"]');
 
 	const pressKey = (key: string, options: KeyboardEventInit = {}) => {
 		const active = element.shadowRoot!.activeElement!;
@@ -84,7 +73,7 @@ describe('vwc-color-picker', () => {
 
 		it('should forward input changes to value', async () => {
 			const textField = getTextField();
-			textField?.dispatchEvent(new InputEvent('input', { bubbles: true }));
+			textField!.dispatchEvent(new InputEvent('input', { bubbles: true }));
 			element._onTextFieldInput({ currentTarget: { value: '#00ff00' } } as any);
 
 			await elementUpdated(element);
@@ -98,7 +87,7 @@ describe('vwc-color-picker', () => {
 			element.appendChild(helperText);
 			await elementUpdated(element);
 
-			const innerSlot = element.shadowRoot?.querySelector(
+			const innerSlot = element.shadowRoot!.querySelector(
 				'slot[name="helper-text"]'
 			) as HTMLSlotElement;
 			expect(innerSlot.getAttribute('slot')).toBe('helper-text');
@@ -111,7 +100,7 @@ describe('vwc-color-picker', () => {
 			element.appendChild(contextualHelp);
 			await elementUpdated(element);
 
-			const innerSlot = element.shadowRoot?.querySelector(
+			const innerSlot = element.shadowRoot!.querySelector(
 				'slot[name="contextual-help"]'
 			) as HTMLSlotElement;
 			expect(innerSlot.getAttribute('slot')).toBe('contextual-help');
@@ -123,7 +112,7 @@ describe('vwc-color-picker', () => {
 				const changeSpy = vi.fn();
 				element.addEventListener('change', changeSpy);
 
-				textField?.dispatchEvent(new Event('change', { bubbles: true }));
+				textField!.dispatchEvent(new Event('change', { bubbles: true }));
 				await elementUpdated(element);
 
 				expect(changeSpy).toHaveBeenCalledTimes(1);
@@ -140,7 +129,7 @@ describe('vwc-color-picker', () => {
 					const elSpy = vi.fn();
 					element.addEventListener(event, elSpy);
 
-					textField?.dispatchEvent(new FocusEvent(event));
+					textField!.dispatchEvent(new FocusEvent(event));
 					await elementUpdated(element);
 
 					expect(elSpy).toHaveBeenCalledTimes(1);
@@ -182,26 +171,26 @@ describe('vwc-color-picker', () => {
 		it('should reflect the property to popup and toggle via button click', async () => {
 			expect(element.open).toBe(false);
 			const btn = getPickerButton();
-			btn?.click();
+			btn!.click();
 			await elementUpdated(element);
 			expect(element.open).toBe(true);
 
 			const popup = getPopup();
-			expect(popup?.hasAttribute('open')).toBe(true);
+			expect(popup!.hasAttribute('open')).toBe(true);
 
-			btn?.click();
+			btn!.click();
 			await elementUpdated(element);
 			expect(element.open).toBe(false);
-			expect(popup?.hasAttribute('open')).toBe(false);
+			expect(popup!.hasAttribute('open')).toBe(false);
 		});
 
 		it('should close when close header button is clicked', async () => {
 			element.open = true;
 			await elementUpdated(element);
-			const closeBtn = element.shadowRoot?.querySelector(
+			const closeBtn = element.shadowRoot!.querySelector(
 				'vwc-button[size="condensed"]'
 			) as HTMLElement;
-			closeBtn?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			closeBtn.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 			expect(element.open).toBe(false);
 		});
@@ -285,7 +274,7 @@ describe('vwc-color-picker', () => {
 				detail: { value: '#445566' },
 				bubbles: true,
 			});
-			getHexPicker()?.dispatchEvent(event);
+			getHexPicker()!.dispatchEvent(event);
 			await elementUpdated(element);
 			expect(element.value).toBe('#445566');
 		});
@@ -297,7 +286,7 @@ describe('vwc-color-picker', () => {
 				detail: { value: '#445566' },
 				bubbles: true,
 			});
-			getHexInput()?.dispatchEvent(event);
+			getHexInput()!.dispatchEvent(event);
 			await elementUpdated(element);
 			expect(element.value).toBe('#445566');
 		});
@@ -306,11 +295,11 @@ describe('vwc-color-picker', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			const popupInput = element.shadowRoot?.querySelector('[part="input"]');
+			const popupInput = element.shadowRoot!.querySelector('[part="input"]');
 			const blurEvent = new FocusEvent('blur', { bubbles: true });
 			const sipSpy = vi.spyOn(blurEvent, 'stopImmediatePropagation');
 
-			popupInput?.dispatchEvent(blurEvent);
+			popupInput!.dispatchEvent(blurEvent);
 			await elementUpdated(element);
 
 			expect(sipSpy).toHaveBeenCalled();
@@ -326,7 +315,7 @@ describe('vwc-color-picker', () => {
 				bubbles: true,
 			});
 
-			getHexPicker()?.dispatchEvent(invalidEvent);
+			getHexPicker()!.dispatchEvent(invalidEvent);
 			await elementUpdated(element);
 
 			expect(element.value).toBe('#112233');
@@ -352,15 +341,15 @@ describe('vwc-color-picker', () => {
 
 			const copyBtn = getCopyButton();
 			const visuallyHidden =
-				element.shadowRoot?.querySelector('.visually-hidden');
-			copyBtn?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+				element.shadowRoot!.querySelector('.visually-hidden');
+			copyBtn!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(navigator.clipboard.writeText as any).toHaveBeenCalledWith(
 				'#abcdef'
 			);
 			expect(element.copyIconName).toBe('check-circle-line');
-			expect(visuallyHidden?.textContent).toContain(
+			expect(visuallyHidden!.textContent).toContain(
 				'Color #abcdef copied to clipboard.'
 			);
 
@@ -381,7 +370,7 @@ describe('vwc-color-picker', () => {
 			await elementUpdated(element);
 
 			const copyBtn = getCopyButton();
-			copyBtn?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			copyBtn!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(element.copyIconName).toBe('error-line');
@@ -425,14 +414,14 @@ describe('vwc-color-picker', () => {
 		};
 
 		const getSaveButton = () =>
-			element.shadowRoot?.querySelector(
+			element.shadowRoot!.querySelector<Button>(
 				'vwc-button[appearance="outlined"]'
-			) as Button | null;
+			);
 
 		const getSwatches = () =>
 			Array.from(
-				element.shadowRoot?.querySelectorAll('.swatch') ?? []
-			) as HTMLButtonElement[];
+				element.shadowRoot!.querySelectorAll<HTMLButtonElement>('.swatch')
+			);
 
 		const getSwatchColors = () =>
 			getSwatches().map((s) => s.style.getPropertyValue('--swatch-color'));
@@ -440,7 +429,7 @@ describe('vwc-color-picker', () => {
 		const saveColor = async (value: string) => {
 			element.value = value;
 			await elementUpdated(element);
-			getSaveButton()?.dispatchEvent(
+			getSaveButton()!.dispatchEvent(
 				new MouseEvent('click', { bubbles: true })
 			);
 			await elementUpdated(element);
@@ -450,15 +439,15 @@ describe('vwc-color-picker', () => {
 			await openAndRender();
 			await saveColor('#123456');
 
-			expect(element.savedColors?.[0]?.value).toBe('#123456');
+			expect(element.savedColors[0].value).toBe('#123456');
 			expect(getSwatchColors()[0]).toBe('#123456');
 		});
 
 		it('should ignore invalid value and keep savedColors and UI unchanged', async () => {
 			await openAndRender();
-			await saveColor('not-a-color' as any);
+			await saveColor('not-a-color');
 
-			expect(element.savedColors?.length).toBe(0);
+			expect(element.savedColors.length).toBe(0);
 			expect(getSwatches().length).toBe(0);
 		});
 
@@ -468,7 +457,7 @@ describe('vwc-color-picker', () => {
 			await saveColor('#abcdef');
 			await saveColor('#112233');
 
-			expect(element.savedColors?.map((s) => s.value)).toEqual([
+			expect(element.savedColors.map((s) => s.value)).toEqual([
 				'#112233',
 				'#abcdef',
 			]);
@@ -484,7 +473,7 @@ describe('vwc-color-picker', () => {
 			await saveColor('#000002');
 			await saveColor('#000003');
 
-			expect(element.savedColors?.map((s) => s.value)).toEqual([
+			expect(element.savedColors.map((s) => s.value)).toEqual([
 				'#000003',
 				'#000002',
 			]);
@@ -522,14 +511,14 @@ describe('vwc-color-picker', () => {
 				(el) => el.style.getPropertyValue('--swatch-color') === '#112233'
 			)!;
 			const visuallyHidden =
-				element.shadowRoot?.querySelector('.visually-hidden');
+				element.shadowRoot!.querySelector('.visually-hidden');
 
 			expect(targetSwatch).toBeTruthy();
 			targetSwatch.click();
 			await elementUpdated(element);
 			expect(element.value).toBe('#112233');
 			expect(element.open).toBe(false);
-			expect(visuallyHidden?.textContent).toContain('Color #112233 selected.');
+			expect(visuallyHidden!.textContent).toContain('Color #112233 selected.');
 		});
 
 		it('should persist across new instance when saved-colors-key is provided', async () => {
@@ -538,24 +527,24 @@ describe('vwc-color-picker', () => {
 			await openAndRender();
 			await saveColor('#a1b2c3');
 
-			const el2 = (await fixture(
+			const el2 = fixture(
 				`<${COMPONENT_TAG} saved-colors-key="test-key-A"></${COMPONENT_TAG}>`
-			)) as ColorPicker;
+			) as ColorPicker;
 
 			await elementUpdated(el2);
-			expect(el2.savedColors?.map((s) => s.value)).toContain('#a1b2c3');
+			expect(el2.savedColors.map((s) => s.value)).toContain('#a1b2c3');
 		});
 
 		it('should use fallback storage key across instances', async () => {
 			await openAndRender();
 			await saveColor('#0f0f0f');
 
-			const el2 = (await fixture(
+			const el2 = fixture(
 				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-			)) as ColorPicker;
+			) as ColorPicker;
 			await elementUpdated(el2);
 
-			expect(el2.savedColors?.map((s) => s.value)).toContain('#0f0f0f');
+			expect(el2.savedColors.map((s) => s.value)).toContain('#0f0f0f');
 		});
 
 		it('should react to saved-colors-key changes at runtime by reloading savedColors', async () => {
@@ -563,15 +552,15 @@ describe('vwc-color-picker', () => {
 			await elementUpdated(element);
 			await openAndRender();
 			await saveColor('#aa0000');
-			expect(element.savedColors?.map((s) => s.value)).toContain('#aa0000');
+			expect(element.savedColors.map((s) => s.value)).toContain('#aa0000');
 
 			element.setAttribute('saved-colors-key', 'key-B');
 			await elementUpdated(element);
-			expect(element.savedColors?.length).toBe(0);
+			expect(element.savedColors.length).toBe(0);
 
 			element.setAttribute('saved-colors-key', 'key-A');
 			await elementUpdated(element);
-			expect(element.savedColors?.map((s) => s.value)).toContain('#aa0000');
+			expect(element.savedColors.map((s) => s.value)).toContain('#aa0000');
 		});
 
 		it('should not include saved colors in allSwatches when disableSavedColors is true', async () => {
@@ -612,7 +601,7 @@ describe('vwc-color-picker', () => {
 				saveBtn.focus();
 				pressKey(key);
 				await elementUpdated(element);
-				expect(element.savedColors?.[0]?.value).toBe('#cccccc');
+				expect(element.savedColors[0].value).toBe('#cccccc');
 			}
 		);
 
@@ -641,7 +630,7 @@ describe('vwc-color-picker', () => {
 				null as any,
 				{} as any,
 				{ value: 42 } as any,
-				{ value: '#zzzzzz' } as any,
+				{ value: '#zzzzzz' },
 				{ value: '#112233' },
 			];
 			await elementUpdated(element);
@@ -669,9 +658,9 @@ describe('vwc-color-picker', () => {
 				await saveColor('#445566');
 
 				const swatchesCount =
-					element.shadowRoot?.querySelector('#swatches-count');
+					element.shadowRoot!.querySelector('#swatches-count');
 				expect(swatchesCount).toBeTruthy();
-				expect(swatchesCount?.textContent?.trim()).toBe('2/5');
+				expect(swatchesCount!.textContent.trim()).toBe('2/5');
 			});
 
 			it('should update swatches count when adding colors', async () => {
@@ -681,13 +670,13 @@ describe('vwc-color-picker', () => {
 
 				await saveColor('#111111');
 				const swatchesCount =
-					element.shadowRoot?.querySelector('#swatches-count');
-				expect(swatchesCount?.textContent?.trim()).toBe('1/10');
+					element.shadowRoot!.querySelector('#swatches-count');
+				expect(swatchesCount!.textContent.trim()).toBe('1/10');
 
 				await saveColor('#222222');
 				await saveColor('#333333');
-				expect(swatchesCount?.textContent?.trim()).toBe('3/10');
-				expect(swatchesCount?.ariaLabel?.trim()).toBe('3 of 10 colors saved.');
+				expect(swatchesCount!.textContent.trim()).toBe('3/10');
+				expect(swatchesCount!.ariaLabel!.trim()).toBe('3 of 10 colors saved.');
 			});
 
 			it('should not display swatches count when disableSavedColors is true', async () => {
@@ -697,7 +686,7 @@ describe('vwc-color-picker', () => {
 				await openAndRender();
 
 				const swatchesCount =
-					element.shadowRoot?.querySelector('#swatches-count');
+					element.shadowRoot!.querySelector('#swatches-count');
 				expect(swatchesCount).toBeNull();
 			});
 		});
@@ -712,7 +701,7 @@ describe('vwc-color-picker', () => {
 			it('should return [] from _getGridCells when grid is not rendered', async () => {
 				element.disableSavedColors = true;
 				await elementUpdated(element);
-				const cells = element._getGridCells?.();
+				const cells = element._getGridCells();
 				expect(Array.isArray(cells)).toBe(true);
 				expect(cells.length).toBe(0);
 			});
@@ -727,7 +716,7 @@ describe('vwc-color-picker', () => {
 				element.value = '#123456';
 				await elementUpdated(element);
 				element._saveCurrentColor();
-				expect(element.savedColors?.[0]?.value).toBe('#123456');
+				expect(element.savedColors[0].value).toBe('#123456');
 			});
 
 			it('should load saved colors as [] when parsing JSON fails', async () => {

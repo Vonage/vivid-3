@@ -13,13 +13,11 @@ describe('a11y: vwc-tag-group', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG} aria-label="Tag group">
+		element = fixture(`<${COMPONENT_TAG} aria-label="Tag group">
         <vwc-tag label="Label 1"></vwc-tag>
         <vwc-tag label="Label 2"></vwc-tag>
         <vwc-tag label="Label 3"></vwc-tag>
-      </${COMPONENT_TAG}>`
-		)) as TagGroup;
+      </${COMPONENT_TAG}>`) as TagGroup;
 	});
 
 	it('should pass html a11y test', async () => {

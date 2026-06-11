@@ -13,9 +13,7 @@ describe('a11y: vwc-progress', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Progress;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Progress;
 	});
 
 	it('should pass html a11y test', async () => {

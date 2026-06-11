@@ -1,5 +1,5 @@
 import { customElement, DOM, html, Updates } from '@microsoft/fast-element';
-import { fixture } from '../test-utilities/fixture';
+import { type Fixture, fixture } from '../test-utilities/fixture';
 import { VividElement } from '../vivid-element/vivid-element';
 import { CheckableFormAssociated, FormAssociated } from './form-associated';
 
@@ -74,10 +74,10 @@ export class Checkable extends CheckableFormAssociated(VividElement) {
 	}
 }
 
-export async function setup<T = TestElement>(el = 'test-element') {
-	const { connect, disconnect, element, parent } = await fixture<T>(el);
-
-	return { connect, disconnect, element, parent };
+export async function setup<T = TestElement>(
+	el = 'test-element'
+): Promise<Fixture<T>> {
+	return await fixture<T>(el);
 }
 
 export const formAssociatedCommonTests = () => {
@@ -466,7 +466,7 @@ export const formAssociatedCommonTests = () => {
 
 			form.reset();
 
-			expect((element as TestElement).value).toBe('');
+			expect(element.value).toBe('');
 			expect(element.currentValue).toBe(element.value);
 
 			await disconnect();
@@ -492,7 +492,7 @@ export const formAssociatedCommonTests = () => {
 
 			form.reset();
 
-			expect((element as TestElement).value).toBe('attr-value');
+			expect(element.value).toBe('attr-value');
 			expect(element.currentValue).toBe(element.value);
 
 			await disconnect();
@@ -516,12 +516,12 @@ export const formAssociatedCommonTests = () => {
 
 			form.reset();
 
-			expect((element as TestElement).value).toBe('attr-value');
+			expect(element.value).toBe('attr-value');
 			expect(element.currentValue).toBe(element.value);
 
 			element.setAttribute('value', 'new-attr-value');
 
-			expect((element as TestElement).value).toBe('new-attr-value');
+			expect(element.value).toBe('new-attr-value');
 			expect(element.currentValue).toBe(element.value);
 
 			await disconnect();

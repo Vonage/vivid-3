@@ -2,8 +2,6 @@ import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import type { DataGrid } from './data-grid';
 import { DataGridSelectionMode } from './data-grid';
 import './index';
-import type { DataGridRow } from './data-grid-row';
-import type { DataGridCell } from './data-grid-cell';
 
 const COMPONENT_TAG = 'vwc-data-grid';
 
@@ -17,21 +15,15 @@ describe('data grid integration tests', () => {
 	}
 
 	const getAllNonHeaderRows = () =>
-		Array.from(
-			element.querySelectorAll('[row-type="default"]')
-		) as DataGridRow[];
+		Array.from(element.querySelectorAll('[row-type="default"]'));
 
 	const getAllNonHeaderCells = () =>
-		Array.from(
-			element.querySelectorAll('[cell-type="default"]')
-		) as DataGridCell[];
+		Array.from(element.querySelectorAll('[cell-type="default"]'));
 
 	let element: DataGrid;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as DataGrid;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as DataGrid;
 	});
 
 	describe('basic', function () {
@@ -64,8 +56,7 @@ describe('data grid integration tests', () => {
 
 		describe('manual rendering', function () {
 			beforeEach(async function () {
-				element = (await fixture(
-					`<${COMPONENT_TAG}>
+				element = fixture(`<${COMPONENT_TAG}>
 						<${COMPONENT_TAG}-row>
 							<${COMPONENT_TAG}-cell cell-type="columnheader">
 							data1
@@ -82,8 +73,7 @@ describe('data grid integration tests', () => {
 							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
 							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
 						</${COMPONENT_TAG}-row>
-					</${COMPONENT_TAG}>`
-				)) as DataGrid;
+					</${COMPONENT_TAG}>`) as DataGrid;
 			});
 			it('should set row-type sticky-header on header row when generateHeader is sticky', async function () {
 				element.generateHeader = 'sticky';
@@ -100,8 +90,7 @@ describe('data grid integration tests', () => {
 			});
 
 			it('should not overwrite header row-type when it is set in the grid template and generateHeader is default', async function () {
-				element = (await fixture(
-					`<${COMPONENT_TAG}>
+				element = fixture(`<${COMPONENT_TAG}>
 						<${COMPONENT_TAG}-row row-type="sticky-header">
 							<${COMPONENT_TAG}-cell cell-type="columnheader">
 							data1
@@ -118,8 +107,7 @@ describe('data grid integration tests', () => {
 							<${COMPONENT_TAG}-cell>Cell 1</${COMPONENT_TAG}-cell>
 							<${COMPONENT_TAG}-cell>Cell 2</${COMPONENT_TAG}-cell>
 						</${COMPONENT_TAG}-row>
-					</${COMPONENT_TAG}>`
-				)) as DataGrid;
+					</${COMPONENT_TAG}>`) as DataGrid;
 				element.generateHeader = 'default';
 				await elementUpdated(element);
 				expect(element.rowElements[0].getAttribute('row-type')).toBe(
@@ -201,8 +189,7 @@ describe('data grid integration tests', () => {
 
 	describe('selectionMode', function () {
 		it('should remove aria-selected when "none" is set initially', async function () {
-			element = (await fixture(
-				`<${COMPONENT_TAG} selection-mode="none">
+			element = fixture(`<${COMPONENT_TAG} selection-mode="none">
 											<vwc-data-grid-row aria-selected="true">
 												<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
 												<vwc-data-grid-cell aria-selected="false">Cell 2</vwc-data-grid-cell>
@@ -211,8 +198,7 @@ describe('data grid integration tests', () => {
 												<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
 												<vwc-data-grid-cell aria-selected="false">Cell 2</vwc-data-grid-cell>
 											</vwc-data-grid-row>
-										</${COMPONENT_TAG}>`
-			)) as DataGrid;
+										</${COMPONENT_TAG}>`) as DataGrid;
 			await elementUpdated(element);
 			const ariaSelectedExists =
 				element.querySelectorAll('[aria-selected]').length > 0;
@@ -429,14 +415,12 @@ describe('data grid integration tests', () => {
 			});
 
 			it('should leave aria-selected value to cells with aria-selected on init', async function () {
-				element = (await fixture(
-					`<${COMPONENT_TAG} selection-mode="single-cell">
+				element = fixture(`<${COMPONENT_TAG} selection-mode="single-cell">
 											<vwc-data-grid-row>
 												<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
 												<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
 											</vwc-data-grid-row>
-										</${COMPONENT_TAG}>`
-				)) as DataGrid;
+										</${COMPONENT_TAG}>`) as DataGrid;
 				await elementUpdated(element);
 				const cell = element.querySelector('vwc-data-grid-cell') as HTMLElement;
 				expect(cell.getAttribute('aria-selected')).toEqual('true');
@@ -552,14 +536,12 @@ describe('data grid integration tests', () => {
 			);
 
 			it('should leave aria-selected value to rows on init', async function () {
-				element = (await fixture(
-					`<${COMPONENT_TAG} selection-mode="single-row">
+				element = fixture(`<${COMPONENT_TAG} selection-mode="single-row">
 											<vwc-data-grid-row aria-selected="true">
 												<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
 												<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
 											</vwc-data-grid-row>
-										</${COMPONENT_TAG}>`
-				)) as DataGrid;
+										</${COMPONENT_TAG}>`) as DataGrid;
 				await elementUpdated(element);
 				const row = element.querySelector('vwc-data-grid-row') as HTMLElement;
 				expect(row.getAttribute('aria-selected')).toEqual('true');

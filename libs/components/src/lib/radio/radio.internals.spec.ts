@@ -69,8 +69,8 @@ describe('vwc-radio', () => {
 
 		afterAll(() => {
 			wrapper.remove();
-			internalsMock?.mockRestore();
-			formAssociatedMock?.mockRestore();
+			internalsMock!.mockRestore();
+			formAssociatedMock!.mockRestore();
 			internalsMock = null;
 			formAssociatedMock = null;
 			(window as any).ElementInternals = undefined;
@@ -188,8 +188,8 @@ describe('vwc-radio', () => {
 			it('should sync the validation inside the radio-group', async () => {
 				const { sibling, elementWithInternals, radioGroup } =
 					await setupFixture(wrapper, { insideRadioGroup: true });
-				radioGroup?.setAttribute('required', '');
-				radioGroup?.setAttribute('name', 'test');
+				radioGroup!.setAttribute('required', '');
+				radioGroup!.setAttribute('name', 'test');
 				sibling.name = elementWithInternals.name = 'test';
 
 				sibling.required = false;
@@ -207,8 +207,8 @@ describe('vwc-radio', () => {
 			it('should set the correct valueMissing validity when added to the DOM with valid group', async () => {
 				const { sibling, elementWithInternals, radioGroup } =
 					await setupFixture(wrapper, { insideRadioGroup: true });
-				radioGroup?.setAttribute('required', '');
-				radioGroup?.setAttribute('name', 'test');
+				radioGroup!.setAttribute('required', '');
+				radioGroup!.setAttribute('name', 'test');
 
 				sibling.name = elementWithInternals.name = 'test';
 				sibling.required = elementWithInternals.required = true;

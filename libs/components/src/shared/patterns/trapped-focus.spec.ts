@@ -34,7 +34,7 @@ describe('TrappedFocus', () => {
 	let lastButton: HTMLButtonElement;
 
 	beforeEach(async () => {
-		element = (await fixture('<test-element></test-element>')) as TestElement;
+		element = fixture('<test-element></test-element>') as TestElement;
 		firstButton = element.shadowRoot!.querySelector(
 			'#first'
 		) as HTMLButtonElement;

@@ -13,9 +13,7 @@ describe('vwc-split-button', () => {
 	let element: SplitButton;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as SplitButton;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as SplitButton;
 		await elementUpdated(element);
 	});
 
@@ -52,7 +50,7 @@ describe('vwc-split-button', () => {
 
 		it('should have an icon slot', async () => {
 			expect(
-				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+				Boolean(element.shadowRoot!.querySelector('slot[name="icon"]'))
 			).toEqual(true);
 		});
 	});
@@ -74,7 +72,7 @@ describe('vwc-split-button', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			expect(getControlElement(element).textContent?.trim()).toEqual(label);
+			expect(getControlElement(element).textContent.trim()).toEqual(label);
 		});
 	});
 
@@ -133,7 +131,7 @@ describe('vwc-split-button', () => {
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style on control', async () => {
 			const getControlIconOnly = () =>
-				element.shadowRoot?.querySelector('.control.icon-only');
+				element.shadowRoot!.querySelector('.control.icon-only');
 			const controlIconOnlyBefore = getControlIconOnly();
 
 			element.icon = 'home';
@@ -186,7 +184,7 @@ describe('vwc-split-button', () => {
 	describe('default slot', () => {
 		it('should should have a default slot', () => {
 			expect(
-				element.shadowRoot?.querySelector('slot:not([name])')
+				element.shadowRoot!.querySelector('slot:not([name])')
 			).toBeTruthy();
 		});
 	});

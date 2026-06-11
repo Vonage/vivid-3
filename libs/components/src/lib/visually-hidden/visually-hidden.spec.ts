@@ -8,9 +8,9 @@ describe('vwc-visually-hidden', () => {
 	let element: VisuallyHidden;
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as VisuallyHidden;
+		) as VisuallyHidden;
 	});
 
 	describe('basic', () => {

@@ -8,9 +8,9 @@ import type { CountryGroup } from './country-group';
 const TAG = 'vwc-country-group';
 
 const createGroup = async (markup: string) => {
-	const el = (await fixture(`<${TAG}>${markup}</${TAG}>`)) as CountryGroup;
+	const el = fixture(`<${TAG}>${markup}</${TAG}>`) as CountryGroup;
 	await Updates.next();
-	el.shadowRoot?.querySelector('slot')?.dispatchEvent(new Event('slotchange'));
+	el.shadowRoot!.querySelector('slot')!.dispatchEvent(new Event('slotchange'));
 	await Updates.next();
 
 	return el;
@@ -27,7 +27,7 @@ describe('vwc-country-group', () => {
 		await Updates.next();
 	};
 	const getBadge = (el: CountryGroup) =>
-		el.shadowRoot?.querySelector('vwc-badge') as HTMLElement | null;
+		el.shadowRoot!.querySelector('vwc-badge') as HTMLElement | null;
 	const setIntersections = async (
 		visible: HTMLElement[],
 		hidden: HTMLElement[]
@@ -69,9 +69,9 @@ describe('vwc-country-group', () => {
 			Array(hidden.length).fill('false')
 		);
 
-		const badge = el.shadowRoot?.querySelector('vwc-badge');
+		const badge = el.shadowRoot!.querySelector('vwc-badge');
 		expect(badge).toBeTruthy();
-		expect(badge?.getAttribute('text')).toBe('+4');
+		expect(badge!.getAttribute('text')).toBe('+4');
 	});
 
 	it('should display all items without overflow indicator when there is enough space', async () => {
@@ -83,8 +83,8 @@ describe('vwc-country-group', () => {
 
 		expect(el.querySelectorAll('vwc-country')).toHaveLength(7);
 		expect(el.overflowCount).toBe(0);
-		expect(el.shadowRoot?.querySelector('vwc-badge')).toBeFalsy();
-		expect(el.shadowRoot?.querySelector('vwc-popup')).toBeFalsy();
+		expect(el.shadowRoot!.querySelector('vwc-badge')).toBeFalsy();
+		expect(el.shadowRoot!.querySelector('vwc-popup')).toBeFalsy();
 
 		for (const it of el.items) {
 			expect(it.getAttribute('data-visible')).toBe('true');
@@ -105,15 +105,15 @@ describe('vwc-country-group', () => {
 		expect(el.overflowCount).toBe(4);
 
 		// hover => open popup and render overflow grid
-		const wrap = el.shadowRoot?.querySelector('.overflow-wrap') as HTMLElement;
+		const wrap = el.shadowRoot!.querySelector('.overflow-wrap') as HTMLElement;
 		expect(wrap).toBeTruthy();
 		wrap.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
 		await Updates.next();
 
-		const popup = el.shadowRoot?.querySelector('vwc-popup') as any;
+		const popup = el.shadowRoot!.querySelector('vwc-popup');
 		expect(popup).toBeTruthy();
 
-		const grid = el.shadowRoot?.querySelector('.overflow-grid') as HTMLElement;
+		const grid = el.shadowRoot!.querySelector('.overflow-grid') as HTMLElement;
 		expect(grid).toBeTruthy();
 		expect(grid.children.length).toBe(4);
 
@@ -143,8 +143,8 @@ describe('vwc-country-group', () => {
 
 		expect(el.overflowCount).toBe(0);
 		expect(el.popupOpen).toBe(false);
-		expect(el.shadowRoot?.querySelector('vwc-popup')).toBeFalsy();
-		expect(el.shadowRoot?.querySelector('.overflow-grid')).toBeFalsy();
+		expect(el.shadowRoot!.querySelector('vwc-popup')).toBeFalsy();
+		expect(el.shadowRoot!.querySelector('.overflow-grid')).toBeFalsy();
 
 		// (force ref to be missing to cover the early-return branch)
 		el.overflowGridEl = undefined;
@@ -175,7 +175,7 @@ describe('vwc-country-group', () => {
 
 	describe('IntersectionObserver and lifecycle edge cases', () => {
 		it('should do nothing when connectedCallback runs while not connected', async () => {
-			const el = document.createElement(TAG) as CountryGroup;
+			const el = document.createElement(TAG);
 			el.innerHTML = countryMarkup(['DE']);
 
 			expect(() => (el as any).connectedCallback()).not.toThrow();
@@ -185,10 +185,10 @@ describe('vwc-country-group', () => {
 			const el = await createGroup(countryMarkup(['DE', 'FR']));
 
 			io.triggerNodes([
-				{ node: el.items[0], desc: { intersectionRatio: undefined as any } },
+				{ node: el.items[0], desc: { intersectionRatio: undefined } },
 			]);
 			io.triggerNodes([
-				{ node: el.items[0], desc: { intersectionRatio: undefined as any } },
+				{ node: el.items[0], desc: { intersectionRatio: undefined } },
 			]);
 			await settle();
 
@@ -202,7 +202,7 @@ describe('vwc-country-group', () => {
 		});
 
 		it('should skip queued connected work when disconnected immediately', async () => {
-			const el = document.createElement(TAG) as CountryGroup;
+			const el = document.createElement(TAG);
 			el.innerHTML = countryMarkup(['DE']);
 
 			(el as any).connectedCallback();

@@ -30,8 +30,8 @@ describe('vwc-date-range-picker', () => {
 
 	const getAllDateButtons = () =>
 		Array.from(
-			element.shadowRoot!.querySelectorAll('[data-date]')
-		) as HTMLButtonElement[];
+			element.shadowRoot!.querySelectorAll<HTMLButtonElement>('[data-date]')
+		);
 
 	const getButtonByLabel = (label: string) =>
 		(element.shadowRoot!.querySelector(`[aria-label="${label}"]`) ??
@@ -40,7 +40,7 @@ describe('vwc-date-range-picker', () => {
 				`[data-vvd-aria-label="${label}"]`
 			)) as Button;
 
-	const getDialogTitle = () => titleAction.textContent!.trim();
+	const getDialogTitle = () => titleAction.textContent.trim();
 
 	function typeIntoTextField(text: string) {
 		textField.value = text;
@@ -69,9 +69,9 @@ describe('vwc-date-range-picker', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as DateRangePicker;
+		) as DateRangePicker;
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
 		pickerButton = element.shadowRoot!.querySelector(
 			'#picker-button'

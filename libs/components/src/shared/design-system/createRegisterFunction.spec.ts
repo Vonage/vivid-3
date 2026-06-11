@@ -103,7 +103,7 @@ describe('registerFactory', () => {
 				);
 				createRegisterFunction(componentDefinition)('tag');
 
-				const element = await fixture('<tag-component></tag-component>');
+				const element = fixture('<tag-component></tag-component>');
 
 				expect(element.shadowRoot!.querySelector('tag-child')).not.toBeNull();
 			});
@@ -141,7 +141,7 @@ describe('registerFactory', () => {
 
 				createRegisterFunction(componentDefinition)('non-dependency-tag');
 
-				const element = await fixture(
+				const element = fixture(
 					'<non-dependency-tag-component></non-dependency-tag-component>'
 				);
 				expect(element.shadowRoot!.textContent).toBe(

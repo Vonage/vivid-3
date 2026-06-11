@@ -1,7 +1,6 @@
 import { elementUpdated } from '@repo/shared/test-utils/fixture';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
-import type { RteInstance } from '../instance';
 import { RteBase } from './base';
 import {
 	type KeyboardShortcutHandler,
@@ -15,32 +14,12 @@ const escapeDeselectShortcuts: Record<string, KeyboardShortcutHandler> = {
 };
 
 describe('RteKeyboardShortcutsFeature', () => {
-	it('should prevent default when handler returns true (no-arg)', async () => {
+	it('should prevent default when handler returns true', async () => {
 		const rte = await setup(
 			[
 				new RteBase(),
 				new RteKeyboardShortcutsFeature('prevent-enter', {
 					shortcuts: { Enter: () => true },
-				}),
-			],
-			[p('Hello world')]
-		);
-
-		rte.placeCursor('Hello| world');
-		rte.keydown('Enter');
-		await elementUpdated(rte.element);
-
-		expect(rte.docStr()).toBe(`paragraph('Hello| world')`);
-	});
-
-	it('should prevent default when handler returns true (rteInstance)', async () => {
-		const rte = await setup(
-			[
-				new RteBase(),
-				new RteKeyboardShortcutsFeature('prevent-enter-cmd', {
-					shortcuts: {
-						Enter: (rteInstance: RteInstance) => true,
-					},
 				}),
 			],
 			[p('Hello world')]

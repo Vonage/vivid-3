@@ -71,8 +71,8 @@ describe('vwc-radio-group', () => {
 		it('should use fieldset with proper legend description', async () => {
 			element.label = 'test label';
 			await elementUpdated(element);
-			const fieldset = element.shadowRoot?.querySelector('fieldset');
-			const legend = fieldset?.querySelector('legend');
+			const fieldset = element.shadowRoot!.querySelector('fieldset');
+			const legend = fieldset!.querySelector('legend');
 
 			expect(fieldset).toBeTruthy();
 			expect(legend).toBeTruthy();
@@ -83,8 +83,8 @@ describe('vwc-radio-group', () => {
 		it('should display a label when given one', async () => {
 			element.label = 'testlabel';
 			await elementUpdated(element);
-			const label = element.shadowRoot?.getElementById('label');
-			expect(label?.textContent).toBe(element.label);
+			const label = element.shadowRoot!.getElementById('label');
+			expect(label!.textContent).toBe(element.label);
 		});
 	});
 
@@ -101,13 +101,13 @@ describe('vwc-radio-group', () => {
 		it('should set aria-invalid on the control element to true when error-text is set', async () => {
 			element.errorText = '';
 			await elementUpdated(element);
-			expect(getControlElement(element)!.getAttribute('aria-invalid')).toBe(
+			expect(getControlElement(element).getAttribute('aria-invalid')).toBe(
 				'false'
 			);
 
 			element.errorText = 'test error text';
 			await elementUpdated(element);
-			expect(getControlElement(element)!.getAttribute('aria-invalid')).toBe(
+			expect(getControlElement(element).getAttribute('aria-invalid')).toBe(
 				'true'
 			);
 		});
@@ -115,17 +115,17 @@ describe('vwc-radio-group', () => {
 
 	describe('orientation', () => {
 		it('should update the positioning region when changing orientation', async () => {
-			const positioningRegion = element.shadowRoot?.querySelector(
+			const positioningRegion = element.shadowRoot!.querySelector(
 				'.positioning-region'
 			);
 			const positioningRegionDefaultClassList = Array.from(
-				positioningRegion?.classList as DOMTokenList
+				positioningRegion!.classList
 			);
 			element.setAttribute('orientation', 'vertical');
 			await elementUpdated(element);
 
 			expect(positioningRegionDefaultClassList).toContain('horizontal');
-			expect(positioningRegion?.classList).toContain('vertical');
+			expect(positioningRegion!.classList).toContain('vertical');
 		});
 	});
 

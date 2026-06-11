@@ -13,9 +13,7 @@ describe('vwc-action-group', () => {
 	let element: ActionGroup;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as ActionGroup;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as ActionGroup;
 	});
 
 	describe('basic', () => {
@@ -41,7 +39,7 @@ describe('vwc-action-group', () => {
 			await elementUpdated(element);
 
 			expect(
-				getBaseElement(element)?.classList.contains(`appearance-${appearance}`)
+				getBaseElement(element).classList.contains(`appearance-${appearance}`)
 			).toBeTruthy();
 		});
 	});
@@ -53,14 +51,14 @@ describe('vwc-action-group', () => {
 			await elementUpdated(element);
 
 			expect(
-				getBaseElement(element)?.classList.contains(`shape-${shape}`)
+				getBaseElement(element).classList.contains(`shape-${shape}`)
 			).toBeTruthy();
 		});
 	});
 
 	describe('a11y attributes', () => {
 		it('should set a default role "group" on the base element', function () {
-			const role = getBaseElement(element)?.getAttribute('role');
+			const role = getBaseElement(element).getAttribute('role');
 			expect(role).toEqual('group');
 		});
 	});

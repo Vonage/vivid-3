@@ -8,9 +8,7 @@ describe('vwc-tab-panel', () => {
 	let element: TabPanel;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TabPanel;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as TabPanel;
 	});
 
 	describe('basic', () => {

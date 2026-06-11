@@ -1,10 +1,7 @@
 import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import type { Table } from './table';
 import type { TableBody } from './table-body';
-import type { TableCell } from './table-cell';
 import type { TableHead } from './table-head';
-import type { TableHeaderCell } from './table-header-cell';
-import type { TableRow } from './table-row';
 import './index';
 
 const COMPONENT_TAG = 'vwc-table';
@@ -13,7 +10,7 @@ describe('Table widget (all parts together)', () => {
 	let element: Table;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Table;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Table;
 	});
 
 	describe('when the table widget is loaded', () => {
@@ -51,15 +48,9 @@ describe('Table widget (all parts together)', () => {
 
 			const tableHead = element.querySelector('vwc-table-head') as TableHead;
 			const tableBody = element.querySelector('vwc-table-body') as TableBody;
-			const rows = element.querySelectorAll(
-				'vwc-table-row'
-			) as NodeListOf<TableRow>;
-			const headerCells = element.querySelectorAll(
-				'vwc-table-header-cell'
-			) as NodeListOf<TableHeaderCell>;
-			const cells = element.querySelectorAll(
-				'vwc-table-cell'
-			) as NodeListOf<TableCell>;
+			const rows = element.querySelectorAll('vwc-table-row');
+			const headerCells = element.querySelectorAll('vwc-table-header-cell');
+			const cells = element.querySelectorAll('vwc-table-cell');
 
 			expect(tableHead).toBeTruthy();
 			expect(tableBody).toBeTruthy();
@@ -84,16 +75,16 @@ describe('Table widget (all parts together)', () => {
 			await elementUpdated(element);
 
 			const tableHead = element.querySelector('vwc-table-head');
-			const headerRow = tableHead?.querySelector('vwc-table-row');
-			const headerCell = headerRow?.querySelector('vwc-table-header-cell');
+			const headerRow = tableHead!.querySelector('vwc-table-row');
+			const headerCell = headerRow!.querySelector('vwc-table-header-cell');
 			const tableBody = element.querySelector('vwc-table-body');
-			const dataRow = tableBody?.querySelector('vwc-table-row');
-			const dataCell = dataRow?.querySelector('vwc-table-cell');
+			const dataRow = tableBody!.querySelector('vwc-table-row');
+			const dataCell = dataRow!.querySelector('vwc-table-cell');
 
 			expect(headerCell).toBeTruthy();
 			expect(dataCell).toBeTruthy();
-			expect(headerCell?.textContent).toContain('Header');
-			expect(dataCell?.textContent).toContain('Data');
+			expect(headerCell!.textContent).toContain('Header');
+			expect(dataCell!.textContent).toContain('Data');
 		});
 
 		it('renders multiple rows and columns correctly', async () => {

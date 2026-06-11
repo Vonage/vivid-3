@@ -39,7 +39,7 @@ describe('vwc-dial-pad', () => {
 	}
 
 	function getZeroButton(component: HTMLElement) {
-		return getDigitButtons(component)[10] as Button;
+		return getDigitButtons(component)[10];
 	}
 
 	async function setValue(value: string) {
@@ -146,9 +146,7 @@ describe('vwc-dial-pad', () => {
 	}
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as DialPad;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as DialPad;
 	});
 
 	describe('basic', () => {
@@ -254,9 +252,7 @@ describe('vwc-dial-pad', () => {
 
 		it('should ignore input with unsupported keys', async function () {
 			function areAllDigitButtonsFalse() {
-				return Array.from(getDigitButtons(element)).every(
-					(b) => b.active === false
-				);
+				return Array.from(getDigitButtons(element)).every((b) => !b.active);
 			}
 
 			const allDigitButtonsFlaseBefore = areAllDigitButtonsFalse();
@@ -264,7 +260,7 @@ describe('vwc-dial-pad', () => {
 			getTextField(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'a' })
 			);
-			elementUpdated(element);
+			await elementUpdated(element);
 
 			expect(allDigitButtonsFlaseBefore).toBe(true);
 			expect(areAllDigitButtonsFalse()).toBe(true);
@@ -692,9 +688,9 @@ describe('vwc-dial-pad', () => {
 			});
 
 			it('should prevent calling focus when disabled', async function () {
-				element = (await fixture(
+				element = fixture(
 					`<${COMPONENT_TAG} disabled></${COMPONENT_TAG}>`
-				)) as DialPad;
+				) as DialPad;
 
 				const inputTextFocusSpy = vi.fn();
 				element.addEventListener('focus', inputTextFocusSpy);
@@ -707,9 +703,9 @@ describe('vwc-dial-pad', () => {
 
 			describe("with 'no-input' attribute", function () {
 				it('should set the focus on the first digit button', async function () {
-					element = (await fixture(
+					element = fixture(
 						`<${COMPONENT_TAG} no-input></${COMPONENT_TAG}>`
-					)) as DialPad;
+					) as DialPad;
 
 					element.focus();
 					await Updates.next();
@@ -718,7 +714,7 @@ describe('vwc-dial-pad', () => {
 
 					const digitBtns = getDigitButtons(element);
 					const firstDigitBtnEl =
-						digitBtns[0]?.shadowRoot?.querySelector('button');
+						digitBtns[0].shadowRoot!.querySelector('button');
 
 					expect(activeElement).toEqual(firstDigitBtnEl);
 				});
@@ -833,9 +829,9 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should focus the input element when connected', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} autofocus></${COMPONENT_TAG}>`
-			)) as DialPad;
+			) as DialPad;
 			await Updates.next();
 
 			const activeElement = getActiveElement();
@@ -851,34 +847,34 @@ describe('vwc-dial-pad', () => {
 				await Updates.next();
 
 				expect(getTextField(element)).toBeNull();
-				expect(
-					Array.from(digitBtns).every((btn) => btn.autofocus === undefined)
-				).toEqual(true);
+				expect(Array.from(digitBtns).every((btn) => !btn.autofocus)).toEqual(
+					true
+				);
 
 				element.setAttribute('autofocus', '');
 				await Updates.next();
 
 				expect(digitBtns[0].autofocus).toEqual(true);
 				expect(
-					digitBtns[0]?.shadowRoot?.querySelector('button')?.autofocus
+					digitBtns[0].shadowRoot!.querySelector('button')!.autofocus
 				).toEqual(true);
 				expect(
 					Array.from(digitBtns)
 						.slice(1)
-						.every((btn) => btn.autofocus === undefined)
+						.every((btn) => !btn.autofocus)
 				).toEqual(true);
 			});
 
 			it('should focus the first digit button element when connected', async () => {
-				element = (await fixture(
+				element = fixture(
 					`<${COMPONENT_TAG} autofocus no-input></${COMPONENT_TAG}>`
-				)) as DialPad;
+				) as DialPad;
 				await Updates.next();
 
 				const digitBtns = getDigitButtons(element);
 
 				const firstDigitBtnEl =
-					digitBtns[0]?.shadowRoot?.querySelector('button');
+					digitBtns[0].shadowRoot!.querySelector('button');
 				await Updates.next();
 				const activeElement = getActiveElement();
 
@@ -974,7 +970,7 @@ describe('vwc-dial-pad', () => {
 		it('should add "+" when long pressing Space on focused "0" button', async () => {
 			element.pattern = '^\\+?[0-9#*]*$';
 			await Updates.next();
-			const btn = getDigitButtons(element)[10] as Button;
+			const btn = getDigitButtons(element)[10];
 			btn.focus();
 			await Updates.next();
 			withFakeTimers(() => {
@@ -990,7 +986,7 @@ describe('vwc-dial-pad', () => {
 		it('should add "0" when short pressing Space on focused "0" button', async () => {
 			element.pattern = '^\\+?[0-9#*]*$';
 			await Updates.next();
-			const btn = getDigitButtons(element)[10] as Button;
+			const btn = getDigitButtons(element)[10];
 			btn.focus();
 			await Updates.next();
 			withFakeTimers(() => {
@@ -1038,7 +1034,7 @@ describe('vwc-dial-pad', () => {
 			// pointer long press should reset suppressNextClick flag when click does not fire
 			element.value = '';
 			await Updates.next();
-			const btn = getDigitButtons(element)[10] as Button;
+			const btn = getDigitButtons(element)[10];
 			withFakeTimers(() => {
 				simulatePointerLongPress(btn, {
 					duration: 600,

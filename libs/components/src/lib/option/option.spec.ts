@@ -12,9 +12,7 @@ describe('vwc-option', () => {
 	let element: ListboxOption;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as ListboxOption;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as ListboxOption;
 	});
 
 	describe('basic', () => {
@@ -40,7 +38,7 @@ describe('vwc-option', () => {
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+				Boolean(element.shadowRoot!.querySelector('slot[name="icon"]'))
 			).toEqual(true);
 		});
 
@@ -48,9 +46,9 @@ describe('vwc-option', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector('vwc-icon');
+			const icon = element.shadowRoot!.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
-			expect(icon?.name).toEqual('home');
+			expect(icon!.name).toEqual('home');
 		});
 	});
 
@@ -61,8 +59,8 @@ describe('vwc-option', () => {
 			element.text = text;
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector('.base');
-			expect(base?.textContent?.trim()).toEqual(text);
+			const base = element.shadowRoot!.querySelector('.base');
+			expect(base!.textContent.trim()).toEqual(text);
 		});
 	});
 
@@ -183,7 +181,7 @@ describe('vwc-option', () => {
 
 	describe('_displayCheckmark', () => {
 		const getCheckmark = () =>
-			element.shadowRoot?.querySelector('vwc-icon.checkmark');
+			element.shadowRoot!.querySelector('vwc-icon.checkmark');
 
 		it('should not display a checkmark icon if unset', async () => {
 			expect(getCheckmark()).toBeNull();
@@ -213,7 +211,7 @@ describe('vwc-option', () => {
 		});
 
 		it('should not mark any text as matched if not set', async () => {
-			expect(getText().textContent!.trim()).toBe('Option text');
+			expect(getText().textContent.trim()).toBe('Option text');
 			expect(getMatch()).toBe(null);
 		});
 
@@ -221,7 +219,7 @@ describe('vwc-option', () => {
 			element.matchedText = 'pti';
 			await elementUpdated(element);
 
-			expect(getText().textContent!.trim()).toBe('Option text');
+			expect(getText().textContent.trim()).toBe('Option text');
 			expect(getMatch()!.textContent).toBe('pti');
 		});
 	});
@@ -239,7 +237,7 @@ describe('vwc-option', () => {
 			element._vvdSearchText = 'pti';
 			await elementUpdated(element);
 
-			expect(getText().textContent!.trim()).toBe('Option text');
+			expect(getText().textContent.trim()).toBe('Option text');
 			expect(getMatch()!.textContent).toBe('pti');
 		});
 
@@ -248,7 +246,7 @@ describe('vwc-option', () => {
 			element.matchedText = 'pti';
 			await elementUpdated(element);
 
-			expect(getText().textContent!.trim()).toBe('Option text');
+			expect(getText().textContent.trim()).toBe('Option text');
 			expect(getMatch()!.textContent).toBe('pti');
 		});
 	});

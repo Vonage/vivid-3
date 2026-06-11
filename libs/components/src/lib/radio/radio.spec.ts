@@ -55,8 +55,8 @@ describe('vwc-radio', () => {
 
 			await elementUpdated(element);
 
-			const labelEl = element.shadowRoot?.querySelector('label');
-			expect(labelEl?.textContent?.trim()).toEqual(label);
+			const labelEl = element.shadowRoot!.querySelector('label');
+			expect(labelEl!.textContent.trim()).toEqual(label);
 		});
 	});
 
@@ -151,9 +151,9 @@ describe('vwc-radio', () => {
 			(element as any).connotation = 'cta';
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot
-					?.querySelector('.base')
-					?.classList.contains(`connotation-${connotation}`)
+				element
+					.shadowRoot!.querySelector('.base')!
+					.classList.contains(`connotation-${connotation}`)
 			).toEqual(true);
 		});
 	});

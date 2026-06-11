@@ -26,12 +26,12 @@ describe('a11y: vwc-breadcrumb', () => {
 
 	it('should pass html a11y test', async () => {
 		const children = Array.from(element.children)
-			.map(({ shadowRoot }) => shadowRoot?.innerHTML)
+			.map(({ shadowRoot }) => shadowRoot!.innerHTML)
 			.join('');
-		const exposedHtmlString = element.shadowRoot?.innerHTML.replace(
+		const exposedHtmlString = element.shadowRoot!.innerHTML.replace(
 			'<slot></slot>',
 			children
-		) as string;
+		);
 
 		expect(await axe(exposedHtmlString)).toHaveNoViolations();
 	});

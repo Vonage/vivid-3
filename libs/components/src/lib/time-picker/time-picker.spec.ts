@@ -45,9 +45,7 @@ describe('vwc-time-picker', () => {
 			)) as Button;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TimePicker;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as TimePicker;
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
 		pickerButton = element.shadowRoot!.querySelector(
 			'#picker-button'

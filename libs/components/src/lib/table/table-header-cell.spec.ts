@@ -8,9 +8,9 @@ describe('Table header cell', () => {
 	let element: TableHeaderCell;
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TableHeaderCell;
+		) as TableHeaderCell;
 	});
 
 	describe('when the component is set up', () => {
@@ -37,7 +37,7 @@ describe('Table header cell', () => {
 
 		describe('when used as a column header inside a table head', () => {
 			beforeEach(async () => {
-				const div = (await fixture(`
+				const div = fixture(`
 					<vwc-table>
 						<vwc-table-head>
 							<vwc-table-row>
@@ -45,7 +45,7 @@ describe('Table header cell', () => {
 							</vwc-table-row>
 						</vwc-table-head>
 					</vwc-table>
-				`)) as any;
+				`) as any;
 				element = div.querySelector(COMPONENT_TAG) as TableHeaderCell;
 			});
 

@@ -13,17 +13,13 @@ describe('a11y: vwc-option', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as ListboxOption;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as ListboxOption;
 	});
 
 	it('should pass html a11y test', async () => {
-		element = (await fixture(
-			`<div role="listbox" aria-label="Dummy listbox">
+		element = fixture(`<div role="listbox" aria-label="Dummy listbox">
 					<${COMPONENT_TAG} text="text" value="value"></${COMPONENT_TAG}>
-				</div>`
-		)) as ListboxOption;
+				</div>`) as ListboxOption;
 		await elementUpdated(element);
 
 		expect(await axe(element)).toHaveNoViolations();

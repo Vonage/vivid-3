@@ -32,7 +32,8 @@ let nativeAudioElement: HTMLAudioElement;
 class AudioMock extends Audio {
 	constructor() {
 		super();
-		nativeAudioElement = this as unknown as HTMLAudioElement;
+		// eslint-disable-next-line @typescript-eslint/no-this-alias
+		nativeAudioElement = this;
 	}
 }
 
@@ -48,7 +49,7 @@ beforeEach(() => {
 	});
 
 	// Mock Audio constructor
-	window.Audio = AudioMock as any;
+	window.Audio = AudioMock;
 });
 
 afterEach(() => {
@@ -95,20 +96,20 @@ describe('vwc-audio-player', () => {
 	}
 
 	function getSkipBackwardButton() {
-		return getBaseElement(element).querySelector('.backward') as Button | null;
+		return getBaseElement(element).querySelector<Button>('.backward');
 	}
 
 	function getSkipForwardButton() {
-		return getBaseElement(element).querySelector('.forward') as Button | null;
+		return getBaseElement(element).querySelector<Button>('.forward');
 	}
 
 	function allSubElementsDisabled() {
 		return (
 			getBaseElement(element).classList.contains('disabled') &&
-			getSliderElement()?.hasAttribute('disabled') &&
-			getPauseButtonElement()?.hasAttribute('disabled') &&
-			getSkipBackwardButton()?.hasAttribute('disabled') &&
-			getSkipForwardButton()?.hasAttribute('disabled')
+			getSliderElement().hasAttribute('disabled') &&
+			getPauseButtonElement().hasAttribute('disabled') &&
+			getSkipBackwardButton()!.hasAttribute('disabled') &&
+			getSkipForwardButton()!.hasAttribute('disabled')
 		);
 	}
 
@@ -149,9 +150,9 @@ describe('vwc-audio-player', () => {
 	const SOURCE = 'https://download.samplelib.com/mp3/sample-6s.mp3';
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG} timestamp src="${SOURCE}"></${COMPONENT_TAG}>`
-		)) as AudioPlayer;
+		) as AudioPlayer;
 		const audio = nativeAudioElement;
 		vi.spyOn(audio, 'play').mockImplementation(() => {
 			return new Promise((res) => {
@@ -160,7 +161,7 @@ describe('vwc-audio-player', () => {
 				res();
 			});
 		});
-		vi.spyOn(audio, 'pause').mockImplementation(async () => {
+		vi.spyOn(audio, 'pause').mockImplementation(() => {
 			vi.spyOn(audio, 'paused', 'get').mockReturnValue(true);
 			audio.dispatchEvent(new Event('pause', { bubbles: false }));
 		});
@@ -439,7 +440,7 @@ describe('vwc-audio-player', () => {
 			nativeAudioElement.dispatchEvent(event);
 			await elementUpdated(element);
 
-			expect(getTotalTimeElement()?.textContent).toEqual('1:00');
+			expect(getTotalTimeElement()!.textContent).toEqual('1:00');
 		});
 
 		it('should prevent display of total time when handling streaming (duration=Infinity)', async () => {
@@ -449,9 +450,7 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(
-				getBaseElement(element)
-					.querySelector('.time-stamp')
-					?.textContent?.trim()
+				getBaseElement(element).querySelector('.time-stamp')!.textContent.trim()
 			).toBe('0:00');
 		});
 
@@ -501,7 +500,7 @@ describe('vwc-audio-player', () => {
 			it('should not fetch if src is not set', async () => {
 				const originalFetch = globalThis.fetch;
 				const fetchSpy = vi.fn<typeof fetch>();
-				globalThis.fetch = fetchSpy as typeof fetch;
+				globalThis.fetch = fetchSpy;
 
 				element.durationFallback = true;
 				setAudioElementDuration(Infinity);
@@ -600,7 +599,7 @@ describe('vwc-audio-player', () => {
 						if (value === originalSrc) {
 							fallbackTriggered = true;
 						}
-						return originalSrcDescriptor.set!.call(this, value);
+						originalSrcDescriptor.set!.call(this, value);
 					});
 
 				// Act - Set the src property which will trigger the fetch and setSrc internally
@@ -657,11 +656,10 @@ describe('vwc-audio-player', () => {
 
 				expect(abortSpy).toHaveBeenCalled();
 				// Clean up
-				resolveFetch &&
-					resolveFetch({
-						blob: () => Promise.resolve(new Blob()),
-						arrayBuffer: () => Promise.resolve(new ArrayBuffer(8)),
-					});
+				resolveFetch!({
+					blob: () => Promise.resolve(new Blob()),
+					arrayBuffer: () => Promise.resolve(new ArrayBuffer(8)),
+				});
 				consoleErrorSpy.mockRestore();
 			});
 		});
@@ -708,7 +706,7 @@ describe('vwc-audio-player', () => {
 			setCurrentTimeAndDuration(currentTime, duration);
 			await elementUpdated(element);
 
-			expect(getCurrentTimeElement()?.textContent).toBe(expectedValue);
+			expect(getCurrentTimeElement()!.textContent).toBe(expectedValue);
 		});
 
 		it('should update slider value and ariavaluetext on audio progress', async () => {
@@ -774,7 +772,7 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should toggle paused state to false', async () => {
-			await element.play();
+			element.play();
 			expect(element.paused).toBe(false);
 		});
 
@@ -819,7 +817,7 @@ describe('vwc-audio-player', () => {
 
 	describe('pause()', () => {
 		it('should call native pause', async () => {
-			await element.play();
+			element.play();
 			element.pause();
 			expect(nativeAudioElement.pause).toHaveBeenCalled();
 		});
@@ -1062,7 +1060,7 @@ describe('vwc-audio-player', () => {
 		it('should start with a closed menu item', async () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			await elementUpdated(element);
-			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(false);
+			expect(getPlaybackRatesMenuElement().hasAttribute('open')).toBe(false);
 		});
 
 		it('should open the menu on click on the button', async () => {
@@ -1073,13 +1071,13 @@ describe('vwc-audio-player', () => {
 			playbackOpenButton.click();
 			await elementUpdated(element);
 
-			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(true);
+			expect(getPlaybackRatesMenuElement().hasAttribute('open')).toBe(true);
 		});
 
 		it('should close the menu on selection', async () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			await elementUpdated(element);
-			const menuItem = getPlaybackRatesMenuElement()?.querySelector(
+			const menuItem = getPlaybackRatesMenuElement().querySelector(
 				'.playback-rate'
 			) as MenuItem;
 			getPlaybackRatesMenuElement().open = true;
@@ -1087,7 +1085,7 @@ describe('vwc-audio-player', () => {
 			menuItem.click();
 			await elementUpdated(element);
 
-			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(false);
+			expect(getPlaybackRatesMenuElement().hasAttribute('open')).toBe(false);
 		});
 
 		it('should show menu items according to playback rates', async () => {
@@ -1095,11 +1093,11 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			element.playbackRates.split(',').forEach((pbRate) => {
-				const element = getPlaybackRatesMenuElement()?.querySelector(
+				const element = getPlaybackRatesMenuElement().querySelector(
 					`.playback-rate[text="${pbRate}"]`
 				);
 				expect(element).toBeTruthy();
-				expect(element?.getAttribute('check-appearance')).toBe('tick-only');
+				expect(element!.getAttribute('check-appearance')).toBe('tick-only');
 			});
 		});
 
@@ -1108,19 +1106,19 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(
-				getPlaybackRatesMenuElement()?.querySelectorAll(`.playback-rate`).length
+				getPlaybackRatesMenuElement().querySelectorAll(`.playback-rate`).length
 			).toBe(1);
 			expect(
 				getPlaybackRatesMenuElement()
-					?.querySelector(`.playback-rate`)
-					?.getAttribute('text')
+					.querySelector(`.playback-rate`)!
+					.getAttribute('text')
 			).toBe('1');
 		});
 
 		it('should set playbackRate to the value selected', async () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			await elementUpdated(element);
-			const menuItem = getPlaybackRatesMenuElement()?.querySelector(
+			const menuItem = getPlaybackRatesMenuElement().querySelector(
 				'.playback-rate'
 			) as MenuItem;
 
@@ -1137,8 +1135,8 @@ describe('vwc-audio-player', () => {
 
 			expect(
 				getPlaybackRatesMenuElement()
-					?.querySelector(`[text="${element.playbackRate}"]`)
-					?.hasAttribute('checked')
+					.querySelector(`[text="${element.playbackRate}"]`)!
+					.hasAttribute('checked')
 			).toBe(true);
 		});
 	});
@@ -1213,7 +1211,7 @@ describe('vwc-audio-player', () => {
 			nativeAudioElement.currentTime = 10;
 			await elementUpdated(element);
 
-			getSkipBackwardButton()?.click();
+			getSkipBackwardButton()!.click();
 
 			await elementUpdated(element);
 			expect(nativeAudioElement.currentTime).toEqual(5);
@@ -1224,7 +1222,7 @@ describe('vwc-audio-player', () => {
 			nativeAudioElement.currentTime = 10;
 			await elementUpdated(element);
 
-			getSkipForwardButton()?.click();
+			getSkipForwardButton()!.click();
 
 			await elementUpdated(element);
 			expect(nativeAudioElement.currentTime).toEqual(15);
@@ -1235,7 +1233,7 @@ describe('vwc-audio-player', () => {
 			nativeAudioElement.currentTime = 55;
 			await elementUpdated(element);
 
-			getSkipForwardButton()?.click();
+			getSkipForwardButton()!.click();
 
 			await elementUpdated(element);
 			expect(element.paused).toEqual(true);

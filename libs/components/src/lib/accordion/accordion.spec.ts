@@ -17,9 +17,7 @@ const EMPTY_COMPONENT_HTML = `<${COMPONENT_TAG} id="tested"></${COMPONENT_TAG}>`
 
 describe('vwc-accordion', () => {
 	function triggerAccordionUpdate() {
-		const newItem = document.createElement(
-			'vwc-accordion-item'
-		) as AccordionItem;
+		const newItem = document.createElement('vwc-accordion-item');
 		element.appendChild(newItem);
 	}
 	function toggleAccordionItem(accordionItem: AccordionItem) {
@@ -35,7 +33,7 @@ describe('vwc-accordion', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(COMPONENT_HTML)) as Accordion;
+		element = fixture(COMPONENT_HTML) as Accordion;
 		await elementUpdated(element);
 
 		accordionItem1 = element.querySelector('#item1') as AccordionItem;
@@ -60,7 +58,7 @@ describe('vwc-accordion', () => {
 
 	describe('empty', () => {
 		it('should not set the accordionIds property', async () => {
-			element = (await fixture(EMPTY_COMPONENT_HTML)) as Accordion;
+			element = fixture(EMPTY_COMPONENT_HTML) as Accordion;
 			await elementUpdated(element);
 			expect(element.accordionIds).toBe(undefined);
 		});
@@ -105,12 +103,10 @@ describe('vwc-accordion', () => {
 		});
 
 		it('should open the first accordion-item if none of the others are set to expanded', async function () {
-			element = (await fixture(
-				`<${COMPONENT_TAG} expand-mode="single">
+			element = fixture(`<${COMPONENT_TAG} expand-mode="single">
 				<vwc-accordion-item heading="accordion item" id="item1"><p>content</p></vwc-accordion-item>
 				<vwc-accordion-item heading="accordion item" id="item2"><p>content</p></vwc-accordion-item>
-			</${COMPONENT_TAG}>`
-			)) as Accordion;
+			</${COMPONENT_TAG}>`) as Accordion;
 			await elementUpdated(element);
 
 			expect(element.expandmode).toBe('single');
@@ -119,12 +115,10 @@ describe('vwc-accordion', () => {
 		});
 
 		it('should open the accordion-item with expanded set', async function () {
-			element = (await fixture(
-				`<${COMPONENT_TAG} expand-mode="single">
+			element = fixture(`<${COMPONENT_TAG} expand-mode="single">
 				<vwc-accordion-item heading="accordion item" id="item1"><p>content</p></vwc-accordion-item>
 				<vwc-accordion-item heading="accordion item" id="item2" expanded><p>content</p></vwc-accordion-item>
-			</${COMPONENT_TAG}>`
-			)) as Accordion;
+			</${COMPONENT_TAG}>`) as Accordion;
 			await elementUpdated(element);
 
 			expect(element.expandmode).toBe('single');
@@ -133,12 +127,10 @@ describe('vwc-accordion', () => {
 		});
 
 		it('should open the first accordion-item with expanded set', async function () {
-			element = (await fixture(
-				`<${COMPONENT_TAG} expand-mode="single">
+			element = fixture(`<${COMPONENT_TAG} expand-mode="single">
 				<vwc-accordion-item heading="accordion item" id="item1" expanded><p>content</p></vwc-accordion-item>
 				<vwc-accordion-item heading="accordion item" id="item2" expanded><p>content</p></vwc-accordion-item>
-			</${COMPONENT_TAG}>`
-			)) as Accordion;
+			</${COMPONENT_TAG}>`) as Accordion;
 			await elementUpdated(element);
 
 			expect(element.expandmode).toBe('single');
@@ -167,12 +159,10 @@ describe('vwc-accordion', () => {
 
 	describe('accordion-item keydown', () => {
 		function addTwoMoreItems() {
-			const anotherAccordionItem1 = document.createElement(
-				'vwc-accordion-item'
-			) as AccordionItem;
-			const anotherAccordionItem2 = document.createElement(
-				'vwc-accordion-item'
-			) as AccordionItem;
+			const anotherAccordionItem1 =
+				document.createElement('vwc-accordion-item');
+			const anotherAccordionItem2 =
+				document.createElement('vwc-accordion-item');
 			element.insertBefore(anotherAccordionItem1, accordionItem2);
 			element.insertBefore(anotherAccordionItem2, accordionItem2);
 			return anotherAccordionItem2;
@@ -271,11 +261,11 @@ describe('vwc-accordion', () => {
 
 	describe('a11y attributes', () => {
 		it('should set aria-disabled on active item in single mode', async function () {
-			element = (await fixture(`
+			element = fixture(`
 				<${COMPONENT_TAG} id="tested">
 					<vwc-accordion-item heading="accordion item 1" id="item1"><p>content</p></vwc-accordion-item>
 					<vwc-accordion-item heading="accordion item 2" expanded id="item2"><p>content</p></vwc-accordion-item>
-				</${COMPONENT_TAG}>`)) as Accordion;
+				</${COMPONENT_TAG}>`) as Accordion;
 			await elementUpdated(element);
 			accordionItem1 = element.querySelector('#item2') as AccordionItem;
 

@@ -63,9 +63,7 @@ describe('vwc-combobox', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Combobox;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Combobox;
 	});
 
 	describe('basic', () => {
@@ -96,23 +94,23 @@ describe('vwc-combobox', () => {
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
-			const labelElement = element.shadowRoot?.querySelector('label');
+			const labelElement = element.shadowRoot!.querySelector('label');
 			expect(labelElement).toBeTruthy();
-			expect(labelElement?.textContent?.trim()).toEqual(labelText);
+			expect(labelElement!.textContent.trim()).toEqual(labelText);
 		});
 
 		it('should show label only if label is set', async function () {
-			const labelElement = element.shadowRoot?.querySelector('label');
+			const labelElement = element.shadowRoot!.querySelector('label');
 			expect(labelElement).toBeNull();
 		});
 	});
 
 	describe('disabled', function () {
 		it('should set disabled class when disabled is true', async () => {
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeFalsy();
+			expect(element.shadowRoot!.querySelector('.disabled')).toBeFalsy();
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.disabled')).toBeTruthy();
 		});
 	});
 
@@ -231,7 +229,7 @@ describe('vwc-combobox', () => {
 			input.dispatchEvent(new KeyboardEvent('keyup'));
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector('input')?.getAttribute('placeholder')
+				element.shadowRoot!.querySelector('input')!.getAttribute('placeholder')
 			).toEqual(placeholderText);
 		});
 
@@ -279,7 +277,7 @@ describe('vwc-combobox', () => {
 	describe('icon', () => {
 		it('should have a icon slot', async () => {
 			expect(
-				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+				Boolean(element.shadowRoot!.querySelector('slot[name="icon"]'))
 			).toEqual(true);
 		});
 
@@ -288,7 +286,7 @@ describe('vwc-combobox', () => {
 			element.icon = icon;
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector(ICON_SELECTOR)?.getAttribute('name')
+				element.shadowRoot!.querySelector(ICON_SELECTOR)!.getAttribute('name')
 			).toEqual(icon);
 		});
 	});
@@ -296,7 +294,7 @@ describe('vwc-combobox', () => {
 	describe('slot', () => {
 		it('should have a meta slot', async function () {
 			expect(
-				Boolean(element.shadowRoot?.querySelector('slot[name="meta"]'))
+				Boolean(element.shadowRoot!.querySelector('slot[name="meta"]'))
 			).toEqual(true);
 		});
 
@@ -666,13 +664,12 @@ describe('vwc-combobox', () => {
 
 	describe("when the owning form's reset() function is invoked", () => {
 		it('should reset the value property to its initial value', async () => {
-			const form = (await fixture(
-				`<form><${COMPONENT_TAG} name="combobox" required value="1">
+			const form =
+				fixture(`<form><${COMPONENT_TAG} name="combobox" required value="1">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
-				</${COMPONENT_TAG}></form>`
-			)) as HTMLFormElement;
+				</${COMPONENT_TAG}></form>`) as HTMLFormElement;
 			element = form.children[0] as Combobox;
 			element.value = '2';
 			await elementUpdated(element);
@@ -683,13 +680,11 @@ describe('vwc-combobox', () => {
 		});
 
 		it('should reset the value property to the first option with the `selected` attribute present', async () => {
-			const form = (await fixture(
-				`<form><${COMPONENT_TAG} name="combobox" required>
+			const form = fixture(`<form><${COMPONENT_TAG} name="combobox" required>
 					<option value="1">1</option>
 					<option value="2" selected>2</option>
 					<option value="3">3</option>
-				</${COMPONENT_TAG}></form>`
-			)) as HTMLFormElement;
+				</${COMPONENT_TAG}></form>`) as HTMLFormElement;
 			element = form.children[0] as Combobox;
 			await elementUpdated(element);
 			expect(element.value).toEqual('2');
@@ -702,11 +697,9 @@ describe('vwc-combobox', () => {
 		});
 
 		it('should clear the value when there is no default value', async () => {
-			const form = (await fixture(
-				`<form><${COMPONENT_TAG} name="combobox" required>
+			const form = fixture(`<form><${COMPONENT_TAG} name="combobox" required>
 					<option value="1">1</option>
-				</${COMPONENT_TAG}></form>`
-			)) as HTMLFormElement;
+				</${COMPONENT_TAG}></form>`) as HTMLFormElement;
 			element = form.children[0] as Combobox;
 			await elementUpdated(element);
 			expect(element.value).toEqual('');
@@ -915,19 +908,19 @@ describe('vwc-combobox', () => {
 				`;
 			await elementUpdated(element);
 
-			const control = await getControlElement(element);
-			const label = element.shadowRoot?.querySelector('.label');
+			const control = getControlElement(element);
+			const label = element.shadowRoot!.querySelector('.label');
 			const listbox = getListbox();
 
 			expect(control.getAttribute('role')).toBe('combobox');
 			expect(control.getAttribute('aria-haspopup')).toBe('listbox');
 			expect(control.getAttribute('aria-controls')).toBe(listbox.id);
 			expect(control.getAttribute('aria-expanded')).toBe('false');
-			expect(label?.getAttribute('for')).toBe(control.id);
+			expect(label!.getAttribute('for')).toBe(control.id);
 		});
 
 		it('should update the aria-expanded attribute when the listbox is open', async () => {
-			const control = await getControlElement(element);
+			const control = getControlElement(element);
 			element.click();
 			await elementUpdated(element);
 			expect(control.getAttribute('aria-expanded')).toBe('true');

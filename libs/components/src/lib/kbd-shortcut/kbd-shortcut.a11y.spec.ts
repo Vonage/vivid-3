@@ -14,12 +14,10 @@ describe('a11y: vwc-kbd-shortcut', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}>
+		element = fixture(`<${COMPONENT_TAG}>
 				<vwc-kbd-key name="Control"></vwc-kbd-key>
 				<vwc-kbd-key name="C"></vwc-kbd-key>
-			</${COMPONENT_TAG}>`
-		)) as KbdShortcut;
+			</${COMPONENT_TAG}>`) as KbdShortcut;
 	});
 
 	it('should pass html a11y test', async () => {

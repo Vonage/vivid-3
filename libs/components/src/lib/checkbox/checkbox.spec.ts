@@ -25,9 +25,7 @@ describe('vwc-checkbox', () => {
 	let element: Checkbox;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Checkbox;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Checkbox;
 	});
 
 	describe('basic', () => {
@@ -57,21 +55,21 @@ describe('vwc-checkbox', () => {
 
 			await elementUpdated(element);
 
-			const labelEl = element.shadowRoot?.querySelector('label');
-			expect(labelEl?.textContent?.trim()).toEqual(label);
+			const labelEl = element.shadowRoot!.querySelector('label');
+			expect(labelEl!.textContent.trim()).toEqual(label);
 		});
 
 		it('should not add hide-label class to .base if label', async function () {
 			element.setAttribute('label', 'lorem');
 			await elementUpdated(element);
-			const baseElementClasses = getBaseElement(element)?.classList;
+			const baseElementClasses = getBaseElement(element).classList;
 
 			expect(baseElementClasses).not.toContain('hide-label');
 		});
 
 		it('should add hide-label class to .base if no label and no slot', async function () {
 			await elementUpdated(element);
-			const baseElementClasses = getBaseElement(element)?.classList;
+			const baseElementClasses = getBaseElement(element).classList;
 
 			expect(baseElementClasses).toContain('hide-label');
 		});
@@ -150,10 +148,10 @@ describe('vwc-checkbox', () => {
 
 	describe('disabled', function () {
 		it('should set disabled class when disabled is true', async () => {
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeFalsy();
+			expect(element.shadowRoot!.querySelector('.disabled')).toBeFalsy();
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.disabled')).toBeTruthy();
 		});
 
 		it('should set aria-disabled attribute when disabled is true', async () => {
@@ -170,10 +168,10 @@ describe('vwc-checkbox', () => {
 
 	describe('readonly', function () {
 		it('should set readonly class when readonly is true', async () => {
-			expect(element.shadowRoot?.querySelector('.readonly')).toBeFalsy();
+			expect(element.shadowRoot!.querySelector('.readonly')).toBeFalsy();
 			element.toggleAttribute('readonly', true);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.readonly')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.readonly')).toBeTruthy();
 		});
 	});
 
@@ -195,7 +193,7 @@ describe('vwc-checkbox', () => {
 			element.indeterminate = true;
 
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.checked')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.checked')).toBeTruthy();
 		});
 
 		it('should set `indeterminate` to false when `checked` by click', async () => {
@@ -203,7 +201,7 @@ describe('vwc-checkbox', () => {
 			getBaseElement(element).click();
 
 			expect(element.indeterminate).toBeFalsy();
-			expect(element.shadowRoot?.querySelector('.checked')).toBeFalsy();
+			expect(element.shadowRoot!.querySelector('.checked')).toBeFalsy();
 		});
 
 		it('should set `indeterminate` to false when `checked` by keypress', async () => {
@@ -279,9 +277,9 @@ describe('vwc-checkbox', () => {
 			(element as any).connotation = 'cta';
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot
-					?.querySelector('.base')
-					?.classList.contains(`connotation-${connotation}`)
+				element
+					.shadowRoot!.querySelector('.base')!
+					.classList.contains(`connotation-${connotation}`)
 			).toEqual(true);
 		});
 	});
@@ -341,20 +339,20 @@ describe('vwc-checkbox', () => {
 	describe('slot', function () {
 		it('should have a slot', async () => {
 			await elementUpdated(element);
-			expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
+			expect(Boolean(element.shadowRoot!.querySelector('slot'))).toEqual(true);
 		});
 
 		beforeEach(async () => {
-			element = (await fixture(`<${COMPONENT_TAG}
+			element = fixture(`<${COMPONENT_TAG}
 			label="I agree to" error-text="You need to accept the Terms of service"
 				aria-label="I agree to Vonage Terms of Service">
 				<a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
-			</${COMPONENT_TAG}>`)) as Checkbox;
+			</${COMPONENT_TAG}>`) as Checkbox;
 			await elementUpdated(element);
 		});
 
 		it('should check the checkbox when clicked outside the anchor', async () => {
-			element.querySelector('a')?.click();
+			element.querySelector('a')!.click();
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('checked')).toBeFalsy();
 
@@ -368,7 +366,7 @@ describe('vwc-checkbox', () => {
 		it('should check the checkbox when keypressed outside the anchor', async () => {
 			await elementUpdated(element);
 
-			element.querySelector('a')?.dispatchEvent(
+			element.querySelector('a')!.dispatchEvent(
 				new KeyboardEvent('keypress', {
 					bubbles: true,
 					composed: true,
@@ -378,7 +376,7 @@ describe('vwc-checkbox', () => {
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('checked')).toBeFalsy();
 
-			getBaseElement(element)?.dispatchEvent(
+			getBaseElement(element).dispatchEvent(
 				new KeyboardEvent('keypress', { key: ' ' })
 			);
 			await elementUpdated(element);
@@ -389,7 +387,7 @@ describe('vwc-checkbox', () => {
 
 		it('should not add hide-label class to .base if slotted', async function () {
 			await elementUpdated(element);
-			const baseElementClasses = getBaseElement(element)?.classList;
+			const baseElementClasses = getBaseElement(element).classList;
 
 			expect(baseElementClasses).not.toContain('hide-label');
 		});
@@ -425,7 +423,7 @@ describe('vwc-checkbox', () => {
 		it('should render the correct a11y attributes', async () => {
 			const baseElement = getBaseElement(element);
 
-			expect(baseElement?.getAttribute('role')).toBe('checkbox');
+			expect(baseElement.getAttribute('role')).toBe('checkbox');
 		});
 
 		it('should set aria-required attribute when required is true', async () => {

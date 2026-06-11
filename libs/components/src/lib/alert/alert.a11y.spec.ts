@@ -14,7 +14,7 @@ describe('a11y: vwc-alert', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Alert;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Alert;
 	});
 
 	it('should pass html a11y test', async () => {

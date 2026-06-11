@@ -17,23 +17,23 @@ describe('vwc-simple-color-picker', () => {
 	let element: SimpleColorPicker;
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as SimpleColorPicker;
+		) as SimpleColorPicker;
 	});
 
-	const getSwatches = () => element.shadowRoot?.querySelectorAll('.swatch');
+	const getSwatches = () => element.shadowRoot!.querySelectorAll('.swatch');
 
 	const getSwatch = (index: number = 0) =>
-		getSwatches()?.[index] as HTMLButtonElement;
+		getSwatches()[index] as HTMLButtonElement;
 
 	const getSelectedSwatch = () =>
-		element.shadowRoot?.querySelector('.swatch.selected') as HTMLButtonElement;
+		element.shadowRoot!.querySelector('.swatch.selected') as HTMLButtonElement;
 
 	const getPalette = () =>
-		element.shadowRoot?.querySelector('.palette') as HTMLElement;
+		element.shadowRoot!.querySelector('.palette') as HTMLElement;
 
-	const getPopup = () => element.shadowRoot?.querySelector('vwc-popup');
+	const getPopup = () => element.shadowRoot!.querySelector('vwc-popup');
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-simple-color-picker', async () => {
@@ -75,7 +75,7 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			const swatchButtons = getSwatches();
-			expect(swatchButtons?.length).toBe(2);
+			expect(swatchButtons.length).toBe(2);
 
 			const selectedSwatch = getSelectedSwatch();
 			expect(selectedSwatch).toBeTruthy();
@@ -100,7 +100,7 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			const popup = getPopup();
-			expect(popup?.hasAttribute('open')).toBe(true);
+			expect(popup!.hasAttribute('open')).toBe(true);
 		});
 
 		it('should hide popup when open is false', async () => {
@@ -111,7 +111,7 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			const popup = getPopup();
-			expect(popup?.hasAttribute('open')).toBe(false);
+			expect(popup!.hasAttribute('open')).toBe(false);
 		});
 
 		it('should handle escape key in popup template without closing directly', async () => {
@@ -125,7 +125,7 @@ describe('vwc-simple-color-picker', () => {
 				cancelable: true,
 			});
 
-			popup?.dispatchEvent(escapeEvent);
+			popup!.dispatchEvent(escapeEvent);
 			await elementUpdated(element);
 			expect(element.open).toBe(true);
 		});
@@ -153,15 +153,15 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			const swatchButtons = getSwatches();
-			expect(swatchButtons?.length).toBe(3);
+			expect(swatchButtons.length).toBe(3);
 
 			const firstSwatch = getSwatch(0);
-			expect(firstSwatch?.style.getPropertyValue('--swatch-color')).toBe(
+			expect(firstSwatch.style.getPropertyValue('--swatch-color')).toBe(
 				'#ff0000'
 			);
-			expect(firstSwatch?.getAttribute('tabindex')).toBe('0');
-			expect(swatchButtons?.[1]?.getAttribute('tabindex')).toBe('-1');
-			expect(swatchButtons?.[2]?.getAttribute('tabindex')).toBe('-1');
+			expect(firstSwatch.getAttribute('tabindex')).toBe('0');
+			expect(swatchButtons[1].getAttribute('tabindex')).toBe('-1');
+			expect(swatchButtons[2].getAttribute('tabindex')).toBe('-1');
 		});
 
 		it('should apply contrast class based on host-scoped --vvd-color-canvas', async () => {
@@ -208,7 +208,7 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			const palette = getPalette();
-			expect(palette?.style.getPropertyValue('--swatches-per-row')).toBe('5');
+			expect(palette.style.getPropertyValue('--swatches-per-row')).toBe('5');
 		});
 	});
 
@@ -225,7 +225,7 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			const popup = getPopup();
-			expect(popup?.getAttribute('placement')).toBe('bottom-start');
+			expect(popup!.getAttribute('placement')).toBe('bottom-start');
 		});
 
 		it('should update popup placement when changed', async () => {
@@ -236,7 +236,7 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			const popup = getPopup();
-			expect(popup?.getAttribute('placement')).toBe('right');
+			expect(popup!.getAttribute('placement')).toBe('right');
 		});
 	});
 
@@ -253,7 +253,7 @@ describe('vwc-simple-color-picker', () => {
 			);
 
 			const firstSwatch = getSwatch(0);
-			firstSwatch?.click();
+			firstSwatch.click();
 
 			expect(element.value).toBe('#ff0000');
 			expect(element.open).toBe(false);
@@ -276,11 +276,11 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			const selectedSwatch = getSelectedSwatch();
-			const icon = selectedSwatch?.querySelector('vwc-icon');
+			const icon = selectedSwatch.querySelector('vwc-icon');
 
 			expect(selectedSwatch).toBeTruthy();
 			expect(icon).toBeTruthy();
-			expect(icon?.getAttribute('name')).toBe('check-solid');
+			expect(icon!.getAttribute('name')).toBe('check-solid');
 		});
 
 		it('should reset value when clicking already selected swatch', async () => {
@@ -289,13 +289,13 @@ describe('vwc-simple-color-picker', () => {
 			);
 
 			const firstSwatch = getSwatch(0);
-			firstSwatch?.click();
+			firstSwatch.click();
 			expect(element.value).toBe('#ff0000');
 
 			element.open = true;
 			await elementUpdated(element);
 
-			firstSwatch?.click();
+			firstSwatch.click();
 
 			expect(element.value).toBe('');
 			expect(element.open).toBe(false);
@@ -339,7 +339,7 @@ describe('vwc-simple-color-picker', () => {
 				bubbles: true,
 				cancelable: true,
 			});
-			getSwatch(0)?.dispatchEvent(enterEvent);
+			getSwatch(0).dispatchEvent(enterEvent);
 			await elementUpdated(element);
 
 			expect(element.value).toBe('#ff0000');
@@ -356,7 +356,7 @@ describe('vwc-simple-color-picker', () => {
 				bubbles: true,
 				cancelable: true,
 			});
-			getSwatch(1)?.dispatchEvent(spaceEvent);
+			getSwatch(1).dispatchEvent(spaceEvent);
 			await elementUpdated(element);
 
 			expect(element.value).toBe('#00ff00');
@@ -382,7 +382,7 @@ describe('vwc-simple-color-picker', () => {
 				});
 				const preventDefaultSpy = vi.spyOn(keyEvent, 'preventDefault');
 
-				expect(() => getSwatch(0)?.dispatchEvent(keyEvent)).not.toThrow();
+				expect(() => getSwatch(0).dispatchEvent(keyEvent)).not.toThrow();
 				expect(preventDefaultSpy).toHaveBeenCalled();
 			});
 		});
@@ -391,14 +391,14 @@ describe('vwc-simple-color-picker', () => {
 			const firstSwatch = getSwatch(0);
 
 			expect(() => {
-				firstSwatch?.dispatchEvent(
+				firstSwatch.dispatchEvent(
 					new KeyboardEvent('keydown', {
 						key: 'Home',
 						ctrlKey: true,
 						bubbles: true,
 					})
 				);
-				firstSwatch?.dispatchEvent(
+				firstSwatch.dispatchEvent(
 					new KeyboardEvent('keydown', {
 						key: 'End',
 						ctrlKey: true,
@@ -407,7 +407,7 @@ describe('vwc-simple-color-picker', () => {
 				);
 			}).not.toThrow();
 
-			firstSwatch?.dispatchEvent(
+			firstSwatch.dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Tab', bubbles: true })
 			);
 			await elementUpdated(element);
@@ -416,7 +416,7 @@ describe('vwc-simple-color-picker', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			firstSwatch?.dispatchEvent(
+			firstSwatch.dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })
 			);
 			await elementUpdated(element);
@@ -425,16 +425,16 @@ describe('vwc-simple-color-picker', () => {
 
 		it('should handle edge case navigation and unknown keys', async () => {
 			expect(() => {
-				getSwatch(1)?.dispatchEvent(
+				getSwatch(1).dispatchEvent(
 					new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true })
 				);
-				getSwatch(3)?.dispatchEvent(
+				getSwatch(3).dispatchEvent(
 					new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true })
 				);
-				getSwatch(4)?.dispatchEvent(
+				getSwatch(4).dispatchEvent(
 					new KeyboardEvent('keydown', { key: 'PageUp', bubbles: true })
 				);
-				getSwatch(0)?.dispatchEvent(
+				getSwatch(0).dispatchEvent(
 					new KeyboardEvent('keydown', { key: 'UnknownKey', bubbles: true })
 				);
 			}).not.toThrow();
@@ -453,7 +453,7 @@ describe('vwc-simple-color-picker', () => {
 			);
 			await elementUpdated(element);
 			await new Promise((resolve) => setTimeout(resolve, 50));
-			expect(element.shadowRoot?.activeElement).toBe(getSwatch(1));
+			expect(element.shadowRoot!.activeElement).toBe(getSwatch(1));
 
 			element.open = false;
 			element.value = '#ffff00';
@@ -462,7 +462,7 @@ describe('vwc-simple-color-picker', () => {
 			);
 			await elementUpdated(element);
 			await new Promise((resolve) => setTimeout(resolve, 50));
-			expect(element.shadowRoot?.activeElement).toBe(getSwatch(3));
+			expect(element.shadowRoot!.activeElement).toBe(getSwatch(3));
 
 			element.open = false;
 			element.value = '#999999';
@@ -471,7 +471,7 @@ describe('vwc-simple-color-picker', () => {
 			);
 			await elementUpdated(element);
 			await new Promise((resolve) => setTimeout(resolve, 50));
-			expect(element.shadowRoot?.activeElement).toBe(getSwatch(0));
+			expect(element.shadowRoot!.activeElement).toBe(getSwatch(0));
 		});
 	});
 
@@ -542,7 +542,7 @@ describe('vwc-simple-color-picker', () => {
 			anchorElement.click();
 			await elementUpdated(element);
 			await new Promise((resolve) => setTimeout(resolve, 50));
-			expect(element.shadowRoot?.activeElement).toBeNull();
+			expect(element.shadowRoot!.activeElement).toBeNull();
 		});
 	});
 
@@ -558,15 +558,15 @@ describe('vwc-simple-color-picker', () => {
 			await elementUpdated(element);
 
 			const palette = getPalette();
-			expect(palette?.getAttribute('role')).toBe('grid');
-			expect(palette?.hasAttribute('aria-label')).toBe(true);
-			expect(palette?.getAttribute('aria-colcount')).toBe('7');
-			expect(palette?.getAttribute('aria-rowcount')).toBe('1');
+			expect(palette.getAttribute('role')).toBe('grid');
+			expect(palette.hasAttribute('aria-label')).toBe(true);
+			expect(palette.getAttribute('aria-colcount')).toBe('7');
+			expect(palette.getAttribute('aria-rowcount')).toBe('1');
 
 			const firstSwatch = getSwatch(0);
-			expect(firstSwatch?.getAttribute('role')).toBe('gridcell');
-			expect(firstSwatch?.hasAttribute('aria-label')).toBe(true);
-			expect(firstSwatch?.getAttribute('tabindex')).toBe('0');
+			expect(firstSwatch.getAttribute('role')).toBe('gridcell');
+			expect(firstSwatch.hasAttribute('aria-label')).toBe(true);
+			expect(firstSwatch.getAttribute('tabindex')).toBe('0');
 		});
 
 		it('should set proper ARIA attributes on anchor', async () => {

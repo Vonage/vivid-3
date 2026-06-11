@@ -14,9 +14,9 @@ describe('a11y: vwc-date-range-picker', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as DateRangePicker;
+		) as DateRangePicker;
 
 		setupDelegatesFocusPolyfill(element);
 	});

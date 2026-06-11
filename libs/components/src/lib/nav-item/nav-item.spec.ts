@@ -13,9 +13,7 @@ describe('vwc-nav-item', () => {
 	let element: NavItem;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as NavItem;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as NavItem;
 	});
 
 	describe('basic', () => {
@@ -39,7 +37,7 @@ describe('vwc-nav-item', () => {
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				element.shadowRoot?.querySelector('slot[name="icon"]')
+				element.shadowRoot!.querySelector('slot[name="icon"]')
 			).toBeTruthy();
 		});
 
@@ -47,9 +45,9 @@ describe('vwc-nav-item', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector('vwc-icon');
+			const icon = element.shadowRoot!.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
-			expect(icon?.name).toEqual('home');
+			expect(icon!.name).toEqual('home');
 		});
 	});
 
@@ -59,7 +57,7 @@ describe('vwc-nav-item', () => {
 			await elementUpdated(element);
 
 			expect(
-				element.shadowRoot?.querySelector('.control.icon-only')
+				element.shadowRoot!.querySelector('.control.icon-only')
 			).toBeInstanceOf(Element);
 		});
 	});
@@ -70,8 +68,8 @@ describe('vwc-nav-item', () => {
 			element.text = text;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector('.control');
-			expect(control?.textContent?.trim()).toEqual(text);
+			const control = element.shadowRoot!.querySelector('.control');
+			expect(control!.textContent.trim()).toEqual(text);
 		});
 	});
 
@@ -83,9 +81,9 @@ describe('vwc-nav-item', () => {
 			await elementUpdated(element);
 
 			expect(
-				element?.shadowRoot
-					?.querySelector('.control')
-					?.classList.contains(`appearance-${appearance}`)
+				element!
+					.shadowRoot!.querySelector('.control')!
+					.classList.contains(`appearance-${appearance}`)
 			).toBeTruthy();
 		});
 	});
@@ -107,7 +105,7 @@ describe('vwc-nav-item', () => {
 
 	describe('meta slot', () => {
 		it('should have a meta slot', async () => {
-			expect(element.shadowRoot?.querySelector('slot[name=meta]')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('slot[name=meta]')).toBeTruthy();
 		});
 	});
 

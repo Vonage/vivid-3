@@ -13,7 +13,7 @@ describe('a11y: vwc-note', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Note;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Note;
 	});
 
 	it('should pass html a11y test', async () => {

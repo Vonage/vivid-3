@@ -19,7 +19,7 @@ describe('nextOfType', () => {
 		const nextDiv = nextOfType(firstSpan as HTMLElement, HTMLDivElement);
 
 		expect(nextDiv).toBeInstanceOf(HTMLDivElement);
-		expect(nextDiv?.id).toBe('two');
+		expect(nextDiv!.id).toBe('two');
 	});
 
 	it('should skip siblings of different types and return the next matching sibling', () => {
@@ -27,7 +27,7 @@ describe('nextOfType', () => {
 		const nextDiv = nextOfType(secondDiv as HTMLElement, HTMLDivElement);
 
 		expect(nextDiv).toBeInstanceOf(HTMLDivElement);
-		expect(nextDiv?.id).toBe('three');
+		expect(nextDiv!.id).toBe('three');
 	});
 
 	it('should return null if there is no next sibling of the specified type', () => {

@@ -38,7 +38,7 @@ describe('icon', function () {
 	let element: Icon;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Icon;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Icon;
 		vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
 		responseFileType = 'image/svg+xml';
 		response = {

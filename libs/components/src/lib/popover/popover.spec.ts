@@ -5,8 +5,8 @@ import {
 	getBaseElement,
 	getControlElement,
 } from '@repo/shared/test-utils/fixture';
-import * as floatingUI from '@floating-ui/dom';
 import type { ComputePositionReturn } from '@floating-ui/dom';
+import * as floatingUI from '@floating-ui/dom';
 import type { Button } from '../button/button';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Popover } from './popover';
@@ -52,7 +52,7 @@ describe('vwc-popover', () => {
 				this.showPopover();
 				return true;
 			}
-		} as any;
+		};
 
 		const originalMatches = HTMLElement.prototype.matches;
 		HTMLElement.prototype.matches = function (
@@ -63,7 +63,7 @@ describe('vwc-popover', () => {
 				return this.hasAttribute('_popover-open');
 			}
 			return originalMatches.call(this, selector);
-		} as any;
+		};
 	});
 
 	async function setupPopoverToOpenWithAnchor() {
@@ -74,19 +74,17 @@ describe('vwc-popover', () => {
 	}
 
 	function getCloseButton() {
-		return element.shadowRoot?.querySelector(
+		return element.shadowRoot!.querySelector(
 			'.dismiss-button'
 		) as HTMLButtonElement;
 	}
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Popover;
-		anchor = (await fixture(
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popover;
+		anchor = fixture(
 			'<vwc-button id="anchor"></vwc-button>',
 			ADD_TEMPLATE_TO_FIXTURE
-		)) as Button;
+		) as Button;
 	});
 
 	afterEach(function () {
@@ -137,11 +135,10 @@ describe('vwc-popover', () => {
 		});
 
 		it('should show popover and start autoUpdate immediately when initialized with open attribute and anchor', async () => {
-			const openPopover = (await fixture(
-				`<${COMPONENT_TAG} open>
+			const openPopover = fixture(`<${COMPONENT_TAG} open>
 					<button slot="anchor"></button>
-				</${COMPONENT_TAG}>`
-			)) as Popover;
+				</${COMPONENT_TAG}>`) as Popover;
+			await elementUpdated(openPopover);
 
 			const base = getBaseElement(openPopover);
 			expect(base.hasAttribute('_popover-open')).toBe(true);
@@ -246,7 +243,7 @@ describe('vwc-popover', () => {
 			element.manual = true;
 			await elementUpdated(element);
 			const btn = getCloseButton();
-			expect(btn?.getAttribute('type')).toBe('button');
+			expect(btn.getAttribute('type')).toBe('button');
 		});
 
 		it('should close the popover when close button is clicked', async () => {
@@ -255,7 +252,7 @@ describe('vwc-popover', () => {
 			await elementUpdated(element);
 
 			const btn = getCloseButton();
-			btn?.click();
+			btn.click();
 			await elementUpdated(element);
 
 			expect(element.open).toBe(false);
@@ -365,13 +362,13 @@ describe('vwc-popover', () => {
 
 	describe('arrow', () => {
 		it('should not render arrow by default', async () => {
-			expect(element.shadowRoot?.querySelector('.arrow')).toBeNull();
+			expect(element.shadowRoot!.querySelector('.arrow')).toBeNull();
 		});
 
 		it('should render arrow when arrow is true', async () => {
 			element.arrow = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.arrow')).not.toBeNull();
+			expect(element.shadowRoot!.querySelector('.arrow')).not.toBeNull();
 		});
 
 		it('should position arrow correctly', async () => {
@@ -394,14 +391,14 @@ describe('vwc-popover', () => {
 			await setupPopoverToOpenWithAnchor();
 			await element.updatePosition();
 
-			const arrowEl = element.shadowRoot?.querySelector(
+			const arrowEl = element.shadowRoot!.querySelector(
 				'.arrow'
 			) as HTMLElement;
 
 			expect(arrowEl.style.left).toBe('10px');
 
 			const call = computeSpy.mock.lastCall![2];
-			expect(JSON.stringify(call?.middleware)).toContain('arrow');
+			expect(JSON.stringify(call!.middleware)).toContain('arrow');
 		});
 
 		it('should position arrow correctly for side placements', async () => {
@@ -424,7 +421,7 @@ describe('vwc-popover', () => {
 			await setupPopoverToOpenWithAnchor();
 			await element.updatePosition();
 
-			const arrowEl = element.shadowRoot?.querySelector(
+			const arrowEl = element.shadowRoot!.querySelector(
 				'.arrow'
 			) as HTMLElement;
 
@@ -432,7 +429,7 @@ describe('vwc-popover', () => {
 			expect(arrowEl.style.left).toBe('calc(100% - 4px)');
 
 			const call = computeSpy.mock.lastCall![2];
-			expect(JSON.stringify(call?.middleware)).toContain('arrow');
+			expect(JSON.stringify(call!.middleware)).toContain('arrow');
 		});
 	});
 

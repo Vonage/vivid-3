@@ -28,7 +28,7 @@ describe('vwc-menu-item', () => {
 			new KeyboardEvent('keydown', {
 				key,
 				cancelable: true,
-			} as KeyboardEventInit)
+			})
 		);
 	}
 
@@ -85,18 +85,16 @@ describe('vwc-menu-item', () => {
 
 	describe('role', () => {
 		it('should set role to presentation when the menu item is not a direct descendant of a menu and role is menuitem', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-			)) as MenuItem;
+			element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as MenuItem;
 			await elementUpdated(element);
 
 			expect(element.role).toBe('presentation');
 		});
 
 		it('should retain role when the menu item is not a direct descendant of a menu and role is not menuitem', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} role="menuitemcheckbox"></${COMPONENT_TAG}>`
-			)) as MenuItem;
+			) as MenuItem;
 			await elementUpdated(element);
 
 			expect(element.role).toBe('menuitemcheckbox');
@@ -113,9 +111,7 @@ describe('vwc-menu-item', () => {
 		});
 
 		it('should not prevent default of click events when the menu item is not a direct descendant of a menu', async function () {
-			element = (await fixture(
-				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-			)) as MenuItem;
+			element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as MenuItem;
 			await elementUpdated(element);
 
 			const spy = vi.fn();
@@ -244,8 +240,8 @@ describe('vwc-menu-item', () => {
 			await elementUpdated(element);
 
 			const primaryTextSpan =
-				element.shadowRoot?.querySelector('.text-primary');
-			expect(primaryTextSpan?.textContent?.trim()).toEqual(text);
+				element.shadowRoot!.querySelector('.text-primary');
+			expect(primaryTextSpan!.textContent.trim()).toEqual(text);
 		});
 	});
 
@@ -262,8 +258,8 @@ describe('vwc-menu-item', () => {
 			await elementUpdated(element);
 
 			const secondaryTextSpan =
-				element.shadowRoot?.querySelector('.text-secondary');
-			expect(secondaryTextSpan?.textContent?.trim()).toEqual(secondaryText);
+				element.shadowRoot!.querySelector('.text-secondary');
+			expect(secondaryTextSpan!.textContent.trim()).toEqual(secondaryText);
 		});
 
 		it('should add two-lines text class to base when both texts exist', async () => {
@@ -504,7 +500,7 @@ describe('vwc-menu-item', () => {
 
 	describe('slot', () => {
 		it('should render meta slot', async function () {
-			const metaSlotElement = element.shadowRoot?.querySelector(
+			const metaSlotElement = element.shadowRoot!.querySelector(
 				'.base slot[name="meta"]'
 			);
 			await elementUpdated(element);
@@ -513,7 +509,7 @@ describe('vwc-menu-item', () => {
 		});
 
 		it('should render trailing-meta slot', async function () {
-			const trailingMetaSlotElement = element.shadowRoot?.querySelector(
+			const trailingMetaSlotElement = element.shadowRoot!.querySelector(
 				'.base slot[name="trailing-meta"]'
 			);
 			await elementUpdated(element);
@@ -522,7 +518,7 @@ describe('vwc-menu-item', () => {
 		});
 
 		it('should render submenu slot', async function () {
-			const submenuSlotElement = element.shadowRoot?.querySelector(
+			const submenuSlotElement = element.shadowRoot!.querySelector(
 				'slot[name="submenu"]'
 			);
 			await elementUpdated(element);
@@ -531,14 +527,12 @@ describe('vwc-menu-item', () => {
 		});
 
 		it('should set aria-keyshortcuts when a kbd-shortcut is slotted', async function () {
-			element = (await fixture(
-				`<${COMPONENT_TAG} text="Copy">
+			element = fixture(`<${COMPONENT_TAG} text="Copy">
 					<vwc-kbd-shortcut slot="kbd-shortcut">
 						<vwc-kbd-key name="Control"></vwc-kbd-key>
 						<vwc-kbd-key name="C"></vwc-kbd-key>
 					</vwc-kbd-shortcut>
-				</${COMPONENT_TAG}>`
-			)) as MenuItem;
+				</${COMPONENT_TAG}>`) as MenuItem;
 			await elementUpdated(element);
 
 			expect(element.getAttribute('aria-keyshortcuts')).toBe('Control+C');
@@ -561,13 +555,13 @@ describe('vwc-menu-item', () => {
 			const connotation = Connotation.CTA;
 			const connotationClassExistsBeforeTheChange = getBaseElement(
 				element
-			)?.classList.contains(`connotation-${connotation}`);
+			).classList.contains(`connotation-${connotation}`);
 
 			element.connotation = connotation;
 			await elementUpdated(element);
 			const connotationClassExistsAfterChange = getBaseElement(
 				element
-			)?.classList.contains(`connotation-${connotation}`);
+			).classList.contains(`connotation-${connotation}`);
 
 			expect(connotationClassExistsBeforeTheChange).toEqual(false);
 			expect(connotationClassExistsAfterChange).toEqual(true);

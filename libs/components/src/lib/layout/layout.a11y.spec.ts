@@ -14,12 +14,12 @@ describe('vwc-layout', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(`
+		element = fixture(`
       <${COMPONENT_TAG}>
         <div style="border: 1px solid">test</div>
         <div style="border: 1px solid">test</div>
       </${COMPONENT_TAG}>
-    `)) as Layout;
+    `) as Layout;
 	});
 
 	it('should pass html a11y test', async () => {

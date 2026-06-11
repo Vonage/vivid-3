@@ -13,9 +13,9 @@ describe('a11y: vwc-tab', () => {
 	});
 
 	beforeEach(async () => {
-		const container = (await fixture(
+		const container = fixture(
 			`<div role="tablist"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
-		)) as HTMLDivElement;
+		) as HTMLDivElement;
 		element = container.querySelector(COMPONENT_TAG) as Tab;
 	});
 

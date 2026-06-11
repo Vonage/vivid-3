@@ -13,13 +13,13 @@ describe('a11y: vwc-data-grid-row', () => {
 	});
 
 	beforeEach(async () => {
-		const div = (await fixture(`
+		const div = fixture(`
       <div role="grid">
         <${COMPONENT_TAG}>
           <div role="gridcell"></div>
         </${COMPONENT_TAG}>
       </div>
-    `)) as HTMLDivElement;
+    `) as HTMLDivElement;
 		element = div.querySelector(COMPONENT_TAG) as DataGridRow;
 	});
 

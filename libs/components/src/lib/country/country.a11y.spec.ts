@@ -13,9 +13,9 @@ describe('a11y: vwc-country', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG} code="UK"></${COMPONENT_TAG}>`
-		)) as Country;
+		) as Country;
 	});
 
 	it('should pass html a11y test', async () => {

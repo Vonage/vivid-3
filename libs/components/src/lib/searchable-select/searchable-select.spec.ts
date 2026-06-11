@@ -7,7 +7,6 @@ import type { Popup } from '../popup/popup';
 import type { ListboxOption } from '../option/option';
 import type { Button } from '../button/button';
 import type { Icon } from '../icon/icon';
-import type { ProgressRing } from '../progress-ring/progress-ring';
 import { VividFoundationButton } from '../../shared/foundation/button';
 import {
 	allAriaPropertiesExcept,
@@ -66,12 +65,10 @@ describe('vwc-searchable-select', () => {
 		element.querySelector(`vwc-option[text="${text}"]`) as ListboxOption;
 
 	const getChevronIcon = () =>
-		element.shadowRoot!.querySelector('vwc-icon.chevron') as Icon | null;
+		element.shadowRoot!.querySelector<Icon>('vwc-icon.chevron');
 
 	const getProgressRing = () =>
-		element.shadowRoot!.querySelector(
-			'vwc-progress-ring'
-		) as ProgressRing | null;
+		element.shadowRoot!.querySelector('vwc-progress-ring');
 
 	const getTag = (label: string) =>
 		element.shadowRoot!.querySelector(
@@ -101,9 +98,7 @@ describe('vwc-searchable-select', () => {
 		option._highlighted;
 
 	const getVisibleOptions = () =>
-		Array.from(
-			element.querySelectorAll('vwc-option') as NodeListOf<ListboxOption>
-		)
+		Array.from(element.querySelectorAll('vwc-option'))
 			.filter((option) => !option.hidden && !option._isNotMatching)
 			.map((option) => option.text);
 
@@ -115,7 +110,7 @@ describe('vwc-searchable-select', () => {
 	const getAriaLiveRegionText = () =>
 		(
 			element.shadowRoot!.querySelector('[aria-live]') as HTMLElement
-		).textContent!.trim();
+		).textContent.trim();
 
 	const setUpFixture = async (template: string) => {
 		const root = fixture(template);
@@ -174,7 +169,7 @@ describe('vwc-searchable-select', () => {
 			await elementUpdated(element);
 
 			expect(
-				element.shadowRoot?.querySelector('label')!.textContent!.trim()
+				element.shadowRoot!.querySelector('label')!.textContent.trim()
 			).toBe('Label');
 		});
 	});
@@ -257,9 +252,7 @@ describe('vwc-searchable-select', () => {
 		});
 
 		it('should remove invalid values only after options are available', async () => {
-			const searchableSelect = document.createElement(
-				COMPONENT_TAG
-			) as SearchableSelect;
+			const searchableSelect = document.createElement(COMPONENT_TAG);
 			searchableSelect.multiple = true;
 			searchableSelect.values = ['apple', 'banana', 'potato'];
 			searchableSelect.innerHTML = `
@@ -461,7 +454,7 @@ describe('vwc-searchable-select', () => {
 			element.multiple = true;
 			element.values = ['banana', 'apple'];
 
-			const option = document.createElement(OPTION_TAG) as ListboxOption;
+			const option = document.createElement(OPTION_TAG);
 			option.value = 'durian';
 			option.text = 'Durian';
 			option.selected = true;
@@ -896,9 +889,9 @@ describe('vwc-searchable-select', () => {
 
 		describe('selectAll', () => {
 			const getSelectAll = () =>
-				element.shadowRoot!.querySelector(
+				element.shadowRoot!.querySelector<ListboxOption>(
 					'vwc-option[data-select-all]'
-				) as ListboxOption | null;
+				);
 
 			beforeEach(async () => {
 				element.multiple = true;
@@ -1201,7 +1194,7 @@ describe('vwc-searchable-select', () => {
 			await elementUpdated(element);
 
 			expect(
-				element.shadowRoot!.querySelector('.empty-message')!.textContent!.trim()
+				element.shadowRoot!.querySelector('.empty-message')!.textContent.trim()
 			).toBe('Loading...');
 		});
 	});
@@ -1384,7 +1377,7 @@ describe('vwc-searchable-select', () => {
 		});
 
 		it('should not throw when component is unconnected', async () => {
-			const element = document.createElement(COMPONENT_TAG) as SearchableSelect;
+			const element = document.createElement(COMPONENT_TAG);
 			expect(() => element.focus()).not.toThrow();
 		});
 	});
@@ -1548,7 +1541,7 @@ describe('vwc-searchable-select', () => {
 			await elementUpdated(element);
 
 			expect(
-				element.shadowRoot!.querySelector('.empty-message')!.textContent!.trim()
+				element.shadowRoot!.querySelector('.empty-message')!.textContent.trim()
 			).toBe('No options');
 		});
 
@@ -1561,7 +1554,7 @@ describe('vwc-searchable-select', () => {
 
 			expect(getVisibleOptions()).toEqual([]);
 			expect(
-				element.shadowRoot!.querySelector('.empty-message')!.textContent!.trim()
+				element.shadowRoot!.querySelector('.empty-message')!.textContent.trim()
 			).toBe('No options found');
 		});
 	});
@@ -1918,9 +1911,7 @@ describe('vwc-searchable-select', () => {
 
 	describe('initialValue', () => {
 		it('should initialize values to initialValue', async () => {
-			const component = document.createElement(
-				COMPONENT_TAG
-			) as SearchableSelect;
+			const component = document.createElement(COMPONENT_TAG);
 			component.innerHTML = `
 				<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
 				<${OPTION_TAG} value="banana" text="Banana"></${OPTION_TAG}>
@@ -1949,9 +1940,7 @@ describe('vwc-searchable-select', () => {
 
 	describe('initialValues', () => {
 		it('should initialize values to initialValues', async () => {
-			const component = document.createElement(
-				COMPONENT_TAG
-			) as SearchableSelect;
+			const component = document.createElement(COMPONENT_TAG);
 			component.innerHTML = `
 				<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
 				<${OPTION_TAG} value="banana" text="Banana"></${OPTION_TAG}>
@@ -2162,7 +2151,7 @@ describe('vwc-searchable-select', () => {
 
 	describe('maxItems', () => {
 		const getSelectionCount = () =>
-			element.shadowRoot?.querySelector('.selection-count');
+			element.shadowRoot!.querySelector('.selection-count');
 
 		it('should not display selection counter if maxItems is not set', async function () {
 			expect(getSelectionCount()).toBe(null);
@@ -2172,10 +2161,10 @@ describe('vwc-searchable-select', () => {
 			element.multiple = true;
 			element.maxSelected = 2;
 			await elementUpdated(element);
-			expect(getSelectionCount()!.textContent?.trim()).toBe('(0/2)');
+			expect(getSelectionCount()!.textContent.trim()).toBe('(0/2)');
 
 			await selectOption('Apple');
-			expect(getSelectionCount()!.textContent?.trim()).toBe('(1/2)');
+			expect(getSelectionCount()!.textContent.trim()).toBe('(1/2)');
 		});
 
 		it('remaining items should be disabled if maxItems limit is reached', async function () {

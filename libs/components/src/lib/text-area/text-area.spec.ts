@@ -36,9 +36,7 @@ describe('vwc-text-area', () => {
 	let element: TextArea;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TextArea;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as TextArea;
 	});
 
 	describe('basic', () => {
@@ -79,13 +77,13 @@ describe('vwc-text-area', () => {
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
-			const labelElement = element.shadowRoot?.querySelector('label');
+			const labelElement = element.shadowRoot!.querySelector('label');
 			expect(labelElement).toBeTruthy();
-			expect(labelElement?.textContent?.trim()).toEqual(labelText);
+			expect(labelElement!.textContent.trim()).toEqual(labelText);
 		});
 
 		it('should show label only if label is set', async function () {
-			const labelElement = element.shadowRoot?.querySelector('label');
+			const labelElement = element.shadowRoot!.querySelector('label');
 			expect(labelElement).toBeNull();
 		});
 	});
@@ -101,13 +99,13 @@ describe('vwc-text-area', () => {
 		it('should render char-count if attribute char-count and max-length are set', async function () {
 			element.maxlength = 20;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.char-count')).toBeTruthy();
 		});
 
 		it('should remove char count if max-length is not set', async function () {
 			element.toggleAttribute('max-length', false);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')).toBeNull();
+			expect(element.shadowRoot!.querySelector('.char-count')).toBeNull();
 		});
 
 		it('should render count with 0 if value is not set', async function () {
@@ -119,14 +117,14 @@ describe('vwc-text-area', () => {
 			const expectedDescription = 'You can enter up to 20 characters';
 
 			expect(
-				element.shadowRoot
-					?.querySelector('.char-count>span:first-of-type')
-					?.textContent?.trim()
+				element
+					.shadowRoot!.querySelector('.char-count>span:first-of-type')!
+					.textContent.trim()
 			).toEqual(expectedString);
 			expect(
-				element.shadowRoot
-					?.querySelector('.char-count #char-count-description')
-					?.textContent?.trim()
+				element
+					.shadowRoot!.querySelector('.char-count #char-count-description')!
+					.textContent.trim()
 			).toEqual(expectedDescription);
 		});
 
@@ -138,9 +136,9 @@ describe('vwc-text-area', () => {
 			const expectedString = '5 / 20';
 
 			expect(
-				element.shadowRoot
-					?.querySelector('.char-count>span')
-					?.textContent?.trim()
+				element
+					.shadowRoot!.querySelector('.char-count>span')!
+					.textContent.trim()
 			).toEqual(expectedString);
 		});
 
@@ -157,9 +155,9 @@ describe('vwc-text-area', () => {
 
 			const expectedMessage = 'You have 15 characters remaining';
 			expect(
-				element.shadowRoot
-					?.querySelector('.char-count #char-count-remaining')
-					?.textContent?.trim()
+				element
+					.shadowRoot!.querySelector('.char-count #char-count-remaining')!
+					.textContent.trim()
 			).toEqual(expectedMessage);
 
 			expect(spyClearTimeout).toHaveBeenCalled();
@@ -184,7 +182,7 @@ describe('vwc-text-area', () => {
 		it('should set autofocus on the input element', async function () {
 			element.autofocus = true;
 			await elementUpdated(element);
-			expect(getControlElement(element)?.hasAttribute('autofocus')).toEqual(
+			expect(getControlElement(element).hasAttribute('autofocus')).toEqual(
 				true
 			);
 		});

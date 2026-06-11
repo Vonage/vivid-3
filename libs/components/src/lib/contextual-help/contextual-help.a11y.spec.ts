@@ -13,9 +13,9 @@ describe('a11y: vwc-contextual-help', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as ContextualHelp;
+		) as ContextualHelp;
 	});
 
 	describe('a11y', () => {

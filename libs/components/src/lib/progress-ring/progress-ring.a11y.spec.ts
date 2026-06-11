@@ -13,9 +13,7 @@ describe('a11y: vwc-progress-ring', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as ProgressRing;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as ProgressRing;
 	});
 
 	it('should pass html a11y test', async () => {

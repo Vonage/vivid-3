@@ -62,7 +62,7 @@ describe('vwc-file-picker', () => {
 	function getErrorMessage(forFileAtIndex: number) {
 		return element
 			.shadowRoot!.querySelectorAll('.preview-list .error-message')
-			[forFileAtIndex]!.textContent!.trim();
+			[forFileAtIndex].textContent.trim();
 	}
 
 	function getRemoveButton(forFileAtIndex: number) {
@@ -106,9 +106,7 @@ describe('vwc-file-picker', () => {
 		});
 
 		it('should allow accessing the component in unmounted state and mounting later without error', async () => {
-			const unmountedElement = document.createElement(
-				COMPONENT_TAG
-			) as FilePicker;
+			const unmountedElement = document.createElement(COMPONENT_TAG);
 			unmountedElement.maxFileSize = 256;
 			unmountedElement.maxFiles = 1;
 			unmountedElement.accept = '.jpg';
@@ -306,12 +304,12 @@ describe('vwc-file-picker', () => {
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
-			const labelElement = element.shadowRoot?.querySelector('label');
-			expect(labelElement?.textContent?.trim()).toEqual(labelText);
+			const labelElement = element.shadowRoot!.querySelector('label');
+			expect(labelElement!.textContent.trim()).toEqual(labelText);
 		});
 
 		it('should show label element only if label is set', async function () {
-			const labelElement = element.shadowRoot?.querySelector('label');
+			const labelElement = element.shadowRoot!.querySelector('label');
 			expect(labelElement).toBeNull();
 		});
 	});
@@ -572,7 +570,7 @@ describe('vwc-file-picker', () => {
 	describe('default slot', function () {
 		it('should have a default slot', async () => {
 			expect(
-				element.shadowRoot?.querySelector('slot:not([name])')
+				element.shadowRoot!.querySelector('slot:not([name])')
 			).toBeTruthy();
 		});
 	});
@@ -966,9 +964,9 @@ describe('form associated vwc-file-picker', function () {
 	});
 
 	function getFormAssociatedErrorMessage(element: FilePicker) {
-		return element.shadowRoot
-			?.querySelector('vwc-feedback-message')
-			?.textContent?.trim();
+		return element
+			.shadowRoot!.querySelector('vwc-feedback-message')!
+			.textContent.trim();
 	}
 
 	it('should show custom error message when files are rejected', async () => {

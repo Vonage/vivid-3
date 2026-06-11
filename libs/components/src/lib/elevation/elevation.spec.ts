@@ -12,9 +12,7 @@ describe('vwc-elevation', () => {
 	let element: Elevation;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Elevation;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Elevation;
 	});
 
 	describe('basic', () => {
@@ -67,7 +65,7 @@ describe('vwc-elevation', () => {
 
 	it('should have a slot', async () => {
 		await elementUpdated(element);
-		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
+		expect(Boolean(element.shadowRoot!.querySelector('slot'))).toEqual(true);
 	});
 
 	describe('no position', () => {

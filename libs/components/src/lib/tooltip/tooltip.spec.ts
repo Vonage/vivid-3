@@ -20,14 +20,12 @@ describe('vwc-tooltip', () => {
 	let anchor: Button;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Tooltip;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Tooltip;
 		popup = getControlElement(element) as Popup;
-		anchor = (await fixture(
+		anchor = fixture(
 			'<vwc-button id="anchor"></vwc-button>',
 			ADD_TEMPLATE_TO_FIXTURE
-		)) as Button;
+		) as Button;
 	});
 
 	describe('basic', () => {
@@ -142,15 +140,13 @@ describe('vwc-tooltip', () => {
 
 	describe('kbd-shortcut slot', () => {
 		it('should set aria-keyshortcuts on anchor', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG} text="Copy">
+			element = fixture(`<${COMPONENT_TAG} text="Copy">
 					<button slot="anchor">Anchor</button>
 					<vwc-kbd-shortcut slot="kbd-shortcut">
 						<vwc-kbd-key name="Control"></vwc-kbd-key>
 						<vwc-kbd-key name="C"></vwc-kbd-key>
 					</vwc-kbd-shortcut>
-				</${COMPONENT_TAG}>`
-			)) as Tooltip;
+				</${COMPONENT_TAG}>`) as Tooltip;
 			await elementUpdated(element);
 
 			expect(
@@ -161,15 +157,13 @@ describe('vwc-tooltip', () => {
 		});
 
 		it('should cleanup aria-keyshortcuts from anchor', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG} text="Copy">
+			element = fixture(`<${COMPONENT_TAG} text="Copy">
 					<button slot="anchor">Anchor</button>
 					<vwc-kbd-shortcut slot="kbd-shortcut">
 						<vwc-kbd-key name="Control"></vwc-kbd-key>
 						<vwc-kbd-key name="C"></vwc-kbd-key>
 					</vwc-kbd-shortcut>
-				</${COMPONENT_TAG}>`
-			)) as Tooltip;
+				</${COMPONENT_TAG}>`) as Tooltip;
 			await elementUpdated(element);
 			const anchor = element.querySelector('[slot="anchor"]')!;
 
@@ -197,10 +191,10 @@ describe('vwc-tooltip', () => {
 		});
 
 		it('should append tooltip ID to a pre-existing aria-describedby', async () => {
-			const other = (await fixture(
+			const other = fixture(
 				'<vwc-button id="anchor2" aria-describedby="helper-text"></vwc-button>',
 				ADD_TEMPLATE_TO_FIXTURE
-			)) as Button;
+			) as Button;
 			element.anchor = other.id;
 			await elementUpdated(element);
 
@@ -218,10 +212,10 @@ describe('vwc-tooltip', () => {
 		});
 
 		it('should remove tooltip id from aria-describedby when anchor is removed', async () => {
-			const other = (await fixture(
+			const other = fixture(
 				'<vwc-button id="anchor3" aria-describedby="helper-text"></vwc-button>',
 				ADD_TEMPLATE_TO_FIXTURE
-			)) as Button;
+			) as Button;
 			element.anchor = other.id;
 			await elementUpdated(element);
 			element.anchor = undefined;

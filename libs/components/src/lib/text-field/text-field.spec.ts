@@ -57,9 +57,7 @@ describe('vwc-text-field', () => {
 	let element: TextField;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TextField;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as TextField;
 	});
 
 	describe('basic', () => {
@@ -121,7 +119,7 @@ describe('vwc-text-field', () => {
 			await elementUpdated(element);
 			const labelElement = getLabel();
 			expect(labelElement).toBeTruthy();
-			expect(labelElement?.textContent?.trim()).toEqual(labelText);
+			expect(labelElement.textContent.trim()).toEqual(labelText);
 		});
 
 		it('should show label only if label is set', async function () {
@@ -161,13 +159,13 @@ describe('vwc-text-field', () => {
 		it('should render char-count if attribute char-count and max-length are set', async function () {
 			element.maxlength = 20;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')).toBeTruthy();
+			expect(element.shadowRoot!.querySelector('.char-count')).toBeTruthy();
 		});
 
 		it('should remove char count if max-length is not set', async function () {
 			element.toggleAttribute('max-length', false);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')).toBeNull();
+			expect(element.shadowRoot!.querySelector('.char-count')).toBeNull();
 		});
 
 		it('should render count with 0 if value is not set', async function () {
@@ -179,14 +177,14 @@ describe('vwc-text-field', () => {
 			const expectedDescription = 'You can enter up to 20 characters';
 
 			expect(
-				element.shadowRoot
-					?.querySelector('.char-count>span:first-of-type')
-					?.textContent?.trim()
+				element
+					.shadowRoot!.querySelector('.char-count>span:first-of-type')!
+					.textContent.trim()
 			).toEqual(expectedString);
 			expect(
-				element.shadowRoot
-					?.querySelector('.char-count #char-count-description')
-					?.textContent?.trim()
+				element
+					.shadowRoot!.querySelector('.char-count #char-count-description')!
+					.textContent.trim()
 			).toEqual(expectedDescription);
 		});
 
@@ -198,9 +196,9 @@ describe('vwc-text-field', () => {
 			const expectedString = '5 / 20';
 
 			expect(
-				element.shadowRoot
-					?.querySelector('.char-count>span')
-					?.textContent?.trim()
+				element
+					.shadowRoot!.querySelector('.char-count>span')!
+					.textContent.trim()
 			).toEqual(expectedString);
 		});
 
@@ -217,9 +215,9 @@ describe('vwc-text-field', () => {
 
 			const expectedMessage = 'You have 15 characters remaining';
 			expect(
-				element.shadowRoot
-					?.querySelector('.char-count #char-count-remaining')
-					?.textContent?.trim()
+				element
+					.shadowRoot!.querySelector('.char-count #char-count-remaining')!
+					.textContent.trim()
 			).toEqual(expectedMessage);
 
 			expect(spyClearTimeout).toHaveBeenCalled();
@@ -244,13 +242,13 @@ describe('vwc-text-field', () => {
 		it('should set autofocus on the input element', async function () {
 			element.autofocus = true;
 			await elementUpdated(element);
-			expect(getInput()?.hasAttribute('autofocus')).toEqual(true);
+			expect(getInput().hasAttribute('autofocus')).toEqual(true);
 		});
 
 		it('should focus the input element when connected', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} autofocus></${COMPONENT_TAG}>`
-			)) as TextField;
+			) as TextField;
 			await elementUpdated(element);
 
 			expect(document.activeElement).toEqual(getInput());
@@ -261,7 +259,7 @@ describe('vwc-text-field', () => {
 		it('should set inputmode attribute on the input', async function () {
 			element.inputMode = 'tel';
 			await elementUpdated(element);
-			expect(getInput()?.getAttribute('inputmode')).toEqual('tel');
+			expect(getInput().getAttribute('inputmode')).toEqual('tel');
 		});
 	});
 
@@ -270,7 +268,7 @@ describe('vwc-text-field', () => {
 		it('should set placeholder attribute on the input', async function () {
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(getInput()?.getAttribute('placeholder')).toEqual(placeholderText);
+			expect(getInput().getAttribute('placeholder')).toEqual(placeholderText);
 		});
 
 		it('should set class placeholder to root', async function () {
@@ -287,7 +285,7 @@ describe('vwc-text-field', () => {
 		it('should set type attribute on the input', async function () {
 			element.type = typeText;
 			await elementUpdated(element);
-			expect(getInput()?.getAttribute('type')).toEqual(typeText);
+			expect(getInput().getAttribute('type')).toEqual(typeText);
 		});
 	});
 
@@ -297,7 +295,7 @@ describe('vwc-text-field', () => {
 		it('should set list attribute on the input', async function () {
 			element.list = dataListID;
 			await elementUpdated(element);
-			expect(getInput()?.getAttribute('list')).toEqual(dataListID);
+			expect(getInput().getAttribute('list')).toEqual(dataListID);
 		});
 	});
 
@@ -305,7 +303,7 @@ describe('vwc-text-field', () => {
 		it('should set spellcheck attribute on the input', async function () {
 			element.spellcheck = true;
 			await elementUpdated(element);
-			expect(getInput()?.hasAttribute('spellcheck')).toBe(true);
+			expect(getInput().hasAttribute('spellcheck')).toBe(true);
 		});
 	});
 
@@ -317,7 +315,7 @@ describe('vwc-text-field', () => {
 		it('should set maxlength attribute on the input', async function () {
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(getInput()?.getAttribute(propertyName)).toEqual(value);
+			expect(getInput().getAttribute(propertyName)).toEqual(value);
 		});
 
 		it('should set maxLength on proxy input', function () {
@@ -334,7 +332,7 @@ describe('vwc-text-field', () => {
 		it('should set minlength attribute on the input', async function () {
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(getInput()?.getAttribute(propertyName)).toEqual(value);
+			expect(getInput().getAttribute(propertyName)).toEqual(value);
 		});
 
 		it('should set minLength on proxy input', function () {
@@ -536,29 +534,29 @@ describe('vwc-text-field', () => {
 	describe('icon', function () {
 		it('should render the icon with name', async function () {
 			const iconExistsWithoutAttribute =
-				element.shadowRoot?.querySelector('vwc-icon');
+				element.shadowRoot!.querySelector('vwc-icon');
 			const iconName = 'home';
 			element.setAttribute('icon', iconName);
 			await elementUpdated(element);
-			const iconElement = element.shadowRoot?.querySelector('vwc-icon');
+			const iconElement = element.shadowRoot!.querySelector('vwc-icon');
 			expect(iconExistsWithoutAttribute).toBeFalsy();
 			expect(iconElement instanceof Icon).toEqual(true);
-			expect(iconElement?.getAttribute('name')).toEqual(iconName);
+			expect(iconElement!.getAttribute('name')).toEqual(iconName);
 		});
 		it('should set class has-icon when icon is set', async function () {
 			element.icon = 'home';
 			await elementUpdated(element);
-			const baseElementHasIconClass = element.shadowRoot
-				?.querySelector('.base')
-				?.classList.contains('has-icon');
+			const baseElementHasIconClass = element
+				.shadowRoot!.querySelector('.base')!
+				.classList.contains('has-icon');
 			expect(baseElementHasIconClass).toEqual(true);
 		});
 		it('should remove .no-leading class from .base if icon is set', async function () {
 			element.icon = 'home';
 			await elementUpdated(element);
-			const baseElementHasNoLeadingClass = element.shadowRoot
-				?.querySelector('.base')
-				?.classList.contains('no-leading');
+			const baseElementHasNoLeadingClass = element
+				.shadowRoot!.querySelector('.base')!
+				.classList.contains('no-leading');
 			expect(baseElementHasNoLeadingClass).toEqual(false);
 		});
 	});
@@ -586,7 +584,7 @@ describe('vwc-text-field', () => {
 
 	describe('slot', function () {
 		it('should have a slot name action-items', async function () {
-			const slotElement = element.shadowRoot?.querySelector(
+			const slotElement = element.shadowRoot!.querySelector(
 				'.base .fieldset slot[name="action-items"]'
 			);
 			expect(slotElement).toBeDefined();
@@ -599,15 +597,15 @@ describe('vwc-text-field', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementHasActionItemsClass = element.shadowRoot
-				?.querySelector('.base')
-				?.classList.contains('action-items');
+			const baseElementHasActionItemsClass = element
+				.shadowRoot!.querySelector('.base')!
+				.classList.contains('action-items');
 
 			expect(baseElementHasActionItemsClass).toEqual(true);
 		});
 
 		it('should have a slot name leading-action-items', async function () {
-			const slotElement = element.shadowRoot?.querySelector(
+			const slotElement = element.shadowRoot!.querySelector(
 				'.base .fieldset .leading-items-wrapper  slot[name="leading-action-items"]'
 			);
 			expect(slotElement).toBeDefined();
@@ -620,9 +618,9 @@ describe('vwc-text-field', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementHasActionItemsClass = element.shadowRoot
-				?.querySelector('.base')
-				?.classList.contains('leading-action-items');
+			const baseElementHasActionItemsClass = element
+				.shadowRoot!.querySelector('.base')!
+				.classList.contains('leading-action-items');
 
 			expect(baseElementHasActionItemsClass).toEqual(true);
 		});
@@ -634,9 +632,9 @@ describe('vwc-text-field', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementNoLeadingClass = element.shadowRoot
-				?.querySelector('.base')
-				?.classList.contains('no-leading');
+			const baseElementNoLeadingClass = element
+				.shadowRoot!.querySelector('.base')!
+				.classList.contains('no-leading');
 
 			expect(baseElementNoLeadingClass).toEqual(false);
 		});
@@ -676,9 +674,7 @@ describe('vwc-text-field', () => {
 		});
 
 		it('should do nothing when element is unconnected', async function () {
-			const unconnectedElement = document.createElement(
-				COMPONENT_TAG
-			) as TextField;
+			const unconnectedElement = document.createElement(COMPONENT_TAG);
 			expect(() => unconnectedElement.focus()).not.toThrow();
 		});
 	});

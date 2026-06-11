@@ -53,7 +53,7 @@ describe('renderInLightDom', () => {
 		}).define();
 
 		const element = fixture(`<dummy-2></dummy-2>`);
-		const nodes = element.querySelectorAll('div')!;
+		const nodes = element.querySelectorAll('div');
 
 		expect(nodes[0].textContent).toBe('Hello');
 		expect(nodes[1].textContent).toBe('Hello');

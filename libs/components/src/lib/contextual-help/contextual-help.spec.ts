@@ -8,9 +8,9 @@ describe('vwc-contextual-help', () => {
 	let element: ContextualHelp;
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as ContextualHelp;
+		) as ContextualHelp;
 	});
 
 	describe('basic', () => {

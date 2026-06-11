@@ -8,9 +8,7 @@ describe('vwc-country', () => {
 	let element: Country;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Country;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Country;
 	});
 
 	describe('basic', () => {
@@ -27,23 +25,23 @@ describe('vwc-country', () => {
 		it('should render vwc-icon with flag icon when code is set', async () => {
 			element.code = 'GB';
 			await elementUpdated(element);
-			const icon = element.shadowRoot?.querySelector('.icon vwc-icon');
+			const icon = element.shadowRoot!.querySelector('.icon vwc-icon');
 			expect(icon).toBeTruthy();
-			expect(icon?.getAttribute('name')).toBe('flag-united-kingdom');
+			expect(icon!.getAttribute('name')).toBe('flag-united-kingdom');
 		});
 
 		it('should resolve UK to flag-united-kingdom icon', async () => {
 			element.code = 'UK';
 			await elementUpdated(element);
-			const icon = element.shadowRoot?.querySelector('.icon vwc-icon');
-			expect(icon?.getAttribute('name')).toBe('flag-united-kingdom');
+			const icon = element.shadowRoot!.querySelector('.icon vwc-icon');
+			expect(icon!.getAttribute('name')).toBe('flag-united-kingdom');
 		});
 
 		it('should render code as display text when code is set', async () => {
 			element.code = 'GB';
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector('.text')?.textContent?.trim()
+				element.shadowRoot!.querySelector('.text')!.textContent.trim()
 			).toBe('GB');
 		});
 
@@ -51,7 +49,7 @@ describe('vwc-country', () => {
 			element.code = 'UK';
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector('.text')?.textContent?.trim()
+				element.shadowRoot!.querySelector('.text')!.textContent.trim()
 			).toBe('UK');
 		});
 
@@ -60,7 +58,7 @@ describe('vwc-country', () => {
 			element.label = 'Saint Helena';
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector('.text')?.textContent?.trim()
+				element.shadowRoot!.querySelector('.text')!.textContent.trim()
 			).toBe('Saint Helena');
 		});
 
@@ -69,7 +67,7 @@ describe('vwc-country', () => {
 			element.label = '';
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot?.querySelector('.text')?.textContent?.trim()
+				element.shadowRoot!.querySelector('.text')!.textContent.trim()
 			).toBe('GB');
 		});
 	});
@@ -77,7 +75,7 @@ describe('vwc-country', () => {
 	describe('icon slot', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				element.shadowRoot?.querySelector('slot[name="icon"]')
+				element.shadowRoot!.querySelector('slot[name="icon"]')
 			).toBeTruthy();
 		});
 	});

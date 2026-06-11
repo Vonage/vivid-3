@@ -13,9 +13,7 @@ describe('a11y: vwc-side-drawer', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as SideDrawer;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as SideDrawer;
 		await elementUpdated(element);
 	});
 

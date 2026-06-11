@@ -13,9 +13,9 @@ describe('a11y: vwc-breadcrumb-item', () => {
 	});
 
 	beforeEach(async () => {
-		const wrapper = (await fixture(
+		const wrapper = fixture(
 			`<div role="list"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
-		)) as HTMLDivElement;
+		) as HTMLDivElement;
 		element = wrapper.querySelector(COMPONENT_TAG) as BreadcrumbItem;
 	});
 

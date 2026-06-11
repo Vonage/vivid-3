@@ -8,9 +8,9 @@ describe('Table sorting button', () => {
 	let element: TableSortingButton;
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TableSortingButton;
+		) as TableSortingButton;
 	});
 
 	describe('direction attribute', () => {

@@ -13,10 +13,10 @@ describe('vwc-layout', () => {
 	let element: Layout;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}>
+		element = fixture(`<${COMPONENT_TAG}>
 									<div style="border: 1px solid">test</div>
 									<div style="border: 1px solid">test</div>
-								</${COMPONENT_TAG}>`)) as Layout;
+								</${COMPONENT_TAG}>`) as Layout;
 	});
 
 	describe('basic', () => {

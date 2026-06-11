@@ -30,9 +30,9 @@ describe('FormElement mixin', function () {
 	let instance: FormElementClass;
 
 	beforeEach(async function () {
-		instance = (await fixture(
+		instance = fixture(
 			'<form-element-class></form-element-class>'
-		)) as FormElementClass;
+		) as FormElementClass;
 	});
 
 	afterEach(function () {

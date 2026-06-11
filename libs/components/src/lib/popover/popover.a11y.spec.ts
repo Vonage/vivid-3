@@ -13,9 +13,7 @@ describe('a11y: vwc-popover', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Popover;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popover;
 	});
 
 	describe('a11y', () => {

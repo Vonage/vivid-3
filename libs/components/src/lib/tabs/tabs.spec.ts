@@ -6,7 +6,6 @@ import {
 import type { MockInstance } from 'vitest';
 import { Connotation } from '../enums';
 import type { Tab } from '../tab/tab';
-import type { TabPanel } from '../tab-panel/tab-panel';
 import { Tabs, TabsGutters } from './tabs';
 import '.';
 
@@ -14,7 +13,7 @@ const COMPONENT_TAG = 'vwc-tabs';
 
 describe('vwc-tabs', () => {
 	function getActiveIndicator() {
-		return element.shadowRoot?.querySelector(
+		return element.shadowRoot!.querySelector(
 			'.active-indicator'
 		) as HTMLElement;
 	}
@@ -22,7 +21,7 @@ describe('vwc-tabs', () => {
 	class TransitionEvent extends Event {
 		constructor(type: string, eventInitDict?: TransitionEventInit) {
 			super(type, eventInitDict);
-			this.propertyName = eventInitDict?.propertyName || '';
+			this.propertyName = eventInitDict!.propertyName || '';
 		}
 		propertyName: string;
 	}
@@ -36,7 +35,7 @@ describe('vwc-tabs', () => {
 
 			observer: HTMLElement | null = null;
 
-			constructor(callback: <T>(arg0: T) => void) {
+			constructor(callback: (arg0: unknown) => void) {
 				this.callback = callback;
 				// eslint-disable-next-line @typescript-eslint/no-this-alias
 				resizeObserver = this;
@@ -79,7 +78,7 @@ describe('vwc-tabs', () => {
 	let element: Tabs;
 
 	async function setupFixture(template: string) {
-		element = (await fixture(template)) as Tabs;
+		element = fixture(template) as Tabs;
 	}
 
 	async function setFixtureWithActiveId(activeid: string | null = 'apps') {
@@ -144,7 +143,7 @@ describe('vwc-tabs', () => {
 			expect(
 				getBaseElement(element).classList.contains(`orientation-${orientation}`)
 			).toBeFalsy();
-			element.orientation = orientation as any;
+			element.orientation = orientation;
 			await elementUpdated(element);
 			expect(
 				getBaseElement(element).classList.contains(`orientation-${orientation}`)
@@ -347,7 +346,7 @@ describe('vwc-tabs', () => {
 			const scrollWidth = 1320;
 			const scrollHeight = 660;
 			beforeEach(function () {
-				const tablistWrapper = element.shadowRoot?.querySelector(
+				const tablistWrapper = element.shadowRoot!.querySelector(
 					'.tablist-wrapper'
 				) as HTMLElement;
 				vi.spyOn(tablistWrapper, 'scrollWidth', 'get').mockImplementation(
@@ -412,7 +411,7 @@ describe('vwc-tabs', () => {
 				const offsetWidth = 200;
 				const scrollWidth = 1000;
 				function setTabListWrapper(scrollWidth: number) {
-					const tablistWrapper = element.shadowRoot?.querySelector(
+					const tablistWrapper = element.shadowRoot!.querySelector(
 						'.tablist-wrapper'
 					) as HTMLElement;
 					vi.spyOn(tablistWrapper, 'offsetWidth', 'get').mockImplementation(
@@ -447,7 +446,7 @@ describe('vwc-tabs', () => {
 				const offsetHeight = 200;
 				const scrollHeight = 1000;
 				function setTabListWrapper(scrollHeight: number) {
-					const tablistWrapper = element.shadowRoot?.querySelector(
+					const tablistWrapper = element.shadowRoot!.querySelector(
 						'.tablist-wrapper'
 					) as HTMLElement;
 					vi.spyOn(tablistWrapper, 'offsetHeight', 'get').mockImplementation(
@@ -858,11 +857,11 @@ describe('vwc-tabs', () => {
 	});
 
 	it('should initialise dynamically added tabs', async () => {
-		const newPanel = document.createElement('vwc-tab-panel') as TabPanel;
+		const newPanel = document.createElement('vwc-tab-panel');
 		newPanel.id = 'new-panel';
 		element.appendChild(newPanel);
 		await elementUpdated(element);
-		const newTab = document.createElement('vwc-tab') as Tab;
+		const newTab = document.createElement('vwc-tab');
 		newTab.label = 'New Tab';
 		element.appendChild(newTab);
 		await elementUpdated(element);
@@ -872,8 +871,8 @@ describe('vwc-tabs', () => {
 
 	describe('a11y attributes', () => {
 		it('should set the role of tablist on the tablist div', async () => {
-			const tablist = element.shadowRoot?.querySelector('.tablist');
-			expect(tablist?.getAttribute('role')).toBe('tablist');
+			const tablist = element.shadowRoot!.querySelector('.tablist');
+			expect(tablist!.getAttribute('role')).toBe('tablist');
 		});
 	});
 });

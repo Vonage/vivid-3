@@ -13,9 +13,9 @@ describe('a11y: vwc-accordion-item', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}><div>Accordion content</div></${COMPONENT_TAG}>`
-		)) as AccordionItem;
+		) as AccordionItem;
 	});
 
 	it('should pass html a11y test', async () => {

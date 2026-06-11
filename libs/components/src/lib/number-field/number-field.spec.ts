@@ -40,9 +40,7 @@ describe('vwc-number-field', () => {
 	}
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as NumberField;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as NumberField;
 		control = getControlElement(element) as HTMLInputElement;
 	});
 
@@ -104,13 +102,13 @@ describe('vwc-number-field', () => {
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
-			const labelElement = element.shadowRoot?.querySelector('label');
+			const labelElement = element.shadowRoot!.querySelector('label');
 			expect(labelElement).toBeTruthy();
-			expect(labelElement?.textContent?.trim()).toEqual(labelText);
+			expect(labelElement!.textContent.trim()).toEqual(labelText);
 		});
 
 		it('should show label only if label is set', async function () {
-			const labelElement = element.shadowRoot?.querySelector('label');
+			const labelElement = element.shadowRoot!.querySelector('label');
 			expect(labelElement).toBeNull();
 		});
 	});
@@ -582,7 +580,7 @@ describe('vwc-number-field', () => {
 
 		it('should advance value by 1 as default', async function () {
 			element.value = '10';
-			addButton?.click();
+			addButton!.click();
 			await elementUpdated(element);
 			expect(control.value).toEqual('11');
 		});
@@ -590,7 +588,7 @@ describe('vwc-number-field', () => {
 		it('should increment by step when clicking the add button', async function () {
 			element.value = '10';
 			element.step = 5;
-			addButton?.click();
+			addButton!.click();
 			await elementUpdated(element);
 			expect(control.value).toEqual('15');
 		});
@@ -598,7 +596,7 @@ describe('vwc-number-field', () => {
 		it('should subtract by step when clicking the add button', async function () {
 			element.value = '10';
 			element.step = 5;
-			subtractButton?.click();
+			subtractButton!.click();
 			await elementUpdated(element);
 			expect(control.value).toEqual('5');
 		});
@@ -619,7 +617,7 @@ describe('vwc-number-field', () => {
 
 		it('should set inert in disabled and readonly', async function () {
 			function isButtonsWrapperInert() {
-				return addButton.parentElement?.hasAttribute('inert');
+				return addButton.parentElement!.hasAttribute('inert');
 			}
 
 			element.readOnly = true;
@@ -842,47 +840,47 @@ describe('vwc-number-field', () => {
 
 		describe('add and subtract buttons', () => {
 			it('renders a localized "aria-label" on the add button', async () => {
-				const addButton = element.shadowRoot?.getElementById('add');
-				expect(addButton?.ariaLabel).toBe('Increase value');
+				const addButton = element.shadowRoot!.getElementById('add');
+				expect(addButton!.ariaLabel).toBe('Increase value');
 				element.step = 3;
 				await elementUpdated(element);
-				expect(addButton?.ariaLabel).toBe('Increase value by 3');
+				expect(addButton!.ariaLabel).toBe('Increase value by 3');
 			});
 
 			it('renders a localized "aria-label" on the subtract button', async () => {
-				const subtractButton = element.shadowRoot?.getElementById('subtract');
-				expect(subtractButton?.ariaLabel).toBe('Decrease value');
+				const subtractButton = element.shadowRoot!.getElementById('subtract');
+				expect(subtractButton!.ariaLabel).toBe('Decrease value');
 				element.step = 3;
 				await elementUpdated(element);
-				expect(subtractButton?.ariaLabel).toBe('Decrease value by 3');
+				expect(subtractButton!.ariaLabel).toBe('Decrease value by 3');
 			});
 
 			it('updates status announcement after clicking the button', async () => {
 				element.value = '5';
 				await elementUpdated(element);
 
-				const addButton = element.shadowRoot?.getElementById('add');
-				addButton?.click();
+				const addButton = element.shadowRoot!.getElementById('add');
+				addButton!.click();
 				await elementUpdated(element);
 
 				const annoucementEl =
-					element.shadowRoot?.getElementById('value-announcement');
-				expect(annoucementEl?.textContent?.trim()).toBe('Updated value: 6');
+					element.shadowRoot!.getElementById('value-announcement');
+				expect(annoucementEl!.textContent.trim()).toBe('Updated value: 6');
 			});
 
 			describe('aria overrides', () => {
 				it('renders the correct text for "aria-label" in the add button', async () => {
 					element.incrementButtonAriaLabel = 'Add label';
 					await elementUpdated(element);
-					const addButton = element.shadowRoot?.getElementById('add');
-					expect(addButton?.ariaLabel).toBe('Add label');
+					const addButton = element.shadowRoot!.getElementById('add');
+					expect(addButton!.ariaLabel).toBe('Add label');
 				});
 
 				it('renders the correct text for "aria-label" in the subtract button', async () => {
 					element.decrementButtonAriaLabel = 'Subtract label';
 					await elementUpdated(element);
-					const subtractButton = element.shadowRoot?.getElementById('subtract');
-					expect(subtractButton?.ariaLabel).toBe('Subtract label');
+					const subtractButton = element.shadowRoot!.getElementById('subtract');
+					expect(subtractButton!.ariaLabel).toBe('Subtract label');
 				});
 			});
 		});

@@ -12,9 +12,9 @@ describe('vwc-accordion-item', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}><div>Accordion content</div></${COMPONENT_TAG}>`
-		)) as AccordionItem;
+		) as AccordionItem;
 	});
 
 	describe('basic', () => {
@@ -41,7 +41,7 @@ describe('vwc-accordion-item', () => {
 	describe('click', () => {
 		let itemHeaderButton: HTMLButtonElement;
 		beforeEach(function () {
-			itemHeaderButton = element.shadowRoot?.querySelector(
+			itemHeaderButton = element.shadowRoot!.querySelector(
 				'.heading-button'
 			) as HTMLButtonElement;
 		});
@@ -62,17 +62,17 @@ describe('vwc-accordion-item', () => {
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
 			expect(
-				element.shadowRoot?.querySelector('slot[name="icon"]')
+				element.shadowRoot!.querySelector('slot[name="icon"]')
 			).toBeTruthy();
 		});
 
 		it('should render an icon when the icon property is set', async () => {
-			const secondChildWithoutIcon = element.shadowRoot?.querySelector(
+			const secondChildWithoutIcon = element.shadowRoot!.querySelector(
 				'.heading-button :nth-child(2)'
 			) as HTMLSpanElement;
 			element.icon = 'chat-solid';
 			await elementUpdated(element);
-			const secondChildWithIcon = element.shadowRoot?.querySelector(
+			const secondChildWithIcon = element.shadowRoot!.querySelector(
 				'.heading-button :nth-child(1)'
 			) as HTMLSpanElement;
 
@@ -80,13 +80,13 @@ describe('vwc-accordion-item', () => {
 			expect(secondChildWithoutIcon.classList).not.toContain('icon');
 			expect(secondChildWithIcon.classList).not.toContain('heading-content');
 			expect(
-				secondChildWithIcon.querySelector('vwc-icon')?.getAttribute('name')
+				secondChildWithIcon.querySelector('vwc-icon')!.getAttribute('name')
 			).toBe('chat-solid');
 		});
 
 		it('should render a trailing icon when the iconTrailing property is set', async () => {
 			const headerLastIcon = () =>
-				element.shadowRoot?.querySelector(
+				element.shadowRoot!.querySelector(
 					'vwc-icon:last-of-type'
 				) as HTMLElement;
 
@@ -106,19 +106,19 @@ describe('vwc-accordion-item', () => {
 	describe('no-indicator', () => {
 		it('should remove indicator', async () => {
 			const indicatorExistsOnInit =
-				!!element.shadowRoot?.querySelector('.icon');
+				!!element.shadowRoot!.querySelector('.icon');
 			element.noIndicator = true;
 			await elementUpdated(element);
 
 			expect(indicatorExistsOnInit).toBe(true);
-			expect(element.shadowRoot?.querySelector('.icon')).toBeNull();
+			expect(element.shadowRoot!.querySelector('.icon')).toBeNull();
 		});
 	});
 
 	describe('heading level', () => {
 		it('should update heading level', async () => {
 			const headerTag = () =>
-				element.shadowRoot?.querySelector(':first-child')?.tagName as string;
+				element.shadowRoot!.querySelector(':first-child')!.tagName;
 			const headerTagOnInit = headerTag();
 
 			element.headinglevel = 4;
@@ -132,7 +132,7 @@ describe('vwc-accordion-item', () => {
 	describe('heading', () => {
 		it('should have a heading slot', async () => {
 			expect(
-				element.shadowRoot?.querySelector('slot[name="heading"]')
+				element.shadowRoot!.querySelector('slot[name="heading"]')
 			).toBeTruthy();
 		});
 	});
@@ -142,14 +142,14 @@ describe('vwc-accordion-item', () => {
 			const metaText = 'Some meta text';
 			element.meta = metaText;
 			await elementUpdated(element);
-			const metaWrapper = element.shadowRoot?.querySelector('.meta');
-			const actualMetaText = metaWrapper?.textContent?.trim();
+			const metaWrapper = element.shadowRoot!.querySelector('.meta');
+			const actualMetaText = metaWrapper!.textContent.trim();
 			expect(actualMetaText).toEqual(metaText);
 		});
 
 		it('should have a meta slot', async () => {
 			expect(
-				element.shadowRoot?.querySelector('slot[name="meta"]')
+				element.shadowRoot!.querySelector('slot[name="meta"]')
 			).toBeTruthy();
 		});
 	});
@@ -161,11 +161,11 @@ describe('vwc-accordion-item', () => {
 			await elementUpdated(element);
 
 			const accordionButton =
-				element.shadowRoot?.querySelector('.heading-button');
-			const accordionRegion = element.shadowRoot?.querySelector('.region');
+				element.shadowRoot!.querySelector('.heading-button');
+			const accordionRegion = element.shadowRoot!.querySelector('.region');
 
-			expect(accordionButton?.classList.contains(`size-${size}`)).toBeTruthy();
-			expect(accordionRegion?.classList.contains(`size-${size}`)).toBeTruthy();
+			expect(accordionButton!.classList.contains(`size-${size}`)).toBeTruthy();
+			expect(accordionRegion!.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
 
@@ -176,29 +176,29 @@ describe('vwc-accordion-item', () => {
 			element.heading = 'Accordion item heading';
 			await elementUpdated(element);
 
-			const accordionButton = element.shadowRoot?.getElementById(TEST_ID);
-			const accordionRegion = element.shadowRoot?.getElementById(
+			const accordionButton = element.shadowRoot!.getElementById(TEST_ID);
+			const accordionRegion = element.shadowRoot!.getElementById(
 				`${TEST_ID}-panel`
 			);
 
-			expect(accordionButton?.getAttribute('aria-controls')).toBe(
+			expect(accordionButton!.getAttribute('aria-controls')).toBe(
 				`${TEST_ID}-panel`
 			);
-			expect(accordionRegion?.getAttribute('aria-labelledby')).toBe(TEST_ID);
+			expect(accordionRegion!.getAttribute('aria-labelledby')).toBe(TEST_ID);
 		});
 
 		it('should set aria-expanded to false when closed', async () => {
-			const button = element.shadowRoot?.querySelector('.heading-button');
-			expect(button?.getAttribute('aria-expanded')).toEqual('false');
+			const button = element.shadowRoot!.querySelector('.heading-button');
+			expect(button!.getAttribute('aria-expanded')).toEqual('false');
 		});
 
 		it('should set aria-expanded to true when expanded', async () => {
 			element.expanded = true;
 			await elementUpdated(element);
 
-			const button = element.shadowRoot?.querySelector('.heading-button');
+			const button = element.shadowRoot!.querySelector('.heading-button');
 
-			expect(button?.getAttribute('aria-expanded')).toEqual('true');
+			expect(button!.getAttribute('aria-expanded')).toEqual('true');
 		});
 	});
 });

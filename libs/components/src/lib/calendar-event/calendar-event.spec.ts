@@ -16,16 +16,14 @@ describe('vwc-calendar-event', () => {
 	let element: CalendarEvent;
 
 	const getCssPropertyValue = (prop: string) => {
-		const el = element.shadowRoot?.querySelector('.base') as HTMLElement;
+		const el = element.shadowRoot!.querySelector('.base') as HTMLElement;
 		return getComputedStyle(el).getPropertyValue(
 			`--vvd-calendar-event--${prop}`
 		);
 	};
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as CalendarEvent;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as CalendarEvent;
 	});
 
 	describe('basic', () => {
@@ -53,8 +51,8 @@ describe('vwc-calendar-event', () => {
 			element.heading = heading;
 			await elementUpdated(element);
 
-			const el = element.shadowRoot?.querySelector('h2');
-			expect(el?.textContent?.trim()).toEqual(heading);
+			const el = element.shadowRoot!.querySelector('h2');
+			expect(el!.textContent.trim()).toEqual(heading);
 		});
 
 		it('should set description to node', async () => {
@@ -62,8 +60,8 @@ describe('vwc-calendar-event', () => {
 			element.description = description;
 			await elementUpdated(element);
 
-			const el = element.shadowRoot?.querySelector('p');
-			expect(el?.textContent?.trim()).toEqual(description);
+			const el = element.shadowRoot!.querySelector('p');
+			expect(el!.textContent.trim()).toEqual(description);
 		});
 
 		it('should delegate "start" to custom property', async () => {
@@ -97,7 +95,7 @@ describe('vwc-calendar-event', () => {
 			element.connotation = connotation;
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector(
+			const base = element.shadowRoot!.querySelector(
 				`.base.connotation-${connotation}`
 			);
 			expect(base).toBeInstanceOf(Element);

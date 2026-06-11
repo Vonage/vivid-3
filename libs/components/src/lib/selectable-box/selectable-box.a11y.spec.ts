@@ -13,9 +13,7 @@ describe('a11y: vwc-selectable-box', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as SelectableBox;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as SelectableBox;
 	});
 
 	it('should pass html a11y test', async () => {
@@ -27,9 +25,9 @@ describe('a11y: vwc-selectable-box', () => {
 
 	describe('radio', () => {
 		it('should pass html a11y test', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} control-type="radio" aria-label="Box 1"></${COMPONENT_TAG}>`
-			)) as SelectableBox;
+			) as SelectableBox;
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();
@@ -47,9 +45,9 @@ describe('a11y: vwc-selectable-box', () => {
 
 		describe('radio', () => {
 			it('should pass html a11y test', async () => {
-				element = (await fixture(
+				element = fixture(
 					`<${COMPONENT_TAG} control-type="radio" aria-label="Box 1" clickable-box></${COMPONENT_TAG}>`
-				)) as SelectableBox;
+				) as SelectableBox;
 				await elementUpdated(element);
 
 				expect(await axe(element)).toHaveNoViolations();

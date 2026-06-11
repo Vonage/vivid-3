@@ -9,9 +9,7 @@ describe('vwc-divider', () => {
 	let element: Divider;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Divider;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Divider;
 	});
 
 	describe('basic', () => {
@@ -30,12 +28,12 @@ describe('vwc-divider', () => {
 
 	describe('orientation', function () {
 		it('should set the orientation class', async function () {
-			const base = element.shadowRoot?.querySelector('.base');
+			const base = element.shadowRoot!.querySelector('.base');
 			const orientation = 'vertical';
 			element.orientation = orientation;
 			await elementUpdated(element);
 
-			expect(base?.classList.contains(`${orientation}`)).toBeTruthy();
+			expect(base!.classList.contains(orientation)).toBeTruthy();
 		});
 
 		it('should set the aria-orientation attribute if role is separator', async () => {
@@ -59,12 +57,12 @@ describe('vwc-divider', () => {
 
 	describe('appearance', function () {
 		it('should set the appearance class', async function () {
-			const base = element.shadowRoot?.querySelector('.base');
+			const base = element.shadowRoot!.querySelector('.base');
 			const appearance = 'subtle';
 			element.appearance = Appearance.Subtle;
 			await elementUpdated(element);
 
-			expect(base?.classList.contains(`appearance-${appearance}`)).toBeTruthy();
+			expect(base!.classList.contains(`appearance-${appearance}`)).toBeTruthy();
 		});
 	});
 

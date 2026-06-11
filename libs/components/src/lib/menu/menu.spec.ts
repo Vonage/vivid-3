@@ -46,7 +46,7 @@ describe('vwc-menu', () => {
 
 	beforeEach(async () => {
 		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Menu;
-		popup = element.shadowRoot?.querySelector('vwc-popup') as Popup;
+		popup = element.shadowRoot!.querySelector('vwc-popup') as Popup;
 
 		anchor = fixture(
 			'<vwc-button id="anchorButton"></vwc-button>',
@@ -83,7 +83,7 @@ describe('vwc-menu', () => {
 		);
 
 		it('should not throw an error when setting open to true in unconnected state', async () => {
-			const menu = document.createElement(COMPONENT_TAG) as Menu;
+			const menu = document.createElement(COMPONENT_TAG);
 
 			expect(() => {
 				menu.open = true;
@@ -597,7 +597,7 @@ describe('vwc-menu', () => {
 
 	describe('menu header', () => {
 		it('should have header slot ', async function () {
-			const headerSlotElement = element.shadowRoot?.querySelector(
+			const headerSlotElement = element.shadowRoot!.querySelector(
 				'.header slot[name="header"]'
 			);
 
@@ -611,7 +611,7 @@ describe('vwc-menu', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementClasses = getBaseElement(element)?.classList;
+			const baseElementClasses = getBaseElement(element).classList;
 
 			expect(baseElementClasses).not.toContain('hide-header');
 		});
@@ -619,7 +619,7 @@ describe('vwc-menu', () => {
 
 	describe('menu actions', () => {
 		it('should have actions slot ', async function () {
-			const actionsSlotElement = element.shadowRoot?.querySelector(
+			const actionsSlotElement = element.shadowRoot!.querySelector(
 				'.action-items slot[name="actions"]'
 			);
 
@@ -633,7 +633,7 @@ describe('vwc-menu', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementClasses = getBaseElement(element)?.classList;
+			const baseElementClasses = getBaseElement(element).classList;
 
 			expect(baseElementClasses).not.toContain('hide-actions');
 		});
@@ -642,7 +642,7 @@ describe('vwc-menu', () => {
 	describe('menu items', () => {
 		it('should have default slot ', async function () {
 			const actionsSlotElement =
-				element.shadowRoot?.querySelector('.body slot');
+				element.shadowRoot!.querySelector('.body slot');
 
 			expect(actionsSlotElement).toBeDefined();
 		});
@@ -650,7 +650,7 @@ describe('vwc-menu', () => {
 		it('should set hide-body class on base if no items are slotted', async function () {
 			await elementUpdated(element);
 
-			const baseElementClasses = getBaseElement(element)?.classList;
+			const baseElementClasses = getBaseElement(element).classList;
 
 			expect(baseElementClasses).toContain('hide-body');
 		});
@@ -660,7 +660,7 @@ describe('vwc-menu', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementClasses = getBaseElement(element)?.classList;
+			const baseElementClasses = getBaseElement(element).classList;
 
 			expect(baseElementClasses).not.toContain('hide-body');
 		});
@@ -769,9 +769,9 @@ describe('vwc-menu', () => {
 		});
 
 		it('should gracefully fail when a menu item is checked synchronously after connecting the menu', async () => {
-			const menu = document.createElement(COMPONENT_TAG) as Menu;
-			const menuItem1 = document.createElement('vwc-menu-item') as MenuItem;
-			const menuItem2 = document.createElement('vwc-menu-item') as MenuItem;
+			const menu = document.createElement(COMPONENT_TAG);
+			const menuItem1 = document.createElement('vwc-menu-item');
+			const menuItem2 = document.createElement('vwc-menu-item');
 			menu.appendChild(menuItem1);
 			menu.appendChild(menuItem2);
 
@@ -843,7 +843,7 @@ describe('vwc-menu', () => {
 
 	function focusOutOfBody() {
 		const focusOutEvent = new FocusEvent('focusout');
-		const bodyElement = element.shadowRoot?.querySelector(
+		const bodyElement = element.shadowRoot!.querySelector(
 			'.body'
 		) as HTMLElement;
 		bodyElement.dispatchEvent(focusOutEvent);

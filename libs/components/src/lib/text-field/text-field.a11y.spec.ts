@@ -13,9 +13,7 @@ describe('a11y: vwc-text-field', () => {
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as TextField;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as TextField;
 	});
 
 	it('should pass html a11y test', async () => {

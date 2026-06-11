@@ -15,9 +15,9 @@ describe('vwc-breadcrumb-item', () => {
 	let element: BreadcrumbItem;
 
 	beforeEach(async () => {
-		element = (await fixture(
+		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as BreadcrumbItem;
+		) as BreadcrumbItem;
 	});
 
 	it('should be initialized as a vwc-breadcrumb-item', async () => {
@@ -42,7 +42,7 @@ describe('vwc-breadcrumb-item', () => {
 		element.text = breadcrumbText;
 		await elementUpdated(element);
 		const controlElement = getBaseElement(element);
-		expect(controlElement.textContent?.trim()).toEqual(breadcrumbText);
+		expect(controlElement.textContent.trim()).toEqual(breadcrumbText);
 	});
 
 	it('should set icon when "separator" is true', async function () {
@@ -72,9 +72,9 @@ describe('vwc-breadcrumb-item', () => {
 		const iconElement = controlElement.querySelector('vwc-icon') as Icon;
 		const anchorElement = controlElement.querySelector('a');
 
-		expect(anchorElement?.textContent?.trim()).toEqual(breadcrumbText);
-		expect((anchorElement as any)?.href).toEqual(element.href);
-		expect(iconElement?.name).toEqual('chevron-right-solid');
+		expect(anchorElement!.textContent.trim()).toEqual(breadcrumbText);
+		expect((anchorElement as any)!.href).toEqual(element.href);
+		expect(iconElement.name).toEqual('chevron-right-solid');
 	});
 
 	describe('bindings', () => {
@@ -98,7 +98,7 @@ describe('vwc-breadcrumb-item', () => {
 				await setProperty(element, attribute, text);
 
 				expect(
-					element.shadowRoot?.querySelector('a')?.getAttribute(attribute)
+					element.shadowRoot!.querySelector('a')!.getAttribute(attribute)
 				).toEqual(text);
 			});
 		});

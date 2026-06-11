@@ -16,7 +16,7 @@ describe('vwc-card', () => {
 	let element: Card;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Card;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Card;
 	});
 
 	describe('basic', () => {
@@ -40,10 +40,10 @@ describe('vwc-card', () => {
 			element.headline = headline;
 			await elementUpdated(element);
 
-			const headerTitle = element.shadowRoot?.querySelector('.header-headline');
-			expect(headerTitle?.textContent?.trim()).toEqual(headline);
-			expect(headerTitle?.id).toBe('card-headline');
-			expect(getBaseElement(element)?.getAttribute('aria-labelledby')).toBe(
+			const headerTitle = element.shadowRoot!.querySelector('.header-headline');
+			expect(headerTitle!.textContent.trim()).toEqual(headline);
+			expect(headerTitle!.id).toBe('card-headline');
+			expect(getBaseElement(element).getAttribute('aria-labelledby')).toBe(
 				'card-headline'
 			);
 		});
@@ -54,8 +54,8 @@ describe('vwc-card', () => {
 			await elementUpdated(element);
 
 			const headerSubtitle =
-				element.shadowRoot?.querySelector('.header-subtitle');
-			expect(headerSubtitle?.textContent?.trim()).toEqual(subtitle);
+				element.shadowRoot!.querySelector('.header-subtitle');
+			expect(headerSubtitle!.textContent.trim()).toEqual(subtitle);
 		});
 
 		it('should render headerContent if headline is set', async function () {
@@ -63,7 +63,7 @@ describe('vwc-card', () => {
 			await elementUpdated(element);
 
 			const headerContent =
-				element.shadowRoot?.querySelector('.header-content');
+				element.shadowRoot!.querySelector('.header-content');
 			expect(headerContent).toBeTruthy();
 		});
 
@@ -72,7 +72,7 @@ describe('vwc-card', () => {
 			await elementUpdated(element);
 
 			const subtitleContent =
-				element.shadowRoot?.querySelector('.header-content');
+				element.shadowRoot!.querySelector('.header-content');
 			expect(subtitleContent).toBeTruthy();
 		});
 
@@ -90,15 +90,15 @@ describe('vwc-card', () => {
 			element.headline = undefined;
 			element.subtitle = undefined;
 			await elementUpdated(element);
-			const baseElementHasNoHeader = element.shadowRoot
-				?.querySelector('.base')
-				?.classList.contains('hide-header');
+			const baseElementHasNoHeader = element
+				.shadowRoot!.querySelector('.base')!
+				.classList.contains('hide-header');
 
 			expect(baseElementHasNoHeader).toEqual(true);
 		});
 
 		it('should have slot name graphic with icon default', async () => {
-			const graphicSlotElement = element.shadowRoot?.querySelector(
+			const graphicSlotElement = element.shadowRoot!.querySelector(
 				'.header slot[name="graphic"]'
 			);
 
@@ -110,7 +110,7 @@ describe('vwc-card', () => {
 		});
 
 		it('should have meta slot ', async function () {
-			const metaSlotElement = element.shadowRoot?.querySelector(
+			const metaSlotElement = element.shadowRoot!.querySelector(
 				'.header-wrapper slot[name="meta"]'
 			);
 
@@ -124,9 +124,9 @@ describe('vwc-card', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementHasNoHeader = element.shadowRoot
-				?.querySelector('.base')
-				?.classList.contains('hide-header');
+			const baseElementHasNoHeader = element
+				.shadowRoot!.querySelector('.base')!
+				.classList.contains('hide-header');
 
 			expect(baseElementHasNoHeader).toEqual(false);
 		});
@@ -137,14 +137,14 @@ describe('vwc-card', () => {
 			const text = 'card text';
 			element.text = text;
 			await elementUpdated(element);
-			const textNode = element.shadowRoot?.querySelector('.text');
-			expect(textNode?.textContent?.trim()).toEqual(text);
+			const textNode = element.shadowRoot!.querySelector('.text');
+			expect(textNode!.textContent.trim()).toEqual(text);
 		});
 	});
 
 	describe('card body', () => {
 		it('should have body slot ', async function () {
-			const bodySlotElement = element.shadowRoot?.querySelector(
+			const bodySlotElement = element.shadowRoot!.querySelector(
 				'.body-wrapper slot[name="body"]'
 			);
 
@@ -158,9 +158,9 @@ describe('vwc-card', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementHasNoBody = element.shadowRoot
-				?.querySelector('.base')
-				?.classList.contains('hide-body');
+			const baseElementHasNoBody = element
+				.shadowRoot!.querySelector('.base')!
+				.classList.contains('hide-body');
 
 			expect(baseElementHasNoBody).toEqual(false);
 		});
@@ -168,7 +168,7 @@ describe('vwc-card', () => {
 
 	describe('card footer', () => {
 		it('should have footer slot ', async function () {
-			const footerSlotElement = element.shadowRoot?.querySelector(
+			const footerSlotElement = element.shadowRoot!.querySelector(
 				'.footer slot[name="footer"]'
 			);
 
@@ -182,9 +182,9 @@ describe('vwc-card', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementHasNoHeader = element.shadowRoot
-				?.querySelector('.base')
-				?.classList.contains('hide-footer');
+			const baseElementHasNoHeader = element
+				.shadowRoot!.querySelector('.base')!
+				.classList.contains('hide-footer');
 
 			expect(baseElementHasNoHeader).toEqual(false);
 		});
@@ -192,17 +192,17 @@ describe('vwc-card', () => {
 
 	describe('card appearance', function () {
 		it('should have elevation element wrapper when as default appearance or elevated', async function () {
-			const elevationTag = element.shadowRoot?.querySelector('vwc-elevation');
+			const elevationTag = element.shadowRoot!.querySelector('vwc-elevation');
 
 			expect(elevationTag).toBeTruthy();
-			expect(elevationTag?.getAttribute('dp')).toEqual('4');
+			expect(elevationTag!.getAttribute('dp')).toEqual('4');
 		});
 
 		it('should have no elevation element wrapper when appearance is ghost', async function () {
 			element.appearance = Appearance.Ghost;
 			await elementUpdated(element);
 
-			const elevationTag = element.shadowRoot?.querySelector('vwc-elevation');
+			const elevationTag = element.shadowRoot!.querySelector('vwc-elevation');
 
 			expect(elevationTag).toBeFalsy();
 		});
@@ -211,10 +211,10 @@ describe('vwc-card', () => {
 			element.appearance = Appearance.Outlined;
 			await elementUpdated(element);
 
-			const elevationTag = element.shadowRoot?.querySelector('vwc-elevation');
+			const elevationTag = element.shadowRoot!.querySelector('vwc-elevation');
 
 			expect(elevationTag).toBeTruthy();
-			expect(elevationTag?.getAttribute('dp')).toEqual('0');
+			expect(elevationTag!.getAttribute('dp')).toEqual('0');
 		});
 	});
 
@@ -222,9 +222,9 @@ describe('vwc-card', () => {
 		it('should have default elevation', async function () {
 			const defaultElevation = '4';
 
-			const baseElevation = element.shadowRoot?.querySelector('vwc-elevation');
+			const baseElevation = element.shadowRoot!.querySelector('vwc-elevation');
 
-			expect(baseElevation?.getAttribute('dp')).toEqual(defaultElevation);
+			expect(baseElevation!.getAttribute('dp')).toEqual(defaultElevation);
 		});
 
 		it('should change the elevation dp when there is elevation property', async () => {
@@ -246,7 +246,7 @@ describe('vwc-card', () => {
 		});
 
 		it('should render a card with href attribute as anchor element', async function () {
-			expect(getBaseElement(element)?.tagName).toEqual('A');
+			expect(getBaseElement(element).tagName).toEqual('A');
 		});
 
 		describe.each([
@@ -263,7 +263,7 @@ describe('vwc-card', () => {
 				await setProperty(element, attribute, text);
 
 				expect(
-					element.shadowRoot?.querySelector('a')?.getAttribute(attribute)
+					element.shadowRoot!.querySelector('a')!.getAttribute(attribute)
 				).toEqual(text);
 			});
 		});
@@ -281,8 +281,8 @@ describe('vwc-card', () => {
 		});
 
 		it('should render a card with clickable-card attribute as a button', async function () {
-			expect(getBaseElement(element)?.tagName).toEqual('BUTTON');
-			expect(getBaseElement(element)?.getAttribute('type')).toEqual('button');
+			expect(getBaseElement(element).tagName).toEqual('BUTTON');
+			expect(getBaseElement(element).getAttribute('type')).toEqual('button');
 		});
 
 		it('should associate header with button using aria-labelledby', async () => {
@@ -290,9 +290,9 @@ describe('vwc-card', () => {
 			element.headline = headline;
 			await elementUpdated(element);
 
-			const headerTitle = element.shadowRoot?.querySelector('.header-headline');
-			expect(headerTitle?.id).toBe('card-headline');
-			expect(getBaseElement(element)?.getAttribute('aria-labelledby')).toBe(
+			const headerTitle = element.shadowRoot!.querySelector('.header-headline');
+			expect(headerTitle!.id).toBe('card-headline');
+			expect(getBaseElement(element).getAttribute('aria-labelledby')).toBe(
 				'card-headline'
 			);
 		});

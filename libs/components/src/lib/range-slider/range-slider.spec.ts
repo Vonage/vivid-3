@@ -21,7 +21,7 @@ describe('vwc-range-slider', () => {
 		end: HTMLElement;
 	};
 	function getPopup(thumb: HTMLElement) {
-		const next = thumb.nextElementSibling as Popup;
+		const next = thumb.nextElementSibling as Popup | null;
 		if (next && next.classList.contains('popup')) {
 			return next;
 		}
@@ -35,10 +35,8 @@ describe('vwc-range-slider', () => {
 			top: 0,
 			left: 0,
 		} as DOMRect);
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as RangeSlider;
-		const [start, end] = element.shadowRoot?.querySelectorAll(
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as RangeSlider;
+		const [start, end] = element.shadowRoot!.querySelectorAll(
 			'.thumb-container'
 		) as unknown as HTMLElement[];
 		thumbs = {
@@ -151,7 +149,7 @@ describe('vwc-range-slider', () => {
 				element.connotation = connotation;
 				await elementUpdated(element);
 				expect(
-					getControlElement(element)?.classList.contains(
+					getControlElement(element).classList.contains(
 						`connotation-${connotation}`
 					)
 				).toEqual(true);
@@ -161,9 +159,9 @@ describe('vwc-range-slider', () => {
 
 	describe('start', () => {
 		it('should initialize to min', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} min="5"></${COMPONENT_TAG}>`
-			)) as RangeSlider;
+			) as RangeSlider;
 			await elementUpdated(element);
 
 			expect(element.start).toBe('5');
@@ -220,9 +218,9 @@ describe('vwc-range-slider', () => {
 
 	describe('end', () => {
 		it('should initialize to max', async () => {
-			element = (await fixture(
+			element = fixture(
 				`<${COMPONENT_TAG} max="5"></${COMPONENT_TAG}>`
-			)) as RangeSlider;
+			) as RangeSlider;
 			await elementUpdated(element);
 
 			expect(element.end).toBe('5');
@@ -304,8 +302,8 @@ describe('vwc-range-slider', () => {
 			element.valueTextFormatter = (value) => `${value} bits`;
 			await elementUpdated(element);
 
-			expect(getPopup(thumbs.start)!.textContent!.trim()).toBe('0 bits');
-			expect(getPopup(thumbs.end)!.textContent!.trim()).toBe('10 bits');
+			expect(getPopup(thumbs.start)!.textContent.trim()).toBe('0 bits');
+			expect(getPopup(thumbs.end)!.textContent.trim()).toBe('10 bits');
 		});
 
 		it('should show corresponding popup when hovering over thumb', async () => {
