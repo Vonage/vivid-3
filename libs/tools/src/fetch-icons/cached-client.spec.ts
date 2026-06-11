@@ -5,7 +5,8 @@ import { Client } from 'figma-js';
 import { hash } from 'ohash';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { logger, writeJson } from '../shared';
+import { logger } from '../shared/logger.util';
+import { writeJson } from '../shared/write-json.util';
 
 vi.mock('figma-js');
 vi.mock('ohash');

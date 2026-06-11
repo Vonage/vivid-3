@@ -11,6 +11,7 @@ import { readWorkspaceManifest } from '@pnpm/workspace.read-manifest';
 import { writeFile } from 'fs/promises';
 import { readProjectManifestOnly } from '@pnpm/read-project-manifest';
 import { getCatalogsFromWorkspaceManifest } from '@pnpm/catalogs.config';
+import { logger } from './shared/logger.util';
 import path from 'node:path';
 
 const moveManifestToDist = async (
@@ -65,7 +66,7 @@ const moveManifestToDist = async (
 		JSON.stringify(packageJson, undefined, 2)
 	);
 
-	process.stdout.write(
+	logger.debug(
 		`Package.json was successfully copied to ${distDir} with updated paths and dependencies.\n`
 	);
 };

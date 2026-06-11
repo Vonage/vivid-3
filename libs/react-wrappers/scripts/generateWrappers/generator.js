@@ -40,6 +40,7 @@ import {
 	mapType,
 } from './prop.types.js';
 import { writeFileSync, readFileSync } from 'fs';
+import { logger } from '@repo/tools/shared/logger';
 
 const generateTypings = (outputDir) => async (tags) => {
 	const distTs = join(FileName.tempFolder, FileName.tempTsFolder);
@@ -148,7 +149,7 @@ export const generateWrappers =
 			const componentName = getComponentName(tag);
 			components.push(componentName);
 			if (verbose) {
-				console.info(`Processing ${componentName}...`);
+				logger.debug(`Processing ${componentName}...`);
 			}
 			tag.events = [
 				...(tag.events || []),
@@ -197,7 +198,7 @@ export const generateWrappers =
 		prepareDir(filePath(FileName.tempFolder), cleanTemp, verbose);
 
 		if (verbose) {
-			console.info(`${components.length} wrappers generated at ${outputDir}`);
+			logger.debug(`${components.length} wrappers generated at ${outputDir}`);
 		}
 	};
 
@@ -344,7 +345,7 @@ export const generateWrappersV3 =
 			);
 
 			if (verbose) {
-				console.info(`${componentName}... v3`);
+				logger.debug(`${componentName}... v3`);
 			}
 		}
 

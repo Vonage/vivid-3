@@ -23,6 +23,7 @@
 		"@repo/eslint-config": "workspace:*",
 		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
+		"@repo/vite-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"custom-elements-manifest": "^2.1.0",
 		"glob": "catalog:",

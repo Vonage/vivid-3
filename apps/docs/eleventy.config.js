@@ -182,6 +182,7 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addPlugin(EleventyVitePlugin.default, {
 		tempFolderName: '.11ty-vite',
 		viteOptions: {
+			logLevel: 'warn',
 			plugins: [
 				vue({
 					template: {
@@ -231,8 +232,7 @@ module.exports = async (eleventyConfig) => {
 			css: {
 				preprocessorOptions: {
 					scss: {
-						api: 'modern-compiler', // not yet supported, instead silence warnings:
-						// silenceDeprecations: ['legacy-js-api'],
+						api: 'modern-compiler',
 						importers: [new NodePackageImporter()],
 					},
 				},
@@ -444,7 +444,7 @@ module.exports = async (eleventyConfig) => {
 
 	eleventyConfig.on('eleventy.after', async ({ dir, runMode }) => {
 		if (runMode === 'serve') {
-			spawnSync('pnpm', ['pagefind', '--site', dir.output], {
+			spawnSync('pnpm', ['pagefind', '--quiet', '--site', dir.output], {
 				windowsHide: true,
 				stdio: [process.stdin, process.stdout, process.stderr],
 			});

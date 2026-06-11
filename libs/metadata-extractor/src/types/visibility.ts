@@ -1,6 +1,6 @@
 import { Node, SyntaxKind } from 'ts-morph';
 import { hasJSDocTag } from './jsdoc';
-import { logger } from '@repo/tools';
+import { logger } from '@repo/tools/shared/logger';
 
 export function isPrivateOrInternal(node: Node): boolean {
 	if (Node.isScoped(node)) {

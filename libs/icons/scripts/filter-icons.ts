@@ -1,4 +1,4 @@
-import type { NodeFilterFunction } from '@repo/tools';
+import type { NodeFilterFunction } from '@repo/tools/fetch-icons/types';
 
 export const allIcons: NodeFilterFunction = (node, path) => {
 	if (!Array.isArray(path)) return false;

@@ -13,7 +13,7 @@ export default defineConfig({
 			'**/.{idea,cache,output,temp}/**',
 			'**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,stylelint,prettier,playwright,cem}.config.*',
 		],
-		reporters: ['default'],
+		reporters: ['minimal'],
 		coverage: {
 			include: ['src/**/*.{ts,tsx,js,jsx,mts,cts,mjs,cjs}'],
 			exclude: [
@@ -31,7 +31,7 @@ export default defineConfig({
 				'**/.{eslint,mocha,prettier}rc.{?(c|m)js,yml}',
 			],
 			allowExternal: true, // This will collect coverage from other packages in the monorepo. For built packages, source maps are required for this to work
-			reporter: ['text', 'json'],
+			reporter: ['json'],
 			provider: 'v8',
 			reportOnFailure: true,
 		},

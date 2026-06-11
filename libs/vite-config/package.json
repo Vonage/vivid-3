@@ -1,0 +1,21 @@
+{
+	"name": "@repo/vite-config",
+	"version": "1.0.0",
+	"private": true,
+	"exports": {
+		"./base": {
+			"types": "./dist/base.d.ts",
+			"import": "./dist/base.mjs",
+			"require": "./dist/base.js"
+		}
+	},
+	"scripts": {
+		"build": "vite build"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "workspace:*"
+	},
+	"peerDependencies": {
+		"vite": "catalog:"
+	}
+}

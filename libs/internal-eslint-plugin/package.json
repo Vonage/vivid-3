@@ -21,6 +21,7 @@
 		"@microsoft/fast-element": "catalog:",
 		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
+		"@repo/vite-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@typescript-eslint/utils": "^8.59.2",
 		"eslint": "catalog:",

@@ -1,6 +1,6 @@
 import { defineConfig, mergeConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import baseViteConfig from '@repo/vite-config/base';
+import baseViteConfig from './src/base';
 
 export default mergeConfig(
 	baseViteConfig,
@@ -13,11 +13,11 @@ export default mergeConfig(
 
 		build: {
 			lib: {
-				entry: ['src/jsdom-config.ts', 'src/node-config.ts'],
+				entry: ['src/base.ts'],
 				formats: ['es', 'cjs'],
 			},
 			rolldownOptions: {
-				external: ['vitest/config'],
+				external: ['vite'],
 			},
 		},
 	})

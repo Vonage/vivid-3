@@ -1,4 +1,4 @@
-import { logger } from '@repo/tools';
+import { logger } from '@repo/tools/shared/logger';
 import { camelCase } from 'change-case';
 
 /**

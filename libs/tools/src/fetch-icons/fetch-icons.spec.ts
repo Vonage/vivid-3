@@ -3,16 +3,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchIcons } from './fetch-icons';
 import { getClient } from './cached-client';
 import { walk } from 'figmash';
-import {
-	chunkify,
-	logger,
-	readJson,
-	retry,
-	writeFile,
-	writeJson,
-} from '../shared';
 import isSvg from 'is-svg';
 import { createIconEntry } from './create-icon-entry';
+import { chunkify } from '../shared/chunk-array.util';
+import { retry } from '../shared/retry.util';
+import { writeJson } from '../shared/write-json.util';
+import { logger } from '../shared/logger.util';
+import { writeFile } from '../shared/write-file.util';
+import { readJson } from '../shared/read-json.util';
 
 vi.mock('node:path', async () => {
 	const actual = await vi.importActual('node:path');

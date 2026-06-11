@@ -1,4 +1,6 @@
-import { createIconEntry, fetchIcons, writeFile } from '@repo/tools';
+import { createIconEntry } from '@repo/tools/fetch-icons/create-icon-entry';
+import { fetchIcons } from '@repo/tools/fetch-icons/fetch-icons';
+import { writeFile } from '@repo/tools/shared/write-file';
 import 'dotenv/config';
 import { svg } from './svg.output';
 import { createBrandIconEntry } from './create-brand-icon-entry';
