@@ -6,6 +6,24 @@ import { RteBoldFeature } from '../bold';
 const features = [new RteBase(), new RteBoldFeature(), new RteToolbarFeature()];
 
 describe('RteHistoryFeature', () => {
+	it('should hide undo and redo toolbar buttons when historyToolbarButtons is false', async () => {
+		const rte = await setup([
+			new RteBase({ historyToolbarButtons: false }),
+			new RteBoldFeature(),
+			new RteToolbarFeature(),
+		]);
+
+		expect(rte.toolbarButton('Undo')).toBeNull();
+		expect(rte.toolbarButton('Redo')).toBeNull();
+	});
+
+	it('should show undo and redo toolbar buttons by default', async () => {
+		const rte = await setup(features);
+
+		expect(rte.toolbarButton('Undo')).not.toBeNull();
+		expect(rte.toolbarButton('Redo')).not.toBeNull();
+	});
+
 	it('should undo changes with Mod-z and redo them with Ctrl-y or Cmd+Shift+z', async () => {
 		const rte = await setup(features);
 

@@ -2,6 +2,7 @@ import { featureFacade, RteFeatureImpl } from '../feature';
 import type { RteInstanceImpl } from '../instance';
 import type { RteBasePublicInterface } from '../public-interface';
 import { RteCoreImpl } from './internal/core';
+import { RteHistoryFeatureImpl } from './internal/history';
 import { RteBasicTextBlocksImpl } from './internal/basic-text-blocks';
 import { RteInputRulesFeatureImpl } from './internal/input-rules';
 
@@ -10,6 +11,7 @@ export type RteBaseConfig = {
 	heading2?: boolean;
 	heading3?: boolean;
 	paragraph?: boolean;
+	historyToolbarButtons?: boolean;
 };
 
 export class RteBaseImpl extends RteFeatureImpl {
@@ -38,6 +40,9 @@ export class RteBaseImpl extends RteFeatureImpl {
 		return [
 			this,
 			new RteCoreImpl(),
+			new RteHistoryFeatureImpl({
+				showToolbarButtons: this.config?.historyToolbarButtons ?? true,
+			}),
 			new RteBasicTextBlocksImpl({
 				heading1: this.config?.heading1 ?? false,
 				heading2: this.config?.heading2 ?? false,
