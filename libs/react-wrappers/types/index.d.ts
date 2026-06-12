@@ -808,6 +808,7 @@ declare namespace JSX {
 				alternate: boolean;
 				placement: Placement | undefined;
 				'animation-frame': boolean;
+				'shift-cross-axis': boolean;
 				strategy: Strategy | undefined;
 				offset: number | null;
 			}>;
