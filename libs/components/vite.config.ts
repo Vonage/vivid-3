@@ -86,7 +86,7 @@ export default mergeConfig(
 					'date-fns',
 					'uuid',
 					/^vanilla-colorful/,
-					/^video\.js/,
+					'video.js', // json locale files are bundled since consumers may not support the json import
 				],
 				input,
 				output: [
