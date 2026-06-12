@@ -13,6 +13,7 @@
 );
 @use '@repo/shared/mixins/appearance' as appearance;
 @use '@repo/tokens/scss/size.variables' as size;
+@use '@repo/shared/mixins/motion' as motion;
 
 $alert-transition-delay: --transition-delay;
 
@@ -30,6 +31,12 @@ $alert-transition-delay: --transition-delay;
 	transition:
 		opacity 150ms cubic-bezier(0, 0, 0.2, 1) 0ms,
 		transform 150ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+
+	// Open/close visibility is driven by the `transitionend` event, so collapse the
+	// duration rather than removing the transition — the event must still fire.
+	@include motion.reduce-motion {
+		transition-duration: 0.01ms;
+	}
 
 	&.placement-top,
 	&.placement-top-start,

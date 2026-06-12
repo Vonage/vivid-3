@@ -5,6 +5,7 @@
 @use '@repo/shared/mixins/focus' as focus;
 @use '@repo/shared/mixins/focus' as focus-variables;
 @use '@repo/shared/mixins/scrollbar' as scrollbar;
+@use '@repo/shared/mixins/motion' as motion;
 @forward '../../shared/patterns/form-elements/with-contextual-help';
 
 $low-ink-color: --_low-ink-color;
@@ -52,7 +53,10 @@ $low-ink-color: --_low-ink-color;
 	inline-size: 100%;
 	min-block-size: 52px;
 	outline: none;
-	transition: all 0.3s ease;
+
+	@include motion.motion-safe {
+		transition: all 0.3s ease;
+	}
 
 	.upload-text {
 		display: flex;
@@ -62,7 +66,10 @@ $low-ink-color: --_low-ink-color;
 		isolation: isolate;
 		pointer-events: none;
 		text-align: center;
-		transition: all 0.3s ease;
+
+		@include motion.motion-safe {
+			transition: all 0.3s ease;
+		}
 	}
 
 	&.disabled {
@@ -135,10 +142,13 @@ $low-ink-color: --_low-ink-color;
 }
 
 .upload-icon {
-	animation: subtle-pulse 2s ease-in-out infinite;
 	color: var(#{constants.$vvd-color-cta-600});
 	pointer-events: none; // Allow clicks to pass through to parent
-	transition: all 0.3s ease;
+
+	@include motion.motion-safe {
+		animation: subtle-pulse 2s ease-in-out infinite;
+		transition: all 0.3s ease;
+	}
 
 	@media (hover: hover) {
 		.control:hover & {
