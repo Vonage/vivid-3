@@ -303,6 +303,7 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 							shouldReturnFocusToEditor: true,
 						});
 						popover = rte.createComponent(Popover);
+						popover.kind = 'imageOptions';
 						popover.offset = 4;
 						const content = createDiv(ctx, {
 							className: 'inline-image-popover',
