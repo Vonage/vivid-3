@@ -1,4 +1,5 @@
 @use 'partials/variables' as variables;
+@use '@repo/shared/mixins/motion' as motion;
 @use '@repo/shared/mixins/focus' as focus;
 @use '@repo/shared/mixins/focus' as focus-variables;
 @use '@repo/tokens/scss/tokens.constants' as constants;
@@ -82,7 +83,10 @@
 	block-size: var(#{variables.$checked-indicator-size});
 	inline-size: var(#{variables.$checked-indicator-size});
 	margin-inline-start: auto;
-	transition: all 0.2s ease-in-out 0s;
+
+	@include motion.motion-safe {
+		transition: all 0.2s ease-in-out 0s;
+	}
 
 	.control:not(.appearance-filled) & {
 		background-color: var(#{appearance.get-appearance-token(outline)});
