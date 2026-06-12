@@ -41,6 +41,12 @@
 			"cache": false,
 			"persistent": true
 		},
+		"@repo/studio#dev": {
+			"dependsOn": ["^build"],
+			"cache": false,
+			"persistent": true,
+			"passThroughEnv": ["ANTHROPIC_API_KEY", "VIVID_STUDIO_AI_MODEL"]
+		},
 		"@vonage/vivid#dev": {
 			"dependsOn": ["build"],
 			"cache": false,
