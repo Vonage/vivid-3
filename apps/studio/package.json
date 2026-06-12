@@ -8,6 +8,8 @@
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --max-warnings=0 --fix",
 		"preview": "vite preview",
+		"test": "vitest run",
+		"test:watch": "vitest",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
@@ -24,9 +26,12 @@
 		"@codemirror/view": "catalog:",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
 		"@types/node": "catalog:",
 		"codemirror": "catalog:",
+		"jsdom": "^28.1.0",
 		"typescript": "catalog:",
-		"vite": "catalog:"
+		"vite": "catalog:",
+		"vitest": "catalog:"
 	}
 }

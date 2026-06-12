@@ -4,5 +4,5 @@
 		"types": ["node"],
 		"lib": ["es2022", "dom", "dom.iterable"]
 	},
-	"include": ["src/**/*.ts", "vite.config.ts"]
+	"include": ["src/**/*.ts", "vite.config.ts", "vitest.config.ts"]
 }
