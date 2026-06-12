@@ -1,5 +1,4 @@
 @use '@repo/tokens/scss/tokens.constants' as constants;
-@use '@repo/shared/mixins/motion' as motion;
 
 @mixin chevron() {
 	.chevron {
@@ -7,10 +6,7 @@
 		flex-shrink: 0;
 		font: var(#{constants.$vvd-typography-base-extended});
 		transform: rotate(0);
-
-		@include motion.motion-safe {
-			transition: transform 0.2s;
-		}
+		transition: transform 0.2s;
 
 		:host([data-expanded='true']) &,
 		:host([open]) & {
