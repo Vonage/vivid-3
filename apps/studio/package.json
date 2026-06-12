@@ -1,0 +1,37 @@
+{
+	"name": "@repo/studio",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "vite build",
+		"dev": "vite",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --max-warnings=0 --fix",
+		"preview": "vite preview",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@repo/styles": "workspace:*",
+		"@vonage/vivid": "workspace:*"
+	},
+	"devDependencies": {
+		"@anthropic-ai/sdk": "^0.102.0",
+		"@codemirror/commands": "^6.10.3",
+		"@codemirror/lang-html": "catalog:",
+		"@codemirror/language": "catalog:",
+		"@codemirror/state": "catalog:",
+		"@codemirror/theme-one-dark": "catalog:",
+		"@codemirror/view": "catalog:",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"@types/node": "catalog:",
+		"codemirror": "catalog:",
+		"jsdom": "^28.1.0",
+		"typescript": "catalog:",
+		"vite": "catalog:",
+		"vitest": "catalog:"
+	}
+}
