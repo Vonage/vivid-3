@@ -58,6 +58,9 @@ export class Popup extends VividElement {
 		let middleware = [
 			inline(),
 			placementStrategyMiddlewares[this.placementStrategy],
+			shift({
+				crossAxis: this.shiftCrossAxis,
+			}),
 			hide(),
 			size({
 				apply({ availableWidth, availableHeight, elements }) {
@@ -67,7 +70,6 @@ export class Popup extends VividElement {
 					});
 				},
 			}),
-			shift(),
 		];
 		let offsetValue = this.offset ?? 0;
 		if (this.arrow) {
@@ -171,6 +173,22 @@ export class Popup extends VividElement {
 	 * @internal
 	 */
 	animationFrameChanged() {
+		this.#updateAutoUpdate();
+	}
+
+	/**
+	 * Whether shift can be applied on the cross axis, which may lead to the popup overlapping the anchor.
+	 *
+	 * @public
+	 * HTML Attribute: shift-cross-axis
+	 */
+	@attr({ mode: 'boolean', attribute: 'shift-cross-axis' }) shiftCrossAxis =
+		false;
+
+	/**
+	 * @internal
+	 */
+	shiftCrossAxisChanged() {
 		this.#updateAutoUpdate();
 	}
 
