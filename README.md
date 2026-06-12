@@ -17,7 +17,7 @@
 <br>
 <br>
 
-> Vivid philosophy favors lock-down over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline help keep integration processes ergonomic and the UI consistent.
+> Vivid philosophy favors lock-down over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree). This guideline helps keep integration processes ergonomic and the UI consistent.
 
 <br>
 
@@ -30,7 +30,7 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 ### Getting started
 
-#### Generator a new component
+#### New component generator
 
 `pnpm turbo gen component`
 

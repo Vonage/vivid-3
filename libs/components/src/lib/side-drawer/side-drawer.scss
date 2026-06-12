@@ -3,6 +3,7 @@
 @use '@repo/tokens/scss/tokens.constants' as constants;
 @use '@repo/shared/mixins/scrollbar' as scrollbar;
 @use '@repo/shared/mixins/scrim' as scrim-mixins;
+@use '@repo/shared/mixins/motion' as motion;
 
 :host {
 	display: block;
@@ -66,7 +67,7 @@ $inline-size: 280px;
 		}
 	}
 
-	@media (prefers-reduced-motion: no-preference) {
+	@include motion.motion-safe {
 		transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 }
