@@ -22,9 +22,6 @@
 		"test:coverage": "vitest run --coverage && relativize-coverage .",
 		"typecheck": "tsc --noEmit"
 	},
-	"dependencies": {
-		"eslint-plugin-vue": "^10.9.1"
-	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/tools": "workspace:*",
