@@ -1,4 +1,195 @@
-module.exports = {
-	layout: 'article.njk',
-	parent: 'Design Tokens',
+const tsx = require('tsx/cjs/api');
+const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const unregister = tsx.register();
+
+const {
+	styleDictionary,
+} = require('../../../../libs/design-tokens/scripts/style-dictionary');
+
+function computeElevationCss(rawValue) {
+	if (Array.isArray(rawValue)) {
+		return {
+			cssFilter: rawValue
+				.map(
+					(stop) =>
+						`drop-shadow(${stop.offsetX}px ${stop.offsetY}px ${stop.blur}px ${stop.color?.hex || stop.color})`
+				)
+				.join(' '),
+		};
+	}
+	if (
+		rawValue &&
+		typeof rawValue === 'object' &&
+		'bg' in rawValue &&
+		'gradient' in rawValue
+	) {
+		const bg = rawValue.bg?.hex || rawValue.bg;
+		const gradient = rawValue.gradient?.hex || rawValue.gradient;
+		return {
+			cssBackground: `linear-gradient(${gradient}, ${gradient}), ${bg}`,
+			surfaceBg: bg,
+		};
+	}
+	return {};
+}
+
+async function buildDarkTokenMap() {
+	const tokenBase = path.resolve(__dirname, '../../../../libs/design-tokens/src');
+	let sd = await styleDictionary.init();
+	sd = await sd.extend({
+		source: [
+			`${tokenBase}/global/**/*.dtcg.json`,
+			`${tokenBase}/theme/dark/**/*.dtcg.json`,
+		],
+	});
+	const cssTokens = await sd.getPlatformTokens('css');
+	const darkMap = new Map();
+
+	for (const tokenName of sd.tokenMap.keys()) {
+		const cleanName = tokenName.replace(/[{}]/gm, '').replace(/\.DEFAULT/g, '');
+		const cssToken = cssTokens.tokenMap.get(tokenName);
+		const rawValue = cssToken.$value;
+
+		const entry = { previewDark: rawValue?.hex || rawValue };
+
+		if (cleanName.startsWith('elevation.')) {
+			const { cssFilter, cssBackground, surfaceBg } = computeElevationCss(rawValue);
+			if (cssFilter !== undefined) entry.cssFilterDark = cssFilter;
+			if (cssBackground !== undefined) entry.cssBackgroundDark = cssBackground;
+			if (surfaceBg !== undefined) entry.surfaceBgDark = surfaceBg;
+		}
+
+		darkMap.set(cleanName, entry);
+	}
+	return darkMap;
+}
+
+async function getTokens() {
+	let styleDictionaryInstance = await styleDictionary.init();
+	const tokenBase = path.resolve(__dirname, '../../../../libs/design-tokens/src');
+	styleDictionaryInstance = await styleDictionaryInstance.extend({
+		source: [
+			`${tokenBase}/global/**/*.dtcg.json`,
+			`${tokenBase}/theme/light/**/*.dtcg.json`,
+		],
+	});
+
+	const [cssTokens, flutterTokens, darkTokenMap] = await Promise.all([
+		styleDictionaryInstance.getPlatformTokens('css'),
+		styleDictionaryInstance.getPlatformTokens('flutter'),
+		buildDarkTokenMap(),
+	]);
+
+	const output = {};
+
+	const elements = ['bg', 'fill', 'surface', 'text', 'border'];
+	const roles = [
+		'neutral',
+		'primary',
+		'announcement',
+		'info',
+		'success',
+		'warning',
+		'danger',
+		'inverse',
+	];
+	const prominences = ['strong', 'subtle', 'secondary', 'tertiary'];
+	const states = ['hover', 'active', 'selected', 'disabled', 'error', 'valid'];
+	const scales = ['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'];
+
+	for (const tokenName of styleDictionaryInstance.tokenMap.keys()) {
+		const cssToken = cssTokens.tokenMap.get(tokenName);
+		const flutterToken = flutterTokens.tokenMap.get(tokenName);
+		const cleanName = tokenName.replace(/[{}]/gm, '').replace(/\.DEFAULT/g, '');
+		const nameArr = cleanName.split('.');
+		const element = nameArr.filter((part) => elements.includes(part)).join('-');
+		const role = nameArr.filter((part) => roles.includes(part)).join('-');
+		const prominence = nameArr
+			.filter((part) => prominences.includes(part))
+			.join('-');
+		const state = nameArr.filter((part) => states.includes(part)).join('-');
+		const foundScale = nameArr.find((part) => scales.includes(part));
+		const scale = foundScale || nameArr[2];
+		const category = nameArr[0];
+		const semantic = nameArr[1];
+		const subGroup =
+			nameArr[2] !== scale
+				? nameArr[2]
+				: category === 'control' && foundScale && nameArr.length > 3
+					? nameArr[2]
+					: null;
+
+		const originalValue = cssToken.original?.$value;
+		const reference =
+			typeof originalValue === 'string' && originalValue.startsWith('{')
+				? originalValue
+				: undefined;
+
+		const rawValue = cssToken.$value;
+		const { cssFilter, cssBackground, surfaceBg } = computeElevationCss(rawValue);
+		const dark = darkTokenMap.get(cleanName) ?? {};
+
+		const entry = {
+			name: cleanName,
+			category,
+			tokenType: cssToken.$extensions?.tokenType,
+			element,
+			role,
+			prominence,
+			state,
+			semantic,
+			scale,
+			description: cssToken.$description ?? '',
+			type: cssToken.$type,
+			css: cssToken.name,
+			flutter: flutterToken.name,
+			preview: rawValue?.hex || rawValue,
+			previewDark: dark.previewDark,
+			reference,
+			cssFilter,
+			cssBackground,
+			surfaceBg,
+			cssFilterDark: dark.cssFilterDark,
+			cssBackgroundDark: dark.cssBackgroundDark,
+			surfaceBgDark: dark.surfaceBgDark,
+		};
+
+		const categoryGroup = (output[category] ??= {});
+		const semanticGroup = (categoryGroup[semantic] ??= []);
+
+		semanticGroup.push(entry);
+		if (cssToken.$type === 'typography') {
+			semanticGroup[nameArr[nameArr.length - 1]] = entry;
+		} else if (scale && isNaN(Number(scale)) && subGroup !== scale) {
+			semanticGroup[scale] = entry;
+		}
+		if (subGroup) {
+			const subArray = (semanticGroup[subGroup] ??= []);
+			subArray.push(entry);
+			if (scale) subArray[nameArr[nameArr.length - 1]] = entry;
+		}
+	}
+
+	const elevSemanticColors = [];
+	for (const semantic of ['color', 'flat', 'raised', 'floating', 'overlay', 'extension1', 'extension2', 'extension3']) {
+		const group = output?.elevation?.[semantic];
+		if (!Array.isArray(group)) continue;
+		for (const item of group) {
+			if (item?.type === 'color') elevSemanticColors.push(item);
+		}
+	}
+	if (output.elevation) output.elevation.semanticColors = elevSemanticColors;
+
+	return output;
+}
+
+module.exports = async function () {
+	const tokens = await getTokens();
+
+	return {
+		layout: 'article.njk',
+		parent: 'Design Tokens',
+		tokens,
+	};
 };

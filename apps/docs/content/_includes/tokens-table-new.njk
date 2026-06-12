@@ -1,0 +1,873 @@
+{% macro heading(text, level="1", hidden='') %}
+<div class="heading-wrapper h2 {{hidden}}" data-pagefind-weight="1">
+	<h{{ level }} id="{{ text | kebabCase }}" data-pagefind-weight="1">{{ text }}</h{{ level }}>
+	<a class="anchor" href="#{{ text | kebabCase }}" aria-labelledby="{{ text | kebabCase }}"><vwc-icon name="link-solid"></vwc-icon></a>
+</div>
+{% endmacro %}
+
+{% macro tokensList(list, preview, headingText="{token group}", headlingLevel = "5") %}
+<div class="token-group">
+	{{ heading(headingText, headingLevel, 'hidden') }}
+	{% for item in list %}
+			{{ preview(item) }}
+	{% endfor %}
+	</div>
+{% endmacro %}
+
+{% macro preview(item) %}
+  <div class="token-preview" style="background-color: {{ item.preview }}; color: contrast-color({{ item.preview }})">
+		<div>{{ item.css | replace('viv-color-', '') }}</div><div>{{ item.preview }}</div>
+	</div>
+{% endmacro %}
+
+<style>
+.hidden {
+	position:absolute;
+	clip: rect(0 0 0 0);
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.token-group {
+	padding-block-end: 16px;
+}
+
+.token-preview {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px;
+	font-weight: 500;
+}
+
+.token-preview::before {
+    position: absolute;
+    z-index: -1;
+    background-color: inherit;
+    background-image: linear-gradient(45deg, var(--vvd-color-neutral-50) 25%, transparent 25%), linear-gradient(135deg, var(--vvd-color-neutral-50) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--vvd-color-neutral-50) 75%), linear-gradient(135deg, transparent 75%, var(--vvd-color-neutral-50) 75%);
+    background-position: 0 0, 10px 0, 10px -10px, 0 10px;
+    background-size: 20px 20px;
+    content: "";
+    inset: 0;
+    opacity: 1;
+}
+
+.token-preview--typography {
+	justify-content: flex-start;
+	text-align: left;
+}
+
+.token-preview-box {
+	width: 3rem;
+	height: 3rem;
+}
+
+.token-preview-box--shadow {
+	border-radius: 8px;
+}
+
+.token-preview-box--radius {
+	border: 0 solid var(--vvd-color-neutral-500);
+	border-width: 1px 1px 0 0;
+}
+
+.token-preview-density {
+	border: 1px solid var(--vvd-color-neutral-500);
+	border-width: 1px 0;
+	color: var(--vvd-color-neutral-500);
+}
+
+.token-preview-size {
+	background-color: var(--vvd-color-neutral-200);
+}
+</style>
+
+{% macro colorScaleExample(list, colorScale, scaleItem, startIndex = 0, endIndex = 0, rangeLabel = '', alpha = false) %}
+  {% set valid = [] %}
+
+  {% for item in list %}
+    {% if item.preview %}
+      {% if alpha %}
+        {% if item.preview | length == 9 and not item.preview.endsWith('ff') %}
+          {% set valid = valid.concat([item]) %}
+        {% endif %}
+      {% else %}
+        {% if item.preview | length == 7 or (item.preview | length == 9 and item.preview.endsWith('ff')) %}
+          {% set valid = valid.concat([item]) %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% set count = valid | length %}
+
+  <div class="scale-example {% if rangeLabel %}scale-example--has-range{% endif %}">
+    <div class="scale-inner" style="max-width: calc({{ count }} * 61px + {{ (count - 1) * 4 }}px);">
+      {{ colorScale(valid, scaleItem, alpha) }}
+
+      {% if rangeLabel and count > 0 %}
+        {% set gapPx = 4 %}
+        {% set totalGapPx = (count - 1) * gapPx %}
+        {% set spanCount = endIndex - startIndex + 1 %}
+        {% set spanGaps = endIndex - startIndex %}
+        <div class="scale-range"
+             style="left: calc({{ startIndex }} * ((100% - {{ totalGapPx }}px) / {{ count }} + {{ gapPx }}px)); width: calc({{ spanCount }} * (100% - {{ totalGapPx }}px) / {{ count }} + {{ spanGaps * gapPx }}px);">
+          <span class="scale-range__label">{{ rangeLabel }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
+
+{% macro colorScale(list, scaleItem, alpha = false) %}
+  {% set valid = [] %}
+
+  {% for item in list %}
+    {% if item.preview and (item.preview | length == 7 or item.preview.endsWith('ff') or (alpha and item.preview | length == 9 and not item.preview.endsWith('ff'))) %}
+      {% set valid = valid.concat([item]) %}
+    {% endif %}
+  {% endfor %}
+
+  <div class="color-scale">
+    {% for item in valid %}
+      {{ scaleItem(item, loop.index0) }}
+    {% endfor %}
+  </div>
+
+  {% if not alpha %}
+    <div class="color-scale">
+      {% for item in valid | reverse %}
+        {{ scaleItem(item, loop.index0) }}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro scaleItem(item, i = '0') %}
+  <div class="scale-item">
+		<div class="scale-item-inner" style="background-color: {{ item.preview }}; color: contrast-color({{ item.preview }})">
+      {{ i }}
+    </div>
+  </div>
+{% endmacro %}
+
+<style>
+	.scale-example {
+		margin-block-start: 4px;
+		padding: 1.5rem;
+		border-radius: 8px;
+		background-color: var(--vvd-color-neutral-tint-50);
+		border: 1px solid var(--vvd-color-neutral-tint-200);
+	}
+
+	/* Extra space only when range is present */
+	.scale-example--has-range .scale-inner {
+		padding-block-start: 1rem;
+	}
+
+	.scale-inner {
+		position: relative;
+		width: 100%;
+	}
+
+	.scale-range {
+		position: absolute;
+		top: 0px;
+		height: 2px;
+		background: currentColor;
+		text-align: center;
+		overflow: visible;
+
+		&::before, &:after {
+			content: '';
+			display: inline-block;
+			position: absolute;
+			height: 8px;
+			inset-block-end: -8px;
+		}
+
+		&::before {
+			inset-inline-start: 0;   
+			border-inline-start: 2px solid var(--vvd-color-cta-500);
+		}
+
+		&::after {
+			inset-inline-end: 0;
+			border-inline-end: 2px solid var(--vvd-color-cta-500);
+		}
+	}
+
+	.scale-range__label {
+		position: relative;
+		top: -0.66rem;
+		left: 0;
+		white-space: nowrap;
+		font-size: 14px;
+		background-color: var(--vvd-color-neutral-tint-50);
+		padding: 0 4px;
+	}
+
+	.color-scale {
+		display: flex;
+		flex-wrap: nowrap;
+		gap: 4px;
+		width: 100%;
+	}
+
+	.color-scale:first-of-type {
+		margin-block-end: 4px;
+	}
+
+	.scale-item {
+		position: relative;
+		flex: 1 1 0;
+		aspect-ratio: 1 / 1;
+		min-width: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 500;
+		max-width: 61px;
+	}
+
+	.scale-item-inner {
+		position: absolute;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 12px;
+	}
+
+	.scale-item::before {
+    position: absolute;
+    z-index: 0;
+		background-color: #f0f0f0;
+    background-image: linear-gradient(45deg, var(--vvd-color-neutral-800) 25%, transparent 25%), linear-gradient(135deg, var(--vvd-color-neutral-800) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--vvd-color-neutral-800) 75%), linear-gradient(135deg, transparent 75%, var(--vvd-color-neutral-800) 75%);
+    background-position: 0 0, 8px 0, 8px -8px, 0 8px;
+    background-size: 16px 16px;
+    content: "";
+    inset: 0;
+    opacity: 1;
+}
+</style>
+
+{% macro spacingTokensTable(list) %}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell style="width: 120px;">Preview</vwc-table-header-cell>
+			<vwc-table-header-cell class="token-name">Token</vwc-table-header-cell>
+			<vwc-table-header-cell class="px">Description</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		{% for item in list %}
+			<vwc-table-row>
+				<vwc-table-cell>
+					<div class="space-preview" style="inline-size: {{ item.preview }}; block-size: {{ item.preview }};"></div>
+				</vwc-table-cell>
+				<vwc-table-cell><code>{{ item.css | replace('viv-size-', '') }}</code></vwc-table-cell>
+				<vwc-table-cell>{{ item.description }}</vwc-table-cell>
+			</vwc-table-row>
+		{% endfor %}
+	</vwc-table-body>
+</vwc-table>
+{% endmacro %}
+
+<style>
+	.align-number {
+		text-align: right;
+	}
+	.token-name {
+		width: 220px;
+	}
+	.space-preview {
+		height: 16px;
+		background-color: var(--vvd-color-cta-500);
+	}
+</style>
+
+{% macro typescaleTable(list) %}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell style="width: 165px;">Token</vwc-table-header-cell>
+			<vwc-table-header-cell style="width: 45%">Preview</vwc-table-header-cell>
+			<vwc-table-header-cell>Description</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		{% for item in list | reverse %}
+			{% if item.type == 'typography' %}
+				<vwc-table-row>
+					<vwc-table-cell style="vertical-align: top;"><code>{{ item.css | replace('viv-text-', '') }}</code></vwc-table-cell>
+					<vwc-table-cell style="vertical-align: top;">
+						{% set fontValue = item.preview.fontWeight ~ ' ' ~ item.preview.fontStretch ~ ' ' ~ item.preview.fontSize ~ '/' ~ item.preview.lineHeight ~ ' ' ~ item.preview.fontFamily %}
+						<div style="font: {{ fontValue }}">
+							The quick brown fox jumps over the lazy dog{% if 'body-' in item.css %}, then darts across the meadow in search of adventure. Along the way, it weaves between tall grasses, skirts around a bubbling stream, and pauses briefly beneath the shade of an ancient oak tree.{% endif %}
+						</div>
+					</vwc-table-cell>
+					<vwc-table-cell style="vertical-align: top;">{{ item.description }}</vwc-table-cell>
+				</vwc-table-row>
+			{% endif %}
+		{% endfor %}
+	</vwc-table-body>
+</vwc-table>
+{% endmacro %}
+
+{% macro colorTokenTable(list, headingText, headingLevel = 3) %}
+{{ heading(headingText, headingLevel) }}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell></vwc-table-header-cell>
+			<vwc-table-header-cell>Token</vwc-table-header-cell>
+			<vwc-table-header-cell>Description</vwc-table-header-cell>
+			<vwc-table-header-cell>Output value</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		{% for item in list %}
+			<vwc-table-row>
+				<vwc-table-cell style="width: 4rem;">
+					{{ colorTokenPreview(item) }}
+				</vwc-table-cell>
+				<vwc-table-cell style="width: 18rem;"><code>{{ item.css | replace('viv-color-', '') | replace('action-', '') }}</code></vwc-table-cell>
+				<vwc-table-cell>{{ item.description }}</vwc-table-cell>	
+				<vwc-table-cell style="width: 8rem;"><code>{{ item.preview }}</code></vwc-table-cell>
+			</vwc-table-row>
+		{% endfor %}
+	</vwc-table-body>
+</vwc-table>
+<!-- <pre>{{ list | json }}</pre> -->
+{% endmacro %}
+
+{% macro colorTokenPreview(item) %}
+	{% set dark = item.previewDark or item.preview %}
+	{% if 'text' in item.name %}
+		<div class="color-token-preview-text">
+			<vwc-tooltip text="{{ item.preview }}" placement="left">
+				<div slot="anchor" class="color-token-preview-text"
+					data-light-preview="{{ item.preview }}"
+					data-dark-preview="{{ dark }}"
+					data-preview-prop="color"
+					style="color: {{ item.preview }}; background-color: contrast-color({{ item.preview }})">Aa</div>
+			</vwc-tooltip>
+		</div>
+	{% elif item.tokenType == 'color/background' %}
+		<div class="color-token-preview-bg">
+			<vwc-tooltip text="{{ item.preview }}" placement="left">
+				<div slot="anchor"
+					data-light-preview="{{ item.preview }}"
+					data-dark-preview="{{ dark }}"
+					data-preview-prop="backgroundColor"
+					style="background-color: {{ item.preview }}; border: 1px solid light-dark(var(--vvd-color-neutral-200), var(--vvd-color-neutral-800))"></div>
+			</vwc-tooltip>
+		</div>
+	{% elif '.border' in item.name %}
+		<div class="color-token-preview-border">
+			<vwc-tooltip text="{{ item.preview }}" placement="left">
+				<div slot="anchor" class="color-token-preview-border"
+					data-light-preview="{{ item.preview }}"
+					data-dark-preview="{{ dark }}"
+					data-preview-prop="borderColor"
+					style="border: 2px solid {{ item.preview }};"></div>
+			</vwc-tooltip>
+		</div>
+	{% elif item.type == 'color' %}
+		<div class="color-token-preview-bg">
+			<vwc-tooltip text="{{ item.preview }}" placement="left">
+				<div slot="anchor"
+					data-light-preview="{{ item.preview }}"
+					data-dark-preview="{{ dark }}"
+					data-preview-prop="backgroundColor"
+					style="background-color: {{ item.preview }}; border: 1px solid light-dark(var(--vvd-color-neutral-300), var(--vvd-color-neutral-600));"></div>
+			</vwc-tooltip>
+		</div>
+	{% else %}
+		<pre>{{ item | json }}</pre>
+	{% endif %}
+{% endmacro %}
+
+<style>
+	.color-token-preview-bg, .color-token-preview-border {
+		position: relative;
+		width: 1.5rem;
+		height: 1.5rem;
+		border-radius: 2px;
+	}
+
+	.color-token-preview-text {
+		font-size: 1.25rem;
+		font-weight: 500;
+		line-height: 2rem;
+		display: inline-block;
+		padding: 0 0.125rem;
+		border-radius: 4px;
+	}
+
+	.color-token-preview-bg::before {
+    position: absolute;
+    z-index: 0;
+		background-color: #f0f0f0;
+    background-image: linear-gradient(45deg, var(--vvd-color-neutral-800) 25%, transparent 25%), linear-gradient(135deg, var(--vvd-color-neutral-800) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--vvd-color-neutral-800) 75%), linear-gradient(135deg, transparent 75%, var(--vvd-color-neutral-800) 75%);
+    background-position: 0 0, 8px 0, 8px -8px, 0 8px;
+    background-size: 16px 16px;
+    content: "";
+    inset: 0;
+    opacity: 1;
+	}
+	.color-token-preview-bg div {
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+	}
+</style>
+
+{% macro tokenReferenceTable(groups) %}
+<div class="token-reference-table-wrapper">
+	<div class="token-reference-theme-switcher">
+		<vwc-button data-token-theme="light" appearance="filled" size="condensed" label="Light" icon="light-mode-line"></vwc-button>
+		<vwc-button data-token-theme="dark" appearance="outlined" size="condensed" label="Dark" icon="dark-mode-line"></vwc-button>
+	</div>
+	<vwc-table>
+		<vwc-table-head>
+			<vwc-table-row>
+				<vwc-table-header-cell style="width: 80px;"></vwc-table-header-cell>
+				<vwc-table-header-cell>Token</vwc-table-header-cell>
+				<vwc-table-header-cell>Description</vwc-table-header-cell>
+			</vwc-table-row>
+		</vwc-table-head>
+		<vwc-table-body>
+			{% for group in groups %}
+				{% for item in group %}
+					<vwc-table-row>
+						<vwc-table-cell>
+							{% if item.type == 'color' %}
+								{{ colorTokenPreview(item) }}
+							{% elif item.category == 'text' %}
+								{{ textTokenPreview(item) }}
+							{% endif %}
+						</vwc-table-cell>
+						<vwc-table-cell style="width: 18rem;"><code>{{ item.css | replace('viv-', '') }}</code></vwc-table-cell>
+						<vwc-table-cell>{{ item.description }}</vwc-table-cell>
+					</vwc-table-row>
+				{% endfor %}
+			{% endfor %}
+		</vwc-table-body>
+	</vwc-table>
+	<script>
+		(function () {
+			var wrappers = document.querySelectorAll('.token-reference-table-wrapper');
+			var wrapper = wrappers[wrappers.length - 1];
+			var btns = wrapper.querySelectorAll('[data-token-theme]');
+
+			function setTheme(theme) {
+				btns.forEach(function (btn) {
+					btn.setAttribute('appearance', btn.dataset.tokenTheme === theme ? 'filled' : 'outlined');
+				});
+				wrapper.querySelectorAll('[data-light-preview]').forEach(function (el) {
+					var color = el.dataset[theme + 'Preview'];
+					var prop = el.dataset.previewProp;
+					if (prop && color) el.style[prop] = color;
+					var tooltip = el.closest('vwc-tooltip');
+					if (tooltip) tooltip.setAttribute('text', color);
+				});
+			}
+
+			btns.forEach(function (btn) {
+				btn.addEventListener('click', function () { setTheme(btn.dataset.tokenTheme); });
+			});
+		})();
+	</script>
+</div>
+{% endmacro %}
+
+{% macro textTokenPreview(item) %}
+	<!--pre>{{ item | json }}</pre-->
+	{% if 'font-family' in item.name %}
+		<vwc-tooltip text="{{ item.preview }}" placement="left">
+			<div slot="anchor" class="text-token-font-family" style="font-family: {{ item.preview }}">Aa</div>
+		</vwc-tooltip>
+	{% elif 'font-size' in item.name %}
+		<vwc-tooltip text="{{ item.preview }}" placement="left">
+			<div slot="anchor" class="text-token-font-size" style="font-size: {{ item.preview }}">Aa</div>
+		</vwc-tooltip>
+	{% elif 'font-stretch' in item.name %}
+		<vwc-tooltip text="{{ item.preview }}" placement="left">
+			<div slot="anchor" class="text-token-font-stretch" style="font-stretch: {{ item.preview }}">Aa</div>
+		</vwc-tooltip>
+	{% elif 'line-height' in item.name %}
+		<vwc-tooltip text="{{ item.preview }}" placement="left">
+			<div slot="anchor" class="text-token-line-height" style="line-height: {{ item.preview }}">A<br />a</div>
+		</vwc-tooltip>
+	{% elif 'font-weight' in item.name %}
+		<vwc-tooltip text="{{ item.preview }}" placement="left">
+			<div slot="anchor" class="text-token-font-weight" style="font-weight: {{ item.preview }}">Aa</div>
+		</vwc-tooltip>
+	{% else %}
+		{% set fontValue = item.preview.fontWeight ~ ' ' ~ item.preview.fontStretch ~ ' ' ~ item.preview.fontSize ~ '/' ~ item.preview.lineHeight ~ ' ' ~ item.preview.fontFamily %}
+		<vwc-tooltip text="{{ fontValue }}" placement="left">
+			<div slot="anchor" class="text-token-compound" style="font: {{ fontValue }}">Aa</div>
+		</vwc-tooltip>
+	{% endif %}
+{% endmacro %}
+
+<style>
+	.text-token-font-family, .text-token-font-stretch , .text-token-font-weight {
+		font-size: 1.2rem;
+	}
+</style>
+
+{% macro borderTokenTable(list, headingText, headingLevel = 3) %}
+{{ heading(headingText, headingLevel) }}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell></vwc-table-header-cell>
+			<vwc-table-header-cell>Token</vwc-table-header-cell>
+			<vwc-table-header-cell>Description</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		{% for item in list %}
+			<vwc-table-row>
+				<vwc-table-cell style="width: 4rem;">
+					{{ borderTokenPreview(item) }}
+				</vwc-table-cell>
+				<vwc-table-cell style="width: 18rem;"><code>{{ item.css | replace('viv-color-', '') | replace('action-', '') }}</code></vwc-table-cell>
+				<vwc-table-cell>{{ item.description }}</vwc-table-cell>	
+			</vwc-table-row>
+		{% endfor %}
+	</vwc-table-body>
+</vwc-table>
+<!-- <pre>{{ list | json }}</pre> -->
+{% endmacro %}
+
+{% macro borderTokenPreview(item) %}
+	{% if 'border-radius' in item.css %}
+		<vwc-tooltip text="{{ item.preview }}" placement="left">
+			<div slot="anchor" class="border-token-preview radius" style="border-radius: {{ item.preview }};"></div>
+		</vwc-tooltip>
+	{% elif 'border-width' in item.css %}
+		<vwc-tooltip text="{{ item.preview }}" placement="left">
+			<div slot="anchor" class="border-token-preview width" style="border-width: {{ item.preview }}"></div>
+		</vwc-tooltip>
+	{% else %}
+		<pre>{{ item | json }}</pre>
+	{% endif %}
+{% endmacro %}
+
+<style>
+	.border-token-preview {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+	.border-token-preview.radius {
+		background: var(--vvd-color-cta-500);
+	}
+	.border-token-preview.width {
+		border-color: var(--vvd-color-cta-500);
+		border-style: solid;
+		border-radius: 4px;
+	}
+</style>
+
+{% macro controlSpacingTokenTable(list) %}
+	{% set scalesSeen = [] %}
+	{% for item in list %}
+		{% if item.scale not in scalesSeen %}
+			{% set scalesSeen = scalesSeen.concat([item.scale]) %}
+		{% endif %}
+	{% endfor %}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell></vwc-table-header-cell>
+			<vwc-table-header-cell>Token</vwc-table-header-cell>
+			<vwc-table-header-cell>Output value</vwc-table-header-cell>
+			<vwc-table-header-cell>Source value</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		{% for scale in scalesSeen %}
+			{% for item in list %}
+				{% if item.scale == scale %}
+					<vwc-table-row>
+						<vwc-table-cell style="width: 7rem;">
+							{{ controlSpacingTokenPreview(item) }}
+						</vwc-table-cell>
+						<vwc-table-cell style="width: 15rem;"><code>{{ item.css | replace('viv-color-', '') | replace('action-', '') }}</code></vwc-table-cell>
+						<vwc-table-cell style="width: 8rem;"><code>{{ item.preview }}</code></vwc-table-cell>
+						<vwc-table-cell><code>{{ item.reference }}</code></vwc-table-cell>
+					</vwc-table-row>
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
+	</vwc-table-body>
+</vwc-table>
+<style>
+	{% for scale in scalesSeen %}
+		.control-spacing-token-preview.size-{{ scale }} {
+		{% for item in list %}
+			{% if item.scale == scale %}
+				--_{{ item.tokenType | replace('spacing/', '') }}: {{ item.preview }};
+			{% endif %}
+		{% endfor %}
+		{% for item in list %}
+			{% if item.scale == scale %}
+				{{ item.tokenType | replace('spacing/', '') }}: var(--_{{ item.tokenType | replace('spacing/', '') }});
+			{% endif %}
+		{% endfor %}
+		}
+	{% endfor %}
+</style>
+{% endmacro %}
+
+{% macro controlSpacingTokenPreview(item, list) %}
+		<div class="control-spacing-token-preview size-{{ item.scale }} prop-{{ item.tokenType | replace('spacing/', '') }}">
+			<span class="control-icon"></span>
+			<span class="control-label">{{ item.scale }}</span>
+			<span class="control-display">
+				<span class="corner corner--tl"></span>
+				<span class="corner corner--tr"></span>
+				<span class="corner corner--bl"></span>
+				<span class="corner corner--br"></span>
+			</span>
+		</div>
+{% endmacro %}
+
+<style>
+	.control-spacing-token-preview {
+		position: relative;
+		background-color: var(--vvd-color-canvas);
+		display: inline-flex;
+		align-items: center;
+		border: 1px solid var(--vvd-color-neutral-400);
+		padding-block: 0;
+	}
+
+	.control-spacing-token-preview .control-icon {
+		display: inline-block;
+		width: 0.75rem;
+		height: 0.75rem;
+		background-color: var(--vvd-color-neutral-600);
+		border-radius: 4px;
+	}
+
+	.control-display {
+		display: inline-block;
+		position: absolute;
+		background-color: var(--vvd-color-cta-200);
+		border: 1px solid color var(--vvd-color-cta-400);
+		z-index: 2;
+	}
+
+	.prop-gap  .control-display{
+		inset-inline-start: calc(var(--_padding-inline) + 0.75rem);
+		inset-block-start: 0;
+		inset-block-end: 0;
+		inline-size: var(--_gap);
+	}
+
+	.prop-padding-inline .control-display {
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		inset: 0;
+		background: transparent;
+		border: 0;
+	}
+
+	.prop-padding-inline .control-display::before,
+	.prop-padding-inline .control-display::after {
+		content: '';
+		display: inline-block;
+		position: absolute;
+		inset-block: 0;
+		inline-size: var(--_padding-inline);
+		background-color: var(--vvd-color-cta-200);
+	}
+
+	.prop-padding-inline .control-display::before {
+		inset-inline-start: 0;
+	}
+
+	.prop-padding-inline .control-display::after {
+		inset-inline-end: 0;
+	}
+
+	.prop-block-size .control-display {
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		inset: 0;
+		border-radius: inherit;
+	}
+
+	.control-label, .control-icon {
+		position:relative;
+		z-index: 5;
+	}
+
+	.corner {
+		display: none;
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		background-color: var(--vvd-color-cta-200);
+	}
+
+	.size-xs .corner,
+	.size-sm .corner {
+		width: 8px;
+		height: 8px;
+	}
+
+	.prop-border-radius .control-display {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 2;
+		display: block;
+		background: transparent;
+	}
+
+	.prop-border-radius .corner {
+		display: block;
+	}
+
+	.prop-border-radius .corner--tl {
+		inset-inline-start: 0;
+		inset-block-start: 0;
+		border-start-start-radius: var(--_border-radius);
+	}
+
+	.prop-border-radius .corner--tr {
+		inset-inline-end: 0;
+		inset-block-start: 0;
+		border-start-end-radius: var(--_border-radius);
+	}
+
+	.prop-border-radius .corner--bl {
+		inset-inline-start: 0;
+		inset-block-end: 0;
+		border-end-start-radius: var(--_border-radius);
+	}
+
+	.prop-border-radius .corner--br {
+		inset-inline-end: 0;
+		inset-block-end: 0;
+		border-end-end-radius: var(--_border-radius);
+	}
+</style>
+
+{% macro elevationTokenTable(list) %}
+	{% set levels = ['flat', 'raised', 'floating', 'overlay', 'extension1', 'extension2', 'extension3'] %}
+	<div class="elevation-token-table-wrapper">
+		<div class="elevation-theme-switcher">
+			<vwc-button data-elev-theme="light" appearance="filled" size="condensed" label="Light" icon="light-mode-line"></vwc-button>
+			<vwc-button data-elev-theme="dark" appearance="outlined" size="condensed" label="Dark" icon="dark-mode-line"></vwc-button>
+		</div>
+		<vwc-table>
+			<vwc-table-head>
+				<vwc-table-row>
+					<vwc-table-header-cell style="width: 100px;"></vwc-table-header-cell>
+					<vwc-table-header-cell>Shadow token</vwc-table-header-cell>
+					<vwc-table-header-cell>Surface token</vwc-table-header-cell>
+					<vwc-table-header-cell style="width: 350px;">Description</vwc-table-header-cell>
+				</vwc-table-row>
+			</vwc-table-head>
+			<vwc-table-body>
+				{% for level in levels %}
+					{% set shadowToken = list[level].shadow %}
+					{% set surfaceToken = list[level].surface %}
+					<vwc-table-row>
+						<vwc-table-cell>
+							{{ elevationTokenPreview(shadowToken, surfaceToken) }}
+						</vwc-table-cell>
+						<vwc-table-cell style="width: 16rem;"><code>{{ shadowToken.css | replace('viv-elevation-', '') }}</code></vwc-table-cell>
+						<vwc-table-cell style="width: 16rem;"><code>{{ surfaceToken.css | replace('viv-elevation-', '') }}</code></vwc-table-cell>
+						<vwc-table-cell>{{ shadowToken.description }}</vwc-table-cell>
+					</vwc-table-row>
+				{% endfor %}
+			</vwc-table-body>
+		</vwc-table>
+		<script>
+			(function () {
+				var wrappers = document.querySelectorAll('.elevation-token-table-wrapper');
+				var wrapper = wrappers[wrappers.length - 1];
+				var btns = wrapper.querySelectorAll('[data-elev-theme]');
+
+				function setTheme(theme) {
+					btns.forEach(function (btn) {
+						btn.setAttribute('appearance', btn.dataset.elevTheme === theme ? 'filled' : 'outlined');
+					});
+					wrapper.querySelectorAll('.elevation-token-preview-outer').forEach(function (outer) {
+						outer.style.backgroundColor = outer.dataset[theme + 'Canvas'] || '';
+					});
+					wrapper.querySelectorAll('.elevation-token-preview-box').forEach(function (box) {
+						box.style.filter = box.dataset[theme + 'Filter'] || '';
+						box.style.background = box.dataset[theme + 'Bg'] || '';
+					});
+				}
+
+				btns.forEach(function (btn) {
+					btn.addEventListener('click', function () { setTheme(btn.dataset.elevTheme); });
+				});
+			})();
+		</script>
+	</div>
+{% endmacro %}
+
+{% macro elevationTokenPreview(shadowToken, surfaceToken) %}
+	<div class="elevation-token-preview-outer"
+		data-light-canvas="{{ surfaceToken.surfaceBg }}"
+		data-dark-canvas="{{ surfaceToken.surfaceBgDark }}"
+		style="background-color: {{ surfaceToken.surfaceBg }};">
+		<div class="elevation-token-preview-box"
+			data-light-filter="{{ shadowToken.cssFilter }}"
+			data-dark-filter="{{ shadowToken.cssFilterDark }}"
+			data-light-bg="{{ surfaceToken.cssBackground }}"
+			data-dark-bg="{{ surfaceToken.cssBackgroundDark }}"
+			style="filter: {{ shadowToken.cssFilter }}; background: {{ surfaceToken.cssBackground }};"></div>
+	</div>
+{% endmacro %}
+
+<style>
+	.elevation-token-table-wrapper {
+		container-type: inline-size;
+	}
+
+	.elevation-theme-switcher,
+	.token-reference-theme-switcher {
+		display: flex;
+		gap: 4px;
+		justify-content: flex-end;
+		padding-block-end: 8px;
+	}
+
+	.elevation-token-preview-outer {
+		padding: 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.elevation-token-preview-box {
+		width: 3rem;
+		height: 2rem;
+		border-radius: 8px;
+	}
+</style>

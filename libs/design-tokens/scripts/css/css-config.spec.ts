@@ -1,6 +1,27 @@
-import type { Dictionary } from 'style-dictionary/types';
+import type { Dictionary, TransformedToken } from 'style-dictionary/types';
 import { cssConfig, fontFaceDeclaration } from './css.config';
 import { buildToken } from '../utils/build-token';
+
+const stripHeader = (output: string) =>
+	output.replace(/\/\*\*[\s\S]*?\*\/\n\n/, '');
+
+function makeToken(
+	overrides: { name: string } & Partial<TransformedToken>
+): TransformedToken {
+	return {
+		filePath: 'virtual-file',
+		isSource: true,
+		path: [overrides.name],
+		original: {},
+		$value: '',
+		value: '',
+		...overrides,
+	} as TransformedToken;
+}
+
+function makeDictionary(tokens: TransformedToken[]): Dictionary {
+	return { allTokens: tokens } as unknown as Dictionary;
+}
 
 describe('CSS Features', () => {
 	describe('Transforms', () => {
@@ -45,6 +66,7 @@ describe('CSS Features', () => {
 				expect(out).toEqual('#ffffff80');
 			});
 		});
+
 		describe('vvd/css/value/dimension', () => {
 			it('Should add px to the value', () => {
 				const token = buildToken('vvd/size/medium/500', {
@@ -65,82 +87,125 @@ describe('CSS Features', () => {
 			});
 		});
 
-		describe.skip('vvd/value/css/typography', () => {
-			it('Should build font shorthand', () => {
-				const token = buildToken('vvd/typography/heading/200', {
+		describe('vvd/value/css/fontFamily', () => {
+			it('Should pass through the font family value unchanged', () => {
+				const token = buildToken('vvd/text/font-family/sans-serif', {
+					$type: 'fontFamily',
+					$value: 'SpeziaCompleteVariableUpright, Arial, sans-serif',
+				});
+
+				const out = cssConfig.transforms['vvd/value/css/fontFamily'].transform(
+					token,
+					{},
+					{}
+				);
+
+				expect(out).toEqual('SpeziaCompleteVariableUpright, Arial, sans-serif');
+			});
+		});
+
+		describe('vvd/value/css/typography', () => {
+			it('Should build font shorthand from string values', () => {
+				const token = buildToken('vvd/typography/heading/xl', {
 					$type: 'typography',
 					$value: {
-						fontFamily: 'Spezia - Regular',
-						fontSize: {
-							value: 6,
-							unit: 'px',
-						},
-						lineHeight: 8,
-						letterSpacing: {
-							value: 0,
-							unit: 'px',
-						},
+						fontFamily: 'SpeziaCompleteVariableUpright',
+						fontSize: '2.5rem',
+						lineHeight: '3rem',
 						fontWeight: 500,
 					},
 				});
 
 				const out = cssConfig.transforms['vvd/value/css/typography'].transform(
 					token,
-					{
-						basePxFontSize: 14,
-					},
+					{},
 					{}
 				);
 
-				expect(out).toEqual(
-					'500 0.42857142857142855rem/0.5714285714285714rem SpeziaCompleteVariableUpright'
-				);
+				expect(out).toEqual('500 2.5rem/3rem SpeziaCompleteVariableUpright');
 			});
 
-			it('Should set up regular font face for non-mono typography', () => {
-				const token = buildToken('vvd/typography/heading/200', {
+			it('Should resolve fontSize from an object with value property', () => {
+				const token = buildToken('vvd/typography/heading/md', {
 					$type: 'typography',
 					$value: {
-						fontFamily: 'Spezia - Regular',
-						fontSize: {},
-						lineHeight: 8,
-						letterSpacing: {},
-						fontWeight: 0,
+						fontFamily: 'SpeziaCompleteVariableUpright',
+						fontSize: { value: 24 },
+						lineHeight: { value: 32 },
+						fontWeight: 500,
 					},
 				});
 
 				const out = cssConfig.transforms['vvd/value/css/typography'].transform(
 					token,
-					{
-						basePxFontSize: 14,
-					},
+					{},
 					{}
 				);
 
-				expect(out).include('SpeziaCompleteVariableUpright');
+				expect(out).toEqual('500 24/32 SpeziaCompleteVariableUpright');
 			});
 
-			it('Should set up mono font face for mono styles', () => {
-				const token = buildToken('vvd/typography/heading/200', {
+			it('Should resolve fontSize from an object with $value property', () => {
+				const token = buildToken('vvd/typography/heading/sm', {
 					$type: 'typography',
 					$value: {
-						fontFamily: 'Spezia - SemiMono Regular',
-						fontSize: {},
-						lineHeight: 8,
-						letterSpacing: {},
-						fontWeight: 0,
+						fontFamily: 'SpeziaCompleteVariableUpright',
+						fontSize: { $value: '1.5rem' },
+						lineHeight: '2rem',
+						fontWeight: 400,
 					},
 				});
 
 				const out = cssConfig.transforms['vvd/value/css/typography'].transform(
 					token,
-					{
-						basePxFontSize: 14,
-					},
+					{},
 					{}
 				);
 
-				expect(out).include('SpeziaMonoCompleteVariable');
+				expect(out).toEqual('400 1.5rem/2rem SpeziaCompleteVariableUpright');
+			});
+
+			it('Should handle null values as empty string', () => {
+				const token = buildToken('vvd/typography/body/sm', {
+					$type: 'typography',
+					$value: {
+						fontFamily: 'Spezia',
+						fontSize: null,
+						lineHeight: '1.5rem',
+						fontWeight: 400,
+					},
+				});
+
+				const out = cssConfig.transforms['vvd/value/css/typography'].transform(
+					token,
+					{},
+					{}
+				);
+
+				expect(out).toEqual('400 /1.5rem Spezia');
+			});
+
+			it('Should fall back to token.value when $value is absent', () => {
+				const token = {
+					...buildToken('vvd/typography/body/md', {
+						$type: 'typography',
+						$value: undefined,
+					}),
+					value: {
+						fontFamily: 'Spezia',
+						fontSize: '1rem',
+						lineHeight: '1.5rem',
+						fontWeight: 400,
+					},
+				};
+
+				const out = cssConfig.transforms['vvd/value/css/typography'].transform(
+					token,
+					{},
+					{}
+				);
+
+				expect(out).toEqual('400 1rem/1.5rem Spezia');
 			});
 		});
 
@@ -250,11 +315,444 @@ describe('CSS Features', () => {
 		});
 
 		describe('vvd/name/css', () => {
-			it('Should replace slashes with dashes in tokens name');
-			const token = buildToken('vvd/color/critical/500', {});
+			it('Should prefix with viv- and join path segments with dashes', () => {
+				const token = {
+					...buildToken('', {}),
+					path: ['color', 'neutral', '700'],
+				};
+				const out = cssConfig.transforms['vvd/name/css'].transform(
+					token,
+					{},
+					{}
+				);
+				expect(out).toEqual('viv-color-neutral-700');
+			});
 
-			const out = cssConfig.transforms['vvd/name/css'].transform(token, {}, {});
-			expect(out).toEqual('vvd-color-critical-500');
+			it('Should filter DEFAULT segments from the path', () => {
+				const token = {
+					...buildToken('', {}),
+					path: ['color', 'bg', 'DEFAULT'],
+				};
+				const out = cssConfig.transforms['vvd/name/css'].transform(
+					token,
+					{},
+					{}
+				);
+				expect(out).toEqual('viv-color-bg');
+			});
+		});
+	});
+
+	describe('Formats', () => {
+		describe('vvd/css/semantic-shadow', () => {
+			const format = cssConfig.formats['vvd/css/semantic-shadow'] as (
+				args: any
+			) => Promise<string>;
+
+			const makeShadowToken = (name: string, stops: any[]) => ({
+				...makeToken({ name, $type: 'shadow', $value: 'box-shadow-ignored' }),
+				original: { $value: stops },
+			});
+
+			it('outputs size vars and composite drop-shadow for each stop', async () => {
+				const token = makeShadowToken('viv-shadow-raise', [
+					{ offsetX: 0, offsetY: 1, blur: 4, spread: 0, color: '{shadow.raise.1.color}' },
+					{ offsetX: 0, offsetY: 1, blur: 2, spread: 0, color: '{shadow.raise.2.color}' },
+					{ offsetX: 0, offsetY: 2, blur: 1, spread: 0, color: '{shadow.raise.3.color}' },
+				]);
+				const result = stripHeader(
+					await format({
+						dictionary: makeDictionary([token]),
+						options: { selector: '.vvd-root' },
+						file: {},
+					})
+				);
+
+				expect(result).toContain('--viv-shadow-raise-1-size: 0px 1px 4px;');
+				expect(result).toContain('--viv-shadow-raise-2-size: 0px 1px 2px;');
+				expect(result).toContain('--viv-shadow-raise-3-size: 0px 2px 1px;');
+				expect(result).toContain(
+					'--viv-shadow-raise: drop-shadow(var(--viv-shadow-raise-1-size) var(--viv-shadow-raise-1-color)) drop-shadow(var(--viv-shadow-raise-2-size) var(--viv-shadow-raise-2-color)) drop-shadow(var(--viv-shadow-raise-3-size) var(--viv-shadow-raise-3-color));'
+				);
+			});
+
+			it('converts DTCG color references to CSS var() in the composite', async () => {
+				const token = makeShadowToken('viv-shadow-flat', [
+					{ offsetX: 1, offsetY: 0, blur: 0, spread: 0, color: '{shadow.flat.color}' },
+					{ offsetX: 0, offsetY: 1, blur: 0, spread: 0, color: '{shadow.flat.color}' },
+				]);
+				const result = stripHeader(
+					await format({
+						dictionary: makeDictionary([token]),
+						options: { selector: '.vvd-root' },
+						file: {},
+					})
+				);
+
+				expect(result).toContain(
+					'--viv-shadow-flat: drop-shadow(var(--viv-shadow-flat-1-size) var(--viv-shadow-flat-color)) drop-shadow(var(--viv-shadow-flat-2-size) var(--viv-shadow-flat-color));'
+				);
+			});
+
+			it('wraps output in the provided selector', async () => {
+				const token = makeShadowToken('viv-shadow-raise', [
+					{ offsetX: 0, offsetY: 1, blur: 4, spread: 0, color: '{shadow.raise.1.color}' },
+				]);
+				const result = stripHeader(
+					await format({
+						dictionary: makeDictionary([token]),
+						options: { selector: '.vvd-root, ::part(vvd-root)' },
+						file: {},
+					})
+				);
+
+				expect(result).toContain('.vvd-root, ::part(vvd-root) {');
+			});
+
+			it('appends $description as a comment on the composite line', async () => {
+				const token = {
+					...makeShadowToken('viv-shadow-raise', [
+						{ offsetX: 0, offsetY: 1, blur: 4, spread: 0, color: '{shadow.raise.1.color}' },
+					]),
+					$description: 'Minimal elevation',
+				};
+				const result = stripHeader(
+					await format({
+						dictionary: makeDictionary([token]),
+						options: {},
+						file: {},
+					})
+				);
+
+				expect(result).toContain('/** Minimal elevation */');
+			});
+		});
+
+		describe('vvd/css/variables-with-typography', () => {
+			const format = cssConfig.formats['vvd/css/variables-with-typography'] as (
+				args: any
+			) => Promise<string>;
+
+			it('wraps content in :root selector by default', async () => {
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#fff',
+					value: '#fff',
+				});
+				const result = stripHeader(
+					await format({
+						dictionary: makeDictionary([token]),
+						options: {},
+						file: {},
+					})
+				);
+				expect(result).toContain(':root {');
+			});
+
+			it('wraps content in a custom string selector', async () => {
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#fff',
+					value: '#fff',
+				});
+				const result = stripHeader(
+					await format({
+						dictionary: makeDictionary([token]),
+						options: { selector: '.vvd-root' },
+						file: {},
+					})
+				);
+				expect(result).toContain('.vvd-root {');
+				expect(result).not.toContain(':root {');
+			});
+
+			it('nests multiple selectors when selector is an array', async () => {
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#fff',
+					value: '#fff',
+				});
+				const result = stripHeader(
+					await format({
+						dictionary: makeDictionary([token]),
+						options: { selector: [':root', '.theme-dark'] },
+						file: {},
+					})
+				);
+				expect(result).toContain(':root {');
+				expect(result).toContain('.theme-dark {');
+			});
+
+			it('outputs plain string values', async () => {
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#ff0000',
+					value: '#ff0000',
+				});
+				const result = await format({
+					dictionary: makeDictionary([token]),
+					options: { usesDtcg: true },
+					file: {},
+				});
+				expect(result).toContain('--viv-color-bg: #ff0000;');
+			});
+
+			it('converts {reference} placeholders to var() in values', async () => {
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '{color.neutral.500}',
+					value: '',
+				});
+				const result = await format({
+					dictionary: makeDictionary([token]),
+					options: { usesDtcg: true },
+					file: {},
+				});
+				expect(result).toContain(
+					'--viv-color-bg: var(--viv-color-neutral-500);'
+				);
+			});
+
+			it('outputs number values as strings', async () => {
+				const token = makeToken({
+					name: 'viv-text-font-weight-400',
+					$value: 400,
+					value: 400,
+				});
+				const result = await format({
+					dictionary: makeDictionary([token]),
+					options: { usesDtcg: true },
+					file: {},
+				});
+				expect(result).toContain('--viv-text-font-weight-400: 400;');
+			});
+
+			it('filters out tokens with null values', async () => {
+				const token = makeToken({
+					name: 'viv-empty',
+					$value: null,
+					value: null,
+				});
+				const result = await format({
+					dictionary: makeDictionary([token]),
+					options: { usesDtcg: true },
+					file: {},
+				});
+				expect(result).not.toContain('--viv-empty');
+			});
+
+			it('resolves object values with $value property', async () => {
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: { $value: '#abc' },
+					value: null,
+				});
+				const result = await format({
+					dictionary: makeDictionary([token]),
+					options: { usesDtcg: true },
+					file: {},
+				});
+				expect(result).toContain('--viv-color-bg: #abc;');
+			});
+
+			it('resolves object values with value property', async () => {
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: { value: '#abc' },
+					value: null,
+				});
+				const result = await format({
+					dictionary: makeDictionary([token]),
+					options: { usesDtcg: true },
+					file: {},
+				});
+				expect(result).toContain('--viv-color-bg: #abc;');
+			});
+
+			it('appends $description as a comment', async () => {
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#fff',
+					value: '#fff',
+					$description: 'Background color',
+				});
+				const result = await format({
+					dictionary: makeDictionary([token]),
+					options: { usesDtcg: true },
+					file: {},
+				});
+				expect(result).toContain(
+					'--viv-color-bg: #fff; /** Background color */'
+				);
+			});
+
+			it('uses $value when usesDtcg is true', async () => {
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#dtcg',
+					value: '#legacy',
+				});
+				const result = await format({
+					dictionary: makeDictionary([token]),
+					options: { usesDtcg: true },
+					file: {},
+				});
+				expect(result).toContain('--viv-color-bg: #dtcg;');
+			});
+
+			it('uses token.value when usesDtcg is false', async () => {
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#dtcg',
+					value: '#legacy',
+				});
+				const result = await format({
+					dictionary: makeDictionary([token]),
+					options: { usesDtcg: false },
+					file: {},
+				});
+				expect(result).toContain('--viv-color-bg: #legacy;');
+			});
+
+			it('uses custom indentation', async () => {
+				const token = makeToken({
+					name: 'viv-color-bg',
+					$value: '#fff',
+					value: '#fff',
+				});
+				const result = await format({
+					dictionary: makeDictionary([token]),
+					options: { formatting: { indentation: '\t' } },
+					file: {},
+				});
+				expect(result).toContain('\t--viv-color-bg: #fff;');
+			});
+
+			describe('typography composite tokens', () => {
+				it('uses per-scale font-weight var when per-scale sub-token exists in dictionary', async () => {
+					const composite = makeToken({
+						name: 'viv-text-heading-xl',
+						path: ['text', 'heading', 'xl', 'DEFAULT'],
+						original: {
+							$value: {
+								fontFamily: '{text.heading.font-family}',
+								fontStretch: '{text.heading.font-stretch}',
+								fontWeight: '{text.heading.font-weight.normal}',
+							},
+						},
+						$value: {
+							fontFamily: 'Spezia',
+							fontStretch: 'condensed',
+							fontWeight: 500,
+							fontSize: { value: 40 },
+							lineHeight: '3rem',
+						},
+						value: {
+							fontFamily: 'Spezia',
+							fontStretch: 'condensed',
+							fontWeight: 500,
+							fontSize: { value: 40 },
+							lineHeight: '3rem',
+						},
+					});
+					const perScaleWeight = makeToken({
+						name: 'viv-text-heading-xl-font-weight',
+						$value: 500,
+						value: 500,
+					});
+
+					const result = await format({
+						dictionary: makeDictionary([composite, perScaleWeight]),
+						options: { usesDtcg: true },
+						file: {},
+					});
+
+					expect(result).toContain(
+						'--viv-text-heading-xl: var(--viv-text-heading-xl-font-weight)'
+					);
+				});
+
+				it('uses shared font-weight var via reference when no per-scale sub-token exists', async () => {
+					const composite = makeToken({
+						name: 'viv-text-code-inline',
+						path: ['text', 'code', 'inline', 'DEFAULT'],
+						original: {
+							$value: {
+								fontFamily: '{text.code.font-family}',
+								fontStretch: '{text.code.font-stretch}',
+								fontWeight: '{text.code.font-weight}',
+							},
+						},
+						$value: {
+							fontFamily: 'SpeziaMonoCompleteVariable',
+							fontStretch: 'ultra-condensed',
+							fontWeight: 400,
+							fontSize: { value: 14 },
+							lineHeight: '1.25rem',
+						},
+						value: {
+							fontFamily: 'SpeziaMonoCompleteVariable',
+							fontStretch: 'ultra-condensed',
+							fontWeight: 400,
+							fontSize: { value: 14 },
+							lineHeight: '1.25rem',
+						},
+					});
+
+					const result = await format({
+						dictionary: makeDictionary([composite]),
+						options: { usesDtcg: true },
+						file: {},
+					});
+
+					expect(result).toContain(
+						'--viv-text-code-inline: var(--viv-text-code-font-weight)'
+					);
+				});
+
+				it('composes full typography shorthand with var() references', async () => {
+					const composite = makeToken({
+						name: 'viv-text-heading-xl',
+						path: ['text', 'heading', 'xl', 'DEFAULT'],
+						original: {
+							$value: {
+								fontFamily: '{text.heading.font-family}',
+								fontStretch: '{text.heading.font-stretch}',
+								fontWeight: '{text.heading.font-weight.normal}',
+							},
+						},
+						$value: {
+							fontFamily: 'Spezia',
+							fontStretch: 'condensed',
+							fontWeight: 500,
+							fontSize: { value: 40 },
+							lineHeight: '3rem',
+						},
+						value: {
+							fontFamily: 'Spezia',
+							fontStretch: 'condensed',
+							fontWeight: 500,
+							fontSize: { value: 40 },
+							lineHeight: '3rem',
+						},
+					});
+					const perScaleWeight = makeToken({
+						name: 'viv-text-heading-xl-font-weight',
+						$value: 500,
+						value: 500,
+					});
+
+					const result = await format({
+						dictionary: makeDictionary([composite, perScaleWeight]),
+						options: { usesDtcg: true },
+						file: {},
+					});
+
+					expect(result).toContain(
+						'--viv-text-heading-xl: var(--viv-text-heading-xl-font-weight) var(--viv-text-heading-font-stretch) var(--viv-text-heading-xl-font-size)/var(--viv-text-heading-xl-line-height) var(--viv-text-heading-font-family);'
+					);
+				});
+			});
 		});
 	});
 

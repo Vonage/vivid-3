@@ -1,0 +1,32 @@
+---
+permalink: /designs/size/
+title: Size
+order: 2.75
+---
+
+{% include '../_includes/tokens-table-new.njk' %}
+{% from '../_includes/tokens-table-new.njk' import heading, spacingTokensTable, borderTokenTable, controlSpacingTokenTable %}
+
+<h1>Size</h1>
+<p>Consistent sizes creates structure, rhythm, and clarity across interfaces. A well-defined sizing system helps teams build layouts and UI patterns consistently, making products easier to use and visually more cohesive.</p>
+
+{{ heading('Overview', '2') }}
+<P>Vivid's size system is made up of spacing, height, border, and control spacing tokens. These tokens are the building blocks for defining the dimensions of components and the spacing between them.</p>
+<p>The spacing and height tokens scale work on a 4px grid, with each scale value (<code>400</code>) representing a percentage of 4px. <code>200</code> represents 200% of 4px = 8px. <code>50</code> represents 50% of 4px = 2px.</p>
+
+{{ heading('Space', '2') }}
+<p>The spacing tokens are used for the padding / margins of elements.</p>
+{{ spacingTokensTable(tokens.size.space) }}
+
+{{ heading('Height', '2') }}
+<p>The height tokens are used for elements with a set height, eg. Buttons, Inputs etc.</p>
+{{ spacingTokensTable(tokens.size.height) }}
+
+{{ heading('Border', '2') }}
+<p>Border tokens are used for border widths and radius.</p>
+{{ borderTokenTable(tokens.border.width, 'Width') }}
+{{ borderTokenTable(tokens.border.radius, 'Radius') }}
+
+{{ heading('Control size', '2') }}
+<p>Control size tokens are used for the dimensions and spacing of control elements eg. Buttons, Tags, Inputs, Selects etc.</p>
+{{ controlSpacingTokenTable(tokens.control.size) }}

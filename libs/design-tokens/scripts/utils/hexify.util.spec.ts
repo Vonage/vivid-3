@@ -18,7 +18,7 @@ describe('getHex', () => {
 			colorSpace: 'srgb',
 			hex: '#000000',
 		};
-		expect(getHex(color)).toBe('#000000ff');
+		expect(getHex(color)).toBe('#000000');
 	});
 
 	it('should handle white color', () => {
@@ -28,7 +28,7 @@ describe('getHex', () => {
 			colorSpace: 'srgb',
 			hex: '#ffffff',
 		};
-		expect(getHex(color)).toBe('#ffffffff');
+		expect(getHex(color)).toBe('#ffffff');
 	});
 
 	it('should handle 50% alpha', () => {

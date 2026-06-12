@@ -50,6 +50,34 @@ module.exports = async (eleventyConfig) => {
 
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 
+	// Set up global data early
+	eleventyConfig.addGlobalData('componentsNavigation', componentsNav);
+	eleventyConfig.addGlobalData('componentsNew', components);
+	eleventyConfig.addGlobalData(
+		'componentCode',
+		components.filter((c) => c.documentation.code)
+	);
+	eleventyConfig.addGlobalData(
+		'componentGuidelines',
+		components.filter((c) => c.documentation.guidelines)
+	);
+	eleventyConfig.addGlobalData(
+		'componentUseCases',
+		components.filter((c) => c.documentation.useCases)
+	);
+	eleventyConfig.addGlobalData(
+		'componentVariations',
+		components.filter((c) => c.documentation.variations)
+	);
+	eleventyConfig.addGlobalData(
+		'componentAccessibility',
+		components.filter((c) => c.documentation.accessibility)
+	);
+	eleventyConfig.addGlobalData(
+		'componentsLegacy',
+		components.filter((c) => c.documentation.legacy)
+	);
+
 	/**
 	 * Hack to inject the generated code example frames into the Eleventy results, so that they will be processed by Vite.
 	 */
@@ -285,6 +313,10 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addFilter('snakeCase', snakeCase);
 	eleventyConfig.addFilter('trainCase', trainCase);
 
+	eleventyConfig.addFilter('json', function (value, indent = 2) {
+		return JSON.stringify(value, null, indent);
+	});
+
 	eleventyConfig.addFilter('cssmin', function (code) {
 		return new CleanCSS({}).minify(code).styles;
 	});
@@ -363,36 +395,6 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addGlobalData('componentsNavigation', componentsNav);
 
 	eleventyConfig.addGlobalData('componentsNew', components);
-
-	eleventyConfig.addGlobalData(
-		'componentCode',
-		components.filter((c) => c.documentation.code)
-	);
-
-	eleventyConfig.addGlobalData(
-		'componentGuidelines',
-		components.filter((c) => c.documentation.guidelines)
-	);
-
-	eleventyConfig.addGlobalData(
-		'componentUseCases',
-		components.filter((c) => c.documentation.useCases)
-	);
-
-	eleventyConfig.addGlobalData(
-		'componentVariations',
-		components.filter((c) => c.documentation.variations)
-	);
-
-	eleventyConfig.addGlobalData(
-		'componentAccessibility',
-		components.filter((c) => c.documentation.accessibility)
-	);
-
-	eleventyConfig.addGlobalData(
-		'componentsLegacy',
-		components.filter((c) => c.documentation.legacy)
-	);
 
 	eleventyConfig.addShortcode('clientSideNavigationHint', function () {
 		return markdownLibrary.render(

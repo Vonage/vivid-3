@@ -6,12 +6,14 @@ describe('Flutter Features', () => {
 	describe('Transforms', () => {
 		describe('vvd/value/flutter/borderRadius', () => {
 			it('Should be applied only to the radius tokens', () => {
-				const rightToken = buildToken('vvd/radius/rectangle/700', {
-					$type: 'dimension',
-				});
-				const wrongToken = buildToken('vvd/size/regular/700', {
-					$type: 'dimension',
-				});
+				const rightToken = {
+					...buildToken('', { $type: 'dimension' }),
+					path: ['border', 'radius', 'sm'],
+				};
+				const wrongToken = {
+					...buildToken('', { $type: 'dimension' }),
+					path: ['size', 'regular', '700'],
+				};
 
 				const rightOut = flutterConfig.transforms[
 					'vvd/value/flutter/borderRadius'
@@ -245,15 +247,32 @@ describe('Flutter Features', () => {
 		});
 
 		describe('vvd/name/flutter', () => {
-			it('Should replace slashes and dashes with underscores in tokens name', () => {
-				const token = buildToken('vvd/color-critical/500', {});
+			it('Should prefix with viv and convert path to camelCase', () => {
+				const token = {
+					...buildToken('', {}),
+					path: ['color', 'critical', '500'],
+				};
 
 				const out = flutterConfig.transforms['vvd/name/flutter'].transform(
 					token,
 					{},
 					{}
 				);
-				expect(out).toEqual('vvdColorCritical500');
+				expect(out).toEqual('vivColorCritical500');
+			});
+
+			it('Should filter DEFAULT segments from the path', () => {
+				const token = {
+					...buildToken('', {}),
+					path: ['color', 'bg', 'DEFAULT'],
+				};
+
+				const out = flutterConfig.transforms['vvd/name/flutter'].transform(
+					token,
+					{},
+					{}
+				);
+				expect(out).toEqual('vivColorBg');
 			});
 		});
 	});

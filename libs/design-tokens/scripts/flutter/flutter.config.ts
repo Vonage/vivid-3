@@ -47,7 +47,7 @@ export const flutterConfig: Hooks = {
 			type: 'value',
 			/* v8 ignore next -- @preserve */
 			filter: (token) =>
-				token.$type === 'dimension' && token.name.includes('radius'),
+				token.$type === 'dimension' && token.path.includes('radius'),
 			transform(token) {
 				return `Radius.circular(${double(token.$value)})`;
 			},
@@ -120,7 +120,9 @@ export const flutterConfig: Hooks = {
 		'vvd/name/flutter': {
 			type: 'name',
 			transform(token) {
-				return token.name.replace(/([-_\/][a-z0-9])/g, ($1) =>
+				return (
+					'viv-' + token.path.filter((p: string) => p !== 'DEFAULT').join('-')
+				).replace(/([-_\/][a-z0-9])/g, ($1) =>
 					$1.toUpperCase().replace('-', '').replace('_', '').replace('/', '')
 				);
 			},

@@ -1,0 +1,234 @@
+---
+permalink: /designs/color/
+title: Color
+order: 2
+---
+{% include '../_includes/tokens-table-new.njk' %}
+{% from '../_includes/tokens-table-new.njk' import tokensList, heading, preview, colorScale, scaleItem, colorScaleExample, colorTokenTable, tokenReferenceTable %}
+
+<h1>Color</h1>
+<p>Color communicates meaning - guiding attention, conveying status, and signaling urgency.</p>
+
+{{ heading('Overview', '2') }}
+{{ heading('Color with purpose', '3') }}
+<p>Every use of color in Vivid should reinforce meaning, not decoration. Each <a href="#color-roles">color role</a> is tied to a specific semantic intent — red signals danger, green represents success, yellow indicates warnings — allowing users to quickly identify the state or importance of interface elements at a glance.</p>
+{{ heading('Color for impact', '3') }}
+<p>Vivid uses a mostly neutral foundation to give color maximum impact. When color appears sparingly and intentionally, it naturally draws the eye — directing attention to the information, actions, and cues that matter most.</p>
+{{ heading('Color is accessible', '3') }}
+<p>Vivid's color system is built around consistent, role-based palettes that guarantee sufficient contrast across all combinations of text, icons, and backgrounds. This ensures every interface element remains legible and understandable for all users.</p>
+
+{{ heading('Modes & scales', '2') }}
+<p>Two color modes are available out of the box, light and dark. Every pattern is built to work across both color modes out of the box.</p>
+<p>Colors scales provide a range of shades from light to dark, the neutral scale includes white. They are available in both light and dark modes.</p>
+<p>The direction of all the core color scales are inverted between modes: the light scale starts at the lightest shade, while the dark scale starts at the darkest. This inversion allows both themes to share the same semantic colour tokens, reducing the need for mode-specific overrides.</p>
+
+{{ heading('Neutral scale', '3') }}
+{{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem ) }}
+{{ heading('Non-neutral scale', '3') }}
+{{ colorScaleExample(tokens.color.primary, colorScale, scaleItem ) }}
+
+{{ heading('Alpha colors', '3') }}
+<p>Alpha colors have varying levels of transparency or opacity (80%, 85%, 90%) and are available for all core colors. They are useful for creating layered visual effects, such as overlays and hover states, and help UI adapt to different background colors and elevations.</p>
+{{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 0, 0, '', true ) }}
+
+{{ heading('Palette', '2') }}
+<p>The global color palette comprises 8 colors, each with 11 shades (12 for neutral), assigned to specific roles to convey distinct meanings across the system.</p>
+<div class="core-colors">
+	{{ heading('Brand', '3') }}
+	<div class="token-category">	
+	{{ tokensList(tokens.color.primary, preview, 'Primary') }}
+	{{ tokensList(tokens.color.announcement, preview, 'Announcement') }}
+	</div>
+
+	{{ heading('Neutral', '3') }}
+	<div class="token-category">
+		{{ tokensList(tokens.color.neutral, preview, 'Neutral') }}
+		{{ tokensList(tokens.color['neutral-tint'], preview, 'Neutral tint') }}
+	</div>
+
+	{{ heading('Status', '3') }}
+	<div class="token-category">
+		{{ tokensList(tokens.color['info'], preview, 'Info') }}
+		{{ tokensList(tokens.color['success'], preview, 'Success') }}
+		{{ tokensList(tokens.color['warning'], preview, 'Warning') }}
+		{{ tokensList(tokens.color['danger'], preview, 'Danger') }}
+	</div>
+</div>
+
+<style>
+	.core-colors {
+		container-type: inline-size;
+	}
+
+	.token-category {
+  	display: grid;
+		grid-template-columns: 1fr;
+		gap: 16px;
+		padding-block-start: 8px;
+	}
+
+	/* Switch to two columns when container ≥ 650px */
+	@container (min-width: 650px) {
+		.token-category {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>
+
+{{ heading('Color roles', '2') }}
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell>Color role</vwc-table-header-cell>
+			<vwc-table-header-cell>Usage</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="accent" text="Neutral" appearance="subtle"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Default text / surfaces and secondary UI elements.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="cta" text="Primary" appearance="subtle"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates primary interactive elements, important actions and selected states.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="announcement" text="Announcement" appearance="subtle"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates something new, such as onboarding or new feature information.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="information" text="Info" appearance="subtle"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Informational UI, or communicates something is in progress.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="success" text="Success" appearance="subtle"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicate a favorable outcome, such as a success message.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="warning" text="Warning" appearance="subtle"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates caution to prevent a mistake or error from occurring.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="alert" text="Danger" appearance="subtle"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Communicates danger or error states.</vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge connotation="accent" text="Inverse"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>Offers the possibility of styling elements in situations where the opposite theme is necessary (for high contrast).</vwc-table-cell>
+		</vwc-table-row>
+	</vwc-table-body>
+</vwc-table>
+
+{{ heading('Relationships', '2') }}
+<p>Color roles define the semantic meaning of each UI concept, while the relationships between them govern how color is applied consistently across Vivid.</p>
+{{ heading('Background', '3') }}
+<p>Background colors form the baseline layer of all UI. The application itself has a background, and some components can also have a background if they are not built within a surface.</p>
+{{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 0, 2, 'Background' ) }}
+{{ heading('Background tokens', '4') }}
+{{ tokenReferenceTable([tokens.color.bg]) }}
+{{ heading('Surface', '3') }}
+<p>The most versatile colors in the system, used as the background for prominent UI elements such as cards and banners. Unlike plain backgrounds, surfaces can host multiple layered elements — making them the foundation for complex components and patterns.</p>
+<p>Surface colors also come in hierarchical levels, allowing you to increase or decrease visual emphasis on specific areas of the interface.</p>
+{{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 0, 3, 'Surface' ) }}
+{{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 0, 0, 'Surface' ) }}
+{{ heading('Surface tokens', '4') }}
+{{ tokenReferenceTable([tokens.color.surface]) }}
+{{ heading('Fill', '3') }}
+<p>Fill colors are used as the background for compact elements such as buttons and badges. They come in two types: subtle and strong. Subtle fills use alpha colors, making them suitable for use on a variety of backgrounds and surfaces. Strong fills are the most visually prominent colors in the interface, reserved for the highest emphasis UI elements.</p>
+{{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 0, 2, 'Fill (subtle)', true ) }}
+{{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 0, 2, 'Fill (subtle)', true ) }}
+{{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 9, 11, 'Fill (strong)' ) }}
+{{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 5, 7, 'Fill (strong)' ) }}
+{{ heading('Fill tokens', '4') }}
+{{ tokenReferenceTable([tokens.color.fill]) }}
+{{ heading('Border', '3') }}
+<p>Border colors define the edges and boundaries of UI elements, providing structure and separation between components. They range from subtle dividers that create visual grouping without drawing attention, to stronger boundaries that clearly delineate interactive or focused elements.</p>
+{{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 3, 5, 'Border' ) }}
+{{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 3, 3, 'Border' ) }}
+{{ heading('Border tokens', '4') }}
+{{ tokenReferenceTable([tokens.color.border]) }}
+{{ heading('Text', '3') }}
+<p>Text colors are applied to text and accompanying icon elements. They are designed to be accessible against their corresponding backgrounds and surfaces, but can be used on any background or surface where sufficient contrast is maintained.</p>
+<p>Elements on a strong fill use a dedicated on-strong text color, which is strictly paired with its corresponding fill and should not be used elsewhere.</p>
+{{ colorScaleExample(tokens.color.neutral, colorScale, scaleItem, 7, 11, 'Text' ) }}
+{{ colorScaleExample(tokens.color.primary, colorScale, scaleItem, 5, 8, 'Text' ) }}
+{{ heading('Text tokens', '4') }}
+{{ tokenReferenceTable([tokens.color.text]) }}
+{{ heading('Tokens', '2') }}
+<p>Tokens are the mechanism for applying color consistently across Vivid. They abstract away raw values, making it straightforward to implement system-wide changes and ensuring color is always applied with intent.</p>
+{{ heading('Semantic', '3') }}
+<p>Semantic tokens communicate the intent of a color rather than its raw value, creating predictable and consistent behavior across the system. Each token is structured as a series of parts that together describe exactly what is being styled and why.</p>
+<vwc-table>
+	<vwc-table-head>
+		<vwc-table-row>
+			<vwc-table-header-cell>Part</vwc-table-header-cell>
+			<vwc-table-header-cell>Description</vwc-table-header-cell>
+			<vwc-table-header-cell>Examples</vwc-table-header-cell>
+		</vwc-table-row>
+	</vwc-table-head>
+	<vwc-table-body>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge text="Element" connotation="cta" appearance="subtle"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>The UI element the color is applied to.</vwc-table-cell>
+			<vwc-table-cell><code>bg</code>, <code>surface</code>, <code>fill</code>, <code>border</code>, <code>text</code></vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge text="Role" connotation="announcement" appearance="subtle"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>The color role or connotation.</vwc-table-cell>
+			<vwc-table-cell><code>primary</code>, <code>danger</code>, <code>success</code></vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge text="Prominence" connotation="information" appearance="subtle"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>The visual weight of the color.</vwc-table-cell>
+			<vwc-table-cell><code>default</code>, <code>strong</code>, <code>subtle</code></vwc-table-cell>
+		</vwc-table-row>
+		<vwc-table-row>
+			<vwc-table-cell><vwc-badge text="State" connotation="warning" appearance="subtle"></vwc-badge></vwc-table-cell>
+			<vwc-table-cell>The interactive state of the element.</vwc-table-cell>
+			<vwc-table-cell><code>hover</code>, <code>active</code>, <code>disabled</code></vwc-table-cell>
+		</vwc-table-row>
+	</vwc-table-body>
+</vwc-table>
+
+<p><b>Semantic color variable examples</b></p>
+<div>
+  <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
+    <vwc-badge text="color" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="surface" connotation="cta" appearance="subtle"></vwc-badge>
+    </span><br />
+  <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
+    <vwc-badge text="color" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="text" connotation="cta" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="danger" connotation="announcement" appearance="subtle"></vwc-badge>
+  </span><br />
+  <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
+    <vwc-badge text="color" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="fill" connotation="cta" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="success" connotation="announcement" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="subtle" connotation="information" appearance="subtle"></vwc-badge>
+  </span><br />
+  <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
+    <vwc-badge text="color" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="fill" connotation="cta" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="primary" connotation="announcement" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="strong" connotation="information" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="hover" connotation="warning" appearance="subtle"></vwc-badge>
+  </span><br />
+</div>
+
+{{ heading('Pattern', '3') }}
+<p>Some patterns have their own specific color tokens, known as pattern tokens. Pattern tokens start with declaring the <vwc-badge text="pattern" connotation="success" appearance="filled"></vwc-badge> and any associated variants, followed by the semantic token structure. These tokens should never be used for anything other than the concept they're referencing.</p>
+<p><b>Pattern color variable examples</b></p>
+<div>
+  <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
+    <vwc-badge text="color" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="form-control" connotation="success" appearance="filled"></vwc-badge>
+    -<vwc-badge text="fill" connotation="cta" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="error" connotation="warning" appearance="subtle"></vwc-badge>
+  </span> - <em>Background fill color for form controls when in error state</em><br />
+  <span style="display: inline-flex; align-items: center; background: var(--vvd-color-neutral-50); padding: 4px; border-radius: 2px; margin-bottom: 8px;">
+    <vwc-badge text="color" appearance="subtle"></vwc-badge>
+    -<vwc-badge text="form-control-helper" connotation="success" appearance="filled"></vwc-badge>
+    -<vwc-badge text="text" connotation="cta" appearance="subtle"></vwc-badge>
+  </span> - <em>Text color for form control helper text</em>
+</div>

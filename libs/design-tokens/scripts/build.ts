@@ -1,3 +1,5 @@
-import { styleDictionary } from './style-dictionary';
+import { lightStyleDictionary, darkStyleDictionary, flutterStyleDictionary } from './style-dictionary';
 
-await styleDictionary.buildAllPlatforms();
+await lightStyleDictionary.buildAllPlatforms();
+await darkStyleDictionary.buildAllPlatforms();
+await flutterStyleDictionary.buildAllPlatforms();

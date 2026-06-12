@@ -1,0 +1,33 @@
+{
+	"color": {
+		"transparent": {
+			"$type": "color",
+			"$value": {
+				"colorSpace": "srgb",
+				"components": [0, 0, 0],
+				"alpha": 0,
+				"hex": "#00000000"
+			}
+		},
+		"black": {
+			"$type": "color",
+			"$value": {
+				"colorSpace": "srgb",
+				"components": [0, 0, 0],
+				"alpha": 1,
+				"hex": "#000000"
+			},
+			"$description": "Black, static color, stays black in both light and dark themes."
+		},
+		"white": {
+			"$type": "color",
+			"$value": {
+				"colorSpace": "srgb",
+				"components": [1, 1, 1],
+				"alpha": 1,
+				"hex": "#FFFFFF"
+			},
+			"$description": "White, static color, stays white in both light and dark themes."
+		}
+	}
+}
