@@ -40,11 +40,7 @@ Provide examples of props that don't change the visual appearance of the compone
 
 Provide examples where necessary on how to use slots or events.
 
-Provide an API reference section which lists out each of the available properties, events and slots in a tabular format. This is currently manually produced, but we will look into automating it in the future.
-
-Tables should go in this order: Properties, Slots, Events, Methods.
-
-First column of the row should be bold.
+An API reference table will automatically appear at the bottom of the Code page in the docs.
 
 ## Use Cases (USE-CASES.md)
 
