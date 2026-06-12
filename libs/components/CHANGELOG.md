@@ -1,5 +1,15 @@
 # Change Log - @vonage/vivid
 
+## 5.21.0
+
+### Minor Changes
+
+- [#2977](https://github.com/Vonage/vivid-3/pull/2977) [`b9f53a0`](https://github.com/Vonage/vivid-3/commit/b9f53a00cefb7413cbb5382538b0c96b02b4bce2) Thanks [@RichardHelm](https://github.com/RichardHelm)! - feat(rich-text-editor): add option to hide history buttons (VIV-3259)
+
+### Patch Changes
+
+- [#2987](https://github.com/Vonage/vivid-3/pull/2987) [`1556cae`](https://github.com/Vonage/vivid-3/commit/1556cae10620c986d5e25e906a68a74dca091dcb) Thanks [@RichardHelm](https://github.com/RichardHelm)! - fix(library): bundle video.js json locales (VIV-000)
+
 ## 5.20.1
 
 ### Patch Changes
