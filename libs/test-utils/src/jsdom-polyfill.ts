@@ -29,8 +29,6 @@ export function setDialogPolyfill() {
 	);
 
 	window.ResizeObserver = class ResizeObserver {
-		constructor() {}
-
 		observe() {}
 		disconnect() {}
 	} as any;

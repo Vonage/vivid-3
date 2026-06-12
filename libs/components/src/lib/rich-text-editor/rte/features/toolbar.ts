@@ -133,7 +133,7 @@ export class RteToolbarFeatureImpl extends RteFeatureImpl {
 								toolbar.innerHTML = '';
 								toolbar.removeEventListener('mousedown', onMouseDown, {
 									capture: true,
-								} as EventListenerOptions);
+								});
 								toolbar.removeEventListener('focusin', onFocusIn);
 								toolbar.removeEventListener(
 									'focusout',

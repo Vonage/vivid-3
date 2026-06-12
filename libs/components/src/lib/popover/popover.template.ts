@@ -10,8 +10,8 @@ import type { Popover } from './popover';
 const getClasses = ({ open, manual, layout }: Popover) =>
 	classNames(
 		'control',
-		['open', Boolean(open)],
-		['manual', Boolean(manual)],
+		['open', open],
+		['manual', manual],
 		['condensed', layout === 'condensed']
 	);
 

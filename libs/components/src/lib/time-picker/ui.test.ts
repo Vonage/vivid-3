@@ -110,7 +110,7 @@ test('selecting a time', async ({ page }: { page: Page }) => {
 	);
 });
 
-test.describe('constraints validation', async () => {
+test.describe('constraints validation', () => {
 	test.beforeEach(async ({ page }: { page: Page }) => {
 		await page.setViewportSize({ width: 1100, height: 500 });
 

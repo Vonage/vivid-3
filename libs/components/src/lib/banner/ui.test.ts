@@ -208,8 +208,8 @@ test('should remove the component when clicking on remove button', async ({
 		template,
 	});
 
-	const removeButton = await page.locator('.dismiss-button');
-	const element = await page.locator('vwc-banner');
+	const removeButton = page.locator('.dismiss-button');
+	const element = page.locator('vwc-banner');
 
 	await removeButton.click();
 

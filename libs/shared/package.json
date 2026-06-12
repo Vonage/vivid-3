@@ -52,6 +52,7 @@
 		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
+		"eslint": "catalog:",
 		"vitest": "catalog:",
 		"vitest-axe": "catalog:"
 	}

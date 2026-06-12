@@ -6,13 +6,18 @@ import baseVitestConfig from '@repo/vitest-config/base';
 export default mergeConfig(
 	mergeConfig(baseViteConfig, baseVitestConfig),
 	defineConfig({
-		plugins: [dts()],
+		plugins: [
+			dts({
+				include: ['src/**/*.ts'],
+				exclude: ['**/*.spec.ts'],
+			}),
+		],
 
 		build: {
 			lib: {
 				entry: 'src/index.ts',
 				fileName: 'index',
-				formats: ['es', 'cjs'],
+				formats: ['es'],
 			},
 			target: 'esnext',
 			rolldownOptions: {

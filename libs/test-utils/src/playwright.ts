@@ -1,5 +1,5 @@
 import type { PlaywrightDriverT } from './drivers/driver';
-import type { expect as pwExpect, Page } from '@playwright/test';
+import type { Page, expect as pwExpect } from '@playwright/test';
 import type { Context } from './base';
 import { VividWrapper } from './components.generated';
 import { createPlaywrightDriver } from './drivers/playwright';

@@ -27,9 +27,9 @@ export function resolveAccessibleName(root: Element) {
 
 	function traverse(node: Node) {
 		if (node.nodeType === Node.TEXT_NODE) {
-			text += node.textContent;
+			text += String(node.textContent);
 		} else if (node.nodeType === Node.ELEMENT_NODE) {
-			const ariaLabel =
+			const ariaLabel: string | undefined =
 				(node as HTMLElement).getAttribute('aria-label') ??
 				(node as any).ariaLabel;
 			if (ariaLabel) {

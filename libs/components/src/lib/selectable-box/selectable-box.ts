@@ -116,8 +116,13 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	 */
 	_handleKeydown(event: KeyboardEvent) {
 		if (this.disabled) return true;
-		if ((event.code === 'Space' || event.code === 'Enter') && this.clickableBox)
-			return this._handleCheckedChange();
+		if (
+			(event.code === 'Space' || event.code === 'Enter') &&
+			this.clickableBox
+		) {
+			this._handleCheckedChange();
+			return;
+		}
 		return true;
 	}
 }

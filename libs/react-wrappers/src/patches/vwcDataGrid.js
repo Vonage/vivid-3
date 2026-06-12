@@ -22,5 +22,5 @@ export const vwcDataGridElementCellOverflowDecorator = (gridElement) =>
 		const component =
 			gridElement?.shadowRoot.querySelector('vaadin-grid')?.shadowRoot;
 
-		component && component.append(createVaadinGridStylePatchElement());
+		component?.append(createVaadinGridStylePatchElement());
 	}, 0);

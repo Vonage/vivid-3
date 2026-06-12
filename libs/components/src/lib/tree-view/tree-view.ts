@@ -147,14 +147,14 @@ export class TreeView extends HostSemantics(VividElement) {
 	 *
 	 *  @internal
 	 */
-	handleKeyDown = (e: KeyboardEvent): boolean | void => {
+	handleKeyDown = (e: KeyboardEvent): boolean | undefined => {
 		if (this.slottedTreeItems.length < 1) {
 			return true;
 		}
 
 		/* v8 ignore else -- @preserve */
 		if (!e.defaultPrevented) {
-			const treeItems: HTMLElement[] | void = this.getVisibleNodes();
+			const treeItems: HTMLElement[] | undefined = this.getVisibleNodes();
 
 			switch (e.key) {
 				case keyHome: {
@@ -226,7 +226,7 @@ export class TreeView extends HostSemantics(VividElement) {
 				case keyEnter:
 					// In single-select trees where selection does not follow focus (see note below),
 					// the default action is typically to select the focused node.
-					this.handleClick(e as Event);
+					this.handleClick(e);
 					return;
 			}
 		}
@@ -240,12 +240,9 @@ export class TreeView extends HostSemantics(VividElement) {
 	 *
 	 *  @internal
 	 */
-	handleClick(e: Event): boolean | void {
+	handleClick(e: Event): boolean | undefined {
 		if (!e.defaultPrevented) {
-			if (
-				!(e.target instanceof Element) ||
-				!isTreeItemElement(e.target as Element)
-			) {
+			if (!(e.target instanceof Element) || !isTreeItemElement(e.target)) {
 				// not a tree item, ignore
 				return true;
 			}
@@ -255,9 +252,8 @@ export class TreeView extends HostSemantics(VividElement) {
 			if (!item.disabled) {
 				item.selected = !item.selected;
 			}
-
-			return;
 		}
+		return;
 	}
 
 	/**
@@ -266,13 +262,10 @@ export class TreeView extends HostSemantics(VividElement) {
 	 *
 	 *  @internal
 	 */
-	handleSelectedChange = (e: Event): boolean | void => {
+	handleSelectedChange = (e: Event): boolean | undefined => {
 		/* v8 ignore else -- @preserve */
 		if (!e.defaultPrevented) {
-			if (
-				!(e.target instanceof Element) ||
-				!isTreeItemElement(e.target as Element)
-			) {
+			if (!(e.target instanceof Element) || !isTreeItemElement(e.target)) {
 				return true;
 			}
 
@@ -289,16 +282,15 @@ export class TreeView extends HostSemantics(VividElement) {
 				// selected item deselected
 				this.currentSelected = null;
 			}
-
-			return;
 		}
+		return;
 	};
 
 	/**
 	 * Move focus to a tree item based on its offset from the provided item
 	 */
 	private focusNextNode(delta: number, item: TreeItem): void {
-		const visibleNodes: HTMLElement[] | void = this.getVisibleNodes();
+		const visibleNodes: HTMLElement[] | undefined = this.getVisibleNodes();
 		/* v8 ignore else -- @preserve */
 		if (visibleNodes) {
 			const focusItem = visibleNodes[visibleNodes.indexOf(item) + delta];
@@ -327,7 +319,7 @@ export class TreeView extends HostSemantics(VividElement) {
 		// toggle properties on child elements
 		this.nested = this.checkForNestedItems();
 
-		const treeItems: HTMLElement[] | void = this.getVisibleNodes();
+		const treeItems: HTMLElement[] | undefined = this.getVisibleNodes();
 		treeItems.forEach((node) => {
 			/* v8 ignore else -- @preserve */
 			if (isTreeItemElement(node)) {

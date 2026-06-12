@@ -106,6 +106,8 @@
 		"concurrently": "catalog:",
 		"dialog-polyfill": "^0.5.6",
 		"element-internals-polyfill": "^3.0.2",
+		"eslint": "catalog:",
+		"eslint-formatter-compact": "^9.0.1",
 		"glob": "catalog:",
 		"http-server": "catalog:",
 		"playwright": "1.57.0",

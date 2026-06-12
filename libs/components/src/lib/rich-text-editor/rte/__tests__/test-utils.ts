@@ -65,7 +65,7 @@ function getOffsetInTextNode(
 
 	// Note: result could be found multiple times for adjacent text nodes
 	const results = [] as TextNodeOffset[];
-	parent.forEach((child, offset) => {
+	parent.forEach((child) => {
 		const start = accumulated;
 		const end = accumulated + child.nodeSize;
 
@@ -142,7 +142,7 @@ const docToStr = (state: EditorState) => {
 			: `${node === selectedNode ? '[|' : ''}${
 					node.type.name
 				}${marks}${attrsToStr(node.attrs)}(`;
-		let nodeContent = node.content!.content.map(nodeToStr);
+		let nodeContent = node.content.content.map(nodeToStr);
 		if (!node.childCount) {
 			if ($cursor?.parent === node) {
 				nodeContent = [caret];

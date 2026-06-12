@@ -107,7 +107,7 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 	/**
 	 * @internal
 	 */
-	modalChanged(_: boolean, newValue: boolean) {
+	modalChanged(_: boolean | undefined, newValue: boolean) {
 		if (this.open) {
 			this._openedAsModal = newValue;
 
@@ -138,7 +138,7 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 				'dialog'
 			) as HTMLDialogElement;
 		}
-		return this.#dialogElement as HTMLDialogElement;
+		return this.#dialogElement;
 	}
 
 	/**
@@ -149,7 +149,7 @@ export class Dialog extends Localized(DelegatesAria(VividElement)) {
 	/**
 	 * @internal
 	 */
-	openChanged(oldValue: boolean, newValue: boolean) {
+	openChanged(oldValue: boolean | undefined, newValue: boolean) {
 		if (oldValue === undefined) {
 			return;
 		}

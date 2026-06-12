@@ -26,7 +26,7 @@ describe('flag', function () {
 					resolve(response);
 				}, requestTime);
 				signal.addEventListener('abort', () => {
-					reject(signal.reason);
+					reject(new Error(signal.reason));
 				});
 			});
 		});

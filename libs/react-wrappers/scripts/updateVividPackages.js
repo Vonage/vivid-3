@@ -62,7 +62,9 @@ const getPackages = async (patterns = defaultPatterns) => {
 					.filter(removeIgnoredPackages)
 					.filter(keepOnlyChangedPackages)
 			);
-		} catch {}
+		} catch {
+			// ignore
+		}
 	}
 	spinner.clear();
 	return packages;
@@ -94,4 +96,4 @@ const updatePackageJson = async () => {
 	spinner.info(`Updated ${updated} of ${packages.length}`);
 };
 
-updatePackageJson();
+void updatePackageJson();

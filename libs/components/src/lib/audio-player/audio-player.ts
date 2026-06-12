@@ -35,7 +35,7 @@ export function formatTime(time: number) {
 	}
 	const min = Math.floor(time / 60);
 	const sec = Math.floor(time % 60);
-	return min + ':' + (sec < 10 ? '0' + sec : sec);
+	return `${min}:${sec < 10 ? `0${sec}` : sec}`;
 }
 
 const PAUSE = true;
@@ -234,7 +234,7 @@ export class AudioPlayer extends Localized(VividElement) {
 			const arrayBuffer = await blob.arrayBuffer();
 			const audioContext = new window.AudioContext();
 			const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-			audioContext.close();
+			void audioContext.close();
 
 			this.#audioBuffer = audioBuffer;
 			Observable.notify(this, 'duration');
@@ -293,10 +293,6 @@ export class AudioPlayer extends Localized(VividElement) {
 	 */
 	@attr({ mode: 'boolean', attribute: 'duration-fallback' })
 	durationFallback = false;
-
-	constructor() {
-		super();
-	}
 
 	override connectedCallback(): void {
 		super.connectedCallback();
@@ -361,7 +357,7 @@ export class AudioPlayer extends Localized(VividElement) {
 			this.#playerEl.pause();
 		} else {
 			this.#updateProgress();
-			this.#playerEl!.play();
+			void this.#playerEl.play();
 		}
 		this.#setPausedState();
 	};
@@ -398,7 +394,7 @@ export class AudioPlayer extends Localized(VividElement) {
 			this.#playerEl.duration <= 0
 		) {
 			if (this.durationFallback) {
-				this.#fetchAndCacheAudioBuffer();
+				void this.#fetchAndCacheAudioBuffer();
 			}
 		}
 	};
@@ -421,10 +417,7 @@ export class AudioPlayer extends Localized(VividElement) {
 			return;
 		}
 
-		/* v8 ignore else -- @preserve */
-		if (this.#playerEl) {
-			this.currentTime = (this.duration * Number(this.#sliderEl!.value)) / 100;
-		}
+		this.currentTime = (this.duration * Number(this.#sliderEl!.value)) / 100;
 	};
 
 	#setPausedState = () => {

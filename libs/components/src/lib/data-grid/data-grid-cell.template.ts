@@ -19,7 +19,7 @@ function shouldShowSortIcons(x: DataGridCell): boolean {
 	);
 }
 
-function getSortIcon<T extends DataGridCell>(x: T): string {
+function getSortIcon(x: DataGridCell): string {
 	if (x.sortDirection === DataGridCellSortStates.ascending) {
 		return 'sort-asc-solid';
 	}
@@ -83,7 +83,7 @@ function getSortAnnouncement(x: DataGridCell): string {
 		.trim();
 }
 
-function handleKeyDown<T extends DataGridCell>(x: T, e: KeyboardEvent) {
+function handleKeyDown(x: DataGridCell, e: KeyboardEvent) {
 	if (e.key === keyEnter || e.key === keySpace) {
 		const target = e.target as HTMLElement;
 		if (target.closest('[slot="action-items"]')) return true;
@@ -92,7 +92,7 @@ function handleKeyDown<T extends DataGridCell>(x: T, e: KeyboardEvent) {
 	return true;
 }
 
-function handleClick<T extends DataGridCell>(x: T, e: Event) {
+function handleClick(x: DataGridCell, e: Event) {
 	const target = e.target as HTMLElement;
 	if (target.closest('[slot="action-items"]')) return true;
 	x._handleInteraction();
@@ -109,7 +109,7 @@ export const DataGridCellTemplate = (
 	}: DataGridCell) =>
 		classNames(
 			'base',
-			['selected', !!selected],
+			['selected', selected],
 			['has-action-items', Boolean(_actionItemsSlottedContent?.length)]
 		);
 

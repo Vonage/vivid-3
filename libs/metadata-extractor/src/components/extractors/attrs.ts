@@ -75,7 +75,7 @@ function parseAttrOptions(decorator: Decorator): {
 	attribute?: string;
 	mode?: string;
 } {
-	const decoratorArg = decorator.getArguments()[0];
+	const decoratorArg = decorator.getArguments()[0] as Node | undefined;
 	if (!decoratorArg) {
 		return {};
 	}

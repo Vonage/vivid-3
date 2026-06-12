@@ -284,8 +284,8 @@ describe('Flutter Features', () => {
 				);
 			});
 
-			it('Should be able to undo creating the package', () => {
-				flutterConfig.actions['vvd/flutter/createPackage'].undo(
+			it('Should be able to undo creating the package', async () => {
+				await flutterConfig.actions['vvd/flutter/createPackage'].undo(
 					{} as Dictionary,
 					flutterPlatform,
 					{},

@@ -111,7 +111,7 @@ export const WithLightDOMFeedback = <T extends Constructor<VividElement>>(
 		 * @internal
 		 */
 		_helperTextSlottedContentChanged(
-			_: HTMLElement[],
+			_: HTMLElement[] | undefined,
 			newContent: HTMLElement[]
 		) {
 			for (const el of newContent) {

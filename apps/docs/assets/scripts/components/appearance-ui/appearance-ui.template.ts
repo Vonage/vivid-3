@@ -14,11 +14,11 @@ const getClasses = ({
 	classNames(
 		'base',
 		[`appearance-${appearance}`, Boolean(appearance)],
-		['hover', Boolean(hovered)],
-		['active', Boolean(active)],
-		['checked selected', Boolean(selected)],
-		['disabled', Boolean(disabled)],
-		['readonly', Boolean(readonly)]
+		['hover', hovered],
+		['active', active],
+		['checked selected', selected],
+		['disabled', disabled],
+		['readonly', readonly]
 	);
 
 export const AppearanceUiTemplate = html`

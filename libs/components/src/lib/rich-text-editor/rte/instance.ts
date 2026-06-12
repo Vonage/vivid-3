@@ -175,6 +175,7 @@ export class RteInstanceImpl {
 	readonly foreignHtmlParser: RteHtmlParser;
 	readonly foreignHtmlSerializer: RteHtmlSerializer;
 
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 	getFeature<T extends RteFeatureImpl>(name: string): T {
 		const f = this.config.featureMap.get(name) as T;
 		if (!f) {

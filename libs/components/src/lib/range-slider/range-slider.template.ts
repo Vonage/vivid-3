@@ -8,7 +8,7 @@ import type { RangeSlider, ThumbId } from './range-slider';
 const getClasses = ({ disabled, connotation }: RangeSlider) =>
 	classNames(
 		'control',
-		['disabled', Boolean(disabled)],
+		['disabled', disabled],
 		[`connotation-${connotation}`, Boolean(connotation)]
 	);
 

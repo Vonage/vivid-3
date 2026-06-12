@@ -1,7 +1,7 @@
 import { RuleTester } from 'eslint';
 import tsParser from '@typescript-eslint/parser';
 import { convertAnnotatedSourceToFailureCase } from '../../../eslint-plugin/src/utils/testing';
-import { rule, RULE_NAME } from './no-attribute-default-value';
+import { rule } from './no-attribute-default-value';
 
 const ruleTester = new RuleTester({
 	languageOptions: {
@@ -9,7 +9,7 @@ const ruleTester = new RuleTester({
 	},
 });
 
-ruleTester.run(RULE_NAME, rule as never, {
+ruleTester.run('no-attribute-default-value', rule as never, {
 	valid: [
 		`
     class Test{

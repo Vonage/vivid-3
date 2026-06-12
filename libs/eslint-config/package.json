@@ -3,11 +3,24 @@
 	"version": "1.0.0",
 	"private": true,
 	"type": "module",
+	"exports": {
+		"./base": "./base.ts",
+		"./non-strict": "./non-strict.ts"
+	},
 	"dependencies": {
-		"@typescript-eslint/eslint-plugin": "^8.59.2",
-		"@typescript-eslint/parser": "^8.59.2",
+		"@eslint/eslintrc": "catalog:",
+		"@eslint/js": "^10.0.1",
+		"@repo/typescript-config": "workspace:*",
+		"@typescript-eslint/eslint-plugin": "catalog:",
+		"eslint": "catalog:",
+		"eslint-config-prettier": "catalog:",
 		"eslint-plugin-ban": "^2.0.0",
+		"eslint-plugin-compat": "catalog:",
 		"eslint-plugin-import": "^2.32.0",
-		"eslint-plugin-unused-imports": "catalog:"
+		"eslint-plugin-unused-imports": "catalog:",
+		"eslint-plugin-vue": "catalog:",
+		"globals": "catalog:",
+		"jiti": "^2.7.0",
+		"typescript-eslint": "^8.60.0"
 	}
 }

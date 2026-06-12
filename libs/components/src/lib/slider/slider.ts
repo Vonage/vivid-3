@@ -171,7 +171,7 @@ export class Slider extends Localized(
 	/**
 	 * @internal
 	 */
-	override valueChanged(previous: string, next: string) {
+	override valueChanged(previous: string | undefined, next: string) {
 		super.valueChanged(previous, next);
 
 		if (this.$fastController.isConnected) {
@@ -322,8 +322,8 @@ export class Slider extends Localized(
 		const newVal: number =
 			this.direction !== Direction.rtl &&
 			this.orientation !== Orientation.vertical
-				? Number(this.value) + Number(this.step)
-				: Number(this.value) - Number(this.step);
+				? Number(this.value) + this.step
+				: Number(this.value) - this.step;
 		this.value = this.#roundToNearestStep(newVal).toString();
 	}
 
@@ -336,8 +336,8 @@ export class Slider extends Localized(
 		const newVal =
 			this.direction !== Direction.rtl &&
 			this.orientation !== Orientation.vertical
-				? Number(this.value) - Number(this.step)
-				: Number(this.value) + Number(this.step);
+				? Number(this.value) - this.step
+				: Number(this.value) + this.step;
 		this.value = this.#roundToNearestStep(newVal).toString();
 	}
 
@@ -399,7 +399,7 @@ export class Slider extends Localized(
 	 * are not whole numbers
 	 */
 	private updateStepMultiplier(): void {
-		const stepString: string = this.step + '';
+		const stepString: string = String(this.step);
 		const decimalPlacesOfStep: number =
 			this.step % 1 ? stepString.length - stepString.indexOf('.') - 1 : 0;
 		this.stepMultiplier = Math.pow(10, decimalPlacesOfStep);

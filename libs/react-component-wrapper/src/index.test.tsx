@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, createEvent } from '@testing-library/react';
+import { createEvent, fireEvent, render } from '@testing-library/react';
 import prepareVividWrapper, {
 	attributeSetterToggle,
 	attributeSetterValue,
@@ -187,7 +187,7 @@ describe('wrapper', () => {
 				const { container, rerender } = render(
 					<VividButton prop="initial value" />
 				);
-				const domElement = container.querySelector('mwc-button') as any;
+				const domElement = container.querySelector<any>('mwc-button');
 				rerender(<VividButton prop={value} />);
 				expect(domElement.prop).toBe(value);
 			}
@@ -202,7 +202,7 @@ describe('wrapper', () => {
 				const { container, rerender } = render(
 					<VividButton prop="initial value" />
 				);
-				const domElement = container.querySelector('mwc-button') as any;
+				const domElement = container.querySelector<any>('mwc-button');
 				rerender(<VividButton prop={value} />);
 				domElement.prop = 'prop value';
 				rerender(<VividButton prop={null} />);
@@ -219,7 +219,7 @@ describe('wrapper', () => {
 			const { container, rerender } = render(
 				<VividButton prop="initial value" />
 			);
-			const domElement = container.querySelector('mwc-button') as any;
+			const domElement = container.querySelector<any>('mwc-button');
 			rerender(<VividButton />);
 			expect(domElement.prop).toBe(null);
 		});

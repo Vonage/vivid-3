@@ -44,7 +44,7 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	 * @internal
 	 */
 	requiredChanged(): void {
-		this.slottedRadioButtons?.forEach((radio) => {
+		this.slottedRadioButtons.forEach((radio) => {
 			if (this.required) {
 				radio.required = true;
 			} else {
@@ -66,7 +66,7 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	 * @internal
 	 */
 	readOnlyChanged() {
-		this.slottedRadioButtons?.forEach((radio) => {
+		this.slottedRadioButtons.forEach((radio) => {
 			if (this.readOnly) {
 				radio.readOnly = true;
 			} else {
@@ -88,7 +88,7 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	 * @internal
 	 */
 	disabledChanged() {
-		this.slottedRadioButtons?.forEach((radio: Radio) => {
+		this.slottedRadioButtons.forEach((radio: Radio) => {
 			if (this.disabled) {
 				radio.disabled = true;
 			} else {
@@ -107,7 +107,7 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	 */
 	@attr name!: string;
 	nameChanged(): void {
-		this.slottedRadioButtons?.forEach((radio) => {
+		this.slottedRadioButtons.forEach((radio) => {
 			radio.setAttribute('name', this.name);
 		});
 	}
@@ -125,7 +125,7 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	 * @internal
 	 */
 	valueChanged(): void {
-		this.slottedRadioButtons?.forEach((radio) => {
+		this.slottedRadioButtons.forEach((radio) => {
 			if (radio.value === this.value) {
 				radio.checked = true;
 			}
@@ -143,7 +143,7 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	 */
 	handleSlotChange(): void {
 		if (this.errorText) {
-			this.slottedRadioButtons?.forEach((radio) => {
+			this.slottedRadioButtons.forEach((radio) => {
 				radio.errorText = this.errorText;
 			});
 		}
@@ -153,7 +153,10 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	/**
 	 * @internal
 	 */
-	errorTextChanged(_: string, newErrorText: string | undefined): void {
+	errorTextChanged(
+		_: string | undefined,
+		newErrorText: string | undefined
+	): void {
 		if (newErrorText) {
 			this.errorValidationMessage = newErrorText;
 		} else {
@@ -179,14 +182,14 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	slottedRadioButtons: Radio[] = [];
 
 	get #focusableRadioButtons() {
-		return this.slottedRadioButtons?.filter((radio) => !radio.disabled);
+		return this.slottedRadioButtons.filter((radio) => !radio.disabled);
 	}
 
 	/**
 	 * @internal
 	 */
 	slottedRadioButtonsChanged() {
-		if (this.slottedRadioButtons && this.slottedRadioButtons.length > 0) {
+		if (this.slottedRadioButtons.length > 0) {
 			this.setupRadioButtons();
 		}
 	}
@@ -204,15 +207,12 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	}
 
 	override disconnectedCallback() {
-		this.slottedRadioButtons?.forEach((radio) => {
+		this.slottedRadioButtons.forEach((radio) => {
 			radio.removeEventListener(
 				'change',
 				this.radioChangeHandler as EventListener
 			);
-			radio.removeEventListener(
-				'invalid',
-				this.radioErrorHandler as EventListener
-			);
+			radio.removeEventListener('invalid', this.radioErrorHandler);
 		});
 	}
 
@@ -252,14 +252,11 @@ export class RadioGroup extends WithFeedback(VividElement) {
 				'change',
 				this.radioChangeHandler as EventListener
 			);
-			radio.addEventListener(
-				'invalid',
-				this.radioErrorHandler as EventListener
-			);
+			radio.addEventListener('invalid', this.radioErrorHandler);
 		}
 
-		if (this.value === undefined && this.slottedRadioButtons?.length > 0) {
-			const checkedRadios = this.slottedRadioButtons?.filter((radio: Radio) =>
+		if (this.value === undefined && this.slottedRadioButtons.length > 0) {
+			const checkedRadios = this.slottedRadioButtons.filter((radio: Radio) =>
 				radio.hasAttribute('checked')
 			);
 			if (checkedRadios.length > 0 && !foundMatchingVal) {
@@ -272,11 +269,11 @@ export class RadioGroup extends WithFeedback(VividElement) {
 		}
 	}
 
-	private radioChangeHandler = (e: CustomEvent): boolean | void => {
+	private radioChangeHandler = (e: CustomEvent) => {
 		const changedRadio = e.target as Radio;
 
 		if (changedRadio.checked) {
-			this.slottedRadioButtons?.forEach((radio) => {
+			this.slottedRadioButtons.forEach((radio) => {
 				if (radio !== changedRadio) {
 					radio.checked = false;
 				}
@@ -296,11 +293,17 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	};
 
 	private moveRightOffGroup = () => {
-		(this.nextElementSibling as HTMLElement)?.focus();
+		const next = this.nextElementSibling;
+		if (next instanceof HTMLElement) {
+			next.focus();
+		}
 	};
 
 	private moveLeftOffGroup = () => {
-		(this.previousElementSibling as HTMLElement)?.focus();
+		const prev = this.previousElementSibling;
+		if (prev instanceof HTMLElement) {
+			prev.focus();
+		}
 	};
 
 	/**
@@ -328,9 +331,7 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	private moveRight = (e: KeyboardEvent): void => {
 		const radio = e.target as Radio;
 		const group = this.#focusableRadioButtons;
-		let index = 0;
-
-		index = group.indexOf(radio) + 1;
+		let index = group.indexOf(radio) + 1;
 
 		if (
 			index === group.length &&
@@ -369,21 +370,21 @@ export class RadioGroup extends WithFeedback(VividElement) {
 	 *
 	 * @internal
 	 */
-	keydownHandler = (e: KeyboardEvent): boolean | void => {
+	keydownHandler = (e: KeyboardEvent): boolean | undefined => {
 		switch (e.key) {
 			case keyEnter:
 				this.checkFocusedRadio(e.target as Radio);
-				break;
+				return;
 
 			case keyArrowRight:
 			case keyArrowDown:
 				this.moveRight(e);
-				break;
+				return;
 
 			case keyArrowLeft:
 			case keyArrowUp:
 				this.moveLeft(e);
-				break;
+				return;
 
 			default:
 				return true;

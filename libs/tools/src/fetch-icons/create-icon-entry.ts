@@ -6,7 +6,7 @@ import type {
 } from './types';
 
 export const createIconEntry: CreateIconEntryFunction = (node, path, file) => {
-	const description = file.components[node.id]?.description || '';
+	const description = file.components[node.id].description || '';
 
 	const keywordsString = description
 		.split(/[Kk]eyword:/)

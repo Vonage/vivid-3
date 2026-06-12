@@ -27,7 +27,7 @@ export function getNextFocusableGridElement(
 	this: Calendar,
 	key: PredefindKeys,
 	activeElement: HTMLElement
-): Element | null | void {
+): Element | null | undefined {
 	/* v8 ignore else -- @preserve */
 	if (activeElement.parentNode instanceof HTMLElement) {
 		switch (key) {
@@ -46,11 +46,13 @@ export function getNextFocusableGridElement(
 				const { children } = activeElement.parentNode;
 				const i = Array.from(children).indexOf(activeElement);
 				return (this.shadowRoot as ShadowRoot).querySelector(
-					`${getCellOrHeader(activeElement as HTMLElement)}:nth-child(${i + 1})`
+					`${getCellOrHeader(activeElement)}:nth-child(${i + 1})`
 				);
 			}
 		}
 	}
+	/* v8 ignore next -- @preserve */
+	return;
 }
 
 export function getHeaderDescendantGridCell(

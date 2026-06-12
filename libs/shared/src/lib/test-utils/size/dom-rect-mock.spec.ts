@@ -91,6 +91,7 @@ describe('DOMRectReadOnly', () => {
 	test('toString', () => {
 		const domRect = new DOMRectReadOnly(100, 100, 200, 200);
 
+		// eslint-disable-next-line @typescript-eslint/no-base-to-string
 		expect(domRect.toString()).toBe('[object DOMRectReadOnly]');
 	});
 });
@@ -154,6 +155,7 @@ describe('DOMRect', () => {
 	test('toString', () => {
 		const domRect = new DOMRect(100, 100, 200, 200);
 
+		// eslint-disable-next-line @typescript-eslint/no-base-to-string
 		expect(domRect.toString()).toBe('[object DOMRect]');
 	});
 });

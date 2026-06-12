@@ -20,7 +20,7 @@ function setupSkipTop() {
 		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 	}
 
-	skipTopBtn!.addEventListener('click', skipToTop);
+	skipTopBtn.addEventListener('click', skipToTop);
 	window.addEventListener('scroll', handleScroll);
 }
 

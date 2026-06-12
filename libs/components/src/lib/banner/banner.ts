@@ -63,7 +63,7 @@ export class Banner extends AffixIcon(Localized(DelegatesAria(VividElement))) {
 
 	#handleRemoveEnd = () => {
 		this.$emit('removed');
-		this.parentElement && this.parentElement.removeChild(this);
+		this.parentElement?.removeChild(this);
 	};
 
 	#closeOnKeyDown = (e: KeyboardEvent) => {

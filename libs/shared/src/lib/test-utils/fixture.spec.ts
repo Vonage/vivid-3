@@ -34,7 +34,7 @@ describe(`test-utils`, function () {
 			const form = document.createElement('form');
 			form.onsubmit = () => false;
 			const submissionPromise = listenToFormSubmission(form);
-			submissionPromise.then(spy);
+			void submissionPromise.then(spy);
 
 			form.requestSubmit();
 			await submissionPromise;
@@ -148,9 +148,9 @@ describe(`test-utils`, function () {
 	});
 
 	describe(`setProperty`, function () {
-		it(`should set property on the element`, function () {
+		it(`should set property on the element`, async function () {
 			const ele = document.createElement('div');
-			setProperty(ele, 'className', 'test');
+			await setProperty(ele, 'className', 'test');
 			expect(ele.className).toEqual('test');
 		});
 

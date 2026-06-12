@@ -44,4 +44,4 @@ const updateSupportedComponents = async (readmePath) => {
 	);
 };
 
-updateSupportedComponents('README.md');
+void updateSupportedComponents('README.md');

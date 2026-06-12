@@ -156,15 +156,17 @@ export class Listbox extends VividElement {
 	 *
 	 * @internal
 	 */
-	clickHandler(e: MouseEvent): boolean | void {
-		const captured = (e.target as HTMLElement).closest(
+	clickHandler(e: MouseEvent): boolean | undefined {
+		const captured = (e.target as HTMLElement).closest<ListboxOption>(
 			`option,[role=option],[data-vvd-component=option]`
-		) as ListboxOption;
+		);
 
 		if (captured && !captured.disabled) {
 			this.selectedIndex = this.options.indexOf(captured);
 			return true;
 		}
+
+		return;
 	}
 
 	/**
@@ -312,7 +314,7 @@ export class Listbox extends VividElement {
 	 *
 	 * @internal
 	 */
-	keydownHandler(e: KeyboardEvent): boolean | void {
+	keydownHandler(e: KeyboardEvent): boolean | undefined {
 		if (this.disabled) {
 			return true;
 		}
@@ -329,7 +331,7 @@ export class Listbox extends VividElement {
 					e.preventDefault();
 					this.selectFirstOption();
 				}
-				break;
+				return;
 			}
 
 			// Select the next selectable option
@@ -339,7 +341,7 @@ export class Listbox extends VividElement {
 					e.preventDefault();
 					this.selectNextOption();
 				}
-				break;
+				return;
 			}
 
 			// Select the previous selectable option
@@ -349,14 +351,14 @@ export class Listbox extends VividElement {
 					e.preventDefault();
 					this.selectPreviousOption();
 				}
-				break;
+				return;
 			}
 
 			// Select the last available option
 			case keyEnd: {
 				e.preventDefault();
 				this.selectLastOption();
-				break;
+				return;
 			}
 
 			case keyTab: {
@@ -381,7 +383,7 @@ export class Listbox extends VividElement {
 				/* v8 ignore else -- @preserve */
 				if (key.length === 1) {
 					// Send key to Typeahead handler
-					this.handleTypeAhead(`${key}`);
+					this.handleTypeAhead(key);
 				}
 				return true;
 			}
@@ -394,7 +396,7 @@ export class Listbox extends VividElement {
 	 *
 	 * @internal
 	 */
-	mousedownHandler(_: MouseEvent): boolean | void {
+	mousedownHandler(_: MouseEvent): boolean | undefined {
 		this.shouldSkipFocus = !this.contains(document.activeElement);
 		return true;
 	}
@@ -407,7 +409,7 @@ export class Listbox extends VividElement {
 	 *
 	 * @internal
 	 */
-	selectedIndexChanged(prev: number | undefined, next: number): void {
+	selectedIndexChanged(_prev: number | undefined, next: number): void {
 		const validNext = this._validSelectedIndex(next);
 		if (next !== validNext) {
 			this.selectedIndex = validNext;
@@ -497,7 +499,7 @@ export class Listbox extends VividElement {
 	protected _newDefaultSelectedIndex(
 		prev: ListboxOption[],
 		next: ListboxOption[],
-		currentSelectedIndex: number
+		_currentSelectedIndex: number
 	): number | null {
 		// When a new option with defaultSelected=true is added, select it
 		for (const [index, newOption] of next.entries()) {
@@ -559,7 +561,7 @@ export class Listbox extends VividElement {
 	 *
 	 * @internal
 	 */
-	typeaheadBufferChanged(_prev: string, _next: string): void {
+	typeaheadBufferChanged(_prev: string | undefined, _next: string): void {
 		if (this.$fastController.isConnected) {
 			const typeaheadMatches = this.getTypeaheadMatches();
 

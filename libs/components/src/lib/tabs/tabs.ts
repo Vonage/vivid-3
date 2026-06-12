@@ -244,7 +244,7 @@ export class Tabs extends VividElement {
 		this.#updateSlottedChildren();
 
 		if (this.activeid !== this.#lastActiveId) {
-			if (this.activetab) {
+			if (this.activetab as IncorrectlyTyped) {
 				const shouldAnimate = this.#lastActiveId !== undefined;
 				this.#scrollToTab(this.activetab, shouldAnimate);
 				this.#moveActiveIndicator(shouldAnimate);
@@ -298,7 +298,7 @@ export class Tabs extends VividElement {
 
 	#onTabKeyDown = (event: KeyboardEvent) => {
 		const tabs = this._validTabs;
-		const activeTab = this.activetab;
+		const activeTab = this.activetab as IncorrectlyTyped;
 		if (!activeTab) {
 			return;
 		}
@@ -405,7 +405,7 @@ export class Tabs extends VividElement {
 		indicatorEl.style.transform = targetTransform;
 		indicatorEl.style.setProperty(
 			ACTIVE_TAB_WIDTH,
-			this.tabs[activeTabIndex].getBoundingClientRect().width + 'px'
+			`${this.tabs[activeTabIndex].getBoundingClientRect().width}px`
 		);
 	}
 
@@ -451,7 +451,7 @@ export class Tabs extends VividElement {
 
 	#updateScrollStatus() {
 		// Trigger scroll shadow evaluation
-		this.#tabListScrollWrapper.dispatchEvent!(new Event('scroll'));
+		this.#tabListScrollWrapper.dispatchEvent(new Event('scroll'));
 	}
 
 	#resizeObserver?: ResizeObserver;
@@ -467,8 +467,8 @@ export class Tabs extends VividElement {
 			this.#moveActiveIndicator(this.#isTransitioningTransform);
 			this.#updateScrollStatus();
 		});
-		this.#resizeObserver!.observe(this.#tabListScrollWrapper);
-		this.#resizeObserver!.observe(this.tablist!);
+		this.#resizeObserver.observe(this.#tabListScrollWrapper);
+		this.#resizeObserver.observe(this.tablist!);
 	}
 
 	override disconnectedCallback() {

@@ -183,7 +183,7 @@ export class DocsIconsGallery extends FASTElement {
 
 	override connectedCallback() {
 		super.connectedCallback();
-		this.loadIcons();
+		void this.loadIcons();
 
 		for (const option of this.allTagOptions) {
 			Observable.getNotifier(option).subscribe(
@@ -237,7 +237,7 @@ export class DocsIconsGallery extends FASTElement {
 	@observable copyAlert!: Alert;
 
 	onIconClick(id: string) {
-		navigator.clipboard.writeText(id);
+		void navigator.clipboard.writeText(id);
 		this.copyAlert.open = true;
 	}
 }

@@ -326,9 +326,16 @@ export const createResolver = (packageRoot: string): ResolverCtx => {
 
 	const resolveTypeStructure = (node: Node, type: Type): TypeStructure => {
 		if (type.isStringLiteral())
-			return { kind: 'literal', value: `'${type.getLiteralValue()}'` };
+			return {
+				kind: 'literal',
+				value: `'${type.getLiteralValue() as string}'`,
+			};
 		if (type.isNumberLiteral())
-			return { kind: 'literal', value: String(type.getLiteralValue()) };
+			return {
+				kind: 'literal',
+				// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+				value: String(type.getLiteralValue() as number),
+			};
 		if (type.isBooleanLiteral())
 			return {
 				kind: 'literal',

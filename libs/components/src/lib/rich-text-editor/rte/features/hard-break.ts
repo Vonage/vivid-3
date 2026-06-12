@@ -34,7 +34,7 @@ export class RteHardBreakFeatureImpl extends RteFeatureImpl {
 		const forceBreak: Command = (state, dispatch) => {
 			dispatch?.(
 				state.tr
-					.replaceSelectionWith(state.schema.nodes.hardBreak.create()!, true)
+					.replaceSelectionWith(state.schema.nodes.hardBreak.create(), true)
 					.scrollIntoView()
 			);
 			return true;

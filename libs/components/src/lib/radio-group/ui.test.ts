@@ -82,7 +82,7 @@ test.describe('radio-group', () => {
 		await takeScreenshot(page, 'radio-group');
 	});
 
-	test.describe('form association', async () => {
+	test.describe('form association', () => {
 		test.beforeEach(async ({ page }: { page: Page }) => {
 			await loadComponents({
 				page,

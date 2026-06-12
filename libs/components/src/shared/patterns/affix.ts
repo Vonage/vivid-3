@@ -110,15 +110,15 @@ export const affixIconTemplateFactory: affixIconTemplateFactoryReturnType = (
 		}
 
 		const iconTemplate = html`<${iconTag} :name="${() => icon}" :label="${() =>
-			announcement?.label || undefined}"></${iconTag}>`;
+			announcement.label || undefined}"></${iconTag}>`;
 		const wrapperTag = html.partial(slottedState ? 'span' : 'slot');
 
 		return html`<${wrapperTag}
 					class="${() => (slottedState ? 'icon' : undefined)}"
 					:name="${() => (slottedState ? undefined : 'icon')}"
-					aria-hidden="${() => (announcement?.label ? false : ariaHidden)}"
-					:role="${() => (announcement?.announceOnUpdate ? 'status' : undefined)}"
-					:ariaLive="${() => (announcement?.announceOnUpdate ? 'polite' : undefined)}"
+					aria-hidden="${() => (announcement.label ? false : ariaHidden)}"
+					:role="${() => (announcement.announceOnUpdate ? 'status' : undefined)}"
+					:ariaLive="${() => (announcement.announceOnUpdate ? 'polite' : undefined)}"
 			  >
 					${iconTemplate}
 			  </${wrapperTag}>`;

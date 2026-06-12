@@ -93,7 +93,7 @@ preventPopupCodeRunningAfterWindowClose();
 			}
 			setDragImage() {}
 		}
-		(globalThis as any).DataTransfer =
+		globalThis.DataTransfer =
 			DataTransferPolyfill as unknown as typeof DataTransfer;
 	}
 
@@ -110,8 +110,7 @@ preventPopupCodeRunningAfterWindowClose();
 			}
 		}
 
-		(globalThis as any).DragEvent =
-			DragEventPolyfill as unknown as typeof DragEvent;
+		globalThis.DragEvent = DragEventPolyfill as unknown as typeof DragEvent;
 	}
 })();
 

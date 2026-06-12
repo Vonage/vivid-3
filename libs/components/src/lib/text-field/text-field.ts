@@ -320,7 +320,7 @@ export class TextField extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	override valueChanged(previous: string, next: string) {
+	override valueChanged(previous: string | undefined, next: string) {
 		super.valueChanged(previous, next);
 		this._updateControlValueIfNeeded();
 		if (this.charCount && this.maxlength) {

@@ -122,17 +122,16 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 	/**
 	 * @internal
 	 */
-	openChanged(oldValue: boolean, newValue: boolean): void {
+	openChanged(oldValue: boolean | undefined, newValue: boolean): void {
 		if (oldValue === undefined) return;
 		this.$emit(newValue ? 'open' : 'close');
 		this.#setupTimeout();
 		if (newValue) {
 			this.style.display = 'contents';
-			const closeBtn = this.shadowRoot!.querySelector(
-				'.dismiss-button'
-			) as HTMLElement;
-			if (this.removable && closeBtn) {
-				closeBtn.focus();
+			const closeBtn =
+				this.shadowRoot!.querySelector<HTMLElement>('.dismiss-button');
+			if (this.removable) {
+				closeBtn?.focus();
 			}
 		} else {
 			this.style.display = 'none';

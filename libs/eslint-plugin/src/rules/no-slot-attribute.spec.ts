@@ -1,10 +1,11 @@
 import { RuleTester } from 'eslint';
 import { noSlotAttribute } from './no-slot-attribute';
 import { convertAnnotatedSourceToFailureCase } from '../utils/testing';
+import vueEslintParser from 'vue-eslint-parser';
 
 const ruleTester = new RuleTester({
 	languageOptions: {
-		parser: require('vue-eslint-parser'),
+		parser: vueEslintParser,
 		parserOptions: {
 			sourceType: 'module',
 		},

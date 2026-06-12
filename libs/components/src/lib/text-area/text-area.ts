@@ -268,7 +268,7 @@ export class TextArea extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	override valueChanged(previous: string, next: string) {
+	override valueChanged(previous: string | undefined, next: string) {
 		super.valueChanged(previous, next);
 		if (this.charCount && this.maxlength) {
 			this._updateCharCountRemaining();

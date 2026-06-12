@@ -120,16 +120,19 @@ export class Pagination extends Localized(VividElement) {
 			const { value: currentLabel, shiftKey } = (e as CustomEvent).detail;
 			const index = this.paginationButtons!.findIndex(
 				(button) => Number(button.label) === currentLabel
-			) as number;
+			);
 			const focusDirection = shiftKey ? -1 : 1;
 			const newIndex = index + focusDirection;
 			if (newIndex < 0) {
-				return this.prevButton!.focus();
+				this.prevButton!.focus();
+				return;
 			}
 			if (newIndex > this.paginationButtons!.length - 1) {
-				return this.nextButton!.focus();
+				this.nextButton!.focus();
+				return;
 			}
-			this.paginationButtons &&
+			/* v8 ignore else -- @preserve */
+			if (this.paginationButtons)
 				this.paginationButtons[index + focusDirection].focus();
 		});
 	}
@@ -137,7 +140,7 @@ export class Pagination extends Localized(VividElement) {
 	/**
 	 * @internal
 	 */
-	totalChanged(_: number, newValue: number) {
+	totalChanged(_: number | undefined, newValue: number) {
 		if (newValue < 0) {
 			this.total = 0;
 			return;
@@ -149,7 +152,7 @@ export class Pagination extends Localized(VividElement) {
 	/**
 	 * @internal
 	 */
-	selectedIndexChanged(oldValue: number, newValue: number) {
+	selectedIndexChanged(oldValue: number | undefined, newValue: number) {
 		if (oldValue === undefined) return;
 		this.$emit('pagination-change', {
 			selectedIndex: newValue,

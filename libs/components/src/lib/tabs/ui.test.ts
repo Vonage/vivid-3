@@ -43,9 +43,7 @@ async function testScroll({ page }: { page: Page }) {
 		template,
 		setup: async () => {
 			await page.locator('.tablist-wrapper').evaluate((element) => {
-				if (element) {
-					element.scrollTo(95, 0);
-				}
+				element.scrollTo(95, 0);
 			});
 		},
 	});

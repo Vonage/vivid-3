@@ -61,6 +61,7 @@
 		"@vue/test-utils": "^2.4.10",
 		"concurrently": "catalog:",
 		"cypress": "catalog:",
+		"eslint": "catalog:",
 		"tsx": "catalog:",
 		"vite": "catalog:",
 		"vitest": "catalog:",

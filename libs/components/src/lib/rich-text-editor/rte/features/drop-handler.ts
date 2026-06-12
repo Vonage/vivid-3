@@ -4,7 +4,6 @@ import {
 	featureFacade,
 	RteFeatureImpl,
 } from '../feature';
-import type { RteInstanceImpl } from '../instance';
 import type { RichTextEditor } from '../../rich-text-editor';
 
 export interface RteDropHandlerConfig {
@@ -30,7 +29,7 @@ export class RteDropHandlerFeatureImpl extends RteFeatureImpl {
 		super();
 	}
 
-	override getPlugins(rte: RteInstanceImpl) {
+	override getPlugins() {
 		const dragOverResults = new WeakMap<Event, boolean>();
 		let lastResult = false;
 
@@ -92,7 +91,7 @@ export class RteDropHandlerFeatureImpl extends RteFeatureImpl {
 				new Plugin({
 					props: {
 						handleDOMEvents: {
-							dragover: (view, event) => {
+							dragover: (_view, event) => {
 								const result = this.config.onViewportDragOver?.(event) ?? false;
 								dragOverResults.set(event, result);
 								lastResult = result;
@@ -104,7 +103,7 @@ export class RteDropHandlerFeatureImpl extends RteFeatureImpl {
 								}
 								return false;
 							},
-							drop: (view, event) => {
+							drop: () => {
 								return lastResult; // Prevent default handling
 							},
 						},

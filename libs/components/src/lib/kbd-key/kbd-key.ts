@@ -244,7 +244,7 @@ export class KbdKey extends VividElement {
 			return null;
 		}
 		if (this.name === 'Custom') {
-			return this.textContent!.trim() || null;
+			return this.textContent.trim() || null;
 		}
 		if (this.name === 'Mod') {
 			return this._isApple ? 'Meta' : 'Control';
