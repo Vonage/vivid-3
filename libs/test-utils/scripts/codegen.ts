@@ -116,9 +116,9 @@ const ${camelCase(def.name)}ComponentInfo = {
 
 export class ${pascalCase(
 					def.name
-				)}Wrapper<D extends DriverT> extends BaseWrapper<D, ${`Vwc${pascalCase(
+				)}Wrapper<D extends DriverT> extends BaseWrapper<D, Vwc${pascalCase(
 					def.name
-				)}Element`}> {
+				)}Element> {
 	type = '${camelCase(def.name)}' as const;
 
 	componentInfo = ${camelCase(def.name)}ComponentInfo;

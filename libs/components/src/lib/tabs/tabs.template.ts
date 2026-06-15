@@ -17,7 +17,7 @@ const getClasses = ({
 		[`connotation-${connotation}`, Boolean(connotation)],
 		[`orientation-${orientation}`, Boolean(orientation)],
 		`gutters-${gutters ?? 'small'}`,
-		['scroll', Boolean(scrollablePanel)],
+		['scroll', scrollablePanel],
 		['has-action-items', Boolean(_actionItemsSlottedContent.length)]
 	);
 
@@ -47,7 +47,7 @@ function addEndShadow(scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
 
 function setShadowWhenScrollTabs(_: Tabs, { event }: ExecutionContext) {
 	const scrollWrapper = event.currentTarget as HTMLElement;
-	const scrollShadow = scrollWrapper!.parentElement as HTMLElement;
+	const scrollShadow = scrollWrapper.parentElement as HTMLElement;
 
 	if (setNoScrollState(scrollShadow, scrollWrapper)) {
 		return;

@@ -1,6 +1,5 @@
 import type { MarkType, Node } from 'prosemirror-model';
-import type { EditorState, SelectionRange } from 'prosemirror-state';
-import type { Command } from 'prosemirror-state';
+import type { Command, EditorState, SelectionRange } from 'prosemirror-state';
 import { RemoveMarkStep } from 'prosemirror-transform';
 import {
 	featureFacade,
@@ -178,7 +177,7 @@ export class RteTextColorPickerFeatureImpl extends RteFeatureImpl {
 				selectionColor = mixedColor;
 			}
 		};
-		state.doc.nodesBetween(from, to, (node, pos, parent) => {
+		state.doc.nodesBetween(from, to, (node, _pos, parent) => {
 			if (selectionColor === mixedColor) return false;
 			if (!node.isLeaf) {
 				if (node.type.allowsMarkType(textColor) && node.childCount === 0) {

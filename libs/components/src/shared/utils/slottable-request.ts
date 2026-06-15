@@ -9,11 +9,11 @@ export interface SlottableRequestEvent<T = unknown> extends Event {
 	readonly slotName: string;
 }
 
-export function dispatchSlottableRequest<T>(
+export function dispatchSlottableRequest(
 	target: EventTarget,
 	name: string,
 	slotName: string,
-	data: T | typeof removeSymbol
+	data: unknown | typeof removeSymbol
 ): void {
 	const event = new CustomEvent('slottable-request', {
 		bubbles: false,

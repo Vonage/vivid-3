@@ -21,7 +21,7 @@ const onScroll = () => {
 	// hook window scroll
 	window.addEventListener('scroll', onScroll);
 
-	customElements.whenDefined('vwc-side-drawer').then(() => {
+	void customElements.whenDefined('vwc-side-drawer').then(() => {
 		getSideDrawerBase().addEventListener('scroll', onScroll);
 	});
 })();

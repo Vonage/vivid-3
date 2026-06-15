@@ -1,4 +1,3 @@
-/* global HTMLElement */
 import { createRoot } from 'react-dom/client';
 
 /**

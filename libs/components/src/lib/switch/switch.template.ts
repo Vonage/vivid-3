@@ -3,17 +3,14 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Switch } from './switch';
 
-const getClasses = (_: Switch) =>
+const getClasses = (x: Switch) =>
 	classNames(
 		'control',
-		['appearance-filled', _.checked],
-		['checked', _.checked],
-		['disabled', _.disabled],
-		['readonly', _.readOnly],
-		[
-			`connotation-${_.connotation}`,
-			Boolean(_.checked) && Boolean(_.connotation),
-		]
+		['appearance-filled', x.checked],
+		['checked', x.checked],
+		['disabled', x.disabled],
+		['readonly', x.readOnly],
+		[`connotation-${x.connotation}`, x.checked && Boolean(x.connotation)]
 	);
 
 export const SwitchTemplate = html<Switch>`

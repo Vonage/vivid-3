@@ -88,7 +88,7 @@ export class AriaBindingDirective<
 			});
 		}
 
-		return this._propertyBindingBehaviours!;
+		return this._propertyBindingBehaviours;
 	}
 
 	bind(controller: ViewController<AriaMixinElement>) {

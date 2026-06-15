@@ -50,7 +50,7 @@ const parseSlotTags = (classDecl: ClassDeclaration): ExtractedSlot[] =>
 		assert(match, `Invalid @slot format: ${text}`);
 		return {
 			name: match[1],
-			description: match[2]?.trim() || undefined,
+			description: (match[2] as string | undefined)?.trim() || undefined,
 		};
 	});
 
@@ -66,7 +66,7 @@ const parseDynamicSlotTags = (classDecl: ClassDeclaration): ExtractedSlot[] =>
 		assert(match, `Invalid @dynamicSlot format: ${text}`);
 		return {
 			name: match[2],
-			description: match[3]?.trim() || undefined,
+			description: (match[3] as string | undefined)?.trim() || undefined,
 			dynamicProps: match[1],
 		};
 	});

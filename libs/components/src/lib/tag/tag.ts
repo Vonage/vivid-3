@@ -132,7 +132,7 @@ export class Tag extends Localized(DelegatesAria(AffixIcon(VividElement))) {
 		}
 
 		this.$emit('removed');
-		this.parentElement && this.parentElement.removeChild(this);
+		this.parentElement?.removeChild(this);
 	}
 
 	#select = (): void => {

@@ -35,6 +35,7 @@
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@types/node": "catalog:",
+		"eslint": "catalog:",
 		"tsx": "catalog:",
 		"typescript": "catalog:",
 		"vitest": "catalog:"

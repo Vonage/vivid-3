@@ -218,8 +218,8 @@ export class DateRangePicker extends MinMaxCalendarPicker(
 	/**
 	 * @internal
 	 */
-	override nameChanged(previous: string, next: string) {
-		super.nameChanged!(previous, next);
+	override nameChanged(previous: string | undefined, next: string) {
+		super.nameChanged(previous, next);
 		this.#updateFormValue();
 	}
 
@@ -494,9 +494,7 @@ export class DateRangePicker extends MinMaxCalendarPicker(
 	 * @internal
 	 */
 	override _focusableElsWithinDialog() {
-		return this._dialogEl.querySelectorAll(
-			'button, .vwc-button'
-		) as NodeListOf<HTMLElement>;
+		return this._dialogEl.querySelectorAll<HTMLElement>('button, .vwc-button');
 	}
 
 	/**

@@ -131,7 +131,7 @@ export class Checkbox extends DelegatesAria(
 	override checkedChanged(prev: boolean | undefined, next: boolean): void {
 		super.checkedChanged(prev, next);
 
-		this.ariaChecked = next == true ? 'true' : 'false';
+		this.ariaChecked = next ? 'true' : 'false';
 		if (prev !== undefined) {
 			this.$emit('input');
 		}

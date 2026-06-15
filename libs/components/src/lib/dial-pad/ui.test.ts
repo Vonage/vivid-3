@@ -103,7 +103,7 @@ test.describe('dial-pad', () => {
 
 			await takeScreenshot(
 				page,
-				`dial-pad-02-0${index + 1}-with-autofocus${s ? '-' + s : ''}`
+				`dial-pad-02-0${index + 1}-with-autofocus${s ? `-${s}` : ''}`
 			);
 		});
 	});

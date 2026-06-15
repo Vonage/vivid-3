@@ -9,9 +9,7 @@ describe('docs-appearance-ui', () => {
 	let element: AppearanceUi;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as AppearanceUi;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as AppearanceUi;
 	});
 
 	describe('basic', () => {

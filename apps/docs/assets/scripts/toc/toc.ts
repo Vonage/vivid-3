@@ -75,8 +75,8 @@ function setupToc() {
 	observedTargets.clear();
 
 	const anchors = Array.from(
-		document.querySelectorAll('.article-toc a')
-	) as HTMLAnchorElement[];
+		document.querySelectorAll<HTMLAnchorElement>('.article-toc a')
+	);
 
 	anchors.forEach((anchor) => {
 		const target = document.querySelector(anchor.getAttribute('href')!);

@@ -6,7 +6,7 @@ import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Header } from './header';
 
 const getPartAlternate = ({ alternate }: Header) =>
-	classNames(['vvd-theme-alternate', Boolean(alternate)]);
+	classNames(['vvd-theme-alternate', alternate]);
 
 export const headerTemplate = (context: VividElementDefinitionContext) => {
 	const elevationTag = context.tagFor(Elevation);

@@ -25,7 +25,7 @@ const getClasses = ({
 			!(footerSlottedContent?.length || actionItemsSlottedContent?.length),
 		],
 		['modal', _openedAsModal],
-		['scrollable-body', Boolean(scrollableBody)]
+		['scrollable-body', scrollableBody]
 	);
 
 function icon(iconTag: InlineTemplateDirective) {

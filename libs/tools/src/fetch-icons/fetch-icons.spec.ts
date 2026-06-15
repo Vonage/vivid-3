@@ -74,7 +74,7 @@ describe('fetchIcons', () => {
 			},
 		});
 
-		(walk as Mock).mockImplementation((doc, cb) => {
+		(walk as Mock).mockImplementation((_doc, cb) => {
 			cb(mockNode, []);
 		});
 

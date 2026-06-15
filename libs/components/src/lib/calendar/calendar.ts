@@ -96,9 +96,11 @@ export class Calendar extends VividElement {
 	/**
 	 * @internal
 	 */
-	hoursAsDatetime = (Array.from({ length: this._hours - 1 }) as Date[])
-		.fill(new Date(new Date().setHours(0, 0, 0)))
-		.map((d, i) => new Date(d.setHours(++i)));
+	hoursAsDatetime = (
+		Array.from({ length: this._hours - 1 }).fill(
+			new Date(new Date().setHours(0, 0, 0))
+		) as Date[]
+	).map((d, i) => new Date(d.setHours(i + 1)));
 
 	/**
 	 * @param dateArr - array of dates. requires at least 1 date to be set within the array
@@ -139,7 +141,7 @@ export class Calendar extends VividElement {
 
 	private arrowKeysInteractions(key: PredefindKeys) {
 		const { activeElement } = this.shadowRoot as ShadowRoot;
-		let focusNext: Element | null | void;
+		let focusNext: Element | null | undefined;
 
 		if (isCellOrHeader(activeElement)) {
 			focusNext = getNextFocusableGridElement.call(this, key, activeElement);

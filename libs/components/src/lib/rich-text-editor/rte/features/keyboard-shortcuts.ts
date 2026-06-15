@@ -6,8 +6,7 @@ import {
 	type PluginContribution,
 	RteFeatureImpl,
 } from '../feature';
-import type { RteInstanceImpl } from '../instance';
-import type { RteInstance } from '../instance';
+import type { RteInstance, RteInstanceImpl } from '../instance';
 
 /**
  * A keyboard shortcut handler. Return `true` to consume the key (prevent default behavior), `false` to let other handlers run.

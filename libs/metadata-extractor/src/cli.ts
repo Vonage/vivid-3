@@ -11,4 +11,4 @@ async function main() {
 	process.stdout.write(JSON.stringify(metadata) + '\n');
 }
 
-main();
+void main();

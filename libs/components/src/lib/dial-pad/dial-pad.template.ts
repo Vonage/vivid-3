@@ -60,11 +60,7 @@ const DIAL_PAD_BUTTONS = [
 ];
 
 const getClasses = ({ noInput, size }: DialPad) =>
-	classNames(
-		'base',
-		[`size-${size}`, Boolean(size)],
-		['no-input', Boolean(noInput)]
-	);
+	classNames('base', [`size-${size}`, Boolean(size)], ['no-input', noInput]);
 
 function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 	if (

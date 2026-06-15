@@ -66,9 +66,8 @@ export class Switch extends DelegatesAria(
 			this.proxy.readOnly = this.readOnly;
 		}
 
-		this.readOnly
-			? this.classList.add('readonly')
-			: this.classList.remove('readonly');
+		if (this.readOnly) this.classList.add('readonly');
+		else this.classList.remove('readonly');
 	}
 
 	/**

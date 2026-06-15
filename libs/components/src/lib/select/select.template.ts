@@ -174,12 +174,14 @@ function renderControl(context: VividElementDefinitionContext) {
 /**
  * Ignore events that originate from feedback, e.g. a click on link
  */
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 function ifNotFromFeedback<E extends Event>(
 	handler: (x: Select, event: E) => void
 ) {
 	return (x: Select, c: ExecutionContext) => {
 		if (!c.event.composedPath().includes(x._feedbackWrapper!)) {
-			return handler(x, c.event as E);
+			handler(x, c.event as E);
+			return;
 		}
 		return true;
 	};
@@ -205,7 +207,7 @@ export const SelectTemplate = (context: VividElementDefinitionContext) => {
 				x.focusoutHandler(e)
 			)}"
 			@keydown="${ifNotFromFeedback<KeyboardEvent>((x, e) => {
-				x.open && handleEscapeKeyAndStopPropogation(e);
+				if (x.open) handleEscapeKeyAndStopPropogation(e);
 				return x.keydownHandler(e);
 			})}"
 			@mousedown="${ifNotFromFeedback<MouseEvent>((x, e) =>

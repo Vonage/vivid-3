@@ -80,7 +80,7 @@ export function total(el: any) {
 }
 
 export function paginationSelectedPage(el: any) {
-	return el.selectedIndex + 1 || null;
+	return (el.selectedIndex as number) + 1 || null;
 }
 
 export function affixIcon(el: any) {

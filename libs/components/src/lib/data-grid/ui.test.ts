@@ -37,12 +37,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	`,
 	});
 
-	const text = await page
-		.locator('vwc-data-grid-cell:has-text("data22")')
-		.nth(2);
+	const text = page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
 	await text.isVisible();
 
-	const clickableCells = await page.locator('vwc-data-grid-cell');
+	const clickableCells = page.locator('vwc-data-grid-cell');
 	await clickableCells.nth(3).click();
 
 	await takeScreenshot(page, 'data-grid');
@@ -134,12 +132,10 @@ test('single cell selection', async function ({ page }: { page: Page }) {
 	`,
 	});
 
-	const text = await page
-		.locator('vwc-data-grid-cell:has-text("data22")')
-		.nth(2);
+	const text = page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
 	await text.isVisible();
 
-	const clickableCell = await page.locator('#clicked-cell vwc-data-grid-cell');
+	const clickableCell = page.locator('#clicked-cell vwc-data-grid-cell');
 	await clickableCell.nth(4).click();
 	await clickableCell.nth(3).hover();
 	await clickableCell.nth(3).focus();
@@ -176,14 +172,10 @@ test('multi cell selection', async function ({ page }: { page: Page }) {
 	`,
 	});
 
-	const text = await page
-		.locator('vwc-data-grid-cell:has-text("data22")')
-		.nth(2);
+	const text = page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
 	await text.isVisible();
 
-	const clickableCells = await page.locator(
-		'#clicked-cells vwc-data-grid-cell'
-	);
+	const clickableCells = page.locator('#clicked-cells vwc-data-grid-cell');
 	await clickableCells.nth(3).click();
 	await clickableCells.nth(5).click({
 		modifiers: ['Meta'],
@@ -223,12 +215,10 @@ test('single row selection', async function ({ page }: { page: Page }) {
 	`,
 	});
 
-	const text = await page
-		.locator('vwc-data-grid-cell:has-text("data22")')
-		.nth(2);
+	const text = page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
 	await text.isVisible();
 
-	const clickableCell = await page.locator('#clicked-row vwc-data-grid-row');
+	const clickableCell = page.locator('#clicked-row vwc-data-grid-row');
 	await clickableCell.nth(1).click();
 	await clickableCell.nth(1).hover();
 	await clickableCell.nth(2).focus();
@@ -265,12 +255,10 @@ test('multi row selection', async function ({ page }: { page: Page }) {
 	`,
 	});
 
-	const text = await page
-		.locator('vwc-data-grid-cell:has-text("data22")')
-		.nth(2);
+	const text = page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
 	await text.isVisible();
 
-	const clickableCell = await page.locator('#clicked-row vwc-data-grid-row');
+	const clickableCell = page.locator('#clicked-row vwc-data-grid-row');
 	await clickableCell.nth(1).click();
 	await clickableCell.nth(2).click({
 		modifiers: ['Meta'],
@@ -312,9 +300,7 @@ test('sort columns & action-items slot', async function ({
 		template,
 	});
 
-	const text = await page
-		.locator('vwc-data-grid-cell:has-text("data22")')
-		.nth(2);
+	const text = page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
 	await text.isVisible();
 
 	await takeScreenshot(page, 'data-grid-sortable-headers');
@@ -353,11 +339,11 @@ test('cell link click', async function ({ page }: { page: Page }) {
 		template,
 	});
 
-	const link = await page.locator('vwc-data-grid-cell a');
+	const link = page.locator('vwc-data-grid-cell a');
 	await link.isVisible();
 	await link.click();
 	await page.pause();
-	expect(await page.url()).toEqual('https://www.google.com/');
+	expect(page.url()).toEqual('https://www.google.com/');
 });
 
 test('fixed columns', async function ({ page }: { page: Page }) {
@@ -408,7 +394,7 @@ test('fixed columns', async function ({ page }: { page: Page }) {
 		template,
 	});
 
-	const grid = await page.locator('#fixed-columns-grid');
+	const grid = page.locator('#fixed-columns-grid');
 	await grid.isVisible();
 
 	await page.waitForTimeout(100);

@@ -35,7 +35,7 @@ export class Breadcrumb extends DelegatesAria(VividElement) {
 
 	private setItemSeparator(item: HTMLElement, isLastNode: boolean) {
 		if (item instanceof BreadcrumbItem) {
-			(item as BreadcrumbItem).separator = !isLastNode;
+			item.separator = !isLastNode;
 		}
 	}
 
@@ -47,7 +47,7 @@ export class Breadcrumb extends DelegatesAria(VividElement) {
 		if (node.childElementCount > 0) {
 			return node.querySelector('a[href]');
 		} else if (node.shadowRoot) {
-			return node.shadowRoot!.querySelector('a[href]');
+			return node.shadowRoot.querySelector('a[href]');
 		} else return null;
 	}
 
@@ -60,9 +60,8 @@ export class Breadcrumb extends DelegatesAria(VividElement) {
 		const childNodeWithHref: HTMLElement | null = this.findChildWithHref(item);
 
 		if (childNodeWithHref !== null) {
-			isLastNode
-				? childNodeWithHref.setAttribute('aria-current', 'page')
-				: childNodeWithHref.removeAttribute('aria-current');
+			if (isLastNode) childNodeWithHref.setAttribute('aria-current', 'page');
+			else childNodeWithHref.removeAttribute('aria-current');
 		}
 	}
 }

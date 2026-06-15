@@ -267,8 +267,8 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 			tooltipTag: InlineTemplateDirective
 		) {
 			return html<ColorSwatch>`
-				<${tooltipTag} placement="top" 
-					text="${(x) => x.label ?? x.value}" 
+				<${tooltipTag} placement="top"
+					text="${(x) => x.label ?? x.value}"
 					exportparts="vvd-theme-alternate">
 					<button
 						slot="anchor"
@@ -279,7 +279,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 							)}"
 						role="gridcell"
 						style="--swatch-color: ${(x) => x.value};"
-						tabindex="${(x, c) => (c.index === 0 ? '0' : '-1')}"
+						tabindex="${(_x, c) => (c.index === 0 ? '0' : '-1')}"
 						aria-label="${(x, c) =>
 							c.parent.locale.baseColorPicker.colorSwatchLabel(
 								x.value,
@@ -287,12 +287,7 @@ export const BaseColorPicker = <T extends Constructor<VividElement>>(
 								c.parent.value === x.value
 							)}"
 						@click="${(x, c) => c.parent._handleSwatchSelection(x.value)}"
-						@keydown="${(x, c) =>
-							c.parent._handleCellKeydown(
-								c.event as KeyboardEvent,
-								x.value,
-								c.index
-							)}"
+						@keydown="${(x, c) => c.parent._handleCellKeydown(c.event, x.value, c.index)}"
 					>
 						${when(
 							(x, c) => c.parent.value === x.value,

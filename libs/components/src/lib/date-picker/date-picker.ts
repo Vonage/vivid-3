@@ -119,9 +119,7 @@ export class DatePicker extends SingleDatePickerMixin(
 	 * @internal
 	 */
 	override _focusableElsWithinDialog() {
-		return this._dialogEl.querySelectorAll(
-			'button, .vwc-button'
-		) as NodeListOf<HTMLElement>;
+		return this._dialogEl.querySelectorAll<HTMLElement>('button, .vwc-button');
 	}
 
 	/**

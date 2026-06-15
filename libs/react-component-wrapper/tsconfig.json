@@ -1,12 +1,10 @@
 {
 	"extends": "@repo/typescript-config/components.json",
 	"compilerOptions": {
-		"outDir": "dist",
-		"rootDir": "src",
 		"declaration": true,
 		"jsx": "react-jsx",
 		"types": ["node", "vitest/globals"],
 		"verbatimModuleSyntax": false
 	},
-	"include": ["src"]
+	"include": ["src", "*.ts"]
 }

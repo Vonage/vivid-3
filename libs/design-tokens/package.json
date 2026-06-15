@@ -19,6 +19,7 @@
 		"@repo/tools": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
+		"eslint": "catalog:",
 		"style-dictionary": "catalog:",
 		"tsx": "catalog:",
 		"vitest": "catalog:"

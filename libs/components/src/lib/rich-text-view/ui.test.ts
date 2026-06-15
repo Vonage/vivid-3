@@ -7,22 +7,22 @@ import {
 } from '../../visual-tests/visual-tests-utils.js';
 import type * as rte from '../rich-text-editor/definition';
 
-let RteConfig!: typeof rte.RteConfig;
-let RteBase!: typeof rte.RteBase;
-let RteTextBlockPickerFeature!: typeof rte.RteTextBlockPickerFeature;
-let RteToolbarFeature!: typeof rte.RteToolbarFeature;
-let RteFontSizePickerFeature!: typeof rte.RteFontSizePickerFeature;
-let RteBoldFeature!: typeof rte.RteBoldFeature;
-let RteItalicFeature!: typeof rte.RteItalicFeature;
-let RteUnderlineFeature!: typeof rte.RteUnderlineFeature;
-let RteStrikethroughFeature!: typeof rte.RteStrikethroughFeature;
-let RteMonospaceFeature!: typeof rte.RteMonospaceFeature;
-let RteTextColorPickerFeature!: typeof rte.RteTextColorPickerFeature;
-let RteListFeature!: typeof rte.RteListFeature;
-let RteAlignmentFeature!: typeof rte.RteAlignmentFeature;
-let RteLinkFeature!: typeof rte.RteLinkFeature;
-let RteInlineImageFeature!: typeof rte.RteInlineImageFeature;
-let RteAtomFeature!: typeof rte.RteAtomFeature;
+declare const RteConfig: typeof rte.RteConfig;
+declare const RteBase: typeof rte.RteBase;
+declare const RteTextBlockPickerFeature: typeof rte.RteTextBlockPickerFeature;
+declare const RteToolbarFeature: typeof rte.RteToolbarFeature;
+declare const RteFontSizePickerFeature: typeof rte.RteFontSizePickerFeature;
+declare const RteBoldFeature: typeof rte.RteBoldFeature;
+declare const RteItalicFeature: typeof rte.RteItalicFeature;
+declare const RteUnderlineFeature: typeof rte.RteUnderlineFeature;
+declare const RteStrikethroughFeature: typeof rte.RteStrikethroughFeature;
+declare const RteMonospaceFeature: typeof rte.RteMonospaceFeature;
+declare const RteTextColorPickerFeature: typeof rte.RteTextColorPickerFeature;
+declare const RteListFeature: typeof rte.RteListFeature;
+declare const RteAlignmentFeature: typeof rte.RteAlignmentFeature;
+declare const RteLinkFeature: typeof rte.RteLinkFeature;
+declare const RteInlineImageFeature: typeof rte.RteInlineImageFeature;
+declare const RteAtomFeature: typeof rte.RteAtomFeature;
 
 const components = ['rich-text-view', 'rich-text-editor'];
 

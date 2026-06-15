@@ -15,7 +15,7 @@ export const createPlaywrightDriver = (expect: typeof pwExpect) =>
 		userFocus: (el) => el.focus(),
 		userBlur: (el) => el.blur(),
 		userHover: (el) => el.hover(),
-		userDragSlider: async (el, track, thumb, value) => {
+		userDragSlider: async (el, _track, thumb, value) => {
 			const thumbId = await thumb.getAttribute('id');
 			await el.evaluate(
 				(el, [thumbId, value]) => {

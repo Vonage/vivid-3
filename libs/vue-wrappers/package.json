@@ -41,6 +41,7 @@
 		"@repo/vitest-config": "workspace:*",
 		"@repo/wrapper-gen": "workspace:*",
 		"@types/node": "catalog:",
+		"eslint": "catalog:",
 		"eslint-plugin-unused-imports": "catalog:",
 		"glob": "catalog:",
 		"tsx": "catalog:",

@@ -308,9 +308,10 @@ export class Select extends WithLightDOMFeedback(
 	 *
 	 * @internal
 	 */
-	override focusinHandler(e: FocusEvent): boolean | void {
+	override focusinHandler(e: FocusEvent): boolean | undefined {
 		if (!this.multiple) {
-			return super.focusinHandler(e);
+			super.focusinHandler(e);
+			return;
 		}
 
 		/* v8 ignore else -- @preserve */
@@ -330,6 +331,8 @@ export class Select extends WithLightDOMFeedback(
 		}
 
 		this.shouldSkipFocus = false;
+
+		return;
 	}
 
 	/**
@@ -374,7 +377,10 @@ export class Select extends WithLightDOMFeedback(
 	/**
 	 * @internal
 	 */
-	override typeaheadBufferChanged(prev: string, next: string): void {
+	override typeaheadBufferChanged(
+		prev: string | undefined,
+		next: string
+	): void {
 		if (!this.multiple) {
 			super.typeaheadBufferChanged(prev, next);
 			return;
@@ -427,7 +433,7 @@ export class Select extends WithLightDOMFeedback(
 	 *
 	 * @internal
 	 */
-	openChanged(prev: boolean, next: boolean) {
+	openChanged(prev: boolean | undefined, next: boolean) {
 		if (!this.collapsible) {
 			return;
 		}
@@ -442,7 +448,7 @@ export class Select extends WithLightDOMFeedback(
 			return;
 		}
 
-		const didClose = prev === true && next === false;
+		const didClose = prev && !next;
 		const selectionChangedWhileOpen =
 			this.indexWhenOpened !== this.selectedIndex;
 		if (didClose && selectionChangedWhileOpen) {
@@ -478,7 +484,7 @@ export class Select extends WithLightDOMFeedback(
 	/**
 	 * @internal
 	 */
-	override valueChanged(prev: string, next: string) {
+	override valueChanged(prev: string | undefined, next: string) {
 		const nextSelectedIndex = this.options.findIndex((el) => el.value === next);
 		const validNextSelectedIndex = this._validSelectedIndex(nextSelectedIndex);
 		const nextValue = this.options[validNextSelectedIndex]?.value ?? '';
@@ -557,7 +563,7 @@ export class Select extends WithLightDOMFeedback(
 	 * @param e - the mouse event
 	 * @internal
 	 */
-	override clickHandler(e: MouseEvent): boolean | void {
+	override clickHandler(e: MouseEvent): boolean | undefined {
 		// do nothing if the select is disabled
 		if (this.disabled || this._isFromContextualHelp(e)) {
 			return;
@@ -593,7 +599,7 @@ export class Select extends WithLightDOMFeedback(
 	 * @param e - The focus event
 	 * @internal
 	 */
-	focusoutHandler(e: FocusEvent): boolean | void {
+	focusoutHandler(e: FocusEvent): boolean | undefined {
 		if (this.multiple) {
 			this.uncheckAllOptions();
 		}
@@ -615,6 +621,8 @@ export class Select extends WithLightDOMFeedback(
 				this.updateValue(true);
 			}
 		}
+
+		return;
 	}
 
 	/**
@@ -639,7 +647,7 @@ export class Select extends WithLightDOMFeedback(
 	 *
 	 * @internal
 	 */
-	override mousedownHandler(e: MouseEvent): boolean | void {
+	override mousedownHandler(e: MouseEvent): boolean | undefined {
 		if (e.offsetX >= 0 && e.offsetX <= this.listbox.scrollWidth) {
 			return super.mousedownHandler(e);
 		}
@@ -766,7 +774,7 @@ export class Select extends WithLightDOMFeedback(
 				/* v8 ignore else -- @preserve */
 				if (key.length === 1) {
 					// Send key to Typeahead handler
-					this.handleTypeAhead(`${key}`);
+					this.handleTypeAhead(key);
 				}
 				return;
 			}
@@ -779,7 +787,7 @@ export class Select extends WithLightDOMFeedback(
 	 * @param e - the keyboard event
 	 * @internal
 	 */
-	override keydownHandler(e: KeyboardEvent): boolean | void {
+	override keydownHandler(e: KeyboardEvent): boolean | undefined {
 		const selectedIndexBefore = this.selectedIndex;
 
 		if (this.multiple) {
@@ -1070,7 +1078,7 @@ export class Select extends WithLightDOMFeedback(
 	 */
 	_onClearButtonClick() {
 		if (this.multiple) {
-			this.selectedOptions?.forEach((o) => {
+			this.selectedOptions.forEach((o) => {
 				/* v8 ignore else -- @preserve */
 				if (!o.disabled) {
 					o.selected = false;

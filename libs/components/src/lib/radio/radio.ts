@@ -127,12 +127,11 @@ export class Radio extends WithErrorText(
 	/**
 	 * @internal
 	 */
-	override nameChanged(previous: string, next: string): void {
+	override nameChanged(previous: string | undefined, next: string): void {
 		super.nameChanged(previous, next);
 
-		next !== null
-			? this.proxy.setAttribute('name', this.name)
-			: this.proxy.removeAttribute('name');
+		if (next !== null) this.proxy.setAttribute('name', this.name);
+		else this.proxy.removeAttribute('name');
 
 		Updates.enqueue(this.validate);
 	}
@@ -178,7 +177,7 @@ export class Radio extends WithErrorText(
 	/**
 	 * @internal
 	 */
-	keypressHandler = (e: KeyboardEvent): boolean | void => {
+	keypressHandler = (e: KeyboardEvent): boolean | undefined => {
 		switch (e.key) {
 			case keySpace:
 				if (!this.checked && !this.readOnly) {
@@ -193,10 +192,11 @@ export class Radio extends WithErrorText(
 	/**
 	 * @internal
 	 */
-	clickHandler(_: MouseEvent): boolean | void {
+	clickHandler(_: MouseEvent): boolean | undefined {
 		if (!this.disabled && !this.readOnly && !this.checked) {
 			this.checked = true;
 		}
+		return;
 	}
 
 	/**
@@ -215,15 +215,9 @@ export class Radio extends WithErrorText(
 	}
 
 	get #radioGroup(): RadioGroup | null {
-		const parentGroup = this.closest(
+		return this.closest<RadioGroup>(
 			`${this.tagName.toLocaleLowerCase()}-group[name="${this.name}"]`
-		) as RadioGroup;
-
-		if (parentGroup) {
-			return parentGroup;
-		}
-
-		return null;
+		);
 	}
 
 	#validateValueMissingWithSiblings = (): void => {

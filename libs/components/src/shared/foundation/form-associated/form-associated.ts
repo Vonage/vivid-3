@@ -95,11 +95,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 		get labels(): ReadonlyArray<Node> {
 			if (this.elementInternals) {
 				return Object.freeze(Array.from(this.elementInternals.labels));
-			} else if (
-				this.proxy instanceof HTMLElement &&
-				this.proxy.ownerDocument &&
-				this.id
-			) {
+			} else if (this.proxy instanceof HTMLElement && this.id) {
 				// Labels associated by wrapping the element: <label><custom-element></custom-element></label>
 				const parentLabels = this.proxy.labels!;
 				// Labels associated using the `for` attribute
@@ -136,7 +132,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		valueChanged(_previous: string, _next: string) {
+		valueChanged(_previous: string | undefined, _next: string) {
 			this.dirtyValue = true;
 
 			if (this.proxy instanceof HTMLElement) {
@@ -172,7 +168,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		initialValueChanged(_previous: string, _next: string): void {
+		initialValueChanged(_previous: string | undefined, _next: string): void {
 			if (!this.dirtyValue) {
 				this.value = this.initialValue;
 				this.dirtyValue = false;
@@ -190,7 +186,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		disabledChanged(_previous: boolean, _next: boolean): void {
+		disabledChanged(_previous: boolean | undefined, _next: boolean): void {
 			if (this.proxy instanceof HTMLElement) {
 				this.proxy.disabled = this.disabled;
 			}
@@ -210,7 +206,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		nameChanged(_previous: string, _next: string): void {
+		nameChanged(_previous: string | undefined, _next: string): void {
 			/* v8 ignore if -- @preserve */
 			if (this.proxy instanceof HTMLElement) {
 				this.proxy.name = this.name;
@@ -228,7 +224,7 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 		/**
 		 * @internal
 		 */
-		requiredChanged(_previous: boolean, _next: boolean): void {
+		requiredChanged(_previous: boolean | undefined, _next: boolean): void {
 			if (this.proxy instanceof HTMLElement) {
 				this.proxy.required = this.required;
 			}
@@ -498,9 +494,8 @@ export const FormAssociated = <T extends Constructor<VividElement>>(
 				case keyEnter:
 					if (this.form instanceof HTMLFormElement) {
 						// Implicit submission
-						const defaultButton = this.form.querySelector(
-							'[type=submit]'
-						) as HTMLElement | null;
+						const defaultButton =
+							this.form.querySelector<HTMLElement>('[type=submit]');
 						defaultButton?.click();
 					}
 					break;
@@ -652,7 +647,7 @@ export const CheckableFormAssociated = <T extends Constructor<VividElement>>(
 		 */
 		override formResetCallback() {
 			super.formResetCallback();
-			this.checked = !!this.defaultChecked;
+			this.checked = this.defaultChecked;
 			this.dirtyChecked = false;
 		}
 	}

@@ -19,9 +19,9 @@ const getClasses = ({
 	classNames(
 		'base',
 		[`connotation-${connotation}`, Boolean(connotation)],
-		['readonly', Boolean(readOnly)],
-		['checked', Boolean(checked) || Boolean(indeterminate)],
-		['disabled', Boolean(disabled)],
+		['readonly', readOnly],
+		['checked', checked || indeterminate],
+		['disabled', disabled],
 		['error connotation-alert', Boolean(errorValidationMessage)],
 		['success connotation-success', !!successText],
 		['hide-label', !label && !slottedContent?.length]

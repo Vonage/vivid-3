@@ -230,8 +230,7 @@ export class LiveSample extends FASTElement {
 
 	resizeObserver = new ResizeObserver((entries) => {
 		if (entries.length === 0) return;
-		this.iframeEl.style.height =
-			Math.max(30, entries[0].contentRect.height) + 'px';
+		this.iframeEl.style.height = `${Math.max(30, entries[0].contentRect.height)}px`;
 	});
 
 	onIframeLoad() {

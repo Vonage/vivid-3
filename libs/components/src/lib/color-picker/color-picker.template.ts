@@ -17,7 +17,7 @@ function renderTextField(
 	const getClasses = (_: ColorPicker) => classNames('control');
 
 	return html<ColorPicker>`
-		<${textFieldTag} 
+		<${textFieldTag}
 			id="text-field"
 			class="${getClasses}"
 			pattern="${ColorPicker.HEX_COLOR_PATTERN.source}"
@@ -41,7 +41,7 @@ function renderTextField(
 			${delegateAria()}
 			${ref('_textFieldEl')}
 		>
-			<button 
+			<button
 				aria-label="${(x) => x.locale.colorPicker.pickerButtonLabel}"
 				aria-expanded="${(x) => x.open}"
   			aria-haspopup="dialog"
@@ -49,11 +49,11 @@ function renderTextField(
 					classNames(
 						x._applyContrastClass(x._buttonColor) ? 'contrast' : '',
 						x.disabled ? 'disabled' : ''
-					)}" 
-				style="--button-color: ${(x) => x._buttonColor};" 
+					)}"
+				style="--button-color: ${(x) => x._buttonColor};"
 				?disabled="${(x) => x.disabled}"
 				@click="${(x) => x._onButtonClick()}"
-				slot="action-items" 
+				slot="action-items"
 				${ref('_buttonEl')}>
 				<${iconTag} name="edit-line"></${iconTag}>
 			</button>
@@ -84,8 +84,8 @@ function renderPopupHeader(
 			<h2 class="header-title" id="color-picker-title">
 				<slot name="popup-text">${(x) => x.locale.colorPicker.popupLabel}</slot>
 			</h2>
-			<${buttonTag} size="condensed" 
-				aria-label="${(x) => x.locale.colorPicker.closeButtonLabel}" 
+			<${buttonTag} size="condensed"
+				aria-label="${(x) => x.locale.colorPicker.closeButtonLabel}"
 				@click="${(x) => x._handleCloseRequest()}">
 				<${iconTag} slot="icon" name="close-line"></${iconTag}>
 			</${buttonTag}>
@@ -117,17 +117,17 @@ function renderPopupBody(
 					${ref('_vcHexInputEl')}
 				>
 					<input name="hex-code-input" aria-label="${(x) =>
-						x.locale.colorPicker.hexInputLabel}" 
+						x.locale.colorPicker.hexInputLabel}"
 						placeholder="${(x) => x.placeholder}"
-    				@blur="${(x, c) => c.event.stopImmediatePropagation()}"
+    				@blur="${(_, c) => c.event.stopImmediatePropagation()}"
 						part="input">
 				</${html.partial(vcInputTag)}>
-				<${tooltipTag} placement="top" 
-					text="${(x) => x.locale.colorPicker.copyButtonLabel}" 
+				<${tooltipTag} placement="top"
+					text="${(x) => x.locale.colorPicker.copyButtonLabel}"
 					exportparts="vvd-theme-alternate">
-					<${buttonTag} 
-						slot="anchor" size="normal" 
-						aria-label="${(x) => x.locale.colorPicker.copyButtonLabel}" 
+					<${buttonTag}
+						slot="anchor" size="normal"
+						aria-label="${(x) => x.locale.colorPicker.copyButtonLabel}"
 						@click="${(x) => x._copyValueToClipboard(x.value)}">
 						<${iconTag} slot="icon" name="${(x) => x.copyIconName}"></${iconTag}>
 					</${buttonTag}>
@@ -169,8 +169,8 @@ function renderPopupFooter(
 				${when(
 					(x) => !x.disableSavedColors,
 					html`
-						<${tooltipTag} placement="top" 
-							text="${(x) => x.locale.colorPicker.saveButtonLabel}" 
+						<${tooltipTag} placement="top"
+							text="${(x) => x.locale.colorPicker.saveButtonLabel}"
 							exportparts="vvd-theme-alternate">
 							<${buttonTag}
 								slot="anchor"
@@ -205,7 +205,7 @@ function renderSwatchesCount() {
 			aria-label="${(x) =>
 				x.locale.colorPicker.maxSwatchesMessage(
 					x.allSwatches.length,
-					x.maxSwatches!
+					x.maxSwatches
 				)}"
 			>${(x) => `${x.allSwatches.length}/${x.maxSwatches}`}</span
 		>
@@ -229,11 +229,11 @@ export const ColorPickerTemplate = (context: VividElementDefinitionContext) => {
 				:open="${(x) => x.open}"
 				:anchor="${(x) => x._buttonEl}"
 				placement="top"
-				offset="10" 
+				offset="10"
 				${ref('_popupEl')}>
-				<div class="dialog" 
-					role="dialog" 
-					aria-modal="true" 
+				<div class="dialog"
+					role="dialog"
+					aria-modal="true"
 					aria-labelledby="color-picker-title">
 					${renderPopupHeader(buttonTag, iconTag)}
 					${renderPopupBody(buttonTag, iconTag, tooltipTag)}

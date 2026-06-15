@@ -8,9 +8,9 @@ import type { Popup } from './popup';
 const getClasses = ({ open, dismissible, alternate }: Popup) =>
 	classNames(
 		'control',
-		['open', Boolean(open)],
-		['dismissible', Boolean(dismissible)],
-		['alternate', Boolean(alternate)]
+		['open', open],
+		['dismissible', dismissible],
+		['alternate', alternate]
 	);
 
 function handlePopover(x: Popup) {

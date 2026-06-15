@@ -63,7 +63,7 @@ export const createCypressDriver = (cy: Cypress.cy) => {
 				return el().clear().type(text);
 			}
 		},
-		userDragSlider: (el, track, thumb, value) => {
+		userDragSlider: (el, _track, thumb, value) => {
 			el().then(($el) => {
 				thumb().then(async ($thumb) => {
 					// Set values directly as it is more reliable than dragging the thumb

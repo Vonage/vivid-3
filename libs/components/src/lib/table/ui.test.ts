@@ -44,7 +44,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		template,
 	});
 
-	const text = await page.locator('vwc-table-cell:has-text("Voice")');
+	const text = page.locator('vwc-table-cell:has-text("Voice")');
 	await text.isVisible();
 
 	await takeScreenshot(page, 'table');
@@ -86,7 +86,7 @@ test('should allow row scoped header cells', async ({
 		template,
 	});
 
-	const text = await page.locator('vwc-table-cell:has-text("Voice")');
+	const text = page.locator('vwc-table-cell:has-text("Voice")');
 	await text.isVisible();
 
 	await takeScreenshot(page, 'table-row-scoped-headers');
@@ -184,7 +184,7 @@ test('should render multiple rows and columns', async ({
 		template,
 	});
 
-	const text = await page.locator('vwc-table-cell:has-text("Row 2, Cell 2")');
+	const text = page.locator('vwc-table-cell:has-text("Row 2, Cell 2")');
 	await text.isVisible();
 
 	await takeScreenshot(page, 'table-multiple-rows-columns');
@@ -253,7 +253,7 @@ test('should handle responsive scrolling', async ({ page }: { page: Page }) => {
 		template,
 	});
 
-	const text = await page.locator('vwc-table-cell:has-text("Video")');
+	const text = page.locator('vwc-table-cell:has-text("Video")');
 	await text.isVisible();
 
 	await takeScreenshot(page, 'table-scrolling');

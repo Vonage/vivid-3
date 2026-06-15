@@ -41,6 +41,7 @@
 		"@types/node": "catalog:",
 		"chalk": "^5.6.2",
 		"change-case": "catalog:",
+		"eslint": "catalog:",
 		"figma-js": "1.16.1-0",
 		"figmash": "^0.0.3",
 		"is-svg": "^6.1.0",

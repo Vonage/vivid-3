@@ -6,7 +6,7 @@ import { type Divider, DividerRole } from './divider';
 const getClasses = ({ orientation, appearance }: Divider) =>
 	classNames(
 		'base',
-		[`${orientation}`, Boolean(orientation)],
+		[orientation, Boolean(orientation)],
 		[`appearance-${appearance}`, Boolean(appearance)]
 	);
 

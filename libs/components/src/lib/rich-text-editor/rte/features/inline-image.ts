@@ -88,7 +88,7 @@ class InlineImageView implements NodeView {
 		this.handleResolvedUrl(initialResolvedUrl);
 
 		if (isGenerator(resolveResult)) {
-			this.handleResolvedUrlGenerator(resolveResult);
+			void this.handleResolvedUrlGenerator(resolveResult);
 		}
 	}
 
@@ -157,7 +157,7 @@ class InlineImageView implements NodeView {
 		this.img.className = 'inline-image';
 		this.update(node);
 		this.img.addEventListener('load', () => {
-			const pos = this.getPos?.();
+			const pos = this.getPos();
 
 			if (pos) {
 				const { state, dispatch } = this.view;
@@ -286,7 +286,7 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 	}
 
 	override getPlugins(rte: RteInstanceImpl) {
-		let popover: Popover;
+		let popover: Popover | undefined;
 
 		return [
 			this.contribution(
@@ -361,17 +361,17 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 
 								const selectedImage = this.getSelectedInlineImage(view.state);
 								if (selectedImage) {
-									popover.anchorEl = view.nodeDOM(
+									popover!.anchorEl = view.nodeDOM(
 										selectedImage.pos
 									) as HTMLElement;
-									popover.requestOpenState(true);
+									popover!.requestOpenState(true);
 								} else {
-									popover.anchorEl = undefined;
-									popover.requestOpenState(false);
+									popover!.anchorEl = undefined;
+									popover!.requestOpenState(false);
 								}
 							},
 							destroy: () => {
-								popover.remove();
+								popover!.remove();
 							},
 						};
 					},
@@ -393,7 +393,7 @@ export class RteInlineImageFeatureImpl extends RteFeatureImpl {
 	}
 
 	calculateSmallWidth(naturalWidth: number) {
-		return Math.min(300, naturalWidth / 2) + 'px';
+		return `${Math.min(300, naturalWidth / 2)}px`;
 	}
 
 	getSelectedInlineImage(state: EditorState) {

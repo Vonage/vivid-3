@@ -103,7 +103,7 @@ export class ColorPicker extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	openChanged(_oldValue: boolean, newValue: boolean) {
+	openChanged(_oldValue: boolean | undefined, newValue: boolean) {
 		if (newValue && this.isConnected) {
 			requestAnimationFrame(() => {
 				this._refreshCanvasColor();
@@ -173,7 +173,7 @@ export class ColorPicker extends WithContextualHelp(
 		const swatches = Array.isArray(this.savedColors)
 			? [...this.savedColors]
 			: [];
-		const idx = swatches.findIndex((s) => s?.value === value);
+		const idx = swatches.findIndex((s) => s.value === value);
 
 		if (idx !== -1) swatches.splice(idx, 1);
 		swatches.unshift({ value });
@@ -273,7 +273,7 @@ export class ColorPicker extends WithContextualHelp(
 	 */
 	maxSwatchesChanged() {
 		const maxCount = this._maxSwatchesNormalized;
-		if (this.savedColors?.length > maxCount) {
+		if (this.savedColors.length > maxCount) {
 			this.savedColors = this.savedColors.slice(0, maxCount);
 			this._setSavedColors(this.savedColors);
 		}
@@ -284,19 +284,19 @@ export class ColorPicker extends WithContextualHelp(
 	/**
 	 * @internal
 	 */
-	_vcHexPickerEl!: HexColorPicker;
+	_vcHexPickerEl?: HexColorPicker;
 
 	/**
 	 * @internal
 	 */
-	_vcHexInputEl!: HexInput;
+	_vcHexInputEl?: HexInput;
 
 	/**
 	 * @internal
 	 */
 	_onPickerColorChanged(e: CustomEvent<{ value: string }>) {
-		if (typeof e.detail?.value === 'string') {
-			this.value = e.detail?.value;
+		if (typeof e.detail.value === 'string') {
+			this.value = e.detail.value;
 		}
 	}
 

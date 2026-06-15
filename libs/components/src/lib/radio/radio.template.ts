@@ -7,9 +7,9 @@ const getClasses = ({ connotation, checked, readOnly, disabled }: Radio) =>
 	classNames(
 		'base',
 		[`connotation-${connotation}`, Boolean(connotation)],
-		['checked', Boolean(checked)],
-		['readonly', Boolean(readOnly)],
-		['disabled', Boolean(disabled)]
+		['checked', checked],
+		['readonly', readOnly],
+		['disabled', disabled]
 	);
 
 export const RadioTemplate = html<Radio>`<template

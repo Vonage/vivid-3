@@ -73,7 +73,7 @@ function resolveCallExpression(callExpr: CallExpression): HierarchyEntry[] {
 	if (args.length > 0) {
 		const baseArg = args[0];
 		if (Node.isIdentifier(baseArg) || Node.isCallExpression(baseArg)) {
-			entries.push(...resolveExtendsExpression(baseArg as Expression));
+			entries.push(...resolveExtendsExpression(baseArg));
 		}
 	}
 

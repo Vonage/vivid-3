@@ -1,3 +1,5 @@
+/* eslint-disable no-control-regex */
+
 import DOMPurify from 'dompurify';
 
 // See: https://github.com/cure53/DOMPurify?tab=readme-ov-file#control-permitted-attribute-values

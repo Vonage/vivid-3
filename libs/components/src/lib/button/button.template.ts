@@ -53,7 +53,7 @@ const getClasses = ({
 			!label && !!(icon || iconSlottedContent?.length) && !dropdownIndicator,
 		],
 		['icon-trailing', iconTrailing],
-		['stacked', Boolean(stacked)],
+		['stacked', stacked],
 		['active', ariaExpanded === 'true' || active]
 	);
 

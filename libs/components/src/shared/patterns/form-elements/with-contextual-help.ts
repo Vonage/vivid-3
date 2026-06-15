@@ -30,11 +30,14 @@ export const WithContextualHelp = <T extends Constructor<FormElementElement>>(
 		 */
 		_isFromContextualHelp(e: Event): boolean {
 			const path = e.composedPath();
-			return path.some((t) =>
-				(t as Element)?.closest?.(
-					'[slot="contextual-help"],[data-vvd-component="contextual-help"]'
-				)
-			);
+			return path.some((t) => {
+				if (t instanceof Element) {
+					return t.closest(
+						'[slot="contextual-help"],[data-vvd-component="contextual-help"]'
+					);
+				}
+				return false;
+			});
 		}
 	}
 

@@ -53,7 +53,7 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 	/**
 	 * @internal
 	 */
-	openChanged(oldValue: boolean, newValue: boolean): void {
+	openChanged(oldValue: boolean | undefined, newValue: boolean): void {
 		if (oldValue === undefined) return;
 
 		if (newValue) {
@@ -90,7 +90,7 @@ export class Toggletip extends Localized(Anchored(VividElement)) {
 	#setupAnchor(a: HTMLElement) {
 		a.addEventListener('click', this.#openIfClosed, true);
 		this.#originalAriaLabel = a.ariaLabel;
-		a.ariaLabel = `${this.locale.toggletip.anchorLabel(a.ariaLabel || '')}`;
+		a.ariaLabel = this.locale.toggletip.anchorLabel(a.ariaLabel || '');
 
 		this.#updateAnchor(a);
 		// TODO aria-controls="myid"
