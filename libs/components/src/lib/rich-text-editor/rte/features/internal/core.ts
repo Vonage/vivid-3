@@ -46,10 +46,16 @@ export const hostBridgePlugin = new Plugin<HostState | null>({
 	},
 });
 
+export type RteScrollValue =
+	| number
+	| { top: number; right: number; bottom: number; left: number };
+
 export class RteCoreImpl extends RteFeatureImpl {
 	name = 'RteCore';
 
 	disabled = new FeatureState(false);
+	scrollThreshold: RteScrollValue | undefined = undefined;
+	scrollMargin: RteScrollValue | undefined = undefined;
 
 	override getStyles() {
 		return [

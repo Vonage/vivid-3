@@ -211,6 +211,28 @@ describe('RteInstance', () => {
 		});
 	});
 
+	describe('scrollIntoView', () => {
+		it('should dispatch a scrollIntoView transaction to the view', async () => {
+			const rte = await setup(features, [p('Hello world')]);
+			const dispatchSpy = vitest.spyOn(
+				rte.instance[impl],
+				'dispatchTransaction'
+			);
+
+			rte.instance.scrollIntoView();
+
+			expect(dispatchSpy).toHaveBeenCalledTimes(1);
+			expect(dispatchSpy.mock.calls[0][0].scrolledIntoView).toBe(true);
+		});
+
+		it('should do nothing when the view is not available', () => {
+			const config = new RteConfig(features);
+			const instance = config.instantiateEditor();
+
+			expect(() => instance.scrollIntoView()).not.toThrow();
+		});
+	});
+
 	describe('hostState', () => {
 		it('should throw an error when host state has not been set', () => {
 			const config = new RteConfig(features);

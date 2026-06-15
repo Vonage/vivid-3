@@ -1,10 +1,13 @@
-import { elementUpdated } from '@repo/shared/test-utils/fixture';
+import { elementUpdated, fixture } from '@repo/shared/test-utils/fixture';
 import { setup } from '../__tests__/test-utils';
 import { docFactories } from '../__tests__/doc-factories';
 import { RteBase } from './base';
 import { RteToolbarFeature } from './toolbar';
 import { RteBoldFeature } from './bold';
 import { RteHardBreakFeature } from './hard-break';
+import { RteConfig } from '../config';
+import type { RichTextEditor } from '../../rich-text-editor';
+import { impl } from '../utils/impl';
 
 const { paragraph: p } = docFactories;
 
@@ -159,6 +162,78 @@ describe('RteBase', () => {
 			rte.view.dom.dispatchEvent(clickEvent);
 
 			expect(clickEvent.defaultPrevented).toBe(false);
+		});
+	});
+
+	describe('scrollThreshold', () => {
+		it('should update the view scrollThreshold when set', async () => {
+			const rte = await setup([new RteBase()]);
+			const baseFeature = rte.instance.feature(RteBase);
+
+			baseFeature.scrollThreshold = 50;
+
+			expect(rte.view.someProp('scrollThreshold')).toBe(50);
+			expect(baseFeature.scrollThreshold).toBe(50);
+		});
+
+		it('should accept an object value', async () => {
+			const rte = await setup([new RteBase()]);
+			const baseFeature = rte.instance.feature(RteBase);
+			const value = { top: 10, right: 20, bottom: 30, left: 40 };
+
+			baseFeature.scrollThreshold = value;
+
+			expect(rte.view.someProp('scrollThreshold')).toEqual(value);
+		});
+
+		it('should be applied on view creation if set before the view is created', async () => {
+			const config = new RteConfig([new RteBase()]);
+			const instance = config.instantiateEditor();
+			instance.feature(RteBase).scrollThreshold = 50;
+
+			const element = fixture(
+				'<vwc-rich-text-editor></vwc-rich-text-editor>'
+			) as RichTextEditor;
+			element.instance = instance;
+			await elementUpdated(element);
+
+			expect(instance[impl].view!.someProp('scrollThreshold')).toBe(50);
+		});
+	});
+
+	describe('scrollMargin', () => {
+		it('should update the view scrollMargin when set', async () => {
+			const rte = await setup([new RteBase()]);
+			const baseFeature = rte.instance.feature(RteBase);
+
+			baseFeature.scrollMargin = 20;
+
+			expect(rte.view.someProp('scrollMargin')).toBe(20);
+			expect(baseFeature.scrollMargin).toBe(20);
+		});
+
+		it('should accept an object value', async () => {
+			const rte = await setup([new RteBase()]);
+			const baseFeature = rte.instance.feature(RteBase);
+			const value = { top: 5, right: 10, bottom: 15, left: 20 };
+
+			baseFeature.scrollMargin = value;
+
+			expect(rte.view.someProp('scrollMargin')).toEqual(value);
+		});
+
+		it('should be applied on view creation if set before the view is created', async () => {
+			const config = new RteConfig([new RteBase()]);
+			const instance = config.instantiateEditor();
+			instance.feature(RteBase).scrollMargin = 20;
+
+			const element = fixture(
+				'<vwc-rich-text-editor></vwc-rich-text-editor>'
+			) as RichTextEditor;
+			element.instance = instance;
+			await elementUpdated(element);
+
+			expect(instance[impl].view!.someProp('scrollMargin')).toBe(20);
 		});
 	});
 });
