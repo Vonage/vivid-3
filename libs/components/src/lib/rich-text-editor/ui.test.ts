@@ -524,4 +524,107 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	await takeScreenshot(page, 'rich-text-editor-disabled');
+
+	// 400x300 test image
+	const svgImageUrl =
+		'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzE5NzZEMiIvPjx0ZXh0IHg9IjIwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPkltYWdlIDQwMHgzMDA8L3RleHQ+PC9zdmc+';
+
+	await renderTemplate({
+		page,
+		template: `<vwc-rich-text-editor style="width: 500px; block-size: 250px"></vwc-rich-text-editor>`,
+		setup: async () => {
+			await page.evaluate((imageUrl) => {
+				const rteElement = document.querySelector('vwc-rich-text-editor')!;
+				const config = new RteConfig([
+					new RteBase(),
+					new RteInlineImageFeature(),
+				]);
+				const paragraphs = (start: number) =>
+					Array.from({ length: 8 }, (_, i) => ({
+						type: 'paragraph',
+						content: [{ type: 'text', text: `Paragraph ${start + i}` }],
+					}));
+				rteElement.instance = config.instantiateEditor({
+					initialDocument: {
+						type: 'doc',
+						content: [
+							...paragraphs(1),
+							{
+								type: 'paragraph',
+								content: [
+									{
+										type: 'inlineImage',
+										attrs: {
+											imageUrl,
+											alt: 'Image 400x300',
+											naturalWidth: 400,
+											naturalHeight: 300,
+										},
+									},
+								],
+							},
+							...paragraphs(9),
+						],
+					},
+				});
+			}, svgImageUrl);
+		},
+	});
+
+	// Playwright will scroll the editor's scroll area to bring the image into view before clicking.
+	await page.locator('img.inline-image').click();
+
+	const waitForReposition = () =>
+		page.evaluate(
+			() =>
+				new Promise<void>((resolve) =>
+					requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+				)
+		);
+
+	// Compute the three scroll positions relative to the image's position in the scroll area
+	const scrollPositions = await page.evaluate(() => {
+		const host = document.querySelector('vwc-rich-text-editor')!;
+		const scrollArea = host.shadowRoot!.querySelector(
+			'.editor-scroll-area'
+		) as HTMLElement;
+		const img = host.shadowRoot!.querySelector(
+			'img.inline-image'
+		) as HTMLElement;
+		const imgOffsetTop =
+			img.getBoundingClientRect().top -
+			scrollArea.getBoundingClientRect().top +
+			scrollArea.scrollTop;
+		const imgHeight = img.offsetHeight; // 300px (set via naturalHeight attr)
+		const viewportHeight = scrollArea.clientHeight; // ~250px
+		return [
+			// 1. A few paragraphs visible, top of image just entering the bottom of the viewport
+			Math.max(0, imgOffsetTop - viewportHeight + 20),
+			// 2. Viewport looking at the middle of the image
+			Math.round(imgOffsetTop + imgHeight / 2 - viewportHeight / 2),
+			// 3. End of the image at the top of the viewport, then paragraphs below
+			Math.round(imgOffsetTop + imgHeight - 20),
+		] as [number, number, number];
+	});
+
+	const scrollPositionLabels = [
+		'image-entering-bottom',
+		'image-middle',
+		'image-leaving-top',
+	] as const;
+
+	for (const [i, scrollTop] of scrollPositions.entries()) {
+		await page.evaluate((top) => {
+			const host = document.querySelector('vwc-rich-text-editor')!;
+			(
+				host.shadowRoot!.querySelector('.editor-scroll-area') as HTMLElement
+			).scrollTop = top;
+		}, scrollTop);
+		await waitForReposition();
+
+		await takeScreenshot(
+			page,
+			`rich-text-editor-image-popover-${scrollPositionLabels[i]}`
+		);
+	}
 });

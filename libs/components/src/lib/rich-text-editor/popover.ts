@@ -11,12 +11,20 @@ const Kind = {
 	default: {
 		placement: undefined,
 		placementStrategy: PlacementStrategy.AutoPlacementHorizontal,
+		shiftCrossAxis: false,
 		strategy: 'absolute',
 	},
 	autocomplete: {
 		placement: 'bottom-start',
 		placementStrategy: PlacementStrategy.Flip,
+		shiftCrossAxis: false,
 		strategy: 'fixed',
+	},
+	imageOptions: {
+		placement: 'bottom',
+		placementStrategy: PlacementStrategy.Flip,
+		shiftCrossAxis: true, // allow overlapping the image
+		strategy: 'absolute',
 	},
 } as const;
 
@@ -26,6 +34,7 @@ const popoverTemplate = (context: VividElementDefinitionContext) => {
 		:anchor="${(x) => x.anchorEl}"
 		:placement="${(x) => Kind[x.kind].placement}"
 		:placementStrategy="${(x) => Kind[x.kind].placementStrategy}"
+		:shiftCrossAxis="${(x) => Kind[x.kind].shiftCrossAxis}"
 		:open="${(x) => x.open}"
 		:offset="${(x) => x.offset}"
 		:strategy="${(x) => Kind[x.kind].strategy}"
@@ -45,7 +54,7 @@ export class Popover extends VividElement {
 		onElement.dispatchEvent(event);
 	}
 
-	@observable kind: 'default' | 'autocomplete' = 'default';
+	@observable kind: 'default' | 'autocomplete' | 'imageOptions' = 'default';
 
 	@observable offset?: number;
 
