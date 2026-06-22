@@ -700,6 +700,16 @@ Some features expose a run-time API that can be accessed via the `feature` metho
 instance.feature(RteToolbarFeature).hidden = true;
 ```
 
+#### scrollIntoView
+
+```ts
+/**
+ * Scrolls the cursor into view.
+ * Has no effect if the editor is not currently mounted.
+ */
+scrollIntoView(): void;
+```
+
 ## Features
 
 The Base feature is required for the editor to work. All other features are optional and can be combined as needed.
@@ -719,6 +729,8 @@ Provides basic editing functionality, undo/redo functionality and enables basic 
 **Feature API:**
 
 - `disabled: boolean`: Whether the editor is disabled. When disabled, user input is prevented and UI elements are disabled.
+- `scrollThreshold: number | { top: number; right: number; bottom: number; left: number } | undefined`: Determines the distance (in pixels) between the cursor and the end of the visible viewport at which point, when scrolling the cursor into view, scrolling takes place. Defaults to `0`.
+- `scrollMargin: number | { top: number; right: number; bottom: number; left: number } | undefined`: Determines the extra space (in pixels) that is left above or below the cursor when it is scrolled into view. Defaults to `5`.
 
 **Keyboard shortcuts:**
 

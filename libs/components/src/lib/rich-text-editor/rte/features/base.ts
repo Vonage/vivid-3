@@ -62,6 +62,20 @@ export class RteBaseImpl extends RteFeatureImpl {
 			set disabled(value: boolean) {
 				core.disabled.setValue(rte, value);
 			},
+			get scrollThreshold() {
+				return core.scrollThreshold;
+			},
+			set scrollThreshold(value) {
+				core.scrollThreshold = value;
+				rte.view?.setProps({ scrollThreshold: value });
+			},
+			get scrollMargin() {
+				return core.scrollMargin;
+			},
+			set scrollMargin(value) {
+				core.scrollMargin = value;
+				rte.view?.setProps({ scrollMargin: value });
+			},
 		};
 	}
 }

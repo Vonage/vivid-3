@@ -3,6 +3,7 @@ import type { RteBase } from './features/base';
 import type { RteFeature } from './feature';
 import type { RteToolbarFeature } from './features/toolbar';
 import type { RteCharacterCountFeature } from './features/character-count';
+import type { RteScrollValue } from './features/internal/core';
 
 // Type-only function that can be overloaded to return the correct public interface for a feature facade.
 export declare function getPublicInterface(
@@ -14,6 +15,16 @@ export interface RteBasePublicInterface {
 	 * Whether the editor is disabled. When disabled, user input is prevented and UI elements are disabled.
 	 */
 	disabled: boolean;
+	/**
+	 * Determines the distance (in pixels) between the cursor and the end of the visible viewport at which
+	 * point, when scrolling the cursor into view, scrolling takes place. Defaults to 0.
+	 */
+	scrollThreshold: RteScrollValue | undefined;
+	/**
+	 * Determines the extra space (in pixels) that is left above or below the cursor when it is scrolled
+	 * into view. Defaults to 5.
+	 */
+	scrollMargin: RteScrollValue | undefined;
 }
 export declare function getPublicInterface(
 	facade: typeof RteBase

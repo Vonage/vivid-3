@@ -6,7 +6,11 @@ import { EditorView } from 'prosemirror-view';
 import type { Constructor } from '../../../shared/utils/mixins';
 import type { Locale } from '../../../shared/localization/Locale';
 import type { RteConfig, RteConfigImpl } from './config';
-import { hostBridgePlugin, type HostState } from './features/internal/core';
+import {
+	hostBridgePlugin,
+	type HostState,
+	type RteCoreImpl,
+} from './features/internal/core';
 import {
 	type RteFeature,
 	type RteFeatureImpl,
@@ -154,6 +158,16 @@ export class RteInstance {
 	}
 
 	/**
+	 * Scrolls the cursor into view.
+	 * Has no effect if the editor is not currently mounted.
+	 */
+	scrollIntoView() {
+		const instance = this[impl];
+		if (!instance.view) return;
+		instance.dispatchTransaction(instance.tr.scrollIntoView());
+	}
+
+	/**
 	 * Returns the public interface of a feature.
 	 */
 	feature: typeof getPublicInterface = (
@@ -260,6 +274,9 @@ export class RteInstanceImpl {
 	view: EditorView | null = null;
 
 	createView(target: HTMLElement) {
+		const core = this.config.featureMap.get('RteCore') as
+			| RteCoreImpl
+			| undefined;
 		this.view = new EditorView(
 			(editor) => {
 				editor.part = 'editor';
@@ -268,6 +285,12 @@ export class RteInstanceImpl {
 			{
 				state: this.state,
 				dispatchTransaction: this.dispatchTransaction,
+				...(core?.scrollThreshold !== undefined && {
+					scrollThreshold: core.scrollThreshold,
+				}),
+				...(core?.scrollMargin !== undefined && {
+					scrollMargin: core.scrollMargin,
+				}),
 			}
 		);
 	}
