@@ -32,6 +32,13 @@ jobs:
         with:
           ref: ${{ inputs.sha }}
 
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20.19.0'
+          cache: 'pnpm'
+
       - name: Cache turbo build setup
         uses: actions/cache@v4
         with:
@@ -39,13 +46,6 @@ jobs:
           key: ${{ runner.os }}-turbo-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-turbo-
-
-      - uses: pnpm/action-setup@v4
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '20.19.0'
-          cache: 'pnpm'
 
       - name: Install Dependencies
         run: pnpm install
@@ -65,17 +65,22 @@ jobs:
         run: |
           NAME=$(npm view ${{ inputs.path }} name)
           VERSION=$(npm view ${{ inputs.path }} version)
-          if npm view "$NAME@$VERSION"; then
+          if npm view "$NAME@$VERSION" --registry=https://eu-artifactory.vonage.cloud/artifactory/api/npm/npm-vbc/ "--//eu-artifactory.vonage.cloud/artifactory/api/npm/npm-vbc/:_authToken=$AUTH_TOKEN"; then
           echo "published=true" >> "$GITHUB_OUTPUT"
           else
           echo "published=false" >> "$GITHUB_OUTPUT"
           fi
-
-      - name: Publish to npm registry
-        if: steps.check.outputs.published == 'false'
-        run: pnpm publish --no-git-checks --tag ${{ inputs.tag }} ${{ inputs.path }} "--//registry.npmjs.org/:_authToken=$AUTH_TOKEN"
         env:
           AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+
+      - name: Publish to Artifactory
+        if: steps.check.outputs.published == 'false'
+        uses: Vonage/apeg-ci-cd/actions/internal/package-manager/npm/publish-package@v4.0.0
+        with:
+          registry-url: https://eu-artifactory.vonage.cloud/artifactory/api/npm/npm-vbc/
+          registry-auth-token: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+          working-directory: ${{ inputs.path }}
+          npm-publish-args: --no-git-checks --tag ${{ inputs.tag }}
 
   github-publish:
     runs-on: ubuntu-latest
@@ -92,7 +97,6 @@ jobs:
         with:
           node-version: '20.19.0'
           cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
@@ -130,6 +134,9 @@ jobs:
 
       - name: Publish to GitHub registry
         if: steps.check.outputs.published == 'false'
-        run: pnpm publish --no-git-checks --tag ${{ inputs.tag }} ${{ inputs.path }} --registry=https://npm.pkg.github.com "--//npm.pkg.github.com/:_authToken=$AUTH_TOKEN"
-        env:
-          AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: Vonage/apeg-ci-cd/actions/internal/package-manager/npm/publish-package@v4.0.0
+        with:
+          registry-url: https://npm.pkg.github.com
+          registry-auth-token: ${{ secrets.GITHUB_TOKEN }}
+          working-directory: ${{ inputs.path }}
+          npm-publish-args: --no-git-checks --tag ${{ inputs.tag }}
