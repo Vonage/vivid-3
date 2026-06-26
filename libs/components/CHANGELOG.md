@@ -1,5 +1,15 @@
 # Change Log - @vonage/vivid
 
+## 5.22.0
+
+### Minor Changes
+
+- [#2997](https://github.com/Vonage/vivid-3/pull/2997) [`bb57c81`](https://github.com/Vonage/vivid-3/commit/bb57c812714227cc167765d0b1e9ec4e28f31ac5) Thanks [@RichardHelm](https://github.com/RichardHelm)! - feat(rich-text-editor): allow scrolling into view and setting scroll margin and offset (VIV-3280)
+
+### Patch Changes
+
+- [#2990](https://github.com/Vonage/vivid-3/pull/2990) [`ccf6f65`](https://github.com/Vonage/vivid-3/commit/ccf6f6541fe171b4d2970d80aa70304d06852434) Thanks [@RichardHelm](https://github.com/RichardHelm)! - fix(rich-text-editor): fix image popover not visible if there is a lack of space (VIV-3261)
+
 ## 5.21.0
 
 ### Minor Changes

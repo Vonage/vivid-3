@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.22.0
+
+### Patch Changes
+
+- Updated dependencies [[`ccf6f65`](https://github.com/Vonage/vivid-3/commit/ccf6f6541fe171b4d2970d80aa70304d06852434), [`bb57c81`](https://github.com/Vonage/vivid-3/commit/bb57c812714227cc167765d0b1e9ec4e28f31ac5)]:
+  - @vonage/vivid@5.22.0
+
 ## 5.21.0
 
 ### Patch Changes
