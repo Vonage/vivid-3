@@ -15,9 +15,9 @@ export default mergeConfig(
 			minify: false,
 			rolldownOptions: {
 				external: [
-					/react(\/.*)?/,
-					/react-dom(\/.*)?/,
-					/@vonage\/.*/,
+					/^react(\/.*)?/,
+					/^react-dom(\/.*)?/,
+					/^@vonage\/.*/,
 					'prop-types',
 				],
 				output: {
