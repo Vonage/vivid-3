@@ -1,5 +1,14 @@
 # @vonage/vivid-react
 
+## 5.22.0
+
+### Patch Changes
+
+- [#3023](https://github.com/Vonage/vivid-3/pull/3023) [`8498d66`](https://github.com/Vonage/vivid-3/commit/8498d66b54ae26d3238e1d996a250b27b45a760f) Thanks [@RichardHelm](https://github.com/RichardHelm)! - fix(react-wrappers): fix build externalizing internal modules (VIV-3300)
+
+- Updated dependencies [[`ccf6f65`](https://github.com/Vonage/vivid-3/commit/ccf6f6541fe171b4d2970d80aa70304d06852434), [`bb57c81`](https://github.com/Vonage/vivid-3/commit/bb57c812714227cc167765d0b1e9ec4e28f31ac5)]:
+  - @vonage/vivid@5.22.0
+
 ## 5.21.0
 
 ### Patch Changes
