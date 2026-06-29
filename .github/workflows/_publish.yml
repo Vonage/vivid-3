@@ -75,12 +75,12 @@ jobs:
 
       - name: Publish to Artifactory
         if: steps.check.outputs.published == 'false'
-        uses: Vonage/apeg-ci-cd/actions/internal/package-manager/npm/publish-package@prd
+        uses: Vonage/apeg-ci-cd/actions/internal/package-manager/pnpm/publish-package@ebab49941b4a5db4d5e220d954e7124bf3d20032
         with:
           registry-url: https://eu-artifactory.vonage.cloud/artifactory/api/npm/npm-local/
           registry-auth-token: ${{ secrets.VONAGE_ORG_ARTIFACTORY_SECRET }}
           working-directory: ${{ inputs.path }}
-          npm-publish-args: --no-git-checks --tag ${{ inputs.tag }}
+          pnpm-publish-args: --no-git-checks --tag ${{ inputs.tag }}
 
   github-publish:
     runs-on: ubuntu-latest
@@ -134,9 +134,9 @@ jobs:
 
       - name: Publish to GitHub registry
         if: steps.check.outputs.published == 'false'
-        uses: Vonage/apeg-ci-cd/actions/internal/package-manager/npm/publish-package@v4.0.0
+        uses: Vonage/apeg-ci-cd/actions/internal/package-manager/pnpm/publish-package@ebab49941b4a5db4d5e220d954e7124bf3d20032
         with:
           registry-url: https://npm.pkg.github.com
           registry-auth-token: ${{ secrets.GITHUB_TOKEN }}
           working-directory: ${{ inputs.path }}
-          npm-publish-args: --no-git-checks --tag ${{ inputs.tag }}
+          pnpm-publish-args: --no-git-checks --tag ${{ inputs.tag }}
