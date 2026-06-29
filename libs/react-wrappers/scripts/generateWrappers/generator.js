@@ -87,8 +87,7 @@ const renderComponent = (tag) => (language) => (componentName) => {
 		.replace(TemplateToken.PROP_TYPES, getPropTypes(tag).join(',\n'))
 		.replace(TemplateToken.PROPS, getProps(tag).join(',\n'))
 		.replace(TemplateToken.DEFAULT_PROPS, getDefaultProps(tag).join(',\n'))
-		.replace(
-			TemplateToken.TAG_DESCRIPTOR_JSON,
+		.replace(TemplateToken.TAG_DESCRIPTOR_JSON, () =>
 			escapeBlockComment(JSON.stringify(tag, null, ' '))
 		)
 		.replace(TemplateToken.COMPOUND_COMPONENTS, getCompoundComponents())
@@ -267,8 +266,7 @@ const renderComponentV3 =
 			.replace(TemplateToken.ATTRIBUTES, '')
 			.replace(TemplateToken.PROP_TYPES, '')
 			.replace(TemplateToken.PROPS, props.join(',\n'))
-			.replace(
-				TemplateToken.TAG_DESCRIPTOR_JSON,
+			.replace(TemplateToken.TAG_DESCRIPTOR_JSON, () =>
 				escapeBlockComment(JSON.stringify(classDeclaration, null, ' '))
 			)
 			.replace(

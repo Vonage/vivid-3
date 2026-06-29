@@ -1,5 +1,27 @@
 import { defineConfig, mergeConfig } from 'vite';
 import baseViteConfig from '@repo/vite-config/base';
+import { existsSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
+
+function findGeneratedEntries(): Record<string, string> {
+	const entries: Record<string, string> = {};
+
+	const addEntries = (dir: string, prefix: string) => {
+		if (!existsSync(dir)) return;
+		for (const name of readdirSync(dir)) {
+			if (!name.startsWith('Vwc')) continue;
+			const indexPath = join(dir, name, 'index.js');
+			if (existsSync(indexPath)) {
+				entries[`${prefix}${name}/index`] = indexPath;
+			}
+		}
+	};
+
+	addEntries('dist', '');
+	addEntries('dist/v3', 'v3/');
+
+	return entries;
+}
 
 export default mergeConfig(
 	baseViteConfig,
@@ -7,10 +29,13 @@ export default mergeConfig(
 		build: {
 			emptyOutDir: false,
 			lib: {
-				entry: 'src/index.js',
+				entry: {
+					index: 'src/index.js',
+					...findGeneratedEntries(),
+				},
 				name: 'vivid-react',
 				formats: ['cjs'],
-				fileName: () => 'index.js',
+				fileName: (_, entryAlias) => `${entryAlias}.js`,
 			},
 			minify: false,
 			rolldownOptions: {
