@@ -1,5 +1,14 @@
 # @vonage/vivid-react
 
+## 5.23.0
+
+### Patch Changes
+
+- [#3035](https://github.com/Vonage/vivid-3/pull/3035) [`289f6f2`](https://github.com/Vonage/vivid-3/commit/289f6f2d17e4b1bbdf989f7576fe5df6a893d87e) Thanks [@RichardHelm](https://github.com/RichardHelm)! - fix(react-wrappers): fix react-wrapper not being bundled (VIV-3301)
+
+- Updated dependencies [[`1aaef89`](https://github.com/Vonage/vivid-3/commit/1aaef8906c0f59c29120604f9e506dd9750ba4f5), [`960f23e`](https://github.com/Vonage/vivid-3/commit/960f23e0360b770a276bb9a0955ff8401c662e2f)]:
+  - @vonage/vivid@5.23.0
+
 ## 5.22.0
 
 ### Patch Changes

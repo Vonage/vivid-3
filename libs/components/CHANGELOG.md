@@ -1,5 +1,15 @@
 # Change Log - @vonage/vivid
 
+## 5.23.0
+
+### Minor Changes
+
+- [#3051](https://github.com/Vonage/vivid-3/pull/3051) [`960f23e`](https://github.com/Vonage/vivid-3/commit/960f23e0360b770a276bb9a0955ff8401c662e2f) Thanks [@RichardHelm](https://github.com/RichardHelm)! - feat(icon): update icons
+
+### Patch Changes
+
+- [#3044](https://github.com/Vonage/vivid-3/pull/3044) [`1aaef89`](https://github.com/Vonage/vivid-3/commit/1aaef8906c0f59c29120604f9e506dd9750ba4f5) Thanks [@RichardHelm](https://github.com/RichardHelm)! - fix(button, fab, split-button): stop cancelling the click default action on enabled buttons (VIV-3302)
+
 ## 5.22.0
 
 ### Minor Changes
