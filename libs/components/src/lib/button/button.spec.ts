@@ -130,6 +130,21 @@ describe('vwc-button', () => {
 			expect(listener).not.toHaveBeenCalled();
 		});
 
+		it('should call preventDefault on click when pending', async () => {
+			element.pending = true;
+			await elementUpdated(element);
+
+			const event = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const control = getControlElement(element);
+			control?.dispatchEvent(event);
+
+			expect(event.defaultPrevented).toBe(true);
+		});
+
 		it('should not emit keyboard activation when disabled (Enter)', async () => {
 			const listener = vi.fn();
 			element.addEventListener('click', listener);
@@ -475,6 +490,35 @@ describe('vwc-button', () => {
 			control.click();
 
 			expect(listener).not.toHaveBeenCalled();
+		});
+
+		it('should call preventDefault on click when disabled', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const event = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const control = getControlElement(element);
+			control?.dispatchEvent(event);
+
+			expect(event.defaultPrevented).toBe(true);
+		});
+	});
+
+	describe('click event', function () {
+		it('should not call preventDefault on click when not disabled or pending', async () => {
+			const event = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const control = getControlElement(element);
+			control?.dispatchEvent(event);
+
+			expect(event.defaultPrevented).toBe(false);
 		});
 	});
 

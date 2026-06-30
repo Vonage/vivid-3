@@ -73,5 +73,7 @@ export class Fab extends AffixIconWithTrailing(VividFoundationButton) {
 			event.stopImmediatePropagation();
 			return;
 		}
+
+		return true;
 	}
 }

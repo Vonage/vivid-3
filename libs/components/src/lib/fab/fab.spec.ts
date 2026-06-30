@@ -179,6 +179,35 @@ describe('vwc-fab', () => {
 		});
 	});
 
+	describe('click', function () {
+		it('should not call preventDefault on click when not disabled', async () => {
+			const event = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const control = getControlElement(element);
+			control?.dispatchEvent(event);
+
+			expect(event.defaultPrevented).toBe(false);
+		});
+
+		it('should call preventDefault on click when disabled', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const event = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const control = getControlElement(element);
+			control?.dispatchEvent(event);
+
+			expect(event.defaultPrevented).toBe(true);
+		});
+	});
+
 	describe('ARIA delegation', () => {
 		itShouldDelegateAriaAttributes(
 			() => element,

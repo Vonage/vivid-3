@@ -182,6 +182,8 @@ export class SplitButton extends AffixIcon(
 				bubbles: false,
 			});
 		}
+		// Returning `true` so FAST does not call preventDefault on the click.
+		return true;
 	}
 
 	/**
@@ -200,5 +202,7 @@ export class SplitButton extends AffixIcon(
 				bubbles: false,
 			});
 		}
+
+		return true;
 	}
 }

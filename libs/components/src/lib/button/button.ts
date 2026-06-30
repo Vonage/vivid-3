@@ -204,5 +204,7 @@ export class Button extends AffixIconWithTrailing(
 			event.stopImmediatePropagation();
 			return;
 		}
+
+		return true;
 	}
 }
