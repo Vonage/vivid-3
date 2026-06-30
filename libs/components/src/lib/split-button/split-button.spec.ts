@@ -211,6 +211,31 @@ describe('vwc-split-button', () => {
 
 			expect(spy).not.toHaveBeenCalled();
 		});
+
+		it('should not call preventDefault on click of the action button when not disabled', async () => {
+			const event = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			element.action.dispatchEvent(event);
+
+			expect(event.defaultPrevented).toBe(false);
+		});
+
+		it('should call preventDefault on click of the action button when disabled', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const event = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			element.action.dispatchEvent(event);
+
+			expect(event.defaultPrevented).toBe(true);
+		});
 	});
 
 	describe('indicator-click', () => {
@@ -234,6 +259,31 @@ describe('vwc-split-button', () => {
 			element.indicator.click();
 
 			expect(spy).not.toHaveBeenCalled();
+		});
+
+		it('should not call preventDefault on click of the indicator button when not disabled', async () => {
+			const event = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			element.indicator.dispatchEvent(event);
+
+			expect(event.defaultPrevented).toBe(false);
+		});
+
+		it('should call preventDefault on click of the indicator button when disabled', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			const event = new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			element.indicator.dispatchEvent(event);
+
+			expect(event.defaultPrevented).toBe(true);
 		});
 	});
 
