@@ -1,4 +1,6 @@
 export type IconName = 'vonage-ai-line' | 
+'ai-summary-line' | 
+'ai-summary-solid' | 
 'block-line' | 
 'block-solid' | 
 'block-full' | 
@@ -127,6 +129,8 @@ export type IconName = 'vonage-ai-line' |
 'transfer-full' | 
 'undo-line' | 
 'undo-solid' | 
+'distort-line' | 
+'distort-solid' | 
 'audio-max-line' | 
 'audio-max-solid' | 
 'audio-max-full' | 
@@ -145,8 +149,6 @@ export type IconName = 'vonage-ai-line' |
 'audio-off-line' | 
 'audio-off-solid' | 
 'audio-off-full' | 
-'distort-line' | 
-'distort-solid' | 
 'echo-line' | 
 'echo-solid' | 
 'hearing-line' | 
@@ -154,15 +156,14 @@ export type IconName = 'vonage-ai-line' |
 'hearing-full' | 
 'hearing-max-line' | 
 'hearing-max-solid' | 
+'microphone-2-line' | 
+'microphone-2-solid' | 
+'microphone-line' | 
+'microphone-solid' | 
 'mic-mute-line' | 
 'mic-mute-solid' | 
 'microphone-mute' | 
 'microphone-mute-full' | 
-'microphone-2-line' | 
-'microphone-2-solid' | 
-'microphone-line' | 
-'microphone-full' | 
-'microphone-solid' | 
 'note-line' | 
 'note-solid' | 
 'note-full' | 
@@ -552,6 +553,8 @@ export type IconName = 'vonage-ai-line' |
 'number-reputation-solid' | 
 'unhold-line' | 
 'unhold-solid' | 
+'scam-signal-line' | 
+'scam-signal-solid' | 
 'chart-line' | 
 'chart-solid' | 
 'chart-full' | 
@@ -1241,7 +1244,6 @@ export type IconName = 'vonage-ai-line' |
 'password-restart-solid' | 
 'ai-2-line' | 
 'ai-2-solid' | 
-'ai-2-full' | 
 'ai-3-line' | 
 'ai-3-solid' | 
 'ai-3-full' | 
@@ -1290,15 +1292,15 @@ export type IconName = 'vonage-ai-line' |
 'share-2-line' | 
 'share-2-solid' | 
 'share-2-full' | 
-'star-line' | 
-'star-solid' | 
-'star-full' | 
 'thumbs-down-line' | 
 'thumbs-down-solid' | 
 'thumbs-down-full' | 
 'thumbs-up-line' | 
 'thumbs-up-solid' | 
 'thumbs-up-full' | 
+'star-line' | 
+'star-solid' | 
+'star-full' | 
 'unfavourite-line' | 
 'unfavourite-solid' | 
 'vonage-line' | 
@@ -1307,6 +1309,8 @@ export type IconName = 'vonage-ai-line' |
 'vonage-2' | 
 'vonage-solid' | 
 'brand-vonage' | 
+'git-fork-line' | 
+'git-fork-solid' | 
 'add-line' | 
 'add-outline' | 
 'add-solid' | 
@@ -1373,6 +1377,10 @@ export type IconName = 'vonage-ai-line' |
 'filter-solid' | 
 'search-ai-line' | 
 'search-ai-solid' | 
+'global-filter-line' | 
+'global-filter-solid' | 
+'global-filter-unable-line' | 
+'global-filter-unable-solid' | 
 'add-time-line' | 
 'add-time-solid' | 
 'alarm-line' | 
@@ -1628,6 +1636,8 @@ export type IconName = 'vonage-ai-line' |
 'meeting' | 
 'hand-shake-solid' | 
 'meeting-full' | 
+'user-age-line' | 
+'user-age-solid' | 
 '10-sec-backward-line' | 
 '10-sec-backward-solid' | 
 '10-sec-forward-line' | 
@@ -1691,6 +1701,8 @@ export type IconName = 'vonage-ai-line' |
 'circle-nested' | 
 'rec-solid' | 
 'rec-full' | 
+'rec-unable-line' | 
+'rec-unable-solid' | 
 'screen-share-line' | 
 'screen-share-solid' | 
 'screen-share-full' | 

@@ -8,6 +8,58 @@
     "keywords": []
   },
   {
+    "id": "ai-summary-line",
+    "name": "ai-summary",
+    "aliases": [],
+    "category": "AI",
+    "style": "line",
+    "keywords": [
+      "summarize",
+      "summary",
+      "digest",
+      "brief",
+      "tldr",
+      "condense",
+      "shorten",
+      "recap",
+      "abstract",
+      "outline",
+      "overview",
+      "extract",
+      "ai-generated",
+      "smart-summary",
+      "highlight",
+      "notes",
+      "key-points"
+    ]
+  },
+  {
+    "id": "ai-summary-solid",
+    "name": "ai-summary",
+    "aliases": [],
+    "category": "AI",
+    "style": "solid",
+    "keywords": [
+      "summarize",
+      "summary",
+      "digest",
+      "brief",
+      "tldr",
+      "condense",
+      "shorten",
+      "recap",
+      "abstract",
+      "outline",
+      "overview",
+      "extract",
+      "ai-generated",
+      "smart-summary",
+      "highlight",
+      "notes",
+      "key-points"
+    ]
+  },
+  {
     "id": "block-line",
     "name": "block",
     "aliases": [],
@@ -1270,6 +1322,42 @@
     ]
   },
   {
+    "id": "distort-line",
+    "name": "distort",
+    "aliases": [],
+    "category": "arrows",
+    "style": "line",
+    "keywords": [
+      "distort",
+      "distortion",
+      "blend",
+      "grid",
+      "design",
+      "graphic",
+      "mesh",
+      "warp",
+      "gradient"
+    ]
+  },
+  {
+    "id": "distort-solid",
+    "name": "distort",
+    "aliases": [],
+    "category": "arrows",
+    "style": "solid",
+    "keywords": [
+      "distort",
+      "distortion",
+      "blend",
+      "grid",
+      "design",
+      "graphic",
+      "mesh",
+      "warp",
+      "gradient"
+    ]
+  },
+  {
     "id": "audio-max-line",
     "name": "audio-max",
     "aliases": [],
@@ -1462,42 +1550,6 @@
     ]
   },
   {
-    "id": "distort-line",
-    "name": "distort",
-    "aliases": [],
-    "category": "audio",
-    "style": "line",
-    "keywords": [
-      "distort",
-      "distortion",
-      "blend",
-      "grid",
-      "design",
-      "graphic",
-      "mesh",
-      "warp",
-      "gradient"
-    ]
-  },
-  {
-    "id": "distort-solid",
-    "name": "distort",
-    "aliases": [],
-    "category": "audio",
-    "style": "solid",
-    "keywords": [
-      "distort",
-      "distortion",
-      "blend",
-      "grid",
-      "design",
-      "graphic",
-      "mesh",
-      "warp",
-      "gradient"
-    ]
-  },
-  {
     "id": "echo-line",
     "name": "echo",
     "aliases": [],
@@ -1582,37 +1634,6 @@
     ]
   },
   {
-    "id": "mic-mute-line",
-    "name": "mic-mute",
-    "aliases": [],
-    "category": "audio",
-    "style": "line",
-    "keywords": [
-      "off",
-      "microphone",
-      "speaker",
-      "media",
-      "mute"
-    ]
-  },
-  {
-    "id": "mic-mute-solid",
-    "name": "mic-mute",
-    "aliases": [
-      "microphone-mute",
-      "microphone-mute-full"
-    ],
-    "category": "audio",
-    "style": "solid",
-    "keywords": [
-      "off",
-      "microphone",
-      "speaker",
-      "media",
-      "mute"
-    ]
-  },
-  {
     "id": "microphone-2-line",
     "name": "microphone-2",
     "aliases": [],
@@ -1642,7 +1663,7 @@
     "id": "microphone-line",
     "name": "microphone",
     "aliases": [
-      "microphone-full"
+      "microphone-line"
     ],
     "category": "audio",
     "style": "line",
@@ -1657,7 +1678,7 @@
     "id": "microphone-solid",
     "name": "microphone",
     "aliases": [
-      "microphone-full"
+      "microphone-solid"
     ],
     "category": "audio",
     "style": "solid",
@@ -1666,6 +1687,37 @@
       "microphone",
       "speaker",
       "media"
+    ]
+  },
+  {
+    "id": "mic-mute-line",
+    "name": "mic-mute",
+    "aliases": [],
+    "category": "audio",
+    "style": "line",
+    "keywords": [
+      "off",
+      "microphone",
+      "speaker",
+      "media",
+      "mute"
+    ]
+  },
+  {
+    "id": "mic-mute-solid",
+    "name": "mic-mute",
+    "aliases": [
+      "microphone-mute",
+      "microphone-mute-full"
+    ],
+    "category": "audio",
+    "style": "solid",
+    "keywords": [
+      "off",
+      "microphone",
+      "speaker",
+      "media",
+      "mute"
     ]
   },
   {
@@ -4862,6 +4914,52 @@
       "unhold",
       "retrieve",
       "unpause"
+    ]
+  },
+  {
+    "id": "scam-signal-line",
+    "name": "scam-signal",
+    "aliases": [],
+    "category": "calling",
+    "style": "line",
+    "keywords": [
+      "scam",
+      "signal",
+      "user",
+      "mobile",
+      "phone",
+      "radial",
+      "subscriber",
+      "number",
+      "alert",
+      "network",
+      "phone",
+      "fraud",
+      "customer",
+      "call"
+    ]
+  },
+  {
+    "id": "scam-signal-solid",
+    "name": "scam-signal",
+    "aliases": [],
+    "category": "calling",
+    "style": "solid",
+    "keywords": [
+      "scam",
+      "signal",
+      "user",
+      "mobile",
+      "phone",
+      "radial",
+      "subscriber",
+      "number",
+      "alert",
+      "network",
+      "phone",
+      "fraud",
+      "customer",
+      "call"
     ]
   },
   {
@@ -13205,7 +13303,7 @@
     "id": "ai-2-solid",
     "name": "ai-2",
     "aliases": [
-      "ai-2-full"
+      ""
     ],
     "category": "science",
     "style": "solid",
@@ -13836,40 +13934,6 @@
     ]
   },
   {
-    "id": "star-line",
-    "name": "star",
-    "aliases": [
-      ""
-    ],
-    "category": "social",
-    "style": "line",
-    "keywords": [
-      "star",
-      "rate",
-      "bookmark",
-      "favourite",
-      "important",
-      "review"
-    ]
-  },
-  {
-    "id": "star-solid",
-    "name": "star",
-    "aliases": [
-      "star-full"
-    ],
-    "category": "social",
-    "style": "solid",
-    "keywords": [
-      "star",
-      "rate",
-      "bookmark",
-      "favourite",
-      "important",
-      "review"
-    ]
-  },
-  {
     "id": "thumbs-down-line",
     "name": "thumbs-down",
     "aliases": [
@@ -13952,6 +14016,40 @@
     ]
   },
   {
+    "id": "star-line",
+    "name": "star",
+    "aliases": [
+      ""
+    ],
+    "category": "social",
+    "style": "line",
+    "keywords": [
+      "star",
+      "rate",
+      "bookmark",
+      "favourite",
+      "important",
+      "review"
+    ]
+  },
+  {
+    "id": "star-solid",
+    "name": "star",
+    "aliases": [
+      "star-full"
+    ],
+    "category": "social",
+    "style": "solid",
+    "keywords": [
+      "star",
+      "rate",
+      "bookmark",
+      "favourite",
+      "important",
+      "review"
+    ]
+  },
+  {
     "id": "unfavourite-line",
     "name": "unfavourite",
     "aliases": [],
@@ -14005,6 +14103,60 @@
     "style": "solid",
     "keywords": [
       "vonage"
+    ]
+  },
+  {
+    "id": "git-fork-line",
+    "name": "git-fork",
+    "aliases": [
+      "git-fork-line"
+    ],
+    "category": "social",
+    "style": "line",
+    "keywords": [
+      "github",
+      "git",
+      "fork",
+      "branch",
+      "repository",
+      "repo",
+      "version control",
+      "open source",
+      "code",
+      "developer",
+      "split",
+      "divide",
+      "diverge",
+      "tree",
+      "path",
+      "Y-shape"
+    ]
+  },
+  {
+    "id": "git-fork-solid",
+    "name": "git-fork",
+    "aliases": [
+      "git-fork-solid"
+    ],
+    "category": "social",
+    "style": "solid",
+    "keywords": [
+      "github",
+      "git",
+      "fork",
+      "branch",
+      "repository",
+      "repo",
+      "version control",
+      "open source",
+      "code",
+      "developer",
+      "split",
+      "divide",
+      "diverge",
+      "tree",
+      "path",
+      "Y-shape"
     ]
   },
   {
@@ -14832,6 +14984,60 @@
       "magnify",
       "ai",
       "smart search"
+    ]
+  },
+  {
+    "id": "global-filter-line",
+    "name": "global-filter",
+    "aliases": [
+      ""
+    ],
+    "category": "sort",
+    "style": "line",
+    "keywords": [
+      "global",
+      "filter"
+    ]
+  },
+  {
+    "id": "global-filter-solid",
+    "name": "global-filter",
+    "aliases": [
+      ""
+    ],
+    "category": "sort",
+    "style": "solid",
+    "keywords": [
+      "global",
+      "filter"
+    ]
+  },
+  {
+    "id": "global-filter-unable-line",
+    "name": "global-filter-unable",
+    "aliases": [
+      ""
+    ],
+    "category": "sort",
+    "style": "line",
+    "keywords": [
+      "global",
+      "filter",
+      "filter unable"
+    ]
+  },
+  {
+    "id": "global-filter-unable-solid",
+    "name": "global-filter-unable",
+    "aliases": [
+      ""
+    ],
+    "category": "sort",
+    "style": "solid",
+    "keywords": [
+      "global",
+      "filter",
+      "filter unable"
     ]
   },
   {
@@ -18375,6 +18581,44 @@
     ]
   },
   {
+    "id": "user-age-line",
+    "name": "user-age",
+    "aliases": [],
+    "category": "user",
+    "style": "line",
+    "keywords": [
+      "age",
+      "verification",
+      "user",
+      "dob",
+      "calendar",
+      "subscriber",
+      "number",
+      "network",
+      "fraud",
+      "customer"
+    ]
+  },
+  {
+    "id": "user-age-solid",
+    "name": "user-age",
+    "aliases": [],
+    "category": "user",
+    "style": "solid",
+    "keywords": [
+      "age",
+      "verification",
+      "user",
+      "dob",
+      "calendar",
+      "subscriber",
+      "number",
+      "network",
+      "fraud",
+      "customer"
+    ]
+  },
+  {
     "id": "10-sec-backward-line",
     "name": "10-sec-backward",
     "aliases": [],
@@ -19171,6 +19415,22 @@
       "record",
       "circle"
     ]
+  },
+  {
+    "id": "rec-unable-line",
+    "name": "rec-unable",
+    "aliases": [],
+    "category": "video",
+    "style": "line",
+    "keywords": []
+  },
+  {
+    "id": "rec-unable-solid",
+    "name": "rec-unable",
+    "aliases": [],
+    "category": "video",
+    "style": "solid",
+    "keywords": []
   },
   {
     "id": "screen-share-line",
