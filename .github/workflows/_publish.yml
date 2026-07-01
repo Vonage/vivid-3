@@ -23,6 +23,8 @@ on:
     secrets:
       NPM_VVD_VNG_AUTOMATION_TOKEN:
         required: true
+      VONAGE_ORG_ARTIFACTORY_SECRET:
+        required: true
 
 jobs:
   npm-publish:
@@ -32,6 +34,13 @@ jobs:
         with:
           ref: ${{ inputs.sha }}
 
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20.19.0'
+          cache: 'pnpm'
+
       - name: Cache turbo build setup
         uses: actions/cache@v4
         with:
@@ -39,13 +48,6 @@ jobs:
           key: ${{ runner.os }}-turbo-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-turbo-
-
-      - uses: pnpm/action-setup@v4
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '20.19.0'
-          cache: 'pnpm'
 
       - name: Install Dependencies
         run: pnpm install
@@ -73,9 +75,69 @@ jobs:
 
       - name: Publish to npm registry
         if: steps.check.outputs.published == 'false'
-        run: pnpm publish --no-git-checks --tag ${{ inputs.tag }} ${{ inputs.path }} "--//registry.npmjs.org/:_authToken=$AUTH_TOKEN"
+        uses: Vonage/apeg-ci-cd/actions/internal/package-manager/pnpm/publish-package@ebab49941b4a5db4d5e220d954e7124bf3d20032
+        with:
+          registry-url: https://registry.npmjs.org/
+          registry-auth-token: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+          working-directory: ${{ inputs.path }}
+          pnpm-publish-args: --no-git-checks --tag ${{ inputs.tag }}
+
+  artifactory-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.sha }}
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20.19.0'
+          cache: 'pnpm'
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Set version
+        if: ${{ inputs.version != '' }}
+        working-directory: ${{ inputs.path }}
+        run: |
+          npm version ${{ inputs.version }} --no-git-tag-version
+          echo "Version set to ${{ inputs.version }}"
+
+      - name: Check if version is already published
+        id: check
+        run: |
+          NAME=$(npm view ${{ inputs.path }} name)
+          VERSION=$(npm view ${{ inputs.path }} version)
+          if npm view "$NAME@$VERSION" --registry=https://eu-artifactory.vonage.cloud/artifactory/api/npm/npm-local/ "--//eu-artifactory.vonage.cloud/artifactory/api/npm/npm-local/:_authToken=$AUTH_TOKEN"; then
+          echo "published=true" >> "$GITHUB_OUTPUT"
+          else
+          echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
         env:
-          AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+          AUTH_TOKEN: ${{ secrets.VONAGE_ORG_ARTIFACTORY_SECRET }}
+
+      - name: Publish to Artifactory
+        if: steps.check.outputs.published == 'false'
+        uses: Vonage/apeg-ci-cd/actions/internal/package-manager/pnpm/publish-package@ebab49941b4a5db4d5e220d954e7124bf3d20032
+        with:
+          registry-url: https://eu-artifactory.vonage.cloud/artifactory/api/npm/npm-local/
+          registry-auth-token: ${{ secrets.VONAGE_ORG_ARTIFACTORY_SECRET }}
+          working-directory: ${{ inputs.path }}
+          pnpm-publish-args: --no-git-checks --tag ${{ inputs.tag }}
 
   github-publish:
     runs-on: ubuntu-latest
@@ -92,7 +154,6 @@ jobs:
         with:
           node-version: '20.19.0'
           cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Cache turbo build setup
         uses: actions/cache@v4
@@ -130,6 +191,9 @@ jobs:
 
       - name: Publish to GitHub registry
         if: steps.check.outputs.published == 'false'
-        run: pnpm publish --no-git-checks --tag ${{ inputs.tag }} ${{ inputs.path }} --registry=https://npm.pkg.github.com "--//npm.pkg.github.com/:_authToken=$AUTH_TOKEN"
-        env:
-          AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: Vonage/apeg-ci-cd/actions/internal/package-manager/pnpm/publish-package@ebab49941b4a5db4d5e220d954e7124bf3d20032
+        with:
+          registry-url: https://npm.pkg.github.com
+          registry-auth-token: ${{ secrets.GITHUB_TOKEN }}
+          working-directory: ${{ inputs.path }}
+          pnpm-publish-args: --no-git-checks --tag ${{ inputs.tag }}
