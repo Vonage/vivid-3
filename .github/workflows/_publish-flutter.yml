@@ -33,7 +33,7 @@ jobs:
       - name: Node Setup
         uses: actions/setup-node@v6
         with:
-          node-version: '20.19.0'
+          node-version: '24.18.0'
           cache: 'pnpm'
 
       - name: Setup Flutter SDK
