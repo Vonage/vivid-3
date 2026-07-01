@@ -63,7 +63,7 @@
 		"htmx.org": "^2.0.10",
 		"http-server": "catalog:",
 		"jsdom": "^28.1.0",
-		"markdown-it": "^14.1.1",
+		"markdown-it": "^14.2.0",
 		"markdown-it-anchor": "^9.2.0",
 		"pagefind": "^1.5.2",
 		"sass": "catalog:",
