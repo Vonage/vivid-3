@@ -38,7 +38,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '20.19.0'
+          node-version: '24.18.0'
           cache: 'pnpm'
 
       - name: Cache turbo build setup
@@ -93,7 +93,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '20.19.0'
+          node-version: '24.18.0'
           cache: 'pnpm'
 
       - name: Cache turbo build setup
@@ -152,7 +152,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '20.19.0'
+          node-version: '24.18.0'
           cache: 'pnpm'
 
       - name: Cache turbo build setup

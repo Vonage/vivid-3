@@ -11,7 +11,7 @@ Each component is implemented in its own directory under the `libs/components/sr
 - `<component-name>.scss`
 - `<component-name>.spec.ts`: Unit tests using Vitest.
 - `<component-name>.a11y.spec.ts`: Accessibility tests using Axe with Vitest.
-- `ui.test.ts`: Visual regression tests using Playwright.
+- `variations.browser-spec.tsx`: Visual variation tests using Vitest browser mode with playwright driver.
 - `VARIATIONS.md`: Documents visual variations.
 - `GUIDELINES.md`: Design guidelines.
 - `README.md`: Developer Reference.
@@ -19,11 +19,4 @@ Each component is implemented in its own directory under the `libs/components/sr
 - `ACCESSIBILITY.md`: Accessibility guidelines.
 
 To run unit tests for a specific component: `pnpm --filter ./libs/components exec vitest --run src/lib/<component name>`
-To update the ui tests snapshots for a specific component: `pnpm turbo @vonage/vivid#e2e:docker -- <component name> --update-snapshots`
-
-## Creating a New Component
-
-To create a new component, run the component generator:
-`pnpm turbo gen component --args <component-name> true true`
-
-This will create a boilerplate component in `libs/components/src/lib/<component-name>` that is fully registered with the library and documentation system.
+To run the visual snapshots for a specific component: `pnpm turbo @vonage/vivid#test:browser:docker -- <component name>`

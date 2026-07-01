@@ -28,19 +28,6 @@ Feel free to check [issues page](https://github.com/Vonage/vivid-3/issues). You 
 
 <br>
 
-### Getting started
-
-#### New component generator
-
-`pnpm turbo gen component`
-
-Will generate a new component in `libs/components/src/lib/my-component`
-
-#### Test
-
-`npm run test` will run unit tests for the components
-See the [ui-tests docs](docs/component-ui-tests.md) for how to run visual tests.
-
 ## Show your support
 
 Give a ⭐️ if this project helped you!

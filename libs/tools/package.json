@@ -20,7 +20,8 @@
 	},
 	"bin": {
 		"move-manifest-to-dist": "src/move-manifest-to-dist.ts",
-		"relativize-coverage": "src/relativize-coverage.ts"
+		"relativize-coverage": "src/relativize-coverage.ts",
+		"run-with-playwright-docker": "src/run-with-playwright-docker.sh"
 	},
 	"scripts": {
 		"lint": "eslint . --max-warnings=0",

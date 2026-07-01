@@ -3,65 +3,10 @@ import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
 	renderTemplate,
-	takeScreenshot,
 } from '../../visual-tests/visual-tests-utils.js';
 import { useFakeTime } from '../../visual-tests/time';
 
 const components = ['date-range-picker', 'contextual-help'];
-
-test('should show the component', async ({ page }: { page: Page }) => {
-	const template = `
-	<style>
-		.space-for-popup {
-			height: 450px;
-			width: 680px;
-			flex-shrink: 0;
-		}
-		.layout {
-			display: flex;
-			padding: 8px;
-			box-sizing: border-box;
-		}
-		.grid {
-			display: flex;
-			flex-direction: column;
-			gap: 20px;
-			width: 220px;
-		}
-	</style>
-	<div class="layout">
-		<div class="space-for-popup">
-			<vwc-date-range-picker id="date-range-picker" start="2011-11-11" end="2011-11-22"></vwc-date-range-picker>
-		</div>
-		<div class="grid">
-			<vwc-date-range-picker label="Label"></vwc-date-range-picker>
-			<vwc-date-range-picker helper-text="Helper text"></vwc-date-range-picker>
-			<vwc-date-range-picker error-text="Error text"></vwc-date-range-picker>
-			<vwc-date-range-picker label="Label">
-				<vwc-contextual-help slot="contextual-help">Example contextual help</vwc-contextual-help>
-			</vwc-date-range-picker>
-			<vwc-date-range-picker scale="condensed" label="Condensed"></vwc-date-range-picker>
-		</div>
-	</div>`;
-
-	await useFakeTime(page, new Date('August 11 2023 11:11:11').valueOf());
-	await page.setViewportSize({ width: 1000, height: 550 });
-
-	await loadComponents({
-		page,
-		components,
-	});
-
-	await renderTemplate({
-		page,
-		template,
-		setup: async () => {
-			await page.locator('#date-range-picker #picker-button').click();
-		},
-	});
-
-	await takeScreenshot(page, 'date-range-picker');
-});
 
 test('selecting a date range', async ({ page }: { page: Page }) => {
 	const template = '<vwc-date-range-picker></vwc-date-range-picker>';

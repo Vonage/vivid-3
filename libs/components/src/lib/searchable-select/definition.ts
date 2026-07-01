@@ -30,7 +30,7 @@ const optionTagDefinition = defineVividComponent(
 /**
  * @internal
  */
-const searchableSelectDefinition = defineVividComponent(
+export const searchableSelectDefinition = defineVividComponent(
 	'searchable-select',
 	SearchableSelect,
 	template,

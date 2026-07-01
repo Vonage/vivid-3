@@ -2,7 +2,9 @@
 	"extends": "@repo/typescript-config/components.json",
 	"compilerOptions": {
 		"noImplicitOverride": true,
-		"noUnusedLocals": true
+		"noUnusedLocals": true,
+		"jsx": "react-jsx",
+		"jsxImportSource": "@repo/vvd-jsx"
 	},
 	"include": ["src", "scripts", "*.ts", "*.js"]
 }

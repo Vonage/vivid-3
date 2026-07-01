@@ -18,7 +18,6 @@ Here is a list of instruction files that contain important information when work
 | ---------------------------- | ---------------------------------- |
 | `docs/components.md`         | `libs/components/**/*`             |
 | `docs/component-docs.md`     | `libs/components/**/*.md`          |
-| `docs/component-ui-tests.md` | `libs/components/**/ui.test.ts`    |
 | `docs/component-template.md` | `libs/components/**/*.template.ts` |
 | `docs/docs.md`               | `*.md`                             |
 

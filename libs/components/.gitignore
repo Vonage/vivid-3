@@ -1,1 +1,5 @@
 custom-elements.json
+
+# Only check in linux (docker) snapshots
+**/__screenshots__/*/*
+!**/__screenshots__/*/*-linux.png

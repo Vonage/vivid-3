@@ -1,0 +1,30 @@
+{
+	"name": "@repo/browser-tests",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./setup": "./src/setup.ts",
+		"./variation-test": "./src/variation-test.ts",
+		"./browser-commands-plugin": "./src/browser-commands-plugin.ts",
+		"./serve-local-icons-plugin": "./src/serve-local-icons-plugin.ts",
+		"./render-isolated": "./src/render-isolated.tsx",
+		"./utils": "./src/utils.ts"
+	},
+	"dependencies": {
+		"@microsoft/fast-element": "catalog:",
+		"@repo/shared": "workspace:*",
+		"@repo/styles": "workspace:*",
+		"@repo/vvd-jsx": "workspace:*"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "workspace:*",
+		"@vitest/browser": "catalog:",
+		"@vitest/browser-playwright": "catalog:"
+	},
+	"peerDependencies": {
+		"@types/node": "catalog:",
+		"vite": "catalog:",
+		"vitest": "catalog:"
+	}
+}
