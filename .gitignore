@@ -47,3 +47,8 @@ blob-results
 
 *storybook.log
 storybook-static
+
+# Local environment files (API keys etc.)
+.env
+.env.local
+.env.*.local
