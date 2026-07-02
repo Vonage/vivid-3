@@ -80,7 +80,7 @@
 		"video.js": "^8.23.7"
 	},
 	"devDependencies": {
-		"@custom-elements-manifest/analyzer": "^0.5.7",
+		"@custom-elements-manifest/analyzer": "^0.11.0",
 		"@microsoft/api-extractor": "^7.58.7",
 		"@playwright/test": "catalog:",
 		"@repo/cem-analyzer-plugins": "workspace:*",
@@ -110,7 +110,7 @@
 		"eslint-formatter-compact": "^9.0.1",
 		"glob": "catalog:",
 		"http-server": "catalog:",
-		"playwright": "1.57.0",
+		"playwright": "1.61.1",
 		"sass": "catalog:",
 		"tsx": "catalog:",
 		"typescript": "catalog:",
